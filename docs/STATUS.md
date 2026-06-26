@@ -497,6 +497,8 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - Public smokes: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando CalcHarbor ainda placeholder publico.
   - `pnpm validate:structure`, `pnpm deploy:dry-run`, `pnpm validate:secrets` e `git diff --check` passaram no fechamento; `git diff --check` exibiu apenas avisos CRLF conhecidos.
   - Screenshots locais ignorados em `artifacts/visual-smoke/calcharbor-loan-desktop.png` e `artifacts/visual-smoke/calcharbor-roi-mobile.png` foram revisados sem pagina em branco, asset ausente, overflow evidente ou sobreposicao aparente.
+  - GitHub Actions `Quality Gate` run `28269128417` passou com repository safety, Hub frontend, NetProbe frontend, CalcHarbor frontend, backend e summary.
+  - GitHub Actions `Deploy Dry Run` run `28269128408` passou; nenhum deploy real do CalcHarbor foi executado porque o app ainda nao tem workflow de traffic switch, smoke publico e rollback proprios.
 
 ## Pendencias criticas
 
