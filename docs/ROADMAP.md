@@ -165,6 +165,7 @@ Sprint 3.3 - TimeNexus MVP
 - Objetivo: fusos, datas, dias uteis, timestamp, idade, porcentagem, unidades.
 - Upgrade: widgets, API, presets, historico.
 - Validacao: timezone fixtures, locale tests, SEO.
+- Status: concluida localmente/CI. O app `apps/timenexus` foi criado com Nuxt SSG, 7 ferramentas client-side (`timezone-converter`, `date-difference`, `business-days`, `timestamp-converter`, `age-calculator`, `percentage-calculator`, `unit-converter`), Web Worker com fallback, home e paginas legais/editoriais em 5 idiomas, exemplos, privacidade, limitacoes, FAQ e schema `WebApplication`/`FAQPage`. Quality Gate dedicado foi adicionado, mas o deploy publico real continua bloqueado ate existir empacotamento HostGator, smoke publico e rollback especificos. Nenhum anuncio, billing, conta, backend, API publica, armazenamento local, worker de producao, webhook ou integracao externa de analytics foi ativado.
 
 ## Fase 4 - Produtos pagos de workflow
 

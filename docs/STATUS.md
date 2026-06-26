@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas, o modulo seguro inicial de IP/DNS/RDAP/SSL/propagation/port/reachability do NetProbe, o conteudo original multilanguage/AdSense-readiness do NetProbe, o MVP de upgrade com monitores/historico/alertas/API, o launch gate estatico do NetProbe, o deploy publico do control-plane/API e os MVPs local/CI do CalcHarbor e DevUtility Lab foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada. Em 2026-06-26, o control-plane/API foi publicado em `https://opentshost.com/supersites/control-plane/` e o NetProbe Atlas foi publicado em `https://opentshost.com/supersites/netprobe-atlas/` com consultas publicas IP/DNS via HTTPS e smoke publico. CalcHarbor e DevUtility Lab permanecem em placeholder publico ate receberem deploy/rollback/smoke especificos. Nenhum anuncio, billing real, worker/cron de producao, webhook externo ou integracao externa de analytics foi ativado.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas, o modulo seguro inicial de IP/DNS/RDAP/SSL/propagation/port/reachability do NetProbe, o conteudo original multilanguage/AdSense-readiness do NetProbe, o MVP de upgrade com monitores/historico/alertas/API, o launch gate estatico do NetProbe, o deploy publico do control-plane/API e os MVPs local/CI do CalcHarbor, DevUtility Lab e TimeNexus foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada. Em 2026-06-26, o control-plane/API foi publicado em `https://opentshost.com/supersites/control-plane/` e o NetProbe Atlas foi publicado em `https://opentshost.com/supersites/netprobe-atlas/` com consultas publicas IP/DNS via HTTPS e smoke publico. CalcHarbor, DevUtility Lab e TimeNexus permanecem em placeholder publico ate receberem deploy/rollback/smoke especificos. Nenhum anuncio, billing real, worker/cron de producao, webhook externo ou integracao externa de analytics foi ativado.
 
 ## Estado local verificado
 
@@ -163,6 +163,16 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `infra/deployment/apps.json`, `scripts/ci-detect-changes.ps1`, `.github/workflows/quality-gate.yml`, `scripts/validate-structure.ps1` e os scripts raiz passaram a reconhecer o app DevUtility Lab.
   - `scripts/smoke-supersite-public.ps1` foi atualizado para preservar o estado real de producao: Hub e NetProbe ativos, CalcHarbor e DevUtility Lab ainda placeholders sem `_nuxt`.
   - A URL publica `https://opentshost.com/supersites/devutility-lab/` permanece placeholder; deploy real aguarda artifact HostGator, smoke publico e rollback especificos.
+  - Nenhum anuncio, billing real, conta, API publica, worker de producao, webhook externo ou integracao externa de analytics foi ativado nesta sprint.
+- Sprint 3.3 TimeNexus MVP:
+  - `apps/timenexus` foi criado com Nuxt SSG/SSR, Vue, TypeScript, rotas localizadas, sitemap e paginas legais/editoriais site-scoped.
+  - Ferramentas gratuitas implementadas no navegador: `timezone-converter`, `date-difference`, `business-days`, `timestamp-converter`, `age-calculator`, `percentage-calculator` e `unit-converter`.
+  - As ferramentas rodam client-side com Web Worker quando disponivel e fallback local, sem armazenamento em `localStorage`/`sessionStorage`.
+  - Conteudo inicial cobre `en`, `pt-br`, `es`, `fr` e `de`; cada pagina de ferramenta renderiza exemplo, privacidade, limitacoes, FAQ, upgrade path e schema `WebApplication`/`FAQPage`.
+  - Analytics local emite apenas `tool_started`, `tool_completed` e `tool_failed` com `tool_slug`; datas, fusos, idade, valores numericos, unidades, inputs e resultados nao sao enviados para logs, backend ou data layer.
+  - `infra/deployment/apps.json`, `scripts/ci-detect-changes.ps1`, `.github/workflows/quality-gate.yml`, `scripts/validate-structure.ps1` e os scripts raiz passaram a reconhecer o app TimeNexus.
+  - `scripts/smoke-supersite-public.ps1` foi atualizado para preservar o estado real de producao: Hub e NetProbe ativos, CalcHarbor, DevUtility Lab e TimeNexus ainda placeholders sem `_nuxt`.
+  - A URL publica `https://opentshost.com/supersites/timenexus/` permanece placeholder; deploy real aguarda artifact HostGator, smoke publico e rollback especificos.
   - Nenhum anuncio, billing real, conta, API publica, worker de producao, webhook externo ou integracao externa de analytics foi ativado nesta sprint.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
@@ -526,6 +536,20 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - GitHub Actions `Deploy Dry Run` run `28270683479` passou.
   - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis e CalcHarbor/DevUtility Lab ainda placeholders publicos.
   - Nenhum deploy real do DevUtility Lab foi executado porque o app ainda nao tem workflow de traffic switch, smoke publico e rollback proprios.
+- Sprint 3.3 validation:
+  - Estado inicial verificado: `git status --short --branch` em `main...origin/main`, remoto `git@github.com:helberfmelo/supersites-platform.git` e GitHub Actions recentes verdes.
+  - `pnpm install --lockfile-only` passou e atualizou o lockfile para o novo workspace.
+  - `pnpm test:timenexus` passou com 7 testes.
+  - `pnpm build:timenexus` passou e prerenderizou 81 rotas de conteudo mais `sitemap.xml` (163 rotas totais incluindo payloads), com avisos Nuxt/Nitro conhecidos e nao fatais.
+  - `pnpm validate:timenexus-preview` passou.
+  - `pnpm test:e2e:timenexus` passou com 3 testes, cobrindo Web Worker/fallback, analytics sanitizado e ausencia de armazenamento local.
+  - Pacotes compartilhados: `pnpm test:packages` passou com 22 testes e `pnpm typecheck:packages` passou nos 5 pacotes.
+  - Backend: `composer validate --strict` e `php artisan test` passaram em `apps/control-plane` com 31 testes / 204 assertions.
+  - Regressao Hub: `pnpm --filter @supersites/supersite test`, `pnpm --filter @supersites/supersite build`, `pnpm validate:supersite-preview` e `pnpm test:e2e:supersite` passaram.
+  - Regressao NetProbe: `pnpm test:netprobe`, `pnpm build:netprobe`, `pnpm validate:netprobe-preview` e `pnpm test:e2e:netprobe` passaram.
+  - Regressao CalcHarbor: `pnpm test:calcharbor`, `pnpm build:calcharbor`, `pnpm validate:calcharbor-preview` e `pnpm test:e2e:calcharbor` passaram.
+  - Regressao DevUtility Lab: `pnpm test:devutility`, `pnpm build:devutility`, `pnpm validate:devutility-preview` e `pnpm test:e2e:devutility` passaram; uma tentativa concorrente de preview e E2E em `127.0.0.1:3115` foi invalidada por `EADDRINUSE` e reexecutada sem concorrencia.
+  - `pnpm validate:structure`, `pnpm deploy:dry-run`, `pnpm validate:secrets`, `pnpm ci:changes` e `git diff --check` passaram no fechamento local; `git diff --check` exibiu apenas avisos CRLF conhecidos em arquivos touched.
 
 ## Pendencias criticas
 
@@ -539,6 +563,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Publicar proximos apps somente mantendo empacotamento de artefatos, preservacao remota de `.env`, smoke e rollback testavel.
 - Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o CalcHarbor antes de trocar trafego real.
 - Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o DevUtility Lab antes de trocar trafego real.
+- Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o TimeNexus antes de trocar trafego real.
 - Definir estrategia tecnica de URL raiz: `opentshost.com` apontando para conteudo em `/public_html/supersites/`.
 - Definir dominios definitivos futuramente.
 - Validar dominio/marca antes de registrar qualquer nome.

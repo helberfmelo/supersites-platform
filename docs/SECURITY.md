@@ -14,6 +14,7 @@
 - PixelBatch/DocShift: validar tipo/tamanho, limpar temporarios, isolar processamento server-side e usar antivirus/sandbox quando aplicavel.
 - QRRoute: prevenir phishing, malware, open redirect e abuso de short links.
 - DevUtility: processar conteudo no navegador/Web Worker quando possivel, limitar snippets, nao persistir storage local e nao enviar conteudo sensivel do usuario para analytics ou logs.
+- TimeNexus: processar datas, fusos e conversoes no navegador/Web Worker quando possivel, nao persistir entradas pessoais e nao enviar valores ou resultados para analytics ou logs.
 
 ## Secrets
 
@@ -43,6 +44,13 @@
 - JSON/XML/YAML/CSV, Base64, JWT, regex, diff, cron, UUID, timestamp e hashes nao devem ser enviados a backend, logs, analytics ou data layer.
 - O app nao deve persistir input ou resultado em `localStorage`, `sessionStorage`, IndexedDB ou cookies nesta sprint.
 - Textos da UI devem orientar o usuario a nao colar segredos quando isso for evitavel; ainda assim a seguranca assume que entradas podem conter tokens ou chaves e minimiza coleta.
+
+## TimeNexus client-side tools
+
+- Ferramentas da Sprint 3.3 rodam no navegador com Web Worker quando suportado e fallback local sem chamadas de rede.
+- Fusos, datas, horarios, timestamps, idade, porcentagem, unidades, valores numericos e resultados nao devem ser enviados a backend, logs, analytics ou data layer.
+- O app nao deve persistir input ou resultado em `localStorage`, `sessionStorage`, IndexedDB ou cookies nesta sprint.
+- Regras de fuso e calendario devem declarar limitacoes de precisao, diferencas de locale e dependencia do runtime do navegador.
 
 ## NetProbe public API
 

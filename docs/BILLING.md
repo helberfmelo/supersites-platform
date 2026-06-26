@@ -28,6 +28,12 @@ A Sprint 3.2 criou apenas ferramentas gratuitas client-side, sem checkout, cobra
 
 Antes de vender historico privado, workspaces, processamento em lote, arquivos maiores ou API, implementar billing/entitlements, termos, matriz de dados, retencao, exportacao/exclusao de conta e gates humanos de KYC/impostos/conta bancaria.
 
+## TimeNexus preview
+
+A Sprint 3.3 criou apenas ferramentas gratuitas client-side, sem checkout, cobranca, assinatura, entitlement pago, provedor externo ativo, widgets, API, presets ou historico.
+
+Antes de vender widgets, API, presets ou historico, implementar billing/entitlements, termos, matriz de dados, retencao, exportacao/exclusao de conta e gates humanos de KYC/impostos/conta bancaria.
+
 ## Segurança
 
 - Nao armazenar cartao.

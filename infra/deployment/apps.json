@@ -51,8 +51,9 @@
     {
       "id": "timenexus",
       "name": "TimeNexus",
-      "kind": "placeholder",
+      "kind": "nuxt-ssg",
       "localPath": "apps/timenexus",
+      "buildOutput": "apps/timenexus/.output/public",
       "remotePath": "/home1/opents62/public_html/supersites/timenexus",
       "publicUrl": "https://opentshost.com/supersites/timenexus/"
     },

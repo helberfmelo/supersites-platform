@@ -15,13 +15,13 @@ Data-base: 2026-06-26
 | Docs files created/maintained | 43 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
-| Nuxt apps scaffolded | 4 |
+| Nuxt apps scaffolded | 5 |
 | Laravel apps scaffolded | 1 |
 | Shared TS packages implemented | 5 |
 | Shared package tests passing | 22 |
 | Shared package typechecks passing | 5 |
-| Frontend tests passing | 31 |
-| Playwright visual smoke tests passing | 17 |
+| Frontend tests passing | 38 |
+| Playwright visual smoke tests passing | 20 |
 | Laravel tests passing | 31 |
 | Control plane API endpoints implemented | 15 |
 | Control plane admin routes implemented | 6 |
@@ -124,6 +124,18 @@ Data-base: 2026-06-26
 | DevUtility Lab preview smoke | Passed |
 | DevUtility Lab Playwright report | Passed |
 | DevUtility Lab production status | Placeholder at `https://opentshost.com/supersites/devutility-lab/`; real deploy gated |
+| TimeNexus tool pages implemented | 7 |
+| TimeNexus localized tool pages | 35 |
+| TimeNexus live public tools implemented | 0 |
+| TimeNexus local browser tools implemented | 7 |
+| TimeNexus legal/editorial pages | 40 |
+| TimeNexus FAQ blocks | 35 |
+| TimeNexus structured data pages | 35 |
+| TimeNexus prerender content routes | 81 |
+| TimeNexus sitemap routes | 1 |
+| TimeNexus preview smoke | Passed |
+| TimeNexus Playwright report | Passed |
+| TimeNexus production status | Placeholder at `https://opentshost.com/supersites/timenexus/`; real deploy gated |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
 | Public production smoke for `/supersites/` | 200 catalog live |

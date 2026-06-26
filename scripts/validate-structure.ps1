@@ -14,6 +14,7 @@ $requiredPaths = @(
     "playwright.netprobe.config.ts",
     "playwright.calcharbor.config.ts",
     "playwright.devutility.config.ts",
+    "playwright.timenexus.config.ts",
     "pnpm-workspace.yaml",
     "pnpm-lock.yaml",
     "docs/MEGA_PROMPT_SUPERSITES.md",
@@ -274,6 +275,34 @@ $devutilityPaths = @(
 )
 
 $requiredPaths += $devutilityPaths
+
+$timenexusPaths = @(
+    "apps/timenexus/package.json",
+    "apps/timenexus/nuxt.config.ts",
+    "apps/timenexus/app/app.vue",
+    "apps/timenexus/app/components/TimeNexusHome.vue",
+    "apps/timenexus/app/components/LanguageNav.vue",
+    "apps/timenexus/app/components/LegalFooter.vue",
+    "apps/timenexus/app/components/SiteHeader.vue",
+    "apps/timenexus/app/data/copy.ts",
+    "apps/timenexus/app/data/locales.ts",
+    "apps/timenexus/app/data/pages.ts",
+    "apps/timenexus/app/data/routes.ts",
+    "apps/timenexus/app/data/tools.ts",
+    "apps/timenexus/app/pages/index.vue",
+    "apps/timenexus/app/pages/[locale]/[page].vue",
+    "apps/timenexus/app/pages/[locale]/index.vue",
+    "apps/timenexus/app/pages/[locale]/tools/[slug].vue",
+    "apps/timenexus/app/utils/analytics.ts",
+    "apps/timenexus/app/utils/timeWorker.ts",
+    "apps/timenexus/app/workers/timenexus.worker.ts",
+    "apps/timenexus/server/routes/sitemap.xml.ts",
+    "apps/timenexus/tests/timenexus.test.ts",
+    "tests/e2e/timenexus.spec.ts",
+    "scripts/validate-timenexus-preview.ps1"
+)
+
+$requiredPaths += $timenexusPaths
 
 $missing = @()
 foreach ($path in $requiredPaths) {

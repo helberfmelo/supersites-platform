@@ -98,6 +98,21 @@ Nao registrar em analytics:
 
 Sprint 3.2 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, historico salvo, workspaces, API publica ou storage persistente do DevUtility Lab.
 
+## TimeNexus tools
+
+As ferramentas client-side do TimeNexus podem registrar apenas eventos de produto de baixo risco, como `tool_viewed`, `tool_started`, `tool_completed` e `tool_failed`, usando `tool_slug`, rota e locale.
+
+Nao registrar em analytics:
+
+- datas, horarios ou fusos digitados;
+- data de nascimento, idade ou data de referencia;
+- valores de porcentagem, bases, partes, unidades ou quantidades;
+- timestamps, resultados convertidos, diferencas calculadas ou contagem de dias uteis;
+- erros ou mensagens que possam conter partes do input;
+- combinacoes de locale, fuso e resultado que possam revelar contexto pessoal.
+
+Sprint 3.3 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, historico salvo, widgets, API publica ou storage persistente do TimeNexus.
+
 ## Deploy smokes
 
 Smokes de deploy do control-plane/API e do NetProbe devem validar apenas disponibilidade e contrato JSON, sem criar eventos externos de analytics e sem registrar alvo bruto de usuario. O alvo DNS padrao para smoke publico e `example.com`.

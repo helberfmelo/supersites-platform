@@ -53,6 +53,14 @@
 - Eventos locais permitidos devem conter apenas `tool_slug`, rota, locale e metadados de UI sem conteudo do usuario.
 - Futuras funcionalidades pagas de historico privado, workspaces, processamento em lote, arquivos maiores ou API exigem matriz de dados, retencao, exportacao/exclusao, termos e controles de segredo antes de ativacao.
 
+## TimeNexus
+
+- Entradas de fusos, datas, dias uteis, timestamps, idade, porcentagem e unidades sao processadas no navegador, preferencialmente em Web Worker, no MVP da Sprint 3.3.
+- Datas, horarios, zonas, data de nascimento, data de referencia, valores numericos, unidades e resultados nao devem ser enviados para backend, analytics, logs, GA4, GTM, AdSense ou data layer.
+- O app nao salva presets, historico, widgets, contas, `localStorage` ou `sessionStorage` nesta sprint.
+- Eventos locais permitidos devem conter apenas `tool_slug`, rota, locale e metadados de UI sem valores do usuario.
+- Futuras funcionalidades pagas de widgets, API, presets ou historico exigem matriz de dados, retencao, exportacao/exclusao, termos e controles de privacidade antes de ativacao.
+
 ## Analytics sem PII
 
 - O contrato versionado fica em `packages/analytics`.

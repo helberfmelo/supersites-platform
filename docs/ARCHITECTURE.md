@@ -174,6 +174,20 @@ Sprint 3.2 adiciona o segundo site de baixo custo marginal da Fase 3 em `apps/de
 - Nao ha backend, conta, historico, API, billing, anuncio, storage local persistente, worker de producao, webhook ou integracao externa nesta sprint.
 - O manifesto de deploy conhece o build SSG, mas trafego publico real permanece placeholder ate existirem artifact gate, smoke publico e rollback especificos do DevUtility Lab.
 
+## TimeNexus browser-side MVP
+
+Sprint 3.3 adiciona o terceiro site de baixo custo marginal da Fase 3 em `apps/timenexus`.
+
+- O app usa Nuxt SSG/SSR com ferramentas de tempo, data, porcentagem e unidades executadas no navegador.
+- O MVP publica 7 ferramentas: conversor de fuso horario, diferenca de datas, dias uteis, timestamp, idade, porcentagem e unidades.
+- Cada ferramenta renderiza exemplo, instrucoes de privacidade, limitacoes, FAQ, upgrade path e schema `WebApplication`/`FAQPage` no HTML inicial.
+- O conteudo inicial cobre `en`, `pt-br`, `es`, `fr` e `de`, incluindo paginas legais/editoriais site-scoped.
+- A execucao usa Web Worker quando disponivel, fallback local no navegador e sem armazenamento persistente.
+- Analytics local permitido: eventos sanitizados `tool_started`, `tool_completed` e `tool_failed` com `tool_slug`.
+- Datas, fusos, idade, valores numericos, unidades, inputs e resultados nao devem ser enviados para analytics, logs, backend ou data layer.
+- Nao ha backend, conta, historico, API, billing, anuncio, storage local persistente, worker de producao, webhook ou integracao externa nesta sprint.
+- O manifesto de deploy conhece o build SSG, mas trafego publico real permanece placeholder ate existirem artifact gate, smoke publico e rollback especificos do TimeNexus.
+
 ## Sites e pastas
 
 | App | Pasta | Papel |

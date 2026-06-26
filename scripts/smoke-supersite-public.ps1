@@ -93,6 +93,9 @@ Assert-DoesNotContain -Content $calcharborPlaceholder.Content -Pattern "(?i)<scr
 $devutilityPlaceholder = Invoke-SmokeRequest -Url (Join-Url $publicBase "devutility-lab/") -RequiredContent "SuperSites bootstrap placeholder"
 Assert-DoesNotContain -Content $devutilityPlaceholder.Content -Pattern "(?i)<script[^>]+/_nuxt/" -Context "DevUtility Lab temporary placeholder"
 
+$timenexusPlaceholder = Invoke-SmokeRequest -Url (Join-Url $publicBase "timenexus/") -RequiredContent "SuperSites bootstrap placeholder"
+Assert-DoesNotContain -Content $timenexusPlaceholder.Content -Pattern "(?i)<script[^>]+/_nuxt/" -Context "TimeNexus temporary placeholder"
+
 if ($RootUrl) {
     if ($RootUrl -notmatch "^https://") {
         throw "Root smoke requires HTTPS URL. Received: $RootUrl"

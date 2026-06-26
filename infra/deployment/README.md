@@ -1,6 +1,6 @@
 # Deployment
 
-Deployment configuration starts with a dry-run foundation and now includes controlled HostGator deploy paths for the SuperSites Hub catalog, the Laravel control-plane/API and the gated NetProbe Atlas frontend. CalcHarbor and DevUtility Lab have Nuxt SSG manifest entries after Sprints 3.1 and 3.2, but no real traffic switch workflow yet.
+Deployment configuration starts with a dry-run foundation and now includes controlled HostGator deploy paths for the SuperSites Hub catalog, the Laravel control-plane/API and the gated NetProbe Atlas frontend. CalcHarbor, DevUtility Lab and TimeNexus have Nuxt SSG manifest entries after Sprints 3.1, 3.2 and 3.3, but no real traffic switch workflow yet.
 
 ## Files
 
@@ -134,4 +134,4 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\publish-control-plane-host
 
 ## Current Rule
 
-Real deploy is allowed for the SuperSites Hub static catalog, control-plane/API and NetProbe Atlas after artifact validation, remote preservation, smoke and rollback checks pass. CalcHarbor, DevUtility Lab and the remaining apps remain dry-run or placeholder-only until they receive app-specific packaging, smoke and rollback scripts.
+Real deploy is allowed for the SuperSites Hub static catalog, control-plane/API and NetProbe Atlas after artifact validation, remote preservation, smoke and rollback checks pass. CalcHarbor, DevUtility Lab, TimeNexus and the remaining apps remain dry-run or placeholder-only until they receive app-specific packaging, smoke and rollback scripts.

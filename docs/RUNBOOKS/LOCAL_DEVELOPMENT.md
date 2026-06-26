@@ -80,6 +80,15 @@ pnpm validate:devutility-preview
 pnpm test:e2e:devutility
 ```
 
+Run TimeNexus checks:
+
+```powershell
+pnpm test:timenexus
+pnpm build:timenexus
+pnpm validate:timenexus-preview
+pnpm test:e2e:timenexus
+```
+
 The root package scripts use explicit filters for `@supersites/ui`, `@supersites/i18n`, `@supersites/seo` and `@supersites/consent`. A generic pnpm path filter did not match the package workspaces on Windows during Sprint 1.3.
 
 Install the Playwright browser once per workstation if needed:
@@ -129,6 +138,14 @@ pnpm dev:devutility
 ```
 
 Then open `http://127.0.0.1:3004/en/tools/structured-data-formatter`. Snippets and results remain browser-side in Sprint 3.2.
+
+For local TimeNexus development, run:
+
+```powershell
+pnpm dev:timenexus
+```
+
+Then open `http://127.0.0.1:3005/en/tools/timezone-converter`. Dates, zones, values and results remain browser-side in Sprint 3.3.
 
 For local NetProbe Atlas tool testing, run:
 

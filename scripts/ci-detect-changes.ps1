@@ -82,6 +82,14 @@ $frontendDevutilityPatterns = @(
     "^pnpm-workspace\.yaml$"
 )
 
+$frontendTimenexusPatterns = @(
+    "^apps/timenexus/",
+    "^packages/",
+    "^package\.json$",
+    "^pnpm-lock\.yaml$",
+    "^pnpm-workspace\.yaml$"
+)
+
 $backendPatterns = @(
     "^apps/control-plane/",
     "^packages/",
@@ -149,6 +157,7 @@ $frontendSupersite = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns $
 $frontendNetprobe = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns $frontendNetprobePatterns)
 $frontendCalcharbor = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns $frontendCalcharborPatterns)
 $frontendDevutility = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns $frontendDevutilityPatterns)
+$frontendTimenexus = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns $frontendTimenexusPatterns)
 $backend = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns $backendPatterns)
 $deployment = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns $deploymentPatterns)
 $docsOnly = (-not $runAll) -and (Test-AllMatch -Files $changedFiles -Patterns $docsPatterns)
@@ -158,6 +167,7 @@ Write-GitHubOutput -Name "frontend_supersite" -Value (ConvertTo-CiBool $frontend
 Write-GitHubOutput -Name "frontend_netprobe" -Value (ConvertTo-CiBool $frontendNetprobe)
 Write-GitHubOutput -Name "frontend_calcharbor" -Value (ConvertTo-CiBool $frontendCalcharbor)
 Write-GitHubOutput -Name "frontend_devutility" -Value (ConvertTo-CiBool $frontendDevutility)
+Write-GitHubOutput -Name "frontend_timenexus" -Value (ConvertTo-CiBool $frontendTimenexus)
 Write-GitHubOutput -Name "backend_control_plane" -Value (ConvertTo-CiBool $backend)
 Write-GitHubOutput -Name "deployment" -Value (ConvertTo-CiBool $deployment)
 Write-GitHubOutput -Name "docs_only" -Value (ConvertTo-CiBool $docsOnly)
@@ -170,6 +180,7 @@ $summary = [ordered]@{
     frontendNetprobe = $frontendNetprobe
     frontendCalcharbor = $frontendCalcharbor
     frontendDevutility = $frontendDevutility
+    frontendTimenexus = $frontendTimenexus
     backendControlPlane = $backend
     deployment = $deployment
     docsOnly = $docsOnly
