@@ -18,7 +18,8 @@ param(
     [string]$DatabaseName = $env:SUPERSITES_CONTROL_PLANE_DB_DATABASE,
     [string]$DatabaseUsername = $env:SUPERSITES_CONTROL_PLANE_DB_USERNAME,
     [string]$DatabasePassword = $env:SUPERSITES_CONTROL_PLANE_DB_PASSWORD,
-    [string]$PhpHandler = $env:SUPERSITES_CONTROL_PLANE_PHP_HANDLER
+    [string]$PhpHandler = $env:SUPERSITES_CONTROL_PLANE_PHP_HANDLER,
+    [switch]$EnableDiagnostics
 )
 
 $ErrorActionPreference = "Stop"
@@ -455,7 +456,10 @@ function New-ReleasesDenyHtaccessContent {
 }
 
 function New-ManagedFrontControllerContent {
-    param([string]$ManagedReleaseId)
+    param(
+        [string]$ManagedReleaseId,
+        [bool]$DiagnosticsEnabled = $false
+    )
 
     $template = @'
 <?php
@@ -468,6 +472,7 @@ use Illuminate\Http\Request;
 $publicBasePath = '/supersites/control-plane';
 $releaseBasePath = __DIR__ . '/_control-plane-releases/{{RELEASE_ID}}';
 $releasePublicPath = __DIR__ . '/_control-plane-releases/{{RELEASE_ID}}/public';
+$diagnosticsEnabled = {{DIAGNOSTICS_ENABLED}};
 
 if (! is_file($releaseBasePath . '/vendor/autoload.php') || ! is_file($releaseBasePath . '/bootstrap/app.php')) {
     http_response_code(503);
@@ -493,6 +498,36 @@ if (isset($_SERVER['REQUEST_URI'])) {
     $_SERVER['ORIG_PATH_INFO'] = $_SERVER['PATH_INFO'];
 }
 
+if ($diagnosticsEnabled) {
+    $diagnosticPath = isset($_SERVER['REQUEST_URI'])
+        ? (parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?: '')
+        : '';
+
+    if ($diagnosticPath === '/_supersites-control-plane-diagnostics' || $diagnosticPath === '/index.php/_supersites-control-plane-diagnostics') {
+        http_response_code(200);
+        header('Content-Type: application/json; charset=utf-8');
+        header('X-Robots-Tag: noindex, nofollow');
+        echo json_encode([
+            'release' => '{{RELEASE_ID}}',
+            'php_version' => PHP_VERSION,
+            'sapi' => PHP_SAPI,
+            'method' => $_SERVER['REQUEST_METHOD'] ?? '',
+            'request_uri' => $_SERVER['REQUEST_URI'] ?? '',
+            'script_name' => $_SERVER['SCRIPT_NAME'] ?? '',
+            'php_self' => $_SERVER['PHP_SELF'] ?? '',
+            'script_filename' => $_SERVER['SCRIPT_FILENAME'] ?? '',
+            'path_info' => $_SERVER['PATH_INFO'] ?? '',
+            'document_root' => $_SERVER['DOCUMENT_ROOT'] ?? '',
+            'files' => [
+                'vendor_autoload' => is_file($releaseBasePath . '/vendor/autoload.php'),
+                'bootstrap_app' => is_file($releaseBasePath . '/bootstrap/app.php'),
+                'public_index' => is_file($releasePublicPath . '/index.php'),
+            ],
+        ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+        exit;
+    }
+}
+
 define('LARAVEL_START', microtime(true));
 
 if (file_exists($maintenance = $releaseBasePath . '/storage/framework/maintenance.php')) {
@@ -507,7 +542,8 @@ $app = require_once $releaseBasePath . '/bootstrap/app.php';
 $app->handleRequest(Request::capture());
 '@
 
-    return $template.Replace("{{RELEASE_ID}}", $ManagedReleaseId)
+    $diagnosticsLiteral = if ($DiagnosticsEnabled) { "true" } else { "false" }
+    return $template.Replace("{{RELEASE_ID}}", $ManagedReleaseId).Replace("{{DIAGNOSTICS_ENABLED}}", $diagnosticsLiteral)
 }
 
 function New-PlaceholderRollbackHtaccessContent {
@@ -570,7 +606,7 @@ function Switch-ManagedRelease {
         }
     }
 
-    Save-RemoteTextFile -Directory $script:RemoteBase -FileName "index.php" -Content (New-ManagedFrontControllerContent -ManagedReleaseId $ManagedReleaseId)
+    Save-RemoteTextFile -Directory $script:RemoteBase -FileName "index.php" -Content (New-ManagedFrontControllerContent -ManagedReleaseId $ManagedReleaseId -DiagnosticsEnabled:$EnableDiagnostics)
     Save-RemoteTextFile -Directory $script:RemoteBase -FileName ".htaccess" -Content (New-HtaccessContent)
     Write-Host "HostGator release switch points /supersites/control-plane/ to release $ManagedReleaseId."
 }

@@ -16,6 +16,16 @@ on:
         description: Required only for rollback-release.
         required: false
         type: string
+      skip_smoke:
+        description: Skip public smoke after deploy or rollback. Use only for controlled diagnostics.
+        required: false
+        default: false
+        type: boolean
+      enable_diagnostics:
+        description: Enable sanitized temporary diagnostics in the managed front controller.
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -58,6 +68,9 @@ jobs:
 
           if ($action -eq 'deploy') {
             $deployArgs.ReleaseId = '${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}'
+            if ('${{ inputs.enable_diagnostics }}' -eq 'true') {
+              $deployArgs.EnableDiagnostics = $true
+            }
           } elseif ($action -eq 'rollback-release') {
             if (-not $releaseId) {
               throw 'release_id is required for rollback-release.'
@@ -69,6 +82,10 @@ jobs:
             $deployArgs.SkipBuild = $true
           } else {
             throw "Unsupported deploy action: $action"
+          }
+
+          if ('${{ inputs.skip_smoke }}' -eq 'true') {
+            $deployArgs.SkipSmoke = $true
           }
 
           ./scripts/publish-control-plane-hostgator.ps1 @deployArgs
