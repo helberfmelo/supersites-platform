@@ -22,6 +22,10 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Primeiro GitHub Actions run monitorado: `Quality Gate` run `28218270387`, status `success`.
 - Segundo GitHub Actions run monitorado: `Quality Gate` run `28218325563`, status `success`, com aviso de runtime do `actions/checkout@v4`; workflow atualizado para `actions/checkout@v7`.
 - Terceiro GitHub Actions run monitorado: `Quality Gate` run `28218356836`, status `success`, apos atualizacao para `actions/checkout@v7`.
+- Sprint 0.3 app stack commit publicado: `b0a74b9` (`feat: scaffold local app stack`).
+- Sprint 0.3 primeiro run com app stack: `Quality Gate` run `28219339051`, status `failure`; causa: cache `pnpm` do `actions/setup-node` executou antes do Corepack disponibilizar o binario `pnpm`.
+- Correcao de CI publicada: `aa2bf02` (`ci: enable pnpm after node setup`), removendo o cache prematuro de pnpm.
+- Sprint 0.3 quality gate monitorado apos correcao: `Quality Gate` run `28219370170`, status `success`.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
 - pnpm local via Corepack: `11.9.0`.
@@ -92,6 +96,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Laravel tests: 3 testes / 6 assertions passando em `apps/control-plane`.
 - Laravel composer validate: passou em modo strict.
 - Local stack smoke: `scripts/validate-local-stack.ps1` passou com Docker MySQL, Redis, Mailpit e `/health`.
+- GitHub Actions: run `28219370170` passou com secret scan, structure scan, Nuxt tests, Nuxt build, Composer install, Laravel env prep e Laravel tests.
 
 ## Pendencias criticas
 

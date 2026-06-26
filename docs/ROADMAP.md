@@ -32,7 +32,7 @@ Sprint 0.3 - Ambiente local Docker
 - Objetivo: criar Docker Compose base com MySQL 8.4, Redis, Mailpit, backend Laravel e frontend Nuxt skeleton.
 - Entregas: compose, scripts de bootstrap, bancos locais por site, `.env.example`.
 - Validacao: containers saudaveis, bancos criados, conexao backend, health checks.
-- Status: em validacao final nesta entrega. Docker local, bancos, Nuxt catalog, Laravel control plane, health endpoint, CI expandido e ADR de stack foram implementados localmente.
+- Status: concluida. Docker local, bancos, Nuxt catalog, Laravel control plane, health endpoint, CI expandido e ADR de stack foram implementados; validacao local passou e GitHub Actions `28219370170` ficou verde.
 
 Sprint 0.4 - HostGator bootstrap controlado
 - Objetivo: criar pastas remotas em `/home1/opents62/public_html/supersites/`, bancos de producao, usuario MySQL e crons minimos apenas quando necessarios.
