@@ -522,6 +522,9 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - Regressao NetProbe: `pnpm test:netprobe`, `pnpm build:netprobe`, `pnpm validate:netprobe-preview` e `pnpm test:e2e:netprobe` passaram.
   - Regressao CalcHarbor: `pnpm test:calcharbor`, `pnpm build:calcharbor`, `pnpm validate:calcharbor-preview` e `pnpm test:e2e:calcharbor` passaram.
   - `pnpm validate:structure`, `pnpm deploy:dry-run`, `pnpm validate:secrets`, `pnpm ci:changes` e `git diff --check` passaram no fechamento local; `git diff --check` exibiu apenas avisos CRLF conhecidos em arquivos PowerShell/touched.
+  - GitHub Actions `Quality Gate` run `28270683475` passou com repository safety, backend, Hub frontend, NetProbe frontend, CalcHarbor frontend, DevUtility Lab frontend e summary.
+  - GitHub Actions `Deploy Dry Run` run `28270683479` passou.
+  - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis e CalcHarbor/DevUtility Lab ainda placeholders publicos.
   - Nenhum deploy real do DevUtility Lab foi executado porque o app ainda nao tem workflow de traffic switch, smoke publico e rollback proprios.
 
 ## Pendencias criticas
