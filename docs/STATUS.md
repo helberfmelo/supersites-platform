@@ -114,12 +114,15 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `Deploy Dry Run` passou no run `28257908248`; artifact upload continuou bloqueado pela quota GitHub Actions, mas o plano ficou no job summary.
   - Nenhum billing real, checkout, AdSense, webhook externo padrao ou deploy de worker em producao foi ativado nesta sprint.
 - Sprint 2.7 launch gate NetProbe:
+  - Commit publicado: `c4d9d30` (`feat: add netprobe launch gate`).
   - ADR `0016-netprobe-static-launch-gate` registra o release estatico versionado do NetProbe com gate obrigatorio de API publica.
   - `apps/netprobe-atlas` recebeu pagina de status publica/localizada (`/<locale>/status`) com gate de web, API, ads e upgrades.
   - `infra/deployment/apps.json` passou a tratar `netprobe-atlas` como `nuxt-ssg`, com build output proprio.
   - Scripts adicionados: `build-netprobe-hostgator-artifact.ps1`, `validate-netprobe-static-artifact.ps1`, `smoke-netprobe-public.ps1` e `publish-netprobe-hostgator.ps1`.
   - Workflow manual `Deploy NetProbe HostGator` foi criado para `deploy`, `rollback-release` e `rollback-placeholder`, usando somente secrets do environment `production-hostgator`.
   - O deploy NetProbe preserva placeholder remoto, `.env` e pastas manuais, publica em `_netprobe-releases/<release-id>` e troca apenas o `.htaccess` gerenciado dentro de `/supersites/netprobe-atlas/`.
+  - `Quality Gate` passou no run `28259523119`, incluindo repository safety, backend, Hub frontend, NetProbe frontend e summary.
+  - `Deploy Dry Run` passou no run `28259523043`; artifact upload segue bloqueado pela quota GitHub Actions, mas o plano permaneceu no job summary.
   - Go-live real nao foi disparado porque o preflight publico da API em `https://opentshost.com/supersites/control-plane/api/v1/netprobe/ip` retorna HTTP 500 no estado atual do HostGator.
   - Nenhum anuncio, AdSense, billing real, webhook externo, fila/worker de producao ou integracao externa foi ativado nesta sprint.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
@@ -435,7 +438,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - Smoke publico atual bloqueou a publicacao util em `https://opentshost.com/supersites/netprobe-atlas/` porque a pasta remota ainda contem o placeholder `noindex` `SuperSites bootstrap placeholder`, como esperado ja que o deploy real nao foi disparado.
   - Smoke publico da API candidata segue bloqueado por HTTP 500 em `https://opentshost.com/supersites/control-plane/api/v1/netprobe/ip`; por isso o workflow real `Deploy NetProbe HostGator` nao foi acionado.
   - `pnpm validate:secrets` passou sem achados fora de caminhos ignorados de credenciais; `git diff --check` nao apontou whitespace errors.
-  - CI sera registrada apos commit/push da sprint.
+  - GitHub Actions `Quality Gate` run `28259523119` passou; GitHub Actions `Deploy Dry Run` run `28259523043` passou com a ressalva conhecida de artifact upload bloqueado pela quota, mantendo o plano no job summary.
 
 ## Pendencias criticas
 
