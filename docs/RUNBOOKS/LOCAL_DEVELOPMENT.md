@@ -62,6 +62,15 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\validate-supersite-preview
 pnpm test:e2e:supersite
 ```
 
+Run CalcHarbor checks:
+
+```powershell
+pnpm test:calcharbor
+pnpm build:calcharbor
+pnpm validate:calcharbor-preview
+pnpm test:e2e:calcharbor
+```
+
 The root package scripts use explicit filters for `@supersites/ui`, `@supersites/i18n`, `@supersites/seo` and `@supersites/consent`. A generic pnpm path filter did not match the package workspaces on Windows during Sprint 1.3.
 
 Install the Playwright browser once per workstation if needed:
@@ -95,6 +104,14 @@ pnpm dev:supersite
 ```
 
 Then open `http://127.0.0.1:3001`. The public transitional domain will become visually followable after the real catalog deploy sprint.
+
+For local CalcHarbor development, run:
+
+```powershell
+pnpm dev:calcharbor
+```
+
+Then open `http://127.0.0.1:3003/en/calculators/loan-payment`. Inputs and results remain browser-side in Sprint 3.1.
 
 For local NetProbe Atlas tool testing, run:
 

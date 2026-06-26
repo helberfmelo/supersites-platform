@@ -153,6 +153,7 @@ Sprint 3.1 - CalcHarbor MVP
 - Objetivo: calculadoras financeiras/empresariais client-side com explicacao e formula.
 - Upgrade: cenarios salvos, exportacao, widgets, API, sem anuncios.
 - Validacao: formulas testadas, i18n, SEO.
+- Status: concluida localmente/CI. O app `apps/calcharbor` foi criado com Nuxt SSG, 4 calculadoras client-side (`loan-payment`, `break-even-point`, `gross-margin`, `roi`), home e paginas legais/editoriais em 5 idiomas, formulas visiveis, exemplos, interpretacao, FAQ e schema `WebApplication`/`FAQPage`. Quality Gate dedicado foi adicionado, mas o deploy publico real continua bloqueado ate existir empacotamento HostGator, smoke publico e rollback especificos. Nenhum anuncio, billing, conta, worker, webhook ou integracao externa de analytics foi ativado.
 
 Sprint 3.2 - DevUtility Lab MVP
 - Objetivo: JSON/XML/YAML/CSV, Base64, JWT, regex, diff, cron, UUID, timestamp, hashes.

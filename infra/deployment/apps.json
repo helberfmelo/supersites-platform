@@ -33,8 +33,9 @@
     {
       "id": "calcharbor",
       "name": "CalcHarbor",
-      "kind": "placeholder",
+      "kind": "nuxt-ssg",
       "localPath": "apps/calcharbor",
+      "buildOutput": "apps/calcharbor/.output/public",
       "remotePath": "/home1/opents62/public_html/supersites/calcharbor",
       "publicUrl": "https://opentshost.com/supersites/calcharbor/"
     },

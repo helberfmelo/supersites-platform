@@ -147,6 +147,19 @@ Sprint 2.8 corretiva adiciona o caminho de deploy publico do Laravel control-pla
 - O smoke publico obrigatorio cobre `/health`, `/api/v1/netprobe/ip` e `/api/v1/netprobe/dns` com `example.com`.
 - Migrações nao rodam automaticamente neste deploy inicial; os endpoints publicos IP/DNS devem funcionar com cache em arquivo, sessao em arquivo e fila `sync`.
 
+## CalcHarbor client-side MVP
+
+Sprint 3.1 adiciona o primeiro site de baixo custo marginal da Fase 3 em `apps/calcharbor`.
+
+- O app usa Nuxt SSG/SSR com formulas financeiras e empresariais executadas no navegador.
+- O MVP publica 4 calculadoras: prestacao de emprestimo, ponto de equilibrio, margem bruta e ROI.
+- Cada calculadora renderiza formula, exemplo, interpretacao, FAQ e schema `WebApplication`/`FAQPage` no HTML inicial.
+- O conteudo inicial cobre `en`, `pt-br`, `es`, `fr` e `de`, incluindo paginas legais/editoriais site-scoped.
+- Analytics local permitido: eventos sanitizados `tool_started`, `tool_completed` e `tool_failed` com `tool_slug`.
+- Valores digitados, resultados, taxas, prazos e metas financeiras nao devem ser enviados para analytics, logs, backend ou data layer.
+- Nao ha backend, conta, historico, API, billing, anuncio, worker, webhook ou integracao externa nesta sprint.
+- O manifesto de deploy conhece o build SSG, mas trafego publico real permanece placeholder ate existirem artifact gate, smoke publico e rollback especificos do CalcHarbor.
+
 ## Sites e pastas
 
 | App | Pasta | Papel |

@@ -69,6 +69,20 @@ Monitores DNS/SSL/dominio podem gerar eventos de produto como `monitor_created` 
 
 A Sprint 2.6 registra a criacao/execucao manual de monitores em `audit_logs` com `target_hash`; nenhum evento externo de analytics, GA4, GTM ou AdSense foi ativado.
 
+## CalcHarbor calculators
+
+As calculadoras client-side do CalcHarbor podem registrar apenas eventos de produto de baixo risco, como `tool_started`, `tool_completed` e `tool_failed`, usando `tool_slug`.
+
+Nao registrar em analytics:
+
+- valores digitados;
+- resultados calculados;
+- taxa de juros, prazo, ticket medio, custo fixo, margem, investimento ou receita;
+- moeda/localidade combinada com resultado;
+- cenarios, comparacoes ou exemplos ajustados pelo usuario.
+
+Sprint 3.1 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, historico salvo ou API publica do CalcHarbor.
+
 ## Deploy smokes
 
 Smokes de deploy do control-plane/API e do NetProbe devem validar apenas disponibilidade e contrato JSON, sem criar eventos externos de analytics e sem registrar alvo bruto de usuario. O alvo DNS padrao para smoke publico e `example.com`.

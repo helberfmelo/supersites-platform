@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas, o modulo seguro inicial de IP/DNS/RDAP/SSL/propagation/port/reachability do NetProbe, o conteudo original multilanguage/AdSense-readiness do NetProbe, o MVP de upgrade com monitores/historico/alertas/API, o launch gate estatico do NetProbe e o deploy publico do control-plane/API foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada. Em 2026-06-26, o control-plane/API foi publicado em `https://opentshost.com/supersites/control-plane/` e o NetProbe Atlas foi publicado em `https://opentshost.com/supersites/netprobe-atlas/` com consultas publicas IP/DNS via HTTPS e smoke publico. Nenhum anuncio, billing real, worker/cron de producao, webhook externo ou integracao externa de analytics foi ativado.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas, o modulo seguro inicial de IP/DNS/RDAP/SSL/propagation/port/reachability do NetProbe, o conteudo original multilanguage/AdSense-readiness do NetProbe, o MVP de upgrade com monitores/historico/alertas/API, o launch gate estatico do NetProbe, o deploy publico do control-plane/API e o MVP local/CI do CalcHarbor foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada. Em 2026-06-26, o control-plane/API foi publicado em `https://opentshost.com/supersites/control-plane/` e o NetProbe Atlas foi publicado em `https://opentshost.com/supersites/netprobe-atlas/` com consultas publicas IP/DNS via HTTPS e smoke publico. O CalcHarbor permanece em placeholder publico ate receber deploy/rollback/smoke especificos. Nenhum anuncio, billing real, worker/cron de producao, webhook externo ou integracao externa de analytics foi ativado.
 
 ## Estado local verificado
 
@@ -144,6 +144,16 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - Deploy real `Deploy Control Plane HostGator` run `28264453068` passou e `scripts/smoke-control-plane-public.ps1` validou HTTPS, `/health`, `/api/v1/netprobe/ip` e `/api/v1/netprobe/dns`.
   - Release control-plane ativo: `a33fcbfdc31c328d71c6fa046d9fac99ec610575-28264453068-1`.
   - Rollback para placeholder foi testado em runs de correcao (`28263487573`, `28263823424`, `28264154531`) e permanece disponivel; releases falhos anteriores podem existir remotamente e devem seguir politica futura de retencao antes de qualquer limpeza.
+- Sprint 3.1 CalcHarbor MVP:
+  - `apps/calcharbor` foi criado com Nuxt SSG/SSR, Vue, TypeScript, rotas localizadas, sitemap e paginas legais/editoriais site-scoped.
+  - Calculadoras implementadas no navegador: `loan-payment`, `break-even-point`, `gross-margin` e `roi`.
+  - Cada calculadora renderiza formula, exemplo, interpretacao, FAQ, schema `WebApplication`/`FAQPage` e resultado gratuito sem cadastro obrigatorio.
+  - Conteudo inicial cobre `en`, `pt-br`, `es`, `fr` e `de`; rotas de conteudo prerenderizadas: 66 mais `sitemap.xml`.
+  - Analytics local do app emite apenas eventos sanitizados `tool_started`, `tool_completed` e `tool_failed` com `tool_slug`, sem valores digitados ou resultados calculados.
+  - `infra/deployment/apps.json`, `scripts/ci-detect-changes.ps1`, `.github/workflows/quality-gate.yml`, `scripts/validate-structure.ps1` e os scripts raiz passaram a reconhecer o app CalcHarbor.
+  - `scripts/smoke-supersite-public.ps1` foi atualizado para o estado real de producao: Hub e NetProbe ativos, CalcHarbor ainda placeholder sem `_nuxt`.
+  - A URL publica `https://opentshost.com/supersites/calcharbor/` permanece placeholder; deploy real aguarda artifact HostGator, smoke publico e rollback especificos.
+  - Nenhum anuncio, billing real, conta, API publica, worker, webhook externo ou integracao externa de analytics foi ativado nesta sprint.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
 - pnpm local via Corepack: `11.9.0`.
@@ -472,6 +482,21 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `Quality Gate`/`Deploy Dry Run` foram acompanhados em cada correcao; o deploy final `28264453068` passou e `scripts/smoke-control-plane-public.ps1` aprovou a API publica.
   - Diagnostico temporario `enable_diagnostics=true` foi usado apenas em deploy controlado com `skip_smoke=true` para comprovar que o wrapper nao executava sob o handler antigo; o release final nao depende desse diagnostico.
   - Rollback placeholder foi executado e validado durante as correcoes; o release ativo final permanece recuperavel via `rollback-release`.
+- Sprint 3.1 validation:
+  - Estado inicial verificado: `git status --short --branch` em `main...origin/main`, remoto `git@github.com:helberfmelo/supersites-platform.git` e GitHub Actions recentes verdes.
+  - Smokes publicos pre-sprint: `scripts/smoke-control-plane-public.ps1` e `scripts/smoke-netprobe-public.ps1` passaram; `scripts/smoke-supersite-public.ps1` revelou expectativa obsoleta para NetProbe e foi corrigido.
+  - `pnpm install --lockfile-only` passou e atualizou o lockfile para o novo workspace.
+  - `pnpm test:calcharbor` passou com 7 testes.
+  - `pnpm build:calcharbor` passou e prerenderizou 133 rotas incluindo payloads, com avisos Nuxt/Nitro conhecidos e nao fatais.
+  - `pnpm validate:calcharbor-preview` passou.
+  - `pnpm test:e2e:calcharbor` passou com 3 testes.
+  - Pacotes compartilhados: `pnpm test:packages` passou com 22 testes e `pnpm typecheck:packages` passou nos 5 pacotes.
+  - Backend: `composer validate --strict` e `php artisan test` passaram em `apps/control-plane` com 31 testes / 204 assertions.
+  - Regressao Hub: `pnpm --filter @supersites/supersite test`, `pnpm --filter @supersites/supersite build`, `pnpm validate:supersite-preview` e `pnpm test:e2e:supersite` passaram.
+  - Regressao NetProbe: `pnpm test:netprobe`, `pnpm build:netprobe`, `pnpm validate:netprobe-preview` e `pnpm test:e2e:netprobe` passaram.
+  - Public smokes: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando CalcHarbor ainda placeholder publico.
+  - `pnpm validate:structure`, `pnpm deploy:dry-run`, `pnpm validate:secrets` e `git diff --check` passaram no fechamento; `git diff --check` exibiu apenas avisos CRLF conhecidos.
+  - Screenshots locais ignorados em `artifacts/visual-smoke/calcharbor-loan-desktop.png` e `artifacts/visual-smoke/calcharbor-roi-mobile.png` foram revisados sem pagina em branco, asset ausente, overflow evidente ou sobreposicao aparente.
 
 ## Pendencias criticas
 
@@ -483,6 +508,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Definir backup/restore de `/var/lib/supersites-redis` antes de monitores pagos ou jobs de producao dependerem de Redis.
 - Criar filas/workers/crons na VPS apenas quando houver codigo executavel e nomes de fila definidos.
 - Publicar proximos apps somente mantendo empacotamento de artefatos, preservacao remota de `.env`, smoke e rollback testavel.
+- Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o CalcHarbor antes de trocar trafego real.
 - Definir estrategia tecnica de URL raiz: `opentshost.com` apontando para conteudo em `/public_html/supersites/`.
 - Definir dominios definitivos futuramente.
 - Validar dominio/marca antes de registrar qualquer nome.

@@ -18,6 +18,7 @@ Jobs:
 - `Repository safety`: always runs secret scan and structure validation.
 - `Frontend / SuperSites Hub`: runs shared package tests/typecheck, including `@supersites/analytics`, plus Nuxt tests/build when frontend, package or deployment files change, installs Chromium for Playwright, then runs `scripts/validate-supersite-preview.ps1` and `pnpm test:e2e:supersite` so SSR HTML, `_nuxt` assets, legal pages, data layer click events and visual smoke are checked from the correct app working directory.
 - `Frontend / NetProbe Atlas`: runs shared package tests/typecheck plus NetProbe tests/build, `scripts/validate-netprobe-preview.ps1` and `pnpm test:e2e:netprobe` when NetProbe, packages or deployment files change.
+- `Frontend / CalcHarbor`: runs shared package tests/typecheck plus CalcHarbor tests/build, `scripts/validate-calcharbor-preview.ps1` and `pnpm test:e2e:calcharbor` when CalcHarbor, packages or deployment files change.
 - `Backend / Control Plane`: runs Composer validation and Laravel tests when backend or deployment files change. The Laravel suite covers API, analytics ingest sanitization, metric snapshots, auth/RBAC, admin Blade smoke, site create/update flows and audit log behavior. It uses SQLite in memory and therefore requires `pdo_sqlite`/`sqlite3`.
 - `Quality summary`: fails the workflow if any required job fails.
 
@@ -179,6 +180,7 @@ VPS runtime environment variable names:
 - Real deploy is implemented for the SuperSites Hub static catalog, the control-plane/API and NetProbe Atlas. NetProbe public traffic depends on the control-plane/API smoke staying healthy for `/health`, `/api/v1/netprobe/ip` and `/api/v1/netprobe/dns`.
 - Control-plane/API deploy uses a Laravel ZIP and cPanel remote extraction. The artifact excludes `.env`; the release `.env` is written remotely from GitHub secrets or ignored local inputs, and the managed front controller bootstraps the active Laravel release directly.
 - NetProbe static builds must not contain `localhost:8013`, `127.0.0.1:8013` or a local `/api/v1/netprobe` URL. Local API usage belongs in dev/test env vars, not in production artifacts.
+- CalcHarbor has a dry-run manifest entry only. Do not run a real traffic switch until app-specific HostGator artifact validation, public smoke and rollback are implemented.
 - Human-gated actions stay in `docs/HUMAN_ACTION_REQUIRED.md`; technical reversible blockers should be worked around with dry-runs, validation scripts or degraded mode.
 
 ## Pre-Real-Deploy Checklist

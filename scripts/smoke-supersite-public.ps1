@@ -83,8 +83,12 @@ foreach ($page in $requiredPages) {
     Invoke-SmokeRequest -Url $page.Url -RequiredContent $page.Marker | Out-Null
 }
 
-$placeholder = Invoke-SmokeRequest -Url (Join-Url $publicBase "netprobe-atlas/") -RequiredContent "SuperSites bootstrap placeholder"
-Assert-DoesNotContain -Content $placeholder.Content -Pattern "(?i)<script[^>]+/_nuxt/" -Context "Temporary site placeholder"
+$netprobe = Invoke-SmokeRequest -Url (Join-Url $publicBase "netprobe-atlas/") -RequiredContent "NetProbe Atlas"
+Assert-DoesNotContain -Content $netprobe.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context "NetProbe public app"
+Assert-DoesNotContain -Content $netprobe.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context "NetProbe public app"
+
+$calcharborPlaceholder = Invoke-SmokeRequest -Url (Join-Url $publicBase "calcharbor/") -RequiredContent "SuperSites bootstrap placeholder"
+Assert-DoesNotContain -Content $calcharborPlaceholder.Content -Pattern "(?i)<script[^>]+/_nuxt/" -Context "CalcHarbor temporary placeholder"
 
 if ($RootUrl) {
     if ($RootUrl -notmatch "^https://") {

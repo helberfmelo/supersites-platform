@@ -12,6 +12,7 @@ $requiredPaths = @(
     "package.json",
     "playwright.config.ts",
     "playwright.netprobe.config.ts",
+    "playwright.calcharbor.config.ts",
     "pnpm-workspace.yaml",
     "pnpm-lock.yaml",
     "docs/MEGA_PROMPT_SUPERSITES.md",
@@ -218,6 +219,32 @@ $netprobePaths = @(
 )
 
 $requiredPaths += $netprobePaths
+
+$calcharborPaths = @(
+    "apps/calcharbor/package.json",
+    "apps/calcharbor/nuxt.config.ts",
+    "apps/calcharbor/app/app.vue",
+    "apps/calcharbor/app/components/CalcHarborHome.vue",
+    "apps/calcharbor/app/components/LanguageNav.vue",
+    "apps/calcharbor/app/components/LegalFooter.vue",
+    "apps/calcharbor/app/components/SiteHeader.vue",
+    "apps/calcharbor/app/data/calculators.ts",
+    "apps/calcharbor/app/data/copy.ts",
+    "apps/calcharbor/app/data/locales.ts",
+    "apps/calcharbor/app/data/pages.ts",
+    "apps/calcharbor/app/data/routes.ts",
+    "apps/calcharbor/app/pages/index.vue",
+    "apps/calcharbor/app/pages/[locale]/[page].vue",
+    "apps/calcharbor/app/pages/[locale]/index.vue",
+    "apps/calcharbor/app/pages/[locale]/calculators/[slug].vue",
+    "apps/calcharbor/app/utils/analytics.ts",
+    "apps/calcharbor/server/routes/sitemap.xml.ts",
+    "apps/calcharbor/tests/calcharbor.test.ts",
+    "tests/e2e/calcharbor.spec.ts",
+    "scripts/validate-calcharbor-preview.ps1"
+)
+
+$requiredPaths += $calcharborPaths
 
 $missing = @()
 foreach ($path in $requiredPaths) {

@@ -37,6 +37,14 @@
 - Smokes de deploy publico do NetProbe devem usar somente alvos controlados como `example.com`; dados enviados por usuarios reais nao devem ser reutilizados para validacao operacional.
 - Smokes de deploy publico do control-plane/API devem usar apenas `/health`, IP observado da propria requisicao e DNS de `example.com`; nao usar entradas reais de usuarios para validar deploy.
 
+## CalcHarbor
+
+- Inputs financeiros e empresariais digitados nas calculadoras sao processados no navegador no MVP da Sprint 3.1.
+- Valores de emprestimo, taxas, prazos, margem, custo fixo, receita, investimento, lucro e resultados calculados nao devem ser enviados para backend, analytics, logs, GA4, GTM, AdSense ou data layer.
+- O app nao salva cenarios, historico, exportacoes ou contas nesta sprint.
+- Eventos locais permitidos devem conter apenas `tool_slug` e metadados de UI sem valores de negocio.
+- Futuras funcionalidades pagas de cenarios salvos, API, widgets ou colaboracao exigem matriz de dados, retencao, exportacao/exclusao e termos antes de ativacao.
+
 ## Analytics sem PII
 
 - O contrato versionado fica em `packages/analytics`.

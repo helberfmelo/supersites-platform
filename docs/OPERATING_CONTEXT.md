@@ -46,6 +46,7 @@ Padroes aproveitados:
 - Deploy real do catalogo transitorio esta implementado a partir da Sprint 1.7 pelo workflow manual `Deploy SuperSite HostGator`.
 - Deploy publico do control-plane/API esta implementado como workflow manual `Deploy Control Plane HostGator` e esta ativo em `https://opentshost.com/supersites/control-plane/`.
 - Deploy publico do NetProbe Atlas esta implementado como workflow manual `Deploy NetProbe HostGator` e esta ativo em `https://opentshost.com/supersites/netprobe-atlas/`.
+- CalcHarbor tem app Nuxt SSG e manifest de deploy a partir da Sprint 3.1, mas a URL publica `https://opentshost.com/supersites/calcharbor/` permanece placeholder ate existir workflow/script de deploy, smoke publico e rollback especificos.
 - Catalogo transitorio publico ativo: `https://opentshost.com/supersites/`.
 - Release HostGator ativo do catalogo: `740e0f1968e7b0a2fd60eeb9e6edffd6252d94ae-28241237377-1`.
 - Release HostGator ativo do control-plane/API: `a33fcbfdc31c328d71c6fa046d9fac99ec610575-28264453068-1`.
@@ -63,6 +64,8 @@ Padroes aproveitados:
 - A partir da Sprint 1.5, o control plane tem MVP admin em Blade: `/login`, `/admin` e `/admin/sites`, protegido por sessao e RBAC. URL local validada: `http://127.0.0.1:8013/admin`.
 - A partir da Sprint 1.6, `@supersites/analytics` define o contrato de eventos PII-safe; o catalogo registra `outbound_site_click` apenas no data layer local, e o control plane expoe ingestao sanitizada em `/api/v1/analytics/events` e snapshots internos em `/api/v1/metric-snapshots`.
 - Front visual local do catalogo: `http://127.0.0.1:3001` via `pnpm dev:supersite`.
+- Front visual local do NetProbe: `http://127.0.0.1:3002` via `pnpm dev:netprobe`.
+- Front visual local do CalcHarbor: `http://127.0.0.1:3003` via `pnpm dev:calcharbor`.
 
 ## Runtime VPS SuperSites
 

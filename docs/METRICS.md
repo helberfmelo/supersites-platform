@@ -15,13 +15,13 @@ Data-base: 2026-06-26
 | Docs files created/maintained | 43 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
-| Nuxt apps scaffolded | 2 |
+| Nuxt apps scaffolded | 3 |
 | Laravel apps scaffolded | 1 |
 | Shared TS packages implemented | 5 |
 | Shared package tests passing | 22 |
 | Shared package typechecks passing | 5 |
-| Frontend tests passing | 17 |
-| Playwright visual smoke tests passing | 11 |
+| Frontend tests passing | 24 |
+| Playwright visual smoke tests passing | 14 |
 | Laravel tests passing | 31 |
 | Control plane API endpoints implemented | 15 |
 | Control plane admin routes implemented | 6 |
@@ -101,6 +101,17 @@ Data-base: 2026-06-26
 | NetProbe Atlas preview smoke | Passed |
 | NetProbe Atlas Playwright report | Passed |
 | NetProbe Atlas production status | Live at `https://opentshost.com/supersites/netprobe-atlas/`; ads/billing/external integrations gated |
+| CalcHarbor calculator pages implemented | 4 |
+| CalcHarbor localized calculator pages | 20 |
+| CalcHarbor live public tools implemented | 0 |
+| CalcHarbor legal/editorial pages | 40 |
+| CalcHarbor FAQ blocks | 20 |
+| CalcHarbor structured data pages | 20 |
+| CalcHarbor prerender content routes | 66 |
+| CalcHarbor sitemap routes | 1 |
+| CalcHarbor preview smoke | Passed |
+| CalcHarbor Playwright report | Passed |
+| CalcHarbor production status | Placeholder at `https://opentshost.com/supersites/calcharbor/`; real deploy gated |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
 | Public production smoke for `/supersites/` | 200 catalog live |
