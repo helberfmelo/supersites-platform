@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas e o primeiro modulo seguro de IP/DNS do NetProbe foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada, os placeholders por site continuam `noindex`, e nao foram publicados anuncios nem integracoes externas.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas e o modulo seguro inicial de IP/DNS/RDAP/SSL do NetProbe foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada, os placeholders por site continuam `noindex`, e nao foram publicados anuncios nem integracoes externas.
 
 ## Estado local verificado
 
@@ -74,6 +74,15 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `Quality Gate` passou no run `28252157415`, incluindo repository safety, backend, Hub e NetProbe.
   - `Deploy Dry Run` passou no run `28252157488`.
   - O placeholder remoto `https://opentshost.com/supersites/netprobe-atlas/` permanece preservado/noindex; nenhum deploy real do NetProbe, anuncio, conta, probe externo amplo ou integracao externa foi ativado nesta sprint.
+- Sprint 2.3 RDAP/dominio/SSL:
+  - Commit publicado: `1b44613` (`feat: add netprobe rdap and ssl lookups`).
+  - Endpoints publicos adicionados: `POST /api/v1/netprobe/rdap` e `POST /api/v1/netprobe/ssl`, usando o mesmo rate limit `netprobe-public`.
+  - RDAP normaliza registrar, status, datas, idade, dias ate expiracao, nameservers e notices/remarks de limitacao, omitindo dados pessoais de contato.
+  - SSL resolve A/AAAA antes da conexao, bloqueia resolucoes privadas/reservadas, inspeciona certificado servido em `443`, normaliza subject/issuer/SANs/validade/fingerprint e declara limitacoes de cadeia.
+  - UI NetProbe passou a executar live lookup em `rdap-domain-lookup` e `ssl-certificate-checker`, com fixtures Playwright, mensagens de limitacao e analytics sanitizado sem alvo bruto.
+  - `Quality Gate` passou no run `28253127358`, incluindo repository safety, backend, Hub e NetProbe.
+  - `Deploy Dry Run` passou no run `28253127375`; artifact upload continuou bloqueado pela quota GitHub Actions, mas o plano ficou no job summary.
+  - O placeholder remoto `https://opentshost.com/supersites/netprobe-atlas/` permanece preservado/noindex; nenhum deploy real do NetProbe, anuncio, conta ou integracao externa de analytics/ads foi ativado nesta sprint.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
 - pnpm local via Corepack: `11.9.0`.
@@ -127,6 +136,8 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `/api/v1/metric-snapshots` retorna agregados internos para usuarios autenticados com `dashboard.view`.
   - `/api/v1/netprobe/ip` retorna o IP da requisicao, versao IPv4/IPv6, classificacao publica e politica de retencao sem persistir o endereco completo.
   - `/api/v1/netprobe/dns` executa lookup DNS normalizado para A/AAAA/CNAME/MX/TXT/NS/SOA/CAA com cache, rate limit e bloqueio de resolucoes privadas/reservadas.
+  - `/api/v1/netprobe/rdap` executa lookup RDAP publico com bootstrap IANA, cache, normalizacao de fatos de dominio e omissao de contato pessoal.
+  - `/api/v1/netprobe/ssl` executa probe TLS limitado a hostnames publicos na porta 443 com bloqueio de ranges privados/reservados antes da conexao.
   - RBAC inicial tem 7 permissoes (`dashboard.view`, `sites.view`, `sites.manage`, `users.manage`, `audit.view`, `deployments.view`, `operations.manage`) e 4 roles (`owner`, `operator`, `analyst`, `site-admin`).
   - Roles podem ser globais ou escopadas por site via `role_user.site_id`.
   - `audit_logs` usa ULID e registra a consulta autorizada de sites sem armazenar segredos.
@@ -192,7 +203,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - `playwright.netprobe.config.ts` e `tests/e2e/netprobe.spec.ts` para smoke visual desktop/mobile do NetProbe Atlas.
 - `apps/control-plane` com Laravel, `.env.example`, migrations padrao e endpoint de saude.
 - `apps/control-plane/routes/api.php`, controllers `Api/V1`, models `Site`, `Role`, `Permission`, `AuditLog`, migrations/seeders RBAC e teste `ControlPlaneApiTest`.
-- `apps/control-plane/app/Http/Controllers/Api/V1/NetProbe`, `apps/control-plane/app/Support/NetProbe` e `tests/Feature/NetProbeApiTest.php` para os endpoints publicos seguros de IP/DNS.
+- `apps/control-plane/app/Http/Controllers/Api/V1/NetProbe`, `apps/control-plane/app/Support/NetProbe` e `tests/Feature/NetProbeApiTest.php` para os endpoints publicos seguros de IP/DNS/RDAP/SSL.
 - `scripts/validate-local-stack.ps1` para smoke local de Docker e control plane.
 - ADR `0006-local-stack-scaffold.md` registrando a decisao de stack local.
 - `scripts/hostgator-bootstrap.ps1` para provisionamento idempotente de pastas, bancos, usuarios, privilegios e placeholders na HostGator.
@@ -325,6 +336,19 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run` e `git diff --check` passaram; `git diff --check` exibiu apenas avisos CRLF conhecidos.
   - GitHub Actions `Quality Gate` run `28252157415` passou com repository safety, backend, Hub frontend, NetProbe frontend e summary.
   - GitHub Actions `Deploy Dry Run` run `28252157488` passou.
+- Sprint 2.3 validation:
+  - `php artisan test --filter=NetProbeApiTest` passou com 6 testes / 77 assertions.
+  - `composer validate --strict` e `php artisan test` passaram em `apps/control-plane` com 23 testes / 148 assertions.
+  - `php artisan route:list --path=api/v1/netprobe` confirmou 4 rotas NetProbe (`ip`, `dns`, `rdap`, `ssl`).
+  - `pnpm test:netprobe` passou com 5 testes.
+  - `pnpm build:netprobe` passou e prerenderizou as rotas NetProbe, com avisos Nuxt/Nitro conhecidos e nao fatais.
+  - `pnpm validate:netprobe-preview` passou.
+  - `pnpm test:e2e:netprobe` passou com 5 testes, cobrindo home, DNS, RDAP, SSL, analytics sanitizado e paginas mobile sem overflow.
+  - Regressao do Hub validada: `pnpm --filter @supersites/supersite test`, `pnpm --filter @supersites/supersite build`, `pnpm validate:supersite-preview` e `pnpm test:e2e:supersite` passaram.
+  - Pacotes compartilhados validados: `pnpm test:packages` e `pnpm typecheck:packages` passaram.
+  - `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run` e `git diff --check` passaram; `git diff --check` exibiu apenas avisos CRLF conhecidos.
+  - GitHub Actions `Quality Gate` run `28253127358` passou com repository safety, backend, Hub frontend, NetProbe frontend e summary.
+  - GitHub Actions `Deploy Dry Run` run `28253127375` passou; artifact upload segue bloqueado pela quota GitHub Actions, mas o plano permaneceu no job summary.
 
 ## Pendencias criticas
 

@@ -94,8 +94,12 @@ Sprint 2.2 adiciona o primeiro modulo publico de lookup do NetProbe dentro do La
 
 - `GET /api/v1/netprobe/ip`: retorna o IP observado na requisicao, versao IPv4/IPv6, classificacao publica e metadados de retencao sem persistir o endereco completo.
 - `POST /api/v1/netprobe/dns`: normaliza hostnames e consulta A/AAAA/CNAME/MX/TXT/NS/SOA/CAA com cache TTL e resposta estruturada.
+- `POST /api/v1/netprobe/rdap`: usa bootstrap RDAP IANA, consulta o registry do TLD, normaliza registrar/status/datas/nameservers/limitacoes e omite contato pessoal.
+- `POST /api/v1/netprobe/ssl`: resolve A/AAAA, bloqueia ranges privados/reservados, conecta apenas a `443` com SNI e normaliza facts do certificado servido.
 - `netprobe-public`: rate limiter dedicado para endpoints publicos de diagnostico.
 - `NetProbeDnsResolver`: contrato substituivel para testes e para futura extracao para worker/runtime separado.
+- `NetProbeRdapClient`: contrato substituivel para fixtures de registry e para futura politica de retry/backoff por TLD.
+- `NetProbeCertificateProbe`: contrato substituivel para o probe TLS e futura validacao de cadeia/multirregiao.
 - `NetProbeHostGuard`: bloqueia URL em vez de hostname, nomes locais/reservados e respostas que apontem para IP privado, loopback, metadata ou ranges reservados.
 
 O modulo fica no control plane para reduzir superficie operacional enquanto o contrato estabiliza. Uma extracao futura para app/API dedicado deve preservar o contrato HTTP, os testes de SSRF/rate limit e a politica de minimizacao de dados.

@@ -44,6 +44,8 @@
 - Respostas A/AAAA que apontem para IP privado, loopback, metadata ou ranges reservados devem bloquear o resultado completo.
 - Endpoints publicos NetProbe usam rate limit dedicado `netprobe-public` e cache TTL por lookup para reduzir abuso e custo.
 - Analytics de ferramentas NetProbe nao deve incluir hostname, IP consultado, query DNS ou valor bruto inserido pelo usuario.
+- RDAP deve retornar apenas fatos de dominio e registrar; contato pessoal, entidades de registrant/admin/tech e vCards nao devem ser expostos na resposta resumida.
+- SSL deve resolver e validar A/AAAA publico antes de conectar, limitar o probe a `443`, usar timeout curto e declarar limitacoes de cadeia/validacao.
 
 ## Redis/VPS
 

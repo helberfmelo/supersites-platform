@@ -115,6 +115,7 @@ Sprint 2.3 - RDAP, dominio e SSL
 - Objetivo: RDAP/domain lookup, idade/expiracao, nameservers, certificado SSL.
 - Entregas: normalizadores, mensagens de limitacao, cache.
 - Validacao: fixtures, dominios exemplo, erros controlados.
+- Status: concluida localmente/CI. O NetProbe agora tem `/api/v1/netprobe/rdap` e `/api/v1/netprobe/ssl`, normalizacao de RDAP com registrar/status/datas/nameservers/limitacoes, probe TLS limitado a hostnames publicos na porta 443, cache TTL, fixtures nos testes e UI live para RDAP/SSL sem capturar alvo bruto em analytics. Quality Gate `28253127358` e Deploy Dry Run `28253127375` ficaram verdes.
 
 Sprint 2.4 - Propagation, port checker limitado, ping/traceroute
 - Objetivo: diagnosticos pontuais sem abuso.
