@@ -42,7 +42,7 @@ jobs:
 
       - name: Setup PHP
         if: inputs.action == 'deploy'
-        uses: shivammathur/setup-php@v2.37.2
+        uses: shivammathur/setup-php@2.37.2
         with:
           php-version: '8.5'
           tools: composer:v2
