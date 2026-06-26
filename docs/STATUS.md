@@ -74,7 +74,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - GitHub Actions bootstrap criado em `.github/workflows/quality-gate.yml` com varredura de segredos, validacao da estrutura obrigatoria, testes/build Nuxt e testes Laravel.
 - GitHub Actions Sprint 0.5:
   - `Quality Gate` dividido em jobs path-aware: mudancas, repository safety, frontend, backend e summary.
-  - `Deploy Dry Run` criado para gerar plano de deploy sem mutar arquivos remotos.
+  - `Deploy Dry Run` criado para gerar plano de deploy sem mutar arquivos remotos; summary e sempre publicado, artifact upload e best-effort por causa de quota GitHub Actions.
 - Workspace Node criado com `pnpm@11.9.0`.
 - Catalogo publico inicial criado em `apps/supersite` com Nuxt `4.4.8`, Vue `3.5.39` e TypeScript `6.0.3`.
 - Control plane inicial criado em `apps/control-plane` com Laravel `13.x`, PHP `^8.3` e `predis/predis`.
@@ -158,6 +158,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `scripts/prepare-deploy-dry-run.ps1` passou e gerou artefato local ignorado.
   - `infra/deployment/apps.json` validado como JSON.
   - `scripts/sync-github-environments.ps1` passou e criou/sincronizou environments, variaveis e secrets por nome.
+- Sprint 0.5 CI contour: o primeiro `Deploy Dry Run` encontrou quota de artifacts esgotada no GitHub Actions; workflow ajustado para manter o plano no job summary e tratar upload de artifact como best-effort.
 
 ## Pendencias criticas
 

@@ -42,8 +42,13 @@ jobs:
         shell: pwsh
         run: ./scripts/prepare-deploy-dry-run.ps1 -TargetEnvironment "$env:TARGET_ENVIRONMENT"
 
+      - name: Publish deploy dry-run summary
+        shell: pwsh
+        run: Get-Content -Raw artifacts/deploy-dry-run/supersites-deploy-plan.md | Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY
+
       - name: Upload deploy dry-run artifact
         uses: actions/upload-artifact@v4.6.2
+        continue-on-error: true
         with:
           name: supersites-deploy-dry-run
           path: artifacts/deploy-dry-run

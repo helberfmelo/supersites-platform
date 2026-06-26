@@ -31,6 +31,8 @@ The workflow generates an artifact named `supersites-deploy-dry-run` with:
 - `supersites-deploy-plan.json`
 - `supersites-deploy-plan.md`
 
+The markdown plan is also written to the GitHub job summary. Artifact upload is best-effort because GitHub Actions storage quota may be exhausted; quota exhaustion must not block a non-mutating dry-run.
+
 The dry-run does not upload, delete, move, publish or rewrite remote files.
 
 ## Deployment Manifest
@@ -98,6 +100,7 @@ VPS runtime environment variable names:
 ## Obstacles And Contours
 
 - Branch protection is blocked by the current GitHub plan. Continue with monitored `Quality Gate` runs until GitHub Pro, public repo or another approved ruleset path exists.
+- GitHub Actions artifact storage quota can block uploads. Continue by using the job summary as the dry-run audit trail and keep artifact upload best-effort until storage is cleared or quota changes.
 - Direct root mapping like `https://opentshost.com/<site-folder>` remains pending. Keep deploy plans on the safe fallback URLs under `/supersites/...`.
 - Real deploy must wait until deploy artifacts, remote preservation rules, smoke checks and rollback scripts are implemented.
 - Human-gated actions stay in `docs/HUMAN_ACTION_REQUIRED.md`; technical reversible blockers should be worked around with dry-runs, validation scripts or degraded mode.
