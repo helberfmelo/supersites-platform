@@ -57,6 +57,19 @@ Run catalog checks:
 pnpm --filter @supersites/supersite test
 pnpm --filter @supersites/supersite build
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\validate-supersite-preview.ps1
+pnpm test:e2e:supersite
+```
+
+Install the Playwright browser once per workstation if needed:
+
+```powershell
+pnpm exec playwright install chromium
+```
+
+Open the checked visual report:
+
+```powershell
+pnpm test:e2e:report
 ```
 
 Preview the built Nuxt server:
@@ -70,6 +83,14 @@ node .output\server\index.mjs
 
 Run the built server from `apps/supersite`; running it from the repository root can serve HTML while returning 404 for `_nuxt` assets, which breaks hydration.
 Use `pwsh` for the preview smoke. Windows PowerShell 5 can execute the script directly, but subprocess usage through package scripts returned an opaque exit in Sprint 1.1.
+
+For live visual development, run:
+
+```powershell
+pnpm dev:supersite
+```
+
+Then open `http://127.0.0.1:3001`. The public transitional domain will become visually followable after the real catalog deploy sprint.
 
 ## Control plane
 

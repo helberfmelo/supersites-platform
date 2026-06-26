@@ -17,7 +17,8 @@ Data-base: 2026-06-26
 | Local MySQL databases created | 12 |
 | Nuxt apps scaffolded | 1 |
 | Laravel apps scaffolded | 1 |
-| Frontend tests passing | 8 |
+| Frontend tests passing | 9 |
+| Playwright visual smoke tests passing | 2 |
 | Laravel tests passing | 3 |
 | Local Git repository initialized | 1 |
 | GitHub Actions bootstrap gates | 1 |
@@ -44,10 +45,13 @@ Data-base: 2026-06-26
 | VPS runtime smoke | Passed |
 | Deploy manifests created | 1 |
 | Deploy dry-run local validation | Passed |
-| Supersite prerender content routes | 56 |
+| Supersite prerender content routes | 91 |
+| Supersite sitemap routes | 1 |
+| Supersite legal/editorial pages | 35 |
 | Supersite preview smoke | Passed |
 | Supersite mobile overflow smoke | Passed |
 | Supersite hydrated interaction smoke | Passed |
+| Supersite Playwright report | Passed |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
 | Public production smoke for `/supersites/` | 200 |

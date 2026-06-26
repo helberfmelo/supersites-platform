@@ -5,11 +5,16 @@
   "scripts": {
     "build": "pnpm --filter @supersites/supersite build",
     "test": "pnpm --filter @supersites/supersite test",
+    "test:e2e:supersite": "playwright test",
+    "test:e2e:report": "playwright show-report artifacts/playwright-report",
     "dev:supersite": "pnpm --filter @supersites/supersite dev",
     "validate:secrets": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/validate-no-secrets.ps1",
     "validate:structure": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/validate-structure.ps1",
     "validate:supersite-preview": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/validate-supersite-preview.ps1",
     "ci:changes": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/ci-detect-changes.ps1",
     "deploy:dry-run": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/prepare-deploy-dry-run.ps1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.1"
   }
 }

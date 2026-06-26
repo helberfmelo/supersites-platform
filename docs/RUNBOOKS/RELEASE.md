@@ -14,11 +14,22 @@ Use this runbook after a sprint passes local validation.
 8. Update `docs/STATUS.md` with the release result.
 9. Read mandatory docs before starting the next sprint.
 
-## Current bootstrap gate
+## Current quality gate
 
-Until application-specific tests exist, the first CI gate runs:
+The current CI gate runs:
 
 - `scripts/validate-no-secrets.ps1`
 - `scripts/validate-structure.ps1`
+- `pnpm --filter @supersites/supersite test`
+- `pnpm --filter @supersites/supersite build`
+- `scripts/validate-supersite-preview.ps1`
+- `pnpm test:e2e:supersite`
+- `composer validate --strict` and `php artisan test` for `apps/control-plane`
 
-When Laravel/Nuxt apps are scaffolded, expand the gate with lint, typecheck, tests, build, security scan, deploy dry-run and smoke checks.
+Open the local Playwright visual report after a frontend sprint with:
+
+```powershell
+pnpm test:e2e:report
+```
+
+The deploy workflow is still dry-run only until artifact packaging, remote preservation, smoke and rollback are complete.

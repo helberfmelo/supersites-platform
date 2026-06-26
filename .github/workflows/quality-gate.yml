@@ -79,9 +79,15 @@ jobs:
       - name: Build Nuxt catalog
         run: pnpm --filter @supersites/supersite build
 
+      - name: Install Playwright browser
+        run: pnpm exec playwright install --with-deps chromium
+
       - name: Smoke Nuxt preview
         shell: pwsh
         run: ./scripts/validate-supersite-preview.ps1
+
+      - name: Playwright visual smoke
+        run: pnpm test:e2e:supersite
 
   backend_control_plane:
     name: Backend / Control Plane

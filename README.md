@@ -29,6 +29,13 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/validate-structure.p
 pnpm --filter @supersites/supersite test
 pnpm --filter @supersites/supersite build
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/validate-supersite-preview.ps1
+pnpm test:e2e:supersite
+```
+
+Open the checked visual report after Playwright runs:
+
+```powershell
+pnpm test:e2e:report
 ```
 
 Laravel validation:
@@ -45,4 +52,4 @@ Local Docker smoke:
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/validate-local-stack.ps1
 ```
 
-The GitHub Actions gate runs the same safety checks plus Nuxt tests/build and Laravel validation.
+The GitHub Actions gate runs the same safety checks plus Nuxt tests/build, preview smoke, Playwright visual smoke and Laravel validation.

@@ -115,6 +115,16 @@ try {
         throw 'NetProbe Atlas detail page smoke failed.'
     }
 
+    $legal = Invoke-PreviewRequest -Uri "$baseUrl/en/privacy" -RequiredContent 'Data minimization'
+    if ($legal.StatusCode -ne 200 -or $legal.Content -notmatch 'Privacy Policy') {
+        throw 'Privacy page smoke failed.'
+    }
+
+    $sitemap = Invoke-PreviewRequest -Uri "$baseUrl/sitemap.xml" -RequiredContent '<urlset'
+    if ($sitemap.Content -notmatch '/en/privacy' -or $sitemap.Content -notmatch '/de/editorial-policy') {
+        throw 'Sitemap smoke failed.'
+    }
+
     Write-Host "SuperSites preview smoke passed on $baseUrl."
     Write-Host "Validated asset: /$assetPath"
 } finally {

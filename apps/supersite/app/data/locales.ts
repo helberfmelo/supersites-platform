@@ -35,3 +35,7 @@ export function localizedHomePath(locale: LocaleCode): string {
 export function localizedSitePath(locale: LocaleCode, slug: string): string {
   return `/${locale}/sites/${slug}`
 }
+
+export function localizedLegalPath(locale: LocaleCode, slug: string): string {
+  return `/${locale}/${slug}`
+}

@@ -51,16 +51,10 @@ useHead({
 
 <template>
   <main class="page-shell">
-    <header class="site-header">
-      <NuxtLink class="brand-link" :to="localizedHomePath(locale)">
-        <span class="brand-mark" aria-hidden="true">SS</span>
-        <span>SuperSites</span>
-      </NuxtLink>
-      <LanguageNav
-        :current-locale="locale"
-        :path-for-locale="(targetLocale) => localizedSitePath(targetLocale, site.slug)"
-      />
-    </header>
+    <SiteHeader
+      :locale="locale"
+      :path-for-locale="(targetLocale) => localizedSitePath(targetLocale, site.slug)"
+    />
 
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <NuxtLink :to="localizedHomePath(locale)">{{ copy.breadcrumbHome }}</NuxtLink>
@@ -147,5 +141,7 @@ useHead({
         </div>
       </aside>
     </section>
+
+    <LegalFooter :locale="locale" />
   </main>
 </template>

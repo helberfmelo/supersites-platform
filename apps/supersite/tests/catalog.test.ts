@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
+import { legalPageCatalog, legalPageSlugs } from '../app/data/legal'
 import { localeCodes } from '../app/data/locales'
-import { prerenderRoutes, siteBaseUrl } from '../app/data/routes'
+import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
 import { categoryCatalog, filterSites, getSiteBySlug, siteCatalog } from '../app/data/sites'
 
 describe('site catalog', () => {
@@ -36,10 +37,14 @@ describe('site catalog', () => {
   })
 
   it('generates the catalog prerender routes for home and localized site pages', () => {
-    expect(prerenderRoutes).toContain('/')
-    expect(prerenderRoutes).toContain('/pt-br')
-    expect(prerenderRoutes).toContain('/de/sites/docshift')
-    expect(prerenderRoutes).toHaveLength(1 + localeCodes.length * (1 + siteCatalog.length))
+    expect(contentPrerenderRoutes).toContain('/')
+    expect(contentPrerenderRoutes).toContain('/pt-br')
+    expect(contentPrerenderRoutes).toContain('/de/sites/docshift')
+    expect(contentPrerenderRoutes).toContain('/fr/privacy')
+    expect(contentPrerenderRoutes).toHaveLength(
+      1 + localeCodes.length * (1 + siteCatalog.length + legalPageCatalog.length),
+    )
+    expect(prerenderRoutes).toEqual([...contentPrerenderRoutes, '/sitemap.xml'])
   })
 
   it('keeps temporary public URLs under the safe HostGator fallback path', () => {
@@ -56,5 +61,20 @@ describe('site catalog', () => {
   it('finds detail pages by slug', () => {
     expect(getSiteBySlug('mailhealth')?.name).toBe('MailHealth')
     expect(getSiteBySlug('missing-site')).toBeNull()
+  })
+
+  it('documents legal and editorial pages for every locale', () => {
+    expect(legalPageCatalog.map((page) => page.slug)).toEqual([...legalPageSlugs])
+
+    for (const page of legalPageCatalog) {
+      for (const locale of localeCodes) {
+        const localized = page.localized[locale]
+
+        expect(localized.title.length).toBeGreaterThan(5)
+        expect(localized.description.length).toBeGreaterThan(60)
+        expect(localized.sections).toHaveLength(3)
+        expect(localized.sections.every((section) => section.paragraphs.length > 0)).toBe(true)
+      }
+    }
   })
 })

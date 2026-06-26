@@ -54,13 +54,7 @@ useHead(() => ({
 
 <template>
   <main class="page-shell">
-    <header class="site-header">
-      <NuxtLink class="brand-link" :to="localizedHomePath(locale)">
-        <span class="brand-mark" aria-hidden="true">SS</span>
-        <span>SuperSites</span>
-      </NuxtLink>
-      <LanguageNav :current-locale="locale" :path-for-locale="localizedHomePath" />
-    </header>
+    <SiteHeader :locale="locale" :path-for-locale="localizedHomePath" />
 
     <section class="hero" aria-labelledby="catalog-title">
       <div>
@@ -162,5 +156,7 @@ useHead(() => ({
         </div>
       </div>
     </section>
+
+    <LegalFooter :locale="locale" />
   </main>
 </template>

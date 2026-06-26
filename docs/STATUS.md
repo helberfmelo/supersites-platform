@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, os primeiros esqueletos Nuxt/Laravel, o bootstrap HostGator inicial e o runtime Redis isolado na VPS foram criados. Ainda nao ha deploy real de aplicacao; a producao transitoria possui placeholders `noindex`, runtime Redis local-only na VPS e plano de deploy dry-run auditavel.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, os primeiros esqueletos Nuxt/Laravel, o bootstrap HostGator inicial e o runtime Redis isolado na VPS foram criados. Ainda nao ha deploy real de aplicacao; a producao transitoria possui placeholders `noindex`, runtime Redis local-only na VPS e plano de deploy dry-run auditavel.
 
 ## Estado local verificado
 
@@ -78,6 +78,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Workspace Node criado com `pnpm@11.9.0`.
 - Catalogo publico inicial criado em `apps/supersite` com Nuxt `4.4.8`, Vue `3.5.39` e TypeScript `6.0.3`.
 - Sprint 1.1 criou o app shell publico do catalogo com rotas `/`, `/en`, `/pt-br`, `/es`, `/fr`, `/de`, paginas individuais `/<locale>/sites/<slug>`, busca, filtros por categoria, linguagem no topo, metadados viewport/canonical/hreflang e prerender de 56 rotas de conteudo.
+- Sprint 1.2 criou paginas legais/editoriais do catalogo em cinco idiomas para `about`, `contact`, `privacy`, `cookies`, `terms`, `methodology` e `editorial-policy`, footer de links internos, `sitemap.xml` e Playwright visual smoke.
 - Control plane inicial criado em `apps/control-plane` com Laravel `13.x`, PHP `^8.3` e `predis/predis`.
 - Health endpoint Laravel criado em `/health`, com modo app-only para CI/testes e modo de conexoes para smoke local contra Docker MySQL/Redis.
 - Observacao: Docker Desktop tambem reativou containers existentes do `bigshopv4` por politica de restart; eles nao foram alterados por esta entrega. Portas do SuperSites foram isoladas para evitar conflito.
@@ -124,6 +125,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - `scripts/validate-structure.ps1` para proteger a estrutura minima do monorepo.
 - `package.json`, `pnpm-workspace.yaml` e `pnpm-lock.yaml` para o workspace Node.
 - `apps/supersite` com catalogo SSR inicial dos 10 sites planejados.
+- `playwright.config.ts` e `tests/e2e/supersite.spec.ts` para smoke visual desktop/mobile do hub.
 - `apps/control-plane` com Laravel, `.env.example`, migrations padrao e endpoint de saude.
 - `scripts/validate-local-stack.ps1` para smoke local de Docker e control plane.
 - ADR `0006-local-stack-scaffold.md` registrando a decisao de stack local.
@@ -168,6 +170,13 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - Chrome headless/CDP validou mobile `390px` com `scrollWidth=390`, sem elementos excedendo a largura.
   - Chrome headless/CDP validou hidratacao/interacao: filtro `Documents` retornou `InvoiceCraft` e `DocShift`; busca `dns` retornou `NetProbe Atlas` e `MailHealth`; sem erros de console.
   - Obstaculo contornado: preview iniciado fora de `apps/supersite` servia HTML mas retornava 404 para `_nuxt`; runbook e smoke versionado agora exigem cwd correto.
+- Sprint 1.2 local validation:
+  - `pnpm --filter @supersites/supersite test` passou com 9 testes.
+  - `pnpm --filter @supersites/supersite build` passou e prerenderizou 91 rotas de conteudo, mais `sitemap.xml`.
+  - `pnpm validate:supersite-preview` passou, confirmando SSR HTML, asset `_nuxt`, pagina legal `/en/privacy` e sitemap.
+  - Playwright instalado no monorepo e `pnpm test:e2e:supersite` passou com 2 testes.
+  - Playwright validou `/pt-br/privacy` mobile `390px` sem overflow, canonical/hreflang, footer e screenshot; validou `/en/editorial-policy` desktop sem erros de console.
+  - Relatorio visual local gerado em `artifacts/playwright-report` e mantido fora do Git.
 
 ## Pendencias criticas
 

@@ -65,6 +65,7 @@ Sprint 1.2 - Legal pages e politicas editoriais
 - Objetivo: About, contato, privacidade, cookies, termos, metodologia e politica editorial.
 - Entregas: paginas em `en`, `pt-BR`, `es`, `fr`, `de`.
 - Validacao: sem paginas vazias, links internos, sitemap parcial.
+- Status: concluida localmente nesta sprint. O hub agora tem sete paginas legais/editoriais em cinco idiomas (`about`, `contact`, `privacy`, `cookies`, `terms`, `methodology`, `editorial-policy`), footer de links internos, sitemap XML parcial e QA Playwright com screenshots mobile/desktop.
 
 Sprint 1.3 - Design system e i18n compartilhados
 - Objetivo: pacotes `ui`, `i18n`, `seo`, `consent`.
