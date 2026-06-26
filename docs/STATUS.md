@@ -20,6 +20,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - GitHub remoto criado na Sprint 0.2: `helberfmelo/supersites-platform`, privado, URL `https://github.com/helberfmelo/supersites-platform`.
 - Primeiro commit publicado: `8677c29` (`chore: bootstrap supersites governance`).
 - Primeiro GitHub Actions run monitorado: `Quality Gate` run `28218270387`, status `success`.
+- Segundo GitHub Actions run monitorado: `Quality Gate` run `28218325563`, status `success`, com aviso de runtime do `actions/checkout@v4`; workflow atualizado para `actions/checkout@v7`.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - HostGator SSH inventariado: host `108.179.241.237`, porta `2222`, usuario `opents62`. TCP na porta `2222` validado em 2026-06-26, mas login SSH em modo `BatchMode` com as chaves locais atuais falhou com `Permission denied`; acesso por senha ainda nao foi validado de forma nao interativa.
 - HostGator cPanel inventariado e porta `2083` acessivel por TCP em 2026-06-26. Login cPanel/API ainda nao foi validado para evitar mutacao externa antes do gate.
