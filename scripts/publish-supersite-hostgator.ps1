@@ -339,15 +339,12 @@ function Invoke-PublicSmoke {
     }
 
     $smokeScript = Join-Path $script:RepoRoot "scripts/smoke-supersite-public.ps1"
-    $smokeArgs = @(
-        "-PublicBaseUrl", $script:PublicBaseUrl
-    )
-
     if ($RootUrl) {
-        $smokeArgs += @("-RootUrl", $RootUrl)
+        & $smokeScript -PublicBaseUrl $script:PublicBaseUrl -RootUrl $RootUrl
+        return
     }
 
-    & $smokeScript @smokeArgs
+    & $smokeScript -PublicBaseUrl $script:PublicBaseUrl
 }
 
 $script:RepoRoot = Resolve-Path (Join-Path $PSScriptRoot "..")
