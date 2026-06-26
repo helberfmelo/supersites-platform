@@ -1,0 +1,83 @@
+name: Deploy SuperSite HostGator
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: Deploy, rollback to a release, or return /supersites/ to placeholders.
+        required: true
+        default: deploy
+        type: choice
+        options:
+          - deploy
+          - rollback-release
+          - rollback-placeholder
+      release_id:
+        description: Required only for rollback-release.
+        required: false
+        type: string
+      enable_root_redirect:
+        description: Redirect https://opentshost.com/ to /supersites/ when no unmanaged root .htaccess exists.
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  deploy_supersite:
+    name: Deploy SuperSites Hub
+    runs-on: ubuntu-latest
+    environment: production-hostgator
+    env:
+      SUPERSITES_CPANEL_HOST: ${{ vars.SUPERSITES_CPANEL_HOST }}
+      SUPERSITES_CPANEL_PORT: ${{ vars.SUPERSITES_CPANEL_PORT }}
+      SUPERSITES_CPANEL_USER: ${{ secrets.SUPERSITES_CPANEL_USER }}
+      SUPERSITES_CPANEL_PASSWORD: ${{ secrets.SUPERSITES_CPANEL_PASSWORD }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        if: inputs.action == 'deploy'
+        uses: actions/setup-node@v6.4.0
+        with:
+          node-version: '24'
+
+      - name: Enable pnpm
+        if: inputs.action == 'deploy'
+        run: |
+          corepack enable
+          corepack prepare pnpm@11.9.0 --activate
+
+      - name: Install Node dependencies
+        if: inputs.action == 'deploy'
+        run: pnpm install --frozen-lockfile
+
+      - name: Deploy or rollback
+        shell: pwsh
+        run: |
+          $action = '${{ inputs.action }}'
+          $releaseId = '${{ inputs.release_id }}'
+          $enableRootRedirect = '${{ inputs.enable_root_redirect }}' -eq 'true'
+
+          $args = @()
+          if ($enableRootRedirect) {
+            $args += '-EnableRootRedirect'
+          }
+
+          if ($action -eq 'deploy') {
+            $args += @('-ReleaseId', '${{ github.sha }}')
+          } elseif ($action -eq 'rollback-release') {
+            if (-not $releaseId) {
+              throw 'release_id is required for rollback-release.'
+            }
+            $args += @('-RollbackReleaseId', $releaseId, '-SkipBuild')
+          } elseif ($action -eq 'rollback-placeholder') {
+            $args += @('-RollbackToPlaceholder', '-SkipBuild')
+          } else {
+            throw "Unsupported deploy action: $action"
+          }
+
+          ./scripts/publish-supersite-hostgator.ps1 @args

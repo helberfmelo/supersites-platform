@@ -35,6 +35,22 @@ The markdown plan is also written to the GitHub job summary. Artifact upload is 
 
 The dry-run does not upload, delete, move, publish or rewrite remote files.
 
+### Deploy SuperSite HostGator
+
+File: `.github/workflows/deploy-supersite-hostgator.yml`.
+
+Runs only by `workflow_dispatch` against the `production-hostgator` environment.
+
+Actions:
+
+- `deploy`: builds the Nuxt catalog with `NUXT_APP_BASE_URL=/supersites/`, validates the static artifact, uploads it to a new HostGator release directory and switches the managed `/supersites/.htaccess`.
+- `rollback-release`: switches `/supersites/.htaccess` back to a previous release id.
+- `rollback-placeholder`: disables the managed rewrite and returns `/supersites/` to the bootstrap placeholder.
+
+The workflow uses only the `SUPERSITES_CPANEL_USER` and `SUPERSITES_CPANEL_PASSWORD` environment secrets plus non-secret HostGator variables. It must be run only after the pushed commit passes `Quality Gate`.
+
+Optional `enable_root_redirect` redirects `https://opentshost.com/` to `/supersites/` only if no unmanaged root `.htaccess` exists. If a root `.htaccess` already exists, stop and review before using any forced root change.
+
 ## Deployment Manifest
 
 Source: `infra/deployment/apps.json`.
@@ -106,8 +122,8 @@ VPS runtime environment variable names:
 - Playwright reports are local artifacts under `artifacts/playwright-report`. They are not uploaded by default while GitHub Actions artifact quota remains an active contour.
 - The shared package test/typecheck root scripts use explicit package filters. The generic `./packages/*` pnpm filter returned no matches on Windows during Sprint 1.3 and was replaced before commit.
 - Local PHP on Windows may have SQLite DLLs present but disabled in `php.ini`. Enable `extension=pdo_sqlite` and `extension=sqlite3` before relying on `php artisan test`; this workstation was fixed during Sprint 1.4.
-- Direct root mapping like `https://opentshost.com/<site-folder>` remains pending. Keep deploy plans on the safe fallback URLs under `/supersites/...`.
-- Real deploy must wait until deploy artifacts, remote preservation rules, smoke checks and rollback scripts are implemented.
+- Direct site folder mapping like `https://opentshost.com/<site-folder>` remains pending. Keep app links on the safe fallback URLs under `/supersites/...`.
+- Real deploy is implemented only for the SuperSites Hub static catalog. Other apps remain placeholder/dry-run until they receive app-specific packaging, preservation, smoke and rollback.
 - Human-gated actions stay in `docs/HUMAN_ACTION_REQUIRED.md`; technical reversible blockers should be worked around with dry-runs, validation scripts or degraded mode.
 
 ## Pre-Real-Deploy Checklist

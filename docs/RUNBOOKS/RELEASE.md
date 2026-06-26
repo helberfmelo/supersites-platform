@@ -32,4 +32,31 @@ Open the local Playwright visual report after a frontend sprint with:
 pnpm test:e2e:report
 ```
 
-The deploy workflow is still dry-run only until artifact packaging, remote preservation, smoke and rollback are complete.
+## Current deploy paths
+
+- `Deploy Dry Run` remains the non-mutating plan workflow for all apps.
+- `Deploy SuperSite HostGator` is the first real deploy workflow and applies only to the static SuperSites Hub catalog.
+
+After `Quality Gate` is green for a catalog deploy commit:
+
+```powershell
+gh workflow run "Deploy SuperSite HostGator" --ref main -f action=deploy -f enable_root_redirect=false
+```
+
+Watch the run to completion, then run public smoke locally:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\smoke-supersite-public.ps1
+```
+
+Rollback to a previous release id:
+
+```powershell
+gh workflow run "Deploy SuperSite HostGator" --ref main -f action=rollback-release -f release_id=<release-id> -f enable_root_redirect=false
+```
+
+Rollback to the bootstrap placeholder:
+
+```powershell
+gh workflow run "Deploy SuperSite HostGator" --ref main -f action=rollback-placeholder -f enable_root_redirect=false
+```
