@@ -61,8 +61,10 @@
 - Artefatos Laravel do control-plane nao podem conter `.env`, arquivos de chave, senhas cPanel, placeholders `noindex` ou dependencias dev de teste.
 - O ZIP de deploy deve ser extraido em release versionado e removido/lixeira apos extracao para evitar download de codigo-fonte.
 - `_control-plane-releases` deve permanecer protegido por `.htaccess` deny; o trafego publico deve passar pelo front controller gerenciado em `/supersites/control-plane/index.php`.
+- O front controller gerenciado deve usar o handler cPanel `ea-php84___lsphp` e fazer bootstrap direto do Laravel do release ativo; releases antigos continuam protegidos por deny.
 - `.env` remoto deve vir somente de GitHub environment secrets ou inventario local ignorado. O deploy deve preservar `.env` existente e nunca imprimir valores.
 - O smoke publico do control-plane deve rejeitar HTML, placeholder, `noindex` e `Internal Server Error` nos endpoints JSON.
+- Diagnostico temporario do deploy (`enable_diagnostics`) deve permanecer desativado por padrao, retornar apenas campos sanitizados e ser seguido por deploy/rollback sem diagnostico.
 - Migrações e crons nao devem rodar automaticamente no primeiro deploy publico da API; qualquer migracao futura exige backup/rollback explicito antes do switch.
 
 ## Redis/VPS

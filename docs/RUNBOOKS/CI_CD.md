@@ -64,7 +64,7 @@ Actions:
 - `rollback-release`: switches `/supersites/netprobe-atlas/.htaccess` back to a previous NetProbe release id.
 - `rollback-placeholder`: disables the managed NetProbe rewrite and returns the app folder to the bootstrap placeholder.
 
-The deploy action must not be run while the public API smoke fails. On 2026-06-26, `https://opentshost.com/supersites/control-plane/api/v1/netprobe/ip` returned HTTP 500, so NetProbe real deploy remains on hold even though the static artifact gate exists.
+The deploy action must not be run while the public API smoke fails. On 2026-06-26, the control-plane/API deploy passed, NetProbe real deploys `28264517346` and `28265295302` passed, and public smoke validated `https://opentshost.com/supersites/netprobe-atlas/`.
 
 ### Deploy Control Plane HostGator
 
@@ -77,6 +77,13 @@ Actions:
 - `deploy`: builds a Laravel no-secret ZIP with Composer `--no-dev`, validates the artifact, uploads/extracts it to `_control-plane-releases/<release-id>`, writes release `.env` from environment secrets, protects release directories, switches the managed `index.php`/`.htaccess` in `/supersites/control-plane/` and runs public smoke.
 - `rollback-release`: switches `/supersites/control-plane/` back to a previous release id and runs the control-plane public smoke.
 - `rollback-placeholder`: disables the managed rewrite/front controller and returns the folder to the bootstrap placeholder.
+
+Operational notes:
+
+- Normal deploys must keep `skip_smoke=false` and `enable_diagnostics=false`.
+- `skip_smoke=true` is only for controlled diagnosis or manual rollback recovery where the follow-up validation is explicit.
+- `enable_diagnostics=true` writes a sanitized diagnostics branch into the managed front controller for temporary investigation only; it must not print `.env`, headers or secret values, and the final deploy must disable it.
+- The HostGator PHP handler must be `ea-php84___lsphp`. The shorter `ea-php84` handler does not execute correctly in the current cPanel setup.
 
 Required `production-hostgator` secrets:
 
@@ -169,8 +176,8 @@ VPS runtime environment variable names:
 - The shared package test/typecheck root scripts use explicit package filters. The generic `./packages/*` pnpm filter returned no matches on Windows during Sprint 1.3 and was replaced before commit.
 - Local PHP on Windows may have SQLite DLLs present but disabled in `php.ini`. Enable `extension=pdo_sqlite` and `extension=sqlite3` before relying on `php artisan test`; this workstation was fixed during Sprint 1.4.
 - Direct site folder mapping like `https://opentshost.com/<site-folder>` remains pending. Keep app links on the safe fallback URLs under `/supersites/...`.
-- Real deploy is implemented for the SuperSites Hub static catalog. NetProbe Atlas has static packaging, preservation, smoke and rollback gates, but public traffic remains on hold until the control-plane/API production deploy is healthy.
-- Control-plane/API deploy uses a Laravel ZIP and cPanel remote extraction. The artifact excludes `.env`; the release `.env` is written remotely from GitHub secrets or ignored local inputs.
+- Real deploy is implemented for the SuperSites Hub static catalog, the control-plane/API and NetProbe Atlas. NetProbe public traffic depends on the control-plane/API smoke staying healthy for `/health`, `/api/v1/netprobe/ip` and `/api/v1/netprobe/dns`.
+- Control-plane/API deploy uses a Laravel ZIP and cPanel remote extraction. The artifact excludes `.env`; the release `.env` is written remotely from GitHub secrets or ignored local inputs, and the managed front controller bootstraps the active Laravel release directly.
 - NetProbe static builds must not contain `localhost:8013`, `127.0.0.1:8013` or a local `/api/v1/netprobe` URL. Local API usage belongs in dev/test env vars, not in production artifacts.
 - Human-gated actions stay in `docs/HUMAN_ACTION_REQUIRED.md`; technical reversible blockers should be worked around with dry-runs, validation scripts or degraded mode.
 

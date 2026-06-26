@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas, o modulo seguro inicial de IP/DNS/RDAP/SSL/propagation/port/reachability do NetProbe, o conteudo original multilanguage/AdSense-readiness do NetProbe, o MVP de upgrade com monitores/historico/alertas/API, o launch gate estatico do NetProbe e o caminho de deploy publico do control-plane/API foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada. O NetProbe permanece como placeholder publico `noindex` ate o deploy real da API e o deploy real do NetProbe passarem por CI, smoke publico e rollback; nenhum anuncio, billing real ou integracao externa foi publicado.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas, o modulo seguro inicial de IP/DNS/RDAP/SSL/propagation/port/reachability do NetProbe, o conteudo original multilanguage/AdSense-readiness do NetProbe, o MVP de upgrade com monitores/historico/alertas/API, o launch gate estatico do NetProbe e o deploy publico do control-plane/API foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada. Em 2026-06-26, o control-plane/API foi publicado em `https://opentshost.com/supersites/control-plane/` e o NetProbe Atlas foi publicado em `https://opentshost.com/supersites/netprobe-atlas/` com consultas publicas IP/DNS via HTTPS e smoke publico. Nenhum anuncio, billing real, worker/cron de producao, webhook externo ou integracao externa de analytics foi ativado.
 
 ## Estado local verificado
 
@@ -123,18 +123,27 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - O deploy NetProbe preserva placeholder remoto, `.env` e pastas manuais, publica em `_netprobe-releases/<release-id>` e troca apenas o `.htaccess` gerenciado dentro de `/supersites/netprobe-atlas/`.
   - `Quality Gate` passou no run `28259523119`, incluindo repository safety, backend, Hub frontend, NetProbe frontend e summary.
   - `Deploy Dry Run` passou no run `28259523043`; artifact upload segue bloqueado pela quota GitHub Actions, mas o plano permaneceu no job summary.
-  - Go-live real nao foi disparado porque o preflight publico da API em `https://opentshost.com/supersites/control-plane/api/v1/netprobe/ip` retorna HTTP 500 no estado atual do HostGator.
+  - O go-live real foi retomado apos a Sprint 2.8 corrigir e publicar o control-plane/API.
+  - Deploy NetProbe real inicial: workflow `Deploy NetProbe HostGator` run `28264517346`, com release estatico versionado e smoke publico local aprovado.
+  - Ajuste de copy pos-go-live: commit `decfaa8` (`fix: update netprobe live launch copy`), `Quality Gate` run `28265197612`, `Deploy Dry Run` run `28265197586` e redeploy NetProbe run `28265295302`.
+  - Release NetProbe ativo: `decfaa818545203597e74b898741f6114315a624-28265295302-1`.
+  - Playwright publico validou a rota `https://opentshost.com/supersites/netprobe-atlas/en/tools/dns-lookup`, clique em consulta DNS para `example.com`, resposta API HTTP 200 e renderizacao de resultado real; screenshot local ignorado em `artifacts/netprobe-public-live-copy-after-click.png`.
   - Nenhum anuncio, AdSense, billing real, webhook externo, fila/worker de producao ou integracao externa foi ativado nesta sprint.
 - Sprint 2.8 deploy publico do control-plane/API:
   - ADR `0017-control-plane-public-api-deploy` registra o deploy Laravel versionado para desbloquear o NetProbe publico.
   - Scripts adicionados: `build-control-plane-hostgator-artifact.ps1`, `validate-control-plane-artifact.ps1`, `smoke-control-plane-public.ps1` e `publish-control-plane-hostgator.ps1`.
-  - Workflow manual `Deploy Control Plane HostGator` foi criado para `deploy`, `rollback-release` e `rollback-placeholder`, usando secrets do environment `production-hostgator`.
+  - Workflow manual `Deploy Control Plane HostGator` foi criado para `deploy`, `rollback-release` e `rollback-placeholder`, usando secrets do environment `production-hostgator`; entradas `skip_smoke` e `enable_diagnostics` existem somente para diagnostico controlado.
   - O artifact Laravel e gerado como ZIP sem `.env`, sem arquivos sensiveis, sem dependencias dev e com Composer `--no-dev --classmap-authoritative`.
   - O deploy publico cria release em `_control-plane-releases/<release-id>`, extrai o ZIP no HostGator via cPanel `Fileman::fileop`, move o ZIP temporario para a lixeira, protege a pasta de releases com `.htaccess` deny e troca somente `index.php`/`.htaccess` gerenciados em `/supersites/control-plane/`.
+  - O front controller gerenciado agora faz bootstrap direto do Laravel do release ativo e usa handler cPanel `ea-php84___lsphp`, formato exigido pelo HostGator/cPanel para executar PHP 8.4 por LSAPI.
   - `.env` remoto base e criado somente se ausente e preservado se ja existir; cada release recebe `.env` a partir de GitHub environment secrets ou inventario local ignorado.
   - Migrações, crons, filas de producao, billing, AdSense, webhooks externos e analytics externo continuam desativados.
   - Validacao local inicial passou para parse PowerShell, `scripts/build-control-plane-hostgator-artifact.ps1`, `scripts/validate-control-plane-artifact.ps1` e `pnpm validate:structure`.
-  - Deploy real e smoke publico ainda nao foram executados; devem ocorrer somente apos commit, push, `Quality Gate` verde e secrets do environment conferidos.
+  - Correcoes publicadas entre `8fc4a00` e `a33fcbf` resolveram setup PHP no CI, extracao remota cPanel, normalizacao do front controller, diagnostico temporario e handler LSAPI correto.
+  - `Quality Gate` run `28264342797` e `Deploy Dry Run` run `28264342742` passaram apos a correcao final; a quota cheia de artifacts permaneceu como anotacao nao bloqueante do dry-run.
+  - Deploy real `Deploy Control Plane HostGator` run `28264453068` passou e `scripts/smoke-control-plane-public.ps1` validou HTTPS, `/health`, `/api/v1/netprobe/ip` e `/api/v1/netprobe/dns`.
+  - Release control-plane ativo: `a33fcbfdc31c328d71c6fa046d9fac99ec610575-28264453068-1`.
+  - Rollback para placeholder foi testado em runs de correcao (`28263487573`, `28263823424`, `28264154531`) e permanece disponivel; releases falhos anteriores podem existir remotamente e devem seguir politica futura de retencao antes de qualquer limpeza.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
 - pnpm local via Corepack: `11.9.0`.
@@ -445,11 +454,13 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `pnpm build:netprobe` passou com 163 rotas prerenderizadas; `pnpm --filter @supersites/supersite build` passou com 183 rotas prerenderizadas.
   - `pnpm validate:netprobe-preview`, `pnpm test:e2e:netprobe`, `pnpm validate:supersite-preview` e `pnpm test:e2e:supersite` passaram; Playwright cobriu desktop/mobile e consultas NetProbe mockadas.
   - `pnpm validate:structure` e `pnpm deploy:dry-run` passaram.
-  - Smoke publico atual bloqueou a publicacao util em `https://opentshost.com/supersites/netprobe-atlas/` porque a pasta remota ainda contem o placeholder `noindex` `SuperSites bootstrap placeholder`, como esperado ja que o deploy real nao foi disparado.
-  - Smoke publico da API candidata segue bloqueado por HTTP 500 em `https://opentshost.com/supersites/control-plane/api/v1/netprobe/ip`; por isso o workflow real `Deploy NetProbe HostGator` nao foi acionado.
+  - Smoke publico pre-go-live bloqueou corretamente a publicacao util enquanto o control-plane/API ainda retornava HTTP 500.
+  - Apos a Sprint 2.8, `Deploy NetProbe HostGator` run `28264517346` publicou o NetProbe em HTTPS; `scripts/smoke-netprobe-public.ps1` passou validando base publica, asset `_nuxt` e API base HTTPS.
+  - Apos o ajuste `decfaa8`, `pnpm test:netprobe`, `pnpm build:netprobe`, artifact HostGator local com API publica, `pnpm validate:secrets` e `pnpm deploy:dry-run` passaram; CI `Quality Gate` run `28265197612` e `Deploy Dry Run` run `28265197586` passaram.
+  - Redeploy NetProbe run `28265295302` passou; `scripts/smoke-netprobe-public.ps1` validou o release ativo e Playwright publico validou consulta DNS real com resposta API 200.
   - `pnpm validate:secrets` passou sem achados fora de caminhos ignorados de credenciais; `git diff --check` nao apontou whitespace errors.
   - GitHub Actions `Quality Gate` run `28259523119` passou; GitHub Actions `Deploy Dry Run` run `28259523043` passou com a ressalva conhecida de artifact upload bloqueado pela quota, mantendo o plano no job summary.
-- Sprint 2.8 validation local:
+- Sprint 2.8 validation:
   - Parse PowerShell passou para `publish-control-plane-hostgator.ps1`, `build-control-plane-hostgator-artifact.ps1`, `validate-control-plane-artifact.ps1`, `smoke-control-plane-public.ps1` e `sync-github-environments.ps1`.
   - `scripts/build-control-plane-hostgator-artifact.ps1 -ReleaseId local-validation` passou, gerando artifact Laravel com 7.086 arquivos, 28.012.962 bytes e ZIP de aproximadamente 8,3 MB.
   - `scripts/validate-control-plane-artifact.ps1 -ReleaseId local-validation` passou, confirmando arquivos Laravel obrigatorios, rotas NetProbe, ausencia de `.env`, ausencia de arquivos sensiveis e ausencia de dependencias dev bloqueadas.
@@ -457,15 +468,18 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `pnpm test:packages`, `pnpm typecheck:packages`, `pnpm --filter @supersites/supersite test`, `pnpm test:netprobe`, `pnpm build:netprobe`, `pnpm --filter @supersites/supersite build`, `pnpm validate:netprobe-preview`, `pnpm test:e2e:netprobe`, `pnpm validate:supersite-preview` e `pnpm test:e2e:supersite` passaram.
   - `pnpm validate:structure`, `pnpm deploy:dry-run`, `pnpm validate:secrets` e `git diff --check` passaram; `git diff --check` exibiu apenas avisos CRLF conhecidos em scripts PowerShell.
   - `scripts/sync-github-environments.ps1` sincronizou por nome os secrets tecnicos do control-plane em `production-hostgator`; `SUPERSITES_CONTROL_PLANE_APP_KEY` foi gerado e cadastrado sem imprimir valor.
-  - Estado publico pre-deploy confirmado: `scripts/smoke-control-plane-public.ps1` ainda bloqueia por HTTP 500 e `scripts/smoke-netprobe-public.ps1` ainda bloqueia porque `/supersites/netprobe-atlas/` contem o placeholder `SuperSites bootstrap placeholder`.
-  - CI, deploy real, smoke publico pos-deploy e rollback ainda precisam ocorrer antes de considerar a Sprint 2.8 concluida.
+  - Estado publico pre-deploy confirmou HTTP 500 no control-plane/API e placeholder no NetProbe, bloqueando corretamente a troca de trafego ate a correcao.
+  - `Quality Gate`/`Deploy Dry Run` foram acompanhados em cada correcao; o deploy final `28264453068` passou e `scripts/smoke-control-plane-public.ps1` aprovou a API publica.
+  - Diagnostico temporario `enable_diagnostics=true` foi usado apenas em deploy controlado com `skip_smoke=true` para comprovar que o wrapper nao executava sob o handler antigo; o release final nao depende desse diagnostico.
+  - Rollback placeholder foi executado e validado durante as correcoes; o release ativo final permanece recuperavel via `rollback-release`.
 
 ## Pendencias criticas
 
 - Resolver branch protection de `main` quando houver GitHub Pro, repositorio publico ou alternativa aprovada de ruleset/organizacao.
 - Definir se o mapeamento publico direto `https://opentshost.com/<site-folder>` sera feito por rewrite, alias, symlink controlado ou ajuste de document root.
 - Implementar jobs de deploy/operacao da VPS usando o GitHub environment `production-vps-runtime`, com rollback e smoke.
-- Executar e validar o deploy publico real do control-plane/API; NetProbe nao deve trocar trafego publico enquanto `/api/v1/netprobe/ip` e `/api/v1/netprobe/dns` nao responderem JSON saudavel em HTTPS.
+- Configurar uptime/monitoramento operacional e drill de backup/restore antes de ativar anuncios, billing, monitores pagos, workers recorrentes ou revisao AdSense.
+- Definir politica de retencao/limpeza para releases HostGator falhos antigos antes de qualquer remocao remota.
 - Definir backup/restore de `/var/lib/supersites-redis` antes de monitores pagos ou jobs de producao dependerem de Redis.
 - Criar filas/workers/crons na VPS apenas quando houver codigo executavel e nomes de fila definidos.
 - Publicar proximos apps somente mantendo empacotamento de artefatos, preservacao remota de `.env`, smoke e rollback testavel.

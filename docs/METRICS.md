@@ -66,8 +66,11 @@ Data-base: 2026-06-26
 | HostGator static release workflow | Implemented |
 | HostGator NetProbe static release workflow | Implemented |
 | HostGator control-plane API release workflow | Implemented |
-| HostGator static releases published | 1 |
+| HostGator static releases published | 3 |
+| HostGator control-plane API releases published | 1 |
 | HostGator active supersite release | `740e0f1968e7b0a2fd60eeb9e6edffd6252d94ae-28241237377-1` |
+| HostGator active control-plane release | `a33fcbfdc31c328d71c6fa046d9fac99ec610575-28264453068-1` |
+| HostGator active NetProbe release | `decfaa818545203597e74b898741f6114315a624-28265295302-1` |
 | Supersite prerender content routes | 91 |
 | Supersite sitemap routes | 1 |
 | Supersite legal/editorial pages | 35 |
@@ -92,15 +95,17 @@ Data-base: 2026-06-26
 | NetProbe Atlas sitemap routes | 1 |
 | NetProbe Atlas HostGator static artifact gate | Passed |
 | Control Plane HostGator artifact gate | Passed |
-| NetProbe Atlas public API production smoke | Blocked HTTP 500 |
+| Control Plane public API production smoke | Passed |
+| NetProbe Atlas public API production smoke | Passed |
+| NetProbe Atlas public DNS browser smoke | Passed |
 | NetProbe Atlas preview smoke | Passed |
 | NetProbe Atlas Playwright report | Passed |
-| NetProbe Atlas production status | Placeholder preserved/noindex; static deploy held by API gate |
+| NetProbe Atlas production status | Live at `https://opentshost.com/supersites/netprobe-atlas/`; ads/billing/external integrations gated |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
 | Public production smoke for `/supersites/` | 200 catalog live |
 | Public production rollback/switch smoke | Passed |
-| Public visual smoke screenshots | 2 |
+| Public visual smoke screenshots | 4 |
 | Direct `/<site-folder>` mapping smoke | 404 pending rewrite |
 | Secret scan outside `docs/credentials` | Passed |
 | Structure scan | Passed |

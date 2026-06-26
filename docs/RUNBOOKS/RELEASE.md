@@ -37,7 +37,7 @@ pnpm test:e2e:report
 - `Deploy Dry Run` remains the non-mutating plan workflow for all apps.
 - `Deploy SuperSite HostGator` publishes the static SuperSites Hub catalog.
 - `Deploy Control Plane HostGator` publishes the Laravel control-plane/API needed by NetProbe public tools.
-- `Deploy NetProbe HostGator` packages the static NetProbe frontend, but deploy must remain on hold until the public NetProbe API preflight passes.
+- `Deploy NetProbe HostGator` publishes the static NetProbe frontend after the public NetProbe API preflight passes.
 
 After `Quality Gate` is green for a catalog deploy commit:
 
@@ -106,6 +106,8 @@ Control-plane/API deploy command, only after `Quality Gate` is green and `produc
 gh workflow run "Deploy Control Plane HostGator" --ref main -f action=deploy
 ```
 
+The active production release validated on 2026-06-26 is `a33fcbfdc31c328d71c6fa046d9fac99ec610575-28264453068-1`. The managed cPanel PHP handler must be `ea-php84___lsphp`.
+
 Control-plane rollback commands:
 
 ```powershell
@@ -113,9 +115,12 @@ gh workflow run "Deploy Control Plane HostGator" --ref main -f action=rollback-r
 gh workflow run "Deploy Control Plane HostGator" --ref main -f action=rollback-placeholder
 ```
 
-NetProbe go-live order:
+NetProbe go-live/redeploy order:
 
 1. Deploy control-plane/API.
 2. Run `scripts\smoke-control-plane-public.ps1`.
 3. Deploy NetProbe static frontend.
 4. Run `scripts\smoke-netprobe-public.ps1`.
+5. Run a browser smoke against at least one public tool action.
+
+The active NetProbe production release validated on 2026-06-26 is `decfaa818545203597e74b898741f6114315a624-28265295302-1`.

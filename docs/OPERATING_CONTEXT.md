@@ -44,10 +44,15 @@ Padroes aproveitados:
 - Manifesto de deploy: `infra/deployment/apps.json`.
 - GitHub environments existentes: `staging-hostgator`, `production-hostgator`, `production-vps-runtime`.
 - Deploy real do catalogo transitorio esta implementado a partir da Sprint 1.7 pelo workflow manual `Deploy SuperSite HostGator`.
-- Deploy publico do control-plane/API esta implementado como workflow manual `Deploy Control Plane HostGator`; usar antes do go-live NetProbe para que `/api/v1/netprobe/ip` e `/api/v1/netprobe/dns` respondam JSON em HTTPS.
+- Deploy publico do control-plane/API esta implementado como workflow manual `Deploy Control Plane HostGator` e esta ativo em `https://opentshost.com/supersites/control-plane/`.
+- Deploy publico do NetProbe Atlas esta implementado como workflow manual `Deploy NetProbe HostGator` e esta ativo em `https://opentshost.com/supersites/netprobe-atlas/`.
 - Catalogo transitorio publico ativo: `https://opentshost.com/supersites/`.
 - Release HostGator ativo do catalogo: `740e0f1968e7b0a2fd60eeb9e6edffd6252d94ae-28241237377-1`.
+- Release HostGator ativo do control-plane/API: `a33fcbfdc31c328d71c6fa046d9fac99ec610575-28264453068-1`.
+- Release HostGator ativo do NetProbe Atlas: `decfaa818545203597e74b898741f6114315a624-28265295302-1`.
 - O deploy do catalogo sobe arquivos para `_supersites-releases/<release-id>/`, preserva `.env`, placeholders e pastas remotas gerenciadas fora do release, e troca somente o `.htaccess` gerenciado em `/supersites/`.
+- O deploy do control-plane/API exige handler cPanel `ea-php84___lsphp`; o front controller gerenciado faz bootstrap direto do Laravel no release ativo.
+- As entradas `skip_smoke` e `enable_diagnostics` do workflow de control-plane existem apenas para diagnostico controlado, nao para deploy normal.
 - Rollback testavel: acao manual `rollback-release` do workflow `Deploy SuperSite HostGator`; run `28241763726` validou switch para o release ativo e smoke publico.
 - Redirect da raiz `https://opentshost.com/` permanece desabilitado por padrao; habilitar somente com revisao explicita de `.htaccess` raiz.
 - A partir da Sprint 1.1, o `Quality Gate` valida o build Nuxt com `scripts/validate-supersite-preview.ps1`; o preview do catalogo deve rodar a partir de `apps/supersite` para servir `_nuxt` assets e permitir hidratacao.

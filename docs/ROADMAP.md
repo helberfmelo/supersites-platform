@@ -19,7 +19,7 @@ Sprint 0.1 - Bootstrap documental e estrutura local
 - Objetivo: criar estrutura do monorepo, documentos obrigatorios, ADRs iniciais, inventario local de credenciais e roadmap.
 - Entregas: `apps/`, `packages/`, `infra/`, `docs/`, `scripts/`, `STATUS`, `ROADMAP`, ADRs.
 - Validacao: busca de secrets em arquivos versionaveis, arvore local, leitura obrigatoria atualizada.
-- Status: em andamento nesta entrega.
+- Status: concluida.
 
 Sprint 0.2 - Git, repositorio privado e protecao de secrets
 - Objetivo: inicializar Git local, criar repo privado `supersites-platform`, configurar branch protection e secrets policy.
@@ -139,13 +139,13 @@ Sprint 2.7 - Launch gate NetProbe
 - Objetivo: publicar e monitorar NetProbe.
 - Entregas: deploy, smoke, status page, backup, rollback, checklist AdSense.
 - Validacao: Core Web Vitals inicial, uptime, logs, incident drill.
-- Status: concluida como launch gate tecnico; go-live real permanece em espera. O NetProbe recebeu status page, artifact HostGator estatico validado, workflow de deploy/rollback, smoke publico e checklist AdSense, mas o deploy real nao foi disparado porque a API publica candidata em `https://opentshost.com/supersites/control-plane/api/v1/netprobe/ip` responde HTTP 500. Publicacao util exige deploy/rollback/smoke do control-plane/API antes da troca de trafego.
+- Status: concluida. O NetProbe recebeu status page, artifact HostGator estatico validado, workflow de deploy/rollback, smoke publico e checklist AdSense. O go-live util foi executado apos a Sprint 2.8 publicar a API publica: `Deploy NetProbe HostGator` run `28264517346` e redeploy run `28265295302` passaram, `scripts/smoke-netprobe-public.ps1` aprovou HTTPS/API base, e Playwright publico validou uma consulta DNS real com resposta API 200. AdSense, billing real, workers recorrentes e integracoes externas seguem bloqueados ate os gates comerciais/operacionais.
 
 Sprint 2.8 - Deploy publico do control-plane/API
 - Objetivo: desbloquear o go-live util do NetProbe publicando a API Laravel em `https://opentshost.com/supersites/control-plane/`.
 - Entregas: artifact Laravel sem segredos, workflow manual de deploy/rollback, `.env` remoto preservado, release protegido, smoke publico de `/health`, NetProbe `/ip` e `/dns`.
 - Validacao: artifact gate, testes Laravel, estrutura/secrets/dry-run, CI verde, smoke publico e rollback testavel.
-- Status: em andamento nesta entrega. O caminho de deploy/rollback foi implementado localmente; deploy real deve ocorrer somente apos commit, push, Quality Gate verde e secrets do environment `production-hostgator` conferidos.
+- Status: concluida. O control-plane/API foi publicado no HostGator pelo workflow `Deploy Control Plane HostGator` run `28264453068`, release ativo `a33fcbfdc31c328d71c6fa046d9fac99ec610575-28264453068-1`. O smoke publico validou `/health`, `/api/v1/netprobe/ip` e `/api/v1/netprobe/dns`; rollback para placeholder foi exercitado durante as correcoes e rollback por release permanece disponivel. O handler cPanel final e `ea-php84___lsphp`.
 
 ## Fase 3 - Sites de baixo custo marginal
 

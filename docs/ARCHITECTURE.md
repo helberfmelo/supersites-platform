@@ -132,7 +132,7 @@ Sprint 2.7 adiciona empacotamento e deploy estatico especifico do NetProbe, conf
 - A troca publica usa somente o `.htaccess` gerenciado dentro de `/supersites/netprobe-atlas/`, preservando placeholder, `.env` e pastas manuais.
 - O deploy real falha fechado se a API publica NetProbe nao responder aos smokes de IP e DNS.
 
-Estado em 2026-06-26: o artefato estatico passa localmente, mas o go-live real permanece bloqueado porque `https://opentshost.com/supersites/control-plane/api/v1/netprobe/ip` responde HTTP 500 no placeholder atual do control plane.
+Estado em 2026-06-26: o artefato estatico foi publicado em `https://opentshost.com/supersites/netprobe-atlas/` apos o control-plane/API ficar saudavel; `scripts/smoke-netprobe-public.ps1` e Playwright publico validaram HTTPS, API base e consulta DNS real. Ads, billing, workers recorrentes e integracoes externas continuam fora do release publico.
 
 ## Control plane public API deploy
 
@@ -142,7 +142,8 @@ Sprint 2.8 corretiva adiciona o caminho de deploy publico do Laravel control-pla
 - O artefato local e um ZIP Laravel sem `.env`, sem arquivos de teste sensiveis e com Composer `--no-dev --classmap-authoritative`.
 - O ZIP e extraido no servidor via cPanel `Fileman::fileop` e movido para a lixeira apos extracao.
 - Cada release recebe `.env` remoto gerado somente a partir de GitHub environment secrets ou inventario local ignorado; o `.env` base em `/supersites/control-plane/.env` e criado apenas se ausente e preservado quando existente.
-- A pasta `_control-plane-releases` e protegida por `.htaccess` com deny; o trafego passa por `/supersites/control-plane/index.php`, que inclui o `public/index.php` do release ativo sem expor o codigo como arquivos baixaveis.
+- A pasta `_control-plane-releases` e protegida por `.htaccess` com deny; o trafego passa por `/supersites/control-plane/index.php`, que faz bootstrap direto do Laravel do release ativo sem expor o codigo como arquivos baixaveis.
+- O handler cPanel gerenciado deve usar `ea-php84___lsphp`; o formato sem `___lsphp` manteve PHP fora de execucao no HostGator durante a correcao.
 - O smoke publico obrigatorio cobre `/health`, `/api/v1/netprobe/ip` e `/api/v1/netprobe/dns` com `example.com`.
 - Migrações nao rodam automaticamente neste deploy inicial; os endpoints publicos IP/DNS devem funcionar com cache em arquivo, sessao em arquivo e fila `sync`.
 
