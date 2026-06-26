@@ -33,6 +33,14 @@ AdSense e a monetizacao primaria, mas nenhum site deve ser submetido antes de cu
 - Nao posicionar anuncios junto aos campos ou resultados de calculo de modo que incentive clique acidental.
 - Nao submeter ao AdSense enquanto a URL publica ainda servir placeholder.
 
+## DevUtility Lab checklist
+
+- Sprint 3.2 entrega apenas MVP local/CI e placeholder publico.
+- Antes de AdSense, criar deploy HostGator especifico, smoke publico, rollback testavel e status page.
+- Validar Core Web Vitals, ausencia de overflow, sitemap/canonical/hreflang/schema e paginas legais em todos os idiomas publicados.
+- Nao posicionar anuncios junto a editores, inputs, botoes de copia, resultados, blocos de codigo ou areas de erro de modo que incentive clique acidental.
+- Nao submeter ao AdSense enquanto a URL publica ainda servir placeholder.
+
 ## Placements
 
 - Usar componente compartilhado de ads com espaco reservado.

@@ -83,6 +83,21 @@ Nao registrar em analytics:
 
 Sprint 3.1 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, historico salvo ou API publica do CalcHarbor.
 
+## DevUtility Lab tools
+
+As ferramentas client-side do DevUtility Lab podem registrar apenas eventos de produto de baixo risco, como `tool_started`, `tool_completed` e `tool_failed`, usando `tool_slug`.
+
+Nao registrar em analytics:
+
+- snippets digitados ou colados;
+- JSON, XML, YAML, CSV, Base64, JWT, texto de regex, diff, cron, UUID, timestamp ou hashes;
+- tokens, claims, headers ou payloads JWT;
+- resultados formatados, convertidos, comparados ou gerados;
+- tamanho de arquivo/snippet quando combinado com conteudo ou erro especifico;
+- mensagens brutas que possam conter partes do input.
+
+Sprint 3.2 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, historico salvo, workspaces, API publica ou storage persistente do DevUtility Lab.
+
 ## Deploy smokes
 
 Smokes de deploy do control-plane/API e do NetProbe devem validar apenas disponibilidade e contrato JSON, sem criar eventos externos de analytics e sem registrar alvo bruto de usuario. O alvo DNS padrao para smoke publico e `example.com`.

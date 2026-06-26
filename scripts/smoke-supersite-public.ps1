@@ -90,6 +90,9 @@ Assert-DoesNotContain -Content $netprobe.Content -Pattern "(?i)<meta[^>]+name=["
 $calcharborPlaceholder = Invoke-SmokeRequest -Url (Join-Url $publicBase "calcharbor/") -RequiredContent "SuperSites bootstrap placeholder"
 Assert-DoesNotContain -Content $calcharborPlaceholder.Content -Pattern "(?i)<script[^>]+/_nuxt/" -Context "CalcHarbor temporary placeholder"
 
+$devutilityPlaceholder = Invoke-SmokeRequest -Url (Join-Url $publicBase "devutility-lab/") -RequiredContent "SuperSites bootstrap placeholder"
+Assert-DoesNotContain -Content $devutilityPlaceholder.Content -Pattern "(?i)<script[^>]+/_nuxt/" -Context "DevUtility Lab temporary placeholder"
+
 if ($RootUrl) {
     if ($RootUrl -notmatch "^https://") {
         throw "Root smoke requires HTTPS URL. Received: $RootUrl"

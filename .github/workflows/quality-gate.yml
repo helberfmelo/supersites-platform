@@ -18,6 +18,7 @@ jobs:
       frontend_supersite: ${{ steps.detect.outputs.frontend_supersite }}
       frontend_netprobe: ${{ steps.detect.outputs.frontend_netprobe }}
       frontend_calcharbor: ${{ steps.detect.outputs.frontend_calcharbor }}
+      frontend_devutility: ${{ steps.detect.outputs.frontend_devutility }}
       backend_control_plane: ${{ steps.detect.outputs.backend_control_plane }}
       deployment: ${{ steps.detect.outputs.deployment }}
       docs_only: ${{ steps.detect.outputs.docs_only }}
@@ -189,6 +190,52 @@ jobs:
       - name: Playwright visual smoke
         run: pnpm test:e2e:calcharbor
 
+  frontend_devutility:
+    name: Frontend / DevUtility Lab
+    runs-on: ubuntu-latest
+    needs:
+      - changes
+      - repository_safety
+    if: needs.changes.outputs.frontend_devutility == 'true' || needs.changes.outputs.deployment == 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v6.4.0
+        with:
+          node-version: '24'
+
+      - name: Enable pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@11.9.0 --activate
+
+      - name: Install Node dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Test shared packages
+        run: pnpm test:packages
+
+      - name: Typecheck shared packages
+        run: pnpm typecheck:packages
+
+      - name: Test Nuxt DevUtility Lab
+        run: pnpm --filter @supersites/devutility-lab test
+
+      - name: Build Nuxt DevUtility Lab
+        run: pnpm --filter @supersites/devutility-lab build
+
+      - name: Install Playwright browser
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Smoke DevUtility preview
+        shell: pwsh
+        run: ./scripts/validate-devutility-preview.ps1
+
+      - name: Playwright visual smoke
+        run: pnpm test:e2e:devutility
+
   backend_control_plane:
     name: Backend / Control Plane
     runs-on: ubuntu-latest
@@ -232,6 +279,7 @@ jobs:
       - frontend_supersite
       - frontend_netprobe
       - frontend_calcharbor
+      - frontend_devutility
       - backend_control_plane
     if: always()
     steps:
@@ -244,6 +292,7 @@ jobs:
             frontend_supersite = '${{ needs.frontend_supersite.result }}'
             frontend_netprobe = '${{ needs.frontend_netprobe.result }}'
             frontend_calcharbor = '${{ needs.frontend_calcharbor.result }}'
+            frontend_devutility = '${{ needs.frontend_devutility.result }}'
             backend_control_plane = '${{ needs.backend_control_plane.result }}'
           }
 

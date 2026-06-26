@@ -22,6 +22,12 @@ Antes de vender monitores reais, implementar billing/entitlements, termos, cance
 
 Sprint 2.8 publica somente a API publica necessaria para consultas gratuitas do NetProbe. O deploy nao ativa checkout, entitlement pago, cobranca, webhook externo ou planos comerciais.
 
+## DevUtility Lab preview
+
+A Sprint 3.2 criou apenas ferramentas gratuitas client-side, sem checkout, cobranca, assinatura, entitlement pago, provedor externo ativo, historico privado, workspaces, lote, arquivos maiores ou API.
+
+Antes de vender historico privado, workspaces, processamento em lote, arquivos maiores ou API, implementar billing/entitlements, termos, matriz de dados, retencao, exportacao/exclusao de conta e gates humanos de KYC/impostos/conta bancaria.
+
 ## Segurança
 
 - Nao armazenar cartao.

@@ -15,13 +15,13 @@ Data-base: 2026-06-26
 | Docs files created/maintained | 43 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
-| Nuxt apps scaffolded | 3 |
+| Nuxt apps scaffolded | 4 |
 | Laravel apps scaffolded | 1 |
 | Shared TS packages implemented | 5 |
 | Shared package tests passing | 22 |
 | Shared package typechecks passing | 5 |
-| Frontend tests passing | 24 |
-| Playwright visual smoke tests passing | 14 |
+| Frontend tests passing | 31 |
+| Playwright visual smoke tests passing | 17 |
 | Laravel tests passing | 31 |
 | Control plane API endpoints implemented | 15 |
 | Control plane admin routes implemented | 6 |
@@ -112,6 +112,18 @@ Data-base: 2026-06-26
 | CalcHarbor preview smoke | Passed |
 | CalcHarbor Playwright report | Passed |
 | CalcHarbor production status | Placeholder at `https://opentshost.com/supersites/calcharbor/`; real deploy gated |
+| DevUtility Lab tool pages implemented | 9 |
+| DevUtility Lab localized tool pages | 45 |
+| DevUtility Lab live public tools implemented | 0 |
+| DevUtility Lab local browser tools implemented | 9 |
+| DevUtility Lab legal/editorial pages | 40 |
+| DevUtility Lab FAQ blocks | 45 |
+| DevUtility Lab structured data pages | 45 |
+| DevUtility Lab prerender content routes | 91 |
+| DevUtility Lab sitemap routes | 1 |
+| DevUtility Lab preview smoke | Passed |
+| DevUtility Lab Playwright report | Passed |
+| DevUtility Lab production status | Placeholder at `https://opentshost.com/supersites/devutility-lab/`; real deploy gated |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
 | Public production smoke for `/supersites/` | 200 catalog live |

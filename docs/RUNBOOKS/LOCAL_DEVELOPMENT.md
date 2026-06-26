@@ -71,6 +71,15 @@ pnpm validate:calcharbor-preview
 pnpm test:e2e:calcharbor
 ```
 
+Run DevUtility Lab checks:
+
+```powershell
+pnpm test:devutility
+pnpm build:devutility
+pnpm validate:devutility-preview
+pnpm test:e2e:devutility
+```
+
 The root package scripts use explicit filters for `@supersites/ui`, `@supersites/i18n`, `@supersites/seo` and `@supersites/consent`. A generic pnpm path filter did not match the package workspaces on Windows during Sprint 1.3.
 
 Install the Playwright browser once per workstation if needed:
@@ -112,6 +121,14 @@ pnpm dev:calcharbor
 ```
 
 Then open `http://127.0.0.1:3003/en/calculators/loan-payment`. Inputs and results remain browser-side in Sprint 3.1.
+
+For local DevUtility Lab development, run:
+
+```powershell
+pnpm dev:devutility
+```
+
+Then open `http://127.0.0.1:3004/en/tools/structured-data-formatter`. Snippets and results remain browser-side in Sprint 3.2.
 
 For local NetProbe Atlas tool testing, run:
 

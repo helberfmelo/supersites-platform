@@ -220,9 +220,9 @@ export const siteCatalog: SiteSummary[] = [
     name: 'DevUtility Lab',
     category: 'developer',
     launchOrder: 3,
-    status: 'planned',
+    status: 'foundation',
     temporaryUrl: 'https://opentshost.com/supersites/devutility-lab/',
-    freeTools: ['JSON formatting', 'Base64', 'JWT inspection', 'Regex and diff utilities'],
+    freeTools: ['JSON/XML/YAML/CSV formatting', 'Base64', 'JWT inspection', 'Regex, diff, cron, UUID, timestamp and hashes'],
     paidBenefits: ['Private history', 'Workspaces', 'Batch processing', 'Larger files'],
     localized: {
       en: {

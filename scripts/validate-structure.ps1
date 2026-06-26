@@ -13,6 +13,7 @@ $requiredPaths = @(
     "playwright.config.ts",
     "playwright.netprobe.config.ts",
     "playwright.calcharbor.config.ts",
+    "playwright.devutility.config.ts",
     "pnpm-workspace.yaml",
     "pnpm-lock.yaml",
     "docs/MEGA_PROMPT_SUPERSITES.md",
@@ -245,6 +246,34 @@ $calcharborPaths = @(
 )
 
 $requiredPaths += $calcharborPaths
+
+$devutilityPaths = @(
+    "apps/devutility-lab/package.json",
+    "apps/devutility-lab/nuxt.config.ts",
+    "apps/devutility-lab/app/app.vue",
+    "apps/devutility-lab/app/components/DevUtilityHome.vue",
+    "apps/devutility-lab/app/components/LanguageNav.vue",
+    "apps/devutility-lab/app/components/LegalFooter.vue",
+    "apps/devutility-lab/app/components/SiteHeader.vue",
+    "apps/devutility-lab/app/data/copy.ts",
+    "apps/devutility-lab/app/data/locales.ts",
+    "apps/devutility-lab/app/data/pages.ts",
+    "apps/devutility-lab/app/data/routes.ts",
+    "apps/devutility-lab/app/data/tools.ts",
+    "apps/devutility-lab/app/pages/index.vue",
+    "apps/devutility-lab/app/pages/[locale]/[page].vue",
+    "apps/devutility-lab/app/pages/[locale]/index.vue",
+    "apps/devutility-lab/app/pages/[locale]/tools/[slug].vue",
+    "apps/devutility-lab/app/utils/analytics.ts",
+    "apps/devutility-lab/app/utils/toolWorker.ts",
+    "apps/devutility-lab/app/workers/devutility.worker.ts",
+    "apps/devutility-lab/server/routes/sitemap.xml.ts",
+    "apps/devutility-lab/tests/devutility.test.ts",
+    "tests/e2e/devutility.spec.ts",
+    "scripts/validate-devutility-preview.ps1"
+)
+
+$requiredPaths += $devutilityPaths
 
 $missing = @()
 foreach ($path in $requiredPaths) {

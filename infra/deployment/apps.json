@@ -42,8 +42,9 @@
     {
       "id": "devutility-lab",
       "name": "DevUtility Lab",
-      "kind": "placeholder",
+      "kind": "nuxt-ssg",
       "localPath": "apps/devutility-lab",
+      "buildOutput": "apps/devutility-lab/.output/public",
       "remotePath": "/home1/opents62/public_html/supersites/devutility-lab",
       "publicUrl": "https://opentshost.com/supersites/devutility-lab/"
     },
