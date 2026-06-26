@@ -68,6 +68,29 @@ function Assert-UapiSuccess {
     }
 }
 
+function Invoke-CpanelRequestWithRetry {
+    param(
+        [scriptblock]$Operation,
+        [string]$Description,
+        [int]$MaxAttempts = 5
+    )
+
+    for ($attempt = 1; $attempt -le $MaxAttempts; $attempt++) {
+        try {
+            return & $Operation
+        }
+        catch {
+            if ($attempt -ge $MaxAttempts) {
+                throw
+            }
+
+            $delaySeconds = [Math]::Min(30, [Math]::Pow(2, $attempt))
+            Write-Warning ("{0} failed on attempt {1}/{2}: {3}. Retrying in {4}s." -f $Description, $attempt, $MaxAttempts, $_.Exception.Message, $delaySeconds)
+            Start-Sleep -Seconds $delaySeconds
+        }
+    }
+}
+
 function Invoke-CpanelUapi {
     param(
         [string]$Path,
@@ -83,10 +106,14 @@ function Invoke-CpanelUapi {
             $uri = "$uri`?$query"
         }
 
-        return Invoke-RestMethod -Method Get -Uri $uri -Headers $script:CpanelHeaders -TimeoutSec 90
+        return Invoke-CpanelRequestWithRetry -Description "cPanel UAPI $Path" -Operation {
+            Invoke-RestMethod -Method Get -Uri $uri -Headers $script:CpanelHeaders -TimeoutSec 120
+        }
     }
 
-    return Invoke-RestMethod -Method Post -Uri $uri -Headers $script:CpanelHeaders -Body $Parameters -ContentType "application/x-www-form-urlencoded" -TimeoutSec 90
+    return Invoke-CpanelRequestWithRetry -Description "cPanel UAPI $Path" -Operation {
+        Invoke-RestMethod -Method Post -Uri $uri -Headers $script:CpanelHeaders -Body $Parameters -ContentType "application/x-www-form-urlencoded" -TimeoutSec 120
+    }
 }
 
 function Invoke-CpanelApi2 {
@@ -108,7 +135,9 @@ function Invoke-CpanelApi2 {
     }
 
     $uri = "https://$script:CpanelHost`:$script:CpanelPort/json-api/cpanel?" + (New-QueryString $baseParameters)
-    return Invoke-RestMethod -Method Get -Uri $uri -Headers $script:CpanelHeaders -TimeoutSec 90
+    return Invoke-CpanelRequestWithRetry -Description "cPanel API2 $Module/$Function" -Operation {
+        Invoke-RestMethod -Method Get -Uri $uri -Headers $script:CpanelHeaders -TimeoutSec 120
+    }
 }
 
 function Get-FileInfo {
@@ -221,12 +250,20 @@ function Upload-RemoteFile {
         "--form", "file-1=@$resolvedLocalPath;filename=$FileName"
     )
 
-    $body = & $curlCommand.Source @arguments 2>&1
-    if ($LASTEXITCODE -ne 0) {
-        throw "curl upload failed for '$LocalPath': $body"
+    $json = Invoke-CpanelRequestWithRetry -Description "cPanel upload $Directory/$FileName" -Operation {
+        $body = & $curlCommand.Source @arguments 2>&1
+        if ($LASTEXITCODE -ne 0) {
+            throw "curl upload failed for '$LocalPath': $body"
+        }
+
+        try {
+            return ($body | Out-String) | ConvertFrom-Json
+        }
+        catch {
+            throw "Upload response was not valid JSON for '$LocalPath'."
+        }
     }
 
-    $json = ($body | Out-String) | ConvertFrom-Json
     Assert-UapiSuccess $json "Failed to upload remote file '$Directory/$FileName'."
 }
 

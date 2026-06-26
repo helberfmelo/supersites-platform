@@ -53,17 +53,17 @@ if ($PublicBaseUrl -notmatch "^https://") {
 }
 
 $publicBase = $PublicBaseUrl.TrimEnd("/")
-$home = Invoke-SmokeRequest -Url "$publicBase/" -RequiredContent "SuperSites Hub"
+$homeResponse = Invoke-SmokeRequest -Url "$publicBase/" -RequiredContent "SuperSites Hub"
 
-Assert-DoesNotContain -Content $home.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context "Home page"
-Assert-DoesNotContain -Content $home.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context "Home page"
-Assert-DoesNotContain -Content $home.Content -Pattern "(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick" -Context "Home page"
+Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context "Home page"
+Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context "Home page"
+Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick" -Context "Home page"
 
-if ($home.Content -notmatch [regex]::Escape("href=`"$publicBase`"")) {
+if ($homeResponse.Content -notmatch [regex]::Escape("href=`"$publicBase`"")) {
     throw "Home page canonical does not point at $publicBase."
 }
 
-$assetMatch = [regex]::Match($home.Content, '(?i)(?:src|href)=["''](?<path>/supersites/_nuxt/[^"'']+\.js)')
+$assetMatch = [regex]::Match($homeResponse.Content, '(?i)(?:src|href)=["''](?<path>/supersites/_nuxt/[^"'']+\.js)')
 if (-not $assetMatch.Success) {
     throw "Could not find a /supersites/_nuxt JavaScript asset reference on the public home page."
 }
