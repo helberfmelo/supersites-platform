@@ -83,7 +83,7 @@ Sprint 1.5 - Control plane MVP
 - Objetivo: dashboard executivo minimo com status, sites, deploys, incidentes e tarefas.
 - Entregas: painel autenticado, cadastro de sites, status operacional.
 - Validacao: auth/RBAC tests, smoke UI, audit log.
-- Status: concluida localmente nesta sprint. O control plane recebeu login/logout, middleware RBAC `permission`, dashboard `/admin`, inventario e cadastro/edicao de sites em `/admin/sites`, tabelas operacionais para deploys/incidentes/tarefas e testes feature cobrindo auth, RBAC, UI smoke e auditoria.
+- Status: concluida. O control plane recebeu login/logout, middleware RBAC `permission`, dashboard `/admin`, inventario e cadastro/edicao de sites em `/admin/sites`, tabelas operacionais para deploys/incidentes/tarefas e testes feature cobrindo auth, RBAC, UI smoke e auditoria. Quality Gate `28236429748` e Deploy Dry Run `28236429773` ficaram verdes.
 
 Sprint 1.6 - Analytics/event contract
 - Objetivo: contrato de eventos, data layer sem PII e snapshots internos.

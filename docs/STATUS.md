@@ -48,6 +48,8 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Sprint 1.3 quality gate monitorado: `Quality Gate` run `28234285250`, status `success`; `Deploy Dry Run` run `28234285286`, status `success` com upload de artifact ainda bloqueado por quota GitHub Actions, sem bloquear o dry-run porque o resumo foi publicado no job summary.
 - Sprint 1.4 API foundation commit publicado: `3e1889f` (`feat: add control plane API foundation`).
 - Sprint 1.4 quality gate monitorado: `Quality Gate` run `28235256988`, status `success`; `Deploy Dry Run` run `28235257018`, status `success`.
+- Sprint 1.5 control plane admin MVP commit publicado: `a1b1704` (`feat: add control plane admin mvp`).
+- Sprint 1.5 quality gate monitorado: `Quality Gate` run `28236429748`, status `success`; `Deploy Dry Run` run `28236429773`, status `success` com upload de artifact ainda bloqueado por quota GitHub Actions, sem bloquear o dry-run porque o plano permaneceu no job summary.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
 - pnpm local via Corepack: `11.9.0`.
@@ -232,6 +234,8 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - Servidor local do control plane em `http://127.0.0.1:8013` respondeu `/login` HTTP 200 e `/health` HTTP 200 com app/database/redis `up`.
   - Playwright local validou login e dashboard desktop sem overflow; screenshot ignorado em `artifacts/control-plane-dashboard-desktop.png`.
   - Playwright local validou `/admin/sites` mobile autenticado sem overflow de pagina; screenshot ignorado em `artifacts/control-plane-sites-mobile.png`.
+  - GitHub Actions `Quality Gate` run `28236429748` passou com repository safety, backend, pacotes, Nuxt preview e Playwright.
+  - GitHub Actions `Deploy Dry Run` run `28236429773` passou; artifact upload segue bloqueado pela quota GitHub Actions, mas o job summary manteve o plano auditavel.
   - Obstaculo contornado: a primeira tabela mobile nao transbordava, mas quebrava palavras; CSS ajustado para rolagem interna do painel e texto sem quebra artificial.
 
 ## Pendencias criticas
