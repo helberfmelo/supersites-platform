@@ -62,22 +62,24 @@ jobs:
           $releaseId = '${{ inputs.release_id }}'
           $enableRootRedirect = '${{ inputs.enable_root_redirect }}' -eq 'true'
 
-          $args = @()
+          $deployArgs = @{}
           if ($enableRootRedirect) {
-            $args += '-EnableRootRedirect'
+            $deployArgs.EnableRootRedirect = $true
           }
 
           if ($action -eq 'deploy') {
-            $args += @('-ReleaseId', '${{ github.sha }}')
+            $deployArgs.ReleaseId = '${{ github.sha }}'
           } elseif ($action -eq 'rollback-release') {
             if (-not $releaseId) {
               throw 'release_id is required for rollback-release.'
             }
-            $args += @('-RollbackReleaseId', $releaseId, '-SkipBuild')
+            $deployArgs.RollbackReleaseId = $releaseId
+            $deployArgs.SkipBuild = $true
           } elseif ($action -eq 'rollback-placeholder') {
-            $args += @('-RollbackToPlaceholder', '-SkipBuild')
+            $deployArgs.RollbackToPlaceholder = $true
+            $deployArgs.SkipBuild = $true
           } else {
             throw "Unsupported deploy action: $action"
           }
 
-          ./scripts/publish-supersite-hostgator.ps1 @args
+          ./scripts/publish-supersite-hostgator.ps1 @deployArgs
