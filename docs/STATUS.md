@@ -550,6 +550,10 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - Regressao CalcHarbor: `pnpm test:calcharbor`, `pnpm build:calcharbor`, `pnpm validate:calcharbor-preview` e `pnpm test:e2e:calcharbor` passaram.
   - Regressao DevUtility Lab: `pnpm test:devutility`, `pnpm build:devutility`, `pnpm validate:devutility-preview` e `pnpm test:e2e:devutility` passaram; uma tentativa concorrente de preview e E2E em `127.0.0.1:3115` foi invalidada por `EADDRINUSE` e reexecutada sem concorrencia.
   - `pnpm validate:structure`, `pnpm deploy:dry-run`, `pnpm validate:secrets`, `pnpm ci:changes` e `git diff --check` passaram no fechamento local; `git diff --check` exibiu apenas avisos CRLF conhecidos em arquivos touched.
+  - GitHub Actions `Quality Gate` run `28271855846` passou com repository safety, backend, Hub frontend, NetProbe frontend, CalcHarbor frontend, DevUtility Lab frontend, TimeNexus frontend e summary.
+  - GitHub Actions `Deploy Dry Run` run `28271855815` passou; o upload de artifact continuou bloqueado pela quota GitHub Actions, mas o plano permaneceu no job summary.
+  - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis e CalcHarbor/DevUtility Lab/TimeNexus ainda placeholders publicos.
+  - Nenhum deploy real do TimeNexus foi executado porque o app ainda nao tem workflow de traffic switch, smoke publico e rollback proprios.
 
 ## Pendencias criticas
 
