@@ -109,6 +109,7 @@ Sprint 2.2 - IP e DNS lookup seguro
 - Objetivo: What is my IP, IPv4/IPv6, A/AAAA/CNAME/MX/TXT/NS/SOA/CAA.
 - Entregas: API segura, cache TTL, rate limit, UI de resultado.
 - Validacao: unit/integration tests, SSRF guard, examples.
+- Status: concluida localmente/CI. O NetProbe agora tem endpoints publicos Laravel `/api/v1/netprobe/ip` e `/api/v1/netprobe/dns`, rate limit dedicado, cache TTL por lookup, guard contra URLs, hostnames locais/reservados e resolucoes para IPs privados, UI live para IP/DNS e Playwright cobrindo resultado responsivo e analytics sanitizado. Quality Gate `28252157415` e Deploy Dry Run `28252157488` ficaram verdes.
 
 Sprint 2.3 - RDAP, dominio e SSL
 - Objetivo: RDAP/domain lookup, idade/expiracao, nameservers, certificado SSL.

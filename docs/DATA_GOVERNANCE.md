@@ -19,6 +19,14 @@
 | Logs tecnicos | Sanitizados e com retencao definida |
 | Eventos analytics | Sem PII e com consentimento quando exigido |
 
+## NetProbe Atlas
+
+- IP exibido em `what-is-my-ip` e resultado DNS sao tratados como resposta transitoria da ferramenta.
+- O endpoint `/api/v1/netprobe/ip` nao deve persistir o IP completo fora de logs tecnicos operacionais inevitaveis da plataforma.
+- O endpoint `/api/v1/netprobe/dns` pode usar cache tecnico de curta duracao por hostname/tipo normalizado, sem associar resultado a usuario autenticado ou identificador pessoal.
+- Hostname, IP consultado e registros retornados nao devem ser enviados para analytics, GA4, GTM, AdSense ou data layer.
+- Erros de validacao/SSRF devem expor mensagens controladas, sem revelar detalhes internos de rede ou resolver.
+
 ## Analytics sem PII
 
 - O contrato versionado fica em `packages/analytics`.

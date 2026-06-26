@@ -36,6 +36,15 @@
 - Identificadores anonimos e de sessao sao hasheados antes de persistencia.
 - Nenhum provedor externo de analytics deve ser ativado antes de consentimento, GA4/GTM e gates humanos/tecnicos aplicaveis.
 
+## NetProbe public API
+
+- `GET /api/v1/netprobe/ip` nao deve persistir o IP completo do visitante; a resposta informa a politica de retencao.
+- `POST /api/v1/netprobe/dns` aceita apenas hostnames normalizados e tipos DNS permitidos.
+- URLs, portas, caminhos, query strings, hostnames locais/reservados e aliases como `localhost`/`.local` devem ser rejeitados antes de resolver DNS.
+- Respostas A/AAAA que apontem para IP privado, loopback, metadata ou ranges reservados devem bloquear o resultado completo.
+- Endpoints publicos NetProbe usam rate limit dedicado `netprobe-public` e cache TTL por lookup para reduzir abuso e custo.
+- Analytics de ferramentas NetProbe nao deve incluir hostname, IP consultado, query DNS ou valor bruto inserido pelo usuario.
+
 ## Redis/VPS
 
 - Redis de producao inicial roda na VPS como `supersites-redis.service`.

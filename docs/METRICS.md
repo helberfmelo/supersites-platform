@@ -11,8 +11,8 @@ Data-base: 2026-06-26
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
 | Shared package folders created | 12 |
-| ADRs created | 13 |
-| Docs files created/maintained | 39 |
+| ADRs created | 14 |
+| Docs files created/maintained | 40 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
 | Nuxt apps scaffolded | 2 |
@@ -22,8 +22,8 @@ Data-base: 2026-06-26
 | Shared package typechecks passing | 5 |
 | Frontend tests passing | 15 |
 | Playwright visual smoke tests passing | 6 |
-| Laravel tests passing | 17 |
-| Control plane API endpoints implemented | 4 |
+| Laravel tests passing | 21 |
+| Control plane API endpoints implemented | 6 |
 | Control plane admin routes implemented | 6 |
 | Control plane portfolio records seeded | 12 |
 | Control plane RBAC permissions seeded | 7 |
@@ -74,6 +74,9 @@ Data-base: 2026-06-26
 | Supersite hydrated interaction smoke | Passed |
 | Supersite Playwright report | Passed |
 | NetProbe Atlas tool pages scaffolded | 7 |
+| NetProbe Atlas live public tools implemented | 2 |
+| NetProbe public API endpoints implemented | 2 |
+| NetProbe DNS record types supported | 8 |
 | NetProbe Atlas legal/editorial pages | 7 |
 | NetProbe Atlas prerender content routes | 16 |
 | NetProbe Atlas sitemap routes | 1 |

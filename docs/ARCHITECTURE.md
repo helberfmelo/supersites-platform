@@ -88,6 +88,18 @@ Sprint 1.6 adiciona a base de analytics sem PII:
 - `metric_snapshots` armazena agregados internos com fonte, granularidade e status estimado/finalizado/atrasado.
 - `GET /api/v1/metric-snapshots` exige autenticacao e `dashboard.view`.
 
+## NetProbe public API module
+
+Sprint 2.2 adiciona o primeiro modulo publico de lookup do NetProbe dentro do Laravel `apps/control-plane`, conforme ADR `0014-netprobe-public-api-module`.
+
+- `GET /api/v1/netprobe/ip`: retorna o IP observado na requisicao, versao IPv4/IPv6, classificacao publica e metadados de retencao sem persistir o endereco completo.
+- `POST /api/v1/netprobe/dns`: normaliza hostnames e consulta A/AAAA/CNAME/MX/TXT/NS/SOA/CAA com cache TTL e resposta estruturada.
+- `netprobe-public`: rate limiter dedicado para endpoints publicos de diagnostico.
+- `NetProbeDnsResolver`: contrato substituivel para testes e para futura extracao para worker/runtime separado.
+- `NetProbeHostGuard`: bloqueia URL em vez de hostname, nomes locais/reservados e respostas que apontem para IP privado, loopback, metadata ou ranges reservados.
+
+O modulo fica no control plane para reduzir superficie operacional enquanto o contrato estabiliza. Uma extracao futura para app/API dedicado deve preservar o contrato HTTP, os testes de SSRF/rate limit e a politica de minimizacao de dados.
+
 ## Sites e pastas
 
 | App | Pasta | Papel |

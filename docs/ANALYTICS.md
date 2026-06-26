@@ -48,6 +48,18 @@ Endpoints internos:
 - `POST /api/v1/analytics/events`: ingestao publica de eventos whitelisted e sanitizados.
 - `GET /api/v1/metric-snapshots`: snapshots internos autenticados para `dashboard.view`.
 
+## NetProbe Sprint 2.2
+
+As ferramentas live iniciais `what-is-my-ip` e `dns-lookup` podem registrar apenas eventos de produto de baixo risco, como `tool_started`, usando `tool_slug` e metadados de UI.
+
+Nao registrar em analytics:
+
+- IP observado do visitante;
+- hostname ou dominio consultado;
+- tipos DNS selecionados quando combinados com o alvo;
+- registros DNS retornados;
+- mensagens brutas do resolver.
+
 ## Regras
 
 - Identificar dados estimados, atrasados ou finalizados.
