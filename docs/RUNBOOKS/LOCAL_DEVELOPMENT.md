@@ -96,6 +96,14 @@ pnpm dev:supersite
 
 Then open `http://127.0.0.1:3001`. The public transitional domain will become visually followable after the real catalog deploy sprint.
 
+For local NetProbe Atlas tool testing, run:
+
+```powershell
+pnpm dev:netprobe
+```
+
+Then open `http://127.0.0.1:3002/en/tools/dns-lookup`. When the SuperSites Hub is opened locally, the NetProbe detail page also shows a local-only shortcut to this tool surface.
+
 Current local visual endpoint validated on 2026-06-26:
 
 - `http://127.0.0.1:3001` returned HTTP 200.

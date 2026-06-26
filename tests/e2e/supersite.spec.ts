@@ -118,4 +118,17 @@ test.describe('SuperSites public hub', () => {
     expect(JSON.stringify(analytics)).not.toContain('?')
     expect(errors).toEqual([])
   })
+
+  test('shows the local NetProbe tools shortcut from the site detail page', async ({ page }) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.goto('/en/sites/netprobe-atlas')
+
+    const localToolsLink = page.getByRole('link', { name: 'Open local NetProbe tools' })
+
+    await expect(localToolsLink).toBeVisible()
+    await expect(localToolsLink).toHaveAttribute('href', 'http://127.0.0.1:3002/en/tools/dns-lookup')
+    await expect(page.getByRole('link', { name: 'Open public placeholder' })).toBeVisible()
+    expect(errors).toEqual([])
+  })
 })

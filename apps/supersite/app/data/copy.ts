@@ -33,6 +33,7 @@ interface DetailCopy {
   methodologyTitle: string
   methodologyBody: string
   backToCatalog: string
+  localDevCta: string
   publicCta: string
   relatedTitle: string
 }
@@ -193,6 +194,7 @@ export const detailCopy: Record<LocaleCode, DetailCopy> = {
     methodologyTitle: 'Quality gate',
     methodologyBody: 'This working-name site should not be treated as AdSense-ready until tools, original content, legal pages, monitoring, backup and rollback pass the documented launch gate.',
     backToCatalog: 'Back to catalog',
+    localDevCta: 'Open local NetProbe tools',
     publicCta: 'Open public placeholder',
     relatedTitle: 'Related operating notes',
   },
@@ -208,6 +210,7 @@ export const detailCopy: Record<LocaleCode, DetailCopy> = {
     methodologyTitle: 'Gate de qualidade',
     methodologyBody: 'Este site com nome de trabalho não deve ser tratado como pronto para AdSense até ferramentas, conteúdo original, páginas legais, monitoramento, backup e rollback passarem pelo gate documentado.',
     backToCatalog: 'Voltar ao catálogo',
+    localDevCta: 'Abrir NetProbe local',
     publicCta: 'Abrir placeholder público',
     relatedTitle: 'Notas operacionais relacionadas',
   },
@@ -223,6 +226,7 @@ export const detailCopy: Record<LocaleCode, DetailCopy> = {
     methodologyTitle: 'Gate de calidad',
     methodologyBody: 'Este sitio con nombre de trabajo no debe considerarse listo para AdSense hasta que herramientas, contenido original, páginas legales, monitoreo, backup y rollback pasen el gate documentado.',
     backToCatalog: 'Volver al catálogo',
+    localDevCta: 'Abrir NetProbe local',
     publicCta: 'Abrir placeholder público',
     relatedTitle: 'Notas operativas relacionadas',
   },
@@ -238,6 +242,7 @@ export const detailCopy: Record<LocaleCode, DetailCopy> = {
     methodologyTitle: 'Gate qualité',
     methodologyBody: 'Ce site au nom de travail ne doit pas être considéré prêt pour AdSense avant que outils, contenu original, pages légales, surveillance, backup et rollback passent le gate documenté.',
     backToCatalog: 'Retour au catalogue',
+    localDevCta: 'Ouvrir NetProbe local',
     publicCta: 'Ouvrir le placeholder public',
     relatedTitle: 'Notes opérationnelles liées',
   },
@@ -253,6 +258,7 @@ export const detailCopy: Record<LocaleCode, DetailCopy> = {
     methodologyTitle: 'Quality Gate',
     methodologyBody: 'Diese Working-Name-Site gilt erst als AdSense-bereit, wenn Tools, Originalinhalte, Rechtstexte, Monitoring, Backup und Rollback das dokumentierte Launch-Gate bestehen.',
     backToCatalog: 'Zurück zum Katalog',
+    localDevCta: 'Lokales NetProbe öffnen',
     publicCta: 'Öffentlichen Platzhalter öffnen',
     relatedTitle: 'Verwandte Betriebsnotizen',
   },

@@ -20,6 +20,20 @@ if (!locale || !site) {
 const copy = detailCopy[locale]
 const siteText = site.localized[locale]
 const canonicalPath = localizedSitePath(locale, site.slug)
+const isLocalBrowser = ref(false)
+const localNetProbeToolsUrl = computed(() => {
+  if (!isLocalBrowser.value || site.slug !== 'netprobe-atlas') {
+    return ''
+  }
+
+  const hostname = window.location.hostname === 'localhost' ? 'localhost' : '127.0.0.1'
+
+  return `http://${hostname}:3002/en/tools/dns-lookup`
+})
+
+onMounted(() => {
+  isLocalBrowser.value = ['127.0.0.1', 'localhost'].includes(window.location.hostname)
+})
 
 function trackPublicSiteClick(): void {
   trackOutboundSiteClick({
@@ -147,6 +161,13 @@ useHead({
           <NuxtLink class="button-link" :to="localizedHomePath(locale)">
             {{ copy.backToCatalog }}
           </NuxtLink>
+          <a
+            v-if="localNetProbeToolsUrl"
+            class="button-link button-link--secondary"
+            :href="localNetProbeToolsUrl"
+          >
+            {{ copy.localDevCta }}
+          </a>
           <a
             class="button-link button-link--secondary"
             :href="site.temporaryUrl"
