@@ -17,7 +17,8 @@ param(
     [string]$DatabasePort = $env:SUPERSITES_CONTROL_PLANE_DB_PORT,
     [string]$DatabaseName = $env:SUPERSITES_CONTROL_PLANE_DB_DATABASE,
     [string]$DatabaseUsername = $env:SUPERSITES_CONTROL_PLANE_DB_USERNAME,
-    [string]$DatabasePassword = $env:SUPERSITES_CONTROL_PLANE_DB_PASSWORD
+    [string]$DatabasePassword = $env:SUPERSITES_CONTROL_PLANE_DB_PASSWORD,
+    [string]$PhpHandler = $env:SUPERSITES_CONTROL_PLANE_PHP_HANDLER
 )
 
 $ErrorActionPreference = "Stop"
@@ -414,17 +415,30 @@ function New-ControlPlaneEnvContent {
     return ($lines -join "`n") + "`n"
 }
 
+function Get-ControlPlanePhpHandler {
+    $handler = if ($PhpHandler) { $PhpHandler } else { "ea-php84" }
+    if ($handler -notmatch "^ea-php8[4-9]$") {
+        throw "Unsupported control-plane PHP handler '$handler'. Expected a cPanel EA PHP handler such as ea-php84."
+    }
+
+    return $handler
+}
+
 function New-HtaccessContent {
-    return @'
+    $handler = Get-ControlPlanePhpHandler
+    return @"
 # SuperSites managed Control Plane release switch.
 DirectoryIndex index.php index.html
+<IfModule mime_module>
+    AddHandler application/x-httpd-$handler .php .php8 .phtml
+</IfModule>
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /supersites/control-plane/
     RewriteRule ^index\.php$ - [L]
     RewriteRule ^.*$ index.php [L,QSA]
 </IfModule>
-'@
+"@
 }
 
 function New-ReleasesDenyHtaccessContent {
