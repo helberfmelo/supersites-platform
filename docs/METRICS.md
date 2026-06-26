@@ -11,8 +11,8 @@ Data-base: 2026-06-26
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
 | Shared package folders created | 12 |
-| ADRs created | 12 |
-| Docs files created/maintained | 38 |
+| ADRs created | 13 |
+| Docs files created/maintained | 39 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
 | Nuxt apps scaffolded | 1 |
@@ -63,6 +63,9 @@ Data-base: 2026-06-26
 | VPS runtime smoke | Passed |
 | Deploy manifests created | 1 |
 | Deploy dry-run local validation | Passed |
+| HostGator static release workflow | Implemented |
+| HostGator static releases published | 1 |
+| HostGator active supersite release | `740e0f1968e7b0a2fd60eeb9e6edffd6252d94ae-28241237377-1` |
 | Supersite prerender content routes | 91 |
 | Supersite sitemap routes | 1 |
 | Supersite legal/editorial pages | 35 |
@@ -72,7 +75,9 @@ Data-base: 2026-06-26
 | Supersite Playwright report | Passed |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
-| Public production smoke for `/supersites/` | 200 |
+| Public production smoke for `/supersites/` | 200 catalog live |
+| Public production rollback/switch smoke | Passed |
+| Public visual smoke screenshots | 2 |
 | Direct `/<site-folder>` mapping smoke | 404 pending rewrite |
 | Secret scan outside `docs/credentials` | Passed |
 | Structure scan | Passed |

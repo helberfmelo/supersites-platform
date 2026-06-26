@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial e o runtime Redis isolado na VPS foram criados. Ainda nao ha deploy real de aplicacao; a producao transitoria possui placeholders `noindex`, runtime Redis local-only na VPS e plano de deploy dry-run auditavel.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial e o runtime Redis isolado na VPS foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada, os placeholders por site continuam `noindex`, e nao foram publicados anuncios nem integracoes externas.
 
 ## Estado local verificado
 
@@ -52,6 +52,13 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Sprint 1.5 quality gate monitorado: `Quality Gate` run `28236429748`, status `success`; `Deploy Dry Run` run `28236429773`, status `success` com upload de artifact ainda bloqueado por quota GitHub Actions, sem bloquear o dry-run porque o plano permaneceu no job summary.
 - Sprint 1.6 analytics event contract commit publicado: `4f8bc18` (`feat: add analytics event contract`).
 - Sprint 1.6 quality gate monitorado: `Quality Gate` run `28237428311`, status `success`; `Deploy Dry Run` run `28237428286`, status `success` com upload de artifact ainda bloqueado por quota GitHub Actions, sem bloquear o dry-run porque o plano permaneceu no job summary.
+- Sprint 1.7 deploy publico do catalogo transitorio:
+  - Commits publicados: `68792c6` (`feat: add supersite hostgator deploy`), `e141490` (`ci: fix supersite deploy workflow args`), `c7f2ba5` (`ci: harden hostgator deploy upload`), `365dc76` (`ci: retry hostgator deploy requests`), `740e0f1` (`ci: select single curl executable`) e `1f7b3a6` (`ci: call public smoke with named args`).
+  - Build HostGator validado com base path `/supersites/` e publicado em release remoto versionado.
+  - Release ativo em producao: `740e0f1968e7b0a2fd60eeb9e6edffd6252d94ae-28241237377-1`.
+  - GitHub Actions `Quality Gate` run `28241634813`, status `success`; `Deploy Dry Run` run `28241634837`, status `success`.
+  - GitHub Actions `Deploy SuperSite HostGator` run `28241237377` executou upload e troca do release remoto, mas terminou `failure` por chamada incorreta do smoke no script; smoke publico local passou imediatamente depois.
+  - GitHub Actions `Deploy SuperSite HostGator` run `28241763726`, acao `rollback-release` para o release ativo, terminou `success` e validou switch/rollback testavel com smoke publico no workflow.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
 - pnpm local via Corepack: `11.9.0`.
@@ -117,9 +124,9 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 ## Estado de producao verificado
 
 - `opentshost.com` responde em HTTPS.
-- `https://opentshost.com/supersites/` retornava `404` antes da Sprint 0.4 e passou a responder HTTP 200 com placeholder `noindex`.
+- `https://opentshost.com/supersites/` retornava `404` antes da Sprint 0.4, passou a responder HTTP 200 com placeholder `noindex` na Sprint 0.4 e, na Sprint 1.7, passou a servir o catalogo SuperSites Hub estatico em HTTPS.
+- `https://opentshost.com/` permanece com o placeholder HostGator `noindex`; nenhum redirect de raiz foi ativado na Sprint 1.7.
 - URLs fallback com placeholder HTTP 200 validadas em 2026-06-26:
-  - `https://opentshost.com/supersites/`
   - `https://opentshost.com/supersites/control-plane/`
   - `https://opentshost.com/supersites/netprobe-atlas/`
   - `https://opentshost.com/supersites/calcharbor/`
@@ -131,6 +138,12 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `https://opentshost.com/supersites/sitepulse-lab/`
   - `https://opentshost.com/supersites/pixelbatch/`
   - `https://opentshost.com/supersites/docshift/`
+- URLs de catalogo estatico validadas em 2026-06-26:
+  - `https://opentshost.com/supersites/`
+  - `https://opentshost.com/supersites/en`
+  - `https://opentshost.com/supersites/pt-br/privacy`
+  - `https://opentshost.com/supersites/en/sites/netprobe-atlas`
+  - `https://opentshost.com/supersites/sitemap.xml`
 - Caminhos publicos desejados diretos, como `https://opentshost.com/netprobe-atlas/` e `https://opentshost.com/calcharbor/`, ainda retornam 404. Rewrite/alias/symlink raiz fica pendente para evitar interferencia no conteudo atual de `public_html`.
 - VPS BigShop360 validada sem mutacao em 2026-06-26:
   - DNS `api.bigshophost.com` aponta para `129.121.37.220`.
@@ -259,6 +272,15 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `pnpm install --frozen-lockfile`, `scripts/validate-structure.ps1`, `scripts/validate-no-secrets.ps1`, `scripts/prepare-deploy-dry-run.ps1`, `scripts/validate-local-stack.ps1` e `git diff --check` passaram.
   - GitHub Actions `Quality Gate` run `28237428311` passou com repository safety, backend, pacotes, Nuxt preview e Playwright.
   - GitHub Actions `Deploy Dry Run` run `28237428286` passou; artifact upload segue bloqueado pela quota GitHub Actions, mas o job summary manteve o plano auditavel.
+- Sprint 1.7 validation:
+  - `scripts/build-supersite-hostgator-artifact.ps1` passou, gerando artefato estatico com base path `/supersites/`.
+  - `scripts/validate-supersite-static-artifact.ps1` passou, confirmando arquivos obrigatorios, assets referenciados, ausencia de `noindex`, ausencia de AdSense/GTM/GA e ausencia de arquivos sensiveis no artefato.
+  - `pnpm test:packages`, `pnpm typecheck:packages`, `pnpm --filter @supersites/supersite test`, `pnpm --filter @supersites/supersite build`, `pnpm validate:supersite-preview`, `pnpm test:e2e:supersite`, `composer validate --strict`, `php artisan test`, `scripts/validate-structure.ps1`, `scripts/prepare-deploy-dry-run.ps1`, `scripts/validate-local-stack.ps1`, `scripts/validate-no-secrets.ps1` e `git diff --check` passaram.
+  - `scripts/smoke-supersite-public.ps1` passou contra `https://opentshost.com/supersites/`, validando HTTPS, canonical, asset `_nuxt`, paginas `en`, `pt-br/privacy`, `en/sites/netprobe-atlas`, sitemap e preservacao do placeholder temporario `/supersites/netprobe-atlas/`.
+  - Playwright publico gerou screenshots desktop `1366x900` e mobile `390x844` em `artifacts/visual-smoke/`, revisados sem pagina em branco, asset ausente, overflow ou sobreposicao aparente.
+  - GitHub Actions `Quality Gate` run `28241634813` passou com repository safety, backend, pacotes, Nuxt preview e Playwright.
+  - GitHub Actions `Deploy Dry Run` run `28241634837` passou.
+  - GitHub Actions `Deploy SuperSite HostGator` run `28241763726` passou em `rollback-release`, comprovando rollback/switch testavel para o release ativo.
 
 ## Pendencias criticas
 
@@ -267,7 +289,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Implementar jobs de deploy/operacao da VPS usando o GitHub environment `production-vps-runtime`, com rollback e smoke.
 - Definir backup/restore de `/var/lib/supersites-redis` antes de monitores pagos ou jobs de producao dependerem de Redis.
 - Criar filas/workers/crons na VPS apenas quando houver codigo executavel e nomes de fila definidos.
-- Implementar deploy real somente apos empacotamento de artefatos, preservacao remota de `.env`, smoke e rollback.
+- Publicar proximos apps somente mantendo empacotamento de artefatos, preservacao remota de `.env`, smoke e rollback testavel.
 - Definir estrategia tecnica de URL raiz: `opentshost.com` apontando para conteudo em `/public_html/supersites/`.
 - Definir dominios definitivos futuramente.
 - Validar dominio/marca antes de registrar qualquer nome.

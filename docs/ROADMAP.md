@@ -95,6 +95,7 @@ Sprint 1.7 - Deploy publico do catalogo transitorio
 - Objetivo: publicar catalogo em `opentshost.com` com rota temporaria dos sites.
 - Entregas: build publicado, HTTPS, smoke, rollback.
 - Validacao: HTTP 200, assets corretos em subdiretorio/raiz, logs sem erro.
+- Status: concluida. O catalogo transitorio foi publicado em `https://opentshost.com/supersites/` como release estatico versionado no HostGator, com HTTPS, smoke publico, screenshots desktop/mobile, rollback/switch validado pelo workflow `Deploy SuperSite HostGator` run `28241763726` e raiz `https://opentshost.com/` preservada sem redirect.
 
 ## Fase 2 - NetProbe Atlas
 

@@ -43,7 +43,12 @@ Padroes aproveitados:
 - `Deploy Dry Run` gera plano auditavel e nao muta producao.
 - Manifesto de deploy: `infra/deployment/apps.json`.
 - GitHub environments existentes: `staging-hostgator`, `production-hostgator`, `production-vps-runtime`.
-- Deploy real continua bloqueado ate existir empacotamento, preservacao remota de `.env`, smoke e rollback.
+- Deploy real do catalogo transitorio esta implementado a partir da Sprint 1.7 pelo workflow manual `Deploy SuperSite HostGator`.
+- Catalogo transitorio publico ativo: `https://opentshost.com/supersites/`.
+- Release HostGator ativo do catalogo: `740e0f1968e7b0a2fd60eeb9e6edffd6252d94ae-28241237377-1`.
+- O deploy do catalogo sobe arquivos para `_supersites-releases/<release-id>/`, preserva `.env`, placeholders e pastas remotas gerenciadas fora do release, e troca somente o `.htaccess` gerenciado em `/supersites/`.
+- Rollback testavel: acao manual `rollback-release` do workflow `Deploy SuperSite HostGator`; run `28241763726` validou switch para o release ativo e smoke publico.
+- Redirect da raiz `https://opentshost.com/` permanece desabilitado por padrao; habilitar somente com revisao explicita de `.htaccess` raiz.
 - A partir da Sprint 1.1, o `Quality Gate` valida o build Nuxt com `scripts/validate-supersite-preview.ps1`; o preview do catalogo deve rodar a partir de `apps/supersite` para servir `_nuxt` assets e permitir hidratacao.
 - A partir da Sprint 1.2, o `Quality Gate` tambem executa Playwright (`pnpm test:e2e:supersite`) para smoke visual desktop/mobile do hub. Relatorios locais ficam em `artifacts/playwright-report` e nao devem ser versionados.
 - A partir da Sprint 1.3, o `Quality Gate` executa `pnpm test:packages` e `pnpm typecheck:packages` para `@supersites/ui`, `@supersites/i18n`, `@supersites/seo` e `@supersites/consent` antes dos testes/build Nuxt.
