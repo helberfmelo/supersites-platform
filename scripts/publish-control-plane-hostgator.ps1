@@ -462,6 +462,7 @@ function New-ManagedFrontControllerContent {
 // SuperSites managed Control Plane release switch.
 // Release: {{RELEASE_ID}}
 
+$publicBasePath = '/supersites/control-plane';
 $releasePublicPath = __DIR__ . '/_control-plane-releases/{{RELEASE_ID}}/public';
 
 if (! is_file($releasePublicPath . '/index.php')) {
@@ -471,6 +472,10 @@ if (! is_file($releasePublicPath . '/index.php')) {
     echo 'SuperSites control-plane release is unavailable.';
     exit;
 }
+
+$_SERVER['SCRIPT_NAME'] = $publicBasePath . '/index.php';
+$_SERVER['PHP_SELF'] = $publicBasePath . '/index.php';
+$_SERVER['SCRIPT_FILENAME'] = $releasePublicPath . '/index.php';
 
 chdir($releasePublicPath);
 require $releasePublicPath . '/index.php';
