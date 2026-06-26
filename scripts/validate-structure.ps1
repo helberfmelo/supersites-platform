@@ -31,7 +31,15 @@ $requiredPaths = @(
     "apps/supersite/package.json",
     "apps/supersite/nuxt.config.ts",
     "apps/supersite/app/app.vue",
+    "apps/supersite/app/components/CatalogHome.vue",
+    "apps/supersite/app/components/LanguageNav.vue",
+    "apps/supersite/app/data/copy.ts",
+    "apps/supersite/app/data/locales.ts",
+    "apps/supersite/app/data/routes.ts",
     "apps/supersite/app/data/sites.ts",
+    "apps/supersite/app/pages/index.vue",
+    "apps/supersite/app/pages/[locale]/index.vue",
+    "apps/supersite/app/pages/[locale]/sites/[slug].vue",
     "apps/supersite/tests/catalog.test.ts",
     "apps/control-plane",
     "apps/control-plane/artisan",
@@ -72,6 +80,7 @@ $requiredPaths = @(
     "scripts/prepare-deploy-dry-run.ps1",
     "scripts/sync-github-environments.ps1",
     "scripts/validate-hostgator-bootstrap.ps1",
+    "scripts/validate-supersite-preview.ps1",
     "scripts/validate-vps-runtime.ps1"
 )
 

@@ -56,15 +56,20 @@ Run catalog checks:
 ```powershell
 pnpm --filter @supersites/supersite test
 pnpm --filter @supersites/supersite build
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\validate-supersite-preview.ps1
 ```
 
 Preview the built Nuxt server:
 
 ```powershell
+cd apps\supersite
 $env:HOST = "127.0.0.1"
 $env:PORT = "3001"
-pnpm --filter @supersites/supersite preview
+node .output\server\index.mjs
 ```
+
+Run the built server from `apps/supersite`; running it from the repository root can serve HTML while returning 404 for `_nuxt` assets, which breaks hydration.
+Use `pwsh` for the preview smoke. Windows PowerShell 5 can execute the script directly, but subprocess usage through package scripts returned an opaque exit in Sprint 1.1.
 
 ## Control plane
 

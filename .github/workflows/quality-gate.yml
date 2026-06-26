@@ -79,6 +79,10 @@ jobs:
       - name: Build Nuxt catalog
         run: pnpm --filter @supersites/supersite build
 
+      - name: Smoke Nuxt preview
+        shell: pwsh
+        run: ./scripts/validate-supersite-preview.ps1
+
   backend_control_plane:
     name: Backend / Control Plane
     runs-on: ubuntu-latest

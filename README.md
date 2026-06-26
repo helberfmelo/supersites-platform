@@ -28,6 +28,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/validate-no-secrets.
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/validate-structure.ps1
 pnpm --filter @supersites/supersite test
 pnpm --filter @supersites/supersite build
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/validate-supersite-preview.ps1
 ```
 
 Laravel validation:

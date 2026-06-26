@@ -59,6 +59,7 @@ Sprint 1.1 - App shell publico do catalogo
 - Objetivo: Nuxt SSR/SSG para home do catalogo, categorias, busca e paginas dos sites.
 - Entregas: layout publico, rotas multilanguage, conteudo inicial, SEO base.
 - Validacao: build, Playwright smoke, HTML SSR com title/canonical/hreflang.
+- Status: concluida. O SuperSites Hub agora tem rotas `/`, `/en`, `/pt-br`, `/es`, `/fr`, `/de`, paginas individuais `/<locale>/sites/<slug>`, busca, filtro por categoria, metadados viewport/canonical/hreflang e prerender de 56 rotas de conteudo. Validacao local cobriu testes Vitest, build Nuxt, preview smoke com assets `_nuxt` HTTP 200, CDP mobile sem overflow e interacao de busca/filtro hidratada.
 
 Sprint 1.2 - Legal pages e politicas editoriais
 - Objetivo: About, contato, privacidade, cookies, termos, metodologia e politica editorial.

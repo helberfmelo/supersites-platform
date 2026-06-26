@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, os primeiros esqueletos Nuxt/Laravel, o bootstrap HostGator inicial e o runtime Redis isolado na VPS foram criados. Ainda nao ha deploy real de aplicacao; a producao transitoria possui placeholders `noindex`, runtime Redis local-only na VPS e plano de deploy dry-run auditavel.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, os primeiros esqueletos Nuxt/Laravel, o bootstrap HostGator inicial e o runtime Redis isolado na VPS foram criados. Ainda nao ha deploy real de aplicacao; a producao transitoria possui placeholders `noindex`, runtime Redis local-only na VPS e plano de deploy dry-run auditavel.
 
 ## Estado local verificado
 
@@ -77,6 +77,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `Deploy Dry Run` criado para gerar plano de deploy sem mutar arquivos remotos; summary e sempre publicado, artifact upload e best-effort por causa de quota GitHub Actions.
 - Workspace Node criado com `pnpm@11.9.0`.
 - Catalogo publico inicial criado em `apps/supersite` com Nuxt `4.4.8`, Vue `3.5.39` e TypeScript `6.0.3`.
+- Sprint 1.1 criou o app shell publico do catalogo com rotas `/`, `/en`, `/pt-br`, `/es`, `/fr`, `/de`, paginas individuais `/<locale>/sites/<slug>`, busca, filtros por categoria, linguagem no topo, metadados viewport/canonical/hreflang e prerender de 56 rotas de conteudo.
 - Control plane inicial criado em `apps/control-plane` com Laravel `13.x`, PHP `^8.3` e `predis/predis`.
 - Health endpoint Laravel criado em `/health`, com modo app-only para CI/testes e modo de conexoes para smoke local contra Docker MySQL/Redis.
 - Observacao: Docker Desktop tambem reativou containers existentes do `bigshopv4` por politica de restart; eles nao foram alterados por esta entrega. Portas do SuperSites foram isoladas para evitar conflito.
@@ -130,6 +131,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - `scripts/ci-detect-changes.ps1` para classificar paths alterados no CI.
 - `scripts/prepare-deploy-dry-run.ps1` para validar `infra/deployment/apps.json` e gerar artefato de plano de deploy.
 - `scripts/sync-github-environments.ps1` para sincronizar GitHub environments, variaveis e secrets sem imprimir valores secretos.
+- `scripts/validate-supersite-preview.ps1` para subir o build Nuxt a partir de `apps/supersite`, validar HTML SSR e confirmar assets `_nuxt` HTTP 200.
 - `scripts/validate-vps-runtime.ps1` para validar SSH, Redis local-only na VPS, layout SuperSites e portas Redis publicas fechadas.
 - `infra/deployment/apps.json` como manifesto versionado de deploy para 12 apps.
 
@@ -159,6 +161,13 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `infra/deployment/apps.json` validado como JSON.
   - `scripts/sync-github-environments.ps1` passou e criou/sincronizou environments, variaveis e secrets por nome.
 - Sprint 0.5 CI contour: o primeiro `Deploy Dry Run` encontrou quota de artifacts esgotada no GitHub Actions; workflow ajustado para manter o plano no job summary e tratar upload de artifact como best-effort.
+- Sprint 1.1 local validation:
+  - `pnpm --filter @supersites/supersite test` passou com 8 testes.
+  - `pnpm --filter @supersites/supersite build` passou e prerenderizou 56 rotas de conteudo.
+  - `scripts/validate-supersite-preview.ps1` passou, confirmando SSR HTML, viewport/canonical/hreflang e asset `_nuxt` HTTP 200.
+  - Chrome headless/CDP validou mobile `390px` com `scrollWidth=390`, sem elementos excedendo a largura.
+  - Chrome headless/CDP validou hidratacao/interacao: filtro `Documents` retornou `InvoiceCraft` e `DocShift`; busca `dns` retornou `NetProbe Atlas` e `MailHealth`; sem erros de console.
+  - Obstaculo contornado: preview iniciado fora de `apps/supersite` servia HTML mas retornava 404 para `_nuxt`; runbook e smoke versionado agora exigem cwd correto.
 
 ## Pendencias criticas
 

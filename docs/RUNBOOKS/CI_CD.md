@@ -16,7 +16,7 @@ Jobs:
 
 - `Detect changes`: classifies changed paths.
 - `Repository safety`: always runs secret scan and structure validation.
-- `Frontend / SuperSites Hub`: runs Nuxt tests/build when frontend, package or deployment files change.
+- `Frontend / SuperSites Hub`: runs Nuxt tests/build when frontend, package or deployment files change, then runs `scripts/validate-supersite-preview.ps1` so the built server serves SSR HTML and `_nuxt` assets from the correct app working directory.
 - `Backend / Control Plane`: runs Composer validation and Laravel tests when backend or deployment files change.
 - `Quality summary`: fails the workflow if any required job fails.
 
@@ -101,6 +101,8 @@ VPS runtime environment variable names:
 
 - Branch protection is blocked by the current GitHub plan. Continue with monitored `Quality Gate` runs until GitHub Pro, public repo or another approved ruleset path exists.
 - GitHub Actions artifact storage quota can block uploads. Continue by using the job summary as the dry-run audit trail and keep artifact upload best-effort until storage is cleared or quota changes.
+- Nuxt preview must run from `apps/supersite`. Running the built server from the repository root can return 404 for `_nuxt` assets and leave the catalog unhydrated; the preview smoke now catches this.
+- The local package command for the preview smoke uses `pwsh`; Windows PowerShell 5 returned an opaque subprocess exit during Sprint 1.1, while `pwsh` exposed normal logs and exit codes.
 - Direct root mapping like `https://opentshost.com/<site-folder>` remains pending. Keep deploy plans on the safe fallback URLs under `/supersites/...`.
 - Real deploy must wait until deploy artifacts, remote preservation rules, smoke checks and rollback scripts are implemented.
 - Human-gated actions stay in `docs/HUMAN_ACTION_REQUIRED.md`; technical reversible blockers should be worked around with dry-runs, validation scripts or degraded mode.
