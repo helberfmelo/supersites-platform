@@ -1,0 +1,26 @@
+name: Quality Gate
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  repository-safety:
+    name: Repository safety
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate no committed secrets
+        shell: pwsh
+        run: ./scripts/validate-no-secrets.ps1
+
+      - name: Validate required structure
+        shell: pwsh
+        run: ./scripts/validate-structure.ps1

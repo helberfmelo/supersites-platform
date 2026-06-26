@@ -1,0 +1,41 @@
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Dependencies and build output
+node_modules/
+vendor/
+dist/
+.output/
+.nuxt/
+build/
+coverage/
+
+# Local runtime
+.env
+.env.*
+!.env.example
+*.log
+storage/
+
+# Secrets and private operational notes
+docs/credentials/*
+!docs/credentials/README.md
+!docs/credentials/.gitkeep
+*.local.md
+*.local.json
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+
+# Dumps and backups
+*.sql
+*.sql.gz
+*.dump
+*.bak
+*.zip
+*.rar
+
