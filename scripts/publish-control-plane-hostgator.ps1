@@ -417,9 +417,9 @@ function New-ControlPlaneEnvContent {
 }
 
 function Get-ControlPlanePhpHandler {
-    $handler = if ($PhpHandler) { $PhpHandler } else { "ea-php84" }
-    if ($handler -notmatch "^ea-php8[4-9]$") {
-        throw "Unsupported control-plane PHP handler '$handler'. Expected a cPanel EA PHP handler such as ea-php84."
+    $handler = if ($PhpHandler) { $PhpHandler } else { "ea-php84___lsphp" }
+    if ($handler -notmatch "^ea-php8[4-9](?:___lsphp)?$") {
+        throw "Unsupported control-plane PHP handler '$handler'. Expected a cPanel EA PHP handler such as ea-php84___lsphp."
     }
 
     return $handler
