@@ -462,10 +462,14 @@ function New-ManagedFrontControllerContent {
 // SuperSites managed Control Plane release switch.
 // Release: {{RELEASE_ID}}
 
+use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
+
 $publicBasePath = '/supersites/control-plane';
+$releaseBasePath = __DIR__ . '/_control-plane-releases/{{RELEASE_ID}}';
 $releasePublicPath = __DIR__ . '/_control-plane-releases/{{RELEASE_ID}}/public';
 
-if (! is_file($releasePublicPath . '/index.php')) {
+if (! is_file($releaseBasePath . '/vendor/autoload.php') || ! is_file($releaseBasePath . '/bootstrap/app.php')) {
     http_response_code(503);
     header('Content-Type: text/plain; charset=utf-8');
     header('X-Robots-Tag: noindex, nofollow');
@@ -476,6 +480,7 @@ if (! is_file($releasePublicPath . '/index.php')) {
 $_SERVER['SCRIPT_NAME'] = '/index.php';
 $_SERVER['PHP_SELF'] = '/index.php';
 $_SERVER['SCRIPT_FILENAME'] = $releasePublicPath . '/index.php';
+$_SERVER['DOCUMENT_ROOT'] = $releasePublicPath;
 if (isset($_SERVER['REQUEST_URI'])) {
     if ($_SERVER['REQUEST_URI'] === $publicBasePath) {
         $_SERVER['REQUEST_URI'] = '/';
@@ -488,8 +493,18 @@ if (isset($_SERVER['REQUEST_URI'])) {
     $_SERVER['ORIG_PATH_INFO'] = $_SERVER['PATH_INFO'];
 }
 
-chdir($releasePublicPath);
-require $releasePublicPath . '/index.php';
+define('LARAVEL_START', microtime(true));
+
+if (file_exists($maintenance = $releaseBasePath . '/storage/framework/maintenance.php')) {
+    require $maintenance;
+}
+
+require $releaseBasePath . '/vendor/autoload.php';
+
+/** @var Application $app */
+$app = require_once $releaseBasePath . '/bootstrap/app.php';
+
+$app->handleRequest(Request::capture());
 '@
 
     return $template.Replace("{{RELEASE_ID}}", $ManagedReleaseId)
