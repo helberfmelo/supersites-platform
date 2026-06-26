@@ -11,8 +11,8 @@ Data-base: 2026-06-26
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
 | Shared package folders created | 12 |
-| ADRs created | 15 |
-| Docs files created/maintained | 41 |
+| ADRs created | 16 |
+| Docs files created/maintained | 42 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
 | Nuxt apps scaffolded | 2 |
@@ -64,6 +64,7 @@ Data-base: 2026-06-26
 | Deploy manifests created | 1 |
 | Deploy dry-run local validation | Passed |
 | HostGator static release workflow | Implemented |
+| HostGator NetProbe static release workflow | Implemented |
 | HostGator static releases published | 1 |
 | HostGator active supersite release | `740e0f1968e7b0a2fd60eeb9e6edffd6252d94ae-28241237377-1` |
 | Supersite prerender content routes | 91 |
@@ -83,14 +84,16 @@ Data-base: 2026-06-26
 | NetProbe queued monitor jobs | 1 |
 | NetProbe alert channels implemented | 2 |
 | NetProbe DNS record types supported | 8 |
-| NetProbe Atlas legal/editorial pages | 35 |
+| NetProbe Atlas legal/editorial pages | 40 |
 | NetProbe Atlas FAQ blocks | 35 |
 | NetProbe Atlas structured data pages | 35 |
-| NetProbe Atlas prerender content routes | 76 |
+| NetProbe Atlas prerender content routes | 81 |
 | NetProbe Atlas sitemap routes | 1 |
+| NetProbe Atlas HostGator static artifact gate | Passed |
+| NetProbe Atlas public API production smoke | Blocked HTTP 500 |
 | NetProbe Atlas preview smoke | Passed |
 | NetProbe Atlas Playwright report | Passed |
-| NetProbe Atlas production status | Placeholder preserved/noindex |
+| NetProbe Atlas production status | Placeholder preserved/noindex; static deploy held by API gate |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
 | Public production smoke for `/supersites/` | 200 catalog live |

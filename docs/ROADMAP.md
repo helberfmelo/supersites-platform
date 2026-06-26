@@ -139,6 +139,7 @@ Sprint 2.7 - Launch gate NetProbe
 - Objetivo: publicar e monitorar NetProbe.
 - Entregas: deploy, smoke, status page, backup, rollback, checklist AdSense.
 - Validacao: Core Web Vitals inicial, uptime, logs, incident drill.
+- Status: concluida como launch gate tecnico; go-live real permanece em espera. O NetProbe recebeu status page, artifact HostGator estatico validado, workflow de deploy/rollback, smoke publico e checklist AdSense, mas o deploy real nao foi disparado porque a API publica candidata em `https://opentshost.com/supersites/control-plane/api/v1/netprobe/ip` responde HTTP 500. Publicacao util exige deploy/rollback/smoke do control-plane/API antes da troca de trafego.
 
 ## Fase 3 - Sites de baixo custo marginal
 

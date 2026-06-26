@@ -99,10 +99,13 @@ Then open `http://127.0.0.1:3001`. The public transitional domain will become vi
 For local NetProbe Atlas tool testing, run:
 
 ```powershell
+$env:NUXT_PUBLIC_NETPROBE_API_BASE_URL = "http://127.0.0.1:8013/api/v1/netprobe"
 pnpm dev:netprobe
 ```
 
 Then open `http://127.0.0.1:3002/en/tools/dns-lookup`. When the SuperSites Hub is opened locally, the NetProbe detail page also shows a local-only shortcut to this tool surface.
+
+The production-safe default is a relative `/api/v1/netprobe` path so static artifacts cannot accidentally point browser users at `127.0.0.1`. Set `NUXT_PUBLIC_NETPROBE_API_BASE_URL` explicitly for local tool runs.
 
 Current local visual endpoint validated on 2026-06-26:
 

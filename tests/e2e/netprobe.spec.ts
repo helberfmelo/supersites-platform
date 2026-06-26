@@ -69,7 +69,7 @@ test.describe('NetProbe Atlas public foundation', () => {
   test('renders the DNS tool page and records sanitized preview analytics', async ({ page }, testInfo) => {
     const errors = collectBrowserErrors(page)
 
-    await page.route('http://127.0.0.1:8013/api/v1/netprobe/dns', async (route) => {
+    await page.route(/.*\/api\/v1\/netprobe\/dns$/, async (route) => {
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
@@ -176,7 +176,7 @@ test.describe('NetProbe Atlas public foundation', () => {
   test('renders the RDAP tool page with sanitized analytics', async ({ page }, testInfo) => {
     const errors = collectBrowserErrors(page)
 
-    await page.route('http://127.0.0.1:8013/api/v1/netprobe/rdap', async (route) => {
+    await page.route(/.*\/api\/v1\/netprobe\/rdap$/, async (route) => {
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
@@ -237,7 +237,7 @@ test.describe('NetProbe Atlas public foundation', () => {
   test('renders the SSL tool page with bounded probe facts', async ({ page }, testInfo) => {
     const errors = collectBrowserErrors(page)
 
-    await page.route('http://127.0.0.1:8013/api/v1/netprobe/ssl', async (route) => {
+    await page.route(/.*\/api\/v1\/netprobe\/ssl$/, async (route) => {
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
@@ -301,7 +301,7 @@ test.describe('NetProbe Atlas public foundation', () => {
   test('renders propagation, port and reachability bounded diagnostics', async ({ page }, testInfo) => {
     const errors = collectBrowserErrors(page)
 
-    await page.route('http://127.0.0.1:8013/api/v1/netprobe/propagation', async (route) => {
+    await page.route(/.*\/api\/v1\/netprobe\/propagation$/, async (route) => {
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
@@ -328,7 +328,7 @@ test.describe('NetProbe Atlas public foundation', () => {
       })
     })
 
-    await page.route('http://127.0.0.1:8013/api/v1/netprobe/port', async (route) => {
+    await page.route(/.*\/api\/v1\/netprobe\/port$/, async (route) => {
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
@@ -351,7 +351,7 @@ test.describe('NetProbe Atlas public foundation', () => {
       })
     })
 
-    await page.route('http://127.0.0.1:8013/api/v1/netprobe/reachability', async (route) => {
+    await page.route(/.*\/api\/v1\/netprobe\/reachability$/, async (route) => {
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
@@ -416,7 +416,8 @@ test.describe('NetProbe Atlas public foundation', () => {
     await expect(page).toHaveTitle(/Privacy Policy/)
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Privacy Policy')
     await expect(page.getByLabel('Legal and editorial pages').getByRole('link', { name: 'Methodology' })).toBeVisible()
-    await expect(page.locator('.page-footer a')).toHaveCount(8)
+    await expect(page.getByLabel('Legal and editorial pages').getByRole('link', { name: 'Status' })).toBeVisible()
+    await expect(page.locator('.page-footer a')).toHaveCount(9)
     await expectNoHorizontalOverflow(page)
 
     expect(errors).toEqual([])

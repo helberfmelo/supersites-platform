@@ -17,6 +17,14 @@ AdSense e a monetizacao primaria, mas nenhum site deve ser submetido antes de cu
 - CMP/consentimento configurado onde exigido.
 - Monitoramento, backups e rollback.
 
+## NetProbe Atlas checklist
+
+- Status page publica: `/en/status` e rotas localizadas prerenderizadas.
+- Static artifact: validar com `scripts/build-netprobe-hostgator-artifact.ps1`.
+- Public smoke: validar com `scripts/smoke-netprobe-public.ps1` somente apos deploy real.
+- API gate: `GET /ip` e `POST /dns` precisam responder JSON publico antes de considerar as ferramentas utilizaveis.
+- Bloqueio atual em 2026-06-26: a URL candidata da API no HostGator responde HTTP 500; nao submeter NetProbe ao AdSense nem publicar placements enquanto esse gate estiver vermelho.
+
 ## Placements
 
 - Usar componente compartilhado de ads com espaco reservado.
@@ -29,4 +37,3 @@ AdSense e a monetizacao primaria, mas nenhum site deve ser submetido antes de cu
 - Beneficiario legal.
 - Conta AdSense existente ou nova.
 - Aceites, identidade, fiscal, banco e PIN postal.
-

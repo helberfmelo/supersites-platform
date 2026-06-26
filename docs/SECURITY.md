@@ -53,6 +53,8 @@
 - Targets de monitores sao dados operacionais de conta e nao devem ir para analytics ou logs publicos; auditoria deve usar hash do alvo.
 - Alertas de webhook exigem URL HTTPS, host publico e resolucao A/AAAA publica antes de qualquer entrega; entrega externa fica desativada por padrao via config.
 - Alertas por e-mail/webhook devem armazenar apenas hash do destino em `net_probe_alerts`.
+- Artefatos publicos do NetProbe nao podem conter `localhost:8013`, `127.0.0.1:8013` ou URL local para `/api/v1/netprobe`; a API publica deve ser HTTPS e validada por smoke antes de troca de release.
+- O workflow de deploy estatico do NetProbe deve preservar `.env`, placeholder remoto e pastas manuais, publicando apenas em release versionado e trocando o `.htaccess` gerenciado do app.
 
 ## Redis/VPS
 

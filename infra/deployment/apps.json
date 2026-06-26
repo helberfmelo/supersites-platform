@@ -24,8 +24,9 @@
     {
       "id": "netprobe-atlas",
       "name": "NetProbe Atlas",
-      "kind": "placeholder",
+      "kind": "nuxt-ssg",
       "localPath": "apps/netprobe-atlas",
+      "buildOutput": "apps/netprobe-atlas/.output/public",
       "remotePath": "/home1/opents62/public_html/supersites/netprobe-atlas",
       "publicUrl": "https://opentshost.com/supersites/netprobe-atlas/"
     },

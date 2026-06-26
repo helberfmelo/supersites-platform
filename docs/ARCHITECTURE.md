@@ -122,6 +122,18 @@ Sprint 2.6 adiciona a camada inicial de upgrade do NetProbe dentro do mesmo modu
 
 Esta camada cria valor de upgrade sem ativar billing real. Deploy em producao ainda depende de empacotamento, queue/runtime, backup/restore e smoke especificos do NetProbe.
 
+## NetProbe static launch gate
+
+Sprint 2.7 adiciona empacotamento e deploy estatico especifico do NetProbe, conforme ADR `0016-netprobe-static-launch-gate`.
+
+- `apps/netprobe-atlas` e empacotado para HostGator com `NUXT_APP_BASE_URL=/supersites/netprobe-atlas/`.
+- O bundle publico exige `NUXT_PUBLIC_NETPROBE_API_BASE_URL` HTTPS explicito; fallback local nao deve entrar no artefato.
+- O release remoto fica em `/home1/opents62/public_html/supersites/netprobe-atlas/_netprobe-releases/<release-id>`.
+- A troca publica usa somente o `.htaccess` gerenciado dentro de `/supersites/netprobe-atlas/`, preservando placeholder, `.env` e pastas manuais.
+- O deploy real falha fechado se a API publica NetProbe nao responder aos smokes de IP e DNS.
+
+Estado em 2026-06-26: o artefato estatico passa localmente, mas o go-live real permanece bloqueado porque `https://opentshost.com/supersites/control-plane/api/v1/netprobe/ip` responde HTTP 500 no placeholder atual do control plane.
+
 ## Sites e pastas
 
 | App | Pasta | Papel |

@@ -16,7 +16,7 @@ export default defineNuxtConfig({
   ssr: true,
   runtimeConfig: {
     public: {
-      netprobeApiBaseUrl: process.env.NUXT_PUBLIC_NETPROBE_API_BASE_URL ?? 'http://127.0.0.1:8013/api/v1/netprobe',
+      netprobeApiBaseUrl: process.env.NUXT_PUBLIC_NETPROBE_API_BASE_URL ?? '/api/v1/netprobe',
     },
   },
   app: {

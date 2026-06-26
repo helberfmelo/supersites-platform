@@ -1,6 +1,6 @@
 # Deployment
 
-Deployment configuration starts with a dry-run foundation and now includes the first controlled real deploy path for the SuperSites Hub catalog.
+Deployment configuration starts with a dry-run foundation and now includes controlled HostGator static deploy paths for the SuperSites Hub catalog and the gated NetProbe Atlas frontend.
 
 ## Files
 
@@ -73,6 +73,28 @@ Then rerun public smoke:
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\smoke-supersite-public.ps1
 ```
 
+## NetProbe Atlas Static Gate
+
+NetProbe static releases use a separate release directory under the app folder:
+
+```text
+/home1/opents62/public_html/supersites/netprobe-atlas/_netprobe-releases/<release-id>/
+```
+
+Build and validate the HostGator artifact locally:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\build-netprobe-hostgator-artifact.ps1
+```
+
+Publish only when the public API preflight is healthy:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\publish-netprobe-hostgator.ps1
+```
+
+The publish script switches only `/supersites/netprobe-atlas/.htaccess`, preserves the bootstrap placeholder and refuses deploy when the configured public API does not answer IP/DNS smoke checks.
+
 ## Current Rule
 
-Real deploy is allowed only for the SuperSites Hub static catalog after artifact validation, remote preservation, smoke and rollback checks pass. Other apps remain dry-run or placeholder-only until they receive app-specific deploy scripts.
+Real deploy is allowed for the SuperSites Hub static catalog after artifact validation, remote preservation, smoke and rollback checks pass. NetProbe Atlas has app-specific static packaging, but public traffic must remain on hold until the control-plane/API public smoke passes. Other apps remain dry-run or placeholder-only until they receive app-specific deploy scripts.

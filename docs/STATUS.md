@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas, o modulo seguro inicial de IP/DNS/RDAP/SSL/propagation/port/reachability do NetProbe, o conteudo original multilanguage/AdSense-readiness do NetProbe e o MVP de upgrade com monitores/historico/alertas/API foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada, os placeholders por site continuam `noindex`, e nao foram publicados anuncios nem integracoes externas.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas, o modulo seguro inicial de IP/DNS/RDAP/SSL/propagation/port/reachability do NetProbe, o conteudo original multilanguage/AdSense-readiness do NetProbe, o MVP de upgrade com monitores/historico/alertas/API e o launch gate estatico do NetProbe foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada. O NetProbe ainda permanece como placeholder publico `noindex` porque a API publica candidata do control plane responde HTTP 500; nenhum anuncio, billing real ou integracao externa foi publicado.
 
 ## Estado local verificado
 
@@ -113,6 +113,15 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `Quality Gate` passou no run `28257908283`, incluindo repository safety, backend e summary; os jobs frontend foram ignorados por path-aware.
   - `Deploy Dry Run` passou no run `28257908248`; artifact upload continuou bloqueado pela quota GitHub Actions, mas o plano ficou no job summary.
   - Nenhum billing real, checkout, AdSense, webhook externo padrao ou deploy de worker em producao foi ativado nesta sprint.
+- Sprint 2.7 launch gate NetProbe:
+  - ADR `0016-netprobe-static-launch-gate` registra o release estatico versionado do NetProbe com gate obrigatorio de API publica.
+  - `apps/netprobe-atlas` recebeu pagina de status publica/localizada (`/<locale>/status`) com gate de web, API, ads e upgrades.
+  - `infra/deployment/apps.json` passou a tratar `netprobe-atlas` como `nuxt-ssg`, com build output proprio.
+  - Scripts adicionados: `build-netprobe-hostgator-artifact.ps1`, `validate-netprobe-static-artifact.ps1`, `smoke-netprobe-public.ps1` e `publish-netprobe-hostgator.ps1`.
+  - Workflow manual `Deploy NetProbe HostGator` foi criado para `deploy`, `rollback-release` e `rollback-placeholder`, usando somente secrets do environment `production-hostgator`.
+  - O deploy NetProbe preserva placeholder remoto, `.env` e pastas manuais, publica em `_netprobe-releases/<release-id>` e troca apenas o `.htaccess` gerenciado dentro de `/supersites/netprobe-atlas/`.
+  - Go-live real nao foi disparado porque o preflight publico da API em `https://opentshost.com/supersites/control-plane/api/v1/netprobe/ip` retorna HTTP 500 no estado atual do HostGator.
+  - Nenhum anuncio, AdSense, billing real, webhook externo, fila/worker de producao ou integracao externa foi ativado nesta sprint.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
 - pnpm local via Corepack: `11.9.0`.
@@ -416,12 +425,24 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `pnpm validate:structure` e `pnpm deploy:dry-run` passaram.
   - GitHub Actions `Quality Gate` run `28257908283` passou com repository safety, backend e summary; os jobs frontend foram ignorados por path-aware.
   - GitHub Actions `Deploy Dry Run` run `28257908248` passou; artifact upload segue bloqueado pela quota GitHub Actions, mas o plano permaneceu no job summary.
+- Sprint 2.7 validation:
+  - `scripts/build-netprobe-hostgator-artifact.ps1` gerou artefato com base path `/supersites/netprobe-atlas/`, API publica HTTPS configurada, 180 arquivos e 1.770.837 bytes.
+  - `scripts/validate-netprobe-static-artifact.ps1` passou, confirmando paginas obrigatorias, rota `/en/status`, sitemap, assets, ausencia de `noindex`, ausencia de AdSense/GTM/GA, ausencia de nomes sensiveis e ausencia de API local no bundle.
+  - `pnpm test:packages`, `pnpm typecheck:packages`, `pnpm --filter @supersites/supersite test`, `pnpm test:netprobe`, `composer validate --strict` e `php artisan test` passaram.
+  - `pnpm build:netprobe` passou com 163 rotas prerenderizadas; `pnpm --filter @supersites/supersite build` passou com 183 rotas prerenderizadas.
+  - `pnpm validate:netprobe-preview`, `pnpm test:e2e:netprobe`, `pnpm validate:supersite-preview` e `pnpm test:e2e:supersite` passaram; Playwright cobriu desktop/mobile e consultas NetProbe mockadas.
+  - `pnpm validate:structure` e `pnpm deploy:dry-run` passaram.
+  - Smoke publico atual bloqueou a publicacao util em `https://opentshost.com/supersites/netprobe-atlas/` porque a pasta remota ainda contem o placeholder `noindex` `SuperSites bootstrap placeholder`, como esperado ja que o deploy real nao foi disparado.
+  - Smoke publico da API candidata segue bloqueado por HTTP 500 em `https://opentshost.com/supersites/control-plane/api/v1/netprobe/ip`; por isso o workflow real `Deploy NetProbe HostGator` nao foi acionado.
+  - `pnpm validate:secrets` passou sem achados fora de caminhos ignorados de credenciais; `git diff --check` nao apontou whitespace errors.
+  - CI sera registrada apos commit/push da sprint.
 
 ## Pendencias criticas
 
 - Resolver branch protection de `main` quando houver GitHub Pro, repositorio publico ou alternativa aprovada de ruleset/organizacao.
 - Definir se o mapeamento publico direto `https://opentshost.com/<site-folder>` sera feito por rewrite, alias, symlink controlado ou ajuste de document root.
 - Implementar jobs de deploy/operacao da VPS usando o GitHub environment `production-vps-runtime`, com rollback e smoke.
+- Implementar deploy publico do control-plane/API com empacotamento, preservacao remota, smoke e rollback; NetProbe nao deve trocar trafego publico enquanto `/api/v1/netprobe/ip` e `/api/v1/netprobe/dns` nao responderem JSON saudavel em HTTPS.
 - Definir backup/restore de `/var/lib/supersites-redis` antes de monitores pagos ou jobs de producao dependerem de Redis.
 - Criar filas/workers/crons na VPS apenas quando houver codigo executavel e nomes de fila definidos.
 - Publicar proximos apps somente mantendo empacotamento de artefatos, preservacao remota de `.env`, smoke e rollback testavel.

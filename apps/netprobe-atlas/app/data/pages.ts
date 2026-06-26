@@ -8,6 +8,7 @@ export const contentPageSlugs = [
   'terms',
   'methodology',
   'editorial-policy',
+  'status',
 ] as const
 
 export type ContentPageSlug = (typeof contentPageSlugs)[number]
@@ -745,6 +746,108 @@ export const contentPageCatalog: ContentPage[] = [
         {
           heading: 'Lokalisierungs-Gate',
           paragraphs: ['Mehrsprachige Seiten müssen Bedeutung, Beispiele und Sicherheitsgrenzen in jeder Sprache vor dem Launch bewahren.'],
+        },
+      ],
+    },
+  }),
+  page('status', {
+    en: {
+      navLabel: 'Status',
+      title: 'Launch Status',
+      description: 'NetProbe Atlas launch status for public web delivery, lookup API readiness, rollback, backup and AdSense review gates.',
+      updatedLabel: 'Reviewed June 26, 2026',
+      sections: [
+        {
+          heading: 'Public web',
+          paragraphs: ['The NetProbe static app has a dedicated HostGator release path and must pass HTTPS, canonical, sitemap, asset and noindex smoke checks before traffic is switched.'],
+        },
+        {
+          heading: 'Lookup API',
+          paragraphs: ['The launch gate requires the public NetProbe API to answer IP and DNS smoke checks before the app is treated as publicly usable. If the API is not healthy, deploy must remain on hold.'],
+        },
+        {
+          heading: 'Ads and upgrades',
+          paragraphs: ['AdSense, paid monitoring, webhooks and external analytics stay blocked until consent, backup, rollback, uptime monitoring and incident drills are documented and passing.'],
+        },
+      ],
+    },
+    'pt-br': {
+      navLabel: 'Status',
+      title: 'Status de Lancamento',
+      description: 'Status de lancamento do NetProbe Atlas para web publica, API de consultas, rollback, backup e gate de revisao AdSense.',
+      updatedLabel: 'Revisado em 26 de junho de 2026',
+      sections: [
+        {
+          heading: 'Web publica',
+          paragraphs: ['O app estatico NetProbe tem caminho de release dedicado no HostGator e precisa passar smoke de HTTPS, canonical, sitemap, assets e noindex antes da troca de trafego.'],
+        },
+        {
+          heading: 'API de consultas',
+          paragraphs: ['O launch gate exige que a API publica NetProbe responda aos smokes de IP e DNS antes de tratar o app como utilizavel em publico. Se a API nao estiver saudavel, o deploy deve ficar em espera.'],
+        },
+        {
+          heading: 'Anuncios e upgrades',
+          paragraphs: ['AdSense, monitoramento pago, webhooks e analytics externos ficam bloqueados ate consentimento, backup, rollback, uptime e drill de incidente estarem documentados e passando.'],
+        },
+      ],
+    },
+    es: {
+      navLabel: 'Estado',
+      title: 'Estado de lanzamiento',
+      description: 'Estado de lanzamiento de NetProbe Atlas para web publica, API de consultas, rollback, backup y gate de revision AdSense.',
+      updatedLabel: 'Revisado el 26 de junio de 2026',
+      sections: [
+        {
+          heading: 'Web publica',
+          paragraphs: ['La app estatica NetProbe tiene ruta de release dedicada en HostGator y debe pasar smoke de HTTPS, canonical, sitemap, assets y noindex antes de cambiar trafico.'],
+        },
+        {
+          heading: 'API de consultas',
+          paragraphs: ['El launch gate requiere que la API publica NetProbe responda smokes de IP y DNS antes de considerar la app utilizable en publico. Si la API no esta sana, el deploy queda en espera.'],
+        },
+        {
+          heading: 'Anuncios y upgrades',
+          paragraphs: ['AdSense, monitoreo pago, webhooks y analytics externos quedan bloqueados hasta documentar y pasar consentimiento, backup, rollback, uptime y simulacro de incidente.'],
+        },
+      ],
+    },
+    fr: {
+      navLabel: 'Statut',
+      title: 'Statut de lancement',
+      description: 'Statut de lancement NetProbe Atlas pour web public, API de controles, rollback, backup et gate de revue AdSense.',
+      updatedLabel: 'Revise le 26 juin 2026',
+      sections: [
+        {
+          heading: 'Web public',
+          paragraphs: ['L app statique NetProbe a un chemin de release dedie sur HostGator et doit passer les controles HTTPS, canonical, sitemap, assets et noindex avant bascule du trafic.'],
+        },
+        {
+          heading: 'API de controles',
+          paragraphs: ['Le launch gate exige que l API publique NetProbe reponde aux smokes IP et DNS avant de traiter l app comme utilisable publiquement. Si l API est inactive, le deploy reste en attente.'],
+        },
+        {
+          heading: 'Publicites et upgrades',
+          paragraphs: ['AdSense, surveillance payante, webhooks et analytics externes restent bloques jusqu a consentement, backup, rollback, uptime et exercice incident documentes et valides.'],
+        },
+      ],
+    },
+    de: {
+      navLabel: 'Status',
+      title: 'Launch-Status',
+      description: 'NetProbe Atlas Launch-Status fuer Public Web, Lookup API, Rollback, Backup und AdSense Review Gate.',
+      updatedLabel: 'Geprueft am 26. Juni 2026',
+      sections: [
+        {
+          heading: 'Public Web',
+          paragraphs: ['Die statische NetProbe App hat einen eigenen HostGator Release-Pfad und muss HTTPS, Canonical, Sitemap, Assets und Noindex-Smokes bestehen, bevor Traffic umgeschaltet wird.'],
+        },
+        {
+          heading: 'Lookup API',
+          paragraphs: ['Das Launch-Gate verlangt, dass die oeffentliche NetProbe API IP- und DNS-Smokes beantwortet, bevor die App als oeffentlich nutzbar gilt. Wenn die API nicht gesund ist, bleibt Deploy pausiert.'],
+        },
+        {
+          heading: 'Anzeigen und Upgrades',
+          paragraphs: ['AdSense, bezahltes Monitoring, Webhooks und externe Analytics bleiben blockiert, bis Consent, Backup, Rollback, Uptime und Incident Drill dokumentiert und bestanden sind.'],
         },
       ],
     },

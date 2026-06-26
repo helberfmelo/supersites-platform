@@ -35,7 +35,8 @@ pnpm test:e2e:report
 ## Current deploy paths
 
 - `Deploy Dry Run` remains the non-mutating plan workflow for all apps.
-- `Deploy SuperSite HostGator` is the first real deploy workflow and applies only to the static SuperSites Hub catalog.
+- `Deploy SuperSite HostGator` publishes the static SuperSites Hub catalog.
+- `Deploy NetProbe HostGator` packages the static NetProbe frontend, but deploy must remain on hold until the public NetProbe API preflight passes.
 
 After `Quality Gate` is green for a catalog deploy commit:
 
@@ -59,4 +60,29 @@ Rollback to the bootstrap placeholder:
 
 ```powershell
 gh workflow run "Deploy SuperSite HostGator" --ref main -f action=rollback-placeholder -f enable_root_redirect=false
+```
+
+NetProbe static artifact gate:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\build-netprobe-hostgator-artifact.ps1
+```
+
+NetProbe public smoke after a successful deploy:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\smoke-netprobe-public.ps1
+```
+
+NetProbe deploy command, only after `Quality Gate` is green and the public API returns healthy JSON for `/ip` and `/dns`:
+
+```powershell
+gh workflow run "Deploy NetProbe HostGator" --ref main -f action=deploy -f api_base_url=https://opentshost.com/supersites/control-plane/api/v1/netprobe
+```
+
+NetProbe rollback commands:
+
+```powershell
+gh workflow run "Deploy NetProbe HostGator" --ref main -f action=rollback-release -f release_id=<release-id> -f api_base_url=https://opentshost.com/supersites/control-plane/api/v1/netprobe
+gh workflow run "Deploy NetProbe HostGator" --ref main -f action=rollback-placeholder -f api_base_url=https://opentshost.com/supersites/control-plane/api/v1/netprobe
 ```

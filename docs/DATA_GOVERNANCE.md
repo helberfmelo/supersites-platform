@@ -34,6 +34,7 @@
 - Historico de checks deve guardar apenas resumo tecnico limitado, status, timestamps, duracao e erro controlado; payload bruto de certificados/RDAP/DNS nao deve ser persistido sem necessidade.
 - Destinos de alertas devem ser armazenados em `net_probe_alerts` apenas como hash; o valor bruto fica na configuracao do monitor enquanto a conta estiver ativa e conforme termos futuros.
 - Auditoria de criacao/execucao manual de monitores deve registrar hash do alvo, nao o alvo bruto.
+- Smokes de deploy publico do NetProbe devem usar somente alvos controlados como `example.com`; dados enviados por usuarios reais nao devem ser reutilizados para validacao operacional.
 
 ## Analytics sem PII
 
