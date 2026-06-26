@@ -127,7 +127,7 @@ Sprint 2.5 - Conteudo multilanguage e AdSense readiness
 - Objetivo: conteudo original por ferramenta em 5 idiomas.
 - Entregas: FAQs, metodologia, exemplos, schema, sitemap.
 - Validacao: hreflang/canonical, no broken links, accessibility.
-- Status: concluida localmente. O NetProbe Atlas agora tem home, 7 ferramentas e 7 paginas legais/editoriais em 5 idiomas, com FAQ, metodologia, exemplos, schema JSON-LD, sitemap/canonical/hreflang e visual smoke Playwright. Nenhum anuncio ou integracao externa foi ativado antes dos gates.
+- Status: concluida localmente/CI. O NetProbe Atlas agora tem home, 7 ferramentas e 7 paginas legais/editoriais em 5 idiomas, com FAQ, metodologia, exemplos, schema JSON-LD, sitemap/canonical/hreflang e visual smoke Playwright. Quality Gate `28256931247` e Deploy Dry Run `28256931154` passaram. Nenhum anuncio ou integracao externa foi ativado antes dos gates.
 
 Sprint 2.6 - Upgrade MVP NetProbe
 - Objetivo: monitores DNS/SSL/dominio, historico, alertas e API inicial.

@@ -94,10 +94,13 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `Deploy Dry Run` passou no run `28254182161`.
   - O placeholder remoto `https://opentshost.com/supersites/netprobe-atlas/` permanece preservado/noindex; nenhum deploy real do NetProbe, anuncio, conta, worker externo ou integracao externa de analytics/ads foi ativado nesta sprint.
 - Sprint 2.5 conteudo multilanguage e AdSense readiness:
+  - Commit publicado: `58795ce` (`feat: localize netprobe content`).
   - O NetProbe Atlas agora publica conteudo editorial original em `en`, `pt-br`, `es`, `fr` e `de` para home, 7 paginas de ferramentas e 7 paginas legais/editoriais.
   - Cada ferramenta recebeu exemplo, metodologia, interpretacao de resultado, limitacoes, escopo gratuito, caminho de upgrade, FAQ e schema JSON-LD `WebApplication`/`FAQPage`.
   - Sitemap, canonical, `hreflang`, `html lang` e smoke SSR foram expandidos para as 5 linguas publicas.
   - A UI manteve os formularios de consulta como primeira acao util, sem cadastro obrigatorio, sem publicar anuncios e sem ativar integracoes externas antes dos gates.
+  - `Quality Gate` passou no run `28256931247`, incluindo repository safety, backend, Hub frontend, NetProbe frontend e summary.
+  - `Deploy Dry Run` passou no run `28256931154`; artifact upload continuou bloqueado pela quota GitHub Actions, mas o plano ficou no job summary.
   - O placeholder remoto `https://opentshost.com/supersites/netprobe-atlas/` permanece preservado/noindex; nenhum deploy real do NetProbe ou AdSense foi ativado nesta sprint.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
@@ -387,6 +390,8 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - Pacotes compartilhados validados: `pnpm test:packages` passou com 22 testes e `pnpm typecheck:packages` passou nos 5 pacotes.
   - Backend validado: `composer validate --strict` e `php artisan test` passaram em `apps/control-plane` com 26 testes / 177 assertions.
   - `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run` e `git diff --check` passaram; `git diff --check` exibiu apenas avisos CRLF conhecidos.
+  - GitHub Actions `Quality Gate` run `28256931247` passou com repository safety, backend, Hub frontend, NetProbe frontend e summary.
+  - GitHub Actions `Deploy Dry Run` run `28256931154` passou; artifact upload segue bloqueado pela quota GitHub Actions, mas o plano permaneceu no job summary.
 
 ## Pendencias criticas
 
