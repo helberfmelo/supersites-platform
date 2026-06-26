@@ -71,7 +71,7 @@ Sprint 1.3 - Design system e i18n compartilhados
 - Objetivo: pacotes `ui`, `i18n`, `seo`, `consent`.
 - Entregas: tokens, componentes base, seletor de idioma, formatadores.
 - Validacao: unit tests, accessibility smoke, screenshots desktop/mobile.
-- Status: concluida localmente nesta sprint. Foram criados os pacotes TypeScript `@supersites/ui`, `@supersites/i18n`, `@supersites/seo` e `@supersites/consent`, com testes, typecheck, ADR e uso inicial pelo hub para locale/SEO/status visual.
+- Status: concluida. Foram criados os pacotes TypeScript `@supersites/ui`, `@supersites/i18n`, `@supersites/seo` e `@supersites/consent`, com testes, typecheck, ADR e uso inicial pelo hub para locale/SEO/status visual. Quality Gate `28234285250` e Deploy Dry Run `28234285286` ficaram verdes.
 
 Sprint 1.4 - Backend Laravel e API base
 - Objetivo: Laravel API, auth admin, RBAC, audit log, tenancy por site.

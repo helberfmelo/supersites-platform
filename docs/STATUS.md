@@ -44,6 +44,8 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Sprint 1.2 legal/editorial pages commit publicado: `8dc975a` (`feat: add catalog legal pages and visual smoke`).
 - Sprint 1.2 quality gate monitorado: `Quality Gate` run `28233378405`, status `success`; `Deploy Dry Run` run `28233378393`, status `success` com upload de artifact ainda bloqueado por quota GitHub Actions, sem bloquear o dry-run porque o resumo foi publicado no job summary.
 - Sprint 1.3 criou localmente os pacotes `@supersites/ui`, `@supersites/i18n`, `@supersites/seo` e `@supersites/consent`, integrou o hub aos helpers compartilhados de locale/SEO/status visual e adicionou testes/typecheck dos pacotes ao `Quality Gate`.
+- Sprint 1.3 shared packages commit publicado: `29d9bab` (`feat: add shared foundation packages`).
+- Sprint 1.3 quality gate monitorado: `Quality Gate` run `28234285250`, status `success`; `Deploy Dry Run` run `28234285286`, status `success` com upload de artifact ainda bloqueado por quota GitHub Actions, sem bloquear o dry-run porque o resumo foi publicado no job summary.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
 - pnpm local via Corepack: `11.9.0`.
@@ -193,6 +195,8 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `pnpm test:e2e:supersite` passou com 2 testes; screenshots mobile/desktop foram revisados visualmente sem overflow ou sobreposicao aparente.
   - `scripts/prepare-deploy-dry-run.ps1` passou e gerou plano local ignorado.
   - `git diff --check` passou; apenas avisos CRLF conhecidos foram exibidos.
+  - GitHub Actions `Quality Gate` run `28234285250` passou com repository safety, testes/typecheck dos pacotes, Nuxt tests/build, preview smoke, Playwright e Laravel.
+  - GitHub Actions `Deploy Dry Run` run `28234285286` passou; artifact upload segue bloqueado pela quota GitHub Actions, mas o job summary manteve o plano auditavel.
   - Obstaculo contornado: o filtro pnpm generico `./packages/*` nao selecionou workspaces no Windows; scripts raiz trocados para filtros explicitos por pacote.
 
 ## Pendencias criticas
