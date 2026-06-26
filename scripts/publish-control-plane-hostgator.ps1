@@ -304,12 +304,15 @@ function ConvertTo-CpanelHomeRelativePath {
 }
 
 function Expand-RemoteZip {
-    param([string]$RemoteZipPath)
+    param(
+        [string]$RemoteZipPath,
+        [string]$DestinationPath
+    )
 
-    $source = ConvertTo-CpanelHomeRelativePath $RemoteZipPath
     $response = Invoke-CpanelApi2 "Fileman" "fileop" @{
         op = "extract"
-        sourcefiles = $source
+        sourcefiles = $RemoteZipPath
+        destfiles = $DestinationPath
         doubledecode = "1"
     }
 
@@ -649,8 +652,12 @@ Ensure-RemoteDirectory $releaseRemotePath
 $zipName = Split-Path $zipFullPath -Leaf
 $remoteZipPath = Join-RemotePath $releaseRemotePath $zipName
 Upload-RemoteFile -Directory $releaseRemotePath -LocalPath $zipFullPath -FileName $zipName
-Expand-RemoteZip -RemoteZipPath $remoteZipPath
-Remove-RemoteFileToTrash -RemotePath $remoteZipPath
+$remoteZipInfo = Get-FileInfo $remoteZipPath
+if (-not $remoteZipInfo -or -not $remoteZipInfo.exists) {
+    throw "Remote control-plane zip upload was not confirmed: $remoteZipPath"
+}
+
+Expand-RemoteZip -RemoteZipPath $remoteZipPath -DestinationPath $releaseRemotePath
 
 Save-RemoteTextFile -Directory $releaseRemotePath -FileName ".env" -Content $releaseEnvContent
 
@@ -666,6 +673,8 @@ foreach ($requiredPath in @(
     }
 }
 
+Remove-RemoteFileToTrash -RemotePath $remoteZipPath
+
 $metadata = [ordered]@{
     schemaVersion = 1
     appId = "control-plane"
@@ -677,7 +686,7 @@ $metadata = [ordered]@{
     fileCount = $artifactFiles.Count
     totalBytes = ($artifactFiles | Measure-Object Length -Sum).Sum
     preservation = @(
-        "Deploy uploads a no-secret ZIP into a new versioned release directory, extracts it remotely, then trashes the temporary ZIP.",
+        "Deploy uploads a no-secret ZIP into a new versioned release directory, extracts it remotely, verifies required Laravel files, then trashes the temporary ZIP.",
         "Remote base .env is created only if missing and otherwise preserved.",
         "Each release receives its .env from GitHub/local secret inputs; no .env is included in the artifact.",
         "The active release is switched through managed index.php and .htaccess files in /supersites/control-plane/.",
