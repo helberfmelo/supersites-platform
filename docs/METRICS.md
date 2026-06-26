@@ -21,9 +21,9 @@ Data-base: 2026-06-26
 | Shared package tests passing | 22 |
 | Shared package typechecks passing | 5 |
 | Frontend tests passing | 15 |
-| Playwright visual smoke tests passing | 8 |
-| Laravel tests passing | 23 |
-| Control plane API endpoints implemented | 8 |
+| Playwright visual smoke tests passing | 9 |
+| Laravel tests passing | 26 |
+| Control plane API endpoints implemented | 11 |
 | Control plane admin routes implemented | 6 |
 | Control plane portfolio records seeded | 12 |
 | Control plane RBAC permissions seeded | 7 |
@@ -74,8 +74,8 @@ Data-base: 2026-06-26
 | Supersite hydrated interaction smoke | Passed |
 | Supersite Playwright report | Passed |
 | NetProbe Atlas tool pages scaffolded | 7 |
-| NetProbe Atlas live public tools implemented | 4 |
-| NetProbe public API endpoints implemented | 4 |
+| NetProbe Atlas live public tools implemented | 7 |
+| NetProbe public API endpoints implemented | 7 |
 | NetProbe DNS record types supported | 8 |
 | NetProbe Atlas legal/editorial pages | 7 |
 | NetProbe Atlas prerender content routes | 16 |

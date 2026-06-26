@@ -121,6 +121,7 @@ Sprint 2.4 - Propagation, port checker limitado, ping/traceroute
 - Objetivo: diagnosticos pontuais sem abuso.
 - Entregas: limites, allowlist/bloqueios, probes locais iniciais.
 - Validacao: SSRF/private ranges tests, rate-limit, logs.
+- Status: concluida localmente/CI. O NetProbe agora tem `/api/v1/netprobe/propagation`, `/api/v1/netprobe/port` e `/api/v1/netprobe/reachability`, propagation com snapshot do resolver local, port checker limitado a allowlist `80/443/587/993`, reachability via TCP 443 limitado e ICMP/traceroute declarados como indisponiveis ate existirem workers controlados. Quality Gate `28254182163` e Deploy Dry Run `28254182161` ficaram verdes.
 
 Sprint 2.5 - Conteudo multilanguage e AdSense readiness
 - Objetivo: conteudo original por ferramenta em 5 idiomas.

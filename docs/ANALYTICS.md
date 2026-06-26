@@ -50,7 +50,7 @@ Endpoints internos:
 
 ## NetProbe live tools
 
-As ferramentas live `what-is-my-ip`, `dns-lookup`, `rdap-domain-lookup` e `ssl-certificate-checker` podem registrar apenas eventos de produto de baixo risco, como `tool_started`, usando `tool_slug` e metadados de UI.
+As ferramentas live `what-is-my-ip`, `dns-lookup`, `rdap-domain-lookup`, `ssl-certificate-checker`, `dns-propagation`, `port-checker` e `ping-traceroute` podem registrar apenas eventos de produto de baixo risco, como `tool_started`, usando `tool_slug` e metadados de UI.
 
 Nao registrar em analytics:
 
@@ -60,6 +60,7 @@ Nao registrar em analytics:
 - registros DNS retornados;
 - fatos RDAP, registrar, nameservers ou datas de dominio consultado;
 - subject, issuer, SANs, fingerprint ou datas de certificado;
+- porta selecionada, status de porta, status TCP, latencia, endereco checado ou resultado de propagation/reachability;
 - mensagens brutas do resolver.
 
 ## Regras

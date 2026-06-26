@@ -90,16 +90,20 @@ Sprint 1.6 adiciona a base de analytics sem PII:
 
 ## NetProbe public API module
 
-Sprint 2.2 adiciona o primeiro modulo publico de lookup do NetProbe dentro do Laravel `apps/control-plane`, conforme ADR `0014-netprobe-public-api-module`.
+Sprints 2.2 a 2.4 adicionam o primeiro modulo publico de lookup do NetProbe dentro do Laravel `apps/control-plane`, conforme ADR `0014-netprobe-public-api-module`.
 
 - `GET /api/v1/netprobe/ip`: retorna o IP observado na requisicao, versao IPv4/IPv6, classificacao publica e metadados de retencao sem persistir o endereco completo.
 - `POST /api/v1/netprobe/dns`: normaliza hostnames e consulta A/AAAA/CNAME/MX/TXT/NS/SOA/CAA com cache TTL e resposta estruturada.
 - `POST /api/v1/netprobe/rdap`: usa bootstrap RDAP IANA, consulta o registry do TLD, normaliza registrar/status/datas/nameservers/limitacoes e omite contato pessoal.
 - `POST /api/v1/netprobe/ssl`: resolve A/AAAA, bloqueia ranges privados/reservados, conecta apenas a `443` com SNI e normaliza facts do certificado servido.
+- `POST /api/v1/netprobe/propagation`: retorna snapshot limitado do resolver local para A/AAAA/CNAME/MX/TXT/NS, com cache TTL e aviso de que comparacao multirregiao depende de workers futuros.
+- `POST /api/v1/netprobe/port`: aceita apenas portas `80`, `443`, `587` e `993`, resolve A/AAAA publicos antes de conectar e testa no maximo dois enderecos por requisicao.
+- `POST /api/v1/netprobe/reachability`: reporta TCP 443 limitado; ICMP e traceroute ficam declarados como `not_supported` no runtime web inicial.
 - `netprobe-public`: rate limiter dedicado para endpoints publicos de diagnostico.
 - `NetProbeDnsResolver`: contrato substituivel para testes e para futura extracao para worker/runtime separado.
 - `NetProbeRdapClient`: contrato substituivel para fixtures de registry e para futura politica de retry/backoff por TLD.
 - `NetProbeCertificateProbe`: contrato substituivel para o probe TLS e futura validacao de cadeia/multirregiao.
+- `NetProbeTcpProbe`: contrato substituivel para probes TCP com timeout curto, hoje usado apenas depois de resolucao publica validada.
 - `NetProbeHostGuard`: bloqueia URL em vez de hostname, nomes locais/reservados e respostas que apontem para IP privado, loopback, metadata ou ranges reservados.
 
 O modulo fica no control plane para reduzir superficie operacional enquanto o contrato estabiliza. Uma extracao futura para app/API dedicado deve preservar o contrato HTTP, os testes de SSRF/rate limit e a politica de minimizacao de dados.
@@ -110,7 +114,7 @@ O modulo fica no control plane para reduzir superficie operacional enquanto o co
 |---|---|---|
 | SuperSites Hub | `supersite` | Catalogo publico |
 | Control Plane | `control-plane` | Admin central |
-| NetProbe Atlas | `netprobe-atlas` | IP, DNS, dominio, SSL |
+| NetProbe Atlas | `netprobe-atlas` | IP, DNS, dominio, SSL, propagation, port, reachability |
 | CalcHarbor | `calcharbor` | Calculadoras |
 | DevUtility Lab | `devutility-lab` | Ferramentas dev |
 | TimeNexus | `timenexus` | Tempo/data/unidades |
