@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, API base e MVP admin do control plane, o bootstrap HostGator inicial e o runtime Redis isolado na VPS foram criados. Ainda nao ha deploy real de aplicacao; a producao transitoria possui placeholders `noindex`, runtime Redis local-only na VPS e plano de deploy dry-run auditavel.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial e o runtime Redis isolado na VPS foram criados. Ainda nao ha deploy real de aplicacao; a producao transitoria possui placeholders `noindex`, runtime Redis local-only na VPS e plano de deploy dry-run auditavel.
 
 ## Estado local verificado
 
@@ -94,13 +94,17 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Sprint 1.3 criou pacotes TypeScript compartilhados para UI, i18n, SEO e consentimento; o catalogo passou a reutilizar `@supersites/i18n`, `@supersites/seo` e `@supersites/ui`.
 - Sprint 1.4 criou localmente a fundacao da API Laravel do control plane: rotas `/api/v1/me` e `/api/v1/sites`, migrations de `sites`, RBAC e `audit_logs`, seeders de portfolio/permissoes e testes feature para autenticacao, autorizacao, listagem e auditoria.
 - Sprint 1.5 criou localmente o MVP admin do control plane: login/logout, middleware RBAC `permission`, dashboard `/admin`, inventario/cadastro/edicao de sites, tabelas operacionais para deploys/incidentes/tarefas e smoke visual desktop/mobile.
+- Sprint 1.6 criou localmente o contrato de analytics sem PII: pacote `@supersites/analytics`, eventos whitelisted, sanitizacao/redacao, data layer local do catalogo, endpoint publico `/api/v1/analytics/events`, tabelas `analytics_events`/`metric_snapshots` e endpoint autenticado `/api/v1/metric-snapshots`.
 - Control plane inicial criado em `apps/control-plane` com Laravel `13.x`, PHP `^8.3` e `predis/predis`.
 - Health endpoint Laravel criado em `/health`, com modo app-only para CI/testes e modo de conexoes para smoke local contra Docker MySQL/Redis.
 - Control plane API base:
   - `sites` armazena 12 entradas do portfolio com URLs temporarias sob `https://opentshost.com/supersites/<slug>/`.
+  - `/api/v1/analytics/events` aceita eventos publicos whitelisted e sanitizados, sem exigir login.
+  - `/api/v1/metric-snapshots` retorna agregados internos para usuarios autenticados com `dashboard.view`.
   - RBAC inicial tem 7 permissoes (`dashboard.view`, `sites.view`, `sites.manage`, `users.manage`, `audit.view`, `deployments.view`, `operations.manage`) e 4 roles (`owner`, `operator`, `analyst`, `site-admin`).
   - Roles podem ser globais ou escopadas por site via `role_user.site_id`.
   - `audit_logs` usa ULID e registra a consulta autorizada de sites sem armazenar segredos.
+  - `analytics_events` e `metric_snapshots` iniciam a base de eventos e snapshots sem PII.
 - Control plane admin MVP:
   - URL local: `http://127.0.0.1:8013/admin`.
   - Login local: usuario seed `owner@supersites.local` com a senha padrao do `UserFactory` apenas para ambiente local/dev.
@@ -237,6 +241,20 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - GitHub Actions `Quality Gate` run `28236429748` passou com repository safety, backend, pacotes, Nuxt preview e Playwright.
   - GitHub Actions `Deploy Dry Run` run `28236429773` passou; artifact upload segue bloqueado pela quota GitHub Actions, mas o job summary manteve o plano auditavel.
   - Obstaculo contornado: a primeira tabela mobile nao transbordava, mas quebrava palavras; CSS ajustado para rolagem interna do painel e texto sem quebra artificial.
+- Sprint 1.6 local validation:
+  - `pnpm --filter @supersites/analytics test` passou com 5 testes.
+  - `pnpm --filter @supersites/analytics typecheck` passou.
+  - `pnpm test:packages` passou com 22 testes nos pacotes `ui`, `i18n`, `seo`, `consent` e `analytics`.
+  - `pnpm typecheck:packages` passou nos 5 pacotes compartilhados.
+  - `pnpm --filter @supersites/supersite test` passou com 10 testes.
+  - `pnpm --filter @supersites/supersite build` passou e prerenderizou 183 rotas, com os avisos Nuxt/Nitro ja conhecidos e nao fatais.
+  - `pnpm validate:supersite-preview` passou.
+  - `pnpm test:e2e:supersite` passou com 3 testes, incluindo data layer sanitizado para `outbound_site_click`.
+  - `composer validate --strict` passou.
+  - `php artisan test` passou com 17 testes / 71 assertions em `apps/control-plane`.
+  - `php artisan migrate:fresh --seed --force` passou, incluindo `analytics_events` e `metric_snapshots`.
+  - `php artisan route:list --path=api/v1` confirmou 4 rotas.
+  - `pnpm install --frozen-lockfile`, `scripts/validate-structure.ps1`, `scripts/validate-no-secrets.ps1`, `scripts/prepare-deploy-dry-run.ps1`, `scripts/validate-local-stack.ps1` e `git diff --check` passaram.
 
 ## Pendencias criticas
 

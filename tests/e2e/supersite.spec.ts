@@ -87,4 +87,35 @@ test.describe('SuperSites public hub', () => {
 
     expect(errors).toEqual([])
   })
+
+  test('records sanitized outbound site clicks in the local data layer', async ({ page }) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.goto('/en')
+    await page.evaluate(() => {
+      window.addEventListener('click', (event) => event.preventDefault(), { capture: true })
+    })
+
+    await page.locator('a[href="https://opentshost.com/supersites/netprobe-atlas/"]').first().click()
+
+    const analytics = await page.evaluate(() => ({
+      localEvents: window.supersitesAnalyticsEvents,
+      dataLayer: window.dataLayer,
+    }))
+
+    expect(analytics.localEvents).toHaveLength(1)
+    expect(analytics.localEvents?.[0]).toMatchObject({
+      name: 'outbound_site_click',
+      siteSlug: 'netprobe-atlas',
+      routePath: '/en',
+      properties: {
+        target_url: '/supersites/netprobe-atlas',
+      },
+    })
+    expect(analytics.dataLayer?.[0]).toMatchObject({
+      event: 'outbound_site_click',
+    })
+    expect(JSON.stringify(analytics)).not.toContain('?')
+    expect(errors).toEqual([])
+  })
 })

@@ -18,6 +18,8 @@ Versioned API routes live under `/api/v1`.
 
 - `GET /api/v1/me`: authenticated user, roles and effective permissions.
 - `GET /api/v1/sites`: portfolio site inventory for users with `sites.view`; creates an `api.sites.index` audit event.
+- `POST /api/v1/analytics/events`: public ingest for whitelisted, sanitized analytics events.
+- `GET /api/v1/metric-snapshots`: authenticated internal metric snapshots for users with `dashboard.view`.
 
 Initial seeders create 12 portfolio records, 7 permissions and 4 roles: `owner`, `operator`, `analyst` and `site-admin`.
 

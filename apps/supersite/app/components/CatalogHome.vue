@@ -11,6 +11,7 @@ import {
   type SiteCategory,
 } from '../data/sites'
 import { localizedHomePath, localizedSitePath, type LocaleCode } from '../data/locales'
+import { trackOutboundSiteClick } from '../utils/analytics'
 
 const props = defineProps<{
   locale: LocaleCode
@@ -22,6 +23,16 @@ const searchQuery = ref('')
 const selectedCategory = ref<SiteCategory | 'all'>('all')
 const filteredSites = computed(() => filterSites(searchQuery.value, selectedCategory.value))
 const canonicalPath = computed(() => (props.xDefault ? '/' : localizedHomePath(props.locale)))
+
+function trackPublicSiteClick(siteSlug: string, targetUrl: string): void {
+  trackOutboundSiteClick({
+    siteSlug,
+    targetUrl,
+    locale: props.locale,
+    routePath: canonicalPath.value,
+    surface: 'catalog_card',
+  })
+}
 
 useHead(() => ({
   htmlAttrs: {
@@ -136,7 +147,11 @@ useHead(() => ({
           <NuxtLink class="button-link" :to="localizedSitePath(locale, site.slug)">
             {{ copy.detailCta }}
           </NuxtLink>
-          <a class="button-link button-link--secondary" :href="site.temporaryUrl">
+          <a
+            class="button-link button-link--secondary"
+            :href="site.temporaryUrl"
+            @click="trackPublicSiteClick(site.slug, site.temporaryUrl)"
+          >
             {{ copy.publicCta }}
           </a>
         </div>

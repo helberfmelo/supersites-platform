@@ -10,7 +10,8 @@ Nuxt 4 public catalog for the SuperSites portfolio.
 - Search and category filtering on the catalog home.
 - Canonical, viewport and hreflang metadata for the transitional `/supersites` public base.
 - Static prerender route list for catalog, ten site detail pages, legal/editorial pages and `sitemap.xml`.
-- Shared contracts from `@supersites/i18n`, `@supersites/seo` and `@supersites/ui`.
+- Shared contracts from `@supersites/i18n`, `@supersites/seo`, `@supersites/ui` and `@supersites/analytics`.
+- Sanitized `outbound_site_click` events for temporary public site links, stored only in the local data layer until external analytics is approved.
 
 ## Local
 

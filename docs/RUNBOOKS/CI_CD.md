@@ -16,8 +16,8 @@ Jobs:
 
 - `Detect changes`: classifies changed paths.
 - `Repository safety`: always runs secret scan and structure validation.
-- `Frontend / SuperSites Hub`: runs shared package tests/typecheck plus Nuxt tests/build when frontend, package or deployment files change, installs Chromium for Playwright, then runs `scripts/validate-supersite-preview.ps1` and `pnpm test:e2e:supersite` so SSR HTML, `_nuxt` assets, legal pages and visual smoke are checked from the correct app working directory.
-- `Backend / Control Plane`: runs Composer validation and Laravel tests when backend or deployment files change. The Laravel suite covers API, auth/RBAC, admin Blade smoke, site create/update flows and audit log behavior. It uses SQLite in memory and therefore requires `pdo_sqlite`/`sqlite3`.
+- `Frontend / SuperSites Hub`: runs shared package tests/typecheck, including `@supersites/analytics`, plus Nuxt tests/build when frontend, package or deployment files change, installs Chromium for Playwright, then runs `scripts/validate-supersite-preview.ps1` and `pnpm test:e2e:supersite` so SSR HTML, `_nuxt` assets, legal pages, data layer click events and visual smoke are checked from the correct app working directory.
+- `Backend / Control Plane`: runs Composer validation and Laravel tests when backend or deployment files change. The Laravel suite covers API, analytics ingest sanitization, metric snapshots, auth/RBAC, admin Blade smoke, site create/update flows and audit log behavior. It uses SQLite in memory and therefore requires `pdo_sqlite`/`sqlite3`.
 - `Quality summary`: fails the workflow if any required job fails.
 
 ### Deploy Dry Run

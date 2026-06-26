@@ -40,6 +40,7 @@ Sprint 1.3 criou os primeiros pacotes TypeScript fonte-primeiro:
 - `@supersites/i18n`: idiomas iniciais, rotas localizadas, seletor de idioma e formatadores Intl.
 - `@supersites/seo`: canonical, hreflang, metadata e sitemap XML.
 - `@supersites/consent`: categorias de consentimento, Consent Mode, regioes e regras de exibicao segura de anuncios.
+- `@supersites/analytics`: contrato versionado de eventos, sanitizacao PII-safe e payloads de data layer.
 
 Apps novos devem importar esses contratos antes de duplicar helpers locais.
 
@@ -76,6 +77,16 @@ Sprint 1.5 inicia a interface administrativa com Laravel Blade antes de adiciona
 - tabelas `deployment_records`, `incidents` e `operational_tasks` para o primeiro painel operacional.
 
 Esse MVP e intencionalmente server-rendered e utilitario. Vue/Inertia fica reservado para fluxos admin que precisem de interatividade rica.
+
+## Analytics/eventos
+
+Sprint 1.6 adiciona a base de analytics sem PII:
+
+- Nuxt usa `@supersites/analytics` para criar `outbound_site_click` no catalogo e gravar em `window.dataLayer` sem provedor externo ativo.
+- Laravel expoe `POST /api/v1/analytics/events` para ingestao publica de eventos whitelisted.
+- `analytics_events` armazena fatos sanitizados com identificadores anonimos hasheados.
+- `metric_snapshots` armazena agregados internos com fonte, granularidade e status estimado/finalizado/atrasado.
+- `GET /api/v1/metric-snapshots` exige autenticacao e `dashboard.view`.
 
 ## Sites e pastas
 

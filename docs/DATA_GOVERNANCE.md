@@ -19,7 +19,15 @@
 | Logs tecnicos | Sanitizados e com retencao definida |
 | Eventos analytics | Sem PII e com consentimento quando exigido |
 
+## Analytics sem PII
+
+- O contrato versionado fica em `packages/analytics`.
+- Eventos permitidos passam por allowlist antes de armazenamento.
+- Chaves como e-mail, telefone, documento, senha, token, chave API, cartao, banco, IP, nome e endereco sao descartadas.
+- Valores string com e-mail, IP, tokens longos ou numeros longos sao redigidos.
+- URLs armazenadas para analytics nao carregam query string nem fragmento.
+- Identificadores anonimos e de sessao sao armazenados apenas como hash no control plane.
+
 ## Direitos do titular
 
 Implementar exportacao, exclusao e retificacao antes de contas pagas em producao.
-

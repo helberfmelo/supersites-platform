@@ -3,6 +3,7 @@ import { legalPageCatalog, legalPageSlugs } from '../app/data/legal'
 import { localeCodes } from '../app/data/locales'
 import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
 import { categoryCatalog, filterSites, getSiteBySlug, siteCatalog } from '../app/data/sites'
+import { createCatalogOutboundClickEvent } from '../app/utils/analytics'
 
 describe('site catalog', () => {
   it('lists the ten utility sites in launch order', () => {
@@ -61,6 +62,21 @@ describe('site catalog', () => {
   it('finds detail pages by slug', () => {
     expect(getSiteBySlug('mailhealth')?.name).toBe('MailHealth')
     expect(getSiteBySlug('missing-site')).toBeNull()
+  })
+
+  it('creates a sanitized outbound click event for temporary public URLs', () => {
+    const event = createCatalogOutboundClickEvent({
+      siteSlug: 'NetProbe Atlas',
+      targetUrl: `${siteBaseUrl}/netprobe-atlas/?email=person@example.test#result`,
+      locale: 'pt-br',
+      routePath: '/pt-br?utm_source=test',
+      surface: 'catalog_card',
+    })
+
+    expect(event.name).toBe('outbound_site_click')
+    expect(event.siteSlug).toBe('netprobe-atlas')
+    expect(event.routePath).toBe('/pt-br')
+    expect(event.properties.target_url).toBe('/supersites/netprobe-atlas')
   })
 
   it('documents legal and editorial pages for every locale', () => {

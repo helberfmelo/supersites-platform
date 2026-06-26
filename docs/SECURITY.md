@@ -29,6 +29,13 @@
 - Acoes de login, dashboard e cadastro/edicao de sites geram `audit_logs`.
 - Contas seed locais existem apenas para desenvolvimento; producao deve ter credenciais reais em fluxo seguro e 2FA antes de go-live.
 
+## Analytics e PII
+
+- Eventos analytics usam allowlist versionada em `@supersites/analytics`.
+- O endpoint publico `/api/v1/analytics/events` descarta chaves sensiveis, redige valores com e-mail/IP/token/numero longo e remove query/hash de URLs.
+- Identificadores anonimos e de sessao sao hasheados antes de persistencia.
+- Nenhum provedor externo de analytics deve ser ativado antes de consentimento, GA4/GTM e gates humanos/tecnicos aplicaveis.
+
 ## Redis/VPS
 
 - Redis de producao inicial roda na VPS como `supersites-redis.service`.

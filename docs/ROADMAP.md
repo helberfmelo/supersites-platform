@@ -89,6 +89,7 @@ Sprint 1.6 - Analytics/event contract
 - Objetivo: contrato de eventos, data layer sem PII e snapshots internos.
 - Entregas: `tool_viewed`, `tool_started`, `tool_completed`, `outbound_site_click` e base de metricas.
 - Validacao: testes de contrato, redacao de PII, fixtures.
+- Status: concluida localmente nesta sprint. Foi criado `@supersites/analytics` com allowlist de eventos, sanitizacao PII-safe e data layer; o catalogo passou a registrar `outbound_site_click` em modo local; o control plane recebeu `analytics_events`, `metric_snapshots`, ingestao publica sanitizada e leitura autenticada de snapshots.
 
 Sprint 1.7 - Deploy publico do catalogo transitorio
 - Objetivo: publicar catalogo em `opentshost.com` com rota temporaria dos sites.

@@ -27,6 +27,7 @@ $requiredPaths = @(
     "docs/ADR/0009-shared-foundation-packages.md",
     "docs/ADR/0010-control-plane-api-foundation.md",
     "docs/ADR/0011-control-plane-blade-mvp.md",
+    "docs/ADR/0012-analytics-event-contract.md",
     "docs/RUNBOOKS/CI_CD.md",
     "docs/RUNBOOKS/SPRINT_EXECUTION.md",
     "docs/RUNBOOKS/VPS_RUNTIME.md",
@@ -44,6 +45,7 @@ $requiredPaths = @(
     "apps/supersite/app/data/locales.ts",
     "apps/supersite/app/data/routes.ts",
     "apps/supersite/app/data/sites.ts",
+    "apps/supersite/app/utils/analytics.ts",
     "apps/supersite/app/pages/index.vue",
     "apps/supersite/app/pages/[locale]/[page].vue",
     "apps/supersite/app/pages/[locale]/index.vue",
@@ -61,12 +63,16 @@ $requiredPaths = @(
     "apps/control-plane/app/Http/Controllers/Admin/DashboardController.php",
     "apps/control-plane/app/Http/Controllers/Admin/SiteController.php",
     "apps/control-plane/app/Http/Controllers/Api/V1/CurrentUserController.php",
+    "apps/control-plane/app/Http/Controllers/Api/V1/AnalyticsEventController.php",
+    "apps/control-plane/app/Http/Controllers/Api/V1/MetricSnapshotIndexController.php",
     "apps/control-plane/app/Http/Controllers/Api/V1/SiteIndexController.php",
     "apps/control-plane/app/Http/Controllers/Auth/AuthenticatedSessionController.php",
     "apps/control-plane/app/Http/Middleware/EnsurePermission.php",
     "apps/control-plane/app/Models/AuditLog.php",
+    "apps/control-plane/app/Models/AnalyticsEvent.php",
     "apps/control-plane/app/Models/DeploymentRecord.php",
     "apps/control-plane/app/Models/Incident.php",
+    "apps/control-plane/app/Models/MetricSnapshot.php",
     "apps/control-plane/app/Models/OperationalTask.php",
     "apps/control-plane/app/Models/Permission.php",
     "apps/control-plane/app/Models/Role.php",
@@ -76,6 +82,8 @@ $requiredPaths = @(
     "apps/control-plane/database/migrations/2026_06_26_000110_create_access_control_tables.php",
     "apps/control-plane/database/migrations/2026_06_26_000120_create_audit_logs_table.php",
     "apps/control-plane/database/migrations/2026_06_26_000130_create_operational_tables.php",
+    "apps/control-plane/database/migrations/2026_06_26_000140_create_analytics_tables.php",
+    "apps/control-plane/app/Support/Analytics/AnalyticsEventSanitizer.php",
     "apps/control-plane/database/seeders/AccessControlSeeder.php",
     "apps/control-plane/database/seeders/DeploymentRecordSeeder.php",
     "apps/control-plane/database/seeders/OperationalTaskSeeder.php",
@@ -88,6 +96,7 @@ $requiredPaths = @(
     "apps/control-plane/resources/views/layouts/admin.blade.php",
     "apps/control-plane/resources/views/welcome.blade.php",
     "apps/control-plane/tests/Feature/AdminPanelTest.php",
+    "apps/control-plane/tests/Feature/AnalyticsApiTest.php",
     "apps/control-plane/tests/Feature/HealthTest.php",
     "apps/control-plane/tests/Feature/ControlPlaneApiTest.php",
     "apps/netprobe-atlas",
@@ -116,6 +125,10 @@ $requiredPaths = @(
     "packages/i18n/src/index.ts",
     "packages/i18n/tests/i18n.test.ts",
     "packages/analytics",
+    "packages/analytics/package.json",
+    "packages/analytics/tsconfig.json",
+    "packages/analytics/src/index.ts",
+    "packages/analytics/tests/analytics.test.ts",
     "packages/ads",
     "packages/consent",
     "packages/consent/package.json",
@@ -156,8 +169,8 @@ if ($missing.Count -gt 0) {
 }
 
 $adrCount = (Get-ChildItem -Path "docs/ADR" -Filter "*.md" -File | Measure-Object).Count
-if ($adrCount -lt 11) {
-    throw "Expected at least 11 ADR files, found $adrCount."
+if ($adrCount -lt 12) {
+    throw "Expected at least 12 ADR files, found $adrCount."
 }
 
 Write-Host "Required repository structure is present."

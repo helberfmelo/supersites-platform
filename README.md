@@ -54,6 +54,7 @@ Laravel validation:
 cd apps/control-plane
 composer validate --strict
 php artisan test
+php artisan route:list --path=api/v1
 php artisan route:list --path=admin
 ```
 
@@ -76,3 +77,5 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/validate-local-stack
 ```
 
 The GitHub Actions gate runs the same safety checks plus shared package tests/typecheck, Nuxt tests/build, preview smoke, Playwright visual smoke and Laravel validation.
+
+Analytics event contracts live in `@supersites/analytics`. The public catalog currently records sanitized outbound click events locally in `window.dataLayer`; external GA4/GTM activation remains a later gated sprint.

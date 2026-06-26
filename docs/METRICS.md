@@ -11,19 +11,19 @@ Data-base: 2026-06-26
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
 | Shared package folders created | 12 |
-| ADRs created | 11 |
-| Docs files created/maintained | 37 |
+| ADRs created | 12 |
+| Docs files created/maintained | 38 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
 | Nuxt apps scaffolded | 1 |
 | Laravel apps scaffolded | 1 |
-| Shared TS packages implemented | 4 |
-| Shared package tests passing | 17 |
-| Shared package typechecks passing | 4 |
-| Frontend tests passing | 9 |
-| Playwright visual smoke tests passing | 2 |
-| Laravel tests passing | 14 |
-| Control plane API endpoints implemented | 2 |
+| Shared TS packages implemented | 5 |
+| Shared package tests passing | 22 |
+| Shared package typechecks passing | 5 |
+| Frontend tests passing | 10 |
+| Playwright visual smoke tests passing | 3 |
+| Laravel tests passing | 17 |
+| Control plane API endpoints implemented | 4 |
 | Control plane admin routes implemented | 6 |
 | Control plane portfolio records seeded | 12 |
 | Control plane RBAC permissions seeded | 7 |
@@ -33,6 +33,10 @@ Data-base: 2026-06-26
 | Control plane deployment records seeded | 2 |
 | Control plane operational tasks seeded | 3 |
 | Control plane visual smoke screenshots | 2 |
+| Analytics contract events implemented | 16 |
+| Analytics storage tables implemented | 2 |
+| Analytics ingest endpoint implemented | 1 |
+| Metric snapshot endpoint implemented | 1 |
 | Local PHP SQLite extensions enabled | 2 |
 | Local Git repository initialized | 1 |
 | GitHub Actions bootstrap gates | 1 |

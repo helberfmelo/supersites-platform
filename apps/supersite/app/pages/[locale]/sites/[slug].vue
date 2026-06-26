@@ -4,6 +4,7 @@ import { detailCopy } from '../../../data/copy'
 import { localizedHomePath, localizedSitePath, normalizeLocale } from '../../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
 import { getCategoryLabel, getSiteBySlug, statusLabels } from '../../../data/sites'
+import { trackOutboundSiteClick } from '../../../utils/analytics'
 
 const route = useRoute()
 const locale = normalizeLocale(route.params.locale?.toString())
@@ -19,6 +20,16 @@ if (!locale || !site) {
 const copy = detailCopy[locale]
 const siteText = site.localized[locale]
 const canonicalPath = localizedSitePath(locale, site.slug)
+
+function trackPublicSiteClick(): void {
+  trackOutboundSiteClick({
+    siteSlug: site.slug,
+    targetUrl: site.temporaryUrl,
+    locale,
+    routePath: canonicalPath,
+    surface: 'site_detail',
+  })
+}
 
 useHead({
   htmlAttrs: {
@@ -136,7 +147,11 @@ useHead({
           <NuxtLink class="button-link" :to="localizedHomePath(locale)">
             {{ copy.backToCatalog }}
           </NuxtLink>
-          <a class="button-link button-link--secondary" :href="site.temporaryUrl">
+          <a
+            class="button-link button-link--secondary"
+            :href="site.temporaryUrl"
+            @click="trackPublicSiteClick"
+          >
             {{ copy.publicCta }}
           </a>
         </div>

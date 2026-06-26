@@ -65,4 +65,20 @@ class Site extends Model
     {
         return $this->hasMany(OperationalTask::class);
     }
+
+    /**
+     * @return HasMany<AnalyticsEvent, $this>
+     */
+    public function analyticsEvents(): HasMany
+    {
+        return $this->hasMany(AnalyticsEvent::class);
+    }
+
+    /**
+     * @return HasMany<MetricSnapshot, $this>
+     */
+    public function metricSnapshots(): HasMany
+    {
+        return $this->hasMany(MetricSnapshot::class);
+    }
 }
