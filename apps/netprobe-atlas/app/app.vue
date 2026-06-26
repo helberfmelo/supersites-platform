@@ -520,6 +520,39 @@ h3 {
   text-transform: uppercase;
 }
 
+.result-list,
+.pill-list {
+  padding: 0;
+  list-style: none;
+}
+
+.result-list {
+  display: grid;
+  gap: 8px;
+}
+
+.result-list li {
+  overflow-wrap: anywhere;
+}
+
+.pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill-list li {
+  max-width: 100%;
+  padding: 6px 10px;
+  border: 1px solid #cfd8d1;
+  border-radius: 999px;
+  background: #f7f8f4;
+  color: #26342f;
+  font-size: 0.85rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
 .method-list,
 .check-list {
   padding: 0;

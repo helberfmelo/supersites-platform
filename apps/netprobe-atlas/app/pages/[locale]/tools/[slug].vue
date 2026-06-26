@@ -31,9 +31,15 @@ const dnsResult = ref<DnsLookupData | null>(null)
 const dnsMeta = ref<Record<string, unknown>>({})
 const ipResult = ref<ClientIpData | null>(null)
 const ipMeta = ref<Record<string, unknown>>({})
+const rdapResult = ref<RdapLookupData | null>(null)
+const rdapMeta = ref<Record<string, unknown>>({})
+const sslResult = ref<SslCertificateData | null>(null)
+const sslMeta = ref<Record<string, unknown>>({})
 const isDnsLookup = computed(() => tool.slug === 'dns-lookup')
 const isIpLookup = computed(() => tool.slug === 'what-is-my-ip')
-const isLiveTool = computed(() => isDnsLookup.value || isIpLookup.value)
+const isRdapLookup = computed(() => tool.slug === 'rdap-domain-lookup')
+const isSslLookup = computed(() => tool.slug === 'ssl-certificate-checker')
+const isLiveTool = computed(() => isDnsLookup.value || isIpLookup.value || isRdapLookup.value || isSslLookup.value)
 
 interface DnsRecord {
   type: string
@@ -54,6 +60,45 @@ interface ClientIpData {
   version: string
   is_public: boolean
   source: string
+}
+
+interface RdapLookupData {
+  domain: string
+  handle: string | null
+  registrar: {
+    name: string | null
+    handle: string | null
+  }
+  statuses: string[]
+  registered_at: string | null
+  updated_at: string | null
+  expires_at: string | null
+  age_days: number | null
+  days_until_expiration: number | null
+  nameservers: string[]
+  limitations: string[]
+}
+
+interface SslCertificateData {
+  hostname: string
+  checked_addresses: string[]
+  subject: {
+    common_name?: string | null
+    organization?: string | null
+  }
+  issuer: {
+    common_name?: string | null
+    organization?: string | null
+  }
+  serial_number: string | null
+  valid_from: string | null
+  valid_to: string | null
+  days_until_expiration: number | null
+  is_expired: boolean
+  matches_hostname: boolean
+  subject_alt_names: string[]
+  chain_count: number
+  fingerprint_sha256: string | null
 }
 
 interface ApiResponse<T> {
@@ -81,6 +126,8 @@ async function previewResult(): Promise<void> {
   errorMessage.value = ''
   dnsResult.value = null
   ipResult.value = null
+  rdapResult.value = null
+  sslResult.value = null
 
   trackToolStarted({
     toolSlug: tool.slug,
@@ -113,26 +160,74 @@ async function previewResult(): Promise<void> {
       return
     }
 
-    const response = await fetch(netprobeEndpoint('dns'), {
-      method: 'POST',
-      headers: {
-        accept: 'application/json',
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        domain: targetValue.value,
-        types: selectedRecordTypes.value,
-      }),
-    })
+    if (isDnsLookup.value) {
+      const response = await fetch(netprobeEndpoint('dns'), {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          domain: targetValue.value,
+          types: selectedRecordTypes.value,
+        }),
+      })
 
-    if (!response.ok) {
-      errorMessage.value = await parseApiError(response)
+      if (!response.ok) {
+        errorMessage.value = await parseApiError(response)
+        return
+      }
+
+      const payload = await response.json() as ApiResponse<DnsLookupData>
+      dnsResult.value = payload.data
+      dnsMeta.value = payload.meta
       return
     }
 
-    const payload = await response.json() as ApiResponse<DnsLookupData>
-    dnsResult.value = payload.data
-    dnsMeta.value = payload.meta
+    if (isRdapLookup.value) {
+      const response = await fetch(netprobeEndpoint('rdap'), {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          domain: targetValue.value,
+        }),
+      })
+
+      if (!response.ok) {
+        errorMessage.value = await parseApiError(response)
+        return
+      }
+
+      const payload = await response.json() as ApiResponse<RdapLookupData>
+      rdapResult.value = payload.data
+      rdapMeta.value = payload.meta
+      return
+    }
+
+    if (isSslLookup.value) {
+      const response = await fetch(netprobeEndpoint('ssl'), {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          hostname: targetValue.value,
+        }),
+      })
+
+      if (!response.ok) {
+        errorMessage.value = await parseApiError(response)
+        return
+      }
+
+      const payload = await response.json() as ApiResponse<SslCertificateData>
+      sslResult.value = payload.data
+      sslMeta.value = payload.meta
+    }
   } catch {
     errorMessage.value = 'The lookup API is not reachable from this browser session.'
   } finally {
@@ -319,6 +414,115 @@ useHead({
 
             <p v-if="Array.isArray(dnsMeta.warnings) && dnsMeta.warnings.length > 0">
               {{ dnsMeta.warnings.join(' ') }}
+            </p>
+          </div>
+
+          <div v-else-if="rdapResult">
+            <div class="result-meta">
+              <div>
+                <strong>Domain</strong>
+                <span>{{ rdapResult.domain }}</span>
+              </div>
+              <div>
+                <strong>Registrar</strong>
+                <span>{{ rdapResult.registrar.name || 'Not provided' }}</span>
+              </div>
+              <div>
+                <strong>Cache</strong>
+                <span>{{ rdapMeta.cached ? 'Cached' : 'Fresh' }} / {{ rdapMeta.cache_ttl_seconds }}s</span>
+              </div>
+              <div>
+                <strong>Registered</strong>
+                <span>{{ rdapResult.registered_at || 'Not provided' }}</span>
+              </div>
+              <div>
+                <strong>Expires</strong>
+                <span>{{ rdapResult.expires_at || 'Not provided' }}</span>
+              </div>
+              <div>
+                <strong>Days left</strong>
+                <span>{{ rdapResult.days_until_expiration ?? 'Unknown' }}</span>
+              </div>
+            </div>
+
+            <section class="content-section">
+              <h3>Status</h3>
+              <ul class="pill-list">
+                <li v-for="status in rdapResult.statuses" :key="status">{{ status }}</li>
+              </ul>
+              <p v-if="rdapResult.statuses.length === 0">No status values returned.</p>
+            </section>
+
+            <section class="content-section">
+              <h3>Nameservers</h3>
+              <ul class="result-list">
+                <li v-for="nameserver in rdapResult.nameservers" :key="nameserver">{{ nameserver }}</li>
+              </ul>
+              <p v-if="rdapResult.nameservers.length === 0">No nameservers returned.</p>
+            </section>
+
+            <section v-if="rdapResult.limitations.length > 0" class="content-section">
+              <h3>Limitations</h3>
+              <ul class="result-list">
+                <li v-for="limitation in rdapResult.limitations" :key="limitation">{{ limitation }}</li>
+              </ul>
+            </section>
+
+            <p v-if="Array.isArray(rdapMeta.warnings) && rdapMeta.warnings.length > 0">
+              {{ rdapMeta.warnings.join(' ') }}
+            </p>
+          </div>
+
+          <div v-else-if="sslResult">
+            <div class="result-meta">
+              <div>
+                <strong>Hostname</strong>
+                <span>{{ sslResult.hostname }}</span>
+              </div>
+              <div>
+                <strong>Issuer</strong>
+                <span>{{ sslResult.issuer.common_name || sslResult.issuer.organization || 'Not provided' }}</span>
+              </div>
+              <div>
+                <strong>Cache</strong>
+                <span>{{ sslMeta.cached ? 'Cached' : 'Fresh' }} / {{ sslMeta.cache_ttl_seconds }}s</span>
+              </div>
+              <div>
+                <strong>Subject</strong>
+                <span>{{ sslResult.subject.common_name || 'Not provided' }}</span>
+              </div>
+              <div>
+                <strong>Expires</strong>
+                <span>{{ sslResult.valid_to || 'Not provided' }}</span>
+              </div>
+              <div>
+                <strong>Hostname match</strong>
+                <span>{{ sslResult.matches_hostname ? 'Yes' : 'No' }}</span>
+              </div>
+            </div>
+
+            <section class="content-section">
+              <h3>Subject alternative names</h3>
+              <ul class="result-list">
+                <li v-for="name in sslResult.subject_alt_names" :key="name">{{ name }}</li>
+              </ul>
+              <p v-if="sslResult.subject_alt_names.length === 0">No SAN values returned.</p>
+            </section>
+
+            <section class="content-section">
+              <h3>Probe facts</h3>
+              <ul class="result-list">
+                <li>{{ sslResult.checked_addresses.length }} public address checks before TLS.</li>
+                <li>{{ sslResult.chain_count }} certificate chain entries returned.</li>
+                <li>{{ sslResult.days_until_expiration ?? 'Unknown' }} days until expiration.</li>
+              </ul>
+            </section>
+
+            <p v-if="Array.isArray(sslMeta.warnings) && sslMeta.warnings.length > 0">
+              {{ sslMeta.warnings.join(' ') }}
+            </p>
+            <p v-if="Array.isArray(sslMeta.limitations) && sslMeta.limitations.length > 0">
+              {{ sslMeta.limitations.join(' ') }}
             </p>
           </div>
 

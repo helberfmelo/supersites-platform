@@ -2,8 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Support\NetProbe\NetProbeCertificateProbe;
 use App\Support\NetProbe\NetProbeDnsResolver;
+use App\Support\NetProbe\NetProbeRdapClient;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Tests\TestCase;
 
@@ -91,6 +94,112 @@ class NetProbeApiTest extends TestCase
             ->assertJsonValidationErrors('domain');
     }
 
+    public function test_rdap_lookup_returns_normalized_domain_facts_and_uses_cache(): void
+    {
+        $this->travelTo(Carbon::parse('2026-06-26 00:00:00 UTC'));
+
+        $client = new FakeNetProbeRdapClient([
+            'ldhName' => 'EXAMPLE.COM',
+            'handle' => '2336799_DOMAIN_COM-VRSN',
+            'status' => ['client delete prohibited', 'client transfer prohibited'],
+            'events' => [
+                ['eventAction' => 'registration', 'eventDate' => '1995-08-14T04:00:00Z'],
+                ['eventAction' => 'expiration', 'eventDate' => '2026-08-13T04:00:00Z'],
+                ['eventAction' => 'last changed', 'eventDate' => '2025-08-14T10:00:00Z'],
+            ],
+            'entities' => [
+                [
+                    'handle' => '292',
+                    'roles' => ['registrar'],
+                    'vcardArray' => ['vcard', [
+                        ['version', [], 'text', '4.0'],
+                        ['fn', [], 'text', 'Example Registrar, Inc.'],
+                    ]],
+                ],
+            ],
+            'nameservers' => [
+                ['ldhName' => 'A.IANA-SERVERS.NET'],
+                ['ldhName' => 'B.IANA-SERVERS.NET'],
+            ],
+            'notices' => [
+                ['title' => 'Terms of Use', 'description' => ['Public RDAP data is rate limited.']],
+            ],
+        ]);
+        $this->app->instance(NetProbeRdapClient::class, $client);
+
+        $payload = ['domain' => 'Example.COM.'];
+
+        $this->postJson('/api/v1/netprobe/rdap', $payload)
+            ->assertOk()
+            ->assertJsonPath('data.domain', 'example.com')
+            ->assertJsonPath('data.registrar.name', 'Example Registrar, Inc.')
+            ->assertJsonPath('data.nameservers.0', 'a.iana-servers.net')
+            ->assertJsonPath('data.days_until_expiration', 48)
+            ->assertJsonPath('meta.cache_ttl_seconds', 21600)
+            ->assertJsonPath('meta.cached', false);
+
+        $this->postJson('/api/v1/netprobe/rdap', $payload)
+            ->assertOk()
+            ->assertJsonPath('meta.cached', true);
+
+        $this->assertSame(1, $client->calls);
+        $this->travelBack();
+    }
+
+    public function test_ssl_lookup_returns_certificate_summary_and_blocks_private_resolution(): void
+    {
+        $this->travelTo(Carbon::parse('2026-06-26 00:00:00 UTC'));
+
+        $resolver = new FakeNetProbeDnsResolver([
+            'A' => [
+                ['type' => 'A', 'ttl' => 120, 'ip' => '93.184.216.34'],
+            ],
+            'AAAA' => [],
+        ]);
+        $probe = new FakeNetProbeCertificateProbe([
+            'subject' => ['common_name' => 'example.com', 'organization' => 'Example Org'],
+            'issuer' => ['common_name' => 'Example CA', 'organization' => 'Example Trust'],
+            'serial_number' => 'ABC123',
+            'valid_from' => '2026-01-01T00:00:00.000000Z',
+            'valid_to' => '2026-07-26T00:00:00.000000Z',
+            'subject_alt_names' => ['example.com', 'www.example.com'],
+            'chain_count' => 2,
+            'fingerprint_sha256' => str_repeat('a', 64),
+        ]);
+        $this->app->instance(NetProbeDnsResolver::class, $resolver);
+        $this->app->instance(NetProbeCertificateProbe::class, $probe);
+
+        $this->postJson('/api/v1/netprobe/ssl', ['hostname' => 'Example.COM'])
+            ->assertOk()
+            ->assertJsonPath('data.hostname', 'example.com')
+            ->assertJsonPath('data.checked_addresses.0', '93.184.216.34')
+            ->assertJsonPath('data.issuer.common_name', 'Example CA')
+            ->assertJsonPath('data.days_until_expiration', 30)
+            ->assertJsonPath('data.matches_hostname', true)
+            ->assertJsonPath('meta.cache_ttl_seconds', 600)
+            ->assertJsonPath('meta.cached', false);
+
+        $this->postJson('/api/v1/netprobe/ssl', ['hostname' => 'Example.COM'])
+            ->assertOk()
+            ->assertJsonPath('meta.cached', true);
+
+        $this->assertSame(1, $probe->calls);
+
+        Cache::flush();
+        $this->app->instance(NetProbeDnsResolver::class, new FakeNetProbeDnsResolver([
+            'A' => [
+                ['type' => 'A', 'ttl' => 60, 'ip' => '10.0.0.5'],
+            ],
+            'AAAA' => [],
+        ]));
+
+        $this->postJson('/api/v1/netprobe/ssl', ['hostname' => 'internal.example.com'])
+            ->assertUnprocessable()
+            ->assertJsonValidationErrors('domain');
+
+        $this->travelBack();
+    }
+
     public function test_netprobe_public_rate_limit_is_applied(): void
     {
         Cache::flush();
@@ -123,5 +232,43 @@ class FakeNetProbeDnsResolver implements NetProbeDnsResolver
         $this->calls++;
 
         return $this->records[strtoupper($type)] ?? [];
+    }
+}
+
+class FakeNetProbeRdapClient implements NetProbeRdapClient
+{
+    public int $calls = 0;
+
+    /**
+     * @param array<string, mixed> $payload
+     */
+    public function __construct(private readonly array $payload)
+    {
+    }
+
+    public function lookupDomain(string $domain): array
+    {
+        $this->calls++;
+
+        return $this->payload;
+    }
+}
+
+class FakeNetProbeCertificateProbe implements NetProbeCertificateProbe
+{
+    public int $calls = 0;
+
+    /**
+     * @param array<string, mixed> $payload
+     */
+    public function __construct(private readonly array $payload)
+    {
+    }
+
+    public function inspect(string $hostname): array
+    {
+        $this->calls++;
+
+        return $this->payload;
     }
 }
