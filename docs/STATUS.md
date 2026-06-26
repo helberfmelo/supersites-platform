@@ -28,6 +28,8 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Sprint 0.3 quality gate monitorado apos correcao: `Quality Gate` run `28219370170`, status `success`.
 - Sprint 0.4 HostGator bootstrap commit publicado: `4e37690` (`chore: bootstrap hostgator resources`).
 - Sprint 0.4 quality gate monitorado: `Quality Gate` run `28219966897`, status `success`.
+- Sprint 0.4b VPS Redis runtime commit publicado: `b10df24` (`chore: provision vps redis runtime`).
+- Sprint 0.4b quality gate monitorado: `Quality Gate` run `28220884125`, status `success`.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
 - pnpm local via Corepack: `11.9.0`.
@@ -134,6 +136,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - HostGator HTTP smoke: 12/12 URLs fallback `/supersites/...` responderam HTTP 200 com placeholder.
 - HostGator post-CI validation: `scripts/validate-hostgator-bootstrap.ps1` passou apos o run `28219966897`.
 - VPS runtime smoke: `scripts/validate-vps-runtime.ps1` passou, confirmando servico Redis ativo, `PING` autenticado, bind local-only em `127.0.0.1:6381`, layout `/srv/supersites` e portas publicas Redis `6379`, `6380`, `6381` fechadas/filtradas.
+- VPS runtime post-CI smoke: `scripts/validate-vps-runtime.ps1` passou apos o run `28220884125`.
 
 ## Pendencias criticas
 
