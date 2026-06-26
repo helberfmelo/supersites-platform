@@ -41,4 +41,28 @@ class Site extends Model
     {
         return $this->hasMany(AuditLog::class);
     }
+
+    /**
+     * @return HasMany<DeploymentRecord, $this>
+     */
+    public function deploymentRecords(): HasMany
+    {
+        return $this->hasMany(DeploymentRecord::class);
+    }
+
+    /**
+     * @return HasMany<Incident, $this>
+     */
+    public function incidents(): HasMany
+    {
+        return $this->hasMany(Incident::class);
+    }
+
+    /**
+     * @return HasMany<OperationalTask, $this>
+     */
+    public function operationalTasks(): HasMany
+    {
+        return $this->hasMany(OperationalTask::class);
+    }
 }

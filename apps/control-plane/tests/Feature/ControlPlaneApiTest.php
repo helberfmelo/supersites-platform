@@ -67,6 +67,7 @@ class ControlPlaneApiTest extends TestCase
             ->assertJsonPath('data.email', $user->email)
             ->assertJsonPath('data.roles.0.slug', 'owner')
             ->assertJsonPath('data.permissions.0', 'audit.view')
-            ->assertJsonPath('data.permissions.4', 'users.manage');
+            ->assertJsonPath('data.permissions.1', 'dashboard.view')
+            ->assertJsonPath('data.permissions.6', 'users.manage');
     }
 }

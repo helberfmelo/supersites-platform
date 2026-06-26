@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PortfolioSiteSeeder::class,
             AccessControlSeeder::class,
+            DeploymentRecordSeeder::class,
+            OperationalTaskSeeder::class,
         ]);
 
         $user = User::factory()->create([

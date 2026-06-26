@@ -19,7 +19,27 @@ Versioned API routes live under `/api/v1`.
 - `GET /api/v1/me`: authenticated user, roles and effective permissions.
 - `GET /api/v1/sites`: portfolio site inventory for users with `sites.view`; creates an `api.sites.index` audit event.
 
-Initial seeders create 12 portfolio records, 5 permissions and 4 roles: `owner`, `operator`, `analyst` and `site-admin`.
+Initial seeders create 12 portfolio records, 7 permissions and 4 roles: `owner`, `operator`, `analyst` and `site-admin`.
+
+## Admin MVP
+
+The first admin surface is server-rendered Blade:
+
+- `GET /login`: session login form.
+- `POST /logout`: session logout.
+- `GET /admin`: operational dashboard.
+- `GET /admin/sites`: portfolio inventory.
+- `GET|POST /admin/sites/create|/admin/sites`: create site.
+- `GET|PUT /admin/sites/{site}/edit|/admin/sites/{site}`: edit site.
+
+Run locally:
+
+```powershell
+php artisan migrate --seed --force
+php artisan serve --host=127.0.0.1 --port=8013
+```
+
+Open `http://127.0.0.1:8013/admin`.
 
 ## Validation
 
@@ -27,6 +47,7 @@ Initial seeders create 12 portfolio records, 5 permissions and 4 roles: `owner`,
 composer validate --strict
 php artisan test
 php artisan route:list --path=api/v1
+php artisan route:list --path=admin
 php artisan route:list --path=health
 ```
 

@@ -132,6 +132,16 @@ This workstation was updated on 2026-06-26 and now loads both extensions.
 
 For local connection smoke, set `SUPERSITES_HEALTH_CHECK_CONNECTIONS=true` only in the ignored `.env`.
 
+Run the admin MVP:
+
+```powershell
+cd apps\control-plane
+php artisan migrate --seed --force
+php artisan serve --host=127.0.0.1 --port=8013
+```
+
+Open `http://127.0.0.1:8013/admin`. The seeded local owner account is for development only and comes from `DatabaseSeeder`/`UserFactory`; do not reuse it in production.
+
 ## Local smoke
 
 ```powershell

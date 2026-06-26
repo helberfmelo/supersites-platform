@@ -54,9 +54,20 @@ Laravel validation:
 cd apps/control-plane
 composer validate --strict
 php artisan test
+php artisan route:list --path=admin
 ```
 
 Laravel tests use SQLite in memory; local PHP must load `pdo_sqlite` and `sqlite3`.
+
+Run the local control plane:
+
+```powershell
+cd apps/control-plane
+php artisan migrate --seed --force
+php artisan serve --host=127.0.0.1 --port=8013
+```
+
+Open `http://127.0.0.1:8013/admin`.
 
 Local Docker smoke:
 

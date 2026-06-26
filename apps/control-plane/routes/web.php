@@ -1,11 +1,42 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SiteController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::middleware('guest')->group(function (): void {
+    Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+    Route::post('/login', [AuthenticatedSessionController::class, 'store'])
+        ->middleware('throttle:6,1')
+        ->name('login.store');
+});
+
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('logout');
+
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function (): void {
+    Route::get('/', DashboardController::class)
+        ->middleware('permission:dashboard.view')
+        ->name('dashboard');
+
+    Route::get('/sites', [SiteController::class, 'index'])
+        ->middleware('permission:sites.view')
+        ->name('sites.index');
+
+    Route::middleware('permission:sites.manage')->group(function (): void {
+        Route::get('/sites/create', [SiteController::class, 'create'])->name('sites.create');
+        Route::post('/sites', [SiteController::class, 'store'])->name('sites.store');
+        Route::get('/sites/{site}/edit', [SiteController::class, 'edit'])->name('sites.edit');
+        Route::put('/sites/{site}', [SiteController::class, 'update'])->name('sites.update');
+    });
 });
 
 Route::get('/health', function () {

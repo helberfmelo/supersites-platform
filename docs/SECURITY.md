@@ -22,6 +22,13 @@
 - GitHub Actions: secrets por environment/site.
 - Producao: cPanel/secret manager/cofre conforme disponibilidade.
 
+## Control plane admin
+
+- Admin MVP usa sessao Laravel, CSRF e throttle no POST de login.
+- Rotas `/admin` exigem autenticacao e middleware `permission` baseado nos slugs RBAC.
+- Acoes de login, dashboard e cadastro/edicao de sites geram `audit_logs`.
+- Contas seed locais existem apenas para desenvolvimento; producao deve ter credenciais reais em fluxo seguro e 2FA antes de go-live.
+
 ## Redis/VPS
 
 - Redis de producao inicial roda na VPS como `supersites-redis.service`.

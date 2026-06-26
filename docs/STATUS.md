@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, API base do control plane, o bootstrap HostGator inicial e o runtime Redis isolado na VPS foram criados. Ainda nao ha deploy real de aplicacao; a producao transitoria possui placeholders `noindex`, runtime Redis local-only na VPS e plano de deploy dry-run auditavel.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, API base e MVP admin do control plane, o bootstrap HostGator inicial e o runtime Redis isolado na VPS foram criados. Ainda nao ha deploy real de aplicacao; a producao transitoria possui placeholders `noindex`, runtime Redis local-only na VPS e plano de deploy dry-run auditavel.
 
 ## Estado local verificado
 
@@ -91,13 +91,19 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Sprint 1.2 criou paginas legais/editoriais do catalogo em cinco idiomas para `about`, `contact`, `privacy`, `cookies`, `terms`, `methodology` e `editorial-policy`, footer de links internos, `sitemap.xml` e Playwright visual smoke.
 - Sprint 1.3 criou pacotes TypeScript compartilhados para UI, i18n, SEO e consentimento; o catalogo passou a reutilizar `@supersites/i18n`, `@supersites/seo` e `@supersites/ui`.
 - Sprint 1.4 criou localmente a fundacao da API Laravel do control plane: rotas `/api/v1/me` e `/api/v1/sites`, migrations de `sites`, RBAC e `audit_logs`, seeders de portfolio/permissoes e testes feature para autenticacao, autorizacao, listagem e auditoria.
+- Sprint 1.5 criou localmente o MVP admin do control plane: login/logout, middleware RBAC `permission`, dashboard `/admin`, inventario/cadastro/edicao de sites, tabelas operacionais para deploys/incidentes/tarefas e smoke visual desktop/mobile.
 - Control plane inicial criado em `apps/control-plane` com Laravel `13.x`, PHP `^8.3` e `predis/predis`.
 - Health endpoint Laravel criado em `/health`, com modo app-only para CI/testes e modo de conexoes para smoke local contra Docker MySQL/Redis.
 - Control plane API base:
   - `sites` armazena 12 entradas do portfolio com URLs temporarias sob `https://opentshost.com/supersites/<slug>/`.
-  - RBAC inicial tem 5 permissoes (`sites.view`, `sites.manage`, `users.manage`, `audit.view`, `deployments.view`) e 4 roles (`owner`, `operator`, `analyst`, `site-admin`).
+  - RBAC inicial tem 7 permissoes (`dashboard.view`, `sites.view`, `sites.manage`, `users.manage`, `audit.view`, `deployments.view`, `operations.manage`) e 4 roles (`owner`, `operator`, `analyst`, `site-admin`).
   - Roles podem ser globais ou escopadas por site via `role_user.site_id`.
   - `audit_logs` usa ULID e registra a consulta autorizada de sites sem armazenar segredos.
+- Control plane admin MVP:
+  - URL local: `http://127.0.0.1:8013/admin`.
+  - Login local: usuario seed `owner@supersites.local` com a senha padrao do `UserFactory` apenas para ambiente local/dev.
+  - Dashboard mostra sites rastreados, AdSense readiness, incidentes abertos, tarefas abertas, ultimos deploys e auditoria recente.
+  - `deployment_records`, `incidents` e `operational_tasks` alimentam a primeira visao operacional.
 - Observacao: Docker Desktop tambem reativou containers existentes do `bigshopv4` por politica de restart; eles nao foram alterados por esta entrega. Portas do SuperSites foram isoladas para evitar conflito.
 
 ## Estado de producao verificado
@@ -160,7 +166,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 
 - Secret scan: `scripts/validate-no-secrets.ps1` passou sem achados fora de `docs/credentials`.
 - Structure scan: `scripts/validate-structure.ps1` passou.
-- Contagem local: 12 pastas em `apps/`, 12 pastas em `packages/`, 32 arquivos Markdown em `docs/` incluindo o inventario local ignorado.
+- Contagem local: 12 pastas em `apps/`, 12 pastas em `packages/`, 37 arquivos Markdown em `docs/` incluindo o inventario local ignorado.
 - Bootstrap local de bancos: `scripts/create-local-databases.ps1` validado com MySQL Docker em `127.0.0.1:3317`.
 - Docker health: `supersites-mysql`, `supersites-redis` e `supersites-mailpit` saudaveis.
 - Mailpit UI: HTTP 200 em `http://127.0.0.1:8035`.
@@ -218,6 +224,15 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - GitHub Actions `Quality Gate` run `28235256988` passou com repository safety, backend, pacotes, Nuxt preview e Playwright.
   - GitHub Actions `Deploy Dry Run` run `28235257018` passou.
   - Obstaculo contornado e resolvido: a validacao Laravel inicialmente falhou porque o PHP local nao carregava SQLite; as extensoes ja existiam no pacote WinGet e foram habilitadas no `php.ini`.
+- Sprint 1.5 local validation:
+  - `php artisan test` passou com 14 testes / 44 assertions em `apps/control-plane`.
+  - `php artisan migrate:fresh --seed --force` passou com SQLite em memoria, incluindo as tabelas operacionais.
+  - `php artisan route:list --path=admin` confirmou 6 rotas admin.
+  - `composer validate --strict` passou.
+  - Servidor local do control plane em `http://127.0.0.1:8013` respondeu `/login` HTTP 200 e `/health` HTTP 200 com app/database/redis `up`.
+  - Playwright local validou login e dashboard desktop sem overflow; screenshot ignorado em `artifacts/control-plane-dashboard-desktop.png`.
+  - Playwright local validou `/admin/sites` mobile autenticado sem overflow de pagina; screenshot ignorado em `artifacts/control-plane-sites-mobile.png`.
+  - Obstaculo contornado: a primeira tabela mobile nao transbordava, mas quebrava palavras; CSS ajustado para rolagem interna do painel e texto sem quebra artificial.
 
 ## Pendencias criticas
 

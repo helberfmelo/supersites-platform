@@ -26,6 +26,7 @@ $requiredPaths = @(
     "docs/ADR/0008-ci-cd-dry-run-foundation.md",
     "docs/ADR/0009-shared-foundation-packages.md",
     "docs/ADR/0010-control-plane-api-foundation.md",
+    "docs/ADR/0011-control-plane-blade-mvp.md",
     "docs/RUNBOOKS/CI_CD.md",
     "docs/RUNBOOKS/SPRINT_EXECUTION.md",
     "docs/RUNBOOKS/VPS_RUNTIME.md",
@@ -57,9 +58,16 @@ $requiredPaths = @(
     "apps/control-plane/bootstrap/app.php",
     "apps/control-plane/routes/api.php",
     "apps/control-plane/routes/web.php",
+    "apps/control-plane/app/Http/Controllers/Admin/DashboardController.php",
+    "apps/control-plane/app/Http/Controllers/Admin/SiteController.php",
     "apps/control-plane/app/Http/Controllers/Api/V1/CurrentUserController.php",
     "apps/control-plane/app/Http/Controllers/Api/V1/SiteIndexController.php",
+    "apps/control-plane/app/Http/Controllers/Auth/AuthenticatedSessionController.php",
+    "apps/control-plane/app/Http/Middleware/EnsurePermission.php",
     "apps/control-plane/app/Models/AuditLog.php",
+    "apps/control-plane/app/Models/DeploymentRecord.php",
+    "apps/control-plane/app/Models/Incident.php",
+    "apps/control-plane/app/Models/OperationalTask.php",
     "apps/control-plane/app/Models/Permission.php",
     "apps/control-plane/app/Models/Role.php",
     "apps/control-plane/app/Models/Site.php",
@@ -67,8 +75,19 @@ $requiredPaths = @(
     "apps/control-plane/database/migrations/2026_06_26_000100_create_sites_table.php",
     "apps/control-plane/database/migrations/2026_06_26_000110_create_access_control_tables.php",
     "apps/control-plane/database/migrations/2026_06_26_000120_create_audit_logs_table.php",
+    "apps/control-plane/database/migrations/2026_06_26_000130_create_operational_tables.php",
     "apps/control-plane/database/seeders/AccessControlSeeder.php",
+    "apps/control-plane/database/seeders/DeploymentRecordSeeder.php",
+    "apps/control-plane/database/seeders/OperationalTaskSeeder.php",
     "apps/control-plane/database/seeders/PortfolioSiteSeeder.php",
+    "apps/control-plane/resources/views/admin/dashboard.blade.php",
+    "apps/control-plane/resources/views/admin/sites/create.blade.php",
+    "apps/control-plane/resources/views/admin/sites/edit.blade.php",
+    "apps/control-plane/resources/views/admin/sites/index.blade.php",
+    "apps/control-plane/resources/views/auth/login.blade.php",
+    "apps/control-plane/resources/views/layouts/admin.blade.php",
+    "apps/control-plane/resources/views/welcome.blade.php",
+    "apps/control-plane/tests/Feature/AdminPanelTest.php",
     "apps/control-plane/tests/Feature/HealthTest.php",
     "apps/control-plane/tests/Feature/ControlPlaneApiTest.php",
     "apps/netprobe-atlas",
@@ -137,8 +156,8 @@ if ($missing.Count -gt 0) {
 }
 
 $adrCount = (Get-ChildItem -Path "docs/ADR" -Filter "*.md" -File | Measure-Object).Count
-if ($adrCount -lt 10) {
-    throw "Expected at least 10 ADR files, found $adrCount."
+if ($adrCount -lt 11) {
+    throw "Expected at least 11 ADR files, found $adrCount."
 }
 
 Write-Host "Required repository structure is present."

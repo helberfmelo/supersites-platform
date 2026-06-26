@@ -65,6 +65,18 @@ Sprint 1.4 estabelece a API base do control plane em Laravel:
 
 O control plane nao deve registrar segredos, payloads sensiveis de ferramentas ou dados de usuario desnecessarios em `audit_logs`. Permissoes publicas devem usar slugs estaveis para permitir migracao futura para pacote dedicado sem quebrar contratos.
 
+## Control plane MVP
+
+Sprint 1.5 inicia a interface administrativa com Laravel Blade antes de adicionar Inertia/Vue:
+
+- login/logout por sessao, com throttle no POST de login;
+- middleware `permission` usando os slugs RBAC;
+- dashboard `/admin` com snapshot de sites, deploys, incidentes, tarefas e auditoria;
+- inventario `/admin/sites` com criacao/edicao de sites;
+- tabelas `deployment_records`, `incidents` e `operational_tasks` para o primeiro painel operacional.
+
+Esse MVP e intencionalmente server-rendered e utilitario. Vue/Inertia fica reservado para fluxos admin que precisem de interatividade rica.
+
 ## Sites e pastas
 
 | App | Pasta | Papel |

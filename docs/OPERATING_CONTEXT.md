@@ -49,6 +49,7 @@ Padroes aproveitados:
 - A partir da Sprint 1.3, o `Quality Gate` executa `pnpm test:packages` e `pnpm typecheck:packages` para `@supersites/ui`, `@supersites/i18n`, `@supersites/seo` e `@supersites/consent` antes dos testes/build Nuxt.
 - Contorno Sprint 1.3: o filtro pnpm generico `./packages/*` nao selecionou workspaces no Windows; os scripts raiz usam filtros explicitos por nome de pacote.
 - A partir da Sprint 1.4, o control plane expõe API versionada em `/api/v1`, com endpoints iniciais `/me` e `/sites`, RBAC global/site-scoped e audit log. Testes Laravel usam SQLite em memoria; `pdo_sqlite` e `sqlite3` devem estar habilitados no PHP local/CI.
+- A partir da Sprint 1.5, o control plane tem MVP admin em Blade: `/login`, `/admin` e `/admin/sites`, protegido por sessao e RBAC. URL local validada: `http://127.0.0.1:8013/admin`.
 - Front visual local do catalogo: `http://127.0.0.1:3001` via `pnpm dev:supersite`.
 
 ## Runtime VPS SuperSites
