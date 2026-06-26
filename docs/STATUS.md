@@ -26,6 +26,8 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Sprint 0.3 primeiro run com app stack: `Quality Gate` run `28219339051`, status `failure`; causa: cache `pnpm` do `actions/setup-node` executou antes do Corepack disponibilizar o binario `pnpm`.
 - Correcao de CI publicada: `aa2bf02` (`ci: enable pnpm after node setup`), removendo o cache prematuro de pnpm.
 - Sprint 0.3 quality gate monitorado apos correcao: `Quality Gate` run `28219370170`, status `success`.
+- Sprint 0.4 HostGator bootstrap commit publicado: `4e37690` (`chore: bootstrap hostgator resources`).
+- Sprint 0.4 quality gate monitorado: `Quality Gate` run `28219966897`, status `success`.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
 - pnpm local via Corepack: `11.9.0`.
@@ -117,6 +119,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - GitHub Actions: run `28219370170` passou com secret scan, structure scan, Nuxt tests, Nuxt build, Composer install, Laravel env prep e Laravel tests.
 - HostGator cPanel validation: 12/12 bancos, 12/12 usuarios e 12/12 pastas confirmados por API.
 - HostGator HTTP smoke: 12/12 URLs fallback `/supersites/...` responderam HTTP 200 com placeholder.
+- HostGator post-CI validation: `scripts/validate-hostgator-bootstrap.ps1` passou apos o run `28219966897`.
 
 ## Pendencias criticas
 
