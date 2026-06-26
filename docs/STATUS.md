@@ -103,12 +103,15 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `Deploy Dry Run` passou no run `28256931154`; artifact upload continuou bloqueado pela quota GitHub Actions, mas o plano ficou no job summary.
   - O placeholder remoto `https://opentshost.com/supersites/netprobe-atlas/` permanece preservado/noindex; nenhum deploy real do NetProbe ou AdSense foi ativado nesta sprint.
 - Sprint 2.6 upgrade MVP NetProbe:
+  - Commit publicado: `8a98881` (`feat: add netprobe monitoring mvp`).
   - ADR `0015-netprobe-monitoring-mvp` registra a decisao de manter o MVP de monitores dentro do control plane ate existir backend/deploy/billing dedicado.
   - Tabelas adicionadas: `net_probe_monitors`, `net_probe_monitor_checks` e `net_probe_alerts`.
   - API autenticada inicial adicionada em `/api/v1/netprobe/monitors` para listar, criar, consultar e executar manualmente monitores, protegida por `operations.manage`.
   - Monitores suportados: DNS, SSL e dominio/RDAP, com historico de checks, status `ok/warning/failed`, quota `free_preview`, auditoria com `target_hash` e sem eventos externos de analytics.
   - Job `RunNetProbeMonitorCheck` usa a fila `netprobe-monitors`, `tries=3` e backoff `60/300/900`; comando `netprobe:dispatch-due-monitors` fica agendado a cada 5 minutos.
   - Alertas por e-mail sao enfileiraveis; webhooks existem atras de flag e exigem HTTPS publico validado antes de entrega.
+  - `Quality Gate` passou no run `28257908283`, incluindo repository safety, backend e summary; os jobs frontend foram ignorados por path-aware.
+  - `Deploy Dry Run` passou no run `28257908248`; artifact upload continuou bloqueado pela quota GitHub Actions, mas o plano ficou no job summary.
   - Nenhum billing real, checkout, AdSense, webhook externo padrao ou deploy de worker em producao foi ativado nesta sprint.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
@@ -411,6 +414,8 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - Pacotes compartilhados validados: `pnpm test:packages` passou com 22 testes e `pnpm typecheck:packages` passou nos 5 pacotes.
   - Regressao Nuxt NetProbe validada: `pnpm test:netprobe` passou com 7 testes.
   - `pnpm validate:structure` e `pnpm deploy:dry-run` passaram.
+  - GitHub Actions `Quality Gate` run `28257908283` passou com repository safety, backend e summary; os jobs frontend foram ignorados por path-aware.
+  - GitHub Actions `Deploy Dry Run` run `28257908248` passou; artifact upload segue bloqueado pela quota GitHub Actions, mas o plano permaneceu no job summary.
 
 ## Pendencias criticas
 
