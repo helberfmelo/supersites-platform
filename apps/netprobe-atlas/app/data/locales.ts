@@ -1,0 +1,46 @@
+import {
+  buildLanguageOptions,
+  defaultLocale,
+  getLocaleDefinition,
+  isLocaleCode,
+  localizedHomePath,
+  localizedPath,
+  normalizeLocale,
+  toHreflang,
+  toHtmlLang,
+  type LocaleCode,
+} from '@supersites/i18n'
+
+export {
+  buildLanguageOptions,
+  defaultLocale,
+  getLocaleDefinition,
+  isLocaleCode,
+  localizedHomePath,
+  localizedPath,
+  normalizeLocale,
+  toHreflang,
+  toHtmlLang,
+  type LanguageOption,
+  type LocaleCode,
+} from '@supersites/i18n'
+
+export const publicLocaleCodes = ['en'] satisfies LocaleCode[]
+
+export function isPublicLocaleCode(value: unknown): value is LocaleCode {
+  return isLocaleCode(value) && publicLocaleCodes.includes(value)
+}
+
+export function normalizePublicLocale(value: unknown): LocaleCode | null {
+  const locale = normalizeLocale(value)
+
+  return locale && isPublicLocaleCode(locale) ? locale : null
+}
+
+export function localizedToolPath(locale: LocaleCode, slug: string): string {
+  return localizedPath(locale, 'tools', slug)
+}
+
+export function localizedContentPath(locale: LocaleCode, slug: string): string {
+  return localizedPath(locale, slug)
+}

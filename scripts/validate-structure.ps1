@@ -8,6 +8,7 @@ $requiredPaths = @(
     ".github/workflows/deploy-dry-run.yml",
     "package.json",
     "playwright.config.ts",
+    "playwright.netprobe.config.ts",
     "pnpm-workspace.yaml",
     "pnpm-lock.yaml",
     "docs/MEGA_PROMPT_SUPERSITES.md",
@@ -152,9 +153,35 @@ $requiredPaths = @(
     "scripts/prepare-deploy-dry-run.ps1",
     "scripts/sync-github-environments.ps1",
     "scripts/validate-hostgator-bootstrap.ps1",
+    "scripts/validate-netprobe-preview.ps1",
     "scripts/validate-supersite-preview.ps1",
     "scripts/validate-vps-runtime.ps1"
 )
+
+$netprobePaths = @(
+    "apps/netprobe-atlas/package.json",
+    "apps/netprobe-atlas/nuxt.config.ts",
+    "apps/netprobe-atlas/app/app.vue",
+    "apps/netprobe-atlas/app/components/LanguageNav.vue",
+    "apps/netprobe-atlas/app/components/LegalFooter.vue",
+    "apps/netprobe-atlas/app/components/NetProbeHome.vue",
+    "apps/netprobe-atlas/app/components/SiteHeader.vue",
+    "apps/netprobe-atlas/app/data/copy.ts",
+    "apps/netprobe-atlas/app/data/locales.ts",
+    "apps/netprobe-atlas/app/data/pages.ts",
+    "apps/netprobe-atlas/app/data/routes.ts",
+    "apps/netprobe-atlas/app/data/tools.ts",
+    "apps/netprobe-atlas/app/pages/index.vue",
+    "apps/netprobe-atlas/app/pages/[locale]/[page].vue",
+    "apps/netprobe-atlas/app/pages/[locale]/index.vue",
+    "apps/netprobe-atlas/app/pages/[locale]/tools/[slug].vue",
+    "apps/netprobe-atlas/app/utils/analytics.ts",
+    "apps/netprobe-atlas/server/routes/sitemap.xml.ts",
+    "apps/netprobe-atlas/tests/netprobe.test.ts",
+    "tests/e2e/netprobe.spec.ts"
+)
+
+$requiredPaths += $netprobePaths
 
 $missing = @()
 foreach ($path in $requiredPaths) {
