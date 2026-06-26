@@ -1,6 +1,6 @@
 # ADR 0002 - HostGator transitional deploy
 
-Status: Proposed
+Status: Accepted
 
 ## Context
 
@@ -23,4 +23,5 @@ Use HostGator as the transitional production target, but validate the URL mappin
 - Avoids unexpected overwrite of existing `public_html` content.
 - Makes the mapping ambiguity explicit before deploy.
 - Requires a bootstrap sprint before public launch.
-
+- Sprint 0.4 validated the safe fallback URL family under `/supersites/...` with HTTP 200 placeholders.
+- Direct URLs such as `/netprobe-atlas/` still return 404 and need a separate rewrite/alias/symlink decision before they are treated as public canonical paths.

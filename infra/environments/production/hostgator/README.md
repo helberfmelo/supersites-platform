@@ -19,22 +19,24 @@ Production Redis should run on the other HostGator VPS/VPN server or a managed R
 
 ## Planned cPanel database names
 
+Status on 2026-06-26: databases and matching app users were created by `scripts/hostgator-bootstrap.ps1`. Passwords are stored only in ignored local credential files.
+
 cPanel database names should be created with short suffixes to stay readable:
 
-| App | cPanel database |
-|---|---|
-| SuperSites Hub | `opents62_ss_hub` |
-| Control Plane | `opents62_ss_control` |
-| NetProbe Atlas | `opents62_ss_netprobe` |
-| CalcHarbor | `opents62_ss_calc` |
-| DevUtility Lab | `opents62_ss_devutils` |
-| TimeNexus | `opents62_ss_time` |
-| QRRoute | `opents62_ss_qrroute` |
-| InvoiceCraft | `opents62_ss_invoice` |
-| MailHealth | `opents62_ss_mail` |
-| SitePulse Lab | `opents62_ss_pulse` |
-| PixelBatch | `opents62_ss_pixel` |
-| DocShift | `opents62_ss_docshift` |
+| App | cPanel database | cPanel user |
+|---|---|---|
+| SuperSites Hub | `opents62_ss_hub` | `opents62_sshub` |
+| Control Plane | `opents62_ss_control` | `opents62_ssctrl` |
+| NetProbe Atlas | `opents62_ss_netprobe` | `opents62_ssnet` |
+| CalcHarbor | `opents62_ss_calc` | `opents62_sscalc` |
+| DevUtility Lab | `opents62_ss_devutils` | `opents62_ssdev` |
+| TimeNexus | `opents62_ss_time` | `opents62_sstime` |
+| QRRoute | `opents62_ss_qrroute` | `opents62_ssqr` |
+| InvoiceCraft | `opents62_ss_invoice` | `opents62_ssinv` |
+| MailHealth | `opents62_ss_mail` | `opents62_ssmail` |
+| SitePulse Lab | `opents62_ss_pulse` | `opents62_sspuls` |
+| PixelBatch | `opents62_ss_pixel` | `opents62_sspix` |
+| DocShift | `opents62_ss_docshift` | `opents62_ssdoc` |
 
 Use separate DB users if cPanel limits allow it; otherwise document the least-privilege compromise and revisit.
 

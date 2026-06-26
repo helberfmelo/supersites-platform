@@ -27,11 +27,16 @@ Data-base: 2026-06-26
 | First GitHub Actions run status | Passed |
 | GitHub Actions warnings remediated | 1 |
 | Branch protection status | Blocked by GitHub plan |
-| Remote resources mutated | 1 |
-| HostGator resources mutated | 0 |
+| Remote resource categories mutated | 2 |
+| HostGator folders created | 12 |
+| HostGator databases created | 12 |
+| HostGator database users created | 12 |
+| HostGator placeholders published | 12 |
+| HostGator crons created | 0 |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
-| Public production smoke for `/supersites/` | 404 |
+| Public production smoke for `/supersites/` | 200 |
+| Direct `/<site-folder>` mapping smoke | 404 pending rewrite |
 | Secret scan outside `docs/credentials` | Passed |
 | Structure scan | Passed |
 

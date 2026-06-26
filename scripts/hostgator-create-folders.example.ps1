@@ -2,7 +2,7 @@ param(
     [string]$RemoteBase = "/home1/opents62/public_html/supersites"
 )
 
-Write-Host "Example only. Execute folder creation through cPanel terminal/SSH after roadmap approval."
+Write-Host "Example only. Sprint 0.4 automation now lives in scripts/hostgator-bootstrap.ps1."
 Write-Host "Remote base: $RemoteBase"
 Write-Host @"
 mkdir -p "$RemoteBase" \
@@ -18,4 +18,3 @@ mkdir -p "$RemoteBase" \
   "$RemoteBase/pixelbatch" \
   "$RemoteBase/docshift"
 "@
-

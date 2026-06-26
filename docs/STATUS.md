@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI e os primeiros esqueletos Nuxt/Laravel foram criados. Ainda nao ha deploy ativo nem recursos HostGator de producao provisionados.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI, os primeiros esqueletos Nuxt/Laravel e o bootstrap HostGator inicial foram criados. Ainda nao ha deploy real de aplicacao; a producao transitoria possui apenas placeholders `noindex`.
 
 ## Estado local verificado
 
@@ -35,6 +35,10 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - HostGator cPanel inventariado e porta `2083` acessivel por TCP em 2026-06-26. Login cPanel/API ainda nao foi validado para evitar mutacao externa antes do gate.
 - HostGator cPanel API validada em modo leitura em 2026-06-26. `ServerInformation/get_information` respondeu com status 1; servicos listados: `cpanellogd`, `cpsrvd`, `ftpd`, `imap`, `named`, `queueprocd`, `spamd`. Nenhum servico Redis foi listado.
 - HostGator cPanel `Features/list_features` validado em modo leitura em 2026-06-26; a lista de features do usuario nao contem Redis.
+- HostGator cPanel MySQL restrictions validado em 2026-06-26: prefixo obrigatorio `opents62_`, limite de database name 64 e limite de username 32.
+- HostGator Sprint 0.4 provisionou 12 pastas, 12 bancos, 12 usuarios MySQL e 12 placeholders `index.html` `noindex` sob `/home1/opents62/public_html/supersites/`.
+- Senhas dos usuarios MySQL de producao foram geradas localmente e salvas somente no arquivo ignorado `docs/credentials/hostgator-db-users.local.json`.
+- Nenhum cron HostGator foi criado na Sprint 0.4 porque ainda nao ha codigo executavel de scheduler/worker publicado.
 - Redis em producao: necessario para a plataforma completa, mas nao suportado/exposto na conta cPanel atual. Ver `docs/ADR/0004-redis-production-placement.md`.
 - VPS HostGator candidata localizada nos documentos do projeto `D:\Projetos\bigshop360` em 2026-06-26. Fontes: `docs/deploy_runbook.md`, `deploy/vps/README.md`, `docs/architecture_infrastructure.md` e `.github/workflows/deploy-vps.yml`.
 - VPS candidata: HostGator `VPS OCI NVMe 4`, IP `129.121.37.220`, SSH `22022`, usuario operacional documentado `root` para deploy/base e usuario de processo `bigshop360` para a aplicacao de referencia.
@@ -56,8 +60,21 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 ## Estado de producao verificado
 
 - `opentshost.com` responde em HTTPS.
-- `https://opentshost.com/supersites/` retornou `404` em 2026-06-26.
-- A pasta remota `/home1/opents62/public_html/supersites/` ainda nao foi confirmada por login remoto nesta entrega.
+- `https://opentshost.com/supersites/` retornava `404` antes da Sprint 0.4 e passou a responder HTTP 200 com placeholder `noindex`.
+- URLs fallback com placeholder HTTP 200 validadas em 2026-06-26:
+  - `https://opentshost.com/supersites/`
+  - `https://opentshost.com/supersites/control-plane/`
+  - `https://opentshost.com/supersites/netprobe-atlas/`
+  - `https://opentshost.com/supersites/calcharbor/`
+  - `https://opentshost.com/supersites/devutility-lab/`
+  - `https://opentshost.com/supersites/timenexus/`
+  - `https://opentshost.com/supersites/qrroute/`
+  - `https://opentshost.com/supersites/invoicecraft/`
+  - `https://opentshost.com/supersites/mailhealth/`
+  - `https://opentshost.com/supersites/sitepulse-lab/`
+  - `https://opentshost.com/supersites/pixelbatch/`
+  - `https://opentshost.com/supersites/docshift/`
+- Caminhos publicos desejados diretos, como `https://opentshost.com/netprobe-atlas/` e `https://opentshost.com/calcharbor/`, ainda retornam 404. Rewrite/alias/symlink raiz fica pendente para evitar interferencia no conteudo atual de `public_html`.
 - VPS BigShop360 validada sem mutacao em 2026-06-26:
   - DNS `api.bigshophost.com` aponta para `129.121.37.220`.
   - Portas externas abertas: `80`, `443`, `8084`, `22022` e `3100`.
@@ -81,6 +98,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - `apps/control-plane` com Laravel, `.env.example`, migrations padrao e endpoint de saude.
 - `scripts/validate-local-stack.ps1` para smoke local de Docker e control plane.
 - ADR `0006-local-stack-scaffold.md` registrando a decisao de stack local.
+- `scripts/hostgator-bootstrap.ps1` para provisionamento idempotente de pastas, bancos, usuarios, privilegios e placeholders na HostGator.
 
 ## Validacao desta entrega
 
@@ -97,11 +115,13 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Laravel composer validate: passou em modo strict.
 - Local stack smoke: `scripts/validate-local-stack.ps1` passou com Docker MySQL, Redis, Mailpit e `/health`.
 - GitHub Actions: run `28219370170` passou com secret scan, structure scan, Nuxt tests, Nuxt build, Composer install, Laravel env prep e Laravel tests.
+- HostGator cPanel validation: 12/12 bancos, 12/12 usuarios e 12/12 pastas confirmados por API.
+- HostGator HTTP smoke: 12/12 URLs fallback `/supersites/...` responderam HTTP 200 com placeholder.
 
 ## Pendencias criticas
 
 - Resolver branch protection de `main` quando houver GitHub Pro, repositorio publico ou alternativa aprovada de ruleset/organizacao.
-- Criar pastas, bancos e crons na HostGator depois do gate aprovado.
+- Definir se o mapeamento publico direto `https://opentshost.com/<site-folder>` sera feito por rewrite, alias, symlink controlado ou ajuste de document root.
 - Definir/acessar o outro servidor HostGator VPS/VPN para Redis, filas, workers, Horizon e monitoramentos antes de lancar NetProbe/monitoramento pago.
 - Antes de provisionar Redis/filas na VPS candidata, validar segregacao de processos, firewall e impacto sobre o BigShop360.
 - Definir estrategia tecnica de URL raiz: `opentshost.com` apontando para conteudo em `/public_html/supersites/`.

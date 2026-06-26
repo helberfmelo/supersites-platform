@@ -18,6 +18,7 @@ A definir apos Sprint 0.5. Deve usar secrets separados, banco separado e dominio
 - Catalogo desejado: `https://opentshost.com/`.
 - Sites temporarios desejados: `https://opentshost.com/<site-folder>`.
 - Fallback tecnico a validar: `https://opentshost.com/supersites/<site-folder>`.
+- Status em 2026-06-26: fallback tecnico `/supersites/...` provisionado com placeholders `noindex` e HTTP 200; paths diretos `/<site-folder>` ainda retornam 404 e precisam de rewrite/alias/symlink controlado.
 
 ## Production runtime VPS candidata
 
@@ -32,6 +33,8 @@ Referencia: `infra/environments/production/vps/README.md`.
 - SSH direto ainda nao validado localmente; secrets existem no GitHub do BigShop360, mas valores nao sao recuperaveis.
 
 ## Remote folders planejados
+
+Status em 2026-06-26: pastas provisionadas na HostGator.
 
 | App | Remote folder |
 |---|---|

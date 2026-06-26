@@ -58,7 +58,9 @@ $requiredPaths = @(
     "infra/docker/compose.local.yml",
     "infra/environments/local/databases.md",
     "infra/environments/production/hostgator/README.md",
-    "infra/environments/production/vps/README.md"
+    "infra/environments/production/vps/README.md",
+    "scripts/hostgator-bootstrap.ps1",
+    "scripts/validate-hostgator-bootstrap.ps1"
 )
 
 $missing = @()

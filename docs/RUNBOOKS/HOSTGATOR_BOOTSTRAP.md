@@ -11,6 +11,8 @@ Execute only after roadmap approval.
 
 ## Remote folders
 
+Status on 2026-06-26: created and confirmed by cPanel API.
+
 Create:
 
 ```text
@@ -32,9 +34,17 @@ Create:
 
 Use one database per app/site. cPanel prefixes database names with `opents62_`; planned suffixes are in `infra/environments/production/hostgator/README.md`.
 
-Automation draft: `scripts/hostgator-create-databases.ps1`.
+Automation: `scripts/hostgator-bootstrap.ps1`.
+Validation automation: `scripts/validate-hostgator-bootstrap.ps1`.
 
 Reference checked: cPanel UAPI `Mysql::create_database`. Avoid deprecated API 2 for database creation.
+
+Status on 2026-06-26:
+
+- 12 databases created.
+- 12 database users created.
+- Privileges assigned per app database.
+- Generated passwords stored only in ignored local file `docs/credentials/hostgator-db-users.local.json`.
 
 ## Crons
 
@@ -47,6 +57,8 @@ Do not create cron until there is executable code. Planned cron classes:
 
 The cPanel cron API documentation currently exposes API 2 functions and marks that API family as deprecated. Prefer cPanel UI or SSH crontab during the first bootstrap, then document the exact method used.
 
+Status on 2026-06-26: no remote crons created because there is no deployed scheduler/worker code yet.
+
 ## Validation
 
 - cPanel folder listing confirms folders.
@@ -54,3 +66,18 @@ The cPanel cron API documentation currently exposes API 2 functions and marks th
 - Database list confirms all DBs.
 - Cron list confirms only planned entries.
 - No secrets printed in logs.
+
+Validated fallback URLs on 2026-06-26:
+
+- `https://opentshost.com/supersites/`
+- `https://opentshost.com/supersites/control-plane/`
+- `https://opentshost.com/supersites/netprobe-atlas/`
+- `https://opentshost.com/supersites/calcharbor/`
+- `https://opentshost.com/supersites/devutility-lab/`
+- `https://opentshost.com/supersites/timenexus/`
+- `https://opentshost.com/supersites/qrroute/`
+- `https://opentshost.com/supersites/invoicecraft/`
+- `https://opentshost.com/supersites/mailhealth/`
+- `https://opentshost.com/supersites/sitepulse-lab/`
+- `https://opentshost.com/supersites/pixelbatch/`
+- `https://opentshost.com/supersites/docshift/`
