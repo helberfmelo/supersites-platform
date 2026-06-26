@@ -21,6 +21,8 @@ $requiredPaths = @(
     "docs/METRICS.md",
     "docs/HUMAN_ACTION_REQUIRED.md",
     "docs/RUNBOOKS/SPRINT_EXECUTION.md",
+    "docs/RUNBOOKS/VPS_RUNTIME.md",
+    "docs/ADR/0007-vps-runtime-isolation.md",
     "apps/supersite",
     "apps/supersite/package.json",
     "apps/supersite/nuxt.config.ts",
@@ -60,7 +62,8 @@ $requiredPaths = @(
     "infra/environments/production/hostgator/README.md",
     "infra/environments/production/vps/README.md",
     "scripts/hostgator-bootstrap.ps1",
-    "scripts/validate-hostgator-bootstrap.ps1"
+    "scripts/validate-hostgator-bootstrap.ps1",
+    "scripts/validate-vps-runtime.ps1"
 )
 
 $missing = @()
@@ -76,8 +79,8 @@ if ($missing.Count -gt 0) {
 }
 
 $adrCount = (Get-ChildItem -Path "docs/ADR" -Filter "*.md" -File | Measure-Object).Count
-if ($adrCount -lt 4) {
-    throw "Expected at least 4 ADR files, found $adrCount."
+if ($adrCount -lt 7) {
+    throw "Expected at least 7 ADR files, found $adrCount."
 }
 
 Write-Host "Required repository structure is present."

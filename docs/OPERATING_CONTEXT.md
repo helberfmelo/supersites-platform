@@ -35,6 +35,16 @@ Padroes aproveitados:
 - Publicacao por FTP/SSH deve preservar `.env`, evitar wipe remoto total e executar smoke pos-deploy.
 - Commits pequenos, push e monitoramento de deploy sao obrigatorios quando uma sprint for aprovada para execucao.
 
+## Runtime VPS SuperSites
+
+- A VPS HostGator `129.121.37.220:22022` foi aprovada e validada para runtime SuperSites inicial.
+- Acesso SSH local validado com `$HOME/.ssh/id_ed25519_vps_hostgator`.
+- Redis SuperSites roda como `supersites-redis.service`.
+- Redis deve ouvir somente em `127.0.0.1:6381`; portas publicas Redis devem permanecer fechadas/filtradas.
+- Credenciais Redis ficam somente em `docs/credentials/vps-redis.local.json` e inventario local ignorado.
+- Nao alterar `/srv/bigshop360`, servicos BigShop360, Nginx existente ou bancos BigShop360 durante operacao SuperSites.
+- Validacao obrigatoria apos mudancas de runtime: `scripts/validate-vps-runtime.ps1`.
+
 ## Politica de execucao externa
 
 Antes da aprovacao formal do roadmap, executar apenas trabalho local reversivel neste projeto. Nao criar bancos HostGator, crons remotos, repositorios GitHub remotos, DNS, AdSense, Google Cloud, billing ou deploy produtivo.
@@ -52,4 +62,3 @@ Registrar em `docs/HUMAN_ACTION_REQUIRED.md` quando houver:
 - escolha final de beneficiario legal AdSense;
 - criacao/alteracao de perfil de pagamentos;
 - mudanca DNS com risco de interromper e-mail/producao sem rollback claro.
-

@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI, os primeiros esqueletos Nuxt/Laravel e o bootstrap HostGator inicial foram criados. Ainda nao ha deploy real de aplicacao; a producao transitoria possui apenas placeholders `noindex`.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI, os primeiros esqueletos Nuxt/Laravel, o bootstrap HostGator inicial e o runtime Redis isolado na VPS foram criados. Ainda nao ha deploy real de aplicacao; a producao transitoria possui placeholders `noindex` e runtime Redis local-only na VPS.
 
 ## Estado local verificado
 
@@ -42,10 +42,18 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Senhas dos usuarios MySQL de producao foram geradas localmente e salvas somente no arquivo ignorado `docs/credentials/hostgator-db-users.local.json`.
 - Nenhum cron HostGator foi criado na Sprint 0.4 porque ainda nao ha codigo executavel de scheduler/worker publicado.
 - Redis em producao: necessario para a plataforma completa, mas nao suportado/exposto na conta cPanel atual. Ver `docs/ADR/0004-redis-production-placement.md`.
-- VPS HostGator candidata localizada nos documentos do projeto `D:\Projetos\bigshop360` em 2026-06-26. Fontes: `docs/deploy_runbook.md`, `deploy/vps/README.md`, `docs/architecture_infrastructure.md` e `.github/workflows/deploy-vps.yml`.
-- VPS candidata: HostGator `VPS OCI NVMe 4`, IP `129.121.37.220`, SSH `22022`, usuario operacional documentado `root` para deploy/base e usuario de processo `bigshop360` para a aplicacao de referencia.
+- VPS HostGator localizada nos documentos do projeto `D:\Projetos\bigshop360` em 2026-06-26. Fontes: `docs/deploy_runbook.md`, `deploy/vps/README.md`, `docs/architecture_infrastructure.md` e `.github/workflows/deploy-vps.yml`.
+- VPS HostGator: `VPS OCI NVMe 4`, IP `129.121.37.220`, SSH `22022`, usuario operacional documentado `root` para deploy/base e usuario de processo `bigshop360` para a aplicacao de referencia.
 - GitHub secrets do repo `helberfmelo/bigshop360` listados em modo leitura em 2026-06-26; ha secrets de SSH/VPS cadastrados, mas valores nao sao recuperaveis pelo GitHub CLI. Nenhum valor secreto foi copiado para documentacao versionada.
-- SSH direto para `root@129.121.37.220:22022` em `BatchMode` falhou com `Permission denied` usando as chaves locais atuais; conectividade TCP da porta SSH esta ok.
+- SSH direto para `root@129.121.37.220:22022` em `BatchMode` foi validado em 2026-06-26 usando a chave local `$HOME/.ssh/id_ed25519_vps_hostgator`.
+- VPS HostGator pos-provisionamento SuperSites:
+  - OS AlmaLinux `9.8`, kernel Linux `5.14.0-611.54.3.el9_7.x86_64`.
+  - Redis `6.2.22` instalado.
+  - Servico `supersites-redis.service` ativo e habilitado.
+  - Redis SuperSites ouvindo somente em `127.0.0.1:6381`.
+  - Usuario/grupo `supersites` criado.
+  - Layout SuperSites criado em `/srv/supersites`.
+  - Dados Redis em `/var/lib/supersites-redis` e logs em `/var/log/supersites`.
 - Tentativa de criar bancos locais via `scripts/create-local-databases.ps1`: `root` sem senha foi recusado. A senha local historica encontrada/confirmada nos projetos de referencia para `root` tambem foi recusada pela instancia Windows ativa `MySQL92` em 2026-06-26. Rerodar com a credencial atual do `MySQL92`, outro usuario local com permissao, ou iniciar MySQL via Docker na Sprint 0.3.
 - Docker Desktop iniciado em 2026-06-26.
 - Stack local SuperSites criada via `infra/docker/compose.local.yml`.
@@ -84,7 +92,11 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - Staging web `http://129.121.37.220:8084/bigshop360` respondeu HTTP 200.
   - Health publico `https://api.bigshophost.com/bigshop360/api/v1/health` respondeu HTTP 200 com status de aplicacao `degraded`: `api=up`, `database=up`, `runtime=down`, `providers=skipped`.
   - Backend direto `http://129.121.37.220:3100/api/v1/health` respondeu HTTP 200, apesar dos documentos do BigShop360 indicarem backend local em `127.0.0.1:3100`; tratar como observacao de seguranca antes de reutilizar a VPS para SuperSites.
-- Nenhuma alteracao remota foi executada nesta entrega.
+- Sprint 0.4b provisionou Redis SuperSites isolado na VPS sem alterar paths/servicos do BigShop360:
+  - `supersites-redis.service` ativo.
+  - Redis autenticado respondeu `PONG` em `127.0.0.1:6381`.
+  - Portas publicas Redis `6379`, `6380` e `6381` testadas como fechadas/filtradas.
+  - Validacao versionada: `scripts/validate-vps-runtime.ps1`.
 
 ## Estrutura local criada nesta entrega
 
@@ -101,12 +113,13 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - `scripts/validate-local-stack.ps1` para smoke local de Docker e control plane.
 - ADR `0006-local-stack-scaffold.md` registrando a decisao de stack local.
 - `scripts/hostgator-bootstrap.ps1` para provisionamento idempotente de pastas, bancos, usuarios, privilegios e placeholders na HostGator.
+- `scripts/validate-vps-runtime.ps1` para validar SSH, Redis local-only na VPS, layout SuperSites e portas Redis publicas fechadas.
 
 ## Validacao desta entrega
 
 - Secret scan: `scripts/validate-no-secrets.ps1` passou sem achados fora de `docs/credentials`.
 - Structure scan: `scripts/validate-structure.ps1` passou.
-- Contagem local: 12 pastas em `apps/`, 12 pastas em `packages/`, 30 arquivos Markdown em `docs/` incluindo o inventario local ignorado.
+- Contagem local: 12 pastas em `apps/`, 12 pastas em `packages/`, 32 arquivos Markdown em `docs/` incluindo o inventario local ignorado.
 - Bootstrap local de bancos: `scripts/create-local-databases.ps1` validado com MySQL Docker em `127.0.0.1:3317`.
 - Docker health: `supersites-mysql`, `supersites-redis` e `supersites-mailpit` saudaveis.
 - Mailpit UI: HTTP 200 em `http://127.0.0.1:8035`.
@@ -120,13 +133,15 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - HostGator cPanel validation: 12/12 bancos, 12/12 usuarios e 12/12 pastas confirmados por API.
 - HostGator HTTP smoke: 12/12 URLs fallback `/supersites/...` responderam HTTP 200 com placeholder.
 - HostGator post-CI validation: `scripts/validate-hostgator-bootstrap.ps1` passou apos o run `28219966897`.
+- VPS runtime smoke: `scripts/validate-vps-runtime.ps1` passou, confirmando servico Redis ativo, `PING` autenticado, bind local-only em `127.0.0.1:6381`, layout `/srv/supersites` e portas publicas Redis `6379`, `6380`, `6381` fechadas/filtradas.
 
 ## Pendencias criticas
 
 - Resolver branch protection de `main` quando houver GitHub Pro, repositorio publico ou alternativa aprovada de ruleset/organizacao.
 - Definir se o mapeamento publico direto `https://opentshost.com/<site-folder>` sera feito por rewrite, alias, symlink controlado ou ajuste de document root.
-- Definir/acessar o outro servidor HostGator VPS/VPN para Redis, filas, workers, Horizon e monitoramentos antes de lancar NetProbe/monitoramento pago.
-- Antes de provisionar Redis/filas na VPS candidata, validar segregacao de processos, firewall e impacto sobre o BigShop360.
+- Criar uma chave de deploy SuperSites ou secret de ambiente GitHub antes de automatizar deploy/operacao da VPS via CI.
+- Definir backup/restore de `/var/lib/supersites-redis` antes de monitores pagos ou jobs de producao dependerem de Redis.
+- Criar filas/workers/crons na VPS apenas quando houver codigo executavel e nomes de fila definidos.
 - Definir estrategia tecnica de URL raiz: `opentshost.com` apontando para conteudo em `/public_html/supersites/`.
 - Definir dominios definitivos futuramente.
 - Validar dominio/marca antes de registrar qualquer nome.

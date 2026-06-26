@@ -45,7 +45,7 @@ Sprint 0.4b - Redis/VPS runtime
 - Objetivo: validar/acessar o outro servidor HostGator VPS/VPN e preparar Redis, filas e workers fora do cPanel compartilhado.
 - Entregas: Redis protegido, health check, firewall/rede, usuario de deploy, runbook de backup/restore.
 - Validacao: `redis-cli PING`, worker smoke, fila processada, logs e acesso restrito.
-- Status: VPS candidata BigShop360 inventariada em 2026-06-26; conectividade publica validada sem mutacao; SSH direto local ainda pendente por falta da chave privada local.
+- Status: concluida para runtime Redis inicial. SSH direto foi validado com a chave local `$HOME/.ssh/id_ed25519_vps_hostgator`; Redis `6.2.22` foi provisionado como `supersites-redis.service`, com bind local-only em `127.0.0.1:6381`, ACL autenticada, layout `/srv/supersites` e portas publicas Redis `6379`, `6380`, `6381` fechadas/filtradas. Workers, filas e crons ficam pendentes ate existir codigo executavel e nomes de fila definidos.
 
 Sprint 0.5 - CI/CD foundation
 - Objetivo: GitHub Actions por paths, lint/test/build, deploy staging HostGator, smoke e rollback.

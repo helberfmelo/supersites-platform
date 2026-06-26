@@ -20,17 +20,20 @@ A definir apos Sprint 0.5. Deve usar secrets separados, banco separado e dominio
 - Fallback tecnico a validar: `https://opentshost.com/supersites/<site-folder>`.
 - Status em 2026-06-26: fallback tecnico `/supersites/...` provisionado com placeholders `noindex` e HTTP 200; paths diretos `/<site-folder>` ainda retornam 404 e precisam de rewrite/alias/symlink controlado.
 
-## Production runtime VPS candidata
+## Production runtime VPS
 
 Referencia: `infra/environments/production/vps/README.md`.
 
 - VPS HostGator descoberta nos documentos do BigShop360.
 - IP publico: `129.121.37.220`.
 - SSH: porta `22022`.
+- SSH local validado com `$HOME/.ssh/id_ed25519_vps_hostgator`.
 - DNS validado: `api.bigshophost.com -> 129.121.37.220`.
-- Portas Redis publicas `6379` e `6380` fechadas em 2026-06-26.
-- Usar como candidata para Redis, filas, workers e monitoramento do SuperSites, com layout proprio e sem alterar diretorios do BigShop360.
-- SSH direto ainda nao validado localmente; secrets existem no GitHub do BigShop360, mas valores nao sao recuperaveis.
+- Redis SuperSites provisionado como `supersites-redis.service`.
+- Redis local na VPS: `127.0.0.1:6381`.
+- Portas Redis publicas `6379`, `6380` e `6381` fechadas/filtradas em 2026-06-26.
+- Usar para Redis, filas, workers e monitoramento do SuperSites, com layout proprio e sem alterar diretorios do BigShop360.
+- Workers/crons ainda dependem de codigo executavel e filas definidas.
 
 ## Remote folders planejados
 

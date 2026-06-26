@@ -22,6 +22,7 @@
 3. Run browser/visual checks for frontend work.
 4. Run smoke checks for deploy or production-impacting work.
 5. Run secret scan before commit.
+6. When VPS runtime changes, run `scripts/validate-vps-runtime.ps1`.
 
 ## Commit, push and deploy
 
@@ -42,4 +43,3 @@ Only after validation:
 - Data-loss risk.
 - Unclear production ownership.
 - Human-gated action blocking the sprint.
-

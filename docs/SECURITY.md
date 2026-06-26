@@ -22,10 +22,16 @@
 - GitHub Actions: secrets por environment/site.
 - Producao: cPanel/secret manager/cofre conforme disponibilidade.
 
+## Redis/VPS
+
+- Redis de producao inicial roda na VPS como `supersites-redis.service`.
+- Redis deve permanecer autenticado e restrito a `127.0.0.1:6381`.
+- Portas Redis publicas (`6379`, `6380`, `6381`) devem continuar fechadas/filtradas.
+- Validar com `scripts/validate-vps-runtime.ps1` apos mudancas de runtime ou deploy que dependa de Redis.
+
 ## Validacao minima por sprint
 
 - Busca por padroes de segredo antes de commit.
 - Testes de autorizacao/RBAC quando backend/admin mudar.
 - Testes de SSRF/rate limit quando ferramenta de rede mudar.
 - Smoke em producao apos deploy.
-

@@ -19,7 +19,9 @@ Stack alvo:
 
 Redis e obrigatorio para a plataforma completa: cache, filas, rate limit, locks, workers de monitoramento e jobs de IA/metricas.
 
-O HostGator/cPanel transitorio `opentshost.com` nao deve ser tratado como runtime Redis. Redis, workers e processos longos devem rodar no outro servidor HostGator VPS/VPN ou em Redis gerenciado. O catalogo publico pode iniciar em modo sem Redis se for SSG/estatico ou usar fallback simples sem filas.
+O HostGator/cPanel transitorio `opentshost.com` nao deve ser tratado como runtime Redis. Redis, workers e processos longos devem rodar no HostGator VPS ou em Redis gerenciado. O catalogo publico pode iniciar em modo sem Redis se for SSG/estatico ou usar fallback simples sem filas.
+
+Estado em 2026-06-26: Redis inicial de producao foi provisionado na VPS HostGator como `supersites-redis.service`, autenticado por ACL, ouvindo apenas em `127.0.0.1:6381`, com dados em `/var/lib/supersites-redis` e logs em `/var/log/supersites`. Redis nao fica exposto publicamente.
 
 ## Estrutura local
 
