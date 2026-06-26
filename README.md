@@ -40,6 +40,14 @@ Open the checked visual report after Playwright runs:
 pnpm test:e2e:report
 ```
 
+Run the live catalog locally:
+
+```powershell
+pnpm dev:supersite
+```
+
+Open `http://127.0.0.1:3001`.
+
 Laravel validation:
 
 ```powershell
@@ -47,6 +55,8 @@ cd apps/control-plane
 composer validate --strict
 php artisan test
 ```
+
+Laravel tests use SQLite in memory; local PHP must load `pdo_sqlite` and `sqlite3`.
 
 Local Docker smoke:
 

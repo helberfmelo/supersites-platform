@@ -17,7 +17,7 @@ Jobs:
 - `Detect changes`: classifies changed paths.
 - `Repository safety`: always runs secret scan and structure validation.
 - `Frontend / SuperSites Hub`: runs shared package tests/typecheck plus Nuxt tests/build when frontend, package or deployment files change, installs Chromium for Playwright, then runs `scripts/validate-supersite-preview.ps1` and `pnpm test:e2e:supersite` so SSR HTML, `_nuxt` assets, legal pages and visual smoke are checked from the correct app working directory.
-- `Backend / Control Plane`: runs Composer validation and Laravel tests when backend or deployment files change.
+- `Backend / Control Plane`: runs Composer validation and Laravel tests when backend or deployment files change. The Laravel test suite uses SQLite in memory and therefore requires `pdo_sqlite`/`sqlite3`.
 - `Quality summary`: fails the workflow if any required job fails.
 
 ### Deploy Dry Run
@@ -105,6 +105,7 @@ VPS runtime environment variable names:
 - The local package command for the preview smoke uses `pwsh`; Windows PowerShell 5 returned an opaque subprocess exit during Sprint 1.1, while `pwsh` exposed normal logs and exit codes.
 - Playwright reports are local artifacts under `artifacts/playwright-report`. They are not uploaded by default while GitHub Actions artifact quota remains an active contour.
 - The shared package test/typecheck root scripts use explicit package filters. The generic `./packages/*` pnpm filter returned no matches on Windows during Sprint 1.3 and was replaced before commit.
+- Local PHP on Windows may have SQLite DLLs present but disabled in `php.ini`. Enable `extension=pdo_sqlite` and `extension=sqlite3` before relying on `php artisan test`; this workstation was fixed during Sprint 1.4.
 - Direct root mapping like `https://opentshost.com/<site-folder>` remains pending. Keep deploy plans on the safe fallback URLs under `/supersites/...`.
 - Real deploy must wait until deploy artifacts, remote preservation rules, smoke checks and rollback scripts are implemented.
 - Human-gated actions stay in `docs/HUMAN_ACTION_REQUIRED.md`; technical reversible blockers should be worked around with dry-runs, validation scripts or degraded mode.

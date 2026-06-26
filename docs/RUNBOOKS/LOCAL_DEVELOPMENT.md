@@ -96,6 +96,11 @@ pnpm dev:supersite
 
 Then open `http://127.0.0.1:3001`. The public transitional domain will become visually followable after the real catalog deploy sprint.
 
+Current local visual endpoint validated on 2026-06-26:
+
+- `http://127.0.0.1:3001` returned HTTP 200.
+- Background dev logs can be written to ignored files under `artifacts/` when the server is started for long local QA.
+
 ## Control plane
 
 Create the ignored local environment from the example and set the Docker MySQL password from `infra/docker/.env.local`.
@@ -109,6 +114,21 @@ php artisan migrate --force
 composer validate --strict
 php artisan test
 ```
+
+Laravel feature tests use SQLite in memory by default. On Windows/PHP from WinGet, confirm the local extensions are loaded:
+
+```powershell
+php -m | Select-String -Pattern "pdo_sqlite|sqlite3"
+```
+
+If they are missing but the DLLs exist under the PHP `ext` directory, enable these lines in the loaded `php.ini`:
+
+```ini
+extension=pdo_sqlite
+extension=sqlite3
+```
+
+This workstation was updated on 2026-06-26 and now loads both extensions.
 
 For local connection smoke, set `SUPERSITES_HEALTH_CHECK_CONNECTIONS=true` only in the ignored `.env`.
 

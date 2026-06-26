@@ -25,6 +25,7 @@ $requiredPaths = @(
     "docs/HUMAN_ACTION_REQUIRED.md",
     "docs/ADR/0008-ci-cd-dry-run-foundation.md",
     "docs/ADR/0009-shared-foundation-packages.md",
+    "docs/ADR/0010-control-plane-api-foundation.md",
     "docs/RUNBOOKS/CI_CD.md",
     "docs/RUNBOOKS/SPRINT_EXECUTION.md",
     "docs/RUNBOOKS/VPS_RUNTIME.md",
@@ -53,8 +54,23 @@ $requiredPaths = @(
     "apps/control-plane/artisan",
     "apps/control-plane/composer.json",
     "apps/control-plane/composer.lock",
+    "apps/control-plane/bootstrap/app.php",
+    "apps/control-plane/routes/api.php",
     "apps/control-plane/routes/web.php",
+    "apps/control-plane/app/Http/Controllers/Api/V1/CurrentUserController.php",
+    "apps/control-plane/app/Http/Controllers/Api/V1/SiteIndexController.php",
+    "apps/control-plane/app/Models/AuditLog.php",
+    "apps/control-plane/app/Models/Permission.php",
+    "apps/control-plane/app/Models/Role.php",
+    "apps/control-plane/app/Models/Site.php",
+    "apps/control-plane/database/factories/SiteFactory.php",
+    "apps/control-plane/database/migrations/2026_06_26_000100_create_sites_table.php",
+    "apps/control-plane/database/migrations/2026_06_26_000110_create_access_control_tables.php",
+    "apps/control-plane/database/migrations/2026_06_26_000120_create_audit_logs_table.php",
+    "apps/control-plane/database/seeders/AccessControlSeeder.php",
+    "apps/control-plane/database/seeders/PortfolioSiteSeeder.php",
     "apps/control-plane/tests/Feature/HealthTest.php",
+    "apps/control-plane/tests/Feature/ControlPlaneApiTest.php",
     "apps/netprobe-atlas",
     "apps/calcharbor",
     "apps/devutility-lab",
@@ -121,8 +137,8 @@ if ($missing.Count -gt 0) {
 }
 
 $adrCount = (Get-ChildItem -Path "docs/ADR" -Filter "*.md" -File | Measure-Object).Count
-if ($adrCount -lt 9) {
-    throw "Expected at least 9 ADR files, found $adrCount."
+if ($adrCount -lt 10) {
+    throw "Expected at least 10 ADR files, found $adrCount."
 }
 
 Write-Host "Required repository structure is present."

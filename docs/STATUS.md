@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, os primeiros esqueletos Nuxt/Laravel, o bootstrap HostGator inicial e o runtime Redis isolado na VPS foram criados. Ainda nao ha deploy real de aplicacao; a producao transitoria possui placeholders `noindex`, runtime Redis local-only na VPS e plano de deploy dry-run auditavel.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, API base do control plane, o bootstrap HostGator inicial e o runtime Redis isolado na VPS foram criados. Ainda nao ha deploy real de aplicacao; a producao transitoria possui placeholders `noindex`, runtime Redis local-only na VPS e plano de deploy dry-run auditavel.
 
 ## Estado local verificado
 
@@ -50,6 +50,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Node local detectado: `v24.16.0`.
 - pnpm local via Corepack: `11.9.0`.
 - PHP local detectado: `8.5.6`.
+- PHP local SQLite habilitado em 2026-06-26: extensoes `pdo_sqlite` e `sqlite3` ativadas no `php.ini` do pacote WinGet para suportar testes Laravel com SQLite em memoria.
 - Composer local detectado: `2.9.8`.
 - HostGator SSH inventariado: host `108.179.241.237`, porta `2222`, usuario `opents62`. TCP na porta `2222` validado em 2026-06-26, mas login SSH em modo `BatchMode` com as chaves locais atuais falhou com `Permission denied`; acesso por senha ainda nao foi validado de forma nao interativa.
 - HostGator cPanel inventariado e porta `2083` acessivel por TCP em 2026-06-26. Login cPanel/API ainda nao foi validado para evitar mutacao externa antes do gate.
@@ -87,8 +88,14 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Sprint 1.1 criou o app shell publico do catalogo com rotas `/`, `/en`, `/pt-br`, `/es`, `/fr`, `/de`, paginas individuais `/<locale>/sites/<slug>`, busca, filtros por categoria, linguagem no topo, metadados viewport/canonical/hreflang e prerender de 56 rotas de conteudo.
 - Sprint 1.2 criou paginas legais/editoriais do catalogo em cinco idiomas para `about`, `contact`, `privacy`, `cookies`, `terms`, `methodology` e `editorial-policy`, footer de links internos, `sitemap.xml` e Playwright visual smoke.
 - Sprint 1.3 criou pacotes TypeScript compartilhados para UI, i18n, SEO e consentimento; o catalogo passou a reutilizar `@supersites/i18n`, `@supersites/seo` e `@supersites/ui`.
+- Sprint 1.4 criou localmente a fundacao da API Laravel do control plane: rotas `/api/v1/me` e `/api/v1/sites`, migrations de `sites`, RBAC e `audit_logs`, seeders de portfolio/permissoes e testes feature para autenticacao, autorizacao, listagem e auditoria.
 - Control plane inicial criado em `apps/control-plane` com Laravel `13.x`, PHP `^8.3` e `predis/predis`.
 - Health endpoint Laravel criado em `/health`, com modo app-only para CI/testes e modo de conexoes para smoke local contra Docker MySQL/Redis.
+- Control plane API base:
+  - `sites` armazena 12 entradas do portfolio com URLs temporarias sob `https://opentshost.com/supersites/<slug>/`.
+  - RBAC inicial tem 5 permissoes (`sites.view`, `sites.manage`, `users.manage`, `audit.view`, `deployments.view`) e 4 roles (`owner`, `operator`, `analyst`, `site-admin`).
+  - Roles podem ser globais ou escopadas por site via `role_user.site_id`.
+  - `audit_logs` usa ULID e registra a consulta autorizada de sites sem armazenar segredos.
 - Observacao: Docker Desktop tambem reativou containers existentes do `bigshopv4` por politica de restart; eles nao foram alterados por esta entrega. Portas do SuperSites foram isoladas para evitar conflito.
 
 ## Estado de producao verificado
@@ -136,6 +143,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - `apps/supersite` com catalogo SSR inicial dos 10 sites planejados.
 - `playwright.config.ts` e `tests/e2e/supersite.spec.ts` para smoke visual desktop/mobile do hub.
 - `apps/control-plane` com Laravel, `.env.example`, migrations padrao e endpoint de saude.
+- `apps/control-plane/routes/api.php`, controllers `Api/V1`, models `Site`, `Role`, `Permission`, `AuditLog`, migrations/seeders RBAC e teste `ControlPlaneApiTest`.
 - `scripts/validate-local-stack.ps1` para smoke local de Docker e control plane.
 - ADR `0006-local-stack-scaffold.md` registrando a decisao de stack local.
 - `scripts/hostgator-bootstrap.ps1` para provisionamento idempotente de pastas, bancos, usuarios, privilegios e placeholders na HostGator.
@@ -198,6 +206,11 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - GitHub Actions `Quality Gate` run `28234285250` passou com repository safety, testes/typecheck dos pacotes, Nuxt tests/build, preview smoke, Playwright e Laravel.
   - GitHub Actions `Deploy Dry Run` run `28234285286` passou; artifact upload segue bloqueado pela quota GitHub Actions, mas o job summary manteve o plano auditavel.
   - Obstaculo contornado: o filtro pnpm generico `./packages/*` nao selecionou workspaces no Windows; scripts raiz trocados para filtros explicitos por pacote.
+- Sprint 1.4 local validation:
+  - PHP SQLite local foi habilitado; `php -m` confirmou `pdo_sqlite` e `sqlite3`.
+  - Frontend dev server do catalogo esta acessivel em `http://127.0.0.1:3001` e respondeu HTTP 200.
+  - `php artisan test` passou com 7 testes / 21 assertions em `apps/control-plane`, usando SQLite em memoria.
+  - Obstaculo contornado e resolvido: a validacao Laravel inicialmente falhou porque o PHP local nao carregava SQLite; as extensoes ja existiam no pacote WinGet e foram habilitadas no `php.ini`.
 
 ## Pendencias criticas
 

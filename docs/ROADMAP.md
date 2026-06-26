@@ -77,6 +77,7 @@ Sprint 1.4 - Backend Laravel e API base
 - Objetivo: Laravel API, auth admin, RBAC, audit log, tenancy por site.
 - Entregas: migrations, seeders, health endpoint, RBAC inicial.
 - Validacao: feature tests, migrations fresh, health check.
+- Status: concluida localmente nesta sprint. O control plane recebeu API `/api/v1/me` e `/api/v1/sites`, migrations de sites/RBAC/audit logs, seeders de portfolio e permissoes, auditoria no endpoint de sites e testes feature cobrindo auth, forbidden, listagem autorizada e permissoes efetivas. SQLite local foi habilitado no PHP da workstation para manter o ciclo padrao de testes Laravel.
 
 Sprint 1.5 - Control plane MVP
 - Objetivo: dashboard executivo minimo com status, sites, deploys, incidentes e tarefas.

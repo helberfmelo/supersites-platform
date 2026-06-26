@@ -53,6 +53,18 @@ Apps novos devem importar esses contratos antes de duplicar helpers locais.
 
 O endpoint `/health` do control plane tem modo app-only para CI e testes rapidos e modo de conexoes para smoke local contra MySQL/Redis.
 
+## Control plane data foundation
+
+Sprint 1.4 estabelece a API base do control plane em Laravel:
+
+- `/api/v1/me`: retorna o usuario autenticado, roles e permissoes efetivas.
+- `/api/v1/sites`: retorna o inventario ordenado dos 12 apps/sites do portfolio.
+- `sites`: fonte inicial do inventario operacional, URLs temporarias, idiomas e readiness AdSense.
+- RBAC: `roles`, `permissions`, `permission_role` e `role_user`, com `role_user.site_id` opcional para roles globais ou escopadas por site.
+- `audit_logs`: trilha de auditoria com ULID, acao, usuario/site opcionais, alvo auditavel opcional e metadata controlada.
+
+O control plane nao deve registrar segredos, payloads sensiveis de ferramentas ou dados de usuario desnecessarios em `audit_logs`. Permissoes publicas devem usar slugs estaveis para permitir migracao futura para pacote dedicado sem quebrar contratos.
+
 ## Sites e pastas
 
 | App | Pasta | Papel |
