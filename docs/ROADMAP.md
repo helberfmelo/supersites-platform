@@ -26,7 +26,7 @@ Sprint 0.2 - Git, repositorio privado e protecao de secrets
 - Entregas: repo privado, `.gitignore`, primeiro commit, push, checklist de segredo.
 - Validacao: `git status`, `git-secrets`/scan equivalente, GitHub repo privado, branch remota.
 - Observacao: apesar do pedido de repos por site, a decisao inicial proposta e monorepo privado; repos por site entram apenas se houver independencia real.
-- Status: em execucao apos aprovacao do roadmap; Git local e quality gate bootstrap criados.
+- Status: concluida com ressalva. Git local, repo privado, primeiro commit/push e quality gate monitorado com sucesso. Branch protection em repo privado bloqueada pelo plano GitHub atual; pendencia registrada em `docs/HUMAN_ACTION_REQUIRED.md`.
 
 Sprint 0.3 - Ambiente local Docker
 - Objetivo: criar Docker Compose base com MySQL 8.4, Redis, Mailpit, backend Laravel e frontend Nuxt skeleton.

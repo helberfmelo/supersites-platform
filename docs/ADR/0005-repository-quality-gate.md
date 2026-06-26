@@ -23,5 +23,5 @@ Application-specific lint, typecheck, tests, build, deploy and smoke checks will
 
 - The first push is monitorable without inventing fake app tests.
 - Secret hygiene is enforced from the first commit.
-- Branch protection can require `Quality Gate / Repository safety` after the first successful run, if GitHub plan/API permissions allow it.
+- Branch protection can require `Quality Gate / Repository safety` after the first successful run, if GitHub plan/API permissions allow it. The first attempt on 2026-06-26 returned HTTP 403 because private branch protection requires GitHub Pro or a public repository on the current account.
 - The gate remains intentionally small until real app code exists.

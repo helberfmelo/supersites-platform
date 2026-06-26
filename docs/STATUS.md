@@ -17,7 +17,10 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Docker CLI detectado.
 - GitHub CLI detectado e autenticado como `helberfmelo` com protocolo SSH.
 - GitHub CLI validado em 2026-06-26: conta ativa `helberfmelo`, token com escopo `repo`, suficiente para criar repositorios privados quando o roadmap for aprovado.
-- GitHub remoto planejado para Sprint 0.2: `helberfmelo/supersites-platform`, privado.
+- GitHub remoto criado na Sprint 0.2: `helberfmelo/supersites-platform`, privado, URL `https://github.com/helberfmelo/supersites-platform`.
+- Primeiro commit publicado: `8677c29` (`chore: bootstrap supersites governance`).
+- Primeiro GitHub Actions run monitorado: `Quality Gate` run `28218270387`, status `success`.
+- Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - HostGator SSH inventariado: host `108.179.241.237`, porta `2222`, usuario `opents62`. TCP na porta `2222` validado em 2026-06-26, mas login SSH em modo `BatchMode` com as chaves locais atuais falhou com `Permission denied`; acesso por senha ainda nao foi validado de forma nao interativa.
 - HostGator cPanel inventariado e porta `2083` acessivel por TCP em 2026-06-26. Login cPanel/API ainda nao foi validado para evitar mutacao externa antes do gate.
 - HostGator cPanel API validada em modo leitura em 2026-06-26. `ServerInformation/get_information` respondeu com status 1; servicos listados: `cpanellogd`, `cpsrvd`, `ftpd`, `imap`, `named`, `queueprocd`, `spamd`. Nenhum servico Redis foi listado.
@@ -64,15 +67,15 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 
 - Secret scan: `scripts/validate-no-secrets.ps1` passou sem achados fora de `docs/credentials`.
 - Structure scan: `scripts/validate-structure.ps1` passou.
-- Contagem local: 12 pastas em `apps/`, 12 pastas em `packages/`, 27 arquivos em `docs/`.
-- Git status: inicializado e pronto para o primeiro commit/push da Sprint 0.2.
+- Contagem local: 12 pastas em `apps/`, 12 pastas em `packages/`, 29 arquivos em `docs/`.
+- Git status: primeiro commit/push realizado para `origin/main`; pendente commit de registro operacional pos-monitoramento.
 - Bootstrap local de bancos: `scripts/create-local-databases.ps1` validado com MySQL Docker em `127.0.0.1:3317`.
 - Docker health: `supersites-mysql`, `supersites-redis` e `supersites-mailpit` saudaveis.
 - Mailpit UI: HTTP 200 em `http://127.0.0.1:8035`.
 
 ## Pendencias criticas
 
-- Criar repositorio privado remoto conforme ADR e monitorar o primeiro GitHub Actions run.
+- Resolver branch protection de `main` quando houver GitHub Pro, repositorio publico ou alternativa aprovada de ruleset/organizacao.
 - Usar os bancos locais Docker em `127.0.0.1:3317` nas proximas sprints.
 - Criar pastas, bancos e crons na HostGator depois do gate aprovado.
 - Definir/acessar o outro servidor HostGator VPS/VPN para Redis, filas, workers, Horizon e monitoramentos antes de lancar NetProbe/monitoramento pago.

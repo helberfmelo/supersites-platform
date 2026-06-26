@@ -17,7 +17,11 @@ Data-base: 2026-06-26
 | Local MySQL databases created | 12 |
 | Local Git repository initialized | 1 |
 | GitHub Actions bootstrap gates | 1 |
-| Remote resources mutated | 0 |
+| Private GitHub repositories created | 1 |
+| First GitHub Actions run status | Passed |
+| Branch protection status | Blocked by GitHub plan |
+| Remote resources mutated | 1 |
+| HostGator resources mutated | 0 |
 | Public production smoke for `/supersites/` | 404 |
 | Secret scan outside `docs/credentials` | Passed |
 | Structure scan | Passed |
