@@ -50,6 +50,8 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Sprint 1.4 quality gate monitorado: `Quality Gate` run `28235256988`, status `success`; `Deploy Dry Run` run `28235257018`, status `success`.
 - Sprint 1.5 control plane admin MVP commit publicado: `a1b1704` (`feat: add control plane admin mvp`).
 - Sprint 1.5 quality gate monitorado: `Quality Gate` run `28236429748`, status `success`; `Deploy Dry Run` run `28236429773`, status `success` com upload de artifact ainda bloqueado por quota GitHub Actions, sem bloquear o dry-run porque o plano permaneceu no job summary.
+- Sprint 1.6 analytics event contract commit publicado: `4f8bc18` (`feat: add analytics event contract`).
+- Sprint 1.6 quality gate monitorado: `Quality Gate` run `28237428311`, status `success`; `Deploy Dry Run` run `28237428286`, status `success` com upload de artifact ainda bloqueado por quota GitHub Actions, sem bloquear o dry-run porque o plano permaneceu no job summary.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
 - pnpm local via Corepack: `11.9.0`.
@@ -255,6 +257,8 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `php artisan migrate:fresh --seed --force` passou, incluindo `analytics_events` e `metric_snapshots`.
   - `php artisan route:list --path=api/v1` confirmou 4 rotas.
   - `pnpm install --frozen-lockfile`, `scripts/validate-structure.ps1`, `scripts/validate-no-secrets.ps1`, `scripts/prepare-deploy-dry-run.ps1`, `scripts/validate-local-stack.ps1` e `git diff --check` passaram.
+  - GitHub Actions `Quality Gate` run `28237428311` passou com repository safety, backend, pacotes, Nuxt preview e Playwright.
+  - GitHub Actions `Deploy Dry Run` run `28237428286` passou; artifact upload segue bloqueado pela quota GitHub Actions, mas o job summary manteve o plano auditavel.
 
 ## Pendencias criticas
 
