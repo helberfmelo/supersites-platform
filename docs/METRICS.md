@@ -15,13 +15,13 @@ Data-base: 2026-06-26
 | Docs files created/maintained | 39 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
-| Nuxt apps scaffolded | 1 |
+| Nuxt apps scaffolded | 2 |
 | Laravel apps scaffolded | 1 |
 | Shared TS packages implemented | 5 |
 | Shared package tests passing | 22 |
 | Shared package typechecks passing | 5 |
-| Frontend tests passing | 10 |
-| Playwright visual smoke tests passing | 3 |
+| Frontend tests passing | 15 |
+| Playwright visual smoke tests passing | 6 |
 | Laravel tests passing | 17 |
 | Control plane API endpoints implemented | 4 |
 | Control plane admin routes implemented | 6 |
@@ -73,6 +73,13 @@ Data-base: 2026-06-26
 | Supersite mobile overflow smoke | Passed |
 | Supersite hydrated interaction smoke | Passed |
 | Supersite Playwright report | Passed |
+| NetProbe Atlas tool pages scaffolded | 7 |
+| NetProbe Atlas legal/editorial pages | 7 |
+| NetProbe Atlas prerender content routes | 16 |
+| NetProbe Atlas sitemap routes | 1 |
+| NetProbe Atlas preview smoke | Passed |
+| NetProbe Atlas Playwright report | Passed |
+| NetProbe Atlas production status | Placeholder preserved/noindex |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
 | Public production smoke for `/supersites/` | 200 catalog live |

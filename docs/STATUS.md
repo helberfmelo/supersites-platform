@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial e o runtime Redis isolado na VPS foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada, os placeholders por site continuam `noindex`, e nao foram publicados anuncios nem integracoes externas.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS e a fundacao publica Nuxt do NetProbe Atlas foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada, os placeholders por site continuam `noindex`, e nao foram publicados anuncios nem integracoes externas.
 
 ## Estado local verificado
 
@@ -59,6 +59,12 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - GitHub Actions `Quality Gate` run `28241634813`, status `success`; `Deploy Dry Run` run `28241634837`, status `success`.
   - GitHub Actions `Deploy SuperSite HostGator` run `28241237377` executou upload e troca do release remoto, mas terminou `failure` por chamada incorreta do smoke no script; smoke publico local passou imediatamente depois.
   - GitHub Actions `Deploy SuperSite HostGator` run `28241763726`, acao `rollback-release` para o release ativo, terminou `success` e validou switch/rollback testavel com smoke publico no workflow.
+- Sprint 2.1 fundacao publica NetProbe:
+  - Commit publicado: `72cc732` (`feat: add netprobe atlas public foundation`).
+  - `apps/netprobe-atlas` criado com Nuxt `4.4.8`, Vue `3.5.39`, TypeScript `6.0.3`, rotas SSR/prerender, sitemap, legal/editorial pages site-scoped em ingles e 7 paginas de ferramentas planejadas.
+  - `Quality Gate` passou no run `28251233929`, incluindo jobs `Frontend / NetProbe Atlas`, `Frontend / SuperSites Hub`, `Backend / Control Plane`, repository safety e summary.
+  - `Deploy Dry Run` passou no run `28251233916`.
+  - O placeholder remoto `https://opentshost.com/supersites/netprobe-atlas/` permanece preservado/noindex; nenhum deploy real do NetProbe, anuncio, conta, probe externo ou integracao externa foi ativado nesta sprint.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
 - pnpm local via Corepack: `11.9.0`.
@@ -170,7 +176,9 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - `package.json`, `pnpm-workspace.yaml` e `pnpm-lock.yaml` para o workspace Node.
 - `packages/ui`, `packages/i18n`, `packages/seo` e `packages/consent` com manifestos, `src/index.ts`, testes Vitest e typecheck.
 - `apps/supersite` com catalogo SSR inicial dos 10 sites planejados.
+- `apps/netprobe-atlas` com fundacao Nuxt SSR, home, 7 paginas de ferramentas, paginas legais/editoriais, sitemap, testes Vitest e visual smoke Playwright.
 - `playwright.config.ts` e `tests/e2e/supersite.spec.ts` para smoke visual desktop/mobile do hub.
+- `playwright.netprobe.config.ts` e `tests/e2e/netprobe.spec.ts` para smoke visual desktop/mobile do NetProbe Atlas.
 - `apps/control-plane` com Laravel, `.env.example`, migrations padrao e endpoint de saude.
 - `apps/control-plane/routes/api.php`, controllers `Api/V1`, models `Site`, `Role`, `Permission`, `AuditLog`, migrations/seeders RBAC e teste `ControlPlaneApiTest`.
 - `scripts/validate-local-stack.ps1` para smoke local de Docker e control plane.
@@ -180,6 +188,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - `scripts/prepare-deploy-dry-run.ps1` para validar `infra/deployment/apps.json` e gerar artefato de plano de deploy.
 - `scripts/sync-github-environments.ps1` para sincronizar GitHub environments, variaveis e secrets sem imprimir valores secretos.
 - `scripts/validate-supersite-preview.ps1` para subir o build Nuxt a partir de `apps/supersite`, validar HTML SSR e confirmar assets `_nuxt` HTTP 200.
+- `scripts/validate-netprobe-preview.ps1` para subir o build Nuxt a partir de `apps/netprobe-atlas`, validar HTML SSR, SEO, pagina de ferramenta, pagina legal, sitemap e assets `_nuxt`.
 - `scripts/validate-vps-runtime.ps1` para validar SSH, Redis local-only na VPS, layout SuperSites e portas Redis publicas fechadas.
 - `infra/deployment/apps.json` como manifesto versionado de deploy para 12 apps.
 
@@ -281,6 +290,17 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - GitHub Actions `Quality Gate` run `28241634813` passou com repository safety, backend, pacotes, Nuxt preview e Playwright.
   - GitHub Actions `Deploy Dry Run` run `28241634837` passou.
   - GitHub Actions `Deploy SuperSite HostGator` run `28241763726` passou em `rollback-release`, comprovando rollback/switch testavel para o release ativo.
+- Sprint 2.1 validation:
+  - `pnpm test:netprobe` passou com 5 testes.
+  - `pnpm build:netprobe` passou e prerenderizou 16 rotas de conteudo mais `sitemap.xml`, com avisos Nuxt/Nitro conhecidos e nao fatais.
+  - `pnpm validate:netprobe-preview` passou, confirmando HTML SSR, canonical/hreflang, pagina `/en/tools/dns-lookup`, pagina `/en/privacy`, sitemap e asset `_nuxt`.
+  - `pnpm test:e2e:netprobe` passou com 3 testes, cobrindo home desktop, ferramenta DNS mobile, analytics sanitizado e pagina de privacidade mobile sem overflow.
+  - Regressao do Hub validada: `pnpm --filter @supersites/supersite test`, `pnpm --filter @supersites/supersite build`, `pnpm validate:supersite-preview` e `pnpm test:e2e:supersite` passaram.
+  - Pacotes compartilhados validados: `pnpm test:packages` e `pnpm typecheck:packages` passaram.
+  - Backend validado por causa das mudancas de workflow: `composer validate --strict` e `php artisan test` passaram em `apps/control-plane`.
+  - `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run` e `git diff --check` passaram; `git diff --check` exibiu apenas avisos CRLF conhecidos.
+  - GitHub Actions `Quality Gate` run `28251233929` passou com repository safety, NetProbe frontend, Hub frontend, backend e summary.
+  - GitHub Actions `Deploy Dry Run` run `28251233916` passou.
 
 ## Pendencias criticas
 

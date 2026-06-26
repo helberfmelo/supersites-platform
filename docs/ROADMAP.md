@@ -103,6 +103,7 @@ Sprint 2.1 - Fundacao publica NetProbe
 - Objetivo: app Nuxt SSR, paginas essenciais e estrutura de ferramentas.
 - Entregas: home, tool pages, metodologia, legal pages site-scoped.
 - Validacao: build, SEO smoke, links.
+- Status: concluida localmente/CI. O app `apps/netprobe-atlas` foi criado com Nuxt SSR, rotas publicas em ingles, 7 paginas de ferramentas, paginas legais/editoriais site-scoped, sitemap, preview smoke, Playwright visual smoke e Quality Gate dedicado. O placeholder remoto `/supersites/netprobe-atlas/` permanece preservado/noindex ate o launch gate da Sprint 2.7.
 
 Sprint 2.2 - IP e DNS lookup seguro
 - Objetivo: What is my IP, IPv4/IPv6, A/AAAA/CNAME/MX/TXT/NS/SOA/CAA.
