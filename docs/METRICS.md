@@ -11,12 +11,15 @@ Data-base: 2026-06-26
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
 | Shared package folders created | 12 |
-| ADRs created | 8 |
-| Docs files created/maintained | 34 |
+| ADRs created | 9 |
+| Docs files created/maintained | 35 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
 | Nuxt apps scaffolded | 1 |
 | Laravel apps scaffolded | 1 |
+| Shared TS packages implemented | 4 |
+| Shared package tests passing | 17 |
+| Shared package typechecks passing | 4 |
 | Frontend tests passing | 9 |
 | Playwright visual smoke tests passing | 2 |
 | Laravel tests passing | 3 |

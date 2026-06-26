@@ -1,3 +1,4 @@
+import { absoluteUrl as buildAbsoluteUrl, createLocaleAlternates } from '@supersites/seo'
 import { legalPageCatalog } from './legal'
 import { localeCodes, localizedHomePath, localizedLegalPath, localizedSitePath, type LocaleCode } from './locales'
 import { siteCatalog } from './sites'
@@ -19,18 +20,12 @@ export const prerenderRoutes: string[] = [
 ]
 
 export function absoluteUrl(path: string): string {
-  const normalizedPath = path === '/' ? '' : path
-
-  return `${siteBaseUrl}${normalizedPath}`
+  return buildAbsoluteUrl(siteBaseUrl, path)
 }
 
 export function localeAlternates(pathFactory: (locale: LocaleCode) => string) {
-  return [
-    { rel: 'alternate', hreflang: 'x-default', href: absoluteUrl('/') },
-    ...localeCodes.map((locale) => ({
-      rel: 'alternate',
-      hreflang: locale === 'pt-br' ? 'pt-BR' : locale,
-      href: absoluteUrl(pathFactory(locale)),
-    })),
-  ]
+  return createLocaleAlternates({
+    baseUrl: siteBaseUrl,
+    pathForLocale: pathFactory,
+  })
 }

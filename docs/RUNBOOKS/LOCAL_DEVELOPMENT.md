@@ -54,11 +54,15 @@ pnpm install
 Run catalog checks:
 
 ```powershell
+pnpm test:packages
+pnpm typecheck:packages
 pnpm --filter @supersites/supersite test
 pnpm --filter @supersites/supersite build
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\validate-supersite-preview.ps1
 pnpm test:e2e:supersite
 ```
+
+The root package scripts use explicit filters for `@supersites/ui`, `@supersites/i18n`, `@supersites/seo` and `@supersites/consent`. A generic pnpm path filter did not match the package workspaces on Windows during Sprint 1.3.
 
 Install the Playwright browser once per workstation if needed:
 

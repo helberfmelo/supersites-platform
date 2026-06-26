@@ -1,0 +1,129 @@
+import { localeCodes, localizedHomePath, toHreflang, type LocaleCode } from '@supersites/i18n'
+
+export interface LinkDescriptor {
+  rel: 'canonical' | 'alternate'
+  href: string
+  hreflang?: string
+}
+
+export interface MetaDescriptor {
+  name?: string
+  property?: string
+  content: string
+}
+
+export interface PageMetadataInput {
+  title: string
+  description: string
+  baseUrl: string
+  path: string
+  type?: 'website' | 'article'
+  siteName?: string
+}
+
+export interface PageMetadata {
+  title: string
+  meta: MetaDescriptor[]
+  link: LinkDescriptor[]
+}
+
+export interface LocaleAlternateInput {
+  baseUrl: string
+  pathForLocale: (locale: LocaleCode) => string
+  xDefaultPath?: string
+}
+
+export interface SitemapEntry {
+  path: string
+  lastmod?: string
+}
+
+export function normalizeBaseUrl(baseUrl: string): string {
+  return baseUrl.replace(/\/+$/g, '')
+}
+
+export function normalizePath(path: string): string {
+  if (!path || path === '/') {
+    return '/'
+  }
+
+  return `/${path.replace(/^\/+|\/+$/g, '')}`
+}
+
+export function absoluteUrl(baseUrl: string, path: string): string {
+  const normalizedPath = normalizePath(path)
+
+  return `${normalizeBaseUrl(baseUrl)}${normalizedPath === '/' ? '' : normalizedPath}`
+}
+
+export function createCanonicalLink(baseUrl: string, path: string): LinkDescriptor {
+  return {
+    rel: 'canonical',
+    href: absoluteUrl(baseUrl, path),
+  }
+}
+
+export function createLocaleAlternates(input: LocaleAlternateInput): LinkDescriptor[] {
+  return [
+    {
+      rel: 'alternate',
+      hreflang: 'x-default',
+      href: absoluteUrl(input.baseUrl, input.xDefaultPath ?? '/'),
+    },
+    ...localeCodes.map((locale) => ({
+      rel: 'alternate' as const,
+      hreflang: toHreflang(locale),
+      href: absoluteUrl(input.baseUrl, input.pathForLocale(locale)),
+    })),
+  ]
+}
+
+export function createPageMetadata(input: PageMetadataInput): PageMetadata {
+  const type = input.type ?? 'website'
+  const siteName = input.siteName ?? 'SuperSites'
+  const url = absoluteUrl(input.baseUrl, input.path)
+
+  return {
+    title: input.title,
+    meta: [
+      { name: 'description', content: input.description },
+      { property: 'og:title', content: input.title },
+      { property: 'og:description', content: input.description },
+      { property: 'og:type', content: type },
+      { property: 'og:url', content: url },
+      { property: 'og:site_name', content: siteName },
+    ],
+    link: [createCanonicalLink(input.baseUrl, input.path)],
+  }
+}
+
+export function createWebSiteJsonLd(baseUrl: string, name: string, description: string): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name,
+    description,
+    url: absoluteUrl(baseUrl, localizedHomePath('en')),
+  }
+}
+
+export function escapeXml(value: string): string {
+  return value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&apos;')
+}
+
+export function createSitemapXml(baseUrl: string, entries: SitemapEntry[]): string {
+  const urls = entries
+    .map((entry) => {
+      const lastmod = entry.lastmod ? `<lastmod>${escapeXml(entry.lastmod)}</lastmod>` : ''
+
+      return `  <url><loc>${escapeXml(absoluteUrl(baseUrl, entry.path))}</loc>${lastmod}</url>`
+    })
+    .join('\n')
+
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`
+}

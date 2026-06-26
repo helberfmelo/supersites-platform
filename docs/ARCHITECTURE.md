@@ -32,6 +32,17 @@ Estado em 2026-06-26: Redis inicial de producao foi provisionado na VPS HostGato
 - `infra/*`: ambientes, deploy, cron, monitoring, backups.
 - `docs/*`: fontes da verdade.
 
+## Pacotes compartilhados iniciais
+
+Sprint 1.3 criou os primeiros pacotes TypeScript fonte-primeiro:
+
+- `@supersites/ui`: tokens, receitas de componentes e variantes visuais compartilhadas.
+- `@supersites/i18n`: idiomas iniciais, rotas localizadas, seletor de idioma e formatadores Intl.
+- `@supersites/seo`: canonical, hreflang, metadata e sitemap XML.
+- `@supersites/consent`: categorias de consentimento, Consent Mode, regioes e regras de exibicao segura de anuncios.
+
+Apps novos devem importar esses contratos antes de duplicar helpers locais.
+
 ## Stack local inicial
 
 - Workspace Node: `pnpm@11.9.0`.

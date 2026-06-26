@@ -331,16 +331,19 @@ h3 {
   font-weight: 850;
 }
 
+.status--success,
 .status--foundation {
   color: #123f2d;
   background: #ccebd9;
 }
 
+.status--info,
 .status--planned {
   color: #254c6a;
   background: #d9e9f3;
 }
 
+.status--warning,
 .status--blocked {
   color: #5c3710;
   background: #f5dfba;

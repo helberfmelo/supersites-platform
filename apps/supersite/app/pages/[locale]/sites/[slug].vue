@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { getStatusBadgeClass } from '@supersites/ui'
 import { detailCopy } from '../../../data/copy'
 import { localizedHomePath, localizedSitePath, normalizeLocale } from '../../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
@@ -66,7 +67,7 @@ useHead({
       <div>
         <div class="detail-topline">
           <p class="eyebrow">{{ getCategoryLabel(site.category, locale) }}</p>
-          <span :class="['status', `status--${site.status}`]">
+          <span :class="getStatusBadgeClass(site.status)">
             {{ statusLabels[site.status][locale] }}
           </span>
         </div>

@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, os primeiros esqueletos Nuxt/Laravel, o bootstrap HostGator inicial e o runtime Redis isolado na VPS foram criados. Ainda nao ha deploy real de aplicacao; a producao transitoria possui placeholders `noindex`, runtime Redis local-only na VPS e plano de deploy dry-run auditavel.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, os primeiros esqueletos Nuxt/Laravel, o bootstrap HostGator inicial e o runtime Redis isolado na VPS foram criados. Ainda nao ha deploy real de aplicacao; a producao transitoria possui placeholders `noindex`, runtime Redis local-only na VPS e plano de deploy dry-run auditavel.
 
 ## Estado local verificado
 
@@ -43,6 +43,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Sprint 1.1 quality gate monitorado: `Quality Gate` run `28232363542`, status `success`; `Deploy Dry Run` run `28232363472`, status `success`.
 - Sprint 1.2 legal/editorial pages commit publicado: `8dc975a` (`feat: add catalog legal pages and visual smoke`).
 - Sprint 1.2 quality gate monitorado: `Quality Gate` run `28233378405`, status `success`; `Deploy Dry Run` run `28233378393`, status `success` com upload de artifact ainda bloqueado por quota GitHub Actions, sem bloquear o dry-run porque o resumo foi publicado no job summary.
+- Sprint 1.3 criou localmente os pacotes `@supersites/ui`, `@supersites/i18n`, `@supersites/seo` e `@supersites/consent`, integrou o hub aos helpers compartilhados de locale/SEO/status visual e adicionou testes/typecheck dos pacotes ao `Quality Gate`.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
 - pnpm local via Corepack: `11.9.0`.
@@ -83,6 +84,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Catalogo publico inicial criado em `apps/supersite` com Nuxt `4.4.8`, Vue `3.5.39` e TypeScript `6.0.3`.
 - Sprint 1.1 criou o app shell publico do catalogo com rotas `/`, `/en`, `/pt-br`, `/es`, `/fr`, `/de`, paginas individuais `/<locale>/sites/<slug>`, busca, filtros por categoria, linguagem no topo, metadados viewport/canonical/hreflang e prerender de 56 rotas de conteudo.
 - Sprint 1.2 criou paginas legais/editoriais do catalogo em cinco idiomas para `about`, `contact`, `privacy`, `cookies`, `terms`, `methodology` e `editorial-policy`, footer de links internos, `sitemap.xml` e Playwright visual smoke.
+- Sprint 1.3 criou pacotes TypeScript compartilhados para UI, i18n, SEO e consentimento; o catalogo passou a reutilizar `@supersites/i18n`, `@supersites/seo` e `@supersites/ui`.
 - Control plane inicial criado em `apps/control-plane` com Laravel `13.x`, PHP `^8.3` e `predis/predis`.
 - Health endpoint Laravel criado em `/health`, com modo app-only para CI/testes e modo de conexoes para smoke local contra Docker MySQL/Redis.
 - Observacao: Docker Desktop tambem reativou containers existentes do `bigshopv4` por politica de restart; eles nao foram alterados por esta entrega. Portas do SuperSites foram isoladas para evitar conflito.
@@ -128,6 +130,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - `.github/workflows/quality-gate.yml` para validacao inicial do repositorio.
 - `scripts/validate-structure.ps1` para proteger a estrutura minima do monorepo.
 - `package.json`, `pnpm-workspace.yaml` e `pnpm-lock.yaml` para o workspace Node.
+- `packages/ui`, `packages/i18n`, `packages/seo` e `packages/consent` com manifestos, `src/index.ts`, testes Vitest e typecheck.
 - `apps/supersite` com catalogo SSR inicial dos 10 sites planejados.
 - `playwright.config.ts` e `tests/e2e/supersite.spec.ts` para smoke visual desktop/mobile do hub.
 - `apps/control-plane` com Laravel, `.env.example`, migrations padrao e endpoint de saude.
@@ -181,6 +184,16 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - Playwright instalado no monorepo e `pnpm test:e2e:supersite` passou com 2 testes.
   - Playwright validou `/pt-br/privacy` mobile `390px` sem overflow, canonical/hreflang, footer e screenshot; validou `/en/editorial-policy` desktop sem erros de console.
   - Relatorio visual local gerado em `artifacts/playwright-report` e mantido fora do Git.
+- Sprint 1.3 local validation:
+  - `pnpm test:packages` passou com 17 testes nos pacotes `ui`, `i18n`, `seo` e `consent`.
+  - `pnpm typecheck:packages` passou nos 4 pacotes compartilhados.
+  - `pnpm --filter @supersites/supersite test` passou com 9 testes.
+  - `pnpm --filter @supersites/supersite build` passou e manteve 92 rotas prerender configuradas, com avisos nao fatais conhecidos de Nuxt/Nitro.
+  - `pnpm validate:supersite-preview` passou, confirmando SSR HTML, assets `_nuxt`, pagina legal e sitemap apos a integracao dos pacotes compartilhados.
+  - `pnpm test:e2e:supersite` passou com 2 testes; screenshots mobile/desktop foram revisados visualmente sem overflow ou sobreposicao aparente.
+  - `scripts/prepare-deploy-dry-run.ps1` passou e gerou plano local ignorado.
+  - `git diff --check` passou; apenas avisos CRLF conhecidos foram exibidos.
+  - Obstaculo contornado: o filtro pnpm generico `./packages/*` nao selecionou workspaces no Windows; scripts raiz trocados para filtros explicitos por pacote.
 
 ## Pendencias criticas
 

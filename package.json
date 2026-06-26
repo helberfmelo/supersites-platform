@@ -5,6 +5,8 @@
   "scripts": {
     "build": "pnpm --filter @supersites/supersite build",
     "test": "pnpm --filter @supersites/supersite test",
+    "test:packages": "pnpm --filter @supersites/ui --filter @supersites/i18n --filter @supersites/seo --filter @supersites/consent test",
+    "typecheck:packages": "pnpm --filter @supersites/ui --filter @supersites/i18n --filter @supersites/seo --filter @supersites/consent typecheck",
     "test:e2e:supersite": "playwright test",
     "test:e2e:report": "playwright show-report artifacts/playwright-report",
     "dev:supersite": "pnpm --filter @supersites/supersite dev",
@@ -15,6 +17,8 @@
     "deploy:dry-run": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/prepare-deploy-dry-run.ps1"
   },
   "devDependencies": {
-    "@playwright/test": "^1.61.1"
+    "@playwright/test": "^1.61.1",
+    "typescript": "6.0.3",
+    "vitest": "4.1.9"
   }
 }

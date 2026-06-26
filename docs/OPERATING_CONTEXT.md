@@ -46,6 +46,8 @@ Padroes aproveitados:
 - Deploy real continua bloqueado ate existir empacotamento, preservacao remota de `.env`, smoke e rollback.
 - A partir da Sprint 1.1, o `Quality Gate` valida o build Nuxt com `scripts/validate-supersite-preview.ps1`; o preview do catalogo deve rodar a partir de `apps/supersite` para servir `_nuxt` assets e permitir hidratacao.
 - A partir da Sprint 1.2, o `Quality Gate` tambem executa Playwright (`pnpm test:e2e:supersite`) para smoke visual desktop/mobile do hub. Relatorios locais ficam em `artifacts/playwright-report` e nao devem ser versionados.
+- A partir da Sprint 1.3, o `Quality Gate` executa `pnpm test:packages` e `pnpm typecheck:packages` para `@supersites/ui`, `@supersites/i18n`, `@supersites/seo` e `@supersites/consent` antes dos testes/build Nuxt.
+- Contorno Sprint 1.3: o filtro pnpm generico `./packages/*` nao selecionou workspaces no Windows; os scripts raiz usam filtros explicitos por nome de pacote.
 
 ## Runtime VPS SuperSites
 

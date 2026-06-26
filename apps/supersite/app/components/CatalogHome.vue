@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { getStatusBadgeClass } from '@supersites/ui'
 import { computed, ref } from 'vue'
 import { homeCopy } from '../data/copy'
 import { absoluteUrl, localeAlternates } from '../data/routes'
@@ -110,7 +111,7 @@ useHead(() => ({
         <div>
           <div class="site-card__topline">
             <span class="category">{{ getCategoryLabel(site.category, locale) }}</span>
-            <span :class="['status', `status--${site.status}`]">
+            <span :class="getStatusBadgeClass(site.status)">
               {{ statusLabels[site.status][locale] }}
             </span>
           </div>

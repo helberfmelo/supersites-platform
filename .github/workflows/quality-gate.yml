@@ -73,6 +73,12 @@ jobs:
       - name: Install Node dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Test shared packages
+        run: pnpm test:packages
+
+      - name: Typecheck shared packages
+        run: pnpm typecheck:packages
+
       - name: Test Nuxt catalog
         run: pnpm --filter @supersites/supersite test
 

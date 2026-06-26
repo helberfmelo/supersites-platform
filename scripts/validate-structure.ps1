@@ -24,6 +24,7 @@ $requiredPaths = @(
     "docs/METRICS.md",
     "docs/HUMAN_ACTION_REQUIRED.md",
     "docs/ADR/0008-ci-cd-dry-run-foundation.md",
+    "docs/ADR/0009-shared-foundation-packages.md",
     "docs/RUNBOOKS/CI_CD.md",
     "docs/RUNBOOKS/SPRINT_EXECUTION.md",
     "docs/RUNBOOKS/VPS_RUNTIME.md",
@@ -65,11 +66,27 @@ $requiredPaths = @(
     "apps/pixelbatch",
     "apps/docshift",
     "packages/ui",
+    "packages/ui/package.json",
+    "packages/ui/tsconfig.json",
+    "packages/ui/src/index.ts",
+    "packages/ui/tests/ui.test.ts",
     "packages/seo",
+    "packages/seo/package.json",
+    "packages/seo/tsconfig.json",
+    "packages/seo/src/index.ts",
+    "packages/seo/tests/seo.test.ts",
     "packages/i18n",
+    "packages/i18n/package.json",
+    "packages/i18n/tsconfig.json",
+    "packages/i18n/src/index.ts",
+    "packages/i18n/tests/i18n.test.ts",
     "packages/analytics",
     "packages/ads",
     "packages/consent",
+    "packages/consent/package.json",
+    "packages/consent/tsconfig.json",
+    "packages/consent/src/index.ts",
+    "packages/consent/tests/consent.test.ts",
     "packages/auth",
     "packages/billing",
     "packages/cms",
@@ -104,8 +121,8 @@ if ($missing.Count -gt 0) {
 }
 
 $adrCount = (Get-ChildItem -Path "docs/ADR" -Filter "*.md" -File | Measure-Object).Count
-if ($adrCount -lt 8) {
-    throw "Expected at least 8 ADR files, found $adrCount."
+if ($adrCount -lt 9) {
+    throw "Expected at least 9 ADR files, found $adrCount."
 }
 
 Write-Host "Required repository structure is present."

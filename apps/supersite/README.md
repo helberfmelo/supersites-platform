@@ -10,6 +10,7 @@ Nuxt 4 public catalog for the SuperSites portfolio.
 - Search and category filtering on the catalog home.
 - Canonical, viewport and hreflang metadata for the transitional `/supersites` public base.
 - Static prerender route list for catalog, ten site detail pages, legal/editorial pages and `sitemap.xml`.
+- Shared contracts from `@supersites/i18n`, `@supersites/seo` and `@supersites/ui`.
 
 ## Local
 
@@ -22,6 +23,7 @@ pnpm --filter @supersites/supersite dev
 
 ```powershell
 pnpm --filter @supersites/supersite test
+pnpm test:packages
 pnpm --filter @supersites/supersite build
 pwsh -NoProfile -ExecutionPolicy Bypass -File ..\..\scripts\validate-supersite-preview.ps1
 pnpm test:e2e:supersite

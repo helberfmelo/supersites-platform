@@ -26,6 +26,8 @@ The project is intentionally starting as a monorepo. Deployments, databases, env
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/validate-no-secrets.ps1
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/validate-structure.ps1
+pnpm test:packages
+pnpm typecheck:packages
 pnpm --filter @supersites/supersite test
 pnpm --filter @supersites/supersite build
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/validate-supersite-preview.ps1
@@ -52,4 +54,4 @@ Local Docker smoke:
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/validate-local-stack.ps1
 ```
 
-The GitHub Actions gate runs the same safety checks plus Nuxt tests/build, preview smoke, Playwright visual smoke and Laravel validation.
+The GitHub Actions gate runs the same safety checks plus shared package tests/typecheck, Nuxt tests/build, preview smoke, Playwright visual smoke and Laravel validation.
