@@ -476,6 +476,13 @@ if (! is_file($releasePublicPath . '/index.php')) {
 $_SERVER['SCRIPT_NAME'] = $publicBasePath . '/index.php';
 $_SERVER['PHP_SELF'] = $publicBasePath . '/index.php';
 $_SERVER['SCRIPT_FILENAME'] = $releasePublicPath . '/index.php';
+if (isset($_SERVER['REQUEST_URI'])) {
+    if ($_SERVER['REQUEST_URI'] === $publicBasePath) {
+        $_SERVER['REQUEST_URI'] = '/';
+    } elseif (str_starts_with($_SERVER['REQUEST_URI'], $publicBasePath . '/')) {
+        $_SERVER['REQUEST_URI'] = substr($_SERVER['REQUEST_URI'], strlen($publicBasePath));
+    }
+}
 
 chdir($releasePublicPath);
 require $releasePublicPath . '/index.php';
