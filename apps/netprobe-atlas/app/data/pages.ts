@@ -49,7 +49,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'What is live now',
-          paragraphs: ['The local application runs seven bounded checks: IP, DNS, RDAP, SSL, propagation, port and reachability. Production publication still waits for the launch gate.'],
+          paragraphs: ['The public application now runs the first production-backed checks for IP and DNS through the SuperSites control-plane API. RDAP, SSL, propagation, port and reachability remain gated by their own rollout checks.'],
         },
         {
           heading: 'Safety boundary',
@@ -69,7 +69,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'O que já funciona',
-          paragraphs: ['A aplicação local executa sete consultas limitadas: IP, DNS, RDAP, SSL, propagação, porta e alcance. A publicação em produção ainda depende do launch gate.'],
+          paragraphs: ['A aplicação pública agora executa as primeiras consultas apoiadas por produção para IP e DNS via API do control-plane SuperSites. RDAP, SSL, propagação, porta e alcance seguem bloqueados pelos próprios gates de rollout.'],
         },
         {
           heading: 'Fronteira de segurança',
@@ -89,7 +89,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Qué está activo',
-          paragraphs: ['La aplicación local ejecuta siete controles limitados: IP, DNS, RDAP, SSL, propagación, puerto y alcance. Producción espera el launch gate.'],
+          paragraphs: ['La aplicación pública ya ejecuta las primeras consultas con backend de producción para IP y DNS mediante la API del control-plane SuperSites. RDAP, SSL, propagación, puerto y alcance siguen bloqueados por sus propios gates de rollout.'],
         },
         {
           heading: 'Límite de seguridad',
@@ -109,7 +109,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Ce qui est actif',
-          paragraphs: ['L’application locale exécute sept contrôles bornés : IP, DNS, RDAP, SSL, propagation, port et accessibilité. La production attend le launch gate.'],
+          paragraphs: ['L’application publique exécute maintenant les premiers contrôles adossés à la production pour IP et DNS via l’API control-plane SuperSites. RDAP, SSL, propagation, port et accessibilité restent bloqués par leurs propres gates de rollout.'],
         },
         {
           heading: 'Cadre de sécurité',
@@ -129,7 +129,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Was bereits aktiv ist',
-          paragraphs: ['Die lokale Anwendung führt sieben begrenzte Checks aus: IP, DNS, RDAP, SSL, Propagation, Port und Erreichbarkeit. Produktion wartet auf das Launch-Gate.'],
+          paragraphs: ['Die oeffentliche Anwendung fuehrt jetzt die ersten produktionsgestuetzten IP- und DNS-Pruefungen ueber die SuperSites Control-Plane API aus. RDAP, SSL, Propagation, Port und Erreichbarkeit bleiben durch eigene Rollout-Gates gesperrt.'],
         },
         {
           heading: 'Sicherheitsgrenze',
@@ -763,7 +763,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Lookup API',
-          paragraphs: ['The launch gate requires the public NetProbe API to answer IP and DNS smoke checks before the app is treated as publicly usable. If the API is not healthy, deploy must remain on hold.'],
+          paragraphs: ['The public NetProbe API answered IP and DNS smoke checks on June 26, 2026, and the static app was switched to the live API base. Additional probes stay gated until their public smokes, monitoring and rollback checks pass.'],
         },
         {
           heading: 'Ads and upgrades',
@@ -783,7 +783,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'API de consultas',
-          paragraphs: ['O launch gate exige que a API publica NetProbe responda aos smokes de IP e DNS antes de tratar o app como utilizavel em publico. Se a API nao estiver saudavel, o deploy deve ficar em espera.'],
+          paragraphs: ['A API publica NetProbe respondeu aos smokes de IP e DNS em 26 de junho de 2026, e o app estatico foi ligado a base live da API. Probes adicionais seguem bloqueados ate seus smokes publicos, monitoramento e rollback passarem.'],
         },
         {
           heading: 'Anuncios e upgrades',
@@ -803,7 +803,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'API de consultas',
-          paragraphs: ['El launch gate requiere que la API publica NetProbe responda smokes de IP y DNS antes de considerar la app utilizable en publico. Si la API no esta sana, el deploy queda en espera.'],
+          paragraphs: ['La API publica NetProbe respondio los smokes de IP y DNS el 26 de junio de 2026, y la app estatica quedo conectada a la base live de API. Probes adicionales siguen bloqueados hasta pasar smokes publicos, monitoreo y rollback.'],
         },
         {
           heading: 'Anuncios y upgrades',
@@ -823,7 +823,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'API de controles',
-          paragraphs: ['Le launch gate exige que l API publique NetProbe reponde aux smokes IP et DNS avant de traiter l app comme utilisable publiquement. Si l API est inactive, le deploy reste en attente.'],
+          paragraphs: ['L API publique NetProbe a repondu aux smokes IP et DNS le 26 juin 2026, et l app statique pointe sur la base API live. Les probes supplementaires restent bloquees jusqu aux smokes publics, monitoring et rollback.'],
         },
         {
           heading: 'Publicites et upgrades',
@@ -843,7 +843,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Lookup API',
-          paragraphs: ['Das Launch-Gate verlangt, dass die oeffentliche NetProbe API IP- und DNS-Smokes beantwortet, bevor die App als oeffentlich nutzbar gilt. Wenn die API nicht gesund ist, bleibt Deploy pausiert.'],
+          paragraphs: ['Die oeffentliche NetProbe API hat IP- und DNS-Smokes am 26. Juni 2026 beantwortet, und die statische App nutzt die Live-API-Basis. Weitere Probes bleiben gesperrt, bis Public Smokes, Monitoring und Rollback bestehen.'],
         },
         {
           heading: 'Anzeigen und Upgrades',
