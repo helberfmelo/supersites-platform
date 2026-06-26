@@ -473,8 +473,8 @@ if (! is_file($releasePublicPath . '/index.php')) {
     exit;
 }
 
-$_SERVER['SCRIPT_NAME'] = $publicBasePath . '/index.php';
-$_SERVER['PHP_SELF'] = $publicBasePath . '/index.php';
+$_SERVER['SCRIPT_NAME'] = '/index.php';
+$_SERVER['PHP_SELF'] = '/index.php';
 $_SERVER['SCRIPT_FILENAME'] = $releasePublicPath . '/index.php';
 if (isset($_SERVER['REQUEST_URI'])) {
     if ($_SERVER['REQUEST_URI'] === $publicBasePath) {
@@ -482,6 +482,10 @@ if (isset($_SERVER['REQUEST_URI'])) {
     } elseif (str_starts_with($_SERVER['REQUEST_URI'], $publicBasePath . '/')) {
         $_SERVER['REQUEST_URI'] = substr($_SERVER['REQUEST_URI'], strlen($publicBasePath));
     }
+
+    $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $_SERVER['PATH_INFO'] = $requestPath && $requestPath !== '/' ? $requestPath : '';
+    $_SERVER['ORIG_PATH_INFO'] = $_SERVER['PATH_INFO'];
 }
 
 chdir($releasePublicPath);
