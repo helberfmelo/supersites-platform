@@ -2,6 +2,11 @@
 
 namespace App\Providers;
 
+use App\Support\NetProbe\NetProbeDnsResolver;
+use App\Support\NetProbe\PhpNetProbeDnsResolver;
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(NetProbeDnsResolver::class, PhpNetProbeDnsResolver::class);
     }
 
     /**
@@ -19,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        RateLimiter::for('netprobe-public', function (Request $request): Limit {
+            return Limit::perMinute(30)->by($request->ip() ?: 'anonymous');
+        });
     }
 }

@@ -111,7 +111,7 @@ try {
         throw "Nuxt JavaScript asset did not return HTTP 200: $assetPath"
     }
 
-    $tool = Invoke-PreviewRequest -Uri "$baseUrl/en/tools/dns-lookup" -RequiredContent 'The first live API'
+    $tool = Invoke-PreviewRequest -Uri "$baseUrl/en/tools/dns-lookup" -RequiredContent 'Hostnames are normalized'
     if ($tool.StatusCode -ne 200 -or $tool.Content -notmatch 'DNS Lookup') {
         throw 'DNS tool page smoke failed.'
     }

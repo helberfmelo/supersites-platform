@@ -282,6 +282,36 @@ h3 {
   padding: 0 36px 0 13px;
 }
 
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 10px 0 14px;
+  padding: 0;
+  border: 0;
+}
+
+.checkbox-grid legend {
+  grid-column: 1 / -1;
+  color: #4b5b55;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.checkbox-grid label {
+  display: flex;
+  min-height: 36px;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 9px;
+  border: 1px solid #cbd8d2;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #25332d;
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
 .tool-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -444,6 +474,52 @@ h3 {
   margin-top: 14px;
 }
 
+.result-error {
+  color: #7a2f16;
+  font-weight: 800;
+}
+
+.result-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.result-meta div {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  background: #f7f8f4;
+}
+
+.result-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.result-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.result-table th,
+.result-table td {
+  padding: 8px;
+  border-bottom: 1px solid #e1e6e2;
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.result-table th {
+  color: #607069;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+}
+
 .method-list,
 .check-list {
   padding: 0;
@@ -500,10 +576,12 @@ h3 {
   .page-footer,
   .hero,
   .controls,
+  .checkbox-grid,
   .tool-grid,
   .band-grid,
   .tool-layout,
-  .content-layout {
+  .content-layout,
+  .result-meta {
     display: grid;
     grid-template-columns: 1fr;
   }

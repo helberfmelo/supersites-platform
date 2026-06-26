@@ -14,6 +14,11 @@ export default defineNuxtConfig({
   compatibilityDate: '2026-06-26',
   devtools: { enabled: false },
   ssr: true,
+  runtimeConfig: {
+    public: {
+      netprobeApiBaseUrl: process.env.NUXT_PUBLIC_NETPROBE_API_BASE_URL ?? 'http://127.0.0.1:8013/api/v1/netprobe',
+    },
+  },
   app: {
     baseURL: normalizeBaseURL(process.env.NUXT_APP_BASE_URL),
     head: {

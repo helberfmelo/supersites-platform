@@ -69,13 +69,44 @@ test.describe('NetProbe Atlas public foundation', () => {
   test('renders the DNS tool page and records sanitized preview analytics', async ({ page }, testInfo) => {
     const errors = collectBrowserErrors(page)
 
+    await page.route('http://127.0.0.1:8013/api/v1/netprobe/dns', async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          data: {
+            domain: 'example.com',
+            queried_types: ['A', 'MX'],
+            checked_addresses: ['93.184.216.34'],
+            records: {
+              A: [{ type: 'A', ttl: 120, value: '93.184.216.34', fields: { ip: '93.184.216.34' } }],
+              MX: [{ type: 'MX', ttl: 180, value: '10 mail.example.com', fields: { priority: 10, target: 'mail.example.com' } }],
+            },
+          },
+          meta: {
+            generated_at: '2026-06-26T00:00:00.000Z',
+            cache_ttl_seconds: 120,
+            cached: false,
+            warnings: [],
+          },
+        }),
+      })
+    })
+
     await page.setViewportSize({ width: 390, height: 1000 })
     await page.goto('/en/tools/dns-lookup')
     await page.getByLabel('Domain name').fill('secret.example')
-    await page.getByRole('button', { name: 'Preview result' }).click()
+    await page.getByRole('checkbox', { name: 'AAAA' }).uncheck()
+    await page.getByRole('checkbox', { name: 'CNAME' }).uncheck()
+    await page.getByRole('checkbox', { name: 'TXT' }).uncheck()
+    await page.getByRole('checkbox', { name: 'NS' }).uncheck()
+    await page.getByRole('checkbox', { name: 'SOA' }).uncheck()
+    await page.getByRole('checkbox', { name: 'CAA' }).uncheck()
+    await page.getByRole('button', { name: 'Run DNS lookup' }).click()
 
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('DNS Lookup')
-    await expect(page.getByText('Record rows will show type')).toBeVisible()
+    await expect(page.getByText('93.184.216.34').first()).toBeVisible()
+    await expect(page.getByText('10 mail.example.com')).toBeVisible()
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       'href',
       'https://opentshost.com/supersites/netprobe-atlas/en/tools/dns-lookup',
