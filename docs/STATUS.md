@@ -39,6 +39,10 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Sprint 0.4 quality gate monitorado: `Quality Gate` run `28219966897`, status `success`.
 - Sprint 0.4b VPS Redis runtime commit publicado: `b10df24` (`chore: provision vps redis runtime`).
 - Sprint 0.4b quality gate monitorado: `Quality Gate` run `28220884125`, status `success`.
+- Sprint 1.1 app shell commit publicado: `543ad5f` (`feat: build supersites catalog shell`).
+- Sprint 1.1 quality gate monitorado: `Quality Gate` run `28232363542`, status `success`; `Deploy Dry Run` run `28232363472`, status `success`.
+- Sprint 1.2 legal/editorial pages commit publicado: `8dc975a` (`feat: add catalog legal pages and visual smoke`).
+- Sprint 1.2 quality gate monitorado: `Quality Gate` run `28233378405`, status `success`; `Deploy Dry Run` run `28233378393`, status `success` com upload de artifact ainda bloqueado por quota GitHub Actions, sem bloquear o dry-run porque o resumo foi publicado no job summary.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
 - pnpm local via Corepack: `11.9.0`.
