@@ -20,6 +20,8 @@ A Sprint 2.6 criou apenas quotas internas `free_preview` para monitores NetProbe
 
 Antes de vender monitores reais, implementar billing/entitlements, termos, cancelamento, exportacao/exclusao de conta e gates humanos de KYC/impostos/conta bancaria.
 
+Sprint 2.8 publica somente a API publica necessaria para consultas gratuitas do NetProbe. O deploy nao ativa checkout, entitlement pago, cobranca, webhook externo ou planos comerciais.
+
 ## Segurança
 
 - Nao armazenar cartao.

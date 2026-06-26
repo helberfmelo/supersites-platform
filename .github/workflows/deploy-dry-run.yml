@@ -13,6 +13,9 @@ on:
       - infra/deployment/**
       - scripts/**
       - .github/workflows/deploy-dry-run.yml
+      - .github/workflows/deploy-supersite-hostgator.yml
+      - .github/workflows/deploy-control-plane-hostgator.yml
+      - .github/workflows/deploy-netprobe-hostgator.yml
   workflow_dispatch:
     inputs:
       target_environment:

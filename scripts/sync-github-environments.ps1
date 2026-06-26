@@ -1,6 +1,7 @@
 param(
     [string]$Repository = "helberfmelo/supersites-platform",
     [string]$CredentialInventoryPath = "docs/credentials/credentials.local.md",
+    [string]$HostgatorDbCredentialPath = "docs/credentials/hostgator-db-users.local.json",
     [string]$VpsRedisCredentialPath = "docs/credentials/vps-redis.local.json",
     [string]$VpsSshKeyPath = (Join-Path $HOME ".ssh\id_ed25519_vps_hostgator")
 )
@@ -109,6 +110,22 @@ if ($cpanelCredentials) {
     }
 } else {
     Write-Host "GitHub environment secrets skipped: cPanel credentials were not parsed from local inventory."
+}
+
+if (Test-Path -LiteralPath $HostgatorDbCredentialPath) {
+    $hostgatorDbCredentials = Get-Content -Raw -LiteralPath $HostgatorDbCredentialPath | ConvertFrom-Json
+    $controlPlanePassword = [string]$hostgatorDbCredentials.opents62_ssctrl
+    if ($controlPlanePassword) {
+        Set-EnvironmentSecret -Environment "production-hostgator" -Name "SUPERSITES_CONTROL_PLANE_DB_HOST" -Value "localhost"
+        Set-EnvironmentSecret -Environment "production-hostgator" -Name "SUPERSITES_CONTROL_PLANE_DB_PORT" -Value "3306"
+        Set-EnvironmentSecret -Environment "production-hostgator" -Name "SUPERSITES_CONTROL_PLANE_DB_DATABASE" -Value "opents62_ss_control"
+        Set-EnvironmentSecret -Environment "production-hostgator" -Name "SUPERSITES_CONTROL_PLANE_DB_USERNAME" -Value "opents62_ssctrl"
+        Set-EnvironmentSecret -Environment "production-hostgator" -Name "SUPERSITES_CONTROL_PLANE_DB_PASSWORD" -Value $controlPlanePassword
+    } else {
+        Write-Host "GitHub environment secrets skipped: production-hostgator control-plane DB password was not found."
+    }
+} else {
+    Write-Host "GitHub environment secrets skipped: HostGator DB inventory not found."
 }
 
 $vpsVariables = @{

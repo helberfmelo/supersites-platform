@@ -69,6 +69,10 @@ Monitores DNS/SSL/dominio podem gerar eventos de produto como `monitor_created` 
 
 A Sprint 2.6 registra a criacao/execucao manual de monitores em `audit_logs` com `target_hash`; nenhum evento externo de analytics, GA4, GTM ou AdSense foi ativado.
 
+## Deploy smokes
+
+Smokes de deploy do control-plane/API e do NetProbe devem validar apenas disponibilidade e contrato JSON, sem criar eventos externos de analytics e sem registrar alvo bruto de usuario. O alvo DNS padrao para smoke publico e `example.com`.
+
 ## Regras
 
 - Identificar dados estimados, atrasados ou finalizados.

@@ -56,6 +56,15 @@
 - Artefatos publicos do NetProbe nao podem conter `localhost:8013`, `127.0.0.1:8013` ou URL local para `/api/v1/netprobe`; a API publica deve ser HTTPS e validada por smoke antes de troca de release.
 - O workflow de deploy estatico do NetProbe deve preservar `.env`, placeholder remoto e pastas manuais, publicando apenas em release versionado e trocando o `.htaccess` gerenciado do app.
 
+## Control plane public deploy
+
+- Artefatos Laravel do control-plane nao podem conter `.env`, arquivos de chave, senhas cPanel, placeholders `noindex` ou dependencias dev de teste.
+- O ZIP de deploy deve ser extraido em release versionado e removido/lixeira apos extracao para evitar download de codigo-fonte.
+- `_control-plane-releases` deve permanecer protegido por `.htaccess` deny; o trafego publico deve passar pelo front controller gerenciado em `/supersites/control-plane/index.php`.
+- `.env` remoto deve vir somente de GitHub environment secrets ou inventario local ignorado. O deploy deve preservar `.env` existente e nunca imprimir valores.
+- O smoke publico do control-plane deve rejeitar HTML, placeholder, `noindex` e `Internal Server Error` nos endpoints JSON.
+- Migrações e crons nao devem rodar automaticamente no primeiro deploy publico da API; qualquer migracao futura exige backup/rollback explicito antes do switch.
+
 ## Redis/VPS
 
 - Redis de producao inicial roda na VPS como `supersites-redis.service`.

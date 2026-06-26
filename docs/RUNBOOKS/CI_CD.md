@@ -2,7 +2,7 @@
 
 ## Scope
 
-Sprint 0.5 created the first CI/CD foundation. The current pipeline validates code, produces deploy dry-run plans and has manual HostGator deploy workflows for the static Hub and the gated NetProbe static frontend.
+Sprint 0.5 created the first CI/CD foundation. The current pipeline validates code, produces deploy dry-run plans and has manual HostGator deploy workflows for the static Hub, the Laravel control-plane/API and the gated NetProbe static frontend.
 
 ## Workflows
 
@@ -25,7 +25,7 @@ Jobs:
 
 File: `.github/workflows/deploy-dry-run.yml`.
 
-Runs on `main` pushes that affect apps, packages, deployment infra, scripts or the workflow itself. It can also be started manually.
+Runs on `main` pushes that affect apps, packages, deployment infra, scripts or deploy workflow files. It can also be started manually.
 
 The workflow generates an artifact named `supersites-deploy-dry-run` with:
 
@@ -66,6 +66,31 @@ Actions:
 
 The deploy action must not be run while the public API smoke fails. On 2026-06-26, `https://opentshost.com/supersites/control-plane/api/v1/netprobe/ip` returned HTTP 500, so NetProbe real deploy remains on hold even though the static artifact gate exists.
 
+### Deploy Control Plane HostGator
+
+File: `.github/workflows/deploy-control-plane-hostgator.yml`.
+
+Runs only by `workflow_dispatch` against the `production-hostgator` environment.
+
+Actions:
+
+- `deploy`: builds a Laravel no-secret ZIP with Composer `--no-dev`, validates the artifact, uploads/extracts it to `_control-plane-releases/<release-id>`, writes release `.env` from environment secrets, protects release directories, switches the managed `index.php`/`.htaccess` in `/supersites/control-plane/` and runs public smoke.
+- `rollback-release`: switches `/supersites/control-plane/` back to a previous release id and runs the control-plane public smoke.
+- `rollback-placeholder`: disables the managed rewrite/front controller and returns the folder to the bootstrap placeholder.
+
+Required `production-hostgator` secrets:
+
+- `SUPERSITES_CPANEL_USER`
+- `SUPERSITES_CPANEL_PASSWORD`
+- `SUPERSITES_CONTROL_PLANE_APP_KEY`
+- `SUPERSITES_CONTROL_PLANE_DB_HOST`
+- `SUPERSITES_CONTROL_PLANE_DB_PORT`
+- `SUPERSITES_CONTROL_PLANE_DB_DATABASE`
+- `SUPERSITES_CONTROL_PLANE_DB_USERNAME`
+- `SUPERSITES_CONTROL_PLANE_DB_PASSWORD`
+
+Do not rotate `SUPERSITES_CONTROL_PLANE_APP_KEY` after production data depends on encryption/session continuity unless there is an explicit incident or migration plan.
+
 ## Deployment Manifest
 
 Source: `infra/deployment/apps.json`.
@@ -104,6 +129,12 @@ HostGator environment secret names:
 
 - `SUPERSITES_CPANEL_USER`
 - `SUPERSITES_CPANEL_PASSWORD`
+- `SUPERSITES_CONTROL_PLANE_APP_KEY`
+- `SUPERSITES_CONTROL_PLANE_DB_HOST`
+- `SUPERSITES_CONTROL_PLANE_DB_PORT`
+- `SUPERSITES_CONTROL_PLANE_DB_DATABASE`
+- `SUPERSITES_CONTROL_PLANE_DB_USERNAME`
+- `SUPERSITES_CONTROL_PLANE_DB_PASSWORD`
 
 HostGator environment variable names:
 
@@ -139,6 +170,7 @@ VPS runtime environment variable names:
 - Local PHP on Windows may have SQLite DLLs present but disabled in `php.ini`. Enable `extension=pdo_sqlite` and `extension=sqlite3` before relying on `php artisan test`; this workstation was fixed during Sprint 1.4.
 - Direct site folder mapping like `https://opentshost.com/<site-folder>` remains pending. Keep app links on the safe fallback URLs under `/supersites/...`.
 - Real deploy is implemented for the SuperSites Hub static catalog. NetProbe Atlas has static packaging, preservation, smoke and rollback gates, but public traffic remains on hold until the control-plane/API production deploy is healthy.
+- Control-plane/API deploy uses a Laravel ZIP and cPanel remote extraction. The artifact excludes `.env`; the release `.env` is written remotely from GitHub secrets or ignored local inputs.
 - NetProbe static builds must not contain `localhost:8013`, `127.0.0.1:8013` or a local `/api/v1/netprobe` URL. Local API usage belongs in dev/test env vars, not in production artifacts.
 - Human-gated actions stay in `docs/HUMAN_ACTION_REQUIRED.md`; technical reversible blockers should be worked around with dry-runs, validation scripts or degraded mode.
 

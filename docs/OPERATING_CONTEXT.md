@@ -44,6 +44,7 @@ Padroes aproveitados:
 - Manifesto de deploy: `infra/deployment/apps.json`.
 - GitHub environments existentes: `staging-hostgator`, `production-hostgator`, `production-vps-runtime`.
 - Deploy real do catalogo transitorio esta implementado a partir da Sprint 1.7 pelo workflow manual `Deploy SuperSite HostGator`.
+- Deploy publico do control-plane/API esta implementado como workflow manual `Deploy Control Plane HostGator`; usar antes do go-live NetProbe para que `/api/v1/netprobe/ip` e `/api/v1/netprobe/dns` respondam JSON em HTTPS.
 - Catalogo transitorio publico ativo: `https://opentshost.com/supersites/`.
 - Release HostGator ativo do catalogo: `740e0f1968e7b0a2fd60eeb9e6edffd6252d94ae-28241237377-1`.
 - O deploy do catalogo sobe arquivos para `_supersites-releases/<release-id>/`, preserva `.env`, placeholders e pastas remotas gerenciadas fora do release, e troca somente o `.htaccess` gerenciado em `/supersites/`.

@@ -11,8 +11,8 @@ Data-base: 2026-06-26
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
 | Shared package folders created | 12 |
-| ADRs created | 16 |
-| Docs files created/maintained | 42 |
+| ADRs created | 17 |
+| Docs files created/maintained | 43 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
 | Nuxt apps scaffolded | 2 |
@@ -44,7 +44,7 @@ Data-base: 2026-06-26
 | GitHub Actions deploy dry-run workflows | 1 |
 | Latest GitHub Actions run status | Passed |
 | GitHub environments created | 3 |
-| GitHub environment secrets configured | 6 |
+| GitHub environment secrets configured | 12 |
 | GitHub environment variables configured | 18 |
 | Private GitHub repositories created | 1 |
 | First GitHub Actions run status | Passed |
@@ -65,6 +65,7 @@ Data-base: 2026-06-26
 | Deploy dry-run local validation | Passed |
 | HostGator static release workflow | Implemented |
 | HostGator NetProbe static release workflow | Implemented |
+| HostGator control-plane API release workflow | Implemented |
 | HostGator static releases published | 1 |
 | HostGator active supersite release | `740e0f1968e7b0a2fd60eeb9e6edffd6252d94ae-28241237377-1` |
 | Supersite prerender content routes | 91 |
@@ -90,6 +91,7 @@ Data-base: 2026-06-26
 | NetProbe Atlas prerender content routes | 81 |
 | NetProbe Atlas sitemap routes | 1 |
 | NetProbe Atlas HostGator static artifact gate | Passed |
+| Control Plane HostGator artifact gate | Passed |
 | NetProbe Atlas public API production smoke | Blocked HTTP 500 |
 | NetProbe Atlas preview smoke | Passed |
 | NetProbe Atlas Playwright report | Passed |

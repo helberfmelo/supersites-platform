@@ -35,6 +35,7 @@
 - Destinos de alertas devem ser armazenados em `net_probe_alerts` apenas como hash; o valor bruto fica na configuracao do monitor enquanto a conta estiver ativa e conforme termos futuros.
 - Auditoria de criacao/execucao manual de monitores deve registrar hash do alvo, nao o alvo bruto.
 - Smokes de deploy publico do NetProbe devem usar somente alvos controlados como `example.com`; dados enviados por usuarios reais nao devem ser reutilizados para validacao operacional.
+- Smokes de deploy publico do control-plane/API devem usar apenas `/health`, IP observado da propria requisicao e DNS de `example.com`; nao usar entradas reais de usuarios para validar deploy.
 
 ## Analytics sem PII
 

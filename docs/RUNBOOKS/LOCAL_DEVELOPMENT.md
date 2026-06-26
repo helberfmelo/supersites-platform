@@ -164,6 +164,14 @@ php artisan queue:work --queue=netprobe-monitors --once
 
 Webhook delivery is disabled by default. Enable only in controlled local/test scenarios with `NETPROBE_ALERT_WEBHOOK_ENABLED=true` and public HTTPS targets that pass the NetProbe host guard.
 
+Build the HostGator control-plane/API artifact locally:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\build-control-plane-hostgator-artifact.ps1
+```
+
+The artifact lives under `artifacts/control-plane-hostgator/`, excludes `.env` and includes Composer production dependencies. Public deploy writes release `.env` remotely from secrets; do not copy real credentials into the artifact.
+
 ## Local smoke
 
 ```powershell

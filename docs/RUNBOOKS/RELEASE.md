@@ -36,6 +36,7 @@ pnpm test:e2e:report
 
 - `Deploy Dry Run` remains the non-mutating plan workflow for all apps.
 - `Deploy SuperSite HostGator` publishes the static SuperSites Hub catalog.
+- `Deploy Control Plane HostGator` publishes the Laravel control-plane/API needed by NetProbe public tools.
 - `Deploy NetProbe HostGator` packages the static NetProbe frontend, but deploy must remain on hold until the public NetProbe API preflight passes.
 
 After `Quality Gate` is green for a catalog deploy commit:
@@ -86,3 +87,35 @@ NetProbe rollback commands:
 gh workflow run "Deploy NetProbe HostGator" --ref main -f action=rollback-release -f release_id=<release-id> -f api_base_url=https://opentshost.com/supersites/control-plane/api/v1/netprobe
 gh workflow run "Deploy NetProbe HostGator" --ref main -f action=rollback-placeholder -f api_base_url=https://opentshost.com/supersites/control-plane/api/v1/netprobe
 ```
+
+Control-plane/API artifact gate:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\build-control-plane-hostgator-artifact.ps1
+```
+
+Control-plane/API public smoke after deploy:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\smoke-control-plane-public.ps1
+```
+
+Control-plane/API deploy command, only after `Quality Gate` is green and `production-hostgator` has the required control-plane secrets:
+
+```powershell
+gh workflow run "Deploy Control Plane HostGator" --ref main -f action=deploy
+```
+
+Control-plane rollback commands:
+
+```powershell
+gh workflow run "Deploy Control Plane HostGator" --ref main -f action=rollback-release -f release_id=<release-id>
+gh workflow run "Deploy Control Plane HostGator" --ref main -f action=rollback-placeholder
+```
+
+NetProbe go-live order:
+
+1. Deploy control-plane/API.
+2. Run `scripts\smoke-control-plane-public.ps1`.
+3. Deploy NetProbe static frontend.
+4. Run `scripts\smoke-netprobe-public.ps1`.

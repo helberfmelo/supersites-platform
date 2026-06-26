@@ -15,7 +15,25 @@ Do not plan Redis, queue workers, Horizon or long-running monitors inside this c
 
 Read-only checks on 2026-06-26 did not show Redis as a service or user feature. HostGator official compatibility marks Redis as unsupported on Shared/Reseller and supported on Dedicated/VPS.
 
-Production Redis should run on the other HostGator VPS/VPN server or a managed Redis provider. This cPanel account can still serve the transitional catalog and static/public web assets.
+Production Redis should run on the other HostGator VPS/VPN server or a managed Redis provider. This cPanel account can still serve the transitional catalog, the bounded public control-plane/API endpoints and static/public web assets.
+
+## Laravel control-plane/API deploy
+
+The control-plane public API is deployed as versioned Laravel releases under:
+
+```text
+/home1/opents62/public_html/supersites/control-plane/_control-plane-releases/<release-id>/
+```
+
+Public traffic enters through managed files in `/home1/opents62/public_html/supersites/control-plane/`:
+
+- `.htaccess` routes requests to `index.php`.
+- `index.php` includes the active release `public/index.php`.
+- `_control-plane-releases/.htaccess` denies direct web access to release source files.
+
+The deploy artifact must not include `.env`; release `.env` files are written remotely from GitHub environment secrets or ignored local inventory. The base remote `.env` is preserved when present.
+
+The first public API deploy does not run migrations, crons or workers. NetProbe free IP/DNS smokes must pass over HTTPS before the NetProbe static frontend is published.
 
 ## Planned cPanel database names
 

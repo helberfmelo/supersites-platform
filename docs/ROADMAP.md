@@ -141,6 +141,12 @@ Sprint 2.7 - Launch gate NetProbe
 - Validacao: Core Web Vitals inicial, uptime, logs, incident drill.
 - Status: concluida como launch gate tecnico; go-live real permanece em espera. O NetProbe recebeu status page, artifact HostGator estatico validado, workflow de deploy/rollback, smoke publico e checklist AdSense, mas o deploy real nao foi disparado porque a API publica candidata em `https://opentshost.com/supersites/control-plane/api/v1/netprobe/ip` responde HTTP 500. Publicacao util exige deploy/rollback/smoke do control-plane/API antes da troca de trafego.
 
+Sprint 2.8 - Deploy publico do control-plane/API
+- Objetivo: desbloquear o go-live util do NetProbe publicando a API Laravel em `https://opentshost.com/supersites/control-plane/`.
+- Entregas: artifact Laravel sem segredos, workflow manual de deploy/rollback, `.env` remoto preservado, release protegido, smoke publico de `/health`, NetProbe `/ip` e `/dns`.
+- Validacao: artifact gate, testes Laravel, estrutura/secrets/dry-run, CI verde, smoke publico e rollback testavel.
+- Status: em andamento nesta entrega. O caminho de deploy/rollback foi implementado localmente; deploy real deve ocorrer somente apos commit, push, Quality Gate verde e secrets do environment `production-hostgator` conferidos.
+
 ## Fase 3 - Sites de baixo custo marginal
 
 Sprint 3.1 - CalcHarbor MVP

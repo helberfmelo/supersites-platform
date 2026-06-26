@@ -1,0 +1,74 @@
+name: Deploy Control Plane HostGator
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: Deploy, rollback to a release, or return /supersites/control-plane/ to placeholder.
+        required: true
+        default: deploy
+        type: choice
+        options:
+          - deploy
+          - rollback-release
+          - rollback-placeholder
+      release_id:
+        description: Required only for rollback-release.
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  deploy_control_plane:
+    name: Deploy Control Plane API
+    runs-on: ubuntu-latest
+    environment: production-hostgator
+    env:
+      SUPERSITES_CPANEL_HOST: ${{ vars.SUPERSITES_CPANEL_HOST }}
+      SUPERSITES_CPANEL_PORT: ${{ vars.SUPERSITES_CPANEL_PORT }}
+      SUPERSITES_CPANEL_USER: ${{ secrets.SUPERSITES_CPANEL_USER }}
+      SUPERSITES_CPANEL_PASSWORD: ${{ secrets.SUPERSITES_CPANEL_PASSWORD }}
+      SUPERSITES_CONTROL_PLANE_APP_KEY: ${{ secrets.SUPERSITES_CONTROL_PLANE_APP_KEY }}
+      SUPERSITES_CONTROL_PLANE_DB_HOST: ${{ secrets.SUPERSITES_CONTROL_PLANE_DB_HOST }}
+      SUPERSITES_CONTROL_PLANE_DB_PORT: ${{ secrets.SUPERSITES_CONTROL_PLANE_DB_PORT }}
+      SUPERSITES_CONTROL_PLANE_DB_DATABASE: ${{ secrets.SUPERSITES_CONTROL_PLANE_DB_DATABASE }}
+      SUPERSITES_CONTROL_PLANE_DB_USERNAME: ${{ secrets.SUPERSITES_CONTROL_PLANE_DB_USERNAME }}
+      SUPERSITES_CONTROL_PLANE_DB_PASSWORD: ${{ secrets.SUPERSITES_CONTROL_PLANE_DB_PASSWORD }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup PHP
+        if: inputs.action == 'deploy'
+        uses: shivammathur/setup-php@v2.37.2
+        with:
+          php-version: '8.5'
+          tools: composer:v2
+          coverage: none
+
+      - name: Deploy or rollback
+        shell: pwsh
+        run: |
+          $action = '${{ inputs.action }}'
+          $releaseId = '${{ inputs.release_id }}'
+
+          $deployArgs = @{}
+
+          if ($action -eq 'deploy') {
+            $deployArgs.ReleaseId = '${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}'
+          } elseif ($action -eq 'rollback-release') {
+            if (-not $releaseId) {
+              throw 'release_id is required for rollback-release.'
+            }
+            $deployArgs.RollbackReleaseId = $releaseId
+            $deployArgs.SkipBuild = $true
+          } elseif ($action -eq 'rollback-placeholder') {
+            $deployArgs.RollbackToPlaceholder = $true
+            $deployArgs.SkipBuild = $true
+          } else {
+            throw "Unsupported deploy action: $action"
+          }
+
+          ./scripts/publish-control-plane-hostgator.ps1 @deployArgs

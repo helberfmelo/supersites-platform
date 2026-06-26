@@ -1,6 +1,6 @@
 # Deployment
 
-Deployment configuration starts with a dry-run foundation and now includes controlled HostGator static deploy paths for the SuperSites Hub catalog and the gated NetProbe Atlas frontend.
+Deployment configuration starts with a dry-run foundation and now includes controlled HostGator deploy paths for the SuperSites Hub catalog, the Laravel control-plane/API and the gated NetProbe Atlas frontend.
 
 ## Files
 
@@ -95,6 +95,43 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\publish-netprobe-hostgator
 
 The publish script switches only `/supersites/netprobe-atlas/.htaccess`, preserves the bootstrap placeholder and refuses deploy when the configured public API does not answer IP/DNS smoke checks.
 
+## Control Plane API Deploy
+
+Control-plane Laravel releases use a separate protected release directory under the app folder:
+
+```text
+/home1/opents62/public_html/supersites/control-plane/_control-plane-releases/<release-id>/
+```
+
+Build and validate the HostGator artifact locally:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\build-control-plane-hostgator-artifact.ps1
+```
+
+Publish from a shell that has cPanel and control-plane production settings in environment variables, or through the manual GitHub workflow:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\publish-control-plane-hostgator.ps1
+```
+
+The publish script:
+
+- builds a no-secret Laravel ZIP with Composer production dependencies;
+- uploads and extracts it into a new release directory with cPanel file operations;
+- writes release `.env` remotely from GitHub/local secret inputs;
+- preserves an existing base remote `.env`;
+- protects `_control-plane-releases` from direct web access;
+- switches `/supersites/control-plane/` through managed `index.php` and `.htaccess`;
+- runs public smoke for `/health`, NetProbe `/ip` and NetProbe `/dns`.
+
+Rollback:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\publish-control-plane-hostgator.ps1 -RollbackReleaseId <release-id> -SkipBuild
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\publish-control-plane-hostgator.ps1 -RollbackToPlaceholder -SkipBuild
+```
+
 ## Current Rule
 
-Real deploy is allowed for the SuperSites Hub static catalog after artifact validation, remote preservation, smoke and rollback checks pass. NetProbe Atlas has app-specific static packaging, but public traffic must remain on hold until the control-plane/API public smoke passes. Other apps remain dry-run or placeholder-only until they receive app-specific deploy scripts.
+Real deploy is allowed for the SuperSites Hub static catalog and control-plane/API after artifact validation, remote preservation, smoke and rollback checks pass. NetProbe Atlas can switch public traffic only after the control-plane/API public smoke passes. Other apps remain dry-run or placeholder-only until they receive app-specific deploy scripts.

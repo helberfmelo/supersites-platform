@@ -134,6 +134,18 @@ Sprint 2.7 adiciona empacotamento e deploy estatico especifico do NetProbe, conf
 
 Estado em 2026-06-26: o artefato estatico passa localmente, mas o go-live real permanece bloqueado porque `https://opentshost.com/supersites/control-plane/api/v1/netprobe/ip` responde HTTP 500 no placeholder atual do control plane.
 
+## Control plane public API deploy
+
+Sprint 2.8 corretiva adiciona o caminho de deploy publico do Laravel control-plane, conforme ADR `0017-control-plane-public-api-deploy`.
+
+- O release remoto fica em `/home1/opents62/public_html/supersites/control-plane/_control-plane-releases/<release-id>`.
+- O artefato local e um ZIP Laravel sem `.env`, sem arquivos de teste sensiveis e com Composer `--no-dev --classmap-authoritative`.
+- O ZIP e extraido no servidor via cPanel `Fileman::fileop` e movido para a lixeira apos extracao.
+- Cada release recebe `.env` remoto gerado somente a partir de GitHub environment secrets ou inventario local ignorado; o `.env` base em `/supersites/control-plane/.env` e criado apenas se ausente e preservado quando existente.
+- A pasta `_control-plane-releases` e protegida por `.htaccess` com deny; o trafego passa por `/supersites/control-plane/index.php`, que inclui o `public/index.php` do release ativo sem expor o codigo como arquivos baixaveis.
+- O smoke publico obrigatorio cobre `/health`, `/api/v1/netprobe/ip` e `/api/v1/netprobe/dns` com `example.com`.
+- Migrações nao rodam automaticamente neste deploy inicial; os endpoints publicos IP/DNS devem funcionar com cache em arquivo, sessao em arquivo e fila `sync`.
+
 ## Sites e pastas
 
 | App | Pasta | Papel |

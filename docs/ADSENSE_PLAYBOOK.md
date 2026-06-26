@@ -23,7 +23,7 @@ AdSense e a monetizacao primaria, mas nenhum site deve ser submetido antes de cu
 - Static artifact: validar com `scripts/build-netprobe-hostgator-artifact.ps1`.
 - Public smoke: validar com `scripts/smoke-netprobe-public.ps1` somente apos deploy real.
 - API gate: `GET /ip` e `POST /dns` precisam responder JSON publico antes de considerar as ferramentas utilizaveis.
-- Bloqueio atual em 2026-06-26: a URL candidata da API no HostGator responde HTTP 500; nao submeter NetProbe ao AdSense nem publicar placements enquanto esse gate estiver vermelho.
+- Sprint 2.8 corretiva adiciona o deploy publico do control-plane/API com smoke de `/health`, `/ip` e `/dns`; nao submeter NetProbe ao AdSense nem publicar placements enquanto esse deploy e o smoke NetProbe final nao estiverem verdes.
 
 ## Placements
 
