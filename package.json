@@ -1,0 +1,12 @@
+{
+  "name": "supersites-platform",
+  "private": true,
+  "packageManager": "pnpm@11.9.0",
+  "scripts": {
+    "build": "pnpm --filter @supersites/supersite build",
+    "test": "pnpm --filter @supersites/supersite test",
+    "dev:supersite": "pnpm --filter @supersites/supersite dev",
+    "validate:secrets": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/validate-no-secrets.ps1",
+    "validate:structure": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/validate-structure.ps1"
+  }
+}

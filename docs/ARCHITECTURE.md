@@ -30,6 +30,16 @@ O HostGator/cPanel transitorio `opentshost.com` nao deve ser tratado como runtim
 - `infra/*`: ambientes, deploy, cron, monitoring, backups.
 - `docs/*`: fontes da verdade.
 
+## Stack local inicial
+
+- Workspace Node: `pnpm@11.9.0`.
+- Catalogo publico: Nuxt `4.4.8`, Vue `3.5.39`, TypeScript `6.0.3`.
+- Control plane/API: Laravel `13.x` em PHP `^8.3`.
+- Redis client Laravel local: `predis/predis`, evitando dependencia obrigatoria da extensao PHP Redis no workstation/CI.
+- Docker local: MySQL em `127.0.0.1:3317`, Redis em `127.0.0.1:6381`, Mailpit SMTP em `127.0.0.1:1035` e UI em `127.0.0.1:8035`.
+
+O endpoint `/health` do control plane tem modo app-only para CI e testes rapidos e modo de conexoes para smoke local contra MySQL/Redis.
+
 ## Sites e pastas
 
 | App | Pasta | Papel |

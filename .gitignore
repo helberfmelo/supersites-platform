@@ -18,7 +18,9 @@ coverage/
 .env.*
 !.env.example
 *.log
-storage/
+/storage/
+*.sqlite
+*.sqlite3
 
 # Secrets and private operational notes
 docs/credentials/*
@@ -38,4 +40,3 @@ id_ed25519*
 *.bak
 *.zip
 *.rar
-

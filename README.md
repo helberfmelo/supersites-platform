@@ -16,6 +16,8 @@ Mandatory reading before any sprint:
 10. `docs/SEO_AIO_PLAYBOOK.md`
 11. Current ADRs in `docs/ADR/`
 12. `docs/METRICS.md`
+13. `docs/HUMAN_ACTION_REQUIRED.md`
+14. `docs/RUNBOOKS/SPRINT_EXECUTION.md`
 
 The project is intentionally starting as a monorepo. Deployments, databases, environments, secrets and rollback plans remain independent per app/site.
 
@@ -24,6 +26,22 @@ The project is intentionally starting as a monorepo. Deployments, databases, env
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/validate-no-secrets.ps1
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/validate-structure.ps1
+pnpm --filter @supersites/supersite test
+pnpm --filter @supersites/supersite build
 ```
 
-The first GitHub Actions gate runs the same safety checks. Application lint, tests, build and deploy checks will be added as the Laravel/Nuxt skeletons are created.
+Laravel validation:
+
+```powershell
+cd apps/control-plane
+composer validate --strict
+php artisan test
+```
+
+Local Docker smoke:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/validate-local-stack.ps1
+```
+
+The GitHub Actions gate runs the same safety checks plus Nuxt tests/build and Laravel validation.

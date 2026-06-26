@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git local e o primeiro quality gate de CI foram criados. Ainda nao ha aplicacao Laravel/Nuxt, deploy ativo ou recursos HostGator de producao provisionados.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI e os primeiros esqueletos Nuxt/Laravel foram criados. Ainda nao ha deploy ativo nem recursos HostGator de producao provisionados.
 
 ## Estado local verificado
 
@@ -21,7 +21,12 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Primeiro commit publicado: `8677c29` (`chore: bootstrap supersites governance`).
 - Primeiro GitHub Actions run monitorado: `Quality Gate` run `28218270387`, status `success`.
 - Segundo GitHub Actions run monitorado: `Quality Gate` run `28218325563`, status `success`, com aviso de runtime do `actions/checkout@v4`; workflow atualizado para `actions/checkout@v7`.
+- Terceiro GitHub Actions run monitorado: `Quality Gate` run `28218356836`, status `success`, apos atualizacao para `actions/checkout@v7`.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
+- Node local detectado: `v24.16.0`.
+- pnpm local via Corepack: `11.9.0`.
+- PHP local detectado: `8.5.6`.
+- Composer local detectado: `2.9.8`.
 - HostGator SSH inventariado: host `108.179.241.237`, porta `2222`, usuario `opents62`. TCP na porta `2222` validado em 2026-06-26, mas login SSH em modo `BatchMode` com as chaves locais atuais falhou com `Permission denied`; acesso por senha ainda nao foi validado de forma nao interativa.
 - HostGator cPanel inventariado e porta `2083` acessivel por TCP em 2026-06-26. Login cPanel/API ainda nao foi validado para evitar mutacao externa antes do gate.
 - HostGator cPanel API validada em modo leitura em 2026-06-26. `ServerInformation/get_information` respondeu com status 1; servicos listados: `cpanellogd`, `cpsrvd`, `ftpd`, `imap`, `named`, `queueprocd`, `spamd`. Nenhum servico Redis foi listado.
@@ -37,7 +42,11 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Containers locais SuperSites saudaveis: `supersites-mysql`, `supersites-redis`, `supersites-mailpit`.
 - Portas locais SuperSites: MySQL `3317`, Redis `6381`, Mailpit SMTP `1035`, Mailpit UI `8035`.
 - Bancos locais SuperSites criados no MySQL Docker: 12/12.
-- GitHub Actions bootstrap criado em `.github/workflows/quality-gate.yml` com varredura de segredos e validacao da estrutura obrigatoria.
+- GitHub Actions bootstrap criado em `.github/workflows/quality-gate.yml` com varredura de segredos, validacao da estrutura obrigatoria, testes/build Nuxt e testes Laravel.
+- Workspace Node criado com `pnpm@11.9.0`.
+- Catalogo publico inicial criado em `apps/supersite` com Nuxt `4.4.8`, Vue `3.5.39` e TypeScript `6.0.3`.
+- Control plane inicial criado em `apps/control-plane` com Laravel `13.x`, PHP `^8.3` e `predis/predis`.
+- Health endpoint Laravel criado em `/health`, com modo app-only para CI/testes e modo de conexoes para smoke local contra Docker MySQL/Redis.
 - Observacao: Docker Desktop tambem reativou containers existentes do `bigshopv4` por politica de restart; eles nao foram alterados por esta entrega. Portas do SuperSites foram isoladas para evitar conflito.
 
 ## Estado de producao verificado
@@ -63,21 +72,30 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - `scripts/` para automacoes futuras sem segredos.
 - `.github/workflows/quality-gate.yml` para validacao inicial do repositorio.
 - `scripts/validate-structure.ps1` para proteger a estrutura minima do monorepo.
+- `package.json`, `pnpm-workspace.yaml` e `pnpm-lock.yaml` para o workspace Node.
+- `apps/supersite` com catalogo SSR inicial dos 10 sites planejados.
+- `apps/control-plane` com Laravel, `.env.example`, migrations padrao e endpoint de saude.
+- `scripts/validate-local-stack.ps1` para smoke local de Docker e control plane.
+- ADR `0006-local-stack-scaffold.md` registrando a decisao de stack local.
 
 ## Validacao desta entrega
 
 - Secret scan: `scripts/validate-no-secrets.ps1` passou sem achados fora de `docs/credentials`.
 - Structure scan: `scripts/validate-structure.ps1` passou.
-- Contagem local: 12 pastas em `apps/`, 12 pastas em `packages/`, 29 arquivos em `docs/`.
-- Git status: primeiro commit/push realizado para `origin/main`; pendente commit de registro operacional pos-monitoramento.
+- Contagem local: 12 pastas em `apps/`, 12 pastas em `packages/`, 30 arquivos Markdown em `docs/` incluindo o inventario local ignorado.
 - Bootstrap local de bancos: `scripts/create-local-databases.ps1` validado com MySQL Docker em `127.0.0.1:3317`.
 - Docker health: `supersites-mysql`, `supersites-redis` e `supersites-mailpit` saudaveis.
 - Mailpit UI: HTTP 200 em `http://127.0.0.1:8035`.
+- Nuxt catalog tests: 3 testes passando em `apps/supersite`.
+- Nuxt catalog build: passou; avisos nao fatais vieram de dependencias Nuxt/Vue sobre sourcemap e deprecacao Node.
+- Nuxt SSR smoke: HTTP 200 local e HTML contendo `SuperSites`, `NetProbe Atlas`, `CalcHarbor` e `DocShift`.
+- Laravel tests: 3 testes / 6 assertions passando em `apps/control-plane`.
+- Laravel composer validate: passou em modo strict.
+- Local stack smoke: `scripts/validate-local-stack.ps1` passou com Docker MySQL, Redis, Mailpit e `/health`.
 
 ## Pendencias criticas
 
 - Resolver branch protection de `main` quando houver GitHub Pro, repositorio publico ou alternativa aprovada de ruleset/organizacao.
-- Usar os bancos locais Docker em `127.0.0.1:3317` nas proximas sprints.
 - Criar pastas, bancos e crons na HostGator depois do gate aprovado.
 - Definir/acessar o outro servidor HostGator VPS/VPN para Redis, filas, workers, Horizon e monitoramentos antes de lancar NetProbe/monitoramento pago.
 - Antes de provisionar Redis/filas na VPS candidata, validar segregacao de processos, firewall e impacto sobre o BigShop360.
