@@ -25,6 +25,8 @@ const runtimeConfig = useRuntimeConfig()
 const previewSubmitted = ref(false)
 const targetValue = ref(tool.slug === 'what-is-my-ip' ? '' : tool.exampleTarget)
 const selectedRecordTypes = ref(['A', 'AAAA', 'CNAME', 'MX', 'TXT', 'NS', 'SOA', 'CAA'])
+const propagationRecordType = ref('A')
+const selectedPort = ref(443)
 const isLoading = ref(false)
 const errorMessage = ref('')
 const dnsResult = ref<DnsLookupData | null>(null)
@@ -35,11 +37,28 @@ const rdapResult = ref<RdapLookupData | null>(null)
 const rdapMeta = ref<Record<string, unknown>>({})
 const sslResult = ref<SslCertificateData | null>(null)
 const sslMeta = ref<Record<string, unknown>>({})
+const propagationResult = ref<DnsPropagationData | null>(null)
+const propagationMeta = ref<Record<string, unknown>>({})
+const portResult = ref<PortCheckData | null>(null)
+const portMeta = ref<Record<string, unknown>>({})
+const reachabilityResult = ref<ReachabilityData | null>(null)
+const reachabilityMeta = ref<Record<string, unknown>>({})
 const isDnsLookup = computed(() => tool.slug === 'dns-lookup')
 const isIpLookup = computed(() => tool.slug === 'what-is-my-ip')
 const isRdapLookup = computed(() => tool.slug === 'rdap-domain-lookup')
 const isSslLookup = computed(() => tool.slug === 'ssl-certificate-checker')
-const isLiveTool = computed(() => isDnsLookup.value || isIpLookup.value || isRdapLookup.value || isSslLookup.value)
+const isPropagationLookup = computed(() => tool.slug === 'dns-propagation')
+const isPortCheck = computed(() => tool.slug === 'port-checker')
+const isReachabilityCheck = computed(() => tool.slug === 'ping-traceroute')
+const isLiveTool = computed(() => (
+  isDnsLookup.value
+  || isIpLookup.value
+  || isRdapLookup.value
+  || isSslLookup.value
+  || isPropagationLookup.value
+  || isPortCheck.value
+  || isReachabilityCheck.value
+))
 
 interface DnsRecord {
   type: string
@@ -101,6 +120,50 @@ interface SslCertificateData {
   fingerprint_sha256: string | null
 }
 
+interface DnsPropagationSnapshot {
+  resolver_id: string
+  region: string
+  status: string
+  ttl_min: number | null
+  values: string[]
+}
+
+interface DnsPropagationData {
+  domain: string
+  record_type: string
+  checked_addresses: string[]
+  snapshots: DnsPropagationSnapshot[]
+}
+
+interface TcpCheck {
+  address: string
+  status: string
+  latency_ms: number | null
+  error: string | null
+}
+
+interface PortCheckData {
+  hostname: string
+  port: number
+  checked_addresses: string[]
+  checks: TcpCheck[]
+  overall_status: string
+}
+
+interface ReachabilityData {
+  hostname: string
+  checked_addresses: string[]
+  tcp_443: TcpCheck
+  icmp: {
+    status: string
+    reason: string
+  }
+  traceroute: {
+    status: string
+    reason: string
+  }
+}
+
 interface ApiResponse<T> {
   data: T
   meta: Record<string, unknown>
@@ -128,6 +191,9 @@ async function previewResult(): Promise<void> {
   ipResult.value = null
   rdapResult.value = null
   sslResult.value = null
+  propagationResult.value = null
+  portResult.value = null
+  reachabilityResult.value = null
 
   trackToolStarted({
     toolSlug: tool.slug,
@@ -227,6 +293,77 @@ async function previewResult(): Promise<void> {
       const payload = await response.json() as ApiResponse<SslCertificateData>
       sslResult.value = payload.data
       sslMeta.value = payload.meta
+      return
+    }
+
+    if (isPropagationLookup.value) {
+      const response = await fetch(netprobeEndpoint('propagation'), {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          domain: targetValue.value,
+          type: propagationRecordType.value,
+        }),
+      })
+
+      if (!response.ok) {
+        errorMessage.value = await parseApiError(response)
+        return
+      }
+
+      const payload = await response.json() as ApiResponse<DnsPropagationData>
+      propagationResult.value = payload.data
+      propagationMeta.value = payload.meta
+      return
+    }
+
+    if (isPortCheck.value) {
+      const response = await fetch(netprobeEndpoint('port'), {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          hostname: targetValue.value,
+          port: selectedPort.value,
+        }),
+      })
+
+      if (!response.ok) {
+        errorMessage.value = await parseApiError(response)
+        return
+      }
+
+      const payload = await response.json() as ApiResponse<PortCheckData>
+      portResult.value = payload.data
+      portMeta.value = payload.meta
+      return
+    }
+
+    if (isReachabilityCheck.value) {
+      const response = await fetch(netprobeEndpoint('reachability'), {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          hostname: targetValue.value,
+        }),
+      })
+
+      if (!response.ok) {
+        errorMessage.value = await parseApiError(response)
+        return
+      }
+
+      const payload = await response.json() as ApiResponse<ReachabilityData>
+      reachabilityResult.value = payload.data
+      reachabilityMeta.value = payload.meta
     }
   } catch {
     errorMessage.value = 'The lookup API is not reachable from this browser session.'
@@ -328,6 +465,38 @@ useHead({
                   <span>{{ recordType }}</span>
                 </label>
               </fieldset>
+            </template>
+            <template v-else-if="isPropagationLookup">
+              <label :for="`${tool.slug}-target`">{{ copy.inputLabel }}</label>
+              <input
+                :id="`${tool.slug}-target`"
+                v-model="targetValue"
+                type="text"
+                :placeholder="copy.inputPlaceholder"
+                autocomplete="off"
+              >
+              <label :for="`${tool.slug}-record-type`">Record type</label>
+              <select :id="`${tool.slug}-record-type`" v-model="propagationRecordType">
+                <option v-for="recordType in ['A', 'AAAA', 'CNAME', 'MX', 'TXT', 'NS']" :key="recordType" :value="recordType">
+                  {{ recordType }}
+                </option>
+              </select>
+            </template>
+            <template v-else-if="isPortCheck">
+              <label :for="`${tool.slug}-target`">{{ copy.inputLabel }}</label>
+              <input
+                :id="`${tool.slug}-target`"
+                v-model="targetValue"
+                type="text"
+                :placeholder="copy.inputPlaceholder"
+                autocomplete="off"
+              >
+              <label :for="`${tool.slug}-port`">Port</label>
+              <select :id="`${tool.slug}-port`" v-model.number="selectedPort">
+                <option v-for="port in [80, 443, 587, 993]" :key="port" :value="port">
+                  {{ port }}
+                </option>
+              </select>
             </template>
             <template v-else-if="!isIpLookup">
               <label :for="`${tool.slug}-target`">{{ copy.inputLabel }}</label>
@@ -523,6 +692,119 @@ useHead({
             </p>
             <p v-if="Array.isArray(sslMeta.limitations) && sslMeta.limitations.length > 0">
               {{ sslMeta.limitations.join(' ') }}
+            </p>
+          </div>
+
+          <div v-else-if="propagationResult">
+            <div class="result-meta">
+              <div>
+                <strong>Domain</strong>
+                <span>{{ propagationResult.domain }}</span>
+              </div>
+              <div>
+                <strong>Record</strong>
+                <span>{{ propagationResult.record_type }}</span>
+              </div>
+              <div>
+                <strong>Cache</strong>
+                <span>{{ propagationMeta.cached ? 'Cached' : 'Fresh' }} / {{ propagationMeta.cache_ttl_seconds }}s</span>
+              </div>
+            </div>
+
+            <section v-for="snapshot in propagationResult.snapshots" :key="snapshot.resolver_id" class="content-section">
+              <h3>{{ snapshot.resolver_id }}</h3>
+              <div class="result-meta">
+                <div>
+                  <strong>Region</strong>
+                  <span>{{ snapshot.region }}</span>
+                </div>
+                <div>
+                  <strong>Status</strong>
+                  <span>{{ snapshot.status }}</span>
+                </div>
+                <div>
+                  <strong>TTL min</strong>
+                  <span>{{ snapshot.ttl_min ?? 'None' }}</span>
+                </div>
+              </div>
+              <ul class="result-list">
+                <li v-for="value in snapshot.values" :key="value">{{ value }}</li>
+              </ul>
+              <p v-if="snapshot.values.length === 0">No values returned by this resolver.</p>
+            </section>
+
+            <p v-if="Array.isArray(propagationMeta.warnings) && propagationMeta.warnings.length > 0">
+              {{ propagationMeta.warnings.join(' ') }}
+            </p>
+          </div>
+
+          <div v-else-if="portResult">
+            <div class="result-meta">
+              <div>
+                <strong>Hostname</strong>
+                <span>{{ portResult.hostname }}</span>
+              </div>
+              <div>
+                <strong>Port</strong>
+                <span>{{ portResult.port }}</span>
+              </div>
+              <div>
+                <strong>Status</strong>
+                <span>{{ portResult.overall_status }}</span>
+              </div>
+            </div>
+
+            <div class="result-table-wrap">
+              <table class="result-table">
+                <thead>
+                  <tr>
+                    <th>Address</th>
+                    <th>Status</th>
+                    <th>Latency</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="check in portResult.checks" :key="`${check.address}-${check.status}`">
+                    <td>{{ check.address }}</td>
+                    <td>{{ check.status }}</td>
+                    <td>{{ check.latency_ms ?? 'n/a' }} ms</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p v-if="Array.isArray(portMeta.warnings) && portMeta.warnings.length > 0">
+              {{ portMeta.warnings.join(' ') }}
+            </p>
+          </div>
+
+          <div v-else-if="reachabilityResult">
+            <div class="result-meta">
+              <div>
+                <strong>Hostname</strong>
+                <span>{{ reachabilityResult.hostname }}</span>
+              </div>
+              <div>
+                <strong>TCP 443</strong>
+                <span>{{ reachabilityResult.tcp_443.status }}</span>
+              </div>
+              <div>
+                <strong>Latency</strong>
+                <span>{{ reachabilityResult.tcp_443.latency_ms ?? 'n/a' }} ms</span>
+              </div>
+            </div>
+
+            <section class="content-section">
+              <h3>Bounded probes</h3>
+              <ul class="result-list">
+                <li>{{ reachabilityResult.tcp_443.address }} checked for TCP 443.</li>
+                <li>ICMP: {{ reachabilityResult.icmp.status }} - {{ reachabilityResult.icmp.reason }}</li>
+                <li>Traceroute: {{ reachabilityResult.traceroute.status }} - {{ reachabilityResult.traceroute.reason }}</li>
+              </ul>
+            </section>
+
+            <p v-if="Array.isArray(reachabilityMeta.warnings) && reachabilityMeta.warnings.length > 0">
+              {{ reachabilityMeta.warnings.join(' ') }}
             </p>
           </div>
 

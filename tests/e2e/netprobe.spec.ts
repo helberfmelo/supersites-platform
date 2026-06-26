@@ -260,6 +260,115 @@ test.describe('NetProbe Atlas public foundation', () => {
     expect(errors).toEqual([])
   })
 
+  test('renders propagation, port and reachability bounded diagnostics', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.route('http://127.0.0.1:8013/api/v1/netprobe/propagation', async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          data: {
+            domain: 'example.com',
+            record_type: 'NS',
+            checked_addresses: ['93.184.216.34'],
+            snapshots: [{
+              resolver_id: 'system-resolver',
+              region: 'local-runtime',
+              status: 'answered',
+              ttl_min: 300,
+              values: ['a.iana-servers.net', 'b.iana-servers.net'],
+            }],
+          },
+          meta: {
+            generated_at: '2026-06-26T00:00:00.000Z',
+            cache_ttl_seconds: 120,
+            cached: false,
+            warnings: ['Sprint 2.4 uses the local system resolver as the first controlled propagation probe.'],
+          },
+        }),
+      })
+    })
+
+    await page.route('http://127.0.0.1:8013/api/v1/netprobe/port', async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          data: {
+            hostname: 'example.com',
+            port: 443,
+            checked_addresses: ['93.184.216.34'],
+            checks: [{ address: '93.184.216.34', status: 'open', latency_ms: 42, error: null }],
+            overall_status: 'open',
+          },
+          meta: {
+            generated_at: '2026-06-26T00:00:00.000Z',
+            cache_ttl_seconds: 60,
+            cached: false,
+            allowed_ports: [80, 443, 587, 993],
+            warnings: ['Port checks are limited to an allowlist.'],
+          },
+        }),
+      })
+    })
+
+    await page.route('http://127.0.0.1:8013/api/v1/netprobe/reachability', async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          data: {
+            hostname: 'example.com',
+            checked_addresses: ['93.184.216.34'],
+            tcp_443: { address: '93.184.216.34', status: 'open', latency_ms: 33, error: null },
+            icmp: { status: 'not_supported', reason: 'ICMP ping is disabled in the initial web runtime probe.' },
+            traceroute: { status: 'not_supported', reason: 'Traceroute requires controlled worker infrastructure.' },
+          },
+          meta: {
+            generated_at: '2026-06-26T00:00:00.000Z',
+            cache_ttl_seconds: 60,
+            cached: false,
+            warnings: ['Sprint 2.4 reports bounded TCP reachability first.'],
+          },
+        }),
+      })
+    })
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/en/tools/dns-propagation')
+    await page.getByLabel('Domain name').fill('secret-propagation.example')
+    await page.locator('#dns-propagation-record-type').selectOption('NS')
+    await page.getByRole('button', { name: 'Run propagation check' }).click()
+    await expect(page.getByText('system-resolver')).toBeVisible()
+    await expect(page.getByText('a.iana-servers.net')).toBeVisible()
+    await expectNoHorizontalOverflow(page)
+    expect(JSON.stringify(await page.evaluate(() => window.supersitesAnalyticsEvents))).not.toContain('secret-propagation.example')
+
+    await page.goto('/en/tools/port-checker')
+    await page.getByLabel('Hostname').fill('secret-port.example')
+    await page.locator('#port-checker-port').selectOption('443')
+    await page.getByRole('button', { name: 'Run port check' }).click()
+    await expect(page.getByText('open').first()).toBeVisible()
+    await expect(page.getByText('42 ms')).toBeVisible()
+    await expectNoHorizontalOverflow(page)
+    expect(JSON.stringify(await page.evaluate(() => window.supersitesAnalyticsEvents))).not.toContain('secret-port.example')
+
+    await page.goto('/en/tools/ping-traceroute')
+    await page.getByLabel('Hostname').fill('secret-reachability.example')
+    await page.getByRole('button', { name: 'Run reachability check' }).click()
+    await expect(page.getByText('TCP 443', { exact: true })).toBeVisible()
+    await expect(page.getByText('33 ms')).toBeVisible()
+    await expect(page.getByText(/Traceroute: not_supported/)).toBeVisible()
+    await expectNoHorizontalOverflow(page)
+    expect(JSON.stringify(await page.evaluate(() => window.supersitesAnalyticsEvents))).not.toContain('secret-reachability.example')
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('netprobe-reachability-mobile', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
   test('renders the privacy page on mobile', async ({ page }) => {
     const errors = collectBrowserErrors(page)
 

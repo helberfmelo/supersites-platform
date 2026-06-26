@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Support\NetProbe\NetProbeCertificateProbe;
 use App\Support\NetProbe\NetProbeDnsResolver;
 use App\Support\NetProbe\NetProbeRdapClient;
+use App\Support\NetProbe\NetProbeTcpProbe;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -200,6 +201,116 @@ class NetProbeApiTest extends TestCase
         $this->travelBack();
     }
 
+    public function test_dns_propagation_returns_bounded_resolver_snapshot(): void
+    {
+        Cache::flush();
+
+        $resolver = new FakeNetProbeDnsResolver([
+            'A' => [
+                ['type' => 'A', 'ttl' => 120, 'ip' => '93.184.216.34'],
+            ],
+            'AAAA' => [],
+            'NS' => [
+                ['type' => 'NS', 'ttl' => 300, 'target' => 'a.iana-servers.net'],
+                ['type' => 'NS', 'ttl' => 300, 'target' => 'b.iana-servers.net'],
+            ],
+        ]);
+        $this->app->instance(NetProbeDnsResolver::class, $resolver);
+
+        $payload = [
+            'domain' => 'Example.COM',
+            'type' => 'NS',
+        ];
+
+        $this->postJson('/api/v1/netprobe/propagation', $payload)
+            ->assertOk()
+            ->assertJsonPath('data.domain', 'example.com')
+            ->assertJsonPath('data.record_type', 'NS')
+            ->assertJsonPath('data.snapshots.0.resolver_id', 'system-resolver')
+            ->assertJsonPath('data.snapshots.0.values.0', 'a.iana-servers.net')
+            ->assertJsonPath('meta.cache_ttl_seconds', 120)
+            ->assertJsonPath('meta.cached', false);
+
+        $this->postJson('/api/v1/netprobe/propagation', $payload)
+            ->assertOk()
+            ->assertJsonPath('meta.cached', true);
+    }
+
+    public function test_port_check_uses_allowlist_and_blocks_private_resolution(): void
+    {
+        Cache::flush();
+
+        $this->app->instance(NetProbeDnsResolver::class, new FakeNetProbeDnsResolver([
+            'A' => [
+                ['type' => 'A', 'ttl' => 120, 'ip' => '93.184.216.34'],
+            ],
+            'AAAA' => [],
+        ]));
+        $this->app->instance(NetProbeTcpProbe::class, new FakeNetProbeTcpProbe([
+            'status' => 'open',
+            'latency_ms' => 42,
+            'error' => null,
+        ]));
+
+        $this->postJson('/api/v1/netprobe/port', [
+            'hostname' => 'example.com',
+            'port' => 443,
+        ])->assertOk()
+            ->assertJsonPath('data.hostname', 'example.com')
+            ->assertJsonPath('data.port', 443)
+            ->assertJsonPath('data.overall_status', 'open')
+            ->assertJsonPath('data.checks.0.address', '93.184.216.34')
+            ->assertJsonPath('data.checks.0.latency_ms', 42)
+            ->assertJsonPath('meta.allowed_ports.0', 80);
+
+        $this->postJson('/api/v1/netprobe/port', [
+            'hostname' => 'example.com',
+            'port' => 3389,
+        ])->assertUnprocessable()
+            ->assertJsonValidationErrors('port');
+
+        Cache::flush();
+        $this->app->instance(NetProbeDnsResolver::class, new FakeNetProbeDnsResolver([
+            'A' => [
+                ['type' => 'A', 'ttl' => 60, 'ip' => '10.0.0.5'],
+            ],
+            'AAAA' => [],
+        ]));
+
+        $this->postJson('/api/v1/netprobe/port', [
+            'hostname' => 'internal.example.com',
+            'port' => 443,
+        ])->assertUnprocessable()
+            ->assertJsonValidationErrors('domain');
+    }
+
+    public function test_reachability_returns_bounded_tcp_probe_and_disabled_trace_modes(): void
+    {
+        Cache::flush();
+
+        $this->app->instance(NetProbeDnsResolver::class, new FakeNetProbeDnsResolver([
+            'A' => [
+                ['type' => 'A', 'ttl' => 120, 'ip' => '93.184.216.34'],
+            ],
+            'AAAA' => [],
+        ]));
+        $this->app->instance(NetProbeTcpProbe::class, new FakeNetProbeTcpProbe([
+            'status' => 'open',
+            'latency_ms' => 33,
+            'error' => null,
+        ]));
+
+        $this->postJson('/api/v1/netprobe/reachability', [
+            'hostname' => 'example.com',
+        ])->assertOk()
+            ->assertJsonPath('data.hostname', 'example.com')
+            ->assertJsonPath('data.tcp_443.status', 'open')
+            ->assertJsonPath('data.tcp_443.latency_ms', 33)
+            ->assertJsonPath('data.icmp.status', 'not_supported')
+            ->assertJsonPath('data.traceroute.status', 'not_supported')
+            ->assertJsonPath('meta.cache_ttl_seconds', 60);
+    }
+
     public function test_netprobe_public_rate_limit_is_applied(): void
     {
         Cache::flush();
@@ -270,5 +381,24 @@ class FakeNetProbeCertificateProbe implements NetProbeCertificateProbe
         $this->calls++;
 
         return $this->payload;
+    }
+}
+
+class FakeNetProbeTcpProbe implements NetProbeTcpProbe
+{
+    public int $calls = 0;
+
+    /**
+     * @param array{status: string, latency_ms: int|null, error: string|null} $result
+     */
+    public function __construct(private readonly array $result)
+    {
+    }
+
+    public function connect(string $address, int $port, float $timeoutSeconds): array
+    {
+        $this->calls++;
+
+        return $this->result;
     }
 }

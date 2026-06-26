@@ -6,8 +6,10 @@ use App\Support\NetProbe\HttpNetProbeRdapClient;
 use App\Support\NetProbe\NetProbeCertificateProbe;
 use App\Support\NetProbe\NetProbeDnsResolver;
 use App\Support\NetProbe\NetProbeRdapClient;
+use App\Support\NetProbe\NetProbeTcpProbe;
 use App\Support\NetProbe\PhpNetProbeCertificateProbe;
 use App\Support\NetProbe\PhpNetProbeDnsResolver;
+use App\Support\NetProbe\PhpNetProbeTcpProbe;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -23,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(NetProbeDnsResolver::class, PhpNetProbeDnsResolver::class);
         $this->app->bind(NetProbeRdapClient::class, HttpNetProbeRdapClient::class);
         $this->app->bind(NetProbeCertificateProbe::class, PhpNetProbeCertificateProbe::class);
+        $this->app->bind(NetProbeTcpProbe::class, PhpNetProbeTcpProbe::class);
     }
 
     /**
