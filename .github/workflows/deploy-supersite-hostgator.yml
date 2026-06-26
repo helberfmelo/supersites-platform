@@ -68,7 +68,7 @@ jobs:
           }
 
           if ($action -eq 'deploy') {
-            $deployArgs.ReleaseId = '${{ github.sha }}'
+            $deployArgs.ReleaseId = '${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}'
           } elseif ($action -eq 'rollback-release') {
             if (-not $releaseId) {
               throw 'release_id is required for rollback-release.'

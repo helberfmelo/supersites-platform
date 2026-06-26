@@ -205,42 +205,29 @@ function Upload-RemoteFile {
         [string]$FileName
     )
 
-    Add-Type -AssemblyName System.Net.Http
-
-    $client = [System.Net.Http.HttpClient]::new()
-    try {
-        $client.Timeout = [TimeSpan]::FromSeconds(120)
-        $client.DefaultRequestHeaders.Authorization = [System.Net.Http.Headers.AuthenticationHeaderValue]::new("Basic", $script:CpanelAuthToken)
-
-        $content = [System.Net.Http.MultipartFormDataContent]::new()
-        try {
-            $content.Add([System.Net.Http.StringContent]::new($Directory), "dir")
-
-            $bytes = [System.IO.File]::ReadAllBytes($LocalPath)
-            $fileContent = [System.Net.Http.ByteArrayContent]::new($bytes)
-            $fileContent.Headers.ContentType = [System.Net.Http.Headers.MediaTypeHeaderValue]::Parse("application/octet-stream")
-            $content.Add($fileContent, "file-1", $FileName)
-
-            $uri = "https://$script:CpanelHost`:$script:CpanelPort/execute/Fileman/upload_files"
-            $response = $client.PostAsync($uri, $content).GetAwaiter().GetResult()
-            $body = $response.Content.ReadAsStringAsync().GetAwaiter().GetResult()
-
-            if (-not $response.IsSuccessStatusCode) {
-                throw "Upload HTTP failure for '$LocalPath': $([int]$response.StatusCode)"
-            }
-
-            $json = $body | ConvertFrom-Json
-            Assert-UapiSuccess $json "Failed to upload remote file '$Directory/$FileName'."
-        }
-        finally {
-            if ($content) {
-                $content.Dispose()
-            }
-        }
+    $curlCommand = Get-Command curl.exe -ErrorAction SilentlyContinue
+    if (-not $curlCommand) {
+        $curlCommand = Get-Command curl -CommandType Application -ErrorAction Stop
     }
-    finally {
-        $client.Dispose()
+
+    $resolvedLocalPath = (Resolve-Path -LiteralPath $LocalPath).Path
+    $uri = "https://$script:CpanelHost`:$script:CpanelPort/execute/Fileman/upload_files"
+    $arguments = @(
+        "-sS",
+        "--request", "POST",
+        $uri,
+        "--header", "Authorization: Basic $script:CpanelAuthToken",
+        "--form", "dir=$Directory",
+        "--form", "file-1=@$resolvedLocalPath;filename=$FileName"
+    )
+
+    $body = & $curlCommand.Source @arguments 2>&1
+    if ($LASTEXITCODE -ne 0) {
+        throw "curl upload failed for '$LocalPath': $body"
     }
+
+    $json = ($body | Out-String) | ConvertFrom-Json
+    Assert-UapiSuccess $json "Failed to upload remote file '$Directory/$FileName'."
 }
 
 function New-HtaccessContent {
