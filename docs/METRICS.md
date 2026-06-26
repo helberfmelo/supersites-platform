@@ -11,8 +11,8 @@ Data-base: 2026-06-26
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
 | Shared package folders created | 12 |
-| ADRs created | 14 |
-| Docs files created/maintained | 40 |
+| ADRs created | 15 |
+| Docs files created/maintained | 41 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
 | Nuxt apps scaffolded | 2 |
@@ -22,8 +22,8 @@ Data-base: 2026-06-26
 | Shared package typechecks passing | 5 |
 | Frontend tests passing | 17 |
 | Playwright visual smoke tests passing | 11 |
-| Laravel tests passing | 26 |
-| Control plane API endpoints implemented | 11 |
+| Laravel tests passing | 31 |
+| Control plane API endpoints implemented | 15 |
 | Control plane admin routes implemented | 6 |
 | Control plane portfolio records seeded | 12 |
 | Control plane RBAC permissions seeded | 7 |
@@ -77,6 +77,11 @@ Data-base: 2026-06-26
 | NetProbe Atlas localized tool pages | 35 |
 | NetProbe Atlas live public tools implemented | 7 |
 | NetProbe public API endpoints implemented | 7 |
+| NetProbe authenticated monitor API endpoints | 4 |
+| NetProbe monitoring storage tables | 3 |
+| NetProbe scheduled monitor commands | 1 |
+| NetProbe queued monitor jobs | 1 |
+| NetProbe alert channels implemented | 2 |
 | NetProbe DNS record types supported | 8 |
 | NetProbe Atlas legal/editorial pages | 35 |
 | NetProbe Atlas FAQ blocks | 35 |

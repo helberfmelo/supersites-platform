@@ -63,6 +63,12 @@ Nao registrar em analytics:
 - porta selecionada, status de porta, status TCP, latencia, endereco checado ou resultado de propagation/reachability;
 - mensagens brutas do resolver.
 
+## NetProbe monitoring
+
+Monitores DNS/SSL/dominio podem gerar eventos de produto como `monitor_created` futuramente, mas sem alvo bruto, dominio, hostname, IP, webhook, e-mail, certificado, registros DNS ou fatos RDAP.
+
+A Sprint 2.6 registra a criacao/execucao manual de monitores em `audit_logs` com `target_hash`; nenhum evento externo de analytics, GA4, GTM ou AdSense foi ativado.
+
 ## Regras
 
 - Identificar dados estimados, atrasados ou finalizados.

@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas, o modulo seguro inicial de IP/DNS/RDAP/SSL/propagation/port/reachability do NetProbe e o conteudo original multilanguage/AdSense-readiness do NetProbe foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada, os placeholders por site continuam `noindex`, e nao foram publicados anuncios nem integracoes externas.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas, o modulo seguro inicial de IP/DNS/RDAP/SSL/propagation/port/reachability do NetProbe, o conteudo original multilanguage/AdSense-readiness do NetProbe e o MVP de upgrade com monitores/historico/alertas/API foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada, os placeholders por site continuam `noindex`, e nao foram publicados anuncios nem integracoes externas.
 
 ## Estado local verificado
 
@@ -102,6 +102,14 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `Quality Gate` passou no run `28256931247`, incluindo repository safety, backend, Hub frontend, NetProbe frontend e summary.
   - `Deploy Dry Run` passou no run `28256931154`; artifact upload continuou bloqueado pela quota GitHub Actions, mas o plano ficou no job summary.
   - O placeholder remoto `https://opentshost.com/supersites/netprobe-atlas/` permanece preservado/noindex; nenhum deploy real do NetProbe ou AdSense foi ativado nesta sprint.
+- Sprint 2.6 upgrade MVP NetProbe:
+  - ADR `0015-netprobe-monitoring-mvp` registra a decisao de manter o MVP de monitores dentro do control plane ate existir backend/deploy/billing dedicado.
+  - Tabelas adicionadas: `net_probe_monitors`, `net_probe_monitor_checks` e `net_probe_alerts`.
+  - API autenticada inicial adicionada em `/api/v1/netprobe/monitors` para listar, criar, consultar e executar manualmente monitores, protegida por `operations.manage`.
+  - Monitores suportados: DNS, SSL e dominio/RDAP, com historico de checks, status `ok/warning/failed`, quota `free_preview`, auditoria com `target_hash` e sem eventos externos de analytics.
+  - Job `RunNetProbeMonitorCheck` usa a fila `netprobe-monitors`, `tries=3` e backoff `60/300/900`; comando `netprobe:dispatch-due-monitors` fica agendado a cada 5 minutos.
+  - Alertas por e-mail sao enfileiraveis; webhooks existem atras de flag e exigem HTTPS publico validado antes de entrega.
+  - Nenhum billing real, checkout, AdSense, webhook externo padrao ou deploy de worker em producao foi ativado nesta sprint.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
 - pnpm local via Corepack: `11.9.0`.
@@ -223,6 +231,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - `apps/control-plane` com Laravel, `.env.example`, migrations padrao e endpoint de saude.
 - `apps/control-plane/routes/api.php`, controllers `Api/V1`, models `Site`, `Role`, `Permission`, `AuditLog`, migrations/seeders RBAC e teste `ControlPlaneApiTest`.
 - `apps/control-plane/app/Http/Controllers/Api/V1/NetProbe`, `apps/control-plane/app/Support/NetProbe` e `tests/Feature/NetProbeApiTest.php` para os endpoints publicos seguros de IP/DNS/RDAP/SSL.
+- `apps/control-plane/app/Jobs/RunNetProbeMonitorCheck.php`, `app/Support/NetProbe/Monitoring`, `app/Models/NetProbeMonitor*` e `tests/Feature/NetProbeMonitoringTest.php` para monitores DNS/SSL/dominio, historico, alertas e scheduler.
 - `scripts/validate-local-stack.ps1` para smoke local de Docker e control plane.
 - ADR `0006-local-stack-scaffold.md` registrando a decisao de stack local.
 - `scripts/hostgator-bootstrap.ps1` para provisionamento idempotente de pastas, bancos, usuarios, privilegios e placeholders na HostGator.
@@ -392,6 +401,16 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run` e `git diff --check` passaram; `git diff --check` exibiu apenas avisos CRLF conhecidos.
   - GitHub Actions `Quality Gate` run `28256931247` passou com repository safety, backend, Hub frontend, NetProbe frontend e summary.
   - GitHub Actions `Deploy Dry Run` run `28256931154` passou; artifact upload segue bloqueado pela quota GitHub Actions, mas o plano permaneceu no job summary.
+- Sprint 2.6 validation:
+  - `php artisan test --filter=NetProbeMonitoringTest` passou com 5 testes / 27 assertions.
+  - `composer validate --strict` passou em `apps/control-plane`.
+  - `php artisan test` passou com 31 testes / 204 assertions em `apps/control-plane`.
+  - `php artisan migrate:fresh --seed --force` passou, incluindo `net_probe_monitors`, `net_probe_monitor_checks` e `net_probe_alerts`.
+  - `php artisan route:list --path=api/v1/netprobe` confirmou 11 rotas NetProbe, incluindo 4 rotas autenticadas de monitores.
+  - `php artisan schedule:list` confirmou `netprobe:dispatch-due-monitors --limit=50` a cada 5 minutos.
+  - Pacotes compartilhados validados: `pnpm test:packages` passou com 22 testes e `pnpm typecheck:packages` passou nos 5 pacotes.
+  - Regressao Nuxt NetProbe validada: `pnpm test:netprobe` passou com 7 testes.
+  - `pnpm validate:structure` e `pnpm deploy:dry-run` passaram.
 
 ## Pendencias criticas
 

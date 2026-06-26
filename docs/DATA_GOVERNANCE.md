@@ -30,6 +30,10 @@
 - RDAP resume apenas fatos publicos de dominio, registrar, status, datas, nameservers e notices/remarks; contatos pessoais e vCards devem ser omitidos.
 - SSL resume apenas facts tecnicos do certificado servido e enderecos publicos checados; certificado bruto e alvo digitado nao devem ser enviados a analytics.
 - Port checker e reachability podem exibir enderecos publicos checados, status e latencia aproximada como resultado transitorio; alvo digitado, porta escolhida e latencia nao devem ser enviados a analytics.
+- Monitores pagos/preview de DNS, SSL e dominio armazenam target normalizado, configuracao, historico de checks e alertas como dado operacional da conta.
+- Historico de checks deve guardar apenas resumo tecnico limitado, status, timestamps, duracao e erro controlado; payload bruto de certificados/RDAP/DNS nao deve ser persistido sem necessidade.
+- Destinos de alertas devem ser armazenados em `net_probe_alerts` apenas como hash; o valor bruto fica na configuracao do monitor enquanto a conta estiver ativa e conforme termos futuros.
+- Auditoria de criacao/execucao manual de monitores deve registrar hash do alvo, nao o alvo bruto.
 
 ## Analytics sem PII
 

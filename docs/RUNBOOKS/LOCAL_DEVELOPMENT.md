@@ -150,6 +150,17 @@ php artisan serve --host=127.0.0.1 --port=8013
 
 Open `http://127.0.0.1:8013/admin`. The seeded local owner account is for development only and comes from `DatabaseSeeder`/`UserFactory`; do not reuse it in production.
 
+NetProbe monitoring MVP local checks:
+
+```powershell
+cd apps\control-plane
+php artisan schedule:list
+php artisan netprobe:dispatch-due-monitors --limit=10
+php artisan queue:work --queue=netprobe-monitors --once
+```
+
+Webhook delivery is disabled by default. Enable only in controlled local/test scenarios with `NETPROBE_ALERT_WEBHOOK_ENABLED=true` and public HTTPS targets that pass the NetProbe host guard.
+
 ## Local smoke
 
 ```powershell

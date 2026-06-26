@@ -49,6 +49,10 @@
 - Propagation deve usar apenas snapshots DNS controlados; a versao inicial usa o resolver local e nao executa probes multirregiao externos.
 - Port checker deve aceitar somente a allowlist `80/443/587/993`, validar A/AAAA publico antes de conectar, limitar a quantidade de enderecos testados e usar timeout curto.
 - Reachability deve manter ICMP e traceroute desabilitados no request web; ate haver workers controlados, apenas TCP 443 limitado pode ser executado.
+- A API autenticada de monitores `/api/v1/netprobe/monitors` exige permissao `operations.manage` enquanto nao houver auth/billing de clientes.
+- Targets de monitores sao dados operacionais de conta e nao devem ir para analytics ou logs publicos; auditoria deve usar hash do alvo.
+- Alertas de webhook exigem URL HTTPS, host publico e resolucao A/AAAA publica antes de qualquer entrega; entrega externa fica desativada por padrao via config.
+- Alertas por e-mail/webhook devem armazenar apenas hash do destino em `net_probe_alerts`.
 
 ## Redis/VPS
 

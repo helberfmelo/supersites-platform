@@ -108,6 +108,20 @@ Sprints 2.2 a 2.4 adicionam o primeiro modulo publico de lookup do NetProbe dent
 
 O modulo fica no control plane para reduzir superficie operacional enquanto o contrato estabiliza. Uma extracao futura para app/API dedicado deve preservar o contrato HTTP, os testes de SSRF/rate limit e a politica de minimizacao de dados.
 
+## NetProbe monitoring MVP
+
+Sprint 2.6 adiciona a camada inicial de upgrade do NetProbe dentro do mesmo modulo Laravel, conforme ADR `0015-netprobe-monitoring-mvp`.
+
+- `net_probe_monitors`: monitores autenticados para DNS, SSL e dominio, com target normalizado, quota plan, frequencia, status e settings de alerta.
+- `net_probe_monitor_checks`: historico de execucoes com status `ok`, `warning` ou `failed`, resumo tecnico limitado e erro controlado.
+- `net_probe_alerts`: tentativas de alerta por e-mail/webhook, com destino armazenado apenas como hash e payload operacional limitado.
+- `/api/v1/netprobe/monitors`: API autenticada inicial para listar, criar, consultar e executar monitores, protegida por `operations.manage` ate existir auth/billing de clientes.
+- `netprobe:dispatch-due-monitors`: comando agendado a cada cinco minutos para enfileirar monitores vencidos.
+- `RunNetProbeMonitorCheck`: job da fila `netprobe-monitors`, com `tries=3` e backoff `60/300/900`.
+- Alertas por e-mail sao enfileiraveis; webhooks ficam desativados por padrao e exigem HTTPS publico validado antes de qualquer chamada externa.
+
+Esta camada cria valor de upgrade sem ativar billing real. Deploy em producao ainda depende de empacotamento, queue/runtime, backup/restore e smoke especificos do NetProbe.
+
 ## Sites e pastas
 
 | App | Pasta | Papel |

@@ -133,6 +133,7 @@ Sprint 2.6 - Upgrade MVP NetProbe
 - Objetivo: monitores DNS/SSL/dominio, historico, alertas e API inicial.
 - Entregas: jobs, filas, webhook/email, quotas.
 - Validacao: scheduler local, tests de jobs, retry/backoff.
+- Status: concluida localmente. O control plane recebeu monitores DNS/SSL/dominio, historico de checks, alertas e-mail/webhook guardados, quota `free_preview`, API autenticada, job enfileiravel com retry/backoff e scheduler local. Billing real, deploy de worker em producao e webhooks externos padrao continuam aguardando gates.
 
 Sprint 2.7 - Launch gate NetProbe
 - Objetivo: publicar e monitorar NetProbe.

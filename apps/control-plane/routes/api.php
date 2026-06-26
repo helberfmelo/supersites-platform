@@ -6,6 +6,10 @@ use App\Http\Controllers\Api\V1\MetricSnapshotIndexController;
 use App\Http\Controllers\Api\V1\NetProbe\ClientIpController;
 use App\Http\Controllers\Api\V1\NetProbe\DnsPropagationController;
 use App\Http\Controllers\Api\V1\NetProbe\DnsLookupController;
+use App\Http\Controllers\Api\V1\NetProbe\Monitoring\NetProbeMonitorIndexController;
+use App\Http\Controllers\Api\V1\NetProbe\Monitoring\NetProbeMonitorRunController;
+use App\Http\Controllers\Api\V1\NetProbe\Monitoring\NetProbeMonitorShowController;
+use App\Http\Controllers\Api\V1\NetProbe\Monitoring\NetProbeMonitorStoreController;
 use App\Http\Controllers\Api\V1\NetProbe\PortCheckController;
 use App\Http\Controllers\Api\V1\NetProbe\RdapLookupController;
 use App\Http\Controllers\Api\V1\NetProbe\ReachabilityController;
@@ -37,4 +41,13 @@ Route::prefix('v1')
         Route::get('/sites', SiteIndexController::class);
         Route::get('/metric-snapshots', MetricSnapshotIndexController::class)
             ->middleware('permission:dashboard.view');
+
+        Route::prefix('netprobe/monitors')
+            ->middleware('permission:operations.manage')
+            ->group(function (): void {
+                Route::get('/', NetProbeMonitorIndexController::class);
+                Route::post('/', NetProbeMonitorStoreController::class);
+                Route::get('/{monitor}', NetProbeMonitorShowController::class);
+                Route::post('/{monitor}/run', NetProbeMonitorRunController::class);
+            });
     });
