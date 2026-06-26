@@ -1,0 +1,50 @@
+name: Deploy Dry Run
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - apps/**
+      - packages/**
+      - package.json
+      - pnpm-lock.yaml
+      - pnpm-workspace.yaml
+      - infra/deployment/**
+      - scripts/**
+      - .github/workflows/deploy-dry-run.yml
+  workflow_dispatch:
+    inputs:
+      target_environment:
+        description: Target environment name for the dry-run plan.
+        required: true
+        default: staging-hostgator
+        type: choice
+        options:
+          - staging-hostgator
+          - production-hostgator
+
+permissions:
+  contents: read
+
+jobs:
+  deploy_plan:
+    name: Generate deploy dry-run plan
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.target_environment || 'staging-hostgator' }}
+    env:
+      TARGET_ENVIRONMENT: ${{ inputs.target_environment || 'staging-hostgator' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Prepare deploy dry-run
+        shell: pwsh
+        run: ./scripts/prepare-deploy-dry-run.ps1 -TargetEnvironment "$env:TARGET_ENVIRONMENT"
+
+      - name: Upload deploy dry-run artifact
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: supersites-deploy-dry-run
+          path: artifacts/deploy-dry-run
+          if-no-files-found: error

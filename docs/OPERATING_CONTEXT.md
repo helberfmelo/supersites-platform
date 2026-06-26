@@ -34,6 +34,16 @@ Padroes aproveitados:
 - Deploy em HostGator exige cuidado com subdiretorio, `APP_URL`, `ASSET_URL`, base path e migrations.
 - Publicacao por FTP/SSH deve preservar `.env`, evitar wipe remoto total e executar smoke pos-deploy.
 - Commits pequenos, push e monitoramento de deploy sao obrigatorios quando uma sprint for aprovada para execucao.
+- Obstaculos tecnicos reversiveis devem ser contornados com dry-run, fallback, validacao ou modo degradado e a sprint deve continuar.
+- Obstaculos humanos, juridicos, fiscais, bancarios, compra, KYC, PIN ou acoes irreversiveis devem ser registrados em `HUMAN_ACTION_REQUIRED` e o restante deve continuar.
+
+## CI/CD SuperSites
+
+- `Quality Gate` e path-aware a partir da Sprint 0.5.
+- `Deploy Dry Run` gera plano auditavel e nao muta producao.
+- Manifesto de deploy: `infra/deployment/apps.json`.
+- GitHub environments existentes: `staging-hostgator`, `production-hostgator`, `production-vps-runtime`.
+- Deploy real continua bloqueado ate existir empacotamento, preservacao remota de `.env`, smoke e rollback.
 
 ## Runtime VPS SuperSites
 

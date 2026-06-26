@@ -23,6 +23,7 @@
 4. Run smoke checks for deploy or production-impacting work.
 5. Run secret scan before commit.
 6. When VPS runtime changes, run `scripts/validate-vps-runtime.ps1`.
+7. When deployment files change, run `scripts/prepare-deploy-dry-run.ps1`.
 
 ## Commit, push and deploy
 

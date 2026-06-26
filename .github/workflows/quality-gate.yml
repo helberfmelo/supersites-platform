@@ -10,9 +10,52 @@ permissions:
   contents: read
 
 jobs:
-  repository-safety:
+  changes:
+    name: Detect changes
+    runs-on: ubuntu-latest
+    outputs:
+      run_all: ${{ steps.detect.outputs.run_all }}
+      frontend_supersite: ${{ steps.detect.outputs.frontend_supersite }}
+      backend_control_plane: ${{ steps.detect.outputs.backend_control_plane }}
+      deployment: ${{ steps.detect.outputs.deployment }}
+      docs_only: ${{ steps.detect.outputs.docs_only }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Detect changed scopes
+        id: detect
+        shell: pwsh
+        env:
+          BASE_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+          HEAD_SHA: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+        run: ./scripts/ci-detect-changes.ps1
+
+  repository_safety:
     name: Repository safety
     runs-on: ubuntu-latest
+    needs: changes
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Validate no committed secrets
+        shell: pwsh
+        run: ./scripts/validate-no-secrets.ps1
+
+      - name: Validate required structure
+        shell: pwsh
+        run: ./scripts/validate-structure.ps1
+
+  frontend_supersite:
+    name: Frontend / SuperSites Hub
+    runs-on: ubuntu-latest
+    needs:
+      - changes
+      - repository_safety
+    if: needs.changes.outputs.frontend_supersite == 'true' || needs.changes.outputs.deployment == 'true'
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -30,19 +73,22 @@ jobs:
       - name: Install Node dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Validate no committed secrets
-        shell: pwsh
-        run: ./scripts/validate-no-secrets.ps1
-
-      - name: Validate required structure
-        shell: pwsh
-        run: ./scripts/validate-structure.ps1
-
       - name: Test Nuxt catalog
         run: pnpm --filter @supersites/supersite test
 
       - name: Build Nuxt catalog
         run: pnpm --filter @supersites/supersite build
+
+  backend_control_plane:
+    name: Backend / Control Plane
+    runs-on: ubuntu-latest
+    needs:
+      - changes
+      - repository_safety
+    if: needs.changes.outputs.backend_control_plane == 'true' || needs.changes.outputs.deployment == 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
 
       - name: Setup PHP
         uses: shivammathur/setup-php@2.37.2
@@ -66,3 +112,40 @@ jobs:
         run: |
           composer validate --strict
           php artisan test
+
+  quality_summary:
+    name: Quality summary
+    runs-on: ubuntu-latest
+    needs:
+      - changes
+      - repository_safety
+      - frontend_supersite
+      - backend_control_plane
+    if: always()
+    steps:
+      - name: Check required job results
+        shell: pwsh
+        run: |
+          $results = @{
+            changes = '${{ needs.changes.result }}'
+            repository_safety = '${{ needs.repository_safety.result }}'
+            frontend_supersite = '${{ needs.frontend_supersite.result }}'
+            backend_control_plane = '${{ needs.backend_control_plane.result }}'
+          }
+
+          $results.GetEnumerator() | Sort-Object Name | ForEach-Object {
+            Write-Host "$($_.Key): $($_.Value)"
+          }
+
+          $required = @('changes', 'repository_safety')
+          $invalidRequired = $results.GetEnumerator() | Where-Object {
+            $_.Key -in $required -and $_.Value -ne 'success'
+          }
+
+          $invalidOptional = $results.GetEnumerator() | Where-Object {
+            $_.Key -notin $required -and $_.Value -notin @('success', 'skipped')
+          }
+
+          if ($invalidRequired -or $invalidOptional) {
+            throw "One or more required quality jobs failed or were cancelled."
+          }

@@ -51,6 +51,7 @@ Sprint 0.5 - CI/CD foundation
 - Objetivo: GitHub Actions por paths, lint/test/build, deploy staging HostGator, smoke e rollback.
 - Entregas: workflows, environments, secrets cadastrados, deploy dry-run.
 - Validacao: actions verdes, artefatos, logs sem secrets.
+- Status: concluida em modo dry-run. `Quality Gate` foi dividido em jobs path-aware; `Deploy Dry Run` gera artefato de plano sem mutar producao; GitHub environments `staging-hostgator`, `production-hostgator` e `production-vps-runtime` foram criados com variaveis e secrets por nome; deploy real segue pendente ate empacotamento, preservacao remota, smoke e rollback estarem implementados.
 
 ## Fase 1 - SuperSites Hub e Control Plane
 

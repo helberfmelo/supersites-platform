@@ -12,6 +12,7 @@ dist/
 .nuxt/
 build/
 coverage/
+artifacts/
 
 # Local runtime
 .env

@@ -30,4 +30,4 @@ Data-base: 2026-06-26
 - Preparar scripts.
 - Construir apps localmente.
 - Deploy transitorio em `opentshost.com` apos aprovacao do roadmap e validação tecnica.
-- Continuar commits/pushes com quality gate ativo mesmo sem branch protection automatica, ate a pendencia de plano GitHub ser resolvida.
+- Continuar commits/pushes com `Quality Gate` path-aware e monitoramento manual mesmo sem branch protection automatica, ate a pendencia de plano GitHub ser resolvida.

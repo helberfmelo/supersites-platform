@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI, os primeiros esqueletos Nuxt/Laravel, o bootstrap HostGator inicial e o runtime Redis isolado na VPS foram criados. Ainda nao ha deploy real de aplicacao; a producao transitoria possui placeholders `noindex` e runtime Redis local-only na VPS.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, os primeiros esqueletos Nuxt/Laravel, o bootstrap HostGator inicial e o runtime Redis isolado na VPS foram criados. Ainda nao ha deploy real de aplicacao; a producao transitoria possui placeholders `noindex`, runtime Redis local-only na VPS e plano de deploy dry-run auditavel.
 
 ## Estado local verificado
 
@@ -18,6 +18,15 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - GitHub CLI detectado e autenticado como `helberfmelo` com protocolo SSH.
 - GitHub CLI validado em 2026-06-26: conta ativa `helberfmelo`, token com escopo `repo`, suficiente para criar repositorios privados quando o roadmap for aprovado.
 - GitHub remoto criado na Sprint 0.2: `helberfmelo/supersites-platform`, privado, URL `https://github.com/helberfmelo/supersites-platform`.
+- GitHub environments criados na Sprint 0.5:
+  - `staging-hostgator`.
+  - `production-hostgator`.
+  - `production-vps-runtime`.
+- GitHub environment secrets cadastrados por nome na Sprint 0.5:
+  - `staging-hostgator`: `SUPERSITES_CPANEL_USER`, `SUPERSITES_CPANEL_PASSWORD`.
+  - `production-hostgator`: `SUPERSITES_CPANEL_USER`, `SUPERSITES_CPANEL_PASSWORD`.
+  - `production-vps-runtime`: `SUPERSITES_VPS_SSH_KEY`, `SUPERSITES_REDIS_PASSWORD`.
+- GitHub environment variables cadastradas por nome na Sprint 0.5 para HostGator e VPS runtime; valores nao secretos documentados em `docs/ENVIRONMENTS.md`.
 - Primeiro commit publicado: `8677c29` (`chore: bootstrap supersites governance`).
 - Primeiro GitHub Actions run monitorado: `Quality Gate` run `28218270387`, status `success`.
 - Segundo GitHub Actions run monitorado: `Quality Gate` run `28218325563`, status `success`, com aviso de runtime do `actions/checkout@v4`; workflow atualizado para `actions/checkout@v7`.
@@ -63,6 +72,9 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Portas locais SuperSites: MySQL `3317`, Redis `6381`, Mailpit SMTP `1035`, Mailpit UI `8035`.
 - Bancos locais SuperSites criados no MySQL Docker: 12/12.
 - GitHub Actions bootstrap criado em `.github/workflows/quality-gate.yml` com varredura de segredos, validacao da estrutura obrigatoria, testes/build Nuxt e testes Laravel.
+- GitHub Actions Sprint 0.5:
+  - `Quality Gate` dividido em jobs path-aware: mudancas, repository safety, frontend, backend e summary.
+  - `Deploy Dry Run` criado para gerar plano de deploy sem mutar arquivos remotos.
 - Workspace Node criado com `pnpm@11.9.0`.
 - Catalogo publico inicial criado em `apps/supersite` com Nuxt `4.4.8`, Vue `3.5.39` e TypeScript `6.0.3`.
 - Control plane inicial criado em `apps/control-plane` com Laravel `13.x`, PHP `^8.3` e `predis/predis`.
@@ -115,7 +127,11 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - `scripts/validate-local-stack.ps1` para smoke local de Docker e control plane.
 - ADR `0006-local-stack-scaffold.md` registrando a decisao de stack local.
 - `scripts/hostgator-bootstrap.ps1` para provisionamento idempotente de pastas, bancos, usuarios, privilegios e placeholders na HostGator.
+- `scripts/ci-detect-changes.ps1` para classificar paths alterados no CI.
+- `scripts/prepare-deploy-dry-run.ps1` para validar `infra/deployment/apps.json` e gerar artefato de plano de deploy.
+- `scripts/sync-github-environments.ps1` para sincronizar GitHub environments, variaveis e secrets sem imprimir valores secretos.
 - `scripts/validate-vps-runtime.ps1` para validar SSH, Redis local-only na VPS, layout SuperSites e portas Redis publicas fechadas.
+- `infra/deployment/apps.json` como manifesto versionado de deploy para 12 apps.
 
 ## Validacao desta entrega
 
@@ -137,14 +153,20 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - HostGator post-CI validation: `scripts/validate-hostgator-bootstrap.ps1` passou apos o run `28219966897`.
 - VPS runtime smoke: `scripts/validate-vps-runtime.ps1` passou, confirmando servico Redis ativo, `PING` autenticado, bind local-only em `127.0.0.1:6381`, layout `/srv/supersites` e portas publicas Redis `6379`, `6380`, `6381` fechadas/filtradas.
 - VPS runtime post-CI smoke: `scripts/validate-vps-runtime.ps1` passou apos o run `28220884125`.
+- Sprint 0.5 local validation:
+  - `scripts/ci-detect-changes.ps1` passou.
+  - `scripts/prepare-deploy-dry-run.ps1` passou e gerou artefato local ignorado.
+  - `infra/deployment/apps.json` validado como JSON.
+  - `scripts/sync-github-environments.ps1` passou e criou/sincronizou environments, variaveis e secrets por nome.
 
 ## Pendencias criticas
 
 - Resolver branch protection de `main` quando houver GitHub Pro, repositorio publico ou alternativa aprovada de ruleset/organizacao.
 - Definir se o mapeamento publico direto `https://opentshost.com/<site-folder>` sera feito por rewrite, alias, symlink controlado ou ajuste de document root.
-- Criar uma chave de deploy SuperSites ou secret de ambiente GitHub antes de automatizar deploy/operacao da VPS via CI.
+- Implementar jobs de deploy/operacao da VPS usando o GitHub environment `production-vps-runtime`, com rollback e smoke.
 - Definir backup/restore de `/var/lib/supersites-redis` antes de monitores pagos ou jobs de producao dependerem de Redis.
 - Criar filas/workers/crons na VPS apenas quando houver codigo executavel e nomes de fila definidos.
+- Implementar deploy real somente apos empacotamento de artefatos, preservacao remota de `.env`, smoke e rollback.
 - Definir estrategia tecnica de URL raiz: `opentshost.com` apontando para conteudo em `/public_html/supersites/`.
 - Definir dominios definitivos futuramente.
 - Validar dominio/marca antes de registrar qualquer nome.

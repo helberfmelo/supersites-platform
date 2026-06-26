@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "remoteBase": "/home1/opents62/public_html/supersites",
+  "publicBaseUrl": "https://opentshost.com/supersites",
+  "apps": [
+    {
+      "id": "supersite",
+      "name": "SuperSites Hub",
+      "kind": "nuxt-ssg",
+      "localPath": "apps/supersite",
+      "buildOutput": "apps/supersite/.output/public",
+      "remotePath": "/home1/opents62/public_html/supersites",
+      "publicUrl": "https://opentshost.com/supersites/"
+    },
+    {
+      "id": "control-plane",
+      "name": "Control Plane",
+      "kind": "laravel",
+      "localPath": "apps/control-plane",
+      "buildOutput": "apps/control-plane/public",
+      "remotePath": "/home1/opents62/public_html/supersites/control-plane",
+      "publicUrl": "https://opentshost.com/supersites/control-plane/"
+    },
+    {
+      "id": "netprobe-atlas",
+      "name": "NetProbe Atlas",
+      "kind": "placeholder",
+      "localPath": "apps/netprobe-atlas",
+      "remotePath": "/home1/opents62/public_html/supersites/netprobe-atlas",
+      "publicUrl": "https://opentshost.com/supersites/netprobe-atlas/"
+    },
+    {
+      "id": "calcharbor",
+      "name": "CalcHarbor",
+      "kind": "placeholder",
+      "localPath": "apps/calcharbor",
+      "remotePath": "/home1/opents62/public_html/supersites/calcharbor",
+      "publicUrl": "https://opentshost.com/supersites/calcharbor/"
+    },
+    {
+      "id": "devutility-lab",
+      "name": "DevUtility Lab",
+      "kind": "placeholder",
+      "localPath": "apps/devutility-lab",
+      "remotePath": "/home1/opents62/public_html/supersites/devutility-lab",
+      "publicUrl": "https://opentshost.com/supersites/devutility-lab/"
+    },
+    {
+      "id": "timenexus",
+      "name": "TimeNexus",
+      "kind": "placeholder",
+      "localPath": "apps/timenexus",
+      "remotePath": "/home1/opents62/public_html/supersites/timenexus",
+      "publicUrl": "https://opentshost.com/supersites/timenexus/"
+    },
+    {
+      "id": "qrroute",
+      "name": "QRRoute",
+      "kind": "placeholder",
+      "localPath": "apps/qrroute",
+      "remotePath": "/home1/opents62/public_html/supersites/qrroute",
+      "publicUrl": "https://opentshost.com/supersites/qrroute/"
+    },
+    {
+      "id": "invoicecraft",
+      "name": "InvoiceCraft",
+      "kind": "placeholder",
+      "localPath": "apps/invoicecraft",
+      "remotePath": "/home1/opents62/public_html/supersites/invoicecraft",
+      "publicUrl": "https://opentshost.com/supersites/invoicecraft/"
+    },
+    {
+      "id": "mailhealth",
+      "name": "MailHealth",
+      "kind": "placeholder",
+      "localPath": "apps/mailhealth",
+      "remotePath": "/home1/opents62/public_html/supersites/mailhealth",
+      "publicUrl": "https://opentshost.com/supersites/mailhealth/"
+    },
+    {
+      "id": "sitepulse-lab",
+      "name": "SitePulse Lab",
+      "kind": "placeholder",
+      "localPath": "apps/sitepulse-lab",
+      "remotePath": "/home1/opents62/public_html/supersites/sitepulse-lab",
+      "publicUrl": "https://opentshost.com/supersites/sitepulse-lab/"
+    },
+    {
+      "id": "pixelbatch",
+      "name": "PixelBatch",
+      "kind": "placeholder",
+      "localPath": "apps/pixelbatch",
+      "remotePath": "/home1/opents62/public_html/supersites/pixelbatch",
+      "publicUrl": "https://opentshost.com/supersites/pixelbatch/"
+    },
+    {
+      "id": "docshift",
+      "name": "DocShift",
+      "kind": "placeholder",
+      "localPath": "apps/docshift",
+      "remotePath": "/home1/opents62/public_html/supersites/docshift",
+      "publicUrl": "https://opentshost.com/supersites/docshift/"
+    }
+  ]
+}
