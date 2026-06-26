@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas e o modulo seguro inicial de IP/DNS/RDAP/SSL/propagation/port/reachability do NetProbe foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada, os placeholders por site continuam `noindex`, e nao foram publicados anuncios nem integracoes externas.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas, o modulo seguro inicial de IP/DNS/RDAP/SSL/propagation/port/reachability do NetProbe e o conteudo original multilanguage/AdSense-readiness do NetProbe foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada, os placeholders por site continuam `noindex`, e nao foram publicados anuncios nem integracoes externas.
 
 ## Estado local verificado
 
@@ -93,6 +93,12 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `Quality Gate` passou no run `28254182163`, incluindo repository safety, backend, Hub e NetProbe.
   - `Deploy Dry Run` passou no run `28254182161`.
   - O placeholder remoto `https://opentshost.com/supersites/netprobe-atlas/` permanece preservado/noindex; nenhum deploy real do NetProbe, anuncio, conta, worker externo ou integracao externa de analytics/ads foi ativado nesta sprint.
+- Sprint 2.5 conteudo multilanguage e AdSense readiness:
+  - O NetProbe Atlas agora publica conteudo editorial original em `en`, `pt-br`, `es`, `fr` e `de` para home, 7 paginas de ferramentas e 7 paginas legais/editoriais.
+  - Cada ferramenta recebeu exemplo, metodologia, interpretacao de resultado, limitacoes, escopo gratuito, caminho de upgrade, FAQ e schema JSON-LD `WebApplication`/`FAQPage`.
+  - Sitemap, canonical, `hreflang`, `html lang` e smoke SSR foram expandidos para as 5 linguas publicas.
+  - A UI manteve os formularios de consulta como primeira acao util, sem cadastro obrigatorio, sem publicar anuncios e sem ativar integracoes externas antes dos gates.
+  - O placeholder remoto `https://opentshost.com/supersites/netprobe-atlas/` permanece preservado/noindex; nenhum deploy real do NetProbe ou AdSense foi ativado nesta sprint.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
 - pnpm local via Corepack: `11.9.0`.
@@ -208,7 +214,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - `package.json`, `pnpm-workspace.yaml` e `pnpm-lock.yaml` para o workspace Node.
 - `packages/ui`, `packages/i18n`, `packages/seo` e `packages/consent` com manifestos, `src/index.ts`, testes Vitest e typecheck.
 - `apps/supersite` com catalogo SSR inicial dos 10 sites planejados.
-- `apps/netprobe-atlas` com fundacao Nuxt SSR, home, 7 paginas de ferramentas, paginas legais/editoriais, sitemap, testes Vitest e visual smoke Playwright.
+- `apps/netprobe-atlas` com fundacao Nuxt SSR, home e 7 paginas de ferramentas em 5 idiomas, paginas legais/editoriais multilanguage, sitemap, schema JSON-LD, testes Vitest e visual smoke Playwright.
 - `playwright.config.ts` e `tests/e2e/supersite.spec.ts` para smoke visual desktop/mobile do hub.
 - `playwright.netprobe.config.ts` e `tests/e2e/netprobe.spec.ts` para smoke visual desktop/mobile do NetProbe Atlas.
 - `apps/control-plane` com Laravel, `.env.example`, migrations padrao e endpoint de saude.
@@ -372,6 +378,15 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run` e `git diff --check` passaram; `git diff --check` exibiu apenas avisos CRLF conhecidos.
   - GitHub Actions `Quality Gate` run `28254182163` passou com repository safety, backend, Hub frontend, NetProbe frontend e summary.
   - GitHub Actions `Deploy Dry Run` run `28254182161` passou.
+- Sprint 2.5 validation:
+  - `pnpm test:netprobe` passou com 7 testes.
+  - `pnpm build:netprobe` passou e prerenderizou 77 rotas de conteudo / 153 rotas incluindo payloads, com avisos Nuxt/Nitro conhecidos e nao fatais.
+  - `pnpm validate:netprobe-preview` passou, confirmando SSR HTML, asset `_nuxt`, canonical/hreflang, pagina de ferramenta, rota localizada `pt-br`, pagina legal, sitemap e schema `FAQPage`.
+  - `pnpm test:e2e:netprobe` passou com 7 testes, cobrindo home, DNS, pagina localizada portuguesa mobile, RDAP, SSL, propagation, port, reachability, analytics sanitizado e paginas mobile sem overflow.
+  - Regressao do Hub validada: `pnpm --filter @supersites/supersite test`, `pnpm --filter @supersites/supersite build`, `pnpm validate:supersite-preview` e `pnpm test:e2e:supersite` passaram.
+  - Pacotes compartilhados validados: `pnpm test:packages` passou com 22 testes e `pnpm typecheck:packages` passou nos 5 pacotes.
+  - Backend validado: `composer validate --strict` e `php artisan test` passaram em `apps/control-plane` com 26 testes / 177 assertions.
+  - `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run` e `git diff --check` passaram; `git diff --check` exibiu apenas avisos CRLF conhecidos.
 
 ## Pendencias criticas
 

@@ -107,11 +107,25 @@ test.describe('NetProbe Atlas public foundation', () => {
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('DNS Lookup')
     await expect(page.getByText('93.184.216.34').first()).toBeVisible()
     await expect(page.getByText('10 mail.example.com')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'FAQ' })).toBeVisible()
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       'href',
       'https://opentshost.com/supersites/netprobe-atlas/en/tools/dns-lookup',
     )
+    await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)
     await expectNoHorizontalOverflow(page)
+
+    const jsonLdTypes = await page.locator('script[type="application/ld+json"]').evaluateAll((scripts) => scripts.map((script) => {
+      const text = (script.textContent ?? '').trim()
+      if (!text) {
+        return null
+      }
+
+      const payload = JSON.parse(text) as { '@type'?: string }
+
+      return payload['@type']
+    }).filter(Boolean))
+    expect(jsonLdTypes).toEqual(expect.arrayContaining(['WebApplication', 'FAQPage']))
 
     const analytics = await page.evaluate(() => ({
       localEvents: window.supersitesAnalyticsEvents,
@@ -131,6 +145,30 @@ test.describe('NetProbe Atlas public foundation', () => {
 
     const screenshot = await page.screenshot({ fullPage: true })
     await testInfo.attach('netprobe-dns-mobile', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('renders a localized Portuguese tool page on mobile', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/pt-br/tools/dns-lookup')
+
+    await expect(page).toHaveTitle(/Consulta DNS/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Consulta DNS')
+    await expect(page.locator('legend').filter({ hasText: 'Tipos de registro' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Guia e interpretação' })).toBeVisible()
+    await expect(page.getByText('Como interpretar o resultado')).toBeVisible()
+    await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR')
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/netprobe-atlas/pt-br/tools/dns-lookup',
+    )
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('netprobe-dns-pt-br-mobile', { body: screenshot, contentType: 'image/png' })
 
     expect(errors).toEqual([])
   })

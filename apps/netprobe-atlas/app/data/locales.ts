@@ -25,7 +25,7 @@ export {
   type LocaleCode,
 } from '@supersites/i18n'
 
-export const publicLocaleCodes = ['en'] satisfies LocaleCode[]
+export const publicLocaleCodes = ['en', 'pt-br', 'es', 'fr', 'de'] satisfies LocaleCode[]
 
 export function isPublicLocaleCode(value: unknown): value is LocaleCode {
   return isLocaleCode(value) && publicLocaleCodes.includes(value)

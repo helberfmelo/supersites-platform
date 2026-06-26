@@ -20,8 +20,8 @@ Data-base: 2026-06-26
 | Shared TS packages implemented | 5 |
 | Shared package tests passing | 22 |
 | Shared package typechecks passing | 5 |
-| Frontend tests passing | 15 |
-| Playwright visual smoke tests passing | 9 |
+| Frontend tests passing | 17 |
+| Playwright visual smoke tests passing | 11 |
 | Laravel tests passing | 26 |
 | Control plane API endpoints implemented | 11 |
 | Control plane admin routes implemented | 6 |
@@ -74,11 +74,14 @@ Data-base: 2026-06-26
 | Supersite hydrated interaction smoke | Passed |
 | Supersite Playwright report | Passed |
 | NetProbe Atlas tool pages scaffolded | 7 |
+| NetProbe Atlas localized tool pages | 35 |
 | NetProbe Atlas live public tools implemented | 7 |
 | NetProbe public API endpoints implemented | 7 |
 | NetProbe DNS record types supported | 8 |
-| NetProbe Atlas legal/editorial pages | 7 |
-| NetProbe Atlas prerender content routes | 16 |
+| NetProbe Atlas legal/editorial pages | 35 |
+| NetProbe Atlas FAQ blocks | 35 |
+| NetProbe Atlas structured data pages | 35 |
+| NetProbe Atlas prerender content routes | 76 |
 | NetProbe Atlas sitemap routes | 1 |
 | NetProbe Atlas preview smoke | Passed |
 | NetProbe Atlas Playwright report | Passed |

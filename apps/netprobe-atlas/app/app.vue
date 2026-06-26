@@ -494,6 +494,11 @@ h3 {
   background: #f7f8f4;
 }
 
+.result-meta strong,
+.result-meta span {
+  display: block;
+}
+
 .result-table-wrap {
   width: 100%;
   overflow-x: auto;
@@ -591,6 +596,26 @@ h3 {
 
 .content-section p {
   max-width: 780px;
+}
+
+.faq-list {
+  display: grid;
+  gap: 10px;
+}
+
+.faq-list details {
+  padding: 12px 0;
+  border-top: 1px solid #e0e7e2;
+}
+
+.faq-list summary {
+  color: #17231e;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.faq-list p {
+  margin: 8px 0 0;
 }
 
 .page-footer {

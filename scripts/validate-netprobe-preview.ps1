@@ -89,8 +89,9 @@ try {
         'name="viewport"',
         'rel="canonical"',
         'hreflang="en"',
+        'hreflang="pt-BR"',
         'DNS Lookup',
-        'No mandatory account',
+        'The free answer is complete',
         'No ads active'
     )
 
@@ -111,9 +112,14 @@ try {
         throw "Nuxt JavaScript asset did not return HTTP 200: $assetPath"
     }
 
-    $tool = Invoke-PreviewRequest -Uri "$baseUrl/en/tools/dns-lookup" -RequiredContent 'Hostnames are normalized'
-    if ($tool.StatusCode -ne 200 -or $tool.Content -notmatch 'DNS Lookup') {
+    $tool = Invoke-PreviewRequest -Uri "$baseUrl/en/tools/dns-lookup" -RequiredContent 'How to interpret the result'
+    if ($tool.StatusCode -ne 200 -or $tool.Content -notmatch 'DNS Lookup' -or $tool.Content -notmatch 'FAQPage') {
         throw 'DNS tool page smoke failed.'
+    }
+
+    $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/tools/dns-lookup" -RequiredContent 'Consulta DNS'
+    if ($localizedTool.StatusCode -ne 200 -or $localizedTool.Content -notmatch 'Como interpretar o resultado') {
+        throw 'Localized DNS tool page smoke failed.'
     }
 
     $legal = Invoke-PreviewRequest -Uri "$baseUrl/en/privacy" -RequiredContent 'Data minimization'
@@ -122,7 +128,7 @@ try {
     }
 
     $sitemap = Invoke-PreviewRequest -Uri "$baseUrl/sitemap.xml" -RequiredContent '<urlset'
-    if ($sitemap.Content -notmatch '/en/privacy' -or $sitemap.Content -notmatch '/en/tools/ssl-certificate-checker') {
+    if ($sitemap.Content -notmatch '/en/privacy' -or $sitemap.Content -notmatch '/pt-br/privacy' -or $sitemap.Content -notmatch '/de/tools/ssl-certificate-checker') {
         throw 'Sitemap smoke failed.'
     }
 

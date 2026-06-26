@@ -2,9 +2,9 @@
 import { getButtonClass } from '@supersites/ui'
 import { computed, ref } from 'vue'
 import { getShellCopy } from '../../../data/copy'
-import { localizedContentPath, localizedHomePath, localizedToolPath, normalizePublicLocale } from '../../../data/locales'
+import { localizedContentPath, localizedHomePath, localizedToolPath, normalizePublicLocale, toHtmlLang } from '../../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
-import { categoryLabels, getToolBySlug, getToolCopy } from '../../../data/tools'
+import { createToolStructuredData, getCategoryLabel, getToolBySlug, getToolCopy } from '../../../data/tools'
 import { trackToolStarted } from '../../../utils/analytics'
 
 const route = useRoute()
@@ -21,6 +21,7 @@ if (!locale || !tool) {
 const copy = getToolCopy(tool, locale)
 const shellCopy = getShellCopy(locale)
 const canonicalPath = localizedToolPath(locale, tool.slug)
+const structuredData = createToolStructuredData(tool, locale, absoluteUrl(canonicalPath))
 const runtimeConfig = useRuntimeConfig()
 const previewSubmitted = ref(false)
 const targetValue = ref(tool.slug === 'what-is-my-ip' ? '' : tool.exampleTarget)
@@ -374,7 +375,7 @@ async function previewResult(): Promise<void> {
 
 useHead({
   htmlAttrs: {
-    lang: locale,
+    lang: toHtmlLang(locale),
   },
   title: `${copy.title} | NetProbe Atlas`,
   meta: [
@@ -399,6 +400,10 @@ useHead({
     { rel: 'canonical', href: absoluteUrl(canonicalPath) },
     ...localeAlternates((targetLocale) => localizedToolPath(targetLocale, tool.slug)),
   ],
+  script: structuredData.map((item) => ({
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify(item),
+  })),
 })
 </script>
 
@@ -418,8 +423,8 @@ useHead({
     <section class="hero" :aria-labelledby="`${tool.slug}-title`">
       <div>
         <div class="detail-topline">
-          <p class="eyebrow">{{ categoryLabels[tool.category] }}</p>
-          <span class="status">{{ tool.statusLabel }}</span>
+          <p class="eyebrow">{{ getCategoryLabel(tool.category, locale) }}</p>
+          <span class="status">{{ copy.statusLabel }}</span>
         </div>
         <h1 :id="`${tool.slug}-title`">{{ copy.title }}</h1>
         <p class="lead">{{ copy.headline }}</p>
@@ -429,7 +434,7 @@ useHead({
         <div class="status-panel__row">
           <div>
             <strong>{{ shellCopy.exampleLabel }}</strong>
-            <span>{{ tool.exampleTarget }}</span>
+            <span>{{ copy.exampleTarget }}</span>
           </div>
           <span class="signal" aria-hidden="true"></span>
         </div>
@@ -459,7 +464,7 @@ useHead({
                 autocomplete="off"
               >
               <fieldset class="checkbox-grid">
-                <legend>Record types</legend>
+                <legend>{{ shellCopy.recordTypesLabel }}</legend>
                 <label v-for="recordType in ['A', 'AAAA', 'CNAME', 'MX', 'TXT', 'NS', 'SOA', 'CAA']" :key="recordType">
                   <input v-model="selectedRecordTypes" type="checkbox" :value="recordType">
                   <span>{{ recordType }}</span>
@@ -475,7 +480,7 @@ useHead({
                 :placeholder="copy.inputPlaceholder"
                 autocomplete="off"
               >
-              <label :for="`${tool.slug}-record-type`">Record type</label>
+              <label :for="`${tool.slug}-record-type`">{{ shellCopy.recordTypeLabel }}</label>
               <select :id="`${tool.slug}-record-type`" v-model="propagationRecordType">
                 <option v-for="recordType in ['A', 'AAAA', 'CNAME', 'MX', 'TXT', 'NS']" :key="recordType" :value="recordType">
                   {{ recordType }}
@@ -491,7 +496,7 @@ useHead({
                 :placeholder="copy.inputPlaceholder"
                 autocomplete="off"
               >
-              <label :for="`${tool.slug}-port`">Port</label>
+              <label :for="`${tool.slug}-port`">{{ shellCopy.portLabel }}</label>
               <select :id="`${tool.slug}-port`" v-model.number="selectedPort">
                 <option v-for="port in [80, 443, 587, 993]" :key="port" :value="port">
                   {{ port }}
@@ -520,8 +525,8 @@ useHead({
         </section>
 
         <section class="result-panel" aria-live="polite" :aria-labelledby="`${tool.slug}-result`">
-          <h2 :id="`${tool.slug}-result`">{{ isLiveTool ? 'Result' : 'Result preview' }}</h2>
-          <p v-if="isLoading">Running lookup...</p>
+          <h2 :id="`${tool.slug}-result`">{{ shellCopy.resultTitle }}</h2>
+          <p v-if="isLoading">{{ shellCopy.runningLabel }}</p>
           <p v-else-if="errorMessage" class="result-error">{{ errorMessage }}</p>
 
           <div v-else-if="ipResult">
@@ -819,14 +824,46 @@ useHead({
         </ul>
         <dl class="fact-list">
           <div>
-            <dt>Free check</dt>
-            <dd>{{ tool.freeScope }}</dd>
+            <dt>{{ shellCopy.freeCheckLabel }}</dt>
+            <dd>{{ copy.freeScope }}</dd>
           </div>
           <div>
-            <dt>Upgrade path</dt>
-            <dd>{{ tool.upgradeScope }}</dd>
+            <dt>{{ shellCopy.upgradePathLabel }}</dt>
+            <dd>{{ copy.upgradeScope }}</dd>
           </div>
         </dl>
+      </aside>
+    </section>
+
+    <section class="content-layout" :aria-labelledby="`${tool.slug}-guide`">
+      <div>
+        <h2 :id="`${tool.slug}-guide`">{{ shellCopy.toolGuideTitle }}</h2>
+        <article v-for="section in copy.contentSections" :key="section.heading" class="content-section">
+          <h3>{{ section.heading }}</h3>
+          <p v-for="paragraph in section.paragraphs" :key="paragraph">{{ paragraph }}</p>
+        </article>
+        <section class="content-section" :aria-labelledby="`${tool.slug}-faq`">
+          <h3 :id="`${tool.slug}-faq`">{{ shellCopy.faqTitle }}</h3>
+          <div class="faq-list">
+            <details v-for="faq in copy.faq" :key="faq.question">
+              <summary>{{ faq.question }}</summary>
+              <p>{{ faq.answer }}</p>
+            </details>
+          </div>
+        </section>
+      </div>
+
+      <aside class="band" :aria-label="copy.reviewedLabel">
+        <h2>{{ copy.reviewedLabel }}</h2>
+        <p>{{ shellCopy.contentQualityBody }}</p>
+        <div class="inline-link-list">
+          <NuxtLink :to="localizedContentPath(locale, 'methodology')">
+            {{ shellCopy.methodologyLabel }}
+          </NuxtLink>
+          <NuxtLink :to="localizedContentPath(locale, 'editorial-policy')">
+            {{ shellCopy.editorialLabel }}
+          </NuxtLink>
+        </div>
       </aside>
     </section>
 

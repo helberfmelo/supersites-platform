@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getShellCopy } from '../../data/copy'
-import { localizedContentPath, localizedHomePath, normalizePublicLocale } from '../../data/locales'
+import { localizedContentPath, localizedHomePath, normalizePublicLocale, toHtmlLang } from '../../data/locales'
 import { getContentPageBySlug, getContentPageCopy, contentPageCatalog } from '../../data/pages'
 import { absoluteUrl, localeAlternates } from '../../data/routes'
 
@@ -19,10 +19,23 @@ const copy = getContentPageCopy(page, locale)
 const shellCopy = getShellCopy(locale)
 const canonicalPath = localizedContentPath(locale, page.slug)
 const relatedPages = contentPageCatalog.filter((candidate) => candidate.slug !== page.slug)
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: copy.title,
+  description: copy.description,
+  inLanguage: locale,
+  dateModified: '2026-06-26',
+  url: absoluteUrl(canonicalPath),
+  publisher: {
+    '@type': 'Organization',
+    name: 'SuperSites',
+  },
+}
 
 useHead({
   htmlAttrs: {
-    lang: locale,
+    lang: toHtmlLang(locale),
   },
   title: `${copy.title} | NetProbe Atlas`,
   meta: [
@@ -46,6 +59,12 @@ useHead({
   link: [
     { rel: 'canonical', href: absoluteUrl(canonicalPath) },
     ...localeAlternates((targetLocale) => localizedContentPath(targetLocale, page.slug)),
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify(articleJsonLd),
+    },
   ],
 })
 </script>

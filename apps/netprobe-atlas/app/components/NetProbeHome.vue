@@ -2,9 +2,9 @@
 import { getStatusBadgeClass } from '@supersites/ui'
 import { computed, ref } from 'vue'
 import { getHomeCopy } from '../data/copy'
-import { localizedHomePath, localizedToolPath, type LocaleCode } from '../data/locales'
+import { localizedHomePath, localizedToolPath, toHtmlLang, type LocaleCode } from '../data/locales'
 import { absoluteUrl, localeAlternates } from '../data/routes'
-import { categoryLabels, filterTools, getToolCopy, toolCatalog, type ToolCategory } from '../data/tools'
+import { filterTools, getCategoryLabel, getToolCopy, toolCatalog, type ToolCategory } from '../data/tools'
 
 const props = defineProps<{
   locale: LocaleCode
@@ -14,13 +14,13 @@ const props = defineProps<{
 const copy = computed(() => getHomeCopy(props.locale))
 const searchQuery = ref('')
 const selectedCategory = ref<ToolCategory | 'all'>('all')
-const filteredTools = computed(() => filterTools(searchQuery.value, selectedCategory.value))
+const filteredTools = computed(() => filterTools(searchQuery.value, selectedCategory.value, props.locale))
 const canonicalPath = computed(() => (props.xDefault ? '/' : localizedHomePath(props.locale)))
 const categories = computed(() => Array.from(new Set(toolCatalog.map((tool) => tool.category))))
 
 useHead(() => ({
   htmlAttrs: {
-    lang: props.locale,
+    lang: toHtmlLang(props.locale),
   },
   title: props.xDefault ? 'NetProbe Atlas' : `${copy.value.title} | NetProbe Atlas`,
   meta: [
@@ -80,7 +80,7 @@ useHead(() => ({
         <select id="tool-category" v-model="selectedCategory">
           <option value="all">{{ copy.allCategories }}</option>
           <option v-for="category in categories" :key="category" :value="category">
-            {{ categoryLabels[category] }}
+            {{ getCategoryLabel(category, locale) }}
           </option>
         </select>
       </div>
@@ -97,7 +97,7 @@ useHead(() => ({
         :aria-pressed="selectedCategory === category"
         @click="selectedCategory = category"
       >
-        {{ categoryLabels[category] }}
+        {{ getCategoryLabel(category, locale) }}
       </button>
     </section>
 
@@ -105,9 +105,9 @@ useHead(() => ({
       <article v-for="tool in filteredTools" :key="tool.slug" class="tool-card">
         <div>
           <div class="tool-card__topline">
-            <span class="category">{{ categoryLabels[tool.category] }}</span>
-            <span :class="[...getStatusBadgeClass('foundation'), tool.statusLabel === 'Planned' ? 'status--info' : '']">
-              {{ tool.statusLabel }}
+            <span class="category">{{ getCategoryLabel(tool.category, locale) }}</span>
+            <span :class="[...getStatusBadgeClass('foundation'), getToolCopy(tool, locale).statusLabel === 'Planned' ? 'status--info' : '']">
+              {{ getToolCopy(tool, locale).statusLabel }}
             </span>
           </div>
           <h2>{{ getToolCopy(tool, locale).title }}</h2>
@@ -115,11 +115,11 @@ useHead(() => ({
           <dl>
             <div>
               <dt>{{ copy.freeLabel }}</dt>
-              <dd>{{ tool.freeScope }}</dd>
+              <dd>{{ getToolCopy(tool, locale).freeScope }}</dd>
             </div>
             <div>
               <dt>{{ copy.upgradeLabel }}</dt>
-              <dd>{{ tool.upgradeScope }}</dd>
+              <dd>{{ getToolCopy(tool, locale).upgradeScope }}</dd>
             </div>
           </dl>
         </div>
