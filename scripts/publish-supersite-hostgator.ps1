@@ -234,11 +234,12 @@ function Upload-RemoteFile {
         [string]$FileName
     )
 
-    $curlCommand = Get-Command curl.exe -ErrorAction SilentlyContinue
+    $curlCommand = Get-Command curl.exe -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
     if (-not $curlCommand) {
-        $curlCommand = Get-Command curl -CommandType Application -ErrorAction Stop
+        $curlCommand = Get-Command curl -CommandType Application -ErrorAction Stop | Select-Object -First 1
     }
 
+    $curlPath = $curlCommand.Source
     $resolvedLocalPath = (Resolve-Path -LiteralPath $LocalPath).Path
     $uri = "https://$script:CpanelHost`:$script:CpanelPort/execute/Fileman/upload_files"
     $arguments = @(
@@ -251,7 +252,7 @@ function Upload-RemoteFile {
     )
 
     $json = Invoke-CpanelRequestWithRetry -Description "cPanel upload $Directory/$FileName" -Operation {
-        $body = & $curlCommand.Source @arguments 2>&1
+        $body = & $curlPath @arguments 2>&1
         if ($LASTEXITCODE -ne 0) {
             throw "curl upload failed for '$LocalPath': $body"
         }
