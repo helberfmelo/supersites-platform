@@ -288,7 +288,7 @@ Sprint 7.8 - InvoiceCraft benchmark UX
 - Simbolico: BR-INVOICECRAFT.
 - Objetivo: refinar editor/preview/PDF de faturas, orcamentos e recibos, dados locais, templates planejados, disclaimers e upgrades gated.
 - Validacao: PDF rendering, testes/build/preview/Playwright do InvoiceCraft e gates locais.
-- Status: implementada e validada localmente; feature commit, push, Quality Gate, Deploy Dry Run remoto, smokes publicos e fechamento docs-only pendentes antes da Sprint 7.9. O InvoiceCraft recebeu tabs de template, document snapshot, PDF/download mais claro, copy de resumo textual local, related document flows, use-cases, boas praticas e workflow pago gated/inert. Impostos, numeracao fiscal, checkout, pagamentos e cobranca seguem `HUMAN_ACTION_REQUIRED`.
+- Status: concluida. O InvoiceCraft recebeu tabs de template, document snapshot, PDF/download mais claro, copy de resumo textual local, related document flows, use-cases, boas praticas e workflow pago gated/inert. Quality Gate `28288971344`, Deploy Dry Run `28288971346` e smokes publicos de Hub/control-plane/NetProbe passaram. Impostos, numeracao fiscal, checkout, pagamentos e cobranca seguem `HUMAN_ACTION_REQUIRED`.
 
 Sprint 7.9 - MailHealth benchmark UX
 - Simbolico: BR-MAILHEALTH.

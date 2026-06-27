@@ -233,8 +233,8 @@ Data-base: 2026-06-27
 | InvoiceCraft PDF rendering smoke | Passed locally |
 | InvoiceCraft preview smoke | Passed |
 | InvoiceCraft Playwright report | Passed |
-| InvoiceCraft Quality Gate run | `28277077148` passed |
-| InvoiceCraft Deploy Dry Run | `28277077185` passed |
+| InvoiceCraft Quality Gate run | `28288971344` passed |
+| InvoiceCraft Deploy Dry Run | `28288971346` passed |
 | InvoiceCraft production status | Placeholder at `https://opentshost.com/supersites/invoicecraft/`; real deploy gated |
 | MailHealth tool pages implemented | 7 |
 | MailHealth localized tool pages | 35 |
@@ -345,8 +345,8 @@ Data-base: 2026-06-27
 | Pages per language | Initial locales remain 5 (`en`, `pt-br`, `es`, `fr`, `de`) |
 | Related tools per page | Planned for 11/11 public surfaces; site-specific measurement continues in technical sprints |
 | Upgrade opportunities by site | 11/11 public surfaces mapped with gated upgrade/support opportunities |
-| Organic growth tasks open | 5 planned technical benchmark site sprints after Sprint 7.7 completion |
-| Organic growth tasks closed | 6 technical refinements completed in Fase 7 |
+| Organic growth tasks open | 4 planned technical benchmark site sprints after Sprint 7.8 completion |
+| Organic growth tasks closed | 7 technical refinements completed in Fase 7 |
 | Sprint 7.2 local backend validation | Passed: Composer, migrate fresh seed, AdminPanelTest, full Laravel suite |
 | Sprint 7.2 local Hub validation | Passed: Vitest, build, preview smoke, Playwright and desktop/mobile screenshot inspection |
 | Sprint 7.2 local package validation | Passed: 65 package tests and package typechecks |
@@ -393,10 +393,10 @@ Data-base: 2026-06-27
 | Sprint 7.7 docs-only Quality Gate run | `28288623698` passed |
 | Sprint 7.8 local InvoiceCraft validation | Passed: Vitest, build, preview smoke, PDF download Playwright and screenshot inspection |
 | Sprint 7.8 local final gates | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
-| Sprint 7.8 feature commit | Pending pre-push release step |
-| Sprint 7.8 Quality Gate run | Pending |
-| Sprint 7.8 Deploy Dry Run | Pending |
-| Sprint 7.8 public smokes | Pending |
+| Sprint 7.8 feature commit | `d47bfe2` |
+| Sprint 7.8 Quality Gate run | `28288971344` passed |
+| Sprint 7.8 Deploy Dry Run | `28288971346` passed |
+| Sprint 7.8 public smokes | Hub/control-plane/NetProbe passed |
 | Real ads activated | 0 |
 | Real billing activated | 0 |
 | Real donation payments activated | 0 |

@@ -37,4 +37,4 @@ Data-base: 2026-06-27
 
 - Added template tabs, document snapshot, local PDF/download flow, copy text summary, use-case guidance, related document links and gated paid-workflow prompts.
 - Local validation passed with `pnpm test:invoicecraft`, `pnpm build:invoicecraft`, `pnpm validate:invoicecraft-preview`, `pnpm test:e2e:invoicecraft`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` and `git diff --check`.
-- Remote Quality Gate, Deploy Dry Run, public smokes and docs-only closing commit remain pending before Sprint 7.9.
+- Remote Quality Gate `28288971344`, Deploy Dry Run `28288971346` and public Hub/control-plane/NetProbe smokes passed before Sprint 7.9.

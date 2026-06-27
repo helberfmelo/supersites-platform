@@ -953,7 +953,10 @@ Na Sprint 7.5, o DevUtility Lab recebeu o refinamento BR-DEVUTILITY: paginas de 
   - Validacao InvoiceCraft local passou: `pnpm test:invoicecraft` com 8 testes, `pnpm build:invoicecraft`, `pnpm validate:invoicecraft-preview` com asset `/_nuxt/CmmxVjA4.js` e `pnpm test:e2e:invoicecraft` com 3 testes Playwright e PDF download.
   - Screenshots locais do report Playwright foram inspecionados em `artifacts/playwright-invoicecraft-report/data/`; home desktop, editor mobile e privacidade mobile ficaram sem sobreposicao incoerente ou overflow visual apos ajuste dos tabs.
   - Gates finais locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation; `git diff --check` exibiu apenas avisos CRLF nos arquivos tocados.
-  - Feature commit, push, GitHub Actions, deploy dry-run remoto, smokes publicos e fechamento docs-only serao registrados no fechamento desta sprint antes da Sprint 7.9.
+  - Feature commit publicado: `d47bfe2` (`feat: refine invoicecraft benchmark ux`).
+  - GitHub Actions `Quality Gate` run `28288971344` passou, executando repository safety, frontend InvoiceCraft path-aware e summary.
+  - GitHub Actions `Deploy Dry Run` run `28288971346` passou e gerou plano sem mutar producao.
+  - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis; InvoiceCraft segue placeholder publico.
   - Nenhum cliente/produto salvo, recorrencia, branding real, equipe, pagamento, checkout, webhook, template fiscal oficial, numeracao fiscal, calculo automatico de impostos, anuncio real, billing real, analytics externo, worker de producao ou deploy real do InvoiceCraft foi ativado.
 
 ## Pendencias criticas
