@@ -29,7 +29,7 @@ Data-base: 2026-06-27
 - `pnpm test:e2e:mailhealth`
 - Backend tests if MailHealth endpoints change.
 - Standard structure/secrets/dry-run/ci/diff gates.
-- Local Sprint 7.9 validation passed for unit, build, preview smoke and Playwright; final CI IDs are recorded in `docs/STATUS.md` after push.
+- Sprint 7.9 validation passed for unit, build, preview smoke, Playwright, final local gates, Quality Gate `28289435994`, Deploy Dry Run `28289435995` and public Hub/control-plane/NetProbe smokes.
 
 ## Gates
 

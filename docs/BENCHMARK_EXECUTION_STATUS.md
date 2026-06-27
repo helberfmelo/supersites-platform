@@ -5,16 +5,16 @@ Data-base: 2026-06-27
 ## Current block
 
 - Real phase: Fase 7 - Benchmark-Driven Refinement.
-- Current sprint: Sprint 7.9 - MailHealth benchmark UX.
-- Symbolic sprint: BR-MAILHEALTH.
-- Scope: email diagnostic health score, signal checklist, severity, fix guidance, planned record builders and gated monitoring/API messaging.
-- Previous sprint completed: Sprint 7.8 - InvoiceCraft benchmark UX.
+- Current sprint: Sprint 7.10 - SitePulse Lab benchmark UX.
+- Symbolic sprint: BR-SITEPULSE.
+- Scope: web diagnostic UX/content refinement with simple status, technical tabs, recommendations and gated uptime messaging.
+- Previous sprint completed: Sprint 7.9 - MailHealth benchmark UX.
 
 ## Pre-sprint state
 
 - Git branch: `main`.
-- Latest completed commit before this sprint: `872d957 docs: record invoicecraft benchmark ci validation`.
-- Recent CI state: Quality Gate `28289084637` passed for the docs-only InvoiceCraft benchmark closing commit.
+- Latest completed commit before this sprint: `b451479 feat: refine mailhealth benchmark ux`.
+- Recent CI state: Quality Gate `28289435994` and Deploy Dry Run `28289435995` passed for MailHealth benchmark refinement.
 - Public live surfaces: SuperSites Hub, control-plane/API and NetProbe Atlas.
 - Public placeholder surfaces: CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch and DocShift.
 - External activations: zero real ads, zero real billing, zero checkout, zero provider AI, zero GA4/GTM/Search Console imports, zero AdSense serving and zero production workers for this block.
@@ -40,7 +40,7 @@ Data-base: 2026-06-27
 | 7.6 | BR-TIMENEXUS | Completed | Time/date UX/content refined in local/CI, public deploy still gated |
 | 7.7 | BR-QRROUTE | Completed | QR/UTM UX/content refined in local/CI, dynamic links still gated |
 | 7.8 | BR-INVOICECRAFT | Completed | Invoice/quote/receipt UX/content refined in local/CI, taxes/payments gated |
-| 7.9 | BR-MAILHEALTH | Local validation passed | Email diagnostic UX/content refined in local/CI, monitoring/API gated |
+| 7.9 | BR-MAILHEALTH | Completed | Email diagnostic UX/content refined in local/CI, monitoring/API gated |
 | 7.10 | BR-SITEPULSE | Planned | Web diagnostic UX/content refined in local/CI, uptime workers gated |
 | 7.11 | BR-PIXELBATCH | Planned | Image UX/content refined in local/CI, server/batch/AI gated |
 | 7.12 | BR-DOCSHIFT | Planned | PDF UX/content refined in local/CI, OCR/server/batch gated |
@@ -240,4 +240,10 @@ Sprint 7.9 local validation passed:
 - `pnpm ci:changes` (local runAll fallback expected because no base was provided)
 - `git diff --check`
 - MailHealth Playwright screenshots inspected under `artifacts/playwright-mailhealth-report/data/`.
-- Remote Quality Gate, Deploy Dry Run, public smokes and docs-only closing are pending feature push.
+Sprint 7.9 remote validation:
+
+- Feature commit: `b451479 feat: refine mailhealth benchmark ux`.
+- Quality Gate: `28289435994`, success.
+- Deploy Dry Run: `28289435995`, success.
+- Public smokes: Hub, control-plane/API and NetProbe passed after push; MailHealth remains public placeholder pending app-specific deploy/smoke/rollback gates.
+- Closing docs-only Quality Gate is pending this documentation commit.

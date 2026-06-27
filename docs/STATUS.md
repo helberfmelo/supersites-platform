@@ -969,6 +969,10 @@ Nas Sprints 7.6 a 7.9, TimeNexus, QRRoute, InvoiceCraft e MailHealth receberam r
   - Screenshots locais do report Playwright foram inspecionados em `artifacts/playwright-mailhealth-report/data/`; home desktop, SPF mobile e header analyzer mobile ficaram sem sobreposicao incoerente ou overflow visual.
   - O primeiro Playwright da sprint falhou apenas por seletor ambiguo apos duplicar sinais no checklist e na tabela; os asserts foram especificados por celula e o rerun passou.
   - Gates finais locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation; `git diff --check` exibiu apenas avisos CRLF nos arquivos tocados.
+  - Feature commit publicado: `b451479` (`feat: refine mailhealth benchmark ux`).
+  - GitHub Actions `Quality Gate` run `28289435994` passou, executando repository safety, frontend MailHealth path-aware e summary.
+  - GitHub Actions `Deploy Dry Run` run `28289435995` passou e gerou plano sem mutar producao.
+  - Public smokes pos-push passaram: `pnpm deploy:smoke-supersite-public` validou Hub e asset `https://opentshost.com/supersites/_nuxt/CDSWkO8T.js`; `pnpm deploy:smoke-control-plane-public` validou control-plane/API; `pnpm deploy:smoke-netprobe-public` validou NetProbe, asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/B8fWFYkD.js` e API `https://opentshost.com/supersites/control-plane/api/v1/netprobe`. MailHealth segue placeholder publico.
   - Nenhum monitoramento recorrente, alerta, ingestao DMARC, lote, API publica paga, white-label, billing, checkout, anuncio real, worker de producao, analytics externo ou deploy real do MailHealth foi ativado.
 
 ## Pendencias criticas

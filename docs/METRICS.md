@@ -252,8 +252,8 @@ Data-base: 2026-06-27
 | MailHealth record-builder gated panels | 35 |
 | MailHealth preview smoke | Passed |
 | MailHealth Playwright report | Passed |
-| MailHealth Quality Gate run | `28278020266` passed |
-| MailHealth Deploy Dry Run | `28278020271` passed |
+| MailHealth Quality Gate run | `28289435994` passed |
+| MailHealth Deploy Dry Run | `28289435995` passed |
 | MailHealth production status | Placeholder at `https://opentshost.com/supersites/mailhealth/`; real deploy gated |
 | SitePulse Lab tool pages implemented | 7 |
 | SitePulse Lab localized tool pages | 35 |
@@ -349,7 +349,7 @@ Data-base: 2026-06-27
 | Related tools per page | Planned for 11/11 public surfaces; site-specific measurement continues in technical sprints |
 | Upgrade opportunities by site | 11/11 public surfaces mapped with gated upgrade/support opportunities |
 | Organic growth tasks open | 3 planned technical benchmark site sprints after Sprint 7.9 local validation |
-| Organic growth tasks closed | 8 technical refinements completed in Fase 7 locally; Sprint 7.9 remote CI pending feature push |
+| Organic growth tasks closed | 8 technical refinements completed in Fase 7 |
 | Sprint 7.2 local backend validation | Passed: Composer, migrate fresh seed, AdminPanelTest, full Laravel suite |
 | Sprint 7.2 local Hub validation | Passed: Vitest, build, preview smoke, Playwright and desktop/mobile screenshot inspection |
 | Sprint 7.2 local package validation | Passed: 65 package tests and package typechecks |
@@ -402,6 +402,10 @@ Data-base: 2026-06-27
 | Sprint 7.8 public smokes | Hub/control-plane/NetProbe passed |
 | Sprint 7.9 local MailHealth validation | Passed: Vitest, build, preview smoke, Playwright and screenshot inspection |
 | Sprint 7.9 local final gates | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
+| Sprint 7.9 feature commit | `b451479` |
+| Sprint 7.9 Quality Gate run | `28289435994` passed |
+| Sprint 7.9 Deploy Dry Run | `28289435995` passed |
+| Sprint 7.9 public smokes | Hub/control-plane/NetProbe passed; MailHealth remains placeholder |
 | Real ads activated | 0 |
 | Real billing activated | 0 |
 | Real donation payments activated | 0 |

@@ -294,7 +294,7 @@ Sprint 7.9 - MailHealth benchmark UX
 - Simbolico: BR-MAILHEALTH.
 - Objetivo: refinar SPF/DKIM/DMARC/MX/blacklist/SMTP/headers com score, checklist, severidade, fix guidance, record builders planejados e upgrades gated.
 - Validacao: testes/build/preview/Playwright do MailHealth, DNS/SMTP bounded tests se afetados e gates locais.
-- Status: validada localmente. O MailHealth recebeu score de saude, checklist, severidade, fix guidance, record builders planejados e related checks sem alterar endpoints, monitoramento, billing, ads ou deploy publico real. CI remoto e fechamento docs-only serao registrados apos push.
+- Status: concluida. O MailHealth recebeu score de saude, checklist, severidade, fix guidance, record builders planejados e related checks sem alterar endpoints, monitoramento, billing, ads ou deploy publico real. Quality Gate `28289435994`, Deploy Dry Run `28289435995` e smokes publicos de Hub/control-plane/NetProbe passaram; MailHealth segue placeholder publico.
 
 Sprint 7.10 - SitePulse Lab benchmark UX
 - Simbolico: BR-SITEPULSE.
