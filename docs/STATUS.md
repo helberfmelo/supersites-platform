@@ -689,6 +689,11 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `pnpm deploy:dry-run` gerou `artifacts/deploy-dry-run/supersites-deploy-plan.json` e `artifacts/deploy-dry-run/supersites-deploy-plan.md`.
   - Smokes publicos pos-validacao local passaram novamente para Hub, control-plane/API e NetProbe; PixelBatch e DocShift continuam placeholders publicos HTTP 200, `noindex`, sem asset `_nuxt`.
   - O app `apps/pixelbatch` foi criado como Nuxt SSG com 6 ferramentas browser-side, Worker de planejamento, Canvas para resize/crop/reencode/metadata clean, limite gratuito de 10 MB e paginas legais/editoriais em 5 idiomas.
+  - Commit publicado: `81e2622` (`feat: add pixelbatch mvp`).
+  - GitHub Actions `Quality Gate` run `28280343286` passou com repository safety, backend, Hub frontend, NetProbe frontend, CalcHarbor frontend, DevUtility Lab frontend, TimeNexus frontend, QRRoute frontend, InvoiceCraft frontend, MailHealth frontend, SitePulse Lab frontend, PixelBatch frontend e summary.
+  - GitHub Actions `Deploy Dry Run` run `28280343287` passou e gerou plano sem mutar producao.
+  - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis.
+  - Smoke publico direto confirmou `https://opentshost.com/supersites/pixelbatch/` e `https://opentshost.com/supersites/docshift/` em HTTP 200, ainda `noindex`, sem asset `_nuxt`, preservando os placeholders publicos.
   - Nenhum deploy real do PixelBatch foi executado porque o app ainda nao tem workflow de traffic switch, smoke publico e rollback proprios.
 
 ## Pendencias criticas

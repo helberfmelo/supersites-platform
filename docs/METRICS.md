@@ -212,8 +212,8 @@ Data-base: 2026-06-27
 | PixelBatch Canvas processing smoke | Passed locally |
 | PixelBatch preview smoke | Passed |
 | PixelBatch Playwright report | Passed |
-| PixelBatch Quality Gate run | Pending post-push |
-| PixelBatch Deploy Dry Run | Pending post-push |
+| PixelBatch Quality Gate run | `28280343286` passed |
+| PixelBatch Deploy Dry Run | `28280343287` passed |
 | PixelBatch production status | Placeholder at `https://opentshost.com/supersites/pixelbatch/`; real deploy gated |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
