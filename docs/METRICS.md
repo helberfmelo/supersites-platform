@@ -164,8 +164,8 @@ Data-base: 2026-06-26
 | InvoiceCraft PDF rendering smoke | Passed locally |
 | InvoiceCraft preview smoke | Passed |
 | InvoiceCraft Playwright report | Passed |
-| InvoiceCraft Quality Gate run | Pending push |
-| InvoiceCraft Deploy Dry Run | Pending push |
+| InvoiceCraft Quality Gate run | `28277077148` passed |
+| InvoiceCraft Deploy Dry Run | `28277077185` passed |
 | InvoiceCraft production status | Placeholder at `https://opentshost.com/supersites/invoicecraft/`; real deploy gated |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |

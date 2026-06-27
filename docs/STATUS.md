@@ -606,7 +606,12 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - Regressao frontend unit: Hub, NetProbe, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute e InvoiceCraft passaram nas suites Vitest.
   - Regressao frontend build/preview/E2E: Hub, NetProbe, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute e InvoiceCraft passaram em build Nuxt, preview smoke e Playwright.
   - `pnpm validate:structure`, `pnpm deploy:dry-run`, `pnpm validate:secrets`, `pnpm ci:changes` e `git diff --check` passaram no fechamento local. `git diff --check` exibiu apenas avisos CRLF conhecidos em scripts PowerShell touched.
-  - CI/push, deploy dry-run monitorado, smokes publicos pos-push e commit documental de fechamento ainda serao registrados nesta sprint antes de seguir para MailHealth.
+  - Commit publicado: `933427a` (`feat: add invoicecraft mvp`).
+  - GitHub Actions `Quality Gate` run `28277077148` passou com repository safety, backend, Hub frontend, NetProbe frontend, CalcHarbor frontend, DevUtility Lab frontend, TimeNexus frontend, QRRoute frontend, InvoiceCraft frontend e summary.
+  - GitHub Actions `Deploy Dry Run` run `28277077185` passou; o upload de artifact continuou com anotacao de quota GitHub Actions, mas o plano foi gerado e publicado no job summary.
+  - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis.
+  - Smoke publico direto confirmou `https://opentshost.com/supersites/invoicecraft/` em HTTP 200, ainda `noindex`, sem asset `_nuxt`, preservando o placeholder publico do InvoiceCraft.
+  - Nenhum deploy real do InvoiceCraft foi executado porque o app ainda nao tem workflow de traffic switch, smoke publico e rollback proprios.
 
 ## Pendencias criticas
 
