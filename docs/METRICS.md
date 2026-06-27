@@ -11,15 +11,15 @@ Data-base: 2026-06-27
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
 | Shared package folders created | 12 |
-| ADRs created | 27 |
-| Docs files created/maintained | 56 |
+| ADRs created | 28 |
+| Docs files created/maintained | 57 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
 | Nuxt apps scaffolded | 11 |
 | Laravel apps scaffolded | 1 |
-| Shared TS packages implemented | 7 |
-| Shared package tests passing | 51 |
-| Shared package typechecks passing | 7 |
+| Shared TS packages implemented | 8 |
+| Shared package tests passing | 59 |
+| Shared package typechecks passing | 8 |
 | Frontend tests passing | 81 |
 | Playwright visual smoke tests passing | 43 |
 | Laravel tests passing | 44 |
@@ -69,6 +69,18 @@ Data-base: 2026-06-27
 | Sprint 6.4 Quality Gate run | `28283768826` passed |
 | Sprint 6.4 Deploy Dry Run | `28283768803` passed |
 | Sprint 6.4 public smokes | Hub/control-plane/NetProbe passed |
+| AI growth evidence gates implemented | 1 |
+| AI growth readiness storage tables | 3 |
+| AI growth audits seeded | 1 |
+| AI growth recommendations seeded | 5 |
+| AI growth anomalies seeded | 2 |
+| AI growth external providers active | 0 |
+| AI growth automation enabled | 0 |
+| Sprint 6.5 local validation | Passed |
+| Sprint 6.5 external AI activation | 0 |
+| Sprint 6.5 Quality Gate run | Pending |
+| Sprint 6.5 Deploy Dry Run | Pending |
+| Sprint 6.5 public smokes | Pending |
 | Analytics storage tables implemented | 2 |
 | Analytics ingest endpoint implemented | 1 |
 | Metric snapshot endpoint implemented | 1 |

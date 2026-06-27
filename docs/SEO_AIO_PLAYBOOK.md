@@ -36,3 +36,9 @@ Cada pagina de ferramenta deve resolver a consulta principal e conter conteudo o
 - Autoria/revisao e data.
 - Nao inventar dados, causalidade ou fontes.
 
+## AI growth engine
+
+- Recomendacoes de SEO/AIO devem ter evidencia verificavel, impacto, esforco, confianca e risco antes de entrar no backlog.
+- Nao gerar paginas, paragrafos ou FAQs em massa sem valor novo; o motor pode priorizar trabalho, mas nao publicar conteudo automaticamente.
+- Nao inventar fontes, datas, rankings, causalidade, impacto financeiro ou conclusoes de busca sem evidencia registrada.
+- Alteracoes em Search Console, tags, sitemaps publicos, ads, billing ou provider externo exigem gates tecnicos/humanos antes de execucao.

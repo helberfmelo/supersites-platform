@@ -106,4 +106,28 @@ class Site extends Model
     {
         return $this->hasMany(BillingPlan::class);
     }
+
+    /**
+     * @return HasMany<AiGrowthAudit, $this>
+     */
+    public function aiGrowthAudits(): HasMany
+    {
+        return $this->hasMany(AiGrowthAudit::class);
+    }
+
+    /**
+     * @return HasMany<AiGrowthRecommendation, $this>
+     */
+    public function aiGrowthRecommendations(): HasMany
+    {
+        return $this->hasMany(AiGrowthRecommendation::class);
+    }
+
+    /**
+     * @return HasMany<AiGrowthAnomaly, $this>
+     */
+    public function aiGrowthAnomalies(): HasMany
+    {
+        return $this->hasMany(AiGrowthAnomaly::class);
+    }
 }

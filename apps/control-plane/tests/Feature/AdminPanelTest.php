@@ -8,6 +8,7 @@ use App\Models\Site;
 use App\Models\User;
 use Database\Seeders\AccessControlSeeder;
 use Database\Seeders\AdSenseReadinessSeeder;
+use Database\Seeders\AiGrowthReadinessSeeder;
 use Database\Seeders\BillingReadinessSeeder;
 use Database\Seeders\DeploymentRecordSeeder;
 use Database\Seeders\GoogleIntegrationSeeder;
@@ -52,6 +53,7 @@ class AdminPanelTest extends TestCase
             GoogleIntegrationSeeder::class,
             AdSenseReadinessSeeder::class,
             BillingReadinessSeeder::class,
+            AiGrowthReadinessSeeder::class,
             DeploymentRecordSeeder::class,
             OperationalTaskSeeder::class,
         ]);
@@ -71,6 +73,9 @@ class AdminPanelTest extends TestCase
             ->assertSee('stripe')
             ->assertSee('free-preview')
             ->assertSee('disabled')
+            ->assertSee('AI growth engine')
+            ->assertSee('Build evidence-first SEO and AIO backlog before content expansion')
+            ->assertSee('not_inferred')
             ->assertSee('Google integrations')
             ->assertSee('human_required')
             ->assertSee('Quality Gate')

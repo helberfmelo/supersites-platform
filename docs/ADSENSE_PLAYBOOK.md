@@ -123,6 +123,12 @@ AdSense e a monetizacao primaria, mas nenhum site deve ser submetido antes de cu
 - AdSense Management API fica `not_configured` e `management_api_enabled=false` ate OAuth/escopos/quotas serem aprovados.
 - Auto Ads, manual ads, impressoes, cliques, receita e requests externos seguem desligados.
 
+## AI growth readiness
+
+- O motor de growth pode priorizar pendencias de qualidade, conteudo, consentimento, ads e readiness AdSense somente com evidencia, impacto, esforco, confianca e risco.
+- O motor nao pode submeter sites ao AdSense, habilitar Management API, publicar `ads.txt`, inserir snippets, ativar Auto Ads/manual ads, mudar placements ou inferir receita/causalidade sem evidencia.
+- Qualquer recomendacao que dependa de conta, beneficiario legal, fiscal, banco, PIN, publisher id, dominio definitivo, politicas ou request real de ads deve permanecer `human_required`.
+
 ## HUMAN_ACTION_REQUIRED
 
 - Beneficiario legal.

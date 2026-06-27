@@ -232,6 +232,7 @@ Sprint 6.4 - Billing foundation
 Sprint 6.5 - AI growth engine
 - Objetivo: auditorias tecnicas, SEO, AIO, monetizacao, anomalias e priorizacao.
 - Validacao: recomendacoes sempre com evidencia, impacto, esforco, confianca e risco.
+- Status: concluida localmente; CI/deploy dry-run pos-push ainda pendentes neste snapshot. `@supersites/ai-growth` foi criado como motor deterministico local de recomendacoes com evidencias obrigatorias, scores de impacto/esforco/confianca/risco, redacao de PII/segredos, priorizacao estavel e anomalias sem causalidade inferida. O control-plane recebeu `ai_growth_audits`, `ai_growth_recommendations`, `ai_growth_anomalies`, models, seeder e painel `AI growth engine` com 1 auditoria, 5 recomendacoes e 2 anomalias seedadas apenas a partir de docs/runbooks/gates. Nenhum provider externo de IA, prompt egress, worker recorrente, publicacao automatica, mutacao de SEO/ads/billing, importacao Search Console, checkout, webhook, anuncio real ou API paga foi ativado.
 
 Sprint 6.6 - Executive reports
 - Objetivo: relatorios semanais/mensais exportaveis no control plane.

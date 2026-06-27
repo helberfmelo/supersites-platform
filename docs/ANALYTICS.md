@@ -248,6 +248,15 @@ Sprint 6.4 cria somente readiness operacional de billing:
 
 Sprint 6.4 nao ativa checkout, payment links, webhooks publicos, SDKs de provider, cobranca, assinatura, impostos automaticos, invoices, refunds, dunning ou coleta externa.
 
+## AI growth metrics
+
+Sprint 6.5 cria somente recomendacoes e anomalias operacionais locais:
+
+- `ai_growth_audits`, `ai_growth_recommendations` e `ai_growth_anomalies` nao coletam PII, input de ferramenta, payload de arquivo, prompt externo, resposta de provider, dados de cliente, receita individual, IP, cookie ou segredo.
+- Toda recomendacao deve distinguir evidencia, impacto, esforco, confianca, risco, status humano/bloqueado e score de prioridade.
+- Toda anomalia deve distinguir baseline, valor observado, limiar, status e `causalityStatus`; causalidade nao deve ser inferida sem evidencia.
+- Nenhum provider externo de IA, telemetria de IA, worker recorrente, prompt egress, auto-publicacao, Search Console import, ads, billing ou provider mutation e ativado.
+
 ## Deploy smokes
 
 Smokes de deploy do control-plane/API e do NetProbe devem validar apenas disponibilidade e contrato JSON, sem criar eventos externos de analytics e sem registrar alvo bruto de usuario. O alvo DNS padrao para smoke publico e `example.com`.

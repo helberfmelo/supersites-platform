@@ -143,6 +143,14 @@
 - Campos proibidos: cartao, dados bancarios, documentos fiscais, CPF/CNPJ ou equivalentes, endereco de cobranca, e-mail de cliente, token de provider, API key, webhook secret, payload bruto de webhook, IP, identificador de visitante, conteudo de ferramenta ou arquivo.
 - Webhooks reais, historico de assinatura, invoices, refunds, chargebacks, taxes e entitlements pagos permanecem desligados ate matriz de dados, termos, retencao, exportacao/exclusao, idempotencia e assinatura verificada estarem implementados.
 
+## AI growth readiness
+
+- A Sprint 6.5 cria apenas metadados operacionais em `ai_growth_audits`, `ai_growth_recommendations` e `ai_growth_anomalies`.
+- Campos permitidos: tipo/status/origem de auditoria, referencias de evidencia, categoria, site, titulo, resumo sanitizado, impacto, esforco, confianca, risco, score de prioridade, status de gate, metrica de anomalia, baseline, valor observado, limiar e timestamp.
+- Campos proibidos: PII, e-mail, telefone, documento, IP, query string real, input bruto de ferramenta, arquivo, prompt, resposta de provider, token, OAuth secret, API key, cookie, payload de webhook, dados de cliente, receita individual, cartao ou dados bancarios.
+- Anomalias nao devem inferir causalidade sem evidencia; `causalityStatus` permanece `not_inferred` por padrao.
+- Provider externo de IA, prompts com dados operacionais, automacao de conteudo, SEO, ads, billing, Search Console ou provider-side mutation permanecem desligados ate matriz de dados, base legal, termos, custo, retencao e aprovacao humana.
+
 ## Analytics sem PII
 
 - O contrato versionado fica em `packages/analytics`.

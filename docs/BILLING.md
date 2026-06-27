@@ -87,6 +87,12 @@ A Sprint 6.4 cria a fundacao de billing sem ativar cobranca real:
 
 Antes de vender qualquer upgrade, ainda faltam conta provider aprovada, KYC, impostos, perfil de pagamentos, termos/cancelamento/reembolso, secrets em cofre, checkout hospedado oficial, assinatura de webhook, replay protection, matriz de dados, exportacao/exclusao e smoke/rollback especificos.
 
+## AI growth monetization recommendations
+
+A Sprint 6.5 pode priorizar pendencias de monetizacao e billing readiness somente com evidencia, impacto, esforco, confianca e risco. O motor nao ativa checkout, payment link, webhook, SDK, provider config, impostos, plano pago, entitlement pago, receita, invoice, refund, dunning ou qualquer mutation em provedor.
+
+Recomendacoes que dependam de KYC, impostos, banco, perfil de pagamentos, aceite juridico, secrets, endpoint publico, politica de cancelamento/reembolso ou cobranca real devem permanecer `human_required`.
+
 ## Segurança
 
 - Nao armazenar cartao.

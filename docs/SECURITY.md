@@ -68,6 +68,14 @@
 - Webhooks futuros exigem assinatura verificada, janela anti-replay, idempotencia por provider/event id e persistencia de hash do payload em vez de payload bruto.
 - Ativar checkout, webhooks reais, impostos automaticos, invoices, refunds, chargebacks ou dunning exige `HUMAN_ACTION_REQUIRED`, termos, politica de cancelamento/reembolso, secrets em cofre e smoke/rollback especificos.
 
+## AI growth gates
+
+- A Sprint 6.5 registra apenas recomendacoes e anomalias locais; nenhuma API key, SDK, token, prompt externo, resposta de provider, worker recorrente ou automacao de growth e criado.
+- `@supersites/ai-growth` deve falhar fechado quando recomendacao nao tiver evidencia, impacto, esforco, confianca e risco.
+- PII, secrets, tokens, OAuth, payloads brutos de ferramentas, arquivos, dados de cliente, dados financeiros e query strings reais nao devem entrar em `ai_growth_audits`, `ai_growth_recommendations` ou `ai_growth_anomalies`.
+- Anomalias devem declarar `causalityStatus=not_inferred` ate haver evidencia suficiente e revisao humana; nao inventar causalidade.
+- Ativar provider externo de IA, enviar prompts com dados operacionais, publicar conteudo, mudar SEO, alterar ads/AdSense, billing, checkout, Search Console ou configuracao de provider exige `HUMAN_ACTION_REQUIRED`, revisao legal/dados/custos, secrets em cofre e smoke/rollback especificos.
+
 ## DevUtility Lab client-side tools
 
 - Ferramentas da Sprint 3.2 rodam no navegador com Web Worker quando suportado e fallback local sem chamadas de rede.

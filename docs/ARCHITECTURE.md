@@ -43,6 +43,7 @@ Sprint 1.3 criou os primeiros pacotes TypeScript fonte-primeiro:
 - `@supersites/analytics`: contrato versionado de eventos, sanitizacao PII-safe e payloads de data layer.
 - `@supersites/ads`: policy de placements, formatos responsivos reservados, limites de densidade e bloqueios anti-clique-acidental.
 - `@supersites/billing`: contrato provider-agnostic de readiness de billing, planos, entitlements e decisoes de webhook fail-closed.
+- `@supersites/ai-growth`: contrato local de recomendacoes com evidencia, scores, redacao de PII/segredos, priorizacao deterministica e anomalias sem causalidade inferida.
 
 Apps novos devem importar esses contratos antes de duplicar helpers locais.
 
@@ -83,6 +84,16 @@ Sprint 6.4 adiciona readiness de billing sem ativar cobranca:
 - `billing_providers` armazena apenas readiness operacional por provider; `billing_plans` e `billing_entitlements` descrevem planos locais sem price id real no MVP; `billing_webhook_events` define ledger futuro para idempotencia e payload hash.
 - O dashboard admin exibe provedores bloqueados e planos `free-preview` seedados para os sites publicos.
 - Nao ha provider SDK, API key, checkout endpoint, payment link, webhook publico, assinatura, cobranca, imposto, refund, dunning ou entitlement pago nesta sprint.
+
+## AI growth evidence engine
+
+Sprint 6.5 adiciona auditoria e priorizacao local sem provider externo de IA:
+
+- `@supersites/ai-growth` exporta categorias de crescimento, contrato de recomendacao, sanitizacao de PII/segredos, priorizacao deterministica e detector de anomalias com `causalityStatus=not_inferred`.
+- Toda recomendacao exige evidencia, impacto, esforco, confianca e risco; registros sem evidencia ou score ficam bloqueados.
+- `ai_growth_audits`, `ai_growth_recommendations` e `ai_growth_anomalies` armazenam apenas evidencia operacional, status e scores; nao armazenam prompt, resposta de provider, input bruto de ferramenta, arquivo, PII, segredo, token ou dado financeiro/cliente.
+- O dashboard admin exibe recomendacoes e anomalias seedadas para readiness, mantendo `automationAllowed=false`.
+- Nao ha SDK/API de IA, chamada externa, worker recorrente, auto-publicacao, alteracao de SEO, mudanca de ads, checkout/billing, Search Console import ou mutation em provider nesta sprint.
 
 ## Stack local inicial
 

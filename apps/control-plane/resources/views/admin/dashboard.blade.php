@@ -31,6 +31,14 @@
             <strong>{{ $summary['billing_gated'] }}</strong>
         </article>
         <article class="panel metric">
+            <span class="muted">AI recommendations</span>
+            <strong>{{ $summary['ai_growth_recommendations'] }}</strong>
+        </article>
+        <article class="panel metric">
+            <span class="muted">Growth human gates</span>
+            <strong>{{ $summary['ai_growth_human_gates'] }}</strong>
+        </article>
+        <article class="panel metric">
             <span class="muted">Open incidents</span>
             <strong>{{ $summary['open_incidents'] }}</strong>
         </article>
@@ -38,6 +46,69 @@
             <span class="muted">Open tasks</span>
             <strong>{{ $summary['open_tasks'] }}</strong>
         </article>
+    </section>
+
+    <section class="panel">
+        <h2>AI growth engine</h2>
+        <p class="muted">
+            Evidence-backed local recommendations only. External AI, automation and paid-provider changes are disabled.
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Recommendation</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Score</th>
+                    <th>Evidence</th>
+                    <th>Gate</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($aiGrowthRecommendations as $recommendation)
+                    <tr>
+                        <td>
+                            {{ $recommendation->title }}
+                            <br><span class="muted">{{ $recommendation->site?->name ?? 'Portfolio' }}</span>
+                        </td>
+                        <td>{{ $recommendation->category }}</td>
+                        <td><span class="status {{ $recommendation->status }}">{{ $recommendation->status }}</span></td>
+                        <td>{{ $recommendation->priority_score }}</td>
+                        <td>{{ count($recommendation->evidence ?? []) }}</td>
+                        <td>{{ $recommendation->human_gate_required ? 'human_required' : 'technical' }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">No AI growth recommendations seeded.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Status</th>
+                    <th>Change</th>
+                    <th>Causality</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($aiGrowthAnomalies as $anomaly)
+                    <tr>
+                        <td>{{ $anomaly->metric_key }}</td>
+                        <td><span class="status {{ $anomaly->status }}">{{ $anomaly->status }}</span></td>
+                        <td>{{ $anomaly->change_percent }}%</td>
+                        <td>{{ $anomaly->causality_status }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="4">No growth anomalies seeded.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
     </section>
 
     <section class="panel">

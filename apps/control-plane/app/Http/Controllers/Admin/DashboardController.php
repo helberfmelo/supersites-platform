@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\AdSenseAccount;
 use App\Models\AdSenseSiteReview;
+use App\Models\AiGrowthAnomaly;
+use App\Models\AiGrowthRecommendation;
 use App\Models\AuditLog;
 use App\Models\BillingPlan;
 use App\Models\BillingProvider;
@@ -33,6 +35,9 @@ class DashboardController extends Controller
             'adsense_serving_enabled' => AdSenseSiteReview::query()->where('ad_serving_enabled', true)->count(),
             'billing_gated' => BillingProvider::query()->where('checkout_enabled', false)->count(),
             'billing_checkout_enabled' => BillingProvider::query()->where('checkout_enabled', true)->count(),
+            'ai_growth_recommendations' => AiGrowthRecommendation::query()->count(),
+            'ai_growth_human_gates' => AiGrowthRecommendation::query()->where('human_gate_required', true)->count(),
+            'ai_growth_anomalies' => AiGrowthAnomaly::query()->where('status', '!=', 'within_threshold')->count(),
             'google_gated' => GoogleIntegration::query()
                 ->where(function ($query): void {
                     $query
@@ -75,6 +80,19 @@ class DashboardController extends Controller
                 ->withCount('plans')
                 ->orderBy('checkout_enabled')
                 ->orderBy('provider')
+                ->get(),
+            'aiGrowthAnomalies' => AiGrowthAnomaly::query()
+                ->with('site:id,slug,name')
+                ->orderByRaw("case status when 'watching' then 0 when 'insufficient_data' then 1 else 2 end")
+                ->latest('detected_at')
+                ->limit(4)
+                ->get(),
+            'aiGrowthRecommendations' => AiGrowthRecommendation::query()
+                ->with('site:id,slug,name')
+                ->orderBy('human_gate_required')
+                ->orderByRaw("case status when 'candidate' then 0 when 'watching' then 1 when 'human_required' then 2 else 3 end")
+                ->orderByDesc('priority_score')
+                ->limit(6)
                 ->get(),
             'deployments' => DeploymentRecord::query()
                 ->with('site:id,slug,name')
