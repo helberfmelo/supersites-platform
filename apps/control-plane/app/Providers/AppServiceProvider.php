@@ -37,6 +37,10 @@ class AppServiceProvider extends ServiceProvider
             return Limit::perMinute(30)->by($request->ip() ?: 'anonymous');
         });
 
+        RateLimiter::for('mailhealth-public', function (Request $request): Limit {
+            return Limit::perMinute(20)->by($request->ip() ?: 'anonymous');
+        });
+
         RateLimiter::for('qrroute-redirect', function (Request $request): Limit {
             return Limit::perMinute(60)->by($request->ip() ?: 'anonymous');
         });

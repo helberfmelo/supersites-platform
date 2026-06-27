@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Api\V1\AnalyticsEventController;
 use App\Http\Controllers\Api\V1\CurrentUserController;
+use App\Http\Controllers\Api\V1\MailHealth\MailHealthBlacklistController;
+use App\Http\Controllers\Api\V1\MailHealth\MailHealthDnsController;
+use App\Http\Controllers\Api\V1\MailHealth\MailHealthSmtpController;
 use App\Http\Controllers\Api\V1\MetricSnapshotIndexController;
 use App\Http\Controllers\Api\V1\NetProbe\ClientIpController;
 use App\Http\Controllers\Api\V1\NetProbe\DnsPropagationController;
@@ -32,6 +35,14 @@ Route::prefix('v1')->group(function (): void {
             Route::post('/reachability', ReachabilityController::class);
             Route::post('/rdap', RdapLookupController::class);
             Route::post('/ssl', SslCertificateController::class);
+        });
+
+    Route::prefix('mailhealth')
+        ->middleware('throttle:mailhealth-public')
+        ->group(function (): void {
+            Route::post('/dns', MailHealthDnsController::class);
+            Route::post('/blacklist', MailHealthBlacklistController::class);
+            Route::post('/smtp', MailHealthSmtpController::class);
         });
 
     Route::get('/qrroute/r/{code}', QrRouteRedirectController::class)

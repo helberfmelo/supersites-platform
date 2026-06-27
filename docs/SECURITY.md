@@ -70,6 +70,19 @@
 - O MVP limita quantidade de linhas, tamanho de texto, moedas permitidas e ranges numericos para reduzir abuso e travamento de UI.
 - Templates fiscais oficiais, numeracao fiscal, calculo automatico de impostos, cobranca, recorrencia e pagamentos exigem `HUMAN_ACTION_REQUIRED`, termos, billing/entitlements, antiabuso e validacao juridica antes de ativacao.
 
+## MailHealth email diagnostics
+
+- Ferramentas da Sprint 4.3 cobrem SPF, DKIM, DMARC, MX, blacklist, SMTP e headers.
+- Headers brutos sao analisados no navegador; nao devem ser enviados a backend, logs, analytics, data layer ou storage local.
+- Endpoints publicos `/api/v1/mailhealth/dns`, `/api/v1/mailhealth/blacklist` e `/api/v1/mailhealth/smtp` usam rate limit dedicado `mailhealth-public`.
+- DNS e SMTP reutilizam validacao de hostname publico, bloqueio de URL/path/porta em input, bloqueio de suffix local/privado e rejeicao de IP privado/reservado.
+- DKIM aceita apenas selector como label curto; nao aceitar selector com ponto, URL, path ou espaco.
+- Blacklist consulta somente pequena allowlist DNSBL e no maximo poucos enderecos IPv4 publicos derivados de dominio/MX; nao executar varredura ampla de IPs.
+- SMTP deve usar apenas portas permitidas `25`, `465` e `587`, derivar o host de MX publico, testar no maximo um endereco e executar somente TCP connect com timeout curto.
+- SMTP nao deve enviar EHLO, STARTTLS, AUTH, RCPT, DATA, mensagem, destinatario ou credencial.
+- Analytics de MailHealth nao deve incluir dominio, selector, host MX/SMTP, IP, header, Message-ID, endereco de email, resultado DNSBL/SMTP ou texto de erro bruto.
+- Monitoramento recorrente, alertas, relatorios DMARC, lote, API paga e white-label exigem auth, billing/entitlements, retencao, termos, antiabuso, provider-policy review e gates de deploy antes de ativacao.
+
 ## NetProbe public API
 
 - `GET /api/v1/netprobe/ip` nao deve persistir o IP completo do visitante; a resposta informa a politica de retencao.

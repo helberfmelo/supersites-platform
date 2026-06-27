@@ -67,6 +67,15 @@ AdSense e a monetizacao primaria, mas nenhum site deve ser submetido antes de cu
 - Nao submeter ao AdSense enquanto a URL publica ainda servir placeholder.
 - Pagamentos, recorrencia, clientes/produtos salvos, impostos oficiais e numeracao fiscal exigem gates humanos/tecnicos antes de qualquer pagina monetizada.
 
+## MailHealth checklist
+
+- Sprint 4.3 entrega apenas MVP local/CI e placeholder publico.
+- Antes de AdSense, criar deploy HostGator especifico, smoke publico, rollback testavel e status page.
+- Validar Core Web Vitals, ausencia de overflow, sitemap/canonical/hreflang/schema e paginas legais em todos os idiomas publicados.
+- Nao posicionar anuncios junto a campos de dominio, selector DKIM, headers brutos, botoes de executar, erros ou resultados de DNS/SMTP/DNSBL de modo que incentive clique acidental.
+- Nao submeter ao AdSense enquanto a URL publica ainda servir placeholder.
+- Monitoramento, alertas, relatorios DMARC, lote, API paga, white-label e DNSBL/provider policy exigem gates humanos/tecnicos antes de qualquer pagina monetizada.
+
 ## Placements
 
 - Usar componente compartilhado de ads com espaco reservado.

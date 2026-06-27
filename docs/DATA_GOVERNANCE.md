@@ -79,6 +79,15 @@
 - Eventos locais permitidos devem conter apenas `tool_slug`, rota, locale e metadados de UI sem dados de documento.
 - Linhas manuais de imposto/ajuste sao apenas formatacao; templates fiscais, numeracao oficial, calculo automatico de impostos, pagamentos ou recorrencia exigem `HUMAN_ACTION_REQUIRED`, matriz de dados, retencao, exportacao/exclusao, termos e controles de privacidade antes de ativacao.
 
+## MailHealth
+
+- Dominios, selectors, hosts MX/SMTP, DNSBL probes e resultados de SPF, DKIM, DMARC, MX, blacklist e SMTP sao respostas transitorias da ferramenta no MVP da Sprint 4.3.
+- Headers brutos colados no `header-analyzer` sao processados no navegador e nao devem ser enviados a backend, analytics, logs, GA4, GTM, AdSense, data layer, `localStorage` ou `sessionStorage`.
+- Endpoints publicos MailHealth podem usar cache tecnico curto por dominio/check/selector/porta normalizados, sem associar resultado a usuario autenticado ou identificador pessoal.
+- Respostas DNS/SMTP podem exibir fatos tecnicos necessarios para o usuario, mas nao devem ser enviadas a analytics.
+- DNSBL e SMTP usam alvos derivados de dominios publicos e devem bloquear ranges privados/reservados antes de qualquer consulta ou conexao.
+- Futuros recursos pagos de monitoramento, alertas, relatorios DMARC, lote, API, white-label, historico e equipes exigem matriz de dados, retencao, exportacao/exclusao, termos, provider-policy review e consentimento aplicavel antes de ativacao.
+
 ## Analytics sem PII
 
 - O contrato versionado fica em `packages/analytics`.

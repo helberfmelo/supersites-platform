@@ -1,6 +1,6 @@
 # HUMAN_ACTION_REQUIRED
 
-Data-base: 2026-06-26
+Data-base: 2026-06-27
 
 ## Pendencias atuais
 
@@ -16,6 +16,7 @@ Data-base: 2026-06-26
 | Mudanca DNS sem rollback claro | Risco de indisponibilidade | Antes de apontar dominios definitivos |
 | Branch protection no GitHub privado | GitHub retornou HTTP 403 informando que branch protection em repositorio privado exige GitHub Pro ou repositorio publico | Antes de exigir status checks protegidos em `main` |
 | InvoiceCraft fiscal/tax templates | Impostos, numeracao fiscal, campos obrigatorios e validade de documento dependem de jurisdicao e aceite juridico/fiscal | Antes de ativar nota/fatura fiscal oficial, calculo automatico de impostos, numeracao fiscal, pagamentos ou recorrencia |
+| MailHealth DNSBL/provider policy | Uso de DNSBLs, reputacao, limites comerciais e termos de provedores exigem revisao juridica/comercial antes de operar volume, lote, API ou white-label | Antes de ativar monitoramento pago, relatorios recorrentes, lote, API publica paga ou verificacoes DNSBL amplas |
 
 ## Resolvido em 2026-06-26
 

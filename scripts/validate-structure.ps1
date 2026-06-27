@@ -17,6 +17,7 @@ $requiredPaths = @(
     "playwright.timenexus.config.ts",
     "playwright.qrroute.config.ts",
     "playwright.invoicecraft.config.ts",
+    "playwright.mailhealth.config.ts",
     "pnpm-workspace.yaml",
     "pnpm-lock.yaml",
     "docs/MEGA_PROMPT_SUPERSITES.md",
@@ -361,6 +362,32 @@ $invoicecraftPaths = @(
 )
 
 $requiredPaths += $invoicecraftPaths
+
+$mailhealthPaths = @(
+    "apps/mailhealth/package.json",
+    "apps/mailhealth/nuxt.config.ts",
+    "apps/mailhealth/app/app.vue",
+    "apps/mailhealth/app/components/MailHealthHome.vue",
+    "apps/mailhealth/app/components/LanguageNav.vue",
+    "apps/mailhealth/app/components/LegalFooter.vue",
+    "apps/mailhealth/app/components/SiteHeader.vue",
+    "apps/mailhealth/app/data/copy.ts",
+    "apps/mailhealth/app/data/locales.ts",
+    "apps/mailhealth/app/data/pages.ts",
+    "apps/mailhealth/app/data/routes.ts",
+    "apps/mailhealth/app/data/tools.ts",
+    "apps/mailhealth/app/pages/index.vue",
+    "apps/mailhealth/app/pages/[locale]/[page].vue",
+    "apps/mailhealth/app/pages/[locale]/index.vue",
+    "apps/mailhealth/app/pages/[locale]/tools/[slug].vue",
+    "apps/mailhealth/app/utils/analytics.ts",
+    "apps/mailhealth/server/routes/sitemap.xml.ts",
+    "apps/mailhealth/tests/mailhealth.test.ts",
+    "tests/e2e/mailhealth.spec.ts",
+    "scripts/validate-mailhealth-preview.ps1"
+)
+
+$requiredPaths += $mailhealthPaths
 
 $missing = @()
 foreach ($path in $requiredPaths) {

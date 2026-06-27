@@ -1,6 +1,6 @@
 # Metrics
 
-Data-base: 2026-06-26
+Data-base: 2026-06-27
 
 ## Bootstrap metrics
 
@@ -11,19 +11,19 @@ Data-base: 2026-06-26
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
 | Shared package folders created | 12 |
-| ADRs created | 19 |
-| Docs files created/maintained | 44 |
+| ADRs created | 20 |
+| Docs files created/maintained | 45 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
-| Nuxt apps scaffolded | 7 |
+| Nuxt apps scaffolded | 8 |
 | Laravel apps scaffolded | 1 |
 | Shared TS packages implemented | 5 |
 | Shared package tests passing | 22 |
 | Shared package typechecks passing | 5 |
-| Frontend tests passing | 52 |
-| Playwright visual smoke tests passing | 26 |
-| Laravel tests passing | 35 |
-| Control plane API endpoints implemented | 16 |
+| Frontend tests passing | 59 |
+| Playwright visual smoke tests passing | 30 |
+| Laravel tests passing | 40 |
+| Control plane API endpoints implemented | 19 |
 | Control plane admin routes implemented | 6 |
 | Control plane portfolio records seeded | 12 |
 | Control plane RBAC permissions seeded | 7 |
@@ -167,6 +167,22 @@ Data-base: 2026-06-26
 | InvoiceCraft Quality Gate run | `28277077148` passed |
 | InvoiceCraft Deploy Dry Run | `28277077185` passed |
 | InvoiceCraft production status | Placeholder at `https://opentshost.com/supersites/invoicecraft/`; real deploy gated |
+| MailHealth tool pages implemented | 7 |
+| MailHealth localized tool pages | 35 |
+| MailHealth live public tools implemented | 0 |
+| MailHealth local browser tools implemented | 1 |
+| MailHealth public API endpoints implemented | 3 |
+| MailHealth DNS/SMTP bounded probe services | 3 |
+| MailHealth legal/editorial pages | 40 |
+| MailHealth FAQ blocks | 35 |
+| MailHealth structured data pages | 35 |
+| MailHealth prerender content routes | 81 |
+| MailHealth sitemap routes | 1 |
+| MailHealth preview smoke | Passed |
+| MailHealth Playwright report | Passed |
+| MailHealth Quality Gate run | Pending feature push |
+| MailHealth Deploy Dry Run | Pending feature push |
+| MailHealth production status | Placeholder at `https://opentshost.com/supersites/mailhealth/`; real deploy gated |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
 | Public production smoke for `/supersites/` | 200 catalog live |

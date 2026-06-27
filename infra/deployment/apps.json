@@ -78,8 +78,9 @@
     {
       "id": "mailhealth",
       "name": "MailHealth",
-      "kind": "placeholder",
+      "kind": "nuxt-ssg",
       "localPath": "apps/mailhealth",
+      "buildOutput": "apps/mailhealth/.output/public",
       "remotePath": "/home1/opents62/public_html/supersites/mailhealth",
       "publicUrl": "https://opentshost.com/supersites/mailhealth/"
     },

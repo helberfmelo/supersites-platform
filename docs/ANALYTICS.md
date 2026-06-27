@@ -142,6 +142,23 @@ Nao registrar em analytics:
 
 Sprint 4.2 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, clientes/produtos salvos, recorrencia, pagamentos, billing, API publica ou storage persistente do InvoiceCraft.
 
+## MailHealth tools
+
+As ferramentas do MailHealth podem registrar apenas eventos de produto de baixo risco, como `tool_viewed`, `tool_started`, `tool_completed` e `tool_failed`, usando `tool_slug`, rota e locale.
+
+Nao registrar em analytics:
+
+- dominios consultados;
+- selectors DKIM;
+- hosts MX ou SMTP;
+- IPs resolvidos ou checados;
+- registros SPF, DKIM, DMARC, MX, TXT ou DNSBL;
+- status SMTP, latencia, porta, erro tecnico ou resposta de provider;
+- headers brutos, `Authentication-Results`, `Received-SPF`, `DKIM-Signature`, `From`, `Return-Path`, Message-ID ou enderecos de email;
+- resultados, warnings ou mensagens que possam conter parte do input.
+
+Sprint 4.3 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, historico salvo, monitoramento recorrente, alertas, relatorios DMARC, billing, API publica paga, webhooks ou storage persistente do MailHealth.
+
 ## Deploy smokes
 
 Smokes de deploy do control-plane/API e do NetProbe devem validar apenas disponibilidade e contrato JSON, sem criar eventos externos de analytics e sem registrar alvo bruto de usuario. O alvo DNS padrao para smoke publico e `example.com`.

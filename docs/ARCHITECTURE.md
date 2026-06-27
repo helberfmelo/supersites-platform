@@ -218,6 +218,21 @@ Sprint 4.2 adiciona o segundo produto pago de workflow da Fase 4 em `apps/invoic
 - Impostos oficiais, numeracao fiscal, pagamentos, recorrencia, clientes/produtos salvos, branding e equipes permanecem desativados ate gates humanos/tecnicos.
 - O manifesto de deploy conhece o build SSG, mas trafego publico real permanece placeholder ate existirem artifact gate, smoke publico e rollback especificos do InvoiceCraft.
 
+## MailHealth bounded email diagnostics MVP
+
+Sprint 4.3 adiciona o terceiro produto pago de workflow da Fase 4 em `apps/mailhealth`.
+
+- O app usa Nuxt SSG/SSR com paginas de SPF, DKIM, DMARC, MX, blacklist, SMTP e header analysis.
+- O analisador de headers roda no navegador, sem chamada de API, sem storage local e sem envio de headers para analytics.
+- O control-plane recebeu endpoints publicos bounded em `/api/v1/mailhealth/dns`, `/api/v1/mailhealth/blacklist` e `/api/v1/mailhealth/smtp`.
+- Os endpoints reutilizam `NetProbeHostGuard`, `NetProbeDnsResolver` e `NetProbeTcpProbe`, com `mailhealth-public` rate limit, cache curto, bloqueio de host privado/reservado e limites de DNSBL/SMTP.
+- SMTP executa apenas TCP contra host derivado de MX publico, sem EHLO, AUTH, RCPT, DATA ou envio de mensagem.
+- Blacklist usa amostra DNSBL pequena e declara limitacoes de provedor; auditoria ampla e monitoramento de reputacao ficam gated.
+- Analytics local permitido: eventos sanitizados `tool_viewed`, `tool_started`, `tool_completed` e `tool_failed` com `tool_slug`.
+- Dominios, selectors, hosts MX/SMTP, headers, Message-IDs, resultados e respostas DNS/SMTP nao devem ir para analytics, logs publicos ou data layer.
+- Nao ha conta, historico salvo, monitoramento recorrente, alertas, relatorios DMARC, lote, API publica paga, white-label, billing, anuncio, worker de producao, cron ou webhook nesta sprint.
+- O manifesto de deploy conhece o build SSG, mas trafego publico real permanece placeholder ate existirem artifact gate, smoke publico e rollback especificos do MailHealth.
+
 ## Sites e pastas
 
 | App | Pasta | Papel |

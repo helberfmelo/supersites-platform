@@ -185,6 +185,7 @@ Sprint 4.3 - MailHealth MVP
 - Objetivo: SPF, DKIM, DMARC, MX, blacklist, SMTP, headers.
 - Upgrade: monitoramento, alertas, relatorios DMARC, lote, API, white-label.
 - Validacao: DNS/SMTP workers, limites, seguranca.
+- Status: concluida localmente; CI/push em andamento. O app `apps/mailhealth` foi criado com Nuxt SSG, 7 ferramentas (`spf-checker`, `dkim-checker`, `dmarc-checker`, `mx-checker`, `blacklist-check`, `smtp-check`, `header-analyzer`), conteudo/localizacao em 5 idiomas, analytics sanitizado apenas por `tool_slug` e analisador de headers local no navegador. O control-plane recebeu endpoints publicos limitados `/api/v1/mailhealth/dns`, `/api/v1/mailhealth/blacklist` e `/api/v1/mailhealth/smtp`, com rate limit, cache, bloqueio de ranges privados/reservados, consultas DNS/DNSBL amostradas e SMTP TCP-only sem EHLO/STARTTLS/AUTH/RCPT/DATA. Monitoramento, alertas, relatorios DMARC, lote, API paga, white-label, ads, billing e deploy publico real seguem bloqueados ate gates especificos.
 
 Sprint 4.4 - SitePulse Lab MVP
 - Objetivo: status, redirects, headers, robots, sitemap, TTFB e teste pontual.

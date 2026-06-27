@@ -107,6 +107,15 @@ pnpm validate:invoicecraft-preview
 pnpm test:e2e:invoicecraft
 ```
 
+Run MailHealth checks:
+
+```powershell
+pnpm test:mailhealth
+pnpm build:mailhealth
+pnpm validate:mailhealth-preview
+pnpm test:e2e:mailhealth
+```
+
 The root package scripts use explicit filters for `@supersites/ui`, `@supersites/i18n`, `@supersites/seo` and `@supersites/consent`. A generic pnpm path filter did not match the package workspaces on Windows during Sprint 1.3.
 
 Install the Playwright browser once per workstation if needed:
@@ -180,6 +189,15 @@ pnpm dev:invoicecraft
 ```
 
 Then open `http://127.0.0.1:3007/en/tools/invoice-builder`. Document fields, totals and PDF generation remain browser-side in Sprint 4.2.
+
+For local MailHealth development, run:
+
+```powershell
+$env:NUXT_PUBLIC_MAILHEALTH_API_BASE_URL = "http://127.0.0.1:8013/api/v1/mailhealth"
+pnpm dev:mailhealth
+```
+
+Then open `http://127.0.0.1:3008/en/tools/spf-checker`. Header analysis remains browser-side in Sprint 4.3; DNS, DNSBL and SMTP checks call the bounded local control-plane API when it is running.
 
 For local NetProbe Atlas tool testing, run:
 

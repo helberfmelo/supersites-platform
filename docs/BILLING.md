@@ -46,6 +46,12 @@ A Sprint 4.2 criou apenas builders gratuitos client-side para fatura, orcamento 
 
 Antes de vender clientes/produtos salvos, recorrencia, branding, equipes, pagamentos, historico ou API, implementar billing/entitlements, termos, matriz de dados, retencao, exportacao/exclusao de conta e gates humanos de KYC/impostos/conta bancaria. Impostos oficiais e numeracao fiscal exigem `HUMAN_ACTION_REQUIRED`.
 
+## MailHealth preview
+
+A Sprint 4.3 criou apenas checks gratuitos de SPF, DKIM, DMARC, MX, blacklist, SMTP e headers, sem checkout, cobranca, assinatura, entitlement pago, provedor externo ativo, monitoramento recorrente, alertas, relatorios DMARC, lote, API paga, white-label ou historico salvo.
+
+Antes de vender monitoramento, alertas, relatorios DMARC, lote, API, white-label, equipes ou historico, implementar billing/entitlements, termos, matriz de dados, retencao, exportacao/exclusao de conta, provider-policy review para DNSBL/SMTP e gates humanos de KYC/impostos/conta bancaria.
+
 ## Segurança
 
 - Nao armazenar cartao.
