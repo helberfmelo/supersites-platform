@@ -754,6 +754,10 @@ Em 2026-06-27, a Sprint 6.1 criou a fundacao local de CMP, Consent Mode, TCF fai
   - Playwright local passou para todos os apps, totalizando 43 testes visuais/funcionais.
   - Gates obrigatorios locais passaram: `pnpm validate:structure`, `pnpm deploy:dry-run`, `pnpm validate:secrets`, `pnpm ci:changes` e `git diff --check`; `git diff --check` exibiu apenas avisos CRLF conhecidos em arquivos touched.
   - `pnpm deploy:dry-run` gerou `artifacts/deploy-dry-run/supersites-deploy-plan.json` e `artifacts/deploy-dry-run/supersites-deploy-plan.md`.
+  - Commit publicado: `5a53ef5` (`feat: add google integrations foundation`).
+  - GitHub Actions `Quality Gate` run `28282544493` passou com repository safety, backend, Hub frontend, NetProbe frontend, CalcHarbor frontend, DevUtility Lab frontend, TimeNexus frontend, QRRoute frontend, InvoiceCraft frontend, MailHealth frontend, SitePulse Lab frontend, PixelBatch frontend, DocShift frontend e summary.
+  - GitHub Actions `Deploy Dry Run` run `28282544471` passou e gerou plano sem mutar producao; o upload de artifact registrou a anotacao conhecida de quota, mas o run concluiu com sucesso.
+  - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis.
   - Nenhum script GA4/GTM, conta Google, cookie de terceiro, importacao Search Console, token OAuth, request externo de analytics, webhook, billing, anuncio real, worker/cron de producao ou deploy real de placeholder foi ativado.
 
 ## Pendencias criticas

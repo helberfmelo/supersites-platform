@@ -41,6 +41,9 @@ Data-base: 2026-06-27
 | Google external tags loaded | 0 |
 | Sprint 6.2 local validation | Passed |
 | Sprint 6.2 external Google activation | 0 |
+| Sprint 6.2 Quality Gate run | `28282544493` passed |
+| Sprint 6.2 Deploy Dry Run | `28282544471` passed |
+| Sprint 6.2 public smokes | Hub/control-plane/NetProbe passed |
 | Analytics storage tables implemented | 2 |
 | Analytics ingest endpoint implemented | 1 |
 | Metric snapshot endpoint implemented | 1 |
