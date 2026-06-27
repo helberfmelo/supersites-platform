@@ -22,6 +22,8 @@ Nas Sprints 7.6 a 7.9, TimeNexus, QRRoute, InvoiceCraft e MailHealth receberam r
 
 Nas Sprints 7.10 a 7.12, SitePulse Lab, PixelBatch e DocShift receberam refinamentos benchmark locais/CI. A Sprint 7.12 BR-DOCSHIFT adicionou dropzone/estado de arquivo, passos de workflow, snapshot de resultado, checklist de privacidade, ferramentas relacionadas e painel server/OCR/batch gated nas paginas PDF, mantendo o processamento `pdf-lib`/worker no navegador e o contrato de analytics sem PII. DocShift segue placeholder publico ate existir deploy/rollback/smoke especificos; upload server-side, OCR, batch worker, API paga, historico, equipe, ads, billing, checkout, worker e analytics externo seguem desativados.
 
+Apos o fechamento da Sprint 7.12, o prompt complementar `C:\Users\helbe\Downloads\PROMPT_COMPLEMENTAR_BENCHMARK_EVOLUCAO_CONTINUACAO.md` foi relido. O bloco descrito por ele ja estava mapeado e executado como Fase 7 - Benchmark-Driven Refinement; portanto nenhuma fase ou sprint duplicada foi criada. O roadmap nao mapeia Fase 8 neste momento, e as pendencias restantes continuam nos gates operacionais/humanos listados abaixo.
+
 ## Estado local verificado
 
 - Raiz local: `D:\Projetos\supersites`.
@@ -1022,6 +1024,9 @@ Nas Sprints 7.10 a 7.12, SitePulse Lab, PixelBatch e DocShift receberam refiname
   - GitHub Actions `Quality Gate` run `28290860646` passou, executando repository safety, frontend DocShift path-aware e summary.
   - GitHub Actions `Deploy Dry Run` run `28290860642` passou e gerou plano sem mutar producao.
   - Public smokes pos-push passaram: `pnpm deploy:smoke-supersite-public` validou Hub e asset `https://opentshost.com/supersites/_nuxt/CDSWkO8T.js`; `pnpm deploy:smoke-control-plane-public` validou control-plane/API; `pnpm deploy:smoke-netprobe-public` validou NetProbe, asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/B8fWFYkD.js` e API `https://opentshost.com/supersites/control-plane/api/v1/netprobe`. DocShift segue placeholder publico.
+  - Fechamento docs-only publicado: `3875095` (`docs: record docshift benchmark ci validation`).
+  - GitHub Actions `Quality Gate` docs-only run `28291007581` passou; repository safety e quality summary passaram, e os jobs frontend/backend foram ignorados conforme path-aware.
+  - Prompt complementar externo relido apos o fechamento: o bloco `BR-ROADMAP` a `BR-DOCSHIFT` ja esta concluido como Fase 7, sem sprints tecnicas de benchmark pendentes e sem criar Fase 8 duplicada.
   - Nenhum upload server-side, OCR, batch worker, API publica paga, historico, equipe, checkout, billing, anuncio real, storage persistente, worker de producao, analytics externo ou deploy real do DocShift foi ativado.
 
 ## Pendencias criticas

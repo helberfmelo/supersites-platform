@@ -5,10 +5,12 @@ Data-base: 2026-06-27
 ## Current block
 
 - Real phase: Fase 7 - Benchmark-Driven Refinement.
-- Current sprint: Sprint 7.12 - DocShift benchmark UX closing documentation.
-- Symbolic sprint: BR-DOCSHIFT.
-- Scope: PDF/document UX refinement with dropzone clarity, file states, result/download, privacy, related tools and gated OCR/server/batch messaging.
-- Previous sprint completed: Sprint 7.11 - PixelBatch benchmark UX, including docs-only Quality Gate `28290486528`.
+- Current sprint: none; Fase 7 is completed through Sprint 7.12.
+- Symbolic sprint range: BR-ROADMAP through BR-DOCSHIFT.
+- Scope completed: public benchmark refinement planning, Hub/dashboard readiness, and benchmark UX refinement for NetProbe, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch and DocShift.
+- Final docs closing commit: `3875095 docs: record docshift benchmark ci validation`.
+- Final docs-only Quality Gate: `28291007581`, success.
+- Complementary prompt status: `C:\Users\helbe\Downloads\PROMPT_COMPLEMENTAR_BENCHMARK_EVOLUCAO_CONTINUACAO.md` was reread after closure and matched the completed Fase 7 block; no duplicate phase/sprint was created.
 
 ## Pre-sprint state
 
@@ -312,4 +314,5 @@ Sprint 7.12 remote validation:
 - Quality Gate: `28290860646`, success.
 - Deploy Dry Run: `28290860642`, success.
 - Public smokes: Hub, control-plane/API and NetProbe passed after push; DocShift remains public placeholder pending app-specific deploy/smoke/rollback gates.
-- Closing docs-only Quality Gate is pending this documentation commit.
+- Closing docs-only commit: `3875095 docs: record docshift benchmark ci validation`.
+- Closing docs-only Quality Gate: `28291007581`, success.

@@ -351,13 +351,13 @@ Data-base: 2026-06-27
 | SEO readiness score | Implemented in control-plane for 11/11 public surfaces as estimated local evidence |
 | AdSense readiness score | Defined; 11/11 public surfaces have safe placeholder/gate plans, real ad serving remains 0 |
 | Monetization readiness score | Defined; 11/11 public surfaces have gated upgrade/support plans, real checkout/donation/affiliate activation remains 0 |
-| Frontend quality score | Hub Sprint 7.2, NetProbe Sprint 7.3, CalcHarbor Sprint 7.4, DevUtility Lab Sprint 7.5, TimeNexus Sprint 7.6, QRRoute Sprint 7.7, InvoiceCraft Sprint 7.8, MailHealth Sprint 7.9, SitePulse Sprint 7.10, PixelBatch Sprint 7.11 and DocShift Sprint 7.12 local tests/build/preview/Playwright passed |
+| Frontend quality score | Hub Sprint 7.2, NetProbe Sprint 7.3, CalcHarbor Sprint 7.4, DevUtility Lab Sprint 7.5, TimeNexus Sprint 7.6, QRRoute Sprint 7.7, InvoiceCraft Sprint 7.8, MailHealth Sprint 7.9, SitePulse Sprint 7.10, PixelBatch Sprint 7.11 and DocShift Sprint 7.12 local tests/build/preview/Playwright and remote gates passed |
 | Core Web Vitals readiness | Not externally measured for placeholder apps; local performance validation planned per sprint |
 | Educational content by tool | Existing localized tool pages/FAQ blocks: 320 |
 | Pages per language | Initial locales remain 5 (`en`, `pt-br`, `es`, `fr`, `de`) |
 | Related tools per page | Planned for 11/11 public surfaces; site-specific measurement continues in technical sprints |
 | Upgrade opportunities by site | 11/11 public surfaces mapped with gated upgrade/support opportunities |
-| Organic growth tasks open | 0 planned technical benchmark site sprints after Sprint 7.12 local validation |
+| Organic growth tasks open | 0 planned technical benchmark site sprints after Sprint 7.12 docs-only closure |
 | Organic growth tasks closed | 11 technical refinements completed in Fase 7 |
 | Sprint 7.2 local backend validation | Passed: Composer, migrate fresh seed, AdminPanelTest, full Laravel suite |
 | Sprint 7.2 local Hub validation | Passed: Vitest, build, preview smoke, Playwright and desktop/mobile screenshot inspection |
@@ -439,6 +439,9 @@ Data-base: 2026-06-27
 | Sprint 7.12 Quality Gate run | `28290860646` passed |
 | Sprint 7.12 Deploy Dry Run | `28290860642` passed |
 | Sprint 7.12 public smokes | Hub/control-plane/NetProbe passed; DocShift remains placeholder |
+| Sprint 7.12 docs closing commit | `3875095` |
+| Sprint 7.12 docs-only Quality Gate run | `28291007581` passed |
+| Complementary benchmark prompt status | Already executed as Fase 7; no duplicate phase/sprint created |
 | Real ads activated | 0 |
 | Real billing activated | 0 |
 | Real donation payments activated | 0 |

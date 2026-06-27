@@ -241,6 +241,8 @@ Sprint 6.6 - Executive reports
 
 ## Fase 7 - Benchmark-Driven Refinement
 
+Status geral: concluida. O prompt complementar externo de benchmark foi relido apos a Sprint 7.12; o bloco ja estava mapeado como Fase 7 e todas as sprints BR-ROADMAP a BR-DOCSHIFT foram executadas, validadas, commitadas, pushadas e monitoradas. Nenhuma Fase 8 foi criada porque o roadmap ainda nao possui novo bloco tecnico aprovado.
+
 Sprint 7.1 - Roadmap e sprints de benchmark refinement
 - Simbolico: BR-ROADMAP.
 - Objetivo: transformar o prompt de benchmark, screenshots e estado real do roadmap em sprints executaveis, planos por site, matriz consolidada e KPIs de readiness.
@@ -312,7 +314,7 @@ Sprint 7.12 - DocShift benchmark UX
 - Simbolico: BR-DOCSHIFT.
 - Objetivo: refinar grid de ferramentas PDF, dropzone, estados de arquivo, resultado/download, privacidade, related tools e upgrades gated.
 - Validacao: worker/PDF rendering smoke, testes/build/preview/Playwright do DocShift e gates locais.
-- Status: concluida localmente/CI. O app recebeu badges `Local MVP`, dropzone/estado de arquivo, workflow steps, workflow snapshot, checklist de privacidade, related document tools e painel server/OCR/batch/API/history gated sem endpoint novo. `pnpm test:docshift`, `pnpm build:docshift`, `pnpm validate:docshift-preview`, `pnpm test:e2e:docshift`, Quality Gate `28290860646`, Deploy Dry Run `28290860642` e smokes publicos de Hub/control-plane/NetProbe passaram; upload server-side, OCR, batch worker, historico, API paga, ads, billing, analytics externo e deploy publico real seguem bloqueados ate gates especificos.
+- Status: concluida localmente/CI. O app recebeu badges `Local MVP`, dropzone/estado de arquivo, workflow steps, workflow snapshot, checklist de privacidade, related document tools e painel server/OCR/batch/API/history gated sem endpoint novo. `pnpm test:docshift`, `pnpm build:docshift`, `pnpm validate:docshift-preview`, `pnpm test:e2e:docshift`, Quality Gate `28290860646`, Deploy Dry Run `28290860642`, smokes publicos de Hub/control-plane/NetProbe e Quality Gate docs-only `28291007581` passaram; upload server-side, OCR, batch worker, historico, API paga, ads, billing, analytics externo e deploy publico real seguem bloqueados ate gates especificos.
 
 ## Definition of done do programa
 
