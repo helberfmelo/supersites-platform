@@ -169,7 +169,7 @@ Data-base: 2026-06-27
 | NetProbe Atlas production status | Live at `https://opentshost.com/supersites/netprobe-atlas/`; ads/billing/external integrations gated |
 | CalcHarbor calculator pages implemented | 4 |
 | CalcHarbor localized calculator pages | 20 |
-| CalcHarbor live public tools implemented | 0 |
+| CalcHarbor live public tools implemented | 4 |
 | CalcHarbor legal/editorial pages | 40 |
 | CalcHarbor FAQ blocks | 20 |
 | CalcHarbor structured data pages | 20 |
@@ -177,10 +177,10 @@ Data-base: 2026-06-27
 | CalcHarbor sitemap routes | 1 |
 | CalcHarbor preview smoke | Passed |
 | CalcHarbor Playwright report | Passed |
-| CalcHarbor production status | Placeholder at `https://opentshost.com/supersites/calcharbor/`; real deploy gated |
+| CalcHarbor production status | Live Nuxt at `https://opentshost.com/supersites/calcharbor/`; release `ba35e78ec8ba844057841fea2f99710accc66afc-28293763206-1` |
 | DevUtility Lab tool pages implemented | 9 |
 | DevUtility Lab localized tool pages | 45 |
-| DevUtility Lab live public tools implemented | 0 |
+| DevUtility Lab live public tools implemented | 9 |
 | DevUtility Lab local browser tools implemented | 9 |
 | DevUtility Lab benchmark workbench pages | 45 |
 | DevUtility Lab related tool blocks | 45 |
@@ -192,10 +192,10 @@ Data-base: 2026-06-27
 | DevUtility Lab sitemap routes | 1 |
 | DevUtility Lab preview smoke | Passed |
 | DevUtility Lab Playwright report | Passed |
-| DevUtility Lab production status | Placeholder at `https://opentshost.com/supersites/devutility-lab/`; real deploy gated |
+| DevUtility Lab production status | Live Nuxt at `https://opentshost.com/supersites/devutility-lab/`; release `ba35e78ec8ba844057841fea2f99710accc66afc-28293909409-1` |
 | TimeNexus tool pages implemented | 7 |
 | TimeNexus localized tool pages | 35 |
-| TimeNexus live public tools implemented | 0 |
+| TimeNexus live public tools implemented | 7 |
 | TimeNexus local browser tools implemented | 7 |
 | TimeNexus legal/editorial pages | 40 |
 | TimeNexus FAQ blocks | 35 |
@@ -204,7 +204,7 @@ Data-base: 2026-06-27
 | TimeNexus sitemap routes | 1 |
 | TimeNexus preview smoke | Passed |
 | TimeNexus Playwright report | Passed |
-| TimeNexus production status | Placeholder at `https://opentshost.com/supersites/timenexus/`; real deploy gated |
+| TimeNexus production status | Live Nuxt at `https://opentshost.com/supersites/timenexus/`; release `ba35e78ec8ba844057841fea2f99710accc66afc-28294108090-1` |
 | QRRoute tool pages implemented | 6 |
 | QRRoute localized tool pages | 30 |
 | QRRoute live public tools implemented | 0 |
@@ -468,6 +468,15 @@ Data-base: 2026-06-27
 | Sprint 8.2 public smokes | Hub/control-plane/NetProbe passed; nine static apps remain placeholders until batch deploys |
 | Sprint 8.2 docs closing commit | `3554105` |
 | Sprint 8.2 docs-only Quality Gate run | `28293646469` passed |
+| Sprint 8.3 CalcHarbor deploy run | `28293763206` passed |
+| Sprint 8.3 CalcHarbor public smoke | Passed; asset `https://opentshost.com/supersites/calcharbor/_nuxt/B8lnzMuB.js` |
+| Sprint 8.3 DevUtility Lab deploy run | `28293909409` passed |
+| Sprint 8.3 DevUtility Lab public smoke | Passed; asset `https://opentshost.com/supersites/devutility-lab/_nuxt/CV5MlHMD.js` |
+| Sprint 8.3 TimeNexus deploy run | `28294108090` passed |
+| Sprint 8.3 TimeNexus public smoke | Passed; asset `https://opentshost.com/supersites/timenexus/_nuxt/xk10YG7l.js` |
+| Sprint 8.3 aggregate public smoke | Passed; Hub, control-plane/API, NetProbe, CalcHarbor, DevUtility Lab and TimeNexus active |
+| Public live Nuxt/Laravel surfaces after Sprint 8.3 | 6: Hub, control-plane/API, NetProbe Atlas, CalcHarbor, DevUtility Lab, TimeNexus |
+| Public placeholder apps remaining after Sprint 8.3 | 6 |
 | Static app deploy workflow | `.github/workflows/deploy-static-app-hostgator.yml` |
 | Static app deploy scripts | Build, validate, publish, smoke and per-app config implemented |
 | Real ads activated by Fase 8 | 0 planned |

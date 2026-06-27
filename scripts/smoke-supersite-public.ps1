@@ -48,6 +48,34 @@ function Assert-DoesNotContain {
     }
 }
 
+function Assert-DeployedStaticApp {
+    param(
+        [string]$Path,
+        [string]$Marker,
+        [string]$Context
+    )
+
+    $appPath = $Path.Trim("/")
+    $appResponse = Invoke-SmokeRequest -Url (Join-Url $publicBase "$appPath/") -RequiredContent $Marker
+    Assert-DoesNotContain -Content $appResponse.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context $Context
+    Assert-DoesNotContain -Content $appResponse.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context $Context
+
+    $publicBasePath = ([Uri]$publicBase).AbsolutePath.TrimEnd("/")
+    $assetBasePath = "$publicBasePath/$appPath"
+    $appAssetMatch = [regex]::Match(
+        $appResponse.Content,
+        "(?i)(?:src|href)=[""'](?<path>$([regex]::Escape($assetBasePath))/_nuxt/[^""']+\.js)"
+    )
+
+    if (-not $appAssetMatch.Success) {
+        throw "Could not find a $assetBasePath/_nuxt JavaScript asset reference on $Context."
+    }
+
+    $appAssetUrl = "$origin$($appAssetMatch.Groups["path"].Value)"
+    Invoke-SmokeRequest -Url $appAssetUrl | Out-Null
+    return $appAssetUrl
+}
+
 if ($PublicBaseUrl -notmatch "^https://") {
     throw "Public smoke requires HTTPS URL. Received: $PublicBaseUrl"
 }
@@ -87,14 +115,9 @@ $netprobe = Invoke-SmokeRequest -Url (Join-Url $publicBase "netprobe-atlas/") -R
 Assert-DoesNotContain -Content $netprobe.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context "NetProbe public app"
 Assert-DoesNotContain -Content $netprobe.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context "NetProbe public app"
 
-$calcharborPlaceholder = Invoke-SmokeRequest -Url (Join-Url $publicBase "calcharbor/") -RequiredContent "SuperSites bootstrap placeholder"
-Assert-DoesNotContain -Content $calcharborPlaceholder.Content -Pattern "(?i)<script[^>]+/_nuxt/" -Context "CalcHarbor temporary placeholder"
-
-$devutilityPlaceholder = Invoke-SmokeRequest -Url (Join-Url $publicBase "devutility-lab/") -RequiredContent "SuperSites bootstrap placeholder"
-Assert-DoesNotContain -Content $devutilityPlaceholder.Content -Pattern "(?i)<script[^>]+/_nuxt/" -Context "DevUtility Lab temporary placeholder"
-
-$timenexusPlaceholder = Invoke-SmokeRequest -Url (Join-Url $publicBase "timenexus/") -RequiredContent "SuperSites bootstrap placeholder"
-Assert-DoesNotContain -Content $timenexusPlaceholder.Content -Pattern "(?i)<script[^>]+/_nuxt/" -Context "TimeNexus temporary placeholder"
+$calcHarborAssetUrl = Assert-DeployedStaticApp -Path "calcharbor" -Marker "CalcHarbor" -Context "CalcHarbor public app"
+$devUtilityAssetUrl = Assert-DeployedStaticApp -Path "devutility-lab" -Marker "DevUtility Lab" -Context "DevUtility Lab public app"
+$timeNexusAssetUrl = Assert-DeployedStaticApp -Path "timenexus" -Marker "TimeNexus" -Context "TimeNexus public app"
 
 if ($RootUrl) {
     if ($RootUrl -notmatch "^https://") {
@@ -106,3 +129,6 @@ if ($RootUrl) {
 
 Write-Host "SuperSites public smoke passed for $publicBase."
 Write-Host "Validated public asset: $assetUrl"
+Write-Host "Validated CalcHarbor asset: $calcHarborAssetUrl"
+Write-Host "Validated DevUtility Lab asset: $devUtilityAssetUrl"
+Write-Host "Validated TimeNexus asset: $timeNexusAssetUrl"

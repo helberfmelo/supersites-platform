@@ -336,7 +336,7 @@ Sprint 8.3 - Publicar batch A de utilitarios locais
 - Simbolico: PROD-BATCH-A.
 - Objetivo: publicar CalcHarbor, DevUtility Lab e TimeNexus em `/supersites/<app>/` usando releases versionados HostGator.
 - Validacao: workflow de deploy real, smoke publico por app, rollback testavel por release e preservacao de placeholder como fallback.
-- Status: planejada.
+- Status: concluida. CalcHarbor, DevUtility Lab e TimeNexus foram publicados como Nuxt SSG reais em `/supersites/<app>/` pelo workflow `Deploy Static App HostGator`, com releases versionados `ba35e78ec8ba844057841fea2f99710accc66afc-28293763206-1`, `ba35e78ec8ba844057841fea2f99710accc66afc-28293909409-1` e `ba35e78ec8ba844057841fea2f99710accc66afc-28294108090-1`. Smokes publicos locais passaram para os tres apps, e o smoke agregado do Hub agora exige esses apps reais sem placeholder/noindex e com assets `_nuxt`; placeholders permanecem recuperaveis por `rollback-placeholder`.
 
 Sprint 8.4 - Publicar batch B de workflow/diagnostico
 - Simbolico: PROD-BATCH-B.
