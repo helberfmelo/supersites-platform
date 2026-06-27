@@ -11,6 +11,7 @@ Data-base: 2026-06-27
 ## Current state
 
 - Nuxt SSG app exists with four calculators and five locales.
+- Sprint 7.4 local implementation adds live browser-side result cards, calculation memory, interpretation states, related calculators and inert workflow-upgrade CTAs.
 - Public URL remains placeholder-only until app-specific deploy/smoke/rollback exists.
 
 ## Scope
@@ -32,3 +33,9 @@ Data-base: 2026-06-27
 - No real public deploy switch.
 - No financial/tax advice claims.
 - No checkout, ads, donation payment or analytics values from calculator inputs/results.
+
+## Sprint 7.4 local result
+
+- Implemented and locally validated.
+- `pnpm --filter @supersites/calcharbor test`, build, preview smoke and Playwright passed.
+- Public deploy remains gated.

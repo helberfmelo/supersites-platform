@@ -63,27 +63,27 @@ export const contentPageCatalog: ContentPage[] = [
   page('about', {
     en: copy('About', 'About CalcHarbor', 'CalcHarbor is the SuperSites product for finance and business calculators with transparent formulas.', reviewed.en, [
       ['Purpose', 'The site helps people answer common planning questions quickly while keeping formulas visible and assumptions clear.'],
-      ['What is live now', 'Sprint 3.1 launches four browser-side calculators: loan payment, break-even point, gross margin and ROI.'],
+      ['What is live now', 'CalcHarbor provides four browser-side calculators: loan payment, break-even point, gross margin and ROI.'],
       ['Upgrade boundary', 'Paid value is planned around saved scenarios, exports, widgets, team workflows, API access and no ads.'],
     ]),
     'pt-br': copy('Sobre', 'Sobre o CalcHarbor', 'CalcHarbor e o produto SuperSites de calculadoras financeiras e empresariais com formulas transparentes.', reviewed['pt-br'], [
       ['Proposito', 'O site ajuda a responder perguntas comuns de planejamento mantendo formulas e premissas visiveis.'],
-      ['O que esta ativo', 'A Sprint 3.1 entrega quatro calculadoras no navegador: parcela, ponto de equilibrio, margem bruta e ROI.'],
+      ['O que esta ativo', 'O CalcHarbor oferece quatro calculadoras no navegador: parcela, ponto de equilibrio, margem bruta e ROI.'],
       ['Fronteira do upgrade', 'O valor pago planejado esta em cenarios salvos, exportacoes, widgets, equipes, API e ausencia de anuncios.'],
     ]),
     es: copy('Acerca de', 'Acerca de CalcHarbor', 'CalcHarbor es el producto SuperSites de calculadoras financieras y de negocio con formulas transparentes.', reviewed.es, [
       ['Proposito', 'El sitio responde preguntas comunes de planificacion con formulas y supuestos visibles.'],
-      ['Que esta activo', 'Sprint 3.1 entrega cuatro calculadoras en el navegador: prestamo, equilibrio, margen bruto y ROI.'],
+      ['Que esta activo', 'CalcHarbor ofrece cuatro calculadoras en el navegador: prestamo, equilibrio, margen bruto y ROI.'],
       ['Limite de upgrade', 'El valor pago se planea para escenarios, exportes, widgets, equipos, API y sin anuncios.'],
     ]),
     fr: copy('A propos', 'A propos de CalcHarbor', 'CalcHarbor est le produit SuperSites de calculatrices finance et business avec formules transparentes.', reviewed.fr, [
       ['Objectif', 'Le site repond aux questions de planification courantes avec formules et hypotheses visibles.'],
-      ['Actif maintenant', 'Sprint 3.1 lance quatre calculatrices navigateur: pret, seuil de rentabilite, marge brute et ROI.'],
+      ['Actif maintenant', 'CalcHarbor propose quatre calculatrices navigateur: pret, seuil de rentabilite, marge brute et ROI.'],
       ['Limite upgrade', 'La valeur payante vise scenarios, exports, widgets, equipes, API et absence de publicite.'],
     ]),
     de: copy('Ueber', 'Ueber CalcHarbor', 'CalcHarbor ist das SuperSites-Produkt fuer Finanz- und Business-Rechner mit transparenten Formeln.', reviewed.de, [
       ['Zweck', 'Die Seite beantwortet Planungsfragen schnell und zeigt Formeln sowie Annahmen sichtbar an.'],
-      ['Jetzt live', 'Sprint 3.1 liefert vier Browser-Rechner: Kreditrate, Break-even, Bruttomarge und ROI.'],
+      ['Jetzt live', 'CalcHarbor bietet vier Browser-Rechner: Kreditrate, Break-even, Bruttomarge und ROI.'],
       ['Upgrade-Grenze', 'Bezahlwert ist fuer Szenarien, Exporte, Widgets, Teams, API und keine Anzeigen geplant.'],
     ]),
   }),
@@ -115,12 +115,12 @@ export const contentPageCatalog: ContentPage[] = [
     ]),
   }),
   page('privacy', {
-    en: copy('Privacy', 'Privacy Policy', 'CalcHarbor minimizes collection by running Sprint 3.1 calculators locally in the browser.', reviewed.en, [
+    en: copy('Privacy', 'Privacy Policy', 'CalcHarbor minimizes collection by running calculators locally in the browser.', reviewed.en, [
       ['Data minimization', 'Calculator inputs and results are not sent to a product API or stored by CalcHarbor in this MVP.'],
       ['Analytics boundary', 'Allowed analytics events may record calculator slugs and page paths, but not entered amounts, rates or results.'],
       ['Future accounts', 'Saved scenarios and exports require account, retention, export and deletion rules before launch.'],
     ]),
-    'pt-br': copy('Privacidade', 'Politica de Privacidade', 'CalcHarbor minimiza coleta rodando as calculadoras da Sprint 3.1 localmente no navegador.', reviewed['pt-br'], [
+    'pt-br': copy('Privacidade', 'Politica de Privacidade', 'CalcHarbor minimiza coleta rodando as calculadoras localmente no navegador.', reviewed['pt-br'], [
       ['Minimizacao', 'Entradas e resultados nao sao enviados a API de produto nem armazenados pelo CalcHarbor neste MVP.'],
       ['Fronteira de analytics', 'Eventos permitidos podem registrar slug e rota, mas nao valores, taxas ou resultados digitados.'],
       ['Contas futuras', 'Cenarios salvos e exportacoes exigem regras de conta, retencao, exportacao e exclusao antes do lancamento.'],
@@ -250,29 +250,29 @@ export const contentPageCatalog: ContentPage[] = [
     ]),
   }),
   page('status', {
-    en: copy('Status', 'Launch Status', 'CalcHarbor Sprint 3.1 status for public web readiness, ads, billing, deploy and gates.', reviewed.en, [
+    en: copy('Status', 'Launch Status', 'CalcHarbor launch status for public web readiness, ads, billing, deploy and gates.', reviewed.en, [
       ['MVP surface', 'The local/CI MVP contains four calculators, five language route sets, sitemap, canonical, hreflang and structured data.'],
-      ['Production', 'No CalcHarbor public deploy is switched in Sprint 3.1 because app-specific packaging, smoke and rollback are not implemented yet.'],
+      ['Production', 'No CalcHarbor public deploy is switched because app-specific packaging, smoke and rollback are not implemented yet.'],
       ['Gates', 'AdSense, billing, external analytics, saved scenarios, widgets and API remain blocked until documented gates pass.'],
     ]),
-    'pt-br': copy('Status', 'Status de Lancamento', 'Status da Sprint 3.1 do CalcHarbor para web publica, ads, billing, deploy e gates.', reviewed['pt-br'], [
+    'pt-br': copy('Status', 'Status de Lancamento', 'Status de lancamento do CalcHarbor para web publica, ads, billing, deploy e gates.', reviewed['pt-br'], [
       ['Superficie MVP', 'O MVP local/CI contem quatro calculadoras, cinco idiomas, sitemap, canonical, hreflang e dados estruturados.'],
-      ['Producao', 'Nenhum deploy publico do CalcHarbor e trocado na Sprint 3.1 porque empacotamento, smoke e rollback especificos ainda nao existem.'],
+      ['Producao', 'Nenhum deploy publico do CalcHarbor e trocado porque empacotamento, smoke e rollback especificos ainda nao existem.'],
       ['Gates', 'AdSense, billing, analytics externo, cenarios salvos, widgets e API seguem bloqueados ate os gates passarem.'],
     ]),
-    es: copy('Estado', 'Estado de lanzamiento', 'Estado de Sprint 3.1 de CalcHarbor para web publica, ads, billing, deploy y gates.', reviewed.es, [
+    es: copy('Estado', 'Estado de lanzamiento', 'Estado de lanzamiento de CalcHarbor para web publica, ads, billing, deploy y gates.', reviewed.es, [
       ['Superficie MVP', 'El MVP local/CI contiene cuatro calculadoras, cinco idiomas, sitemap, canonical, hreflang y datos estructurados.'],
-      ['Produccion', 'No se cambia deploy publico de CalcHarbor en Sprint 3.1 porque faltan packaging, smoke y rollback especificos.'],
+      ['Produccion', 'No se cambia deploy publico de CalcHarbor porque faltan packaging, smoke y rollback especificos.'],
       ['Gates', 'AdSense, billing, analytics externo, escenarios, widgets y API siguen bloqueados hasta pasar gates.'],
     ]),
-    fr: copy('Statut', 'Statut de lancement', 'Statut Sprint 3.1 CalcHarbor pour web public, ads, billing, deploy et gates.', reviewed.fr, [
+    fr: copy('Statut', 'Statut de lancement', 'Statut de lancement CalcHarbor pour web public, ads, billing, deploy et gates.', reviewed.fr, [
       ['Surface MVP', 'Le MVP local/CI contient quatre calculatrices, cinq langues, sitemap, canonical, hreflang et donnees structurees.'],
-      ['Production', 'Aucun deploy public CalcHarbor n est bascule en Sprint 3.1 sans packaging, smoke et rollback specifiques.'],
+      ['Production', 'Aucun deploy public CalcHarbor n est bascule sans packaging, smoke et rollback specifiques.'],
       ['Gates', 'AdSense, billing, analytics externe, scenarios, widgets et API restent bloques jusqu aux gates.'],
     ]),
     de: copy('Status', 'Launch-Status', 'CalcHarbor Sprint-3.1-Status fuer Public Web, Ads, Billing, Deploy und Gates.', reviewed.de, [
       ['MVP-Oberflaeche', 'Das lokale/CI-MVP enthaelt vier Rechner, fuenf Sprachen, Sitemap, Canonical, Hreflang und strukturierte Daten.'],
-      ['Produktion', 'Kein oeffentlicher CalcHarbor-Deploy wird in Sprint 3.1 geschaltet, weil Packaging, Smoke und Rollback fehlen.'],
+      ['Produktion', 'Kein oeffentlicher CalcHarbor-Deploy wird geschaltet, weil Packaging, Smoke und Rollback fehlen.'],
       ['Gates', 'AdSense, Billing, externe Analytics, Szenarien, Widgets und API bleiben bis zu Gates gesperrt.'],
     ]),
   }),

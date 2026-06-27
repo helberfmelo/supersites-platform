@@ -3,11 +3,14 @@ import { getButtonClass } from '@supersites/ui'
 import { computed, reactive, ref } from 'vue'
 import { getShellCopy } from '../../../data/copy'
 import {
+  buildCalculationMemory,
+  getCalculatorInterpretationState,
   createCalculatorStructuredData,
   formatMetricValue,
   getCalculatorBySlug,
   getCalculatorCopy,
   getCategoryLabel,
+  getRelatedCalculators,
   type CalculationResult,
 } from '../../../data/calculators'
 import { localizedCalculatorPath, localizedContentPath, localizedHomePath, normalizePublicLocale, toHtmlLang } from '../../../data/locales'
@@ -31,8 +34,13 @@ const canonicalPath = localizedCalculatorPath(locale, calculator.slug)
 const structuredData = createCalculatorStructuredData(calculator, locale, absoluteUrl(canonicalPath))
 const inputs = reactive(Object.fromEntries(calculator.fields.map((field) => [field.key, field.defaultValue])) as Record<string, number>)
 const hasCalculated = ref(false)
-const result = ref<CalculationResult | null>(null)
-const resultTitle = computed(() => result.value?.ok === false ? shellCopy.invalidResultTitle : shellCopy.resultTitle)
+const liveResult = computed<CalculationResult>(() => calculator.calculate(inputs))
+const resultTitle = computed(() => liveResult.value.ok === false ? shellCopy.invalidResultTitle : shellCopy.resultTitle)
+const primaryMetric = computed(() => liveResult.value.ok ? liveResult.value.metrics[0] : null)
+const secondaryMetrics = computed(() => liveResult.value.ok ? liveResult.value.metrics.slice(1) : [])
+const calculationMemory = computed(() => buildCalculationMemory(calculator, inputs, liveResult.value, locale))
+const interpretationState = computed(() => getCalculatorInterpretationState(calculator.slug, liveResult.value, locale))
+const relatedCalculators = computed(() => getRelatedCalculators(calculator))
 
 function calculate(): void {
   hasCalculated.value = true
@@ -42,13 +50,11 @@ function calculate(): void {
     routePath: canonicalPath,
   }, 'tool_started')
 
-  result.value = calculator.calculate(inputs)
-
   trackCalculatorEvent({
     calculatorSlug: calculator.slug,
     locale,
     routePath: canonicalPath,
-  }, result.value.ok ? 'tool_completed' : 'tool_failed')
+  }, liveResult.value.ok ? 'tool_completed' : 'tool_failed')
 }
 
 function resetExample(): void {
@@ -57,7 +63,6 @@ function resetExample(): void {
   }
 
   hasCalculated.value = false
-  result.value = null
 }
 
 useHead({
@@ -111,7 +116,7 @@ useHead({
       <div>
         <div class="detail-topline">
           <p class="eyebrow">{{ getCategoryLabel(calculator.category, locale) }}</p>
-          <span class="status">Sprint 3.1</span>
+          <span class="status">Local result</span>
         </div>
         <h1 :id="`${calculator.slug}-title`">{{ copy.title }}</h1>
         <p class="lead">{{ copy.headline }}</p>
@@ -167,17 +172,42 @@ useHead({
           </form>
         </section>
 
-        <section class="result-panel" aria-live="polite" :aria-labelledby="`${calculator.slug}-result`">
+        <section class="result-panel result-panel--live" aria-live="polite" :aria-labelledby="`${calculator.slug}-result`">
+          <p class="result-kicker">{{ shellCopy.answerTitle }}</p>
           <h2 :id="`${calculator.slug}-result`">{{ resultTitle }}</h2>
 
-          <p v-if="!hasCalculated">{{ shellCopy.privacyNote }}</p>
-          <p v-else-if="result && !result.ok" class="result-error">{{ result.error[locale] }}</p>
+          <p v-if="!hasCalculated" class="privacy-strip">{{ shellCopy.privacyNote }}</p>
+          <p v-if="!liveResult.ok" class="result-error">{{ liveResult.error[locale] }}</p>
 
-          <div v-else-if="result && result.ok" class="result-grid">
-            <div v-for="metric in result.metrics" :key="metric.key">
-              <strong>{{ metric.label[locale] }}</strong>
-              <span>{{ formatMetricValue(metric, locale) }}</span>
+          <div v-else>
+            <div v-if="primaryMetric" class="primary-result">
+              <span>{{ primaryMetric.label[locale] }}</span>
+              <strong>{{ formatMetricValue(primaryMetric, locale) }}</strong>
+              <p>{{ copy.interpretation }}</p>
             </div>
+
+            <div class="result-grid">
+              <div v-for="metric in secondaryMetrics" :key="metric.key">
+                <strong>{{ metric.label[locale] }}</strong>
+                <span>{{ formatMetricValue(metric, locale) }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="interpretation-card" :class="`interpretation-card--${interpretationState.tone}`">
+            <span>{{ shellCopy.interpretationTitle }}</span>
+            <strong>{{ interpretationState.label }}</strong>
+            <p>{{ interpretationState.body }}</p>
+          </div>
+
+          <div class="calculation-memory">
+            <h3>{{ shellCopy.calculationMemoryTitle }}</h3>
+            <dl>
+              <div v-for="line in calculationMemory" :key="`${line.label}-${line.value}`">
+                <dt>{{ line.label }}</dt>
+                <dd>{{ line.value }}</dd>
+              </div>
+            </dl>
           </div>
         </section>
       </div>
@@ -186,6 +216,7 @@ useHead({
         <h2 :id="`${calculator.slug}-formula`">{{ shellCopy.formulaTitle }}</h2>
         <code>{{ copy.formula }}</code>
         <p>{{ copy.example }}</p>
+        <p class="planning-note">{{ shellCopy.planningNote }}</p>
         <dl class="fact-list">
           <div>
             <dt>{{ shellCopy.freeCheckLabel }}</dt>
@@ -196,7 +227,33 @@ useHead({
             <dd>{{ copy.upgradeScope }}</dd>
           </div>
         </dl>
+
+        <section class="upgrade-panel" :aria-labelledby="`${calculator.slug}-upgrade`">
+          <h3 :id="`${calculator.slug}-upgrade`">{{ shellCopy.workflowUpgradeTitle }}</h3>
+          <p>{{ shellCopy.workflowUpgradeBody }}</p>
+          <ul>
+            <li v-for="item in shellCopy.workflowUpgradeItems" :key="item">{{ item }}</li>
+          </ul>
+        </section>
       </aside>
+    </section>
+
+    <section class="related-calculators" :aria-labelledby="`${calculator.slug}-related`">
+      <div>
+        <p class="eyebrow">{{ getCategoryLabel(calculator.category, locale) }}</p>
+        <h2 :id="`${calculator.slug}-related`">{{ shellCopy.relatedTitle }}</h2>
+      </div>
+
+      <div class="related-calculator-list">
+        <NuxtLink
+          v-for="related in relatedCalculators"
+          :key="related.slug"
+          :to="localizedCalculatorPath(locale, related.slug)"
+        >
+          <strong>{{ getCalculatorCopy(related, locale).shortName }}</strong>
+          <span>{{ getCalculatorCopy(related, locale).headline }}</span>
+        </NuxtLink>
+      </div>
     </section>
 
     <section class="content-layout" :aria-labelledby="`${calculator.slug}-guide`">

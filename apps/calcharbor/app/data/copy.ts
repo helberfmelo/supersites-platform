@@ -32,6 +32,14 @@ export interface ShellCopy {
   upgradePathLabel: string
   guideTitle: string
   faqTitle: string
+  answerTitle: string
+  calculationMemoryTitle: string
+  interpretationTitle: string
+  relatedTitle: string
+  workflowUpgradeTitle: string
+  workflowUpgradeBody: string
+  workflowUpgradeItems: string[]
+  planningNote: string
   contentQualityBody: string
   invalidResultTitle: string
   privacyNote: string
@@ -64,7 +72,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
       },
       {
         title: 'Client-side by default',
-        body: 'Sprint 3.1 runs calculations in the browser and does not store inputs or results.',
+        body: 'Calculations run in the browser and do not store inputs or results.',
       },
       {
         title: 'Paid value adds workflow',
@@ -105,7 +113,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     principlesTitle: 'Principios do MVP',
     principles: [
       { title: 'Formulas transparentes', body: 'Cada calculadora mostra a formula e as premissas para que a resposta seja auditavel.' },
-      { title: 'Cliente por padrao', body: 'A Sprint 3.1 calcula no navegador e nao armazena entradas ou resultados.' },
+      { title: 'Cliente por padrao', body: 'Os calculos rodam no navegador e nao armazenam entradas ou resultados.' },
       { title: 'Upgrade e workflow', body: 'Planos pagos vendem cenarios, exportacoes, widgets, equipes, API e ausencia de anuncios.' },
     ],
     statusRows: [
@@ -130,7 +138,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     principlesTitle: 'Principios del MVP',
     principles: [
       { title: 'Formulas transparentes', body: 'Cada calculadora muestra formula y supuestos para que la respuesta sea auditable.' },
-      { title: 'Cliente por defecto', body: 'Sprint 3.1 calcula en el navegador y no almacena entradas o resultados.' },
+      { title: 'Cliente por defecto', body: 'Los calculos corren en el navegador y no almacenan entradas o resultados.' },
       { title: 'Upgrade como workflow', body: 'Los planes pagos venden escenarios, exportes, widgets, equipos, API y sin anuncios.' },
     ],
     statusRows: [
@@ -155,7 +163,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     principlesTitle: 'Principes MVP',
     principles: [
       { title: 'Formules transparentes', body: 'Chaque calculatrice montre formule et hypotheses pour rendre la reponse verifiable.' },
-      { title: 'Client par defaut', body: 'Sprint 3.1 calcule dans le navigateur et ne stocke ni entrees ni resultats.' },
+      { title: 'Client par defaut', body: 'Les calculs s executent dans le navigateur et ne stockent ni entrees ni resultats.' },
       { title: 'Upgrade workflow', body: 'Les offres payantes ajoutent scenarios, exports, widgets, equipes, API et absence de publicite.' },
     ],
     statusRows: [
@@ -180,7 +188,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     principlesTitle: 'MVP-Prinzipien',
     principles: [
       { title: 'Transparente Formeln', body: 'Jeder Rechner zeigt Formel und Annahmen, damit die Antwort pruefbar bleibt.' },
-      { title: 'Client-seitig zuerst', body: 'Sprint 3.1 rechnet im Browser und speichert keine Eingaben oder Ergebnisse.' },
+      { title: 'Client-seitig zuerst', body: 'Berechnungen laufen im Browser und speichern keine Eingaben oder Ergebnisse.' },
       { title: 'Bezahlwert ist Workflow', body: 'Upgrades sind Szenarien, Exporte, Widgets, Teams, API und keine Anzeigen.' },
     ],
     statusRows: [
@@ -206,9 +214,17 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Upgrade path',
     guideTitle: 'Guide and interpretation',
     faqTitle: 'FAQ',
+    answerTitle: 'Live answer',
+    calculationMemoryTitle: 'Calculation memory',
+    interpretationTitle: 'Interpretation',
+    relatedTitle: 'Related calculators',
+    workflowUpgradeTitle: 'Workflow upgrades gated',
+    workflowUpgradeBody: 'The answer stays free. Paid paths are planned for repeated work that needs history, export or embedding.',
+    workflowUpgradeItems: ['Saved scenarios', 'PDF and spreadsheet exports', 'Embeddable widgets and API'],
+    planningNote: 'Planning calculator only. Confirm taxes, legal terms, credit rules and accounting treatment with qualified professionals.',
     contentQualityBody: 'This page combines the working calculator, formula, interpretation, example, limits and FAQ required before AdSense review.',
     invalidResultTitle: 'Check the inputs',
-    privacyNote: 'Calculations run in this browser session. CalcHarbor does not store entered values in Sprint 3.1.',
+    privacyNote: 'Calculations run in this browser session. CalcHarbor does not store entered values.',
     pageStatusLabel: 'Calculator status',
     liveTitle: 'Client-side MVP',
     liveBody: 'The free calculator works without signup and without sending values to an API.',
@@ -229,9 +245,17 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Caminho de upgrade',
     guideTitle: 'Guia e interpretacao',
     faqTitle: 'Perguntas frequentes',
+    answerTitle: 'Resposta ao vivo',
+    calculationMemoryTitle: 'Memoria de calculo',
+    interpretationTitle: 'Interpretacao',
+    relatedTitle: 'Calculadoras relacionadas',
+    workflowUpgradeTitle: 'Upgrades de workflow bloqueados',
+    workflowUpgradeBody: 'A resposta continua gratuita. Caminhos pagos ficam planejados para trabalho recorrente com historico, exportacao ou embed.',
+    workflowUpgradeItems: ['Cenarios salvos', 'Exportacao PDF e planilha', 'Widgets embutidos e API'],
+    planningNote: 'Calculadora de planejamento. Confirme impostos, termos juridicos, regras de credito e tratamento contabil com profissionais qualificados.',
     contentQualityBody: 'Esta pagina combina calculadora funcional, formula, interpretacao, exemplo, limites e FAQ exigidos antes da revisao AdSense.',
     invalidResultTitle: 'Confira as entradas',
-    privacyNote: 'Os calculos rodam neste navegador. O CalcHarbor nao armazena valores digitados na Sprint 3.1.',
+    privacyNote: 'Os calculos rodam neste navegador. O CalcHarbor nao armazena valores digitados.',
     pageStatusLabel: 'Status da calculadora',
     liveTitle: 'MVP client-side',
     liveBody: 'A calculadora gratuita funciona sem cadastro e sem enviar valores para API.',
@@ -252,9 +276,17 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Ruta de upgrade',
     guideTitle: 'Guia e interpretacion',
     faqTitle: 'Preguntas frecuentes',
+    answerTitle: 'Respuesta en vivo',
+    calculationMemoryTitle: 'Memoria de calculo',
+    interpretationTitle: 'Interpretacion',
+    relatedTitle: 'Calculadoras relacionadas',
+    workflowUpgradeTitle: 'Upgrades de workflow bloqueados',
+    workflowUpgradeBody: 'La respuesta sigue gratis. Los pagos quedan planeados para trabajo repetido con historial, exporte o embed.',
+    workflowUpgradeItems: ['Escenarios guardados', 'Exportes PDF y hoja de calculo', 'Widgets embebidos y API'],
+    planningNote: 'Calculadora de planificacion. Confirma impuestos, terminos legales, credito y contabilidad con profesionales calificados.',
     contentQualityBody: 'Esta pagina combina calculadora, formula, interpretacion, ejemplo, limites y FAQ requeridos antes de AdSense.',
     invalidResultTitle: 'Revisa las entradas',
-    privacyNote: 'Los calculos corren en este navegador. CalcHarbor no guarda valores en Sprint 3.1.',
+    privacyNote: 'Los calculos corren en este navegador. CalcHarbor no guarda valores.',
     pageStatusLabel: 'Estado de calculadora',
     liveTitle: 'MVP client-side',
     liveBody: 'La calculadora gratis funciona sin registro y sin enviar valores a una API.',
@@ -275,9 +307,17 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Offre payante',
     guideTitle: 'Guide et interpretation',
     faqTitle: 'FAQ',
+    answerTitle: 'Reponse instantanee',
+    calculationMemoryTitle: 'Memoire de calcul',
+    interpretationTitle: 'Interpretation',
+    relatedTitle: 'Calculatrices liees',
+    workflowUpgradeTitle: 'Upgrades workflow bloques',
+    workflowUpgradeBody: 'La reponse reste gratuite. Les offres payantes sont reservees aux usages repetes avec historique, export ou integration.',
+    workflowUpgradeItems: ['Scenarios sauvegardes', 'Exports PDF et tableur', 'Widgets integres et API'],
+    planningNote: 'Calculatrice de planification. Confirmez taxes, cadre juridique, credit et comptabilite avec des professionnels qualifies.',
     contentQualityBody: 'Cette page combine calculatrice, formule, interpretation, exemple, limites et FAQ avant revue AdSense.',
     invalidResultTitle: 'Verifiez les entrees',
-    privacyNote: 'Les calculs s executent dans ce navigateur. CalcHarbor ne stocke pas les valeurs en Sprint 3.1.',
+    privacyNote: 'Les calculs s executent dans ce navigateur. CalcHarbor ne stocke pas les valeurs.',
     pageStatusLabel: 'Statut calculatrice',
     liveTitle: 'MVP client-side',
     liveBody: 'La calculatrice gratuite fonctionne sans compte et sans envoyer les valeurs a une API.',
@@ -298,9 +338,17 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Upgrade-Pfad',
     guideTitle: 'Leitfaden und Interpretation',
     faqTitle: 'FAQ',
+    answerTitle: 'Live-Ergebnis',
+    calculationMemoryTitle: 'Rechenspeicher',
+    interpretationTitle: 'Interpretation',
+    relatedTitle: 'Verwandte Rechner',
+    workflowUpgradeTitle: 'Workflow-Upgrades gesperrt',
+    workflowUpgradeBody: 'Die Antwort bleibt kostenlos. Bezahlpfade sind fuer wiederholte Arbeit mit Verlauf, Export oder Einbettung geplant.',
+    workflowUpgradeItems: ['Gespeicherte Szenarien', 'PDF- und Tabellenexporte', 'Einbettbare Widgets und API'],
+    planningNote: 'Planungsrechner. Pruefen Sie Steuern, Recht, Kreditregeln und Buchhaltung mit qualifizierten Fachleuten.',
     contentQualityBody: 'Diese Seite kombiniert Rechner, Formel, Interpretation, Beispiel, Grenzen und FAQ fuer die AdSense-Pruefung.',
     invalidResultTitle: 'Eingaben pruefen',
-    privacyNote: 'Berechnungen laufen in diesem Browser. CalcHarbor speichert in Sprint 3.1 keine Werte.',
+    privacyNote: 'Berechnungen laufen in diesem Browser. CalcHarbor speichert keine Werte.',
     pageStatusLabel: 'Rechnerstatus',
     liveTitle: 'Client-seitiges MVP',
     liveBody: 'Der kostenlose Rechner funktioniert ohne Konto und ohne API-Uebertragung der Werte.',

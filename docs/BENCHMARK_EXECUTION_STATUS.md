@@ -35,7 +35,7 @@ Data-base: 2026-06-27
 | 7.1 | BR-ROADMAP | Completed | Docs created, committed, pushed and docs-only Quality Gate recorded |
 | 7.2 | BR-SUPERSITE | Completed | Hub/control-plane benchmark dashboard refined and validated |
 | 7.3 | BR-NETPROBE | Completed | DNS/IP benchmark UX refined and public NetProbe smokes pass |
-| 7.4 | BR-CALCHARBOR | Next | Calculator UX/content refined in local/CI, public deploy still gated |
+| 7.4 | BR-CALCHARBOR | Implemented locally; feature commit/CI pending | Calculator UX/content refined in local/CI, public deploy still gated |
 | 7.5 | BR-DEVUTILITY | Planned | Developer tool UX/content refined in local/CI, public deploy still gated |
 | 7.6 | BR-TIMENEXUS | Planned | Time/date UX/content refined in local/CI, public deploy still gated |
 | 7.7 | BR-QRROUTE | Planned | QR/UTM UX/content refined in local/CI, dynamic links still gated |
@@ -126,3 +126,25 @@ Sprint 7.3 remote validation:
 - Quality Gate: `28286547715`, success.
 - Deploy Dry Run: `28286547705`, success.
 - Public smokes: Hub, control-plane/API and NetProbe passed after push.
+- Closing docs commit: `e434ea8 docs: record netprobe benchmark ci validation`.
+- Closing docs-only Quality Gate: `28286684290`, success.
+
+Sprint 7.4 local validation passed:
+
+- `pnpm --filter @supersites/calcharbor test`
+- `pnpm --filter @supersites/calcharbor build`
+- `pnpm validate:calcharbor-preview`
+- `pnpm test:e2e:calcharbor`
+- `pnpm validate:structure`
+- `pnpm validate:secrets`
+- `pnpm deploy:dry-run`
+- `pnpm ci:changes` (local runAll fallback expected because no base was provided)
+- `git diff --check`
+- Desktop/mobile CalcHarbor screenshots captured and inspected under `artifacts/`.
+
+Sprint 7.4 remote validation:
+
+- Feature commit: pending.
+- Quality Gate: pending.
+- Deploy Dry Run: pending.
+- Public smokes: pending.

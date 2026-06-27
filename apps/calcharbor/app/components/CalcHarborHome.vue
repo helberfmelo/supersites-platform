@@ -65,7 +65,7 @@ useHead(() => ({
         <p class="lead">{{ copy.lead }}</p>
       </div>
 
-      <aside class="status-panel" aria-label="Sprint 3.1 status">
+      <aside class="status-panel" aria-label="CalcHarbor status">
         <div v-for="row in copy.statusRows" :key="row.title" class="status-panel__row">
           <div>
             <strong>{{ row.title }}</strong>
@@ -112,7 +112,7 @@ useHead(() => ({
         <div>
           <div class="tool-card__topline">
             <span class="category">{{ getCategoryLabel(calculator.category, locale) }}</span>
-            <span :class="getStatusBadgeClass('foundation')">Sprint 3.1</span>
+            <span :class="getStatusBadgeClass('foundation')">Local result</span>
           </div>
           <h2>{{ getCalculatorCopy(calculator, locale).title }}</h2>
           <p>{{ getCalculatorCopy(calculator, locale).headline }}</p>

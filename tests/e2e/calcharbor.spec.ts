@@ -79,9 +79,13 @@ test.describe('CalcHarbor MVP', () => {
     await page.getByRole('button', { name: 'Calculate' }).click()
 
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Loan Payment Calculator')
-    await expect(page.locator('.result-grid strong').filter({ hasText: 'Monthly payment' })).toBeVisible()
-    await expect(page.getByText(/\$512\./)).toBeVisible()
+    await expect(page.locator('.primary-result').filter({ hasText: 'Monthly payment' })).toBeVisible()
+    await expect(page.locator('.primary-result strong')).toContainText('$512.')
     await expect(page.locator('code').filter({ hasText: 'M = P x r x (1 + r)^n / ((1 + r)^n - 1)' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Calculation memory' })).toBeVisible()
+    await expect(page.getByText('Formula used')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Related calculators' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Workflow upgrades gated' })).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)
     await expectNoHorizontalOverflow(page)
 
@@ -107,6 +111,7 @@ test.describe('CalcHarbor MVP', () => {
     })
     expect(JSON.stringify(analytics)).not.toContain('25000')
     expect(JSON.stringify(analytics)).not.toContain('8.5')
+    expect(JSON.stringify(analytics)).not.toContain('$512')
 
     const screenshot = await page.screenshot({ fullPage: true })
     await testInfo.attach('calcharbor-loan-mobile', { body: screenshot, contentType: 'image/png' })
@@ -123,7 +128,7 @@ test.describe('CalcHarbor MVP', () => {
     await expect(page).toHaveTitle(/Calculadora de ROI/)
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Calculadora de ROI')
     await expect(page.getByLabel('Valor de retorno')).toBeVisible()
-    await expect(page.getByText('ROI = (valor de retorno - custo do investimento) / custo do investimento')).toBeVisible()
+    await expect(page.locator('code').filter({ hasText: 'ROI = (valor de retorno - custo do investimento) / custo do investimento' })).toBeVisible()
     await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR')
     await expectNoHorizontalOverflow(page)
 

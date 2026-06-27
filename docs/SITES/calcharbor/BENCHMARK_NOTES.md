@@ -31,3 +31,9 @@ Data-base: 2026-06-27
 - Standardize a result card and formula block across calculators.
 - Add related calculator clusters and localized disclaimers.
 - Prepare export/scenario upsell without limiting the free calculation.
+
+## Sprint 7.4 implementation notes
+
+- Standardized result card, secondary metrics, interpretation card and calculation memory across the four MVP calculators.
+- Related calculators are cross-linked by category/order without copying benchmark layouts.
+- Workflow upgrade panel is inert and gated; no checkout, ads, donation or affiliate activation was added.

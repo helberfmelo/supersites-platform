@@ -264,13 +264,13 @@ Sprint 7.4 - CalcHarbor benchmark UX
 - Simbolico: BR-CALCHARBOR.
 - Objetivo: refinar calculadoras com resultado imediato, formula, memoria de calculo, interpretacao, exemplos, FAQ, links relacionados e upgrades gated.
 - Validacao: formulas, testes/build/preview/Playwright do CalcHarbor e gates locais.
-- Status: proxima.
+- Status: implementada e validada localmente. O CalcHarbor recebeu resultado ao vivo client-side, card primario, metricas secundarias, memoria de calculo, interpretacao por estado, disclaimers, related calculators e painel de upgrade gated/inert. Testes/build/preview/Playwright e gates finais locais passaram; commit, CI, deploy dry-run remoto e smokes publicos serao registrados no fechamento documental. Nenhum deploy real, anuncio, checkout, billing, doacao, afiliado, worker ou analytics externo foi ativado.
 
 Sprint 7.5 - DevUtility Lab benchmark UX
 - Simbolico: BR-DEVUTILITY.
 - Objetivo: refinar ferramentas dev com editor split, exemplos, copy/download, erros claros, privacidade visivel e upgrades gated.
 - Validacao: testes/build/preview/Playwright do DevUtility e gates locais.
-- Status: planejada.
+- Status: proxima.
 
 Sprint 7.6 - TimeNexus benchmark UX
 - Simbolico: BR-TIMENEXUS.

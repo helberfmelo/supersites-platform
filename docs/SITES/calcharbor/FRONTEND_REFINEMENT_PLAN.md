@@ -8,10 +8,10 @@ Make each calculator feel immediate, precise and explainable while keeping all i
 
 ## P0
 
-- Add consistent calculator hero/work area with compact inputs and immediate result.
-- Add formula and calculation memory block for each MVP calculator.
-- Add interpretation states for good/warning/needs-review outcomes where meaningful.
-- Add related calculator grid below the result.
+- Completed locally in Sprint 7.4: consistent calculator hero/work area with compact inputs and immediate result.
+- Completed locally in Sprint 7.4: formula and calculation memory block for each MVP calculator.
+- Completed locally in Sprint 7.4: interpretation states for good/warning/needs-review outcomes where meaningful.
+- Completed locally in Sprint 7.4: related calculator grid below the result.
 
 ## P1
 
@@ -42,8 +42,8 @@ Medium where finance/tax/labor interpretation appears. Keep disclaimers and avoi
 
 ## Acceptance metrics
 
-- Result and formula visible without confusing scrolling.
-- No numeric input/result sent to analytics.
+- Result and formula visible without confusing scrolling in local preview.
+- No numeric input/result sent to analytics in unit/E2E regression.
 - Related calculator links present on each tool page.
 
 ## Dashboard backlog

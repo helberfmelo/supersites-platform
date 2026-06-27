@@ -62,6 +62,17 @@ export interface CalculationMetric {
   format: MetricFormat
 }
 
+export interface CalculationMemoryLine {
+  label: string
+  value: string
+}
+
+export interface InterpretationState {
+  tone: 'good' | 'review' | 'warning'
+  label: string
+  body: string
+}
+
 export interface CalculationOk {
   ok: true
   metrics: CalculationMetric[]
@@ -125,6 +136,18 @@ function metric(key: string, label: LocalizedText, value: number, format: Metric
   return { key, label, value, format }
 }
 
+function formatFieldValue(fieldValue: CalculatorField, value: number, locale: LocaleCode): string {
+  if (fieldValue.prefix === '$') {
+    return money(value, locale)
+  }
+
+  if (fieldValue.suffix === '%') {
+    return `${number(value, locale)}%`
+  }
+
+  return number(value, locale)
+}
+
 function money(value: number, locale: LocaleCode): string {
   return formatCurrency(value, locale, 'USD', { maximumFractionDigits: 2 })
 }
@@ -150,6 +173,197 @@ export function formatMetricValue(metricValue: CalculationMetric, locale: Locale
   }
 
   return number(metricValue.value, locale)
+}
+
+const memoryLabels: Record<LocaleCode, { inputPrefix: string; resultPrefix: string; formulaLabel: string }> = {
+  en: {
+    inputPrefix: 'Input',
+    resultPrefix: 'Result',
+    formulaLabel: 'Formula used',
+  },
+  'pt-br': {
+    inputPrefix: 'Entrada',
+    resultPrefix: 'Resultado',
+    formulaLabel: 'Formula usada',
+  },
+  es: {
+    inputPrefix: 'Entrada',
+    resultPrefix: 'Resultado',
+    formulaLabel: 'Formula usada',
+  },
+  fr: {
+    inputPrefix: 'Entree',
+    resultPrefix: 'Resultat',
+    formulaLabel: 'Formule utilisee',
+  },
+  de: {
+    inputPrefix: 'Eingabe',
+    resultPrefix: 'Ergebnis',
+    formulaLabel: 'Verwendete Formel',
+  },
+}
+
+export function buildCalculationMemory(
+  calculator: CalculatorDefinition,
+  inputs: Record<string, number>,
+  result: CalculationResult,
+  locale: LocaleCode,
+): CalculationMemoryLine[] {
+  const copy = getCalculatorCopy(calculator, locale)
+  const labels = memoryLabels[locale]
+  const fieldLines = calculator.fields.map((fieldValue) => ({
+    label: `${labels.inputPrefix}: ${fieldValue.label[locale]}`,
+    value: formatFieldValue(fieldValue, inputs[fieldValue.key], locale),
+  }))
+
+  if (!result.ok) {
+    return [
+      ...fieldLines,
+      {
+        label: labels.formulaLabel,
+        value: copy.formula,
+      },
+    ]
+  }
+
+  return [
+    ...fieldLines,
+    {
+      label: labels.formulaLabel,
+      value: copy.formula,
+    },
+    ...result.metrics.map((metricValue) => ({
+      label: `${labels.resultPrefix}: ${metricValue.label[locale]}`,
+      value: formatMetricValue(metricValue, locale),
+    })),
+  ]
+}
+
+const interpretationCopy: Record<LocaleCode, Record<InterpretationState['tone'], { label: string; body: string }>> = {
+  en: {
+    good: {
+      label: 'Planning range',
+      body: 'This scenario is in a workable planning range. Confirm fees, taxes, timing and accounting rules before acting.',
+    },
+    review: {
+      label: 'Review assumptions',
+      body: 'The result is usable as a planning signal, but the assumptions deserve a second pass before a business decision.',
+    },
+    warning: {
+      label: 'Needs closer review',
+      body: 'This scenario may be sensitive to cost, rate or timing changes. Treat it as a prompt for deeper review, not advice.',
+    },
+  },
+  'pt-br': {
+    good: {
+      label: 'Faixa de planejamento',
+      body: 'O cenario esta em uma faixa util de planejamento. Confirme tarifas, impostos, prazo e regras contabeis antes de agir.',
+    },
+    review: {
+      label: 'Revise premissas',
+      body: 'O resultado serve como sinal de planejamento, mas as premissas merecem nova revisao antes de uma decisao de negocio.',
+    },
+    warning: {
+      label: 'Precisa de revisao',
+      body: 'O cenario pode ser sensivel a custo, taxa ou prazo. Use como alerta para revisao profunda, nao como conselho.',
+    },
+  },
+  es: {
+    good: {
+      label: 'Rango de planificacion',
+      body: 'El escenario esta en un rango util de planificacion. Confirma cargos, impuestos, plazos y reglas contables antes de actuar.',
+    },
+    review: {
+      label: 'Revisa supuestos',
+      body: 'El resultado sirve como senal de planificacion, pero los supuestos merecen otra revision antes de decidir.',
+    },
+    warning: {
+      label: 'Requiere mas revision',
+      body: 'El escenario puede ser sensible a costos, tasas o plazos. Usalo como alerta para revisar, no como consejo.',
+    },
+  },
+  fr: {
+    good: {
+      label: 'Plage de planification',
+      body: 'Le scenario reste utile pour planifier. Confirmez frais, taxes, calendrier et regles comptables avant decision.',
+    },
+    review: {
+      label: 'Verifier les hypotheses',
+      body: 'Le resultat est un signal de planification, mais les hypotheses meritent une verification avant une decision.',
+    },
+    warning: {
+      label: 'Revue approfondie',
+      body: 'Le scenario peut etre sensible aux couts, taux ou delais. Utilisez-le pour approfondir, pas comme conseil.',
+    },
+  },
+  de: {
+    good: {
+      label: 'Planungsbereich',
+      body: 'Das Szenario liegt in einem brauchbaren Planungsbereich. Pruefen Sie Gebuehren, Steuern, Zeitraum und Buchhaltung.',
+    },
+    review: {
+      label: 'Annahmen pruefen',
+      body: 'Das Ergebnis ist ein Planungssignal, doch die Annahmen sollten vor einer Entscheidung erneut geprueft werden.',
+    },
+    warning: {
+      label: 'Genauer pruefen',
+      body: 'Das Szenario kann empfindlich auf Kosten, Zinsen oder Zeit reagieren. Nutzen Sie es als Pruefhinweis, nicht als Rat.',
+    },
+  },
+}
+
+export function getCalculatorInterpretationState(
+  slug: CalculatorSlug,
+  result: CalculationResult,
+  locale: LocaleCode,
+): InterpretationState {
+  if (!result.ok) {
+    return {
+      tone: 'warning',
+      ...interpretationCopy[locale].warning,
+    }
+  }
+
+  const metricByKey = new Map(result.metrics.map((metricValue) => [metricValue.key, metricValue.value]))
+  let tone: InterpretationState['tone'] = 'review'
+
+  if (slug === 'loan-payment') {
+    const interest = metricByKey.get('total_interest') ?? 0
+    const totalPaid = metricByKey.get('total_paid') ?? 0
+    const ratio = totalPaid > 0 ? interest / totalPaid : 0
+    tone = ratio <= 0.2 ? 'good' : ratio <= 0.4 ? 'review' : 'warning'
+  } else if (slug === 'break-even-point') {
+    const units = metricByKey.get('break_even_units') ?? 0
+    tone = units <= 500 ? 'good' : units <= 5000 ? 'review' : 'warning'
+  } else if (slug === 'gross-margin') {
+    const marginValue = metricByKey.get('gross_margin') ?? 0
+    tone = marginValue >= 0.4 ? 'good' : marginValue >= 0.2 ? 'review' : 'warning'
+  } else if (slug === 'roi') {
+    const roiValue = metricByKey.get('roi') ?? 0
+    tone = roiValue >= 0.2 ? 'good' : roiValue >= 0 ? 'review' : 'warning'
+  }
+
+  return {
+    tone,
+    ...interpretationCopy[locale][tone],
+  }
+}
+
+export function getRelatedCalculators(calculator: CalculatorDefinition): CalculatorDefinition[] {
+  return calculatorCatalog
+    .filter((item) => item.slug !== calculator.slug)
+    .sort((a, b) => {
+      if (a.category === calculator.category && b.category !== calculator.category) {
+        return -1
+      }
+
+      if (b.category === calculator.category && a.category !== calculator.category) {
+        return 1
+      }
+
+      return calculatorSlugs.indexOf(a.slug) - calculatorSlugs.indexOf(b.slug)
+    })
+    .slice(0, 3)
 }
 
 function standardSections(locale: LocaleCode, kind: 'loan' | 'breakEven' | 'margin' | 'roi'): ContentSection[] {
@@ -312,23 +526,23 @@ function standardSections(locale: LocaleCode, kind: 'loan' | 'breakEven' | 'marg
 function faq(locale: LocaleCode): FaqItem[] {
   const entries: Record<LocaleCode, FaqItem[]> = {
     en: [
-      { question: 'Are values stored?', answer: 'No. Sprint 3.1 calculates in the browser and does not store calculator inputs or results.' },
+      { question: 'Are values stored?', answer: 'No. CalcHarbor calculates in the browser and does not store calculator inputs or results.' },
       { question: 'Can I use this for final financial decisions?', answer: 'Use the result as a planning signal. Confirm legal, tax, credit and accounting decisions with a qualified professional.' },
     ],
     'pt-br': [
-      { question: 'Os valores sao armazenados?', answer: 'Nao. A Sprint 3.1 calcula no navegador e nao armazena entradas ou resultados.' },
+      { question: 'Os valores sao armazenados?', answer: 'Nao. O CalcHarbor calcula no navegador e nao armazena entradas ou resultados.' },
       { question: 'Posso usar para decisao financeira final?', answer: 'Use como sinal de planejamento. Confirme decisoes juridicas, fiscais, de credito e contabeis com profissional qualificado.' },
     ],
     es: [
-      { question: 'Se almacenan los valores?', answer: 'No. Sprint 3.1 calcula en el navegador y no guarda entradas ni resultados.' },
+      { question: 'Se almacenan los valores?', answer: 'No. CalcHarbor calcula en el navegador y no guarda entradas ni resultados.' },
       { question: 'Sirve para decisiones financieras finales?', answer: 'Usalo como senal de planificacion. Confirma decisiones legales, fiscales, de credito y contables con un profesional.' },
     ],
     fr: [
-      { question: 'Les valeurs sont-elles stockees?', answer: 'Non. Sprint 3.1 calcule dans le navigateur et ne stocke ni entrees ni resultats.' },
+      { question: 'Les valeurs sont-elles stockees?', answer: 'Non. CalcHarbor calcule dans le navigateur et ne stocke ni entrees ni resultats.' },
       { question: 'Puis-je l utiliser pour une decision finale?', answer: 'Utilisez-le comme signal de planification. Confirmez fiscal, juridique, credit et comptabilite avec un professionnel.' },
     ],
     de: [
-      { question: 'Werden Werte gespeichert?', answer: 'Nein. Sprint 3.1 rechnet im Browser und speichert keine Eingaben oder Ergebnisse.' },
+      { question: 'Werden Werte gespeichert?', answer: 'Nein. CalcHarbor rechnet im Browser und speichert keine Eingaben oder Ergebnisse.' },
       { question: 'Eignet es sich fuer endgueltige Finanzentscheidungen?', answer: 'Nutzen Sie es als Planungssignal. Recht, Steuern, Kredit und Buchhaltung sollten Fachleute bestaetigen.' },
     ],
   }

@@ -14,6 +14,8 @@ Na Sprint 7.2, o Hub publico e o control-plane ganharam a primeira camada tecnic
 
 Na Sprint 7.3, o NetProbe Atlas recebeu o refinamento BR-NETPROBE: pagina `what-is-my-ip` com cards de resposta imediata, explicacao de privacidade e copy local de resumo; pagina `dns-propagation` com valor esperado opcional, cards de match/valores distintos/escopo/TTL, tabela de resolvedores, mapa leve sem dependencia externa e related tools. A Quality Gate `28286547715`, o Deploy Dry Run `28286547705` e os smokes publicos de Hub/control-plane/NetProbe passaram. A API e os contratos antiabuso nao foram alterados; analytics continua limitado a `tool_slug`/rota sanitizada e nao recebe IP, dominio, resultado ou valor esperado. Ads, billing, doacao real, afiliado real, API paga, workers/probes multirregiao e deploy real adicional seguem desativados.
 
+Na Sprint 7.4, o CalcHarbor recebeu o refinamento BR-CALCHARBOR local: paginas de calculadora com resultado ao vivo client-side, memoria de calculo, interpretacao por estado, disclaimers de planejamento, links relacionados e painel de upgrades de workflow inert/gated. As formulas existentes nao mudaram; testes reforcam que analytics continua limitado a `tool_slug`/rota sanitizada e nao recebe entradas, resultados ou valores calculados. O CalcHarbor continua placeholder publico ate existir artifact gate, smoke publico e rollback especificos. Ads, billing, checkout, doacao real, afiliado real, API paga, workers e deploy real do placeholder seguem desativados.
+
 ## Estado local verificado
 
 - Raiz local: `D:\Projetos\supersites`.
@@ -884,7 +886,19 @@ Na Sprint 7.3, o NetProbe Atlas recebeu o refinamento BR-NETPROBE: pagina `what-
   - GitHub Actions `Quality Gate` run `28286547715` passou.
   - GitHub Actions `Deploy Dry Run` run `28286547705` passou e gerou plano sem mutar producao.
   - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis.
+  - Fechamento docs-only publicado: `e434ea8` (`docs: record netprobe benchmark ci validation`).
+  - GitHub Actions `Quality Gate` docs-only run `28286684290` passou.
   - Nenhum endpoint novo, worker/probe multirregiao, AdSense serving, checkout, billing real, doacao ativa, afiliado real, webhook externo, analytics externo ou deploy real adicional foi ativado.
+- Sprint 7.4 validation:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/ROADMAP.md`, `docs/STATUS.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local, docs de benchmark, docs do CalcHarbor e todos os ADRs existentes ate `0030`.
+  - Estado inicial verificado: `main...origin/main` limpo no commit `e434ea8`, GitHub Actions recentes verdes e smokes publicos de Hub, control-plane/API e NetProbe passando antes da implementacao.
+  - CalcHarbor refinado sem endpoint novo: resultado ao vivo local, card primario, metricas secundarias, memoria de calculo, interpretacao por estado, disclaimer de planejamento, related calculators e painel de upgrade gated/inert.
+  - Conteudo publico removeu rótulos internos de sprint e manteve linguagem de produto; status de deploy publico segue explicitamente gated ate existirem artifact gate, smoke e rollback especificos.
+  - Validacao CalcHarbor local passou: `pnpm --filter @supersites/calcharbor test` com 8 testes, `pnpm --filter @supersites/calcharbor build`, `pnpm validate:calcharbor-preview` e `pnpm test:e2e:calcharbor` com 3 testes Playwright.
+  - Screenshots locais inspecionados: `artifacts/calcharbor-7.4-loan-mobile-full.png` e `artifacts/calcharbor-7.4-home-desktop.png`; sem sobreposicao incoerente ou overflow visual.
+  - Gates finais locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation; `git diff --check` exibiu apenas avisos CRLF nos arquivos tocados.
+  - Commit, push, CI, deploy dry-run remoto e smokes publicos serao registrados no fechamento documental da sprint.
+  - Nenhum anuncio real, checkout, billing real, doacao ativa, afiliado real, webhook externo, worker, API paga, analytics externo ou deploy real do CalcHarbor foi ativado.
 
 ## Pendencias criticas
 

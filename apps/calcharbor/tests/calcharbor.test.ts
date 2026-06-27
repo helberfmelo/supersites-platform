@@ -1,11 +1,14 @@
 import { describe, expect, it } from 'vitest'
 import {
+  buildCalculationMemory,
   calculatorCatalog,
   calculatorSlugs,
   createCalculatorStructuredData,
   formatMetricValue,
   getCalculatorBySlug,
   getCalculatorCopy,
+  getCalculatorInterpretationState,
+  getRelatedCalculators,
 } from '../app/data/calculators'
 import { publicLocaleCodes } from '../app/data/locales'
 import { contentPageCatalog, contentPageSlugs, getContentPageBySlug } from '../app/data/pages'
@@ -78,6 +81,37 @@ describe('CalcHarbor MVP', () => {
       expect(roi.metrics[0].value).toBe(6000)
       expect(roi.metrics[1].value).toBe(0.5)
     }
+  })
+
+  it('builds local calculation memory and related calculator paths', () => {
+    const loan = getCalculatorBySlug('loan-payment')
+    expect(loan).not.toBeNull()
+
+    const result = loan!.calculate({
+      principal: 25000,
+      annualRate: 8.5,
+      years: 5,
+    })
+
+    expect(result.ok).toBe(true)
+
+    const memory = buildCalculationMemory(loan!, {
+      principal: 25000,
+      annualRate: 8.5,
+      years: 5,
+    }, result, 'en')
+
+    expect(memory.map((line) => line.label)).toContain('Formula used')
+    expect(memory.map((line) => line.label)).toContain('Result: Monthly payment')
+    expect(JSON.stringify(memory)).toContain('$512')
+
+    const interpretation = getCalculatorInterpretationState('loan-payment', result, 'en')
+    expect(['good', 'review', 'warning']).toContain(interpretation.tone)
+    expect(interpretation.body).toContain('Confirm')
+
+    const related = getRelatedCalculators(loan!)
+    expect(related).toHaveLength(3)
+    expect(related.map((item) => item.slug)).not.toContain('loan-payment')
   })
 
   it('rejects invalid break-even contribution margin', () => {
