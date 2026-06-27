@@ -159,6 +159,21 @@ Nao registrar em analytics:
 
 Sprint 4.3 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, historico salvo, monitoramento recorrente, alertas, relatorios DMARC, billing, API publica paga, webhooks ou storage persistente do MailHealth.
 
+## SitePulse Lab tools
+
+As ferramentas do SitePulse Lab podem registrar apenas eventos de produto de baixo risco, como `tool_viewed`, `tool_started`, `tool_completed` e `tool_failed`, usando `tool_slug`, rota e locale.
+
+Nao registrar em analytics:
+
+- URLs consultadas, hosts, paths, queries ou fragments;
+- redirect targets, redirect chain ou quantidade de saltos derivada do alvo;
+- headers de resposta, security headers ausentes/presentes ou valores de header;
+- status code, TTFB, duracao, tamanho de body, robots, sitemap ou snippets;
+- warnings, erros ou mensagens que possam conter parte do alvo;
+- qualquer dado retornado pelo endpoint `/api/v1/sitepulse/probe`.
+
+Sprint 4.4 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, historico salvo, uptime recorrente, incidentes, status page, alertas, billing, API publica paga, webhooks ou storage persistente do SitePulse Lab.
+
 ## Deploy smokes
 
 Smokes de deploy do control-plane/API e do NetProbe devem validar apenas disponibilidade e contrato JSON, sem criar eventos externos de analytics e sem registrar alvo bruto de usuario. O alvo DNS padrao para smoke publico e `example.com`.

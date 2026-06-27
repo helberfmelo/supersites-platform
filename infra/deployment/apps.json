@@ -87,8 +87,9 @@
     {
       "id": "sitepulse-lab",
       "name": "SitePulse Lab",
-      "kind": "placeholder",
+      "kind": "nuxt-ssg",
       "localPath": "apps/sitepulse-lab",
+      "buildOutput": "apps/sitepulse-lab/.output/public",
       "remotePath": "/home1/opents62/public_html/supersites/sitepulse-lab",
       "publicUrl": "https://opentshost.com/supersites/sitepulse-lab/"
     },

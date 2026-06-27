@@ -52,6 +52,12 @@ A Sprint 4.3 criou apenas checks gratuitos de SPF, DKIM, DMARC, MX, blacklist, S
 
 Antes de vender monitoramento, alertas, relatorios DMARC, lote, API, white-label, equipes ou historico, implementar billing/entitlements, termos, matriz de dados, retencao, exportacao/exclusao de conta, provider-policy review para DNSBL/SMTP e gates humanos de KYC/impostos/conta bancaria.
 
+## SitePulse Lab preview
+
+A Sprint 4.4 criou apenas checks gratuitos pontuais de status, redirects, headers, robots, sitemap, TTFB e snapshot de performance, sem checkout, cobranca, assinatura, entitlement pago, provedor externo ativo, uptime recorrente, incidentes, status page, alertas, historico, multi-regiao ou API paga.
+
+Antes de vender uptime, incidentes, status page, alertas, historico, multi-regiao, API, white-label, equipes ou branding, implementar billing/entitlements, termos, matriz de dados, retencao, exportacao/exclusao de conta, antiabuso, provider-policy review e gates humanos de KYC/impostos/conta bancaria.
+
 ## Segurança
 
 - Nao armazenar cartao.

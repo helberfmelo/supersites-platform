@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\V1\NetProbe\RdapLookupController;
 use App\Http\Controllers\Api\V1\NetProbe\ReachabilityController;
 use App\Http\Controllers\Api\V1\NetProbe\SslCertificateController;
 use App\Http\Controllers\Api\V1\QrRoute\QrRouteRedirectController;
+use App\Http\Controllers\Api\V1\SitePulse\SitePulseProbeController;
 use App\Http\Controllers\Api\V1\SiteIndexController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +48,12 @@ Route::prefix('v1')->group(function (): void {
 
     Route::get('/qrroute/r/{code}', QrRouteRedirectController::class)
         ->middleware('throttle:qrroute-redirect');
+
+    Route::prefix('sitepulse')
+        ->middleware('throttle:sitepulse-public')
+        ->group(function (): void {
+            Route::post('/probe', SitePulseProbeController::class);
+        });
 });
 
 Route::prefix('v1')

@@ -41,6 +41,10 @@ class AppServiceProvider extends ServiceProvider
             return Limit::perMinute(20)->by($request->ip() ?: 'anonymous');
         });
 
+        RateLimiter::for('sitepulse-public', function (Request $request): Limit {
+            return Limit::perMinute(20)->by($request->ip() ?: 'anonymous');
+        });
+
         RateLimiter::for('qrroute-redirect', function (Request $request): Limit {
             return Limit::perMinute(60)->by($request->ip() ?: 'anonymous');
         });

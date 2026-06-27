@@ -18,6 +18,7 @@ $requiredPaths = @(
     "playwright.qrroute.config.ts",
     "playwright.invoicecraft.config.ts",
     "playwright.mailhealth.config.ts",
+    "playwright.sitepulse.config.ts",
     "pnpm-workspace.yaml",
     "pnpm-lock.yaml",
     "docs/MEGA_PROMPT_SUPERSITES.md",
@@ -388,6 +389,32 @@ $mailhealthPaths = @(
 )
 
 $requiredPaths += $mailhealthPaths
+
+$sitepulsePaths = @(
+    "apps/sitepulse-lab/package.json",
+    "apps/sitepulse-lab/nuxt.config.ts",
+    "apps/sitepulse-lab/app/app.vue",
+    "apps/sitepulse-lab/app/components/SitePulseHome.vue",
+    "apps/sitepulse-lab/app/components/LanguageNav.vue",
+    "apps/sitepulse-lab/app/components/LegalFooter.vue",
+    "apps/sitepulse-lab/app/components/SiteHeader.vue",
+    "apps/sitepulse-lab/app/data/copy.ts",
+    "apps/sitepulse-lab/app/data/locales.ts",
+    "apps/sitepulse-lab/app/data/pages.ts",
+    "apps/sitepulse-lab/app/data/routes.ts",
+    "apps/sitepulse-lab/app/data/tools.ts",
+    "apps/sitepulse-lab/app/pages/index.vue",
+    "apps/sitepulse-lab/app/pages/[locale]/[page].vue",
+    "apps/sitepulse-lab/app/pages/[locale]/index.vue",
+    "apps/sitepulse-lab/app/pages/[locale]/tools/[slug].vue",
+    "apps/sitepulse-lab/app/utils/analytics.ts",
+    "apps/sitepulse-lab/server/routes/sitemap.xml.ts",
+    "apps/sitepulse-lab/tests/sitepulse.test.ts",
+    "tests/e2e/sitepulse.spec.ts",
+    "scripts/validate-sitepulse-preview.ps1"
+)
+
+$requiredPaths += $sitepulsePaths
 
 $missing = @()
 foreach ($path in $requiredPaths) {

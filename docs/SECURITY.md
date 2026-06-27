@@ -83,6 +83,17 @@
 - Analytics de MailHealth nao deve incluir dominio, selector, host MX/SMTP, IP, header, Message-ID, endereco de email, resultado DNSBL/SMTP ou texto de erro bruto.
 - Monitoramento recorrente, alertas, relatorios DMARC, lote, API paga e white-label exigem auth, billing/entitlements, retencao, termos, antiabuso, provider-policy review e gates de deploy antes de ativacao.
 
+## SitePulse web diagnostics
+
+- Ferramentas da Sprint 4.4 cobrem status, redirects, headers, robots, sitemap, TTFB e snapshot pontual.
+- Endpoint publico `/api/v1/sitepulse/probe` usa rate limit dedicado `sitepulse-public`, timeout curto, cache curto e redirect chain limitado.
+- Inputs devem aceitar apenas URL HTTP/HTTPS, sem credenciais, fragmento, portas nao web, IP privado/reservado, hostname local ou resolucao A/AAAA privada/reservada.
+- Cada redirect deve ser normalizado e revalidado antes de nova requisicao; loops, excesso de saltos e targets bloqueados devem encerrar o probe com warning/failure seguro.
+- Robots e sitemap devem ser requisitados apenas em caminhos same-origin padrao, com limite de bytes e sem crawling de URLs internas.
+- O probe nao deve executar metodos mutantes, enviar cookies do usuario, seguir formularios, testar portas arbitrarias, varrer paths ou manter sessao.
+- Analytics de SitePulse nao deve incluir URL alvo, host, path, query, headers, redirect targets, status code, latencia, body sample, robots, sitemap ou erro bruto.
+- Uptime recorrente, incidentes, status page, alertas, historico, multi-regiao, API paga e white-label exigem auth, billing/entitlements, retencao, termos, antiabuso, provider-policy review e gates de deploy antes de ativacao.
+
 ## NetProbe public API
 
 - `GET /api/v1/netprobe/ip` nao deve persistir o IP completo do visitante; a resposta informa a politica de retencao.

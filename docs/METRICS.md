@@ -11,19 +11,19 @@ Data-base: 2026-06-27
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
 | Shared package folders created | 12 |
-| ADRs created | 20 |
-| Docs files created/maintained | 45 |
+| ADRs created | 21 |
+| Docs files created/maintained | 50 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
-| Nuxt apps scaffolded | 8 |
+| Nuxt apps scaffolded | 9 |
 | Laravel apps scaffolded | 1 |
 | Shared TS packages implemented | 5 |
 | Shared package tests passing | 22 |
 | Shared package typechecks passing | 5 |
-| Frontend tests passing | 59 |
-| Playwright visual smoke tests passing | 30 |
-| Laravel tests passing | 40 |
-| Control plane API endpoints implemented | 19 |
+| Frontend tests passing | 65 |
+| Playwright visual smoke tests passing | 34 |
+| Laravel tests passing | 44 |
+| Control plane API endpoints implemented | 20 |
 | Control plane admin routes implemented | 6 |
 | Control plane portfolio records seeded | 12 |
 | Control plane RBAC permissions seeded | 7 |
@@ -183,6 +183,22 @@ Data-base: 2026-06-27
 | MailHealth Quality Gate run | `28278020266` passed |
 | MailHealth Deploy Dry Run | `28278020271` passed |
 | MailHealth production status | Placeholder at `https://opentshost.com/supersites/mailhealth/`; real deploy gated |
+| SitePulse Lab tool pages implemented | 7 |
+| SitePulse Lab localized tool pages | 35 |
+| SitePulse Lab live public tools implemented | 0 |
+| SitePulse Lab local/browser-assisted tools implemented | 0 |
+| SitePulse Lab public API endpoints implemented | 1 |
+| SitePulse Lab bounded web probe services | 1 |
+| SitePulse Lab legal/editorial pages | 40 |
+| SitePulse Lab FAQ blocks | 35 |
+| SitePulse Lab structured data pages | 35 |
+| SitePulse Lab prerender content routes | 81 |
+| SitePulse Lab sitemap routes | 1 |
+| SitePulse Lab preview smoke | Passed |
+| SitePulse Lab Playwright report | Passed |
+| SitePulse Lab Quality Gate run | Pending feature push |
+| SitePulse Lab Deploy Dry Run | Pending feature push |
+| SitePulse Lab production status | Placeholder at `https://opentshost.com/supersites/sitepulse-lab/`; real deploy gated |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
 | Public production smoke for `/supersites/` | 200 catalog live |

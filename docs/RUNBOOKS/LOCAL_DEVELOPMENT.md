@@ -116,6 +116,15 @@ pnpm validate:mailhealth-preview
 pnpm test:e2e:mailhealth
 ```
 
+Run SitePulse Lab checks:
+
+```powershell
+pnpm test:sitepulse
+pnpm build:sitepulse
+pnpm validate:sitepulse-preview
+pnpm test:e2e:sitepulse
+```
+
 The root package scripts use explicit filters for `@supersites/ui`, `@supersites/i18n`, `@supersites/seo` and `@supersites/consent`. A generic pnpm path filter did not match the package workspaces on Windows during Sprint 1.3.
 
 Install the Playwright browser once per workstation if needed:
@@ -198,6 +207,15 @@ pnpm dev:mailhealth
 ```
 
 Then open `http://127.0.0.1:3008/en/tools/spf-checker`. Header analysis remains browser-side in Sprint 4.3; DNS, DNSBL and SMTP checks call the bounded local control-plane API when it is running.
+
+For local SitePulse Lab development, run:
+
+```powershell
+$env:NUXT_PUBLIC_SITEPULSE_API_BASE_URL = "http://127.0.0.1:8013/api/v1/sitepulse"
+pnpm dev:sitepulse
+```
+
+Then open `http://127.0.0.1:3009/en/tools/status-checker`. Status, redirects, headers, robots, sitemap, TTFB and performance checks call the bounded local control-plane API when it is running; the app must not store target URLs or send them to analytics.
 
 For local NetProbe Atlas tool testing, run:
 

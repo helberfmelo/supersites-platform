@@ -88,6 +88,15 @@
 - DNSBL e SMTP usam alvos derivados de dominios publicos e devem bloquear ranges privados/reservados antes de qualquer consulta ou conexao.
 - Futuros recursos pagos de monitoramento, alertas, relatorios DMARC, lote, API, white-label, historico e equipes exigem matriz de dados, retencao, exportacao/exclusao, termos, provider-policy review e consentimento aplicavel antes de ativacao.
 
+## SitePulse Lab
+
+- URLs alvo, redirect targets, headers, robots, sitemap, status, tempos, warnings e resultados de probe sao respostas transitorias da ferramenta no MVP da Sprint 4.4.
+- Endpoints publicos SitePulse podem usar cache tecnico curto por URL normalizada e checks solicitados, sem associar resultado a usuario autenticado ou identificador pessoal.
+- Respostas podem exibir fatos tecnicos necessarios para o usuario, mas nao devem ser enviadas a analytics, GA4, GTM, AdSense ou data layer.
+- O app nao salva historico de testes, uptime, incidentes, status page, alertas, targets, contas, `localStorage` ou `sessionStorage` nesta sprint.
+- Probes devem bloquear ranges privados/reservados, portas nao web e redirects inseguros antes de qualquer chamada subsequente.
+- Futuros recursos pagos de uptime, incidentes, status page, alertas, historico, multi-regiao, API, white-label e equipes exigem matriz de dados, retencao, exportacao/exclusao, termos, antiabuso, provider-policy review e consentimento aplicavel antes de ativacao.
+
 ## Analytics sem PII
 
 - O contrato versionado fica em `packages/analytics`.

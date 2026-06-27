@@ -233,6 +233,19 @@ Sprint 4.3 adiciona o terceiro produto pago de workflow da Fase 4 em `apps/mailh
 - Nao ha conta, historico salvo, monitoramento recorrente, alertas, relatorios DMARC, lote, API publica paga, white-label, billing, anuncio, worker de producao, cron ou webhook nesta sprint.
 - O manifesto de deploy conhece o build SSG, mas trafego publico real permanece placeholder ate existirem artifact gate, smoke publico e rollback especificos do MailHealth.
 
+## SitePulse bounded web diagnostics MVP
+
+Sprint 4.4 adiciona o quarto produto pago de workflow da Fase 4 em `apps/sitepulse-lab`.
+
+- O app usa Nuxt SSG/SSR com paginas de status, redirects, headers, robots, sitemap, TTFB e snapshot de performance pontual.
+- O control-plane recebeu endpoint publico bounded em `/api/v1/sitepulse/probe`, com rate limit `sitepulse-public`, cache curto, timeout curto e redirect chain limitado.
+- O probe aceita apenas HTTP/HTTPS, bloqueia credenciais, fragmentos, portas nao web, hostnames privados/reservados e resolucoes A/AAAA privadas antes de conectar.
+- Redirects sao revalidados a cada salto e limitados; robots e sitemap usam apenas caminhos same-origin padrao, com limites de bytes e sem crawling.
+- Analytics local permitido: eventos sanitizados `tool_viewed`, `tool_started`, `tool_completed` e `tool_failed` com `tool_slug`.
+- URLs, headers, redirect targets, tempos, status e resultados do probe nao devem ir para analytics, data layer ou logs publicos.
+- Nao ha conta, historico salvo, uptime recorrente, incidentes, status page, alertas, multi-regiao, billing, anuncio, worker de producao, cron ou webhook nesta sprint.
+- O manifesto de deploy conhece o build SSG, mas trafego publico real permanece placeholder ate existirem artifact gate, smoke publico e rollback especificos do SitePulse Lab.
+
 ## Sites e pastas
 
 | App | Pasta | Papel |

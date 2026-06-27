@@ -191,6 +191,7 @@ Sprint 4.4 - SitePulse Lab MVP
 - Objetivo: status, redirects, headers, robots, sitemap, TTFB e teste pontual.
 - Upgrade: uptime, incidentes, status page, alertas, historico, multi-regiao.
 - Validacao: probes, retries, storage de historico, alertas.
+- Status: concluida localmente; CI/push em andamento. O app `apps/sitepulse-lab` foi criado com Nuxt SSG, 7 ferramentas (`status-checker`, `redirect-chain`, `security-headers`, `robots-checker`, `sitemap-validator`, `ttfb-check`, `performance-snapshot`), conteudo/localizacao em 5 idiomas, analytics sanitizado apenas por `tool_slug` e paginas legais/editoriais. O control-plane recebeu endpoint publico limitado `/api/v1/sitepulse/probe`, com rate limit, cache curto, bloqueio de ranges privados/reservados, HTTP/HTTPS apenas, portas web, redirect chain limitada, robots/sitemap same-origin e timeouts curtos. Uptime recorrente, incidentes, status page, alertas, historico, multi-regiao, ads, billing e deploy publico real seguem bloqueados ate gates especificos.
 
 ## Fase 5 - Processamento de arquivos
 
