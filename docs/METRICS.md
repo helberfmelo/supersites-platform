@@ -413,6 +413,10 @@ Data-base: 2026-06-27
 | Sprint 7.9 docs-only Quality Gate run | `28289517336` passed |
 | Sprint 7.10 local SitePulse validation | Passed: Vitest, build, preview smoke, Playwright and screenshot inspection |
 | Sprint 7.10 local final gates | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
+| Sprint 7.10 feature commit | `922bf44` |
+| Sprint 7.10 Quality Gate run | `28289874584` passed |
+| Sprint 7.10 Deploy Dry Run | `28289874575` passed |
+| Sprint 7.10 public smokes | Hub/control-plane/NetProbe passed; SitePulse Lab remains placeholder |
 | Real ads activated | 0 |
 | Real billing activated | 0 |
 | Real donation payments activated | 0 |

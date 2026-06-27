@@ -985,6 +985,10 @@ Nas Sprints 7.6 a 7.9, TimeNexus, QRRoute, InvoiceCraft e MailHealth receberam r
   - Screenshots locais do report Playwright foram inspecionados em `artifacts/playwright-sitepulse-report/data/`; home desktop, status mobile e security headers mobile ficaram sem sobreposicao incoerente ou overflow visual.
   - O primeiro Playwright da sprint falhou apenas por `EADDRINUSE` na porta local `127.0.0.1:3120` apos o preview smoke; a porta foi liberada e o rerun passou.
   - Gates finais locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation; `git diff --check` exibiu apenas avisos CRLF nos arquivos tocados.
+  - Feature commit publicado: `922bf44` (`feat: refine sitepulse benchmark ux`).
+  - GitHub Actions `Quality Gate` run `28289874584` passou, executando repository safety, frontend SitePulse Lab path-aware e summary.
+  - GitHub Actions `Deploy Dry Run` run `28289874575` passou e gerou plano sem mutar producao.
+  - Public smokes pos-push passaram: `pnpm deploy:smoke-supersite-public` validou Hub e asset `https://opentshost.com/supersites/_nuxt/CDSWkO8T.js`; `pnpm deploy:smoke-control-plane-public` validou control-plane/API; `pnpm deploy:smoke-netprobe-public` validou NetProbe, asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/B8fWFYkD.js` e API `https://opentshost.com/supersites/control-plane/api/v1/netprobe`. SitePulse Lab segue placeholder publico.
   - Nenhum uptime recorrente, incidente, status page, alerta, historico, multi-regiao, API publica paga, white-label, billing, checkout, anuncio real, worker de producao, analytics externo ou deploy real do SitePulse Lab foi ativado.
 
 ## Pendencias criticas
