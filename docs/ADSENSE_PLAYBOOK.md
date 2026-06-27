@@ -49,6 +49,15 @@ AdSense e a monetizacao primaria, mas nenhum site deve ser submetido antes de cu
 - Nao posicionar anuncios junto a inputs de data, horario, unidade, porcentagem, botoes de copia ou resultados de modo que incentive clique acidental.
 - Nao submeter ao AdSense enquanto a URL publica ainda servir placeholder.
 
+## QRRoute checklist
+
+- Sprint 4.1 entrega apenas MVP local/CI e placeholder publico.
+- Antes de AdSense, criar deploy HostGator especifico, smoke publico, rollback testavel e status page.
+- Validar Core Web Vitals, ausencia de overflow, sitemap/canonical/hreflang/schema e paginas legais em todos os idiomas publicados.
+- Nao posicionar anuncios junto a inputs de URL, barcode, vCard, Wi-Fi, botoes de gerar/copiar, SVG preview ou resultados de modo que incentive clique acidental.
+- Nao submeter ao AdSense enquanto a URL publica ainda servir placeholder.
+- QR dinamico, short links e scan analytics exigem abuse controls e termos antes de qualquer pagina monetizada.
+
 ## Placements
 
 - Usar componente compartilhado de ads com espaco reservado.

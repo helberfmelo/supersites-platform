@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas, o modulo seguro inicial de IP/DNS/RDAP/SSL/propagation/port/reachability do NetProbe, o conteudo original multilanguage/AdSense-readiness do NetProbe, o MVP de upgrade com monitores/historico/alertas/API, o launch gate estatico do NetProbe, o deploy publico do control-plane/API e os MVPs local/CI do CalcHarbor, DevUtility Lab e TimeNexus foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada. Em 2026-06-26, o control-plane/API foi publicado em `https://opentshost.com/supersites/control-plane/` e o NetProbe Atlas foi publicado em `https://opentshost.com/supersites/netprobe-atlas/` com consultas publicas IP/DNS via HTTPS e smoke publico. CalcHarbor, DevUtility Lab e TimeNexus permanecem em placeholder publico ate receberem deploy/rollback/smoke especificos. Nenhum anuncio, billing real, worker/cron de producao, webhook externo ou integracao externa de analytics foi ativado.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas, o modulo seguro inicial de IP/DNS/RDAP/SSL/propagation/port/reachability do NetProbe, o conteudo original multilanguage/AdSense-readiness do NetProbe, o MVP de upgrade com monitores/historico/alertas/API, o launch gate estatico do NetProbe, o deploy publico do control-plane/API e os MVPs local/CI do CalcHarbor, DevUtility Lab, TimeNexus e QRRoute foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada. Em 2026-06-26, o control-plane/API foi publicado em `https://opentshost.com/supersites/control-plane/` e o NetProbe Atlas foi publicado em `https://opentshost.com/supersites/netprobe-atlas/` com consultas publicas IP/DNS via HTTPS e smoke publico. CalcHarbor, DevUtility Lab, TimeNexus e QRRoute permanecem em placeholder publico ate receberem deploy/rollback/smoke especificos. Nenhum anuncio, billing real, worker/cron de producao, webhook externo ou integracao externa de analytics foi ativado.
 
 ## Estado local verificado
 
@@ -174,6 +174,17 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `scripts/smoke-supersite-public.ps1` foi atualizado para preservar o estado real de producao: Hub e NetProbe ativos, CalcHarbor, DevUtility Lab e TimeNexus ainda placeholders sem `_nuxt`.
   - A URL publica `https://opentshost.com/supersites/timenexus/` permanece placeholder; deploy real aguarda artifact HostGator, smoke publico e rollback especificos.
   - Nenhum anuncio, billing real, conta, API publica, worker de producao, webhook externo ou integracao externa de analytics foi ativado nesta sprint.
+- Sprint 4.1 QRRoute MVP:
+  - `apps/qrroute` foi criado com Nuxt SSG/SSR, Vue, TypeScript, rotas localizadas, sitemap e paginas legais/editoriais site-scoped.
+  - Ferramentas gratuitas implementadas no navegador: `static-qr-code`, `barcode-generator`, `utm-builder`, `vcard-qr`, `wifi-qr` e `preview-lab`.
+  - QR e barcode sao renderizados localmente como SVG data URLs; UTM, vCard e Wi-Fi geram payload textual e preview sem cadastro obrigatorio.
+  - `QrRouteDestinationGuard`, tabela `qr_route_links` e endpoint `/api/v1/qrroute/r/{code}` preparam o redirect service futuro com rate limit, bloqueio de schemes perigosos, credenciais embutidas, hosts locais, IPs privados/reservados e links expirados/inativos.
+  - Conteudo inicial cobre `en`, `pt-br`, `es`, `fr` e `de`; cada pagina de ferramenta renderiza exemplo, privacidade, limitacoes, FAQ, upgrade path e schema `WebApplication`/`FAQPage`.
+  - Analytics local emite apenas `tool_viewed`, `tool_started`, `tool_completed` e `tool_failed` com `tool_slug`; URLs, Wi-Fi passwords, contatos, valores UTM, payloads e resultados nao sao enviados para logs, backend ou data layer.
+  - ADR `0018-qrroute-static-mvp-redirect-guard` registra a decisao de manter o MVP gratuito estatico/client-side e o redirect service apenas como fundacao testada, sem go-live de short links.
+  - `infra/deployment/apps.json`, `scripts/ci-detect-changes.ps1`, `.github/workflows/quality-gate.yml`, `scripts/validate-structure.ps1` e os scripts raiz passaram a reconhecer o app QRRoute.
+  - A URL publica `https://opentshost.com/supersites/qrroute/` permanece placeholder; deploy real aguarda artifact HostGator, smoke publico e rollback especificos.
+  - Nenhum anuncio, billing real, conta, short link publico, dominio proprio, worker de producao, webhook externo ou integracao externa de analytics foi ativado nesta sprint.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
 - pnpm local via Corepack: `11.9.0`.
@@ -554,6 +565,21 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - GitHub Actions `Deploy Dry Run` run `28271855815` passou; o upload de artifact continuou bloqueado pela quota GitHub Actions, mas o plano permaneceu no job summary.
   - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis e CalcHarbor/DevUtility Lab/TimeNexus ainda placeholders publicos.
   - Nenhum deploy real do TimeNexus foi executado porque o app ainda nao tem workflow de traffic switch, smoke publico e rollback proprios.
+- Sprint 4.1 validation:
+  - Estado inicial verificado: `git status --short --branch` em `main...origin/main`, remoto `git@github.com:helberfmelo/supersites-platform.git` e GitHub Actions recentes verdes (`Quality Gate` run `28271941534`).
+  - Smokes publicos pre-sprint passaram: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public`.
+  - `pnpm add qrcode jsbarcode @types/qrcode @types/jsbarcode --filter @supersites/qrroute` passou e atualizou `pnpm-lock.yaml`.
+  - `pnpm test:qrroute` passou com 7 testes.
+  - `php artisan test --filter=QrRouteRedirectTest` passou com 4 testes / 79 assertions.
+  - `pnpm build:qrroute` passou e prerenderizou 76 rotas de conteudo mais `sitemap.xml` (153 rotas totais incluindo payloads), com avisos Nuxt/Nitro conhecidos e nao fatais.
+  - `pnpm validate:qrroute-preview` passou.
+  - Uma tentativa concorrente de `pnpm validate:qrroute-preview` e `pnpm test:e2e:qrroute` em `127.0.0.1:3117` falhou por `ERR_CONNECTION_REFUSED` quando o preview smoke encerrou o servidor; `pnpm test:e2e:qrroute` foi reexecutado sozinho e passou com 3 testes, cobrindo home desktop, UTM QR mobile, SVG preview, analytics sanitizado, ausencia de storage e paginas mobile.
+  - Regressao de pacotes: `pnpm test:packages` passou com 22 testes e `pnpm typecheck:packages` passou para os 5 pacotes TypeScript implementados.
+  - Regressao backend: `composer validate --strict` passou e `php artisan test` passou com 35 testes / 283 assertions.
+  - Regressao frontend unit: `pnpm --filter @supersites/supersite test`, `pnpm test:netprobe`, `pnpm test:calcharbor`, `pnpm test:devutility`, `pnpm test:timenexus` e `pnpm test:qrroute` passaram.
+  - Regressao frontend build/preview/E2E: Hub, NetProbe, CalcHarbor, DevUtility Lab, TimeNexus e QRRoute passaram em build Nuxt, preview smoke e Playwright; QRRoute revalidou 3 testes apos o ajuste de nomenclatura Wi-Fi para `key`.
+  - `pnpm validate:structure`, `pnpm deploy:dry-run`, `pnpm validate:secrets`, `pnpm ci:changes` e `git diff --check` passaram no fechamento local. O scanner de segredos agora ignora artefatos gerados (`.nuxt`, `.output`, `dist`, `build`, `coverage`, `artifacts`) e o Wi-Fi QR usa `key`/network key para evitar falso positivo sem reduzir a cobertura do gate.
+  - CI/dry-run, smokes publicos pos-push e commit documental de fechamento serao registrados apos o push da sprint.
 
 ## Pendencias criticas
 
@@ -568,6 +594,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o CalcHarbor antes de trocar trafego real.
 - Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o DevUtility Lab antes de trocar trafego real.
 - Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o TimeNexus antes de trocar trafego real.
+- Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o QRRoute antes de trocar trafego real.
 - Definir estrategia tecnica de URL raiz: `opentshost.com` apontando para conteudo em `/public_html/supersites/`.
 - Definir dominios definitivos futuramente.
 - Validar dominio/marca antes de registrar qualquer nome.

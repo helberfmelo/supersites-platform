@@ -15,6 +15,7 @@ $requiredPaths = @(
     "playwright.calcharbor.config.ts",
     "playwright.devutility.config.ts",
     "playwright.timenexus.config.ts",
+    "playwright.qrroute.config.ts",
     "pnpm-workspace.yaml",
     "pnpm-lock.yaml",
     "docs/MEGA_PROMPT_SUPERSITES.md",
@@ -303,6 +304,34 @@ $timenexusPaths = @(
 )
 
 $requiredPaths += $timenexusPaths
+
+$qrroutePaths = @(
+    "apps/qrroute/package.json",
+    "apps/qrroute/nuxt.config.ts",
+    "apps/qrroute/app/app.vue",
+    "apps/qrroute/app/components/QRRouteHome.vue",
+    "apps/qrroute/app/components/LanguageNav.vue",
+    "apps/qrroute/app/components/LegalFooter.vue",
+    "apps/qrroute/app/components/SiteHeader.vue",
+    "apps/qrroute/app/data/copy.ts",
+    "apps/qrroute/app/data/locales.ts",
+    "apps/qrroute/app/data/pages.ts",
+    "apps/qrroute/app/data/routes.ts",
+    "apps/qrroute/app/data/tools.ts",
+    "apps/qrroute/app/pages/index.vue",
+    "apps/qrroute/app/pages/[locale]/[page].vue",
+    "apps/qrroute/app/pages/[locale]/index.vue",
+    "apps/qrroute/app/pages/[locale]/tools/[slug].vue",
+    "apps/qrroute/app/utils/analytics.ts",
+    "apps/qrroute/app/utils/qrrouteWorker.ts",
+    "apps/qrroute/app/workers/qrroute.worker.ts",
+    "apps/qrroute/server/routes/sitemap.xml.ts",
+    "apps/qrroute/tests/qrroute.test.ts",
+    "tests/e2e/qrroute.spec.ts",
+    "scripts/validate-qrroute-preview.ps1"
+)
+
+$requiredPaths += $qrroutePaths
 
 $missing = @()
 foreach ($path in $requiredPaths) {

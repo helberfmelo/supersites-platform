@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\V1\NetProbe\PortCheckController;
 use App\Http\Controllers\Api\V1\NetProbe\RdapLookupController;
 use App\Http\Controllers\Api\V1\NetProbe\ReachabilityController;
 use App\Http\Controllers\Api\V1\NetProbe\SslCertificateController;
+use App\Http\Controllers\Api\V1\QrRoute\QrRouteRedirectController;
 use App\Http\Controllers\Api\V1\SiteIndexController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,9 @@ Route::prefix('v1')->group(function (): void {
             Route::post('/rdap', RdapLookupController::class);
             Route::post('/ssl', SslCertificateController::class);
         });
+
+    Route::get('/qrroute/r/{code}', QrRouteRedirectController::class)
+        ->middleware('throttle:qrroute-redirect');
 });
 
 Route::prefix('v1')

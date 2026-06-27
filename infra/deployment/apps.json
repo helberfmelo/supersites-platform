@@ -60,8 +60,9 @@
     {
       "id": "qrroute",
       "name": "QRRoute",
-      "kind": "placeholder",
+      "kind": "nuxt-ssg",
       "localPath": "apps/qrroute",
+      "buildOutput": "apps/qrroute/.output/public",
       "remotePath": "/home1/opents62/public_html/supersites/qrroute",
       "publicUrl": "https://opentshost.com/supersites/qrroute/"
     },

@@ -36,5 +36,9 @@ class AppServiceProvider extends ServiceProvider
         RateLimiter::for('netprobe-public', function (Request $request): Limit {
             return Limit::perMinute(30)->by($request->ip() ?: 'anonymous');
         });
+
+        RateLimiter::for('qrroute-redirect', function (Request $request): Limit {
+            return Limit::perMinute(60)->by($request->ip() ?: 'anonymous');
+        });
     }
 }

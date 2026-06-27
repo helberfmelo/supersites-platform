@@ -188,6 +188,22 @@ Sprint 3.3 adiciona o terceiro site de baixo custo marginal da Fase 3 em `apps/t
 - Nao ha backend, conta, historico, API, billing, anuncio, storage local persistente, worker de producao, webhook ou integracao externa nesta sprint.
 - O manifesto de deploy conhece o build SSG, mas trafego publico real permanece placeholder ate existirem artifact gate, smoke publico e rollback especificos do TimeNexus.
 
+## QRRoute static workflow MVP
+
+Sprint 4.1 adiciona o primeiro produto pago de workflow da Fase 4 em `apps/qrroute`.
+
+- O app usa Nuxt SSG/SSR com builders de QR, barcode, UTM, vCard, Wi-Fi e preview executados no navegador.
+- O MVP publica 6 ferramentas: `static-qr-code`, `barcode-generator`, `utm-builder`, `vcard-qr`, `wifi-qr` e `preview-lab`.
+- QR e barcode sao renderizados localmente como SVG data URLs; payloads ficam visiveis e copiaveis sem criar redirect oculto.
+- Cada ferramenta renderiza exemplo, instrucoes de privacidade, controles antiabuso, limitacoes, FAQ, upgrade path e schema `WebApplication`/`FAQPage` no HTML inicial.
+- O conteudo inicial cobre `en`, `pt-br`, `es`, `fr` e `de`, incluindo paginas legais/editoriais site-scoped.
+- Analytics local permitido: eventos sanitizados `tool_viewed`, `tool_started`, `tool_completed` e `tool_failed` com `tool_slug`.
+- URLs, parametros UTM, Wi-Fi passwords, contatos, payloads e resultados nao devem ser enviados a backend, logs, analytics ou data layer.
+- O control-plane recebeu a fundacao do redirect service em `/api/v1/qrroute/r/{code}`, com tabela `qr_route_links`, `QrRouteDestinationGuard` e rate limit `qrroute-redirect`.
+- O redirect service bloqueia schemes nao HTTP(S), credenciais embutidas, hostnames locais/privados, IPs privados/reservados, links inativos e links expirados; respostas de redirect usam `Referrer-Policy: no-referrer` e `X-Robots-Tag: noindex, nofollow`.
+- Nao ha conta, short link publico, dominio proprio, scan analytics, billing, anuncio, worker de producao, webhook ou integracao externa nesta sprint.
+- O manifesto de deploy conhece o build SSG, mas trafego publico real permanece placeholder ate existirem artifact gate, smoke publico e rollback especificos do QRRoute.
+
 ## Sites e pastas
 
 | App | Pasta | Papel |

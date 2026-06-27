@@ -12,14 +12,20 @@ $patterns = @(
 )
 
 $exclude = @(
-    "docs/credentials",
-    ".git",
-    "node_modules",
-    "vendor"
+    "/docs/credentials/",
+    "/.git/",
+    "/node_modules/",
+    "/vendor/",
+    "/.nuxt/",
+    "/.output/",
+    "/dist/",
+    "/build/",
+    "/coverage/",
+    "/artifacts/"
 )
 
 $files = Get-ChildItem -Path $Path -Recurse -File -Force | Where-Object {
-    $full = $_.FullName.Replace("\", "/")
+    $full = "/" + $_.FullName.Replace("\", "/")
     -not ($exclude | Where-Object { $full -like "*$_*" })
 }
 

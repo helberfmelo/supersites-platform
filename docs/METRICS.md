@@ -11,19 +11,19 @@ Data-base: 2026-06-26
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
 | Shared package folders created | 12 |
-| ADRs created | 17 |
-| Docs files created/maintained | 43 |
+| ADRs created | 18 |
+| Docs files created/maintained | 44 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
-| Nuxt apps scaffolded | 5 |
+| Nuxt apps scaffolded | 6 |
 | Laravel apps scaffolded | 1 |
 | Shared TS packages implemented | 5 |
 | Shared package tests passing | 22 |
 | Shared package typechecks passing | 5 |
-| Frontend tests passing | 38 |
-| Playwright visual smoke tests passing | 20 |
-| Laravel tests passing | 31 |
-| Control plane API endpoints implemented | 15 |
+| Frontend tests passing | 45 |
+| Playwright visual smoke tests passing | 23 |
+| Laravel tests passing | 35 |
+| Control plane API endpoints implemented | 16 |
 | Control plane admin routes implemented | 6 |
 | Control plane portfolio records seeded | 12 |
 | Control plane RBAC permissions seeded | 7 |
@@ -136,6 +136,20 @@ Data-base: 2026-06-26
 | TimeNexus preview smoke | Passed |
 | TimeNexus Playwright report | Passed |
 | TimeNexus production status | Placeholder at `https://opentshost.com/supersites/timenexus/`; real deploy gated |
+| QRRoute tool pages implemented | 6 |
+| QRRoute localized tool pages | 30 |
+| QRRoute live public tools implemented | 0 |
+| QRRoute local browser tools implemented | 6 |
+| QRRoute legal/editorial pages | 40 |
+| QRRoute FAQ blocks | 30 |
+| QRRoute structured data pages | 30 |
+| QRRoute prerender content routes | 76 |
+| QRRoute sitemap routes | 1 |
+| QRRoute redirect endpoints implemented | 1 |
+| QRRoute redirect storage tables | 1 |
+| QRRoute preview smoke | Passed |
+| QRRoute Playwright report | Passed |
+| QRRoute production status | Placeholder at `https://opentshost.com/supersites/qrroute/`; real deploy gated |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
 | Public production smoke for `/supersites/` | 200 catalog live |

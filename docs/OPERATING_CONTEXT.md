@@ -49,6 +49,7 @@ Padroes aproveitados:
 - CalcHarbor tem app Nuxt SSG e manifest de deploy a partir da Sprint 3.1, mas a URL publica `https://opentshost.com/supersites/calcharbor/` permanece placeholder ate existir workflow/script de deploy, smoke publico e rollback especificos.
 - DevUtility Lab tem app Nuxt SSG, Quality Gate dedicado e manifest de deploy a partir da Sprint 3.2, mas a URL publica `https://opentshost.com/supersites/devutility-lab/` permanece placeholder ate existir workflow/script de deploy, smoke publico e rollback especificos.
 - TimeNexus tem app Nuxt SSG, Quality Gate dedicado e manifest de deploy a partir da Sprint 3.3, mas a URL publica `https://opentshost.com/supersites/timenexus/` permanece placeholder ate existir workflow/script de deploy, smoke publico e rollback especificos.
+- QRRoute tem app Nuxt SSG, Quality Gate dedicado e manifest de deploy a partir da Sprint 4.1, mas a URL publica `https://opentshost.com/supersites/qrroute/` permanece placeholder ate existir workflow/script de deploy, smoke publico e rollback especificos.
 - Catalogo transitorio publico ativo: `https://opentshost.com/supersites/`.
 - Release HostGator ativo do catalogo: `740e0f1968e7b0a2fd60eeb9e6edffd6252d94ae-28241237377-1`.
 - Release HostGator ativo do control-plane/API: `a33fcbfdc31c328d71c6fa046d9fac99ec610575-28264453068-1`.
@@ -70,6 +71,7 @@ Padroes aproveitados:
 - Front visual local do CalcHarbor: `http://127.0.0.1:3003` via `pnpm dev:calcharbor`.
 - Front visual local do DevUtility Lab: `http://127.0.0.1:3004` via `pnpm dev:devutility`.
 - Front visual local do TimeNexus: `http://127.0.0.1:3005` via `pnpm dev:timenexus`.
+- Front visual local do QRRoute: `http://127.0.0.1:3006` via `pnpm dev:qrroute`.
 
 ## Runtime VPS SuperSites
 

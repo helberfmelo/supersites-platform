@@ -34,6 +34,12 @@ A Sprint 3.3 criou apenas ferramentas gratuitas client-side, sem checkout, cobra
 
 Antes de vender widgets, API, presets ou historico, implementar billing/entitlements, termos, matriz de dados, retencao, exportacao/exclusao de conta e gates humanos de KYC/impostos/conta bancaria.
 
+## QRRoute preview
+
+A Sprint 4.1 criou apenas ferramentas gratuitas client-side e fundacao testada de redirect service, sem checkout, cobranca, assinatura, entitlement pago, provedor externo ativo, QR dinamico publico, short links publicos, scan analytics, dominios proprios, lote ou API comercial.
+
+Antes de vender QR dinamico, short links, analytics, dominio proprio, lotes, equipes ou API, implementar billing/entitlements, termos, matriz de dados, retencao, exportacao/exclusao de conta, workflow antiabuso e gates humanos de KYC/impostos/conta bancaria.
+
 ## Segurança
 
 - Nao armazenar cartao.

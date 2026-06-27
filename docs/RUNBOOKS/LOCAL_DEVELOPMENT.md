@@ -89,6 +89,15 @@ pnpm validate:timenexus-preview
 pnpm test:e2e:timenexus
 ```
 
+Run QRRoute checks:
+
+```powershell
+pnpm test:qrroute
+pnpm build:qrroute
+pnpm validate:qrroute-preview
+pnpm test:e2e:qrroute
+```
+
 The root package scripts use explicit filters for `@supersites/ui`, `@supersites/i18n`, `@supersites/seo` and `@supersites/consent`. A generic pnpm path filter did not match the package workspaces on Windows during Sprint 1.3.
 
 Install the Playwright browser once per workstation if needed:
@@ -146,6 +155,14 @@ pnpm dev:timenexus
 ```
 
 Then open `http://127.0.0.1:3005/en/tools/timezone-converter`. Dates, zones, values and results remain browser-side in Sprint 3.3.
+
+For local QRRoute development, run:
+
+```powershell
+pnpm dev:qrroute
+```
+
+Then open `http://127.0.0.1:3006/en/tools/static-qr-code`. QR, barcode, UTM, vCard, Wi-Fi and preview payloads remain browser-side in Sprint 4.1.
 
 For local NetProbe Atlas tool testing, run:
 
