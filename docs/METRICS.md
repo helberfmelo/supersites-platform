@@ -11,17 +11,17 @@ Data-base: 2026-06-27
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
 | Shared package folders created | 12 |
-| ADRs created | 21 |
-| Docs files created/maintained | 50 |
+| ADRs created | 22 |
+| Docs files created/maintained | 51 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
-| Nuxt apps scaffolded | 9 |
+| Nuxt apps scaffolded | 10 |
 | Laravel apps scaffolded | 1 |
 | Shared TS packages implemented | 5 |
 | Shared package tests passing | 22 |
 | Shared package typechecks passing | 5 |
-| Frontend tests passing | 65 |
-| Playwright visual smoke tests passing | 34 |
+| Frontend tests passing | 73 |
+| Playwright visual smoke tests passing | 37 |
 | Laravel tests passing | 44 |
 | Control plane API endpoints implemented | 20 |
 | Control plane admin routes implemented | 6 |
@@ -199,6 +199,22 @@ Data-base: 2026-06-27
 | SitePulse Lab Quality Gate run | `28278871466` passed |
 | SitePulse Lab Deploy Dry Run | `28278871478` passed |
 | SitePulse Lab production status | Placeholder at `https://opentshost.com/supersites/sitepulse-lab/`; real deploy gated |
+| PixelBatch tool pages implemented | 6 |
+| PixelBatch localized tool pages | 30 |
+| PixelBatch live public tools implemented | 0 |
+| PixelBatch local browser tools implemented | 6 |
+| PixelBatch legal/editorial pages | 40 |
+| PixelBatch FAQ blocks | 30 |
+| PixelBatch structured data pages | 30 |
+| PixelBatch prerender content routes | 76 |
+| PixelBatch sitemap routes | 1 |
+| PixelBatch worker planning smoke | Passed |
+| PixelBatch Canvas processing smoke | Passed locally |
+| PixelBatch preview smoke | Passed |
+| PixelBatch Playwright report | Passed |
+| PixelBatch Quality Gate run | Pending post-push |
+| PixelBatch Deploy Dry Run | Pending post-push |
+| PixelBatch production status | Placeholder at `https://opentshost.com/supersites/pixelbatch/`; real deploy gated |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
 | Public production smoke for `/supersites/` | 200 catalog live |

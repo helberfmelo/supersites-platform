@@ -1,0 +1,333 @@
+import type { LocaleCode } from './locales'
+
+export interface HomeCopy {
+  eyebrow: string
+  title: string
+  lead: string
+  searchLabel: string
+  searchPlaceholder: string
+  categoryLabel: string
+  allCategories: string
+  noResultsTitle: string
+  noResultsBody: string
+  freeLabel: string
+  upgradeLabel: string
+  detailCta: string
+  principlesTitle: string
+  principles: Array<{ title: string; body: string }>
+  statusRows: Array<{ title: string; body: string; tone: 'green' | 'amber' }>
+}
+
+export interface ShellCopy {
+  breadcrumbHome: string
+  runLabel: string
+  resetLabel: string
+  downloadLabel: string
+  inputTitle: string
+  resultTitle: string
+  guideTitle: string
+  faqTitle: string
+  methodologyLabel: string
+  editorialLabel: string
+  freeCheckLabel: string
+  upgradePathLabel: string
+  contentQualityBody: string
+  privacyNote: string
+  invalidResultTitle: string
+  pageStatusLabel: string
+  liveTitle: string
+  liveBody: string
+  gatedTitle: string
+  gatedBody: string
+  fileLabel: string
+  formatLabel: string
+  qualityLabel: string
+  widthLabel: string
+  heightLabel: string
+  cropLabel: string
+  presetLabel: string
+}
+
+export const homeCopy: Record<LocaleCode, HomeCopy> = {
+  en: {
+    eyebrow: 'PixelBatch',
+    title: 'Image resize, crop, compression and conversion in your browser.',
+    lead: 'Process one PNG, JPEG, WebP or browser-supported AVIF image locally, preview the result and download a clean copy without mandatory signup.',
+    searchLabel: 'Search image tools',
+    searchPlaceholder: 'Try compress, crop, convert or metadata',
+    categoryLabel: 'Image task',
+    allCategories: 'All image tools',
+    noResultsTitle: 'No image tools matched',
+    noResultsBody: 'Clear the search or choose another image task.',
+    freeLabel: 'Free result',
+    upgradeLabel: 'Upgrade path',
+    detailCta: 'Open tool',
+    principlesTitle: 'Sprint 5.1 principles',
+    principles: [
+      { title: 'Basic need solved', body: 'The free MVP can produce a useful optimized image without an account or upload endpoint.' },
+      { title: 'Pixels stay local', body: 'Selected files are handled with object URLs, a worker plan and Canvas output in the browser session.' },
+      { title: 'Workflow is paid value', body: 'Batch, folders, larger files, API, integrations, saved presets, high-res queues and AI credits stay gated.' },
+    ],
+    statusRows: [
+      { title: '6 browser tools', body: 'Compress, resize, crop, convert, metadata removal and social presets are available locally.', tone: 'green' },
+      { title: '5 language route sets', body: 'English, Portuguese, Spanish, French and German routes are prerendered.', tone: 'green' },
+      { title: 'No file backend active', body: 'No upload API, batch worker, account, billing, ads or external analytics is active.', tone: 'amber' },
+    ],
+  },
+  'pt-br': {
+    eyebrow: 'PixelBatch',
+    title: 'Redimensione, corte, comprima e converta imagens no navegador.',
+    lead: 'Processe uma imagem PNG, JPEG, WebP ou AVIF suportada pelo navegador, veja o preview e baixe uma copia limpa sem cadastro obrigatorio.',
+    searchLabel: 'Buscar ferramentas',
+    searchPlaceholder: 'Tente comprimir, cortar, converter ou metadados',
+    categoryLabel: 'Tarefa de imagem',
+    allCategories: 'Todas',
+    noResultsTitle: 'Nenhuma ferramenta encontrada',
+    noResultsBody: 'Limpe a busca ou escolha outra tarefa.',
+    freeLabel: 'Resultado gratuito',
+    upgradeLabel: 'Caminho de upgrade',
+    detailCta: 'Abrir ferramenta',
+    principlesTitle: 'Principios da Sprint 5.1',
+    principles: [
+      { title: 'Necessidade basica', body: 'O MVP gratuito gera uma imagem otimizada util sem conta nem endpoint de upload.' },
+      { title: 'Pixels locais', body: 'Arquivos selecionados usam object URLs, plano em worker e Canvas apenas na sessao do navegador.' },
+      { title: 'Workflow pago', body: 'Lotes, pastas, arquivos maiores, API, integracoes, presets salvos, alta resolucao e IA ficam bloqueados.' },
+    ],
+    statusRows: [
+      { title: '6 ferramentas', body: 'Compressao, resize, crop, conversao, metadados e presets sociais rodam localmente.', tone: 'green' },
+      { title: '5 rotas de idioma', body: 'Rotas em ingles, portugues, espanhol, frances e alemao sao prerenderizadas.', tone: 'green' },
+      { title: 'Sem backend de arquivos', body: 'Sem upload API, worker de lote, conta, billing, ads ou analytics externo ativo.', tone: 'amber' },
+    ],
+  },
+  es: {
+    eyebrow: 'PixelBatch',
+    title: 'Redimensiona, recorta, comprime y convierte imagenes en el navegador.',
+    lead: 'Procesa una imagen PNG, JPEG, WebP o AVIF soportada, previsualiza y descarga una copia limpia sin registro obligatorio.',
+    searchLabel: 'Buscar herramientas',
+    searchPlaceholder: 'Comprimir, recortar, convertir o metadata',
+    categoryLabel: 'Tarea',
+    allCategories: 'Todas',
+    noResultsTitle: 'Sin herramientas',
+    noResultsBody: 'Borra la busqueda o elige otra tarea.',
+    freeLabel: 'Resultado gratis',
+    upgradeLabel: 'Ruta de upgrade',
+    detailCta: 'Abrir',
+    principlesTitle: 'Principios Sprint 5.1',
+    principles: [
+      { title: 'Necesidad basica', body: 'El MVP gratis produce una imagen util sin cuenta ni endpoint de subida.' },
+      { title: 'Pixeles locales', body: 'Los archivos usan object URLs, plan en worker y Canvas en la sesion del navegador.' },
+      { title: 'Workflow pago', body: 'Lotes, carpetas, archivos grandes, API, integraciones, presets, alta resolucion e IA quedan gated.' },
+    ],
+    statusRows: [
+      { title: '6 herramientas', body: 'Compresion, resize, crop, conversion, metadata y presets sociales corren localmente.', tone: 'green' },
+      { title: '5 idiomas', body: 'Rutas en ingles, portugues, espanol, frances y aleman se prerenderizan.', tone: 'green' },
+      { title: 'Sin backend de archivos', body: 'Sin upload API, worker batch, cuenta, billing, ads ni analytics externo.', tone: 'amber' },
+    ],
+  },
+  fr: {
+    eyebrow: 'PixelBatch',
+    title: 'Redimensionnez, rognez, compressez et convertissez les images dans le navigateur.',
+    lead: 'Traitez une image PNG, JPEG, WebP ou AVIF supportee, previsualisez et telechargez une copie propre sans compte obligatoire.',
+    searchLabel: 'Rechercher',
+    searchPlaceholder: 'Compresser, rogner, convertir ou metadata',
+    categoryLabel: 'Tache',
+    allCategories: 'Toutes',
+    noResultsTitle: 'Aucun outil',
+    noResultsBody: 'Effacez la recherche ou choisissez une autre tache.',
+    freeLabel: 'Resultat gratuit',
+    upgradeLabel: 'Offre payante',
+    detailCta: 'Ouvrir',
+    principlesTitle: 'Principes Sprint 5.1',
+    principles: [
+      { title: 'Besoin de base', body: 'Le MVP gratuit produit une image utile sans compte ni upload.' },
+      { title: 'Pixels locaux', body: 'Les fichiers utilisent des object URLs, un plan worker et Canvas dans la session navigateur.' },
+      { title: 'Workflow payant', body: 'Lots, dossiers, gros fichiers, API, integrations, presets, haute resolution et IA restent gates.' },
+    ],
+    statusRows: [
+      { title: '6 outils', body: 'Compression, resize, crop, conversion, metadata et presets sociaux sont locaux.', tone: 'green' },
+      { title: '5 langues', body: 'Routes anglaises, portugaises, espagnoles, francaises et allemandes prerenderisees.', tone: 'green' },
+      { title: 'Pas de backend fichier', body: 'Pas d upload API, worker batch, compte, billing, ads ou analytics externe.', tone: 'amber' },
+    ],
+  },
+  de: {
+    eyebrow: 'PixelBatch',
+    title: 'Bilder im Browser verkleinern, zuschneiden, komprimieren und konvertieren.',
+    lead: 'Verarbeiten Sie ein PNG-, JPEG-, WebP- oder unterstuetztes AVIF-Bild lokal, sehen Sie die Vorschau und laden Sie eine saubere Kopie herunter.',
+    searchLabel: 'Bildtools suchen',
+    searchPlaceholder: 'Komprimieren, zuschneiden, konvertieren oder Metadaten',
+    categoryLabel: 'Bildaufgabe',
+    allCategories: 'Alle',
+    noResultsTitle: 'Keine Tools',
+    noResultsBody: 'Suche leeren oder andere Aufgabe waehlen.',
+    freeLabel: 'Kostenloses Ergebnis',
+    upgradeLabel: 'Upgrade-Pfad',
+    detailCta: 'Tool oeffnen',
+    principlesTitle: 'Sprint-5.1-Prinzipien',
+    principles: [
+      { title: 'Basisbedarf geloest', body: 'Das kostenlose MVP erzeugt ein brauchbares optimiertes Bild ohne Konto oder Upload-Endpunkt.' },
+      { title: 'Pixel bleiben lokal', body: 'Dateien werden mit Object URLs, Worker-Plan und Canvas nur in der Browser-Sitzung verarbeitet.' },
+      { title: 'Workflow als Bezahlwert', body: 'Batch, Ordner, grosse Dateien, API, Integrationen, Presets, High-Res und KI bleiben gated.' },
+    ],
+    statusRows: [
+      { title: '6 Browser-Tools', body: 'Komprimieren, Groesse, Zuschnitt, Konvertierung, Metadaten und Social-Presets laufen lokal.', tone: 'green' },
+      { title: '5 Sprachrouten', body: 'Englische, portugiesische, spanische, franzoesische und deutsche Routen werden prerendered.', tone: 'green' },
+      { title: 'Kein Datei-Backend', body: 'Keine Upload API, Batch Worker, Konto, Billing, Ads oder externes Analytics aktiv.', tone: 'amber' },
+    ],
+  },
+}
+
+export const shellCopy: Record<LocaleCode, ShellCopy> = {
+  en: {
+    breadcrumbHome: 'PixelBatch',
+    runLabel: 'Process image',
+    resetLabel: 'Reset settings',
+    downloadLabel: 'Download image',
+    inputTitle: 'Image settings',
+    resultTitle: 'Preview',
+    guideTitle: 'Guide and limits',
+    faqTitle: 'FAQ',
+    methodologyLabel: 'Methodology',
+    editorialLabel: 'Editorial policy',
+    freeCheckLabel: 'Free image workflow',
+    upgradePathLabel: 'Upgrade path',
+    contentQualityBody: 'This page combines a working browser-side image tool, visible file limits, FAQ and review date.',
+    privacyNote: 'Choose one image. PixelBatch does not upload files, store pixels, use localStorage, use sessionStorage or send image values to analytics in Sprint 5.1.',
+    invalidResultTitle: 'Check the image settings',
+    pageStatusLabel: 'Image tool status',
+    liveTitle: 'Client-side MVP',
+    liveBody: 'Worker planning and Canvas rendering run in the browser without mandatory signup.',
+    gatedTitle: 'Batch workflow gated',
+    gatedBody: 'Folders, larger files, API, saved presets, integrations, high-res queues and AI features are not active.',
+    fileLabel: 'Image file',
+    formatLabel: 'Output format',
+    qualityLabel: 'Quality',
+    widthLabel: 'Width',
+    heightLabel: 'Height',
+    cropLabel: 'Crop profile',
+    presetLabel: 'Social preset',
+  },
+  'pt-br': {
+    breadcrumbHome: 'PixelBatch',
+    runLabel: 'Processar imagem',
+    resetLabel: 'Restaurar ajustes',
+    downloadLabel: 'Baixar imagem',
+    inputTitle: 'Ajustes da imagem',
+    resultTitle: 'Preview',
+    guideTitle: 'Guia e limites',
+    faqTitle: 'Perguntas frequentes',
+    methodologyLabel: 'Metodologia',
+    editorialLabel: 'Politica editorial',
+    freeCheckLabel: 'Workflow gratuito',
+    upgradePathLabel: 'Caminho de upgrade',
+    contentQualityBody: 'Esta pagina combina ferramenta local, limites de arquivo, FAQ e data de revisao.',
+    privacyNote: 'Escolha uma imagem. O PixelBatch nao faz upload, nao armazena pixels, nao usa localStorage/sessionStorage e nao envia valores a analytics.',
+    invalidResultTitle: 'Confira os ajustes',
+    pageStatusLabel: 'Status da ferramenta',
+    liveTitle: 'MVP client-side',
+    liveBody: 'Worker e Canvas rodam no navegador sem cadastro obrigatorio.',
+    gatedTitle: 'Workflow em lote bloqueado',
+    gatedBody: 'Pastas, arquivos maiores, API, presets salvos, integracoes, alta resolucao e IA nao estao ativos.',
+    fileLabel: 'Arquivo de imagem',
+    formatLabel: 'Formato de saida',
+    qualityLabel: 'Qualidade',
+    widthLabel: 'Largura',
+    heightLabel: 'Altura',
+    cropLabel: 'Perfil de corte',
+    presetLabel: 'Preset social',
+  },
+  es: {
+    breadcrumbHome: 'PixelBatch',
+    runLabel: 'Procesar imagen',
+    resetLabel: 'Restaurar ajustes',
+    downloadLabel: 'Descargar imagen',
+    inputTitle: 'Ajustes',
+    resultTitle: 'Vista previa',
+    guideTitle: 'Guia y limites',
+    faqTitle: 'Preguntas frecuentes',
+    methodologyLabel: 'Metodologia',
+    editorialLabel: 'Politica editorial',
+    freeCheckLabel: 'Workflow gratis',
+    upgradePathLabel: 'Ruta de upgrade',
+    contentQualityBody: 'Esta pagina combina herramienta local, limites, FAQ y fecha de revision.',
+    privacyNote: 'Elige una imagen. PixelBatch no sube archivos, no almacena pixeles, no usa storage ni envia valores a analytics.',
+    invalidResultTitle: 'Revisa los ajustes',
+    pageStatusLabel: 'Estado',
+    liveTitle: 'MVP client-side',
+    liveBody: 'Worker y Canvas corren en el navegador sin registro obligatorio.',
+    gatedTitle: 'Workflow batch bloqueado',
+    gatedBody: 'Carpetas, archivos grandes, API, presets, integraciones, alta resolucion e IA no estan activos.',
+    fileLabel: 'Archivo de imagen',
+    formatLabel: 'Formato',
+    qualityLabel: 'Calidad',
+    widthLabel: 'Ancho',
+    heightLabel: 'Alto',
+    cropLabel: 'Perfil de recorte',
+    presetLabel: 'Preset social',
+  },
+  fr: {
+    breadcrumbHome: 'PixelBatch',
+    runLabel: 'Traiter image',
+    resetLabel: 'Reinitialiser',
+    downloadLabel: 'Telecharger image',
+    inputTitle: 'Reglages',
+    resultTitle: 'Apercu',
+    guideTitle: 'Guide et limites',
+    faqTitle: 'FAQ',
+    methodologyLabel: 'Methodologie',
+    editorialLabel: 'Politique editoriale',
+    freeCheckLabel: 'Workflow gratuit',
+    upgradePathLabel: 'Offre payante',
+    contentQualityBody: 'Cette page combine outil local, limites fichier, FAQ et date de revue.',
+    privacyNote: 'Choisissez une image. PixelBatch ne charge pas, ne stocke pas les pixels, n utilise pas storage et n envoie pas les valeurs a analytics.',
+    invalidResultTitle: 'Verifiez les reglages',
+    pageStatusLabel: 'Statut',
+    liveTitle: 'MVP client-side',
+    liveBody: 'Worker et Canvas fonctionnent dans le navigateur sans compte obligatoire.',
+    gatedTitle: 'Workflow lot gate',
+    gatedBody: 'Dossiers, gros fichiers, API, presets, integrations, haute resolution et IA ne sont pas actifs.',
+    fileLabel: 'Fichier image',
+    formatLabel: 'Format',
+    qualityLabel: 'Qualite',
+    widthLabel: 'Largeur',
+    heightLabel: 'Hauteur',
+    cropLabel: 'Profil de crop',
+    presetLabel: 'Preset social',
+  },
+  de: {
+    breadcrumbHome: 'PixelBatch',
+    runLabel: 'Bild verarbeiten',
+    resetLabel: 'Einstellungen zuruecksetzen',
+    downloadLabel: 'Bild herunterladen',
+    inputTitle: 'Bildeinstellungen',
+    resultTitle: 'Vorschau',
+    guideTitle: 'Leitfaden und Grenzen',
+    faqTitle: 'FAQ',
+    methodologyLabel: 'Methodik',
+    editorialLabel: 'Redaktionelle Richtlinie',
+    freeCheckLabel: 'Kostenloser Bildworkflow',
+    upgradePathLabel: 'Upgrade-Pfad',
+    contentQualityBody: 'Diese Seite kombiniert ein lokales Bildtool, Dateilimits, FAQ und Pruefdatum.',
+    privacyNote: 'Waehlen Sie ein Bild. PixelBatch laedt nicht hoch, speichert keine Pixel, nutzt kein Storage und sendet keine Werte an Analytics.',
+    invalidResultTitle: 'Einstellungen pruefen',
+    pageStatusLabel: 'Toolstatus',
+    liveTitle: 'Client-seitiges MVP',
+    liveBody: 'Worker und Canvas laufen im Browser ohne Pflichtkonto.',
+    gatedTitle: 'Batch-Workflow gesperrt',
+    gatedBody: 'Ordner, grosse Dateien, API, Presets, Integrationen, High-Res und KI sind nicht aktiv.',
+    fileLabel: 'Bilddatei',
+    formatLabel: 'Ausgabeformat',
+    qualityLabel: 'Qualitaet',
+    widthLabel: 'Breite',
+    heightLabel: 'Hoehe',
+    cropLabel: 'Zuschnittprofil',
+    presetLabel: 'Social Preset',
+  },
+}
+
+export function getHomeCopy(locale: LocaleCode): HomeCopy {
+  return homeCopy[locale]
+}
+
+export function getShellCopy(locale: LocaleCode): ShellCopy {
+  return shellCopy[locale]
+}

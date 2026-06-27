@@ -125,6 +125,15 @@ pnpm validate:sitepulse-preview
 pnpm test:e2e:sitepulse
 ```
 
+Run PixelBatch checks:
+
+```powershell
+pnpm test:pixelbatch
+pnpm build:pixelbatch
+pnpm validate:pixelbatch-preview
+pnpm test:e2e:pixelbatch
+```
+
 The root package scripts use explicit filters for `@supersites/ui`, `@supersites/i18n`, `@supersites/seo` and `@supersites/consent`. A generic pnpm path filter did not match the package workspaces on Windows during Sprint 1.3.
 
 Install the Playwright browser once per workstation if needed:
@@ -216,6 +225,14 @@ pnpm dev:sitepulse
 ```
 
 Then open `http://127.0.0.1:3009/en/tools/status-checker`. Status, redirects, headers, robots, sitemap, TTFB and performance checks call the bounded local control-plane API when it is running; the app must not store target URLs or send them to analytics.
+
+For local PixelBatch development, run:
+
+```powershell
+pnpm dev:pixelbatch
+```
+
+Then open `http://127.0.0.1:3010/en/tools/image-compressor`. Selected images, pixels, previews and downloads remain browser-side in Sprint 5.1; the app must not use upload endpoints, browser storage or analytics values from the file.
 
 For local NetProbe Atlas tool testing, run:
 

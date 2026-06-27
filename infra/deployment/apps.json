@@ -96,8 +96,9 @@
     {
       "id": "pixelbatch",
       "name": "PixelBatch",
-      "kind": "placeholder",
+      "kind": "nuxt-ssg",
       "localPath": "apps/pixelbatch",
+      "buildOutput": "apps/pixelbatch/.output/public",
       "remotePath": "/home1/opents62/public_html/supersites/pixelbatch",
       "publicUrl": "https://opentshost.com/supersites/pixelbatch/"
     },

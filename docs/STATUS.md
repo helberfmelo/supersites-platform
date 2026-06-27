@@ -4,7 +4,7 @@ Data-base: 2026-06-27
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas, o modulo seguro inicial de IP/DNS/RDAP/SSL/propagation/port/reachability do NetProbe, o conteudo original multilanguage/AdSense-readiness do NetProbe, o MVP de upgrade com monitores/historico/alertas/API, o launch gate estatico do NetProbe, o deploy publico do control-plane/API e os MVPs local/CI do CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth e SitePulse Lab foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada. Em 2026-06-26, o control-plane/API foi publicado em `https://opentshost.com/supersites/control-plane/` e o NetProbe Atlas foi publicado em `https://opentshost.com/supersites/netprobe-atlas/` com consultas publicas IP/DNS via HTTPS e smoke publico. CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth e SitePulse Lab permanecem em placeholder publico ate receberem deploy/rollback/smoke especificos. Nenhum anuncio, billing real, worker/cron de producao, webhook externo, checkout/pagamento, SMTP ativo, uptime recorrente, monitoramento recorrente ou integracao externa de analytics foi ativado.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas, o modulo seguro inicial de IP/DNS/RDAP/SSL/propagation/port/reachability do NetProbe, o conteudo original multilanguage/AdSense-readiness do NetProbe, o MVP de upgrade com monitores/historico/alertas/API, o launch gate estatico do NetProbe, o deploy publico do control-plane/API e os MVPs local/CI do CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab e PixelBatch foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada. Em 2026-06-26, o control-plane/API foi publicado em `https://opentshost.com/supersites/control-plane/` e o NetProbe Atlas foi publicado em `https://opentshost.com/supersites/netprobe-atlas/` com consultas publicas IP/DNS via HTTPS e smoke publico. CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab e PixelBatch permanecem em placeholder publico ate receberem deploy/rollback/smoke especificos. Nenhum anuncio, billing real, worker/cron de producao, webhook externo, checkout/pagamento, SMTP ativo, uptime recorrente, monitoramento recorrente, processamento server-side de arquivos, batch worker ou integracao externa de analytics foi ativado.
 
 ## Estado local verificado
 
@@ -334,6 +334,9 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - `apps/control-plane/app/Jobs/RunNetProbeMonitorCheck.php`, `app/Support/NetProbe/Monitoring`, `app/Models/NetProbeMonitor*` e `tests/Feature/NetProbeMonitoringTest.php` para monitores DNS/SSL/dominio, historico, alertas e scheduler.
 - `apps/mailhealth` com 7 paginas de diagnostico de e-mail em 5 idiomas, analisador local de headers e validacao preview/Playwright dedicada.
 - `apps/control-plane/app/Http/Controllers/Api/V1/MailHealth`, `apps/control-plane/app/Support/MailHealth` e `tests/Feature/MailHealthApiTest.php` para diagnosticos pontuais SPF/DKIM/DMARC/MX/DNSBL/SMTP com limites antiabuso.
+- `apps/sitepulse-lab` com 7 paginas de diagnostico web em 5 idiomas, validacao preview/Playwright dedicada e analytics sanitizado apenas por `tool_slug`.
+- `apps/control-plane/app/Http/Controllers/Api/V1/SitePulse`, `apps/control-plane/app/Support/SitePulse` e `tests/Feature/SitePulseProbeApiTest.php` para diagnostico pontual de status/redirects/headers/robots/sitemap/TTFB com limites SSRF/antiabuso.
+- `apps/pixelbatch` com 6 ferramentas browser-side de imagem em 5 idiomas, Worker de planejamento, Canvas para preview/download, limite gratuito de 10 MB e validacao preview/Playwright dedicada.
 - `scripts/validate-local-stack.ps1` para smoke local de Docker e control plane.
 - ADR `0006-local-stack-scaffold.md` registrando a decisao de stack local.
 - `scripts/hostgator-bootstrap.ps1` para provisionamento idempotente de pastas, bancos, usuarios, privilegios e placeholders na HostGator.
@@ -672,6 +675,21 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis.
   - Smoke publico direto confirmou `https://opentshost.com/supersites/sitepulse-lab/` em HTTP 200, ainda `noindex`, sem asset `_nuxt`, preservando o placeholder publico do SitePulse Lab.
   - Nenhum deploy real do SitePulse Lab foi executado porque o app ainda nao tem workflow de traffic switch, smoke publico e rollback proprios.
+- Sprint 5.1 validation:
+  - Estado inicial verificado: `git status --short --branch` limpo em `main...origin/main`, GitHub Actions recentes verdes e producao publica com Hub/control-plane/API/NetProbe ativos.
+  - Smokes publicos pre-sprint passaram: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public`.
+  - Smoke publico direto confirmou `https://opentshost.com/supersites/pixelbatch/` e `https://opentshost.com/supersites/docshift/` em HTTP 200, ainda `noindex`, sem asset `_nuxt`, preservando os placeholders publicos.
+  - `pnpm install --lockfile-only` passou e atualizou o lockfile para o novo workspace PixelBatch.
+  - `pnpm test:pixelbatch` passou com 8 testes.
+  - `pnpm build:pixelbatch` passou e prerenderizou 76 rotas de conteudo mais `sitemap.xml` (153 rotas totais incluindo payloads), com avisos Nuxt/Nitro conhecidos e nao fatais.
+  - `pnpm validate:pixelbatch-preview` passou, confirmando home, compressor, rota localizada de preset social, privacidade, sitemap e asset `_nuxt`.
+  - `pnpm test:e2e:pixelbatch` passou com 3 testes, cobrindo home desktop, upload/processamento Canvas local, analytics sanitizado, ausencia de storage, download de imagem e paginas mobile.
+  - Regressao frontend local passou para Hub, NetProbe Atlas, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab e PixelBatch: unit tests, builds dedicados, preview smokes e Playwright.
+  - Gates obrigatorios locais passaram: `pnpm test:packages`, `pnpm typecheck:packages`, `pnpm validate:structure`, `pnpm deploy:dry-run`, `pnpm validate:secrets`, `pnpm ci:changes` e `git diff --check`.
+  - `pnpm deploy:dry-run` gerou `artifacts/deploy-dry-run/supersites-deploy-plan.json` e `artifacts/deploy-dry-run/supersites-deploy-plan.md`.
+  - Smokes publicos pos-validacao local passaram novamente para Hub, control-plane/API e NetProbe; PixelBatch e DocShift continuam placeholders publicos HTTP 200, `noindex`, sem asset `_nuxt`.
+  - O app `apps/pixelbatch` foi criado como Nuxt SSG com 6 ferramentas browser-side, Worker de planejamento, Canvas para resize/crop/reencode/metadata clean, limite gratuito de 10 MB e paginas legais/editoriais em 5 idiomas.
+  - Nenhum deploy real do PixelBatch foi executado porque o app ainda nao tem workflow de traffic switch, smoke publico e rollback proprios.
 
 ## Pendencias criticas
 
@@ -690,6 +708,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o InvoiceCraft antes de trocar trafego real.
 - Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o MailHealth antes de trocar trafego real.
 - Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o SitePulse Lab antes de trocar trafego real.
+- Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o PixelBatch antes de trocar trafego real.
 - Definir estrategia tecnica de URL raiz: `opentshost.com` apontando para conteudo em `/public_html/supersites/`.
 - Definir dominios definitivos futuramente.
 - Validar dominio/marca antes de registrar qualquer nome.

@@ -174,6 +174,21 @@ Nao registrar em analytics:
 
 Sprint 4.4 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, historico salvo, uptime recorrente, incidentes, status page, alertas, billing, API publica paga, webhooks ou storage persistente do SitePulse Lab.
 
+## PixelBatch tools
+
+As ferramentas do PixelBatch podem registrar apenas eventos de produto de baixo risco, como `tool_viewed`, `tool_started`, `file_processed`, `tool_completed`, `tool_failed` e `file_downloaded`, usando `tool_slug`, rota e locale.
+
+Nao registrar em analytics:
+
+- nomes de arquivo;
+- pixels, previews, blobs, hashes ou conteudo de imagem;
+- dimensoes de entrada/saida, tamanho de arquivo/blob, qualidade ou formato escolhido;
+- metadados EXIF/IPTC, camera, geolocalizacao ou datas extraidas;
+- preset social escolhido quando derivado do input do usuario;
+- erros ou mensagens que possam conter nome do arquivo ou detalhes da imagem.
+
+Sprint 5.1 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, batch, API publica, storage persistente, upload endpoint, IA, billing ou workers de producao do PixelBatch.
+
 ## Deploy smokes
 
 Smokes de deploy do control-plane/API e do NetProbe devem validar apenas disponibilidade e contrato JSON, sem criar eventos externos de analytics e sem registrar alvo bruto de usuario. O alvo DNS padrao para smoke publico e `example.com`.

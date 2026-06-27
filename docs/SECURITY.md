@@ -94,6 +94,16 @@
 - Analytics de SitePulse nao deve incluir URL alvo, host, path, query, headers, redirect targets, status code, latencia, body sample, robots, sitemap ou erro bruto.
 - Uptime recorrente, incidentes, status page, alertas, historico, multi-regiao, API paga e white-label exigem auth, billing/entitlements, retencao, termos, antiabuso, provider-policy review e gates de deploy antes de ativacao.
 
+## PixelBatch browser image processing
+
+- Ferramentas da Sprint 5.1 cobrem compressao, resize, crop, conversao, remocao de metadados e presets sociais no navegador.
+- O MVP aceita apenas PNG, JPEG, WebP e AVIF quando suportado pelo navegador, com limite gratuito de 10 MB, dimensoes maximas e pixel count maximo.
+- O worker deve validar tipo, tamanho, dimensoes e parametros de saida antes do Canvas processar a imagem.
+- Object URLs devem ser revogados apos uso; inputs e outputs nao devem ser gravados em `localStorage`, `sessionStorage`, IndexedDB, cookies, backend, logs ou analytics.
+- A remocao de metadados e uma reencode limpo via Canvas; nao prometer redacao forense ou remocao de dados invisiveis fora do suporte do navegador.
+- Analytics de PixelBatch nao deve incluir nome do arquivo, dimensoes, formato escolhido, qualidade, tamanho de blob, metadados, pixels, erro tecnico com nome de arquivo ou conteudo de imagem.
+- Batch, pastas, arquivos maiores, API, integracoes, alta resolucao e IA exigem auth, billing/entitlements, quotas, upload validation, sandbox, antivirus quando aplicavel, retencao/limpeza de temporarios, provider review e gates de deploy antes de ativacao.
+
 ## NetProbe public API
 
 - `GET /api/v1/netprobe/ip` nao deve persistir o IP completo do visitante; a resposta informa a politica de retencao.

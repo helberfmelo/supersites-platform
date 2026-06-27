@@ -199,6 +199,7 @@ Sprint 5.1 - PixelBatch MVP
 - Objetivo: resize, crop, compress, convert, remover metadados no navegador quando possivel.
 - Upgrade: lote, presets, arquivos maiores, API, integracoes, alta resolucao, IA.
 - Validacao: WASM/workers, upload limits, limpeza de temporarios.
+- Status: concluida localmente, aguardando CI/push. O app `apps/pixelbatch` foi promovido de placeholder para Nuxt SSG com 6 ferramentas browser-side (`image-compressor`, `image-resizer`, `image-cropper`, `image-converter`, `metadata-remover`, `social-preset-generator`), Worker de planejamento, Canvas para preview/download, limite gratuito de 10 MB, home e paginas legais/editoriais em 5 idiomas, FAQ, schema `WebApplication`/`FAQPage` e analytics sanitizado apenas por `tool_slug`. Arquivos, pixels, nomes, dimensoes, metadados e blobs ficam no navegador; sem API de upload, storage, conta, batch worker, billing, ads, IA ou analytics externo. O deploy publico real continua bloqueado ate existir empacotamento HostGator, smoke publico e rollback especificos.
 
 Sprint 5.2 - DocShift MVP
 - Objetivo: merge, split, rotate, compress, watermark, metadata e conversoes basicas.

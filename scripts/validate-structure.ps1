@@ -19,6 +19,7 @@ $requiredPaths = @(
     "playwright.invoicecraft.config.ts",
     "playwright.mailhealth.config.ts",
     "playwright.sitepulse.config.ts",
+    "playwright.pixelbatch.config.ts",
     "pnpm-workspace.yaml",
     "pnpm-lock.yaml",
     "docs/MEGA_PROMPT_SUPERSITES.md",
@@ -415,6 +416,34 @@ $sitepulsePaths = @(
 )
 
 $requiredPaths += $sitepulsePaths
+
+$pixelbatchPaths = @(
+    "apps/pixelbatch/package.json",
+    "apps/pixelbatch/nuxt.config.ts",
+    "apps/pixelbatch/app/app.vue",
+    "apps/pixelbatch/app/components/PixelBatchHome.vue",
+    "apps/pixelbatch/app/components/LanguageNav.vue",
+    "apps/pixelbatch/app/components/LegalFooter.vue",
+    "apps/pixelbatch/app/components/SiteHeader.vue",
+    "apps/pixelbatch/app/data/copy.ts",
+    "apps/pixelbatch/app/data/locales.ts",
+    "apps/pixelbatch/app/data/pages.ts",
+    "apps/pixelbatch/app/data/routes.ts",
+    "apps/pixelbatch/app/data/tools.ts",
+    "apps/pixelbatch/app/pages/index.vue",
+    "apps/pixelbatch/app/pages/[locale]/[page].vue",
+    "apps/pixelbatch/app/pages/[locale]/index.vue",
+    "apps/pixelbatch/app/pages/[locale]/tools/[slug].vue",
+    "apps/pixelbatch/app/utils/analytics.ts",
+    "apps/pixelbatch/app/utils/pixelbatchWorker.ts",
+    "apps/pixelbatch/app/workers/pixelbatch.worker.ts",
+    "apps/pixelbatch/server/routes/sitemap.xml.ts",
+    "apps/pixelbatch/tests/pixelbatch.test.ts",
+    "tests/e2e/pixelbatch.spec.ts",
+    "scripts/validate-pixelbatch-preview.ps1"
+)
+
+$requiredPaths += $pixelbatchPaths
 
 $missing = @()
 foreach ($path in $requiredPaths) {

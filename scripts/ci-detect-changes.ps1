@@ -122,6 +122,14 @@ $frontendSitepulsePatterns = @(
     "^pnpm-workspace\.yaml$"
 )
 
+$frontendPixelbatchPatterns = @(
+    "^apps/pixelbatch/",
+    "^packages/",
+    "^package\.json$",
+    "^pnpm-lock\.yaml$",
+    "^pnpm-workspace\.yaml$"
+)
+
 $backendPatterns = @(
     "^apps/control-plane/",
     "^packages/",
@@ -194,6 +202,7 @@ $frontendQrroute = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns $fr
 $frontendInvoicecraft = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns $frontendInvoicecraftPatterns)
 $frontendMailhealth = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns $frontendMailhealthPatterns)
 $frontendSitepulse = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns $frontendSitepulsePatterns)
+$frontendPixelbatch = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns $frontendPixelbatchPatterns)
 $backend = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns $backendPatterns)
 $deployment = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns $deploymentPatterns)
 $docsOnly = (-not $runAll) -and (Test-AllMatch -Files $changedFiles -Patterns $docsPatterns)
@@ -208,6 +217,7 @@ Write-GitHubOutput -Name "frontend_qrroute" -Value (ConvertTo-CiBool $frontendQr
 Write-GitHubOutput -Name "frontend_invoicecraft" -Value (ConvertTo-CiBool $frontendInvoicecraft)
 Write-GitHubOutput -Name "frontend_mailhealth" -Value (ConvertTo-CiBool $frontendMailhealth)
 Write-GitHubOutput -Name "frontend_sitepulse" -Value (ConvertTo-CiBool $frontendSitepulse)
+Write-GitHubOutput -Name "frontend_pixelbatch" -Value (ConvertTo-CiBool $frontendPixelbatch)
 Write-GitHubOutput -Name "backend_control_plane" -Value (ConvertTo-CiBool $backend)
 Write-GitHubOutput -Name "deployment" -Value (ConvertTo-CiBool $deployment)
 Write-GitHubOutput -Name "docs_only" -Value (ConvertTo-CiBool $docsOnly)
@@ -225,6 +235,7 @@ $summary = [ordered]@{
     frontendInvoicecraft = $frontendInvoicecraft
     frontendMailhealth = $frontendMailhealth
     frontendSitepulse = $frontendSitepulse
+    frontendPixelbatch = $frontendPixelbatch
     backendControlPlane = $backend
     deployment = $deployment
     docsOnly = $docsOnly

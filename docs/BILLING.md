@@ -58,6 +58,12 @@ A Sprint 4.4 criou apenas checks gratuitos pontuais de status, redirects, header
 
 Antes de vender uptime, incidentes, status page, alertas, historico, multi-regiao, API, white-label, equipes ou branding, implementar billing/entitlements, termos, matriz de dados, retencao, exportacao/exclusao de conta, antiabuso, provider-policy review e gates humanos de KYC/impostos/conta bancaria.
 
+## PixelBatch preview
+
+A Sprint 5.1 criou apenas ferramentas gratuitas client-side para imagem unica, sem checkout, cobranca, assinatura, entitlement pago, provedor externo ativo, batch, pastas, API, integracoes, alta resolucao, IA, historico salvo ou upload endpoint.
+
+Antes de vender batch, pastas, arquivos maiores, presets salvos, API, integracoes, alta resolucao, AI/background removal, equipes ou historico, implementar billing/entitlements, termos, matriz de dados, quotas, upload validation, sandbox/antivirus quando aplicavel, retencao/limpeza, exportacao/exclusao de conta, provider review e gates humanos de KYC/impostos/conta bancaria.
+
 ## Segurança
 
 - Nao armazenar cartao.

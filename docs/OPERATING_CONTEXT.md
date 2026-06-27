@@ -53,6 +53,7 @@ Padroes aproveitados:
 - InvoiceCraft tem app Nuxt SSG, Quality Gate dedicado e manifest de deploy a partir da Sprint 4.2, mas a URL publica `https://opentshost.com/supersites/invoicecraft/` permanece placeholder ate existir workflow/script de deploy, smoke publico e rollback especificos.
 - MailHealth tem app Nuxt SSG, Quality Gate dedicado e manifest de deploy a partir da Sprint 4.3, mas a URL publica `https://opentshost.com/supersites/mailhealth/` permanece placeholder ate existir workflow/script de deploy, smoke publico e rollback especificos.
 - SitePulse Lab tem app Nuxt SSG, Quality Gate dedicado e manifest de deploy a partir da Sprint 4.4, mas a URL publica `https://opentshost.com/supersites/sitepulse-lab/` permanece placeholder ate existir workflow/script de deploy, smoke publico e rollback especificos.
+- PixelBatch tem app Nuxt SSG, Quality Gate dedicado e manifest de deploy a partir da Sprint 5.1, mas a URL publica `https://opentshost.com/supersites/pixelbatch/` permanece placeholder ate existir workflow/script de deploy, smoke publico e rollback especificos.
 - Catalogo transitorio publico ativo: `https://opentshost.com/supersites/`.
 - Release HostGator ativo do catalogo: `740e0f1968e7b0a2fd60eeb9e6edffd6252d94ae-28241237377-1`.
 - Release HostGator ativo do control-plane/API: `a33fcbfdc31c328d71c6fa046d9fac99ec610575-28264453068-1`.
@@ -78,6 +79,7 @@ Padroes aproveitados:
 - Front visual local do InvoiceCraft: `http://127.0.0.1:3007` via `pnpm dev:invoicecraft`.
 - Front visual local do MailHealth: `http://127.0.0.1:3008` via `pnpm dev:mailhealth`.
 - Front visual local do SitePulse Lab: `http://127.0.0.1:3009` via `pnpm dev:sitepulse`.
+- Front visual local do PixelBatch: `http://127.0.0.1:3010` via `pnpm dev:pixelbatch`.
 
 ## Runtime VPS SuperSites
 

@@ -134,4 +134,4 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\publish-control-plane-host
 
 ## Current Rule
 
-Real deploy is allowed for the SuperSites Hub static catalog, control-plane/API and NetProbe Atlas after artifact validation, remote preservation, smoke and rollback checks pass. CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab and the remaining apps remain dry-run or placeholder-only until they receive app-specific packaging, smoke and rollback scripts.
+Real deploy is allowed for the SuperSites Hub static catalog, control-plane/API and NetProbe Atlas after artifact validation, remote preservation, smoke and rollback checks pass. CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch and the remaining apps remain dry-run or placeholder-only until they receive app-specific packaging, smoke and rollback scripts.

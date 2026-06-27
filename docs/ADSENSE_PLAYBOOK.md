@@ -85,6 +85,15 @@ AdSense e a monetizacao primaria, mas nenhum site deve ser submetido antes de cu
 - Nao submeter ao AdSense enquanto a URL publica ainda servir placeholder.
 - Uptime, incidentes, status page, alertas, historico, multi-regiao, API paga e provider policy exigem gates humanos/tecnicos antes de qualquer pagina monetizada.
 
+## PixelBatch checklist
+
+- Sprint 5.1 entrega apenas MVP local/CI e placeholder publico.
+- Antes de AdSense, criar deploy HostGator especifico, smoke publico, rollback testavel e status page.
+- Validar Core Web Vitals, ausencia de overflow, sitemap/canonical/hreflang/schema e paginas legais em todos os idiomas publicados.
+- Nao posicionar anuncios junto a upload/input de arquivo, controles de qualidade/dimensao, progresso, preview de imagem, erros ou botoes de download de modo que incentive clique acidental.
+- Nao submeter ao AdSense enquanto a URL publica ainda servir placeholder.
+- Batch, API, arquivos maiores, alta resolucao e IA exigem upload validation, sandbox, retencao, antiabuso e gates humanos/tecnicos antes de qualquer pagina monetizada.
+
 ## Placements
 
 - Usar componente compartilhado de ads com espaco reservado.

@@ -246,6 +246,19 @@ Sprint 4.4 adiciona o quarto produto pago de workflow da Fase 4 em `apps/sitepul
 - Nao ha conta, historico salvo, uptime recorrente, incidentes, status page, alertas, multi-regiao, billing, anuncio, worker de producao, cron ou webhook nesta sprint.
 - O manifesto de deploy conhece o build SSG, mas trafego publico real permanece placeholder ate existirem artifact gate, smoke publico e rollback especificos do SitePulse Lab.
 
+## PixelBatch browser image MVP
+
+Sprint 5.1 adiciona o primeiro produto da Fase 5 em `apps/pixelbatch`.
+
+- O app usa Nuxt SSG/SSR com ferramentas de compressao, resize, crop, conversao, remocao de metadados e presets sociais.
+- O MVP processa uma imagem por vez no navegador, com limite gratuito de 10 MB e validacao de MIME/dimensoes antes de renderizar.
+- Um Web Worker monta o plano de transformacao; o Canvas executa crop/resize/reencode e gera object URL para preview/download local.
+- A remocao de metadados e feita por reencode limpo de pixels visiveis, sem parsing/armazenamento EXIF/IPTC.
+- Analytics local permitido: eventos sanitizados `tool_viewed`, `tool_started`, `file_processed`, `tool_completed`, `tool_failed` e `file_downloaded` com `tool_slug`.
+- Nomes de arquivo, pixels, dimensoes, formatos escolhidos, metadados, tamanho de blob e conteudo de imagem nao devem ir para backend, logs, analytics ou data layer.
+- Nao ha API de upload, storage local persistente, conta, batch worker, pasta/lote, integracao, alta resolucao, IA, billing, anuncio, worker de producao, cron ou webhook nesta sprint.
+- O manifesto de deploy conhece o build SSG, mas trafego publico real permanece placeholder ate existirem artifact gate, smoke publico e rollback especificos do PixelBatch.
+
 ## Sites e pastas
 
 | App | Pasta | Papel |

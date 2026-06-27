@@ -2,7 +2,7 @@
 
 ## Scope
 
-Sprint 0.5 created the first CI/CD foundation. The current pipeline validates code, produces deploy dry-run plans and has manual HostGator deploy workflows for the static Hub, the Laravel control-plane/API and the gated NetProbe static frontend. CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth and SitePulse Lab are validated in local/CI with deploy manifest entries, but remain placeholder-only in production until app-specific deploy gates exist.
+Sprint 0.5 created the first CI/CD foundation. The current pipeline validates code, produces deploy dry-run plans and has manual HostGator deploy workflows for the static Hub, the Laravel control-plane/API and the gated NetProbe static frontend. CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab and PixelBatch are validated in local/CI with deploy manifest entries, but remain placeholder-only in production until app-specific deploy gates exist.
 
 ## Workflows
 
@@ -25,6 +25,7 @@ Jobs:
 - `Frontend / InvoiceCraft`: runs shared package tests/typecheck plus InvoiceCraft tests/build, `scripts/validate-invoicecraft-preview.ps1` and `pnpm test:e2e:invoicecraft` when InvoiceCraft, packages or deployment files change.
 - `Frontend / MailHealth`: runs shared package tests/typecheck plus MailHealth tests/build, `scripts/validate-mailhealth-preview.ps1` and `pnpm test:e2e:mailhealth` when MailHealth, packages or deployment files change.
 - `Frontend / SitePulse Lab`: runs shared package tests/typecheck plus SitePulse tests/build, `scripts/validate-sitepulse-preview.ps1` and `pnpm test:e2e:sitepulse` when SitePulse, packages or deployment files change.
+- `Frontend / PixelBatch`: runs shared package tests/typecheck plus PixelBatch tests/build, `scripts/validate-pixelbatch-preview.ps1` and `pnpm test:e2e:pixelbatch` when PixelBatch, packages or deployment files change.
 - `Backend / Control Plane`: runs Composer validation and Laravel tests when backend or deployment files change. The Laravel suite covers API, analytics ingest sanitization, metric snapshots, auth/RBAC, admin Blade smoke, site create/update flows and audit log behavior. It uses SQLite in memory and therefore requires `pdo_sqlite`/`sqlite3`.
 - `Quality summary`: fails the workflow if any required job fails.
 
@@ -186,7 +187,7 @@ VPS runtime environment variable names:
 - Real deploy is implemented for the SuperSites Hub static catalog, the control-plane/API and NetProbe Atlas. NetProbe public traffic depends on the control-plane/API smoke staying healthy for `/health`, `/api/v1/netprobe/ip` and `/api/v1/netprobe/dns`.
 - Control-plane/API deploy uses a Laravel ZIP and cPanel remote extraction. The artifact excludes `.env`; the release `.env` is written remotely from GitHub secrets or ignored local inputs, and the managed front controller bootstraps the active Laravel release directly.
 - NetProbe static builds must not contain `localhost:8013`, `127.0.0.1:8013` or a local `/api/v1/netprobe` URL. Local API usage belongs in dev/test env vars, not in production artifacts.
-- CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth and SitePulse Lab have dry-run manifest entries only. Do not run a real traffic switch until app-specific HostGator artifact validation, public smoke and rollback are implemented.
+- CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab and PixelBatch have dry-run manifest entries only. Do not run a real traffic switch until app-specific HostGator artifact validation, public smoke and rollback are implemented.
 - Human-gated actions stay in `docs/HUMAN_ACTION_REQUIRED.md`; technical reversible blockers should be worked around with dry-runs, validation scripts or degraded mode.
 
 ## Pre-Real-Deploy Checklist
