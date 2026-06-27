@@ -306,7 +306,7 @@ Sprint 7.11 - PixelBatch benchmark UX
 - Simbolico: BR-PIXELBATCH.
 - Objetivo: refinar dropzone, preview antes/depois, fila planejada, presets, privacidade e upgrades gated para imagem.
 - Validacao: worker/canvas smoke, testes/build/preview/Playwright do PixelBatch e gates locais.
-- Status: planejada.
+- Status: validacao local concluida. O app recebeu dropzone com estado de arquivo, preview original/final, workflow steps, workflow snapshot, checklist de privacidade, related image tools, badge local e painel de batch queue gated/inert sem endpoint novo. CI, dry-run remoto e fechamento docs-only seguem pendentes do ciclo de commit/push da sprint.
 
 Sprint 7.12 - DocShift benchmark UX
 - Simbolico: BR-DOCSHIFT.

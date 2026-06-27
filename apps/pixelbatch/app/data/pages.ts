@@ -110,7 +110,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'PixelBatch is the SuperSites product for browser-side image resizing, compression, conversion and metadata cleaning.',
     sections: [
       ['Purpose', 'The site helps users process one image at a time without mandatory signup, upload storage or a product backend.'],
-      ['What is live now', 'Sprint 5.1 launches six image tools with worker planning, Canvas rendering, sitemap, canonical, hreflang and structured data.'],
+      ['What is live now', 'PixelBatch offers six local image tools with worker planning, Canvas rendering, sitemap, canonical, hreflang and structured data.'],
       ['Upgrade boundary', 'Paid value is planned around batch folders, larger files, saved presets, integrations, API, high-resolution queues and AI credits.'],
     ],
   },
@@ -125,7 +125,7 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   privacy: {
     title: 'Privacy Policy',
-    description: 'PixelBatch minimizes collection by processing Sprint 5.1 image files locally in the browser whenever possible.',
+    description: 'PixelBatch minimizes collection by processing image files locally in the browser whenever possible.',
     sections: [
       ['Data minimization', 'Selected images are decoded, transformed and downloaded in the browser using object URLs and Canvas. No product upload API, server storage, localStorage or sessionStorage is used.'],
       ['Analytics boundary', 'Allowed analytics events may record tool slugs and sanitized page paths, but not file names, dimensions, metadata, image contents, output sizes or user-selected values.'],
@@ -146,7 +146,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'Baseline terms for responsible use of PixelBatch image tools and future commercial features.',
     sections: [
       ['Responsible images', 'Do not process illegal, abusive, infringing, deceptive or unauthorized image content through PixelBatch workflows.'],
-      ['MVP limits', 'PixelBatch Sprint 5.1 is a local formatting helper, not a secure archival, forensic metadata or legal redaction system.'],
+      ['MVP limits', 'PixelBatch is a local formatting helper, not a secure archival, forensic metadata or legal redaction system.'],
       ['Paid features', 'Commercial features require visible pricing, quotas, cancellation rules, provider terms, abuse controls and legal review before checkout or file API access.'],
     ],
   },
@@ -170,10 +170,10 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   status: {
     title: 'Launch Status',
-    description: 'PixelBatch Sprint 5.1 status for public web readiness, ads, billing, file processing and gates.',
+    description: 'PixelBatch status for public web readiness, ads, billing, file processing and gates.',
     sections: [
       ['MVP surface', 'The local/CI MVP contains six image tools, five language route sets, sitemap, canonical, hreflang, structured data, worker planning and browser-side Canvas output.'],
-      ['Production', 'No PixelBatch public deploy is switched in Sprint 5.1 because app-specific packaging, smoke and rollback are not implemented yet. The HostGator public URL remains a noindex placeholder.'],
+      ['Production', 'No PixelBatch public deploy is switched because app-specific packaging, smoke and rollback are not implemented yet. The HostGator public URL remains a noindex placeholder.'],
       ['Gates', 'Batch folders, larger files, API, integrations, high-resolution queues, AI features, billing, ads and external analytics remain blocked until documented gates pass.'],
     ],
   },

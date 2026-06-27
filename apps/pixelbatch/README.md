@@ -23,3 +23,7 @@ Batch folders, larger files, saved presets, integrations, API, high-resolution q
 Server-side processing, API access, AI/background-removal providers or larger file queues require upload validation, sandboxing, antivirus where applicable, retention/deletion rules, quotas, billing and legal/provider review before activation.
 
 Public traffic remains on the HostGator placeholder until PixelBatch receives app-specific artifact validation, public smoke and rollback/traffic-switch workflows.
+
+## Benchmark Refinement
+
+Sprint 7.11 adds a clearer dropzone, original/output preview, workflow snapshot, privacy checklist, related image tools and gated batch queue messaging. It does not add upload endpoints, server-side processing, AI providers, checkout, ads, account storage or new analytics properties.

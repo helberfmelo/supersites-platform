@@ -161,6 +161,7 @@
 - Object URLs devem ser revogados apos uso; inputs e outputs nao devem ser gravados em `localStorage`, `sessionStorage`, IndexedDB, cookies, backend, logs ou analytics.
 - A remocao de metadados e uma reencode limpo via Canvas; nao prometer redacao forense ou remocao de dados invisiveis fora do suporte do navegador.
 - Analytics de PixelBatch nao deve incluir nome do arquivo, dimensoes, formato escolhido, qualidade, tamanho de blob, metadados, pixels, erro tecnico com nome de arquivo ou conteudo de imagem.
+- Dropzone, before/after preview, workflow snapshot, privacy checklist, related tools e batch queue gated da Sprint 7.11 devem permanecer derivados de arquivo local em memoria e nao podem ativar upload server-side, batch worker, AI provider, API paga ou checkout.
 - Batch, pastas, arquivos maiores, API, integracoes, alta resolucao e IA exigem auth, billing/entitlements, quotas, upload validation, sandbox, antivirus quando aplicavel, retencao/limpeza de temporarios, provider review e gates de deploy antes de ativacao.
 
 ## DocShift browser document processing

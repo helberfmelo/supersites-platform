@@ -34,3 +34,9 @@ Data-base: 2026-06-27
 - Refine dropzone, preview and result metrics.
 - Add ecommerce preset language and related image tools.
 - Prepare batch/API/high-resolution/AI backlog behind gates.
+
+## Sprint 7.11 implementation notes
+
+- Implemented original dropzone, before/after preview, workflow snapshot, privacy checklist, related tools and gated batch queue messaging with original PixelBatch copy and components.
+- Kept benchmark references as learning inputs only; no third-party screenshots, mascots, text, compression claims, pricing copy or proprietary UI were copied.
+- Local screenshot inspection covered home desktop plus compressor and privacy mobile flows.

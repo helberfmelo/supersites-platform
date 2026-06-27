@@ -10,6 +10,7 @@ export interface HomeCopy {
   allCategories: string
   noResultsTitle: string
   noResultsBody: string
+  localBadgeLabel: string
   freeLabel: string
   upgradeLabel: string
   detailCta: string
@@ -46,6 +47,18 @@ export interface ShellCopy {
   heightLabel: string
   cropLabel: string
   presetLabel: string
+  dropzoneTitle: string
+  dropzoneBody: string
+  beforeAfterTitle: string
+  sourcePreviewTitle: string
+  outputPreviewTitle: string
+  workflowSnapshotTitle: string
+  privacyChecklistTitle: string
+  batchQueueTitle: string
+  batchQueueBody: string
+  batchQueueItems: string[]
+  relatedToolsTitle: string
+  relatedToolsBody: string
 }
 
 export const homeCopy: Record<LocaleCode, HomeCopy> = {
@@ -59,10 +72,11 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     allCategories: 'All image tools',
     noResultsTitle: 'No image tools matched',
     noResultsBody: 'Clear the search or choose another image task.',
+    localBadgeLabel: 'Local MVP',
     freeLabel: 'Free result',
     upgradeLabel: 'Upgrade path',
     detailCta: 'Open tool',
-    principlesTitle: 'Sprint 5.1 principles',
+    principlesTitle: 'Operating principles',
     principles: [
       { title: 'Basic need solved', body: 'The free MVP can produce a useful optimized image without an account or upload endpoint.' },
       { title: 'Pixels stay local', body: 'Selected files are handled with object URLs, a worker plan and Canvas output in the browser session.' },
@@ -84,10 +98,11 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     allCategories: 'Todas',
     noResultsTitle: 'Nenhuma ferramenta encontrada',
     noResultsBody: 'Limpe a busca ou escolha outra tarefa.',
+    localBadgeLabel: 'MVP local',
     freeLabel: 'Resultado gratuito',
     upgradeLabel: 'Caminho de upgrade',
     detailCta: 'Abrir ferramenta',
-    principlesTitle: 'Principios da Sprint 5.1',
+    principlesTitle: 'Principios operacionais',
     principles: [
       { title: 'Necessidade basica', body: 'O MVP gratuito gera uma imagem otimizada util sem conta nem endpoint de upload.' },
       { title: 'Pixels locais', body: 'Arquivos selecionados usam object URLs, plano em worker e Canvas apenas na sessao do navegador.' },
@@ -109,10 +124,11 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     allCategories: 'Todas',
     noResultsTitle: 'Sin herramientas',
     noResultsBody: 'Borra la busqueda o elige otra tarea.',
+    localBadgeLabel: 'MVP local',
     freeLabel: 'Resultado gratis',
     upgradeLabel: 'Ruta de upgrade',
     detailCta: 'Abrir',
-    principlesTitle: 'Principios Sprint 5.1',
+    principlesTitle: 'Principios operativos',
     principles: [
       { title: 'Necesidad basica', body: 'El MVP gratis produce una imagen util sin cuenta ni endpoint de subida.' },
       { title: 'Pixeles locales', body: 'Los archivos usan object URLs, plan en worker y Canvas en la sesion del navegador.' },
@@ -134,10 +150,11 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     allCategories: 'Toutes',
     noResultsTitle: 'Aucun outil',
     noResultsBody: 'Effacez la recherche ou choisissez une autre tache.',
+    localBadgeLabel: 'MVP local',
     freeLabel: 'Resultat gratuit',
     upgradeLabel: 'Offre payante',
     detailCta: 'Ouvrir',
-    principlesTitle: 'Principes Sprint 5.1',
+    principlesTitle: 'Principes operationnels',
     principles: [
       { title: 'Besoin de base', body: 'Le MVP gratuit produit une image utile sans compte ni upload.' },
       { title: 'Pixels locaux', body: 'Les fichiers utilisent des object URLs, un plan worker et Canvas dans la session navigateur.' },
@@ -159,10 +176,11 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     allCategories: 'Alle',
     noResultsTitle: 'Keine Tools',
     noResultsBody: 'Suche leeren oder andere Aufgabe waehlen.',
+    localBadgeLabel: 'Lokales MVP',
     freeLabel: 'Kostenloses Ergebnis',
     upgradeLabel: 'Upgrade-Pfad',
     detailCta: 'Tool oeffnen',
-    principlesTitle: 'Sprint-5.1-Prinzipien',
+    principlesTitle: 'Betriebsprinzipien',
     principles: [
       { title: 'Basisbedarf geloest', body: 'Das kostenlose MVP erzeugt ein brauchbares optimiertes Bild ohne Konto oder Upload-Endpunkt.' },
       { title: 'Pixel bleiben lokal', body: 'Dateien werden mit Object URLs, Worker-Plan und Canvas nur in der Browser-Sitzung verarbeitet.' },
@@ -191,7 +209,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     freeCheckLabel: 'Free image workflow',
     upgradePathLabel: 'Upgrade path',
     contentQualityBody: 'This page combines a working browser-side image tool, visible file limits, FAQ and review date.',
-    privacyNote: 'Choose one image. PixelBatch does not upload files, store pixels, use localStorage, use sessionStorage or send image values to analytics in Sprint 5.1.',
+    privacyNote: 'Choose one image. PixelBatch does not upload files, store pixels, use localStorage, use sessionStorage or send image values to analytics.',
     invalidResultTitle: 'Check the image settings',
     pageStatusLabel: 'Image tool status',
     liveTitle: 'Client-side MVP',
@@ -205,6 +223,18 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     heightLabel: 'Height',
     cropLabel: 'Crop profile',
     presetLabel: 'Social preset',
+    dropzoneTitle: 'Drop or choose one image',
+    dropzoneBody: 'PNG, JPEG, WebP or browser-supported AVIF up to 10 MB. The file stays in this tab.',
+    beforeAfterTitle: 'Before and after',
+    sourcePreviewTitle: 'Source image',
+    outputPreviewTitle: 'Output image',
+    workflowSnapshotTitle: 'Workflow snapshot',
+    privacyChecklistTitle: 'Privacy checklist',
+    batchQueueTitle: 'Batch queue gated',
+    batchQueueBody: 'The paid path is designed for folders, queues, saved presets and automation after upload, retention and billing gates.',
+    batchQueueItems: ['Folders and multi-file queues', 'Saved presets and naming rules', 'API, integrations and high-resolution jobs', 'AI/background-removal providers'],
+    relatedToolsTitle: 'Related image tools',
+    relatedToolsBody: 'Continue with another local transform without uploading the file.',
   },
   'pt-br': {
     breadcrumbHome: 'PixelBatch',
@@ -234,6 +264,18 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     heightLabel: 'Altura',
     cropLabel: 'Perfil de corte',
     presetLabel: 'Preset social',
+    dropzoneTitle: 'Solte ou escolha uma imagem',
+    dropzoneBody: 'PNG, JPEG, WebP ou AVIF suportado ate 10 MB. O arquivo fica nesta aba.',
+    beforeAfterTitle: 'Antes e depois',
+    sourcePreviewTitle: 'Imagem original',
+    outputPreviewTitle: 'Imagem final',
+    workflowSnapshotTitle: 'Resumo do workflow',
+    privacyChecklistTitle: 'Checklist de privacidade',
+    batchQueueTitle: 'Fila em lote bloqueada',
+    batchQueueBody: 'O caminho pago cobre pastas, filas, presets salvos e automacao apos gates de upload, retencao e billing.',
+    batchQueueItems: ['Pastas e filas multi-arquivo', 'Presets salvos e regras de nome', 'API, integracoes e jobs em alta resolucao', 'Provedores de IA/remocao de fundo'],
+    relatedToolsTitle: 'Ferramentas relacionadas',
+    relatedToolsBody: 'Continue com outra transformacao local sem fazer upload.',
   },
   es: {
     breadcrumbHome: 'PixelBatch',
@@ -263,6 +305,18 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     heightLabel: 'Alto',
     cropLabel: 'Perfil de recorte',
     presetLabel: 'Preset social',
+    dropzoneTitle: 'Suelta o elige una imagen',
+    dropzoneBody: 'PNG, JPEG, WebP o AVIF soportado hasta 10 MB. El archivo queda en esta pestana.',
+    beforeAfterTitle: 'Antes y despues',
+    sourcePreviewTitle: 'Imagen original',
+    outputPreviewTitle: 'Imagen final',
+    workflowSnapshotTitle: 'Resumen del workflow',
+    privacyChecklistTitle: 'Checklist de privacidad',
+    batchQueueTitle: 'Cola batch bloqueada',
+    batchQueueBody: 'El camino pago cubre carpetas, colas, presets guardados y automatizacion tras gates de upload, retencion y billing.',
+    batchQueueItems: ['Carpetas y colas multiarchivo', 'Presets guardados y reglas de nombre', 'API, integraciones y jobs de alta resolucion', 'Proveedores de IA/remocion de fondo'],
+    relatedToolsTitle: 'Herramientas relacionadas',
+    relatedToolsBody: 'Continua con otra transformacion local sin subir el archivo.',
   },
   fr: {
     breadcrumbHome: 'PixelBatch',
@@ -292,6 +346,18 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     heightLabel: 'Hauteur',
     cropLabel: 'Profil de crop',
     presetLabel: 'Preset social',
+    dropzoneTitle: 'Deposez ou choisissez une image',
+    dropzoneBody: 'PNG, JPEG, WebP ou AVIF supporte jusqu a 10 MB. Le fichier reste dans cet onglet.',
+    beforeAfterTitle: 'Avant et apres',
+    sourcePreviewTitle: 'Image source',
+    outputPreviewTitle: 'Image finale',
+    workflowSnapshotTitle: 'Resume du workflow',
+    privacyChecklistTitle: 'Checklist confidentialite',
+    batchQueueTitle: 'File de lots gatee',
+    batchQueueBody: 'Le chemin payant couvre dossiers, files, presets sauvegardes et automatisation apres gates upload, retention et billing.',
+    batchQueueItems: ['Dossiers et files multi-fichiers', 'Presets sauvegardes et regles de nom', 'API, integrations et jobs haute resolution', 'Fournisseurs IA/suppression de fond'],
+    relatedToolsTitle: 'Outils image lies',
+    relatedToolsBody: 'Continuez avec une autre transformation locale sans upload.',
   },
   de: {
     breadcrumbHome: 'PixelBatch',
@@ -321,6 +387,18 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     heightLabel: 'Hoehe',
     cropLabel: 'Zuschnittprofil',
     presetLabel: 'Social Preset',
+    dropzoneTitle: 'Bild ablegen oder waehlen',
+    dropzoneBody: 'PNG, JPEG, WebP oder unterstuetztes AVIF bis 10 MB. Die Datei bleibt in diesem Tab.',
+    beforeAfterTitle: 'Vorher und nachher',
+    sourcePreviewTitle: 'Quellbild',
+    outputPreviewTitle: 'Ausgabebild',
+    workflowSnapshotTitle: 'Workflow-Snapshot',
+    privacyChecklistTitle: 'Datenschutz-Checkliste',
+    batchQueueTitle: 'Batch-Warteschlange gesperrt',
+    batchQueueBody: 'Der Bezahlpfad deckt Ordner, Queues, gespeicherte Presets und Automatisierung nach Upload-, Retention- und Billing-Gates ab.',
+    batchQueueItems: ['Ordner und Mehrdatei-Queues', 'Gespeicherte Presets und Namensregeln', 'API, Integrationen und High-Res-Jobs', 'KI/Hintergrundentfernung-Provider'],
+    relatedToolsTitle: 'Verwandte Bildtools',
+    relatedToolsBody: 'Mit einer weiteren lokalen Transformation ohne Upload fortfahren.',
   },
 }
 

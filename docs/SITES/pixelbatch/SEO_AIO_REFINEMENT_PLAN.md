@@ -52,3 +52,9 @@ Medium if upload pages are thin or ads are close to file actions.
 - Image privacy content coverage.
 - Format glossary coverage.
 - Ecommerce preset SEO opportunity.
+
+## Sprint 7.11 execution notes
+
+- Image tool pages now expose clearer local-processing guidance, before/after framing, related tools and format/preset education.
+- Public copy no longer exposes internal sprint labels on app surfaces.
+- No forensic metadata-removal, AI/background-removal or bulk-processing claim was introduced before gates.

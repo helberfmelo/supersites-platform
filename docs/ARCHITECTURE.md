@@ -335,6 +335,7 @@ Sprint 5.1 adiciona o primeiro produto da Fase 5 em `apps/pixelbatch`.
 - A remocao de metadados e feita por reencode limpo de pixels visiveis, sem parsing/armazenamento EXIF/IPTC.
 - Analytics local permitido: eventos sanitizados `tool_viewed`, `tool_started`, `file_processed`, `tool_completed`, `tool_failed` e `file_downloaded` com `tool_slug`.
 - Nomes de arquivo, pixels, dimensoes, formatos escolhidos, metadados, tamanho de blob e conteudo de imagem nao devem ir para backend, logs, analytics ou data layer.
+- Sprint 7.11 adiciona refinamento benchmark apenas no frontend: dropzone com estado de arquivo, preview original/final, workflow steps, workflow snapshot, checklist de privacidade, related image tools e painel de batch queue gated.
 - Nao ha API de upload, storage local persistente, conta, batch worker, pasta/lote, integracao, alta resolucao, IA, billing, anuncio, worker de producao, cron ou webhook nesta sprint.
 - O manifesto de deploy conhece o build SSG, mas trafego publico real permanece placeholder ate existirem artifact gate, smoke publico e rollback especificos do PixelBatch.
 

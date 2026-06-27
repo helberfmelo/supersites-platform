@@ -9,6 +9,8 @@ import {
   formatBytes,
   getPixelBatchToolBySlug,
   getPixelBatchToolCopy,
+  getPixelBatchWorkflowSteps,
+  getRelatedPixelBatchTools,
   pixelBatchToolCatalog,
   pixelBatchToolSlugs,
   planPixelBatchTransform,
@@ -27,11 +29,23 @@ const sample: PixelBatchToolInput = {
 }
 
 describe('PixelBatch MVP', () => {
-  it('lists Sprint 5.1 tools in roadmap order', () => {
+  it('lists browser image tools in roadmap order', () => {
     expect(pixelBatchToolCatalog.map((tool) => tool.slug)).toEqual([...pixelBatchToolSlugs])
     expect(pixelBatchToolCatalog).toHaveLength(6)
     expect(getPixelBatchToolBySlug('image-compressor')?.localized.en.shortName).toBe('Compress')
     expect(getPixelBatchToolBySlug('missing')).toBeNull()
+  })
+
+  it('maps related tools and workflow steps for every image task', () => {
+    for (const slug of pixelBatchToolSlugs) {
+      const relatedTools = getRelatedPixelBatchTools(slug, 'en')
+      const workflowSteps = getPixelBatchWorkflowSteps(slug)
+
+      expect(relatedTools).toHaveLength(3)
+      expect(relatedTools.map((tool) => tool.slug)).not.toContain(slug)
+      expect(workflowSteps).toHaveLength(3)
+      expect(workflowSteps.every((step) => step.title.length > 4 && step.body.length > 20)).toBe(true)
+    }
   })
 
   it('keeps localized image content complete', () => {

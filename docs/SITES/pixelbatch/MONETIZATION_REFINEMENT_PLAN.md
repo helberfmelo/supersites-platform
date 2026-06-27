@@ -51,3 +51,9 @@ Medium due to uploads and previews. Keep monetization separated.
 - Batch processing gate.
 - AI/provider cost gate.
 - Upload retention matrix.
+
+## Sprint 7.11 execution notes
+
+- Batch, folders, saved presets, API, integrations, high-resolution jobs and AI/background-removal providers remain gated/inert upgrade messaging.
+- Free one-image browser processing remains complete without signup.
+- No upload endpoint, checkout, billing provider, ad serving, donation/support payment, affiliate link or paid API was activated.

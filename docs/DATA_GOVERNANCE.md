@@ -107,6 +107,7 @@
 - O app nao usa API de upload, backend de arquivo, `localStorage`, `sessionStorage`, IndexedDB ou cookies para inputs/outputs do PixelBatch.
 - Object URLs devem ser revogados apos preview/processamento/download para reduzir retencao em memoria.
 - Eventos locais permitidos devem conter apenas `tool_slug`, rota e locale; nunca parametros de arquivo, dimensoes, metadados, qualidade, formato escolhido, tamanho de saida ou conteudo de imagem.
+- Sprint 7.11 adiciona dropzone, preview original/final, workflow snapshot, checklist de privacidade, related tools e batch queue gated como apresentacao local do arquivo/resultado em memoria; esses elementos nao criam historico, storage persistente, identificador de conta ou nova coleta.
 - Processamento server-side futuro para batch, API, alta resolucao ou IA exige matriz de dados propria com finalidade, base legal, armazenamento, retencao curta, limpeza automatica, exportacao/exclusao, criptografia, sandbox e antivirus quando aplicavel.
 
 ## DocShift

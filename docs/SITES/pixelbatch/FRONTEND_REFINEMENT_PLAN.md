@@ -53,3 +53,9 @@ Medium; ads/support must stay away from upload, preview, progress and download c
 - Browser memory readiness.
 - Ecommerce preset readiness.
 - Batch/API/AI gate.
+
+## Sprint 7.11 execution notes
+
+- P0 completed locally with dropzone, selected-file state, before/after preview, workflow steps, download/reset controls, privacy checklist and related image tools.
+- P1 queue planning is represented as gated batch queue messaging without enabling server upload.
+- Mobile and desktop screenshots from the Playwright report were inspected with no incoherent overlap or text overflow.

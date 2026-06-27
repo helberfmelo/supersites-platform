@@ -8,6 +8,8 @@ import {
   getCategoryLabel,
   getPixelBatchToolBySlug,
   getPixelBatchToolCopy,
+  getPixelBatchWorkflowSteps,
+  getRelatedPixelBatchTools,
   type PixelBatchCropPreset,
   type PixelBatchOutputFormat,
   type PixelBatchSocialPreset,
@@ -52,11 +54,14 @@ const hasRun = ref(false)
 const isRunning = ref(false)
 const isDownloading = ref(false)
 const result = ref<PixelBatchToolResult | null>(null)
+const sourcePreviewUrl = ref('')
 const previewUrl = ref('')
 const outputFileName = ref('')
 const outputSize = ref(0)
 const resultTitle = computed(() => result.value?.ok === false ? shellCopy.invalidResultTitle : copy.resultLabel)
 const selectedFileLabel = computed(() => selectedFile.value ? `${selectedFile.value.name} (${formatBytes(selectedFile.value.size)})` : shellCopy.privacyNote)
+const relatedTools = computed(() => getRelatedPixelBatchTools(tool.slug, locale))
+const workflowSteps = computed(() => getPixelBatchWorkflowSteps(tool.slug))
 const displayedMeta = computed(() => {
   if (!result.value?.ok) {
     return []
@@ -68,6 +73,26 @@ const displayedMeta = computed(() => {
     { label: 'Worker', value: result.value.plan?.workerUsed ? 'browser worker' : 'local fallback' },
   ]
 })
+const workflowChecklist = computed(() => [
+  {
+    label: 'File',
+    value: selectedFile.value ? `${selectedFile.value.type || 'image'} / ${formatBytes(selectedFile.value.size)}` : 'Waiting for one local image',
+  },
+  {
+    label: 'Render',
+    value: result.value?.plan
+      ? `${result.value.plan.outputWidth} x ${result.value.plan.outputHeight} ${result.value.plan.outputExtension.toUpperCase()}`
+      : 'Canvas output planned after processing',
+  },
+  {
+    label: 'Storage',
+    value: 'No upload endpoint, localStorage, sessionStorage or account.',
+  },
+  {
+    label: 'Upgrade gate',
+    value: result.value?.plan?.upgradeGateNote ?? 'Batch, API, high-res queues and AI remain inactive.',
+  },
+])
 
 const formatOptions: Array<{ value: PixelBatchOutputFormat; label: string }> = [
   { value: 'image/webp', label: 'WebP' },
@@ -96,6 +121,13 @@ function revokePreviewUrl(): void {
   }
 }
 
+function revokeSourcePreviewUrl(): void {
+  if (sourcePreviewUrl.value) {
+    URL.revokeObjectURL(sourcePreviewUrl.value)
+    sourcePreviewUrl.value = ''
+  }
+}
+
 function clearResult(): void {
   revokePreviewUrl()
   result.value = null
@@ -107,6 +139,10 @@ function onFileSelected(event: Event): void {
   const input = event.target as HTMLInputElement
   selectedFile.value = input.files?.[0] ?? null
   hasRun.value = false
+  revokeSourcePreviewUrl()
+  if (selectedFile.value) {
+    sourcePreviewUrl.value = URL.createObjectURL(selectedFile.value)
+  }
   clearResult()
 }
 
@@ -308,6 +344,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
+  revokeSourcePreviewUrl()
   revokePreviewUrl()
 })
 
@@ -362,7 +399,7 @@ useHead({
       <div>
         <div class="detail-topline">
           <p class="eyebrow">{{ getCategoryLabel(tool.category, locale) }}</p>
-          <span class="status">Sprint 5.1</span>
+          <span class="status">Local MVP</span>
         </div>
         <h1 :id="`${tool.slug}-title`">{{ copy.title }}</h1>
         <p class="lead">{{ copy.headline }}</p>
@@ -392,8 +429,10 @@ useHead({
           <h2 :id="`${tool.slug}-input`">{{ shellCopy.inputTitle }}</h2>
           <p>{{ copy.description }}</p>
           <form class="utility-form image-form" @submit.prevent="runTool">
-            <div class="field">
+            <div class="field dropzone">
               <label :for="`${tool.slug}-file`">{{ shellCopy.fileLabel }}</label>
+              <strong>{{ shellCopy.dropzoneTitle }}</strong>
+              <span>{{ shellCopy.dropzoneBody }}</span>
               <input
                 :id="`${tool.slug}-file`"
                 type="file"
@@ -464,6 +503,13 @@ useHead({
               </button>
             </div>
           </form>
+
+          <div class="workflow-steps" :aria-label="shellCopy.workflowSnapshotTitle">
+            <div v-for="step in workflowSteps" :key="step.title">
+              <strong>{{ step.title }}</strong>
+              <span>{{ step.body }}</span>
+            </div>
+          </div>
         </section>
 
         <section class="result-panel" aria-live="polite" :aria-busy="isRunning" :aria-labelledby="`${tool.slug}-result`">
@@ -473,6 +519,13 @@ useHead({
           <p v-else-if="!hasRun">{{ shellCopy.privacyNote }}</p>
           <p v-else-if="result && !result.ok" class="result-error">{{ result.error }}</p>
 
+          <figure v-if="sourcePreviewUrl && !previewUrl" class="image-preview image-preview--source">
+            <figcaption>{{ shellCopy.sourcePreviewTitle }}</figcaption>
+            <div class="image-preview__frame">
+              <img :src="sourcePreviewUrl" alt="Original image preview">
+            </div>
+          </figure>
+
           <template v-else-if="result?.ok && previewUrl">
             <div class="result-meta">
               <div v-for="item in displayedMeta" :key="`${item.label}-${item.value}`">
@@ -481,12 +534,24 @@ useHead({
               </div>
             </div>
 
-            <figure class="image-preview">
-              <div class="image-preview__frame">
-                <img :src="previewUrl" alt="Processed image preview">
+            <section class="before-after" :aria-labelledby="`${tool.slug}-before-after`">
+              <h3 :id="`${tool.slug}-before-after`">{{ shellCopy.beforeAfterTitle }}</h3>
+              <div class="before-after-grid">
+                <figure class="image-preview">
+                  <figcaption>{{ shellCopy.sourcePreviewTitle }}</figcaption>
+                  <div class="image-preview__frame">
+                    <img v-if="sourcePreviewUrl" :src="sourcePreviewUrl" alt="Original image preview">
+                  </div>
+                </figure>
+                <figure class="image-preview">
+                  <figcaption>{{ shellCopy.outputPreviewTitle }}</figcaption>
+                  <div class="image-preview__frame">
+                    <img :src="previewUrl" alt="Processed image preview">
+                  </div>
+                </figure>
               </div>
-              <figcaption>{{ result.plan?.privacyNote }}</figcaption>
-            </figure>
+              <p>{{ result.plan?.privacyNote }}</p>
+            </section>
 
             <ul v-if="result.plan?.warnings.length" class="warning-list">
               <li v-for="warning in result.plan.warnings" :key="warning">{{ warning }}</li>
@@ -495,22 +560,67 @@ useHead({
         </section>
       </div>
 
-      <aside class="band" :aria-labelledby="`${tool.slug}-scope`">
-        <h2 :id="`${tool.slug}-scope`">{{ shellCopy.freeCheckLabel }}</h2>
-        <dl class="fact-list">
-          <div>
-            <dt>{{ shellCopy.freeCheckLabel }}</dt>
-            <dd>{{ copy.freeScope }}</dd>
+      <aside class="tool-sidebar">
+        <section class="band" :aria-labelledby="`${tool.slug}-scope`">
+          <h2 :id="`${tool.slug}-scope`">{{ shellCopy.freeCheckLabel }}</h2>
+          <dl class="fact-list">
+            <div>
+              <dt>{{ shellCopy.freeCheckLabel }}</dt>
+              <dd>{{ copy.freeScope }}</dd>
+            </div>
+            <div>
+              <dt>{{ shellCopy.upgradePathLabel }}</dt>
+              <dd>{{ copy.upgradeScope }}</dd>
+            </div>
+            <div>
+              <dt>File safety</dt>
+              <dd>Server-side batch, API and AI processing require upload validation, sandboxing, retention and antivirus gates before activation.</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="band" :aria-labelledby="`${tool.slug}-workflow`">
+          <h2 :id="`${tool.slug}-workflow`">{{ shellCopy.workflowSnapshotTitle }}</h2>
+          <div class="privacy-list">
+            <div v-for="item in workflowChecklist" :key="item.label">
+              <strong>{{ item.label }}</strong>
+              <span>{{ item.value }}</span>
+            </div>
           </div>
-          <div>
-            <dt>{{ shellCopy.upgradePathLabel }}</dt>
-            <dd>{{ copy.upgradeScope }}</dd>
+        </section>
+
+        <section class="band" :aria-labelledby="`${tool.slug}-privacy`">
+          <h2 :id="`${tool.slug}-privacy`">{{ shellCopy.privacyChecklistTitle }}</h2>
+          <ul class="warning-list">
+            <li>No image bytes leave the browser session.</li>
+            <li>Object URLs are revoked when the page resets or unloads.</li>
+            <li>Analytics keeps only the tool slug, locale and route.</li>
+          </ul>
+        </section>
+
+        <section class="band" :aria-labelledby="`${tool.slug}-batch`">
+          <h2 :id="`${tool.slug}-batch`">{{ shellCopy.batchQueueTitle }}</h2>
+          <p>{{ shellCopy.batchQueueBody }}</p>
+          <ul class="warning-list">
+            <li v-for="item in shellCopy.batchQueueItems" :key="item">{{ item }}</li>
+          </ul>
+        </section>
+
+        <section class="band" :aria-labelledby="`${tool.slug}-related`">
+          <h2 :id="`${tool.slug}-related`">{{ shellCopy.relatedToolsTitle }}</h2>
+          <p>{{ shellCopy.relatedToolsBody }}</p>
+          <div class="related-list">
+            <NuxtLink
+              v-for="relatedTool in relatedTools"
+              :key="relatedTool.slug"
+              class="related-card"
+              :to="localizedToolPath(locale, relatedTool.slug)"
+            >
+              <strong>{{ relatedTool.title }}</strong>
+              <span>{{ relatedTool.description }}</span>
+            </NuxtLink>
           </div>
-          <div>
-            <dt>File safety</dt>
-            <dd>Server-side batch, API and AI processing require upload validation, sandboxing, retention and antivirus gates before activation.</dd>
-          </div>
-        </dl>
+        </section>
       </aside>
     </section>
 

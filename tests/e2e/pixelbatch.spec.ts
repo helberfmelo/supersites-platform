@@ -72,6 +72,7 @@ test.describe('PixelBatch MVP', () => {
     )
     await expect(page.getByRole('heading', { name: 'Image Compressor' })).toBeVisible()
     await expect(page.getByText('6 browser tools')).toBeVisible()
+    await expect(page.getByText('Local MVP')).toHaveCount(6)
     await expectNoHorizontalOverflow(page)
 
     const screenshot = await page.screenshot({ fullPage: true })
@@ -85,14 +86,23 @@ test.describe('PixelBatch MVP', () => {
 
     await page.setViewportSize({ width: 390, height: 1180 })
     await page.goto('/en/tools/image-compressor?file=private-name.png&w=9999')
+    await expect(page.getByText('Drop or choose one image')).toBeVisible()
     await uploadFixture(page)
+    await expect(page.getByAltText('Original image preview')).toBeVisible()
     await page.getByLabel(/Output format/).selectOption('image/webp')
     await page.getByLabel(/Quality/).fill('70')
     await page.getByRole('button', { name: 'Process image' }).click()
 
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Image Compressor')
+    await expect(page.getByRole('heading', { name: 'Before and after' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Workflow snapshot' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Privacy checklist' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Batch queue gated' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Related image tools' })).toBeVisible()
     await expect(page.getByAltText('Processed image preview')).toBeVisible()
     await expect(page.getByText('Actual output')).toBeVisible()
+    await expect(page.getByText('No image bytes leave the browser session.')).toBeVisible()
+    await expect(page.getByRole('link', { name: /Image Resizer/ })).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)
     await expectNoHorizontalOverflow(page)
 

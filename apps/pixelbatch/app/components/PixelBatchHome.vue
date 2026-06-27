@@ -65,7 +65,7 @@ useHead(() => ({
         <p class="lead">{{ copy.lead }}</p>
       </div>
 
-      <aside class="status-panel" aria-label="Sprint 5.1 status">
+      <aside class="status-panel" aria-label="PixelBatch status">
         <div v-for="row in copy.statusRows" :key="row.title" class="status-panel__row">
           <div>
             <strong>{{ row.title }}</strong>
@@ -112,7 +112,7 @@ useHead(() => ({
         <div>
           <div class="tool-card__topline">
             <span class="category">{{ getCategoryLabel(tool.category, locale) }}</span>
-            <span :class="getStatusBadgeClass('foundation')">Sprint 5.1</span>
+            <span :class="getStatusBadgeClass('foundation')">{{ copy.localBadgeLabel }}</span>
           </div>
           <h2>{{ getPixelBatchToolCopy(tool, locale).title }}</h2>
           <p>{{ getPixelBatchToolCopy(tool, locale).headline }}</p>

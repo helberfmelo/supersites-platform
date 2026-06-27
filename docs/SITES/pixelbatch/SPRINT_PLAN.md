@@ -31,3 +31,10 @@ Data-base: 2026-06-27
 
 - No server-side uploads, AI provider, batch worker, checkout, ad serving or API.
 - No analytics values from files, dimensions, pixels, metadata or output settings.
+
+## Sprint 7.11 local execution
+
+- Implemented dropzone state, original preview, before/after output preview, workflow steps, workflow snapshot, privacy checklist, related image tools and batch queue gated panels.
+- No upload endpoint, storage, server-side image processing, batch worker, AI provider, checkout, billing, ad serving or analytics contract changed.
+- Local validation passed: `pnpm test:pixelbatch`, `pnpm build:pixelbatch`, `pnpm validate:pixelbatch-preview` and `pnpm test:e2e:pixelbatch`.
+- Playwright screenshots were inspected for home desktop, compressor mobile and privacy mobile.

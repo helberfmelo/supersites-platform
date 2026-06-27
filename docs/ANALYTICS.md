@@ -194,6 +194,8 @@ Nao registrar em analytics:
 
 Sprint 5.1 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, batch, API publica, storage persistente, upload endpoint, IA, billing ou workers de producao do PixelBatch.
 
+Sprint 7.11 nao altera o contrato de eventos: dropzone, preview original/final, workflow snapshot, checklist de privacidade, related tools e batch queue gated sao UI local sem novas propriedades de analytics. GA4, GTM, AdSense, backend de analytics externo, contas, batch, API publica, storage persistente, upload endpoint, IA, billing ou workers de producao do PixelBatch continuam desativados.
+
 ## DocShift tools
 
 As ferramentas do DocShift podem registrar apenas eventos de produto de baixo risco, como `tool_viewed`, `tool_started`, `file_processed`, `tool_completed`, `tool_failed` e `file_downloaded`, usando `tool_slug`, rota e locale.
