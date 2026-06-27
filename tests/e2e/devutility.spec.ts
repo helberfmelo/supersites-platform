@@ -59,6 +59,8 @@ test.describe('DevUtility Lab MVP', () => {
     )
     await expect(page.getByRole('heading', { name: 'Structured Data Formatter' })).toBeVisible()
     await expect(page.getByText('No storage or logging')).toBeVisible()
+    await expect(page.getByText('Local MVP').first()).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Workbench principles' })).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
     const screenshot = await page.screenshot({ fullPage: true })
@@ -77,7 +79,14 @@ test.describe('DevUtility Lab MVP', () => {
     await page.getByRole('button', { name: 'Run tool' }).click()
 
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Structured Data Formatter')
+    await expect(page.getByRole('heading', { name: 'Result ready' })).toBeVisible()
     await expect(page.locator('.result-output')).toContainText('"a": 1')
+    await expect(page.getByRole('button', { name: 'Copy result' })).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Download .txt' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Related tools' })).toBeVisible()
+    await expect(page.getByRole('link', { name: /Base64 Converter/ })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Commercial features gated' })).toBeVisible()
+    await expect(page.getByText('Private snippet history')).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)
     await expectNoHorizontalOverflow(page)
 

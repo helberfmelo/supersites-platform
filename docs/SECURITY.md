@@ -94,10 +94,10 @@
 
 ## DevUtility Lab client-side tools
 
-- Ferramentas da Sprint 3.2 rodam no navegador com Web Worker quando suportado e fallback local sem chamadas de rede.
+- Ferramentas do DevUtility Lab rodam no navegador com Web Worker quando suportado e fallback local sem chamadas de rede.
 - Snippets sao limitados a 200 KB no MVP para evitar travamento de UI e abuso por payload excessivo.
 - JSON/XML/YAML/CSV, Base64, JWT, regex, diff, cron, UUID, timestamp e hashes nao devem ser enviados a backend, logs, analytics ou data layer.
-- O app nao deve persistir input ou resultado em `localStorage`, `sessionStorage`, IndexedDB ou cookies nesta sprint.
+- O app nao deve persistir input ou resultado em `localStorage`, `sessionStorage`, IndexedDB ou cookies; downloads de resultado sao arquivos locais iniciados pelo usuario.
 - Textos da UI devem orientar o usuario a nao colar segredos quando isso for evitavel; ainda assim a seguranca assume que entradas podem conter tokens ou chaves e minimiza coleta.
 
 ## TimeNexus client-side tools

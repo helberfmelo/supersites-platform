@@ -10,6 +10,13 @@ Developer utilities for parsing, encoding, diffs, regex, cron, UUID, timestamp a
 - Analytics events are limited to `tool_slug`, route, locale and event name; pasted snippets and results are not tracked.
 - Ads, billing, private history, workspaces, batch processing, larger files and API access remain gated.
 
+## Sprint 7.5 benchmark refinement
+
+- Tool pages use a split local workbench with examples, input metrics and empty/running/success/error states.
+- Successful results can be copied or downloaded as local `.txt` files without product API calls.
+- Each tool page includes common-error guidance, related tools and an inert gated upgrade panel.
+- Public production remains a placeholder until app-specific artifact validation, smoke and rollback exist.
+
 ## Local Commands
 
 ```powershell

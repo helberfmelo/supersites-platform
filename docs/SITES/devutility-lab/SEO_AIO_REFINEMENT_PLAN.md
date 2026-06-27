@@ -45,6 +45,13 @@ Low to medium; ensure pages have enough educational content before ads.
 - Every tool page has example, FAQ, limitations and related tools.
 - No generated mass pages without implementation.
 
+## Sprint 7.5 implementation status
+
+- Each implemented tool page now has original example guidance, common-error guidance, limitations, FAQ and related tools.
+- Canonical, hreflang, sitemap and schema remain generated from the existing Nuxt catalog/routes.
+- Public-facing primary labels were adjusted to product language instead of internal sprint labels.
+- No new mass pages or unimplemented utility routes were created.
+
 ## Dashboard backlog
 
 - Tool pages missing FAQ.

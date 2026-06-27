@@ -11,7 +11,8 @@ Data-base: 2026-06-27
 
 ## Screenshots available
 
-- No DevUtility-specific screenshots are present yet.
+- DevUtility Playwright report screenshots are available under `artifacts/playwright-devutility-report/data/` after Sprint 7.5 local validation.
+- Inspected screenshots covered home desktop, workbench mobile and privacy mobile.
 
 ## Useful patterns to learn
 
@@ -30,3 +31,9 @@ Data-base: 2026-06-27
 - Create a consistent workbench pattern across JSON/XML/YAML/CSV, Base64, JWT, regex, diff, cron, UUID, timestamp and hash tools.
 - Improve error and empty states.
 - Strengthen local-processing trust cues.
+
+## Sprint 7.5 notes
+
+- Implemented a reusable split workbench pattern with input metrics, example preset, result states, copy/download controls and privacy cue.
+- Added common-error guidance and related tools on every tool page.
+- Kept benchmark learning at the pattern level; no third-party copy, assets, code, layout or legal text were reused.

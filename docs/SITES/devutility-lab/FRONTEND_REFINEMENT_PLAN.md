@@ -47,6 +47,13 @@ Medium; ad/support blocks must not sit near editors, errors or copy buttons.
 - Errors are actionable and do not echo secrets unnecessarily.
 - Copy/download states are stable.
 
+## Sprint 7.5 implementation status
+
+- P0 implemented locally: split input/output workbench, example preset/reset, empty/running/success/error states, copy/download actions and privacy cue near the editor.
+- P1 partially implemented locally: related tools are shown per tool page using the existing catalog taxonomy.
+- P2 remains gated: workspaces, snippets, private history, teams, API, larger files and billing are not active.
+- Playwright desktop/mobile screenshots were inspected under `artifacts/playwright-devutility-report/data/`; no incoherent overlap or horizontal overflow was observed.
+
 ## Dashboard backlog
 
 - Local-processing coverage.

@@ -6,6 +6,7 @@ import {
   createToolStructuredData,
   executeTool,
   filterTools,
+  getRelatedTools,
   getToolBySlug,
   getToolCopy,
   toolCatalog,
@@ -14,7 +15,7 @@ import {
 import { createDevUtilityToolEvent } from '../app/utils/analytics'
 
 describe('DevUtility Lab MVP', () => {
-  it('lists Sprint 3.2 tools in roadmap order', () => {
+  it('lists tools in roadmap order', () => {
     expect(toolCatalog.map((tool) => tool.slug)).toEqual([...toolSlugs])
     expect(toolCatalog).toHaveLength(9)
     expect(getToolBySlug('structured-data-formatter')?.localized.en.shortName).toBe('Formatter')
@@ -29,6 +30,8 @@ describe('DevUtility Lab MVP', () => {
         expect(copy.headline.length).toBeGreaterThan(50)
         expect(copy.contentSections).toHaveLength(3)
         expect(copy.faq).toHaveLength(2)
+        expect(copy.exampleBody.length).toBeGreaterThan(60)
+        expect(copy.commonErrorBody.length).toBeGreaterThan(60)
         expect(copy.freeScope.length).toBeGreaterThan(20)
         expect(copy.upgradeScope.length).toBeGreaterThan(20)
       }
@@ -140,5 +143,16 @@ describe('DevUtility Lab MVP', () => {
     expect(event.routePath).toBe('/supersites/devutility-lab/en/tools/jwt-inspector')
     expect(event.properties).toEqual({ tool_slug: 'jwt-inspector' })
     expect(JSON.stringify(event)).not.toContain('secret')
+  })
+
+  it('returns related tools without duplicating the current utility', () => {
+    const regex = getToolBySlug('regex-tester')
+    expect(regex).not.toBeNull()
+
+    const related = getRelatedTools(regex!)
+
+    expect(related).toHaveLength(3)
+    expect(related.map((tool) => tool.slug)).not.toContain('regex-tester')
+    expect(related[0].slug).toBe('text-diff')
   })
 })

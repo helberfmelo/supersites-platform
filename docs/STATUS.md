@@ -16,6 +16,8 @@ Na Sprint 7.3, o NetProbe Atlas recebeu o refinamento BR-NETPROBE: pagina `what-
 
 Na Sprint 7.4, o CalcHarbor recebeu o refinamento BR-CALCHARBOR: paginas de calculadora com resultado ao vivo client-side, memoria de calculo, interpretacao por estado, disclaimers de planejamento, links relacionados e painel de upgrades de workflow inert/gated. Quality Gate `28286999292`, Deploy Dry Run `28286999285` e smokes publicos de Hub/control-plane/NetProbe passaram. As formulas existentes nao mudaram; testes reforcam que analytics continua limitado a `tool_slug`/rota sanitizada e nao recebe entradas, resultados ou valores calculados. O CalcHarbor continua placeholder publico ate existir artifact gate, smoke publico e rollback especificos. Ads, billing, checkout, doacao real, afiliado real, API paga, workers e deploy real do placeholder seguem desativados.
 
+Na Sprint 7.5, o DevUtility Lab recebeu o refinamento BR-DEVUTILITY em validacao local: paginas de ferramenta com workbench split input/output, preset de exemplo, estados vazio/processando/sucesso/erro, metricas locais, copiar/baixar `.txt`, orientacao de privacidade proxima ao editor, links relacionados, conteudo de erro comum e painel de upgrades gated/inert. O processamento continua browser-side via Web Worker/fallback; snippets, tokens, regex samples, hashes, resultados e downloads nao sao armazenados, enviados a API ou incluidos em analytics. O DevUtility Lab continua placeholder publico ate existir artifact gate, smoke publico e rollback especificos. Ads, billing, checkout, workspace, historico salvo, API paga, worker de producao, analytics externo e deploy real do placeholder seguem desativados.
+
 ## Estado local verificado
 
 - Raiz local: `D:\Projetos\supersites`.
@@ -902,6 +904,16 @@ Na Sprint 7.4, o CalcHarbor recebeu o refinamento BR-CALCHARBOR: paginas de calc
   - GitHub Actions `Deploy Dry Run` run `28286999285` passou e gerou plano sem mutar producao; o upload de artifact registrou a anotacao conhecida de quota GitHub Actions, mas o run concluiu com sucesso e o plano permaneceu no job summary.
   - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis; CalcHarbor segue placeholder publico.
   - Nenhum anuncio real, checkout, billing real, doacao ativa, afiliado real, webhook externo, worker, API paga, analytics externo ou deploy real do CalcHarbor foi ativado.
+- Sprint 7.5 validation:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/ROADMAP.md`, `docs/STATUS.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local, docs de benchmark, docs do DevUtility Lab e todos os ADRs existentes ate `0030`.
+  - Estado inicial verificado: `main...origin/main` limpo no commit `5ec430b`, GitHub Actions recentes verdes e smokes publicos de Hub, control-plane/API e NetProbe passando antes da implementacao.
+  - DevUtility Lab refinado sem endpoint novo: workbench input/output, exemplo carregavel, estados vazio/processando/sucesso/erro, metricas locais, copiar/baixar resultado, privacidade visivel, related tools, erro comum por ferramenta e upgrade gated/inert para historico, workspaces, lotes, arquivos maiores, API e ad-free.
+  - Conteudo publico removeu rotulos internos de sprint nas superficies principais e manteve linguagem de produto; paginas legais/status continuam deixando claro que o deploy publico real segue bloqueado ate existirem artifact gate, smoke e rollback especificos.
+  - Validacao DevUtility local passou: `pnpm test:devutility` com 8 testes, `pnpm build:devutility`, `pnpm validate:devutility-preview` com asset `/_nuxt/CPXBWHyy.js` e `pnpm test:e2e:devutility` com 3 testes Playwright.
+  - Screenshots locais do report Playwright foram inspecionados em `artifacts/playwright-devutility-report/data/`; home desktop, workbench mobile e privacidade mobile ficaram sem sobreposicao incoerente ou overflow visual.
+  - Gates finais locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation; `git diff --check` exibiu apenas avisos CRLF nos arquivos tocados.
+  - Feature commit, Quality Gate, Deploy Dry Run remoto, smokes publicos pos-push e fechamento docs-only serao registrados apos push e monitoramento.
+  - Nenhum storage de snippets, conta, workspace salvo, historico, API paga, anuncio real, checkout, billing real, doacao ativa, afiliado real, webhook externo, worker de producao, analytics externo ou deploy real do DevUtility Lab foi ativado.
 
 ## Pendencias criticas
 

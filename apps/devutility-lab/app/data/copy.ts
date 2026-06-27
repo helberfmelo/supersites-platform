@@ -22,8 +22,26 @@ export interface ShellCopy {
   breadcrumbHome: string
   runLabel: string
   resetLabel: string
+  workbenchTitle: string
+  workbenchBody: string
   inputTitle: string
   resultTitle: string
+  exampleTitle: string
+  privacyTitle: string
+  emptyResultTitle: string
+  emptyResultBody: string
+  runningResultTitle: string
+  runningResultBody: string
+  successResultTitle: string
+  successResultBody: string
+  resultActionsLabel: string
+  copyResultLabel: string
+  copiedResultLabel: string
+  copyFailedLabel: string
+  downloadResultLabel: string
+  relatedTitle: string
+  relatedBody: string
+  openRelatedLabel: string
   guideTitle: string
   faqTitle: string
   methodologyLabel: string
@@ -38,6 +56,7 @@ export interface ShellCopy {
   liveBody: string
   gatedTitle: string
   gatedBody: string
+  gatedItems: string[]
 }
 
 export const homeCopy: Record<LocaleCode, HomeCopy> = {
@@ -54,7 +73,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Free result',
     upgradeLabel: 'Upgrade path',
     detailCta: 'Open tool',
-    principlesTitle: 'Sprint 3.2 principles',
+    principlesTitle: 'Workbench principles',
     principles: [
       { title: 'Local by default', body: 'The MVP runs transformations in the browser and uses a Web Worker when the browser supports it.' },
       { title: 'No content logging', body: 'Analytics events may include the tool slug and page path, never pasted snippets or generated results.' },
@@ -79,7 +98,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Resultado gratuito',
     upgradeLabel: 'Caminho de upgrade',
     detailCta: 'Abrir ferramenta',
-    principlesTitle: 'Principios da Sprint 3.2',
+    principlesTitle: 'Principios do workbench',
     principles: [
       { title: 'Local por padrao', body: 'O MVP roda transformacoes no navegador e usa Web Worker quando o browser suporta.' },
       { title: 'Sem log de conteudo', body: 'Eventos podem incluir slug e rota, nunca trechos colados ou resultados gerados.' },
@@ -104,7 +123,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Resultado gratis',
     upgradeLabel: 'Ruta de upgrade',
     detailCta: 'Abrir herramienta',
-    principlesTitle: 'Principios Sprint 3.2',
+    principlesTitle: 'Principios del workbench',
     principles: [
       { title: 'Local por defecto', body: 'El MVP ejecuta transformaciones en el navegador y usa Web Worker cuando existe soporte.' },
       { title: 'Sin logs de contenido', body: 'Eventos pueden incluir slug y ruta, nunca fragmentos pegados o resultados.' },
@@ -129,7 +148,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Resultat gratuit',
     upgradeLabel: 'Offre payante',
     detailCta: 'Ouvrir',
-    principlesTitle: 'Principes Sprint 3.2',
+    principlesTitle: 'Principes du workbench',
     principles: [
       { title: 'Local par defaut', body: 'Le MVP execute les transformations dans le navigateur et utilise un Web Worker si disponible.' },
       { title: 'Pas de log contenu', body: 'Les evenements peuvent inclure slug et chemin, jamais les extraits ou resultats.' },
@@ -154,7 +173,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Kostenloses Ergebnis',
     upgradeLabel: 'Upgrade-Pfad',
     detailCta: 'Tool oeffnen',
-    principlesTitle: 'Sprint-3.2-Prinzipien',
+    principlesTitle: 'Workbench-Prinzipien',
     principles: [
       { title: 'Lokal zuerst', body: 'Das MVP fuehrt Transformationen im Browser aus und nutzt Web Worker, wenn der Browser es unterstuetzt.' },
       { title: 'Keine Inhaltslogs', body: 'Events duerfen Tool-Slug und Pfad enthalten, nie eingefuegte Ausschnitte oder Ergebnisse.' },
@@ -173,8 +192,26 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'DevUtility Lab',
     runLabel: 'Run tool',
     resetLabel: 'Reset example',
+    workbenchTitle: 'Local workbench',
+    workbenchBody: 'Load the example, edit the snippet and run the transformation in this browser session.',
     inputTitle: 'Inputs',
     resultTitle: 'Result',
+    exampleTitle: 'Example preset',
+    privacyTitle: 'Privacy boundary',
+    emptyResultTitle: 'Ready for a local run',
+    emptyResultBody: 'Run the example or paste a redacted snippet. Results appear here and stay in the browser.',
+    runningResultTitle: 'Processing locally',
+    runningResultBody: 'The workbench is running the tool without sending snippet values to a product API.',
+    successResultTitle: 'Result ready',
+    successResultBody: 'Review the output before copying or downloading it as a local text file.',
+    resultActionsLabel: 'Result actions',
+    copyResultLabel: 'Copy result',
+    copiedResultLabel: 'Copied',
+    copyFailedLabel: 'Copy failed',
+    downloadResultLabel: 'Download .txt',
+    relatedTitle: 'Related tools',
+    relatedBody: 'Move to nearby utilities without leaving the local-first workflow.',
+    openRelatedLabel: 'Open',
     guideTitle: 'Guide and privacy',
     faqTitle: 'FAQ',
     methodologyLabel: 'Methodology',
@@ -182,20 +219,39 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     freeCheckLabel: 'Free utility',
     upgradePathLabel: 'Upgrade path',
     contentQualityBody: 'This page combines the working utility, privacy boundary, limits, FAQ and review date required before AdSense review.',
-    privacyNote: 'The tool runs in this browser session. DevUtility Lab does not store snippets, use localStorage or send values to a product API in Sprint 3.2.',
+    privacyNote: 'The tool runs in this browser session. DevUtility Lab does not store snippets, use localStorage or send values to a product API.',
     invalidResultTitle: 'Check the input',
     pageStatusLabel: 'Tool status',
     liveTitle: 'Client-side MVP',
     liveBody: 'The free utility works without signup and runs in a browser worker when supported.',
     gatedTitle: 'Commercial features gated',
     gatedBody: 'Private history, workspaces, batch jobs, API, billing and ads are not active yet.',
+    gatedItems: ['Private snippet history', 'Team workspaces', 'Batch jobs and larger files', 'Developer API', 'Ad-free paid workspace'],
   },
   'pt-br': {
     breadcrumbHome: 'DevUtility Lab',
     runLabel: 'Executar',
     resetLabel: 'Restaurar exemplo',
+    workbenchTitle: 'Workbench local',
+    workbenchBody: 'Carregue o exemplo, edite o snippet e rode a transformacao nesta sessao do navegador.',
     inputTitle: 'Entradas',
     resultTitle: 'Resultado',
+    exampleTitle: 'Exemplo pronto',
+    privacyTitle: 'Fronteira de privacidade',
+    emptyResultTitle: 'Pronto para execucao local',
+    emptyResultBody: 'Execute o exemplo ou cole um snippet redigido. O resultado aparece aqui e fica no navegador.',
+    runningResultTitle: 'Processando localmente',
+    runningResultBody: 'O workbench roda a ferramenta sem enviar valores para API de produto.',
+    successResultTitle: 'Resultado pronto',
+    successResultBody: 'Revise a saida antes de copiar ou baixar como arquivo texto local.',
+    resultActionsLabel: 'Acoes do resultado',
+    copyResultLabel: 'Copiar resultado',
+    copiedResultLabel: 'Copiado',
+    copyFailedLabel: 'Falha ao copiar',
+    downloadResultLabel: 'Baixar .txt',
+    relatedTitle: 'Ferramentas relacionadas',
+    relatedBody: 'Acesse utilitarios proximos sem sair do fluxo local-first.',
+    openRelatedLabel: 'Abrir',
     guideTitle: 'Guia e privacidade',
     faqTitle: 'Perguntas frequentes',
     methodologyLabel: 'Metodologia',
@@ -203,20 +259,39 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     freeCheckLabel: 'Utilitario gratuito',
     upgradePathLabel: 'Caminho de upgrade',
     contentQualityBody: 'Esta pagina combina utilitario funcional, fronteira de privacidade, limites, FAQ e revisao antes de AdSense.',
-    privacyNote: 'A ferramenta roda nesta sessao do navegador. O DevUtility Lab nao armazena snippets, nao usa localStorage e nao envia valores para API na Sprint 3.2.',
+    privacyNote: 'A ferramenta roda nesta sessao do navegador. O DevUtility Lab nao armazena snippets, nao usa localStorage e nao envia valores para API.',
     invalidResultTitle: 'Confira a entrada',
     pageStatusLabel: 'Status da ferramenta',
     liveTitle: 'MVP client-side',
     liveBody: 'A ferramenta gratuita funciona sem cadastro e roda em Web Worker quando suportado.',
     gatedTitle: 'Recursos comerciais bloqueados',
     gatedBody: 'Historico privado, workspaces, lotes, API, billing e anuncios ainda nao estao ativos.',
+    gatedItems: ['Historico privado de snippets', 'Workspaces de equipe', 'Lotes e arquivos maiores', 'API para desenvolvedores', 'Workspace pago sem anuncios'],
   },
   es: {
     breadcrumbHome: 'DevUtility Lab',
     runLabel: 'Ejecutar',
     resetLabel: 'Restaurar ejemplo',
+    workbenchTitle: 'Workbench local',
+    workbenchBody: 'Carga el ejemplo, edita el fragmento y ejecuta la transformacion en esta sesion del navegador.',
     inputTitle: 'Entradas',
     resultTitle: 'Resultado',
+    exampleTitle: 'Ejemplo listo',
+    privacyTitle: 'Limite de privacidad',
+    emptyResultTitle: 'Listo para una ejecucion local',
+    emptyResultBody: 'Ejecuta el ejemplo o pega un fragmento redactado. El resultado aparece aqui y queda en el navegador.',
+    runningResultTitle: 'Procesando localmente',
+    runningResultBody: 'El workbench ejecuta la herramienta sin enviar valores a una API de producto.',
+    successResultTitle: 'Resultado listo',
+    successResultBody: 'Revisa la salida antes de copiarla o descargarla como texto local.',
+    resultActionsLabel: 'Acciones del resultado',
+    copyResultLabel: 'Copiar resultado',
+    copiedResultLabel: 'Copiado',
+    copyFailedLabel: 'Error al copiar',
+    downloadResultLabel: 'Descargar .txt',
+    relatedTitle: 'Herramientas relacionadas',
+    relatedBody: 'Salta a utilidades cercanas sin salir del flujo local-first.',
+    openRelatedLabel: 'Abrir',
     guideTitle: 'Guia y privacidad',
     faqTitle: 'Preguntas frecuentes',
     methodologyLabel: 'Metodologia',
@@ -224,20 +299,39 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     freeCheckLabel: 'Utilidad gratis',
     upgradePathLabel: 'Ruta de upgrade',
     contentQualityBody: 'Esta pagina combina utilidad funcional, privacidad, limites, FAQ y revision antes de AdSense.',
-    privacyNote: 'La herramienta corre en esta sesion del navegador. DevUtility Lab no almacena fragmentos, no usa localStorage y no envia valores a una API en Sprint 3.2.',
+    privacyNote: 'La herramienta corre en esta sesion del navegador. DevUtility Lab no almacena fragmentos, no usa localStorage y no envia valores a una API.',
     invalidResultTitle: 'Revisa la entrada',
     pageStatusLabel: 'Estado de herramienta',
     liveTitle: 'MVP client-side',
     liveBody: 'La utilidad gratis funciona sin registro y corre en Web Worker cuando hay soporte.',
     gatedTitle: 'Funciones comerciales bloqueadas',
     gatedBody: 'Historial privado, workspaces, lotes, API, billing y anuncios aun no estan activos.',
+    gatedItems: ['Historial privado de fragmentos', 'Workspaces de equipo', 'Lotes y archivos mayores', 'API para desarrolladores', 'Workspace pago sin anuncios'],
   },
   fr: {
     breadcrumbHome: 'DevUtility Lab',
     runLabel: 'Executer',
     resetLabel: 'Restaurer exemple',
+    workbenchTitle: 'Workbench local',
+    workbenchBody: 'Chargez l exemple, modifiez l extrait et lancez la transformation dans cette session navigateur.',
     inputTitle: 'Entrees',
     resultTitle: 'Resultat',
+    exampleTitle: 'Exemple pret',
+    privacyTitle: 'Limite de confidentialite',
+    emptyResultTitle: 'Pret pour une execution locale',
+    emptyResultBody: 'Lancez l exemple ou collez un extrait masque. Le resultat apparait ici et reste dans le navigateur.',
+    runningResultTitle: 'Traitement local',
+    runningResultBody: 'Le workbench execute l outil sans envoyer les valeurs a une API produit.',
+    successResultTitle: 'Resultat pret',
+    successResultBody: 'Verifiez la sortie avant de la copier ou de la telecharger en texte local.',
+    resultActionsLabel: 'Actions resultat',
+    copyResultLabel: 'Copier resultat',
+    copiedResultLabel: 'Copie',
+    copyFailedLabel: 'Copie impossible',
+    downloadResultLabel: 'Telecharger .txt',
+    relatedTitle: 'Outils lies',
+    relatedBody: 'Passez aux utilitaires proches sans quitter le flux local-first.',
+    openRelatedLabel: 'Ouvrir',
     guideTitle: 'Guide et confidentialite',
     faqTitle: 'FAQ',
     methodologyLabel: 'Methodologie',
@@ -245,20 +339,39 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     freeCheckLabel: 'Utilitaire gratuit',
     upgradePathLabel: 'Offre payante',
     contentQualityBody: 'Cette page combine outil fonctionnel, confidentialite, limites, FAQ et date de revue avant AdSense.',
-    privacyNote: 'L outil s execute dans cette session du navigateur. DevUtility Lab ne stocke pas les extraits, n utilise pas localStorage et n envoie pas de valeurs a une API en Sprint 3.2.',
+    privacyNote: 'L outil s execute dans cette session du navigateur. DevUtility Lab ne stocke pas les extraits, n utilise pas localStorage et n envoie pas de valeurs a une API.',
     invalidResultTitle: 'Verifiez l entree',
     pageStatusLabel: 'Statut outil',
     liveTitle: 'MVP client-side',
     liveBody: 'L utilitaire gratuit fonctionne sans compte et s execute en Web Worker si supporte.',
     gatedTitle: 'Fonctions commerciales bloquees',
     gatedBody: 'Historique prive, workspaces, lots, API, billing et publicites ne sont pas actifs.',
+    gatedItems: ['Historique prive des extraits', 'Workspaces equipe', 'Lots et gros fichiers', 'API developpeur', 'Workspace payant sans publicite'],
   },
   de: {
     breadcrumbHome: 'DevUtility Lab',
     runLabel: 'Ausfuehren',
     resetLabel: 'Beispiel zuruecksetzen',
+    workbenchTitle: 'Lokaler Workbench',
+    workbenchBody: 'Laden Sie das Beispiel, bearbeiten Sie den Ausschnitt und starten Sie die Umwandlung in dieser Browser-Sitzung.',
     inputTitle: 'Eingaben',
     resultTitle: 'Ergebnis',
+    exampleTitle: 'Beispielvorlage',
+    privacyTitle: 'Datenschutzgrenze',
+    emptyResultTitle: 'Bereit fuer lokale Ausfuehrung',
+    emptyResultBody: 'Starten Sie das Beispiel oder fuegen Sie einen geschwaerzten Ausschnitt ein. Ergebnisse bleiben im Browser.',
+    runningResultTitle: 'Lokale Verarbeitung',
+    runningResultBody: 'Der Workbench fuehrt das Tool aus, ohne Werte an eine Produkt-API zu senden.',
+    successResultTitle: 'Ergebnis bereit',
+    successResultBody: 'Pruefen Sie die Ausgabe vor dem Kopieren oder lokalen Text-Download.',
+    resultActionsLabel: 'Ergebnisaktionen',
+    copyResultLabel: 'Ergebnis kopieren',
+    copiedResultLabel: 'Kopiert',
+    copyFailedLabel: 'Kopieren fehlgeschlagen',
+    downloadResultLabel: '.txt laden',
+    relatedTitle: 'Verwandte Tools',
+    relatedBody: 'Wechseln Sie zu nahen Tools, ohne den lokal-zuerst Ablauf zu verlassen.',
+    openRelatedLabel: 'Oeffnen',
     guideTitle: 'Leitfaden und Datenschutz',
     faqTitle: 'FAQ',
     methodologyLabel: 'Methodik',
@@ -266,13 +379,14 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     freeCheckLabel: 'Kostenloses Tool',
     upgradePathLabel: 'Upgrade-Pfad',
     contentQualityBody: 'Diese Seite kombiniert funktionierendes Tool, Datenschutzgrenze, Limits, FAQ und Pruefdatum vor AdSense.',
-    privacyNote: 'Das Tool laeuft in dieser Browser-Sitzung. DevUtility Lab speichert keine Ausschnitte, nutzt kein localStorage und sendet in Sprint 3.2 keine Werte an eine API.',
+    privacyNote: 'Das Tool laeuft in dieser Browser-Sitzung. DevUtility Lab speichert keine Ausschnitte, nutzt kein localStorage und sendet keine Werte an eine API.',
     invalidResultTitle: 'Eingabe pruefen',
     pageStatusLabel: 'Toolstatus',
     liveTitle: 'Client-seitiges MVP',
     liveBody: 'Das kostenlose Tool funktioniert ohne Konto und laeuft bei Support in einem Web Worker.',
     gatedTitle: 'Kommerzielle Funktionen gesperrt',
     gatedBody: 'Privater Verlauf, Workspaces, Stapel, API, Billing und Anzeigen sind noch nicht aktiv.',
+    gatedItems: ['Privater Ausschnittverlauf', 'Team-Workspaces', 'Stapel und groessere Dateien', 'Developer API', 'Bezahlter werbefreier Workspace'],
   },
 }
 

@@ -270,7 +270,7 @@ Sprint 7.5 - DevUtility Lab benchmark UX
 - Simbolico: BR-DEVUTILITY.
 - Objetivo: refinar ferramentas dev com editor split, exemplos, copy/download, erros claros, privacidade visivel e upgrades gated.
 - Validacao: testes/build/preview/Playwright do DevUtility e gates locais.
-- Status: proxima.
+- Status: implementada localmente; push, CI/dry-run remoto, smokes publicos e fechamento docs-only pendentes. O DevUtility Lab recebeu workbench split input/output, exemplo, estados vazio/processando/sucesso/erro, copiar/baixar `.txt`, privacidade junto ao editor, related tools, conteudo de erro comum e upgrade gated/inert. Nenhum deploy real, anuncio, checkout, billing, historico salvo, workspace, API paga, worker ou analytics externo foi ativado.
 
 Sprint 7.6 - TimeNexus benchmark UX
 - Simbolico: BR-TIMENEXUS.

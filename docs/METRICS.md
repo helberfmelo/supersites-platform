@@ -20,7 +20,7 @@ Data-base: 2026-06-27
 | Shared TS packages implemented | 9 |
 | Shared package tests passing | 65 |
 | Shared package typechecks passing | 9 |
-| Frontend tests passing | 81 |
+| Frontend tests passing | 82 |
 | Playwright visual smoke tests passing | 44 |
 | Laravel tests passing | 46 |
 | Control plane API endpoints implemented | 20 |
@@ -182,6 +182,9 @@ Data-base: 2026-06-27
 | DevUtility Lab localized tool pages | 45 |
 | DevUtility Lab live public tools implemented | 0 |
 | DevUtility Lab local browser tools implemented | 9 |
+| DevUtility Lab benchmark workbench pages | 45 |
+| DevUtility Lab related tool blocks | 45 |
+| DevUtility Lab local copy/download controls | 45 |
 | DevUtility Lab legal/editorial pages | 40 |
 | DevUtility Lab FAQ blocks | 45 |
 | DevUtility Lab structured data pages | 45 |
@@ -336,14 +339,14 @@ Data-base: 2026-06-27
 | SEO readiness score | Implemented in control-plane for 11/11 public surfaces as estimated local evidence |
 | AdSense readiness score | Defined; 11/11 public surfaces have safe placeholder/gate plans, real ad serving remains 0 |
 | Monetization readiness score | Defined; 11/11 public surfaces have gated upgrade/support plans, real checkout/donation/affiliate activation remains 0 |
-| Frontend quality score | Hub Sprint 7.2, NetProbe Sprint 7.3 and CalcHarbor Sprint 7.4 tests/build/preview/Playwright passed; remaining apps pending sprint-by-sprint |
+| Frontend quality score | Hub Sprint 7.2, NetProbe Sprint 7.3, CalcHarbor Sprint 7.4 and DevUtility Lab Sprint 7.5 local tests/build/preview/Playwright passed; remaining apps pending sprint-by-sprint |
 | Core Web Vitals readiness | Not externally measured for placeholder apps; local performance validation planned per sprint |
 | Educational content by tool | Existing localized tool pages/FAQ blocks: 320 |
 | Pages per language | Initial locales remain 5 (`en`, `pt-br`, `es`, `fr`, `de`) |
 | Related tools per page | Planned for 11/11 public surfaces; site-specific measurement continues in technical sprints |
 | Upgrade opportunities by site | 11/11 public surfaces mapped with gated upgrade/support opportunities |
-| Organic growth tasks open | 8 planned technical benchmark site sprints after Sprint 7.4 completion |
-| Organic growth tasks closed | 3 technical refinements completed in Fase 7 |
+| Organic growth tasks open | 7 planned technical benchmark site sprints after Sprint 7.5 local implementation |
+| Organic growth tasks closed | 4 technical refinements implemented locally in Fase 7 |
 | Sprint 7.2 local backend validation | Passed: Composer, migrate fresh seed, AdminPanelTest, full Laravel suite |
 | Sprint 7.2 local Hub validation | Passed: Vitest, build, preview smoke, Playwright and desktop/mobile screenshot inspection |
 | Sprint 7.2 local package validation | Passed: 65 package tests and package typechecks |
@@ -368,6 +371,12 @@ Data-base: 2026-06-27
 | Sprint 7.4 Quality Gate run | `28286999292` passed |
 | Sprint 7.4 Deploy Dry Run | `28286999285` passed; artifact upload quota annotation |
 | Sprint 7.4 public smokes | Hub/control-plane/NetProbe passed |
+| Sprint 7.5 local DevUtility validation | Passed: Vitest, build, preview smoke, Playwright and screenshot inspection |
+| Sprint 7.5 local final gates | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
+| Sprint 7.5 feature commit | Pending push |
+| Sprint 7.5 Quality Gate run | Pending push |
+| Sprint 7.5 Deploy Dry Run | Pending push |
+| Sprint 7.5 public smokes | Pending post-push |
 | Real ads activated | 0 |
 | Real billing activated | 0 |
 | Real donation payments activated | 0 |

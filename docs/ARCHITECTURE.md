@@ -240,11 +240,11 @@ Sprint 3.2 adiciona o segundo site de baixo custo marginal da Fase 3 em `apps/de
 
 - O app usa Nuxt SSG/SSR com ferramentas de desenvolvedor executadas no navegador.
 - O MVP publica 9 ferramentas: formatador JSON/XML/YAML/CSV, Base64, inspetor JWT, regex tester, diff de texto, cron helper, UUID, timestamp e hashes.
-- Cada ferramenta renderiza exemplo, instrucoes de privacidade, limitacoes, FAQ, upgrade path e schema `WebApplication`/`FAQPage` no HTML inicial.
+- Cada ferramenta renderiza workbench split input/output, exemplo, instrucoes de privacidade, erro comum, limitacoes, related tools, FAQ, upgrade path e schema `WebApplication`/`FAQPage` no HTML inicial.
 - O conteudo inicial cobre `en`, `pt-br`, `es`, `fr` e `de`, incluindo paginas legais/editoriais site-scoped.
-- A execucao usa Web Worker quando disponivel, fallback local no navegador e limite de snippet de 200 KB.
+- A execucao usa Web Worker quando disponivel, fallback local no navegador, limite de snippet de 200 KB e acoes locais de copiar/baixar resultado sem API de produto.
 - Analytics local permitido: eventos sanitizados `tool_started`, `tool_completed` e `tool_failed` com `tool_slug`.
-- Snippets, tokens JWT, amostras regex, hashes, inputs e resultados nao devem ser enviados para analytics, logs, backend ou data layer.
+- Snippets, tokens JWT, amostras regex, hashes, inputs, resultados e arquivos `.txt` gerados nao devem ser enviados para analytics, logs, backend ou data layer.
 - Nao ha backend, conta, historico, API, billing, anuncio, storage local persistente, worker de producao, webhook ou integracao externa nesta sprint.
 - O manifesto de deploy conhece o build SSG, mas trafego publico real permanece placeholder ate existirem artifact gate, smoke publico e rollback especificos do DevUtility Lab.
 

@@ -36,6 +36,8 @@ export interface ToolCopy {
   secondaryInputLabel: string
   modeLabel: string
   resultLabel: string
+  exampleBody: string
+  commonErrorBody: string
   freeScope: string
   upgradeScope: string
   reviewedLabel: string
@@ -82,6 +84,8 @@ interface ToolSpec {
   secondaryInputLabel?: string
   freeScope: string
   upgradeScope: string
+  exampleBody: string
+  commonErrorBody: string
   modes: ToolOption[]
   acceptsPrimaryInput?: boolean
   requiresSecondaryInput?: boolean
@@ -115,12 +119,12 @@ const localizedBasics: Record<LocaleCode, {
     resultLabel: 'Result',
     secondaryInputLabel: 'Secondary input',
     localSection: 'Local execution',
-    localBody: 'Sprint 3.2 runs the free tool in a browser worker when the browser supports it and keeps entered snippets out of product APIs.',
+    localBody: 'The free tool runs in a browser worker when the browser supports it and keeps entered snippets out of product APIs.',
     qualitySection: 'Review method',
     qualityBody: 'Each utility exposes a focused transformation, visible limits and a short result that can be copied or inspected before any paid workflow exists.',
     limitsSection: 'Limits',
     limitsBody: 'The free browser surface is designed for snippets and small files. Private history, workspaces, batch jobs, larger files and API access remain paid-roadmap features.',
-    faqStorage: { question: 'Are snippets stored?', answer: 'No. DevUtility Lab does not use account storage, localStorage, sessionStorage or a product API in Sprint 3.2.' },
+    faqStorage: { question: 'Are snippets stored?', answer: 'No. DevUtility Lab does not use account storage, localStorage, sessionStorage or a product API in the free workbench.' },
     faqAccuracy: { question: 'Can I paste production secrets?', answer: 'Avoid pasting secrets. The MVP processes locally, but safe handling still means redacting keys, tokens and confidential data.' },
   },
   'pt-br': {
@@ -128,12 +132,12 @@ const localizedBasics: Record<LocaleCode, {
     resultLabel: 'Resultado',
     secondaryInputLabel: 'Entrada secundaria',
     localSection: 'Execucao local',
-    localBody: 'A Sprint 3.2 roda a ferramenta gratuita em um Web Worker quando o navegador suporta e mantem trechos fora de APIs de produto.',
+    localBody: 'A ferramenta gratuita roda em Web Worker quando o navegador suporta e mantem trechos fora de APIs de produto.',
     qualitySection: 'Metodo de revisao',
     qualityBody: 'Cada utilitario entrega uma transformacao focada, limites visiveis e resultado curto para copiar ou inspecionar antes de qualquer fluxo pago.',
     limitsSection: 'Limites',
     limitsBody: 'A superficie gratuita foi feita para trechos e arquivos pequenos. Historico privado, workspaces, lotes, arquivos maiores e API seguem no roadmap pago.',
-    faqStorage: { question: 'Os trechos sao armazenados?', answer: 'Nao. O DevUtility Lab nao usa conta, localStorage, sessionStorage nem API de produto na Sprint 3.2.' },
+    faqStorage: { question: 'Os trechos sao armazenados?', answer: 'Nao. O DevUtility Lab nao usa conta, localStorage, sessionStorage nem API de produto no workbench gratuito.' },
     faqAccuracy: { question: 'Posso colar segredos de producao?', answer: 'Evite colar segredos. O MVP processa localmente, mas o manuseio seguro ainda pede redacao de chaves, tokens e dados confidenciais.' },
   },
   es: {
@@ -141,12 +145,12 @@ const localizedBasics: Record<LocaleCode, {
     resultLabel: 'Resultado',
     secondaryInputLabel: 'Entrada secundaria',
     localSection: 'Ejecucion local',
-    localBody: 'Sprint 3.2 ejecuta la herramienta gratis en un Web Worker cuando el navegador lo soporta y mantiene fragmentos fuera de APIs de producto.',
+    localBody: 'La herramienta gratis se ejecuta en un Web Worker cuando el navegador lo soporta y mantiene fragmentos fuera de APIs de producto.',
     qualitySection: 'Metodo de revision',
     qualityBody: 'Cada utilidad ofrece una transformacion enfocada, limites visibles y un resultado breve para copiar o inspeccionar.',
     limitsSection: 'Limites',
     limitsBody: 'La superficie gratis es para fragmentos y archivos pequenos. Historial privado, workspaces, lotes, archivos mayores y API quedan en la ruta paga.',
-    faqStorage: { question: 'Se almacenan fragmentos?', answer: 'No. DevUtility Lab no usa cuentas, localStorage, sessionStorage ni API de producto en Sprint 3.2.' },
+    faqStorage: { question: 'Se almacenan fragmentos?', answer: 'No. DevUtility Lab no usa cuentas, localStorage, sessionStorage ni API de producto en el workbench gratuito.' },
     faqAccuracy: { question: 'Puedo pegar secretos de produccion?', answer: 'Evita pegar secretos. El MVP procesa localmente, pero conviene redactar claves, tokens y datos confidenciales.' },
   },
   fr: {
@@ -154,12 +158,12 @@ const localizedBasics: Record<LocaleCode, {
     resultLabel: 'Resultat',
     secondaryInputLabel: 'Entree secondaire',
     localSection: 'Execution locale',
-    localBody: 'Sprint 3.2 execute l outil gratuit dans un Web Worker quand le navigateur le supporte et garde les extraits hors des API produit.',
+    localBody: 'L outil gratuit s execute dans un Web Worker quand le navigateur le supporte et garde les extraits hors des API produit.',
     qualitySection: 'Methode de revue',
     qualityBody: 'Chaque utilitaire propose une transformation ciblee, des limites visibles et un resultat court a inspecter ou copier.',
     limitsSection: 'Limites',
     limitsBody: 'La surface gratuite vise extraits et petits fichiers. Historique prive, workspaces, lots, gros fichiers et API restent dans la feuille de route payante.',
-    faqStorage: { question: 'Les extraits sont-ils stockes?', answer: 'Non. DevUtility Lab n utilise ni compte, ni localStorage, ni sessionStorage, ni API produit en Sprint 3.2.' },
+    faqStorage: { question: 'Les extraits sont-ils stockes?', answer: 'Non. DevUtility Lab n utilise ni compte, ni localStorage, ni sessionStorage, ni API produit dans le workbench gratuit.' },
     faqAccuracy: { question: 'Puis-je coller des secrets de production?', answer: 'Evitez les secrets. Le MVP traite localement, mais il faut masquer cles, tokens et donnees confidentielles.' },
   },
   de: {
@@ -167,12 +171,12 @@ const localizedBasics: Record<LocaleCode, {
     resultLabel: 'Ergebnis',
     secondaryInputLabel: 'Zweite Eingabe',
     localSection: 'Lokale Ausfuehrung',
-    localBody: 'Sprint 3.2 fuehrt das kostenlose Tool in einem Web Worker aus, wenn der Browser es unterstuetzt, und sendet Ausschnitte nicht an Produkt-APIs.',
+    localBody: 'Das kostenlose Tool laeuft in einem Web Worker, wenn der Browser es unterstuetzt, und sendet Ausschnitte nicht an Produkt-APIs.',
     qualitySection: 'Pruefmethode',
     qualityBody: 'Jedes Tool liefert eine fokussierte Umwandlung, sichtbare Grenzen und ein kurzes Ergebnis zum Kopieren oder Pruefen.',
     limitsSection: 'Grenzen',
     limitsBody: 'Die kostenlose Browser-Oberflaeche ist fuer Ausschnitte und kleine Dateien. Privater Verlauf, Workspaces, Stapel, groessere Dateien und API bleiben kostenpflichtige Roadmap.',
-    faqStorage: { question: 'Werden Ausschnitte gespeichert?', answer: 'Nein. DevUtility Lab nutzt in Sprint 3.2 weder Konto, localStorage, sessionStorage noch Produkt-API.' },
+    faqStorage: { question: 'Werden Ausschnitte gespeichert?', answer: 'Nein. DevUtility Lab nutzt im kostenlosen Workbench weder Konto, localStorage, sessionStorage noch Produkt-API.' },
     faqAccuracy: { question: 'Kann ich Produktionsgeheimnisse einfuegen?', answer: 'Vermeiden Sie Geheimnisse. Das MVP verarbeitet lokal, trotzdem sollten Keys, Tokens und vertrauliche Daten geschwaerzt werden.' },
   },
 }
@@ -188,6 +192,8 @@ const specs: ToolSpec[] = [
     inputLabel: 'Data input',
     freeScope: 'JSON pretty print, XML indentation, YAML cleanup and CSV table alignment.',
     upgradeScope: 'Private history, team workspaces, larger files, batch jobs and API formatting.',
+    exampleBody: 'Try the JSON sample to see indentation, stable spacing and quick copy/download output before pasting your own snippet.',
+    commonErrorBody: 'Malformed JSON, missing XML tags or uneven CSV quotes return a focused input error instead of sending the snippet anywhere.',
     modes: [
       { value: 'json', label: 'JSON' },
       { value: 'xml', label: 'XML' },
@@ -206,6 +212,8 @@ const specs: ToolSpec[] = [
     inputLabel: 'Text input',
     freeScope: 'Encode and decode UTF-8 text snippets.',
     upgradeScope: 'Batch conversion, larger files, private history and API.',
+    exampleBody: 'The default text encodes to Base64; switch to decode and paste Base64 text to recover the UTF-8 value.',
+    commonErrorBody: 'Decode mode expects valid Base64. Whitespace is ignored, but malformed padding or non-Base64 characters will fail locally.',
     modes: [
       { value: 'encode', label: 'Encode' },
       { value: 'decode', label: 'Decode' },
@@ -222,6 +230,8 @@ const specs: ToolSpec[] = [
     inputLabel: 'JWT input',
     freeScope: 'Header decode, payload decode and signature-present signal.',
     upgradeScope: 'Team-safe vaulting, private history, issuer presets and API checks.',
+    exampleBody: 'The bundled token has a readable header and payload so you can verify how claims are displayed without using a real token.',
+    commonErrorBody: 'A JWT needs at least header and payload segments. This inspector decodes structure only and never claims signature verification.',
     modes: [{ value: 'inspect', label: 'Inspect' }],
     samplePrimary: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkZW1vIiwic2l0ZSI6ImRldnV0aWxpdHktbGFiIn0.signature',
   },
@@ -236,6 +246,8 @@ const specs: ToolSpec[] = [
     secondaryInputLabel: 'Sample text',
     freeScope: 'Global and case-insensitive matching with capture group display.',
     upgradeScope: 'Saved test suites, shared workspaces, larger fixtures and API.',
+    exampleBody: 'The sample pattern finds capitalized words in the sample text and shows indexes plus capture groups when present.',
+    commonErrorBody: 'Invalid JavaScript regex syntax or an empty pattern is reported before any result is generated.',
     modes: [
       { value: 'global', label: 'Global' },
       { value: 'global-insensitive', label: 'Global + ignore case' },
@@ -255,6 +267,8 @@ const specs: ToolSpec[] = [
     secondaryInputLabel: 'Changed text',
     freeScope: 'Line-by-line diff for short snippets.',
     upgradeScope: 'Private workspaces, file diffing, batch comparisons and API.',
+    exampleBody: 'The example compares two short blocks and marks changed, added and unchanged lines in a compact unified view.',
+    commonErrorBody: 'Very large files are intentionally blocked in the free workbench; use short snippets and redact confidential text.',
     modes: [{ value: 'unified', label: 'Unified line diff' }],
     requiresSecondaryInput: true,
     samplePrimary: 'alpha\nbeta\ngamma',
@@ -270,6 +284,8 @@ const specs: ToolSpec[] = [
     inputLabel: 'Cron expression',
     freeScope: 'Five-field cron parsing, field summary and next UTC run preview.',
     upgradeScope: 'Named schedules, monitoring, alerts, calendars and API.',
+    exampleBody: 'The sample runs every 15 minutes during weekday morning hours and previews the next UTC executions.',
+    commonErrorBody: 'Use exactly five cron fields. Unsupported names, ranges and out-of-range values return an actionable parsing error.',
     modes: [{ value: 'utc', label: 'UTC preview' }],
     samplePrimary: '*/15 9,10 * * 1,2,3,4,5',
   },
@@ -283,6 +299,8 @@ const specs: ToolSpec[] = [
     inputLabel: 'No input required',
     freeScope: 'Five UUID v4 values per run.',
     upgradeScope: 'Bulk generation, namespaces, private history and API.',
+    exampleBody: 'Run the generator to create five fresh UUID v4 values in the browser for fixtures, mocks or local tests.',
+    commonErrorBody: 'UUID generation requires browser crypto support. If unavailable, the tool reports the missing capability.',
     modes: [{ value: 'v4', label: 'UUID v4' }],
     acceptsPrimaryInput: false,
     samplePrimary: '',
@@ -297,6 +315,8 @@ const specs: ToolSpec[] = [
     inputLabel: 'Timestamp or date',
     freeScope: 'Unix seconds, Unix milliseconds, ISO, UTC and local display.',
     upgradeScope: 'Saved presets, widgets, history, batch conversion and API.',
+    exampleBody: 'The default Unix timestamp resolves to a known UTC instant; empty input inspects the current local browser time.',
+    commonErrorBody: 'Unparseable date strings show a local validation error. Ambiguous local formats should be replaced with ISO dates.',
     modes: [{ value: 'auto', label: 'Auto-detect' }],
     samplePrimary: '1767225600',
   },
@@ -310,6 +330,8 @@ const specs: ToolSpec[] = [
     inputLabel: 'Text input',
     freeScope: 'SHA-256 and SHA-1 text digests for small snippets.',
     upgradeScope: 'File hashing, batch jobs, private history and API.',
+    exampleBody: 'Hash the sample text with SHA-256 or SHA-1 to compare digest length and download the result as plain text.',
+    commonErrorBody: 'Hashing depends on Web Crypto. Browsers without crypto support receive a clear local error.',
     modes: [
       { value: 'SHA-256', label: 'SHA-256' },
       { value: 'SHA-1', label: 'SHA-1' },
@@ -340,6 +362,8 @@ function copyFor(spec: ToolSpec, locale: LocaleCode): ToolCopy {
     secondaryInputLabel: spec.secondaryInputLabel ?? base.secondaryInputLabel,
     modeLabel: base.modeLabel,
     resultLabel: base.resultLabel,
+    exampleBody: spec.exampleBody,
+    commonErrorBody: spec.commonErrorBody,
     freeScope: spec.freeScope,
     upgradeScope: spec.upgradeScope,
     reviewedLabel: reviewed[locale],
@@ -376,6 +400,17 @@ export function getToolBySlug(slug: string | undefined): ToolDefinition | null {
 
 export function getToolCopy(toolDefinition: ToolDefinition, locale: LocaleCode): ToolCopy {
   return toolDefinition.localized[locale]
+}
+
+export function getRelatedTools(toolDefinition: ToolDefinition, limit = 3): ToolDefinition[] {
+  const sameCategory = toolCatalog.filter((candidate) => (
+    candidate.slug !== toolDefinition.slug && candidate.category === toolDefinition.category
+  ))
+  const remaining = toolCatalog.filter((candidate) => (
+    candidate.slug !== toolDefinition.slug && candidate.category !== toolDefinition.category
+  ))
+
+  return [...sameCategory, ...remaining].slice(0, limit)
 }
 
 export function getCategoryLabel(category: ToolCategory, locale: LocaleCode): string {

@@ -7,7 +7,7 @@ Data-base: 2026-06-27
 - Real phase: Fase 7 - Benchmark-Driven Refinement.
 - Current sprint: Sprint 7.5 - DevUtility Lab benchmark UX.
 - Symbolic sprint: BR-DEVUTILITY.
-- Scope: developer-tool editor UX, examples, copy/download, clear errors, visible privacy and gated upgrade messaging.
+- Scope: developer-tool workbench/editor UX, examples, copy/download, clear errors, visible privacy and gated upgrade messaging.
 - Previous sprint completed: Sprint 7.4 - CalcHarbor benchmark UX.
 
 ## Pre-sprint state
@@ -36,7 +36,7 @@ Data-base: 2026-06-27
 | 7.2 | BR-SUPERSITE | Completed | Hub/control-plane benchmark dashboard refined and validated |
 | 7.3 | BR-NETPROBE | Completed | DNS/IP benchmark UX refined and public NetProbe smokes pass |
 | 7.4 | BR-CALCHARBOR | Completed | Calculator UX/content refined in local/CI, public deploy still gated |
-| 7.5 | BR-DEVUTILITY | Next | Developer tool UX/content refined in local/CI, public deploy still gated |
+| 7.5 | BR-DEVUTILITY | Local validation passed | Developer tool UX/content refined in local/CI, public deploy still gated |
 | 7.6 | BR-TIMENEXUS | Planned | Time/date UX/content refined in local/CI, public deploy still gated |
 | 7.7 | BR-QRROUTE | Planned | QR/UTM UX/content refined in local/CI, dynamic links still gated |
 | 7.8 | BR-INVOICECRAFT | Planned | Invoice/quote/receipt UX/content refined in local/CI, taxes/payments gated |
@@ -148,3 +148,23 @@ Sprint 7.4 remote validation:
 - Quality Gate: `28286999292`, success.
 - Deploy Dry Run: `28286999285`, success with non-blocking artifact upload quota annotation.
 - Public smokes: Hub, control-plane/API and NetProbe passed after push.
+
+Sprint 7.5 local validation passed:
+
+- `pnpm test:devutility`
+- `pnpm build:devutility`
+- `pnpm validate:devutility-preview`
+- `pnpm test:e2e:devutility`
+- `pnpm validate:structure`
+- `pnpm validate:secrets`
+- `pnpm deploy:dry-run`
+- `pnpm ci:changes` (local runAll fallback expected because no base was provided)
+- `git diff --check` (CRLF warnings only)
+- DevUtility Playwright screenshots inspected under `artifacts/playwright-devutility-report/data/`.
+
+Sprint 7.5 remote validation:
+
+- Feature commit: pending.
+- Quality Gate: pending.
+- Deploy Dry Run: pending.
+- Public smokes: pending after push.

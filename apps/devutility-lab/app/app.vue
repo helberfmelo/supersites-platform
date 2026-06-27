@@ -134,10 +134,14 @@ a:focus-visible {
 .hero > *,
 .tool-card > *,
 .status-panel > *,
+.workbench > *,
+.workbench__header > *,
+.workbench-grid > *,
 .content-layout > *,
 .tool-layout > *,
 .input-panel > *,
-.result-panel > * {
+.result-panel > *,
+.related-card > * {
   min-width: 0;
 }
 
@@ -198,6 +202,8 @@ h3 {
 .status-panel,
 .band,
 .tool-card,
+.privacy-callout,
+.related-card,
 .input-panel,
 .result-panel {
   border: 1px solid #d1dcd5;
@@ -408,6 +414,113 @@ h3 {
   padding: 18px;
 }
 
+.workbench {
+  margin-top: 26px;
+}
+
+.workbench__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 390px);
+  gap: 18px;
+  align-items: stretch;
+  margin-bottom: 14px;
+}
+
+.workbench__header h2 {
+  margin-bottom: 8px;
+}
+
+.workbench__header p {
+  margin-bottom: 0;
+  color: #40534b;
+}
+
+.privacy-callout {
+  display: grid;
+  align-content: center;
+  gap: 6px;
+  padding: 16px;
+  background: #eef7f2;
+}
+
+.privacy-callout strong,
+.example-box strong {
+  color: #123c2d;
+  font-size: 0.84rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.privacy-callout span,
+.example-box p {
+  color: #40534b;
+  font-size: 0.9rem;
+}
+
+.workbench-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.workbench-grid .result-panel {
+  margin-top: 0;
+}
+
+.panel-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(160px, 210px);
+  gap: 14px;
+  align-items: start;
+}
+
+.panel-heading h2 {
+  margin-bottom: 8px;
+}
+
+.mini-metrics {
+  display: grid;
+  gap: 8px;
+}
+
+.mini-metrics div {
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid #d8e0d9;
+  border-radius: 8px;
+  background: #f8faf4;
+}
+
+.mini-metrics strong,
+.mini-metrics span {
+  display: block;
+}
+
+.mini-metrics strong {
+  color: #60706a;
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.mini-metrics span {
+  color: #1d302a;
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.example-box {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-left: 4px solid #1f5d63;
+  background: #f8faf4;
+}
+
+.example-box p {
+  margin: 6px 0 0;
+}
+
 .band-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -487,6 +600,10 @@ h3 {
   white-space: pre-wrap;
 }
 
+.result-panel .tool-actions {
+  margin-top: 12px;
+}
+
 .result-meta {
   margin-bottom: 12px;
 }
@@ -517,6 +634,41 @@ h3 {
 
 .content-section p {
   max-width: 780px;
+}
+
+.upgrade-band ul {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding-left: 20px;
+  color: #40534b;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.related-card {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  color: #17211d;
+  text-decoration: none;
+}
+
+.related-card span {
+  color: #50635b;
+  font-size: 0.9rem;
+}
+
+.related-card em {
+  color: #1f5d63;
+  font-size: 0.84rem;
+  font-style: normal;
+  font-weight: 850;
 }
 
 .faq-list {
@@ -562,7 +714,11 @@ h3 {
   .hero,
   .controls,
   .tool-grid,
+  .workbench__header,
+  .workbench-grid,
+  .panel-heading,
   .band-grid,
+  .related-grid,
   .tool-layout,
   .content-layout {
     display: grid;

@@ -48,9 +48,9 @@
 
 ## DevUtility Lab
 
-- Snippets e entradas de ferramentas dev sao processados no navegador, preferencialmente em Web Worker, no MVP da Sprint 3.2.
+- Snippets e entradas de ferramentas dev sao processados no navegador, preferencialmente em Web Worker, dentro do workbench gratuito.
 - JSON/XML/YAML/CSV, Base64, JWT, regex, diff, cron, UUID, timestamp e hashes nao devem ser enviados para backend, analytics, logs, GA4, GTM, AdSense ou data layer.
-- O app nao salva historico, workspaces, lote, arquivos, contas, `localStorage` ou `sessionStorage` nesta sprint.
+- O app nao salva historico, workspaces, lote, arquivos, contas, `localStorage` ou `sessionStorage`; copiar/baixar resultado gera apenas arquivo local iniciado pelo usuario.
 - Eventos locais permitidos devem conter apenas `tool_slug`, rota, locale e metadados de UI sem conteudo do usuario.
 - Futuras funcionalidades pagas de historico privado, workspaces, processamento em lote, arquivos maiores ou API exigem matriz de dados, retencao, exportacao/exclusao, termos e controles de segredo antes de ativacao.
 

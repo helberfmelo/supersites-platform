@@ -93,6 +93,7 @@ Nao registrar em analytics:
 - JSON, XML, YAML, CSV, Base64, JWT, texto de regex, diff, cron, UUID, timestamp ou hashes;
 - tokens, claims, headers ou payloads JWT;
 - resultados formatados, convertidos, comparados ou gerados;
+- arquivos ou downloads gerados localmente pelo workbench;
 - tamanho de arquivo/snippet quando combinado com conteudo ou erro especifico;
 - mensagens brutas que possam conter partes do input.
 

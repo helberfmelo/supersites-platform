@@ -63,27 +63,27 @@ export const contentPageCatalog: ContentPage[] = [
   page('about', {
     en: copy('About', 'About DevUtility Lab', 'DevUtility Lab is the SuperSites product for browser-side developer utilities.', reviewed.en, [
       ['Purpose', 'The site helps developers format, encode, inspect and compare common snippets while reducing unnecessary transfer of sensitive content.'],
-      ['What is live now', 'Sprint 3.2 launches nine local tools covering structured data, Base64, JWT, regex, diff, cron, UUID, timestamp and hashes.'],
+      ['What is live now', 'The current MVP includes nine local tools covering structured data, Base64, JWT, regex, diff, cron, UUID, timestamp and hashes.'],
       ['Upgrade boundary', 'Paid value is planned around private history, workspaces, batch processing, larger files, API access and no ads.'],
     ]),
     'pt-br': copy('Sobre', 'Sobre o DevUtility Lab', 'DevUtility Lab e o produto SuperSites de utilitarios dev no navegador.', reviewed['pt-br'], [
       ['Proposito', 'O site ajuda devs a formatar, codificar, inspecionar e comparar snippets reduzindo envio desnecessario de conteudo sensivel.'],
-      ['O que esta ativo', 'A Sprint 3.2 entrega nove ferramentas locais para dados estruturados, Base64, JWT, regex, diff, cron, UUID, timestamp e hashes.'],
+      ['O que esta ativo', 'O MVP atual entrega nove ferramentas locais para dados estruturados, Base64, JWT, regex, diff, cron, UUID, timestamp e hashes.'],
       ['Fronteira do upgrade', 'O valor pago planejado esta em historico privado, workspaces, lotes, arquivos maiores, API e ausencia de anuncios.'],
     ]),
     es: copy('Acerca de', 'Acerca de DevUtility Lab', 'DevUtility Lab es el producto SuperSites de utilidades dev en el navegador.', reviewed.es, [
       ['Proposito', 'El sitio ayuda a formatear, codificar, inspeccionar y comparar fragmentos reduciendo transferencias innecesarias.'],
-      ['Que esta activo', 'Sprint 3.2 entrega nueve herramientas locales para datos, Base64, JWT, regex, diff, cron, UUID, timestamp y hashes.'],
+      ['Que esta activo', 'El MVP actual entrega nueve herramientas locales para datos, Base64, JWT, regex, diff, cron, UUID, timestamp y hashes.'],
       ['Limite de upgrade', 'El valor pago se planea para historial privado, workspaces, lotes, archivos mayores, API y sin anuncios.'],
     ]),
     fr: copy('A propos', 'A propos de DevUtility Lab', 'DevUtility Lab est le produit SuperSites pour utilitaires dev cote navigateur.', reviewed.fr, [
       ['Objectif', 'Le site aide a formater, encoder, inspecter et comparer des extraits en limitant les transferts inutiles.'],
-      ['Actif maintenant', 'Sprint 3.2 lance neuf outils locaux pour donnees, Base64, JWT, regex, diff, cron, UUID, timestamp et hashes.'],
+      ['Actif maintenant', 'Le MVP actuel propose neuf outils locaux pour donnees, Base64, JWT, regex, diff, cron, UUID, timestamp et hashes.'],
       ['Limite upgrade', 'La valeur payante vise historique prive, workspaces, lots, gros fichiers, API et absence de publicite.'],
     ]),
     de: copy('Ueber', 'Ueber DevUtility Lab', 'DevUtility Lab ist das SuperSites-Produkt fuer Browser-Developer-Tools.', reviewed.de, [
       ['Zweck', 'Die Seite hilft beim Formatieren, Codieren, Pruefen und Vergleichen von Ausschnitten mit weniger unnoetiger Uebertragung.'],
-      ['Jetzt live', 'Sprint 3.2 liefert neun lokale Tools fuer Daten, Base64, JWT, Regex, Diff, Cron, UUID, Timestamp und Hashes.'],
+      ['Jetzt live', 'Das aktuelle MVP liefert neun lokale Tools fuer Daten, Base64, JWT, Regex, Diff, Cron, UUID, Timestamp und Hashes.'],
       ['Upgrade-Grenze', 'Bezahlwert ist fuer privaten Verlauf, Workspaces, Stapel, groessere Dateien, API und keine Anzeigen geplant.'],
     ]),
   }),
@@ -115,12 +115,12 @@ export const contentPageCatalog: ContentPage[] = [
     ]),
   }),
   page('privacy', {
-    en: copy('Privacy', 'Privacy Policy', 'DevUtility Lab minimizes collection by processing Sprint 3.2 snippets locally in the browser.', reviewed.en, [
+    en: copy('Privacy', 'Privacy Policy', 'DevUtility Lab minimizes collection by processing snippets locally in the browser.', reviewed.en, [
       ['Data minimization', 'Tool inputs and results are not sent to a product API, not stored in account history and not written to browser storage in this MVP.'],
       ['Analytics boundary', 'Allowed analytics events may record tool slugs and page paths, but not pasted snippets, tokens, hashes, regex samples or generated results.'],
       ['Future accounts', 'Private history, workspaces and batch jobs require account, retention, export, deletion and consent rules before launch.'],
     ]),
-    'pt-br': copy('Privacidade', 'Politica de Privacidade', 'DevUtility Lab minimiza coleta processando snippets da Sprint 3.2 localmente.', reviewed['pt-br'], [
+    'pt-br': copy('Privacidade', 'Politica de Privacidade', 'DevUtility Lab minimiza coleta processando snippets localmente.', reviewed['pt-br'], [
       ['Minimizacao', 'Entradas e resultados nao sao enviados para API, nao entram em historico de conta e nao sao escritos em storage neste MVP.'],
       ['Fronteira de analytics', 'Eventos podem registrar slug e rota, mas nao snippets, tokens, hashes, amostras regex ou resultados.'],
       ['Contas futuras', 'Historico privado, workspaces e lotes exigem regras de conta, retencao, exportacao, exclusao e consentimento.'],
@@ -135,7 +135,7 @@ export const contentPageCatalog: ContentPage[] = [
       ['Limite analytics', 'Les evenements peuvent enregistrer slug et chemin, pas extraits, tokens, hashes, exemples regex ou resultats.'],
       ['Comptes futurs', 'Historique prive, workspaces et lots exigent regles de compte, retention, export, suppression et consentement.'],
     ]),
-    de: copy('Datenschutz', 'Datenschutzerklaerung', 'DevUtility Lab minimiert Erhebung, indem Sprint-3.2-Ausschnitte lokal verarbeitet werden.', reviewed.de, [
+    de: copy('Datenschutz', 'Datenschutzerklaerung', 'DevUtility Lab minimiert Erhebung, indem Ausschnitte lokal verarbeitet werden.', reviewed.de, [
       ['Datenminimierung', 'Eingaben und Ergebnisse gehen nicht an eine Produkt-API, keinen Kontoverlauf und keinen Browser-Speicher in diesem MVP.'],
       ['Analytics-Grenze', 'Events duerfen Tool-Slug und Pfad enthalten, aber keine Ausschnitte, Tokens, Hashes, Regex-Beispiele oder Ergebnisse.'],
       ['Zukuenftige Konten', 'Privater Verlauf, Workspaces und Stapel brauchen Regeln fuer Konto, Aufbewahrung, Export, Loeschung und Consent.'],
@@ -250,29 +250,29 @@ export const contentPageCatalog: ContentPage[] = [
     ]),
   }),
   page('status', {
-    en: copy('Status', 'Launch Status', 'DevUtility Lab Sprint 3.2 status for public web readiness, ads, billing, deploy and gates.', reviewed.en, [
+    en: copy('Status', 'Launch Status', 'DevUtility Lab status for public web readiness, ads, billing, deploy and gates.', reviewed.en, [
       ['MVP surface', 'The local/CI MVP contains nine tools, five language route sets, sitemap, canonical, hreflang and structured data.'],
-      ['Production', 'No DevUtility Lab public deploy is switched in Sprint 3.2 because app-specific packaging, smoke and rollback are not implemented yet.'],
+      ['Production', 'No DevUtility Lab public deploy is switched yet because app-specific packaging, smoke and rollback are not implemented yet.'],
       ['Gates', 'AdSense, billing, external analytics, accounts, private history, workspaces, batch processing and API remain blocked until documented gates pass.'],
     ]),
-    'pt-br': copy('Status', 'Status de Lancamento', 'Status da Sprint 3.2 do DevUtility Lab para web publica, ads, billing, deploy e gates.', reviewed['pt-br'], [
+    'pt-br': copy('Status', 'Status de Lancamento', 'Status do DevUtility Lab para web publica, ads, billing, deploy e gates.', reviewed['pt-br'], [
       ['Superficie MVP', 'O MVP local/CI contem nove ferramentas, cinco idiomas, sitemap, canonical, hreflang e dados estruturados.'],
-      ['Producao', 'Nenhum deploy publico do DevUtility Lab e trocado na Sprint 3.2 porque empacotamento, smoke e rollback especificos ainda nao existem.'],
+      ['Producao', 'Nenhum deploy publico do DevUtility Lab foi trocado porque empacotamento, smoke e rollback especificos ainda nao existem.'],
       ['Gates', 'AdSense, billing, analytics externo, contas, historico privado, workspaces, lotes e API seguem bloqueados.'],
     ]),
-    es: copy('Estado', 'Estado de lanzamiento', 'Estado de Sprint 3.2 de DevUtility Lab para web publica, ads, billing, deploy y gates.', reviewed.es, [
+    es: copy('Estado', 'Estado de lanzamiento', 'Estado de DevUtility Lab para web publica, ads, billing, deploy y gates.', reviewed.es, [
       ['Superficie MVP', 'El MVP local/CI contiene nueve herramientas, cinco idiomas, sitemap, canonical, hreflang y datos estructurados.'],
-      ['Produccion', 'No se cambia deploy publico de DevUtility Lab en Sprint 3.2 porque faltan packaging, smoke y rollback especificos.'],
+      ['Produccion', 'No se cambia deploy publico de DevUtility Lab porque faltan packaging, smoke y rollback especificos.'],
       ['Gates', 'AdSense, billing, analytics externo, cuentas, historial privado, workspaces, lotes y API siguen bloqueados.'],
     ]),
-    fr: copy('Statut', 'Statut de lancement', 'Statut Sprint 3.2 DevUtility Lab pour web public, ads, billing, deploy et gates.', reviewed.fr, [
+    fr: copy('Statut', 'Statut de lancement', 'Statut DevUtility Lab pour web public, ads, billing, deploy et gates.', reviewed.fr, [
       ['Surface MVP', 'Le MVP local/CI contient neuf outils, cinq langues, sitemap, canonical, hreflang et donnees structurees.'],
-      ['Production', 'Aucun deploy public DevUtility Lab n est bascule en Sprint 3.2 sans packaging, smoke et rollback specifiques.'],
+      ['Production', 'Aucun deploy public DevUtility Lab n est bascule sans packaging, smoke et rollback specifiques.'],
       ['Gates', 'AdSense, billing, analytics externe, comptes, historique prive, workspaces, lots et API restent bloques.'],
     ]),
-    de: copy('Status', 'Launch-Status', 'DevUtility Lab Sprint-3.2-Status fuer Public Web, Ads, Billing, Deploy und Gates.', reviewed.de, [
+    de: copy('Status', 'Launch-Status', 'DevUtility Lab Status fuer Public Web, Ads, Billing, Deploy und Gates.', reviewed.de, [
       ['MVP-Oberflaeche', 'Das lokale/CI-MVP enthaelt neun Tools, fuenf Sprachen, Sitemap, Canonical, Hreflang und strukturierte Daten.'],
-      ['Produktion', 'Kein oeffentlicher DevUtility-Lab-Deploy wird in Sprint 3.2 geschaltet, weil Packaging, Smoke und Rollback fehlen.'],
+      ['Produktion', 'Kein oeffentlicher DevUtility-Lab-Deploy wird geschaltet, weil Packaging, Smoke und Rollback fehlen.'],
       ['Gates', 'AdSense, Billing, externe Analytics, Konten, privater Verlauf, Workspaces, Stapel und API bleiben gesperrt.'],
     ]),
   }),

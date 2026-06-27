@@ -45,6 +45,13 @@ Medium due to sensitive inputs and interactive editors.
 - Real ad serving remains `0`.
 - Upgrade copy does not imply data is stored.
 
+## Sprint 7.5 implementation status
+
+- Gated upgrade panels now expose private history, workspaces, batch jobs/larger files, developer API and ad-free workspace as inactive roadmap value.
+- Free local processing remains complete without signup.
+- Copy/download actions operate in the browser and do not create storage, checkout, provider calls or analytics payloads with snippets/results.
+- Real ad serving, donations, affiliates, billing providers, accounts and paid entitlements remain `0`.
+
 ## Dashboard backlog
 
 - Workspace readiness.
