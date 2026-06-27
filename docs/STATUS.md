@@ -644,7 +644,12 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - Regressao frontend unit: Hub, NetProbe, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft e MailHealth passaram nas suites Vitest.
   - Regressao frontend build/preview/E2E: Hub, NetProbe, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft e MailHealth passaram em build Nuxt, preview smoke e Playwright.
   - `pnpm validate:structure`, `pnpm deploy:dry-run`, `pnpm validate:secrets`, `pnpm ci:changes` e `git diff --check` passaram no fechamento local. `git diff --check` exibiu apenas avisos CRLF conhecidos em scripts PowerShell touched.
-  - Push, monitoramento CI e smokes publicos pos-push pendentes neste registro pre-commit.
+  - Commit publicado: `3bf8ea8` (`feat: add mailhealth mvp`).
+  - GitHub Actions `Quality Gate` run `28278020266` passou com repository safety, backend, Hub frontend, NetProbe frontend, CalcHarbor frontend, DevUtility Lab frontend, TimeNexus frontend, QRRoute frontend, InvoiceCraft frontend, MailHealth frontend e summary.
+  - GitHub Actions `Deploy Dry Run` run `28278020271` passou; o upload de artifact continuou com anotacao de quota GitHub Actions, mas o plano foi gerado e publicado no job summary.
+  - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis.
+  - Smoke publico direto confirmou `https://opentshost.com/supersites/mailhealth/` em HTTP 200, ainda `noindex`, sem asset `_nuxt`, preservando o placeholder publico do MailHealth.
+  - Nenhum deploy real do MailHealth foi executado porque o app ainda nao tem workflow de traffic switch, smoke publico e rollback proprios.
 
 ## Pendencias criticas
 

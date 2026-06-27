@@ -180,8 +180,8 @@ Data-base: 2026-06-27
 | MailHealth sitemap routes | 1 |
 | MailHealth preview smoke | Passed |
 | MailHealth Playwright report | Passed |
-| MailHealth Quality Gate run | Pending feature push |
-| MailHealth Deploy Dry Run | Pending feature push |
+| MailHealth Quality Gate run | `28278020266` passed |
+| MailHealth Deploy Dry Run | `28278020271` passed |
 | MailHealth production status | Placeholder at `https://opentshost.com/supersites/mailhealth/`; real deploy gated |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
