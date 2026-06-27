@@ -424,6 +424,10 @@ Data-base: 2026-06-27
 | Sprint 7.10 docs-only Quality Gate run | `28289986575` passed |
 | Sprint 7.11 local PixelBatch validation | Passed: Vitest, build, preview smoke, Playwright and screenshot inspection |
 | Sprint 7.11 local final gates | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
+| Sprint 7.11 feature commit | `fbea050` |
+| Sprint 7.11 Quality Gate run | `28290373756` passed |
+| Sprint 7.11 Deploy Dry Run | `28290373766` passed |
+| Sprint 7.11 public smokes | Hub/control-plane/NetProbe passed; PixelBatch remains placeholder |
 | Real ads activated | 0 |
 | Real billing activated | 0 |
 | Real donation payments activated | 0 |

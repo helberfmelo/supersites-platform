@@ -1001,6 +1001,10 @@ Nas Sprints 7.6 a 7.9, TimeNexus, QRRoute, InvoiceCraft e MailHealth receberam r
   - Screenshots locais do report Playwright foram inspecionados em `artifacts/playwright-pixelbatch-report/data/`; home desktop, compressor mobile e privacidade mobile ficaram sem sobreposicao incoerente ou overflow visual.
   - O primeiro Playwright da sprint falhou apenas por `EADDRINUSE` na porta local `127.0.0.1:3121` apos o preview smoke; a porta foi liberada e o rerun passou.
   - Gates finais locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation; `git diff --check` exibiu apenas avisos CRLF nos arquivos tocados.
+  - Feature commit publicado: `fbea050` (`feat: refine pixelbatch benchmark ux`).
+  - GitHub Actions `Quality Gate` run `28290373756` passou, executando repository safety, frontend PixelBatch path-aware e summary.
+  - GitHub Actions `Deploy Dry Run` run `28290373766` passou e gerou plano sem mutar producao.
+  - Public smokes pos-push passaram: `pnpm deploy:smoke-supersite-public` validou Hub e asset `https://opentshost.com/supersites/_nuxt/CDSWkO8T.js`; `pnpm deploy:smoke-control-plane-public` validou control-plane/API; `pnpm deploy:smoke-netprobe-public` validou NetProbe, asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/B8fWFYkD.js` e API `https://opentshost.com/supersites/control-plane/api/v1/netprobe`. PixelBatch segue placeholder publico.
   - Nenhum upload server-side, batch worker, API publica paga, IA/background removal provider, checkout, billing, anuncio real, storage persistente, worker de producao, analytics externo ou deploy real do PixelBatch foi ativado.
 
 ## Pendencias criticas

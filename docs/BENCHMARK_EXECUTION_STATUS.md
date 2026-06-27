@@ -5,16 +5,16 @@ Data-base: 2026-06-27
 ## Current block
 
 - Real phase: Fase 7 - Benchmark-Driven Refinement.
-- Current sprint: Sprint 7.11 - PixelBatch benchmark UX.
-- Symbolic sprint: BR-PIXELBATCH.
-- Scope: image-processing UX/content refinement with dropzone clarity, before/after preview, presets, privacy and gated batch/AI messaging.
-- Previous sprint completed: Sprint 7.10 - SitePulse Lab benchmark UX.
+- Current sprint: Sprint 7.12 - DocShift benchmark UX.
+- Symbolic sprint: BR-DOCSHIFT.
+- Scope: PDF/document UX refinement with dropzone clarity, file states, result/download, privacy, related tools and gated OCR/server/batch messaging.
+- Previous sprint completed: Sprint 7.11 - PixelBatch benchmark UX.
 
 ## Pre-sprint state
 
 - Git branch: `main`.
-- Latest completed commit before this sprint: `408932a docs: record sitepulse benchmark ci validation`.
-- Recent CI state: Quality Gate `28289874584`, Deploy Dry Run `28289874575` and docs-only Quality Gate `28289986575` passed for SitePulse benchmark refinement.
+- Latest completed commit before this sprint: `fbea050 feat: refine pixelbatch benchmark ux`.
+- Recent CI state: Quality Gate `28290373756` and Deploy Dry Run `28290373766` passed for PixelBatch benchmark refinement.
 - Public live surfaces: SuperSites Hub, control-plane/API and NetProbe Atlas.
 - Public placeholder surfaces: CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch and DocShift.
 - External activations: zero real ads, zero real billing, zero checkout, zero provider AI, zero GA4/GTM/Search Console imports, zero AdSense serving and zero production workers for this block.
@@ -42,7 +42,7 @@ Data-base: 2026-06-27
 | 7.8 | BR-INVOICECRAFT | Completed | Invoice/quote/receipt UX/content refined in local/CI, taxes/payments gated |
 | 7.9 | BR-MAILHEALTH | Completed | Email diagnostic UX/content refined in local/CI, monitoring/API gated |
 | 7.10 | BR-SITEPULSE | Completed | Web diagnostic UX/content refined in local/CI, uptime workers gated |
-| 7.11 | BR-PIXELBATCH | Local validation passed | Image UX/content refined in local/CI, server/batch/AI gated |
+| 7.11 | BR-PIXELBATCH | Completed | Image UX/content refined in local/CI, server/batch/AI gated |
 | 7.12 | BR-DOCSHIFT | Planned | PDF UX/content refined in local/CI, OCR/server/batch gated |
 
 ## Non-copying controls
@@ -283,3 +283,11 @@ Sprint 7.11 local validation passed:
 - `pnpm deploy:dry-run`
 - `pnpm ci:changes` (local runAll fallback expected because no base was provided)
 - `git diff --check`
+
+Sprint 7.11 remote validation:
+
+- Feature commit: `fbea050 feat: refine pixelbatch benchmark ux`.
+- Quality Gate: `28290373756`, success.
+- Deploy Dry Run: `28290373766`, success.
+- Public smokes: Hub, control-plane/API and NetProbe passed after push; PixelBatch remains public placeholder pending app-specific deploy/smoke/rollback gates.
+- Closing docs-only Quality Gate is pending this documentation commit.
