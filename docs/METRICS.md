@@ -228,8 +228,8 @@ Data-base: 2026-06-27
 | DocShift PDF rendering smoke | Passed locally |
 | DocShift preview smoke | Passed |
 | DocShift Playwright report | Passed |
-| DocShift Quality Gate run | Pending push |
-| DocShift Deploy Dry Run | Pending push |
+| DocShift Quality Gate run | `28281284720` passed |
+| DocShift Deploy Dry Run | `28281284718` passed |
 | DocShift production status | Placeholder at `https://opentshost.com/supersites/docshift/`; real deploy gated |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |

@@ -711,7 +711,12 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - Smokes publicos pre-push passaram novamente para Hub, control-plane/API e NetProbe.
   - Smoke publico direto confirmou `https://opentshost.com/supersites/docshift/` em HTTP 200, ainda `noindex`, sem asset `_nuxt`, preservando o placeholder publico.
   - O app `apps/docshift` foi criado como Nuxt SSG com 8 ferramentas browser-side, Worker de validacao, `pdf-lib` para merge/split/rotate/watermark/page numbers/metadata/text-to-pdf, limite gratuito de 12 MB/5 PDFs e paginas legais/editoriais em 5 idiomas.
-  - CI, deploy dry-run, smokes publicos pos-push e commit documental de fechamento seguem pendentes ate o commit da sprint ser publicado e monitorado.
+  - Commit publicado: `36c9f28` (`feat: add docshift mvp`).
+  - GitHub Actions `Quality Gate` run `28281284720` passou com repository safety, backend, Hub frontend, NetProbe frontend, CalcHarbor frontend, DevUtility Lab frontend, TimeNexus frontend, QRRoute frontend, InvoiceCraft frontend, MailHealth frontend, SitePulse Lab frontend, PixelBatch frontend, DocShift frontend e summary.
+  - GitHub Actions `Deploy Dry Run` run `28281284718` passou e gerou plano sem mutar producao.
+  - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis.
+  - Smoke publico direto confirmou `https://opentshost.com/supersites/docshift/` e `https://opentshost.com/supersites/pixelbatch/` em HTTP 200, ainda `noindex`, sem asset `_nuxt`, preservando os placeholders publicos.
+  - Nenhum deploy real do DocShift foi executado porque o app ainda nao tem workflow de traffic switch, smoke publico e rollback proprios.
 
 ## Pendencias criticas
 
