@@ -105,6 +105,14 @@
 - Eventos locais permitidos devem conter apenas `tool_slug`, rota e locale; nunca parametros de arquivo, dimensoes, metadados, qualidade, formato escolhido, tamanho de saida ou conteudo de imagem.
 - Processamento server-side futuro para batch, API, alta resolucao ou IA exige matriz de dados propria com finalidade, base legal, armazenamento, retencao curta, limpeza automatica, exportacao/exclusao, criptografia, sandbox e antivirus quando aplicavel.
 
+## DocShift
+
+- PDFs selecionados, texto colado, nomes de arquivo, page ranges, metadados e blobs/PDFs gerados ficam somente na sessao do navegador no MVP da Sprint 5.2.
+- O app nao usa API de upload, backend de arquivo, `localStorage`, `sessionStorage`, IndexedDB ou cookies para inputs/outputs do DocShift.
+- Object URLs devem ser revogados apos preview/processamento/download para reduzir retencao em memoria.
+- Eventos locais permitidos devem conter apenas `tool_slug`, rota e locale; nunca nome de arquivo, texto de paginas, texto colado, metadados, page count, page range, tamanho de saida ou conteudo do PDF.
+- Processamento server-side futuro para lote, arquivos maiores, OCR, conversoes, historico ou API exige matriz de dados propria com finalidade, base legal, armazenamento, retencao curta, limpeza automatica, exportacao/exclusao, criptografia, sandbox e antivirus quando aplicavel.
+
 ## Analytics sem PII
 
 - O contrato versionado fica em `packages/analytics`.

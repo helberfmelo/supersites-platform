@@ -94,6 +94,15 @@ AdSense e a monetizacao primaria, mas nenhum site deve ser submetido antes de cu
 - Nao submeter ao AdSense enquanto a URL publica ainda servir placeholder.
 - Batch, API, arquivos maiores, alta resolucao e IA exigem upload validation, sandbox, retencao, antiabuso e gates humanos/tecnicos antes de qualquer pagina monetizada.
 
+## DocShift checklist
+
+- Sprint 5.2 entrega apenas MVP local/CI e placeholder publico.
+- Antes de AdSense, criar deploy HostGator especifico, smoke publico, rollback testavel e status page.
+- Validar Core Web Vitals, ausencia de overflow, sitemap/canonical/hreflang/schema e paginas legais em todos os idiomas publicados.
+- Nao posicionar anuncios junto a upload/input de PDF, texto colado, page ranges, metadados, watermark, preview de PDF, erros ou botoes de download de modo que incentive clique acidental.
+- Nao submeter ao AdSense enquanto a URL publica ainda servir placeholder.
+- Batch, API, arquivos maiores, OCR, historico e conversoes server-side exigem upload validation, sandbox, retencao, antiabuso e gates humanos/tecnicos antes de qualquer pagina monetizada.
+
 ## Placements
 
 - Usar componente compartilhado de ads com espaco reservado.

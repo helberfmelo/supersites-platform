@@ -105,8 +105,9 @@
     {
       "id": "docshift",
       "name": "DocShift",
-      "kind": "placeholder",
+      "kind": "nuxt-ssg",
       "localPath": "apps/docshift",
+      "buildOutput": "apps/docshift/.output/public",
       "remotePath": "/home1/opents62/public_html/supersites/docshift",
       "publicUrl": "https://opentshost.com/supersites/docshift/"
     }

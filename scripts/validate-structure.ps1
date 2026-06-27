@@ -20,6 +20,7 @@ $requiredPaths = @(
     "playwright.mailhealth.config.ts",
     "playwright.sitepulse.config.ts",
     "playwright.pixelbatch.config.ts",
+    "playwright.docshift.config.ts",
     "pnpm-workspace.yaml",
     "pnpm-lock.yaml",
     "docs/MEGA_PROMPT_SUPERSITES.md",
@@ -444,6 +445,34 @@ $pixelbatchPaths = @(
 )
 
 $requiredPaths += $pixelbatchPaths
+
+$docshiftPaths = @(
+    "apps/docshift/package.json",
+    "apps/docshift/nuxt.config.ts",
+    "apps/docshift/app/app.vue",
+    "apps/docshift/app/components/DocShiftHome.vue",
+    "apps/docshift/app/components/LanguageNav.vue",
+    "apps/docshift/app/components/LegalFooter.vue",
+    "apps/docshift/app/components/SiteHeader.vue",
+    "apps/docshift/app/data/copy.ts",
+    "apps/docshift/app/data/locales.ts",
+    "apps/docshift/app/data/pages.ts",
+    "apps/docshift/app/data/routes.ts",
+    "apps/docshift/app/data/tools.ts",
+    "apps/docshift/app/pages/index.vue",
+    "apps/docshift/app/pages/[locale]/[page].vue",
+    "apps/docshift/app/pages/[locale]/index.vue",
+    "apps/docshift/app/pages/[locale]/tools/[slug].vue",
+    "apps/docshift/app/utils/analytics.ts",
+    "apps/docshift/app/utils/docshiftWorker.ts",
+    "apps/docshift/app/workers/docshift.worker.ts",
+    "apps/docshift/server/routes/sitemap.xml.ts",
+    "apps/docshift/tests/docshift.test.ts",
+    "tests/e2e/docshift.spec.ts",
+    "scripts/validate-docshift-preview.ps1"
+)
+
+$requiredPaths += $docshiftPaths
 
 $missing = @()
 foreach ($path in $requiredPaths) {

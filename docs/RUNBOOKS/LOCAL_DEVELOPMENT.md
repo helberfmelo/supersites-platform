@@ -134,6 +134,15 @@ pnpm validate:pixelbatch-preview
 pnpm test:e2e:pixelbatch
 ```
 
+Run DocShift checks:
+
+```powershell
+pnpm test:docshift
+pnpm build:docshift
+pnpm validate:docshift-preview
+pnpm test:e2e:docshift
+```
+
 The root package scripts use explicit filters for `@supersites/ui`, `@supersites/i18n`, `@supersites/seo` and `@supersites/consent`. A generic pnpm path filter did not match the package workspaces on Windows during Sprint 1.3.
 
 Install the Playwright browser once per workstation if needed:
@@ -233,6 +242,14 @@ pnpm dev:pixelbatch
 ```
 
 Then open `http://127.0.0.1:3010/en/tools/image-compressor`. Selected images, pixels, previews and downloads remain browser-side in Sprint 5.1; the app must not use upload endpoints, browser storage or analytics values from the file.
+
+For local DocShift development, run:
+
+```powershell
+pnpm dev:docshift
+```
+
+Then open `http://127.0.0.1:3011/en/tools/pdf-merge`. Selected PDFs, pasted text, previews and downloads remain browser-side in Sprint 5.2; the app must not use upload endpoints, browser storage or analytics values from the file/document.
 
 For local NetProbe Atlas tool testing, run:
 

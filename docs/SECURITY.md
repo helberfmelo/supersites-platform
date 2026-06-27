@@ -104,6 +104,16 @@
 - Analytics de PixelBatch nao deve incluir nome do arquivo, dimensoes, formato escolhido, qualidade, tamanho de blob, metadados, pixels, erro tecnico com nome de arquivo ou conteudo de imagem.
 - Batch, pastas, arquivos maiores, API, integracoes, alta resolucao e IA exigem auth, billing/entitlements, quotas, upload validation, sandbox, antivirus quando aplicavel, retencao/limpeza de temporarios, provider review e gates de deploy antes de ativacao.
 
+## DocShift browser document processing
+
+- Ferramentas da Sprint 5.2 cobrem merge, split, rotate, compress/rewrite, watermark, page numbers, metadata cleaner e text-to-pdf no navegador.
+- O MVP aceita apenas PDF para ferramentas de documento, com limite gratuito de 5 arquivos, 12 MB totais, selecao de paginas limitada e texto de entrada limitado a 12.000 caracteres.
+- O worker deve validar tipo, extensao, tamanho, contagem de arquivos, page ranges, rotacao, watermark e metadados antes de `pdf-lib` gerar a saida.
+- Object URLs devem ser revogados apos uso; inputs e outputs nao devem ser gravados em `localStorage`, `sessionStorage`, IndexedDB, cookies, backend, logs ou analytics.
+- Metadata cleaner e compress/rewrite nao devem prometer redacao forense, OCR, downsampling de imagens ou remocao garantida de conteudo invisivel fora do suporte do `pdf-lib`.
+- Analytics de DocShift nao deve incluir nome do arquivo, texto colado, texto de paginas, metadados, page count, selecao de paginas, tamanho de blob/PDF, bytes gerados ou erro tecnico com detalhes do documento.
+- Batch, arquivos maiores, OCR, conversoes DOCX/imagem, API, historico e equipes exigem auth, billing/entitlements, quotas, upload validation, sandbox, antivirus quando aplicavel, retencao/limpeza de temporarios, exportacao/exclusao, provider review e gates de deploy antes de ativacao.
+
 ## NetProbe public API
 
 - `GET /api/v1/netprobe/ip` nao deve persistir o IP completo do visitante; a resposta informa a politica de retencao.

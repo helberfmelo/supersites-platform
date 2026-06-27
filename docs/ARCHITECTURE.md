@@ -259,6 +259,20 @@ Sprint 5.1 adiciona o primeiro produto da Fase 5 em `apps/pixelbatch`.
 - Nao ha API de upload, storage local persistente, conta, batch worker, pasta/lote, integracao, alta resolucao, IA, billing, anuncio, worker de producao, cron ou webhook nesta sprint.
 - O manifesto de deploy conhece o build SSG, mas trafego publico real permanece placeholder ate existirem artifact gate, smoke publico e rollback especificos do PixelBatch.
 
+## DocShift browser document MVP
+
+Sprint 5.2 adiciona o segundo produto da Fase 5 em `apps/docshift`.
+
+- O app usa Nuxt SSG/SSR com ferramentas de PDF e conversao simples executadas no navegador.
+- O MVP publica 8 ferramentas: merge, split, rotate, compress/rewrite, watermark, page numbers, metadata cleaner e text-to-pdf.
+- Um Web Worker valida tipo, tamanho, contagem de arquivos, selecao de paginas e tamanho de texto antes do processamento.
+- `pdf-lib` e carregado por import dinamico no cliente para copiar paginas, rotacionar, adicionar texto/watermark/page numbers, limpar metadados basicos e gerar object URL de preview/download.
+- O limite gratuito inicial e 5 PDFs, 12 MB totais, ate 400 paginas declaradas e 12.000 caracteres no text-to-pdf.
+- Analytics local permitido: eventos sanitizados `tool_viewed`, `tool_started`, `file_processed`, `tool_completed`, `tool_failed` e `file_downloaded` com `tool_slug`.
+- Nomes de arquivo, texto das paginas, texto colado, metadados, selecao de paginas, quantidade de paginas, tamanho de blob e bytes do PDF nao devem ir para backend, logs, analytics ou data layer.
+- Nao ha API de upload, storage local persistente, conta, batch worker, OCR, conversao server-side, historico, billing, anuncio, worker de producao, cron ou webhook nesta sprint.
+- O manifesto de deploy conhece o build SSG, mas trafego publico real permanece placeholder ate existirem artifact gate, smoke publico e rollback especificos do DocShift.
+
 ## Sites e pastas
 
 | App | Pasta | Papel |

@@ -64,6 +64,12 @@ A Sprint 5.1 criou apenas ferramentas gratuitas client-side para imagem unica, s
 
 Antes de vender batch, pastas, arquivos maiores, presets salvos, API, integracoes, alta resolucao, AI/background removal, equipes ou historico, implementar billing/entitlements, termos, matriz de dados, quotas, upload validation, sandbox/antivirus quando aplicavel, retencao/limpeza, exportacao/exclusao de conta, provider review e gates humanos de KYC/impostos/conta bancaria.
 
+## DocShift preview
+
+A Sprint 5.2 criou apenas ferramentas gratuitas client-side para PDF pequeno e conversao simples, sem checkout, cobranca, assinatura, entitlement pago, provedor externo ativo, batch, arquivos maiores, OCR, API, equipes, historico salvo ou upload endpoint.
+
+Antes de vender lote, arquivos maiores, OCR, conversoes DOCX/imagem, API, equipes, branding, historico ou automacoes, implementar billing/entitlements, termos, matriz de dados, quotas, upload validation, sandbox/antivirus quando aplicavel, retencao/limpeza, exportacao/exclusao de conta, provider review e gates humanos de KYC/impostos/conta bancaria.
+
 ## Segurança
 
 - Nao armazenar cartao.

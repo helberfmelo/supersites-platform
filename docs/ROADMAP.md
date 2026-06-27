@@ -205,6 +205,7 @@ Sprint 5.2 - DocShift MVP
 - Objetivo: merge, split, rotate, compress, watermark, metadata e conversoes basicas.
 - Upgrade: lote, arquivos maiores, OCR, historico, API, equipes.
 - Validacao: sandbox, antivirus quando server-side, retencao.
+- Status: concluida localmente, aguardando CI/push de fechamento. O app `apps/docshift` foi promovido de placeholder para Nuxt SSG com 8 ferramentas browser-side (`pdf-merge`, `pdf-split`, `pdf-rotate`, `pdf-compressor`, `pdf-watermark`, `page-numbers`, `metadata-cleaner`, `text-to-pdf`), Worker de validacao, `pdf-lib` para preview/download, limite gratuito de 12 MB/5 PDFs, home e paginas legais/editoriais em 5 idiomas, FAQ, schema `WebApplication`/`FAQPage` e analytics sanitizado apenas por `tool_slug`. PDFs, texto, nomes de arquivo, metadados e bytes gerados ficam no navegador; sem API de upload, storage, conta, batch worker, OCR server-side, billing, ads ou analytics externo. A URL publica segue placeholder `noindex` sem Nuxt real ate existir empacotamento HostGator, smoke publico e rollback especificos.
 
 ## Fase 6 - Monetizacao, integracoes e growth
 

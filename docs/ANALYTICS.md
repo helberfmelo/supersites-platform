@@ -189,6 +189,21 @@ Nao registrar em analytics:
 
 Sprint 5.1 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, batch, API publica, storage persistente, upload endpoint, IA, billing ou workers de producao do PixelBatch.
 
+## DocShift tools
+
+As ferramentas do DocShift podem registrar apenas eventos de produto de baixo risco, como `tool_viewed`, `tool_started`, `file_processed`, `tool_completed`, `tool_failed` e `file_downloaded`, usando `tool_slug`, rota e locale.
+
+Nao registrar em analytics:
+
+- nomes de arquivo;
+- texto colado ou texto de paginas;
+- previews, blobs, hashes, bytes ou conteudo de PDF;
+- metadados de documento, titulo, autor, producer, creator ou datas;
+- page count, page range, paginas extraidas, rotacao escolhida, watermark text ou tamanho de saida;
+- erros ou mensagens que possam conter nome do arquivo, conteudo, metadados ou detalhes do documento.
+
+Sprint 5.2 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, batch, API publica, storage persistente, upload endpoint, OCR, billing ou workers de producao do DocShift.
+
 ## Deploy smokes
 
 Smokes de deploy do control-plane/API e do NetProbe devem validar apenas disponibilidade e contrato JSON, sem criar eventos externos de analytics e sem registrar alvo bruto de usuario. O alvo DNS padrao para smoke publico e `example.com`.

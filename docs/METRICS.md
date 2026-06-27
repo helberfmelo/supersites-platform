@@ -11,17 +11,17 @@ Data-base: 2026-06-27
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
 | Shared package folders created | 12 |
-| ADRs created | 22 |
-| Docs files created/maintained | 51 |
+| ADRs created | 23 |
+| Docs files created/maintained | 52 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
-| Nuxt apps scaffolded | 10 |
+| Nuxt apps scaffolded | 11 |
 | Laravel apps scaffolded | 1 |
 | Shared TS packages implemented | 5 |
 | Shared package tests passing | 22 |
 | Shared package typechecks passing | 5 |
-| Frontend tests passing | 73 |
-| Playwright visual smoke tests passing | 37 |
+| Frontend tests passing | 81 |
+| Playwright visual smoke tests passing | 41 |
 | Laravel tests passing | 44 |
 | Control plane API endpoints implemented | 20 |
 | Control plane admin routes implemented | 6 |
@@ -215,6 +215,22 @@ Data-base: 2026-06-27
 | PixelBatch Quality Gate run | `28280343286` passed |
 | PixelBatch Deploy Dry Run | `28280343287` passed |
 | PixelBatch production status | Placeholder at `https://opentshost.com/supersites/pixelbatch/`; real deploy gated |
+| DocShift tool pages implemented | 8 |
+| DocShift localized tool pages | 40 |
+| DocShift live public tools implemented | 0 |
+| DocShift local browser tools implemented | 8 |
+| DocShift legal/editorial pages | 40 |
+| DocShift FAQ blocks | 40 |
+| DocShift structured data pages | 40 |
+| DocShift prerender content routes | 86 |
+| DocShift sitemap routes | 1 |
+| DocShift worker validation smoke | Passed |
+| DocShift PDF rendering smoke | Passed locally |
+| DocShift preview smoke | Passed |
+| DocShift Playwright report | Passed |
+| DocShift Quality Gate run | Pending push |
+| DocShift Deploy Dry Run | Pending push |
+| DocShift production status | Placeholder at `https://opentshost.com/supersites/docshift/`; real deploy gated |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
 | Public production smoke for `/supersites/` | 200 catalog live |
