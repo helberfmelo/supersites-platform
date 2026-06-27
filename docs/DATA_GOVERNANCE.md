@@ -14,6 +14,7 @@
 |---|---|
 | IP de visitante | Nao armazenar completo salvo seguranca operacional com retencao curta |
 | Entradas de ferramentas dev | Nao armazenar |
+| Campos de faturas/orcamentos/recibos | Nao armazenar no MVP gratuito |
 | Arquivos enviados | Temporario; apagar automaticamente |
 | Historico pago | Manter enquanto conta ativa e conforme termos |
 | Logs tecnicos | Sanitizados e com retencao definida |
@@ -69,6 +70,14 @@
 - Eventos locais permitidos devem conter apenas `tool_slug`, rota, locale e metadados de UI sem payload do usuario.
 - A fundacao de redirect service no control-plane armazena somente dados de links dinamicos futuros quando criados por fluxo autenticado/gated; Sprint 4.1 testa `destination_hash`, status, expiracao e contagem agregada, mas nao ativa criacao publica.
 - Futuras funcionalidades pagas de QR dinamico, short links, scan/click analytics, dominio proprio, lote ou API exigem matriz de dados, retencao, exportacao/exclusao, termos, workflow antiabuso e controles de privacidade antes de ativacao.
+
+## InvoiceCraft
+
+- Campos de emissor, cliente, documento, itens, valores, ajustes/impostos manuais, termos e notas sao processados no navegador no MVP da Sprint 4.2.
+- PDFs sao gerados localmente via import dinamico de `jspdf`; o PDF e os campos usados para cria-lo nao devem ser enviados para backend, analytics, logs, GA4, GTM, AdSense ou data layer.
+- O app nao salva clientes, produtos, faturas, recibos, orcamentos, historico, contas, `localStorage` ou `sessionStorage` nesta sprint.
+- Eventos locais permitidos devem conter apenas `tool_slug`, rota, locale e metadados de UI sem dados de documento.
+- Linhas manuais de imposto/ajuste sao apenas formatacao; templates fiscais, numeracao oficial, calculo automatico de impostos, pagamentos ou recorrencia exigem `HUMAN_ACTION_REQUIRED`, matriz de dados, retencao, exportacao/exclusao, termos e controles de privacidade antes de ativacao.
 
 ## Analytics sem PII
 

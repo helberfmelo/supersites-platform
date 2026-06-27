@@ -40,6 +40,12 @@ A Sprint 4.1 criou apenas ferramentas gratuitas client-side e fundacao testada d
 
 Antes de vender QR dinamico, short links, analytics, dominio proprio, lotes, equipes ou API, implementar billing/entitlements, termos, matriz de dados, retencao, exportacao/exclusao de conta, workflow antiabuso e gates humanos de KYC/impostos/conta bancaria.
 
+## InvoiceCraft preview
+
+A Sprint 4.2 criou apenas builders gratuitos client-side para fatura, orcamento e recibo com PDF local, sem checkout, cobranca, assinatura, entitlement pago, provedor externo ativo, clientes/produtos salvos, recorrencia, branding, equipe, historico ou pagamentos.
+
+Antes de vender clientes/produtos salvos, recorrencia, branding, equipes, pagamentos, historico ou API, implementar billing/entitlements, termos, matriz de dados, retencao, exportacao/exclusao de conta e gates humanos de KYC/impostos/conta bancaria. Impostos oficiais e numeracao fiscal exigem `HUMAN_ACTION_REQUIRED`.
+
 ## Segurança
 
 - Nao armazenar cartao.

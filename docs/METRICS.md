@@ -11,17 +11,17 @@ Data-base: 2026-06-26
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
 | Shared package folders created | 12 |
-| ADRs created | 18 |
+| ADRs created | 19 |
 | Docs files created/maintained | 44 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
-| Nuxt apps scaffolded | 6 |
+| Nuxt apps scaffolded | 7 |
 | Laravel apps scaffolded | 1 |
 | Shared TS packages implemented | 5 |
 | Shared package tests passing | 22 |
 | Shared package typechecks passing | 5 |
-| Frontend tests passing | 45 |
-| Playwright visual smoke tests passing | 23 |
+| Frontend tests passing | 52 |
+| Playwright visual smoke tests passing | 26 |
 | Laravel tests passing | 35 |
 | Control plane API endpoints implemented | 16 |
 | Control plane admin routes implemented | 6 |
@@ -152,6 +152,21 @@ Data-base: 2026-06-26
 | QRRoute Quality Gate run | `28276318912` passed |
 | QRRoute Deploy Dry Run | `28276318906` passed |
 | QRRoute production status | Placeholder at `https://opentshost.com/supersites/qrroute/`; real deploy gated |
+| InvoiceCraft tool pages implemented | 3 |
+| InvoiceCraft localized tool pages | 15 |
+| InvoiceCraft live public tools implemented | 0 |
+| InvoiceCraft local browser tools implemented | 3 |
+| InvoiceCraft legal/editorial pages | 40 |
+| InvoiceCraft FAQ blocks | 15 |
+| InvoiceCraft structured data pages | 15 |
+| InvoiceCraft prerender content routes | 61 |
+| InvoiceCraft sitemap routes | 1 |
+| InvoiceCraft PDF rendering smoke | Passed locally |
+| InvoiceCraft preview smoke | Passed |
+| InvoiceCraft Playwright report | Passed |
+| InvoiceCraft Quality Gate run | Pending push |
+| InvoiceCraft Deploy Dry Run | Pending push |
+| InvoiceCraft production status | Placeholder at `https://opentshost.com/supersites/invoicecraft/`; real deploy gated |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
 | Public production smoke for `/supersites/` | 200 catalog live |

@@ -16,6 +16,7 @@ $requiredPaths = @(
     "playwright.devutility.config.ts",
     "playwright.timenexus.config.ts",
     "playwright.qrroute.config.ts",
+    "playwright.invoicecraft.config.ts",
     "pnpm-workspace.yaml",
     "pnpm-lock.yaml",
     "docs/MEGA_PROMPT_SUPERSITES.md",
@@ -332,6 +333,34 @@ $qrroutePaths = @(
 )
 
 $requiredPaths += $qrroutePaths
+
+$invoicecraftPaths = @(
+    "apps/invoicecraft/package.json",
+    "apps/invoicecraft/nuxt.config.ts",
+    "apps/invoicecraft/app/app.vue",
+    "apps/invoicecraft/app/components/InvoiceCraftHome.vue",
+    "apps/invoicecraft/app/components/LanguageNav.vue",
+    "apps/invoicecraft/app/components/LegalFooter.vue",
+    "apps/invoicecraft/app/components/SiteHeader.vue",
+    "apps/invoicecraft/app/data/copy.ts",
+    "apps/invoicecraft/app/data/locales.ts",
+    "apps/invoicecraft/app/data/pages.ts",
+    "apps/invoicecraft/app/data/routes.ts",
+    "apps/invoicecraft/app/data/tools.ts",
+    "apps/invoicecraft/app/pages/index.vue",
+    "apps/invoicecraft/app/pages/[locale]/[page].vue",
+    "apps/invoicecraft/app/pages/[locale]/index.vue",
+    "apps/invoicecraft/app/pages/[locale]/tools/[slug].vue",
+    "apps/invoicecraft/app/utils/analytics.ts",
+    "apps/invoicecraft/app/utils/invoicecraftWorker.ts",
+    "apps/invoicecraft/app/workers/invoicecraft.worker.ts",
+    "apps/invoicecraft/server/routes/sitemap.xml.ts",
+    "apps/invoicecraft/tests/invoicecraft.test.ts",
+    "tests/e2e/invoicecraft.spec.ts",
+    "scripts/validate-invoicecraft-preview.ps1"
+)
+
+$requiredPaths += $invoicecraftPaths
 
 $missing = @()
 foreach ($path in $requiredPaths) {

@@ -15,6 +15,7 @@ Data-base: 2026-06-26
 | Politicas juridicas finais | Aceite juridico | Antes do go-live publico com coleta de dados/ads |
 | Mudanca DNS sem rollback claro | Risco de indisponibilidade | Antes de apontar dominios definitivos |
 | Branch protection no GitHub privado | GitHub retornou HTTP 403 informando que branch protection em repositorio privado exige GitHub Pro ou repositorio publico | Antes de exigir status checks protegidos em `main` |
+| InvoiceCraft fiscal/tax templates | Impostos, numeracao fiscal, campos obrigatorios e validade de documento dependem de jurisdicao e aceite juridico/fiscal | Antes de ativar nota/fatura fiscal oficial, calculo automatico de impostos, numeracao fiscal, pagamentos ou recorrencia |
 
 ## Resolvido em 2026-06-26
 

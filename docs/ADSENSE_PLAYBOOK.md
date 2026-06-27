@@ -58,6 +58,15 @@ AdSense e a monetizacao primaria, mas nenhum site deve ser submetido antes de cu
 - Nao submeter ao AdSense enquanto a URL publica ainda servir placeholder.
 - QR dinamico, short links e scan analytics exigem abuse controls e termos antes de qualquer pagina monetizada.
 
+## InvoiceCraft checklist
+
+- Sprint 4.2 entrega apenas MVP local/CI e placeholder publico.
+- Antes de AdSense, criar deploy HostGator especifico, smoke publico, rollback testavel e status page.
+- Validar Core Web Vitals, ausencia de overflow, sitemap/canonical/hreflang/schema e paginas legais em todos os idiomas publicados.
+- Nao posicionar anuncios junto a campos de documento, dados de cliente, linhas de item, valores, botoes de download PDF, erros ou preview de documento de modo que incentive clique acidental.
+- Nao submeter ao AdSense enquanto a URL publica ainda servir placeholder.
+- Pagamentos, recorrencia, clientes/produtos salvos, impostos oficiais e numeracao fiscal exigem gates humanos/tecnicos antes de qualquer pagina monetizada.
+
 ## Placements
 
 - Usar componente compartilhado de ads com espaco reservado.

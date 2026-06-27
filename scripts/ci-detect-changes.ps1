@@ -98,6 +98,14 @@ $frontendQrroutePatterns = @(
     "^pnpm-workspace\.yaml$"
 )
 
+$frontendInvoicecraftPatterns = @(
+    "^apps/invoicecraft/",
+    "^packages/",
+    "^package\.json$",
+    "^pnpm-lock\.yaml$",
+    "^pnpm-workspace\.yaml$"
+)
+
 $backendPatterns = @(
     "^apps/control-plane/",
     "^packages/",
@@ -167,6 +175,7 @@ $frontendCalcharbor = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns 
 $frontendDevutility = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns $frontendDevutilityPatterns)
 $frontendTimenexus = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns $frontendTimenexusPatterns)
 $frontendQrroute = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns $frontendQrroutePatterns)
+$frontendInvoicecraft = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns $frontendInvoicecraftPatterns)
 $backend = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns $backendPatterns)
 $deployment = $runAll -or (Test-AnyMatch -Files $changedFiles -Patterns $deploymentPatterns)
 $docsOnly = (-not $runAll) -and (Test-AllMatch -Files $changedFiles -Patterns $docsPatterns)
@@ -178,6 +187,7 @@ Write-GitHubOutput -Name "frontend_calcharbor" -Value (ConvertTo-CiBool $fronten
 Write-GitHubOutput -Name "frontend_devutility" -Value (ConvertTo-CiBool $frontendDevutility)
 Write-GitHubOutput -Name "frontend_timenexus" -Value (ConvertTo-CiBool $frontendTimenexus)
 Write-GitHubOutput -Name "frontend_qrroute" -Value (ConvertTo-CiBool $frontendQrroute)
+Write-GitHubOutput -Name "frontend_invoicecraft" -Value (ConvertTo-CiBool $frontendInvoicecraft)
 Write-GitHubOutput -Name "backend_control_plane" -Value (ConvertTo-CiBool $backend)
 Write-GitHubOutput -Name "deployment" -Value (ConvertTo-CiBool $deployment)
 Write-GitHubOutput -Name "docs_only" -Value (ConvertTo-CiBool $docsOnly)
@@ -192,6 +202,7 @@ $summary = [ordered]@{
     frontendDevutility = $frontendDevutility
     frontendTimenexus = $frontendTimenexus
     frontendQrroute = $frontendQrroute
+    frontendInvoicecraft = $frontendInvoicecraft
     backendControlPlane = $backend
     deployment = $deployment
     docsOnly = $docsOnly

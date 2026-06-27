@@ -204,6 +204,20 @@ Sprint 4.1 adiciona o primeiro produto pago de workflow da Fase 4 em `apps/qrrou
 - Nao ha conta, short link publico, dominio proprio, scan analytics, billing, anuncio, worker de producao, webhook ou integracao externa nesta sprint.
 - O manifesto de deploy conhece o build SSG, mas trafego publico real permanece placeholder ate existirem artifact gate, smoke publico e rollback especificos do QRRoute.
 
+## InvoiceCraft local document MVP
+
+Sprint 4.2 adiciona o segundo produto pago de workflow da Fase 4 em `apps/invoicecraft`.
+
+- O app usa Nuxt SSG/SSR com builders de fatura, orcamento e recibo executados no navegador.
+- O MVP publica 3 ferramentas: `invoice-builder`, `quote-builder` e `receipt-builder`.
+- Calculo de itens/totais, preview e download PDF rodam no cliente; `jspdf` e carregado por import dinamico apenas quando o usuario baixa o PDF.
+- Cada ferramenta renderiza exemplo, instrucoes de privacidade, limites fiscais/pagamento, FAQ, upgrade path e schema `WebApplication`/`FAQPage` no HTML inicial.
+- O conteudo inicial cobre `en`, `pt-br`, `es`, `fr` e `de`, incluindo paginas legais/editoriais site-scoped.
+- Analytics local permitido: eventos sanitizados `tool_viewed`, `tool_started`, `tool_completed`, `tool_failed` e `file_downloaded` com `tool_slug`.
+- Emissor, cliente, itens, valores, numeros de documento, ajustes/impostos manuais, termos, notas e PDF nao devem ser enviados a backend, logs, analytics ou data layer.
+- Impostos oficiais, numeracao fiscal, pagamentos, recorrencia, clientes/produtos salvos, branding e equipes permanecem desativados ate gates humanos/tecnicos.
+- O manifesto de deploy conhece o build SSG, mas trafego publico real permanece placeholder ate existirem artifact gate, smoke publico e rollback especificos do InvoiceCraft.
+
 ## Sites e pastas
 
 | App | Pasta | Papel |
@@ -215,7 +229,7 @@ Sprint 4.1 adiciona o primeiro produto pago de workflow da Fase 4 em `apps/qrrou
 | DevUtility Lab | `devutility-lab` | Ferramentas dev |
 | TimeNexus | `timenexus` | Tempo/data/unidades |
 | QRRoute | `qrroute` | QR, UTM, links |
-| InvoiceCraft | `invoicecraft` | Faturas e recibos |
+| InvoiceCraft | `invoicecraft` | Faturas, orcamentos e recibos |
 | MailHealth | `mailhealth` | Email auth e entregabilidade |
 | SitePulse Lab | `sitepulse-lab` | Uptime/performance/headers |
 | PixelBatch | `pixelbatch` | Imagem |

@@ -1,0 +1,25 @@
+{
+  "name": "@supersites/invoicecraft",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev --host 127.0.0.1 --port 3007",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "node .output/server/index.mjs",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@supersites/analytics": "workspace:*",
+    "@supersites/i18n": "workspace:*",
+    "@supersites/seo": "workspace:*",
+    "@supersites/ui": "workspace:*",
+    "jspdf": "^3.0.4",
+    "nuxt": "4.4.8",
+    "vue": "3.5.39"
+  },
+  "devDependencies": {
+    "typescript": "6.0.3",
+    "vitest": "4.1.9"
+  }
+}

@@ -128,6 +128,20 @@ Nao registrar em analytics:
 
 Sprint 4.1 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, short links publicos, scan analytics, dominio proprio, lote, API publica ou storage persistente do QRRoute.
 
+## InvoiceCraft tools
+
+As ferramentas client-side do InvoiceCraft podem registrar apenas eventos de produto de baixo risco, como `tool_viewed`, `tool_started`, `tool_completed`, `tool_failed` e `file_downloaded`, usando `tool_slug`, rota e locale.
+
+Nao registrar em analytics:
+
+- nomes, enderecos, e-mails ou detalhes de emissor/cliente;
+- numeros de documento, termos, notas, item descriptions ou quantidades;
+- valores, totais, descontos, moedas ou ajustes/impostos manuais;
+- conteudo ou nome do PDF gerado quando derivado de campos do usuario;
+- erros ou mensagens que possam conter partes do documento.
+
+Sprint 4.2 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, clientes/produtos salvos, recorrencia, pagamentos, billing, API publica ou storage persistente do InvoiceCraft.
+
 ## Deploy smokes
 
 Smokes de deploy do control-plane/API e do NetProbe devem validar apenas disponibilidade e contrato JSON, sem criar eventos externos de analytics e sem registrar alvo bruto de usuario. O alvo DNS padrao para smoke publico e `example.com`.

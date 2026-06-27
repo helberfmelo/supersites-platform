@@ -69,8 +69,9 @@
     {
       "id": "invoicecraft",
       "name": "InvoiceCraft",
-      "kind": "placeholder",
+      "kind": "nuxt-ssg",
       "localPath": "apps/invoicecraft",
+      "buildOutput": "apps/invoicecraft/.output/public",
       "remotePath": "/home1/opents62/public_html/supersites/invoicecraft",
       "publicUrl": "https://opentshost.com/supersites/invoicecraft/"
     },

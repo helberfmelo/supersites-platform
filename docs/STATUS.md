@@ -4,7 +4,7 @@ Data-base: 2026-06-26
 
 ## Resumo executivo
 
-O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas, o modulo seguro inicial de IP/DNS/RDAP/SSL/propagation/port/reachability do NetProbe, o conteudo original multilanguage/AdSense-readiness do NetProbe, o MVP de upgrade com monitores/historico/alertas/API, o launch gate estatico do NetProbe, o deploy publico do control-plane/API e os MVPs local/CI do CalcHarbor, DevUtility Lab, TimeNexus e QRRoute foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada. Em 2026-06-26, o control-plane/API foi publicado em `https://opentshost.com/supersites/control-plane/` e o NetProbe Atlas foi publicado em `https://opentshost.com/supersites/netprobe-atlas/` com consultas publicas IP/DNS via HTTPS e smoke publico. CalcHarbor, DevUtility Lab, TimeNexus e QRRoute permanecem em placeholder publico ate receberem deploy/rollback/smoke especificos. Nenhum anuncio, billing real, worker/cron de producao, webhook externo ou integracao externa de analytics foi ativado.
+O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas, o modulo seguro inicial de IP/DNS/RDAP/SSL/propagation/port/reachability do NetProbe, o conteudo original multilanguage/AdSense-readiness do NetProbe, o MVP de upgrade com monitores/historico/alertas/API, o launch gate estatico do NetProbe, o deploy publico do control-plane/API e os MVPs local/CI do CalcHarbor, DevUtility Lab, TimeNexus, QRRoute e InvoiceCraft foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada. Em 2026-06-26, o control-plane/API foi publicado em `https://opentshost.com/supersites/control-plane/` e o NetProbe Atlas foi publicado em `https://opentshost.com/supersites/netprobe-atlas/` com consultas publicas IP/DNS via HTTPS e smoke publico. CalcHarbor, DevUtility Lab, TimeNexus, QRRoute e InvoiceCraft permanecem em placeholder publico ate receberem deploy/rollback/smoke especificos. Nenhum anuncio, billing real, worker/cron de producao, webhook externo, checkout/pagamento ou integracao externa de analytics foi ativado.
 
 ## Estado local verificado
 
@@ -185,6 +185,16 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - `infra/deployment/apps.json`, `scripts/ci-detect-changes.ps1`, `.github/workflows/quality-gate.yml`, `scripts/validate-structure.ps1` e os scripts raiz passaram a reconhecer o app QRRoute.
   - A URL publica `https://opentshost.com/supersites/qrroute/` permanece placeholder; deploy real aguarda artifact HostGator, smoke publico e rollback especificos.
   - Nenhum anuncio, billing real, conta, short link publico, dominio proprio, worker de producao, webhook externo ou integracao externa de analytics foi ativado nesta sprint.
+- Sprint 4.2 InvoiceCraft MVP:
+  - `apps/invoicecraft` foi criado com Nuxt SSG/SSR, Vue, TypeScript, rotas localizadas, sitemap e paginas legais/editoriais site-scoped.
+  - Ferramentas gratuitas implementadas no navegador: `invoice-builder`, `quote-builder` e `receipt-builder`.
+  - Calculo de itens/totais, preview e download PDF rodam client-side; `jspdf` e carregado por import dinamico apenas quando o usuario baixa o PDF.
+  - Conteudo inicial cobre `en`, `pt-br`, `es`, `fr` e `de`; cada pagina de ferramenta renderiza exemplo, privacidade, limites fiscais/pagamento, FAQ, upgrade path e schema `WebApplication`/`FAQPage`.
+  - Analytics local emite apenas `tool_viewed`, `tool_started`, `tool_completed`, `tool_failed` e `file_downloaded` com `tool_slug`; emissor, cliente, itens, valores, numero de documento, termos, notas, PDF e ajustes/impostos manuais nao sao enviados para logs, backend ou data layer.
+  - ADR `0019-invoicecraft-local-pdf-mvp` registra a decisao de manter o MVP gratuito client-side/local PDF e tratar impostos oficiais, numeracao fiscal e pagamentos como `HUMAN_ACTION_REQUIRED`.
+  - `infra/deployment/apps.json`, `scripts/ci-detect-changes.ps1`, `.github/workflows/quality-gate.yml`, `scripts/validate-structure.ps1` e os scripts raiz passaram a reconhecer o app InvoiceCraft.
+  - A URL publica `https://opentshost.com/supersites/invoicecraft/` permanece placeholder; deploy real aguarda artifact HostGator, smoke publico e rollback especificos.
+  - Nenhum anuncio, billing real, conta, checkout, pagamento, cliente/produto salvo, recorrencia, worker de producao, webhook externo ou integracao externa de analytics foi ativado nesta sprint.
 - Branch protection para `main` foi tentada em 2026-06-26, mas GitHub retornou HTTP 403 informando que private branch protection requer GitHub Pro ou repositorio publico. Ver `docs/HUMAN_ACTION_REQUIRED.md`.
 - Node local detectado: `v24.16.0`.
 - pnpm local via Corepack: `11.9.0`.
@@ -583,6 +593,20 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - GitHub Actions `Deploy Dry Run` run `28276318906` passou; o upload de artifact continuou bloqueado pela quota GitHub Actions, mas o plano permaneceu no job summary.
   - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis e CalcHarbor/DevUtility Lab/TimeNexus/QRRoute ainda placeholders publicos.
   - Nenhum deploy real do QRRoute foi executado porque o app ainda nao tem workflow de traffic switch, smoke publico e rollback proprios.
+- Sprint 4.2 validation:
+  - Estado inicial verificado: `git status --short --branch` limpo em `main...origin/main`, commits recentes `f55324f`, `ee651ee`, `abe62ef` e `1d046cb`, e GitHub Actions recentes verdes.
+  - Smokes publicos pre-sprint passaram: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public`.
+  - `pnpm install --lockfile-only` passou e atualizou o lockfile para `jspdf`; `pnpm-workspace.yaml` fixou `core-js: false` em `allowBuilds` para manter a politica restritiva sem aprovar postinstall de terceiro.
+  - `pnpm test:invoicecraft` passou com 7 testes.
+  - `pnpm build:invoicecraft` passou e prerenderizou 61 rotas de conteudo mais `sitemap.xml` (123 rotas totais incluindo payloads), com avisos Nuxt/Nitro conhecidos e nao fatais.
+  - `pnpm validate:invoicecraft-preview` passou, confirmando home, builder, rota localizada, privacidade, sitemap e asset `_nuxt`.
+  - `pnpm test:e2e:invoicecraft` passou com 3 testes, cobrindo home desktop, preview de fatura mobile, analytics sanitizado, ausencia de storage, download PDF local e paginas mobile.
+  - Regressao de pacotes: `pnpm test:packages` passou com 22 testes e `pnpm typecheck:packages` passou para os 5 pacotes TypeScript implementados.
+  - Regressao backend: `composer validate --strict` passou e `php artisan test` passou com 35 testes / 283 assertions.
+  - Regressao frontend unit: Hub, NetProbe, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute e InvoiceCraft passaram nas suites Vitest.
+  - Regressao frontend build/preview/E2E: Hub, NetProbe, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute e InvoiceCraft passaram em build Nuxt, preview smoke e Playwright.
+  - `pnpm validate:structure`, `pnpm deploy:dry-run`, `pnpm validate:secrets`, `pnpm ci:changes` e `git diff --check` passaram no fechamento local. `git diff --check` exibiu apenas avisos CRLF conhecidos em scripts PowerShell touched.
+  - CI/push, deploy dry-run monitorado, smokes publicos pos-push e commit documental de fechamento ainda serao registrados nesta sprint antes de seguir para MailHealth.
 
 ## Pendencias criticas
 
@@ -598,6 +622,7 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 - Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o DevUtility Lab antes de trocar trafego real.
 - Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o TimeNexus antes de trocar trafego real.
 - Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o QRRoute antes de trocar trafego real.
+- Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o InvoiceCraft antes de trocar trafego real.
 - Definir estrategia tecnica de URL raiz: `opentshost.com` apontando para conteudo em `/public_html/supersites/`.
 - Definir dominios definitivos futuramente.
 - Validar dominio/marca antes de registrar qualquer nome.

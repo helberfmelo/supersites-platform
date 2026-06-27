@@ -3,6 +3,7 @@ packages:
   - "packages/*"
 allowBuilds:
   '@parcel/watcher': true
+  core-js: false
   esbuild: true
 minimumReleaseAgeExclude:
   - '@vue/compiler-core@3.5.39'

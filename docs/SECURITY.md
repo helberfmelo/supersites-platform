@@ -13,6 +13,7 @@
 - NetProbe/MailHealth/SitePulse: bloquear SSRF, loopback, redes privadas, metadata endpoints, ranges reservados e varreduras amplas.
 - PixelBatch/DocShift: validar tipo/tamanho, limpar temporarios, isolar processamento server-side e usar antivirus/sandbox quando aplicavel.
 - QRRoute: prevenir phishing, malware, open redirect e abuso de short links.
+- InvoiceCraft: processar documentos no navegador, limitar tamanho/itens/valores, nao persistir dados de cliente e bloquear claims fiscais/pagamentos ate revisao humana.
 - DevUtility: processar conteudo no navegador/Web Worker quando possivel, limitar snippets, nao persistir storage local e nao enviar conteudo sensivel do usuario para analytics ou logs.
 - TimeNexus: processar datas, fusos e conversoes no navegador/Web Worker quando possivel, nao persistir entradas pessoais e nao enviar valores ou resultados para analytics ou logs.
 
@@ -60,6 +61,14 @@
 - URL mode deve bloquear schemes nao HTTP(S), hostnames locais/privados, IPs privados/reservados, fragmentos, credenciais embutidas e payloads grandes.
 - O redirect service preparado em `/api/v1/qrroute/r/{code}` deve usar `QrRouteDestinationGuard`, rate limit `qrroute-redirect`, links ativos/expiracao, `Referrer-Policy: no-referrer` e `X-Robots-Tag: noindex, nofollow`.
 - Criacao publica de short links, scan analytics, dominios proprios, lotes e API permanecem desativados ate haver auth, billing/entitlements, workflow antiabuso, retencao, monitoramento e gates de deploy.
+
+## InvoiceCraft client-side documents
+
+- Ferramentas da Sprint 4.2 rodam no navegador com preview de documento e PDF local, sem chamadas de API para criar fatura, orcamento ou recibo.
+- Emissor, cliente, enderecos, e-mails, itens, valores, numeros de documento, termos, notas, impostos/ajustes manuais e PDF gerado nao devem ser enviados a backend, logs, analytics ou data layer.
+- O app nao deve persistir input ou resultado em `localStorage`, `sessionStorage`, IndexedDB ou cookies nesta sprint.
+- O MVP limita quantidade de linhas, tamanho de texto, moedas permitidas e ranges numericos para reduzir abuso e travamento de UI.
+- Templates fiscais oficiais, numeracao fiscal, calculo automatico de impostos, cobranca, recorrencia e pagamentos exigem `HUMAN_ACTION_REQUIRED`, termos, billing/entitlements, antiabuso e validacao juridica antes de ativacao.
 
 ## NetProbe public API
 
