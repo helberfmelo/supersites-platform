@@ -38,6 +38,14 @@
 - Identificadores anonimos e de sessao sao hasheados antes de persistencia.
 - Nenhum provedor externo de analytics deve ser ativado antes de consentimento, GA4/GTM e gates humanos/tecnicos aplicaveis.
 
+## Consentimento e ads placeholders
+
+- A CMP da Sprint 6.1 grava apenas escolhas booleanas de preferencias, analytics e ads no navegador usando `supersites.consent.v1`.
+- Comandos Consent Mode sao enviados somente para `window.dataLayer` local enquanto GA4/GTM nao estiverem aprovados; nenhum provedor externo e carregado.
+- `@supersites/ads` separa placeholder reservado de request real; `shouldRequestAd` permanece falso enquanto feature flag, delivery gate, consentimento aplicavel, conta e deploy nao estiverem aprovados.
+- Ads sao bloqueados em admin, login, checkout, conta, erro, paginas legais, superficies de ferramenta, uploads, resultados de arquivo e qualquer slot perto demais de controles interativos.
+- Slots nao devem ser inseridos junto a botoes, inputs, previews, resultados, downloads ou mensagens de erro que possam induzir clique acidental.
+
 ## DevUtility Lab client-side tools
 
 - Ferramentas da Sprint 3.2 rodam no navegador com Web Worker quando suportado e fallback local sem chamadas de rede.

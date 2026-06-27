@@ -204,6 +204,17 @@ Nao registrar em analytics:
 
 Sprint 5.2 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, batch, API publica, storage persistente, upload endpoint, OCR, billing ou workers de producao do DocShift.
 
+## Consentimento e Consent Mode
+
+Sprint 6.1 adiciona eventos locais de consentimento no `window.dataLayer`:
+
+- `supersites_consent_default`;
+- `supersites_consent_update`.
+
+Esses eventos podem conter apenas versao do contrato, regiao normalizada, booleans de categorias e comandos Consent Mode `default`/`update`. Nao registrar locale detalhado, IP, identificador de usuario, email, URL com query/hash, payload de ferramenta, resultado, nome de arquivo ou qualquer PII.
+
+Enquanto os gates de GA4/GTM/Search Console/AdSense nao forem aprovados, a data layer continua local e nenhum provider externo e carregado. Placeholders de ads podem expor status tecnico de policy no DOM, mas nao devem enviar eventos de impressao, clique ou receita.
+
 ## Deploy smokes
 
 Smokes de deploy do control-plane/API e do NetProbe devem validar apenas disponibilidade e contrato JSON, sem criar eventos externos de analytics e sem registrar alvo bruto de usuario. O alvo DNS padrao para smoke publico e `example.com`.

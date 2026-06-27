@@ -1,5 +1,6 @@
 <template>
   <NuxtPage />
+  <ConsentBanner />
 </template>
 
 <style>
@@ -560,6 +561,110 @@ h3 {
   margin-top: 0;
 }
 
+.consent-banner {
+  position: fixed;
+  z-index: 30;
+  right: 16px;
+  bottom: 16px;
+  left: 16px;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.consent-banner__panel {
+  display: grid;
+  width: min(940px, 100%);
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid #b9c6c0;
+  border-radius: 8px;
+  color: #17231e;
+  background: #ffffff;
+  box-shadow: 0 18px 50px rgb(24 35 31 / 16%);
+  pointer-events: auto;
+}
+
+.consent-banner h2 {
+  margin-bottom: 6px;
+  font-size: 1.05rem;
+}
+
+.consent-banner p {
+  margin-bottom: 0;
+  color: #3f5048;
+  font-size: 0.92rem;
+}
+
+.consent-banner__note {
+  margin-top: 8px;
+  color: #5c3710;
+}
+
+.consent-banner__choices {
+  display: grid;
+  gap: 8px;
+}
+
+.consent-banner__choices label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: #25332d;
+  font-size: 0.92rem;
+  font-weight: 750;
+}
+
+.consent-banner__choices input {
+  width: 18px;
+  height: 18px;
+  accent-color: #254c6a;
+}
+
+.consent-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.consent-banner__actions .button-link {
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.ad-placeholder {
+  display: grid;
+  width: min(100%, 728px);
+  margin: 28px auto 0;
+  place-items: center;
+  border: 1px dashed #aebbb5;
+  border-radius: 8px;
+  color: #4f5f57;
+  background:
+    linear-gradient(135deg, rgb(37 76 106 / 8%), rgb(46 138 87 / 8%)),
+    #ffffff;
+  pointer-events: none;
+}
+
+.ad-placeholder__inner {
+  display: grid;
+  gap: 4px;
+  max-width: 560px;
+  padding: 14px;
+  text-align: center;
+}
+
+.ad-placeholder strong {
+  color: #25332d;
+  font-size: 0.9rem;
+}
+
+.ad-placeholder span {
+  color: #5c6a63;
+  font-size: 0.82rem;
+}
+
 @media (max-width: 820px) {
   .page-shell {
     width: min(100% - 24px, 720px);
@@ -599,6 +704,20 @@ h3 {
 
   .site-card {
     min-height: 0;
+  }
+
+  .consent-banner {
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .consent-banner__actions .button-link {
+    width: 100%;
+  }
+
+  .ad-placeholder {
+    width: 100%;
   }
 }
 </style>

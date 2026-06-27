@@ -45,12 +45,23 @@ async function expectNoHorizontalOverflow(page: Page) {
   expect(metrics.wideElements, JSON.stringify(metrics)).toHaveLength(0)
 }
 
+async function dismissConsentBanner(page: Page) {
+  const button = page.getByRole('button', {
+    name: /Essential only|Somente essenciais|Solo esenciales|Essentiels seulement|Nur notwendige/i,
+  })
+
+  if (await button.isVisible().catch(() => false)) {
+    await button.click()
+  }
+}
+
 test.describe('SuperSites public hub', () => {
   test('renders the localized privacy page on mobile', async ({ page }, testInfo) => {
     const errors = collectBrowserErrors(page)
 
     await page.setViewportSize({ width: 390, height: 1000 })
     await page.goto('/pt-br/privacy')
+    await dismissConsentBanner(page)
 
     await expect(page).toHaveTitle(/SuperSites/)
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Privacidade')
@@ -72,6 +83,7 @@ test.describe('SuperSites public hub', () => {
     const errors = collectBrowserErrors(page)
 
     await page.goto('/en/editorial-policy')
+    await dismissConsentBanner(page)
 
     await expect(page).toHaveTitle(/Editorial Policy/)
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Editorial Policy')
@@ -92,6 +104,7 @@ test.describe('SuperSites public hub', () => {
     const errors = collectBrowserErrors(page)
 
     await page.goto('/en')
+    await dismissConsentBanner(page)
     await page.evaluate(() => {
       window.addEventListener('click', (event) => event.preventDefault(), { capture: true })
     })
@@ -112,10 +125,58 @@ test.describe('SuperSites public hub', () => {
         target_url: '/supersites/netprobe-atlas',
       },
     })
-    expect(analytics.dataLayer?.[0]).toMatchObject({
+    expect(analytics.dataLayer?.find((entry) => entry.event === 'outbound_site_click')).toMatchObject({
       event: 'outbound_site_click',
     })
     expect(JSON.stringify(analytics)).not.toContain('?')
+    expect(errors).toEqual([])
+  })
+
+  test('renders CMP controls and inert ad placeholders without external ad scripts', async ({ page }) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.goto('/en')
+
+    const banner = page.getByTestId('consent-banner')
+    const adSlot = page.getByTestId('ad-placeholder-hub-home-footer-leaderboard')
+
+    await expect(banner).toBeVisible()
+    await expect(adSlot).toBeVisible()
+    await expect(adSlot).toHaveAttribute('data-ad-status', 'blocked-consent')
+
+    const reservedBox = await adSlot.boundingBox()
+    expect(reservedBox?.height).toBeGreaterThanOrEqual(100)
+
+    await page.getByRole('button', { name: 'Customize' }).click()
+    await page.getByLabel('Analytics storage').check()
+    await page.getByLabel('Advertising storage').check()
+    await page.getByRole('button', { name: 'Save choices' }).click()
+
+    await expect(banner).toBeHidden()
+    await expect(adSlot).toHaveAttribute('data-ad-status', 'delivery-disabled')
+
+    const consent = await page.evaluate(() => ({
+      stored: window.localStorage.getItem('supersites.consent.v1'),
+      dataLayer: window.dataLayer,
+    }))
+
+    expect(consent.stored).toContain('"analytics":true')
+    expect(consent.stored).toContain('"ads":true')
+    expect(consent.dataLayer?.some((entry) => entry.event === 'supersites_consent_update')).toBe(true)
+    expect(JSON.stringify(consent)).not.toContain('@')
+    await expect(page.locator('script[src*="adsbygoogle"]')).toHaveCount(0)
+    await expect(page.locator('iframe[src*="googleads"]')).toHaveCount(0)
+    expect(errors).toEqual([])
+  })
+
+  test('keeps legal pages free of ad placements', async ({ page }) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.goto('/en/privacy')
+    await dismissConsentBanner(page)
+
+    await expect(page.locator('[data-ad-slot-id]')).toHaveCount(0)
+    await expect(page.locator('script[src*="adsbygoogle"]')).toHaveCount(0)
     expect(errors).toEqual([])
   })
 
@@ -123,6 +184,7 @@ test.describe('SuperSites public hub', () => {
     const errors = collectBrowserErrors(page)
 
     await page.goto('/en/sites/netprobe-atlas')
+    await dismissConsentBanner(page)
 
     const localToolsLink = page.getByRole('link', { name: 'Open local NetProbe tools' })
 

@@ -11,17 +11,17 @@ Data-base: 2026-06-27
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
 | Shared package folders created | 12 |
-| ADRs created | 23 |
-| Docs files created/maintained | 52 |
+| ADRs created | 24 |
+| Docs files created/maintained | 53 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
 | Nuxt apps scaffolded | 11 |
 | Laravel apps scaffolded | 1 |
-| Shared TS packages implemented | 5 |
-| Shared package tests passing | 22 |
-| Shared package typechecks passing | 5 |
+| Shared TS packages implemented | 6 |
+| Shared package tests passing | 33 |
+| Shared package typechecks passing | 6 |
 | Frontend tests passing | 81 |
-| Playwright visual smoke tests passing | 41 |
+| Playwright visual smoke tests passing | 43 |
 | Laravel tests passing | 44 |
 | Control plane API endpoints implemented | 20 |
 | Control plane admin routes implemented | 6 |
@@ -231,6 +231,12 @@ Data-base: 2026-06-27
 | DocShift Quality Gate run | `28281284720` passed |
 | DocShift Deploy Dry Run | `28281284718` passed |
 | DocShift production status | Placeholder at `https://opentshost.com/supersites/docshift/`; real deploy gated |
+| Consent CMP local component | Implemented |
+| Consent Mode local data layer events | 2 |
+| TCF fail-closed gate | Implemented |
+| Ads placement policy package | Implemented |
+| Inert ad placeholders rendered | 1 |
+| Real AdSense/GTM/GA4 scripts loaded | 0 |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
 | Public production smoke for `/supersites/` | 200 catalog live |

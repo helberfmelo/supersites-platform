@@ -41,8 +41,18 @@ Sprint 1.3 criou os primeiros pacotes TypeScript fonte-primeiro:
 - `@supersites/seo`: canonical, hreflang, metadata e sitemap XML.
 - `@supersites/consent`: categorias de consentimento, Consent Mode, regioes e regras de exibicao segura de anuncios.
 - `@supersites/analytics`: contrato versionado de eventos, sanitizacao PII-safe e payloads de data layer.
+- `@supersites/ads`: policy de placements, formatos responsivos reservados, limites de densidade e bloqueios anti-clique-acidental.
 
 Apps novos devem importar esses contratos antes de duplicar helpers locais.
+
+## Consentimento e ads gated
+
+Sprint 6.1 adiciona a fundacao de monetizacao sem ativar monetizacao real:
+
+- `@supersites/consent` mantem categorias de consentimento, storage versionado `supersites.consent.v1`, comandos Consent Mode, deteccao de regioes que exigem consentimento/TCF e bloqueio de superficies sensiveis.
+- `@supersites/ads` consome o contrato de consentimento para criar planos de slot com `shouldRenderPlaceholder` e `shouldRequestAd` separados.
+- O Hub renderiza uma CMP local e um placeholder inerte com dimensoes reservadas; feature flag, delivery gate e conta AdSense permanecem desligados.
+- Nenhum script externo de AdSense, GTM, GA4 ou CMP certificada e carregado ate haver gates humanos, configuracao de fornecedor e deploy especifico aprovados.
 
 ## Stack local inicial
 

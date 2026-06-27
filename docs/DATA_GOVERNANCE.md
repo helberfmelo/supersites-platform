@@ -113,6 +113,14 @@
 - Eventos locais permitidos devem conter apenas `tool_slug`, rota e locale; nunca nome de arquivo, texto de paginas, texto colado, metadados, page count, page range, tamanho de saida ou conteudo do PDF.
 - Processamento server-side futuro para lote, arquivos maiores, OCR, conversoes, historico ou API exige matriz de dados propria com finalidade, base legal, armazenamento, retencao curta, limpeza automatica, exportacao/exclusao, criptografia, sandbox e antivirus quando aplicavel.
 
+## Consentimento e ads
+
+- A CMP local da Sprint 6.1 grava apenas versao, timestamp e escolhas booleanas de `preferences`, `analytics` e `ads` em `localStorage`.
+- Consent Mode local usa eventos `supersites_consent_default` e `supersites_consent_update` no `window.dataLayer`; enquanto GA4/GTM nao estiverem aprovados, esses eventos nao saem do navegador.
+- O estado TCF e tratado como gate operacional. Na ausencia de CMP certificada em regioes TCF, a fundacao falha fechada e nao permite request real de ads.
+- Placeholders de ads registram apenas metadados de slot, pagina sem query/hash, formato e status de policy; nao devem conter identificadores de usuario, PII, input de ferramenta ou resultado.
+- Nenhum request AdSense, cookie de terceiro, perfil de publicidade, leilao, impressao ou clique e criado nesta sprint.
+
 ## Analytics sem PII
 
 - O contrato versionado fica em `packages/analytics`.

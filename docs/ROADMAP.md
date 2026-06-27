@@ -212,6 +212,7 @@ Sprint 5.2 - DocShift MVP
 Sprint 6.1 - Consentimento e Ads component
 - Objetivo: CMP, TCF, Consent Mode, ads component com placeholders sem CLS.
 - Validacao: sem anuncios em paginas sensiveis, no accidental clicks.
+- Status: concluida localmente. `@supersites/consent` foi expandido com storage versionado, comandos Consent Mode, gate TCF por regiao, parser/serializer e superficies sensiveis; `@supersites/ads` foi criado com policy de slots, tamanhos reservados, limite de densidade e bloqueio de clique acidental. O Hub recebeu CMP local e um placeholder inerte de ad com espaco reservado, sem script AdSense/GTM/GA4, sem requisicao externa e sem anuncio real. CMP certificada/TCF, conta AdSense e qualquer request real de ads continuam bloqueados por gates humanos e tecnicos.
 
 Sprint 6.2 - GA4, GTM e Search Console
 - Objetivo: propriedades/containers por dominio quando aprovados, eventos padronizados.

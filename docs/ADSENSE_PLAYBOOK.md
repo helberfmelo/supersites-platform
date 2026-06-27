@@ -109,9 +109,13 @@ AdSense e a monetizacao primaria, mas nenhum site deve ser submetido antes de cu
 - Comecar com poucos placements manuais.
 - Nao exibir ads em admin, login, checkout, area paga, erro, upload/progresso ou resultado sem contexto suficiente.
 - Auto Ads somente como experimento controlado.
+- Sprint 6.1 implementa somente CMP local e placeholders inertes via `@supersites/ads`; `shouldRequestAd` deve permanecer falso ate feature flag, delivery gate, consentimento aplicavel, conta AdSense, CMP/TCF quando exigida e deploy especifico estarem aprovados.
+- Legal pages, tool inputs/actions/previews/results, file upload/result, conta, checkout, login, admin e erro devem continuar sem placeholders nem ads reais.
+- Cada novo placement deve passar por review de densidade e distancia de controles interativos para evitar clique acidental e CLS.
 
 ## HUMAN_ACTION_REQUIRED
 
 - Beneficiario legal.
 - Conta AdSense existente ou nova.
 - Aceites, identidade, fiscal, banco e PIN postal.
+- Se regioes TCF forem atendidas com ads reais, escolher/configurar CMP certificada e aceitar termos aplicaveis antes de qualquer request.

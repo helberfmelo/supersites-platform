@@ -173,6 +173,15 @@ useHead(() => ({
       </div>
     </section>
 
+    <AdPlaceholder
+      slot-id="hub-home-footer-leaderboard"
+      :page-path="canonicalPath"
+      position="footer"
+      format="leaderboard"
+      surface="public-content"
+      :distance-to-interactive-px="180"
+    />
+
     <LegalFooter :locale="locale" />
   </main>
 </template>

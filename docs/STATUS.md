@@ -6,6 +6,8 @@ Data-base: 2026-06-27
 
 O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas, o modulo seguro inicial de IP/DNS/RDAP/SSL/propagation/port/reachability do NetProbe, o conteudo original multilanguage/AdSense-readiness do NetProbe, o MVP de upgrade com monitores/historico/alertas/API, o launch gate estatico do NetProbe, o deploy publico do control-plane/API e os MVPs local/CI do CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch e DocShift foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada. Em 2026-06-26, o control-plane/API foi publicado em `https://opentshost.com/supersites/control-plane/` e o NetProbe Atlas foi publicado em `https://opentshost.com/supersites/netprobe-atlas/` com consultas publicas IP/DNS via HTTPS e smoke publico. CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch e DocShift permanecem em placeholder publico ate receberem deploy/rollback/smoke especificos. Nenhum anuncio, billing real, worker/cron de producao, webhook externo, checkout/pagamento, SMTP ativo, uptime recorrente, monitoramento recorrente, processamento server-side de arquivos, batch worker ou integracao externa de analytics foi ativado.
 
+Em 2026-06-27, a Sprint 6.1 criou a fundacao local de CMP, Consent Mode, TCF fail-closed e placeholders de ads sem CLS no Hub. Nenhum script AdSense/GTM/GA4, conta, request de anuncio, cookie de terceiro, impressao, clique, leilao, billing ou integracao externa foi ativado.
+
 ## Estado local verificado
 
 - Raiz local: `D:\Projetos\supersites`.
@@ -717,6 +719,23 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis.
   - Smoke publico direto confirmou `https://opentshost.com/supersites/docshift/` e `https://opentshost.com/supersites/pixelbatch/` em HTTP 200, ainda `noindex`, sem asset `_nuxt`, preservando os placeholders publicos.
   - Nenhum deploy real do DocShift foi executado porque o app ainda nao tem workflow de traffic switch, smoke publico e rollback proprios.
+- Sprint 6.1 validation:
+  - Estado inicial verificado: `main...origin/main` em `e80f2f4`, GitHub Actions recentes verdes e producao publica com Hub, control-plane/API e NetProbe saudaveis; demais apps continuam placeholders publicos.
+  - `@supersites/consent` foi expandido com storage versionado, parse/serialize, comandos Consent Mode, gate TCF por regiao, superficies sensiveis de ferramentas/uploads/resultados e runtime de consentimento.
+  - `@supersites/ads` foi criado com policy de slots, formatos/tamanhos reservados, limite de densidade, bloqueio de clique acidental e separacao entre placeholder inerte e request real.
+  - O Hub recebeu `ConsentBanner` e `AdPlaceholder`; o placeholder usa espaco reservado, fica bloqueado por consentimento/delivery gate e nao carrega script externo.
+  - `docs/ADR/0024-consent-ads-gated-placeholders.md` registra a decisao de manter ads inertes ate gates humanos/tecnicos.
+  - `docs/HUMAN_ACTION_REQUIRED.md` registra CMP certificada/TCF como gate antes de requests reais de ads em regioes aplicaveis.
+  - `pnpm install --lockfile-only` passou e atualizou o lockfile para o workspace `@supersites/ads`.
+  - Regressao de pacotes passou: `pnpm test:packages` com 33 testes e `pnpm typecheck:packages` com 6 pacotes.
+  - Regressao backend passou: `composer validate --strict` e `php artisan test` com 44 testes / 398 assertions.
+  - Regressao frontend local passou para Hub, NetProbe Atlas, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch e DocShift: unit tests, builds dedicados, preview smokes e Playwright.
+  - `pnpm test:e2e:supersite` passou com 6 testes, incluindo CMP, Consent Mode local, placeholder inerte, ausencia de AdSense/GTM/GA4 externo e ausencia de placements em paginas legais.
+  - Previews locais passaram para Hub, NetProbe Atlas, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch e DocShift.
+  - Playwright local passou para todos os apps, totalizando 43 testes visuais/funcionais nesta suite.
+  - Gates obrigatorios locais passaram: `pnpm validate:structure`, `pnpm deploy:dry-run`, `pnpm validate:secrets`, `pnpm ci:changes` e `git diff --check`; `git diff --check` exibiu apenas avisos CRLF conhecidos em arquivos touched.
+  - `pnpm deploy:dry-run` gerou `artifacts/deploy-dry-run/supersites-deploy-plan.json` e `artifacts/deploy-dry-run/supersites-deploy-plan.md`.
+  - Nenhum anuncio real, AdSense, GTM, GA4, conta, checkout, billing, cookie de terceiro, impressao, clique, leilao, webhook externo, worker/cron de producao ou deploy real de placeholder foi ativado.
 
 ## Pendencias criticas
 

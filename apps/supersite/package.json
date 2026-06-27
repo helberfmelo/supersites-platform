@@ -10,7 +10,9 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@supersites/ads": "workspace:*",
     "@supersites/analytics": "workspace:*",
+    "@supersites/consent": "workspace:*",
     "@supersites/i18n": "workspace:*",
     "@supersites/seo": "workspace:*",
     "@supersites/ui": "workspace:*",
