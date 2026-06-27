@@ -345,8 +345,8 @@ Data-base: 2026-06-27
 | Pages per language | Initial locales remain 5 (`en`, `pt-br`, `es`, `fr`, `de`) |
 | Related tools per page | Planned for 11/11 public surfaces; site-specific measurement continues in technical sprints |
 | Upgrade opportunities by site | 11/11 public surfaces mapped with gated upgrade/support opportunities |
-| Organic growth tasks open | 7 planned technical benchmark site sprints after Sprint 7.5 local implementation |
-| Organic growth tasks closed | 4 technical refinements implemented locally in Fase 7 |
+| Organic growth tasks open | 7 planned technical benchmark site sprints after Sprint 7.5 completion |
+| Organic growth tasks closed | 4 technical refinements completed in Fase 7 |
 | Sprint 7.2 local backend validation | Passed: Composer, migrate fresh seed, AdminPanelTest, full Laravel suite |
 | Sprint 7.2 local Hub validation | Passed: Vitest, build, preview smoke, Playwright and desktop/mobile screenshot inspection |
 | Sprint 7.2 local package validation | Passed: 65 package tests and package typechecks |
@@ -373,10 +373,10 @@ Data-base: 2026-06-27
 | Sprint 7.4 public smokes | Hub/control-plane/NetProbe passed |
 | Sprint 7.5 local DevUtility validation | Passed: Vitest, build, preview smoke, Playwright and screenshot inspection |
 | Sprint 7.5 local final gates | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
-| Sprint 7.5 feature commit | Pending push |
-| Sprint 7.5 Quality Gate run | Pending push |
-| Sprint 7.5 Deploy Dry Run | Pending push |
-| Sprint 7.5 public smokes | Pending post-push |
+| Sprint 7.5 feature commit | `e006928` |
+| Sprint 7.5 Quality Gate run | `28287478977` passed |
+| Sprint 7.5 Deploy Dry Run | `28287478989` passed |
+| Sprint 7.5 public smokes | Hub/control-plane/NetProbe passed |
 | Real ads activated | 0 |
 | Real billing activated | 0 |
 | Real donation payments activated | 0 |

@@ -5,10 +5,10 @@ Data-base: 2026-06-27
 ## Current block
 
 - Real phase: Fase 7 - Benchmark-Driven Refinement.
-- Current sprint: Sprint 7.5 - DevUtility Lab benchmark UX.
-- Symbolic sprint: BR-DEVUTILITY.
-- Scope: developer-tool workbench/editor UX, examples, copy/download, clear errors, visible privacy and gated upgrade messaging.
-- Previous sprint completed: Sprint 7.4 - CalcHarbor benchmark UX.
+- Current sprint: Sprint 7.6 - TimeNexus benchmark UX.
+- Symbolic sprint: BR-TIMENEXUS.
+- Scope: time/date conversion UX, direct answers, UTC/DST education, meeting-planning affordances and gated upgrade messaging.
+- Previous sprint completed: Sprint 7.5 - DevUtility Lab benchmark UX.
 
 ## Pre-sprint state
 
@@ -36,8 +36,8 @@ Data-base: 2026-06-27
 | 7.2 | BR-SUPERSITE | Completed | Hub/control-plane benchmark dashboard refined and validated |
 | 7.3 | BR-NETPROBE | Completed | DNS/IP benchmark UX refined and public NetProbe smokes pass |
 | 7.4 | BR-CALCHARBOR | Completed | Calculator UX/content refined in local/CI, public deploy still gated |
-| 7.5 | BR-DEVUTILITY | Local validation passed | Developer tool UX/content refined in local/CI, public deploy still gated |
-| 7.6 | BR-TIMENEXUS | Planned | Time/date UX/content refined in local/CI, public deploy still gated |
+| 7.5 | BR-DEVUTILITY | Completed | Developer tool UX/content refined in local/CI, public deploy still gated |
+| 7.6 | BR-TIMENEXUS | Next | Time/date UX/content refined in local/CI, public deploy still gated |
 | 7.7 | BR-QRROUTE | Planned | QR/UTM UX/content refined in local/CI, dynamic links still gated |
 | 7.8 | BR-INVOICECRAFT | Planned | Invoice/quote/receipt UX/content refined in local/CI, taxes/payments gated |
 | 7.9 | BR-MAILHEALTH | Planned | Email diagnostic UX/content refined in local/CI, monitoring/API gated |
@@ -164,7 +164,7 @@ Sprint 7.5 local validation passed:
 
 Sprint 7.5 remote validation:
 
-- Feature commit: pending.
-- Quality Gate: pending.
-- Deploy Dry Run: pending.
-- Public smokes: pending after push.
+- Feature commit: `e006928 feat: refine devutility benchmark ux`.
+- Quality Gate: `28287478977`, success.
+- Deploy Dry Run: `28287478989`, success.
+- Public smokes: Hub, control-plane/API and NetProbe passed after push.
