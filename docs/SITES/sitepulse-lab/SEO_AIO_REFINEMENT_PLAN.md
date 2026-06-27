@@ -51,3 +51,9 @@ Medium. Avoid security/performance guarantees beyond the actual test.
 - One-off vs monitoring disclaimer coverage.
 - Web performance glossary.
 - Security header content coverage.
+
+## Sprint 7.10 execution notes
+
+- Diagnostic pages now expose clearer one-off result framing, safe interpretation, related checks and monitoring limitations.
+- Public copy no longer exposes internal sprint labels on app surfaces.
+- No claim of continuous uptime, public history or real multi-region monitoring was introduced.

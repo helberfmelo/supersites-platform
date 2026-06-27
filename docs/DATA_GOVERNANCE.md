@@ -98,6 +98,7 @@
 - Respostas podem exibir fatos tecnicos necessarios para o usuario, mas nao devem ser enviadas a analytics, GA4, GTM, AdSense ou data layer.
 - O app nao salva historico de testes, uptime, incidentes, status page, alertas, targets, contas, `localStorage` ou `sessionStorage` nesta sprint.
 - Probes devem bloquear ranges privados/reservados, portas nao web e redirects inseguros antes de qualquer chamada subsequente.
+- Sprint 7.10 adiciona score, checklist, abas de detalhes, recomendacoes, related pages e painel de monitoring workflow gated como apresentacao local dos fatos retornados; esses elementos nao criam historico, storage persistente, identificador de conta ou nova coleta.
 - Futuros recursos pagos de uptime, incidentes, status page, alertas, historico, multi-regiao, API, white-label e equipes exigem matriz de dados, retencao, exportacao/exclusao, termos, antiabuso, provider-policy review e consentimento aplicavel antes de ativacao.
 
 ## PixelBatch

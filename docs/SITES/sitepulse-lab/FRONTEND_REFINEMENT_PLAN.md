@@ -51,3 +51,9 @@ Medium; ads/support must stay away from URL input, results and diagnostics.
 - Status answer UX readiness.
 - Uptime monitor gate.
 - Multi-region probe gate.
+
+## Sprint 7.10 execution notes
+
+- P0 completed locally with score card, signal checklist, Overview/Findings/Technical details tabs, recommendation cards, related pages and gated monitoring workflow.
+- The route keeps the existing bounded probe response shape and derives UI state from in-memory result data.
+- Mobile and desktop screenshots from the Playwright report were inspected with no incoherent overlap or text overflow.

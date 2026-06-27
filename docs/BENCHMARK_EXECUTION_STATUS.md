@@ -13,8 +13,8 @@ Data-base: 2026-06-27
 ## Pre-sprint state
 
 - Git branch: `main`.
-- Latest completed commit before this sprint: `b451479 feat: refine mailhealth benchmark ux`.
-- Recent CI state: Quality Gate `28289435994` and Deploy Dry Run `28289435995` passed for MailHealth benchmark refinement.
+- Latest completed commit before this sprint: `e75a076 docs: record mailhealth benchmark ci validation`.
+- Recent CI state: Quality Gate `28289435994`, Deploy Dry Run `28289435995` and docs-only Quality Gate `28289517336` passed for MailHealth benchmark refinement.
 - Public live surfaces: SuperSites Hub, control-plane/API and NetProbe Atlas.
 - Public placeholder surfaces: CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch and DocShift.
 - External activations: zero real ads, zero real billing, zero checkout, zero provider AI, zero GA4/GTM/Search Console imports, zero AdSense serving and zero production workers for this block.
@@ -41,7 +41,7 @@ Data-base: 2026-06-27
 | 7.7 | BR-QRROUTE | Completed | QR/UTM UX/content refined in local/CI, dynamic links still gated |
 | 7.8 | BR-INVOICECRAFT | Completed | Invoice/quote/receipt UX/content refined in local/CI, taxes/payments gated |
 | 7.9 | BR-MAILHEALTH | Completed | Email diagnostic UX/content refined in local/CI, monitoring/API gated |
-| 7.10 | BR-SITEPULSE | Planned | Web diagnostic UX/content refined in local/CI, uptime workers gated |
+| 7.10 | BR-SITEPULSE | Local validation passed | Web diagnostic UX/content refined in local/CI, uptime workers gated |
 | 7.11 | BR-PIXELBATCH | Planned | Image UX/content refined in local/CI, server/batch/AI gated |
 | 7.12 | BR-DOCSHIFT | Planned | PDF UX/content refined in local/CI, OCR/server/batch gated |
 
@@ -246,4 +246,18 @@ Sprint 7.9 remote validation:
 - Quality Gate: `28289435994`, success.
 - Deploy Dry Run: `28289435995`, success.
 - Public smokes: Hub, control-plane/API and NetProbe passed after push; MailHealth remains public placeholder pending app-specific deploy/smoke/rollback gates.
-- Closing docs-only Quality Gate is pending this documentation commit.
+- Closing docs commit: `e75a076 docs: record mailhealth benchmark ci validation`.
+- Closing docs-only Quality Gate: `28289517336`, success.
+
+Sprint 7.10 local validation passed:
+
+- `pnpm test:sitepulse`
+- `pnpm build:sitepulse`
+- `pnpm validate:sitepulse-preview`
+- `pnpm test:e2e:sitepulse` (first run hit transient `EADDRINUSE` from the preview port; rerun passed after the port released)
+- SitePulse Playwright screenshots inspected under `artifacts/playwright-sitepulse-report/data/`.
+- `pnpm validate:structure`
+- `pnpm validate:secrets`
+- `pnpm deploy:dry-run`
+- `pnpm ci:changes` (local runAll fallback expected because no base was provided)
+- `git diff --check`

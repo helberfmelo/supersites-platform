@@ -110,7 +110,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'SitePulse Lab is the SuperSites product for uptime, web status, redirects, headers and crawlability diagnostics.',
     sections: [
       ['Purpose', 'The site helps operators inspect one public URL before deciding whether recurring uptime and incident workflows are worth paying for.'],
-      ['What is live now', 'Sprint 4.4 launches a free diagnostic surface plus a bounded control-plane API endpoint for one-shot web probes.'],
+      ['What is live now', 'SitePulse Lab provides a free diagnostic surface plus a bounded control-plane API endpoint for one-shot web probes.'],
       ['Upgrade boundary', 'Paid value is planned around uptime, incident timelines, public status pages, alerts, history, multi-region checks and reports.'],
     ],
   },
@@ -125,9 +125,9 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   privacy: {
     title: 'Privacy Policy',
-    description: 'SitePulse Lab minimizes collection and keeps Sprint 4.4 analytics free of target URLs and probe results.',
+    description: 'SitePulse Lab minimizes collection and keeps analytics free of target URLs and probe results.',
     sections: [
-      ['Data minimization', 'URL checks are point-in-time diagnostics. The backend returns transient results and does not create monitoring history in this sprint.'],
+      ['Data minimization', 'URL checks are point-in-time diagnostics. The backend returns transient results and does not create monitoring history in the free MVP.'],
       ['Analytics boundary', 'Allowed analytics events may record tool slug, locale and sanitized route path, but not URLs, hosts, response headers, redirects or timings.'],
       ['Future accounts', 'Saved monitors, incidents, alert destinations, status pages and reports require retention, export, deletion and consent rules before launch.'],
     ],
@@ -170,10 +170,10 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   status: {
     title: 'Launch Status',
-    description: 'SitePulse Sprint 4.4 status for local web readiness, API probes, ads, billing and monitoring gates.',
+    description: 'SitePulse Lab status for local web readiness, API probes, ads, billing and monitoring gates.',
     sections: [
       ['MVP surface', 'The local/CI MVP contains seven checks, five language route sets, sitemap, canonical, hreflang, structured data and one bounded probe endpoint.'],
-      ['Production', 'No SitePulse public deploy is switched in Sprint 4.4 because app-specific packaging, smoke and rollback are not implemented yet.'],
+      ['Production', 'No SitePulse public deploy is switched because app-specific packaging, smoke and rollback are not implemented yet.'],
       ['Gates', 'Recurring uptime, alert delivery, incident workflows, public status pages, history, multi-region probes, billing, ads and external analytics remain blocked.'],
     ],
   },

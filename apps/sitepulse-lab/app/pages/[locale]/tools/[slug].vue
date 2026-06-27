@@ -5,8 +5,10 @@ import { getShellCopy } from '../../../data/copy'
 import { localizedContentPath, localizedHomePath, localizedToolPath, normalizePublicLocale, toHtmlLang } from '../../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
 import {
+  createSitePulseScoreCard,
   createToolStructuredData,
   getCategoryLabel,
+  getRelatedSitePulseTools,
   getToolBySlug,
   getToolCopy,
   type SitePulseCheck,
@@ -58,7 +60,9 @@ const isLoading = ref(false)
 const errorMessage = ref('')
 const apiResult = ref<SitePulseProbeData | null>(null)
 const apiMeta = ref<Record<string, unknown>>({})
+const activeResultTab = ref<'overview' | 'findings' | 'details'>('overview')
 const displayedFindings = computed(() => apiResult.value?.findings ?? [])
+const hasResult = computed(() => Boolean(apiResult.value))
 const displayedMeta = computed(() => [
   { label: 'Status', value: apiResult.value?.status ?? '-' },
   { label: 'Final URL', value: apiResult.value?.final_url ?? '-' },
@@ -66,6 +70,25 @@ const displayedMeta = computed(() => [
   { label: 'TTL', value: String(apiMeta.value.cache_ttl_seconds ?? '-') },
 ])
 const summary = computed(() => apiResult.value?.summary || copy.previewResult)
+const scoreCard = computed(() => createSitePulseScoreCard(displayedFindings.value, copy.previewResult))
+const actionItems = computed(() => scoreCard.value.checklist.filter((item) => item.status !== 'pass').slice(0, 4))
+const relatedTools = computed(() => getRelatedSitePulseTools(tool.slug, locale))
+const resultTabs = computed(() => [
+  { key: 'overview' as const, label: shellCopy.overviewTabLabel },
+  { key: 'findings' as const, label: shellCopy.findingsTabLabel },
+  { key: 'details' as const, label: shellCopy.detailsTabLabel },
+])
+
+function statusClass(status: string | undefined): string {
+  if (status === 'pass' || status === 'ok' || status === 'healthy') {
+    return 'severity severity--pass'
+  }
+  if (status === 'warn' || status === 'warning' || status === 'review' || status === 'unknown' || status === 'blocked') {
+    return 'severity severity--warn'
+  }
+
+  return 'severity severity--fail'
+}
 
 function sitepulseEndpoint(path: string): string {
   return `${String(runtimeConfig.public.sitepulseApiBaseUrl).replace(/\/+$/g, '')}/${path}`
@@ -87,6 +110,7 @@ async function runProbe(): Promise<void> {
   errorMessage.value = ''
   apiResult.value = null
   apiMeta.value = {}
+  activeResultTab.value = 'overview'
   isLoading.value = true
   trackSitePulseEvent({ toolSlug: tool.slug, locale, routePath: canonicalPath }, 'tool_started')
 
@@ -200,6 +224,26 @@ useHead({
       </aside>
     </section>
 
+    <section class="health-summary" :aria-labelledby="`${tool.slug}-score`">
+      <div class="score-card" :class="`score-card--${scoreCard.tone}`">
+        <span>{{ shellCopy.pulseScoreTitle }}</span>
+        <strong :id="`${tool.slug}-score`">{{ hasResult ? scoreCard.score : '--' }}</strong>
+        <small>{{ hasResult ? scoreCard.grade : copy.statusLabel }}</small>
+      </div>
+
+      <div>
+        <h2>{{ shellCopy.checklistTitle }}</h2>
+        <p>{{ hasResult ? scoreCard.summary : copy.previewResult }}</p>
+        <div v-if="hasResult" class="checklist-grid">
+          <div v-for="item in scoreCard.checklist" :key="`${item.label}-${item.detail}`">
+            <span :class="statusClass(item.status)">{{ item.status }}</span>
+            <strong>{{ item.label }}</strong>
+            <p>{{ item.detail }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="tool-layout">
       <div>
         <section class="input-panel" :aria-labelledby="`${tool.slug}-input`">
@@ -232,57 +276,76 @@ useHead({
           <p v-else-if="errorMessage" class="result-error">{{ errorMessage }}</p>
 
           <template v-else-if="apiResult">
-            <p>{{ summary }}</p>
+            <div class="result-tabs" role="tablist" :aria-label="shellCopy.resultTitle">
+              <button
+                v-for="tab in resultTabs"
+                :key="tab.key"
+                type="button"
+                role="tab"
+                :aria-selected="activeResultTab === tab.key"
+                @click="activeResultTab = tab.key"
+              >
+                {{ tab.label }}
+              </button>
+            </div>
 
-            <div class="result-meta">
-              <div v-for="item in displayedMeta" :key="`${item.label}-${item.value}`">
-                <strong>{{ item.label }}</strong>
-                <span>{{ item.value }}</span>
+            <section v-if="activeResultTab === 'overview'" class="result-tab-panel">
+              <p>{{ summary }}</p>
+
+              <div class="result-meta">
+                <div v-for="item in displayedMeta" :key="`${item.label}-${item.value}`">
+                  <strong>{{ item.label }}</strong>
+                  <span>{{ item.value }}</span>
+                </div>
               </div>
-            </div>
-
-            <div class="result-table-wrap">
-              <table class="result-table">
-                <thead>
-                  <tr>
-                    <th>Signal</th>
-                    <th>Status</th>
-                    <th>Detail</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="finding in displayedFindings" :key="`${finding.label}-${finding.detail}`">
-                    <td>{{ finding.label }}</td>
-                    <td>{{ finding.status }}</td>
-                    <td>{{ finding.value ? `${finding.detail} (${finding.value})` : finding.detail }}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <section v-if="apiResult.redirect_chain.length" class="content-section">
-              <h3>Redirect chain</h3>
-              <ul class="result-list">
-                <li v-for="hop in apiResult.redirect_chain" :key="JSON.stringify(hop)">
-                  {{ JSON.stringify(hop) }}
-                </li>
-              </ul>
             </section>
 
-            <section v-if="Object.keys(apiResult.checks).length" class="content-section">
-              <h3>Probe details</h3>
-              <ul class="result-list">
-                <li v-for="(value, key) in apiResult.checks" :key="key">
-                  <strong>{{ key }}:</strong> {{ JSON.stringify(value) }}
-                </li>
-              </ul>
+            <section v-if="activeResultTab === 'findings'" class="result-tab-panel">
+              <div class="result-table-wrap">
+                <table class="result-table">
+                  <thead>
+                    <tr>
+                      <th>Signal</th>
+                      <th>Status</th>
+                      <th>Detail</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="finding in displayedFindings" :key="`${finding.label}-${finding.detail}`">
+                      <td>{{ finding.label }}</td>
+                      <td><span :class="statusClass(finding.status)">{{ finding.status }}</span></td>
+                      <td>{{ finding.value ? `${finding.detail} (${finding.value})` : finding.detail }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </section>
 
-            <section v-if="apiResult.warnings.length" class="content-section">
-              <h3>Warnings</h3>
-              <ul class="result-list">
-                <li v-for="warning in apiResult.warnings" :key="warning">{{ warning }}</li>
-              </ul>
+            <section v-if="activeResultTab === 'details'" class="result-tab-panel">
+              <section v-if="apiResult.redirect_chain.length" class="content-section">
+                <h3>Redirect chain</h3>
+                <ul class="result-list">
+                  <li v-for="hop in apiResult.redirect_chain" :key="JSON.stringify(hop)">
+                    {{ JSON.stringify(hop) }}
+                  </li>
+                </ul>
+              </section>
+
+              <section v-if="Object.keys(apiResult.checks).length" class="content-section">
+                <h3>Probe details</h3>
+                <ul class="result-list">
+                  <li v-for="(value, key) in apiResult.checks" :key="key">
+                    <strong>{{ key }}:</strong> {{ JSON.stringify(value) }}
+                  </li>
+                </ul>
+              </section>
+
+              <section v-if="apiResult.warnings.length" class="content-section">
+                <h3>Warnings</h3>
+                <ul class="result-list">
+                  <li v-for="warning in apiResult.warnings" :key="warning">{{ warning }}</li>
+                </ul>
+              </section>
             </section>
           </template>
 
@@ -290,21 +353,52 @@ useHead({
         </section>
       </div>
 
-      <aside class="band" :aria-labelledby="`${tool.slug}-methodology`">
-        <h2 :id="`${tool.slug}-methodology`">{{ shellCopy.methodologyLabel }}</h2>
-        <ul class="method-list">
-          <li v-for="item in copy.methodology" :key="item">{{ item }}</li>
-        </ul>
-        <dl class="fact-list">
-          <div>
-            <dt>{{ shellCopy.freeCheckLabel }}</dt>
-            <dd>{{ copy.freeScope }}</dd>
+      <aside class="tool-sidebar" :aria-labelledby="`${tool.slug}-methodology`">
+        <section class="band">
+          <h2 :id="`${tool.slug}-methodology`">{{ shellCopy.methodologyLabel }}</h2>
+          <ul class="method-list">
+            <li v-for="item in copy.methodology" :key="item">{{ item }}</li>
+          </ul>
+        </section>
+
+        <section class="band">
+          <h2>{{ shellCopy.recommendationTitle }}</h2>
+          <ul v-if="actionItems.length" class="method-list">
+            <li v-for="item in actionItems" :key="`${item.label}-${item.detail}`">
+              {{ item.label }}: {{ item.detail }}
+            </li>
+          </ul>
+          <p v-else>{{ shellCopy.recommendationEmpty }}</p>
+        </section>
+
+        <section class="band">
+          <h2>{{ shellCopy.monitoringTitle }}</h2>
+          <p>{{ shellCopy.monitoringBody }}</p>
+          <ul class="method-list">
+            <li v-for="item in shellCopy.monitoringItems" :key="item">{{ item }}</li>
+          </ul>
+          <dl class="fact-list">
+            <div>
+              <dt>{{ shellCopy.freeCheckLabel }}</dt>
+              <dd>{{ copy.freeScope }}</dd>
+            </div>
+            <div>
+              <dt>{{ shellCopy.upgradePathLabel }}</dt>
+              <dd>{{ copy.upgradeScope }}</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="band">
+          <h2>{{ shellCopy.relatedTitle }}</h2>
+          <p>{{ shellCopy.relatedBody }}</p>
+          <div class="related-list">
+            <NuxtLink v-for="related in relatedTools" :key="related.slug" class="related-card" :to="localizedToolPath(locale, related.slug)">
+              <strong>{{ related.title }}</strong>
+              <span>{{ related.description }}</span>
+            </NuxtLink>
           </div>
-          <div>
-            <dt>{{ shellCopy.upgradePathLabel }}</dt>
-            <dd>{{ copy.upgradeScope }}</dd>
-          </div>
-        </dl>
+        </section>
       </aside>
     </section>
 

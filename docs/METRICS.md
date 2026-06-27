@@ -266,6 +266,9 @@ Data-base: 2026-06-27
 | SitePulse Lab structured data pages | 35 |
 | SitePulse Lab prerender content routes | 81 |
 | SitePulse Lab sitemap routes | 1 |
+| SitePulse Lab benchmark score pages | 35 |
+| SitePulse Lab related check blocks | 35 |
+| SitePulse Lab monitoring gated panels | 35 |
 | SitePulse Lab preview smoke | Passed |
 | SitePulse Lab Playwright report | Passed |
 | SitePulse Lab Quality Gate run | `28278871466` passed |
@@ -342,14 +345,14 @@ Data-base: 2026-06-27
 | SEO readiness score | Implemented in control-plane for 11/11 public surfaces as estimated local evidence |
 | AdSense readiness score | Defined; 11/11 public surfaces have safe placeholder/gate plans, real ad serving remains 0 |
 | Monetization readiness score | Defined; 11/11 public surfaces have gated upgrade/support plans, real checkout/donation/affiliate activation remains 0 |
-| Frontend quality score | Hub Sprint 7.2, NetProbe Sprint 7.3, CalcHarbor Sprint 7.4, DevUtility Lab Sprint 7.5, TimeNexus Sprint 7.6, QRRoute Sprint 7.7, InvoiceCraft Sprint 7.8 and MailHealth Sprint 7.9 local tests/build/preview/Playwright passed; remaining apps pending sprint-by-sprint |
+| Frontend quality score | Hub Sprint 7.2, NetProbe Sprint 7.3, CalcHarbor Sprint 7.4, DevUtility Lab Sprint 7.5, TimeNexus Sprint 7.6, QRRoute Sprint 7.7, InvoiceCraft Sprint 7.8, MailHealth Sprint 7.9 and SitePulse Sprint 7.10 local tests/build/preview/Playwright passed; remaining apps pending sprint-by-sprint |
 | Core Web Vitals readiness | Not externally measured for placeholder apps; local performance validation planned per sprint |
 | Educational content by tool | Existing localized tool pages/FAQ blocks: 320 |
 | Pages per language | Initial locales remain 5 (`en`, `pt-br`, `es`, `fr`, `de`) |
 | Related tools per page | Planned for 11/11 public surfaces; site-specific measurement continues in technical sprints |
 | Upgrade opportunities by site | 11/11 public surfaces mapped with gated upgrade/support opportunities |
-| Organic growth tasks open | 3 planned technical benchmark site sprints after Sprint 7.9 local validation |
-| Organic growth tasks closed | 8 technical refinements completed in Fase 7 |
+| Organic growth tasks open | 2 planned technical benchmark site sprints after Sprint 7.10 local validation |
+| Organic growth tasks closed | 9 technical refinements completed in Fase 7 |
 | Sprint 7.2 local backend validation | Passed: Composer, migrate fresh seed, AdminPanelTest, full Laravel suite |
 | Sprint 7.2 local Hub validation | Passed: Vitest, build, preview smoke, Playwright and desktop/mobile screenshot inspection |
 | Sprint 7.2 local package validation | Passed: 65 package tests and package typechecks |
@@ -406,6 +409,10 @@ Data-base: 2026-06-27
 | Sprint 7.9 Quality Gate run | `28289435994` passed |
 | Sprint 7.9 Deploy Dry Run | `28289435995` passed |
 | Sprint 7.9 public smokes | Hub/control-plane/NetProbe passed; MailHealth remains placeholder |
+| Sprint 7.9 docs closing commit | `e75a076` |
+| Sprint 7.9 docs-only Quality Gate run | `28289517336` passed |
+| Sprint 7.10 local SitePulse validation | Passed: Vitest, build, preview smoke, Playwright and screenshot inspection |
+| Sprint 7.10 local final gates | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
 | Real ads activated | 0 |
 | Real billing activated | 0 |
 | Real donation payments activated | 0 |

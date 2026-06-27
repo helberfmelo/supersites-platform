@@ -13,6 +13,7 @@ export interface HomeCopy {
   freeLabel: string
   upgradeLabel: string
   detailCta: string
+  localBadgeLabel: string
   principlesTitle: string
   principles: Array<{ title: string; body: string }>
   statusRows: Array<{ title: string; body: string; tone: 'green' | 'amber' }>
@@ -22,8 +23,19 @@ export interface ShellCopy {
   breadcrumbHome: string
   pageStatusLabel: string
   relatedTitle: string
+  relatedBody: string
   plannedTitle: string
   plannedBody: string
+  pulseScoreTitle: string
+  checklistTitle: string
+  recommendationTitle: string
+  recommendationEmpty: string
+  monitoringTitle: string
+  monitoringBody: string
+  monitoringItems: string[]
+  overviewTabLabel: string
+  findingsTabLabel: string
+  detailsTabLabel: string
   exampleLabel: string
   methodologyLabel: string
   editorialLabel: string
@@ -56,7 +68,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Free check',
     upgradeLabel: 'Upgrade path',
     detailCta: 'Open check',
-    principlesTitle: 'Sprint 4.4 principles',
+    localBadgeLabel: 'Local MVP',
+    principlesTitle: 'Operating principles',
     principles: sharedPrinciples,
     statusRows: [
       { title: '7 focused checks', body: 'Status, redirects, headers, robots, sitemap, TTFB and snapshot pages are represented.', tone: 'green' },
@@ -77,7 +90,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Check gratuito',
     upgradeLabel: 'Caminho de upgrade',
     detailCta: 'Abrir check',
-    principlesTitle: 'Principios da Sprint 4.4',
+    localBadgeLabel: 'MVP local',
+    principlesTitle: 'Principios operacionais',
     principles: sharedPrinciples,
     statusRows: [
       { title: '7 checks focados', body: 'Status, redirects, headers, robots, sitemap, TTFB e snapshot estao representados.', tone: 'green' },
@@ -98,7 +112,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Check gratis',
     upgradeLabel: 'Ruta de upgrade',
     detailCta: 'Abrir check',
-    principlesTitle: 'Principios Sprint 4.4',
+    localBadgeLabel: 'MVP local',
+    principlesTitle: 'Principios operativos',
     principles: sharedPrinciples,
     statusRows: [
       { title: '7 checks enfocados', body: 'Status, redirects, headers, robots, sitemap, TTFB y snapshot estan representados.', tone: 'green' },
@@ -119,7 +134,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Controle gratuit',
     upgradeLabel: 'Offre payante',
     detailCta: 'Ouvrir',
-    principlesTitle: 'Principes Sprint 4.4',
+    localBadgeLabel: 'MVP local',
+    principlesTitle: 'Principes operationnels',
     principles: sharedPrinciples,
     statusRows: [
       { title: '7 controles cibles', body: 'Statut, redirects, headers, robots, sitemap, TTFB et snapshot sont representes.', tone: 'green' },
@@ -140,7 +156,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Kostenloser Check',
     upgradeLabel: 'Upgrade-Pfad',
     detailCta: 'Check oeffnen',
-    principlesTitle: 'Sprint-4.4-Prinzipien',
+    localBadgeLabel: 'Lokales MVP',
+    principlesTitle: 'Betriebsprinzipien',
     principles: sharedPrinciples,
     statusRows: [
       { title: '7 fokussierte Checks', body: 'Status, Redirects, Header, Robots, Sitemap, TTFB und Snapshot sind vertreten.', tone: 'green' },
@@ -155,8 +172,19 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'SitePulse Lab',
     pageStatusLabel: 'Check status',
     relatedTitle: 'Related pages',
+    relatedBody: 'Chain status, redirects, headers, robots, sitemap, TTFB and snapshot checks without saving the target.',
     plannedTitle: 'Bounded public API',
     plannedBody: 'One-shot probes use a dedicated rate limit, short timeouts and no stored history.',
+    pulseScoreTitle: 'Pulse score',
+    checklistTitle: 'Signal checklist',
+    recommendationTitle: 'Recommended actions',
+    recommendationEmpty: 'Keep this one-shot result as a baseline; recurring uptime and incident history remain gated.',
+    monitoringTitle: 'Monitoring workflow gated',
+    monitoringBody: 'Recurring probes, alert routing, status pages, incident history and multi-region checks are planned but inactive.',
+    monitoringItems: ['Uptime checks and incidents', 'Status page and alert routing', 'Historical trends and reports', 'Multi-region probes'],
+    overviewTabLabel: 'Overview',
+    findingsTabLabel: 'Findings',
+    detailsTabLabel: 'Technical details',
     exampleLabel: 'Example',
     methodologyLabel: 'Methodology',
     editorialLabel: 'Editorial policy',
@@ -172,8 +200,19 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'SitePulse Lab',
     pageStatusLabel: 'Status do check',
     relatedTitle: 'Paginas relacionadas',
+    relatedBody: 'Encadeie status, redirects, headers, robots, sitemap, TTFB e snapshot sem salvar o alvo.',
     plannedTitle: 'API publica limitada',
     plannedBody: 'Probes pontuais usam rate limit dedicado, timeout curto e sem historico salvo.',
+    pulseScoreTitle: 'Score Pulse',
+    checklistTitle: 'Checklist de sinais',
+    recommendationTitle: 'Acoes recomendadas',
+    recommendationEmpty: 'Use este resultado pontual como linha de base; uptime recorrente e historico seguem bloqueados.',
+    monitoringTitle: 'Workflow de monitoramento bloqueado',
+    monitoringBody: 'Probes recorrentes, alertas, status page, historico e multi-regiao estao planejados, mas inativos.',
+    monitoringItems: ['Uptime e incidentes', 'Status page e alertas', 'Tendencias e relatorios', 'Probes multi-regiao'],
+    overviewTabLabel: 'Resumo',
+    findingsTabLabel: 'Sinais',
+    detailsTabLabel: 'Detalhes tecnicos',
     exampleLabel: 'Exemplo',
     methodologyLabel: 'Metodologia',
     editorialLabel: 'Politica editorial',
@@ -189,8 +228,19 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'SitePulse Lab',
     pageStatusLabel: 'Estado del check',
     relatedTitle: 'Paginas relacionadas',
+    relatedBody: 'Encadena status, redirects, headers, robots, sitemap, TTFB y snapshot sin guardar el objetivo.',
     plannedTitle: 'API publica limitada',
     plannedBody: 'Probes puntuales usan rate limit dedicado, timeout corto y sin historial guardado.',
+    pulseScoreTitle: 'Score Pulse',
+    checklistTitle: 'Checklist de senales',
+    recommendationTitle: 'Acciones recomendadas',
+    recommendationEmpty: 'Usa este resultado puntual como base; uptime recurrente e historico siguen bloqueados.',
+    monitoringTitle: 'Workflow de monitoreo bloqueado',
+    monitoringBody: 'Probes recurrentes, alertas, status page, historico y multi-region estan planeados, pero inactivos.',
+    monitoringItems: ['Uptime e incidentes', 'Status page y alertas', 'Tendencias e informes', 'Probes multi-region'],
+    overviewTabLabel: 'Resumen',
+    findingsTabLabel: 'Senales',
+    detailsTabLabel: 'Detalles tecnicos',
     exampleLabel: 'Ejemplo',
     methodologyLabel: 'Metodologia',
     editorialLabel: 'Politica editorial',
@@ -206,8 +256,19 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'SitePulse Lab',
     pageStatusLabel: 'Statut',
     relatedTitle: 'Pages liees',
+    relatedBody: 'Enchainez statut, redirects, headers, robots, sitemap, TTFB et snapshot sans stocker la cible.',
     plannedTitle: 'API publique bornee',
     plannedBody: 'Les probes ponctuels utilisent rate limit dedie, timeouts courts et aucun historique.',
+    pulseScoreTitle: 'Score Pulse',
+    checklistTitle: 'Checklist signaux',
+    recommendationTitle: 'Actions recommandees',
+    recommendationEmpty: 'Gardez ce resultat ponctuel comme base; uptime recurrent et historique restent bloques.',
+    monitoringTitle: 'Workflow monitoring bloque',
+    monitoringBody: 'Probes recurrents, alertes, status page, historique et multi-region sont prevus mais inactifs.',
+    monitoringItems: ['Uptime et incidents', 'Status page et alertes', 'Tendances et rapports', 'Probes multi-region'],
+    overviewTabLabel: 'Resume',
+    findingsTabLabel: 'Signaux',
+    detailsTabLabel: 'Details techniques',
     exampleLabel: 'Exemple',
     methodologyLabel: 'Methodologie',
     editorialLabel: 'Politique editoriale',
@@ -223,8 +284,19 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'SitePulse Lab',
     pageStatusLabel: 'Checkstatus',
     relatedTitle: 'Verwandte Seiten',
+    relatedBody: 'Status, Redirects, Header, Robots, Sitemap, TTFB und Snapshot verbinden, ohne Ziele zu speichern.',
     plannedTitle: 'Begrenzte Public API',
     plannedBody: 'Einmalige Probes nutzen eigenes Rate Limit, kurze Timeouts und keinen Verlauf.',
+    pulseScoreTitle: 'Pulse Score',
+    checklistTitle: 'Signal-Checklist',
+    recommendationTitle: 'Empfohlene Aktionen',
+    recommendationEmpty: 'Dieses Einmal-Ergebnis als Basis nutzen; wiederkehrendes Uptime-Monitoring bleibt gesperrt.',
+    monitoringTitle: 'Monitoring-Workflow gesperrt',
+    monitoringBody: 'Wiederkehrende Probes, Alerts, Status Pages, Verlauf und Multi-Region sind geplant, aber inaktiv.',
+    monitoringItems: ['Uptime und Incidents', 'Status Page und Alerts', 'Trends und Reports', 'Multi-Region Probes'],
+    overviewTabLabel: 'Uebersicht',
+    findingsTabLabel: 'Signale',
+    detailsTabLabel: 'Technische Details',
     exampleLabel: 'Beispiel',
     methodologyLabel: 'Methodik',
     editorialLabel: 'Redaktionelle Richtlinie',

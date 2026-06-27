@@ -300,7 +300,7 @@ Sprint 7.10 - SitePulse Lab benchmark UX
 - Simbolico: BR-SITEPULSE.
 - Objetivo: refinar status, redirects, headers, robots, sitemap, TTFB e performance snapshot com resposta simples, tabs tecnicas, recomendacoes e upgrades gated.
 - Validacao: testes/build/preview/Playwright do SitePulse, probe bounded tests se afetados e gates locais.
-- Status: planejada.
+- Status: validacao local concluida. O app recebeu score de saude, checklist de sinais, abas de resultado, recomendacoes, related pages, badge local e painel de monitoring workflow gated/inert sem endpoint novo. CI, dry-run remoto e fechamento docs-only seguem pendentes do ciclo de commit/push da sprint.
 
 Sprint 7.11 - PixelBatch benchmark UX
 - Simbolico: BR-PIXELBATCH.

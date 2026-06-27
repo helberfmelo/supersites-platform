@@ -106,8 +106,8 @@ useHead(() => ({
         <div>
           <div class="tool-card__topline">
             <span class="category">{{ getCategoryLabel(tool.category, locale) }}</span>
-            <span :class="[getStatusBadgeClass('foundation'), getToolCopy(tool, locale).statusLabel === 'Planned' ? 'status--info' : '']">
-              {{ getToolCopy(tool, locale).statusLabel }}
+            <span :class="getStatusBadgeClass('foundation')">
+              {{ copy.localBadgeLabel }}
             </span>
           </div>
           <h2>{{ getToolCopy(tool, locale).title }}</h2>

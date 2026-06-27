@@ -76,6 +76,26 @@ export interface ToolDefinition {
   localized: Record<LocaleCode, ToolCopy>
 }
 
+export interface SitePulseRelatedTool {
+  slug: ToolSlug
+  title: string
+  description: string
+}
+
+export interface SitePulseScoreChecklistItem {
+  label: string
+  status: 'pass' | 'warn' | 'fail' | 'unknown'
+  detail: string
+}
+
+export interface SitePulseScoreCard {
+  score: number
+  grade: string
+  tone: 'pass' | 'warn' | 'fail'
+  summary: string
+  checklist: SitePulseScoreChecklistItem[]
+}
+
 export const categoryLabels: Record<ToolCategory, string> = {
   availability: 'Availability',
   routing: 'Redirects',
@@ -381,6 +401,15 @@ export const toolCatalog: ToolDefinition[] = [
 ]
 
 const toolBySlug = new Map(toolCatalog.map((tool) => [tool.slug, tool]))
+const relatedBySlug: Record<ToolSlug, ToolSlug[]> = {
+  'status-checker': ['redirect-chain', 'ttfb-check', 'performance-snapshot'],
+  'redirect-chain': ['status-checker', 'sitemap-validator', 'performance-snapshot'],
+  'security-headers': ['status-checker', 'performance-snapshot', 'robots-checker'],
+  'robots-checker': ['sitemap-validator', 'status-checker', 'performance-snapshot'],
+  'sitemap-validator': ['robots-checker', 'redirect-chain', 'performance-snapshot'],
+  'ttfb-check': ['status-checker', 'performance-snapshot', 'redirect-chain'],
+  'performance-snapshot': ['status-checker', 'redirect-chain', 'security-headers'],
+}
 
 export function isToolSlug(value: string | undefined): value is ToolSlug {
   return toolSlugs.includes(value as ToolSlug)
@@ -396,6 +425,21 @@ export function getToolBySlug(value: string | undefined): ToolDefinition | null 
 
 export function getToolCopy(tool: ToolDefinition, locale: LocaleCode): ToolCopy {
   return tool.localized[locale] ?? tool.localized.en
+}
+
+export function getRelatedSitePulseTools(slug: ToolSlug, locale: LocaleCode): SitePulseRelatedTool[] {
+  return relatedBySlug[slug]
+    .map((relatedSlug) => getToolBySlug(relatedSlug))
+    .filter((tool): tool is ToolDefinition => Boolean(tool))
+    .map((tool) => {
+      const copy = getToolCopy(tool, locale)
+
+      return {
+        slug: tool.slug,
+        title: copy.title,
+        description: copy.freeScope,
+      }
+    })
 }
 
 export function getCategoryLabel(category: ToolCategory, locale: LocaleCode): string {
@@ -465,4 +509,72 @@ export function createToolStructuredData(tool: ToolDefinition, locale: LocaleCod
       })),
     },
   ]
+}
+
+function normalizeFindingStatus(status: string | undefined): SitePulseScoreChecklistItem['status'] {
+  if (status === 'pass' || status === 'warn' || status === 'fail' || status === 'unknown') {
+    return status
+  }
+
+  if (status === 'ok' || status === 'healthy') {
+    return 'pass'
+  }
+
+  if (status === 'warning' || status === 'review' || status === 'blocked') {
+    return 'warn'
+  }
+
+  return status ? 'fail' : 'unknown'
+}
+
+export function createSitePulseScoreCard(findings: Array<{ label: string; status?: string; detail: string }>, fallbackSummary: string): SitePulseScoreCard {
+  const checklist = findings.map((finding) => ({
+    label: finding.label,
+    status: normalizeFindingStatus(finding.status),
+    detail: finding.detail,
+  }))
+
+  if (checklist.length === 0) {
+    return {
+      score: 0,
+      grade: 'Not run',
+      tone: 'warn',
+      summary: fallbackSummary,
+      checklist: [],
+    }
+  }
+
+  const score = Math.max(0, Math.round(
+    checklist.reduce((total, item) => {
+      if (item.status === 'pass') {
+        return total + 100
+      }
+      if (item.status === 'warn' || item.status === 'unknown') {
+        return total + 55
+      }
+
+      return total
+    }, 0) / checklist.length,
+  ))
+  const failCount = checklist.filter((item) => item.status === 'fail').length
+  const warnCount = checklist.filter((item) => item.status === 'warn' || item.status === 'unknown').length
+  const grade = score >= 85 && failCount === 0
+    ? 'Healthy'
+    : score >= 60
+      ? 'Review'
+      : 'Action needed'
+  const tone = grade === 'Healthy' ? 'pass' : grade === 'Review' ? 'warn' : 'fail'
+  const summary = failCount > 0
+    ? `${failCount} failing signal${failCount === 1 ? '' : 's'} should be investigated before treating this URL as healthy.`
+    : warnCount > 0
+      ? `${warnCount} warning signal${warnCount === 1 ? '' : 's'} need review before recurring monitoring is useful.`
+      : 'All visible signals in this one-shot check look healthy.'
+
+  return {
+    score,
+    grade,
+    tone,
+    summary,
+    checklist,
+  }
 }

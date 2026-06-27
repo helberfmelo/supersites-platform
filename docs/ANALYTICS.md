@@ -177,6 +177,8 @@ Nao registrar em analytics:
 
 Sprint 4.4 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, historico salvo, uptime recorrente, incidentes, status page, alertas, billing, API publica paga, webhooks ou storage persistente do SitePulse Lab.
 
+Sprint 7.10 nao altera o contrato de eventos: score de saude, checklist, abas de resultado, recomendacoes, related pages e monitoring workflow gated sao UI local sem novas propriedades de analytics. GA4, GTM, AdSense, backend de analytics externo, contas, historico salvo, uptime recorrente, incidentes, status page, alertas, billing, API publica paga, webhooks ou storage persistente do SitePulse Lab continuam desativados.
+
 ## PixelBatch tools
 
 As ferramentas do PixelBatch podem registrar apenas eventos de produto de baixo risco, como `tool_viewed`, `tool_started`, `file_processed`, `tool_completed`, `tool_failed` e `file_downloaded`, usando `tool_slug`, rota e locale.

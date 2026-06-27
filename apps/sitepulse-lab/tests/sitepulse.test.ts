@@ -4,8 +4,10 @@ import { contentPageCatalog, contentPageSlugs, getContentPageBySlug } from '../a
 import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
 import {
   categoryLabels,
+  createSitePulseScoreCard,
   createToolStructuredData,
   filterTools,
+  getRelatedSitePulseTools,
   getToolBySlug,
   getToolCopy,
   toolCatalog,
@@ -14,7 +16,7 @@ import {
 import { createSitePulseToolEvent } from '../app/utils/analytics'
 
 describe('SitePulse Lab MVP', () => {
-  it('lists Sprint 4.4 checks in roadmap order', () => {
+  it('lists website checks in roadmap order', () => {
     expect(toolCatalog.map((tool) => tool.slug)).toEqual([...toolSlugs])
     expect(toolCatalog).toHaveLength(7)
     expect(getToolBySlug('status-checker')?.shortName).toBe('Status')
@@ -67,6 +69,28 @@ describe('SitePulse Lab MVP', () => {
     expect(filterTools('CSP', 'security').map((tool) => tool.slug)).toEqual(['security-headers'])
     expect(filterTools('multi-region', 'performance').map((tool) => tool.slug)).toContain('ttfb-check')
     expect(Object.keys(categoryLabels)).toContain('availability')
+  })
+
+  it('creates related-check links and a one-shot pulse score', () => {
+    expect(getRelatedSitePulseTools('status-checker', 'en').map((tool) => tool.slug)).toEqual([
+      'redirect-chain',
+      'ttfb-check',
+      'performance-snapshot',
+    ])
+
+    const score = createSitePulseScoreCard([
+      { label: 'HTTP status', status: 'pass', detail: 'Final response is in the 2xx range.' },
+      { label: 'Redirect count', status: 'warn', detail: 'Two redirects were followed.' },
+      { label: 'Headers', status: 'fail', detail: 'CSP is missing.' },
+    ], 'Run a check to score visible web signals.')
+
+    expect(score).toMatchObject({
+      score: 52,
+      grade: 'Action needed',
+      tone: 'fail',
+    })
+    expect(score.summary).toContain('failing')
+    expect(JSON.stringify(score)).not.toContain('example.com')
   })
 
   it('creates tool schema with FAQ and free WebApplication offer', () => {

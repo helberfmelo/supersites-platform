@@ -50,3 +50,9 @@ Medium to high if diagnostics look like intrusive scanning. Keep scope bounded a
 - Uptime worker gate.
 - Alert delivery gate.
 - Status page product gate.
+
+## Sprint 7.10 execution notes
+
+- Monitoring, incidents, status pages, alerts, history, multi-region probes and reports remain gated/inert upgrade messaging.
+- Free one-shot diagnostics remain complete without signup.
+- No checkout, billing provider, ad serving, donation/support payment, affiliate link or paid API was activated.

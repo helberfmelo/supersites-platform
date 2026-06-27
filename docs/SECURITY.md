@@ -150,6 +150,7 @@
 - Robots e sitemap devem ser requisitados apenas em caminhos same-origin padrao, com limite de bytes e sem crawling de URLs internas.
 - O probe nao deve executar metodos mutantes, enviar cookies do usuario, seguir formularios, testar portas arbitrarias, varrer paths ou manter sessao.
 - Analytics de SitePulse nao deve incluir URL alvo, host, path, query, headers, redirect targets, status code, latencia, body sample, robots, sitemap ou erro bruto.
+- Score, checklist, abas de detalhe, recomendacoes e related pages da Sprint 7.10 devem permanecer derivados do resultado em memoria e nao podem ativar crawling, probes recorrentes, storage, alertas, status page, API paga ou checkout.
 - Uptime recorrente, incidentes, status page, alertas, historico, multi-regiao, API paga e white-label exigem auth, billing/entitlements, retencao, termos, antiabuso, provider-policy review e gates de deploy antes de ativacao.
 
 ## PixelBatch browser image processing
