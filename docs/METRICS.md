@@ -237,6 +237,9 @@ Data-base: 2026-06-27
 | Ads placement policy package | Implemented |
 | Inert ad placeholders rendered | 1 |
 | Real AdSense/GTM/GA4 scripts loaded | 0 |
+| Sprint 6.1 Quality Gate run | `28282044449` passed |
+| Sprint 6.1 Deploy Dry Run | `28282044425` passed |
+| Sprint 6.1 public smokes | Hub/control-plane/NetProbe passed |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
 | Public production smoke for `/supersites/` | 200 catalog live |
