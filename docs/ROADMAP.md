@@ -282,7 +282,7 @@ Sprint 7.7 - QRRoute benchmark UX
 - Simbolico: BR-QRROUTE.
 - Objetivo: refinar QR/barcode/UTM com tabs por tipo, preview em tempo real, download claro, educacao static vs dynamic e upgrades gated.
 - Validacao: testes/build/preview/Playwright do QRRoute, redirect guard se afetado e gates locais.
-- Status: implementada e validada localmente; feature commit, push, Quality Gate, Deploy Dry Run remoto, smokes publicos e fechamento docs-only pendentes antes da Sprint 7.8. O QRRoute recebeu tabs por tipo, payload final, preview/download/copy locais, educacao static vs dynamic, exemplos, related tools e upgrade gated/inert. Nenhum deploy real, short link publico, QR dinamico, analytics de scan/click, anuncio, checkout, billing, dominio customizado, lote/API publica ou analytics externo foi ativado.
+- Status: concluida. O QRRoute recebeu tabs por tipo, payload final, preview/download/copy locais, educacao static vs dynamic, exemplos, related tools e upgrade gated/inert. Quality Gate `28288511784`, Deploy Dry Run `28288511790` e smokes publicos de Hub/control-plane/NetProbe passaram. Nenhum deploy real, short link publico, QR dinamico, analytics de scan/click, anuncio, checkout, billing, dominio customizado, lote/API publica ou analytics externo foi ativado.
 
 Sprint 7.8 - InvoiceCraft benchmark UX
 - Simbolico: BR-INVOICECRAFT.

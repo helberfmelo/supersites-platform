@@ -938,7 +938,10 @@ Na Sprint 7.5, o DevUtility Lab recebeu o refinamento BR-DEVUTILITY: paginas de 
   - Validacao QRRoute local passou: `pnpm test:qrroute` com 8 testes, `pnpm build:qrroute`, `pnpm validate:qrroute-preview` com asset `/_nuxt/B2SMNP5j.js` e `pnpm test:e2e:qrroute` com 3 testes Playwright.
   - Screenshots locais do report Playwright foram inspecionados em `artifacts/playwright-qrroute-report/data/`; home desktop, UTM mobile e privacidade mobile ficaram sem sobreposicao incoerente ou overflow visual.
   - Gates finais locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation; `git diff --check` exibiu apenas avisos CRLF nos arquivos tocados.
-  - Feature commit, push, GitHub Actions, deploy dry-run remoto e smokes publicos serao registrados no fechamento desta sprint antes da Sprint 7.8.
+  - Feature commit publicado: `d257a68` (`feat: refine qrroute benchmark ux`).
+  - GitHub Actions `Quality Gate` run `28288511784` passou, executando repository safety, frontend QRRoute path-aware e summary.
+  - GitHub Actions `Deploy Dry Run` run `28288511790` passou e gerou plano sem mutar producao.
+  - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis; QRRoute segue placeholder publico.
   - Nenhum short link publico, dominio customizado, QR dinamico, analytics de scan/click, API publica paga, conta, storage persistente, anuncio real, checkout, billing real, doacao/support payment ativo, afiliado real, webhook externo, worker de producao, analytics externo ou deploy real do QRRoute foi ativado.
 
 ## Pendencias criticas

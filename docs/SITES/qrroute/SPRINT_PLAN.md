@@ -39,4 +39,4 @@ Data-base: 2026-06-27
 
 - Added type tabs, final payload summary, local preview/download/copy affordances, static vs dynamic education, examples, related tools and gated upgrade/support copy.
 - Local validation passed with `pnpm test:qrroute`, `pnpm build:qrroute`, `pnpm validate:qrroute-preview`, `pnpm test:e2e:qrroute`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` and `git diff --check`.
-- Remote Quality Gate, Deploy Dry Run, public smokes and docs-only closing commit remain pending before Sprint 7.8.
+- Remote Quality Gate `28288511784`, Deploy Dry Run `28288511790` and public Hub/control-plane/NetProbe smokes passed before Sprint 7.8.

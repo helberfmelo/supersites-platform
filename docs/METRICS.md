@@ -218,8 +218,8 @@ Data-base: 2026-06-27
 | QRRoute redirect storage tables | 1 |
 | QRRoute preview smoke | Passed |
 | QRRoute Playwright report | Passed |
-| QRRoute Quality Gate run | `28276318912` passed |
-| QRRoute Deploy Dry Run | `28276318906` passed |
+| QRRoute Quality Gate run | `28288511784` passed |
+| QRRoute Deploy Dry Run | `28288511790` passed |
 | QRRoute production status | Placeholder at `https://opentshost.com/supersites/qrroute/`; real deploy gated |
 | InvoiceCraft tool pages implemented | 3 |
 | InvoiceCraft localized tool pages | 15 |
@@ -345,8 +345,8 @@ Data-base: 2026-06-27
 | Pages per language | Initial locales remain 5 (`en`, `pt-br`, `es`, `fr`, `de`) |
 | Related tools per page | Planned for 11/11 public surfaces; site-specific measurement continues in technical sprints |
 | Upgrade opportunities by site | 11/11 public surfaces mapped with gated upgrade/support opportunities |
-| Organic growth tasks open | 6 planned technical benchmark site sprints after Sprint 7.6 completion |
-| Organic growth tasks closed | 5 technical refinements completed in Fase 7 |
+| Organic growth tasks open | 5 planned technical benchmark site sprints after Sprint 7.7 completion |
+| Organic growth tasks closed | 6 technical refinements completed in Fase 7 |
 | Sprint 7.2 local backend validation | Passed: Composer, migrate fresh seed, AdminPanelTest, full Laravel suite |
 | Sprint 7.2 local Hub validation | Passed: Vitest, build, preview smoke, Playwright and desktop/mobile screenshot inspection |
 | Sprint 7.2 local package validation | Passed: 65 package tests and package typechecks |
@@ -385,10 +385,10 @@ Data-base: 2026-06-27
 | Sprint 7.6 public smokes | Hub/control-plane/NetProbe passed |
 | Sprint 7.7 local QRRoute validation | Passed: Vitest, build, preview smoke, Playwright and screenshot inspection |
 | Sprint 7.7 local final gates | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
-| Sprint 7.7 feature commit | Pending pre-push release step |
-| Sprint 7.7 Quality Gate run | Pending |
-| Sprint 7.7 Deploy Dry Run | Pending |
-| Sprint 7.7 public smokes | Pending |
+| Sprint 7.7 feature commit | `d257a68` |
+| Sprint 7.7 Quality Gate run | `28288511784` passed |
+| Sprint 7.7 Deploy Dry Run | `28288511790` passed |
+| Sprint 7.7 public smokes | Hub/control-plane/NetProbe passed |
 | Real ads activated | 0 |
 | Real billing activated | 0 |
 | Real donation payments activated | 0 |
