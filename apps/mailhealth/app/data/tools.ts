@@ -83,6 +83,26 @@ export interface HeaderFinding {
   detail: string
 }
 
+export interface MailHealthRelatedTool {
+  slug: ToolSlug
+  title: string
+  description: string
+}
+
+export interface MailHealthScoreChecklistItem {
+  label: string
+  status: 'pass' | 'warn' | 'fail' | 'unknown'
+  detail: string
+}
+
+export interface MailHealthScoreCard {
+  score: number
+  grade: string
+  tone: 'pass' | 'warn' | 'fail'
+  summary: string
+  checklist: MailHealthScoreChecklistItem[]
+}
+
 export interface HeaderAnalysisResult {
   ok: boolean
   summary: string
@@ -307,7 +327,7 @@ export const toolCatalog: ToolDefinition[] = [
     fix: 'Use reports to fix legitimate senders, then move gradually toward quarantine or reject with a pct rollout.',
     limitation: 'The MVP does not collect, parse or store DMARC XML reports; that is a gated paid workflow.',
     faq: [
-      { question: 'Will MailHealth receive my DMARC reports?', answer: 'No. Report ingestion is not active in Sprint 4.3.' },
+      { question: 'Will MailHealth receive my DMARC reports?', answer: 'No. Report ingestion is a gated paid workflow and is not active in the free MVP.' },
       { question: 'Is p=reject always safe?', answer: 'No. Move to enforcement only after legitimate senders pass SPF or DKIM alignment.' },
     ],
   }),
@@ -410,6 +430,15 @@ export const toolCatalog: ToolDefinition[] = [
 ]
 
 const toolBySlug = new Map(toolCatalog.map((tool) => [tool.slug, tool]))
+const relatedBySlug: Record<ToolSlug, ToolSlug[]> = {
+  'spf-checker': ['dmarc-checker', 'dkim-checker', 'header-analyzer'],
+  'dkim-checker': ['dmarc-checker', 'spf-checker', 'header-analyzer'],
+  'dmarc-checker': ['spf-checker', 'dkim-checker', 'header-analyzer'],
+  'mx-checker': ['smtp-check', 'blacklist-check', 'spf-checker'],
+  'blacklist-check': ['mx-checker', 'smtp-check', 'dmarc-checker'],
+  'smtp-check': ['mx-checker', 'blacklist-check', 'spf-checker'],
+  'header-analyzer': ['dmarc-checker', 'spf-checker', 'dkim-checker'],
+}
 
 export function isToolSlug(value: string | undefined): value is ToolSlug {
   return toolSlugs.includes(value as ToolSlug)
@@ -425,6 +454,21 @@ export function getToolBySlug(value: string | undefined): ToolDefinition | null 
 
 export function getToolCopy(tool: ToolDefinition, locale: LocaleCode): ToolCopy {
   return tool.localized[locale] ?? tool.localized.en
+}
+
+export function getRelatedMailHealthTools(slug: ToolSlug, locale: LocaleCode): MailHealthRelatedTool[] {
+  return relatedBySlug[slug]
+    .map((relatedSlug) => getToolBySlug(relatedSlug))
+    .filter((tool): tool is ToolDefinition => Boolean(tool))
+    .map((tool) => {
+      const copy = getToolCopy(tool, locale)
+
+      return {
+        slug: tool.slug,
+        title: copy.title,
+        description: copy.freeScope,
+      }
+    })
 }
 
 export function getCategoryLabel(category: ToolCategory, locale: LocaleCode): string {
@@ -494,6 +538,73 @@ export function createToolStructuredData(tool: ToolDefinition, locale: LocaleCod
       })),
     },
   ]
+}
+
+function normalizeFindingStatus(status: string | undefined): MailHealthScoreChecklistItem['status'] {
+  if (status === 'pass' || status === 'warn' || status === 'fail' || status === 'unknown') {
+    return status
+  }
+
+  if (status === 'softfail' || status === 'neutral' || status === 'none' || status === 'temperror' || status === 'permerror') {
+    return 'warn'
+  }
+
+  return status ? 'fail' : 'unknown'
+}
+
+export function createMailHealthScoreCard(findings: Array<{ label: string; status?: string; detail: string }>, fallbackSummary: string): MailHealthScoreCard {
+  const checklist = findings.map((finding) => ({
+    label: finding.label,
+    status: normalizeFindingStatus(finding.status),
+    detail: finding.detail,
+  }))
+
+  if (checklist.length === 0) {
+    return {
+      score: 0,
+      grade: 'Not run',
+      tone: 'warn',
+      summary: fallbackSummary,
+      checklist: [],
+    }
+  }
+
+  const score = Math.max(0, Math.round(
+    checklist.reduce((total, item) => {
+      if (item.status === 'pass') {
+        return total + 100
+      }
+      if (item.status === 'warn') {
+        return total + 55
+      }
+      if (item.status === 'unknown') {
+        return total + 35
+      }
+
+      return total
+    }, 0) / checklist.length,
+  ))
+  const failCount = checklist.filter((item) => item.status === 'fail').length
+  const warnCount = checklist.filter((item) => item.status === 'warn' || item.status === 'unknown').length
+  const grade = score >= 85 && failCount === 0
+    ? 'Healthy'
+    : score >= 60
+      ? 'Review'
+      : 'Action needed'
+  const tone = grade === 'Healthy' ? 'pass' : grade === 'Review' ? 'warn' : 'fail'
+  const summary = failCount > 0
+    ? `${failCount} failing signal${failCount === 1 ? '' : 's'} should be fixed before treating this domain as healthy.`
+    : warnCount > 0
+      ? `${warnCount} warning signal${warnCount === 1 ? '' : 's'} need review before monitoring is useful.`
+      : 'All visible signals in this point-in-time check look healthy.'
+
+  return {
+    score,
+    grade,
+    tone,
+    summary,
+    checklist,
+  }
 }
 
 function unfoldHeaderLines(raw: string): string[] {

@@ -110,7 +110,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'MailHealth is the SuperSites product for email authentication, deliverability and transport diagnostics.',
     sections: [
       ['Purpose', 'The site helps domain owners inspect SPF, DKIM, DMARC, MX, DNSBL reputation, SMTP reachability and message headers without mandatory signup.'],
-      ['What is live now', 'Sprint 4.3 launches a free diagnostic surface plus bounded control-plane API endpoints for DNS, DNSBL and SMTP checks.'],
+      ['What is live now', 'MailHealth provides a free diagnostic surface plus bounded control-plane API endpoints for DNS, DNSBL and SMTP checks.'],
       ['Upgrade boundary', 'Paid value is planned around monitoring, alerts, DMARC reports, batches, API access, white-label exports and team workflows.'],
     ],
   },
@@ -125,7 +125,7 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   privacy: {
     title: 'Privacy Policy',
-    description: 'MailHealth minimizes collection and keeps Sprint 4.3 analytics free of domains, headers and probe results.',
+    description: 'MailHealth minimizes collection and keeps analytics free of domains, headers and probe results.',
     sections: [
       ['Data minimization', 'Domain checks are point-in-time diagnostics. Header analysis runs in the browser and pasted headers are not sent to a product API.'],
       ['Analytics boundary', 'Allowed analytics events may record tool slug, locale and sanitized route path, but not domains, mail hosts, selectors, headers, message IDs or results.'],
@@ -170,10 +170,10 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   status: {
     title: 'Launch Status',
-    description: 'MailHealth Sprint 4.3 status for public web readiness, API probes, ads, billing and monitoring gates.',
+    description: 'MailHealth status for public web readiness, API probes, ads, billing and monitoring gates.',
     sections: [
       ['MVP surface', 'The local/CI MVP contains seven checks, five language route sets, sitemap, canonical, hreflang, structured data and bounded API probes.'],
-      ['Production', 'No MailHealth public deploy is switched in Sprint 4.3 because app-specific packaging, smoke and rollback are not implemented yet.'],
+      ['Production', 'No MailHealth public deploy is switched because app-specific packaging, smoke and rollback are not implemented yet.'],
       ['Gates', 'Recurring monitoring, alert delivery, DMARC report ingestion, batches, white-label, billing, ads and external analytics remain blocked until documented gates pass.'],
     ],
   },

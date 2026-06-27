@@ -44,6 +44,7 @@ Medium due to technical diagnostics and provider-policy limits.
 - Real billing remains `0`.
 - DNSBL checks remain bounded.
 - Monitoring is clearly gated.
+- Sprint 7.9 exposes monitoring/API/white-label value through inert copy only; no checkout, payment link, DMARC ingestion, alert delivery or recurring worker is active.
 
 ## Dashboard backlog
 

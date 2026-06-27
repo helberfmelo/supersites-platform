@@ -13,6 +13,7 @@ Data-base: 2026-06-27
 - Nuxt SSG app exists with seven email diagnostic tools and five locales.
 - Control-plane has bounded DNS/blacklist/SMTP endpoints.
 - Public URL remains placeholder-only until app-specific deploy/smoke/rollback exists.
+- Sprint 7.9 local refinement adds health score, signal checklist, severity labels, fix guidance, planned record-builder boundaries and related checks.
 
 ## Scope
 
@@ -28,6 +29,7 @@ Data-base: 2026-06-27
 - `pnpm test:e2e:mailhealth`
 - Backend tests if MailHealth endpoints change.
 - Standard structure/secrets/dry-run/ci/diff gates.
+- Local Sprint 7.9 validation passed for unit, build, preview smoke and Playwright; final CI IDs are recorded in `docs/STATUS.md` after push.
 
 ## Gates
 

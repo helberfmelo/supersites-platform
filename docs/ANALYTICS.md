@@ -160,7 +160,7 @@ Nao registrar em analytics:
 - headers brutos, `Authentication-Results`, `Received-SPF`, `DKIM-Signature`, `From`, `Return-Path`, Message-ID ou enderecos de email;
 - resultados, warnings ou mensagens que possam conter parte do input.
 
-Sprint 4.3 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, historico salvo, monitoramento recorrente, alertas, relatorios DMARC, billing, API publica paga, webhooks ou storage persistente do MailHealth.
+Sprint 7.9 nao altera o contrato de eventos: score de saude, checklist, severidade, fix guidance, related checks e builders de registro planejados sao UI local sem novas propriedades de analytics. GA4, GTM, AdSense, backend de analytics externo, contas, historico salvo, monitoramento recorrente, alertas, relatorios DMARC, billing, API publica paga, webhooks ou storage persistente do MailHealth continuam desativados.
 
 ## SitePulse Lab tools
 

@@ -88,6 +88,7 @@
 - Endpoints publicos MailHealth podem usar cache tecnico curto por dominio/check/selector/porta normalizados, sem associar resultado a usuario autenticado ou identificador pessoal.
 - Respostas DNS/SMTP podem exibir fatos tecnicos necessarios para o usuario, mas nao devem ser enviadas a analytics.
 - DNSBL e SMTP usam alvos derivados de dominios publicos e devem bloquear ranges privados/reservados antes de qualquer consulta ou conexao.
+- Sprint 7.9 adiciona score, checklist, severidade, fix guidance, related checks e builders planejados como apresentacao local dos fatos retornados; esses elementos nao criam historico, storage persistente, identificador de conta ou nova coleta.
 - Futuros recursos pagos de monitoramento, alertas, relatorios DMARC, lote, API, white-label, historico e equipes exigem matriz de dados, retencao, exportacao/exclusao, termos, provider-policy review e consentimento aplicavel antes de ativacao.
 
 ## SitePulse Lab

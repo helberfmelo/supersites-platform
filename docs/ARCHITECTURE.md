@@ -305,6 +305,7 @@ Sprint 4.3 adiciona o terceiro produto pago de workflow da Fase 4 em `apps/mailh
 - Os endpoints reutilizam `NetProbeHostGuard`, `NetProbeDnsResolver` e `NetProbeTcpProbe`, com `mailhealth-public` rate limit, cache curto, bloqueio de host privado/reservado e limites de DNSBL/SMTP.
 - SMTP executa apenas TCP contra host derivado de MX publico, sem EHLO, AUTH, RCPT, DATA ou envio de mensagem.
 - Blacklist usa amostra DNSBL pequena e declara limitacoes de provedor; auditoria ampla e monitoramento de reputacao ficam gated.
+- Sprint 7.9 adiciona refinamento benchmark apenas no frontend: score de saude por ferramenta, checklist de sinais, severidade, fix guidance, builders de registro planejados e related checks.
 - Analytics local permitido: eventos sanitizados `tool_viewed`, `tool_started`, `tool_completed` e `tool_failed` com `tool_slug`.
 - Dominios, selectors, hosts MX/SMTP, headers, Message-IDs, resultados e respostas DNS/SMTP nao devem ir para analytics, logs publicos ou data layer.
 - Nao ha conta, historico salvo, monitoramento recorrente, alertas, relatorios DMARC, lote, API publica paga, white-label, billing, anuncio, worker de producao, cron ou webhook nesta sprint.

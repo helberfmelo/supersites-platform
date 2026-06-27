@@ -5,8 +5,10 @@ import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/dat
 import {
   analyzeMailHeaders,
   categoryLabels,
+  createMailHealthScoreCard,
   createToolStructuredData,
   filterTools,
+  getRelatedMailHealthTools,
   getToolBySlug,
   getToolCopy,
   toolCatalog,
@@ -15,7 +17,7 @@ import {
 import { createMailHealthToolEvent } from '../app/utils/analytics'
 
 describe('MailHealth MVP', () => {
-  it('lists Sprint 4.3 checks in roadmap order', () => {
+  it('lists email checks in roadmap order', () => {
     expect(toolCatalog.map((tool) => tool.slug)).toEqual([...toolSlugs])
     expect(toolCatalog).toHaveLength(7)
     expect(getToolBySlug('spf-checker')?.shortName).toBe('SPF')
@@ -68,6 +70,28 @@ describe('MailHealth MVP', () => {
     ])
     expect(filterTools('EHLO', 'transport').map((tool) => tool.slug)).toEqual(['smtp-check'])
     expect(Object.keys(categoryLabels)).toContain('headers')
+  })
+
+  it('creates related-check links and a privacy-safe health score', () => {
+    expect(getRelatedMailHealthTools('spf-checker', 'en').map((tool) => tool.slug)).toEqual([
+      'dmarc-checker',
+      'dkim-checker',
+      'header-analyzer',
+    ])
+
+    const score = createMailHealthScoreCard([
+      { label: 'SPF record count', status: 'pass', detail: 'Exactly one SPF record was found.' },
+      { label: 'All mechanism', status: 'warn', detail: 'SPF ends with ~all.' },
+      { label: 'Lookup count', status: 'unknown', detail: 'Lookup count was not available.' },
+    ], 'Run a check to score visible signals.')
+
+    expect(score).toMatchObject({
+      score: 63,
+      grade: 'Review',
+      tone: 'warn',
+    })
+    expect(score.summary).toContain('warning')
+    expect(JSON.stringify(score)).not.toContain('example.com')
   })
 
   it('creates tool schema with FAQ and free WebApplication offer', () => {

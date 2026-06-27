@@ -478,6 +478,141 @@ h3 {
   margin-top: 24px;
 }
 
+.health-summary {
+  display: grid;
+  grid-template-columns: minmax(150px, 220px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: stretch;
+  margin-top: 22px;
+  padding: 16px;
+  border: 1px solid #d1dad4;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.health-summary h2,
+.health-summary p {
+  margin-bottom: 8px;
+}
+
+.score-card {
+  display: grid;
+  place-items: center;
+  min-height: 150px;
+  padding: 16px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  text-align: center;
+  background: #f7f8f4;
+}
+
+.score-card span,
+.score-card small {
+  color: #607069;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.score-card strong {
+  display: block;
+  color: #17231e;
+  font-size: 3.2rem;
+  line-height: 1;
+}
+
+.score-card--pass {
+  border-color: #9bd4b3;
+  background: #edf8f0;
+}
+
+.score-card--warn {
+  border-color: #e2bf7c;
+  background: #fff7e8;
+}
+
+.score-card--fail {
+  border-color: #e2a090;
+  background: #fff0ec;
+}
+
+.checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.checklist-grid div {
+  min-width: 0;
+  padding: 11px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  background: #f7f8f4;
+}
+
+.checklist-grid strong,
+.checklist-grid p {
+  display: block;
+  margin: 6px 0 0;
+}
+
+.severity {
+  display: inline-flex;
+  max-width: 100%;
+  min-height: 26px;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.severity--pass {
+  color: #135530;
+  background: #dff3e7;
+}
+
+.severity--warn {
+  color: #764706;
+  background: #f8e8c8;
+}
+
+.severity--fail {
+  color: #78301f;
+  background: #f8d8cf;
+}
+
+.tool-sidebar {
+  display: grid;
+  gap: 14px;
+}
+
+.tool-sidebar .band {
+  margin-top: 0;
+}
+
+.related-list {
+  display: grid;
+  gap: 8px;
+}
+
+.related-card {
+  display: grid;
+  gap: 4px;
+  padding: 11px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  color: inherit;
+  background: #ffffff;
+  text-decoration: none;
+}
+
+.related-card span {
+  color: #52635c;
+  font-size: 0.85rem;
+}
+
 .input-panel,
 .result-panel {
   padding: 18px;
@@ -649,10 +784,12 @@ h3 {
   .controls,
   .checkbox-grid,
   .tool-grid,
-  .band-grid,
-  .tool-layout,
-  .content-layout,
-  .result-meta {
+    .band-grid,
+    .tool-layout,
+    .content-layout,
+    .result-meta,
+    .health-summary,
+    .checklist-grid {
     display: grid;
     grid-template-columns: 1fr;
   }

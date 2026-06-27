@@ -6,8 +6,10 @@ import { localizedContentPath, localizedHomePath, localizedToolPath, normalizePu
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
 import {
   analyzeMailHeaders,
+  createMailHealthScoreCard,
   createToolStructuredData,
   getCategoryLabel,
+  getRelatedMailHealthTools,
   getToolBySlug,
   getToolCopy,
   type HeaderAnalysisResult,
@@ -70,6 +72,7 @@ const isSmtpCheck = computed(() => tool.checkType === 'smtp')
 const isBlacklistCheck = computed(() => tool.checkType === 'blacklist')
 const isDnsCheck = computed(() => ['spf', 'dkim', 'dmarc', 'mx'].includes(tool.checkType))
 const displayedFindings = computed(() => headerResult.value?.findings ?? apiResult.value?.findings ?? [])
+const hasResult = computed(() => Boolean(headerResult.value?.ok || apiResult.value))
 const displayedMeta = computed(() => headerResult.value?.meta ?? [
   { label: 'Check', value: apiResult.value?.check ?? '-' },
   { label: 'Status', value: apiResult.value?.status ?? '-' },
@@ -77,6 +80,19 @@ const displayedMeta = computed(() => headerResult.value?.meta ?? [
   { label: 'TTL', value: String(apiMeta.value.cache_ttl_seconds ?? '-') },
 ])
 const summary = computed(() => headerResult.value?.summary || apiResult.value?.summary || copy.previewResult)
+const scoreCard = computed(() => createMailHealthScoreCard(displayedFindings.value, copy.previewResult))
+const relatedTools = computed(() => getRelatedMailHealthTools(tool.slug, locale))
+
+function statusClass(status: string | undefined): string {
+  if (status === 'pass') {
+    return 'severity severity--pass'
+  }
+  if (status === 'warn' || status === 'unknown' || status === 'neutral' || status === 'none') {
+    return 'severity severity--warn'
+  }
+
+  return 'severity severity--fail'
+}
 
 function mailhealthEndpoint(path: string): string {
   return `${String(runtimeConfig.public.mailhealthApiBaseUrl).replace(/\/+$/g, '')}/${path}`
@@ -248,6 +264,26 @@ useHead({
       </aside>
     </section>
 
+    <section class="health-summary" :aria-labelledby="`${tool.slug}-score`">
+      <div class="score-card" :class="`score-card--${scoreCard.tone}`">
+        <span>{{ shellCopy.healthScoreTitle }}</span>
+        <strong :id="`${tool.slug}-score`">{{ hasResult ? scoreCard.score : '--' }}</strong>
+        <small>{{ hasResult ? scoreCard.grade : copy.statusLabel }}</small>
+      </div>
+
+      <div>
+        <h2>{{ shellCopy.checklistTitle }}</h2>
+        <p>{{ hasResult ? scoreCard.summary : copy.previewResult }}</p>
+        <div v-if="hasResult" class="checklist-grid">
+          <div v-for="item in scoreCard.checklist" :key="`${item.label}-${item.detail}`">
+            <span :class="statusClass(item.status)">{{ item.status }}</span>
+            <strong>{{ item.label }}</strong>
+            <p>{{ item.detail }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="tool-layout">
       <div>
         <section class="input-panel" :aria-labelledby="`${tool.slug}-input`">
@@ -334,7 +370,7 @@ useHead({
                 <tbody>
                   <tr v-for="finding in displayedFindings" :key="`${finding.label}-${finding.detail}`">
                     <td>{{ finding.label }}</td>
-                    <td>{{ finding.status }}</td>
+                    <td><span :class="statusClass(finding.status)">{{ finding.status }}</span></td>
                     <td>{{ finding.value ? `${finding.detail} (${finding.value})` : finding.detail }}</td>
                   </tr>
                 </tbody>
@@ -371,21 +407,46 @@ useHead({
         </section>
       </div>
 
-      <aside class="band" :aria-labelledby="`${tool.slug}-methodology`">
-        <h2 :id="`${tool.slug}-methodology`">{{ shellCopy.methodologyLabel }}</h2>
-        <ul class="method-list">
-          <li v-for="item in copy.methodology" :key="item">{{ item }}</li>
-        </ul>
-        <dl class="fact-list">
-          <div>
-            <dt>{{ shellCopy.freeCheckLabel }}</dt>
-            <dd>{{ copy.freeScope }}</dd>
+      <aside class="tool-sidebar" :aria-labelledby="`${tool.slug}-methodology`">
+        <section class="band">
+          <h2 :id="`${tool.slug}-methodology`">{{ shellCopy.methodologyLabel }}</h2>
+          <ul class="method-list">
+            <li v-for="item in copy.methodology" :key="item">{{ item }}</li>
+          </ul>
+        </section>
+
+        <section class="band">
+          <h2>{{ shellCopy.fixGuidanceTitle }}</h2>
+          <dl class="fact-list">
+            <div>
+              <dt>{{ shellCopy.freeCheckLabel }}</dt>
+              <dd>{{ copy.freeScope }}</dd>
+            </div>
+            <div>
+              <dt>{{ shellCopy.upgradePathLabel }}</dt>
+              <dd>{{ copy.upgradeScope }}</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="band">
+          <h2>{{ shellCopy.recordBuilderTitle }}</h2>
+          <p>{{ shellCopy.recordBuilderBody }}</p>
+          <ul class="method-list">
+            <li v-for="item in shellCopy.recordBuilderItems" :key="item">{{ item }}</li>
+          </ul>
+        </section>
+
+        <section class="band">
+          <h2>{{ shellCopy.relatedTitle }}</h2>
+          <p>{{ shellCopy.relatedBody }}</p>
+          <div class="related-list">
+            <NuxtLink v-for="related in relatedTools" :key="related.slug" class="related-card" :to="localizedToolPath(locale, related.slug)">
+              <strong>{{ related.title }}</strong>
+              <span>{{ related.description }}</span>
+            </NuxtLink>
           </div>
-          <div>
-            <dt>{{ shellCopy.upgradePathLabel }}</dt>
-            <dd>{{ copy.upgradeScope }}</dd>
-          </div>
-        </dl>
+        </section>
       </aside>
     </section>
 

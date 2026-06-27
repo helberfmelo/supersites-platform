@@ -138,6 +138,7 @@
 - SMTP deve usar apenas portas permitidas `25`, `465` e `587`, derivar o host de MX publico, testar no maximo um endereco e executar somente TCP connect com timeout curto.
 - SMTP nao deve enviar EHLO, STARTTLS, AUTH, RCPT, DATA, mensagem, destinatario ou credencial.
 - Analytics de MailHealth nao deve incluir dominio, selector, host MX/SMTP, IP, header, Message-ID, endereco de email, resultado DNSBL/SMTP ou texto de erro bruto.
+- Score, checklist, severidade, fix guidance, related checks e builders planejados da Sprint 7.9 devem permanecer derivados do resultado em memoria e nao podem ativar criacao de registros DNS, relay/open-relay tests, envio SMTP, storage, alerta, API paga ou checkout.
 - Monitoramento recorrente, alertas, relatorios DMARC, lote, API paga e white-label exigem auth, billing/entitlements, retencao, termos, antiabuso, provider-policy review e gates de deploy antes de ativacao.
 
 ## SitePulse web diagnostics

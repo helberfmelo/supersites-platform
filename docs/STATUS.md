@@ -18,6 +18,8 @@ Na Sprint 7.4, o CalcHarbor recebeu o refinamento BR-CALCHARBOR: paginas de calc
 
 Na Sprint 7.5, o DevUtility Lab recebeu o refinamento BR-DEVUTILITY: paginas de ferramenta com workbench split input/output, preset de exemplo, estados vazio/processando/sucesso/erro, metricas locais, copiar/baixar `.txt`, orientacao de privacidade proxima ao editor, links relacionados, conteudo de erro comum e painel de upgrades gated/inert. Quality Gate `28287478977`, Deploy Dry Run `28287478989` e smokes publicos de Hub/control-plane/NetProbe passaram. O processamento continua browser-side via Web Worker/fallback; snippets, tokens, regex samples, hashes, resultados e downloads nao sao armazenados, enviados a API ou incluidos em analytics. O DevUtility Lab continua placeholder publico ate existir artifact gate, smoke publico e rollback especificos. Ads, billing, checkout, workspace, historico salvo, API paga, worker de producao, analytics externo e deploy real do placeholder seguem desativados.
 
+Nas Sprints 7.6 a 7.9, TimeNexus, QRRoute, InvoiceCraft e MailHealth receberam refinamentos benchmark locais/CI. A Sprint 7.9 BR-MAILHEALTH adicionou score de saude, checklist de sinais, severidade, fix guidance, builders de registro planejados e links relacionados nas paginas SPF/DKIM/DMARC/MX/blacklist/SMTP/headers, mantendo os endpoints DNS/SMTP existentes e o contrato de analytics sem PII. MailHealth segue placeholder publico ate existir deploy/rollback/smoke especificos; monitoramento recorrente, alertas, relatorios DMARC, lote, API paga, white-label, ads, billing, checkout, worker e analytics externo seguem desativados.
+
 ## Estado local verificado
 
 - Raiz local: `D:\Projetos\supersites`.
@@ -958,6 +960,16 @@ Na Sprint 7.5, o DevUtility Lab recebeu o refinamento BR-DEVUTILITY: paginas de 
   - GitHub Actions `Deploy Dry Run` run `28288971346` passou e gerou plano sem mutar producao.
   - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis; InvoiceCraft segue placeholder publico.
   - Nenhum cliente/produto salvo, recorrencia, branding real, equipe, pagamento, checkout, webhook, template fiscal oficial, numeracao fiscal, calculo automatico de impostos, anuncio real, billing real, analytics externo, worker de producao ou deploy real do InvoiceCraft foi ativado.
+- Sprint 7.9 validation:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/ROADMAP.md`, `docs/STATUS.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local, docs de benchmark, docs do MailHealth e todos os ADRs existentes ate `0030`.
+  - Estado inicial verificado: `main...origin/main` limpo no commit `872d957`, GitHub Actions recentes verdes e smokes publicos de Hub, control-plane/API e NetProbe passando antes da implementacao.
+  - MailHealth refinado sem endpoint novo: score de saude, checklist de sinais, severidade na tabela, fix guidance, builders de registro planejados, related checks, copy publica sem rotulos internos de sprint e painel de limites/upgrade gated.
+  - Analytics e dados continuam sanitizados: dominio, selector, hosts MX/SMTP, headers, registros, resultados, status, warnings e erros derivados de input nao sao persistidos nem enviados a analytics/data layer; eventos continuam limitados a `tool_slug`, rota e locale.
+  - Validacao MailHealth local passou: `pnpm test:mailhealth` com 8 testes, `pnpm build:mailhealth`, `pnpm validate:mailhealth-preview` com asset `/_nuxt/z57gGJHt.js` e `pnpm test:e2e:mailhealth` com 4 testes Playwright.
+  - Screenshots locais do report Playwright foram inspecionados em `artifacts/playwright-mailhealth-report/data/`; home desktop, SPF mobile e header analyzer mobile ficaram sem sobreposicao incoerente ou overflow visual.
+  - O primeiro Playwright da sprint falhou apenas por seletor ambiguo apos duplicar sinais no checklist e na tabela; os asserts foram especificados por celula e o rerun passou.
+  - Gates finais locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation; `git diff --check` exibiu apenas avisos CRLF nos arquivos tocados.
+  - Nenhum monitoramento recorrente, alerta, ingestao DMARC, lote, API publica paga, white-label, billing, checkout, anuncio real, worker de producao, analytics externo ou deploy real do MailHealth foi ativado.
 
 ## Pendencias criticas
 

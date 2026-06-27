@@ -29,6 +29,6 @@ Data-base: 2026-06-27
 
 ## Opportunities
 
-- Build combined domain health summary.
-- Add severity and fix guidance per issue.
-- Prepare record builders and monitoring CTAs with provider-policy gates.
+- Combined domain health summary implemented as per-tool score card in Sprint 7.9.
+- Severity and fix guidance implemented per issue without changing API contracts.
+- Record builders and monitoring CTAs prepared as gated/inert panels with provider-policy gates.

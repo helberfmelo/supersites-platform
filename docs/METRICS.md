@@ -20,7 +20,7 @@ Data-base: 2026-06-27
 | Shared TS packages implemented | 9 |
 | Shared package tests passing | 65 |
 | Shared package typechecks passing | 9 |
-| Frontend tests passing | 82 |
+| Frontend tests passing | 83 |
 | Playwright visual smoke tests passing | 44 |
 | Laravel tests passing | 46 |
 | Control plane API endpoints implemented | 20 |
@@ -247,6 +247,9 @@ Data-base: 2026-06-27
 | MailHealth structured data pages | 35 |
 | MailHealth prerender content routes | 81 |
 | MailHealth sitemap routes | 1 |
+| MailHealth benchmark score pages | 35 |
+| MailHealth related check blocks | 35 |
+| MailHealth record-builder gated panels | 35 |
 | MailHealth preview smoke | Passed |
 | MailHealth Playwright report | Passed |
 | MailHealth Quality Gate run | `28278020266` passed |
@@ -339,14 +342,14 @@ Data-base: 2026-06-27
 | SEO readiness score | Implemented in control-plane for 11/11 public surfaces as estimated local evidence |
 | AdSense readiness score | Defined; 11/11 public surfaces have safe placeholder/gate plans, real ad serving remains 0 |
 | Monetization readiness score | Defined; 11/11 public surfaces have gated upgrade/support plans, real checkout/donation/affiliate activation remains 0 |
-| Frontend quality score | Hub Sprint 7.2, NetProbe Sprint 7.3, CalcHarbor Sprint 7.4, DevUtility Lab Sprint 7.5, TimeNexus Sprint 7.6, QRRoute Sprint 7.7 and InvoiceCraft Sprint 7.8 local tests/build/preview/Playwright passed; remaining apps pending sprint-by-sprint |
+| Frontend quality score | Hub Sprint 7.2, NetProbe Sprint 7.3, CalcHarbor Sprint 7.4, DevUtility Lab Sprint 7.5, TimeNexus Sprint 7.6, QRRoute Sprint 7.7, InvoiceCraft Sprint 7.8 and MailHealth Sprint 7.9 local tests/build/preview/Playwright passed; remaining apps pending sprint-by-sprint |
 | Core Web Vitals readiness | Not externally measured for placeholder apps; local performance validation planned per sprint |
 | Educational content by tool | Existing localized tool pages/FAQ blocks: 320 |
 | Pages per language | Initial locales remain 5 (`en`, `pt-br`, `es`, `fr`, `de`) |
 | Related tools per page | Planned for 11/11 public surfaces; site-specific measurement continues in technical sprints |
 | Upgrade opportunities by site | 11/11 public surfaces mapped with gated upgrade/support opportunities |
-| Organic growth tasks open | 4 planned technical benchmark site sprints after Sprint 7.8 completion |
-| Organic growth tasks closed | 7 technical refinements completed in Fase 7 |
+| Organic growth tasks open | 3 planned technical benchmark site sprints after Sprint 7.9 local validation |
+| Organic growth tasks closed | 8 technical refinements completed in Fase 7 locally; Sprint 7.9 remote CI pending feature push |
 | Sprint 7.2 local backend validation | Passed: Composer, migrate fresh seed, AdminPanelTest, full Laravel suite |
 | Sprint 7.2 local Hub validation | Passed: Vitest, build, preview smoke, Playwright and desktop/mobile screenshot inspection |
 | Sprint 7.2 local package validation | Passed: 65 package tests and package typechecks |
@@ -397,6 +400,8 @@ Data-base: 2026-06-27
 | Sprint 7.8 Quality Gate run | `28288971344` passed |
 | Sprint 7.8 Deploy Dry Run | `28288971346` passed |
 | Sprint 7.8 public smokes | Hub/control-plane/NetProbe passed |
+| Sprint 7.9 local MailHealth validation | Passed: Vitest, build, preview smoke, Playwright and screenshot inspection |
+| Sprint 7.9 local final gates | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
 | Real ads activated | 0 |
 | Real billing activated | 0 |
 | Real donation payments activated | 0 |

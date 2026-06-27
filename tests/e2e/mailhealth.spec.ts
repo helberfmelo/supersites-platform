@@ -58,6 +58,7 @@ test.describe('MailHealth MVP', () => {
       'https://opentshost.com/supersites/mailhealth/en',
     )
     await expect(page.getByRole('heading', { name: 'SPF Checker' })).toBeVisible()
+    await expect(page.getByText('Local MVP')).toHaveCount(7)
     await expect(page.getByText('7 focused checks')).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
@@ -103,7 +104,13 @@ test.describe('MailHealth MVP', () => {
 
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('SPF Checker')
     await expect(page.getByText('SPF record found and parsed.')).toBeVisible()
-    await expect(page.getByText('SPF record count')).toBeVisible()
+    await expect(page.getByText('Health score')).toBeVisible()
+    await expect(page.getByText('100')).toBeVisible()
+    await expect(page.getByText('Signal checklist')).toBeVisible()
+    await expect(page.getByRole('cell', { name: 'SPF record count' })).toBeVisible()
+    await expect(page.getByText('Record builders planned')).toBeVisible()
+    await expect(page.getByText('Related checks')).toBeVisible()
+    await expect(page.getByRole('link', { name: /DMARC Checker/ })).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)
     await expectNoHorizontalOverflow(page)
 
@@ -180,7 +187,10 @@ test.describe('MailHealth MVP', () => {
     ].join('\n'))
     await page.getByRole('button', { name: 'Analyze headers' }).click()
     await expect(page.getByText('Headers show mostly healthy authentication signals.')).toBeVisible()
-    await expect(page.getByText('Visible alignment')).toBeVisible()
+    await expect(page.getByText('Health score')).toBeVisible()
+    await expect(page.getByText('Signal checklist')).toBeVisible()
+    await expect(page.getByRole('cell', { name: 'Visible alignment' })).toBeVisible()
+    await expect(page.getByText('Record builders planned')).toBeVisible()
     await expectNoHorizontalOverflow(page)
     expect(JSON.stringify(await page.evaluate(() => window.supersitesAnalyticsEvents))).not.toContain('private.example')
 

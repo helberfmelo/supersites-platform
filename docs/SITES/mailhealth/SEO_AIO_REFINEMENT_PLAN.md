@@ -45,6 +45,7 @@ Medium because deliverability claims can be sensitive. Avoid guaranteed inbox-pl
 
 - Each checker has explanation, fix guidance, FAQ and limitations.
 - No claim of exhaustive blacklist or open relay testing.
+- Sprint 7.9 public copy removes internal sprint labels while preserving review dates, canonical/hreflang/schema and gated upgrade boundaries.
 
 ## Dashboard backlog
 

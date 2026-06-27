@@ -43,9 +43,10 @@ Medium; placements must avoid domain fields, headers, results and copy/fix contr
 
 ## Acceptance metrics
 
-- Score/checklist appears after result.
+- Score/checklist appears in the tool flow, and post-result findings mirror severity labels in the result table.
 - Header content stays browser-side.
 - No domains/selectors/records in analytics.
+- Related checks and planned record builders are visible without activating monitoring, API, billing or storage.
 
 ## Dashboard backlog
 

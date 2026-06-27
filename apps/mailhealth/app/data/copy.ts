@@ -13,6 +13,7 @@ export interface HomeCopy {
   freeLabel: string
   upgradeLabel: string
   detailCta: string
+  localBadgeLabel: string
   principlesTitle: string
   principles: Array<{ title: string; body: string }>
   statusRows: Array<{ title: string; body: string; tone: 'green' | 'amber' }>
@@ -22,8 +23,15 @@ export interface ShellCopy {
   breadcrumbHome: string
   pageStatusLabel: string
   relatedTitle: string
+  relatedBody: string
   plannedTitle: string
   plannedBody: string
+  healthScoreTitle: string
+  checklistTitle: string
+  fixGuidanceTitle: string
+  recordBuilderTitle: string
+  recordBuilderBody: string
+  recordBuilderItems: string[]
   exampleLabel: string
   methodologyLabel: string
   editorialLabel: string
@@ -53,7 +61,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Free check',
     upgradeLabel: 'Upgrade path',
     detailCta: 'Open check',
-    principlesTitle: 'Sprint 4.3 principles',
+    localBadgeLabel: 'Local MVP',
+    principlesTitle: 'Operating principles',
     principles: [
       { title: 'Useful free diagnostics', body: 'A domain owner can inspect core email records and headers before creating an account.' },
       { title: 'Bounded probes', body: 'DNS, DNSBL and SMTP checks use public-host validation, short timeouts, cache and rate limits.' },
@@ -78,7 +87,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Check gratuito',
     upgradeLabel: 'Caminho de upgrade',
     detailCta: 'Abrir check',
-    principlesTitle: 'Principios da Sprint 4.3',
+    localBadgeLabel: 'MVP local',
+    principlesTitle: 'Principios operacionais',
     principles: [
       { title: 'Diagnostico gratuito util', body: 'O dono de dominio pode revisar registros e headers essenciais antes de criar conta.' },
       { title: 'Probes limitados', body: 'DNS, DNSBL e SMTP usam validacao de host publico, timeout curto, cache e rate limit.' },
@@ -103,7 +113,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Check gratis',
     upgradeLabel: 'Ruta de upgrade',
     detailCta: 'Abrir check',
-    principlesTitle: 'Principios Sprint 4.3',
+    localBadgeLabel: 'MVP local',
+    principlesTitle: 'Principios operativos',
     principles: [
       { title: 'Diagnostico gratis util', body: 'Un propietario puede revisar registros y headers esenciales antes de crear cuenta.' },
       { title: 'Probes limitados', body: 'DNS, DNSBL y SMTP usan host publico, timeout corto, cache y rate limit.' },
@@ -128,7 +139,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Controle gratuit',
     upgradeLabel: 'Offre payante',
     detailCta: 'Ouvrir',
-    principlesTitle: 'Principes Sprint 4.3',
+    localBadgeLabel: 'MVP local',
+    principlesTitle: 'Principes operationnels',
     principles: [
       { title: 'Diagnostic gratuit utile', body: 'Le proprietaire de domaine peut verifier les enregistrements et headers avant compte.' },
       { title: 'Probes bornes', body: 'DNS, DNSBL et SMTP utilisent host public, timeouts courts, cache et rate limits.' },
@@ -153,7 +165,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Kostenloser Check',
     upgradeLabel: 'Upgrade-Pfad',
     detailCta: 'Check oeffnen',
-    principlesTitle: 'Sprint-4.3-Prinzipien',
+    localBadgeLabel: 'Lokales MVP',
+    principlesTitle: 'Betriebsprinzipien',
     principles: [
       { title: 'Nuetzliche kostenlose Diagnose', body: 'Domaininhaber pruefen zentrale Records und Header vor einem Konto.' },
       { title: 'Begrenzte Probes', body: 'DNS, DNSBL und SMTP nutzen Public-Host-Pruefung, kurze Timeouts, Cache und Rate Limits.' },
@@ -171,9 +184,16 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
   en: {
     breadcrumbHome: 'MailHealth',
     pageStatusLabel: 'Check status',
-    relatedTitle: 'Related pages',
+    relatedTitle: 'Related checks',
+    relatedBody: 'Chain SPF, DKIM, DMARC, MX, SMTP, reputation and header checks without storing the target.',
     plannedTitle: 'Bounded public API',
     plannedBody: 'DNS, DNSBL and SMTP checks use a dedicated rate limit and do not store query targets in product analytics.',
+    healthScoreTitle: 'Health score',
+    checklistTitle: 'Signal checklist',
+    fixGuidanceTitle: 'Fix guidance',
+    recordBuilderTitle: 'Record builders planned',
+    recordBuilderBody: 'Safe record-generation helpers are planned, but not active until review and abuse controls are complete.',
+    recordBuilderItems: ['SPF include and all-mechanism builder', 'DMARC policy and rua/ruf planner', 'DKIM selector rotation checklist', 'MX migration checklist'],
     exampleLabel: 'Example',
     methodologyLabel: 'Methodology',
     editorialLabel: 'Editorial policy',
@@ -191,9 +211,16 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
   'pt-br': {
     breadcrumbHome: 'MailHealth',
     pageStatusLabel: 'Status do check',
-    relatedTitle: 'Paginas relacionadas',
+    relatedTitle: 'Checks relacionados',
+    relatedBody: 'Encadeie SPF, DKIM, DMARC, MX, SMTP, reputacao e headers sem armazenar o alvo.',
     plannedTitle: 'API publica limitada',
     plannedBody: 'DNS, DNSBL e SMTP usam rate limit dedicado e nao armazenam alvos em analytics.',
+    healthScoreTitle: 'Score de saude',
+    checklistTitle: 'Checklist de sinais',
+    fixGuidanceTitle: 'Guia de correcao',
+    recordBuilderTitle: 'Builders de registro planejados',
+    recordBuilderBody: 'Helpers seguros para gerar registros estao planejados, mas nao ativos ate revisao e controles antiabuso.',
+    recordBuilderItems: ['Builder SPF de include e all', 'Planejador DMARC de policy e rua/ruf', 'Checklist de rotacao DKIM', 'Checklist de migracao MX'],
     exampleLabel: 'Exemplo',
     methodologyLabel: 'Metodologia',
     editorialLabel: 'Politica editorial',
@@ -211,9 +238,16 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
   es: {
     breadcrumbHome: 'MailHealth',
     pageStatusLabel: 'Estado del check',
-    relatedTitle: 'Paginas relacionadas',
+    relatedTitle: 'Checks relacionados',
+    relatedBody: 'Encadena SPF, DKIM, DMARC, MX, SMTP, reputacion y headers sin guardar el objetivo.',
     plannedTitle: 'API publica limitada',
     plannedBody: 'DNS, DNSBL y SMTP usan rate limit dedicado y no guardan objetivos en analytics.',
+    healthScoreTitle: 'Score de salud',
+    checklistTitle: 'Checklist de senales',
+    fixGuidanceTitle: 'Guia de correccion',
+    recordBuilderTitle: 'Builders de registro planeados',
+    recordBuilderBody: 'Helpers seguros de registros estan planeados, pero no activos hasta revision y controles antiabuso.',
+    recordBuilderItems: ['Builder SPF de include y all', 'Planificador DMARC de policy y rua/ruf', 'Checklist de rotacion DKIM', 'Checklist de migracion MX'],
     exampleLabel: 'Ejemplo',
     methodologyLabel: 'Metodologia',
     editorialLabel: 'Politica editorial',
@@ -231,9 +265,16 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
   fr: {
     breadcrumbHome: 'MailHealth',
     pageStatusLabel: 'Statut',
-    relatedTitle: 'Pages liees',
+    relatedTitle: 'Controles lies',
+    relatedBody: 'Enchainez SPF, DKIM, DMARC, MX, SMTP, reputation et headers sans stocker la cible.',
     plannedTitle: 'API publique bornee',
     plannedBody: 'DNS, DNSBL et SMTP utilisent rate limit dedie et ne stockent pas les cibles en analytics.',
+    healthScoreTitle: 'Score de sante',
+    checklistTitle: 'Checklist signaux',
+    fixGuidanceTitle: 'Guide correction',
+    recordBuilderTitle: 'Builders DNS prevus',
+    recordBuilderBody: 'Des helpers de generation de records sont prevus mais inactifs avant revue et controles anti-abus.',
+    recordBuilderItems: ['Builder SPF include/all', 'Plan DMARC policy et rua/ruf', 'Checklist rotation DKIM', 'Checklist migration MX'],
     exampleLabel: 'Exemple',
     methodologyLabel: 'Methodologie',
     editorialLabel: 'Politique editoriale',
@@ -251,9 +292,16 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
   de: {
     breadcrumbHome: 'MailHealth',
     pageStatusLabel: 'Checkstatus',
-    relatedTitle: 'Verwandte Seiten',
+    relatedTitle: 'Verwandte Checks',
+    relatedBody: 'SPF, DKIM, DMARC, MX, SMTP, Reputation und Header verbinden, ohne Ziele zu speichern.',
     plannedTitle: 'Begrenzte Public API',
     plannedBody: 'DNS, DNSBL und SMTP nutzen eigenes Rate Limit und speichern Ziele nicht in Analytics.',
+    healthScoreTitle: 'Health Score',
+    checklistTitle: 'Signal-Checklist',
+    fixGuidanceTitle: 'Korrekturhinweise',
+    recordBuilderTitle: 'Record Builder geplant',
+    recordBuilderBody: 'Sichere Record-Hilfen sind geplant, aber bis Review und Anti-Abuse-Kontrollen inaktiv.',
+    recordBuilderItems: ['SPF Include/All Builder', 'DMARC Policy und rua/ruf Planer', 'DKIM-Rotation-Checklist', 'MX-Migration-Checklist'],
     exampleLabel: 'Beispiel',
     methodologyLabel: 'Methodik',
     editorialLabel: 'Redaktionelle Richtlinie',
