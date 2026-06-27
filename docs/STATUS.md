@@ -666,7 +666,11 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - Regressao frontend unit: Hub, NetProbe, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth e SitePulse Lab passaram nas suites Vitest.
   - Regressao frontend build/preview/E2E: Hub, NetProbe, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth e SitePulse Lab passaram em build Nuxt, preview smoke e Playwright.
   - `pnpm validate:structure`, `pnpm deploy:dry-run`, `pnpm validate:secrets`, `pnpm ci:changes` e `git diff --check` passaram no fechamento local. `git diff --check` exibiu apenas avisos CRLF conhecidos em scripts PowerShell touched.
-  - Push, monitoramento CI, deploy dry-run e smokes publicos pos-push estao pendentes neste registro pre-commit.
+  - Commit publicado: `fc1c984` (`feat: add sitepulse lab mvp`).
+  - GitHub Actions `Quality Gate` run `28278871466` passou com repository safety, backend, Hub frontend, NetProbe frontend, CalcHarbor frontend, DevUtility Lab frontend, TimeNexus frontend, QRRoute frontend, InvoiceCraft frontend, MailHealth frontend, SitePulse Lab frontend e summary.
+  - GitHub Actions `Deploy Dry Run` run `28278871478` passou; o upload de artifact continuou com anotacao de quota GitHub Actions, mas o plano foi gerado e publicado no job summary.
+  - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis.
+  - Smoke publico direto confirmou `https://opentshost.com/supersites/sitepulse-lab/` em HTTP 200, ainda `noindex`, sem asset `_nuxt`, preservando o placeholder publico do SitePulse Lab.
   - Nenhum deploy real do SitePulse Lab foi executado porque o app ainda nao tem workflow de traffic switch, smoke publico e rollback proprios.
 
 ## Pendencias criticas

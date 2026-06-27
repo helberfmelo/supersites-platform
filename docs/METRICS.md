@@ -196,8 +196,8 @@ Data-base: 2026-06-27
 | SitePulse Lab sitemap routes | 1 |
 | SitePulse Lab preview smoke | Passed |
 | SitePulse Lab Playwright report | Passed |
-| SitePulse Lab Quality Gate run | Pending feature push |
-| SitePulse Lab Deploy Dry Run | Pending feature push |
+| SitePulse Lab Quality Gate run | `28278871466` passed |
+| SitePulse Lab Deploy Dry Run | `28278871478` passed |
 | SitePulse Lab production status | Placeholder at `https://opentshost.com/supersites/sitepulse-lab/`; real deploy gated |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
