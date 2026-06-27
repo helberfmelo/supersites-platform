@@ -493,6 +493,10 @@ Data-base: 2026-06-27
 | Sprint 8.4 SitePulse Lab deploy run | `28295133185` passed |
 | Sprint 8.4 SitePulse Lab public smoke | Passed; asset `https://opentshost.com/supersites/sitepulse-lab/_nuxt/BsueNTPe.js`; API `https://opentshost.com/supersites/control-plane/api/v1/sitepulse` |
 | Sprint 8.4 aggregate public smoke | Passed; Hub, control-plane/API, NetProbe, Batch A, Batch B and MailHealth/SitePulse JSON probes active |
+| Sprint 8.4 closing commit | `1ba7e65` |
+| Sprint 8.4 Quality Gate after smoke contract update | `28295478579` passed |
+| Sprint 8.4 Deploy Dry Run after smoke contract update | `28295478567` passed; artifact upload quota annotation only |
+| Sprint 8.4 post-CI public smokes | Hub/control-plane/NetProbe plus Batch A and Batch B passed |
 | Public live Nuxt/Laravel surfaces after Sprint 8.4 | 10: Hub, control-plane/API, NetProbe Atlas, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab |
 | Public placeholder apps remaining after Sprint 8.4 | 2 |
 | Static app deploy workflow | `.github/workflows/deploy-static-app-hostgator.yml` |
