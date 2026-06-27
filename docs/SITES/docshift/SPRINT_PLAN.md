@@ -32,7 +32,8 @@ Data-base: 2026-06-27
 - Local implementation completed in Sprint 7.12 with `Local MVP` badges, dropzone/file state, workflow steps, workflow snapshot, privacy checklist, related document tools and server/OCR/batch/API/history gated panels.
 - Targeted validation passed locally: `pnpm test:docshift`, `pnpm build:docshift`, `pnpm validate:docshift-preview` and `pnpm test:e2e:docshift`.
 - Playwright screenshots were inspected under `artifacts/playwright-docshift-report/data/` with no incoherent overlap or horizontal overflow observed.
-- Remote Quality Gate, Deploy Dry Run and public smokes are pending feature commit/push.
+- Remote Quality Gate `28290860646`, Deploy Dry Run `28290860642` and public Hub/control-plane/NetProbe smokes passed after feature commit `d0ac775`.
+- DocShift remains public placeholder until app-specific deploy, smoke and rollback gates exist.
 
 ## Gates
 

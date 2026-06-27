@@ -25,7 +25,7 @@ The benchmark block is therefore mapped as Fase 7 - Benchmark-Driven Refinement.
 | BR-MAILHEALTH | Sprint 7.9 | MailHealth deliverability diagnostic UX refinement | Completed |
 | BR-SITEPULSE | Sprint 7.10 | SitePulse Lab status/performance/security UX refinement | Completed |
 | BR-PIXELBATCH | Sprint 7.11 | PixelBatch image-processing UX refinement | Completed |
-| BR-DOCSHIFT | Sprint 7.12 | DocShift PDF/document UX refinement | Local validation passed |
+| BR-DOCSHIFT | Sprint 7.12 | DocShift PDF/document UX refinement | Completed |
 
 ## Sprint 7.1 acceptance
 

@@ -1018,7 +1018,10 @@ Nas Sprints 7.10 a 7.12, SitePulse Lab, PixelBatch e DocShift receberam refiname
   - Validacao DocShift local passou: `pnpm test:docshift` com 9 testes, `pnpm build:docshift`, `pnpm validate:docshift-preview` com asset `/_nuxt/DgyLf2Jr.js` e `pnpm test:e2e:docshift` com 4 testes Playwright e PDF download.
   - Screenshots locais do report Playwright foram inspecionados em `artifacts/playwright-docshift-report/data/`; home desktop, text-to-PDF mobile e privacidade mobile ficaram sem sobreposicao incoerente ou overflow visual.
   - Gates finais locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation; `git diff --check` exibiu apenas avisos CRLF nos arquivos tocados.
-  - Feature commit/push, GitHub Actions `Quality Gate`, `Deploy Dry Run`, smokes publicos e fechamento docs-only permanecem pendentes nesta etapa local.
+  - Feature commit publicado: `d0ac775` (`feat: refine docshift benchmark ux`).
+  - GitHub Actions `Quality Gate` run `28290860646` passou, executando repository safety, frontend DocShift path-aware e summary.
+  - GitHub Actions `Deploy Dry Run` run `28290860642` passou e gerou plano sem mutar producao.
+  - Public smokes pos-push passaram: `pnpm deploy:smoke-supersite-public` validou Hub e asset `https://opentshost.com/supersites/_nuxt/CDSWkO8T.js`; `pnpm deploy:smoke-control-plane-public` validou control-plane/API; `pnpm deploy:smoke-netprobe-public` validou NetProbe, asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/B8fWFYkD.js` e API `https://opentshost.com/supersites/control-plane/api/v1/netprobe`. DocShift segue placeholder publico.
   - Nenhum upload server-side, OCR, batch worker, API publica paga, historico, equipe, checkout, billing, anuncio real, storage persistente, worker de producao, analytics externo ou deploy real do DocShift foi ativado.
 
 ## Pendencias criticas

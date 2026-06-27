@@ -434,11 +434,11 @@ Data-base: 2026-06-27
 | Sprint 7.11 docs closing commit | `160db49` |
 | Sprint 7.11 docs-only Quality Gate run | `28290486528` passed |
 | Sprint 7.12 local DocShift validation | Passed: Vitest, build, preview smoke, PDF Playwright and screenshot inspection |
-| Sprint 7.12 local final gates | Passed locally; remote CI pending |
-| Sprint 7.12 feature commit | Pending |
-| Sprint 7.12 Quality Gate run | Pending |
-| Sprint 7.12 Deploy Dry Run | Pending |
-| Sprint 7.12 public smokes | Pending; DocShift remains placeholder |
+| Sprint 7.12 local final gates | Passed |
+| Sprint 7.12 feature commit | `d0ac775` |
+| Sprint 7.12 Quality Gate run | `28290860646` passed |
+| Sprint 7.12 Deploy Dry Run | `28290860642` passed |
+| Sprint 7.12 public smokes | Hub/control-plane/NetProbe passed; DocShift remains placeholder |
 | Real ads activated | 0 |
 | Real billing activated | 0 |
 | Real donation payments activated | 0 |
