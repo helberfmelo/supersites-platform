@@ -190,7 +190,7 @@ test.describe('SuperSites public hub', () => {
 
     await expect(localToolsLink).toBeVisible()
     await expect(localToolsLink).toHaveAttribute('href', 'http://127.0.0.1:3002/en/tools/dns-lookup')
-    await expect(page.getByRole('link', { name: 'Open public placeholder' })).toBeVisible()
+    await expect(page.getByRole('link', { name: 'Open public site' })).toBeVisible()
     expect(errors).toEqual([])
   })
 })
