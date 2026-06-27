@@ -90,6 +90,9 @@ Data-base: 2026-06-27
 | Executive report external providers active | 0 |
 | Sprint 6.6 local validation | Passed |
 | Sprint 6.6 external report automation activation | 0 |
+| Sprint 6.6 Quality Gate run | `28285130303` passed |
+| Sprint 6.6 Deploy Dry Run | `28285130307` passed |
+| Sprint 6.6 public smokes | Hub/control-plane/NetProbe passed |
 | Analytics storage tables implemented | 2 |
 | Analytics ingest endpoint implemented | 1 |
 | Metric snapshot endpoint implemented | 1 |

@@ -827,7 +827,10 @@ Em 2026-06-27, a Sprint 6.1 criou a fundacao local de CMP, Consent Mode, TCF fai
   - Playwright local passou para todos os apps, totalizando 43 testes visuais/funcionais.
   - Gates obrigatorios locais passaram: `pnpm validate:structure`, `pnpm deploy:dry-run`, `pnpm validate:secrets`, `pnpm ci:changes` e `git diff --check`; `git diff --check` exibiu apenas o aviso CRLF conhecido em `scripts/validate-structure.ps1`.
   - `pnpm deploy:dry-run` gerou `artifacts/deploy-dry-run/supersites-deploy-plan.json` e `artifacts/deploy-dry-run/supersites-deploy-plan.md`.
-  - Feature commit/CI/public smokes pendentes neste registro local; serao fechados apos push e monitoramento.
+  - Feature commit publicado: `65583a8` (`feat: add executive reports foundation`).
+  - GitHub Actions `Quality Gate` run `28285130303` passou com repository safety, backend, Hub frontend, NetProbe frontend, CalcHarbor frontend, DevUtility Lab frontend, TimeNexus frontend, QRRoute frontend, InvoiceCraft frontend, MailHealth frontend, SitePulse Lab frontend, PixelBatch frontend, DocShift frontend e summary.
+  - GitHub Actions `Deploy Dry Run` run `28285130307` passou e gerou plano sem mutar producao.
+  - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis.
   - Nenhum provider externo, GA4/GTM/Search Console import, AdSense Management API, ad serving, billing provider, checkout, webhook, worker recorrente, e-mail de relatorio, receita real, prompt externo, automacao ou integracao externa foi ativado.
 
 ## Pendencias criticas
