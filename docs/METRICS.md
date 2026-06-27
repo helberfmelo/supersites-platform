@@ -516,6 +516,25 @@ Data-base: 2026-06-27
 | Sprint 8.6 local builds | Passed for Supersite Hub plus 9 static product apps |
 | Sprint 8.6 local artifact builds | Passed for Hub and 9 static product apps |
 | Sprint 8.6 local final gates before feature commit | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
+| Sprint 8.6 feature commit | `22ac333` |
+| Sprint 8.6 Deploy Dry Run after feature commit | `28296597228` passed |
+| Sprint 8.6 initial Quality Gate | `28296597238` failed; stale E2E CTA expectation only |
+| Sprint 8.6 CI correction commit | `97ed5bf` |
+| Sprint 8.6 corrected Quality Gate | `28296704908` passed |
+| Sprint 8.6 initial Hub deploy run | `28296730836` failed after switch due apps still serving old status copy |
+| Sprint 8.6 final Hub deploy run | `28298231558` passed; release `97ed5bf12cd09e373318f35dffe28e3e7d27bbcc-28298231558-1`; asset `https://opentshost.com/supersites/_nuxt/Dc8TpIAT.js` |
+| Sprint 8.6 CalcHarbor redeploy | `28296917133` passed; asset `https://opentshost.com/supersites/calcharbor/_nuxt/CO7onsPr.js` |
+| Sprint 8.6 DevUtility Lab redeploy | `28297069955` passed; asset `https://opentshost.com/supersites/devutility-lab/_nuxt/vjoSN-2R.js` |
+| Sprint 8.6 TimeNexus redeploy | `28297229911` passed; asset `https://opentshost.com/supersites/timenexus/_nuxt/Cqa4xM0v.js` |
+| Sprint 8.6 QRRoute redeploy | `28297374719` passed; asset `https://opentshost.com/supersites/qrroute/_nuxt/D8RBvw5r.js` |
+| Sprint 8.6 InvoiceCraft redeploy | `28297528791` passed; asset `https://opentshost.com/supersites/invoicecraft/_nuxt/DYf4U0DS.js` |
+| Sprint 8.6 MailHealth redeploy | `28297641483` passed; asset `https://opentshost.com/supersites/mailhealth/_nuxt/B9gkfU1f.js`; API smoke passed |
+| Sprint 8.6 SitePulse Lab redeploy | `28297781873` passed; asset `https://opentshost.com/supersites/sitepulse-lab/_nuxt/C_XNYJ50.js`; API smoke passed |
+| Sprint 8.6 PixelBatch redeploy | `28297936033` passed; asset `https://opentshost.com/supersites/pixelbatch/_nuxt/BnEGhKf2.js` |
+| Sprint 8.6 DocShift redeploy | `28298069584` passed; asset `https://opentshost.com/supersites/docshift/_nuxt/BrusqdiQ.js` |
+| Sprint 8.6 final public smokes | Passed: Hub aggregate, control-plane/API, NetProbe and 9 static app smokes |
+| Public live Nuxt/Laravel surfaces after Sprint 8.6 | 12: Hub, control-plane/API, NetProbe Atlas and 9 product apps |
+| Public placeholder apps remaining after Sprint 8.6 | 0 |
 | Static app deploy workflow | `.github/workflows/deploy-static-app-hostgator.yml` |
 | Static app deploy scripts | Build, validate, publish, smoke and per-app config implemented |
 | Real ads activated by Fase 8 | 0 planned |
