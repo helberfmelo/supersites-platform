@@ -38,6 +38,13 @@
 - Identificadores anonimos e de sessao sao hasheados antes de persistencia.
 - Nenhum provedor externo de analytics deve ser ativado antes de consentimento, GA4/GTM e gates humanos/tecnicos aplicaveis.
 
+## Google analytics/search gates
+
+- GA4, GTM e Search Console falham fechados por contrato enquanto producao, aprovacao humana, consentimento, ids, flag de tags e verificacao de propriedade nao estiverem completos.
+- Measurement ids, container ids e property ids podem ser configuracao operacional, mas tokens OAuth, service-account keys e verification secrets nunca devem ser versionados nem exibidos no painel.
+- Search Console ownership verification e acesso Google exigem `HUMAN_ACTION_REQUIRED`.
+- Eventos enviados a Google devem usar apenas nomes padronizados e parametros allowlisted; entradas de ferramenta, dominios consultados, arquivos, headers, documentos, IPs e PII continuam proibidos.
+
 ## Consentimento e ads placeholders
 
 - A CMP da Sprint 6.1 grava apenas escolhas booleanas de preferencias, analytics e ads no navegador usando `supersites.consent.v1`.

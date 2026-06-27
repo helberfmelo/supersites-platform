@@ -6,7 +6,7 @@ Data-base: 2026-06-27
 
 O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os bancos locais Docker, o repositorio Git/GitHub privado, o quality gate de CI path-aware, o deploy dry-run, o app shell publico multilanguage do catalogo, paginas legais/editoriais multilanguage, Playwright visual smoke, pacotes compartilhados iniciais, contrato de analytics sem PII, API base e MVP admin do control plane, o bootstrap HostGator inicial, o runtime Redis isolado na VPS, a fundacao publica Nuxt do NetProbe Atlas, o modulo seguro inicial de IP/DNS/RDAP/SSL/propagation/port/reachability do NetProbe, o conteudo original multilanguage/AdSense-readiness do NetProbe, o MVP de upgrade com monitores/historico/alertas/API, o launch gate estatico do NetProbe, o deploy publico do control-plane/API e os MVPs local/CI do CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch e DocShift foram criados. A Sprint 1.7 publicou o catalogo transitorio em `https://opentshost.com/supersites/` via release estatico versionado no HostGator; a raiz `https://opentshost.com/` foi preservada. Em 2026-06-26, o control-plane/API foi publicado em `https://opentshost.com/supersites/control-plane/` e o NetProbe Atlas foi publicado em `https://opentshost.com/supersites/netprobe-atlas/` com consultas publicas IP/DNS via HTTPS e smoke publico. CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch e DocShift permanecem em placeholder publico ate receberem deploy/rollback/smoke especificos. Nenhum anuncio, billing real, worker/cron de producao, webhook externo, checkout/pagamento, SMTP ativo, uptime recorrente, monitoramento recorrente, processamento server-side de arquivos, batch worker ou integracao externa de analytics foi ativado.
 
-Em 2026-06-27, a Sprint 6.1 criou a fundacao local de CMP, Consent Mode, TCF fail-closed e placeholders de ads sem CLS no Hub. Nenhum script AdSense/GTM/GA4, conta, request de anuncio, cookie de terceiro, impressao, clique, leilao, billing ou integracao externa foi ativado.
+Em 2026-06-27, a Sprint 6.1 criou a fundacao local de CMP, Consent Mode, TCF fail-closed e placeholders de ads sem CLS no Hub. A Sprint 6.2 criou a fundacao fail-closed de GA4/GTM/Search Console com eventos padronizados, readiness no control plane e gates humanos explicitos. Nenhum script AdSense/GTM/GA4, conta, request de anuncio, cookie de terceiro, impressao, clique, leilao, billing, importacao Search Console ou integracao externa foi ativado.
 
 ## Estado local verificado
 
@@ -740,6 +740,21 @@ Em 2026-06-27, a Sprint 6.1 criou a fundacao local de CMP, Consent Mode, TCF fai
   - GitHub Actions `Deploy Dry Run` run `28282044425` passou e gerou plano sem mutar producao; o upload de artifact registrou a anotacao conhecida de quota, mas o run concluiu com sucesso.
   - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis.
   - Nenhum anuncio real, AdSense, GTM, GA4, conta, checkout, billing, cookie de terceiro, impressao, clique, leilao, webhook externo, worker/cron de producao ou deploy real de placeholder foi ativado.
+- Sprint 6.2 validation:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, playbooks de analytics/AdSense/billing, runbooks de CI/local e todos os ADRs existentes.
+  - Estado inicial verificado: `main...origin/main` com GitHub Actions recentes verdes; producao publica segue com Hub, control-plane/API e NetProbe ativos e demais apps como placeholders publicos.
+  - Fontes oficiais Google consultadas para confirmar o formato de eventos GA4, uso de `dataLayer` no GTM e exigencia de verificacao do Search Console.
+  - `@supersites/analytics` recebeu contrato Google fail-closed, mapeamento dos 16 eventos internos para nomes GA4 compativeis, allowlist de parametros e construtor de payload `dataLayer` que remove chaves arbitrarias e sensiveis.
+  - O control plane recebeu a tabela `google_integrations`, model, seeder e painel de readiness para GA4, GTM e Search Console por site, com `tags_enabled=false` e `data_import_enabled=false` por padrao.
+  - `docs/HUMAN_ACTION_REQUIRED.md` registra que acessos Google, propriedades GA4, containers GTM e verificacoes Search Console dependem de acao humana antes de qualquer ativacao.
+  - Regressao de pacotes passou: `pnpm test:packages` com 37 testes e `pnpm typecheck:packages` com 6 pacotes.
+  - Regressao backend passou: `composer validate --strict`, `php artisan test` com 44 testes / 400 assertions e `php artisan migrate:fresh --seed --force` com 12 registros `google_integrations` sem tokens ou segredos.
+  - Regressao frontend local passou para Hub, NetProbe Atlas, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch e DocShift: unit tests, builds dedicados, preview smokes e Playwright.
+  - Previews locais passaram para os 11 apps Nuxt, confirmando home, rotas criticas, privacidade, sitemap e assets `_nuxt`.
+  - Playwright local passou para todos os apps, totalizando 43 testes visuais/funcionais.
+  - Gates obrigatorios locais passaram: `pnpm validate:structure`, `pnpm deploy:dry-run`, `pnpm validate:secrets`, `pnpm ci:changes` e `git diff --check`; `git diff --check` exibiu apenas avisos CRLF conhecidos em arquivos touched.
+  - `pnpm deploy:dry-run` gerou `artifacts/deploy-dry-run/supersites-deploy-plan.json` e `artifacts/deploy-dry-run/supersites-deploy-plan.md`.
+  - Nenhum script GA4/GTM, conta Google, cookie de terceiro, importacao Search Console, token OAuth, request externo de analytics, webhook, billing, anuncio real, worker/cron de producao ou deploy real de placeholder foi ativado.
 
 ## Pendencias criticas
 

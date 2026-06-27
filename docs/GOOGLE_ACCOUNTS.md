@@ -34,7 +34,13 @@ Registrar contas, funcoes e responsabilidades sem segredos.
 
 Nunca enviar email, telefone, documento, nome completo, IP completo, conteudo de arquivo ou entrada de ferramenta para analytics.
 
+## Sprint 6.2 foundation
+
+- `@supersites/analytics` define o contrato Google, nomes GA4 compativeis e parametros allowlisted.
+- `google_integrations` registra readiness por site no control-plane, sem tokens ou segredos.
+- Todas as propriedades/containers/verificacoes ficam em estado `human_required` ou `not_configured` ate aprovacao.
+- Nenhum script GA4/GTM, Search Console import, cookie de terceiro ou evento externo foi ativado.
+
 ## Pendencias humanas
 
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.
-

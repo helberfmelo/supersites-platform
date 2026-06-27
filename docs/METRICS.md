@@ -11,14 +11,14 @@ Data-base: 2026-06-27
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
 | Shared package folders created | 12 |
-| ADRs created | 24 |
-| Docs files created/maintained | 53 |
+| ADRs created | 25 |
+| Docs files created/maintained | 54 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
 | Nuxt apps scaffolded | 11 |
 | Laravel apps scaffolded | 1 |
 | Shared TS packages implemented | 6 |
-| Shared package tests passing | 33 |
+| Shared package tests passing | 37 |
 | Shared package typechecks passing | 6 |
 | Frontend tests passing | 81 |
 | Playwright visual smoke tests passing | 43 |
@@ -34,6 +34,13 @@ Data-base: 2026-06-27
 | Control plane operational tasks seeded | 3 |
 | Control plane visual smoke screenshots | 2 |
 | Analytics contract events implemented | 16 |
+| Google analytics event mappings implemented | 16 |
+| Google integration gates implemented | 1 |
+| Google integration storage tables | 1 |
+| Google integration records seeded | 12 |
+| Google external tags loaded | 0 |
+| Sprint 6.2 local validation | Passed |
+| Sprint 6.2 external Google activation | 0 |
 | Analytics storage tables implemented | 2 |
 | Analytics ingest endpoint implemented | 1 |
 | Metric snapshot endpoint implemented | 1 |

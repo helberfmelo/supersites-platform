@@ -1,10 +1,15 @@
 import { describe, expect, it } from 'vitest'
 import {
   analyticsEventNames,
+  buildSearchConsolePropertyPlan,
   createAnalyticsEvent,
   createDataLayerEvent,
+  createGoogleDataLayerEvent,
+  createGoogleEventParameters,
   createOutboundSiteClickEvent,
+  googleAnalyticsEventNames,
   isAnalyticsEventName,
+  resolveGoogleIntegrationGate,
   sanitizeAnalyticsPath,
   sanitizeAnalyticsProperties,
 } from '../src'
@@ -82,6 +87,104 @@ describe('@supersites/analytics', () => {
           tool_slug: 'json-formatter',
         },
       },
+    })
+  })
+
+  it('keeps every standard event mapped to a GA4-compatible event name', () => {
+    for (const eventName of analyticsEventNames) {
+      expect(googleAnalyticsEventNames[eventName]).toMatch(/^[a-z][a-z0-9_]{0,39}$/)
+    }
+  })
+
+  it('fails Google tag delivery closed until human, consent and ids are present', () => {
+    expect(resolveGoogleIntegrationGate({
+      environment: 'production',
+      humanApproved: false,
+      hasAnalyticsConsent: true,
+      tagsEnabled: true,
+      ga4MeasurementId: 'G-TEST1234',
+      gtmContainerId: 'GTM-TEST123',
+      searchConsoleVerified: true,
+    })).toMatchObject({
+      shouldLoadGa4: false,
+      shouldLoadGtm: false,
+      shouldImportSearchConsole: false,
+      status: 'human_required',
+    })
+
+    expect(resolveGoogleIntegrationGate({
+      environment: 'production',
+      humanApproved: true,
+      hasAnalyticsConsent: true,
+      tagsEnabled: true,
+      dataImportEnabled: true,
+      ga4MeasurementId: 'G-TEST1234',
+      gtmContainerId: 'GTM-TEST123',
+      searchConsoleVerified: true,
+    })).toMatchObject({
+      shouldLoadGa4: true,
+      shouldLoadGtm: true,
+      shouldImportSearchConsole: true,
+      status: 'configured',
+    })
+  })
+
+  it('creates Google data layer payloads only after the delivery gate allows tags', () => {
+    const event = createAnalyticsEvent({
+      name: 'tool_started',
+      siteSlug: 'mailhealth',
+      locale: 'en',
+      routePath: '/en/tools/spf-checker?domain=example.com',
+      properties: {
+        tool_slug: 'spf-checker',
+        domain: 'private.example',
+        raw_url: 'https://example.test/path?email=person@example.test',
+      },
+    })
+
+    expect(createGoogleDataLayerEvent(event, { shouldLoadGa4: false, shouldLoadGtm: false })).toBeNull()
+    expect(createGoogleEventParameters(event)).toEqual({
+      supersites_event_name: 'tool_started',
+      site_slug: 'mailhealth',
+      locale: 'en',
+      route_path: '/en/tools/spf-checker',
+      tool_slug: 'spf-checker',
+    })
+    expect(createGoogleDataLayerEvent(event, { shouldLoadGa4: true, shouldLoadGtm: true })).toMatchObject({
+      event: 'tool_started',
+      supersites_google_event: {
+        site_slug: 'mailhealth',
+      },
+    })
+  })
+
+  it('plans Search Console properties without creating verification tokens', () => {
+    expect(buildSearchConsolePropertyPlan({
+      siteSlug: 'NetProbe Atlas',
+      domain: 'netprobe.example',
+      humanApproved: false,
+      verified: false,
+    })).toEqual({
+      siteSlug: 'netprobe-atlas',
+      property: 'sc-domain:netprobe.example',
+      verificationStatus: 'human_required',
+      reason: 'Search Console ownership verification requires approved Google access.',
+    })
+
+    expect(buildSearchConsolePropertyPlan({
+      siteSlug: 'supersite',
+    }).verificationStatus).toBe('missing_property')
+
+    expect(buildSearchConsolePropertyPlan({
+      siteSlug: 'SitePulse Lab',
+      urlPrefix: 'https://sitepulse.example/tools/?token=secret#verify',
+      humanApproved: true,
+      verified: true,
+    })).toEqual({
+      siteSlug: 'sitepulse-lab',
+      property: 'https://sitepulse.example/tools/',
+      verificationStatus: 'verified',
+      reason: 'Search Console property is verified and eligible for data import.',
     })
   })
 })

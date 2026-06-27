@@ -217,6 +217,7 @@ Sprint 6.1 - Consentimento e Ads component
 Sprint 6.2 - GA4, GTM e Search Console
 - Objetivo: propriedades/containers por dominio quando aprovados, eventos padronizados.
 - Gate humano: acessos Google e verificacoes quando necessario.
+- Status: validada localmente, aguardando CI. `@supersites/analytics` agora tem contrato Google fail-closed, nomes GA4 compativeis, allowlist de parametros, payload `dataLayer` sanitizado e planejador Search Console; o control-plane recebeu `google_integrations`, seeder e painel de readiness. Testes de pacotes, typecheck, Laravel, migrations/seeders, builds, previews, Playwright, estrutura, dry-run, secrets, ci:changes e diff check passaram localmente. Nenhuma tag GA4/GTM, conta, cookie, token OAuth, importacao Search Console ou provider externo foi ativado.
 
 Sprint 6.3 - AdSense account integration
 - Objetivo: uma conta por publisher, sites adicionados individualmente apos gate.

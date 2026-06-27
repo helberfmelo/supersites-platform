@@ -121,6 +121,14 @@
 - Placeholders de ads registram apenas metadados de slot, pagina sem query/hash, formato e status de policy; nao devem conter identificadores de usuario, PII, input de ferramenta ou resultado.
 - Nenhum request AdSense, cookie de terceiro, perfil de publicidade, leilao, impressao ou clique e criado nesta sprint.
 
+## Google integrations
+
+- A Sprint 6.2 cria apenas metadados de readiness em `google_integrations`.
+- Campos permitidos: site, status de acesso, status GA4/GTM/Search Console, ids de propriedade/container/measurement quando aprovados, flags de tags/importacao e allowlist de eventos.
+- Campos proibidos: OAuth refresh/access token, service-account key, verification token secreto, email de usuario, telefone, documento, IP, identificador de visitante, payload de ferramenta ou conteudo de arquivo.
+- Eventos destinados a Google usam a mesma sanitizacao do contrato interno e uma allowlist adicional de parametros; propriedades arbitrarias nao saem para provider externo.
+- Search Console import deve ficar desligado ate haver verificacao de propriedade, base legal/consentimento aplicavel, quota definida, retry/backoff e registro de origem/atraso dos dados.
+
 ## Analytics sem PII
 
 - O contrato versionado fica em `packages/analytics`.

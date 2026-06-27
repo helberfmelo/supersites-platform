@@ -8,6 +8,7 @@ use App\Models\Site;
 use App\Models\User;
 use Database\Seeders\AccessControlSeeder;
 use Database\Seeders\DeploymentRecordSeeder;
+use Database\Seeders\GoogleIntegrationSeeder;
 use Database\Seeders\OperationalTaskSeeder;
 use Database\Seeders\PortfolioSiteSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -46,6 +47,7 @@ class AdminPanelTest extends TestCase
         $this->seed([
             PortfolioSiteSeeder::class,
             AccessControlSeeder::class,
+            GoogleIntegrationSeeder::class,
             DeploymentRecordSeeder::class,
             OperationalTaskSeeder::class,
         ]);
@@ -58,6 +60,8 @@ class AdminPanelTest extends TestCase
             ->assertSee('Portfolio status')
             ->assertSee('Latest deployments')
             ->assertSee('Operational tasks')
+            ->assertSee('Google integrations')
+            ->assertSee('human_required')
             ->assertSee('Quality Gate')
             ->assertSee('Open incidents');
 

@@ -12,6 +12,7 @@ Data-base: 2026-06-27
 | Informacoes fiscais/bancarias AdSense | Dados legais e banco | Antes de receber pagamentos |
 | PIN postal AdSense | Verificacao fisica | Quando Google solicitar |
 | CMP certificada/TCF para ads reais | Escolha de fornecedor, termos, configuracao legal e compliance regional | Antes de carregar requests reais de ads em regioes que exijam CMP/TCF |
+| Acessos Google, GA4, GTM e Search Console | Conta Google, criacao de propriedades/containers, verificacao de dominio e aceite de termos | Antes de carregar tags GA4/GTM ou importar dados Search Console |
 | Contas Stripe/Mercado Pago/Paddle | KYC, impostos e termos | Antes de billing real |
 | Politicas juridicas finais | Aceite juridico | Antes do go-live publico com coleta de dados/ads |
 | Mudanca DNS sem rollback claro | Risco de indisponibilidade | Antes de apontar dominios definitivos |

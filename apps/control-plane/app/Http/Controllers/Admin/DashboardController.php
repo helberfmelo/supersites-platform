@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\AuditLog;
 use App\Models\DeploymentRecord;
+use App\Models\GoogleIntegration;
 use App\Models\Incident;
 use App\Models\OperationalTask;
 use App\Models\Site;
@@ -24,6 +25,15 @@ class DashboardController extends Controller
         $summary = [
             'sites' => Site::query()->count(),
             'adsense_ready' => Site::query()->where('adsense_ready', true)->count(),
+            'google_gated' => GoogleIntegration::query()
+                ->where(function ($query): void {
+                    $query
+                        ->where('access_status', 'human_required')
+                        ->orWhere('search_console_status', 'human_required')
+                        ->orWhere('tags_enabled', false);
+                })
+                ->count(),
+            'google_tags_enabled' => GoogleIntegration::query()->where('tags_enabled', true)->count(),
             'open_incidents' => Incident::query()->whereIn('status', ['open', 'investigating', 'monitoring'])->count(),
             'open_tasks' => OperationalTask::query()->whereIn('status', ['open', 'blocked'])->count(),
         ];
@@ -40,6 +50,13 @@ class DashboardController extends Controller
                 ->latest('finished_at')
                 ->latest()
                 ->limit(5)
+                ->get(),
+            'googleIntegrations' => GoogleIntegration::query()
+                ->with('site:id,slug,name')
+                ->orderBy('tags_enabled')
+                ->orderBy('access_status')
+                ->orderBy('id')
+                ->limit(6)
                 ->get(),
             'incidents' => Incident::query()
                 ->with('site:id,slug,name')

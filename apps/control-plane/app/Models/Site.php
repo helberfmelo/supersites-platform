@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 #[Fillable([
     'slug',
@@ -80,5 +81,13 @@ class Site extends Model
     public function metricSnapshots(): HasMany
     {
         return $this->hasMany(MetricSnapshot::class);
+    }
+
+    /**
+     * @return HasOne<GoogleIntegration, $this>
+     */
+    public function googleIntegration(): HasOne
+    {
+        return $this->hasOne(GoogleIntegration::class);
     }
 }

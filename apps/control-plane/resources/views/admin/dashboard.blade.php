@@ -19,6 +19,10 @@
             <strong>{{ $summary['adsense_ready'] }}</strong>
         </article>
         <article class="panel metric">
+            <span class="muted">Google gated</span>
+            <strong>{{ $summary['google_gated'] }}</strong>
+        </article>
+        <article class="panel metric">
             <span class="muted">Open incidents</span>
             <strong>{{ $summary['open_incidents'] }}</strong>
         </article>
@@ -26,6 +30,38 @@
             <span class="muted">Open tasks</span>
             <strong>{{ $summary['open_tasks'] }}</strong>
         </article>
+    </section>
+
+    <section class="panel">
+        <h2>Google integrations</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Site</th>
+                    <th>Access</th>
+                    <th>GA4</th>
+                    <th>GTM</th>
+                    <th>Search Console</th>
+                    <th>Tags</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($googleIntegrations as $integration)
+                    <tr>
+                        <td>{{ $integration->site?->name ?? 'Unknown site' }}</td>
+                        <td><span class="status {{ $integration->access_status }}">{{ $integration->access_status }}</span></td>
+                        <td>{{ $integration->ga4_status }}</td>
+                        <td>{{ $integration->gtm_status }}</td>
+                        <td>{{ $integration->search_console_status }}</td>
+                        <td>{{ $integration->tags_enabled ? 'enabled' : 'disabled' }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">No Google integration records seeded.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
     </section>
 
     <section class="two-column">

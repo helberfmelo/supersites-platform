@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             PortfolioSiteSeeder::class,
             AccessControlSeeder::class,
             DeploymentRecordSeeder::class,
+            GoogleIntegrationSeeder::class,
             OperationalTaskSeeder::class,
         ]);
 

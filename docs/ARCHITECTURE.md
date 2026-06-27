@@ -54,6 +54,15 @@ Sprint 6.1 adiciona a fundacao de monetizacao sem ativar monetizacao real:
 - O Hub renderiza uma CMP local e um placeholder inerte com dimensoes reservadas; feature flag, delivery gate e conta AdSense permanecem desligados.
 - Nenhum script externo de AdSense, GTM, GA4 ou CMP certificada e carregado ate haver gates humanos, configuracao de fornecedor e deploy especifico aprovados.
 
+## Google integrations gated foundation
+
+Sprint 6.2 adiciona readiness de GA4/GTM/Search Console sem ativar tags externas:
+
+- `@supersites/analytics` exporta nomes GA4 compativeis, `resolveGoogleIntegrationGate`, `createGoogleDataLayerEvent` e planejador de propriedade Search Console.
+- O gate exige producao, aprovacao humana, consentimento de analytics, feature flag, ids GA4/GTM e Search Console verificado antes de permitir tag delivery.
+- `google_integrations` armazena status por site, ids configuraveis e allowlist de eventos sem guardar tokens ou segredos.
+- O dashboard admin exibe os sites ainda bloqueados para acesso/verificacao/configuracao Google.
+
 ## Stack local inicial
 
 - Workspace Node: `pnpm@11.9.0`.

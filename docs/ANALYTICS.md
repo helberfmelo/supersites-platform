@@ -215,6 +215,19 @@ Esses eventos podem conter apenas versao do contrato, regiao normalizada, boolea
 
 Enquanto os gates de GA4/GTM/Search Console/AdSense nao forem aprovados, a data layer continua local e nenhum provider externo e carregado. Placeholders de ads podem expor status tecnico de policy no DOM, mas nao devem enviar eventos de impressao, clique ou receita.
 
+## GA4, GTM e Search Console
+
+Sprint 6.2 adiciona uma fundacao de integracao Google sem carregar providers externos:
+
+- `@supersites/analytics` mapeia os 16 eventos padronizados para nomes GA4 compativeis.
+- `resolveGoogleIntegrationGate` falha fechado ate existir ambiente de producao, aprovacao humana, consentimento de analytics, flag de tags, GA4 measurement id, GTM container id e Search Console verificado.
+- `createGoogleDataLayerEvent` retorna `null` enquanto GA4/GTM estiverem bloqueados.
+- Parametros exportaveis para Google usam allowlist estreita: `tool_slug`, `plan_slug`, `site_position`, `result_action`, `file_kind` e `target_url` sanitizado.
+- `google_integrations` guarda apenas readiness operacional por site, ids configuraveis e eventos permitidos; nao guarda tokens OAuth, service-account keys ou segredos de verificacao.
+- Search Console fica planejado como propriedade de dominio ou URL-prefix, mas a verificacao de propriedade e importacao de dados seguem dependentes de gate humano.
+
+Sprint 6.2 nao ativa scripts GA4/GTM, importacao Search Console, contas Google, tags reais, cookies de terceiro, eventos externos ou coleta adicional.
+
 ## Deploy smokes
 
 Smokes de deploy do control-plane/API e do NetProbe devem validar apenas disponibilidade e contrato JSON, sem criar eventos externos de analytics e sem registrar alvo bruto de usuario. O alvo DNS padrao para smoke publico e `example.com`.
