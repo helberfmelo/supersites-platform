@@ -277,7 +277,7 @@ Data-base: 2026-06-27
 | SitePulse Lab production status | Live Nuxt at `https://opentshost.com/supersites/sitepulse-lab/`; release `9700d1d25b81d3d7f2f017987d31306855511c1a-28295133185-1`; API base live |
 | PixelBatch tool pages implemented | 6 |
 | PixelBatch localized tool pages | 30 |
-| PixelBatch live public tools implemented | 0 |
+| PixelBatch live public tools implemented | 6 |
 | PixelBatch local browser tools implemented | 6 |
 | PixelBatch legal/editorial pages | 40 |
 | PixelBatch FAQ blocks | 30 |
@@ -293,10 +293,10 @@ Data-base: 2026-06-27
 | PixelBatch Playwright report | Passed |
 | PixelBatch Quality Gate run | `28280343286` passed |
 | PixelBatch Deploy Dry Run | `28280343287` passed |
-| PixelBatch production status | Placeholder at `https://opentshost.com/supersites/pixelbatch/`; real deploy gated |
+| PixelBatch production status | Live at `https://opentshost.com/supersites/pixelbatch/`; release `a04d21d9a4a4989825da41c26859abaf84ccddce-28295611998-1` |
 | DocShift tool pages implemented | 8 |
 | DocShift localized tool pages | 40 |
-| DocShift live public tools implemented | 0 |
+| DocShift live public tools implemented | 8 |
 | DocShift local browser tools implemented | 8 |
 | DocShift legal/editorial pages | 40 |
 | DocShift FAQ blocks | 40 |
@@ -312,7 +312,7 @@ Data-base: 2026-06-27
 | DocShift server/OCR gated panels | 40 |
 | DocShift Quality Gate run | `28281284720` passed |
 | DocShift Deploy Dry Run | `28281284718` passed |
-| DocShift production status | Placeholder at `https://opentshost.com/supersites/docshift/`; real deploy gated |
+| DocShift production status | Live at `https://opentshost.com/supersites/docshift/`; release `a04d21d9a4a4989825da41c26859abaf84ccddce-28295818189-1` |
 | Consent CMP local component | Implemented |
 | Consent Mode local data layer events | 2 |
 | TCF fail-closed gate | Implemented |
@@ -499,6 +499,13 @@ Data-base: 2026-06-27
 | Sprint 8.4 post-CI public smokes | Hub/control-plane/NetProbe plus Batch A and Batch B passed |
 | Public live Nuxt/Laravel surfaces after Sprint 8.4 | 10: Hub, control-plane/API, NetProbe Atlas, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab |
 | Public placeholder apps remaining after Sprint 8.4 | 2 |
+| Sprint 8.5 PixelBatch deploy run | `28295611998` passed |
+| Sprint 8.5 PixelBatch public smoke | Passed; asset `https://opentshost.com/supersites/pixelbatch/_nuxt/BZQFD9Jx.js` |
+| Sprint 8.5 DocShift deploy run | `28295818189` passed |
+| Sprint 8.5 DocShift public smoke | Passed; asset `https://opentshost.com/supersites/docshift/_nuxt/DIlw8pwj.js` |
+| Sprint 8.5 aggregate public smoke | Passed; Hub, control-plane/API, NetProbe, Batch A, Batch B, PixelBatch, DocShift and MailHealth/SitePulse JSON probes active |
+| Public live Nuxt/Laravel surfaces after Sprint 8.5 | 12: Hub, control-plane/API, NetProbe Atlas and 9 product apps |
+| Public placeholder apps remaining after Sprint 8.5 | 0 |
 | Static app deploy workflow | `.github/workflows/deploy-static-app-hostgator.yml` |
 | Static app deploy scripts | Build, validate, publish, smoke and per-app config implemented |
 | Real ads activated by Fase 8 | 0 planned |
