@@ -342,7 +342,7 @@ Sprint 8.4 - Publicar batch B de workflow/diagnostico
 - Simbolico: PROD-BATCH-B.
 - Objetivo: publicar QRRoute, InvoiceCraft, MailHealth e SitePulse Lab em `/supersites/<app>/` usando releases versionados HostGator.
 - Validacao: workflow de deploy real, smoke publico por app, endpoints publicos seguros quando aplicavel e rollback testavel.
-- Status: planejada.
+- Status: concluida. QRRoute, InvoiceCraft, MailHealth e SitePulse Lab foram publicados como Nuxt SSG reais em `/supersites/<app>/` pelo workflow `Deploy Static App HostGator`, com releases versionados `9700d1d25b81d3d7f2f017987d31306855511c1a-28294616168-1`, `9700d1d25b81d3d7f2f017987d31306855511c1a-28294753305-1`, `9700d1d25b81d3d7f2f017987d31306855511c1a-28294982241-1` e `9700d1d25b81d3d7f2f017987d31306855511c1a-28295133185-1`. O control-plane/API foi redeployado no release `9700d1d25b81d3d7f2f017987d31306855511c1a-28294952047-1` para expor os endpoints MailHealth/SitePulse antes dos traffic switches. Smokes publicos locais passaram para os quatro apps e o smoke agregado passou a validar Batch A, Batch B e probes JSON de MailHealth/SitePulse.
 
 Sprint 8.5 - Publicar batch C de arquivos
 - Simbolico: PROD-BATCH-C.

@@ -162,6 +162,7 @@ Data-base: 2026-06-27
 | NetProbe Atlas HostGator static artifact gate | Passed |
 | Control Plane HostGator artifact gate | Passed |
 | Control Plane public API production smoke | Passed |
+| Control Plane production release | `9700d1d25b81d3d7f2f017987d31306855511c1a-28294952047-1` |
 | NetProbe Atlas public API production smoke | Passed |
 | NetProbe Atlas public DNS browser smoke | Passed |
 | NetProbe Atlas preview smoke | Passed |
@@ -207,7 +208,7 @@ Data-base: 2026-06-27
 | TimeNexus production status | Live Nuxt at `https://opentshost.com/supersites/timenexus/`; release `ba35e78ec8ba844057841fea2f99710accc66afc-28294108090-1` |
 | QRRoute tool pages implemented | 6 |
 | QRRoute localized tool pages | 30 |
-| QRRoute live public tools implemented | 0 |
+| QRRoute live public tools implemented | 6 |
 | QRRoute local browser tools implemented | 6 |
 | QRRoute legal/editorial pages | 40 |
 | QRRoute FAQ blocks | 30 |
@@ -220,10 +221,10 @@ Data-base: 2026-06-27
 | QRRoute Playwright report | Passed |
 | QRRoute Quality Gate run | `28288511784` passed |
 | QRRoute Deploy Dry Run | `28288511790` passed |
-| QRRoute production status | Placeholder at `https://opentshost.com/supersites/qrroute/`; real deploy gated |
+| QRRoute production status | Live Nuxt at `https://opentshost.com/supersites/qrroute/`; release `9700d1d25b81d3d7f2f017987d31306855511c1a-28294616168-1` |
 | InvoiceCraft tool pages implemented | 3 |
 | InvoiceCraft localized tool pages | 15 |
-| InvoiceCraft live public tools implemented | 0 |
+| InvoiceCraft live public tools implemented | 3 |
 | InvoiceCraft local browser tools implemented | 3 |
 | InvoiceCraft legal/editorial pages | 40 |
 | InvoiceCraft FAQ blocks | 15 |
@@ -235,10 +236,10 @@ Data-base: 2026-06-27
 | InvoiceCraft Playwright report | Passed |
 | InvoiceCraft Quality Gate run | `28288971344` passed |
 | InvoiceCraft Deploy Dry Run | `28288971346` passed |
-| InvoiceCraft production status | Placeholder at `https://opentshost.com/supersites/invoicecraft/`; real deploy gated |
+| InvoiceCraft production status | Live Nuxt at `https://opentshost.com/supersites/invoicecraft/`; release `9700d1d25b81d3d7f2f017987d31306855511c1a-28294753305-1` |
 | MailHealth tool pages implemented | 7 |
 | MailHealth localized tool pages | 35 |
-| MailHealth live public tools implemented | 0 |
+| MailHealth live public tools implemented | 7 |
 | MailHealth local browser tools implemented | 1 |
 | MailHealth public API endpoints implemented | 3 |
 | MailHealth DNS/SMTP bounded probe services | 3 |
@@ -254,10 +255,10 @@ Data-base: 2026-06-27
 | MailHealth Playwright report | Passed |
 | MailHealth Quality Gate run | `28289435994` passed |
 | MailHealth Deploy Dry Run | `28289435995` passed |
-| MailHealth production status | Placeholder at `https://opentshost.com/supersites/mailhealth/`; real deploy gated |
+| MailHealth production status | Live Nuxt at `https://opentshost.com/supersites/mailhealth/`; release `9700d1d25b81d3d7f2f017987d31306855511c1a-28294982241-1`; API base live |
 | SitePulse Lab tool pages implemented | 7 |
 | SitePulse Lab localized tool pages | 35 |
-| SitePulse Lab live public tools implemented | 0 |
+| SitePulse Lab live public tools implemented | 7 |
 | SitePulse Lab local/browser-assisted tools implemented | 0 |
 | SitePulse Lab public API endpoints implemented | 1 |
 | SitePulse Lab bounded web probe services | 1 |
@@ -273,7 +274,7 @@ Data-base: 2026-06-27
 | SitePulse Lab Playwright report | Passed |
 | SitePulse Lab Quality Gate run | `28278871466` passed |
 | SitePulse Lab Deploy Dry Run | `28278871478` passed |
-| SitePulse Lab production status | Placeholder at `https://opentshost.com/supersites/sitepulse-lab/`; real deploy gated |
+| SitePulse Lab production status | Live Nuxt at `https://opentshost.com/supersites/sitepulse-lab/`; release `9700d1d25b81d3d7f2f017987d31306855511c1a-28295133185-1`; API base live |
 | PixelBatch tool pages implemented | 6 |
 | PixelBatch localized tool pages | 30 |
 | PixelBatch live public tools implemented | 0 |
@@ -481,6 +482,19 @@ Data-base: 2026-06-27
 | Sprint 8.3 post-CI public smokes | Hub/control-plane/NetProbe plus CalcHarbor, DevUtility Lab and TimeNexus passed |
 | Public live Nuxt/Laravel surfaces after Sprint 8.3 | 6: Hub, control-plane/API, NetProbe Atlas, CalcHarbor, DevUtility Lab, TimeNexus |
 | Public placeholder apps remaining after Sprint 8.3 | 6 |
+| Sprint 8.4 QRRoute deploy run | `28294616168` passed |
+| Sprint 8.4 QRRoute public smoke | Passed; asset `https://opentshost.com/supersites/qrroute/_nuxt/BjlRPKqy.js` |
+| Sprint 8.4 InvoiceCraft deploy run | `28294753305` passed |
+| Sprint 8.4 InvoiceCraft public smoke | Passed; asset `https://opentshost.com/supersites/invoicecraft/_nuxt/CU9lyczB.js` |
+| Sprint 8.4 MailHealth initial deploy run | `28294917077` failed before traffic switch due missing public control-plane route |
+| Sprint 8.4 control-plane API deploy run | `28294952047` passed; MailHealth/SitePulse routes returned 200 |
+| Sprint 8.4 MailHealth deploy run | `28294982241` passed |
+| Sprint 8.4 MailHealth public smoke | Passed; asset `https://opentshost.com/supersites/mailhealth/_nuxt/BDHssgal.js`; API `https://opentshost.com/supersites/control-plane/api/v1/mailhealth` |
+| Sprint 8.4 SitePulse Lab deploy run | `28295133185` passed |
+| Sprint 8.4 SitePulse Lab public smoke | Passed; asset `https://opentshost.com/supersites/sitepulse-lab/_nuxt/BsueNTPe.js`; API `https://opentshost.com/supersites/control-plane/api/v1/sitepulse` |
+| Sprint 8.4 aggregate public smoke | Passed; Hub, control-plane/API, NetProbe, Batch A, Batch B and MailHealth/SitePulse JSON probes active |
+| Public live Nuxt/Laravel surfaces after Sprint 8.4 | 10: Hub, control-plane/API, NetProbe Atlas, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab |
+| Public placeholder apps remaining after Sprint 8.4 | 2 |
 | Static app deploy workflow | `.github/workflows/deploy-static-app-hostgator.yml` |
 | Static app deploy scripts | Build, validate, publish, smoke and per-app config implemented |
 | Real ads activated by Fase 8 | 0 planned |
