@@ -579,7 +579,10 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
   - Regressao frontend unit: `pnpm --filter @supersites/supersite test`, `pnpm test:netprobe`, `pnpm test:calcharbor`, `pnpm test:devutility`, `pnpm test:timenexus` e `pnpm test:qrroute` passaram.
   - Regressao frontend build/preview/E2E: Hub, NetProbe, CalcHarbor, DevUtility Lab, TimeNexus e QRRoute passaram em build Nuxt, preview smoke e Playwright; QRRoute revalidou 3 testes apos o ajuste de nomenclatura Wi-Fi para `key`.
   - `pnpm validate:structure`, `pnpm deploy:dry-run`, `pnpm validate:secrets`, `pnpm ci:changes` e `git diff --check` passaram no fechamento local. O scanner de segredos agora ignora artefatos gerados (`.nuxt`, `.output`, `dist`, `build`, `coverage`, `artifacts`) e o Wi-Fi QR usa `key`/network key para evitar falso positivo sem reduzir a cobertura do gate.
-  - CI/dry-run, smokes publicos pos-push e commit documental de fechamento serao registrados apos o push da sprint.
+  - GitHub Actions `Quality Gate` run `28276318912` passou com repository safety, backend, Hub frontend, NetProbe frontend, CalcHarbor frontend, DevUtility Lab frontend, TimeNexus frontend, QRRoute frontend e summary.
+  - GitHub Actions `Deploy Dry Run` run `28276318906` passou; o upload de artifact continuou bloqueado pela quota GitHub Actions, mas o plano permaneceu no job summary.
+  - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis e CalcHarbor/DevUtility Lab/TimeNexus/QRRoute ainda placeholders publicos.
+  - Nenhum deploy real do QRRoute foi executado porque o app ainda nao tem workflow de traffic switch, smoke publico e rollback proprios.
 
 ## Pendencias criticas
 

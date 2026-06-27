@@ -149,6 +149,8 @@ Data-base: 2026-06-26
 | QRRoute redirect storage tables | 1 |
 | QRRoute preview smoke | Passed |
 | QRRoute Playwright report | Passed |
+| QRRoute Quality Gate run | `28276318912` passed |
+| QRRoute Deploy Dry Run | `28276318906` passed |
 | QRRoute production status | Placeholder at `https://opentshost.com/supersites/qrroute/`; real deploy gated |
 | Local stack smoke | Passed |
 | Nuxt build | Passed with upstream warnings |
