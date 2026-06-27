@@ -1,0 +1,112 @@
+name: Deploy Static App HostGator
+
+on:
+  workflow_dispatch:
+    inputs:
+      app_id:
+        description: Static app to deploy or roll back.
+        required: true
+        type: choice
+        options:
+          - calcharbor
+          - devutility-lab
+          - timenexus
+          - qrroute
+          - invoicecraft
+          - mailhealth
+          - sitepulse-lab
+          - pixelbatch
+          - docshift
+      action:
+        description: Deploy, rollback to a release, or return the app folder to placeholder.
+        required: true
+        default: deploy
+        type: choice
+        options:
+          - deploy
+          - rollback-release
+          - rollback-placeholder
+      release_id:
+        description: Required only for rollback-release.
+        required: false
+        type: string
+      api_base_url:
+        description: Optional HTTPS API base override for MailHealth or SitePulse Lab.
+        required: false
+        type: string
+      skip_api_smoke:
+        description: Skip MailHealth/SitePulse public API preflight only for controlled recovery.
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  deploy_static_app:
+    name: Deploy static app
+    runs-on: ubuntu-latest
+    environment: production-hostgator
+    env:
+      SUPERSITES_CPANEL_HOST: ${{ vars.SUPERSITES_CPANEL_HOST }}
+      SUPERSITES_CPANEL_PORT: ${{ vars.SUPERSITES_CPANEL_PORT }}
+      SUPERSITES_CPANEL_USER: ${{ secrets.SUPERSITES_CPANEL_USER }}
+      SUPERSITES_CPANEL_PASSWORD: ${{ secrets.SUPERSITES_CPANEL_PASSWORD }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        if: inputs.action == 'deploy'
+        uses: actions/setup-node@v6.4.0
+        with:
+          node-version: '24'
+
+      - name: Enable pnpm
+        if: inputs.action == 'deploy'
+        run: |
+          corepack enable
+          corepack prepare pnpm@11.9.0 --activate
+
+      - name: Install Node dependencies
+        if: inputs.action == 'deploy'
+        run: pnpm install --frozen-lockfile
+
+      - name: Deploy or rollback
+        shell: pwsh
+        run: |
+          $action = '${{ inputs.action }}'
+          $releaseId = '${{ inputs.release_id }}'
+          $apiBaseUrl = '${{ inputs.api_base_url }}'
+          $skipApiSmoke = [System.Convert]::ToBoolean('${{ inputs.skip_api_smoke }}')
+
+          $deployArgs = @{
+            AppId = '${{ inputs.app_id }}'
+          }
+
+          if ($apiBaseUrl) {
+            $deployArgs.ApiBaseUrl = $apiBaseUrl
+          }
+
+          if ($skipApiSmoke) {
+            $deployArgs.SkipApiSmoke = $true
+          }
+
+          if ($action -eq 'deploy') {
+            $deployArgs.ReleaseId = '${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}'
+          } elseif ($action -eq 'rollback-release') {
+            if (-not $releaseId) {
+              throw 'release_id is required for rollback-release.'
+            }
+            $deployArgs.RollbackReleaseId = $releaseId
+            $deployArgs.SkipBuild = $true
+          } elseif ($action -eq 'rollback-placeholder') {
+            $deployArgs.RollbackToPlaceholder = $true
+            $deployArgs.SkipBuild = $true
+            $deployArgs.SkipApiSmoke = $true
+          } else {
+            throw "Unsupported deploy action: $action"
+          }
+
+          ./scripts/publish-static-app-hostgator.ps1 @deployArgs

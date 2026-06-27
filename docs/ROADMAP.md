@@ -323,14 +323,14 @@ Sprint 8.1 - Roadmap de rollout publico
 - Objetivo: transformar as pendencias de placeholders em sprints executaveis de deploy real, preservando rollback, smoke publico, secrets e gates de monetizacao.
 - Entregas: `docs/SPRINTS/PUBLIC_ROLLOUT_SPRINTS.md`, atualizacao de status/metricas/roadmap e registro de que a autorizacao atual cobre deploy tecnico reversivel, sem ads, billing, checkout, doacao, afiliado, DNS definitivo ou workers pagos.
 - Validacao: docs-only, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, push e Quality Gate docs-only monitorado.
-- Status: em andamento.
+- Status: concluida. A Fase 8 foi adicionada ao roadmap como bloco de public rollout com sprints 8.1 a 8.6, guardrails de deploy estatico reversivel sob `/supersites/<app>/`, sem ativar AdSense/GTM/GA4, billing, checkout, doacoes, afiliados, DNS definitivo, workers/crons ou integracoes externas. Commit `b22431d` foi publicado e o Quality Gate docs-only `28293053566` passou.
 
 Sprint 8.2 - Static app deploy framework
 - Simbolico: PROD-STATIC-FRAMEWORK.
 - Objetivo: criar scripts/workflow genericos de artifact, validacao, publish, smoke e rollback para apps Nuxt SSG que ainda estao como placeholders publicos.
 - Escopo: CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch e DocShift.
 - Validacao: builds/testes afetados, artifact gates por app, smokes locais/preview, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate e Deploy Dry Run.
-- Status: planejada.
+- Status: em validacao. Foram criados scripts genericos `build-static-app-hostgator-artifact.ps1`, `validate-static-app-artifact.ps1`, `publish-static-app-hostgator.ps1`, `smoke-static-app-public.ps1`, configuracao `static-app-hostgator.config.ps1` e workflow manual `Deploy Static App HostGator` para deploy/rollback por `app_id`. Artifact gates locais ja passaram para os nove apps alvo; CI/deploy dry-run e fechamento documental seguem em andamento antes de qualquer traffic switch.
 
 Sprint 8.3 - Publicar batch A de utilitarios locais
 - Simbolico: PROD-BATCH-A.

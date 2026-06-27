@@ -38,6 +38,7 @@ pnpm test:e2e:report
 - `Deploy SuperSite HostGator` publishes the static SuperSites Hub catalog.
 - `Deploy Control Plane HostGator` publishes the Laravel control-plane/API needed by NetProbe public tools.
 - `Deploy NetProbe HostGator` publishes the static NetProbe frontend after the public NetProbe API preflight passes.
+- `Deploy Static App HostGator` publishes supported static apps after their artifact gates pass.
 
 After `Quality Gate` is green for a catalog deploy commit:
 
@@ -124,3 +125,34 @@ NetProbe go-live/redeploy order:
 5. Run a browser smoke against at least one public tool action.
 
 The active NetProbe production release validated on 2026-06-26 is `decfaa818545203597e74b898741f6114315a624-28265295302-1`.
+
+Generic static app artifact gate:
+
+```powershell
+pnpm deploy:build-static-app-hostgator -- -AppId calcharbor
+```
+
+Generic static app deploy command, only after `Quality Gate` and `Deploy Dry Run` are green:
+
+```powershell
+gh workflow run "Deploy Static App HostGator" --ref main -f app_id=calcharbor -f action=deploy -f skip_api_smoke=false
+```
+
+Static app public smoke after deploy:
+
+```powershell
+pnpm deploy:smoke-static-app-public -- -AppId calcharbor
+```
+
+Static app rollback commands:
+
+```powershell
+gh workflow run "Deploy Static App HostGator" --ref main -f app_id=calcharbor -f action=rollback-release -f release_id=<release-id> -f skip_api_smoke=false
+gh workflow run "Deploy Static App HostGator" --ref main -f app_id=calcharbor -f action=rollback-placeholder -f skip_api_smoke=true
+```
+
+Fase 8 batch order:
+
+1. CalcHarbor, DevUtility Lab, TimeNexus.
+2. QRRoute, InvoiceCraft, MailHealth, SitePulse Lab.
+3. PixelBatch, DocShift.

@@ -459,6 +459,11 @@ Data-base: 2026-06-27
 | Public live Nuxt/Laravel surfaces before Fase 8 | 3: Hub, control-plane/API and NetProbe Atlas |
 | Public placeholder apps before Fase 8 | 9 |
 | Apps targeted for static HostGator rollout | CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch, DocShift |
+| Static app deploy framework status | Implemented locally in Sprint 8.2; CI pending |
+| Static app artifact gates passed locally | 9/9 |
+| Sprint 8.2 local final gates | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
+| Static app deploy workflow | `.github/workflows/deploy-static-app-hostgator.yml` |
+| Static app deploy scripts | Build, validate, publish, smoke and per-app config implemented |
 | Real ads activated by Fase 8 | 0 planned |
 | Real billing activated by Fase 8 | 0 planned |
 | Real checkout/payment activated by Fase 8 | 0 planned |

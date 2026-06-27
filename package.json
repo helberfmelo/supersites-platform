@@ -70,7 +70,9 @@
     "deploy:build-netprobe-hostgator": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/build-netprobe-hostgator-artifact.ps1",
     "deploy:smoke-netprobe-public": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/smoke-netprobe-public.ps1",
     "deploy:build-control-plane-hostgator": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/build-control-plane-hostgator-artifact.ps1",
-    "deploy:smoke-control-plane-public": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/smoke-control-plane-public.ps1"
+    "deploy:smoke-control-plane-public": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/smoke-control-plane-public.ps1",
+    "deploy:build-static-app-hostgator": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/build-static-app-hostgator-artifact.ps1",
+    "deploy:smoke-static-app-public": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/smoke-static-app-public.ps1"
   },
   "devDependencies": {
     "@playwright/test": "^1.61.1",

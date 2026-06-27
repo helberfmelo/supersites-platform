@@ -1036,6 +1036,18 @@ Em seguida, a Fase 8 - Public Rollout e Production Visibility foi aberta para pu
   - Estado inicial verificado: `main...origin/main` limpo no commit `7cf277a`, Hub/control-plane/API/NetProbe saudaveis em smokes publicos e nove apps ainda como placeholders publicos.
   - Fase 8 foi mapeada com Sprints 8.1 a 8.6 para criar framework de deploy estatico, publicar apps em tres batches e fechar smokes/operacao minima.
   - O escopo de producao desta fase permanece limitado a deploy tecnico reversivel sob `/supersites/<app>/`; direct-root mapping, DNS definitivo, ads, billing, checkout, doacoes, afiliados, workers pagos e integracoes externas seguem fora do escopo desta autorizacao.
+  - Commit documental `b22431d` (`docs: add public rollout sprint plan`) foi publicado em `main`.
+  - GitHub Actions `Quality Gate` docs-only run `28293053566` passou com repository safety e quality summary verdes; jobs frontend/backend foram ignorados conforme path-aware.
+
+- Sprint 8.2 validation:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/ROADMAP.md`, `docs/STATUS.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local/release, `docs/SPRINTS/PUBLIC_ROLLOUT_SPRINTS.md` e todos os ADRs existentes ate `0030`.
+  - Estado inicial verificado: `main...origin/main` limpo apos a Sprint 8.1, nove apps ainda placeholders publicos e deploy real existente apenas para Hub, control-plane/API e NetProbe.
+  - Framework generico criado para apps Nuxt SSG nao-NetProbe: build de artifact HostGator, validacao de artifact por app, publish cPanel com release versionado, smoke publico por `app_id`, rollback por release e rollback para placeholder.
+  - Workflow manual `.github/workflows/deploy-static-app-hostgator.yml` criado para `deploy`, `rollback-release` e `rollback-placeholder` dos apps `calcharbor`, `devutility-lab`, `timenexus`, `qrroute`, `invoicecraft`, `mailhealth`, `sitepulse-lab`, `pixelbatch` e `docshift`.
+  - Artifact gates locais passaram para 9/9 apps: CalcHarbor 150 arquivos, DevUtility Lab 201, TimeNexus 181, QRRoute 174, InvoiceCraft 145, MailHealth 180, SitePulse Lab 180, PixelBatch 171 e DocShift 192.
+  - MailHealth e SitePulse Lab foram buildados com APIs publicas HTTPS do control-plane: `https://opentshost.com/supersites/control-plane/api/v1/mailhealth` e `https://opentshost.com/supersites/control-plane/api/v1/sitepulse`.
+  - Gates finais locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation.
+  - Nenhum traffic switch real foi executado nesta sprint; os apps continuam placeholders publicos ate as Sprints 8.3, 8.4 e 8.5 acionarem o workflow de deploy e passarem public smoke.
 
 ## Pendencias criticas
 
@@ -1047,15 +1059,9 @@ Em seguida, a Fase 8 - Public Rollout e Production Visibility foi aberta para pu
 - Definir backup/restore de `/var/lib/supersites-redis` antes de monitores pagos ou jobs de producao dependerem de Redis.
 - Criar filas/workers/crons na VPS apenas quando houver codigo executavel e nomes de fila definidos.
 - Publicar proximos apps somente mantendo empacotamento de artefatos, preservacao remota de `.env`, smoke e rollback testavel.
-- Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o CalcHarbor antes de trocar trafego real.
-- Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o DevUtility Lab antes de trocar trafego real.
-- Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o TimeNexus antes de trocar trafego real.
-- Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o QRRoute antes de trocar trafego real.
-- Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o InvoiceCraft antes de trocar trafego real.
-- Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o MailHealth antes de trocar trafego real.
-- Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o SitePulse Lab antes de trocar trafego real.
-- Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o PixelBatch antes de trocar trafego real.
-- Criar deploy HostGator, artifact gate, smoke publico e rollback especificos para o DocShift antes de trocar trafego real.
+- Executar deploy real, smoke publico e registro de release ID para CalcHarbor, DevUtility Lab e TimeNexus na Sprint 8.3.
+- Executar deploy real, smoke publico e registro de release ID para QRRoute, InvoiceCraft, MailHealth e SitePulse Lab na Sprint 8.4.
+- Executar deploy real, smoke publico e registro de release ID para PixelBatch e DocShift na Sprint 8.5.
 - Definir estrategia tecnica de URL raiz: `opentshost.com` apontando para conteudo em `/public_html/supersites/`.
 - Definir dominios definitivos futuramente.
 - Validar dominio/marca antes de registrar qualquer nome.

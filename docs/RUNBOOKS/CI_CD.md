@@ -2,7 +2,7 @@
 
 ## Scope
 
-Sprint 0.5 created the first CI/CD foundation. The current pipeline validates code, produces deploy dry-run plans and has manual HostGator deploy workflows for the static Hub, the Laravel control-plane/API and the gated NetProbe static frontend. CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch and DocShift are validated in local/CI with deploy manifest entries, but remain placeholder-only in production until app-specific deploy gates exist.
+Sprint 0.5 created the first CI/CD foundation. The current pipeline validates code, produces deploy dry-run plans and has manual HostGator deploy workflows for the static Hub, the Laravel control-plane/API, the gated NetProbe static frontend and the generic static-app rollout path for CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch and DocShift.
 
 ## Workflows
 
@@ -74,6 +74,28 @@ Actions:
 - `rollback-placeholder`: disables the managed NetProbe rewrite and returns the app folder to the bootstrap placeholder.
 
 The deploy action must not be run while the public API smoke fails. On 2026-06-26, the control-plane/API deploy passed, NetProbe real deploys `28264517346` and `28265295302` passed, and public smoke validated `https://opentshost.com/supersites/netprobe-atlas/`.
+
+### Deploy Static App HostGator
+
+File: `.github/workflows/deploy-static-app-hostgator.yml`.
+
+Runs only by `workflow_dispatch` against the `production-hostgator` environment.
+
+Inputs:
+
+- `app_id`: one of `calcharbor`, `devutility-lab`, `timenexus`, `qrroute`, `invoicecraft`, `mailhealth`, `sitepulse-lab`, `pixelbatch`, `docshift`.
+- `action`: `deploy`, `rollback-release` or `rollback-placeholder`.
+- `release_id`: required only for `rollback-release`.
+- `api_base_url`: optional HTTPS override for MailHealth or SitePulse Lab.
+- `skip_api_smoke`: recovery-only escape hatch for MailHealth/SitePulse API preflight.
+
+Actions:
+
+- `deploy`: builds the selected Nuxt app with `NUXT_APP_BASE_URL=/supersites/<app>/`, validates the static artifact, uploads it to `_static-releases/<release-id>`, switches only `/supersites/<app>/.htaccess` and runs public smoke.
+- `rollback-release`: switches `/supersites/<app>/.htaccess` back to a previous release id and runs public smoke.
+- `rollback-placeholder`: disables the managed app rewrite and returns the app folder to the bootstrap placeholder.
+
+MailHealth and SitePulse Lab deploys must keep API smoke enabled unless a controlled rollback/recovery note is recorded.
 
 ### Deploy Control Plane HostGator
 
@@ -185,10 +207,10 @@ VPS runtime environment variable names:
 - The shared package test/typecheck root scripts use explicit package filters. The generic `./packages/*` pnpm filter returned no matches on Windows during Sprint 1.3 and was replaced before commit.
 - Local PHP on Windows may have SQLite DLLs present but disabled in `php.ini`. Enable `extension=pdo_sqlite` and `extension=sqlite3` before relying on `php artisan test`; this workstation was fixed during Sprint 1.4.
 - Direct site folder mapping like `https://opentshost.com/<site-folder>` remains pending. Keep app links on the safe fallback URLs under `/supersites/...`.
-- Real deploy is implemented for the SuperSites Hub static catalog, the control-plane/API and NetProbe Atlas. NetProbe public traffic depends on the control-plane/API smoke staying healthy for `/health`, `/api/v1/netprobe/ip` and `/api/v1/netprobe/dns`.
+- Real deploy is implemented for the SuperSites Hub static catalog, the control-plane/API, NetProbe Atlas and supported generic static apps. NetProbe, MailHealth and SitePulse public traffic depends on the control-plane/API smoke staying healthy for their bounded public endpoints.
 - Control-plane/API deploy uses a Laravel ZIP and cPanel remote extraction. The artifact excludes `.env`; the release `.env` is written remotely from GitHub secrets or ignored local inputs, and the managed front controller bootstraps the active Laravel release directly.
 - NetProbe static builds must not contain `localhost:8013`, `127.0.0.1:8013` or a local `/api/v1/netprobe` URL. Local API usage belongs in dev/test env vars, not in production artifacts.
-- CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch and DocShift have dry-run manifest entries only. Do not run a real traffic switch until app-specific HostGator artifact validation, public smoke and rollback are implemented.
+- CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch and DocShift have generic static HostGator artifact validation, public smoke and rollback implemented. Run real traffic switches only through the Fase 8 batch order after Quality Gate and Deploy Dry Run are green.
 - Human-gated actions stay in `docs/HUMAN_ACTION_REQUIRED.md`; technical reversible blockers should be worked around with dry-runs, validation scripts or degraded mode.
 
 ## Pre-Real-Deploy Checklist
