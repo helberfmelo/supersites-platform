@@ -1063,6 +1063,8 @@ Em seguida, a Fase 8 - Public Rollout e Production Visibility foi aberta para pu
   - TimeNexus deploy real: workflow `Deploy Static App HostGator` run `28294108090` passou, release `ba35e78ec8ba844057841fea2f99710accc66afc-28294108090-1`, 181 arquivos, 1760128 bytes. Smoke publico local passou em `https://opentshost.com/supersites/timenexus/` e validou asset `https://opentshost.com/supersites/timenexus/_nuxt/xk10YG7l.js`.
   - `scripts/smoke-supersite-public.ps1` foi atualizado para o novo estado real de producao: Hub, NetProbe, CalcHarbor, DevUtility Lab e TimeNexus ativos, sem placeholder/noindex e com assets `_nuxt` publicos carregaveis.
   - Gates locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check`, `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public` e smokes por app para CalcHarbor, DevUtility Lab e TimeNexus.
+  - Commit de fechamento tecnico `2322dd7` foi pushado para `main`; GitHub Actions `Quality Gate` run `28294455982` passou com matriz completa de frontend/backend, e `Deploy Dry Run` run `28294455997` passou com a anotacao conhecida de quota de artifact upload.
+  - Smokes publicos pos-CI passaram: Hub agregador validou asset `https://opentshost.com/supersites/_nuxt/CDSWkO8T.js` e assets dos tres apps; control-plane/API e NetProbe passaram; smokes especificos de CalcHarbor, DevUtility Lab e TimeNexus passaram novamente.
   - Nenhum anuncio real, checkout, billing, historico salvo, API publica paga, worker/cron, analytics externo ou direct-root mapping foi ativado. Rollback por release e rollback para placeholder permanecem disponiveis pelo workflow.
 
 ## Pendencias criticas

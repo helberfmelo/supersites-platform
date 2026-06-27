@@ -475,6 +475,10 @@ Data-base: 2026-06-27
 | Sprint 8.3 TimeNexus deploy run | `28294108090` passed |
 | Sprint 8.3 TimeNexus public smoke | Passed; asset `https://opentshost.com/supersites/timenexus/_nuxt/xk10YG7l.js` |
 | Sprint 8.3 aggregate public smoke | Passed; Hub, control-plane/API, NetProbe, CalcHarbor, DevUtility Lab and TimeNexus active |
+| Sprint 8.3 closing commit | `2322dd7` |
+| Sprint 8.3 Quality Gate after smoke contract update | `28294455982` passed |
+| Sprint 8.3 Deploy Dry Run after smoke contract update | `28294455997` passed; artifact upload quota annotation only |
+| Sprint 8.3 post-CI public smokes | Hub/control-plane/NetProbe plus CalcHarbor, DevUtility Lab and TimeNexus passed |
 | Public live Nuxt/Laravel surfaces after Sprint 8.3 | 6: Hub, control-plane/API, NetProbe Atlas, CalcHarbor, DevUtility Lab, TimeNexus |
 | Public placeholder apps remaining after Sprint 8.3 | 6 |
 | Static app deploy workflow | `.github/workflows/deploy-static-app-hostgator.yml` |
