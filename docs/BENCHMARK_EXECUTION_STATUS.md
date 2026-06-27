@@ -104,5 +104,5 @@ Sprint 7.2 remote validation:
 - Quality Gate: `28286110806`, success.
 - Deploy Dry Run: `28286110802`, success.
 - Public smokes: Hub, control-plane/API and NetProbe passed after push.
-- Closing docs commit: pending.
-- Closing docs-only Quality Gate: pending.
+- Closing docs commit: `dc33adc docs: record supersite benchmark ci validation`.
+- Closing docs-only Quality Gate: `28286232069`, success.

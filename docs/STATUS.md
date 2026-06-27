@@ -867,6 +867,8 @@ Na Sprint 7.2, o Hub publico e o control-plane ganharam a primeira camada tecnic
   - GitHub Actions `Quality Gate` run `28286110806` passou.
   - GitHub Actions `Deploy Dry Run` run `28286110802` passou e gerou plano sem mutar producao.
   - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis.
+  - Fechamento docs-only publicado: `dc33adc` (`docs: record supersite benchmark ci validation`).
+  - GitHub Actions `Quality Gate` docs-only run `28286232069` passou.
   - Nenhum provider import, AdSense serving, checkout, billing real, doacao ativa, afiliado real, webhook externo, worker/cron de producao, external AI, analytics externo ou deploy real de placeholder foi ativado.
 
 ## Pendencias criticas

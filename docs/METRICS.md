@@ -352,6 +352,8 @@ Data-base: 2026-06-27
 | Sprint 7.2 Quality Gate run | `28286110806` passed |
 | Sprint 7.2 Deploy Dry Run | `28286110802` passed |
 | Sprint 7.2 public smokes | Hub/control-plane/NetProbe passed |
+| Sprint 7.2 docs closing commit | `dc33adc` |
+| Sprint 7.2 docs-only Quality Gate run | `28286232069` passed |
 | Real ads activated | 0 |
 | Real billing activated | 0 |
 | Real donation payments activated | 0 |
