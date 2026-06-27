@@ -863,7 +863,10 @@ Na Sprint 7.2, o Hub publico e o control-plane ganharam a primeira camada tecnic
   - Screenshots locais inspecionados: `artifacts/supersite-7.2-home-desktop-clean.png` e `artifacts/supersite-7.2-home-mobile-cards-clean.png`; sem sobreposicao incoerente nos cards.
   - Validacao de pacotes passou: `pnpm test:packages` com 65 testes e `pnpm typecheck:packages`.
   - Gates finais locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation.
-  - Commit, push, CI, deploy dry-run remoto e smokes publicos ainda serao registrados no fechamento documental da sprint.
+  - Feature commit publicado: `e63e110` (`feat: add benchmark refinement dashboard`).
+  - GitHub Actions `Quality Gate` run `28286110806` passou.
+  - GitHub Actions `Deploy Dry Run` run `28286110802` passou e gerou plano sem mutar producao.
+  - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis.
   - Nenhum provider import, AdSense serving, checkout, billing real, doacao ativa, afiliado real, webhook externo, worker/cron de producao, external AI, analytics externo ou deploy real de placeholder foi ativado.
 
 ## Pendencias criticas

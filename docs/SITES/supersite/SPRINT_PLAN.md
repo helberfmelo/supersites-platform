@@ -13,7 +13,7 @@ Data-base: 2026-06-27
 - Public Hub live at `https://opentshost.com/supersites/`.
 - Control-plane/API live at `https://opentshost.com/supersites/control-plane/`.
 - Admin already includes site inventory, readiness foundations, AI growth and executive reports.
-- Benchmark dashboard is implemented locally in Sprint 7.2 and awaits feature commit/CI/public smoke closure.
+- Benchmark dashboard was completed in Sprint 7.2 with feature CI, deploy dry-run and public smokes passing.
 
 ## Scope
 

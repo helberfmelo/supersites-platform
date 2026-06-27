@@ -37,3 +37,4 @@ Data-base: 2026-06-27
 - Hub cards now expose compact operating signals for tool tracks, language coverage and gated monetization.
 - Control-plane now stores benchmark readiness and opportunities as local estimated evidence, not provider metrics.
 - `/admin/benchmark-refinement` gives operators the per-site backlog before the technical site refinements continue.
+- Feature CI closed green with Quality Gate `28286110806`, Deploy Dry Run `28286110802` and public smokes for Hub/control-plane/NetProbe.

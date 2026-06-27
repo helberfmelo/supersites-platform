@@ -5,10 +5,10 @@ Data-base: 2026-06-27
 ## Current block
 
 - Real phase: Fase 7 - Benchmark-Driven Refinement.
-- Current sprint: Sprint 7.2 - SuperSites catalog and dashboard refinement.
-- Symbolic sprint: BR-SUPERSITE.
-- Scope: Hub catalog signals plus control-plane benchmark readiness and opportunity backlog.
-- Code changes: Laravel migrations/models/seeders/routes/views/tests and Hub catalog card signals.
+- Current sprint: Sprint 7.3 - NetProbe Atlas benchmark UX.
+- Symbolic sprint: BR-NETPROBE.
+- Scope: DNS propagation and What is my IP result UX, safe copy/export affordances, related paths and gated upgrade messaging.
+- Previous sprint completed: Sprint 7.2 - SuperSites catalog and dashboard refinement.
 
 ## Pre-sprint state
 
@@ -33,8 +33,8 @@ Data-base: 2026-06-27
 | Sprint | Symbol | Status | Exit criteria |
 |---:|---|---|---|
 | 7.1 | BR-ROADMAP | Completed | Docs created, committed, pushed and docs-only Quality Gate recorded |
-| 7.2 | BR-SUPERSITE | Implemented locally; feature commit/CI pending | Hub/control-plane benchmark dashboard refined and validated |
-| 7.3 | BR-NETPROBE | Planned | DNS/IP benchmark UX refined and public NetProbe smokes pass |
+| 7.2 | BR-SUPERSITE | Completed | Hub/control-plane benchmark dashboard refined and validated |
+| 7.3 | BR-NETPROBE | Planned next | DNS/IP benchmark UX refined and public NetProbe smokes pass |
 | 7.4 | BR-CALCHARBOR | Planned | Calculator UX/content refined in local/CI, public deploy still gated |
 | 7.5 | BR-DEVUTILITY | Planned | Developer tool UX/content refined in local/CI, public deploy still gated |
 | 7.6 | BR-TIMENEXUS | Planned | Time/date UX/content refined in local/CI, public deploy still gated |
@@ -100,7 +100,9 @@ Sprint 7.2 local validation passed:
 
 Sprint 7.2 remote validation:
 
-- Feature commit: pending.
-- Quality Gate: pending.
-- Deploy Dry Run: pending.
-- Public smokes: pending.
+- Feature commit: `e63e110 feat: add benchmark refinement dashboard`.
+- Quality Gate: `28286110806`, success.
+- Deploy Dry Run: `28286110802`, success.
+- Public smokes: Hub, control-plane/API and NetProbe passed after push.
+- Closing docs commit: pending.
+- Closing docs-only Quality Gate: pending.

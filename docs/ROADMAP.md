@@ -252,13 +252,13 @@ Sprint 7.2 - SuperSites Catalog + Dashboard de Benchmark e Crescimento
 - Simbolico: BR-SUPERSITE.
 - Objetivo: evoluir o Hub publico e o control-plane para exibir benchmark readiness, SEO/AIO readiness, AdSense readiness, monetizacao readiness e backlog de oportunidades por site.
 - Validacao: seguranca admin/RBAC, testes Laravel quando houver backend, testes/build/preview/Playwright do Hub quando houver frontend, gates locais e CI/dry-run.
-- Status: implementada e validada localmente; commit, push, CI, deploy dry-run remoto e smokes publicos pendentes de fechamento.
+- Status: concluida. O Hub publico ganhou sinais compactos de frentes de ferramenta, cobertura de idiomas e monetizacao gated nos cards; o control-plane recebeu tabelas `benchmark_site_readiness` e `benchmark_opportunities`, seeder, resumo no dashboard e rota `/admin/benchmark-refinement` sob `dashboard.view`. Quality Gate `28286110806`, Deploy Dry Run `28286110802` e smokes publicos de Hub/control-plane/NetProbe passaram. Nenhum provider, anuncio real, billing, checkout, afiliado, doacao, worker, cron ou deploy real de placeholder foi ativado.
 
 Sprint 7.3 - NetProbe Atlas benchmark UX
 - Simbolico: BR-NETPROBE.
 - Objetivo: refinar DNS propagation e What is my IP com resultado acima da dobra, resumo simples, tabela tecnico-global, mapa leve, export/copy seguro, conteudo original, links relacionados e CTAs gated.
 - Validacao: NetProbe tests/build/preview/Playwright, public smokes do NetProbe e gates locais.
-- Status: planejada.
+- Status: proxima.
 
 Sprint 7.4 - CalcHarbor benchmark UX
 - Simbolico: BR-CALCHARBOR.
