@@ -239,6 +239,81 @@ Sprint 6.6 - Executive reports
 - Validacao: dados estimados/finalizados separados, sem causalidade inventada.
 - Status: concluida localmente/CI. `@supersites/executive-reports` foi criado como contrato deterministico local para relatorios semanais/mensais, com itens evidenciados, status de dado `finalized`/`estimated`/`delayed`/`unavailable`, redacao de PII/segredos, CSV e bloqueio de claims causais. O control-plane recebeu `executive_reports`, `executive_report_items`, models, seeder, dashboard, `/admin/reports`, detalhe, print e export CSV protegidos por `dashboard.view`. O seeder cria 2 relatorios e 12 itens apenas a partir de docs/runbooks/gates, com `causality_status=not_inferred`. Quality Gate `28285130303` e Deploy Dry Run `28285130307` passaram; Hub, control-plane/API e NetProbe passaram nos smokes publicos pos-push. Nenhum provider externo, importacao GA4/Search Console/AdSense/billing, worker recorrente, envio de e-mail, receita real, checkout, webhook, ads ou analytics externo foi ativado.
 
+## Fase 7 - Benchmark-Driven Refinement
+
+Sprint 7.1 - Roadmap e sprints de benchmark refinement
+- Simbolico: BR-ROADMAP.
+- Objetivo: transformar o prompt de benchmark, screenshots e estado real do roadmap em sprints executaveis, planos por site, matriz consolidada e KPIs de readiness.
+- Entregas: `docs/SPRINTS/BENCHMARK_REFINEMENT_SPRINTS.md`, `docs/BENCHMARK_MATRIX.md`, `docs/BENCHMARK_EXECUTION_STATUS.md`, `docs/SUPERSITE_DASHBOARD_REFINEMENT_PLAN.md`, planos por site em `docs/SITES/<site>/` e atualizacoes de status/metricas.
+- Validacao: docs-only, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, push e Quality Gate docs-only monitorado.
+- Status: em validacao local. Nenhuma mudanca de codigo, anuncio real, billing real, provider externo, afiliado, doacao ativa, worker, cron ou deploy real de placeholder sera ativado nesta sprint.
+
+Sprint 7.2 - SuperSites Catalog + Dashboard de Benchmark e Crescimento
+- Simbolico: BR-SUPERSITE.
+- Objetivo: evoluir o Hub publico e o control-plane para exibir benchmark readiness, SEO/AIO readiness, AdSense readiness, monetizacao readiness e backlog de oportunidades por site.
+- Validacao: seguranca admin/RBAC, testes Laravel quando houver backend, testes/build/preview/Playwright do Hub quando houver frontend, gates locais e CI/dry-run.
+- Status: planejada.
+
+Sprint 7.3 - NetProbe Atlas benchmark UX
+- Simbolico: BR-NETPROBE.
+- Objetivo: refinar DNS propagation e What is my IP com resultado acima da dobra, resumo simples, tabela tecnico-global, mapa leve, export/copy seguro, conteudo original, links relacionados e CTAs gated.
+- Validacao: NetProbe tests/build/preview/Playwright, public smokes do NetProbe e gates locais.
+- Status: planejada.
+
+Sprint 7.4 - CalcHarbor benchmark UX
+- Simbolico: BR-CALCHARBOR.
+- Objetivo: refinar calculadoras com resultado imediato, formula, memoria de calculo, interpretacao, exemplos, FAQ, links relacionados e upgrades gated.
+- Validacao: formulas, testes/build/preview/Playwright do CalcHarbor e gates locais.
+- Status: planejada.
+
+Sprint 7.5 - DevUtility Lab benchmark UX
+- Simbolico: BR-DEVUTILITY.
+- Objetivo: refinar ferramentas dev com editor split, exemplos, copy/download, erros claros, privacidade visivel e upgrades gated.
+- Validacao: testes/build/preview/Playwright do DevUtility e gates locais.
+- Status: planejada.
+
+Sprint 7.6 - TimeNexus benchmark UX
+- Simbolico: BR-TIMENEXUS.
+- Objetivo: refinar conversor de fuso, meeting planner, datas/calendario, respostas diretas, conteudo sobre UTC/DST e upgrades gated.
+- Validacao: timezone fixtures, testes/build/preview/Playwright do TimeNexus e gates locais.
+- Status: planejada.
+
+Sprint 7.7 - QRRoute benchmark UX
+- Simbolico: BR-QRROUTE.
+- Objetivo: refinar QR/barcode/UTM com tabs por tipo, preview em tempo real, download claro, educacao static vs dynamic e upgrades gated.
+- Validacao: testes/build/preview/Playwright do QRRoute, redirect guard se afetado e gates locais.
+- Status: planejada.
+
+Sprint 7.8 - InvoiceCraft benchmark UX
+- Simbolico: BR-INVOICECRAFT.
+- Objetivo: refinar editor/preview/PDF de faturas, orcamentos e recibos, dados locais, templates planejados, disclaimers e upgrades gated.
+- Validacao: PDF rendering, testes/build/preview/Playwright do InvoiceCraft e gates locais.
+- Status: planejada. Impostos, numeracao fiscal e pagamentos seguem `HUMAN_ACTION_REQUIRED`.
+
+Sprint 7.9 - MailHealth benchmark UX
+- Simbolico: BR-MAILHEALTH.
+- Objetivo: refinar SPF/DKIM/DMARC/MX/blacklist/SMTP/headers com score, checklist, severidade, fix guidance, record builders planejados e upgrades gated.
+- Validacao: testes/build/preview/Playwright do MailHealth, DNS/SMTP bounded tests se afetados e gates locais.
+- Status: planejada.
+
+Sprint 7.10 - SitePulse Lab benchmark UX
+- Simbolico: BR-SITEPULSE.
+- Objetivo: refinar status, redirects, headers, robots, sitemap, TTFB e performance snapshot com resposta simples, tabs tecnicas, recomendacoes e upgrades gated.
+- Validacao: testes/build/preview/Playwright do SitePulse, probe bounded tests se afetados e gates locais.
+- Status: planejada.
+
+Sprint 7.11 - PixelBatch benchmark UX
+- Simbolico: BR-PIXELBATCH.
+- Objetivo: refinar dropzone, preview antes/depois, fila planejada, presets, privacidade e upgrades gated para imagem.
+- Validacao: worker/canvas smoke, testes/build/preview/Playwright do PixelBatch e gates locais.
+- Status: planejada.
+
+Sprint 7.12 - DocShift benchmark UX
+- Simbolico: BR-DOCSHIFT.
+- Objetivo: refinar grid de ferramentas PDF, dropzone, estados de arquivo, resultado/download, privacidade, related tools e upgrades gated.
+- Validacao: worker/PDF rendering smoke, testes/build/preview/Playwright do DocShift e gates locais.
+- Status: planejada.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.

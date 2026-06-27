@@ -8,6 +8,8 @@ O projeto SuperSites esta em bootstrap de plataforma. A estrutura documental, os
 
 Em 2026-06-27, a Sprint 6.1 criou a fundacao local de CMP, Consent Mode, TCF fail-closed e placeholders de ads sem CLS no Hub. A Sprint 6.2 criou a fundacao fail-closed de GA4/GTM/Search Console com eventos padronizados, readiness no control plane e gates humanos explicitos. A Sprint 6.3 criou a fundacao fail-closed de readiness AdSense para conta publisher e revisao individual de sites, sem publisher id real, API, snippet, `ads.txt`, submissao ou serving ativo. A Sprint 6.4 criou a fundacao fail-closed de billing para Stripe, Mercado Pago e Paddle, com planos/entitlements locais e ledger futuro de webhook, sem checkout, provider SDK, API key, webhook publico, cobranca ou entitlement pago. A Sprint 6.5 criou o motor local de growth com recomendacoes evidenciadas, scores, anomalias sem causalidade inferida e painel admin, sem provider externo de IA ou automacao. A Sprint 6.6 criou relatorios executivos semanais/mensais exportaveis no control plane, com dados estimados/finalizados/atrasados/indisponiveis separados e `causality_status=not_inferred`. Nenhum script AdSense/GTM/GA4, conta, request de anuncio, cookie de terceiro, impressao, clique, leilao, checkout, pagamento, billing real, importacao Search Console, chamada externa de IA, prompt egress, publicacao automatica, envio recorrente de relatorios, worker de producao ou integracao externa foi ativado.
 
+Tambem em 2026-06-27, a Sprint 7.1 iniciou a Fase 7 - Benchmark-Driven Refinement como sprint documental BR-ROADMAP. A numeracao real foi calculada a partir do roadmap: Fase 6/Sprint 6.6 era a ultima etapa mapeada e concluida; portanto o bloco de benchmark passa a ser Fase 7, com Sprints 7.1 a 7.12. Foram inventariados o prompt `docs/BENCHMARK_FRONTEND_REFINEMENT_PROMPT.md` e os screenshots em `docs/benchmarks/screenshots/`, com planos por site para frontend premium, UX, SEO/AIO, performance, AdSense readiness, monetizacao gated e dashboard de crescimento. Nenhum codigo, anuncio real, doacao ativa, afiliado real, billing, checkout, provider externo, worker, cron, analytics externo ou deploy real de placeholder foi ativado.
+
 ## Estado local verificado
 
 - Raiz local: `D:\Projetos\supersites`.
@@ -832,6 +834,17 @@ Em 2026-06-27, a Sprint 6.1 criou a fundacao local de CMP, Consent Mode, TCF fai
   - GitHub Actions `Deploy Dry Run` run `28285130307` passou e gerou plano sem mutar producao.
   - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis.
   - Nenhum provider externo, GA4/GTM/Search Console import, AdSense Management API, ad serving, billing provider, checkout, webhook, worker recorrente, e-mail de relatorio, receita real, prompt externo, automacao ou integracao externa foi ativado.
+- Sprint 7.1 validation:
+  - Documentos obrigatorios foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/ROADMAP.md`, `docs/STATUS.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local, `docs/BENCHMARK_FRONTEND_REFINEMENT_PROMPT.md` e todos os ADRs existentes ate `0029`.
+  - Prompt complementar externo lido: `C:\Users\helbe\Downloads\PROMPT_COMPLEMENTAR_BENCHMARK_EVOLUCAO_CONTINUACAO.md`.
+  - Estado inicial verificado: `main...origin/main`, com apenas os arquivos de benchmark ainda nao rastreados e diretamente relacionados a esta sprint.
+  - Ultima fase mapeada no roadmap: Fase 6; ultima sprint mapeada e concluida: Sprint 6.6. Nao havia sprint numerada pendente antes do bloco de benchmark.
+  - Numeracao atribuida: Fase 7 - Benchmark-Driven Refinement, com Sprint 7.1 BR-ROADMAP e Sprints 7.2 a 7.12 para Hub, NetProbe, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch e DocShift.
+  - Benchmarks locais inventariados: `whatsmydns_dns_propagation.png`, `whatismyip_com_br.png` e `whatismyipaddress_pt_meu_ip.png`; os aprendizados foram registrados como padroes de produto/UX, sem copiar marca, layout, texto, assets ou codigo.
+  - Documentos criados: `docs/SPRINTS/BENCHMARK_REFINEMENT_SPRINTS.md`, `docs/BENCHMARK_MATRIX.md`, `docs/BENCHMARK_EXECUTION_STATUS.md`, `docs/SUPERSITE_DASHBOARD_REFINEMENT_PLAN.md` e planos por site em `docs/SITES/<site>/`.
+  - Validacao local passou: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` e `git diff --cached --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation.
+  - Commits, push e IDs de CI serao registrados no fechamento documental desta sprint.
+  - Nenhum codigo, anuncio real, AdSense, GA4/GTM/Search Console import, billing, checkout, pagamento, doacao ativa, afiliado real, provider externo de IA, worker/cron de producao, API paga publica, webhook ou deploy real de placeholder foi ativado.
 
 ## Pendencias criticas
 

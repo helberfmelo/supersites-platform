@@ -12,7 +12,7 @@ Data-base: 2026-06-27
 | Local app folders created | 12 |
 | Shared package folders created | 13 |
 | ADRs created | 29 |
-| Docs files created/maintained | 58 |
+| Docs files created/maintained | 121 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
 | Nuxt apps scaffolded | 11 |
@@ -307,6 +307,36 @@ Data-base: 2026-06-27
 | Direct `/<site-folder>` mapping smoke | 404 pending rewrite |
 | Secret scan outside `docs/credentials` | Passed |
 | Structure scan | Passed |
+
+## Benchmark refinement KPIs
+
+| KPI | Baseline after Sprint 7.1 planning |
+|---|---|
+| Benchmark phase mapped | Fase 7 |
+| Benchmark sprints mapped | 12 |
+| Benchmark sprint map | `docs/SPRINTS/BENCHMARK_REFINEMENT_SPRINTS.md` |
+| Benchmark screenshots reviewed | 3 |
+| Benchmark prompt incorporated | 1 |
+| Site planning folders created | 11 |
+| Site planning docs created | 55 |
+| Benchmark readiness score | Defined; 11/11 public surfaces have plans, NetProbe has 3 reviewed screenshots, live external benchmark refresh pending in technical sprints |
+| SEO readiness score | Defined; 11/11 public surfaces have SEO/AIO refinement plans, measurement to be implemented in Sprint 7.2 |
+| AdSense readiness score | Defined; 11/11 public surfaces have safe placeholder/gate plans, real ad serving remains 0 |
+| Monetization readiness score | Defined; 11/11 public surfaces have gated upgrade/support plans, real checkout/donation/affiliate activation remains 0 |
+| Frontend quality score | Baseline from Sprint 6.6: 11/11 apps passed local tests/builds/previews and 43 Playwright tests; benchmark UI score pending sprint-by-sprint |
+| Core Web Vitals readiness | Not externally measured for placeholder apps; local performance validation planned per sprint |
+| Educational content by tool | Existing localized tool pages/FAQ blocks: 320 |
+| Pages per language | Initial locales remain 5 (`en`, `pt-br`, `es`, `fr`, `de`) |
+| Related tools per page | Planned for 11/11 public surfaces; measurement to be implemented in Sprint 7.2 |
+| Upgrade opportunities by site | 11/11 public surfaces mapped with gated upgrade/support opportunities |
+| Organic growth tasks open | 11 planned technical benchmark sprints plus Sprint 7.1 validation/closure |
+| Organic growth tasks closed | 0 technical refinements closed in Fase 7 yet |
+| Real ads activated | 0 |
+| Real billing activated | 0 |
+| Real donation payments activated | 0 |
+| Real affiliate links activated | 0 |
+| External AI providers activated | 0 |
+| Production workers/crons activated by Fase 7 | 0 |
 
 ## Product metrics
 

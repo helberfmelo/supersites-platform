@@ -17,3 +17,26 @@ Canonical list of apps/sites and launch order.
 | 9 | PixelBatch | `pixelbatch` | Resize/crop/compress/convert | Lote, presets, API, integracoes |
 | 10 | DocShift | `docshift` | PDF merge/split/rotate/compress | Lote, OCR, historico, API |
 
+## Benchmark refinement docs
+
+Fase 7 criou um pacote de planejamento por superficie publica:
+
+- `BENCHMARK_NOTES.md`
+- `FRONTEND_REFINEMENT_PLAN.md`
+- `SEO_AIO_REFINEMENT_PLAN.md`
+- `MONETIZATION_REFINEMENT_PLAN.md`
+- `SPRINT_PLAN.md`
+
+Pastas disponiveis:
+
+- `docs/SITES/supersite`
+- `docs/SITES/netprobe-atlas`
+- `docs/SITES/calcharbor`
+- `docs/SITES/devutility-lab`
+- `docs/SITES/timenexus`
+- `docs/SITES/qrroute`
+- `docs/SITES/invoicecraft`
+- `docs/SITES/mailhealth`
+- `docs/SITES/sitepulse-lab`
+- `docs/SITES/pixelbatch`
+- `docs/SITES/docshift`
