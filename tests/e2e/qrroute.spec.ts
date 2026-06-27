@@ -59,6 +59,7 @@ test.describe('QRRoute MVP', () => {
     )
     await expect(page.getByRole('heading', { name: 'Static QR Code Generator' })).toBeVisible()
     await expect(page.getByText('6 local workflow tools')).toBeVisible()
+    await expect(page.getByText('Local MVP').first()).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
     const screenshot = await page.screenshot({ fullPage: true })
@@ -78,8 +79,16 @@ test.describe('QRRoute MVP', () => {
     await page.getByRole('button', { name: 'Generate preview' }).click()
 
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('UTM Builder')
+    await expect(page.getByRole('heading', { name: 'Final payload' })).toBeVisible()
+    await expect(page.locator('.payload-value')).toContainText('Campaign URL:')
     await expect(page.locator('.result-output')).toContainText('utm_source=newsletter')
     await expect(page.locator('.preview-frame img')).toHaveAttribute('src', /^data:image\/svg\+xml/)
+    await expect(page.getByRole('link', { name: 'Download SVG' })).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Copy payload' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Static vs dynamic' })).toBeVisible()
+    await expect(page.getByText('Dynamic QR editing')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Related tools' })).toBeVisible()
+    await expect(page.getByRole('link', { name: /Static QR Code Generator/ })).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)
     await expectNoHorizontalOverflow(page)
 

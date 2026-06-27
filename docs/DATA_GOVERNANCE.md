@@ -65,9 +65,10 @@
 
 ## QRRoute
 
-- Entradas de QR estatico, barcode, UTM, vCard, Wi-Fi e preview sao processadas no navegador no MVP da Sprint 4.1.
+- Entradas de QR estatico, barcode, UTM, vCard, Wi-Fi e preview sao processadas no navegador.
 - URLs, query strings, parametros UTM, contatos, telefones, e-mails, websites, Wi-Fi SSID/passwords, payloads gerados e previews nao devem ser enviados para backend, logs, GA4, GTM, AdSense ou data layer.
 - O app nao salva historico, short links, dominios, lotes, contas, `localStorage` ou `sessionStorage` nesta sprint.
+- A Sprint 7.7 adiciona resumo de payload, download SVG, copy payload, relacionados e paineis static-vs-dynamic como renderizacao local em memoria; esses valores nao sao persistidos nem transformados em propriedades de analytics.
 - Eventos locais permitidos devem conter apenas `tool_slug`, rota, locale e metadados de UI sem payload do usuario.
 - A fundacao de redirect service no control-plane armazena somente dados de links dinamicos futuros quando criados por fluxo autenticado/gated; Sprint 4.1 testa `destination_hash`, status, expiracao e contagem agregada, mas nao ativa criacao publica.
 - Futuras funcionalidades pagas de QR dinamico, short links, scan/click analytics, dominio proprio, lote ou API exigem matriz de dados, retencao, exportacao/exclusao, termos, workflow antiabuso e controles de privacidade antes de ativacao.

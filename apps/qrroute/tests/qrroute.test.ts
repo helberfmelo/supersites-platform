@@ -3,9 +3,11 @@ import { publicLocaleCodes } from '../app/data/locales'
 import { contentPageCatalog, contentPageSlugs, getContentPageBySlug } from '../app/data/pages'
 import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
 import {
+  createQrRoutePayloadSummary,
   createQrRouteToolStructuredData,
   executeQrRouteTool,
   filterQrRouteTools,
+  getRelatedQrRouteTools,
   getQrRouteToolBySlug,
   getQrRouteToolCopy,
   qrRouteToolCatalog,
@@ -14,7 +16,7 @@ import {
 import { createQRRouteToolEvent } from '../app/utils/analytics'
 
 describe('QRRoute MVP', () => {
-  it('lists Sprint 4.1 tools in roadmap order', () => {
+  it('lists browser tools in roadmap order', () => {
     expect(qrRouteToolCatalog.map((tool) => tool.slug)).toEqual([...qrRouteToolSlugs])
     expect(qrRouteToolCatalog).toHaveLength(6)
     expect(getQrRouteToolBySlug('static-qr-code')?.localized.en.shortName).toBe('Static QR')
@@ -71,6 +73,31 @@ describe('QRRoute MVP', () => {
     const wifi = await executeQrRouteTool('wifi-qr', 'Guest-WiFi', 'key=safe sample\nhidden=false', 'WPA')
     expect(wifi.ok).toBe(true)
     expect(wifi.previewPayload).toContain('WIFI:T:WPA;S:Guest-WiFi;P:safe sample;H:false;;')
+  })
+
+  it('creates payload summaries and related workflow suggestions', async () => {
+    const utmTool = getQrRouteToolBySlug('utm-builder')
+    expect(utmTool).not.toBeNull()
+
+    const utm = await executeQrRouteTool(
+      'utm-builder',
+      'https://example.com/pricing',
+      'source=newsletter\nmedium=email\ncampaign=summer-launch',
+      'standard',
+    )
+    const summary = createQrRoutePayloadSummary('utm-builder', utm)
+
+    expect(summary?.label).toBe('Encoded payload')
+    expect(summary?.value).toContain('Campaign URL: https://example.com/pricing?')
+    expect(summary?.details).toHaveLength(2)
+    expect(getRelatedQrRouteTools(utmTool!).map((tool) => tool.slug)).toEqual([
+      'static-qr-code',
+      'barcode-generator',
+      'preview-lab',
+    ])
+
+    const barcode = await executeQrRouteTool('barcode-generator', 'INV-2026-0042', '', 'code128')
+    expect(createQrRoutePayloadSummary('barcode-generator', barcode)?.label).toBe('Barcode value')
   })
 
   it('blocks unsafe redirect-style URL payloads before preview', async () => {

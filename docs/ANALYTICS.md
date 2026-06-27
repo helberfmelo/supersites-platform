@@ -126,9 +126,10 @@ Nao registrar em analytics:
 - vCard names, organizations, e-mails, telefones ou websites;
 - Wi-Fi SSID, password, security mode ou hidden flag;
 - barcode values, payloads gerados, SVG previews ou resultados;
+- copy/download actions derivadas de payload, resumo de payload final, related-tool context ou static-vs-dynamic choices quando combinados com valores do usuario;
 - destinos de short links, redirect codes ou scan/click facts quando a feature paga existir, salvo agregados anonimos aprovados por contrato futuro.
 
-Sprint 4.1 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, short links publicos, scan analytics, dominio proprio, lote, API publica ou storage persistente do QRRoute.
+Sprint 7.7 nao altera o contrato de eventos: tabs de tipo, payload summary, download SVG, copy payload, related tools e paineis static-vs-dynamic/gated sao UI local sem novos eventos ou propriedades. GA4, GTM, AdSense, backend de analytics externo, contas, short links publicos, scan analytics, dominio proprio, lote, API publica e storage persistente continuam desativados para o QRRoute.
 
 ## InvoiceCraft tools
 

@@ -110,7 +110,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'QRRoute is the SuperSites product for static QR, barcode, UTM, vCard, Wi-Fi and preview workflows.',
     sections: [
       ['Purpose', 'The site helps users create one-off scannable payloads without mandatory signup, hidden redirects or server-side storage.'],
-      ['What is live now', 'Sprint 4.1 launches six local tools covering static QR, Code 128 barcode, UTM links, vCard, Wi-Fi and QR preview inspection.'],
+      ['What is live now', 'The browser MVP includes six local tools covering static QR, Code 128 barcode, UTM links, vCard, Wi-Fi and QR preview inspection.'],
       ['Upgrade boundary', 'Paid value is planned around dynamic QR, short links, analytics, custom domains, batches, teams and API access.'],
     ],
   },
@@ -125,7 +125,7 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   privacy: {
     title: 'Privacy Policy',
-    description: 'QRRoute minimizes collection by generating Sprint 4.1 payloads locally in the browser.',
+    description: 'QRRoute minimizes collection by generating free tool payloads locally in the browser.',
     sections: [
       ['Data minimization', 'Static QR, barcode, UTM, vCard and Wi-Fi inputs are not sent to a product API, not saved in account history and not written to browser storage.'],
       ['Analytics boundary', 'Allowed analytics events may record tool slugs and page paths, but not URLs, Wi-Fi passwords, contact details, campaign values or generated payloads.'],
@@ -170,10 +170,10 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   status: {
     title: 'Launch Status',
-    description: 'QRRoute Sprint 4.1 status for public web readiness, ads, billing, redirect service and gates.',
+    description: 'QRRoute status for public web readiness, ads, billing, redirect service and gates.',
     sections: [
       ['MVP surface', 'The local/CI MVP contains six tools, five language route sets, sitemap, canonical, hreflang, structured data and browser-side preview rendering.'],
-      ['Production', 'No QRRoute public deploy is switched in Sprint 4.1 because app-specific packaging, smoke and rollback are not implemented yet.'],
+      ['Production', 'No QRRoute public deploy is switched because app-specific packaging, smoke and rollback gates are not implemented yet.'],
       ['Gates', 'Dynamic QR, short links, redirect analytics, custom domains, batches, billing, ads and external analytics remain blocked until documented gates pass.'],
     ],
   },

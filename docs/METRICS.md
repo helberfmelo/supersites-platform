@@ -339,7 +339,7 @@ Data-base: 2026-06-27
 | SEO readiness score | Implemented in control-plane for 11/11 public surfaces as estimated local evidence |
 | AdSense readiness score | Defined; 11/11 public surfaces have safe placeholder/gate plans, real ad serving remains 0 |
 | Monetization readiness score | Defined; 11/11 public surfaces have gated upgrade/support plans, real checkout/donation/affiliate activation remains 0 |
-| Frontend quality score | Hub Sprint 7.2, NetProbe Sprint 7.3, CalcHarbor Sprint 7.4, DevUtility Lab Sprint 7.5 and TimeNexus Sprint 7.6 local tests/build/preview/Playwright passed; remaining apps pending sprint-by-sprint |
+| Frontend quality score | Hub Sprint 7.2, NetProbe Sprint 7.3, CalcHarbor Sprint 7.4, DevUtility Lab Sprint 7.5, TimeNexus Sprint 7.6 and QRRoute Sprint 7.7 local tests/build/preview/Playwright passed; remaining apps pending sprint-by-sprint |
 | Core Web Vitals readiness | Not externally measured for placeholder apps; local performance validation planned per sprint |
 | Educational content by tool | Existing localized tool pages/FAQ blocks: 320 |
 | Pages per language | Initial locales remain 5 (`en`, `pt-br`, `es`, `fr`, `de`) |
@@ -383,6 +383,12 @@ Data-base: 2026-06-27
 | Sprint 7.6 Quality Gate run | `28287972198` passed |
 | Sprint 7.6 Deploy Dry Run | `28287972209` passed; artifact upload quota annotation |
 | Sprint 7.6 public smokes | Hub/control-plane/NetProbe passed |
+| Sprint 7.7 local QRRoute validation | Passed: Vitest, build, preview smoke, Playwright and screenshot inspection |
+| Sprint 7.7 local final gates | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
+| Sprint 7.7 feature commit | Pending pre-push release step |
+| Sprint 7.7 Quality Gate run | Pending |
+| Sprint 7.7 Deploy Dry Run | Pending |
+| Sprint 7.7 public smokes | Pending |
 | Real ads activated | 0 |
 | Real billing activated | 0 |
 | Real donation payments activated | 0 |

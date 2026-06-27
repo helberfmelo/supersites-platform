@@ -71,6 +71,12 @@ export interface QrRouteToolResult {
   error?: string
 }
 
+export interface QrRoutePayloadSummary {
+  label: string
+  value: string
+  details: ResultMeta[]
+}
+
 interface QrRouteToolSpec {
   slug: QrRouteToolSlug
   category: QrRouteToolCategory
@@ -114,12 +120,12 @@ const localizedBasics: Record<LocaleCode, {
     resultLabel: 'Payload',
     previewLabel: 'Preview',
     localSection: 'Local generation',
-    localBody: 'Sprint 4.1 generates static QR, barcode, campaign, vCard and Wi-Fi payloads in the browser without mandatory signup.',
+    localBody: 'QRRoute generates static QR, barcode, campaign, vCard and Wi-Fi payloads in the browser without mandatory signup.',
     abuseSection: 'Abuse controls',
     abuseBody: 'The free builder blocks dangerous URL schemes, local hosts, credentialed URLs and oversized payloads before a preview is generated.',
     limitsSection: 'Limits',
     limitsBody: 'Static codes do not provide editable destinations, scans, analytics, branded domains, bulk jobs or redirect monitoring.',
-    faqStorage: { question: 'Are destinations or contact details stored?', answer: 'No. QRRoute does not save inputs, create accounts, write browser storage or send payload contents to analytics in Sprint 4.1.' },
+    faqStorage: { question: 'Are destinations or contact details stored?', answer: 'No. QRRoute does not save inputs, create accounts, write browser storage or send payload contents to analytics.' },
     faqDynamic: { question: 'Can I edit a QR code after printing it?', answer: 'Not in the free static MVP. Dynamic QR codes, short links, analytics and custom domains are upgrade features behind later gates.' },
   },
   'pt-br': {
@@ -127,12 +133,12 @@ const localizedBasics: Record<LocaleCode, {
     resultLabel: 'Payload',
     previewLabel: 'Preview',
     localSection: 'Geracao local',
-    localBody: 'A Sprint 4.1 gera QR estatico, barcode, campanha, vCard e Wi-Fi no navegador sem cadastro obrigatorio.',
+    localBody: 'O QRRoute gera QR estatico, barcode, campanha, vCard e Wi-Fi no navegador sem cadastro obrigatorio.',
     abuseSection: 'Controles antiabuso',
     abuseBody: 'O construtor gratuito bloqueia esquemas perigosos, hosts locais, URLs com credenciais e payloads grandes antes do preview.',
     limitsSection: 'Limites',
     limitsBody: 'Codigos estaticos nao oferecem destino editavel, scans, analytics, dominio proprio, lote ou monitoramento de redirect.',
-    faqStorage: { question: 'Destinos ou contatos sao armazenados?', answer: 'Nao. O QRRoute nao salva entradas, nao cria conta, nao grava storage e nao envia payloads para analytics na Sprint 4.1.' },
+    faqStorage: { question: 'Destinos ou contatos sao armazenados?', answer: 'Nao. O QRRoute nao salva entradas, nao cria conta, nao grava storage e nao envia payloads para analytics.' },
     faqDynamic: { question: 'Posso editar um QR depois de imprimir?', answer: 'Nao no MVP estatico gratuito. QR dinamico, short links, analytics e dominio proprio sao upgrades com gates futuros.' },
   },
   es: {
@@ -140,12 +146,12 @@ const localizedBasics: Record<LocaleCode, {
     resultLabel: 'Payload',
     previewLabel: 'Vista previa',
     localSection: 'Generacion local',
-    localBody: 'Sprint 4.1 genera QR estatico, barcode, campana, vCard y Wi-Fi en el navegador sin registro obligatorio.',
+    localBody: 'QRRoute genera QR estatico, barcode, campana, vCard y Wi-Fi en el navegador sin registro obligatorio.',
     abuseSection: 'Controles antiabuso',
     abuseBody: 'El builder gratis bloquea esquemas peligrosos, hosts locales, URLs con credenciales y payloads grandes antes de previsualizar.',
     limitsSection: 'Limites',
     limitsBody: 'Los codigos estaticos no incluyen destino editable, escaneos, analytics, dominio propio, lotes ni monitoreo de redirects.',
-    faqStorage: { question: 'Se guardan destinos o contactos?', answer: 'No. QRRoute no guarda entradas, no crea cuentas, no escribe storage ni envia payloads a analytics en Sprint 4.1.' },
+    faqStorage: { question: 'Se guardan destinos o contactos?', answer: 'No. QRRoute no guarda entradas, no crea cuentas, no escribe storage ni envia payloads a analytics.' },
     faqDynamic: { question: 'Puedo editar un QR despues de imprimir?', answer: 'No en el MVP estatico gratis. QR dinamico, short links, analytics y dominio propio son upgrades con gates futuros.' },
   },
   fr: {
@@ -153,12 +159,12 @@ const localizedBasics: Record<LocaleCode, {
     resultLabel: 'Payload',
     previewLabel: 'Apercu',
     localSection: 'Generation locale',
-    localBody: 'Sprint 4.1 genere QR statique, code-barres, campagne, vCard et Wi-Fi dans le navigateur sans compte obligatoire.',
+    localBody: 'QRRoute genere QR statique, code-barres, campagne, vCard et Wi-Fi dans le navigateur sans compte obligatoire.',
     abuseSection: 'Controles anti-abus',
     abuseBody: 'Le builder gratuit bloque schemas dangereux, hosts locaux, URLs avec identifiants et payloads trop grands avant apercu.',
     limitsSection: 'Limites',
     limitsBody: 'Les codes statiques n incluent pas destination editable, scans, analytics, domaine personnalise, lot ni monitoring redirect.',
-    faqStorage: { question: 'Les destinations ou contacts sont-ils stockes?', answer: 'Non. QRRoute ne sauvegarde pas les entrees, ne cree pas de compte, n ecrit pas de storage et n envoie pas les payloads a analytics en Sprint 4.1.' },
+    faqStorage: { question: 'Les destinations ou contacts sont-ils stockes?', answer: 'Non. QRRoute ne sauvegarde pas les entrees, ne cree pas de compte, n ecrit pas de storage et n envoie pas les payloads a analytics.' },
     faqDynamic: { question: 'Puis-je modifier un QR apres impression?', answer: 'Pas dans le MVP statique gratuit. QR dynamique, short links, analytics et domaine propre sont des upgrades gates.' },
   },
   de: {
@@ -166,12 +172,12 @@ const localizedBasics: Record<LocaleCode, {
     resultLabel: 'Payload',
     previewLabel: 'Vorschau',
     localSection: 'Lokale Generierung',
-    localBody: 'Sprint 4.1 erzeugt statische QR-Codes, Barcodes, Kampagnen, vCards und Wi-Fi-Payloads im Browser ohne Pflichtkonto.',
+    localBody: 'QRRoute erzeugt statische QR-Codes, Barcodes, Kampagnen, vCards und Wi-Fi-Payloads im Browser ohne Pflichtkonto.',
     abuseSection: 'Missbrauchsschutz',
     abuseBody: 'Der kostenlose Builder blockiert gefaehrliche URL-Schemata, lokale Hosts, URLs mit Zugangsdaten und zu grosse Payloads vor der Vorschau.',
     limitsSection: 'Grenzen',
     limitsBody: 'Statische Codes bieten keine editierbaren Ziele, Scans, Analytics, eigene Domains, Batch-Jobs oder Redirect-Ueberwachung.',
-    faqStorage: { question: 'Werden Ziele oder Kontaktdaten gespeichert?', answer: 'Nein. QRRoute speichert in Sprint 4.1 keine Eingaben, erstellt keine Konten, nutzt kein Storage und sendet Payloads nicht an Analytics.' },
+    faqStorage: { question: 'Werden Ziele oder Kontaktdaten gespeichert?', answer: 'Nein. QRRoute speichert keine Eingaben, erstellt keine Konten, nutzt kein Storage und sendet Payloads nicht an Analytics.' },
     faqDynamic: { question: 'Kann ich einen QR nach dem Druck aendern?', answer: 'Nicht im kostenlosen statischen MVP. Dynamische QR, Short Links, Analytics und eigene Domains sind spaetere gated Upgrades.' },
   },
 }
@@ -372,6 +378,68 @@ export function filterQrRouteTools(query: string, category: QrRouteToolCategory 
   })
 }
 
+export function getRelatedQrRouteTools(toolDefinition: QrRouteToolDefinition, limit = 3): QrRouteToolDefinition[] {
+  const sameFamily = qrRouteToolCatalog.filter((candidate) => candidate.slug !== toolDefinition.slug && candidate.category === toolDefinition.category)
+  const workflowNeighbors = qrRouteToolCatalog.filter((candidate) => {
+    if (candidate.slug === toolDefinition.slug || sameFamily.includes(candidate)) {
+      return false
+    }
+
+    if (toolDefinition.category === 'campaign') {
+      return ['static-qr-code', 'preview-lab', 'barcode-generator'].includes(candidate.slug)
+    }
+
+    if (toolDefinition.category === 'qr') {
+      return ['utm-builder', 'preview-lab', 'vcard-qr'].includes(candidate.slug)
+    }
+
+    return true
+  })
+  const fallback = qrRouteToolCatalog.filter((candidate) => candidate.slug !== toolDefinition.slug && !sameFamily.includes(candidate) && !workflowNeighbors.includes(candidate))
+
+  return [...sameFamily, ...workflowNeighbors, ...fallback].slice(0, limit)
+}
+
+function outputLines(result: QrRouteToolResult): string[] {
+  return result.output
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+}
+
+function findLine(result: QrRouteToolResult, prefix: string): string | null {
+  return outputLines(result).find((line) => line.startsWith(prefix)) ?? null
+}
+
+function firstResultLine(result: QrRouteToolResult): string {
+  return outputLines(result)[0] ?? 'Payload ready.'
+}
+
+export function createQrRoutePayloadSummary(slug: QrRouteToolSlug, result: QrRouteToolResult | null): QrRoutePayloadSummary | null {
+  if (!result?.ok) {
+    return null
+  }
+
+  const preferredPrefixes: Partial<Record<QrRouteToolSlug, string[]>> = {
+    'static-qr-code': ['Payload:', 'Type:'],
+    'barcode-generator': ['Value:', 'Format:'],
+    'utm-builder': ['Campaign URL:', 'UTM campaign:'],
+    'vcard-qr': ['FN:', 'BEGIN:VCARD'],
+    'wifi-qr': ['Payload:', 'SSID:'],
+    'preview-lab': ['URL:', 'Payload type:'],
+  }
+  const lines = outputLines(result)
+  const selected = preferredPrefixes[slug]
+    ?.map((prefix) => findLine(result, prefix))
+    .find(Boolean)
+
+  return {
+    label: result.previewKind === 'barcode' ? 'Barcode value' : 'Encoded payload',
+    value: selected ?? firstResultLine(result),
+    details: result.meta,
+  }
+}
+
 export function createQrRouteToolStructuredData(toolDefinition: QrRouteToolDefinition, locale: LocaleCode, url: string): Record<string, unknown>[] {
   const copy = getQrRouteToolCopy(toolDefinition, locale)
 
@@ -545,7 +613,7 @@ function createStaticQr(primaryInput: string, mode: QrRouteToolMode): QrRouteToo
   return ok([
     `Type: ${label}`,
     `Payload: ${payload}`,
-    'Storage: not stored by QRRoute Sprint 4.1',
+    'Storage: not stored by QRRoute',
     'Redirects: not used for static QR codes',
   ].join('\n'), [
     { label: 'Payload type', value: label },
@@ -664,7 +732,7 @@ function buildVcard(primaryInput: string): QrRouteToolResult {
   return ok([
     payload,
     '',
-    'Storage: not stored by QRRoute Sprint 4.1',
+    'Storage: not stored by QRRoute',
   ].join('\n'), [
     { label: 'Contact', value: name },
     { label: 'Fields', value: String(payloadLines.length - 3) },

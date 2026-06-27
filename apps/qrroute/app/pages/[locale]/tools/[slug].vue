@@ -3,10 +3,12 @@ import { getButtonClass } from '@supersites/ui'
 import { computed, onMounted, ref } from 'vue'
 import { getShellCopy } from '../../../data/copy'
 import {
+  createQrRoutePayloadSummary,
   createQrRouteToolStructuredData,
   getCategoryLabel,
   getQrRouteToolBySlug,
   getQrRouteToolCopy,
+  getRelatedQrRouteTools,
   type QrRouteToolResult,
 } from '../../../data/tools'
 import { localizedContentPath, localizedHomePath, localizedToolPath, normalizePublicLocale, toHtmlLang } from '../../../data/locales'
@@ -37,7 +39,26 @@ const isRunning = ref(false)
 const result = ref<QrRouteToolResult | null>(null)
 const previewDataUrl = ref('')
 const previewError = ref('')
+const copyState = ref('')
 const resultTitle = computed(() => result.value?.ok === false ? shellCopy.invalidResultTitle : copy.resultLabel)
+const payloadSummary = computed(() => createQrRoutePayloadSummary(tool.slug, result.value))
+const relatedTools = computed(() => getRelatedQrRouteTools(tool))
+const previewDownloadName = computed(() => `qrroute-${tool.slug}-${selectedMode.value || 'preview'}.svg`)
+const payloadStateTitle = computed(() => {
+  if (isRunning.value) {
+    return shellCopy.payloadRunningTitle
+  }
+
+  if (result.value?.ok === false) {
+    return shellCopy.invalidResultTitle
+  }
+
+  if (payloadSummary.value) {
+    return shellCopy.payloadReadyLabel
+  }
+
+  return shellCopy.payloadEmptyTitle
+})
 
 function svgDataUrl(svg: string): string {
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`
@@ -84,6 +105,7 @@ async function renderPreview(nextResult: QrRouteToolResult | null): Promise<void
 async function runTool(): Promise<void> {
   isRunning.value = true
   hasRun.value = true
+  copyState.value = ''
   trackQRRouteEvent({
     toolSlug: tool.slug,
     locale,
@@ -132,6 +154,43 @@ function resetExample(): void {
   result.value = null
   previewDataUrl.value = ''
   previewError.value = ''
+  copyState.value = ''
+}
+
+function setMode(mode: string): void {
+  selectedMode.value = mode
+  hasRun.value = false
+  result.value = null
+  previewDataUrl.value = ''
+  previewError.value = ''
+  copyState.value = ''
+}
+
+async function copyPayload(): Promise<void> {
+  const payload = result.value?.previewPayload || result.value?.output || ''
+  if (!payload || !import.meta.client) {
+    return
+  }
+
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(payload)
+    } else {
+      const textarea = document.createElement('textarea')
+      textarea.value = payload
+      textarea.setAttribute('readonly', 'readonly')
+      textarea.style.position = 'fixed'
+      textarea.style.left = '-9999px'
+      document.body.appendChild(textarea)
+      textarea.select()
+      document.execCommand('copy')
+      textarea.remove()
+    }
+
+    copyState.value = shellCopy.copiedLabel
+  } catch {
+    copyState.value = shellCopy.copyUnavailableLabel
+  }
 }
 
 onMounted(() => {
@@ -193,7 +252,7 @@ useHead({
       <div>
         <div class="detail-topline">
           <p class="eyebrow">{{ getCategoryLabel(tool.category, locale) }}</p>
-          <span class="status">Sprint 4.1</span>
+          <span class="status">{{ shellCopy.localBadgeLabel }}</span>
         </div>
         <h1 :id="`${tool.slug}-title`">{{ copy.title }}</h1>
         <p class="lead">{{ copy.headline }}</p>
@@ -219,17 +278,43 @@ useHead({
 
     <section class="tool-layout">
       <div>
+        <section class="payload-panel" aria-live="polite" :aria-busy="isRunning" :aria-labelledby="`${tool.slug}-summary`">
+          <div class="payload-panel__topline">
+            <h2 :id="`${tool.slug}-summary`">{{ shellCopy.payloadSummaryTitle }}</h2>
+            <span class="status">{{ payloadStateTitle }}</span>
+          </div>
+          <p v-if="isRunning">{{ shellCopy.payloadRunningBody }}</p>
+          <p v-else-if="result && !result.ok" class="result-error">{{ result.error }}</p>
+          <template v-else-if="payloadSummary">
+            <span class="payload-label">{{ payloadSummary.label }}</span>
+            <strong class="payload-value">{{ payloadSummary.value }}</strong>
+            <dl v-if="payloadSummary.details.length" class="payload-details">
+              <div v-for="item in payloadSummary.details" :key="`${item.label}-${item.value}`">
+                <dt>{{ item.label }}</dt>
+                <dd>{{ item.value }}</dd>
+              </div>
+            </dl>
+          </template>
+          <p v-else>{{ shellCopy.payloadEmptyBody }}</p>
+        </section>
+
         <section class="input-panel" :aria-labelledby="`${tool.slug}-input`">
           <h2 :id="`${tool.slug}-input`">{{ shellCopy.inputTitle }}</h2>
           <p>{{ copy.description }}</p>
           <form class="utility-form" @submit.prevent="runTool">
             <div class="field">
-              <label :for="`${tool.slug}-mode`">{{ copy.modeLabel }}</label>
-              <select :id="`${tool.slug}-mode`" v-model="selectedMode">
-                <option v-for="mode in tool.modes" :key="mode.value" :value="mode.value">
+              <span class="field-label">{{ shellCopy.modeTabsTitle }}</span>
+              <div class="mode-tabs" role="list" :aria-label="copy.modeLabel">
+                <button
+                  v-for="mode in tool.modes"
+                  :key="mode.value"
+                  type="button"
+                  :aria-pressed="selectedMode === mode.value"
+                  @click="setMode(mode.value)"
+                >
                   {{ mode.label }}
-                </option>
-              </select>
+                </button>
+              </div>
             </div>
 
             <div class="field">
@@ -278,22 +363,80 @@ useHead({
             <img :src="previewDataUrl" :alt="`${copy.title} ${copy.previewLabel}`">
           </div>
           <p v-else-if="result && result.ok">{{ shellCopy.previewError }}</p>
+          <div v-if="previewDataUrl && result?.ok" class="preview-actions">
+            <a class="button-link" :href="previewDataUrl" :download="previewDownloadName">
+              {{ shellCopy.downloadSvgLabel }}
+            </a>
+            <button :class="getButtonClass('secondary')" type="button" @click="copyPayload">
+              {{ copyState || shellCopy.copyPayloadLabel }}
+            </button>
+          </div>
         </section>
       </div>
 
-      <aside class="band" :aria-labelledby="`${tool.slug}-scope`">
-        <h2 :id="`${tool.slug}-scope`">{{ shellCopy.freeCheckLabel }}</h2>
-        <dl class="fact-list">
-          <div>
-            <dt>{{ shellCopy.freeCheckLabel }}</dt>
-            <dd>{{ copy.freeScope }}</dd>
-          </div>
-          <div>
-            <dt>{{ shellCopy.upgradePathLabel }}</dt>
-            <dd>{{ copy.upgradeScope }}</dd>
-          </div>
-        </dl>
+      <aside class="tool-sidebar">
+        <section class="band" :aria-labelledby="`${tool.slug}-scope`">
+          <h2 :id="`${tool.slug}-scope`">{{ shellCopy.freeCheckLabel }}</h2>
+          <dl class="fact-list">
+            <div>
+              <dt>{{ shellCopy.freeCheckLabel }}</dt>
+              <dd>{{ copy.freeScope }}</dd>
+            </div>
+            <div>
+              <dt>{{ shellCopy.upgradePathLabel }}</dt>
+              <dd>{{ copy.upgradeScope }}</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="band" :aria-labelledby="`${tool.slug}-example`">
+          <h2 :id="`${tool.slug}-example`">{{ shellCopy.exampleTitle }}</h2>
+          <p>{{ shellCopy.exampleBody }}</p>
+          <dl class="fact-list">
+            <div>
+              <dt>{{ copy.inputLabel }}</dt>
+              <dd>{{ tool.samplePrimary }}</dd>
+            </div>
+            <div v-if="tool.acceptsSecondaryInput">
+              <dt>{{ copy.secondaryInputLabel }}</dt>
+              <dd>{{ tool.sampleSecondary }}</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="band" :aria-labelledby="`${tool.slug}-static-dynamic`">
+          <h2 :id="`${tool.slug}-static-dynamic`">{{ shellCopy.staticDynamicTitle }}</h2>
+          <p>{{ shellCopy.staticDynamicBody }}</p>
+        </section>
+
+        <section class="band" :aria-labelledby="`${tool.slug}-gated`">
+          <h2 :id="`${tool.slug}-gated`">{{ shellCopy.gatedTitle }}</h2>
+          <p>{{ shellCopy.gatedBody }}</p>
+          <h3>{{ shellCopy.gatedItemsTitle }}</h3>
+          <ul class="gated-list">
+            <li v-for="item in shellCopy.gatedItems" :key="item">{{ item }}</li>
+          </ul>
+        </section>
       </aside>
+    </section>
+
+    <section class="related-panel" :aria-labelledby="`${tool.slug}-related`">
+      <div>
+        <h2 :id="`${tool.slug}-related`">{{ shellCopy.relatedTitle }}</h2>
+        <p>{{ shellCopy.relatedBody }}</p>
+      </div>
+      <div class="related-grid">
+        <NuxtLink
+          v-for="relatedTool in relatedTools"
+          :key="relatedTool.slug"
+          class="related-card"
+          :to="localizedToolPath(locale, relatedTool.slug)"
+        >
+          <span>{{ getCategoryLabel(relatedTool.category, locale) }}</span>
+          <strong>{{ getQrRouteToolCopy(relatedTool, locale).title }}</strong>
+          <small>{{ shellCopy.openRelatedLabel }}</small>
+        </NuxtLink>
+      </div>
     </section>
 
     <section class="content-layout" :aria-labelledby="`${tool.slug}-guide`">

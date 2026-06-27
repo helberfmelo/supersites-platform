@@ -34,3 +34,9 @@ Data-base: 2026-06-27
 - No public short-link creation or analytics.
 - No custom domains, paid API, checkout or ad serving.
 - No analytics values from URLs, Wi-Fi passwords, vCards or payloads.
+
+## Sprint 7.7 local implementation note
+
+- Added type tabs, final payload summary, local preview/download/copy affordances, static vs dynamic education, examples, related tools and gated upgrade/support copy.
+- Local validation passed with `pnpm test:qrroute`, `pnpm build:qrroute`, `pnpm validate:qrroute-preview`, `pnpm test:e2e:qrroute`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` and `git diff --check`.
+- Remote Quality Gate, Deploy Dry Run, public smokes and docs-only closing commit remain pending before Sprint 7.8.

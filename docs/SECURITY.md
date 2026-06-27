@@ -110,9 +110,10 @@
 
 ## QRRoute client-side tools and redirects
 
-- Ferramentas da Sprint 4.1 rodam no navegador com payloads locais e preview SVG, sem chamadas de API para criar QR estatico, barcode, UTM, vCard, Wi-Fi ou preview.
+- Ferramentas do QRRoute rodam no navegador com payloads locais e preview SVG, sem chamadas de API para criar QR estatico, barcode, UTM, vCard, Wi-Fi ou preview.
 - URLs, parametros UTM, Wi-Fi passwords, dados de vCard, payloads e resultados nao devem ser enviados a backend, logs, analytics ou data layer.
 - O app nao deve persistir input ou resultado em `localStorage`, `sessionStorage`, IndexedDB ou cookies nesta sprint.
+- Tabs de tipo, resumo de payload, download SVG, copy payload, related tools e paineis de upgrade/static-vs-dynamic da Sprint 7.7 devem permanecer locais e sem checkout, ad serving, short-link publico, API paga ou storage.
 - URL mode deve bloquear schemes nao HTTP(S), hostnames locais/privados, IPs privados/reservados, fragmentos, credenciais embutidas e payloads grandes.
 - O redirect service preparado em `/api/v1/qrroute/r/{code}` deve usar `QrRouteDestinationGuard`, rate limit `qrroute-redirect`, links ativos/expiracao, `Referrer-Policy: no-referrer` e `X-Robots-Tag: noindex, nofollow`.
 - Criacao publica de short links, scan analytics, dominios proprios, lotes e API permanecem desativados ate haver auth, billing/entitlements, workflow antiabuso, retencao, monitoramento e gates de deploy.
