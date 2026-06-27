@@ -789,6 +789,10 @@ Em 2026-06-27, a Sprint 6.1 criou a fundacao local de CMP, Consent Mode, TCF fai
   - Previews locais passaram para os 11 apps Nuxt, confirmando home, rotas criticas, privacidade, sitemap e assets `_nuxt`.
   - Playwright local passou para todos os apps, totalizando 43 testes visuais/funcionais.
   - Gates obrigatorios locais passaram: `pnpm validate:structure`, `pnpm deploy:dry-run`, `pnpm validate:secrets`, `pnpm ci:changes` e `git diff --check`; `git diff --check` exibiu apenas aviso CRLF em `scripts/validate-structure.ps1`.
+  - Feature commit publicado: `0631f31` (`feat: add billing readiness foundation`).
+  - GitHub Actions `Quality Gate` run `28283768826` passou com repository safety, backend, Hub frontend, NetProbe frontend, CalcHarbor frontend, DevUtility Lab frontend, TimeNexus frontend, QRRoute frontend, InvoiceCraft frontend, MailHealth frontend, SitePulse Lab frontend, PixelBatch frontend, DocShift frontend e summary.
+  - GitHub Actions `Deploy Dry Run` run `28283768803` passou e gerou plano sem mutar producao; o upload de artifact registrou a anotacao conhecida de quota, mas o run concluiu com sucesso.
+  - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis.
   - Nenhum SDK de pagamento, API key, checkout, payment link, webhook publico, assinatura, cobranca, imposto, refund, dunning ou entitlement pago foi ativado.
 
 ## Pendencias criticas

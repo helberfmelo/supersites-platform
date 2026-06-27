@@ -66,6 +66,9 @@ Data-base: 2026-06-27
 | Billing paid entitlements active | 0 |
 | Sprint 6.4 local validation | Passed |
 | Sprint 6.4 external billing activation | 0 |
+| Sprint 6.4 Quality Gate run | `28283768826` passed |
+| Sprint 6.4 Deploy Dry Run | `28283768803` passed |
+| Sprint 6.4 public smokes | Hub/control-plane/NetProbe passed |
 | Analytics storage tables implemented | 2 |
 | Analytics ingest endpoint implemented | 1 |
 | Metric snapshot endpoint implemented | 1 |
