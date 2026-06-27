@@ -53,6 +53,13 @@
 - Ads sao bloqueados em admin, login, checkout, conta, erro, paginas legais, superficies de ferramenta, uploads, resultados de arquivo e qualquer slot perto demais de controles interativos.
 - Slots nao devem ser inseridos junto a botoes, inputs, previews, resultados, downloads ou mensagens de erro que possam induzir clique acidental.
 
+## AdSense account gates
+
+- A Sprint 6.3 registra apenas readiness de conta publisher e revisao por site; nenhuma conta, OAuth token, refresh token, Management API call, `ads.txt`, snippet AdSense ou request real e criado.
+- `publisher_id` real so pode entrar como configuracao operacional aprovada; dados fiscais, bancarios, documentos, PIN, emails Google e aceite de termos nunca devem ser versionados ou expostos no painel.
+- `adsense_accounts` e `adsense_site_reviews` devem permanecer fail-closed: `management_api_enabled=false`, `placements_enabled=false`, `auto_ads_enabled=false` e `ad_serving_enabled=false` ate todos os gates humanos/tecnicos passarem.
+- Submeter site ao AdSense, ativar Auto Ads/manual ads ou habilitar Management API exige revisao de politicas, consentimento aplicavel, smoke publico, dominio definitivo e `HUMAN_ACTION_REQUIRED`.
+
 ## DevUtility Lab client-side tools
 
 - Ferramentas da Sprint 3.2 rodam no navegador com Web Worker quando suportado e fallback local sem chamadas de rede.

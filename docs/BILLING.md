@@ -70,6 +70,12 @@ A Sprint 5.2 criou apenas ferramentas gratuitas client-side para PDF pequeno e c
 
 Antes de vender lote, arquivos maiores, OCR, conversoes DOCX/imagem, API, equipes, branding, historico ou automacoes, implementar billing/entitlements, termos, matriz de dados, quotas, upload validation, sandbox/antivirus quando aplicavel, retencao/limpeza, exportacao/exclusao de conta, provider review e gates humanos de KYC/impostos/conta bancaria.
 
+## AdSense account readiness
+
+A Sprint 6.3 prepara apenas monetizacao por ads como readiness operacional, sem checkout, cobranca, assinatura, billing provider, conta AdSense ativa, pagamento, imposto, banco, PIN, site review ou receita real.
+
+Qualquer receita AdSense futura exige beneficiario legal, fiscal, perfil de pagamentos, banco, PIN quando solicitado, termos aceitos, conta publisher aprovada, sites revisados, politicas, consentimento e documentacao de moeda/impostos antes de aparecer em relatorios ou entitlement comercial.
+
 ## Segurança
 
 - Nao armazenar cartao.

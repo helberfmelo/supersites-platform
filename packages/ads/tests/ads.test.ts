@@ -1,9 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import {
   adFormats,
+  buildAdSenseSiteReviewPlan,
   createAdSlotPlan,
   isAccidentalClickRisk,
+  normalizeAdSensePublisherId,
   normalizeAdSlotId,
+  resolveAdSenseAccountGate,
   summarizeAdSlots,
 } from '../src'
 
@@ -120,6 +123,112 @@ describe('@supersites/ads', () => {
       placeholders: 1,
       requests: 0,
       blocked: 1,
+    })
+  })
+
+  it('normalizes AdSense publisher ids without accepting arbitrary values', () => {
+    expect(normalizeAdSensePublisherId(' CA-PUB-1234567890123456 ')).toBe('ca-pub-1234567890123456')
+    expect(normalizeAdSensePublisherId('pub-123')).toBeNull()
+    expect(normalizeAdSensePublisherId(null)).toBeNull()
+  })
+
+  it('fails the AdSense account gate closed until human and payment gates pass', () => {
+    expect(resolveAdSenseAccountGate({
+      humanApproved: false,
+      duplicateAccountChecked: false,
+      legalBeneficiaryApproved: false,
+      termsAccepted: false,
+      taxProfileComplete: false,
+      paymentProfileComplete: false,
+      bankAccountVerified: false,
+      pinVerified: false,
+      accountConfigured: false,
+    })).toMatchObject({
+      status: 'human_required',
+      canUsePublisherAccount: false,
+      canEnableManagementApi: false,
+      canServeAds: false,
+    })
+
+    expect(resolveAdSenseAccountGate({
+      humanApproved: true,
+      duplicateAccountChecked: true,
+      existingAccountConfirmed: true,
+      legalBeneficiaryApproved: true,
+      termsAccepted: true,
+      taxProfileComplete: true,
+      paymentProfileComplete: true,
+      bankAccountVerified: true,
+      pinVerified: true,
+      accountConfigured: true,
+      publisherId: 'ca-pub-1234567890123456',
+      managementApiApproved: false,
+    })).toMatchObject({
+      status: 'ready',
+      canUsePublisherAccount: true,
+      canEnableManagementApi: false,
+      canServeAds: true,
+      normalizedPublisherId: 'ca-pub-1234567890123456',
+    })
+  })
+
+  it('keeps AdSense site review manual and blocked until site gates pass', () => {
+    const blockedPlan = buildAdSenseSiteReviewPlan({
+      siteSlug: 'NetProbe Atlas',
+      publicUrl: 'https://opentshost.com/supersites/netprobe-atlas/?utm=secret',
+      accountGate: {
+        status: 'human_required',
+        canUsePublisherAccount: false,
+        canServeAds: false,
+      },
+      definitiveDomainApproved: false,
+      productionDeployed: true,
+      publicSmokePassed: true,
+      noPlaceholder: true,
+      contentQualityGatePassed: true,
+      legalPagesPresent: true,
+      privacyAndCookiePagesPresent: true,
+      consentReady: true,
+      adsTxtReady: false,
+      policyReviewPassed: true,
+      featureFlagEnabled: false,
+    })
+
+    expect(blockedPlan).toMatchObject({
+      siteSlug: 'netprobe-atlas',
+      publicUrl: 'https://opentshost.com/supersites/netprobe-atlas/',
+      reviewStatus: 'human_required',
+      canRequestHumanSiteReview: false,
+      shouldSubmitAutomatically: false,
+      shouldServeAds: false,
+    })
+
+    const readyPlan = buildAdSenseSiteReviewPlan({
+      siteSlug: 'supersite',
+      publicUrl: 'https://supersites.example/',
+      accountGate: {
+        status: 'ready',
+        canUsePublisherAccount: true,
+        canServeAds: true,
+      },
+      definitiveDomainApproved: true,
+      productionDeployed: true,
+      publicSmokePassed: true,
+      noPlaceholder: true,
+      contentQualityGatePassed: true,
+      legalPagesPresent: true,
+      privacyAndCookiePagesPresent: true,
+      consentReady: true,
+      adsTxtReady: true,
+      policyReviewPassed: true,
+      featureFlagEnabled: true,
+    })
+
+    expect(readyPlan).toMatchObject({
+      reviewStatus: 'ready_for_review',
+      canRequestHumanSiteReview: true,
+      shouldSubmitAutomatically: false,
+      shouldServeAds: false,
     })
   })
 })

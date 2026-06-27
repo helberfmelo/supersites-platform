@@ -63,6 +63,16 @@ Sprint 6.2 adiciona readiness de GA4/GTM/Search Console sem ativar tags externas
 - `google_integrations` armazena status por site, ids configuraveis e allowlist de eventos sem guardar tokens ou segredos.
 - O dashboard admin exibe os sites ainda bloqueados para acesso/verificacao/configuracao Google.
 
+## AdSense account readiness foundation
+
+Sprint 6.3 adiciona readiness AdSense sem ativar conta, API ou anuncios:
+
+- `@supersites/ads` exporta contrato de publisher account, publisher id, Management API e site review com falha fechada.
+- O gate exige beneficiario legal, checagem de conta duplicada, termos, fiscal, perfil de pagamentos, banco, PIN, publisher id valido, dominio definitivo, deploy/smoke publico, qualidade, paginas legais, consentimento, `ads.txt`, policy review e feature flag.
+- `adsense_accounts` registra apenas status operacional do publisher; nao armazena dados fiscais, bancarios, OAuth tokens, emails Google ou secrets.
+- `adsense_site_reviews` registra readiness por site publico, mantendo `placements_enabled`, `auto_ads_enabled` e `ad_serving_enabled` falsos por padrao.
+- O dashboard admin exibe conta `primary-publisher` e sites ainda nao submetidos para revisao.
+
 ## Stack local inicial
 
 - Workspace Node: `pnpm@11.9.0`.

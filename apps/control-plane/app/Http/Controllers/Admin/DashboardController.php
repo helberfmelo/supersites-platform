@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdSenseAccount;
+use App\Models\AdSenseSiteReview;
 use App\Models\AuditLog;
 use App\Models\DeploymentRecord;
 use App\Models\GoogleIntegration;
@@ -25,6 +27,8 @@ class DashboardController extends Controller
         $summary = [
             'sites' => Site::query()->count(),
             'adsense_ready' => Site::query()->where('adsense_ready', true)->count(),
+            'adsense_gated' => AdSenseSiteReview::query()->where('ad_serving_enabled', false)->count(),
+            'adsense_serving_enabled' => AdSenseSiteReview::query()->where('ad_serving_enabled', true)->count(),
             'google_gated' => GoogleIntegration::query()
                 ->where(function ($query): void {
                     $query
@@ -45,6 +49,17 @@ class DashboardController extends Controller
         ]);
 
         return view('admin.dashboard', [
+            'adsenseAccount' => AdSenseAccount::query()
+                ->withCount('siteReviews')
+                ->orderBy('id')
+                ->first(),
+            'adsenseSiteReviews' => AdSenseSiteReview::query()
+                ->with('site:id,slug,name')
+                ->orderBy('ad_serving_enabled')
+                ->orderBy('site_review_status')
+                ->orderBy('id')
+                ->limit(6)
+                ->get(),
             'deployments' => DeploymentRecord::query()
                 ->with('site:id,slug,name')
                 ->latest('finished_at')

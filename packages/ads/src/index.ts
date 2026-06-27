@@ -1,6 +1,7 @@
 import { isAdPlacementAllowed, type PageSurface } from '@supersites/consent'
 
 export const adPolicyVersion = '2026-06-27.1'
+export const adsenseIntegrationContractVersion = '2026-06-27.1'
 export const defaultAdDensityLimit = 2
 export const minimumInteractiveGapPx = 96
 
@@ -64,6 +65,63 @@ export interface AdSlotPlan {
   shouldRenderPlaceholder: boolean
   shouldRequestAd: boolean
   reservedStyle: ReservedAdStyle
+}
+
+export type AdSenseGateStatus = 'human_required' | 'not_configured' | 'ready' | 'blocked'
+export type AdSenseSiteReviewStatus = 'not_ready' | 'human_required' | 'ready_for_review' | 'blocked'
+
+export interface AdSenseAccountGateInput {
+  humanApproved: boolean
+  duplicateAccountChecked: boolean
+  existingAccountConfirmed?: boolean
+  legalBeneficiaryApproved: boolean
+  termsAccepted: boolean
+  taxProfileComplete: boolean
+  paymentProfileComplete: boolean
+  bankAccountVerified: boolean
+  pinVerified: boolean
+  accountConfigured?: boolean
+  publisherId?: string | null
+  managementApiApproved?: boolean
+}
+
+export interface AdSenseAccountGate {
+  contractVersion: string
+  status: AdSenseGateStatus
+  canUsePublisherAccount: boolean
+  canEnableManagementApi: boolean
+  canServeAds: boolean
+  normalizedPublisherId: string | null
+  reasons: string[]
+}
+
+export interface AdSenseSiteReviewInput {
+  siteSlug: string
+  publicUrl: string
+  accountGate: Pick<AdSenseAccountGate, 'canUsePublisherAccount' | 'canServeAds' | 'status'>
+  definitiveDomainApproved: boolean
+  productionDeployed: boolean
+  publicSmokePassed: boolean
+  noPlaceholder: boolean
+  contentQualityGatePassed: boolean
+  legalPagesPresent: boolean
+  privacyAndCookiePagesPresent: boolean
+  consentReady: boolean
+  adsTxtReady: boolean
+  policyReviewPassed: boolean
+  featureFlagEnabled?: boolean
+  siteApproved?: boolean
+}
+
+export interface AdSenseSiteReviewPlan {
+  contractVersion: string
+  siteSlug: string
+  publicUrl: string
+  reviewStatus: AdSenseSiteReviewStatus
+  canRequestHumanSiteReview: boolean
+  shouldSubmitAutomatically: boolean
+  shouldServeAds: boolean
+  reasons: string[]
 }
 
 export const adFormats: Record<AdFormat, AdFormatDefinition> = {
@@ -205,6 +263,124 @@ export function summarizeAdSlots(plans: AdSlotPlan[]): {
   }
 }
 
+export function normalizeAdSensePublisherId(value: string | null | undefined): string | null {
+  if (!value) {
+    return null
+  }
+
+  const normalized = value.trim().toLowerCase()
+
+  return /^ca-pub-\d{16}$/.test(normalized) ? normalized : null
+}
+
+export function resolveAdSenseAccountGate(input: AdSenseAccountGateInput): AdSenseAccountGate {
+  const reasons: string[] = []
+  const normalizedPublisherId = normalizeAdSensePublisherId(input.publisherId)
+
+  if (!input.humanApproved) {
+    reasons.push('AdSense account actions require explicit human approval.')
+  }
+
+  if (!input.duplicateAccountChecked) {
+    reasons.push('The publisher must confirm whether an existing AdSense account already exists.')
+  }
+
+  if (!input.legalBeneficiaryApproved) {
+    reasons.push('The legal beneficiary must be approved before using a publisher account.')
+  }
+
+  if (!input.termsAccepted) {
+    reasons.push('AdSense terms must be accepted by an authorized human.')
+  }
+
+  if (!input.taxProfileComplete) {
+    reasons.push('Tax information must be completed before monetization.')
+  }
+
+  if (!input.paymentProfileComplete) {
+    reasons.push('The payment profile must be completed before monetization.')
+  }
+
+  if (!input.bankAccountVerified) {
+    reasons.push('A bank account must be verified before payment readiness.')
+  }
+
+  if (!input.pinVerified) {
+    reasons.push('Postal PIN verification is still human-gated when requested by AdSense.')
+  }
+
+  if (!input.accountConfigured || !normalizedPublisherId) {
+    reasons.push('A valid AdSense publisher id is not configured.')
+  }
+
+  const canUsePublisherAccount = reasons.length === 0
+  const canEnableManagementApi = canUsePublisherAccount && Boolean(input.managementApiApproved)
+
+  return {
+    contractVersion: adsenseIntegrationContractVersion,
+    status: canUsePublisherAccount ? 'ready' : input.humanApproved ? 'not_configured' : 'human_required',
+    canUsePublisherAccount,
+    canEnableManagementApi,
+    canServeAds: canUsePublisherAccount,
+    normalizedPublisherId,
+    reasons,
+  }
+}
+
+export function buildAdSenseSiteReviewPlan(input: AdSenseSiteReviewInput): AdSenseSiteReviewPlan {
+  const reasons: string[] = []
+  const publicUrl = sanitizePublicUrl(input.publicUrl)
+
+  if (!input.accountGate.canUsePublisherAccount || input.accountGate.status !== 'ready') {
+    reasons.push('A ready publisher account gate is required before adding sites.')
+  }
+
+  if (!input.definitiveDomainApproved) {
+    reasons.push('A definitive domain must be approved before AdSense site review.')
+  }
+
+  if (!input.productionDeployed || !input.publicSmokePassed || !input.noPlaceholder) {
+    reasons.push('The site must be deployed publicly, smoke-tested and no longer be a placeholder.')
+  }
+
+  if (!input.contentQualityGatePassed) {
+    reasons.push('The site content and free tool quality gate must pass first.')
+  }
+
+  if (!input.legalPagesPresent || !input.privacyAndCookiePagesPresent) {
+    reasons.push('Legal, privacy and cookie pages must be present before review.')
+  }
+
+  if (!input.consentReady) {
+    reasons.push('Consent/CMP readiness must be complete before ad serving.')
+  }
+
+  if (!input.adsTxtReady) {
+    reasons.push('ads.txt must be prepared for the approved publisher account.')
+  }
+
+  if (!input.policyReviewPassed) {
+    reasons.push('Ad placement and policy review must pass before review.')
+  }
+
+  if (!input.featureFlagEnabled) {
+    reasons.push('AdSense site submission remains disabled by feature flag.')
+  }
+
+  const readyForReview = reasons.length === 0
+
+  return {
+    contractVersion: adsenseIntegrationContractVersion,
+    siteSlug: normalizeAdSlotId(input.siteSlug),
+    publicUrl,
+    reviewStatus: readyForReview ? 'ready_for_review' : 'human_required',
+    canRequestHumanSiteReview: readyForReview,
+    shouldSubmitAutomatically: false,
+    shouldServeAds: readyForReview && input.accountGate.canServeAds && Boolean(input.siteApproved),
+    reasons,
+  }
+}
+
 function block(
   basePlan: Omit<AdSlotPlan, 'status' | 'reason' | 'shouldRenderPlaceholder' | 'shouldRequestAd'>,
   status: AdSlotStatus,
@@ -225,4 +401,22 @@ function sanitizePagePath(value: string): string {
   const withoutQuery = path.split(/[?#]/, 1)[0] || '/'
 
   return withoutQuery.startsWith('/') ? withoutQuery : `/${withoutQuery}`
+}
+
+function sanitizePublicUrl(value: string): string {
+  try {
+    const url = new URL(value.trim(), 'https://opentshost.com')
+    url.username = ''
+    url.password = ''
+    url.search = ''
+    url.hash = ''
+
+    if (!['https:', 'http:'].includes(url.protocol)) {
+      return 'https://opentshost.com/'
+    }
+
+    return url.toString()
+  } catch {
+    return 'https://opentshost.com/'
+  }
 }

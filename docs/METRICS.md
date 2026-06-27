@@ -11,14 +11,14 @@ Data-base: 2026-06-27
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
 | Shared package folders created | 12 |
-| ADRs created | 25 |
-| Docs files created/maintained | 54 |
+| ADRs created | 26 |
+| Docs files created/maintained | 55 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
 | Nuxt apps scaffolded | 11 |
 | Laravel apps scaffolded | 1 |
 | Shared TS packages implemented | 6 |
-| Shared package tests passing | 37 |
+| Shared package tests passing | 40 |
 | Shared package typechecks passing | 6 |
 | Frontend tests passing | 81 |
 | Playwright visual smoke tests passing | 43 |
@@ -44,6 +44,15 @@ Data-base: 2026-06-27
 | Sprint 6.2 Quality Gate run | `28282544493` passed |
 | Sprint 6.2 Deploy Dry Run | `28282544471` passed |
 | Sprint 6.2 public smokes | Hub/control-plane/NetProbe passed |
+| AdSense account gates implemented | 1 |
+| AdSense readiness storage tables | 2 |
+| AdSense publisher records seeded | 1 |
+| AdSense site review records seeded | 11 |
+| AdSense Management API enabled | 0 |
+| AdSense site submissions | 0 |
+| AdSense ad serving enabled | 0 |
+| Sprint 6.3 local validation | Passed |
+| Sprint 6.3 external AdSense activation | 0 |
 | Analytics storage tables implemented | 2 |
 | Analytics ingest endpoint implemented | 1 |
 | Metric snapshot endpoint implemented | 1 |

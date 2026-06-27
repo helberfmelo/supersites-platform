@@ -90,4 +90,12 @@ class Site extends Model
     {
         return $this->hasOne(GoogleIntegration::class);
     }
+
+    /**
+     * @return HasOne<AdSenseSiteReview, $this>
+     */
+    public function adsenseSiteReview(): HasOne
+    {
+        return $this->hasOne(AdSenseSiteReview::class);
+    }
 }

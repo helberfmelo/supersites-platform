@@ -129,6 +129,13 @@
 - Eventos destinados a Google usam a mesma sanitizacao do contrato interno e uma allowlist adicional de parametros; propriedades arbitrarias nao saem para provider externo.
 - Search Console import deve ficar desligado ate haver verificacao de propriedade, base legal/consentimento aplicavel, quota definida, retry/backoff e registro de origem/atraso dos dados.
 
+## AdSense readiness
+
+- A Sprint 6.3 cria apenas metadados operacionais em `adsense_accounts` e `adsense_site_reviews`.
+- Campos permitidos: label do publisher, publisher id quando aprovado, status de beneficiario/conta/termos/fiscal/pagamento/banco/PIN/API, site, URL publica sem query/hash, status de dominio, revisao, `ads.txt`, qualidade, consentimento, policy, smoke e flags de veiculacao.
+- Campos proibidos: dados fiscais, dados bancarios, documentos, PIN, OAuth token, refresh token, service-account key, email Google, IP, identificador de visitante, conteudo de ferramenta, arquivo, query string, cookie de terceiro, impressao, clique ou receita individual.
+- AdSense Management API, site submission, Auto Ads, manual ads, `ads.txt` real e coleta de receita permanecem desligados ate gates humanos/tecnicos e matriz de dados especifica.
+
 ## Analytics sem PII
 
 - O contrato versionado fica em `packages/analytics`.

@@ -19,6 +19,10 @@
             <strong>{{ $summary['adsense_ready'] }}</strong>
         </article>
         <article class="panel metric">
+            <span class="muted">AdSense gated</span>
+            <strong>{{ $summary['adsense_gated'] }}</strong>
+        </article>
+        <article class="panel metric">
             <span class="muted">Google gated</span>
             <strong>{{ $summary['google_gated'] }}</strong>
         </article>
@@ -30,6 +34,47 @@
             <span class="muted">Open tasks</span>
             <strong>{{ $summary['open_tasks'] }}</strong>
         </article>
+    </section>
+
+    <section class="panel">
+        <h2>AdSense readiness</h2>
+        @if ($adsenseAccount)
+            <p class="muted">
+                Publisher {{ $adsenseAccount->publisher_label }} · Account {{ $adsenseAccount->account_status }} ·
+                Management API {{ $adsenseAccount->management_api_enabled ? 'enabled' : 'disabled' }} ·
+                Serving {{ $summary['adsense_serving_enabled'] }} / {{ $adsenseAccount->site_reviews_count }} sites
+            </p>
+        @else
+            <p class="muted">No AdSense publisher readiness record seeded.</p>
+        @endif
+        <table>
+            <thead>
+                <tr>
+                    <th>Site</th>
+                    <th>Review</th>
+                    <th>ads.txt</th>
+                    <th>Consent</th>
+                    <th>Smoke</th>
+                    <th>Serving</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($adsenseSiteReviews as $review)
+                    <tr>
+                        <td>{{ $review->site?->name ?? 'Unknown site' }}</td>
+                        <td><span class="status {{ $review->site_review_status }}">{{ $review->site_review_status }}</span></td>
+                        <td>{{ $review->ads_txt_status }}</td>
+                        <td>{{ $review->consent_status }}</td>
+                        <td>{{ $review->public_smoke_status }}</td>
+                        <td>{{ $review->ad_serving_enabled ? 'enabled' : 'disabled' }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">No AdSense site review records seeded.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
     </section>
 
     <section class="panel">

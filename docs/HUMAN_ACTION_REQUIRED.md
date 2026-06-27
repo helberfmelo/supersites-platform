@@ -9,6 +9,7 @@ Data-base: 2026-06-27
 | Registrar dominios definitivos | Compra/decisao de marca e dominio | Antes do lancamento independente de cada site |
 | Validar marca dos nomes de trabalho | Risco comercial/juridico | Antes de registrar dominio ou publicar marca definitiva |
 | Escolher beneficiario legal AdSense | Identidade, fiscal e conta publisher | Antes de criar/submeter sites ao AdSense |
+| Criar/reutilizar conta AdSense e aceitar termos | Conta publisher, aceite legal e checagem de conta duplicada | Antes de configurar publisher id, adicionar sites, ativar Management API ou publicar `ads.txt` |
 | Informacoes fiscais/bancarias AdSense | Dados legais e banco | Antes de receber pagamentos |
 | PIN postal AdSense | Verificacao fisica | Quando Google solicitar |
 | CMP certificada/TCF para ads reais | Escolha de fornecedor, termos, configuracao legal e compliance regional | Antes de carregar requests reais de ads em regioes que exijam CMP/TCF |

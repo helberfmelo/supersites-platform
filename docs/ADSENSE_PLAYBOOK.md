@@ -113,6 +113,16 @@ AdSense e a monetizacao primaria, mas nenhum site deve ser submetido antes de cu
 - Legal pages, tool inputs/actions/previews/results, file upload/result, conta, checkout, login, admin e erro devem continuar sem placeholders nem ads reais.
 - Cada novo placement deve passar por review de densidade e distancia de controles interativos para evitar clique acidental e CLS.
 
+## Account readiness foundation
+
+- Sprint 6.3 adiciona somente readiness de conta publisher e revisao por site.
+- Manter uma unica conta por beneficiario legal/publisher; checagem de conta existente/duplicada e criacao/uso da conta exigem acao humana.
+- `adsense_accounts` usa `primary-publisher` sem `publisher_id` real ate aprovacao. Fiscal, banco, PIN, aceite e acesso Google ficam fora do repositorio.
+- `adsense_site_reviews` registra todos os sites publicos como `not_submitted`; sites em placeholder ou sem dominio definitivo nao devem ser enviados para revisao.
+- `ads.txt` so pode ser publicado apos publisher id real aprovado; nao criar `ads.txt` falso ou placeholder monetizavel.
+- AdSense Management API fica `not_configured` e `management_api_enabled=false` ate OAuth/escopos/quotas serem aprovados.
+- Auto Ads, manual ads, impressoes, cliques, receita e requests externos seguem desligados.
+
 ## HUMAN_ACTION_REQUIRED
 
 - Beneficiario legal.

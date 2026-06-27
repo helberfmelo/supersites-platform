@@ -222,6 +222,7 @@ Sprint 6.2 - GA4, GTM e Search Console
 Sprint 6.3 - AdSense account integration
 - Objetivo: uma conta por publisher, sites adicionados individualmente apos gate.
 - Gate humano: beneficiario legal, impostos, banco, PIN, aceite.
+- Status: concluida localmente, aguardando CI/push. `@supersites/ads` recebeu contrato AdSense fail-closed para conta publisher, Management API e site review; o control-plane recebeu `adsense_accounts`, `adsense_site_reviews`, seeder e painel de readiness. `primary-publisher` permanece sem publisher id real, `management_api_enabled=false`, `placements_enabled=false`, `auto_ads_enabled=false` e `ad_serving_enabled=false`; nenhum site foi submetido, nenhum `ads.txt` real, snippet/API/request de anuncio ou receita foi ativado.
 
 Sprint 6.4 - Billing foundation
 - Objetivo: camada agnostica Stripe/Mercado Pago/Paddle, entitlements e webhooks.

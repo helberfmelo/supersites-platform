@@ -41,6 +41,13 @@ Nunca enviar email, telefone, documento, nome completo, IP completo, conteudo de
 - Todas as propriedades/containers/verificacoes ficam em estado `human_required` ou `not_configured` ate aprovacao.
 - Nenhum script GA4/GTM, Search Console import, cookie de terceiro ou evento externo foi ativado.
 
+## Sprint 6.3 AdSense foundation
+
+- `@supersites/ads` define readiness de conta AdSense, publisher id, Management API e revisao por site.
+- `adsense_accounts` registra somente `primary-publisher` sem publisher id real, tokens, dados fiscais, banco, PIN ou emails Google.
+- `adsense_site_reviews` registra sites publicos como `not_submitted`, com `placements_enabled=false`, `auto_ads_enabled=false` e `ad_serving_enabled=false`.
+- Nenhum site foi adicionado ao AdSense, nenhum `ads.txt` real foi publicado e nenhuma API/snippet/request de anuncio foi ativado.
+
 ## Pendencias humanas
 
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.

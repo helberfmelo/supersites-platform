@@ -228,6 +228,16 @@ Sprint 6.2 adiciona uma fundacao de integracao Google sem carregar providers ext
 
 Sprint 6.2 nao ativa scripts GA4/GTM, importacao Search Console, contas Google, tags reais, cookies de terceiro, eventos externos ou coleta adicional.
 
+## AdSense metrics
+
+Sprint 6.3 cria somente readiness operacional de AdSense:
+
+- `adsense_accounts` e `adsense_site_reviews` nao coletam impressoes, cliques, CTR, receita, RPM, cookies, identificadores de visitante ou dados de anuncio.
+- AdSense Management API fica desligada ate haver conta publisher aprovada, OAuth/escopos/quotas definidos, consentimento aplicavel e matriz de dados.
+- Qualquer snapshot futuro de AdSense deve distinguir dado estimado/finalizado, atraso de reporting, timezone, moeda e origem da API.
+
+Sprint 6.3 nao ativa scripts AdSense, Auto Ads, requests de anuncio, Management API, `ads.txt`, site submission, cookies de terceiro ou coleta externa.
+
 ## Deploy smokes
 
 Smokes de deploy do control-plane/API e do NetProbe devem validar apenas disponibilidade e contrato JSON, sem criar eventos externos de analytics e sem registrar alvo bruto de usuario. O alvo DNS padrao para smoke publico e `example.com`.

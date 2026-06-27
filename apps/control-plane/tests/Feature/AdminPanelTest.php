@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\Site;
 use App\Models\User;
 use Database\Seeders\AccessControlSeeder;
+use Database\Seeders\AdSenseReadinessSeeder;
 use Database\Seeders\DeploymentRecordSeeder;
 use Database\Seeders\GoogleIntegrationSeeder;
 use Database\Seeders\OperationalTaskSeeder;
@@ -48,6 +49,7 @@ class AdminPanelTest extends TestCase
             PortfolioSiteSeeder::class,
             AccessControlSeeder::class,
             GoogleIntegrationSeeder::class,
+            AdSenseReadinessSeeder::class,
             DeploymentRecordSeeder::class,
             OperationalTaskSeeder::class,
         ]);
@@ -60,6 +62,9 @@ class AdminPanelTest extends TestCase
             ->assertSee('Portfolio status')
             ->assertSee('Latest deployments')
             ->assertSee('Operational tasks')
+            ->assertSee('AdSense readiness')
+            ->assertSee('not_submitted')
+            ->assertSee('not_published')
             ->assertSee('Google integrations')
             ->assertSee('human_required')
             ->assertSee('Quality Gate')
