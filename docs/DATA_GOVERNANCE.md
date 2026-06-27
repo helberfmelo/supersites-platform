@@ -136,6 +136,13 @@
 - Campos proibidos: dados fiscais, dados bancarios, documentos, PIN, OAuth token, refresh token, service-account key, email Google, IP, identificador de visitante, conteudo de ferramenta, arquivo, query string, cookie de terceiro, impressao, clique ou receita individual.
 - AdSense Management API, site submission, Auto Ads, manual ads, `ads.txt` real e coleta de receita permanecem desligados ate gates humanos/tecnicos e matriz de dados especifica.
 
+## Billing readiness
+
+- A Sprint 6.4 cria apenas metadados operacionais em `billing_providers`, `billing_plans`, `billing_entitlements` e `billing_webhook_events`.
+- Campos permitidos: provider, status de conta/KYC/termos/impostos/perfil de pagamento/API/webhook/checkout, site, slug de plano, moeda, valor em minor units, intervalo, status, entitlements nao sensiveis e hash/id tecnico de evento futuro.
+- Campos proibidos: cartao, dados bancarios, documentos fiscais, CPF/CNPJ ou equivalentes, endereco de cobranca, e-mail de cliente, token de provider, API key, webhook secret, payload bruto de webhook, IP, identificador de visitante, conteudo de ferramenta ou arquivo.
+- Webhooks reais, historico de assinatura, invoices, refunds, chargebacks, taxes e entitlements pagos permanecem desligados ate matriz de dados, termos, retencao, exportacao/exclusao, idempotencia e assinatura verificada estarem implementados.
+
 ## Analytics sem PII
 
 - O contrato versionado fica em `packages/analytics`.

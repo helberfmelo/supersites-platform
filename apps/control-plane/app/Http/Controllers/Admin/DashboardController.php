@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\AdSenseAccount;
 use App\Models\AdSenseSiteReview;
 use App\Models\AuditLog;
+use App\Models\BillingPlan;
+use App\Models\BillingProvider;
 use App\Models\DeploymentRecord;
 use App\Models\GoogleIntegration;
 use App\Models\Incident;
@@ -29,6 +31,8 @@ class DashboardController extends Controller
             'adsense_ready' => Site::query()->where('adsense_ready', true)->count(),
             'adsense_gated' => AdSenseSiteReview::query()->where('ad_serving_enabled', false)->count(),
             'adsense_serving_enabled' => AdSenseSiteReview::query()->where('ad_serving_enabled', true)->count(),
+            'billing_gated' => BillingProvider::query()->where('checkout_enabled', false)->count(),
+            'billing_checkout_enabled' => BillingProvider::query()->where('checkout_enabled', true)->count(),
             'google_gated' => GoogleIntegration::query()
                 ->where(function ($query): void {
                     $query
@@ -59,6 +63,18 @@ class DashboardController extends Controller
                 ->orderBy('site_review_status')
                 ->orderBy('id')
                 ->limit(6)
+                ->get(),
+            'billingPlans' => BillingPlan::query()
+                ->with('site:id,slug,name')
+                ->orderBy('checkout_enabled')
+                ->orderBy('status')
+                ->orderBy('id')
+                ->limit(6)
+                ->get(),
+            'billingProviders' => BillingProvider::query()
+                ->withCount('plans')
+                ->orderBy('checkout_enabled')
+                ->orderBy('provider')
                 ->get(),
             'deployments' => DeploymentRecord::query()
                 ->with('site:id,slug,name')

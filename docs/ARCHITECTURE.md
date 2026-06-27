@@ -42,6 +42,7 @@ Sprint 1.3 criou os primeiros pacotes TypeScript fonte-primeiro:
 - `@supersites/consent`: categorias de consentimento, Consent Mode, regioes e regras de exibicao segura de anuncios.
 - `@supersites/analytics`: contrato versionado de eventos, sanitizacao PII-safe e payloads de data layer.
 - `@supersites/ads`: policy de placements, formatos responsivos reservados, limites de densidade e bloqueios anti-clique-acidental.
+- `@supersites/billing`: contrato provider-agnostic de readiness de billing, planos, entitlements e decisoes de webhook fail-closed.
 
 Apps novos devem importar esses contratos antes de duplicar helpers locais.
 
@@ -72,6 +73,16 @@ Sprint 6.3 adiciona readiness AdSense sem ativar conta, API ou anuncios:
 - `adsense_accounts` registra apenas status operacional do publisher; nao armazena dados fiscais, bancarios, OAuth tokens, emails Google ou secrets.
 - `adsense_site_reviews` registra readiness por site publico, mantendo `placements_enabled`, `auto_ads_enabled` e `ad_serving_enabled` falsos por padrao.
 - O dashboard admin exibe conta `primary-publisher` e sites ainda nao submetidos para revisao.
+
+## Billing foundation
+
+Sprint 6.4 adiciona readiness de billing sem ativar cobranca:
+
+- `@supersites/billing` exporta contrato para Stripe, Mercado Pago e Paddle, com normalizacao de provider, gates de checkout/webhook, builder de planos, sanitizer de entitlements e decisao idempotente de webhook.
+- O gate exige contas aprovadas, KYC, termos, impostos, perfil de pagamentos, aceite de checkout, API key, webhook secret e endpoint aprovado antes de permitir checkout ou processamento de webhook.
+- `billing_providers` armazena apenas readiness operacional por provider; `billing_plans` e `billing_entitlements` descrevem planos locais sem price id real no MVP; `billing_webhook_events` define ledger futuro para idempotencia e payload hash.
+- O dashboard admin exibe provedores bloqueados e planos `free-preview` seedados para os sites publicos.
+- Nao ha provider SDK, API key, checkout endpoint, payment link, webhook publico, assinatura, cobranca, imposto, refund, dunning ou entitlement pago nesta sprint.
 
 ## Stack local inicial
 

@@ -227,6 +227,7 @@ Sprint 6.3 - AdSense account integration
 Sprint 6.4 - Billing foundation
 - Objetivo: camada agnostica Stripe/Mercado Pago/Paddle, entitlements e webhooks.
 - Gate humano: contas, KYC, impostos, perfil de pagamentos.
+- Status: concluida localmente, aguardando CI. `@supersites/billing` foi criado com contrato provider-agnostic para Stripe, Mercado Pago e Paddle, gates fail-closed de conta/checkout/webhook, normalizacao de planos, sanitizer de entitlements e decisao idempotente para webhooks assinados. O control-plane recebeu `billing_providers`, `billing_plans`, `billing_entitlements`, `billing_webhook_events`, seeder e painel `Billing readiness`. Todos os provedores permanecem `human_required`/`not_configured`/`disabled`; apenas planos `free-preview` sem provider, price id ou checkout foram seedados. Nenhum SDK de pagamento, API key, checkout, payment link, webhook publico, assinatura, cobranca, imposto, refund, dunning ou entitlement pago foi ativado.
 
 Sprint 6.5 - AI growth engine
 - Objetivo: auditorias tecnicas, SEO, AIO, monetizacao, anomalias e priorizacao.

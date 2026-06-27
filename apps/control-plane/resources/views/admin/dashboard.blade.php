@@ -27,6 +27,10 @@
             <strong>{{ $summary['google_gated'] }}</strong>
         </article>
         <article class="panel metric">
+            <span class="muted">Billing gated</span>
+            <strong>{{ $summary['billing_gated'] }}</strong>
+        </article>
+        <article class="panel metric">
             <span class="muted">Open incidents</span>
             <strong>{{ $summary['open_incidents'] }}</strong>
         </article>
@@ -71,6 +75,71 @@
                 @empty
                     <tr>
                         <td colspan="6">No AdSense site review records seeded.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </section>
+
+    <section class="panel">
+        <h2>Billing readiness</h2>
+        <p class="muted">
+            Checkout {{ $summary['billing_checkout_enabled'] }} / {{ $billingProviders->count() }} providers |
+            Provider SDKs, payment links and webhook endpoints disabled until human gates pass.
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Provider</th>
+                    <th>Account</th>
+                    <th>KYC</th>
+                    <th>API key</th>
+                    <th>Webhook</th>
+                    <th>Checkout</th>
+                    <th>Plans</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($billingProviders as $provider)
+                    <tr>
+                        <td>{{ $provider->provider }}</td>
+                        <td><span class="status {{ $provider->account_status }}">{{ $provider->account_status }}</span></td>
+                        <td>{{ $provider->kyc_status }}</td>
+                        <td>{{ $provider->api_key_status }}</td>
+                        <td>{{ $provider->webhook_status }}</td>
+                        <td>{{ $provider->checkout_enabled ? 'enabled' : 'disabled' }}</td>
+                        <td>{{ $provider->plans_count }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="7">No billing provider readiness records seeded.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Site</th>
+                    <th>Plan</th>
+                    <th>Status</th>
+                    <th>Price</th>
+                    <th>Checkout</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($billingPlans as $plan)
+                    <tr>
+                        <td>{{ $plan->site?->name ?? 'Unknown site' }}</td>
+                        <td>{{ $plan->slug }}</td>
+                        <td>{{ $plan->status }}</td>
+                        <td>{{ $plan->currency }} {{ number_format($plan->amount_minor / 100, 2) }}</td>
+                        <td>{{ $plan->checkout_enabled ? 'enabled' : 'disabled' }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5">No billing plans seeded.</td>
                     </tr>
                 @endforelse
             </tbody>

@@ -76,6 +76,17 @@ A Sprint 6.3 prepara apenas monetizacao por ads como readiness operacional, sem 
 
 Qualquer receita AdSense futura exige beneficiario legal, fiscal, perfil de pagamentos, banco, PIN quando solicitado, termos aceitos, conta publisher aprovada, sites revisados, politicas, consentimento e documentacao de moeda/impostos antes de aparecer em relatorios ou entitlement comercial.
 
+## Billing foundation
+
+A Sprint 6.4 cria a fundacao de billing sem ativar cobranca real:
+
+- `@supersites/billing` cobre Stripe, Mercado Pago e Paddle como identificadores de provider, com gates fail-closed para checkout e webhooks.
+- `billing_providers` registra readiness operacional de conta, KYC, termos, impostos, perfil de pagamento, API key, webhook secret e endpoint aprovado.
+- `billing_plans` e `billing_entitlements` seedam somente planos locais `free-preview` para os sites publicos, sem provider price id, checkout ou upgrade pago.
+- `billing_webhook_events` define ledger futuro de idempotencia e hash de payload, mas nenhum endpoint publico de webhook foi criado.
+
+Antes de vender qualquer upgrade, ainda faltam conta provider aprovada, KYC, impostos, perfil de pagamentos, termos/cancelamento/reembolso, secrets em cofre, checkout hospedado oficial, assinatura de webhook, replay protection, matriz de dados, exportacao/exclusao e smoke/rollback especificos.
+
 ## Segurança
 
 - Nao armazenar cartao.

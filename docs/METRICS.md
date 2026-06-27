@@ -11,15 +11,15 @@ Data-base: 2026-06-27
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
 | Shared package folders created | 12 |
-| ADRs created | 26 |
-| Docs files created/maintained | 55 |
+| ADRs created | 27 |
+| Docs files created/maintained | 56 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
 | Nuxt apps scaffolded | 11 |
 | Laravel apps scaffolded | 1 |
-| Shared TS packages implemented | 6 |
-| Shared package tests passing | 40 |
-| Shared package typechecks passing | 6 |
+| Shared TS packages implemented | 7 |
+| Shared package tests passing | 51 |
+| Shared package typechecks passing | 7 |
 | Frontend tests passing | 81 |
 | Playwright visual smoke tests passing | 43 |
 | Laravel tests passing | 44 |
@@ -56,6 +56,16 @@ Data-base: 2026-06-27
 | Sprint 6.3 Quality Gate run | `28283163228` passed |
 | Sprint 6.3 Deploy Dry Run | `28283163215` passed |
 | Sprint 6.3 public smokes | Hub/control-plane/NetProbe passed |
+| Billing provider gates implemented | 1 |
+| Billing readiness storage tables | 4 |
+| Billing providers seeded | 3 |
+| Billing free-preview plans seeded | 11 |
+| Billing entitlements seeded | 55 |
+| Billing webhook endpoints active | 0 |
+| Billing checkout enabled providers | 0 |
+| Billing paid entitlements active | 0 |
+| Sprint 6.4 local validation | Passed |
+| Sprint 6.4 external billing activation | 0 |
 | Analytics storage tables implemented | 2 |
 | Analytics ingest endpoint implemented | 1 |
 | Metric snapshot endpoint implemented | 1 |

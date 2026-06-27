@@ -238,6 +238,16 @@ Sprint 6.3 cria somente readiness operacional de AdSense:
 
 Sprint 6.3 nao ativa scripts AdSense, Auto Ads, requests de anuncio, Management API, `ads.txt`, site submission, cookies de terceiro ou coleta externa.
 
+## Billing metrics
+
+Sprint 6.4 cria somente readiness operacional de billing:
+
+- `billing_providers`, `billing_plans`, `billing_entitlements` e `billing_webhook_events` nao coletam cartao, dados bancarios, documentos fiscais, e-mail de cliente, IP, identificador de visitante, receita, assinatura real, invoice real ou payload bruto de webhook.
+- Eventos `checkout_started`, `purchase_completed` e `subscription_cancelled` continuam apenas no contrato; nenhum provider externo recebe eventos ou webhooks.
+- Qualquer snapshot futuro de billing deve distinguir status estimado/finalizado, provider, moeda, timezone, impostos, refunds, chargebacks, dunning e origem do dado.
+
+Sprint 6.4 nao ativa checkout, payment links, webhooks publicos, SDKs de provider, cobranca, assinatura, impostos automaticos, invoices, refunds, dunning ou coleta externa.
+
 ## Deploy smokes
 
 Smokes de deploy do control-plane/API e do NetProbe devem validar apenas disponibilidade e contrato JSON, sem criar eventos externos de analytics e sem registrar alvo bruto de usuario. O alvo DNS padrao para smoke publico e `example.com`.

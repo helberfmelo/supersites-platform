@@ -8,6 +8,7 @@ use App\Models\Site;
 use App\Models\User;
 use Database\Seeders\AccessControlSeeder;
 use Database\Seeders\AdSenseReadinessSeeder;
+use Database\Seeders\BillingReadinessSeeder;
 use Database\Seeders\DeploymentRecordSeeder;
 use Database\Seeders\GoogleIntegrationSeeder;
 use Database\Seeders\OperationalTaskSeeder;
@@ -50,6 +51,7 @@ class AdminPanelTest extends TestCase
             AccessControlSeeder::class,
             GoogleIntegrationSeeder::class,
             AdSenseReadinessSeeder::class,
+            BillingReadinessSeeder::class,
             DeploymentRecordSeeder::class,
             OperationalTaskSeeder::class,
         ]);
@@ -65,6 +67,10 @@ class AdminPanelTest extends TestCase
             ->assertSee('AdSense readiness')
             ->assertSee('not_submitted')
             ->assertSee('not_published')
+            ->assertSee('Billing readiness')
+            ->assertSee('stripe')
+            ->assertSee('free-preview')
+            ->assertSee('disabled')
             ->assertSee('Google integrations')
             ->assertSee('human_required')
             ->assertSee('Quality Gate')

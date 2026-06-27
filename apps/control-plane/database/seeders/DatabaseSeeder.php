@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             DeploymentRecordSeeder::class,
             GoogleIntegrationSeeder::class,
             AdSenseReadinessSeeder::class,
+            BillingReadinessSeeder::class,
             OperationalTaskSeeder::class,
         ]);
 

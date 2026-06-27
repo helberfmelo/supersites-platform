@@ -98,4 +98,12 @@ class Site extends Model
     {
         return $this->hasOne(AdSenseSiteReview::class);
     }
+
+    /**
+     * @return HasMany<BillingPlan, $this>
+     */
+    public function billingPlans(): HasMany
+    {
+        return $this->hasMany(BillingPlan::class);
+    }
 }
