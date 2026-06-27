@@ -330,7 +330,7 @@ Sprint 8.2 - Static app deploy framework
 - Objetivo: criar scripts/workflow genericos de artifact, validacao, publish, smoke e rollback para apps Nuxt SSG que ainda estao como placeholders publicos.
 - Escopo: CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch e DocShift.
 - Validacao: builds/testes afetados, artifact gates por app, smokes locais/preview, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate e Deploy Dry Run.
-- Status: em validacao. Foram criados scripts genericos `build-static-app-hostgator-artifact.ps1`, `validate-static-app-artifact.ps1`, `publish-static-app-hostgator.ps1`, `smoke-static-app-public.ps1`, configuracao `static-app-hostgator.config.ps1` e workflow manual `Deploy Static App HostGator` para deploy/rollback por `app_id`. Artifact gates locais ja passaram para os nove apps alvo; CI/deploy dry-run e fechamento documental seguem em andamento antes de qualquer traffic switch.
+- Status: concluida. Foram criados scripts genericos `build-static-app-hostgator-artifact.ps1`, `validate-static-app-artifact.ps1`, `publish-static-app-hostgator.ps1`, `smoke-static-app-public.ps1`, configuracao `static-app-hostgator.config.ps1` e workflow manual `Deploy Static App HostGator` para deploy/rollback por `app_id`. Artifact gates locais passaram para os nove apps alvo, commit `6befb22` foi publicado, Quality Gate `28293511914` e Deploy Dry Run `28293511933` passaram, e smokes publicos de Hub/control-plane/NetProbe passaram. Nenhum traffic switch real dos nove apps foi executado nesta sprint.
 
 Sprint 8.3 - Publicar batch A de utilitarios locais
 - Simbolico: PROD-BATCH-A.

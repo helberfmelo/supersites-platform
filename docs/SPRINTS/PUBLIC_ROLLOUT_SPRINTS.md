@@ -12,7 +12,7 @@ The next mapped phase is therefore Fase 8 - Public Rollout e Production Visibili
 | Symbol | Sprint | Scope | Status |
 |---|---:|---|---|
 | PROD-ROADMAP | Sprint 8.1 | Roadmap, gates and production rollout documentation | Completed |
-| PROD-STATIC-FRAMEWORK | Sprint 8.2 | Generic HostGator static deploy framework for remaining Nuxt apps | In progress |
+| PROD-STATIC-FRAMEWORK | Sprint 8.2 | Generic HostGator static deploy framework for remaining Nuxt apps | Completed |
 | PROD-BATCH-A | Sprint 8.3 | Publish CalcHarbor, DevUtility Lab and TimeNexus | Planned |
 | PROD-BATCH-B | Sprint 8.4 | Publish QRRoute, InvoiceCraft, MailHealth and SitePulse Lab | Planned |
 | PROD-BATCH-C | Sprint 8.5 | Publish PixelBatch and DocShift | Planned |

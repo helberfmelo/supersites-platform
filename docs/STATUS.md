@@ -1047,6 +1047,10 @@ Em seguida, a Fase 8 - Public Rollout e Production Visibility foi aberta para pu
   - Artifact gates locais passaram para 9/9 apps: CalcHarbor 150 arquivos, DevUtility Lab 201, TimeNexus 181, QRRoute 174, InvoiceCraft 145, MailHealth 180, SitePulse Lab 180, PixelBatch 171 e DocShift 192.
   - MailHealth e SitePulse Lab foram buildados com APIs publicas HTTPS do control-plane: `https://opentshost.com/supersites/control-plane/api/v1/mailhealth` e `https://opentshost.com/supersites/control-plane/api/v1/sitepulse`.
   - Gates finais locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation.
+  - Feature commit publicado: `6befb22` (`feat: add static app hostgator deploy framework`).
+  - GitHub Actions `Quality Gate` run `28293511914` passou com repository safety, backend control-plane, todos os jobs frontend/preview/Playwright e quality summary verdes.
+  - GitHub Actions `Deploy Dry Run` run `28293511933` passou e gerou plano sem mutar producao.
+  - Public smokes pos-push passaram: `pnpm deploy:smoke-supersite-public` validou Hub e asset `https://opentshost.com/supersites/_nuxt/CDSWkO8T.js`; `pnpm deploy:smoke-control-plane-public` validou control-plane/API; `pnpm deploy:smoke-netprobe-public` validou NetProbe, asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/B8fWFYkD.js` e API `https://opentshost.com/supersites/control-plane/api/v1/netprobe`.
   - Nenhum traffic switch real foi executado nesta sprint; os apps continuam placeholders publicos ate as Sprints 8.3, 8.4 e 8.5 acionarem o workflow de deploy e passarem public smoke.
 
 ## Pendencias criticas
