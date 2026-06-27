@@ -5,10 +5,10 @@ Data-base: 2026-06-27
 ## Current block
 
 - Real phase: Fase 7 - Benchmark-Driven Refinement.
-- Current sprint: Sprint 7.4 - CalcHarbor benchmark UX.
-- Symbolic sprint: BR-CALCHARBOR.
-- Scope: calculator result UX, formulas, calculation memory, examples, FAQs, related paths and gated upgrade messaging.
-- Previous sprint completed: Sprint 7.3 - NetProbe Atlas benchmark UX.
+- Current sprint: Sprint 7.5 - DevUtility Lab benchmark UX.
+- Symbolic sprint: BR-DEVUTILITY.
+- Scope: developer-tool editor UX, examples, copy/download, clear errors, visible privacy and gated upgrade messaging.
+- Previous sprint completed: Sprint 7.4 - CalcHarbor benchmark UX.
 
 ## Pre-sprint state
 
@@ -35,8 +35,8 @@ Data-base: 2026-06-27
 | 7.1 | BR-ROADMAP | Completed | Docs created, committed, pushed and docs-only Quality Gate recorded |
 | 7.2 | BR-SUPERSITE | Completed | Hub/control-plane benchmark dashboard refined and validated |
 | 7.3 | BR-NETPROBE | Completed | DNS/IP benchmark UX refined and public NetProbe smokes pass |
-| 7.4 | BR-CALCHARBOR | Implemented locally; feature commit/CI pending | Calculator UX/content refined in local/CI, public deploy still gated |
-| 7.5 | BR-DEVUTILITY | Planned | Developer tool UX/content refined in local/CI, public deploy still gated |
+| 7.4 | BR-CALCHARBOR | Completed | Calculator UX/content refined in local/CI, public deploy still gated |
+| 7.5 | BR-DEVUTILITY | Next | Developer tool UX/content refined in local/CI, public deploy still gated |
 | 7.6 | BR-TIMENEXUS | Planned | Time/date UX/content refined in local/CI, public deploy still gated |
 | 7.7 | BR-QRROUTE | Planned | QR/UTM UX/content refined in local/CI, dynamic links still gated |
 | 7.8 | BR-INVOICECRAFT | Planned | Invoice/quote/receipt UX/content refined in local/CI, taxes/payments gated |
@@ -144,7 +144,7 @@ Sprint 7.4 local validation passed:
 
 Sprint 7.4 remote validation:
 
-- Feature commit: pending.
-- Quality Gate: pending.
-- Deploy Dry Run: pending.
-- Public smokes: pending.
+- Feature commit: `17774eb feat: refine calcharbor benchmark ux`.
+- Quality Gate: `28286999292`, success.
+- Deploy Dry Run: `28286999285`, success with non-blocking artifact upload quota annotation.
+- Public smokes: Hub, control-plane/API and NetProbe passed after push.

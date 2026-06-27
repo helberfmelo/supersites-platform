@@ -36,6 +36,8 @@ Data-base: 2026-06-27
 
 ## Sprint 7.4 local result
 
-- Implemented and locally validated.
-- `pnpm --filter @supersites/calcharbor test`, build, preview smoke and Playwright passed.
+- Implemented, committed and validated in CI.
+- Feature commit: `17774eb feat: refine calcharbor benchmark ux`.
+- Quality Gate `28286999292`, Deploy Dry Run `28286999285` and public Hub/control-plane/NetProbe smokes passed.
+- `pnpm --filter @supersites/calcharbor test`, build, preview smoke, Playwright and final gates passed locally.
 - Public deploy remains gated.
