@@ -173,7 +173,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'TimeNexus status for public web readiness, ads, billing, deploy and gates.',
     sections: [
       ['MVP surface', 'The local/CI MVP contains seven tools, five language route sets, sitemap, canonical, hreflang and structured data.'],
-      ['Production', 'No TimeNexus public deploy is switched because app-specific packaging, smoke and rollback gates are not implemented yet.'],
+      ['Production', 'TimeNexus is live at `/supersites/timenexus/` as a versioned HostGator static app with public smoke and rollback workflow validated.'],
       ['Gates', 'AdSense, billing, external analytics, accounts, widgets, presets, history and API remain blocked until documented gates pass.'],
     ],
   },

@@ -173,7 +173,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'QRRoute status for public web readiness, ads, billing, redirect service and gates.',
     sections: [
       ['MVP surface', 'The local/CI MVP contains six tools, five language route sets, sitemap, canonical, hreflang, structured data and browser-side preview rendering.'],
-      ['Production', 'No QRRoute public deploy is switched because app-specific packaging, smoke and rollback gates are not implemented yet.'],
+      ['Production', 'QRRoute is live at `/supersites/qrroute/` as a versioned HostGator static app with public smoke and rollback workflow validated.'],
       ['Gates', 'Dynamic QR, short links, redirect analytics, custom domains, batches, billing, ads and external analytics remain blocked until documented gates pass.'],
     ],
   },

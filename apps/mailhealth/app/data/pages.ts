@@ -173,7 +173,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'MailHealth status for public web readiness, API probes, ads, billing and monitoring gates.',
     sections: [
       ['MVP surface', 'The local/CI MVP contains seven checks, five language route sets, sitemap, canonical, hreflang, structured data and bounded API probes.'],
-      ['Production', 'No MailHealth public deploy is switched because app-specific packaging, smoke and rollback are not implemented yet.'],
+      ['Production', 'MailHealth is live at `/supersites/mailhealth/` as a versioned HostGator static app with public smoke, bounded public API probes and rollback workflow validated.'],
       ['Gates', 'Recurring monitoring, alert delivery, DMARC report ingestion, batches, white-label, billing, ads and external analytics remain blocked until documented gates pass.'],
     ],
   },

@@ -126,6 +126,12 @@ foreach ($page in $config.SmokePages) {
     Assert-DoesNotContain -Content $response.Content -Pattern "(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick" -Context "$($config.DisplayName) $($page.Path)"
 }
 
+$statusResponse = Invoke-SmokeRequest -Url (Join-Url $publicBase "en/status") -RequiredContent "Launch Status"
+Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context "$($config.DisplayName) status"
+Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context "$($config.DisplayName) status"
+Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)No .{0,80}public deploy|HostGator public URL remains|noindex placeholder" -Context "$($config.DisplayName) status"
+Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick" -Context "$($config.DisplayName) status"
+
 if ($config.ApiEnvName -and -not $SkipApiSmoke) {
     $apiUrl = Join-Url $apiBase $config.ApiSmokePath
     $apiResponse = Invoke-SmokeRequest -Url $apiUrl -RequiredContent $config.ApiSmokeMarker -Method "Post" -Body $config.ApiSmokeBody

@@ -1093,6 +1093,15 @@ Em seguida, a Fase 8 - Public Rollout e Production Visibility foi aberta para pu
   - Smokes publicos pos-CI passaram: Hub agregador validou assets dos nove apps, APIs MailHealth/SitePulse, control-plane/API e NetProbe; smokes especificos de PixelBatch e DocShift passaram novamente.
   - Nenhum upload server-side, OCR server-side, batch worker, API publica paga, storage persistente, IA externa, anuncio real, checkout, billing, analytics externo, worker/cron ou direct-root mapping foi ativado. Rollback por release e rollback para placeholder permanecem disponiveis pelo workflow.
 
+- Sprint 8.6 validation:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/ROADMAP.md`, `docs/STATUS.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local/release/public rollout e todos os ADRs existentes ate `0030`.
+  - Estado inicial verificado: `main...origin/main` limpo no commit `522abf2`, Quality Gate docs-only `28296164255` verde e smoke agregado publico passando com Hub, control-plane/API, NetProbe e nove apps publicados.
+  - Foi encontrada copia publica residual que ainda chamava os apps de placeholders nas paginas `/en/status` e nos CTAs do Hub. A Sprint 8.6 atualiza essas superficies para refletir o estado real: os nove apps estao publicados em `/supersites/<app>/` como Nuxt SSG reais, com rollback por release e por placeholder ainda disponivel.
+  - `scripts/smoke-supersite-public.ps1` e `scripts/smoke-static-app-public.ps1` foram reforcados para validar tambem `/en/status`, bloquear `noindex`, bootstrap placeholder, marcadores de deploy pendente e texto publico antigo de placeholder, alem de continuar bloqueando scripts de ads/tags externos.
+  - Validacao local antes do commit tecnico passou: testes unitarios dos dez frontends afetados, builds dos dez frontends, `pnpm deploy:build-supersite-hostgator`, `pnpm deploy:build-static-app-hostgator -- -AppId <app>` para os nove apps, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`.
+  - Proximos passos desta sprint: commitar/pushar a correcao, monitorar `Quality Gate` e `Deploy Dry Run`, redeployar Hub e os nove apps para que a copia corrigida esteja visivel em producao, rodar smokes publicos consolidados, registrar run IDs e fechar com commit documental docs-only.
+  - Nenhum anuncio real, AdSense/GTM/GA4, Search Console import, checkout, billing, pagamento, doacao, afiliado, API publica paga, upload/storage, worker/cron recorrente, analytics externo ou direct-root mapping foi ativado.
+
 ## Pendencias criticas
 
 - Resolver branch protection de `main` quando houver GitHub Pro, repositorio publico ou alternativa aprovada de ruleset/organizacao.

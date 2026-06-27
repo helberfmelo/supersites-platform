@@ -173,7 +173,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'InvoiceCraft status for public web readiness, ads, billing, PDF rendering and gates.',
     sections: [
       ['MVP surface', 'The local/CI MVP contains three document builders, five language route sets, sitemap, canonical, hreflang, structured data and browser-side PDF rendering.'],
-      ['Production', 'No InvoiceCraft public deploy is switched because app-specific packaging, smoke and rollback are not implemented yet.'],
+      ['Production', 'InvoiceCraft is live at `/supersites/invoicecraft/` as a versioned HostGator static app with public smoke and rollback workflow validated.'],
       ['Gates', 'Saved clients, products, recurrence, branding, team access, payments, billing, ads and external analytics remain blocked until documented gates pass.'],
     ],
   },

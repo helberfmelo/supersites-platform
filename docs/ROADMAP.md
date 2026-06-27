@@ -354,7 +354,7 @@ Sprint 8.6 - Public rollout closure e operacao minima
 - Simbolico: PROD-CLOSURE.
 - Objetivo: fechar registros de producao, atualizar smokes publicos consolidados, revisar placeholders remanescentes, manter direct-root mapping e monetizacao como gates separados.
 - Validacao: smokes publicos de Hub, control-plane/API, NetProbe e nove apps publicados; docs/status/metricas atualizados; Quality Gate docs-only monitorado.
-- Status: planejada.
+- Status: em execucao. A auditoria de copia publica encontrou textos residuais de placeholder em `/en/status` e CTAs do Hub; a sprint atualiza essas superficies para refletir os apps publicados, reforca os smokes publicos contra `noindex`/placeholder/textos antigos e ja passou validacao local de testes, builds, artifacts, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes` e `git diff --check`. Produção ainda aguarda commit, push, CI, redeploy do Hub/nove apps, smokes publicos e fechamento documental.
 
 ## Definition of done do programa
 

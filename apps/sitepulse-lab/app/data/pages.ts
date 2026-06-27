@@ -173,7 +173,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'SitePulse Lab status for local web readiness, API probes, ads, billing and monitoring gates.',
     sections: [
       ['MVP surface', 'The local/CI MVP contains seven checks, five language route sets, sitemap, canonical, hreflang, structured data and one bounded probe endpoint.'],
-      ['Production', 'No SitePulse public deploy is switched because app-specific packaging, smoke and rollback are not implemented yet.'],
+      ['Production', 'SitePulse Lab is live at `/supersites/sitepulse-lab/` as a versioned HostGator static app with public smoke, bounded public API probes and rollback workflow validated.'],
       ['Gates', 'Recurring uptime, alert delivery, incident workflows, public status pages, history, multi-region probes, billing, ads and external analytics remain blocked.'],
     ],
   },

@@ -16,7 +16,7 @@ The next mapped phase is therefore Fase 8 - Public Rollout e Production Visibili
 | PROD-BATCH-A | Sprint 8.3 | Publish CalcHarbor, DevUtility Lab and TimeNexus | Completed |
 | PROD-BATCH-B | Sprint 8.4 | Publish QRRoute, InvoiceCraft, MailHealth and SitePulse Lab | Completed |
 | PROD-BATCH-C | Sprint 8.5 | Publish PixelBatch and DocShift | Completed |
-| PROD-CLOSURE | Sprint 8.6 | Public smoke consolidation, docs closure and remaining operations gates | Planned |
+| PROD-CLOSURE | Sprint 8.6 | Public smoke consolidation, docs closure and remaining operations gates | In progress |
 
 ## Production guardrails
 
@@ -74,3 +74,4 @@ The next mapped phase is therefore Fase 8 - Public Rollout e Production Visibili
 - Consolidated public smoke status is recorded for Hub, control-plane/API, NetProbe and all nine newly published apps.
 - Remaining operations and human gates are explicitly separated from the completed public rollout.
 - Docs-only Quality Gate passes.
+- In progress: stale public placeholder wording was found in status pages/Hub CTAs and corrected; consolidated smokes now reject `noindex`, bootstrap placeholders, stale placeholder wording and ads/tags markers before the final production redeploy.

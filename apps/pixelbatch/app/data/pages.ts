@@ -173,7 +173,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'PixelBatch status for public web readiness, ads, billing, file processing and gates.',
     sections: [
       ['MVP surface', 'The local/CI MVP contains six image tools, five language route sets, sitemap, canonical, hreflang, structured data, worker planning and browser-side Canvas output.'],
-      ['Production', 'No PixelBatch public deploy is switched because app-specific packaging, smoke and rollback are not implemented yet. The HostGator public URL remains a noindex placeholder.'],
+      ['Production', 'PixelBatch is live at `/supersites/pixelbatch/` as a versioned HostGator static app with public smoke and rollback workflow validated. Image processing remains browser-side; no upload or storage path is active.'],
       ['Gates', 'Batch folders, larger files, API, integrations, high-resolution queues, AI features, billing, ads and external analytics remain blocked until documented gates pass.'],
     ],
   },

@@ -73,6 +73,13 @@ function Assert-DeployedStaticApp {
 
     $appAssetUrl = "$origin$($appAssetMatch.Groups["path"].Value)"
     Invoke-SmokeRequest -Url $appAssetUrl | Out-Null
+
+    $statusResponse = Invoke-SmokeRequest -Url (Join-Url $publicBase "$appPath/en/status") -RequiredContent "Launch Status"
+    Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context "$Context status"
+    Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context "$Context status"
+    Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)No .{0,80}public deploy|HostGator public URL remains|noindex placeholder" -Context "$Context status"
+    Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick" -Context "$Context status"
+
     return $appAssetUrl
 }
 
@@ -107,6 +114,7 @@ $homeResponse = Invoke-SmokeRequest -Url "$publicBase/" -RequiredContent "SuperS
 Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context "Home page"
 Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context "Home page"
 Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick" -Context "Home page"
+Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)Open public placeholder|Abrir placeholder|Ouvrir le placeholder|Platzhalter" -Context "Home page"
 
 if ($homeResponse.Content -notmatch [regex]::Escape("href=`"$publicBase`"")) {
     throw "Home page canonical does not point at $publicBase."

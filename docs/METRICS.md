@@ -510,6 +510,12 @@ Data-base: 2026-06-27
 | Sprint 8.5 post-CI public smokes | Hub/control-plane/NetProbe plus Batch A, Batch B, PixelBatch and DocShift passed |
 | Public live Nuxt/Laravel surfaces after Sprint 8.5 | 12: Hub, control-plane/API, NetProbe Atlas and 9 product apps |
 | Public placeholder apps remaining after Sprint 8.5 | 0 |
+| Sprint 8.6 residual placeholder copy audit | Found stale status/CTA copy; fixed before production redeploy |
+| Sprint 8.6 smoke contract hardening | Hub aggregate and per-app public smokes now validate `/en/status` and reject bootstrap/noindex/stale placeholder/ads markers |
+| Sprint 8.6 local tests | Passed for Supersite Hub plus 9 static product apps |
+| Sprint 8.6 local builds | Passed for Supersite Hub plus 9 static product apps |
+| Sprint 8.6 local artifact builds | Passed for Hub and 9 static product apps |
+| Sprint 8.6 local final gates before feature commit | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
 | Static app deploy workflow | `.github/workflows/deploy-static-app-hostgator.yml` |
 | Static app deploy scripts | Build, validate, publish, smoke and per-app config implemented |
 | Real ads activated by Fase 8 | 0 planned |

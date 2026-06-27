@@ -173,7 +173,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'DocShift status for public web readiness, ads, billing, file processing and gates.',
     sections: [
       ['MVP surface', 'The local/CI MVP contains eight document tools, five language route sets, sitemap, canonical, hreflang, structured data, worker validation and browser-side pdf-lib output.'],
-      ['Production', 'No DocShift public deploy is switched because app-specific packaging, smoke and rollback are not implemented yet. The HostGator public URL remains a noindex placeholder.'],
+      ['Production', 'DocShift is live at `/supersites/docshift/` as a versioned HostGator static app with public smoke and rollback workflow validated. Document processing remains browser-side; no upload, OCR server path or storage path is active.'],
       ['Gates', 'Batch folders, larger files, OCR, table extraction, API, history, teams, billing, ads and external analytics remain blocked until documented gates pass.'],
     ],
   },

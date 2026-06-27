@@ -252,27 +252,27 @@ export const contentPageCatalog: ContentPage[] = [
   page('status', {
     en: copy('Status', 'Launch Status', 'DevUtility Lab status for public web readiness, ads, billing, deploy and gates.', reviewed.en, [
       ['MVP surface', 'The local/CI MVP contains nine tools, five language route sets, sitemap, canonical, hreflang and structured data.'],
-      ['Production', 'No DevUtility Lab public deploy is switched yet because app-specific packaging, smoke and rollback are not implemented yet.'],
+      ['Production', 'DevUtility Lab is live at `/supersites/devutility-lab/` as a versioned HostGator static app with public smoke and rollback workflow validated.'],
       ['Gates', 'AdSense, billing, external analytics, accounts, private history, workspaces, batch processing and API remain blocked until documented gates pass.'],
     ]),
     'pt-br': copy('Status', 'Status de Lancamento', 'Status do DevUtility Lab para web publica, ads, billing, deploy e gates.', reviewed['pt-br'], [
       ['Superficie MVP', 'O MVP local/CI contem nove ferramentas, cinco idiomas, sitemap, canonical, hreflang e dados estruturados.'],
-      ['Producao', 'Nenhum deploy publico do DevUtility Lab foi trocado porque empacotamento, smoke e rollback especificos ainda nao existem.'],
+      ['Producao', 'O DevUtility Lab esta no ar em `/supersites/devutility-lab/` como app estatico versionado no HostGator, com smoke publico e rollback validados.'],
       ['Gates', 'AdSense, billing, analytics externo, contas, historico privado, workspaces, lotes e API seguem bloqueados.'],
     ]),
     es: copy('Estado', 'Estado de lanzamiento', 'Estado de DevUtility Lab para web publica, ads, billing, deploy y gates.', reviewed.es, [
       ['Superficie MVP', 'El MVP local/CI contiene nueve herramientas, cinco idiomas, sitemap, canonical, hreflang y datos estructurados.'],
-      ['Produccion', 'No se cambia deploy publico de DevUtility Lab porque faltan packaging, smoke y rollback especificos.'],
+      ['Produccion', 'DevUtility Lab esta activo en `/supersites/devutility-lab/` como app estatico versionado en HostGator, con smoke publico y rollback validados.'],
       ['Gates', 'AdSense, billing, analytics externo, cuentas, historial privado, workspaces, lotes y API siguen bloqueados.'],
     ]),
     fr: copy('Statut', 'Statut de lancement', 'Statut DevUtility Lab pour web public, ads, billing, deploy et gates.', reviewed.fr, [
       ['Surface MVP', 'Le MVP local/CI contient neuf outils, cinq langues, sitemap, canonical, hreflang et donnees structurees.'],
-      ['Production', 'Aucun deploy public DevUtility Lab n est bascule sans packaging, smoke et rollback specifiques.'],
+      ['Production', 'DevUtility Lab est en ligne sur `/supersites/devutility-lab/` comme app statique HostGator versionnee, avec smoke public et rollback valides.'],
       ['Gates', 'AdSense, billing, analytics externe, comptes, historique prive, workspaces, lots et API restent bloques.'],
     ]),
     de: copy('Status', 'Launch-Status', 'DevUtility Lab Status fuer Public Web, Ads, Billing, Deploy und Gates.', reviewed.de, [
       ['MVP-Oberflaeche', 'Das lokale/CI-MVP enthaelt neun Tools, fuenf Sprachen, Sitemap, Canonical, Hreflang und strukturierte Daten.'],
-      ['Produktion', 'Kein oeffentlicher DevUtility-Lab-Deploy wird geschaltet, weil Packaging, Smoke und Rollback fehlen.'],
+      ['Produktion', 'DevUtility Lab ist unter `/supersites/devutility-lab/` als versionierte statische HostGator-App live; Public Smoke und Rollback sind validiert.'],
       ['Gates', 'AdSense, Billing, externe Analytics, Konten, privater Verlauf, Workspaces, Stapel und API bleiben gesperrt.'],
     ]),
   }),

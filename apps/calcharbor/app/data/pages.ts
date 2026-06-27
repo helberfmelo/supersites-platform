@@ -252,27 +252,27 @@ export const contentPageCatalog: ContentPage[] = [
   page('status', {
     en: copy('Status', 'Launch Status', 'CalcHarbor launch status for public web readiness, ads, billing, deploy and gates.', reviewed.en, [
       ['MVP surface', 'The local/CI MVP contains four calculators, five language route sets, sitemap, canonical, hreflang and structured data.'],
-      ['Production', 'No CalcHarbor public deploy is switched because app-specific packaging, smoke and rollback are not implemented yet.'],
+      ['Production', 'CalcHarbor is live at `/supersites/calcharbor/` as a versioned HostGator static app with public smoke and rollback workflow validated.'],
       ['Gates', 'AdSense, billing, external analytics, saved scenarios, widgets and API remain blocked until documented gates pass.'],
     ]),
     'pt-br': copy('Status', 'Status de Lancamento', 'Status de lancamento do CalcHarbor para web publica, ads, billing, deploy e gates.', reviewed['pt-br'], [
       ['Superficie MVP', 'O MVP local/CI contem quatro calculadoras, cinco idiomas, sitemap, canonical, hreflang e dados estruturados.'],
-      ['Producao', 'Nenhum deploy publico do CalcHarbor e trocado porque empacotamento, smoke e rollback especificos ainda nao existem.'],
+      ['Producao', 'O CalcHarbor esta no ar em `/supersites/calcharbor/` como app estatico versionado no HostGator, com smoke publico e rollback validados.'],
       ['Gates', 'AdSense, billing, analytics externo, cenarios salvos, widgets e API seguem bloqueados ate os gates passarem.'],
     ]),
     es: copy('Estado', 'Estado de lanzamiento', 'Estado de lanzamiento de CalcHarbor para web publica, ads, billing, deploy y gates.', reviewed.es, [
       ['Superficie MVP', 'El MVP local/CI contiene cuatro calculadoras, cinco idiomas, sitemap, canonical, hreflang y datos estructurados.'],
-      ['Produccion', 'No se cambia deploy publico de CalcHarbor porque faltan packaging, smoke y rollback especificos.'],
+      ['Produccion', 'CalcHarbor esta activo en `/supersites/calcharbor/` como app estatico versionado en HostGator, con smoke publico y rollback validados.'],
       ['Gates', 'AdSense, billing, analytics externo, escenarios, widgets y API siguen bloqueados hasta pasar gates.'],
     ]),
     fr: copy('Statut', 'Statut de lancement', 'Statut de lancement CalcHarbor pour web public, ads, billing, deploy et gates.', reviewed.fr, [
       ['Surface MVP', 'Le MVP local/CI contient quatre calculatrices, cinq langues, sitemap, canonical, hreflang et donnees structurees.'],
-      ['Production', 'Aucun deploy public CalcHarbor n est bascule sans packaging, smoke et rollback specifiques.'],
+      ['Production', 'CalcHarbor est en ligne sur `/supersites/calcharbor/` comme app statique HostGator versionnee, avec smoke public et rollback valides.'],
       ['Gates', 'AdSense, billing, analytics externe, scenarios, widgets et API restent bloques jusqu aux gates.'],
     ]),
     de: copy('Status', 'Launch-Status', 'CalcHarbor Sprint-3.1-Status fuer Public Web, Ads, Billing, Deploy und Gates.', reviewed.de, [
       ['MVP-Oberflaeche', 'Das lokale/CI-MVP enthaelt vier Rechner, fuenf Sprachen, Sitemap, Canonical, Hreflang und strukturierte Daten.'],
-      ['Produktion', 'Kein oeffentlicher CalcHarbor-Deploy wird geschaltet, weil Packaging, Smoke und Rollback fehlen.'],
+      ['Produktion', 'CalcHarbor ist unter `/supersites/calcharbor/` als versionierte statische HostGator-App live; Public Smoke und Rollback sind validiert.'],
       ['Gates', 'AdSense, Billing, externe Analytics, Szenarien, Widgets und API bleiben bis zu Gates gesperrt.'],
     ]),
   }),

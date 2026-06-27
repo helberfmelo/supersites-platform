@@ -13,7 +13,7 @@ Current local MVP scope:
 Not active:
 
 - Accounts, saved domains, history, recurring monitoring, DMARC report ingestion, alerts, batch jobs, public paid API, billing, ads, external analytics, webhooks or production cron/worker rollout.
-- Real MailHealth public deploy. The HostGator public URL remains a placeholder until app-specific artifact validation, smoke and rollback exist.
+- Recurring monitors, alert routing, DMARC ingestion and paid API remain inactive even though the public HostGator static app is live with artifact validation, smoke and rollback.
 
 Sprint 7.9 benchmark refinement:
 
