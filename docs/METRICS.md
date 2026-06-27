@@ -53,6 +53,9 @@ Data-base: 2026-06-27
 | AdSense ad serving enabled | 0 |
 | Sprint 6.3 local validation | Passed |
 | Sprint 6.3 external AdSense activation | 0 |
+| Sprint 6.3 Quality Gate run | `28283163228` passed |
+| Sprint 6.3 Deploy Dry Run | `28283163215` passed |
+| Sprint 6.3 public smokes | Hub/control-plane/NetProbe passed |
 | Analytics storage tables implemented | 2 |
 | Analytics ingest endpoint implemented | 1 |
 | Metric snapshot endpoint implemented | 1 |

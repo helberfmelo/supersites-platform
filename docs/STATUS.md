@@ -772,6 +772,10 @@ Em 2026-06-27, a Sprint 6.1 criou a fundacao local de CMP, Consent Mode, TCF fai
   - Previews locais passaram para os 11 apps Nuxt, confirmando home, rotas criticas, privacidade, sitemap e assets `_nuxt`.
   - Playwright local passou para todos os apps, totalizando 43 testes visuais/funcionais.
   - Gates obrigatorios locais passaram: `pnpm validate:structure`, `pnpm deploy:dry-run`, `pnpm validate:secrets`, `pnpm ci:changes` e `git diff --check`; `git diff --check` exibiu apenas avisos CRLF conhecidos em arquivos touched.
+  - Feature commit publicado: `64e378a` (`feat: add adsense readiness foundation`).
+  - GitHub Actions `Quality Gate` run `28283163228` passou com repository safety, backend, Hub frontend, NetProbe frontend, CalcHarbor frontend, DevUtility Lab frontend, TimeNexus frontend, QRRoute frontend, InvoiceCraft frontend, MailHealth frontend, SitePulse Lab frontend, PixelBatch frontend, DocShift frontend e summary.
+  - GitHub Actions `Deploy Dry Run` run `28283163215` passou e gerou plano sem mutar producao.
+  - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis.
   - Nenhum snippet AdSense, `pagead2.googlesyndication.com`, `adsbygoogle`, `ads.txt` real, Management API, site submission, cookie de terceiro, impressao, clique, leilao, receita ou anuncio real foi ativado.
 
 ## Pendencias criticas
