@@ -78,9 +78,9 @@ Data-base: 2026-06-27
 | AI growth automation enabled | 0 |
 | Sprint 6.5 local validation | Passed |
 | Sprint 6.5 external AI activation | 0 |
-| Sprint 6.5 Quality Gate run | Pending |
-| Sprint 6.5 Deploy Dry Run | Pending |
-| Sprint 6.5 public smokes | Pending |
+| Sprint 6.5 Quality Gate run | `28284429517` passed |
+| Sprint 6.5 Deploy Dry Run | `28284429539` passed |
+| Sprint 6.5 public smokes | Hub/control-plane/NetProbe passed |
 | Analytics storage tables implemented | 2 |
 | Analytics ingest endpoint implemented | 1 |
 | Metric snapshot endpoint implemented | 1 |
