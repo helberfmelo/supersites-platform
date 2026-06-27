@@ -348,7 +348,7 @@ Sprint 8.5 - Publicar batch C de arquivos
 - Simbolico: PROD-BATCH-C.
 - Objetivo: publicar PixelBatch e DocShift em `/supersites/<app>/` usando releases versionados HostGator.
 - Validacao: workflow de deploy real, smoke publico por app, assets `_nuxt`, ausencia de upload server-side/storage e rollback testavel.
-- Status: concluida em producao/localmente. PixelBatch e DocShift foram publicados como Nuxt SSG reais em `/supersites/<app>/` pelos runs `28295611998` e `28295818189`, com smokes publicos e assets `_nuxt` validados. O commit/CI de fechamento desta sprint esta em andamento.
+- Status: concluida. PixelBatch e DocShift foram publicados como Nuxt SSG reais em `/supersites/<app>/` pelos runs `28295611998` e `28295818189`, com smokes publicos e assets `_nuxt` validados. Commit `e44dd53`, Quality Gate `28296063288`, Deploy Dry Run `28296063292` e smokes publicos pos-CI passaram.
 
 Sprint 8.6 - Public rollout closure e operacao minima
 - Simbolico: PROD-CLOSURE.

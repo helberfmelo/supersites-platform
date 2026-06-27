@@ -504,6 +504,10 @@ Data-base: 2026-06-27
 | Sprint 8.5 DocShift deploy run | `28295818189` passed |
 | Sprint 8.5 DocShift public smoke | Passed; asset `https://opentshost.com/supersites/docshift/_nuxt/DIlw8pwj.js` |
 | Sprint 8.5 aggregate public smoke | Passed; Hub, control-plane/API, NetProbe, Batch A, Batch B, PixelBatch, DocShift and MailHealth/SitePulse JSON probes active |
+| Sprint 8.5 closing commit | `e44dd53` |
+| Sprint 8.5 Quality Gate after smoke contract update | `28296063288` passed |
+| Sprint 8.5 Deploy Dry Run after smoke contract update | `28296063292` passed |
+| Sprint 8.5 post-CI public smokes | Hub/control-plane/NetProbe plus Batch A, Batch B, PixelBatch and DocShift passed |
 | Public live Nuxt/Laravel surfaces after Sprint 8.5 | 12: Hub, control-plane/API, NetProbe Atlas and 9 product apps |
 | Public placeholder apps remaining after Sprint 8.5 | 0 |
 | Static app deploy workflow | `.github/workflows/deploy-static-app-hostgator.yml` |

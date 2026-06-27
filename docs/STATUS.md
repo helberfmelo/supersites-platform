@@ -1089,6 +1089,8 @@ Em seguida, a Fase 8 - Public Rollout e Production Visibility foi aberta para pu
   - DocShift deploy real: workflow `Deploy Static App HostGator` run `28295818189` passou, release `a04d21d9a4a4989825da41c26859abaf84ccddce-28295818189-1`, 192 arquivos, 2355729 bytes. Smoke publico validou `https://opentshost.com/supersites/docshift/` e asset `https://opentshost.com/supersites/docshift/_nuxt/DIlw8pwj.js`.
   - `scripts/smoke-supersite-public.ps1` foi atualizado para exigir PixelBatch e DocShift reais, sem placeholder/noindex e com assets `_nuxt`, completando o smoke agregado para os nove apps publicados.
   - Gates locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check`, `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public` e smokes por app para PixelBatch e DocShift.
+  - Commit de fechamento tecnico `e44dd53` foi pushado para `main`; GitHub Actions `Quality Gate` run `28296063288` passou com matriz completa de frontend/backend, e `Deploy Dry Run` run `28296063292` passou.
+  - Smokes publicos pos-CI passaram: Hub agregador validou assets dos nove apps, APIs MailHealth/SitePulse, control-plane/API e NetProbe; smokes especificos de PixelBatch e DocShift passaram novamente.
   - Nenhum upload server-side, OCR server-side, batch worker, API publica paga, storage persistente, IA externa, anuncio real, checkout, billing, analytics externo, worker/cron ou direct-root mapping foi ativado. Rollback por release e rollback para placeholder permanecem disponiveis pelo workflow.
 
 ## Pendencias criticas

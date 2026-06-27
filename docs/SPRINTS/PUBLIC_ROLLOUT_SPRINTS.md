@@ -67,7 +67,7 @@ The next mapped phase is therefore Fase 8 - Public Rollout e Production Visibili
 - Public smokes pass for both apps.
 - Browser-side processing remains local; no upload/storage/OCR server path is activated.
 - Rollback commands and release IDs are recorded.
-- Completed with `Deploy Static App HostGator` runs `28295611998` and `28295818189`; releases `a04d21d9a4a4989825da41c26859abaf84ccddce-28295611998-1` and `a04d21d9a4a4989825da41c26859abaf84ccddce-28295818189-1`.
+- Completed with `Deploy Static App HostGator` runs `28295611998` and `28295818189`; releases `a04d21d9a4a4989825da41c26859abaf84ccddce-28295611998-1` and `a04d21d9a4a4989825da41c26859abaf84ccddce-28295818189-1`. Closing commit `e44dd53`, Quality Gate `28296063288` and Deploy Dry Run `28296063292` passed.
 
 ### Sprint 8.6
 
