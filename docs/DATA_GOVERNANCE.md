@@ -56,11 +56,12 @@
 
 ## TimeNexus
 
-- Entradas de fusos, datas, dias uteis, timestamps, idade, porcentagem e unidades sao processadas no navegador, preferencialmente em Web Worker, no MVP da Sprint 3.3.
+- Entradas de fusos, datas, dias uteis, timestamps, idade, porcentagem e unidades sao processadas no navegador, preferencialmente em Web Worker.
 - Datas, horarios, zonas, data de nascimento, data de referencia, valores numericos, unidades e resultados nao devem ser enviados para backend, analytics, logs, GA4, GTM, AdSense ou data layer.
+- A Sprint 7.6 adiciona resposta direta, timeline e relacionados como renderizacao local do resultado em memoria; esses valores nao sao persistidos nem transformados em propriedades de analytics.
 - O app nao salva presets, historico, widgets, contas, `localStorage` ou `sessionStorage` nesta sprint.
 - Eventos locais permitidos devem conter apenas `tool_slug`, rota, locale e metadados de UI sem valores do usuario.
-- Futuras funcionalidades pagas de widgets, API, presets ou historico exigem matriz de dados, retencao, exportacao/exclusao, termos e controles de privacidade antes de ativacao.
+- Futuras funcionalidades pagas de widgets, API, presets, historico, compartilhamento ou suporte pago exigem matriz de dados, retencao, exportacao/exclusao, termos, impostos/pagamentos quando aplicavel e controles de privacidade antes de ativacao.
 
 ## QRRoute
 

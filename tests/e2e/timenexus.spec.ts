@@ -59,6 +59,7 @@ test.describe('TimeNexus MVP', () => {
     )
     await expect(page.getByRole('heading', { name: 'Time Zone Converter' })).toBeVisible()
     await expect(page.getByText('7 browser tools')).toBeVisible()
+    await expect(page.getByText('Local MVP').first()).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
     const screenshot = await page.screenshot({ fullPage: true })
@@ -78,7 +79,14 @@ test.describe('TimeNexus MVP', () => {
     await page.getByRole('button', { name: 'Run tool' }).click()
 
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Time Zone Converter')
+    await expect(page.getByRole('heading', { name: 'Direct answer' })).toBeVisible()
+    await expect(page.locator('.answer-primary')).toContainText('Europe/London')
+    await expect(page.getByRole('heading', { name: 'Meeting timeline' })).toBeVisible()
+    await expect(page.locator('.timeline-list')).toContainText('America/New_York')
     await expect(page.locator('.result-output')).toContainText('Europe/London')
+    await expect(page.getByRole('heading', { name: 'Related tools' })).toBeVisible()
+    await expect(page.getByRole('link', { name: /Date Difference Calculator/ })).toBeVisible()
+    await expect(page.getByRole('listitem').filter({ hasText: 'Embeddable widgets' })).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)
     await expectNoHorizontalOverflow(page)
 

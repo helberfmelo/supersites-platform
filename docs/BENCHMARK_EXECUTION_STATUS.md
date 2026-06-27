@@ -13,8 +13,8 @@ Data-base: 2026-06-27
 ## Pre-sprint state
 
 - Git branch: `main`.
-- Latest completed commit before this block: `36efe77 docs: record executive reports ci validation`.
-- Recent CI state: Quality Gate `28285226540` passed for the docs-only Executive Reports closing commit.
+- Latest completed commit before this sprint: `8c05649 docs: record devutility benchmark ci validation`.
+- Recent CI state: Quality Gate `28287593364` passed for the docs-only DevUtility Lab benchmark closing commit.
 - Public live surfaces: SuperSites Hub, control-plane/API and NetProbe Atlas.
 - Public placeholder surfaces: CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch and DocShift.
 - External activations: zero real ads, zero real billing, zero checkout, zero provider AI, zero GA4/GTM/Search Console imports, zero AdSense serving and zero production workers for this block.
@@ -37,8 +37,8 @@ Data-base: 2026-06-27
 | 7.3 | BR-NETPROBE | Completed | DNS/IP benchmark UX refined and public NetProbe smokes pass |
 | 7.4 | BR-CALCHARBOR | Completed | Calculator UX/content refined in local/CI, public deploy still gated |
 | 7.5 | BR-DEVUTILITY | Completed | Developer tool UX/content refined in local/CI, public deploy still gated |
-| 7.6 | BR-TIMENEXUS | Next | Time/date UX/content refined in local/CI, public deploy still gated |
-| 7.7 | BR-QRROUTE | Planned | QR/UTM UX/content refined in local/CI, dynamic links still gated |
+| 7.6 | BR-TIMENEXUS | Local validation passed | Time/date UX/content refined in local/CI, public deploy still gated |
+| 7.7 | BR-QRROUTE | Next | QR/UTM UX/content refined in local/CI, dynamic links still gated |
 | 7.8 | BR-INVOICECRAFT | Planned | Invoice/quote/receipt UX/content refined in local/CI, taxes/payments gated |
 | 7.9 | BR-MAILHEALTH | Planned | Email diagnostic UX/content refined in local/CI, monitoring/API gated |
 | 7.10 | BR-SITEPULSE | Planned | Web diagnostic UX/content refined in local/CI, uptime workers gated |
@@ -168,3 +168,12 @@ Sprint 7.5 remote validation:
 - Quality Gate: `28287478977`, success.
 - Deploy Dry Run: `28287478989`, success.
 - Public smokes: Hub, control-plane/API and NetProbe passed after push.
+
+Sprint 7.6 local validation passed:
+
+- `pnpm test:timenexus`
+- `pnpm build:timenexus`
+- `pnpm validate:timenexus-preview`
+- `pnpm test:e2e:timenexus` (first run hit transient `EADDRINUSE` from the preview port; rerun passed after the port released)
+- TimeNexus Playwright screenshots inspected under `artifacts/playwright-timenexus-report/data/`.
+- Remote Quality Gate, Deploy Dry Run, public smokes and closing docs commit are pending the feature push.

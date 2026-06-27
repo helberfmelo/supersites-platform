@@ -110,7 +110,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'TimeNexus is the SuperSites product for browser-side time, date, percentage and unit helpers.',
     sections: [
       ['Purpose', 'The site helps users answer everyday time, calendar and conversion questions without mandatory signup or server-side product storage.'],
-      ['What is live now', 'Sprint 3.3 launches seven local tools covering time zones, date difference, business days, timestamp, age, percentage and units.'],
+      ['What is live now', 'The browser MVP includes seven local tools covering time zones, date difference, business days, timestamp, age, percentage and units.'],
       ['Upgrade boundary', 'Paid value is planned around widgets, API access, presets, private history, collaboration and no ads.'],
     ],
   },
@@ -125,7 +125,7 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   privacy: {
     title: 'Privacy Policy',
-    description: 'TimeNexus minimizes collection by processing Sprint 3.3 inputs locally in the browser.',
+    description: 'TimeNexus minimizes collection by processing free tool inputs locally in the browser.',
     sections: [
       ['Data minimization', 'Tool inputs and results are not sent to a product API, not stored in account history and not written to browser storage in this MVP.'],
       ['Analytics boundary', 'Allowed analytics events may record tool slugs and page paths, but not dates, zones, ages, percentages, units or generated results.'],
@@ -170,10 +170,10 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   status: {
     title: 'Launch Status',
-    description: 'TimeNexus Sprint 3.3 status for public web readiness, ads, billing, deploy and gates.',
+    description: 'TimeNexus status for public web readiness, ads, billing, deploy and gates.',
     sections: [
       ['MVP surface', 'The local/CI MVP contains seven tools, five language route sets, sitemap, canonical, hreflang and structured data.'],
-      ['Production', 'No TimeNexus public deploy is switched in Sprint 3.3 because app-specific packaging, smoke and rollback are not implemented yet.'],
+      ['Production', 'No TimeNexus public deploy is switched because app-specific packaging, smoke and rollback gates are not implemented yet.'],
       ['Gates', 'AdSense, billing, external analytics, accounts, widgets, presets, history and API remain blocked until documented gates pass.'],
     ],
   },

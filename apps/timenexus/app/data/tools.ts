@@ -68,6 +68,17 @@ export interface TimeToolResult {
   error?: string
 }
 
+export interface TimeToolAnswerSummary {
+  primary: string
+  secondary: string
+  details: ResultMeta[]
+}
+
+export interface TimeToolTimelineItem {
+  label: string
+  value: string
+}
+
 interface TimeToolSpec {
   slug: TimeToolSlug
   category: TimeToolCategory
@@ -109,60 +120,60 @@ const localizedBasics: Record<LocaleCode, {
     modeLabel: 'Mode',
     resultLabel: 'Result',
     localSection: 'Local execution',
-    localBody: 'Sprint 3.3 runs the free TimeNexus tool in this browser session and uses a Web Worker when supported.',
+    localBody: 'The free TimeNexus tool runs in this browser session and uses a Web Worker when supported.',
     assumptionSection: 'Assumptions',
-    assumptionBody: 'Results use the entered dates, standard Gregorian calendar math, UTC-safe parsing and visible conversion labels.',
+    assumptionBody: 'Results use the entered dates, standard Gregorian calendar math, UTC-safe parsing, the browser Intl time-zone database and visible conversion labels.',
     limitsSection: 'Limits',
-    limitsBody: 'Local holidays, payroll rules, legal deadlines, billing cutoffs and domain-specific calendars need human review before operational use.',
-    faqStorage: { question: 'Are entries stored?', answer: 'No. TimeNexus does not use account storage, localStorage, sessionStorage or a product API in Sprint 3.3.' },
+    limitsBody: 'DST changes, local holidays, payroll rules, legal deadlines, billing cutoffs and domain-specific calendars need human review before operational use.',
+    faqStorage: { question: 'Are entries stored?', answer: 'No. TimeNexus does not use account storage, localStorage, sessionStorage or a product API for these free browser tools.' },
     faqAccuracy: { question: 'Can I use this for compliance deadlines?', answer: 'Use it as a planning helper only. Critical legal, tax, payroll or compliance deadlines require review against the official rule set.' },
   },
   'pt-br': {
     modeLabel: 'Modo',
     resultLabel: 'Resultado',
     localSection: 'Execucao local',
-    localBody: 'A Sprint 3.3 roda a ferramenta gratuita do TimeNexus nesta sessao do navegador e usa Web Worker quando suportado.',
+    localBody: 'A ferramenta gratuita do TimeNexus roda nesta sessao do navegador e usa Web Worker quando suportado.',
     assumptionSection: 'Premissas',
-    assumptionBody: 'Resultados usam as datas informadas, calendario gregoriano, parsing seguro em UTC e rotulos de conversao visiveis.',
+    assumptionBody: 'Resultados usam as datas informadas, calendario gregoriano, parsing seguro em UTC, base de fusos Intl do navegador e rotulos visiveis.',
     limitsSection: 'Limites',
-    limitsBody: 'Feriados locais, regras trabalhistas, prazos legais, cortes de billing e calendarios de dominio precisam revisao humana antes de uso operacional.',
-    faqStorage: { question: 'As entradas sao armazenadas?', answer: 'Nao. O TimeNexus nao usa conta, localStorage, sessionStorage nem API de produto na Sprint 3.3.' },
+    limitsBody: 'Mudancas de horario de verao, feriados locais, regras trabalhistas, prazos legais, cortes de billing e calendarios de dominio precisam revisao humana antes de uso operacional.',
+    faqStorage: { question: 'As entradas sao armazenadas?', answer: 'Nao. O TimeNexus nao usa conta, localStorage, sessionStorage nem API de produto nestas ferramentas gratuitas do navegador.' },
     faqAccuracy: { question: 'Posso usar para prazos de compliance?', answer: 'Use apenas como apoio de planejamento. Prazos legais, fiscais, trabalhistas ou de compliance exigem revisao da regra oficial.' },
   },
   es: {
     modeLabel: 'Modo',
     resultLabel: 'Resultado',
     localSection: 'Ejecucion local',
-    localBody: 'Sprint 3.3 ejecuta la herramienta gratis de TimeNexus en esta sesion del navegador y usa Web Worker cuando hay soporte.',
+    localBody: 'La herramienta gratis de TimeNexus corre en esta sesion del navegador y usa Web Worker cuando hay soporte.',
     assumptionSection: 'Supuestos',
-    assumptionBody: 'Los resultados usan las fechas ingresadas, calendario gregoriano, parsing seguro en UTC y etiquetas visibles.',
+    assumptionBody: 'Los resultados usan las fechas ingresadas, calendario gregoriano, parsing seguro en UTC, base Intl de zonas horarias del navegador y etiquetas visibles.',
     limitsSection: 'Limites',
-    limitsBody: 'Festivos locales, reglas laborales, plazos legales, cortes de billing y calendarios del dominio requieren revision humana.',
-    faqStorage: { question: 'Se almacenan entradas?', answer: 'No. TimeNexus no usa cuentas, localStorage, sessionStorage ni API de producto en Sprint 3.3.' },
+    limitsBody: 'Cambios DST, festivos locales, reglas laborales, plazos legales, cortes de billing y calendarios del dominio requieren revision humana.',
+    faqStorage: { question: 'Se almacenan entradas?', answer: 'No. TimeNexus no usa cuentas, localStorage, sessionStorage ni API de producto para estas herramientas gratis del navegador.' },
     faqAccuracy: { question: 'Sirve para plazos de cumplimiento?', answer: 'Usalo solo como apoyo de planificacion. Plazos legales, fiscales, laborales o de compliance requieren revisar la regla oficial.' },
   },
   fr: {
     modeLabel: 'Mode',
     resultLabel: 'Resultat',
     localSection: 'Execution locale',
-    localBody: 'Sprint 3.3 execute l outil gratuit TimeNexus dans cette session navigateur et utilise un Web Worker si supporte.',
+    localBody: 'L outil gratuit TimeNexus s execute dans cette session navigateur et utilise un Web Worker si supporte.',
     assumptionSection: 'Hypotheses',
-    assumptionBody: 'Les resultats utilisent les dates saisies, le calendrier gregorien, un parsing UTC et des libelles de conversion visibles.',
+    assumptionBody: 'Les resultats utilisent les dates saisies, le calendrier gregorien, un parsing UTC, la base Intl des fuseaux du navigateur et des libelles visibles.',
     limitsSection: 'Limites',
-    limitsBody: 'Jours feries locaux, regles paie, delais juridiques, coupures billing et calendriers metier demandent une revue humaine.',
-    faqStorage: { question: 'Les entrees sont-elles stockees?', answer: 'Non. TimeNexus n utilise ni compte, ni localStorage, ni sessionStorage, ni API produit en Sprint 3.3.' },
+    limitsBody: 'Changements DST, jours feries locaux, regles paie, delais juridiques, coupures billing et calendriers metier demandent une revue humaine.',
+    faqStorage: { question: 'Les entrees sont-elles stockees?', answer: 'Non. TimeNexus n utilise ni compte, ni localStorage, ni sessionStorage, ni API produit pour ces outils gratuits du navigateur.' },
     faqAccuracy: { question: 'Puis-je l utiliser pour des delais de conformite?', answer: 'Utilisez-le comme aide de planification. Les delais juridiques, fiscaux, paie ou conformite exigent la regle officielle.' },
   },
   de: {
     modeLabel: 'Modus',
     resultLabel: 'Ergebnis',
     localSection: 'Lokale Ausfuehrung',
-    localBody: 'Sprint 3.3 fuehrt das kostenlose TimeNexus-Tool in dieser Browser-Sitzung aus und nutzt bei Support einen Web Worker.',
+    localBody: 'Das kostenlose TimeNexus-Tool laeuft in dieser Browser-Sitzung und nutzt bei Support einen Web Worker.',
     assumptionSection: 'Annahmen',
-    assumptionBody: 'Ergebnisse nutzen eingegebene Daten, gregorianische Kalenderlogik, UTC-sicheres Parsing und sichtbare Umrechnungslabels.',
+    assumptionBody: 'Ergebnisse nutzen eingegebene Daten, gregorianische Kalenderlogik, UTC-sicheres Parsing, die Intl-Zeitzonendatenbank des Browsers und sichtbare Labels.',
     limitsSection: 'Grenzen',
-    limitsBody: 'Lokale Feiertage, Payroll-Regeln, juristische Fristen, Billing-Stichtage und Fachkalender brauchen menschliche Pruefung.',
-    faqStorage: { question: 'Werden Eingaben gespeichert?', answer: 'Nein. TimeNexus nutzt in Sprint 3.3 weder Konto, localStorage, sessionStorage noch Produkt-API.' },
+    limitsBody: 'DST-Wechsel, lokale Feiertage, Payroll-Regeln, juristische Fristen, Billing-Stichtage und Fachkalender brauchen menschliche Pruefung.',
+    faqStorage: { question: 'Werden Eingaben gespeichert?', answer: 'Nein. TimeNexus nutzt fuer diese kostenlosen Browser-Tools weder Konto, localStorage, sessionStorage noch Produkt-API.' },
     faqAccuracy: { question: 'Kann ich das fuer Compliance-Fristen nutzen?', answer: 'Nur als Planungshilfe. Rechtliche, steuerliche, Payroll- oder Compliance-Fristen brauchen die offizielle Regel.' },
   },
 }
@@ -377,6 +388,110 @@ export function filterTimeTools(query: string, category: TimeToolCategory | 'all
 
     return matchesCategory && (!normalizedQuery || searchableText.includes(normalizedQuery))
   })
+}
+
+export function getRelatedTimeTools(toolDefinition: TimeToolDefinition, limit = 3): TimeToolDefinition[] {
+  const sameCategory = timeToolCatalog.filter((candidate) => candidate.slug !== toolDefinition.slug && candidate.category === toolDefinition.category)
+  const otherCategories = timeToolCatalog.filter((candidate) => candidate.slug !== toolDefinition.slug && candidate.category !== toolDefinition.category)
+
+  return [...sameCategory, ...otherCategories].slice(0, limit)
+}
+
+function outputLines(result: TimeToolResult): string[] {
+  return result.output
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+}
+
+function findLine(result: TimeToolResult, prefix: string): string | null {
+  return outputLines(result).find((line) => line.startsWith(prefix)) ?? null
+}
+
+function firstResultLine(result: TimeToolResult): string {
+  return outputLines(result)[0] ?? 'Result ready.'
+}
+
+function metaValue(result: TimeToolResult, label: string): string | null {
+  return result.meta.find((item) => item.label === label)?.value ?? null
+}
+
+export function createTimeToolAnswerSummary(slug: TimeToolSlug, result: TimeToolResult | null): TimeToolAnswerSummary | null {
+  if (!result?.ok) {
+    return null
+  }
+
+  if (slug === 'timezone-converter') {
+    const sourceZone = metaValue(result, 'Source zone')
+    const targetZone = metaValue(result, 'Target zone')
+    const targetLine = targetZone ? findLine(result, `${targetZone}:`) : null
+    const sourceLine = sourceZone ? findLine(result, `${sourceZone}:`) : null
+    const utcLine = findLine(result, 'UTC:')
+
+    return {
+      primary: targetLine ?? firstResultLine(result),
+      secondary: [sourceLine, utcLine].filter(Boolean).join(' | '),
+      details: result.meta,
+    }
+  }
+
+  const preferredPrefixes: Partial<Record<TimeToolSlug, string[]>> = {
+    'date-difference': ['Calendar days:', 'Weeks:'],
+    'business-days': ['Business days:', 'Weekend days:'],
+    'timestamp-converter': ['ISO:', 'UTC:'],
+    'age-calculator': ['Age:', 'Total days:'],
+    'percentage-calculator': ['Result:', 'Percent change:', '% of'],
+    'unit-converter': ['Result:', 'Conversion:'],
+  }
+  const lines = outputLines(result)
+  const primary = preferredPrefixes[slug]
+    ?.map((prefix) => lines.find((line) => line.startsWith(prefix) || line.includes(prefix)))
+    .find(Boolean)
+
+  return {
+    primary: primary ?? firstResultLine(result),
+    secondary: lines.filter((line) => line !== primary).slice(0, 2).join(' | '),
+    details: result.meta,
+  }
+}
+
+export function createTimeToolTimeline(slug: TimeToolSlug, result: TimeToolResult | null): TimeToolTimelineItem[] {
+  if (!result?.ok) {
+    return []
+  }
+
+  const lines = outputLines(result)
+
+  if (slug === 'timezone-converter') {
+    const sourceZone = metaValue(result, 'Source zone')
+    const targetZone = metaValue(result, 'Target zone')
+    const timelinePrefixes = [
+      'UTC',
+      ...(sourceZone ? [sourceZone] : []),
+      ...(targetZone ? [targetZone] : []),
+    ]
+
+    return timelinePrefixes
+      .map((prefix) => {
+        const line = lines.find((candidate) => candidate.startsWith(`${prefix}:`))
+        return line ? { label: prefix, value: line.replace(`${prefix}:`, '').trim() } : null
+      })
+      .filter((item): item is TimeToolTimelineItem => Boolean(item))
+  }
+
+  if (slug === 'timestamp-converter') {
+    const namedZone = metaValue(result, 'Named zone')
+    const timelinePrefixes = ['ISO', 'UTC', 'Local', ...(namedZone && namedZone !== 'not provided' ? [namedZone] : [])]
+
+    return timelinePrefixes
+      .map((prefix) => {
+        const line = lines.find((candidate) => candidate.startsWith(`${prefix}:`))
+        return line ? { label: prefix, value: line.replace(`${prefix}:`, '').trim() } : null
+      })
+      .filter((item): item is TimeToolTimelineItem => Boolean(item))
+  }
+
+  return []
 }
 
 export function createTimeToolStructuredData(toolDefinition: TimeToolDefinition, locale: LocaleCode, url: string): Record<string, unknown>[] {

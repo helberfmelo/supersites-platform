@@ -109,10 +109,11 @@ Nao registrar em analytics:
 - data de nascimento, idade ou data de referencia;
 - valores de porcentagem, bases, partes, unidades ou quantidades;
 - timestamps, resultados convertidos, diferencas calculadas ou contagem de dias uteis;
+- respostas diretas, itens de timeline, metadados de zona/resultados, exemplos editados ou texto de erro derivado de input;
 - erros ou mensagens que possam conter partes do input;
 - combinacoes de locale, fuso e resultado que possam revelar contexto pessoal.
 
-Sprint 3.3 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, historico salvo, widgets, API publica ou storage persistente do TimeNexus.
+Sprint 7.6 nao altera o contrato de eventos: resposta direta, timeline, relacionados e paineis de upgrade/support sao UI local sem novos eventos ou propriedades. GA4, GTM, AdSense, backend de analytics externo, contas, historico salvo, widgets, API publica e storage persistente continuam desativados para o TimeNexus.
 
 ## QRRoute tools
 

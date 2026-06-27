@@ -3,8 +3,11 @@ import { getButtonClass } from '@supersites/ui'
 import { computed, onMounted, ref } from 'vue'
 import { getShellCopy } from '../../../data/copy'
 import {
+  createTimeToolAnswerSummary,
   createTimeToolStructuredData,
+  createTimeToolTimeline,
   getCategoryLabel,
+  getRelatedTimeTools,
   getTimeToolBySlug,
   getTimeToolCopy,
   type TimeToolResult,
@@ -36,6 +39,24 @@ const hasRun = ref(false)
 const isRunning = ref(false)
 const result = ref<TimeToolResult | null>(null)
 const resultTitle = computed(() => result.value?.ok === false ? shellCopy.invalidResultTitle : copy.resultLabel)
+const answerSummary = computed(() => createTimeToolAnswerSummary(tool.slug, result.value))
+const timelineItems = computed(() => createTimeToolTimeline(tool.slug, result.value))
+const relatedTools = computed(() => getRelatedTimeTools(tool))
+const answerStateTitle = computed(() => {
+  if (isRunning.value) {
+    return shellCopy.answerRunningTitle
+  }
+
+  if (result.value?.ok === false) {
+    return shellCopy.invalidResultTitle
+  }
+
+  if (answerSummary.value) {
+    return shellCopy.answerReadyLabel
+  }
+
+  return shellCopy.answerEmptyTitle
+})
 
 async function runTool(): Promise<void> {
   isRunning.value = true
@@ -143,7 +164,7 @@ useHead({
       <div>
         <div class="detail-topline">
           <p class="eyebrow">{{ getCategoryLabel(tool.category, locale) }}</p>
-          <span class="status">Sprint 3.3</span>
+          <span class="status">{{ shellCopy.localBadgeLabel }}</span>
         </div>
         <h1 :id="`${tool.slug}-title`">{{ copy.title }}</h1>
         <p class="lead">{{ copy.headline }}</p>
@@ -169,6 +190,40 @@ useHead({
 
     <section class="tool-layout">
       <div>
+        <section class="answer-panel" aria-live="polite" :aria-busy="isRunning" :aria-labelledby="`${tool.slug}-answer`">
+          <div class="answer-panel__topline">
+            <h2 :id="`${tool.slug}-answer`">{{ shellCopy.directAnswerTitle }}</h2>
+            <span class="status">{{ answerStateTitle }}</span>
+          </div>
+
+          <p v-if="isRunning">{{ shellCopy.answerRunningBody }}</p>
+          <p v-else-if="result && !result.ok" class="result-error">{{ result.error }}</p>
+          <template v-else-if="answerSummary">
+            <strong class="answer-primary">{{ answerSummary.primary }}</strong>
+            <p v-if="answerSummary.secondary" class="answer-secondary">{{ answerSummary.secondary }}</p>
+            <dl v-if="answerSummary.details.length" class="answer-details">
+              <div v-for="item in answerSummary.details" :key="`${item.label}-${item.value}`">
+                <dt>{{ item.label }}</dt>
+                <dd>{{ item.value }}</dd>
+              </div>
+            </dl>
+          </template>
+          <p v-else>{{ shellCopy.answerEmptyBody }}</p>
+        </section>
+
+        <section v-if="timelineItems.length" class="timeline-panel" :aria-labelledby="`${tool.slug}-timeline`">
+          <div>
+            <h2 :id="`${tool.slug}-timeline`">{{ shellCopy.timelineTitle }}</h2>
+            <p>{{ shellCopy.timelineBody }}</p>
+          </div>
+          <ol class="timeline-list">
+            <li v-for="item in timelineItems" :key="`${item.label}-${item.value}`">
+              <span>{{ item.label }}</span>
+              <strong>{{ item.value }}</strong>
+            </li>
+          </ol>
+        </section>
+
         <section class="input-panel" :aria-labelledby="`${tool.slug}-input`">
           <h2 :id="`${tool.slug}-input`">{{ shellCopy.inputTitle }}</h2>
           <p>{{ copy.description }}</p>
@@ -221,19 +276,64 @@ useHead({
         </section>
       </div>
 
-      <aside class="band" :aria-labelledby="`${tool.slug}-scope`">
-        <h2 :id="`${tool.slug}-scope`">{{ shellCopy.freeCheckLabel }}</h2>
-        <dl class="fact-list">
-          <div>
-            <dt>{{ shellCopy.freeCheckLabel }}</dt>
-            <dd>{{ copy.freeScope }}</dd>
-          </div>
-          <div>
-            <dt>{{ shellCopy.upgradePathLabel }}</dt>
-            <dd>{{ copy.upgradeScope }}</dd>
-          </div>
-        </dl>
+      <aside class="tool-sidebar">
+        <section class="band" :aria-labelledby="`${tool.slug}-scope`">
+          <h2 :id="`${tool.slug}-scope`">{{ shellCopy.freeCheckLabel }}</h2>
+          <dl class="fact-list">
+            <div>
+              <dt>{{ shellCopy.freeCheckLabel }}</dt>
+              <dd>{{ copy.freeScope }}</dd>
+            </div>
+            <div>
+              <dt>{{ shellCopy.upgradePathLabel }}</dt>
+              <dd>{{ copy.upgradeScope }}</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="band" :aria-labelledby="`${tool.slug}-example`">
+          <h2 :id="`${tool.slug}-example`">{{ shellCopy.exampleTitle }}</h2>
+          <p>{{ shellCopy.exampleBody }}</p>
+          <dl class="fact-list">
+            <div>
+              <dt>{{ copy.inputLabel }}</dt>
+              <dd>{{ tool.samplePrimary }}</dd>
+            </div>
+            <div v-if="tool.acceptsSecondaryInput">
+              <dt>{{ copy.secondaryInputLabel }}</dt>
+              <dd>{{ tool.sampleSecondary }}</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="band" :aria-labelledby="`${tool.slug}-gated`">
+          <h2 :id="`${tool.slug}-gated`">{{ shellCopy.gatedTitle }}</h2>
+          <p>{{ shellCopy.gatedBody }}</p>
+          <h3>{{ shellCopy.gatedItemsTitle }}</h3>
+          <ul class="gated-list">
+            <li v-for="item in shellCopy.gatedItems" :key="item">{{ item }}</li>
+          </ul>
+        </section>
       </aside>
+    </section>
+
+    <section class="related-panel" :aria-labelledby="`${tool.slug}-related`">
+      <div>
+        <h2 :id="`${tool.slug}-related`">{{ shellCopy.relatedTitle }}</h2>
+        <p>{{ shellCopy.relatedBody }}</p>
+      </div>
+      <div class="related-grid">
+        <NuxtLink
+          v-for="relatedTool in relatedTools"
+          :key="relatedTool.slug"
+          class="related-card"
+          :to="localizedToolPath(locale, relatedTool.slug)"
+        >
+          <span>{{ getCategoryLabel(relatedTool.category, locale) }}</span>
+          <strong>{{ getTimeToolCopy(relatedTool, locale).title }}</strong>
+          <small>{{ shellCopy.openRelatedLabel }}</small>
+        </NuxtLink>
+      </div>
     </section>
 
     <section class="content-layout" :aria-labelledby="`${tool.slug}-guide`">
@@ -257,6 +357,8 @@ useHead({
       <aside class="band" :aria-label="copy.reviewedLabel">
         <h2>{{ copy.reviewedLabel }}</h2>
         <p>{{ shellCopy.contentQualityBody }}</p>
+        <h3>{{ shellCopy.supportTitle }}</h3>
+        <p>{{ shellCopy.supportBody }}</p>
         <div class="inline-link-list">
           <NuxtLink :to="localizedContentPath(locale, 'methodology')">
             {{ shellCopy.methodologyLabel }}

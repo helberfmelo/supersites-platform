@@ -3,9 +3,12 @@ import { publicLocaleCodes } from '../app/data/locales'
 import { contentPageCatalog, contentPageSlugs, getContentPageBySlug } from '../app/data/pages'
 import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
 import {
+  createTimeToolAnswerSummary,
   createTimeToolStructuredData,
+  createTimeToolTimeline,
   executeTimeTool,
   filterTimeTools,
+  getRelatedTimeTools,
   getTimeToolBySlug,
   getTimeToolCopy,
   timeToolCatalog,
@@ -14,7 +17,7 @@ import {
 import { createTimeNexusToolEvent } from '../app/utils/analytics'
 
 describe('TimeNexus MVP', () => {
-  it('lists Sprint 3.3 tools in roadmap order', () => {
+  it('lists browser tools in roadmap order', () => {
     expect(timeToolCatalog.map((tool) => tool.slug)).toEqual([...timeToolSlugs])
     expect(timeToolCatalog).toHaveLength(7)
     expect(getTimeToolBySlug('timezone-converter')?.localized.en.shortName).toBe('Zones')
@@ -54,6 +57,35 @@ describe('TimeNexus MVP', () => {
     const businessDays = await executeTimeTool('business-days', '2026-06-01', '2026-06-05', 'mon-fri-inclusive')
     expect(businessDays.ok).toBe(true)
     expect(businessDays.output).toContain('Business days: 5')
+  })
+
+  it('creates direct answers, timelines and related tool suggestions', async () => {
+    const zoneTool = getTimeToolBySlug('timezone-converter')
+    expect(zoneTool).not.toBeNull()
+
+    const zones = await executeTimeTool(
+      'timezone-converter',
+      '2026-06-26T15:30:00Z',
+      'America/New_York -> Europe/London',
+      'instant',
+    )
+    const summary = createTimeToolAnswerSummary('timezone-converter', zones)
+    const timeline = createTimeToolTimeline('timezone-converter', zones)
+
+    expect(summary?.primary).toContain('Europe/London')
+    expect(summary?.secondary).toContain('UTC')
+    expect(summary?.details).toHaveLength(2)
+    expect(timeline.map((item) => item.label)).toEqual(['UTC', 'America/New_York', 'Europe/London'])
+
+    expect(getRelatedTimeTools(zoneTool!).map((tool) => tool.slug)).toEqual([
+      'date-difference',
+      'business-days',
+      'timestamp-converter',
+    ])
+
+    const businessDays = await executeTimeTool('business-days', '2026-06-01', '2026-06-05', 'mon-fri-inclusive')
+    expect(createTimeToolAnswerSummary('business-days', businessDays)?.primary).toBe('Business days: 5')
+    expect(createTimeToolTimeline('business-days', businessDays)).toEqual([])
   })
 
   it('supports timestamp, age, percentage and unit helpers', async () => {

@@ -2,7 +2,7 @@
 
 Time zone, date, calendar, timestamp and unit conversion tools.
 
-Sprint 3.3 implements the local/CI MVP as a Nuxt SSG app under `apps/timenexus`.
+The local/CI MVP runs as a Nuxt SSG app under `apps/timenexus`.
 
 Free browser-side tools:
 
@@ -14,6 +14,8 @@ Free browser-side tools:
 - `percentage-calculator`
 - `unit-converter`
 
+Sprint 7.6 benchmark refinement adds direct-answer panels, timezone/timestamp timelines, related-tool navigation, safer DST/calendar limit copy and inert upgrade/support panels for widgets, presets, history, API and ad-free workflows.
+
 Local commands:
 
 ```powershell
@@ -24,4 +26,4 @@ pnpm test:e2e:timenexus
 pnpm dev:timenexus
 ```
 
-Dates, zones, numeric values and results stay in the browser. Sprint 3.3 does not activate accounts, billing, ads, backend persistence, public API, external analytics or real HostGator traffic switch for TimeNexus.
+Dates, zones, numeric values and results stay in the browser. TimeNexus does not activate accounts, billing, ads, backend persistence, public API, external analytics or real HostGator traffic switch.

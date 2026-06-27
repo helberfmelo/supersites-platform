@@ -102,9 +102,10 @@
 
 ## TimeNexus client-side tools
 
-- Ferramentas da Sprint 3.3 rodam no navegador com Web Worker quando suportado e fallback local sem chamadas de rede.
+- Ferramentas do TimeNexus rodam no navegador com Web Worker quando suportado e fallback local sem chamadas de rede.
 - Fusos, datas, horarios, timestamps, idade, porcentagem, unidades, valores numericos e resultados nao devem ser enviados a backend, logs, analytics ou data layer.
 - O app nao deve persistir input ou resultado em `localStorage`, `sessionStorage`, IndexedDB ou cookies nesta sprint.
+- Respostas diretas, timelines, exemplos, relacionados e paineis de upgrade/support da Sprint 7.6 devem permanecer componentes locais sem API, checkout, widget publico, link de pagamento ou storage.
 - Regras de fuso e calendario devem declarar limitacoes de precisao, diferencas de locale e dependencia do runtime do navegador.
 
 ## QRRoute client-side tools and redirects
