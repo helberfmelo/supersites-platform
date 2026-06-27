@@ -449,6 +449,21 @@ Data-base: 2026-06-27
 | External AI providers activated | 0 |
 | Production workers/crons activated by Fase 7 | 0 |
 
+## Public rollout KPIs
+
+| KPI | Value |
+|---|---|
+| Public rollout phase mapped | Fase 8 |
+| Public rollout sprints mapped | 6 |
+| Public rollout sprint map | `docs/SPRINTS/PUBLIC_ROLLOUT_SPRINTS.md` |
+| Public live Nuxt/Laravel surfaces before Fase 8 | 3: Hub, control-plane/API and NetProbe Atlas |
+| Public placeholder apps before Fase 8 | 9 |
+| Apps targeted for static HostGator rollout | CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch, DocShift |
+| Real ads activated by Fase 8 | 0 planned |
+| Real billing activated by Fase 8 | 0 planned |
+| Real checkout/payment activated by Fase 8 | 0 planned |
+| Direct root URL mapping activated by Fase 8 | 0 planned before separate rewrite/domain decision |
+
 ## Product metrics
 
 No product traffic, revenue, AdSense, billing or tool usage metrics exist yet.

@@ -24,6 +24,8 @@ Nas Sprints 7.10 a 7.12, SitePulse Lab, PixelBatch e DocShift receberam refiname
 
 Apos o fechamento da Sprint 7.12, o prompt complementar `C:\Users\helbe\Downloads\PROMPT_COMPLEMENTAR_BENCHMARK_EVOLUCAO_CONTINUACAO.md` foi relido. O bloco descrito por ele ja estava mapeado e executado como Fase 7 - Benchmark-Driven Refinement; portanto nenhuma fase ou sprint duplicada foi criada. O roadmap nao mapeia Fase 8 neste momento, e as pendencias restantes continuam nos gates operacionais/humanos listados abaixo.
 
+Em seguida, a Fase 8 - Public Rollout e Production Visibility foi aberta para publicar em producao o que ja foi implementado e validado localmente/CI. A autorizacao desta fase cobre deploy tecnico reversivel para `/supersites/<app>/` com artifact gate, smoke publico e rollback, sem ativar AdSense, billing, checkout, doacao, afiliado, tags externas, workers/crons, storage de upload, API paga ou mapeamento DNS/domino definitivo.
+
 ## Estado local verificado
 
 - Raiz local: `D:\Projetos\supersites`.
@@ -1028,6 +1030,12 @@ Apos o fechamento da Sprint 7.12, o prompt complementar `C:\Users\helbe\Download
   - GitHub Actions `Quality Gate` docs-only run `28291007581` passou; repository safety e quality summary passaram, e os jobs frontend/backend foram ignorados conforme path-aware.
   - Prompt complementar externo relido apos o fechamento: o bloco `BR-ROADMAP` a `BR-DOCSHIFT` ja esta concluido como Fase 7, sem sprints tecnicas de benchmark pendentes e sem criar Fase 8 duplicada.
   - Nenhum upload server-side, OCR, batch worker, API publica paga, historico, equipe, checkout, billing, anuncio real, storage persistente, worker de producao, analytics externo ou deploy real do DocShift foi ativado.
+
+- Sprint 8.1 validation:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/ROADMAP.md`, `docs/STATUS.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local/release e todos os ADRs existentes ate `0030`.
+  - Estado inicial verificado: `main...origin/main` limpo no commit `7cf277a`, Hub/control-plane/API/NetProbe saudaveis em smokes publicos e nove apps ainda como placeholders publicos.
+  - Fase 8 foi mapeada com Sprints 8.1 a 8.6 para criar framework de deploy estatico, publicar apps em tres batches e fechar smokes/operacao minima.
+  - O escopo de producao desta fase permanece limitado a deploy tecnico reversivel sob `/supersites/<app>/`; direct-root mapping, DNS definitivo, ads, billing, checkout, doacoes, afiliados, workers pagos e integracoes externas seguem fora do escopo desta autorizacao.
 
 ## Pendencias criticas
 

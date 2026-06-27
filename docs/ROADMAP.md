@@ -316,6 +316,46 @@ Sprint 7.12 - DocShift benchmark UX
 - Validacao: worker/PDF rendering smoke, testes/build/preview/Playwright do DocShift e gates locais.
 - Status: concluida localmente/CI. O app recebeu badges `Local MVP`, dropzone/estado de arquivo, workflow steps, workflow snapshot, checklist de privacidade, related document tools e painel server/OCR/batch/API/history gated sem endpoint novo. `pnpm test:docshift`, `pnpm build:docshift`, `pnpm validate:docshift-preview`, `pnpm test:e2e:docshift`, Quality Gate `28290860646`, Deploy Dry Run `28290860642`, smokes publicos de Hub/control-plane/NetProbe e Quality Gate docs-only `28291007581` passaram; upload server-side, OCR, batch worker, historico, API paga, ads, billing, analytics externo e deploy publico real seguem bloqueados ate gates especificos.
 
+## Fase 8 - Public Rollout e Production Visibility
+
+Sprint 8.1 - Roadmap de rollout publico
+- Simbolico: PROD-ROADMAP.
+- Objetivo: transformar as pendencias de placeholders em sprints executaveis de deploy real, preservando rollback, smoke publico, secrets e gates de monetizacao.
+- Entregas: `docs/SPRINTS/PUBLIC_ROLLOUT_SPRINTS.md`, atualizacao de status/metricas/roadmap e registro de que a autorizacao atual cobre deploy tecnico reversivel, sem ads, billing, checkout, doacao, afiliado, DNS definitivo ou workers pagos.
+- Validacao: docs-only, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, push e Quality Gate docs-only monitorado.
+- Status: em andamento.
+
+Sprint 8.2 - Static app deploy framework
+- Simbolico: PROD-STATIC-FRAMEWORK.
+- Objetivo: criar scripts/workflow genericos de artifact, validacao, publish, smoke e rollback para apps Nuxt SSG que ainda estao como placeholders publicos.
+- Escopo: CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch e DocShift.
+- Validacao: builds/testes afetados, artifact gates por app, smokes locais/preview, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate e Deploy Dry Run.
+- Status: planejada.
+
+Sprint 8.3 - Publicar batch A de utilitarios locais
+- Simbolico: PROD-BATCH-A.
+- Objetivo: publicar CalcHarbor, DevUtility Lab e TimeNexus em `/supersites/<app>/` usando releases versionados HostGator.
+- Validacao: workflow de deploy real, smoke publico por app, rollback testavel por release e preservacao de placeholder como fallback.
+- Status: planejada.
+
+Sprint 8.4 - Publicar batch B de workflow/diagnostico
+- Simbolico: PROD-BATCH-B.
+- Objetivo: publicar QRRoute, InvoiceCraft, MailHealth e SitePulse Lab em `/supersites/<app>/` usando releases versionados HostGator.
+- Validacao: workflow de deploy real, smoke publico por app, endpoints publicos seguros quando aplicavel e rollback testavel.
+- Status: planejada.
+
+Sprint 8.5 - Publicar batch C de arquivos
+- Simbolico: PROD-BATCH-C.
+- Objetivo: publicar PixelBatch e DocShift em `/supersites/<app>/` usando releases versionados HostGator.
+- Validacao: workflow de deploy real, smoke publico por app, assets `_nuxt`, ausencia de upload server-side/storage e rollback testavel.
+- Status: planejada.
+
+Sprint 8.6 - Public rollout closure e operacao minima
+- Simbolico: PROD-CLOSURE.
+- Objetivo: fechar registros de producao, atualizar smokes publicos consolidados, revisar placeholders remanescentes, manter direct-root mapping e monetizacao como gates separados.
+- Validacao: smokes publicos de Hub, control-plane/API, NetProbe e nove apps publicados; docs/status/metricas atualizados; Quality Gate docs-only monitorado.
+- Status: planejada.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.
