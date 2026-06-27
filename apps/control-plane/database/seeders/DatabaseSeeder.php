@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             AdSenseReadinessSeeder::class,
             BillingReadinessSeeder::class,
             AiGrowthReadinessSeeder::class,
+            ExecutiveReportReadinessSeeder::class,
             OperationalTaskSeeder::class,
         ]);
 

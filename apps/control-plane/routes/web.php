@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ExecutiveReportController;
 use App\Http\Controllers\Admin\SiteController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\DB;
@@ -26,6 +27,13 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function (): v
     Route::get('/', DashboardController::class)
         ->middleware('permission:dashboard.view')
         ->name('dashboard');
+
+    Route::middleware('permission:dashboard.view')->group(function (): void {
+        Route::get('/reports', [ExecutiveReportController::class, 'index'])->name('reports.index');
+        Route::get('/reports/{executiveReport}', [ExecutiveReportController::class, 'show'])->name('reports.show');
+        Route::get('/reports/{executiveReport}/print', [ExecutiveReportController::class, 'print'])->name('reports.print');
+        Route::get('/reports/{executiveReport}/export.csv', [ExecutiveReportController::class, 'exportCsv'])->name('reports.export');
+    });
 
     Route::get('/sites', [SiteController::class, 'index'])
         ->middleware('permission:sites.view')

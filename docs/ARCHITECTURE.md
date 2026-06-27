@@ -95,6 +95,18 @@ Sprint 6.5 adiciona auditoria e priorizacao local sem provider externo de IA:
 - O dashboard admin exibe recomendacoes e anomalias seedadas para readiness, mantendo `automationAllowed=false`.
 - Nao ha SDK/API de IA, chamada externa, worker recorrente, auto-publicacao, alteracao de SEO, mudanca de ads, checkout/billing, Search Console import ou mutation em provider nesta sprint.
 
+## Executive reports
+
+Sprint 6.6 adiciona relatorios executivos locais e exportaveis no control plane:
+
+- `@supersites/executive-reports` exporta contrato versionado para relatorios `weekly`/`monthly`, itens evidenciados, resumo de data status e CSV.
+- Cada item distingue `finalized`, `estimated`, `delayed` ou `unavailable`; o resumo do relatorio agrega esses status sem misturar disponibilidade.
+- `executive_reports` armazena periodo, status, versao de contrato, resumo de data status, `causality_status`, origem e flag `export_ready`.
+- `executive_report_items` armazena secao, site opcional, metrica, valor, unidade, data status, fonte e evidencias; nao armazena PII, provider payload, receita individual, token ou segredo.
+- `/admin/reports`, detalhe, print e export CSV usam a permissao existente `dashboard.view` e registram audit logs de visualizacao/exportacao.
+- `causality_status` permanece `not_inferred`; linguagem causal bloqueia export readiness no contrato TypeScript ate existir revisao manual com evidencia.
+- Nao ha importacao GA4/Search Console/AdSense/billing, envio de e-mail, agendamento recorrente, worker, provider externo, receita real ou automacao de relatorio nesta sprint.
+
 ## Stack local inicial
 
 - Workspace Node: `pnpm@11.9.0`.

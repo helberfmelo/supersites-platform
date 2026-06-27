@@ -151,6 +151,15 @@
 - Anomalias nao devem inferir causalidade sem evidencia; `causalityStatus` permanece `not_inferred` por padrao.
 - Provider externo de IA, prompts com dados operacionais, automacao de conteudo, SEO, ads, billing, Search Console ou provider-side mutation permanecem desligados ate matriz de dados, base legal, termos, custo, retencao e aprovacao humana.
 
+## Executive reports
+
+- A Sprint 6.6 cria apenas relatorios operacionais locais em `executive_reports` e `executive_report_items`.
+- Campos permitidos: periodo, tipo semanal/mensal, status, fonte, resumo de data status, `causality_status`, secao, site opcional, label de metrica, valor operacional agregado, unidade, evidencia documental e notas sanitizadas.
+- Cada item deve marcar `data_status` como `finalized`, `estimated`, `delayed` ou `unavailable`; relatorios exportados devem preservar esse campo.
+- Campos proibidos: PII, e-mail, telefone, documento, IP, query string real, input bruto de ferramenta, arquivo, prompt, resposta de provider, token, OAuth secret, API key, cookie, payload de webhook, dados de cliente, cartao, dados bancarios, receita individual ou payload bruto de GA4/Search Console/AdSense/billing.
+- `causality_status` permanece `not_inferred`; conclusoes causais exigem contrato futuro de revisao manual e evidencia explicita antes de qualquer export.
+- Envio automatico de relatorios, ingestao de providers, agenda recorrente, worker, e-mail externo e snapshots reais de receita/trafego permanecem desligados ate matriz de dados, retencao, exportacao/exclusao e gates humanos/tecnicos.
+
 ## Analytics sem PII
 
 - O contrato versionado fica em `packages/analytics`.

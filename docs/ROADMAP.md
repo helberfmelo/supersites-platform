@@ -237,6 +237,7 @@ Sprint 6.5 - AI growth engine
 Sprint 6.6 - Executive reports
 - Objetivo: relatorios semanais/mensais exportaveis no control plane.
 - Validacao: dados estimados/finalizados separados, sem causalidade inventada.
+- Status: concluida localmente; CI/deploy dry-run e smokes publicos serao registrados no fechamento da sprint apos push. `@supersites/executive-reports` foi criado como contrato deterministico local para relatorios semanais/mensais, com itens evidenciados, status de dado `finalized`/`estimated`/`delayed`/`unavailable`, redacao de PII/segredos, CSV e bloqueio de claims causais. O control-plane recebeu `executive_reports`, `executive_report_items`, models, seeder, dashboard, `/admin/reports`, detalhe, print e export CSV protegidos por `dashboard.view`. O seeder cria 2 relatorios e 12 itens apenas a partir de docs/runbooks/gates, com `causality_status=not_inferred`. Nenhum provider externo, importacao GA4/Search Console/AdSense/billing, worker recorrente, envio de e-mail, receita real, checkout, webhook, ads ou analytics externo foi ativado.
 
 ## Definition of done do programa
 

@@ -257,6 +257,16 @@ Sprint 6.5 cria somente recomendacoes e anomalias operacionais locais:
 - Toda anomalia deve distinguir baseline, valor observado, limiar, status e `causalityStatus`; causalidade nao deve ser inferida sem evidencia.
 - Nenhum provider externo de IA, telemetria de IA, worker recorrente, prompt egress, auto-publicacao, Search Console import, ads, billing ou provider mutation e ativado.
 
+## Executive reports
+
+Sprint 6.6 cria somente relatorios executivos operacionais locais:
+
+- `@supersites/executive-reports`, `executive_reports` e `executive_report_items` nao coletam PII, input de ferramenta, arquivo, prompt externo, resposta de provider, dados de cliente, IP, cookie, segredo, payload bruto de GA4/Search Console/AdSense/billing ou receita individual.
+- Cada item exportavel deve distinguir fonte, evidencia e `data_status`: `finalized`, `estimated`, `delayed` ou `unavailable`.
+- CSV e print preservam `data_status` por item e `causality_status` do relatorio.
+- `causality_status` permanece `not_inferred`; causalidade nao deve ser inferida sem evidencia e revisao manual futura.
+- Nenhum provider import, e-mail recorrente, worker, cron de producao, external analytics, ads, checkout, webhook, billing real ou report automation e ativado.
+
 ## Deploy smokes
 
 Smokes de deploy do control-plane/API e do NetProbe devem validar apenas disponibilidade e contrato JSON, sem criar eventos externos de analytics e sem registrar alvo bruto de usuario. O alvo DNS padrao para smoke publico e `example.com`.

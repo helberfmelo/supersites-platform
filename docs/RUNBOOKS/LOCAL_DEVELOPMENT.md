@@ -143,7 +143,7 @@ pnpm validate:docshift-preview
 pnpm test:e2e:docshift
 ```
 
-The root package scripts use explicit filters for `@supersites/ui`, `@supersites/i18n`, `@supersites/seo`, `@supersites/consent`, `@supersites/analytics` and `@supersites/ads`. A generic pnpm path filter did not match the package workspaces on Windows during Sprint 1.3.
+The root package scripts use explicit filters for `@supersites/ui`, `@supersites/i18n`, `@supersites/seo`, `@supersites/consent`, `@supersites/analytics`, `@supersites/ads`, `@supersites/billing`, `@supersites/ai-growth` and `@supersites/executive-reports`. A generic pnpm path filter did not match the package workspaces on Windows during Sprint 1.3.
 
 Install the Playwright browser once per workstation if needed:
 

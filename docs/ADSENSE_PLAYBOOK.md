@@ -129,6 +129,12 @@ AdSense e a monetizacao primaria, mas nenhum site deve ser submetido antes de cu
 - O motor nao pode submeter sites ao AdSense, habilitar Management API, publicar `ads.txt`, inserir snippets, ativar Auto Ads/manual ads, mudar placements ou inferir receita/causalidade sem evidencia.
 - Qualquer recomendacao que dependa de conta, beneficiario legal, fiscal, banco, PIN, publisher id, dominio definitivo, politicas ou request real de ads deve permanecer `human_required`.
 
+## Executive reports
+
+- Relatorios executivos podem listar apenas readiness AdSense local e status de gates.
+- Impressoes, cliques, CTR, RPM, receita, requests, `publisher_id`, site submission e Management API devem aparecer como `unavailable` enquanto anuncios reais e API estiverem desligados.
+- Relatorios nao devem inferir causalidade de trafego/receita nem sugerir que ads estao ativos antes dos gates humanos, tecnicos e de politica.
+
 ## HUMAN_ACTION_REQUIRED
 
 - Beneficiario legal.

@@ -10,21 +10,21 @@ Data-base: 2026-06-27
 | Public utility sites planned | 10 |
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
-| Shared package folders created | 12 |
-| ADRs created | 28 |
-| Docs files created/maintained | 57 |
+| Shared package folders created | 13 |
+| ADRs created | 29 |
+| Docs files created/maintained | 58 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
 | Nuxt apps scaffolded | 11 |
 | Laravel apps scaffolded | 1 |
-| Shared TS packages implemented | 8 |
-| Shared package tests passing | 59 |
-| Shared package typechecks passing | 8 |
+| Shared TS packages implemented | 9 |
+| Shared package tests passing | 65 |
+| Shared package typechecks passing | 9 |
 | Frontend tests passing | 81 |
 | Playwright visual smoke tests passing | 43 |
-| Laravel tests passing | 44 |
+| Laravel tests passing | 45 |
 | Control plane API endpoints implemented | 20 |
-| Control plane admin routes implemented | 6 |
+| Control plane admin routes implemented | 10 |
 | Control plane portfolio records seeded | 12 |
 | Control plane RBAC permissions seeded | 7 |
 | Control plane RBAC roles seeded | 4 |
@@ -81,6 +81,15 @@ Data-base: 2026-06-27
 | Sprint 6.5 Quality Gate run | `28284429517` passed |
 | Sprint 6.5 Deploy Dry Run | `28284429539` passed |
 | Sprint 6.5 public smokes | Hub/control-plane/NetProbe passed |
+| Executive report contract gates implemented | 1 |
+| Executive report storage tables | 2 |
+| Executive reports seeded | 2 |
+| Executive report items seeded | 12 |
+| Executive report export routes implemented | 2 |
+| Executive report causality inferred | 0 |
+| Executive report external providers active | 0 |
+| Sprint 6.6 local validation | Passed |
+| Sprint 6.6 external report automation activation | 0 |
 | Analytics storage tables implemented | 2 |
 | Analytics ingest endpoint implemented | 1 |
 | Metric snapshot endpoint implemented | 1 |

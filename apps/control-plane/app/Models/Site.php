@@ -130,4 +130,12 @@ class Site extends Model
     {
         return $this->hasMany(AiGrowthAnomaly::class);
     }
+
+    /**
+     * @return HasMany<ExecutiveReportItem, $this>
+     */
+    public function executiveReportItems(): HasMany
+    {
+        return $this->hasMany(ExecutiveReportItem::class);
+    }
 }

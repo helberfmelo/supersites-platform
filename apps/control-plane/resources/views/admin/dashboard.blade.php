@@ -31,6 +31,18 @@
             <strong>{{ $summary['billing_gated'] }}</strong>
         </article>
         <article class="panel metric">
+            <span class="muted">Executive reports</span>
+            <strong>{{ $summary['executive_reports'] }}</strong>
+        </article>
+        <article class="panel metric">
+            <span class="muted">Reports export ready</span>
+            <strong>{{ $summary['executive_reports_export_ready'] }}</strong>
+        </article>
+        <article class="panel metric">
+            <span class="muted">Estimated report items</span>
+            <strong>{{ $summary['executive_report_estimated_items'] }}</strong>
+        </article>
+        <article class="panel metric">
             <span class="muted">AI recommendations</span>
             <strong>{{ $summary['ai_growth_recommendations'] }}</strong>
         </article>
@@ -46,6 +58,54 @@
             <span class="muted">Open tasks</span>
             <strong>{{ $summary['open_tasks'] }}</strong>
         </article>
+    </section>
+
+    <section class="panel">
+        <h2>Executive reports</h2>
+        <p class="muted">
+            Weekly and monthly exports separate finalized, estimated, delayed and unavailable data. Causality remains not inferred.
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Report</th>
+                    <th>Period</th>
+                    <th>Status</th>
+                    <th>Data status</th>
+                    <th>Causality</th>
+                    <th>Exports</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($executiveReports as $report)
+                    @php($statusSummary = $report->data_status_summary ?? [])
+                    <tr>
+                        <td>
+                            <a href="{{ route('admin.reports.show', $report) }}">{{ $report->title }}</a>
+                            <br><span class="muted">{{ $report->items_count }} items</span>
+                        </td>
+                        <td>{{ $report->period_type }}<br><span class="muted">{{ $report->period_start?->toDateString() }} to {{ $report->period_end?->toDateString() }}</span></td>
+                        <td><span class="status {{ $report->status }}">{{ $report->status }}</span></td>
+                        <td>
+                            F {{ $statusSummary['finalized'] ?? 0 }} ·
+                            E {{ $statusSummary['estimated'] ?? 0 }} ·
+                            D {{ $statusSummary['delayed'] ?? 0 }} ·
+                            U {{ $statusSummary['unavailable'] ?? 0 }}
+                        </td>
+                        <td>{{ $report->causality_status }}</td>
+                        <td>
+                            <a href="{{ route('admin.reports.export', $report) }}">CSV</a>
+                            ·
+                            <a href="{{ route('admin.reports.print', $report) }}">Print</a>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">No executive reports seeded.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
     </section>
 
     <section class="panel">

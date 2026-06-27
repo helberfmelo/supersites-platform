@@ -93,6 +93,12 @@ A Sprint 6.5 pode priorizar pendencias de monetizacao e billing readiness soment
 
 Recomendacoes que dependam de KYC, impostos, banco, perfil de pagamentos, aceite juridico, secrets, endpoint publico, politica de cancelamento/reembolso ou cobranca real devem permanecer `human_required`.
 
+## Executive report billing data
+
+A Sprint 6.6 pode exportar somente readiness operacional e estados locais de billing. Itens de billing em relatorios devem marcar dados reais de provider como `delayed` ou `unavailable` enquanto checkout, webhooks, invoices, settlement, taxes, refunds, dunning e revenue imports estiverem desligados.
+
+Relatorios executivos nao ativam checkout, payment links, webhooks, SDK, provider config, impostos, plano pago, entitlement pago, receita, invoice, refund, dunning, e-mail recorrente ou cobranca real.
+
 ## Segurança
 
 - Nao armazenar cartao.

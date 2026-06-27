@@ -11,6 +11,8 @@ use App\Models\AuditLog;
 use App\Models\BillingPlan;
 use App\Models\BillingProvider;
 use App\Models\DeploymentRecord;
+use App\Models\ExecutiveReport;
+use App\Models\ExecutiveReportItem;
 use App\Models\GoogleIntegration;
 use App\Models\Incident;
 use App\Models\OperationalTask;
@@ -35,6 +37,9 @@ class DashboardController extends Controller
             'adsense_serving_enabled' => AdSenseSiteReview::query()->where('ad_serving_enabled', true)->count(),
             'billing_gated' => BillingProvider::query()->where('checkout_enabled', false)->count(),
             'billing_checkout_enabled' => BillingProvider::query()->where('checkout_enabled', true)->count(),
+            'executive_reports' => ExecutiveReport::query()->count(),
+            'executive_reports_export_ready' => ExecutiveReport::query()->where('export_ready', true)->count(),
+            'executive_report_estimated_items' => ExecutiveReportItem::query()->where('data_status', 'estimated')->count(),
             'ai_growth_recommendations' => AiGrowthRecommendation::query()->count(),
             'ai_growth_human_gates' => AiGrowthRecommendation::query()->where('human_gate_required', true)->count(),
             'ai_growth_anomalies' => AiGrowthAnomaly::query()->where('status', '!=', 'within_threshold')->count(),
@@ -99,6 +104,12 @@ class DashboardController extends Controller
                 ->latest('finished_at')
                 ->latest()
                 ->limit(5)
+                ->get(),
+            'executiveReports' => ExecutiveReport::query()
+                ->withCount('items')
+                ->latest('period_end')
+                ->latest()
+                ->limit(4)
                 ->get(),
             'googleIntegrations' => GoogleIntegration::query()
                 ->with('site:id,slug,name')

@@ -76,6 +76,14 @@
 - Anomalias devem declarar `causalityStatus=not_inferred` ate haver evidencia suficiente e revisao humana; nao inventar causalidade.
 - Ativar provider externo de IA, enviar prompts com dados operacionais, publicar conteudo, mudar SEO, alterar ads/AdSense, billing, checkout, Search Console ou configuracao de provider exige `HUMAN_ACTION_REQUIRED`, revisao legal/dados/custos, secrets em cofre e smoke/rollback especificos.
 
+## Executive report gates
+
+- A Sprint 6.6 registra apenas relatorios executivos locais; nenhum provider import, envio de e-mail, worker recorrente, webhook de relatorio ou automacao externa e criado.
+- Rotas `/admin/reports`, detalhe, print e CSV exigem autenticacao e `dashboard.view`.
+- CSV/print usam apenas dados operacionais agregados e evidencias documentais; PII, segredos, tokens, provider payloads, dados de cliente, cartao, banco, input bruto de ferramenta e receita individual sao proibidos.
+- `causality_status` deve continuar `not_inferred` ate existir revisao manual com evidencia especifica; exports nao devem transformar correlacao em causa.
+- Ativar envio recorrente, provider imports, report webhooks ou compartilhamento externo exige nova revisao de seguranca, retencao, secrets e gates humanos/tecnicos aplicaveis.
+
 ## DevUtility Lab client-side tools
 
 - Ferramentas da Sprint 3.2 rodam no navegador com Web Worker quando suportado e fallback local sem chamadas de rede.

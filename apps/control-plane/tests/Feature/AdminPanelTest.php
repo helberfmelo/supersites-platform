@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\AuditLog;
+use App\Models\ExecutiveReport;
 use App\Models\Role;
 use App\Models\Site;
 use App\Models\User;
@@ -11,6 +12,7 @@ use Database\Seeders\AdSenseReadinessSeeder;
 use Database\Seeders\AiGrowthReadinessSeeder;
 use Database\Seeders\BillingReadinessSeeder;
 use Database\Seeders\DeploymentRecordSeeder;
+use Database\Seeders\ExecutiveReportReadinessSeeder;
 use Database\Seeders\GoogleIntegrationSeeder;
 use Database\Seeders\OperationalTaskSeeder;
 use Database\Seeders\PortfolioSiteSeeder;
@@ -54,6 +56,7 @@ class AdminPanelTest extends TestCase
             AdSenseReadinessSeeder::class,
             BillingReadinessSeeder::class,
             AiGrowthReadinessSeeder::class,
+            ExecutiveReportReadinessSeeder::class,
             DeploymentRecordSeeder::class,
             OperationalTaskSeeder::class,
         ]);
@@ -73,6 +76,9 @@ class AdminPanelTest extends TestCase
             ->assertSee('stripe')
             ->assertSee('free-preview')
             ->assertSee('disabled')
+            ->assertSee('Executive reports')
+            ->assertSee('Weekly Executive Readiness')
+            ->assertSee('not_inferred')
             ->assertSee('AI growth engine')
             ->assertSee('Build evidence-first SEO and AIO backlog before content expansion')
             ->assertSee('not_inferred')
@@ -84,6 +90,56 @@ class AdminPanelTest extends TestCase
         $this->assertDatabaseHas('audit_logs', [
             'user_id' => $user->id,
             'action' => 'admin.dashboard.viewed',
+        ]);
+    }
+
+    public function test_operator_can_view_and_export_executive_reports(): void
+    {
+        $this->seed([
+            PortfolioSiteSeeder::class,
+            AccessControlSeeder::class,
+            ExecutiveReportReadinessSeeder::class,
+        ]);
+
+        $user = $this->userWithRole('operator');
+        $report = ExecutiveReport::query()->where('period_type', 'weekly')->firstOrFail();
+
+        $this->actingAs($user)
+            ->get('/admin/reports')
+            ->assertOk()
+            ->assertSee('Executive reports')
+            ->assertSee('Weekly Executive Readiness')
+            ->assertSee('finalized')
+            ->assertSee('estimated');
+
+        $this->actingAs($user)
+            ->get("/admin/reports/{$report->id}")
+            ->assertOk()
+            ->assertSee($report->title)
+            ->assertSee('Download CSV')
+            ->assertSee('Causality not_inferred')
+            ->assertSee('Phase 6 sprint gates closed before reporting sprint');
+
+        $this->actingAs($user)
+            ->get("/admin/reports/{$report->id}/print")
+            ->assertOk()
+            ->assertSee('Data status summary')
+            ->assertSee('not_inferred');
+
+        $response = $this->actingAs($user)
+            ->get("/admin/reports/{$report->id}/export.csv");
+
+        $response->assertOk();
+        $this->assertStringContainsString('text/csv', (string) $response->headers->get('content-type'));
+        $this->assertStringContainsString('attachment;', (string) $response->headers->get('content-disposition'));
+        $this->assertStringContainsString('data_status', (string) $response->getContent());
+        $this->assertStringContainsString('causality_status', (string) $response->getContent());
+        $this->assertStringContainsString('finalized', (string) $response->getContent());
+        $this->assertStringContainsString('estimated', (string) $response->getContent());
+
+        $this->assertDatabaseHas('audit_logs', [
+            'user_id' => $user->id,
+            'action' => 'admin.executive_reports.csv_exported',
         ]);
     }
 

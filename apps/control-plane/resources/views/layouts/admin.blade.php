@@ -306,6 +306,7 @@
             </a>
             <nav class="nav" aria-label="Primary">
                 <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                <a href="{{ route('admin.reports.index') }}">Reports</a>
                 <a href="{{ route('admin.sites.index') }}">Sites</a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

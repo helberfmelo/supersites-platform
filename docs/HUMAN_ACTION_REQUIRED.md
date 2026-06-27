@@ -17,6 +17,7 @@ Data-base: 2026-06-27
 | Contas Stripe/Mercado Pago/Paddle | KYC, impostos e termos | Antes de billing real |
 | Ativar checkout/webhooks de billing | Contas provider, KYC, impostos, perfil de pagamentos, aceite juridico, API/webhook secrets, politica de cancelamento/reembolso e endpoint publico assinado | Antes de checkout, webhooks reais, assinatura, cobranca, refund, dunning ou entitlement pago |
 | Provider externo de IA ou automacao de growth | Termos, custo, base legal, matriz de dados, secrets, revisao de conteudo/SEO/ads/billing e risco de mutacao irreversivel | Antes de chamadas externas de IA, prompts com dados operacionais, publicacao automatica, mudancas SEO/ads/billing, Search Console import ou mutation em provider |
+| Relatorios executivos automatizados ou com dados reais de provider | Importacao GA4/Search Console/AdSense/billing, envio recorrente, destinatarios externos, revenue reporting e causalidade exigem matriz de dados, retencao, termos, secrets e revisao humana | Antes de agendar/envio automatico, importar providers, incluir receita real ou publicar qualquer atribuicao causal |
 | Politicas juridicas finais | Aceite juridico | Antes do go-live publico com coleta de dados/ads |
 | Mudanca DNS sem rollback claro | Risco de indisponibilidade | Antes de apontar dominios definitivos |
 | Branch protection no GitHub privado | GitHub retornou HTTP 403 informando que branch protection em repositorio privado exige GitHub Pro ou repositorio publico | Antes de exigir status checks protegidos em `main` |
