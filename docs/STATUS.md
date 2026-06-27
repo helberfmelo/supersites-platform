@@ -12,7 +12,7 @@ Tambem em 2026-06-27, a Sprint 7.1 iniciou a Fase 7 - Benchmark-Driven Refinemen
 
 Na Sprint 7.2, o Hub publico e o control-plane ganharam a primeira camada tecnica de benchmark refinement. O Laravel agora possui `benchmark_site_readiness` e `benchmark_opportunities`, seeder local, rota `/admin/benchmark-refinement`, resumo no dashboard e auditoria de visualizacao sob `dashboard.view`. O Hub publico passou a mostrar sinais compactos de quantidade de frentes de ferramenta, idiomas e monetizacao gated nos cards de catalogo. Os dados sao estimados e baseados em docs/sprints/CI; `external_provider_active`, ads reais, billing real, doacao ativa, afiliado real, checkout, webhook, worker e automacao seguem em zero.
 
-Na Sprint 7.3, o NetProbe Atlas recebeu o refinamento BR-NETPROBE local: pagina `what-is-my-ip` com cards de resposta imediata, explicacao de privacidade e copy local de resumo; pagina `dns-propagation` com valor esperado opcional, cards de match/valores distintos/escopo/TTL, tabela de resolvedores, mapa leve sem dependencia externa e related tools. A API e os contratos antiabuso nao foram alterados; analytics continua limitado a `tool_slug`/rota sanitizada e nao recebe IP, dominio, resultado ou valor esperado. Ads, billing, doacao real, afiliado real, API paga, workers/probes multirregiao e deploy real adicional seguem desativados.
+Na Sprint 7.3, o NetProbe Atlas recebeu o refinamento BR-NETPROBE: pagina `what-is-my-ip` com cards de resposta imediata, explicacao de privacidade e copy local de resumo; pagina `dns-propagation` com valor esperado opcional, cards de match/valores distintos/escopo/TTL, tabela de resolvedores, mapa leve sem dependencia externa e related tools. A Quality Gate `28286547715`, o Deploy Dry Run `28286547705` e os smokes publicos de Hub/control-plane/NetProbe passaram. A API e os contratos antiabuso nao foram alterados; analytics continua limitado a `tool_slug`/rota sanitizada e nao recebe IP, dominio, resultado ou valor esperado. Ads, billing, doacao real, afiliado real, API paga, workers/probes multirregiao e deploy real adicional seguem desativados.
 
 ## Estado local verificado
 
@@ -880,7 +880,10 @@ Na Sprint 7.3, o NetProbe Atlas recebeu o refinamento BR-NETPROBE local: pagina 
   - Validacao NetProbe local passou: `pnpm --filter @supersites/netprobe-atlas test` com 7 testes, `pnpm --filter @supersites/netprobe-atlas build`, `pnpm validate:netprobe-preview` e `pnpm test:e2e:netprobe` com 8 testes Playwright.
   - Screenshots locais inspecionados: `artifacts/netprobe-7.3-ip-mobile.png` e `artifacts/netprobe-7.3-propagation-desktop.png`; sem sobreposicao incoerente ou overflow visual.
   - Gates finais locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation.
-  - Commit, push, CI, deploy dry-run remoto e smokes publicos serao registrados no fechamento documental da sprint.
+  - Feature commit publicado: `dcb4005` (`feat: refine netprobe benchmark ux`).
+  - GitHub Actions `Quality Gate` run `28286547715` passou.
+  - GitHub Actions `Deploy Dry Run` run `28286547705` passou e gerou plano sem mutar producao.
+  - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis.
   - Nenhum endpoint novo, worker/probe multirregiao, AdSense serving, checkout, billing real, doacao ativa, afiliado real, webhook externo, analytics externo ou deploy real adicional foi ativado.
 
 ## Pendencias criticas

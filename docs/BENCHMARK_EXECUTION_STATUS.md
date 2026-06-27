@@ -5,10 +5,10 @@ Data-base: 2026-06-27
 ## Current block
 
 - Real phase: Fase 7 - Benchmark-Driven Refinement.
-- Current sprint: Sprint 7.3 - NetProbe Atlas benchmark UX.
-- Symbolic sprint: BR-NETPROBE.
-- Scope: DNS propagation and What is my IP result UX, safe copy/export affordances, related paths and gated upgrade messaging.
-- Previous sprint completed: Sprint 7.2 - SuperSites catalog and dashboard refinement.
+- Current sprint: Sprint 7.4 - CalcHarbor benchmark UX.
+- Symbolic sprint: BR-CALCHARBOR.
+- Scope: calculator result UX, formulas, calculation memory, examples, FAQs, related paths and gated upgrade messaging.
+- Previous sprint completed: Sprint 7.3 - NetProbe Atlas benchmark UX.
 
 ## Pre-sprint state
 
@@ -34,8 +34,8 @@ Data-base: 2026-06-27
 |---:|---|---|---|
 | 7.1 | BR-ROADMAP | Completed | Docs created, committed, pushed and docs-only Quality Gate recorded |
 | 7.2 | BR-SUPERSITE | Completed | Hub/control-plane benchmark dashboard refined and validated |
-| 7.3 | BR-NETPROBE | Implemented locally; feature commit/CI pending | DNS/IP benchmark UX refined and public NetProbe smokes pass |
-| 7.4 | BR-CALCHARBOR | Planned | Calculator UX/content refined in local/CI, public deploy still gated |
+| 7.3 | BR-NETPROBE | Completed | DNS/IP benchmark UX refined and public NetProbe smokes pass |
+| 7.4 | BR-CALCHARBOR | Next | Calculator UX/content refined in local/CI, public deploy still gated |
 | 7.5 | BR-DEVUTILITY | Planned | Developer tool UX/content refined in local/CI, public deploy still gated |
 | 7.6 | BR-TIMENEXUS | Planned | Time/date UX/content refined in local/CI, public deploy still gated |
 | 7.7 | BR-QRROUTE | Planned | QR/UTM UX/content refined in local/CI, dynamic links still gated |
@@ -122,7 +122,7 @@ Sprint 7.3 local validation passed:
 
 Sprint 7.3 remote validation:
 
-- Feature commit: pending.
-- Quality Gate: pending.
-- Deploy Dry Run: pending.
-- Public smokes: pending.
+- Feature commit: `dcb4005 feat: refine netprobe benchmark ux`.
+- Quality Gate: `28286547715`, success.
+- Deploy Dry Run: `28286547705`, success.
+- Public smokes: Hub, control-plane/API and NetProbe passed after push.
