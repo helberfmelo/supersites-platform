@@ -843,7 +843,10 @@ Tambem em 2026-06-27, a Sprint 7.1 iniciou a Fase 7 - Benchmark-Driven Refinemen
   - Benchmarks locais inventariados: `whatsmydns_dns_propagation.png`, `whatismyip_com_br.png` e `whatismyipaddress_pt_meu_ip.png`; os aprendizados foram registrados como padroes de produto/UX, sem copiar marca, layout, texto, assets ou codigo.
   - Documentos criados: `docs/SPRINTS/BENCHMARK_REFINEMENT_SPRINTS.md`, `docs/BENCHMARK_MATRIX.md`, `docs/BENCHMARK_EXECUTION_STATUS.md`, `docs/SUPERSITE_DASHBOARD_REFINEMENT_PLAN.md` e planos por site em `docs/SITES/<site>/`.
   - Validacao local passou: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` e `git diff --cached --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation.
-  - Commits, push e IDs de CI serao registrados no fechamento documental desta sprint.
+  - Commit publicado: `2e6e0be` (`docs: add benchmark refinement sprint plan`).
+  - GitHub Actions `Quality Gate` run `28285643895` passou como docs-only: repository safety e quality summary passaram; jobs frontend/backend foram ignorados conforme path-aware.
+  - Deploy Dry Run remoto nao foi disparado pelo push docs-only; `pnpm deploy:dry-run` local passou e gerou `artifacts/deploy-dry-run/supersites-deploy-plan.json` e `.md`.
+  - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis.
   - Nenhum codigo, anuncio real, AdSense, GA4/GTM/Search Console import, billing, checkout, pagamento, doacao ativa, afiliado real, provider externo de IA, worker/cron de producao, API paga publica, webhook ou deploy real de placeholder foi ativado.
 
 ## Pendencias criticas

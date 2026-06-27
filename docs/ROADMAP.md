@@ -246,7 +246,7 @@ Sprint 7.1 - Roadmap e sprints de benchmark refinement
 - Objetivo: transformar o prompt de benchmark, screenshots e estado real do roadmap em sprints executaveis, planos por site, matriz consolidada e KPIs de readiness.
 - Entregas: `docs/SPRINTS/BENCHMARK_REFINEMENT_SPRINTS.md`, `docs/BENCHMARK_MATRIX.md`, `docs/BENCHMARK_EXECUTION_STATUS.md`, `docs/SUPERSITE_DASHBOARD_REFINEMENT_PLAN.md`, planos por site em `docs/SITES/<site>/` e atualizacoes de status/metricas.
 - Validacao: docs-only, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, push e Quality Gate docs-only monitorado.
-- Status: em validacao local. Nenhuma mudanca de codigo, anuncio real, billing real, provider externo, afiliado, doacao ativa, worker, cron ou deploy real de placeholder sera ativado nesta sprint.
+- Status: concluida. Commit `2e6e0be` criou o plano documental de benchmark, incorporou o prompt/screenshot assets, atualizou roadmap/status/metricas e criou planos por site. Validacao local passou; Quality Gate docs-only `28285643895` passou; smokes publicos de Hub, control-plane/API e NetProbe passaram. Nenhuma mudanca de codigo, anuncio real, billing real, provider externo, afiliado, doacao ativa, worker, cron ou deploy real de placeholder foi ativado nesta sprint.
 
 Sprint 7.2 - SuperSites Catalog + Dashboard de Benchmark e Crescimento
 - Simbolico: BR-SUPERSITE.

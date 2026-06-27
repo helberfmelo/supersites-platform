@@ -32,7 +32,7 @@ Data-base: 2026-06-27
 
 | Sprint | Symbol | Status | Exit criteria |
 |---:|---|---|---|
-| 7.1 | BR-ROADMAP | Local validation passed; CI pending | Docs created, committed, pushed and docs-only Quality Gate recorded |
+| 7.1 | BR-ROADMAP | Completed; closing docs commit pending | Docs created, committed, pushed and docs-only Quality Gate recorded |
 | 7.2 | BR-SUPERSITE | Planned | Hub/control-plane benchmark dashboard refined and validated |
 | 7.3 | BR-NETPROBE | Planned | DNS/IP benchmark UX refined and public NetProbe smokes pass |
 | 7.4 | BR-CALCHARBOR | Planned | Calculator UX/content refined in local/CI, public deploy still gated |
@@ -69,3 +69,10 @@ Sprint 7.1 local docs-only validation passed:
 - `pnpm ci:changes` (local runAll fallback expected because no base was provided)
 - `git diff --check`
 - `git diff --cached --check`
+
+Remote validation:
+
+- Commit: `2e6e0be docs: add benchmark refinement sprint plan`.
+- Quality Gate: `28285643895`, success.
+- Deploy Dry Run workflow: not triggered by docs-only push; local `pnpm deploy:dry-run` passed.
+- Public smokes: Hub, control-plane/API and NetProbe passed after push.

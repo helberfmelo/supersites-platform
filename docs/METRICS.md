@@ -315,6 +315,10 @@ Data-base: 2026-06-27
 | Benchmark phase mapped | Fase 7 |
 | Benchmark sprints mapped | 12 |
 | Benchmark sprint map | `docs/SPRINTS/BENCHMARK_REFINEMENT_SPRINTS.md` |
+| Sprint 7.1 commit | `2e6e0be` |
+| Sprint 7.1 Quality Gate run | `28285643895` passed |
+| Sprint 7.1 Deploy Dry Run | Local passed; remote workflow not triggered by docs-only push |
+| Sprint 7.1 public smokes | Hub/control-plane/NetProbe passed |
 | Benchmark screenshots reviewed | 3 |
 | Benchmark prompt incorporated | 1 |
 | Site planning folders created | 11 |
