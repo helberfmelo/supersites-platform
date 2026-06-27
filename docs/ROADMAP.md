@@ -276,7 +276,7 @@ Sprint 7.6 - TimeNexus benchmark UX
 - Simbolico: BR-TIMENEXUS.
 - Objetivo: refinar conversor de fuso, meeting planner, datas/calendario, respostas diretas, conteudo sobre UTC/DST e upgrades gated.
 - Validacao: timezone fixtures, testes/build/preview/Playwright do TimeNexus e gates locais.
-- Status: implementada e validada localmente. O TimeNexus recebeu paineis de resposta direta, timeline de timezone/timestamp, copy de limites UTC/DST/calendario, exemplos, ferramentas relacionadas e upgrade/support gated/inert. Passaram `pnpm test:timenexus`, `pnpm build:timenexus`, `pnpm validate:timenexus-preview` e `pnpm test:e2e:timenexus`; push, Quality Gate, Deploy Dry Run e smokes publicos ainda serao registrados no fechamento da sprint. Nenhum deploy real, anuncio, checkout, billing, historico salvo, widget/API publica, support payment, worker ou analytics externo foi ativado.
+- Status: concluida. O TimeNexus recebeu paineis de resposta direta, timeline de timezone/timestamp, copy de limites UTC/DST/calendario, exemplos, ferramentas relacionadas e upgrade/support gated/inert. Quality Gate `28287972198`, Deploy Dry Run `28287972209` e smokes publicos de Hub/control-plane/NetProbe passaram; o dry-run teve apenas a anotacao conhecida de quota de artifact upload. Nenhum deploy real, anuncio, checkout, billing, historico salvo, widget/API publica, support payment, worker ou analytics externo foi ativado.
 
 Sprint 7.7 - QRRoute benchmark UX
 - Simbolico: BR-QRROUTE.

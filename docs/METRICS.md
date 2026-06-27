@@ -345,8 +345,8 @@ Data-base: 2026-06-27
 | Pages per language | Initial locales remain 5 (`en`, `pt-br`, `es`, `fr`, `de`) |
 | Related tools per page | Planned for 11/11 public surfaces; site-specific measurement continues in technical sprints |
 | Upgrade opportunities by site | 11/11 public surfaces mapped with gated upgrade/support opportunities |
-| Organic growth tasks open | 6 planned technical benchmark site sprints after Sprint 7.6 local validation |
-| Organic growth tasks closed | 5 technical refinements implemented in Fase 7; Sprint 7.6 remote CI/deploy dry-run closure pending |
+| Organic growth tasks open | 6 planned technical benchmark site sprints after Sprint 7.6 completion |
+| Organic growth tasks closed | 5 technical refinements completed in Fase 7 |
 | Sprint 7.2 local backend validation | Passed: Composer, migrate fresh seed, AdminPanelTest, full Laravel suite |
 | Sprint 7.2 local Hub validation | Passed: Vitest, build, preview smoke, Playwright and desktop/mobile screenshot inspection |
 | Sprint 7.2 local package validation | Passed: 65 package tests and package typechecks |
@@ -379,10 +379,10 @@ Data-base: 2026-06-27
 | Sprint 7.5 public smokes | Hub/control-plane/NetProbe passed |
 | Sprint 7.6 local TimeNexus validation | Passed: Vitest, build, preview smoke, Playwright and screenshot inspection |
 | Sprint 7.6 local final gates | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
-| Sprint 7.6 feature commit | Pending |
-| Sprint 7.6 Quality Gate run | Pending |
-| Sprint 7.6 Deploy Dry Run | Pending |
-| Sprint 7.6 public smokes | Pending |
+| Sprint 7.6 feature commit | `64b883d` |
+| Sprint 7.6 Quality Gate run | `28287972198` passed |
+| Sprint 7.6 Deploy Dry Run | `28287972209` passed; artifact upload quota annotation |
+| Sprint 7.6 public smokes | Hub/control-plane/NetProbe passed |
 | Real ads activated | 0 |
 | Real billing activated | 0 |
 | Real donation payments activated | 0 |

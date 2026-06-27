@@ -29,10 +29,10 @@ Data-base: 2026-06-27
 
 ## Execution status
 
-- Implemented locally in Sprint 7.6.
+- Completed in Sprint 7.6.
 - Added direct-answer panels, timezone/timestamp timeline, related tools, UTC/DST/calendar limit copy and gated upgrade/support panels.
 - Local validation passed: unit tests, build, preview smoke, Playwright, structure, secrets, deploy dry-run, ci:changes and diff check.
-- Feature push, remote Quality Gate, Deploy Dry Run, public smokes and docs-only closing commit remain to be recorded.
+- Feature commit `64b883d`, Quality Gate `28287972198`, Deploy Dry Run `28287972209` and public smokes for Hub/control-plane/NetProbe passed.
 
 ## Gates
 

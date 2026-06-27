@@ -925,7 +925,10 @@ Na Sprint 7.5, o DevUtility Lab recebeu o refinamento BR-DEVUTILITY: paginas de 
   - Validacao TimeNexus local passou: `pnpm test:timenexus` com 8 testes, `pnpm build:timenexus`, `pnpm validate:timenexus-preview` com asset `/_nuxt/B603x1RZ.js` e `pnpm test:e2e:timenexus` com 3 testes Playwright. O primeiro Playwright encontrou `EADDRINUSE` transitorio na porta de preview e o rerun passou apos a porta liberar.
   - Screenshots locais do report Playwright foram inspecionados em `artifacts/playwright-timenexus-report/data/`; home desktop, ferramenta mobile e privacidade mobile ficaram sem sobreposicao incoerente ou overflow visual.
   - Gates finais locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation; `git diff --check` exibiu apenas avisos CRLF nos arquivos tocados.
-  - Feature commit, push, GitHub Actions `Quality Gate`, `Deploy Dry Run`, smokes publicos e fechamento docs-only estao pendentes nesta etapa do fluxo.
+  - Feature commit publicado: `64b883d` (`feat: refine timenexus benchmark ux`).
+  - GitHub Actions `Quality Gate` run `28287972198` passou, executando repository safety, frontend TimeNexus path-aware e summary.
+  - GitHub Actions `Deploy Dry Run` run `28287972209` passou e gerou plano sem mutar producao; o upload de artifact registrou a anotacao conhecida de quota GitHub Actions, mas o run concluiu com sucesso e o plano permaneceu no job summary.
+  - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis; TimeNexus segue placeholder publico.
   - Nenhum preset salvo, historico, widget publico, API publica paga, conta, storage persistente, anuncio real, checkout, billing real, doacao/support payment ativo, afiliado real, webhook externo, worker de producao, analytics externo ou deploy real do TimeNexus foi ativado.
 
 ## Pendencias criticas

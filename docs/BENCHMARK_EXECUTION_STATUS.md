@@ -37,7 +37,7 @@ Data-base: 2026-06-27
 | 7.3 | BR-NETPROBE | Completed | DNS/IP benchmark UX refined and public NetProbe smokes pass |
 | 7.4 | BR-CALCHARBOR | Completed | Calculator UX/content refined in local/CI, public deploy still gated |
 | 7.5 | BR-DEVUTILITY | Completed | Developer tool UX/content refined in local/CI, public deploy still gated |
-| 7.6 | BR-TIMENEXUS | Local validation passed | Time/date UX/content refined in local/CI, public deploy still gated |
+| 7.6 | BR-TIMENEXUS | Completed | Time/date UX/content refined in local/CI, public deploy still gated |
 | 7.7 | BR-QRROUTE | Next | QR/UTM UX/content refined in local/CI, dynamic links still gated |
 | 7.8 | BR-INVOICECRAFT | Planned | Invoice/quote/receipt UX/content refined in local/CI, taxes/payments gated |
 | 7.9 | BR-MAILHEALTH | Planned | Email diagnostic UX/content refined in local/CI, monitoring/API gated |
@@ -176,4 +176,10 @@ Sprint 7.6 local validation passed:
 - `pnpm validate:timenexus-preview`
 - `pnpm test:e2e:timenexus` (first run hit transient `EADDRINUSE` from the preview port; rerun passed after the port released)
 - TimeNexus Playwright screenshots inspected under `artifacts/playwright-timenexus-report/data/`.
-- Remote Quality Gate, Deploy Dry Run, public smokes and closing docs commit are pending the feature push.
+
+Sprint 7.6 remote validation:
+
+- Feature commit: `64b883d feat: refine timenexus benchmark ux`.
+- Quality Gate: `28287972198`, success.
+- Deploy Dry Run: `28287972209`, success with non-blocking artifact upload quota annotation.
+- Public smokes: Hub, control-plane/API and NetProbe passed after push; TimeNexus remains public placeholder pending app-specific deploy/smoke/rollback gates.
