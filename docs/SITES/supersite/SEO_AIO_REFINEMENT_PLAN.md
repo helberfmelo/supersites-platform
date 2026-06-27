@@ -10,7 +10,7 @@ Data-base: 2026-06-27
 ## P0
 
 - Keep each site page original, curated and useful.
-- Add clearer related-tool and category paths without mass low-value pages.
+- Add clearer related-tool and category paths without mass low-value pages. Sprint 7.2 improves catalog scan signals without adding thin pages.
 - Ensure localized metadata, canonical and hreflang remain correct after catalog refinements.
 
 ## P1

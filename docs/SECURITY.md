@@ -84,6 +84,14 @@
 - `causality_status` deve continuar `not_inferred` ate existir revisao manual com evidencia especifica; exports nao devem transformar correlacao em causa.
 - Ativar envio recorrente, provider imports, report webhooks ou compartilhamento externo exige nova revisao de seguranca, retencao, secrets e gates humanos/tecnicos aplicaveis.
 
+## Benchmark refinement gates
+
+- A Sprint 7.2 registra apenas readiness e oportunidades locais; nenhum provider import, crawler externo recorrente, worker, automacao de IA, ad serving, checkout, doacao ou afiliado real e criado.
+- Rotas `/admin/benchmark-refinement` exigem autenticacao e `dashboard.view`, seguindo o mesmo RBAC do dashboard operacional.
+- `benchmark_site_readiness` e `benchmark_opportunities` nao devem armazenar PII, segredos, inputs de ferramentas, payloads de arquivos, tokens, dados de cliente, receita individual ou provider payloads.
+- Itens dependentes de AdSense, billing, doacoes, afiliados, KYC, impostos, banco, aceite juridico, dominios ou provider externo devem ficar `human_required`.
+- Publicar scores de benchmark como claims externos, ativar automacao de recomendacao ou conectar provedores exige nova revisao de seguranca, data governance, smoke e rollback.
+
 ## DevUtility Lab client-side tools
 
 - Ferramentas da Sprint 3.2 rodam no navegador com Web Worker quando suportado e fallback local sem chamadas de rede.

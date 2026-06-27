@@ -108,6 +108,22 @@ class Site extends Model
     }
 
     /**
+     * @return HasOne<BenchmarkSiteReadiness, $this>
+     */
+    public function benchmarkSiteReadiness(): HasOne
+    {
+        return $this->hasOne(BenchmarkSiteReadiness::class);
+    }
+
+    /**
+     * @return HasMany<BenchmarkOpportunity, $this>
+     */
+    public function benchmarkOpportunities(): HasMany
+    {
+        return $this->hasMany(BenchmarkOpportunity::class);
+    }
+
+    /**
      * @return HasMany<AiGrowthAudit, $this>
      */
     public function aiGrowthAudits(): HasMany

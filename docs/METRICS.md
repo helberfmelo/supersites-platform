@@ -11,8 +11,8 @@ Data-base: 2026-06-27
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
 | Shared package folders created | 13 |
-| ADRs created | 29 |
-| Docs files created/maintained | 121 |
+| ADRs created | 30 |
+| Docs files created/maintained | 122 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
 | Nuxt apps scaffolded | 11 |
@@ -22,9 +22,9 @@ Data-base: 2026-06-27
 | Shared package typechecks passing | 9 |
 | Frontend tests passing | 81 |
 | Playwright visual smoke tests passing | 43 |
-| Laravel tests passing | 45 |
+| Laravel tests passing | 46 |
 | Control plane API endpoints implemented | 20 |
-| Control plane admin routes implemented | 10 |
+| Control plane admin routes implemented | 11 |
 | Control plane portfolio records seeded | 12 |
 | Control plane RBAC permissions seeded | 7 |
 | Control plane RBAC roles seeded | 4 |
@@ -93,6 +93,13 @@ Data-base: 2026-06-27
 | Sprint 6.6 Quality Gate run | `28285130303` passed |
 | Sprint 6.6 Deploy Dry Run | `28285130307` passed |
 | Sprint 6.6 public smokes | Hub/control-plane/NetProbe passed |
+| Benchmark refinement storage tables | 2 |
+| Benchmark readiness records seeded | 11 |
+| Benchmark opportunity records seeded | 22 |
+| Benchmark admin routes implemented | 1 |
+| Benchmark external providers active | 0 |
+| Benchmark real ads enabled | 0 |
+| Benchmark real billing enabled | 0 |
 | Analytics storage tables implemented | 2 |
 | Analytics ingest endpoint implemented | 1 |
 | Metric snapshot endpoint implemented | 1 |
@@ -319,22 +326,31 @@ Data-base: 2026-06-27
 | Sprint 7.1 Quality Gate run | `28285643895` passed |
 | Sprint 7.1 Deploy Dry Run | Local passed; remote workflow not triggered by docs-only push |
 | Sprint 7.1 public smokes | Hub/control-plane/NetProbe passed |
+| Sprint 7.1 docs closing commit | `daba393` |
+| Sprint 7.1 docs-only Quality Gate run | `28285708661` passed |
 | Benchmark screenshots reviewed | 3 |
 | Benchmark prompt incorporated | 1 |
 | Site planning folders created | 11 |
 | Site planning docs created | 55 |
-| Benchmark readiness score | Defined; 11/11 public surfaces have plans, NetProbe has 3 reviewed screenshots, live external benchmark refresh pending in technical sprints |
-| SEO readiness score | Defined; 11/11 public surfaces have SEO/AIO refinement plans, measurement to be implemented in Sprint 7.2 |
+| Benchmark readiness score | Implemented in control-plane for 11/11 public surfaces as estimated local evidence |
+| SEO readiness score | Implemented in control-plane for 11/11 public surfaces as estimated local evidence |
 | AdSense readiness score | Defined; 11/11 public surfaces have safe placeholder/gate plans, real ad serving remains 0 |
 | Monetization readiness score | Defined; 11/11 public surfaces have gated upgrade/support plans, real checkout/donation/affiliate activation remains 0 |
-| Frontend quality score | Baseline from Sprint 6.6: 11/11 apps passed local tests/builds/previews and 43 Playwright tests; benchmark UI score pending sprint-by-sprint |
+| Frontend quality score | Hub Sprint 7.2 local tests/build/preview/Playwright passed; remaining apps pending sprint-by-sprint |
 | Core Web Vitals readiness | Not externally measured for placeholder apps; local performance validation planned per sprint |
 | Educational content by tool | Existing localized tool pages/FAQ blocks: 320 |
 | Pages per language | Initial locales remain 5 (`en`, `pt-br`, `es`, `fr`, `de`) |
-| Related tools per page | Planned for 11/11 public surfaces; measurement to be implemented in Sprint 7.2 |
+| Related tools per page | Planned for 11/11 public surfaces; site-specific measurement continues in technical sprints |
 | Upgrade opportunities by site | 11/11 public surfaces mapped with gated upgrade/support opportunities |
-| Organic growth tasks open | 11 planned technical benchmark sprints plus Sprint 7.1 validation/closure |
-| Organic growth tasks closed | 0 technical refinements closed in Fase 7 yet |
+| Organic growth tasks open | 10 planned technical benchmark site sprints after Sprint 7.2 local implementation |
+| Organic growth tasks closed | 1 technical refinement implemented locally in Fase 7; remote validation pending |
+| Sprint 7.2 local backend validation | Passed: Composer, migrate fresh seed, AdminPanelTest, full Laravel suite |
+| Sprint 7.2 local Hub validation | Passed: Vitest, build, preview smoke, Playwright and desktop/mobile screenshot inspection |
+| Sprint 7.2 local package validation | Passed: 65 package tests and package typechecks |
+| Sprint 7.2 local final gates | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
+| Sprint 7.2 Quality Gate run | Pending feature push |
+| Sprint 7.2 Deploy Dry Run | Local passed; remote pending feature push |
+| Sprint 7.2 public smokes | Pending feature push |
 | Real ads activated | 0 |
 | Real billing activated | 0 |
 | Real donation payments activated | 0 |

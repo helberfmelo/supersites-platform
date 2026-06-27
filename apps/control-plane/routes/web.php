@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BenchmarkRefinementController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExecutiveReportController;
 use App\Http\Controllers\Admin\SiteController;
@@ -29,6 +30,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function (): v
         ->name('dashboard');
 
     Route::middleware('permission:dashboard.view')->group(function (): void {
+        Route::get('/benchmark-refinement', [BenchmarkRefinementController::class, 'index'])->name('benchmark-refinement.index');
         Route::get('/reports', [ExecutiveReportController::class, 'index'])->name('reports.index');
         Route::get('/reports/{executiveReport}', [ExecutiveReportController::class, 'show'])->name('reports.show');
         Route::get('/reports/{executiveReport}/print', [ExecutiveReportController::class, 'print'])->name('reports.print');

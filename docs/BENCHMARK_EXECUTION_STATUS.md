@@ -5,10 +5,10 @@ Data-base: 2026-06-27
 ## Current block
 
 - Real phase: Fase 7 - Benchmark-Driven Refinement.
-- Current sprint: Sprint 7.1 - Roadmap and benchmark planning.
-- Symbolic sprint: BR-ROADMAP.
-- Scope: documentation, sprint mapping, benchmark matrix, per-site plans and KPIs.
-- Code changes: none in Sprint 7.1.
+- Current sprint: Sprint 7.2 - SuperSites catalog and dashboard refinement.
+- Symbolic sprint: BR-SUPERSITE.
+- Scope: Hub catalog signals plus control-plane benchmark readiness and opportunity backlog.
+- Code changes: Laravel migrations/models/seeders/routes/views/tests and Hub catalog card signals.
 
 ## Pre-sprint state
 
@@ -32,8 +32,8 @@ Data-base: 2026-06-27
 
 | Sprint | Symbol | Status | Exit criteria |
 |---:|---|---|---|
-| 7.1 | BR-ROADMAP | Completed; closing docs commit pending | Docs created, committed, pushed and docs-only Quality Gate recorded |
-| 7.2 | BR-SUPERSITE | Planned | Hub/control-plane benchmark dashboard refined and validated |
+| 7.1 | BR-ROADMAP | Completed | Docs created, committed, pushed and docs-only Quality Gate recorded |
+| 7.2 | BR-SUPERSITE | Implemented locally; feature commit/CI pending | Hub/control-plane benchmark dashboard refined and validated |
 | 7.3 | BR-NETPROBE | Planned | DNS/IP benchmark UX refined and public NetProbe smokes pass |
 | 7.4 | BR-CALCHARBOR | Planned | Calculator UX/content refined in local/CI, public deploy still gated |
 | 7.5 | BR-DEVUTILITY | Planned | Developer tool UX/content refined in local/CI, public deploy still gated |
@@ -76,3 +76,31 @@ Remote validation:
 - Quality Gate: `28285643895`, success.
 - Deploy Dry Run workflow: not triggered by docs-only push; local `pnpm deploy:dry-run` passed.
 - Public smokes: Hub, control-plane/API and NetProbe passed after push.
+- Closing docs commit: `daba393 docs: record benchmark refinement ci validation`.
+- Closing docs-only Quality Gate: `28285708661`, success.
+
+Sprint 7.2 local validation passed:
+
+- `composer validate --strict`
+- `php artisan migrate:fresh --seed --force`
+- `php artisan test --filter=AdminPanelTest`
+- `php artisan test`
+- `pnpm --filter @supersites/supersite test`
+- `pnpm --filter @supersites/supersite build`
+- `pnpm validate:supersite-preview`
+- `pnpm test:e2e:supersite`
+- `pnpm test:packages`
+- `pnpm typecheck:packages`
+- `pnpm validate:structure`
+- `pnpm validate:secrets`
+- `pnpm deploy:dry-run`
+- `pnpm ci:changes` (local runAll fallback expected because no base was provided)
+- `git diff --check`
+- Desktop/mobile Hub screenshots captured and inspected under `artifacts/`.
+
+Sprint 7.2 remote validation:
+
+- Feature commit: pending.
+- Quality Gate: pending.
+- Deploy Dry Run: pending.
+- Public smokes: pending.

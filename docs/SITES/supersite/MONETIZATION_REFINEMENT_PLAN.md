@@ -10,7 +10,7 @@ Data-base: 2026-06-27
 
 ## P0
 
-- Show AdSense readiness and billing readiness in admin without activating providers.
+- Show AdSense readiness and billing readiness in admin without activating providers. Sprint 7.2 adds benchmark monetization readiness/backlog while keeping providers inactive.
 - Keep public Hub ad placeholders gated and away from interactive controls.
 - Add donation/affiliate planning as gated backlog, not live links.
 

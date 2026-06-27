@@ -135,6 +135,13 @@ AdSense e a monetizacao primaria, mas nenhum site deve ser submetido antes de cu
 - Impressoes, cliques, CTR, RPM, receita, requests, `publisher_id`, site submission e Management API devem aparecer como `unavailable` enquanto anuncios reais e API estiverem desligados.
 - Relatorios nao devem inferir causalidade de trafego/receita nem sugerir que ads estao ativos antes dos gates humanos, tecnicos e de politica.
 
+## Benchmark refinement
+
+- A Sprint 7.2 pode listar readiness AdSense e oportunidades de placement apenas como scores estimados e evidencia local.
+- `benchmark_site_readiness.adsense_score` nao e aprovacao AdSense, nao e site submission e nao indica serving ativo.
+- `benchmark_opportunities` deve manter conta AdSense, `publisher_id`, `ads.txt`, site review, Auto Ads, snippets, Management API, receita e requests reais como `human_required` ou `unavailable` ate os gates completos.
+- O Hub publico nao deve exibir claims de receita, RPM, CTR, viewability ou aprovacao AdSense.
+
 ## HUMAN_ACTION_REQUIRED
 
 - Beneficiario legal.

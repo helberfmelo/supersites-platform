@@ -316,6 +316,26 @@ h3 {
   justify-content: space-between;
 }
 
+.site-card__signals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 14px 0;
+  list-style: none;
+}
+
+.site-card__signals li {
+  min-height: 30px;
+  padding: 5px 9px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  color: #31453b;
+  background: #f8faf7;
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
 .category {
   color: #617069;
   font-size: 0.84rem;

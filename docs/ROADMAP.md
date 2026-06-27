@@ -252,7 +252,7 @@ Sprint 7.2 - SuperSites Catalog + Dashboard de Benchmark e Crescimento
 - Simbolico: BR-SUPERSITE.
 - Objetivo: evoluir o Hub publico e o control-plane para exibir benchmark readiness, SEO/AIO readiness, AdSense readiness, monetizacao readiness e backlog de oportunidades por site.
 - Validacao: seguranca admin/RBAC, testes Laravel quando houver backend, testes/build/preview/Playwright do Hub quando houver frontend, gates locais e CI/dry-run.
-- Status: planejada.
+- Status: implementada e validada localmente; commit, push, CI, deploy dry-run remoto e smokes publicos pendentes de fechamento.
 
 Sprint 7.3 - NetProbe Atlas benchmark UX
 - Simbolico: BR-NETPROBE.

@@ -160,6 +160,14 @@
 - `causality_status` permanece `not_inferred`; conclusoes causais exigem contrato futuro de revisao manual e evidencia explicita antes de qualquer export.
 - Envio automatico de relatorios, ingestao de providers, agenda recorrente, worker, e-mail externo e snapshots reais de receita/trafego permanecem desligados ate matriz de dados, retencao, exportacao/exclusao e gates humanos/tecnicos.
 
+## Benchmark refinement
+
+- A Sprint 7.2 cria apenas readiness e backlog local em `benchmark_site_readiness` e `benchmark_opportunities`.
+- Campos permitidos: site, categoria, titulo, resumo, scores de readiness, prioridade, impacto, esforco, confianca, risco, status, `data_status`, referencias de evidencia documental e flags de gate.
+- Campos proibidos: PII, e-mail, IP, query string real, input bruto de ferramenta, arquivo, prompt externo, resposta de provider, token, segredo, dado de cliente, receita individual, payload bruto de GA4/Search Console/AdSense/billing, link de doacao real ou URL de afiliado real.
+- Scores da Sprint 7.2 sao estimados a partir de docs, screenshots, testes e CI; provider imports e metricas reais devem permanecer `unavailable` ate gates futuros.
+- Oportunidades com AdSense, billing, doacoes, afiliados, impostos, KYC, conta, banco, termos ou provider externo devem permanecer `human_required`.
+
 ## Analytics sem PII
 
 - O contrato versionado fica em `packages/analytics`.

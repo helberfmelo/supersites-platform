@@ -10,6 +10,8 @@ Em 2026-06-27, a Sprint 6.1 criou a fundacao local de CMP, Consent Mode, TCF fai
 
 Tambem em 2026-06-27, a Sprint 7.1 iniciou a Fase 7 - Benchmark-Driven Refinement como sprint documental BR-ROADMAP. A numeracao real foi calculada a partir do roadmap: Fase 6/Sprint 6.6 era a ultima etapa mapeada e concluida; portanto o bloco de benchmark passa a ser Fase 7, com Sprints 7.1 a 7.12. Foram inventariados o prompt `docs/BENCHMARK_FRONTEND_REFINEMENT_PROMPT.md` e os screenshots em `docs/benchmarks/screenshots/`, com planos por site para frontend premium, UX, SEO/AIO, performance, AdSense readiness, monetizacao gated e dashboard de crescimento. Nenhum codigo, anuncio real, doacao ativa, afiliado real, billing, checkout, provider externo, worker, cron, analytics externo ou deploy real de placeholder foi ativado.
 
+Na Sprint 7.2, o Hub publico e o control-plane ganharam a primeira camada tecnica de benchmark refinement. O Laravel agora possui `benchmark_site_readiness` e `benchmark_opportunities`, seeder local, rota `/admin/benchmark-refinement`, resumo no dashboard e auditoria de visualizacao sob `dashboard.view`. O Hub publico passou a mostrar sinais compactos de quantidade de frentes de ferramenta, idiomas e monetizacao gated nos cards de catalogo. Os dados sao estimados e baseados em docs/sprints/CI; `external_provider_active`, ads reais, billing real, doacao ativa, afiliado real, checkout, webhook, worker e automacao seguem em zero.
+
 ## Estado local verificado
 
 - Raiz local: `D:\Projetos\supersites`.
@@ -847,7 +849,22 @@ Tambem em 2026-06-27, a Sprint 7.1 iniciou a Fase 7 - Benchmark-Driven Refinemen
   - GitHub Actions `Quality Gate` run `28285643895` passou como docs-only: repository safety e quality summary passaram; jobs frontend/backend foram ignorados conforme path-aware.
   - Deploy Dry Run remoto nao foi disparado pelo push docs-only; `pnpm deploy:dry-run` local passou e gerou `artifacts/deploy-dry-run/supersites-deploy-plan.json` e `.md`.
   - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis.
+  - Fechamento docs-only publicado: `daba393` (`docs: record benchmark refinement ci validation`).
+  - GitHub Actions `Quality Gate` docs-only run `28285708661` passou.
   - Nenhum codigo, anuncio real, AdSense, GA4/GTM/Search Console import, billing, checkout, pagamento, doacao ativa, afiliado real, provider externo de IA, worker/cron de producao, API paga publica, webhook ou deploy real de placeholder foi ativado.
+- Sprint 7.2 validation:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/ROADMAP.md`, `docs/STATUS.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local, docs de benchmark e todos os ADRs existentes ate `0029`.
+  - Estado inicial verificado: `main...origin/main` limpo apos o fechamento da Sprint 7.1.
+  - ADR criado: `0030-benchmark-refinement-dashboard`.
+  - Control-plane implementado: migrations `benchmark_site_readiness` e `benchmark_opportunities`, models, seeder, relacoes em `Site`, rota `/admin/benchmark-refinement`, resumo no dashboard e audit log `admin.benchmark_refinement.index_viewed`.
+  - Hub publico refinado: cards do catalogo agora exibem sinais compactos de frentes de ferramenta, cobertura de idiomas e monetizacao gated, sem provider metrics ou claims de receita.
+  - Validacao backend passou: `composer validate --strict`, `php artisan migrate:fresh --seed --force`, `php artisan test --filter=AdminPanelTest` com 9 testes / 72 assertions e `php artisan test` com 46 testes / 449 assertions.
+  - Validacao Hub passou: `pnpm --filter @supersites/supersite test` com 10 testes, `pnpm --filter @supersites/supersite build`, `pnpm validate:supersite-preview` e `pnpm test:e2e:supersite` com 6 testes Playwright.
+  - Screenshots locais inspecionados: `artifacts/supersite-7.2-home-desktop-clean.png` e `artifacts/supersite-7.2-home-mobile-cards-clean.png`; sem sobreposicao incoerente nos cards.
+  - Validacao de pacotes passou: `pnpm test:packages` com 65 testes e `pnpm typecheck:packages`.
+  - Gates finais locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation.
+  - Commit, push, CI, deploy dry-run remoto e smokes publicos ainda serao registrados no fechamento documental da sprint.
+  - Nenhum provider import, AdSense serving, checkout, billing real, doacao ativa, afiliado real, webhook externo, worker/cron de producao, external AI, analytics externo ou deploy real de placeholder foi ativado.
 
 ## Pendencias criticas
 

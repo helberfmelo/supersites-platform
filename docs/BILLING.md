@@ -99,6 +99,14 @@ A Sprint 6.6 pode exportar somente readiness operacional e estados locais de bil
 
 Relatorios executivos nao ativam checkout, payment links, webhooks, SDK, provider config, impostos, plano pago, entitlement pago, receita, invoice, refund, dunning, e-mail recorrente ou cobranca real.
 
+## Benchmark monetization backlog
+
+A Sprint 7.2 pode registrar oportunidades de monetizacao, doacao, afiliados e upgrade pago somente como backlog local evidenciado.
+
+`benchmark_opportunities` deve manter itens dependentes de KYC, impostos, banco, aceite juridico, provider account, payment link, link de doacao real, afiliado real, checkout, webhook, plano pago ou entitlement pago como `human_required`.
+
+O dashboard de benchmark nao ativa checkout, SDK, payment link, webhook, doacao, afiliado, cobranca, receita, plano pago, entitlement pago, imposto, invoice, refund ou dunning.
+
 ## Segurança
 
 - Nao armazenar cartao.

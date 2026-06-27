@@ -107,6 +107,17 @@ Sprint 6.6 adiciona relatorios executivos locais e exportaveis no control plane:
 - `causality_status` permanece `not_inferred`; linguagem causal bloqueia export readiness no contrato TypeScript ate existir revisao manual com evidencia.
 - Nao ha importacao GA4/Search Console/AdSense/billing, envio de e-mail, agendamento recorrente, worker, provider externo, receita real ou automacao de relatorio nesta sprint.
 
+## Benchmark refinement dashboard
+
+Sprint 7.2 adiciona readiness de benchmark e backlog de oportunidades no control plane, conforme ADR `0030`.
+
+- `benchmark_site_readiness` registra scores estimados por superficie publica: benchmark, SEO/AIO, AdSense, monetizacao, frontend, performance e overall.
+- `benchmark_opportunities` registra oportunidades por site com prioridade, impacto, esforco, confianca, risco, status, evidencia, `data_status` e gate humano.
+- `/admin/benchmark-refinement` usa a permissao existente `dashboard.view` e registra auditoria de visualizacao.
+- O dashboard principal mostra um resumo de readiness/backlog e a rota dedicada mostra a matriz completa.
+- O Hub publico mostra apenas sinais compactos de catalogo, como quantidade de frentes de ferramenta, idiomas e monetizacao gated.
+- Nao ha provider import, ad serving, billing real, doacao ativa, afiliado real, automacao de IA ou publicacao de scores como metricas reais nesta sprint.
+
 ## Stack local inicial
 
 - Workspace Node: `pnpm@11.9.0`.

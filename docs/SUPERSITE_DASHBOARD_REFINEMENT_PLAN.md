@@ -20,17 +20,17 @@ Evolve the public Hub and the Laravel control plane into the benchmark, SEO/AIO,
 - Public Hub is live at `https://opentshost.com/supersites/`.
 - Control-plane/API is live at `https://opentshost.com/supersites/control-plane/`.
 - Admin already has readiness areas for Google integrations, AdSense, billing, AI growth and executive reports.
-- Benchmark readiness and per-site refinement backlog are not yet modeled in the admin.
+- Benchmark readiness and per-site refinement backlog are now modeled locally in the admin by Sprint 7.2.
 
 ## Sprint 7.2 P0
 
-- Add a benchmark-readiness overview per site.
-- Add SEO/AIO readiness fields based on current static evidence, not provider imports.
-- Add AdSense readiness summary that reuses the fail-closed account/site review contract.
-- Add monetization readiness summary for upgrades, donation placeholders and affiliate slots with all real activation gated.
-- Add opportunity backlog table with site, category, impact, effort, confidence, risk and status.
-- Add evidence references back to docs and benchmark assets.
-- Add public catalog refinements that make site value, status, languages and tools easier to scan.
+- Add a benchmark-readiness overview per site. Done in `benchmark_site_readiness`.
+- Add SEO/AIO readiness fields based on current static evidence, not provider imports. Done as estimated local scores.
+- Add AdSense readiness summary that reuses the fail-closed account/site review contract. Done as score/backlog only; serving remains disabled.
+- Add monetization readiness summary for upgrades, donation placeholders and affiliate slots with all real activation gated. Done as `human_required` opportunities.
+- Add opportunity backlog table with site, category, impact, effort, confidence, risk and status. Done in `benchmark_opportunities`.
+- Add evidence references back to docs and benchmark assets. Done via JSON evidence references.
+- Add public catalog refinements that make site value, status, languages and tools easier to scan. Done with compact card signals.
 
 ## P1
 

@@ -8,9 +8,9 @@ Refine the Hub and control-plane surfaces so operators can scan portfolio qualit
 
 ## P0
 
-- Improve catalog cards with site value, status, language coverage, tool count and primary action.
-- Add admin benchmark readiness overview per site.
-- Add admin opportunity backlog with priority, impact, effort, confidence, risk and gate status.
+- Improve catalog cards with site value, status, language coverage, tool count and primary action. Done in Sprint 7.2.
+- Add admin benchmark readiness overview per site. Done in Sprint 7.2.
+- Add admin opportunity backlog with priority, impact, effort, confidence, risk and gate status. Done in Sprint 7.2.
 - Keep the Blade admin dense, utilitarian and consistent with the current control-plane style.
 
 ## P1

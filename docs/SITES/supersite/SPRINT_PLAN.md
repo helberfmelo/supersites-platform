@@ -13,13 +13,13 @@ Data-base: 2026-06-27
 - Public Hub live at `https://opentshost.com/supersites/`.
 - Control-plane/API live at `https://opentshost.com/supersites/control-plane/`.
 - Admin already includes site inventory, readiness foundations, AI growth and executive reports.
-- Benchmark dashboard is planned, not implemented.
+- Benchmark dashboard is implemented locally in Sprint 7.2 and awaits feature commit/CI/public smoke closure.
 
 ## Scope
 
-- Public catalog refinement.
-- Admin benchmark/growth readiness views.
-- Local evidence-backed KPIs.
+- Public catalog refinement with compact tool/language/gated monetization signals.
+- Admin benchmark/growth readiness views via `/admin/benchmark-refinement`.
+- Local evidence-backed KPIs in `benchmark_site_readiness` and `benchmark_opportunities`.
 - No external provider activation.
 
 ## Validation

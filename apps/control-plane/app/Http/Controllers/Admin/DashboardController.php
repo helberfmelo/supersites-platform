@@ -8,6 +8,8 @@ use App\Models\AdSenseSiteReview;
 use App\Models\AiGrowthAnomaly;
 use App\Models\AiGrowthRecommendation;
 use App\Models\AuditLog;
+use App\Models\BenchmarkOpportunity;
+use App\Models\BenchmarkSiteReadiness;
 use App\Models\BillingPlan;
 use App\Models\BillingProvider;
 use App\Models\DeploymentRecord;
@@ -40,6 +42,12 @@ class DashboardController extends Controller
             'executive_reports' => ExecutiveReport::query()->count(),
             'executive_reports_export_ready' => ExecutiveReport::query()->where('export_ready', true)->count(),
             'executive_report_estimated_items' => ExecutiveReportItem::query()->where('data_status', 'estimated')->count(),
+            'benchmark_surfaces' => BenchmarkSiteReadiness::query()->count(),
+            'benchmark_average_score' => (int) round(BenchmarkSiteReadiness::query()->avg('overall_score') ?? 0),
+            'benchmark_open_opportunities' => BenchmarkOpportunity::query()->where('status', '!=', 'completed')->count(),
+            'benchmark_human_gates' => BenchmarkOpportunity::query()->where('human_gate_required', true)->count(),
+            'benchmark_external_provider_active' => BenchmarkOpportunity::query()->where('external_provider_active', true)->count()
+                + BenchmarkSiteReadiness::query()->where('external_provider_active', true)->count(),
             'ai_growth_recommendations' => AiGrowthRecommendation::query()->count(),
             'ai_growth_human_gates' => AiGrowthRecommendation::query()->where('human_gate_required', true)->count(),
             'ai_growth_anomalies' => AiGrowthAnomaly::query()->where('status', '!=', 'within_threshold')->count(),
@@ -85,6 +93,17 @@ class DashboardController extends Controller
                 ->withCount('plans')
                 ->orderBy('checkout_enabled')
                 ->orderBy('provider')
+                ->get(),
+            'benchmarkOpportunities' => BenchmarkOpportunity::query()
+                ->with('site:id,slug,name')
+                ->orderByRaw("case priority when 'p0' then 0 when 'p1' then 1 else 2 end")
+                ->orderByDesc('priority_score')
+                ->limit(6)
+                ->get(),
+            'benchmarkReadiness' => BenchmarkSiteReadiness::query()
+                ->with('site:id,slug,name,launch_order')
+                ->orderByDesc('overall_score')
+                ->limit(6)
                 ->get(),
             'aiGrowthAnomalies' => AiGrowthAnomaly::query()
                 ->with('site:id,slug,name')

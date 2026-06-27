@@ -15,6 +15,9 @@ interface HomeCopy {
   freeLabel: string
   upgradeLabel: string
   statusLabel: string
+  toolTracksLabel: string
+  localesLabel: string
+  gatedLabel: string
   launchOrderLabel: string
   networkRows: Array<{ title: string; body: string; tone: 'green' | 'amber' }>
   principlesTitle: string
@@ -54,6 +57,9 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Free value',
     upgradeLabel: 'Upgrade path',
     statusLabel: 'Status',
+    toolTracksLabel: 'tool tracks',
+    localesLabel: 'locales',
+    gatedLabel: 'Ads and paid upgrades gated',
     launchOrderLabel: 'Launch order',
     networkRows: [
       { title: '10 utility sites planned', body: 'One shared platform, independent product paths.', tone: 'green' },
@@ -82,6 +88,9 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Valor gratuito',
     upgradeLabel: 'Caminho pago',
     statusLabel: 'Status',
+    toolTracksLabel: 'frentes de ferramenta',
+    localesLabel: 'idiomas',
+    gatedLabel: 'Ads e upgrades pagos gated',
     launchOrderLabel: 'Ordem de lançamento',
     networkRows: [
       { title: '10 sites úteis planejados', body: 'Uma plataforma compartilhada, produtos independentes.', tone: 'green' },
@@ -110,6 +119,9 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Valor gratuito',
     upgradeLabel: 'Ruta de upgrade',
     statusLabel: 'Estado',
+    toolTracksLabel: 'líneas de herramienta',
+    localesLabel: 'idiomas',
+    gatedLabel: 'Ads y upgrades pagos gated',
     launchOrderLabel: 'Orden de lanzamiento',
     networkRows: [
       { title: '10 sitios útiles planificados', body: 'Una plataforma compartida, productos independientes.', tone: 'green' },
@@ -138,6 +150,9 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Valeur gratuite',
     upgradeLabel: 'Offre payante',
     statusLabel: 'Statut',
+    toolTracksLabel: 'pistes outil',
+    localesLabel: 'langues',
+    gatedLabel: 'Ads et offres payantes gated',
     launchOrderLabel: 'Ordre de lancement',
     networkRows: [
       { title: '10 sites utiles prévus', body: 'Une plateforme partagée, des produits indépendants.', tone: 'green' },
@@ -166,6 +181,9 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Kostenloser Nutzen',
     upgradeLabel: 'Upgrade-Pfad',
     statusLabel: 'Status',
+    toolTracksLabel: 'Tool-Bereiche',
+    localesLabel: 'Sprachen',
+    gatedLabel: 'Ads und bezahlte Upgrades gated',
     launchOrderLabel: 'Startreihenfolge',
     networkRows: [
       { title: '10 Utility-Sites geplant', body: 'Eine gemeinsame Plattform, unabhängige Produkte.', tone: 'green' },

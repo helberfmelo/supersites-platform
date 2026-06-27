@@ -31,3 +31,9 @@ Data-base: 2026-06-27
 - Make the public catalog read as a curated utility network.
 - Add benchmark readiness and SEO/AIO/AdSense readiness in the admin.
 - Feed executive reports from local evidence without provider imports.
+
+## Sprint 7.2 implementation notes
+
+- Hub cards now expose compact operating signals for tool tracks, language coverage and gated monetization.
+- Control-plane now stores benchmark readiness and opportunities as local estimated evidence, not provider metrics.
+- `/admin/benchmark-refinement` gives operators the per-site backlog before the technical site refinements continue.

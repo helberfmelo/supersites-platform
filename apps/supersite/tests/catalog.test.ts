@@ -20,6 +20,9 @@ describe('site catalog', () => {
 
   it('documents localized free value and upgrade value for every site', () => {
     for (const site of siteCatalog) {
+      expect(site.freeTools.length).toBeGreaterThanOrEqual(3)
+      expect(site.paidBenefits.length).toBeGreaterThanOrEqual(3)
+
       for (const locale of localeCodes) {
         expect(site.localized[locale].headline.length).toBeGreaterThan(24)
         expect(site.localized[locale].summary.length).toBeGreaterThan(48)

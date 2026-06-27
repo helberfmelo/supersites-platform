@@ -267,6 +267,15 @@ Sprint 6.6 cria somente relatorios executivos operacionais locais:
 - `causality_status` permanece `not_inferred`; causalidade nao deve ser inferida sem evidencia e revisao manual futura.
 - Nenhum provider import, e-mail recorrente, worker, cron de producao, external analytics, ads, checkout, webhook, billing real ou report automation e ativado.
 
+## Benchmark refinement metrics
+
+Sprint 7.2 cria somente readiness e backlog local de benchmark:
+
+- `benchmark_site_readiness` e `benchmark_opportunities` guardam scores estimados, evidencia documental, status, prioridade, impacto, esforco, confianca, risco e gates humanos.
+- Esses registros nao sao analytics de usuario, nao contem trafego real, receita real, impressoes, cliques, query strings, inputs de ferramenta, arquivos, PII ou payload bruto de provider.
+- O Hub publico pode emitir apenas os eventos ja permitidos de catalogo; os novos sinais de card nao adicionam novas dimensoes de analytics.
+- Nenhum GA4, GTM, Search Console, AdSense, billing provider, doacao, afiliado, external AI ou worker recorrente e ativado por Sprint 7.2.
+
 ## Deploy smokes
 
 Smokes de deploy do control-plane/API e do NetProbe devem validar apenas disponibilidade e contrato JSON, sem criar eventos externos de analytics e sem registrar alvo bruto de usuario. O alvo DNS padrao para smoke publico e `example.com`.

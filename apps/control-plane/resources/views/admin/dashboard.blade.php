@@ -43,6 +43,22 @@
             <strong>{{ $summary['executive_report_estimated_items'] }}</strong>
         </article>
         <article class="panel metric">
+            <span class="muted">Benchmark surfaces</span>
+            <strong>{{ $summary['benchmark_surfaces'] }}</strong>
+        </article>
+        <article class="panel metric">
+            <span class="muted">Benchmark avg score</span>
+            <strong>{{ $summary['benchmark_average_score'] }}</strong>
+        </article>
+        <article class="panel metric">
+            <span class="muted">Benchmark backlog</span>
+            <strong>{{ $summary['benchmark_open_opportunities'] }}</strong>
+        </article>
+        <article class="panel metric">
+            <span class="muted">Benchmark human gates</span>
+            <strong>{{ $summary['benchmark_human_gates'] }}</strong>
+        </article>
+        <article class="panel metric">
             <span class="muted">AI recommendations</span>
             <strong>{{ $summary['ai_growth_recommendations'] }}</strong>
         </article>
@@ -58,6 +74,72 @@
             <span class="muted">Open tasks</span>
             <strong>{{ $summary['open_tasks'] }}</strong>
         </article>
+    </section>
+
+    <section class="panel">
+        <h2>Benchmark refinement</h2>
+        <p class="muted">
+            Local benchmark, SEO/AIO, AdSense and monetization readiness. External provider activation:
+            {{ $summary['benchmark_external_provider_active'] }}.
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Site</th>
+                    <th>Benchmark</th>
+                    <th>SEO/AIO</th>
+                    <th>AdSense</th>
+                    <th>Monetization</th>
+                    <th>Overall</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($benchmarkReadiness as $item)
+                    <tr>
+                        <td>{{ $item->site?->name ?? 'Unknown site' }}</td>
+                        <td>{{ $item->benchmark_score }}</td>
+                        <td>{{ $item->seo_aio_score }}</td>
+                        <td>{{ $item->adsense_score }}</td>
+                        <td>{{ $item->monetization_score }}</td>
+                        <td><strong>{{ $item->overall_score }}</strong></td>
+                        <td>{{ $item->data_status }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="7">No benchmark readiness records seeded.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Opportunity</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Score</th>
+                    <th>Gate</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($benchmarkOpportunities as $opportunity)
+                    <tr>
+                        <td>{{ $opportunity->title }}<br><span class="muted">{{ $opportunity->site?->name ?? 'Unknown site' }}</span></td>
+                        <td>{{ $opportunity->priority }}</td>
+                        <td><span class="status {{ $opportunity->status }}">{{ $opportunity->status }}</span></td>
+                        <td>{{ $opportunity->priority_score }}</td>
+                        <td>{{ $opportunity->human_gate_required ? 'human_required' : 'technical' }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5">No benchmark opportunities seeded.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+        <p class="muted"><a href="{{ route('admin.benchmark-refinement.index') }}">Open benchmark refinement dashboard</a></p>
     </section>
 
     <section class="panel">

@@ -10,7 +10,7 @@ import {
   statusLabels,
   type SiteCategory,
 } from '../data/sites'
-import { localizedHomePath, localizedSitePath, type LocaleCode } from '../data/locales'
+import { localeCodes, localizedHomePath, localizedSitePath, type LocaleCode } from '../data/locales'
 import { trackOutboundSiteClick } from '../utils/analytics'
 
 const props = defineProps<{
@@ -128,6 +128,11 @@ useHead(() => ({
           </div>
           <h2>{{ site.name }}</h2>
           <p>{{ site.localized[locale].headline }}</p>
+          <ul class="site-card__signals" :aria-label="`${site.name} operating signals`">
+            <li>{{ site.freeTools.length }} {{ copy.toolTracksLabel }}</li>
+            <li>{{ localeCodes.length }} {{ copy.localesLabel }}</li>
+            <li>{{ copy.gatedLabel }}</li>
+          </ul>
           <dl>
             <div>
               <dt>{{ copy.freeLabel }}</dt>

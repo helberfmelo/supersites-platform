@@ -10,6 +10,7 @@ use App\Models\User;
 use Database\Seeders\AccessControlSeeder;
 use Database\Seeders\AdSenseReadinessSeeder;
 use Database\Seeders\AiGrowthReadinessSeeder;
+use Database\Seeders\BenchmarkRefinementSeeder;
 use Database\Seeders\BillingReadinessSeeder;
 use Database\Seeders\DeploymentRecordSeeder;
 use Database\Seeders\ExecutiveReportReadinessSeeder;
@@ -57,6 +58,7 @@ class AdminPanelTest extends TestCase
             BillingReadinessSeeder::class,
             AiGrowthReadinessSeeder::class,
             ExecutiveReportReadinessSeeder::class,
+            BenchmarkRefinementSeeder::class,
             DeploymentRecordSeeder::class,
             OperationalTaskSeeder::class,
         ]);
@@ -79,6 +81,9 @@ class AdminPanelTest extends TestCase
             ->assertSee('Executive reports')
             ->assertSee('Weekly Executive Readiness')
             ->assertSee('not_inferred')
+            ->assertSee('Benchmark refinement')
+            ->assertSee('Benchmark surfaces')
+            ->assertSee('Surface benchmark and monetization readiness in the Hub')
             ->assertSee('AI growth engine')
             ->assertSee('Build evidence-first SEO and AIO backlog before content expansion')
             ->assertSee('not_inferred')
@@ -90,6 +95,36 @@ class AdminPanelTest extends TestCase
         $this->assertDatabaseHas('audit_logs', [
             'user_id' => $user->id,
             'action' => 'admin.dashboard.viewed',
+        ]);
+    }
+
+    public function test_operator_can_view_benchmark_refinement_dashboard(): void
+    {
+        $this->seed([
+            PortfolioSiteSeeder::class,
+            AccessControlSeeder::class,
+            BenchmarkRefinementSeeder::class,
+        ]);
+
+        $user = $this->userWithRole('operator');
+
+        $this->actingAs($user)
+            ->get('/admin/benchmark-refinement')
+            ->assertOk()
+            ->assertSee('Benchmark refinement')
+            ->assertSee('Public surfaces')
+            ->assertSee('Average readiness')
+            ->assertSee('Site readiness')
+            ->assertSee('SuperSites Hub')
+            ->assertSee('NetProbe Atlas')
+            ->assertSee('Opportunity backlog')
+            ->assertSee('Keep ads, donations, affiliates and checkout gated until approvals pass')
+            ->assertSee('External providers active')
+            ->assertSee('0');
+
+        $this->assertDatabaseHas('audit_logs', [
+            'user_id' => $user->id,
+            'action' => 'admin.benchmark_refinement.index_viewed',
         ]);
     }
 
