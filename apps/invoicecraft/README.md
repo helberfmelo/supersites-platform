@@ -1,6 +1,6 @@
 # InvoiceCraft
 
-Sprint 4.2 MVP for browser-side invoice, quote and receipt workflows with local PDF export.
+Browser-side invoice, quote and receipt workflows with local PDF export.
 
 ## Current scope
 
@@ -13,9 +13,15 @@ Sprint 4.2 MVP for browser-side invoice, quote and receipt workflows with local 
 - Tool analytics are limited to `tool_slug`, event name, locale and safe route path.
 - Issuer, client, item, amount, tax/adjustment and note fields are not stored or sent to a product API.
 
+## Sprint 7.8 benchmark refinement
+
+- Adds template-style tabs, a document snapshot panel, clearer PDF/download guidance, text-summary copy, related document flows and gated workflow prompts.
+- Keeps issuer, client, item, amount, notes and PDF contents local to the browser session.
+- Does not activate saved clients/products, official tax templates, fiscal numbering, payment collection, checkout, billing, ads or external analytics.
+
 ## Gated scope
 
-Saved clients, product catalogs, recurring invoices, branding, teams, payment collection, fiscal tax templates, billing, ads and external analytics are not active in this sprint.
+Saved clients, product catalogs, recurring invoices, branding, teams, payment collection, fiscal tax templates, billing, ads and external analytics are not active.
 
 Official tax handling, fiscal numbering and jurisdiction-specific invoice requirements must be treated as `HUMAN_ACTION_REQUIRED` before activation.
 

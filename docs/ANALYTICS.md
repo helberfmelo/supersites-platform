@@ -143,7 +143,7 @@ Nao registrar em analytics:
 - conteudo ou nome do PDF gerado quando derivado de campos do usuario;
 - erros ou mensagens que possam conter partes do documento.
 
-Sprint 4.2 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, clientes/produtos salvos, recorrencia, pagamentos, billing, API publica ou storage persistente do InvoiceCraft.
+Sprint 7.8 nao altera o contrato de eventos: tabs de template, document snapshot, copy de resumo, related documents e paineis de workflow gated sao UI local sem novos eventos ou propriedades. GA4, GTM, AdSense, backend de analytics externo, contas, clientes/produtos salvos, recorrencia, pagamentos, billing, API publica ou storage persistente do InvoiceCraft continuam desativados.
 
 ## MailHealth tools
 

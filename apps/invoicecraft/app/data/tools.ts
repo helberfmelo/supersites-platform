@@ -66,6 +66,12 @@ export interface InvoiceCraftToolDefinition {
   localized: Record<LocaleCode, InvoiceCraftToolCopy>
 }
 
+export interface InvoiceCraftRelatedTool {
+  slug: InvoiceCraftToolSlug
+  title: string
+  description: string
+}
+
 export interface ResultMeta {
   label: string
   value: string
@@ -121,6 +127,8 @@ interface InvoiceCraftToolSpec {
   description: string
   freeScope: string
   upgradeScope: string
+  useCase: string
+  bestPractice: string
   sample: InvoiceCraftDocumentInput
 }
 
@@ -144,6 +152,7 @@ const localizedBasics: Record<LocaleCode, {
   localBody: string
   pdfSection: string
   pdfBody: string
+  bestPracticeSection: string
   gateSection: string
   gateBody: string
   faqStorage: FaqItem
@@ -152,56 +161,61 @@ const localizedBasics: Record<LocaleCode, {
   en: {
     resultLabel: 'Document preview',
     localSection: 'Local document data',
-    localBody: 'Sprint 4.2 keeps issuer, client, item and amount data in the browser session and never sends document fields to analytics.',
+    localBody: 'InvoiceCraft keeps issuer, client, item and amount data in the browser session and never sends document fields to analytics.',
     pdfSection: 'PDF rendering',
     pdfBody: 'The free builder renders a browser preview and downloads a PDF locally, which solves the basic need without mandatory signup.',
+    bestPracticeSection: 'Document best practices',
     gateSection: 'Tax and payment limits',
     gateBody: 'Tax labels, fiscal numbering, payment collection, recurring invoices, saved clients and team workspaces remain gated until human legal and billing review.',
-    faqStorage: { question: 'Are clients, products or invoices stored?', answer: 'No. InvoiceCraft Sprint 4.2 does not create accounts, call a product API, use browser storage or save document fields.' },
+    faqStorage: { question: 'Are clients, products or invoices stored?', answer: 'No. InvoiceCraft does not create accounts, call a product API, use browser storage or save document fields.' },
     faqTax: { question: 'Can this create official tax invoices?', answer: 'No. Manual tax or adjustment lines are formatting helpers only; jurisdiction-specific taxes require HUMAN_ACTION_REQUIRED before activation.' },
   },
   'pt-br': {
     resultLabel: 'Preview do documento',
     localSection: 'Dados locais do documento',
-    localBody: 'A Sprint 4.2 mantem emissor, cliente, itens e valores na sessao do navegador e nunca envia campos do documento para analytics.',
+    localBody: 'O InvoiceCraft mantem emissor, cliente, itens e valores na sessao do navegador e nunca envia campos do documento para analytics.',
     pdfSection: 'Renderizacao PDF',
     pdfBody: 'O builder gratuito mostra preview no navegador e baixa um PDF local, resolvendo a necessidade basica sem cadastro obrigatorio.',
+    bestPracticeSection: 'Boas praticas do documento',
     gateSection: 'Limites fiscais e pagamentos',
     gateBody: 'Impostos, numeracao fiscal, cobranca, recorrencia, clientes salvos e equipe seguem bloqueados ate revisao humana juridica e de billing.',
-    faqStorage: { question: 'Clientes, produtos ou faturas sao armazenados?', answer: 'Nao. O InvoiceCraft Sprint 4.2 nao cria conta, nao chama API de produto, nao usa storage do navegador e nao salva campos.' },
+    faqStorage: { question: 'Clientes, produtos ou faturas sao armazenados?', answer: 'Nao. O InvoiceCraft nao cria conta, nao chama API de produto, nao usa storage do navegador e nao salva campos.' },
     faqTax: { question: 'Isto cria nota fiscal oficial?', answer: 'Nao. Linhas manuais de imposto ou ajuste sao apenas formatacao; impostos por jurisdicao exigem HUMAN_ACTION_REQUIRED antes de ativar.' },
   },
   es: {
     resultLabel: 'Vista previa',
     localSection: 'Datos locales',
-    localBody: 'Sprint 4.2 mantiene emisor, cliente, items e importes en la sesion del navegador y no envia campos del documento a analytics.',
+    localBody: 'InvoiceCraft mantiene emisor, cliente, items e importes en la sesion del navegador y no envia campos del documento a analytics.',
     pdfSection: 'PDF local',
     pdfBody: 'El builder gratis muestra una vista previa y descarga un PDF local para resolver la necesidad basica sin registro obligatorio.',
+    bestPracticeSection: 'Buenas practicas del documento',
     gateSection: 'Limites fiscales y pagos',
     gateBody: 'Impuestos, numeracion fiscal, cobros, recurrencia, clientes guardados y equipos quedan bloqueados hasta revision legal y de billing.',
-    faqStorage: { question: 'Se guardan clientes, productos o facturas?', answer: 'No. InvoiceCraft Sprint 4.2 no crea cuentas, no llama APIs de producto, no usa storage del navegador y no guarda campos.' },
+    faqStorage: { question: 'Se guardan clientes, productos o facturas?', answer: 'No. InvoiceCraft no crea cuentas, no llama APIs de producto, no usa storage del navegador y no guarda campos.' },
     faqTax: { question: 'Sirve como factura fiscal oficial?', answer: 'No. Lineas manuales de impuesto o ajuste son solo ayuda de formato; impuestos por jurisdiccion requieren HUMAN_ACTION_REQUIRED.' },
   },
   fr: {
     resultLabel: 'Apercu document',
     localSection: 'Donnees locales',
-    localBody: 'Sprint 4.2 garde emetteur, client, lignes et montants dans la session navigateur et n envoie pas les champs a analytics.',
+    localBody: 'InvoiceCraft garde emetteur, client, lignes et montants dans la session navigateur et n envoie pas les champs a analytics.',
     pdfSection: 'PDF local',
     pdfBody: 'Le builder gratuit affiche un apercu et telecharge un PDF local pour couvrir le besoin de base sans compte obligatoire.',
+    bestPracticeSection: 'Bonnes pratiques document',
     gateSection: 'Limites fiscales et paiement',
     gateBody: 'Taxes, numerotation fiscale, paiement, recurrence, clients sauvegardes et equipes restent gates avant revue humaine juridique et billing.',
-    faqStorage: { question: 'Les clients, produits ou factures sont-ils stockes?', answer: 'Non. InvoiceCraft Sprint 4.2 ne cree pas de compte, n appelle pas d API produit, n utilise pas de storage et ne sauvegarde pas les champs.' },
+    faqStorage: { question: 'Les clients, produits ou factures sont-ils stockes?', answer: 'Non. InvoiceCraft ne cree pas de compte, n appelle pas d API produit, n utilise pas de storage et ne sauvegarde pas les champs.' },
     faqTax: { question: 'Est-ce une facture fiscale officielle?', answer: 'Non. Les lignes manuelles de taxe ou ajustement sont seulement un format; les taxes par juridiction exigent HUMAN_ACTION_REQUIRED.' },
   },
   de: {
     resultLabel: 'Dokumentvorschau',
     localSection: 'Lokale Dokumentdaten',
-    localBody: 'Sprint 4.2 haelt Aussteller, Kunde, Positionen und Betraege in der Browser-Sitzung und sendet keine Felder an Analytics.',
+    localBody: 'InvoiceCraft haelt Aussteller, Kunde, Positionen und Betraege in der Browser-Sitzung und sendet keine Felder an Analytics.',
     pdfSection: 'Lokales PDF',
     pdfBody: 'Der kostenlose Builder rendert eine Vorschau und laedt lokal ein PDF herunter, ohne Pflichtkonto.',
+    bestPracticeSection: 'Dokument-Best-Practices',
     gateSection: 'Steuer- und Zahlungslimits',
     gateBody: 'Steuern, fiskalische Nummerierung, Zahlungen, Wiederholung, gespeicherte Kunden und Teams bleiben bis menschlicher Legal- und Billing-Pruefung gesperrt.',
-    faqStorage: { question: 'Werden Kunden, Produkte oder Rechnungen gespeichert?', answer: 'Nein. InvoiceCraft Sprint 4.2 erstellt kein Konto, ruft keine Produkt-API auf, nutzt kein Browser-Storage und speichert keine Felder.' },
+    faqStorage: { question: 'Werden Kunden, Produkte oder Rechnungen gespeichert?', answer: 'Nein. InvoiceCraft erstellt kein Konto, ruft keine Produkt-API auf, nutzt kein Browser-Storage und speichert keine Felder.' },
     faqTax: { question: 'Ist das eine offizielle Steuerrechnung?', answer: 'Nein. Manuelle Steuer- oder Anpassungszeilen sind nur Formatierung; Steuerregeln pro Jurisdiktion brauchen HUMAN_ACTION_REQUIRED.' },
   },
 }
@@ -234,6 +248,8 @@ const specs: InvoiceCraftToolSpec[] = [
     description: 'Fill issuer, client, line items, dates, discount and one manual adjustment line. InvoiceCraft calculates totals locally.',
     freeScope: 'One invoice at a time, local preview, local PDF download and no saved customer or product records.',
     upgradeScope: 'Saved clients, product catalog, recurring invoices, branding, team review, payment links and automation.',
+    useCase: 'Use an invoice after work is delivered or ready to bill, when the recipient needs itemized charges, due date and payment terms.',
+    bestPractice: 'Keep the document number, dates, client name, line items and manual tax/adjustment label visible before downloading the PDF.',
     sample: sampleBase,
   },
   {
@@ -246,6 +262,8 @@ const specs: InvoiceCraftToolSpec[] = [
     description: 'Use the quote builder for one-time estimates where the recipient needs itemized scope and a total before approval.',
     freeScope: 'One quote/estimate at a time with local calculation, preview and PDF download.',
     upgradeScope: 'Reusable products, approval workflow, expiry reminders, branded templates, CRM export and team collaboration.',
+    useCase: 'Use a quote before work starts, when the buyer needs scope, pricing and validity details before written approval.',
+    bestPractice: 'Make the validity date and assumptions explicit, and keep acceptance, tax and payment obligations outside the free builder until reviewed.',
     sample: {
       ...sampleBase,
       documentNumber: 'QT-2026-0088',
@@ -264,22 +282,26 @@ const specs: InvoiceCraftToolSpec[] = [
     description: 'Generate a receipt after a payment has already happened. The MVP does not collect payment or store history.',
     freeScope: 'One receipt at a time with local preview, local PDF export and explicit paid-date labeling.',
     upgradeScope: 'Saved customers, payment reconciliation, branding, team access, exports, history and payment integrations.',
+    useCase: 'Use a receipt after payment is complete, when the payer needs a record of what was paid and when.',
+    bestPractice: 'Match the paid date and total against your real payment records; InvoiceCraft does not verify payment settlement.',
     sample: {
       ...sampleBase,
       documentNumber: 'RC-2026-0019',
       dueDate: '2026-06-27',
-      terms: 'Paid in full. No payment processing occurs in InvoiceCraft Sprint 4.2.',
+      terms: 'Paid in full. No payment processing occurs in InvoiceCraft.',
       notes: 'Receipt generated after payment. Keep your official payment records separately.',
     },
   },
 ]
 
-function sections(locale: LocaleCode): ContentSection[] {
+function sections(spec: InvoiceCraftToolSpec, locale: LocaleCode): ContentSection[] {
   const base = localizedBasics[locale]
 
   return [
+    { heading: spec.shortName, paragraphs: [spec.useCase] },
     { heading: base.localSection, paragraphs: [base.localBody] },
     { heading: base.pdfSection, paragraphs: [base.pdfBody] },
+    { heading: base.bestPracticeSection, paragraphs: [spec.bestPractice] },
     { heading: base.gateSection, paragraphs: [base.gateBody] },
   ]
 }
@@ -296,7 +318,7 @@ function copyFor(spec: InvoiceCraftToolSpec, locale: LocaleCode): InvoiceCraftTo
     freeScope: spec.freeScope,
     upgradeScope: spec.upgradeScope,
     reviewedLabel: reviewed[locale],
-    contentSections: sections(locale),
+    contentSections: sections(spec, locale),
     faq: [base.faqStorage, base.faqTax],
   }
 }
@@ -327,6 +349,20 @@ export function getInvoiceCraftToolBySlug(slug: string | undefined): InvoiceCraf
 
 export function getInvoiceCraftToolCopy(toolDefinition: InvoiceCraftToolDefinition, locale: LocaleCode): InvoiceCraftToolCopy {
   return toolDefinition.localized[locale]
+}
+
+export function getRelatedInvoiceCraftTools(slug: InvoiceCraftToolSlug, locale: LocaleCode): InvoiceCraftRelatedTool[] {
+  return invoiceCraftToolCatalog
+    .filter((toolDefinition) => toolDefinition.slug !== slug)
+    .map((toolDefinition) => {
+      const copy = getInvoiceCraftToolCopy(toolDefinition, locale)
+
+      return {
+        slug: toolDefinition.slug,
+        title: copy.title,
+        description: copy.freeScope,
+      }
+    })
 }
 
 export function getCategoryLabel(category: InvoiceCraftToolCategory, locale: LocaleCode): string {

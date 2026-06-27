@@ -8,6 +8,7 @@ import {
   getCategoryLabel,
   getInvoiceCraftToolBySlug,
   getInvoiceCraftToolCopy,
+  getRelatedInvoiceCraftTools,
   type InvoiceCraftDocumentInput,
   type InvoiceCraftDocumentSummary,
   type InvoiceCraftToolMode,
@@ -42,10 +43,24 @@ const form = reactive<InvoiceCraftDocumentInput>(cloneInput(tool.sample))
 const hasRun = ref(false)
 const isRunning = ref(false)
 const isDownloading = ref(false)
+const copyState = ref<'idle' | 'copied'>('idle')
 const result = ref<InvoiceCraftToolResult | null>(null)
 const resultTitle = computed(() => result.value?.ok === false ? shellCopy.invalidResultTitle : copy.resultLabel)
 const dueDateLabel = computed(() => tool.kind === 'receipt' ? 'Paid date' : tool.kind === 'quote' ? 'Valid until' : 'Due date')
 const document = computed<InvoiceCraftDocumentSummary | null>(() => result.value?.ok ? result.value.document ?? null : null)
+const relatedTools = computed(() => getRelatedInvoiceCraftTools(tool.slug, locale))
+const snapshotMeta = computed(() => {
+  if (!document.value) {
+    return []
+  }
+
+  return [
+    { label: 'Document', value: `${document.value.title} ${document.value.documentNumber}` },
+    { label: document.value.dueDateLabel, value: document.value.dueDate },
+    { label: 'Items', value: String(document.value.items.length) },
+    { label: 'Total', value: formatMoney(document.value.total, document.value.currency, locale) },
+  ]
+})
 
 function currentInput(): InvoiceCraftDocumentInput {
   return cloneInput(form)
@@ -95,6 +110,12 @@ function resetExample(): void {
   selectedMode.value = tool.modes[0]?.value ?? 'clean'
   hasRun.value = false
   result.value = null
+  copyState.value = 'idle'
+}
+
+function setMode(mode: InvoiceCraftToolMode): void {
+  selectedMode.value = mode
+  copyState.value = 'idle'
 }
 
 function safeFileName(documentSummary: InvoiceCraftDocumentSummary): string {
@@ -112,6 +133,30 @@ function writeTextBlock(pdf: InstanceType<(typeof import('jspdf'))['jsPDF']>, te
   pdf.text(lines, x, y)
 
   return y + lines.length * 12
+}
+
+async function copySummary(): Promise<void> {
+  if (!result.value?.ok || !result.value.output) {
+    return
+  }
+
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(result.value.output)
+  } else {
+    const textarea = window.document.createElement('textarea')
+    textarea.value = result.value.output
+    textarea.style.position = 'fixed'
+    textarea.style.opacity = '0'
+    window.document.body.appendChild(textarea)
+    textarea.select()
+    window.document.execCommand('copy')
+    window.document.body.removeChild(textarea)
+  }
+
+  copyState.value = 'copied'
+  window.setTimeout(() => {
+    copyState.value = 'idle'
+  }, 1800)
 }
 
 async function downloadPdf(): Promise<void> {
@@ -270,7 +315,7 @@ useHead({
       <div>
         <div class="detail-topline">
           <p class="eyebrow">{{ getCategoryLabel(tool.category, locale) }}</p>
-          <span class="status">Sprint 4.2</span>
+          <span class="status">{{ shellCopy.liveTitle }}</span>
         </div>
         <h1 :id="`${tool.slug}-title`">{{ copy.title }}</h1>
         <p class="lead">{{ copy.headline }}</p>
@@ -294,20 +339,51 @@ useHead({
       </aside>
     </section>
 
+    <section class="document-snapshot" :aria-labelledby="`${tool.slug}-snapshot`">
+      <div>
+        <span class="status">{{ shellCopy.freeCheckLabel }}</span>
+        <h2 :id="`${tool.slug}-snapshot`">{{ shellCopy.documentSnapshotTitle }}</h2>
+        <p v-if="!document">{{ shellCopy.documentSnapshotEmpty }}</p>
+        <div v-else class="snapshot-meta">
+          <div v-for="item in snapshotMeta" :key="`${item.label}-${item.value}`">
+            <strong>{{ item.label }}</strong>
+            <span>{{ item.value }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="snapshot-actions">
+        <button :class="getButtonClass()" type="button" :disabled="!document || isDownloading" @click="downloadPdf">
+          {{ shellCopy.downloadLabel }}
+        </button>
+        <button :class="getButtonClass('secondary')" type="button" :disabled="!document" @click="copySummary">
+          {{ copyState === 'copied' ? shellCopy.copiedSummaryLabel : shellCopy.copySummaryLabel }}
+        </button>
+      </div>
+
+      <div class="snapshot-gate">
+        <strong>Tax/legal gate</strong>
+        <span>Official tax rules, fiscal numbering and payment collection require HUMAN_ACTION_REQUIRED before activation.</span>
+      </div>
+    </section>
+
     <section class="tool-layout">
       <div>
         <section class="input-panel" :aria-labelledby="`${tool.slug}-input`">
           <h2 :id="`${tool.slug}-input`">{{ shellCopy.inputTitle }}</h2>
           <p>{{ copy.description }}</p>
           <form class="utility-form document-form" @submit.prevent="runTool">
-            <div class="form-grid">
-              <div class="field">
-                <label :for="`${tool.slug}-mode`">Template</label>
-                <select :id="`${tool.slug}-mode`" v-model="selectedMode">
-                  <option v-for="mode in tool.modes" :key="mode.value" :value="mode.value">
-                    {{ mode.label }}
-                  </option>
-                </select>
+            <div class="editor-toolbar">
+              <div class="mode-tabs" :aria-label="shellCopy.modeLabel" role="group">
+                <button
+                  v-for="mode in tool.modes"
+                  :key="mode.value"
+                  type="button"
+                  :aria-pressed="selectedMode === mode.value"
+                  @click="setMode(mode.value)"
+                >
+                  {{ mode.label }}
+                </button>
               </div>
               <div class="field">
                 <label :for="`${tool.slug}-currency`">Currency</label>
@@ -396,10 +472,8 @@ useHead({
               <button :class="getButtonClass('secondary')" type="button" @click="resetExample">
                 {{ shellCopy.resetLabel }}
               </button>
-              <button :class="getButtonClass('secondary')" type="button" :disabled="isRunning || isDownloading" @click="downloadPdf">
-                {{ shellCopy.downloadLabel }}
-              </button>
             </div>
+            <p class="download-hint">{{ shellCopy.downloadHint }}</p>
           </form>
         </section>
 
@@ -487,8 +561,14 @@ useHead({
         </section>
       </div>
 
-      <aside class="band" :aria-labelledby="`${tool.slug}-scope`">
-        <h2 :id="`${tool.slug}-scope`">{{ shellCopy.freeCheckLabel }}</h2>
+      <aside class="tool-sidebar" :aria-labelledby="`${tool.slug}-scope`">
+        <section class="band">
+          <h2 :id="`${tool.slug}-scope`">{{ shellCopy.useCaseTitle }}</h2>
+          <p>{{ copy.contentSections[0]?.paragraphs[0] }}</p>
+        </section>
+
+        <section class="band">
+          <h2>{{ shellCopy.freeCheckLabel }}</h2>
         <dl class="fact-list">
           <div>
             <dt>{{ shellCopy.freeCheckLabel }}</dt>
@@ -503,6 +583,25 @@ useHead({
             <dd>Official tax rules, fiscal numbering and payment collection require HUMAN_ACTION_REQUIRED before activation.</dd>
           </div>
         </dl>
+        </section>
+
+        <section class="band">
+          <h2>{{ shellCopy.gatedListTitle }}</h2>
+          <ul class="gated-list">
+            <li v-for="item in shellCopy.gatedItems" :key="item">{{ item }}</li>
+          </ul>
+        </section>
+
+        <section class="band">
+          <h2>{{ shellCopy.relatedTitle }}</h2>
+          <p>{{ shellCopy.relatedBody }}</p>
+          <div class="related-list">
+            <NuxtLink v-for="related in relatedTools" :key="related.slug" :to="localizedToolPath(locale, related.slug)" class="related-card">
+              <strong>{{ related.title }}</strong>
+              <span>{{ related.description }}</span>
+            </NuxtLink>
+          </div>
+        </section>
       </aside>
     </section>
 

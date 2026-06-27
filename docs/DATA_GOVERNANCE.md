@@ -75,9 +75,9 @@
 
 ## InvoiceCraft
 
-- Campos de emissor, cliente, documento, itens, valores, ajustes/impostos manuais, termos e notas sao processados no navegador no MVP da Sprint 4.2.
+- Campos de emissor, cliente, documento, itens, valores, ajustes/impostos manuais, termos e notas sao processados no navegador no MVP local do InvoiceCraft.
 - PDFs sao gerados localmente via import dinamico de `jspdf`; o PDF e os campos usados para cria-lo nao devem ser enviados para backend, analytics, logs, GA4, GTM, AdSense ou data layer.
-- O app nao salva clientes, produtos, faturas, recibos, orcamentos, historico, contas, `localStorage` ou `sessionStorage` nesta sprint.
+- Sprint 7.8 adiciona snapshot, copy de resumo textual, related flows e paineis gated no cliente; esses elementos nao gravam cliente, produto, fatura, recibo, orcamento, historico, conta, `localStorage` ou `sessionStorage`.
 - Eventos locais permitidos devem conter apenas `tool_slug`, rota, locale e metadados de UI sem dados de documento.
 - Linhas manuais de imposto/ajuste sao apenas formatacao; templates fiscais, numeracao oficial, calculo automatico de impostos, pagamentos ou recorrencia exigem `HUMAN_ACTION_REQUIRED`, matriz de dados, retencao, exportacao/exclusao, termos e controles de privacidade antes de ativacao.
 

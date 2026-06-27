@@ -9,6 +9,7 @@ import {
   formatMoney,
   getInvoiceCraftToolBySlug,
   getInvoiceCraftToolCopy,
+  getRelatedInvoiceCraftTools,
   invoiceCraftToolCatalog,
   invoiceCraftToolSlugs,
   type InvoiceCraftDocumentInput,
@@ -33,7 +34,7 @@ const sample: InvoiceCraftDocumentInput = {
 }
 
 describe('InvoiceCraft MVP', () => {
-  it('lists Sprint 4.2 tools in roadmap order', () => {
+  it('lists local document tools in roadmap order', () => {
     expect(invoiceCraftToolCatalog.map((tool) => tool.slug)).toEqual([...invoiceCraftToolSlugs])
     expect(invoiceCraftToolCatalog).toHaveLength(3)
     expect(getInvoiceCraftToolBySlug('invoice-builder')?.localized.en.shortName).toBe('Invoice')
@@ -46,12 +47,20 @@ describe('InvoiceCraft MVP', () => {
         const copy = getInvoiceCraftToolCopy(tool, locale)
 
         expect(copy.headline.length).toBeGreaterThan(50)
-        expect(copy.contentSections).toHaveLength(3)
+        expect(copy.contentSections).toHaveLength(5)
         expect(copy.faq).toHaveLength(2)
         expect(copy.freeScope.length).toBeGreaterThan(20)
         expect(copy.upgradeScope.length).toBeGreaterThan(20)
       }
     }
+  })
+
+  it('links related document flows without including the current tool', () => {
+    expect(getRelatedInvoiceCraftTools('invoice-builder', 'en').map((tool) => tool.slug)).toEqual([
+      'quote-builder',
+      'receipt-builder',
+    ])
+    expect(getRelatedInvoiceCraftTools('receipt-builder', 'en')).toHaveLength(2)
   })
 
   it('generates invoice, quote and receipt summaries with deterministic totals', async () => {

@@ -942,7 +942,19 @@ Na Sprint 7.5, o DevUtility Lab recebeu o refinamento BR-DEVUTILITY: paginas de 
   - GitHub Actions `Quality Gate` run `28288511784` passou, executando repository safety, frontend QRRoute path-aware e summary.
   - GitHub Actions `Deploy Dry Run` run `28288511790` passou e gerou plano sem mutar producao.
   - Public smokes pos-push: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public` passaram, confirmando Hub, control-plane/API e NetProbe saudaveis; QRRoute segue placeholder publico.
+  - Fechamento docs-only publicado: `e9940ec` (`docs: record qrroute benchmark ci validation`).
+  - GitHub Actions `Quality Gate` docs-only run `28288623698` passou.
   - Nenhum short link publico, dominio customizado, QR dinamico, analytics de scan/click, API publica paga, conta, storage persistente, anuncio real, checkout, billing real, doacao/support payment ativo, afiliado real, webhook externo, worker de producao, analytics externo ou deploy real do QRRoute foi ativado.
+- Sprint 7.8 validation:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/ROADMAP.md`, `docs/STATUS.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local, docs de benchmark, docs do InvoiceCraft e todos os ADRs existentes ate `0030`.
+  - Estado inicial verificado: `main...origin/main` limpo no commit `e9940ec`, GitHub Actions recentes verdes e smokes publicos de Hub, control-plane/API e NetProbe passando antes da implementacao.
+  - InvoiceCraft refinado sem endpoint novo: tabs de template, document snapshot com total/datas/itens, PDF download no snapshot, copy de resumo textual local, use-case por documento, related document flows, boas praticas e painel de workflow pago gated/inert.
+  - Analytics e dados continuam sanitizados: emissor, cliente, itens, valores, numeros, termos, notas, PDF e resumo copiado nao sao persistidos nem enviados a analytics/data layer; eventos continuam limitados a `tool_slug`, rota e locale.
+  - Validacao InvoiceCraft local passou: `pnpm test:invoicecraft` com 8 testes, `pnpm build:invoicecraft`, `pnpm validate:invoicecraft-preview` com asset `/_nuxt/CmmxVjA4.js` e `pnpm test:e2e:invoicecraft` com 3 testes Playwright e PDF download.
+  - Screenshots locais do report Playwright foram inspecionados em `artifacts/playwright-invoicecraft-report/data/`; home desktop, editor mobile e privacidade mobile ficaram sem sobreposicao incoerente ou overflow visual apos ajuste dos tabs.
+  - Gates finais locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation; `git diff --check` exibiu apenas avisos CRLF nos arquivos tocados.
+  - Feature commit, push, GitHub Actions, deploy dry-run remoto, smokes publicos e fechamento docs-only serao registrados no fechamento desta sprint antes da Sprint 7.9.
+  - Nenhum cliente/produto salvo, recorrencia, branding real, equipe, pagamento, checkout, webhook, template fiscal oficial, numeracao fiscal, calculo automatico de impostos, anuncio real, billing real, analytics externo, worker de producao ou deploy real do InvoiceCraft foi ativado.
 
 ## Pendencias criticas
 

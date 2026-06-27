@@ -110,7 +110,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'InvoiceCraft is the SuperSites product for one-off invoices, quotes and receipts with local PDF export.',
     sections: [
       ['Purpose', 'The site helps users draft a single business document, calculate itemized totals and download a PDF without mandatory signup.'],
-      ['What is live now', 'Sprint 4.2 launches invoice, quote and receipt builders that keep fields in the browser session.'],
+      ['What is live now', 'Invoice, quote and receipt builders keep fields in the browser session and generate local PDFs.'],
       ['Upgrade boundary', 'Paid value is planned around saved clients, product catalogs, recurrence, branding, team workflows, payments and history.'],
     ],
   },
@@ -125,7 +125,7 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   privacy: {
     title: 'Privacy Policy',
-    description: 'InvoiceCraft minimizes collection by generating Sprint 4.2 document previews and PDFs locally in the browser.',
+    description: 'InvoiceCraft minimizes collection by generating document previews and PDFs locally in the browser.',
     sections: [
       ['Data minimization', 'Issuer, client, item, tax/adjustment, notes and amount fields are not sent to a product API, not saved in account history and not written to browser storage.'],
       ['Analytics boundary', 'Allowed analytics events may record tool slugs and page paths, but not names, addresses, invoice numbers, line items, amounts, tax labels or generated PDF contents.'],
@@ -146,7 +146,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'Baseline terms for responsible use of InvoiceCraft tools and future commercial features.',
     sections: [
       ['Responsible documents', 'Do not create misleading, fraudulent, impersonating, illegal or unauthorized billing documents.'],
-      ['Fiscal limits', 'InvoiceCraft Sprint 4.2 is a formatting and calculation helper, not jurisdiction-specific tax, legal, accounting or payment advice.'],
+      ['Fiscal limits', 'InvoiceCraft is a formatting and calculation helper, not jurisdiction-specific tax, legal, accounting or payment advice.'],
       ['Paid features', 'Commercial features require visible pricing, quotas, cancellation rules, provider terms, abuse controls and legal review before checkout or payment collection.'],
     ],
   },
@@ -170,10 +170,10 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   status: {
     title: 'Launch Status',
-    description: 'InvoiceCraft Sprint 4.2 status for public web readiness, ads, billing, PDF rendering and gates.',
+    description: 'InvoiceCraft status for public web readiness, ads, billing, PDF rendering and gates.',
     sections: [
       ['MVP surface', 'The local/CI MVP contains three document builders, five language route sets, sitemap, canonical, hreflang, structured data and browser-side PDF rendering.'],
-      ['Production', 'No InvoiceCraft public deploy is switched in Sprint 4.2 because app-specific packaging, smoke and rollback are not implemented yet.'],
+      ['Production', 'No InvoiceCraft public deploy is switched because app-specific packaging, smoke and rollback are not implemented yet.'],
       ['Gates', 'Saved clients, products, recurrence, branding, team access, payments, billing, ads and external analytics remain blocked until documented gates pass.'],
     ],
   },

@@ -120,9 +120,10 @@
 
 ## InvoiceCraft client-side documents
 
-- Ferramentas da Sprint 4.2 rodam no navegador com preview de documento e PDF local, sem chamadas de API para criar fatura, orcamento ou recibo.
+- Ferramentas do InvoiceCraft rodam no navegador com preview de documento e PDF local, sem chamadas de API para criar fatura, orcamento ou recibo.
 - Emissor, cliente, enderecos, e-mails, itens, valores, numeros de documento, termos, notas, impostos/ajustes manuais e PDF gerado nao devem ser enviados a backend, logs, analytics ou data layer.
-- O app nao deve persistir input ou resultado em `localStorage`, `sessionStorage`, IndexedDB ou cookies nesta sprint.
+- O app nao deve persistir input ou resultado em `localStorage`, `sessionStorage`, IndexedDB ou cookies.
+- Sprint 7.8 adiciona tabs de template, document snapshot, copy de resumo textual, related documents e upsell gated apenas no cliente; esses controles nao ativam storage, checkout, pagamento, webhook, conta ou template fiscal oficial.
 - O MVP limita quantidade de linhas, tamanho de texto, moedas permitidas e ranges numericos para reduzir abuso e travamento de UI.
 - Templates fiscais oficiais, numeracao fiscal, calculo automatico de impostos, cobranca, recorrencia e pagamentos exigem `HUMAN_ACTION_REQUIRED`, termos, billing/entitlements, antiabuso e validacao juridica antes de ativacao.
 

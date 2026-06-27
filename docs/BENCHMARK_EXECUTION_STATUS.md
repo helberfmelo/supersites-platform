@@ -39,7 +39,7 @@ Data-base: 2026-06-27
 | 7.5 | BR-DEVUTILITY | Completed | Developer tool UX/content refined in local/CI, public deploy still gated |
 | 7.6 | BR-TIMENEXUS | Completed | Time/date UX/content refined in local/CI, public deploy still gated |
 | 7.7 | BR-QRROUTE | Completed | QR/UTM UX/content refined in local/CI, dynamic links still gated |
-| 7.8 | BR-INVOICECRAFT | Planned | Invoice/quote/receipt UX/content refined in local/CI, taxes/payments gated |
+| 7.8 | BR-INVOICECRAFT | Local validated | Invoice/quote/receipt UX/content refined locally; CI/dry-run/smoke closing pending, taxes/payments gated |
 | 7.9 | BR-MAILHEALTH | Planned | Email diagnostic UX/content refined in local/CI, monitoring/API gated |
 | 7.10 | BR-SITEPULSE | Planned | Web diagnostic UX/content refined in local/CI, uptime workers gated |
 | 7.11 | BR-PIXELBATCH | Planned | Image UX/content refined in local/CI, server/batch/AI gated |

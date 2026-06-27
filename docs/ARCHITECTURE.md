@@ -282,12 +282,13 @@ Sprint 4.1 adiciona o primeiro produto pago de workflow da Fase 4 em `apps/qrrou
 
 ## InvoiceCraft local document MVP
 
-Sprint 4.2 adiciona o segundo produto pago de workflow da Fase 4 em `apps/invoicecraft`.
+Sprint 4.2 adicionou o segundo produto pago de workflow da Fase 4 em `apps/invoicecraft`.
 
 - O app usa Nuxt SSG/SSR com builders de fatura, orcamento e recibo executados no navegador.
 - O MVP publica 3 ferramentas: `invoice-builder`, `quote-builder` e `receipt-builder`.
 - Calculo de itens/totais, preview e download PDF rodam no cliente; `jspdf` e carregado por import dinamico apenas quando o usuario baixa o PDF.
-- Cada ferramenta renderiza exemplo, instrucoes de privacidade, limites fiscais/pagamento, FAQ, upgrade path e schema `WebApplication`/`FAQPage` no HTML inicial.
+- Sprint 7.8 adiciona refinamento benchmark local com tabs de template, document snapshot, copy de resumo textual, related documents e paineis gated de workflow pago, sem endpoint novo.
+- Cada ferramenta renderiza exemplo, instrucoes de privacidade, limites fiscais/pagamento, FAQ, related flows, upgrade path e schema `WebApplication`/`FAQPage` no HTML inicial.
 - O conteudo inicial cobre `en`, `pt-br`, `es`, `fr` e `de`, incluindo paginas legais/editoriais site-scoped.
 - Analytics local permitido: eventos sanitizados `tool_viewed`, `tool_started`, `tool_completed`, `tool_failed` e `file_downloaded` com `tool_slug`.
 - Emissor, cliente, itens, valores, numeros de documento, ajustes/impostos manuais, termos, notas e PDF nao devem ser enviados a backend, logs, analytics ou data layer.

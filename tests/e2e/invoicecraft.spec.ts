@@ -59,6 +59,7 @@ test.describe('InvoiceCraft MVP', () => {
     )
     await expect(page.getByRole('heading', { name: 'Invoice Builder' })).toBeVisible()
     await expect(page.getByText('3 local builders')).toBeVisible()
+    await expect(page.getByText('Local MVP').first()).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
     const screenshot = await page.screenshot({ fullPage: true })
@@ -81,9 +82,16 @@ test.describe('InvoiceCraft MVP', () => {
     await page.getByRole('button', { name: 'Update preview' }).click()
 
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Invoice Builder')
+    await expect(page.getByRole('heading', { name: 'Document snapshot' })).toBeVisible()
+    await expect(page.getByText('Invoice IC-2026-0042')).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Download PDF' })).toBeEnabled()
+    await expect(page.getByRole('button', { name: 'Copy text summary' })).toBeEnabled()
     await expect(page.locator('.document-preview')).toContainText('Blue Harbor LLC')
     await expect(page.locator('.document-preview')).toContainText('$375.00')
     await expect(page.locator('.document-preview')).toContainText('Tax/legal note')
+    await expect(page.getByRole('heading', { name: 'Related documents' })).toBeVisible()
+    await expect(page.getByRole('link', { name: /Quote Builder/ })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Planned paid workflow' })).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)
     await expectNoHorizontalOverflow(page)
 
