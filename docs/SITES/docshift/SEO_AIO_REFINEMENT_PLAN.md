@@ -46,6 +46,13 @@ Medium if upload pages are thin or ads are close to file actions.
 - Every PDF page has use case, limitations, FAQ and related tools.
 - No OCR/server-side promise before gates.
 
+## Sprint 7.12 result
+
+- Every tool page now exposes related document tools to support safe task chaining and internal linking.
+- Copy was updated to avoid dated public sprint labels and preserve local-processing/privacy explanations.
+- OCR, server-side conversion, batch, history, teams and API are described only as gated future workflow value.
+- Structured data remains free/browser-side; no new route promises OCR or server-side upload.
+
 ## Dashboard backlog
 
 - PDF privacy content coverage.

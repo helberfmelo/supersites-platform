@@ -38,6 +38,7 @@ test.describe('DocShift MVP', () => {
     await expect(page.getByRole('heading', { name: 'PDF Merge' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Text to PDF' })).toBeVisible()
     await expect(page.getByText('No file backend active')).toBeVisible()
+    await expect(page.getByText('Local MVP', { exact: true })).toHaveCount(8)
 
     const screenshot = await page.screenshot({ fullPage: true })
     await testInfo.attach('docshift-home-desktop', { body: screenshot, contentType: 'image/png' })
@@ -46,6 +47,13 @@ test.describe('DocShift MVP', () => {
   test('creates a PDF from text locally with sanitized analytics', async ({ page }, testInfo) => {
     await page.setViewportSize({ width: 390, height: 844 })
     await page.goto('/en/tools/text-to-pdf?file=private-brief.pdf&page=1-3')
+
+    await expect(page.getByText('Drop or choose local documents')).toBeVisible()
+    await expect(page.getByText('File state')).toBeVisible()
+    await expect(page.getByText('Workflow snapshot')).toBeVisible()
+    await expect(page.getByText('Privacy checklist')).toBeVisible()
+    await expect(page.getByText('Server workflow gated')).toBeVisible()
+    await expect(page.getByText('Related document tools')).toBeVisible()
 
     await page.getByLabel('Plain text').fill('Private roadmap note\nGenerated locally for the DocShift smoke test.')
     await page.getByRole('button', { name: 'Process document' }).click()
@@ -93,6 +101,8 @@ test.describe('DocShift MVP', () => {
     await page.getByRole('button', { name: 'Process document' }).click()
 
     await expect(page.getByTitle('Processed PDF preview')).toBeVisible()
+    await expect(page.getByText('File state')).toBeVisible()
+    await expect(page.getByText('Related document tools')).toBeVisible()
     await expect(page.locator('.result-meta').getByText('browser worker', { exact: true }).or(
       page.locator('.result-meta').getByText('local fallback', { exact: true }),
     )).toBeVisible()

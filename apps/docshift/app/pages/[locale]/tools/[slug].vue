@@ -8,6 +8,8 @@ import {
   getCategoryLabel,
   getDocShiftToolBySlug,
   getDocShiftToolCopy,
+  getDocShiftWorkflowSteps,
+  getRelatedDocShiftTools,
   type DocShiftToolInput,
   type DocShiftToolResult,
   type DocShiftTransformPlan,
@@ -35,6 +37,8 @@ const copy = getDocShiftToolCopy(tool, locale)
 const shellCopy = getShellCopy(locale)
 const canonicalPath = localizedToolPath(locale, tool.slug)
 const structuredData = createDocShiftToolStructuredData(tool, locale, absoluteUrl(canonicalPath))
+const workflowSteps = getDocShiftWorkflowSteps(tool.slug)
+const relatedTools = getRelatedDocShiftTools(tool.slug, locale)
 const selectedFiles = ref<File[]>([])
 const pageSelection = ref(tool.defaultPages)
 const rotationDegrees = ref(90)
@@ -62,6 +66,27 @@ const selectedFileLabel = computed(() => {
   const total = selectedFiles.value.reduce((sum, file) => sum + file.size, 0)
   return `${selectedFiles.value.length} PDF file${selectedFiles.value.length === 1 ? '' : 's'} selected (${formatBytes(total)})`
 })
+const workflowSnapshotRows = computed(() => [
+  { label: 'Mode', value: copy.shortName },
+  {
+    label: 'Input',
+    value: tool.requiresPdf
+      ? (selectedFiles.value.length === 0 ? 'No PDF selected yet' : `${selectedFiles.value.length} local PDF${selectedFiles.value.length === 1 ? '' : 's'}`)
+      : `${textContent.value.trim().length} characters in browser memory`,
+  },
+  { label: 'Output', value: outputFileName.value || 'PDF created after processing' },
+  {
+    label: 'Processing',
+    value: result.value?.plan?.workerUsed
+      ? 'browser worker + pdf-lib'
+      : 'browser tab + pdf-lib',
+  },
+])
+const privacyChecklist = [
+  'Files and pasted text stay in browser memory.',
+  'No upload API, localStorage or sessionStorage is used.',
+  'Analytics records only sanitized tool slug and route path.',
+]
 const displayedMeta = computed(() => {
   if (!result.value?.ok) {
     return []
@@ -422,7 +447,7 @@ useHead({
       <div>
         <div class="detail-topline">
           <p class="eyebrow">{{ getCategoryLabel(tool.category, locale) }}</p>
-          <span class="status">Sprint 5.2</span>
+          <span class="status">Local MVP</span>
         </div>
         <h1 :id="`${tool.slug}-title`">{{ copy.title }}</h1>
         <p class="lead">{{ copy.headline }}</p>
@@ -452,21 +477,36 @@ useHead({
           <h2 :id="`${tool.slug}-input`">{{ shellCopy.inputTitle }}</h2>
           <p>{{ copy.description }}</p>
           <form class="utility-form document-tool-form" @submit.prevent="runTool">
-            <div v-if="tool.requiresPdf" class="field">
-              <label :for="`${tool.slug}-file`">{{ shellCopy.fileLabel }}</label>
-              <input
-                :id="`${tool.slug}-file`"
-                type="file"
-                accept="application/pdf,.pdf"
-                :multiple="tool.acceptsMultiple"
-                @change="onFileSelected"
-              >
-              <p class="field-help">{{ selectedFileLabel }}</p>
+            <div v-if="tool.requiresPdf" class="dropzone">
+              <strong>{{ shellCopy.dropzoneTitle }}</strong>
+              <p>{{ shellCopy.dropzoneBody }}</p>
+              <div class="field">
+                <label :for="`${tool.slug}-file`">{{ shellCopy.fileLabel }}</label>
+                <input
+                  :id="`${tool.slug}-file`"
+                  type="file"
+                  accept="application/pdf,.pdf"
+                  :multiple="tool.acceptsMultiple"
+                  @change="onFileSelected"
+                >
+              </div>
+              <div class="file-state" aria-live="polite">
+                <strong>{{ shellCopy.fileStateTitle }}</strong>
+                <span>{{ selectedFileLabel }}</span>
+              </div>
             </div>
 
-            <div v-if="tool.usesTextInput" class="field">
-              <label :for="`${tool.slug}-text`">{{ shellCopy.textLabel }}</label>
-              <textarea :id="`${tool.slug}-text`" v-model="textContent" spellcheck="true"></textarea>
+            <div v-if="tool.usesTextInput" class="dropzone">
+              <strong>{{ shellCopy.dropzoneTitle }}</strong>
+              <p>{{ shellCopy.dropzoneBody }}</p>
+              <div class="field">
+                <label :for="`${tool.slug}-text`">{{ shellCopy.textLabel }}</label>
+                <textarea :id="`${tool.slug}-text`" v-model="textContent" spellcheck="true"></textarea>
+              </div>
+              <div class="file-state" aria-live="polite">
+                <strong>{{ shellCopy.fileStateTitle }}</strong>
+                <span>{{ textContent.trim().length }} characters in browser memory</span>
+              </div>
             </div>
 
             <div v-if="tool.requiresPdf && tool.operation !== 'merge' && tool.operation !== 'compress' && tool.operation !== 'metadata'" class="field">
@@ -515,6 +555,16 @@ useHead({
                 {{ shellCopy.downloadLabel }}
               </button>
             </div>
+
+            <div class="workflow-steps" :aria-label="shellCopy.workflowSnapshotTitle">
+              <div v-for="(step, index) in workflowSteps" :key="step.title" class="workflow-step">
+                <span>{{ index + 1 }}</span>
+                <div>
+                  <strong>{{ step.title }}</strong>
+                  <p>{{ step.body }}</p>
+                </div>
+              </div>
+            </div>
           </form>
         </section>
 
@@ -533,6 +583,16 @@ useHead({
               </div>
             </div>
 
+            <div class="document-snapshot">
+              <h3>{{ shellCopy.workflowSnapshotTitle }}</h3>
+              <dl class="fact-list">
+                <div v-for="item in workflowSnapshotRows" :key="`${item.label}-${item.value}`">
+                  <dt>{{ item.label }}</dt>
+                  <dd>{{ item.value }}</dd>
+                </div>
+              </dl>
+            </div>
+
             <figure class="pdf-preview">
               <div class="pdf-preview__frame">
                 <iframe :src="previewUrl" title="Processed PDF preview"></iframe>
@@ -547,22 +607,60 @@ useHead({
         </section>
       </div>
 
-      <aside class="band" :aria-labelledby="`${tool.slug}-scope`">
-        <h2 :id="`${tool.slug}-scope`">{{ shellCopy.freeCheckLabel }}</h2>
-        <dl class="fact-list">
-          <div>
-            <dt>{{ shellCopy.freeCheckLabel }}</dt>
-            <dd>{{ copy.freeScope }}</dd>
+      <aside class="tool-sidebar">
+        <section class="band" :aria-labelledby="`${tool.slug}-scope`">
+          <h2 :id="`${tool.slug}-scope`">{{ shellCopy.freeCheckLabel }}</h2>
+          <dl class="fact-list">
+            <div>
+              <dt>{{ shellCopy.freeCheckLabel }}</dt>
+              <dd>{{ copy.freeScope }}</dd>
+            </div>
+            <div>
+              <dt>{{ shellCopy.upgradePathLabel }}</dt>
+              <dd>{{ copy.upgradeScope }}</dd>
+            </div>
+            <div>
+              <dt>File safety</dt>
+              <dd>Server-side batch, OCR, API and history require upload validation, sandboxing, antivirus where applicable, retention and deletion gates before activation.</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="band" :aria-labelledby="`${tool.slug}-snapshot`">
+          <h2 :id="`${tool.slug}-snapshot`">{{ shellCopy.workflowSnapshotTitle }}</h2>
+          <dl class="fact-list">
+            <div v-for="item in workflowSnapshotRows" :key="`${item.label}-${item.value}`">
+              <dt>{{ item.label }}</dt>
+              <dd>{{ item.value }}</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="band" :aria-labelledby="`${tool.slug}-privacy`">
+          <h2 :id="`${tool.slug}-privacy`">{{ shellCopy.privacyChecklistTitle }}</h2>
+          <ul class="privacy-list">
+            <li v-for="item in privacyChecklist" :key="item">{{ item }}</li>
+          </ul>
+        </section>
+
+        <section class="band" :aria-labelledby="`${tool.slug}-server-gate`">
+          <h2 :id="`${tool.slug}-server-gate`">{{ shellCopy.heavyQueueTitle }}</h2>
+          <p>{{ shellCopy.heavyQueueBody }}</p>
+          <ul class="privacy-list">
+            <li v-for="item in shellCopy.heavyQueueItems" :key="item">{{ item }}</li>
+          </ul>
+        </section>
+
+        <section class="band" :aria-labelledby="`${tool.slug}-related`">
+          <h2 :id="`${tool.slug}-related`">{{ shellCopy.relatedToolsTitle }}</h2>
+          <p>{{ shellCopy.relatedToolsBody }}</p>
+          <div class="related-list">
+            <NuxtLink v-for="related in relatedTools" :key="related.slug" :to="localizedToolPath(locale, related.slug)">
+              <strong>{{ related.title }}</strong>
+              <span>{{ related.description }}</span>
+            </NuxtLink>
           </div>
-          <div>
-            <dt>{{ shellCopy.upgradePathLabel }}</dt>
-            <dd>{{ copy.upgradeScope }}</dd>
-          </div>
-          <div>
-            <dt>File safety</dt>
-            <dd>Server-side batch, OCR, API and history require upload validation, sandboxing, antivirus where applicable, retention and deletion gates before activation.</dd>
-          </div>
-        </dl>
+        </section>
       </aside>
     </section>
 

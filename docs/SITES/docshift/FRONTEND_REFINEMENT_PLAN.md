@@ -48,6 +48,14 @@ Medium; ads/support must stay away from uploads, progress, previews and download
 - Download works after processing.
 - No mobile overflow around file list and controls.
 
+## Sprint 7.12 result
+
+- Implemented dominant dropzone/file-state messaging for PDF and text flows.
+- Added workflow steps before processing and workflow snapshot after processing.
+- Added privacy checklist, related document tools and server/OCR/batch gated panel on every localized tool page.
+- Removed public internal Sprint 5.2 labels from app surfaces and replaced them with user-facing local MVP language.
+- Validated with Vitest, Nuxt build, preview smoke, Playwright PDF generation/rotation/download and screenshot inspection.
+
 ## Dashboard backlog
 
 - PDF privacy readiness.

@@ -172,6 +172,7 @@
 - Object URLs devem ser revogados apos uso; inputs e outputs nao devem ser gravados em `localStorage`, `sessionStorage`, IndexedDB, cookies, backend, logs ou analytics.
 - Metadata cleaner e compress/rewrite nao devem prometer redacao forense, OCR, downsampling de imagens ou remocao garantida de conteudo invisivel fora do suporte do `pdf-lib`.
 - Analytics de DocShift nao deve incluir nome do arquivo, texto colado, texto de paginas, metadados, page count, selecao de paginas, tamanho de blob/PDF, bytes gerados ou erro tecnico com detalhes do documento.
+- Dropzone, file state, workflow snapshot, privacy checklist, related tools e server/OCR/batch gated da Sprint 7.12 devem permanecer derivados de arquivo/texto local em memoria e nao podem ativar upload server-side, OCR provider, batch worker, API paga, checkout, historico ou conta.
 - Batch, arquivos maiores, OCR, conversoes DOCX/imagem, API, historico e equipes exigem auth, billing/entitlements, quotas, upload validation, sandbox, antivirus quando aplicavel, retencao/limpeza de temporarios, exportacao/exclusao, provider review e gates de deploy antes de ativacao.
 
 ## NetProbe public API

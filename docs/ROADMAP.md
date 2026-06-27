@@ -312,7 +312,7 @@ Sprint 7.12 - DocShift benchmark UX
 - Simbolico: BR-DOCSHIFT.
 - Objetivo: refinar grid de ferramentas PDF, dropzone, estados de arquivo, resultado/download, privacidade, related tools e upgrades gated.
 - Validacao: worker/PDF rendering smoke, testes/build/preview/Playwright do DocShift e gates locais.
-- Status: planejada.
+- Status: concluida localmente, com CI remoto pendente. O app recebeu badges `Local MVP`, dropzone/estado de arquivo, workflow steps, workflow snapshot, checklist de privacidade, related document tools e painel server/OCR/batch/API/history gated sem endpoint novo. `pnpm test:docshift`, `pnpm build:docshift`, `pnpm validate:docshift-preview` e `pnpm test:e2e:docshift` passaram localmente; upload server-side, OCR, batch worker, historico, API paga, ads, billing, analytics externo e deploy publico real seguem bloqueados ate gates especificos.
 
 ## Definition of done do programa
 

@@ -27,6 +27,13 @@ Data-base: 2026-06-27
 - `pnpm test:e2e:docshift`
 - Standard structure/secrets/dry-run/ci/diff gates.
 
+## Execution notes
+
+- Local implementation completed in Sprint 7.12 with `Local MVP` badges, dropzone/file state, workflow steps, workflow snapshot, privacy checklist, related document tools and server/OCR/batch/API/history gated panels.
+- Targeted validation passed locally: `pnpm test:docshift`, `pnpm build:docshift`, `pnpm validate:docshift-preview` and `pnpm test:e2e:docshift`.
+- Playwright screenshots were inspected under `artifacts/playwright-docshift-report/data/` with no incoherent overlap or horizontal overflow observed.
+- Remote Quality Gate, Deploy Dry Run and public smokes are pending feature commit/push.
+
 ## Gates
 
 - No server-side uploads, OCR provider, batch worker, checkout, ad serving or API.

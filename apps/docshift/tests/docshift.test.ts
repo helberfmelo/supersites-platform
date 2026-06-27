@@ -9,8 +9,10 @@ import {
   estimateOutputBytesForPlan,
   filterDocShiftTools,
   formatBytes,
+  getDocShiftWorkflowSteps,
   getDocShiftToolBySlug,
   getDocShiftToolCopy,
+  getRelatedDocShiftTools,
   parsePageSelection,
   planDocShiftTransform,
   type DocShiftToolInput,
@@ -30,12 +32,25 @@ const sample: DocShiftToolInput = {
 }
 
 describe('DocShift MVP', () => {
-  it('lists Sprint 5.2 document tools in roadmap order', () => {
+  it('lists document tools in roadmap order', () => {
     expect(docShiftToolCatalog.map((tool) => tool.slug)).toEqual([...docShiftToolSlugs])
     expect(docShiftToolCatalog).toHaveLength(8)
     expect(getDocShiftToolBySlug('pdf-merge')?.localized.en.shortName).toBe('Merge')
     expect(getDocShiftToolBySlug('text-to-pdf')?.usesTextInput).toBe(true)
     expect(getDocShiftToolBySlug('missing')).toBeNull()
+  })
+
+  it('keeps related tools and workflow steps complete', () => {
+    for (const slug of docShiftToolSlugs) {
+      const related = getRelatedDocShiftTools(slug, 'en')
+      const steps = getDocShiftWorkflowSteps(slug)
+
+      expect(related).toHaveLength(3)
+      expect(related.map((item) => item.slug)).not.toContain(slug)
+      expect(related.every((item) => item.title.length > 3 && item.description.length > 20)).toBe(true)
+      expect(steps).toHaveLength(3)
+      expect(steps.every((step) => step.title.length > 3 && step.body.length > 20)).toBe(true)
+    }
   })
 
   it('keeps localized document content complete', () => {

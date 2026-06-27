@@ -116,6 +116,7 @@
 - O app nao usa API de upload, backend de arquivo, `localStorage`, `sessionStorage`, IndexedDB ou cookies para inputs/outputs do DocShift.
 - Object URLs devem ser revogados apos preview/processamento/download para reduzir retencao em memoria.
 - Eventos locais permitidos devem conter apenas `tool_slug`, rota e locale; nunca nome de arquivo, texto de paginas, texto colado, metadados, page count, page range, tamanho de saida ou conteudo do PDF.
+- Sprint 7.12 adiciona dropzone, estado de arquivo, workflow snapshot, checklist de privacidade, related tools e server/OCR/batch gated como apresentacao local do arquivo/texto/resultado em memoria; esses elementos nao criam historico, storage persistente, identificador de conta ou nova coleta.
 - Processamento server-side futuro para lote, arquivos maiores, OCR, conversoes, historico ou API exige matriz de dados propria com finalidade, base legal, armazenamento, retencao curta, limpeza automatica, exportacao/exclusao, criptografia, sandbox e antivirus quando aplicavel.
 
 ## Consentimento e ads

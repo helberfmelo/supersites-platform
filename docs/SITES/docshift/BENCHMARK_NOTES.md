@@ -34,3 +34,9 @@ Data-base: 2026-06-27
 - Refine PDF tool grid and dropzone states.
 - Strengthen privacy and deletion messaging.
 - Prepare OCR/batch/API backlog behind gates.
+
+## Sprint 7.12 outcome
+
+- Delivered local UX refinements for grid badges, tool dropzones, file state, workflow steps, result snapshot, privacy checklist and related tools.
+- Kept benchmark learning as generic workflow patterns; no benchmark images, text, pricing, icons or legal copy were copied into the app.
+- Server-side upload, OCR, batch, API, billing, ads and public deploy remain blocked behind documented gates.

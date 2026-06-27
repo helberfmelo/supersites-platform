@@ -1,6 +1,6 @@
 # DocShift
 
-Sprint 5.2 MVP for browser-side PDF and document workflows.
+Browser-side PDF and document workflow MVP.
 
 ## Scope
 
@@ -31,4 +31,8 @@ pnpm test:e2e:docshift
 
 Public traffic remains on the HostGator placeholder until DocShift receives app-specific artifact validation, public smoke and rollback/traffic-switch workflows.
 
-No AdSense, billing, OCR, API, batch worker, server-side upload processing, history, account system or external analytics is active in Sprint 5.2.
+No AdSense, billing, OCR, API, batch worker, server-side upload processing, history, account system or external analytics is active.
+
+## Benchmark refinement
+
+Sprint 7.12 adds clearer dropzone language, file state, workflow steps, result snapshots, privacy checklist, related document tools and gated server-workflow messaging. It does not add upload endpoints, backend storage, paid checkout, OCR, batch queues, public traffic switching or external analytics.

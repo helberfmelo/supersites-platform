@@ -521,6 +521,12 @@ h3 {
   display: block;
 }
 
+.document-snapshot {
+  margin: 0 0 14px;
+  padding: 14px 0 0;
+  border-top: 1px solid #d8e0e1;
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -535,6 +541,69 @@ h3 {
   min-height: auto;
   padding: 11px;
   background: #ffffff;
+}
+
+.dropzone {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px dashed #8eb0b4;
+  border-radius: 8px;
+  background: #f7fbfb;
+}
+
+.dropzone > strong,
+.file-state strong,
+.workflow-step strong,
+.related-list strong {
+  display: block;
+  color: #18201f;
+}
+
+.dropzone > p,
+.workflow-step p,
+.related-list span {
+  margin: 0;
+  color: #506668;
+}
+
+.file-state {
+  display: grid;
+  gap: 4px;
+  padding-top: 10px;
+  border-top: 1px solid #d8e0e1;
+}
+
+.file-state span {
+  color: #607174;
+  font-size: 0.9rem;
+}
+
+.workflow-steps {
+  display: grid;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.workflow-step {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  padding-top: 10px;
+  border-top: 1px solid #d8e0e1;
+}
+
+.workflow-step > span {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border-radius: 999px;
+  color: #ffffff;
+  background: #246a73;
+  font-size: 0.82rem;
+  font-weight: 850;
 }
 
 .field-help {
@@ -575,6 +644,36 @@ h3 {
   gap: 8px;
   margin: 0;
   padding-left: 20px;
+}
+
+.tool-sidebar {
+  display: grid;
+  gap: 14px;
+}
+
+.tool-sidebar .band {
+  margin-top: 0;
+}
+
+.privacy-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 20px;
+  color: #405455;
+}
+
+.related-list {
+  display: grid;
+  gap: 10px;
+}
+
+.related-list a {
+  display: grid;
+  gap: 4px;
+  padding: 10px 0;
+  border-top: 1px solid #d8e0e1;
+  text-decoration: none;
 }
 
 .content-hero h1 {

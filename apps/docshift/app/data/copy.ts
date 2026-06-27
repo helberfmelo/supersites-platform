@@ -10,6 +10,7 @@ export interface HomeCopy {
   allCategories: string
   noResultsTitle: string
   noResultsBody: string
+  localBadgeLabel: string
   freeLabel: string
   upgradeLabel: string
   detailCta: string
@@ -46,6 +47,16 @@ export interface ShellCopy {
   metadataTitleLabel: string
   metadataAuthorLabel: string
   textLabel: string
+  dropzoneTitle: string
+  dropzoneBody: string
+  fileStateTitle: string
+  workflowSnapshotTitle: string
+  privacyChecklistTitle: string
+  heavyQueueTitle: string
+  heavyQueueBody: string
+  heavyQueueItems: string[]
+  relatedToolsTitle: string
+  relatedToolsBody: string
 }
 
 export const homeCopy: Record<LocaleCode, HomeCopy> = {
@@ -59,10 +70,11 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     allCategories: 'All document tools',
     noResultsTitle: 'No document tools matched',
     noResultsBody: 'Clear the search or choose another document task.',
+    localBadgeLabel: 'Local MVP',
     freeLabel: 'Free result',
     upgradeLabel: 'Upgrade path',
     detailCta: 'Open tool',
-    principlesTitle: 'Sprint 5.2 principles',
+    principlesTitle: 'Operating principles',
     principles: [
       { title: 'Basic need solved', body: 'The free MVP can produce a useful PDF output without an account, checkout or upload endpoint.' },
       { title: 'Documents stay local', body: 'Selected PDFs are handled with browser memory, worker validation and pdf-lib output in the current session.' },
@@ -84,10 +96,11 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     allCategories: 'Todas',
     noResultsTitle: 'Nenhuma ferramenta encontrada',
     noResultsBody: 'Limpe a busca ou escolha outra tarefa.',
+    localBadgeLabel: 'MVP local',
     freeLabel: 'Resultado gratuito',
     upgradeLabel: 'Caminho de upgrade',
     detailCta: 'Abrir ferramenta',
-    principlesTitle: 'Principios da Sprint 5.2',
+    principlesTitle: 'Principios operacionais',
     principles: [
       { title: 'Necessidade basica', body: 'O MVP gratuito gera uma saida PDF util sem conta, checkout ou endpoint de upload.' },
       { title: 'Documentos locais', body: 'PDFs selecionados usam memoria do navegador, validacao em worker e saida via pdf-lib na sessao.' },
@@ -109,10 +122,11 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     allCategories: 'Todas',
     noResultsTitle: 'Sin herramientas',
     noResultsBody: 'Borra la busqueda o elige otra tarea.',
+    localBadgeLabel: 'MVP local',
     freeLabel: 'Resultado gratis',
     upgradeLabel: 'Ruta de upgrade',
     detailCta: 'Abrir',
-    principlesTitle: 'Principios Sprint 5.2',
+    principlesTitle: 'Principios operativos',
     principles: [
       { title: 'Necesidad basica', body: 'El MVP gratis genera una salida PDF util sin cuenta, checkout ni endpoint de subida.' },
       { title: 'Documentos locales', body: 'Los PDFs usan memoria del navegador, validacion worker y salida pdf-lib en la sesion.' },
@@ -134,10 +148,11 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     allCategories: 'Toutes',
     noResultsTitle: 'Aucun outil',
     noResultsBody: 'Effacez la recherche ou choisissez une autre tache.',
+    localBadgeLabel: 'MVP local',
     freeLabel: 'Resultat gratuit',
     upgradeLabel: 'Offre payante',
     detailCta: 'Ouvrir',
-    principlesTitle: 'Principes Sprint 5.2',
+    principlesTitle: 'Principes operationnels',
     principles: [
       { title: 'Besoin de base', body: 'Le MVP gratuit produit un PDF utile sans compte, checkout ni endpoint upload.' },
       { title: 'Documents locaux', body: 'Les PDFs utilisent memoire navigateur, validation worker et sortie pdf-lib dans la session.' },
@@ -159,10 +174,11 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     allCategories: 'Alle',
     noResultsTitle: 'Keine Tools',
     noResultsBody: 'Suche leeren oder andere Aufgabe waehlen.',
+    localBadgeLabel: 'Lokales MVP',
     freeLabel: 'Kostenloses Ergebnis',
     upgradeLabel: 'Upgrade-Pfad',
     detailCta: 'Tool oeffnen',
-    principlesTitle: 'Sprint-5.2-Prinzipien',
+    principlesTitle: 'Betriebsprinzipien',
     principles: [
       { title: 'Basisbedarf geloest', body: 'Das kostenlose MVP erzeugt ein brauchbares PDF ohne Konto, Checkout oder Upload-Endpunkt.' },
       { title: 'Dokumente bleiben lokal', body: 'PDFs nutzen Browser-Speicher, Worker-Validierung und pdf-lib-Ausgabe in der Sitzung.' },
@@ -191,7 +207,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     freeCheckLabel: 'Free document workflow',
     upgradePathLabel: 'Upgrade path',
     contentQualityBody: 'This page combines a working browser-side PDF tool, visible file limits, FAQ and review date.',
-    privacyNote: 'Choose a small PDF or paste text. DocShift does not upload files, store document content, use localStorage, use sessionStorage or send document values to analytics in Sprint 5.2.',
+    privacyNote: 'Choose a small PDF or paste text. DocShift does not upload files, store document content, use localStorage, use sessionStorage or send document values to analytics.',
     invalidResultTitle: 'Check the document settings',
     pageStatusLabel: 'Document tool status',
     liveTitle: 'Client-side MVP',
@@ -205,6 +221,16 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     metadataTitleLabel: 'Metadata title',
     metadataAuthorLabel: 'Metadata author',
     textLabel: 'Plain text',
+    dropzoneTitle: 'Drop or choose local documents',
+    dropzoneBody: 'Small PDFs stay in this tab. Text-to-PDF uses only the pasted text in browser memory.',
+    fileStateTitle: 'File state',
+    workflowSnapshotTitle: 'Workflow snapshot',
+    privacyChecklistTitle: 'Privacy checklist',
+    heavyQueueTitle: 'Server workflow gated',
+    heavyQueueBody: 'The paid path is reserved for batch folders, OCR, table extraction, history, teams and API after sandbox, antivirus, retention and billing gates.',
+    heavyQueueItems: ['Batch folders and larger files', 'OCR and table extraction', 'History, teams and API access', 'Server queues with retention/deletion rules'],
+    relatedToolsTitle: 'Related document tools',
+    relatedToolsBody: 'Continue with another local PDF workflow without uploading the document.',
   },
   'pt-br': {
     breadcrumbHome: 'DocShift',
@@ -234,6 +260,16 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     metadataTitleLabel: 'Titulo metadata',
     metadataAuthorLabel: 'Autor metadata',
     textLabel: 'Texto simples',
+    dropzoneTitle: 'Solte ou escolha documentos locais',
+    dropzoneBody: 'PDFs pequenos ficam nesta aba. Texto para PDF usa apenas o texto colado na memoria do navegador.',
+    fileStateTitle: 'Estado do arquivo',
+    workflowSnapshotTitle: 'Resumo do workflow',
+    privacyChecklistTitle: 'Checklist de privacidade',
+    heavyQueueTitle: 'Workflow server-side bloqueado',
+    heavyQueueBody: 'O caminho pago fica para lotes, OCR, tabelas, historico, equipes e API apos gates de sandbox, antivirus, retencao e billing.',
+    heavyQueueItems: ['Pastas em lote e arquivos maiores', 'OCR e extracao de tabelas', 'Historico, equipes e API', 'Filas server-side com retencao/exclusao'],
+    relatedToolsTitle: 'Ferramentas relacionadas',
+    relatedToolsBody: 'Continue com outro workflow local de PDF sem fazer upload.',
   },
   es: {
     breadcrumbHome: 'DocShift',
@@ -263,6 +299,16 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     metadataTitleLabel: 'Titulo metadata',
     metadataAuthorLabel: 'Autor metadata',
     textLabel: 'Texto simple',
+    dropzoneTitle: 'Suelta o elige documentos locales',
+    dropzoneBody: 'PDFs pequenos quedan en esta pestana. Texto a PDF usa solo el texto pegado en memoria del navegador.',
+    fileStateTitle: 'Estado del archivo',
+    workflowSnapshotTitle: 'Resumen del workflow',
+    privacyChecklistTitle: 'Checklist de privacidad',
+    heavyQueueTitle: 'Workflow servidor bloqueado',
+    heavyQueueBody: 'El camino pago queda para lotes, OCR, tablas, historial, equipos y API tras gates de sandbox, antivirus, retencion y billing.',
+    heavyQueueItems: ['Carpetas batch y archivos mayores', 'OCR y extraccion de tablas', 'Historial, equipos y API', 'Colas servidor con retencion/borrado'],
+    relatedToolsTitle: 'Herramientas relacionadas',
+    relatedToolsBody: 'Continua con otro workflow PDF local sin subir el documento.',
   },
   fr: {
     breadcrumbHome: 'DocShift',
@@ -292,6 +338,16 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     metadataTitleLabel: 'Titre metadata',
     metadataAuthorLabel: 'Auteur metadata',
     textLabel: 'Texte simple',
+    dropzoneTitle: 'Deposez ou choisissez des documents locaux',
+    dropzoneBody: 'Les petits PDFs restent dans cet onglet. Texte vers PDF utilise seulement le texte colle en memoire navigateur.',
+    fileStateTitle: 'Etat du fichier',
+    workflowSnapshotTitle: 'Resume du workflow',
+    privacyChecklistTitle: 'Checklist confidentialite',
+    heavyQueueTitle: 'Workflow serveur gate',
+    heavyQueueBody: 'Le chemin payant couvre lots, OCR, tableaux, historique, equipes et API apres gates sandbox, antivirus, retention et billing.',
+    heavyQueueItems: ['Dossiers batch et gros fichiers', 'OCR et extraction de tableaux', 'Historique, equipes et API', 'Queues serveur avec retention/suppression'],
+    relatedToolsTitle: 'Outils document lies',
+    relatedToolsBody: 'Continuez avec un autre workflow PDF local sans upload.',
   },
   de: {
     breadcrumbHome: 'DocShift',
@@ -321,6 +377,16 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     metadataTitleLabel: 'Metadaten-Titel',
     metadataAuthorLabel: 'Metadaten-Autor',
     textLabel: 'Plain Text',
+    dropzoneTitle: 'Lokale Dokumente ablegen oder waehlen',
+    dropzoneBody: 'Kleine PDFs bleiben in diesem Tab. Text-to-PDF nutzt nur eingefuegten Text im Browser-Speicher.',
+    fileStateTitle: 'Dateistatus',
+    workflowSnapshotTitle: 'Workflow-Snapshot',
+    privacyChecklistTitle: 'Datenschutz-Checkliste',
+    heavyQueueTitle: 'Server-Workflow gesperrt',
+    heavyQueueBody: 'Der Bezahlpfad ist fuer Batch, OCR, Tabellen, Verlauf, Teams und API nach Sandbox-, Antivirus-, Retention- und Billing-Gates reserviert.',
+    heavyQueueItems: ['Batch-Ordner und groessere Dateien', 'OCR und Tabellenextraktion', 'Verlauf, Teams und API', 'Server-Queues mit Retention/Loeschung'],
+    relatedToolsTitle: 'Verwandte Dokumenttools',
+    relatedToolsBody: 'Mit einem weiteren lokalen PDF-Workflow ohne Upload fortfahren.',
   },
 }
 

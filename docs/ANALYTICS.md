@@ -211,6 +211,8 @@ Nao registrar em analytics:
 
 Sprint 5.2 nao ativa GA4, GTM, AdSense, backend de analytics externo, contas, batch, API publica, storage persistente, upload endpoint, OCR, billing ou workers de producao do DocShift.
 
+Sprint 7.12 nao altera o contrato de eventos: dropzone, file state, workflow steps, workflow snapshot, privacy checklist, related document tools e server/OCR/batch gated sao UI local sem novas propriedades de analytics. GA4, GTM, AdSense, backend de analytics externo, contas, batch, API publica, storage persistente, upload endpoint, OCR, billing, historico, equipes ou workers de producao do DocShift continuam desativados.
+
 ## Consentimento e Consent Mode
 
 Sprint 6.1 adiciona eventos locais de consentimento no `window.dataLayer`:

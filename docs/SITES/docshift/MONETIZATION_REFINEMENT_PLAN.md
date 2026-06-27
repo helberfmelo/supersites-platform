@@ -45,6 +45,12 @@ Medium due to document uploads and sensitive content.
 - Real checkout remains `0`.
 - Free local PDF output remains complete.
 
+## Sprint 7.12 result
+
+- Added inert server workflow panel covering batch folders, larger files, OCR/table extraction, history, teams, API and retention/deletion rules.
+- Paid path remains copy-only/gated; no checkout, payment link, billing provider, entitlement, ad serving, API, OCR provider or upload endpoint was activated.
+- Free local PDF output and download remain available without signup.
+
 ## Dashboard backlog
 
 - OCR provider gate.

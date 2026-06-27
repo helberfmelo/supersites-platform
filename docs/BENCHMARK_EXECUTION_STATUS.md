@@ -8,7 +8,7 @@ Data-base: 2026-06-27
 - Current sprint: Sprint 7.12 - DocShift benchmark UX.
 - Symbolic sprint: BR-DOCSHIFT.
 - Scope: PDF/document UX refinement with dropzone clarity, file states, result/download, privacy, related tools and gated OCR/server/batch messaging.
-- Previous sprint completed: Sprint 7.11 - PixelBatch benchmark UX.
+- Previous sprint completed: Sprint 7.11 - PixelBatch benchmark UX, including docs-only Quality Gate `28290486528`.
 
 ## Pre-sprint state
 
@@ -43,7 +43,7 @@ Data-base: 2026-06-27
 | 7.9 | BR-MAILHEALTH | Completed | Email diagnostic UX/content refined in local/CI, monitoring/API gated |
 | 7.10 | BR-SITEPULSE | Completed | Web diagnostic UX/content refined in local/CI, uptime workers gated |
 | 7.11 | BR-PIXELBATCH | Completed | Image UX/content refined in local/CI, server/batch/AI gated |
-| 7.12 | BR-DOCSHIFT | Planned | PDF UX/content refined in local/CI, OCR/server/batch gated |
+| 7.12 | BR-DOCSHIFT | Local validation passed | PDF UX/content refined locally, OCR/server/batch gated; remote CI pending |
 
 ## Non-copying controls
 
@@ -290,4 +290,25 @@ Sprint 7.11 remote validation:
 - Quality Gate: `28290373756`, success.
 - Deploy Dry Run: `28290373766`, success.
 - Public smokes: Hub, control-plane/API and NetProbe passed after push; PixelBatch remains public placeholder pending app-specific deploy/smoke/rollback gates.
-- Closing docs-only Quality Gate is pending this documentation commit.
+- Closing docs commit: `160db49 docs: record pixelbatch benchmark ci validation`.
+- Closing docs-only Quality Gate: `28290486528`, success.
+
+Sprint 7.12 local validation passed:
+
+- `pnpm test:docshift`
+- `pnpm build:docshift`
+- `pnpm validate:docshift-preview`
+- `pnpm test:e2e:docshift`
+- DocShift Playwright screenshots inspected under `artifacts/playwright-docshift-report/data/`.
+- `pnpm validate:structure`
+- `pnpm validate:secrets`
+- `pnpm deploy:dry-run`
+- `pnpm ci:changes` (local runAll fallback expected because no base was provided)
+- `git diff --check`
+
+Sprint 7.12 remote validation:
+
+- Feature commit: pending.
+- Quality Gate: pending.
+- Deploy Dry Run: pending.
+- Public smokes: pending; DocShift remains public placeholder pending app-specific deploy/smoke/rollback gates.

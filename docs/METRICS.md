@@ -20,8 +20,8 @@ Data-base: 2026-06-27
 | Shared TS packages implemented | 9 |
 | Shared package tests passing | 65 |
 | Shared package typechecks passing | 9 |
-| Frontend tests passing | 83 |
-| Playwright visual smoke tests passing | 44 |
+| Frontend tests passing | 84 |
+| Playwright visual smoke tests passing | 48 |
 | Laravel tests passing | 46 |
 | Control plane API endpoints implemented | 20 |
 | Control plane admin routes implemented | 11 |
@@ -306,6 +306,9 @@ Data-base: 2026-06-27
 | DocShift PDF rendering smoke | Passed locally |
 | DocShift preview smoke | Passed |
 | DocShift Playwright report | Passed |
+| DocShift workflow snapshot pages | 40 |
+| DocShift related document tool blocks | 40 |
+| DocShift server/OCR gated panels | 40 |
 | DocShift Quality Gate run | `28281284720` passed |
 | DocShift Deploy Dry Run | `28281284718` passed |
 | DocShift production status | Placeholder at `https://opentshost.com/supersites/docshift/`; real deploy gated |
@@ -348,14 +351,14 @@ Data-base: 2026-06-27
 | SEO readiness score | Implemented in control-plane for 11/11 public surfaces as estimated local evidence |
 | AdSense readiness score | Defined; 11/11 public surfaces have safe placeholder/gate plans, real ad serving remains 0 |
 | Monetization readiness score | Defined; 11/11 public surfaces have gated upgrade/support plans, real checkout/donation/affiliate activation remains 0 |
-| Frontend quality score | Hub Sprint 7.2, NetProbe Sprint 7.3, CalcHarbor Sprint 7.4, DevUtility Lab Sprint 7.5, TimeNexus Sprint 7.6, QRRoute Sprint 7.7, InvoiceCraft Sprint 7.8, MailHealth Sprint 7.9, SitePulse Sprint 7.10 and PixelBatch Sprint 7.11 local tests/build/preview/Playwright passed; remaining apps pending sprint-by-sprint |
+| Frontend quality score | Hub Sprint 7.2, NetProbe Sprint 7.3, CalcHarbor Sprint 7.4, DevUtility Lab Sprint 7.5, TimeNexus Sprint 7.6, QRRoute Sprint 7.7, InvoiceCraft Sprint 7.8, MailHealth Sprint 7.9, SitePulse Sprint 7.10, PixelBatch Sprint 7.11 and DocShift Sprint 7.12 local tests/build/preview/Playwright passed |
 | Core Web Vitals readiness | Not externally measured for placeholder apps; local performance validation planned per sprint |
 | Educational content by tool | Existing localized tool pages/FAQ blocks: 320 |
 | Pages per language | Initial locales remain 5 (`en`, `pt-br`, `es`, `fr`, `de`) |
 | Related tools per page | Planned for 11/11 public surfaces; site-specific measurement continues in technical sprints |
 | Upgrade opportunities by site | 11/11 public surfaces mapped with gated upgrade/support opportunities |
-| Organic growth tasks open | 1 planned technical benchmark site sprint after Sprint 7.11 local validation |
-| Organic growth tasks closed | 10 technical refinements completed in Fase 7 |
+| Organic growth tasks open | 0 planned technical benchmark site sprints after Sprint 7.12 local validation |
+| Organic growth tasks closed | 11 technical refinements completed in Fase 7 |
 | Sprint 7.2 local backend validation | Passed: Composer, migrate fresh seed, AdminPanelTest, full Laravel suite |
 | Sprint 7.2 local Hub validation | Passed: Vitest, build, preview smoke, Playwright and desktop/mobile screenshot inspection |
 | Sprint 7.2 local package validation | Passed: 65 package tests and package typechecks |
@@ -428,6 +431,14 @@ Data-base: 2026-06-27
 | Sprint 7.11 Quality Gate run | `28290373756` passed |
 | Sprint 7.11 Deploy Dry Run | `28290373766` passed |
 | Sprint 7.11 public smokes | Hub/control-plane/NetProbe passed; PixelBatch remains placeholder |
+| Sprint 7.11 docs closing commit | `160db49` |
+| Sprint 7.11 docs-only Quality Gate run | `28290486528` passed |
+| Sprint 7.12 local DocShift validation | Passed: Vitest, build, preview smoke, PDF Playwright and screenshot inspection |
+| Sprint 7.12 local final gates | Passed locally; remote CI pending |
+| Sprint 7.12 feature commit | Pending |
+| Sprint 7.12 Quality Gate run | Pending |
+| Sprint 7.12 Deploy Dry Run | Pending |
+| Sprint 7.12 public smokes | Pending; DocShift remains placeholder |
 | Real ads activated | 0 |
 | Real billing activated | 0 |
 | Real donation payments activated | 0 |

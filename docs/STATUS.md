@@ -20,6 +20,8 @@ Na Sprint 7.5, o DevUtility Lab recebeu o refinamento BR-DEVUTILITY: paginas de 
 
 Nas Sprints 7.6 a 7.9, TimeNexus, QRRoute, InvoiceCraft e MailHealth receberam refinamentos benchmark locais/CI. A Sprint 7.9 BR-MAILHEALTH adicionou score de saude, checklist de sinais, severidade, fix guidance, builders de registro planejados e links relacionados nas paginas SPF/DKIM/DMARC/MX/blacklist/SMTP/headers, mantendo os endpoints DNS/SMTP existentes e o contrato de analytics sem PII. MailHealth segue placeholder publico ate existir deploy/rollback/smoke especificos; monitoramento recorrente, alertas, relatorios DMARC, lote, API paga, white-label, ads, billing, checkout, worker e analytics externo seguem desativados.
 
+Nas Sprints 7.10 a 7.12, SitePulse Lab, PixelBatch e DocShift receberam refinamentos benchmark locais/CI. A Sprint 7.12 BR-DOCSHIFT adicionou dropzone/estado de arquivo, passos de workflow, snapshot de resultado, checklist de privacidade, ferramentas relacionadas e painel server/OCR/batch gated nas paginas PDF, mantendo o processamento `pdf-lib`/worker no navegador e o contrato de analytics sem PII. DocShift segue placeholder publico ate existir deploy/rollback/smoke especificos; upload server-side, OCR, batch worker, API paga, historico, equipe, ads, billing, checkout, worker e analytics externo seguem desativados.
+
 ## Estado local verificado
 
 - Raiz local: `D:\Projetos\supersites`.
@@ -1005,7 +1007,19 @@ Nas Sprints 7.6 a 7.9, TimeNexus, QRRoute, InvoiceCraft e MailHealth receberam r
   - GitHub Actions `Quality Gate` run `28290373756` passou, executando repository safety, frontend PixelBatch path-aware e summary.
   - GitHub Actions `Deploy Dry Run` run `28290373766` passou e gerou plano sem mutar producao.
   - Public smokes pos-push passaram: `pnpm deploy:smoke-supersite-public` validou Hub e asset `https://opentshost.com/supersites/_nuxt/CDSWkO8T.js`; `pnpm deploy:smoke-control-plane-public` validou control-plane/API; `pnpm deploy:smoke-netprobe-public` validou NetProbe, asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/B8fWFYkD.js` e API `https://opentshost.com/supersites/control-plane/api/v1/netprobe`. PixelBatch segue placeholder publico.
+  - Fechamento docs-only publicado: `160db49` (`docs: record pixelbatch benchmark ci validation`).
+  - GitHub Actions `Quality Gate` docs-only run `28290486528` passou.
   - Nenhum upload server-side, batch worker, API publica paga, IA/background removal provider, checkout, billing, anuncio real, storage persistente, worker de producao, analytics externo ou deploy real do PixelBatch foi ativado.
+- Sprint 7.12 validation:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/ROADMAP.md`, `docs/STATUS.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local, docs de benchmark, docs do DocShift e todos os ADRs existentes ate `0030`.
+  - Estado inicial verificado: `main...origin/main` limpo no commit `160db49`, GitHub Actions recentes verdes e smokes publicos de Hub, control-plane/API e NetProbe passando antes da implementacao.
+  - DocShift refinado sem endpoint novo: copy publica removeu rotulos internos de sprint, home/grid recebeu badge `Local MVP`, paginas de ferramenta ganharam dropzone/estado de arquivo, workflow steps, workflow snapshot, checklist de privacidade, related document tools e painel server/OCR/batch/API/history gated.
+  - Analytics e dados continuam sanitizados: nomes de arquivo, texto colado, texto de paginas, page ranges, page count, metadados, previews, blobs, bytes, output e erros derivados de PDF nao sao persistidos nem enviados a analytics/data layer; eventos continuam limitados a `tool_slug`, rota e locale.
+  - Validacao DocShift local passou: `pnpm test:docshift` com 9 testes, `pnpm build:docshift`, `pnpm validate:docshift-preview` com asset `/_nuxt/DgyLf2Jr.js` e `pnpm test:e2e:docshift` com 4 testes Playwright e PDF download.
+  - Screenshots locais do report Playwright foram inspecionados em `artifacts/playwright-docshift-report/data/`; home desktop, text-to-PDF mobile e privacidade mobile ficaram sem sobreposicao incoerente ou overflow visual.
+  - Gates finais locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation; `git diff --check` exibiu apenas avisos CRLF nos arquivos tocados.
+  - Feature commit/push, GitHub Actions `Quality Gate`, `Deploy Dry Run`, smokes publicos e fechamento docs-only permanecem pendentes nesta etapa local.
+  - Nenhum upload server-side, OCR, batch worker, API publica paga, historico, equipe, checkout, billing, anuncio real, storage persistente, worker de producao, analytics externo ou deploy real do DocShift foi ativado.
 
 ## Pendencias criticas
 

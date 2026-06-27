@@ -110,7 +110,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'DocShift is the SuperSites product for browser-side PDF and document workflows.',
     sections: [
       ['Purpose', 'The site helps users merge, split, rotate, watermark, number, clean metadata and convert small documents without mandatory signup or upload storage.'],
-      ['What is live now', 'Sprint 5.2 launches eight document tools with worker validation, pdf-lib browser output, sitemap, canonical, hreflang and structured data.'],
+      ['What is live now', 'DocShift contains eight document tools with worker validation, pdf-lib browser output, sitemap, canonical, hreflang and structured data.'],
       ['Upgrade boundary', 'Paid value is planned around batch folders, larger files, OCR, table extraction, history, API, teams and server-side queues.'],
     ],
   },
@@ -125,7 +125,7 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   privacy: {
     title: 'Privacy Policy',
-    description: 'DocShift minimizes collection by processing Sprint 5.2 document files locally in the browser whenever possible.',
+    description: 'DocShift minimizes collection by processing document files locally in the browser whenever possible.',
     sections: [
       ['Data minimization', 'Selected PDFs and pasted text are processed in browser memory using ArrayBuffers, object URLs and pdf-lib. No product upload API, server storage, localStorage or sessionStorage is used.'],
       ['Analytics boundary', 'Allowed analytics events may record tool slugs and sanitized page paths, but not file names, page text, metadata, page counts, output sizes or user-selected values.'],
@@ -146,7 +146,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'Baseline terms for responsible use of DocShift document tools and future commercial features.',
     sections: [
       ['Responsible documents', 'Do not process illegal, abusive, infringing, deceptive, confidential-without-permission or unauthorized document content through DocShift workflows.'],
-      ['MVP limits', 'DocShift Sprint 5.2 is a local formatting helper, not a secure archive, legal redaction, compliance or e-discovery system.'],
+      ['MVP limits', 'DocShift is a local formatting helper, not a secure archive, legal redaction, compliance or e-discovery system.'],
       ['Paid features', 'Commercial features require visible pricing, quotas, cancellation rules, provider terms, abuse controls and legal review before checkout or file API access.'],
     ],
   },
@@ -170,10 +170,10 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   status: {
     title: 'Launch Status',
-    description: 'DocShift Sprint 5.2 status for public web readiness, ads, billing, file processing and gates.',
+    description: 'DocShift status for public web readiness, ads, billing, file processing and gates.',
     sections: [
       ['MVP surface', 'The local/CI MVP contains eight document tools, five language route sets, sitemap, canonical, hreflang, structured data, worker validation and browser-side pdf-lib output.'],
-      ['Production', 'No DocShift public deploy is switched in Sprint 5.2 because app-specific packaging, smoke and rollback are not implemented yet. The HostGator public URL remains a noindex placeholder.'],
+      ['Production', 'No DocShift public deploy is switched because app-specific packaging, smoke and rollback are not implemented yet. The HostGator public URL remains a noindex placeholder.'],
       ['Gates', 'Batch folders, larger files, OCR, table extraction, API, history, teams, billing, ads and external analytics remain blocked until documented gates pass.'],
     ],
   },
