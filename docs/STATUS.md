@@ -1051,6 +1051,8 @@ Em seguida, a Fase 8 - Public Rollout e Production Visibility foi aberta para pu
   - GitHub Actions `Quality Gate` run `28293511914` passou com repository safety, backend control-plane, todos os jobs frontend/preview/Playwright e quality summary verdes.
   - GitHub Actions `Deploy Dry Run` run `28293511933` passou e gerou plano sem mutar producao.
   - Public smokes pos-push passaram: `pnpm deploy:smoke-supersite-public` validou Hub e asset `https://opentshost.com/supersites/_nuxt/CDSWkO8T.js`; `pnpm deploy:smoke-control-plane-public` validou control-plane/API; `pnpm deploy:smoke-netprobe-public` validou NetProbe, asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/B8fWFYkD.js` e API `https://opentshost.com/supersites/control-plane/api/v1/netprobe`.
+  - Fechamento docs-only publicado: `3554105` (`docs: record static deploy framework validation`).
+  - GitHub Actions `Quality Gate` docs-only run `28293646469` passou; repository safety e quality summary passaram, e os jobs frontend/backend foram ignorados conforme path-aware.
   - Nenhum traffic switch real foi executado nesta sprint; os apps continuam placeholders publicos ate as Sprints 8.3, 8.4 e 8.5 acionarem o workflow de deploy e passarem public smoke.
 
 ## Pendencias criticas
