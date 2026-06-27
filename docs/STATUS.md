@@ -12,6 +12,8 @@ Tambem em 2026-06-27, a Sprint 7.1 iniciou a Fase 7 - Benchmark-Driven Refinemen
 
 Na Sprint 7.2, o Hub publico e o control-plane ganharam a primeira camada tecnica de benchmark refinement. O Laravel agora possui `benchmark_site_readiness` e `benchmark_opportunities`, seeder local, rota `/admin/benchmark-refinement`, resumo no dashboard e auditoria de visualizacao sob `dashboard.view`. O Hub publico passou a mostrar sinais compactos de quantidade de frentes de ferramenta, idiomas e monetizacao gated nos cards de catalogo. Os dados sao estimados e baseados em docs/sprints/CI; `external_provider_active`, ads reais, billing real, doacao ativa, afiliado real, checkout, webhook, worker e automacao seguem em zero.
 
+Na Sprint 7.3, o NetProbe Atlas recebeu o refinamento BR-NETPROBE local: pagina `what-is-my-ip` com cards de resposta imediata, explicacao de privacidade e copy local de resumo; pagina `dns-propagation` com valor esperado opcional, cards de match/valores distintos/escopo/TTL, tabela de resolvedores, mapa leve sem dependencia externa e related tools. A API e os contratos antiabuso nao foram alterados; analytics continua limitado a `tool_slug`/rota sanitizada e nao recebe IP, dominio, resultado ou valor esperado. Ads, billing, doacao real, afiliado real, API paga, workers/probes multirregiao e deploy real adicional seguem desativados.
+
 ## Estado local verificado
 
 - Raiz local: `D:\Projetos\supersites`.
@@ -870,6 +872,16 @@ Na Sprint 7.2, o Hub publico e o control-plane ganharam a primeira camada tecnic
   - Fechamento docs-only publicado: `dc33adc` (`docs: record supersite benchmark ci validation`).
   - GitHub Actions `Quality Gate` docs-only run `28286232069` passou.
   - Nenhum provider import, AdSense serving, checkout, billing real, doacao ativa, afiliado real, webhook externo, worker/cron de producao, external AI, analytics externo ou deploy real de placeholder foi ativado.
+- Sprint 7.3 validation:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/ROADMAP.md`, `docs/STATUS.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local, docs de benchmark e todos os ADRs existentes ate `0030`.
+  - Estado inicial verificado: `main...origin/main` limpo no commit `9ec27ed`, GitHub Actions recentes verdes e smokes publicos de Hub, control-plane/API e NetProbe passando antes da implementacao.
+  - NetProbe refinado sem mudanca de endpoint: IP com cards de resposta imediata, contexto de privacidade e copy local de resumo; DNS propagation com valor esperado opcional, resumo de match/valores/escopo/TTL, tabela de resolvedores e mapa leve renderizado no cliente.
+  - Related tools e CTA de upgrade gated foram adicionados apos resultado/conteudo util, sem checkout, doacao real, afiliado real, AdSense request ou provider externo.
+  - Validacao NetProbe local passou: `pnpm --filter @supersites/netprobe-atlas test` com 7 testes, `pnpm --filter @supersites/netprobe-atlas build`, `pnpm validate:netprobe-preview` e `pnpm test:e2e:netprobe` com 8 testes Playwright.
+  - Screenshots locais inspecionados: `artifacts/netprobe-7.3-ip-mobile.png` e `artifacts/netprobe-7.3-propagation-desktop.png`; sem sobreposicao incoerente ou overflow visual.
+  - Gates finais locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation.
+  - Commit, push, CI, deploy dry-run remoto e smokes publicos serao registrados no fechamento documental da sprint.
+  - Nenhum endpoint novo, worker/probe multirregiao, AdSense serving, checkout, billing real, doacao ativa, afiliado real, webhook externo, analytics externo ou deploy real adicional foi ativado.
 
 ## Pendencias criticas
 

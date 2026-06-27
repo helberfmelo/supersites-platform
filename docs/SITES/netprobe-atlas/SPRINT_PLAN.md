@@ -13,6 +13,7 @@ Data-base: 2026-06-27
 - Public NetProbe frontend live at `https://opentshost.com/supersites/netprobe-atlas/`.
 - Public control-plane/API supports bounded NetProbe IP/DNS/RDAP/SSL/propagation/port/reachability.
 - Upgrade monitor MVP exists in control-plane but production workers/billing remain gated.
+- Sprint 7.3 benchmark UX is implemented and locally validated; feature commit/CI/public smoke closure is pending.
 
 ## Scope
 

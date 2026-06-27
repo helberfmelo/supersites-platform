@@ -21,7 +21,7 @@ Data-base: 2026-06-27
 | Shared package tests passing | 65 |
 | Shared package typechecks passing | 9 |
 | Frontend tests passing | 81 |
-| Playwright visual smoke tests passing | 43 |
+| Playwright visual smoke tests passing | 44 |
 | Laravel tests passing | 46 |
 | Control plane API endpoints implemented | 20 |
 | Control plane admin routes implemented | 11 |
@@ -336,14 +336,14 @@ Data-base: 2026-06-27
 | SEO readiness score | Implemented in control-plane for 11/11 public surfaces as estimated local evidence |
 | AdSense readiness score | Defined; 11/11 public surfaces have safe placeholder/gate plans, real ad serving remains 0 |
 | Monetization readiness score | Defined; 11/11 public surfaces have gated upgrade/support plans, real checkout/donation/affiliate activation remains 0 |
-| Frontend quality score | Hub Sprint 7.2 tests/build/preview/Playwright/CI passed; remaining apps pending sprint-by-sprint |
+| Frontend quality score | Hub Sprint 7.2 and NetProbe Sprint 7.3 tests/build/preview/Playwright passed; remaining apps pending sprint-by-sprint |
 | Core Web Vitals readiness | Not externally measured for placeholder apps; local performance validation planned per sprint |
 | Educational content by tool | Existing localized tool pages/FAQ blocks: 320 |
 | Pages per language | Initial locales remain 5 (`en`, `pt-br`, `es`, `fr`, `de`) |
 | Related tools per page | Planned for 11/11 public surfaces; site-specific measurement continues in technical sprints |
 | Upgrade opportunities by site | 11/11 public surfaces mapped with gated upgrade/support opportunities |
-| Organic growth tasks open | 10 planned technical benchmark site sprints after Sprint 7.2 closure |
-| Organic growth tasks closed | 1 technical refinement completed in Fase 7 |
+| Organic growth tasks open | 9 planned technical benchmark site sprints after Sprint 7.3 local implementation |
+| Organic growth tasks closed | 1 technical refinement completed and 1 technical refinement locally implemented in Fase 7 |
 | Sprint 7.2 local backend validation | Passed: Composer, migrate fresh seed, AdminPanelTest, full Laravel suite |
 | Sprint 7.2 local Hub validation | Passed: Vitest, build, preview smoke, Playwright and desktop/mobile screenshot inspection |
 | Sprint 7.2 local package validation | Passed: 65 package tests and package typechecks |
@@ -354,6 +354,11 @@ Data-base: 2026-06-27
 | Sprint 7.2 public smokes | Hub/control-plane/NetProbe passed |
 | Sprint 7.2 docs closing commit | `dc33adc` |
 | Sprint 7.2 docs-only Quality Gate run | `28286232069` passed |
+| Sprint 7.3 local NetProbe validation | Passed: Vitest, build, preview smoke, Playwright and screenshot inspection |
+| Sprint 7.3 local final gates | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
+| Sprint 7.3 Quality Gate run | Pending feature push |
+| Sprint 7.3 Deploy Dry Run | Local passed; remote pending feature push |
+| Sprint 7.3 public smokes | Pending feature push |
 | Real ads activated | 0 |
 | Real billing activated | 0 |
 | Real donation payments activated | 0 |

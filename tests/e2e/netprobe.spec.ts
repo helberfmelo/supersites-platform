@@ -149,6 +149,52 @@ test.describe('NetProbe Atlas public foundation', () => {
     expect(errors).toEqual([])
   })
 
+  test('renders the IP answer with benchmark summary cards', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.route(/.*\/api\/v1\/netprobe\/ip$/, async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          data: {
+            address: '203.0.113.42',
+            version: 'IPv4',
+            is_public: true,
+            source: 'api-edge',
+          },
+          meta: {
+            generated_at: '2026-06-26T00:00:00.000Z',
+            retention: 'The full observed IP is returned to this browser response and is not stored in analytics events.',
+          },
+        }),
+      })
+    })
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/en/tools/what-is-my-ip')
+    await page.getByRole('button', { name: 'Run IP check' }).click()
+
+    await expect(page.getByText('Visible address', { exact: true })).toBeVisible()
+    await expect(page.getByText('203.0.113.42')).toBeVisible()
+    await expect(page.getByText('What this means')).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Copy safe summary' })).toBeVisible()
+    await expect(page.getByText('Monitor, alert and export later')).toBeVisible()
+    await expectNoHorizontalOverflow(page)
+
+    const analytics = await page.evaluate(() => ({
+      localEvents: window.supersitesAnalyticsEvents,
+      dataLayer: window.dataLayer,
+    }))
+
+    expect(JSON.stringify(analytics)).not.toContain('203.0.113.42')
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('netprobe-ip-summary-mobile', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
   test('renders a localized Portuguese tool page on mobile', async ({ page }, testInfo) => {
     const errors = collectBrowserErrors(page)
 
@@ -211,7 +257,7 @@ test.describe('NetProbe Atlas public foundation', () => {
 
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('RDAP Domain Lookup')
     await expect(page.getByText('Example Registrar, Inc.')).toBeVisible()
-    await expect(page.getByText('a.iana-servers.net')).toBeVisible()
+    await expect(page.getByText('a.iana-servers.net', { exact: true })).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
     const analytics = await page.evaluate(() => ({
@@ -377,9 +423,14 @@ test.describe('NetProbe Atlas public foundation', () => {
     await page.goto('/en/tools/dns-propagation')
     await page.getByLabel('Domain name').fill('secret-propagation.example')
     await page.locator('#dns-propagation-record-type').selectOption('NS')
+    await page.getByLabel('Expected value (optional)').fill('a.iana-servers.net')
     await page.getByRole('button', { name: 'Run propagation check' }).click()
+    await expect(page.getByText('Expected-value match')).toBeVisible()
+    await expect(page.getByText('1/1 (100%)')).toBeVisible()
+    await expect(page.getByText('Resolver view')).toBeVisible()
     await expect(page.getByText('system-resolver')).toBeVisible()
-    await expect(page.getByText('a.iana-servers.net')).toBeVisible()
+    await expect(page.getByText('a.iana-servers.net', { exact: true })).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Copy safe summary' })).toBeVisible()
     await expectNoHorizontalOverflow(page)
     expect(JSON.stringify(await page.evaluate(() => window.supersitesAnalyticsEvents))).not.toContain('secret-propagation.example')
 

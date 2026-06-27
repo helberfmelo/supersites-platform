@@ -34,7 +34,7 @@ Data-base: 2026-06-27
 |---:|---|---|---|
 | 7.1 | BR-ROADMAP | Completed | Docs created, committed, pushed and docs-only Quality Gate recorded |
 | 7.2 | BR-SUPERSITE | Completed | Hub/control-plane benchmark dashboard refined and validated |
-| 7.3 | BR-NETPROBE | Planned next | DNS/IP benchmark UX refined and public NetProbe smokes pass |
+| 7.3 | BR-NETPROBE | Implemented locally; feature commit/CI pending | DNS/IP benchmark UX refined and public NetProbe smokes pass |
 | 7.4 | BR-CALCHARBOR | Planned | Calculator UX/content refined in local/CI, public deploy still gated |
 | 7.5 | BR-DEVUTILITY | Planned | Developer tool UX/content refined in local/CI, public deploy still gated |
 | 7.6 | BR-TIMENEXUS | Planned | Time/date UX/content refined in local/CI, public deploy still gated |
@@ -106,3 +106,23 @@ Sprint 7.2 remote validation:
 - Public smokes: Hub, control-plane/API and NetProbe passed after push.
 - Closing docs commit: `dc33adc docs: record supersite benchmark ci validation`.
 - Closing docs-only Quality Gate: `28286232069`, success.
+
+Sprint 7.3 local validation passed:
+
+- `pnpm --filter @supersites/netprobe-atlas test`
+- `pnpm --filter @supersites/netprobe-atlas build`
+- `pnpm validate:netprobe-preview`
+- `pnpm test:e2e:netprobe`
+- `pnpm validate:structure`
+- `pnpm validate:secrets`
+- `pnpm deploy:dry-run`
+- `pnpm ci:changes` (local runAll fallback expected because no base was provided)
+- `git diff --check`
+- Desktop/mobile NetProbe screenshots captured and inspected under `artifacts/`.
+
+Sprint 7.3 remote validation:
+
+- Feature commit: pending.
+- Quality Gate: pending.
+- Deploy Dry Run: pending.
+- Public smokes: pending.

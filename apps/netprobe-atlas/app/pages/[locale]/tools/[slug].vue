@@ -4,7 +4,7 @@ import { computed, ref } from 'vue'
 import { getShellCopy } from '../../../data/copy'
 import { localizedContentPath, localizedHomePath, localizedToolPath, normalizePublicLocale, toHtmlLang } from '../../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
-import { createToolStructuredData, getCategoryLabel, getToolBySlug, getToolCopy } from '../../../data/tools'
+import { createToolStructuredData, getCategoryLabel, getToolBySlug, getToolCopy, toolCatalog } from '../../../data/tools'
 import { trackToolStarted } from '../../../utils/analytics'
 
 const route = useRoute()
@@ -27,9 +27,11 @@ const previewSubmitted = ref(false)
 const targetValue = ref(tool.slug === 'what-is-my-ip' ? '' : tool.exampleTarget)
 const selectedRecordTypes = ref(['A', 'AAAA', 'CNAME', 'MX', 'TXT', 'NS', 'SOA', 'CAA'])
 const propagationRecordType = ref('A')
+const expectedPropagationValue = ref('')
 const selectedPort = ref(443)
 const isLoading = ref(false)
 const errorMessage = ref('')
+const copyNotice = ref('')
 const dnsResult = ref<DnsLookupData | null>(null)
 const dnsMeta = ref<Record<string, unknown>>({})
 const ipResult = ref<ClientIpData | null>(null)
@@ -60,6 +62,10 @@ const isLiveTool = computed(() => (
   || isPortCheck.value
   || isReachabilityCheck.value
 ))
+const relatedTools = computed(() => toolCatalog
+  .filter((candidate) => candidate.slug !== tool.slug)
+  .filter((candidate) => candidate.category === tool.category || ['what-is-my-ip', 'dns-lookup', 'dns-propagation'].includes(candidate.slug))
+  .slice(0, 3))
 
 interface DnsRecord {
   type: string
@@ -170,8 +176,148 @@ interface ApiResponse<T> {
   meta: Record<string, unknown>
 }
 
+interface SummaryCard {
+  label: string
+  value: string
+  tone?: 'good' | 'warning' | 'neutral'
+}
+
 function netprobeEndpoint(path: string): string {
   return `${String(runtimeConfig.public.netprobeApiBaseUrl).replace(/\/+$/g, '')}/${path}`
+}
+
+function formatMetaDate(meta: Record<string, unknown>): string {
+  const generatedAt = typeof meta.generated_at === 'string' ? meta.generated_at : ''
+
+  if (!generatedAt) {
+    return 'Just now'
+  }
+
+  try {
+    return new Intl.DateTimeFormat(locale, {
+      dateStyle: 'medium',
+      timeStyle: 'short',
+    }).format(new Date(generatedAt))
+  } catch {
+    return generatedAt
+  }
+}
+
+function normalizeCompareValue(value: string): string {
+  return value.trim().toLowerCase().replace(/\.$/, '')
+}
+
+const ipSummaryCards = computed<SummaryCard[]>(() => {
+  if (!ipResult.value) {
+    return []
+  }
+
+  return [
+    {
+      label: 'Visible address',
+      value: ipResult.value.address,
+      tone: ipResult.value.is_public ? 'good' : 'warning',
+    },
+    {
+      label: 'Protocol',
+      value: ipResult.value.version,
+      tone: 'neutral',
+    },
+    {
+      label: 'Observed by',
+      value: ipResult.value.source,
+      tone: 'neutral',
+    },
+    {
+      label: 'Last checked',
+      value: formatMetaDate(ipMeta.value),
+      tone: 'neutral',
+    },
+  ]
+})
+
+const propagationSummaryCards = computed<SummaryCard[]>(() => {
+  if (!propagationResult.value) {
+    return []
+  }
+
+  const snapshots = propagationResult.value.snapshots
+  const expectedValue = normalizeCompareValue(expectedPropagationValue.value)
+  const total = snapshots.length
+  const answered = snapshots.filter((snapshot) => snapshot.status === 'answered' && snapshot.values.length > 0).length
+  const matched = expectedValue
+    ? snapshots.filter((snapshot) => snapshot.values.some((value) => normalizeCompareValue(value) === expectedValue)).length
+    : answered
+  const distinctValues = new Set(snapshots.flatMap((snapshot) => snapshot.values.map((value) => normalizeCompareValue(value))).filter(Boolean))
+  const ttlValues = snapshots.map((snapshot) => snapshot.ttl_min).filter((value): value is number => typeof value === 'number')
+  const percent = total > 0 ? Math.round((matched / total) * 100) : 0
+
+  return [
+    {
+      label: expectedValue ? 'Expected-value match' : 'Answered resolvers',
+      value: total > 0 ? `${matched}/${total} (${percent}%)` : '0/0',
+      tone: percent >= 80 ? 'good' : percent > 0 ? 'warning' : 'neutral',
+    },
+    {
+      label: 'Distinct values',
+      value: String(distinctValues.size),
+      tone: distinctValues.size <= 1 ? 'good' : 'warning',
+    },
+    {
+      label: 'Checked scope',
+      value: `${total} resolver snapshot${total === 1 ? '' : 's'}`,
+      tone: 'neutral',
+    },
+    {
+      label: 'Lowest TTL',
+      value: ttlValues.length > 0 ? `${Math.min(...ttlValues)}s` : 'Not returned',
+      tone: 'neutral',
+    },
+  ]
+})
+
+const propagationDistinctValues = computed(() => {
+  if (!propagationResult.value) {
+    return []
+  }
+
+  return Array.from(new Set(propagationResult.value.snapshots.flatMap((snapshot) => snapshot.values))).slice(0, 6)
+})
+
+function buildSafeSummary(): string {
+  if (ipResult.value) {
+    return [
+      'NetProbe Atlas IP check',
+      `Version: ${ipResult.value.version}`,
+      `Public range: ${ipResult.value.is_public ? 'yes' : 'no'}`,
+      `Observed source: ${ipResult.value.source}`,
+      `Checked: ${formatMetaDate(ipMeta.value)}`,
+    ].join('\n')
+  }
+
+  if (propagationResult.value) {
+    return [
+      'NetProbe Atlas DNS propagation snapshot',
+      `Record type: ${propagationResult.value.record_type}`,
+      `Summary: ${propagationSummaryCards.value.map((card) => `${card.label} ${card.value}`).join('; ')}`,
+      `Distinct values: ${propagationDistinctValues.value.join(', ') || 'none'}`,
+      `Checked: ${formatMetaDate(propagationMeta.value)}`,
+    ].join('\n')
+  }
+
+  return 'NetProbe Atlas result summary is available after a live check.'
+}
+
+async function copySafeSummary(): Promise<void> {
+  copyNotice.value = ''
+  const summary = buildSafeSummary()
+
+  try {
+    await navigator.clipboard.writeText(summary)
+    copyNotice.value = 'Safe summary copied locally.'
+  } catch {
+    copyNotice.value = 'Copy is unavailable in this browser session.'
+  }
 }
 
 async function parseApiError(response: Response): Promise<string> {
@@ -188,6 +334,7 @@ async function parseApiError(response: Response): Promise<string> {
 async function previewResult(): Promise<void> {
   previewSubmitted.value = true
   errorMessage.value = ''
+  copyNotice.value = ''
   dnsResult.value = null
   ipResult.value = null
   rdapResult.value = null
@@ -486,6 +633,14 @@ useHead({
                   {{ recordType }}
                 </option>
               </select>
+              <label :for="`${tool.slug}-expected`">Expected value (optional)</label>
+              <input
+                :id="`${tool.slug}-expected`"
+                v-model="expectedPropagationValue"
+                type="text"
+                placeholder="93.184.216.34 or ns1.example.com"
+                autocomplete="off"
+              >
             </template>
             <template v-else-if="isPortCheck">
               <label :for="`${tool.slug}-target`">{{ copy.inputLabel }}</label>
@@ -530,21 +685,23 @@ useHead({
           <p v-else-if="errorMessage" class="result-error">{{ errorMessage }}</p>
 
           <div v-else-if="ipResult">
-            <div class="result-meta">
-              <div>
-                <strong>Address</strong>
-                <span>{{ ipResult.address }}</span>
-              </div>
-              <div>
-                <strong>Version</strong>
-                <span>{{ ipResult.version }}</span>
-              </div>
-              <div>
-                <strong>Public range</strong>
-                <span>{{ ipResult.is_public ? 'Yes' : 'No' }}</span>
+            <div class="answer-strip" aria-label="IP answer summary">
+              <div v-for="card in ipSummaryCards" :key="card.label" :class="['answer-card', card.tone ? `answer-card--${card.tone}` : '']">
+                <strong>{{ card.label }}</strong>
+                <span>{{ card.value }}</span>
               </div>
             </div>
-            <p>{{ ipMeta.retention }}</p>
+            <div class="result-actions">
+              <button class="button-link button-link--secondary" type="button" @click="copySafeSummary">
+                Copy safe summary
+              </button>
+              <span v-if="copyNotice" role="status">{{ copyNotice }}</span>
+            </div>
+            <section class="result-callout">
+              <h3>What this means</h3>
+              <p>A public IP is the network address visible to this API edge. It can change with VPNs, proxies, carrier NAT or IPv6 preference, and it is not a precise identity or location proof.</p>
+              <p>{{ ipMeta.retention }}</p>
+            </section>
           </div>
 
           <div v-else-if="dnsResult">
@@ -701,41 +858,73 @@ useHead({
           </div>
 
           <div v-else-if="propagationResult">
-            <div class="result-meta">
-              <div>
-                <strong>Domain</strong>
-                <span>{{ propagationResult.domain }}</span>
-              </div>
-              <div>
-                <strong>Record</strong>
-                <span>{{ propagationResult.record_type }}</span>
-              </div>
-              <div>
-                <strong>Cache</strong>
-                <span>{{ propagationMeta.cached ? 'Cached' : 'Fresh' }} / {{ propagationMeta.cache_ttl_seconds }}s</span>
+            <div class="answer-strip" aria-label="Propagation summary">
+              <div v-for="card in propagationSummaryCards" :key="card.label" :class="['answer-card', card.tone ? `answer-card--${card.tone}` : '']">
+                <strong>{{ card.label }}</strong>
+                <span>{{ card.value }}</span>
               </div>
             </div>
 
-            <section v-for="snapshot in propagationResult.snapshots" :key="snapshot.resolver_id" class="content-section">
-              <h3>{{ snapshot.resolver_id }}</h3>
-              <div class="result-meta">
-                <div>
-                  <strong>Region</strong>
-                  <span>{{ snapshot.region }}</span>
-                </div>
-                <div>
-                  <strong>Status</strong>
+            <div class="result-actions">
+              <button class="button-link button-link--secondary" type="button" @click="copySafeSummary">
+                Copy safe summary
+              </button>
+              <span v-if="copyNotice" role="status">{{ copyNotice }}</span>
+            </div>
+
+            <section class="result-callout">
+              <h3>Resolver scope</h3>
+              <p>This is a bounded snapshot from controlled resolver infrastructure, not a promise of worldwide propagation. Use the expected value to compare what this runtime sees right now.</p>
+              <p>
+                Cache: {{ propagationMeta.cached ? 'cached' : 'fresh' }} / {{ propagationMeta.cache_ttl_seconds }}s.
+                Checked: {{ formatMetaDate(propagationMeta) }}.
+              </p>
+            </section>
+
+            <section class="resolver-map" aria-label="Lightweight resolver map">
+              <h3>Resolver view</h3>
+              <div class="resolver-grid">
+                <div v-for="snapshot in propagationResult.snapshots" :key="`${snapshot.resolver_id}-pin`" :class="['resolver-pin', snapshot.status === 'answered' ? 'resolver-pin--good' : 'resolver-pin--warning']">
+                  <strong>{{ snapshot.region }}</strong>
                   <span>{{ snapshot.status }}</span>
                 </div>
-                <div>
-                  <strong>TTL min</strong>
-                  <span>{{ snapshot.ttl_min ?? 'None' }}</span>
-                </div>
               </div>
-              <ul class="result-list">
-                <li v-for="value in snapshot.values" :key="value">{{ value }}</li>
+            </section>
+
+            <section class="content-section">
+              <h3>Resolver details</h3>
+              <div class="result-table-wrap">
+                <table class="result-table">
+                  <thead>
+                    <tr>
+                      <th>Resolver</th>
+                      <th>Region</th>
+                      <th>Status</th>
+                      <th>TTL min</th>
+                      <th>Values</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="snapshot in propagationResult.snapshots" :key="snapshot.resolver_id">
+                      <td>{{ snapshot.resolver_id }}</td>
+                      <td>{{ snapshot.region }}</td>
+                      <td>{{ snapshot.status }}</td>
+                      <td>{{ snapshot.ttl_min ?? 'None' }}</td>
+                      <td>
+                        <span v-if="snapshot.values.length > 0">{{ snapshot.values.join(', ') }}</span>
+                        <span v-else>No values returned</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section v-if="propagationDistinctValues.length > 0" class="content-section">
+              <h3>Distinct values returned</h3>
+              <ul class="pill-list">
+                <li v-for="value in propagationDistinctValues" :key="value">{{ value }}</li>
               </ul>
-              <p v-if="snapshot.values.length === 0">No values returned by this resolver.</p>
             </section>
 
             <p v-if="Array.isArray(propagationMeta.warnings) && propagationMeta.warnings.length > 0">
@@ -815,6 +1004,17 @@ useHead({
 
           <p v-else>{{ previewSubmitted ? copy.previewResult : shellCopy.plannedBody }}</p>
         </section>
+
+        <section class="upgrade-panel" aria-label="Gated upgrade path">
+          <div>
+            <p class="eyebrow">Gated upgrade path</p>
+            <h2>Monitor, alert and export later</h2>
+            <p>Saved history, multi-region checks, alerts, reports and API access remain planned upgrades. Billing, workers and external providers stay disabled until their gates pass.</p>
+          </div>
+          <NuxtLink class="button-link button-link--secondary" :to="localizedContentPath(locale, 'methodology')">
+            Review limits
+          </NuxtLink>
+        </section>
       </div>
 
       <aside class="band" :aria-labelledby="`${tool.slug}-methodology`">
@@ -864,6 +1064,15 @@ useHead({
             {{ shellCopy.editorialLabel }}
           </NuxtLink>
         </div>
+
+        <section class="content-section">
+          <h3>{{ shellCopy.relatedTitle }}</h3>
+          <div class="related-tool-list">
+            <NuxtLink v-for="relatedTool in relatedTools" :key="relatedTool.slug" :to="localizedToolPath(locale, relatedTool.slug)">
+              {{ getToolCopy(relatedTool, locale).navLabel }}
+            </NuxtLink>
+          </div>
+        </section>
       </aside>
     </section>
 

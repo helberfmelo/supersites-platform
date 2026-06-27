@@ -35,3 +35,10 @@ Data-base: 2026-06-27
 - Use the existing bounded NetProbe API but refine the UI around result interpretation.
 - Add expected-value matching to DNS propagation UI.
 - Add copy/share/export affordances where no PII or raw target leaks into analytics.
+
+## Sprint 7.3 implementation notes
+
+- What is my IP now shows immediate answer cards, a privacy interpretation block and local-only safe summary copy.
+- DNS propagation now supports an optional expected value, match/coverage summary cards, distinct values, resolver table and lightweight resolver view.
+- Related tools and gated upgrade CTA appear after the useful result path; no ads, billing, donation payment, affiliate link or provider is active.
+- Playwright now covers IP summary cards, propagation expected-value matching and analytics redaction of raw targets/results.

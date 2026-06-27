@@ -8,12 +8,12 @@ Make DNS propagation and What is my IP feel like premium, fast, layered diagnost
 
 ## P0
 
-- Refine DNS propagation hero with hostname, record type and expected value.
-- Add summary cards: propagated percentage, distinct values, checked locations and last checked timestamp.
-- Present location/resolver results in a responsive table with clear statuses.
-- Add lightweight map/fallback after result, not before the answer.
-- Refine What is my IP with IPv4/IPv6, reverse DNS, ISP/ASN and approximate location cards.
-- Add related tools and support/donation placeholder after the useful result and educational content.
+- Refine DNS propagation hero with hostname, record type and expected value. Done in Sprint 7.3 with optional expected-value comparison.
+- Add summary cards: propagated percentage, distinct values, checked locations and last checked timestamp. Done in Sprint 7.3 with match, values, scope and TTL cards.
+- Present location/resolver results in a responsive table with clear statuses. Done in Sprint 7.3.
+- Add lightweight map/fallback after result, not before the answer. Done in Sprint 7.3 with a dependency-free resolver view.
+- Refine What is my IP with IPv4/IPv6, reverse DNS, ISP/ASN and approximate location cards. Partially done in Sprint 7.3 with visible address, protocol, source, checked time and privacy context; richer ISP/ASN/location remains gated by provider/data-source review.
+- Add related tools and support/donation placeholder after the useful result and educational content. Done in Sprint 7.3 as related tools plus gated upgrade CTA; real donation remains human-gated.
 
 ## P1
 

@@ -16,7 +16,7 @@ The benchmark block is therefore mapped as Fase 7 - Benchmark-Driven Refinement.
 |---|---:|---|---|
 | BR-ROADMAP | Sprint 7.1 | Roadmap, benchmark matrix, per-site plans and readiness KPIs | Completed |
 | BR-SUPERSITE | Sprint 7.2 | Supersite catalog and growth dashboard refinement | Completed |
-| BR-NETPROBE | Sprint 7.3 | NetProbe DNS/IP benchmark UX refinement | Planned next |
+| BR-NETPROBE | Sprint 7.3 | NetProbe DNS/IP benchmark UX refinement | Implemented and locally validated; feature commit/CI pending |
 | BR-CALCHARBOR | Sprint 7.4 | CalcHarbor calculator benchmark UX refinement | Planned |
 | BR-DEVUTILITY | Sprint 7.5 | DevUtility Lab developer-tool UX refinement | Planned |
 | BR-TIMENEXUS | Sprint 7.6 | TimeNexus time/date benchmark UX refinement | Planned |

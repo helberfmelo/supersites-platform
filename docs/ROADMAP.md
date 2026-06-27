@@ -258,7 +258,7 @@ Sprint 7.3 - NetProbe Atlas benchmark UX
 - Simbolico: BR-NETPROBE.
 - Objetivo: refinar DNS propagation e What is my IP com resultado acima da dobra, resumo simples, tabela tecnico-global, mapa leve, export/copy seguro, conteudo original, links relacionados e CTAs gated.
 - Validacao: NetProbe tests/build/preview/Playwright, public smokes do NetProbe e gates locais.
-- Status: proxima.
+- Status: implementada e validada localmente. O NetProbe recebeu cards de resultado para IP, valor esperado opcional em propagation, resumo de match/valores/escopo/TTL, tabela de resolvedores, mapa leve, copy local de resumo, related tools e CTA gated. Commit, push, CI, deploy dry-run remoto e smokes publicos ainda serao registrados no fechamento documental. Nenhum endpoint novo, worker/probe multirregiao, anuncio real, checkout, billing, doacao, afiliado ou provider externo foi ativado.
 
 Sprint 7.4 - CalcHarbor benchmark UX
 - Simbolico: BR-CALCHARBOR.

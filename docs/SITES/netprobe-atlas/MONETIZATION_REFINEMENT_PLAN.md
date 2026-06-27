@@ -10,9 +10,9 @@ Data-base: 2026-06-27
 
 ## P0
 
-- Add inert support/donation placement after useful result and educational content.
-- Add gated upgrade CTAs for DNS/SSL/domain monitoring, history, alerts, reports and API.
-- Keep ad placeholders away from inputs, buttons, result tables, copy/export controls and error states.
+- Add inert support/donation placement after useful result and educational content. Sprint 7.3 adds a gated support/upgrade surface after the useful result path; real donation payment remains human-gated.
+- Add gated upgrade CTAs for DNS/SSL/domain monitoring, history, alerts, reports and API. Done in Sprint 7.3.
+- Keep ad placeholders away from inputs, buttons, result tables, copy/export controls and error states. Preserved in Sprint 7.3; no ad request or placeholder was added to tool controls/results.
 
 ## P1
 

@@ -10,10 +10,10 @@ Data-base: 2026-06-27
 
 ## P0
 
-- Add direct answer blocks for DNS propagation and IP lookup.
-- Expand original methodology for resolver scope, TTL, cache, expected-value matching and limitations.
-- Add FAQ and troubleshooting around mismatch, timeout, NXDOMAIN and stale DNS.
-- Strengthen internal links between DNS lookup, propagation, SSL, RDAP, port and reachability pages.
+- Add direct answer blocks for DNS propagation and IP lookup. Done in Sprint 7.3.
+- Expand original methodology for resolver scope, TTL, cache, expected-value matching and limitations. Done in Sprint 7.3 through result interpretation and existing methodology sections.
+- Add FAQ and troubleshooting around mismatch, timeout, NXDOMAIN and stale DNS. Existing page FAQ remains; richer troubleshooting accordions stay P1.
+- Strengthen internal links between DNS lookup, propagation, SSL, RDAP, port and reachability pages. Done in Sprint 7.3 with related tool links on tool pages.
 
 ## P1
 
