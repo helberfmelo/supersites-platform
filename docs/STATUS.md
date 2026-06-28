@@ -1141,11 +1141,14 @@ Na Sprint 8.6, a Fase 8 foi fechada em producao: o Hub e os nove apps estaticos 
   - Esta sprint nao ativou anuncio real, AdSense/GTM/GA4, Search Console import, checkout, billing, pagamento, doacao, afiliado, API paga, upload/storage, worker/cron recorrente, analytics externo ou direct-root mapping.
   - Feature commit `958b9dc` (`feat: add benchmark crawler baseline`) foi publicado em `main`. `Quality Gate` run `28307129966` e `Deploy Dry Run` run `28307129941` falharam antes de qualquer step. As annotations dos check-runs `Detect changes`, `Quality summary` e `Generate deploy dry-run plan` informaram: `The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings`.
   - Fechamento docs-only `2a224b2` (`docs: record benchmark crawler ci blocker`) foi publicado. `Quality Gate` docs-only run `28307171619` tambem falhou antes de steps, com a mesma annotation de billing/limite nos jobs `Detect changes` e `Quality summary`.
-  - Deploy real nao foi executado nesta sprint porque os gates remotos estao bloqueados por acao humana. Quando o GitHub Actions destravar, o deploy manual deve informar Fase `9` e Sprint `9.2` nos inputs do workflow e validar novamente Hub `/en/status` e `/robots.txt`.
+  - Apos autorizacao do usuario, o repositorio `helberfmelo/supersites-platform` foi alterado de `PRIVATE` para `PUBLIC` para remover o bloqueio de GitHub Actions associado a billing/spending-limit em repo privado. A visibilidade foi confirmada por `gh repo view` e `gh api`.
+  - Reruns apos a mudanca para publico: `Deploy Dry Run` `28307129941` attempt 2 passou; `Quality Gate` docs-only `28307204493` attempt 2 passou. O `Quality Gate` tecnico `28307129966` attempt 2 iniciou todos os jobs, mas falhou no E2E do Hub porque o teste ainda esperava 8 links no footer apos a Sprint 9.2 adicionar `Status`.
+  - Correcao de teste publicada: `6c80085` (`test: update supersite footer status link`). Validacao local passou com `pnpm test:e2e:supersite`, `pnpm validate:structure`, `pnpm validate:secrets` e `git diff --check`. `Quality Gate` `28308270717` passou no head `6c80085`.
+  - Deploy real ainda nao foi executado nesta atualizacao de desbloqueio. Quando acionado, o deploy manual deve informar Fase `9` e Sprint `9.2` nos inputs do workflow e validar novamente Hub `/en/status` e `/robots.txt`.
 
 ## Pendencias criticas
 
-- Resolver branch protection de `main` quando houver GitHub Pro, repositorio publico ou alternativa aprovada de ruleset/organizacao.
+- Configurar branch protection/ruleset em `main` agora que o repositorio esta publico, sem bloquear caminhos de recuperacao/deploy.
 - Definir se o mapeamento publico direto `https://opentshost.com/<site-folder>` sera feito por rewrite, alias, symlink controlado ou ajuste de document root.
 - Implementar jobs de deploy/operacao da VPS usando o GitHub environment `production-vps-runtime`, com rollback e smoke.
 - Configurar uptime/monitoramento operacional e drill de backup/restore antes de ativar anuncios, billing, monitores pagos, workers recorrentes ou revisao AdSense.

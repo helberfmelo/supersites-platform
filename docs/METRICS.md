@@ -578,11 +578,14 @@ Data-base: 2026-06-27
 | Sprint 9.2 local final gates | Passed: Supersite test/build/preview, benchmark crawler, structure, secrets, deploy dry-run, ci:changes and diff check |
 | Sprint 9.2 public smokes before push | Passed: Hub aggregate, control-plane/API and NetProbe; direct Hub status/robots gaps remain until deploy |
 | Sprint 9.2 feature commit | `958b9dc` |
-| Sprint 9.2 Quality Gate run | `28307129966` blocked before steps by GitHub Actions billing/spending-limit annotation |
-| Sprint 9.2 Deploy Dry Run run | `28307129941` blocked before steps by GitHub Actions billing/spending-limit annotation |
+| Sprint 9.2 repository visibility mitigation | Repository changed from `PRIVATE` to `PUBLIC` after user approval to remove private-repo Actions billing/spending-limit blocker |
+| Sprint 9.2 Quality Gate run | `28307129966` attempt 1 blocked before steps by GitHub Actions billing/spending-limit; attempt 2 ran after public visibility and failed only on stale Hub footer-link E2E expectation |
+| Sprint 9.2 Deploy Dry Run run | `28307129941` attempt 1 blocked before steps by GitHub Actions billing/spending-limit; attempt 2 passed after public visibility |
 | Sprint 9.2 docs closing commit | `2a224b2` |
-| Sprint 9.2 docs-only Quality Gate run | `28307171619` blocked before steps by GitHub Actions billing/spending-limit annotation |
-| Sprint 9.2 remote CI/deploy status | Blocked by human-gated GitHub Actions billing/spending-limit; no real deploy executed |
+| Sprint 9.2 docs-only Quality Gate run | `28307171619` blocked before steps before visibility change; `28307204493` attempt 2 passed after public visibility |
+| Sprint 9.2 CI test correction commit | `6c80085` |
+| Sprint 9.2 corrected Quality Gate run | `28308270717` passed |
+| Sprint 9.2 remote CI/deploy status | CI unblocked by public repository visibility; real deploy not executed yet in this update |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |
 | Real donation payments activated by Fase 9 planning | 0 planned before explicit gates |

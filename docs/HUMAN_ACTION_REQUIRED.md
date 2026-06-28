@@ -23,8 +23,6 @@ Data-base: 2026-06-27
 | Politicas juridicas finais | Aceite juridico | Antes do go-live publico com coleta de dados/ads |
 | Revisao legal/editorial multilingue benchmark-grade | Conteudo juridico, metodologia, contato, suporte, politicas por idioma e claims publicos exigem revisao humana/editorial antes de AdSense, escala SEO ou monetizacao real | Antes de tratar legal/trust/localizacao como finais para AdSense, afiliados, doacoes reais, billing ou escala internacional |
 | Mudanca DNS sem rollback claro | Risco de indisponibilidade | Antes de apontar dominios definitivos |
-| Regularizar billing/limite de gasto do GitHub Actions | GitHub Actions retornou que jobs nao foram iniciados porque pagamentos recentes falharam ou o spending limit precisa ser aumentado | Antes de exigir novo Quality Gate/Deploy Dry Run verde em pushes futuros |
-| Branch protection no GitHub privado | GitHub retornou HTTP 403 informando que branch protection em repositorio privado exige GitHub Pro ou repositorio publico | Antes de exigir status checks protegidos em `main` |
 | InvoiceCraft fiscal/tax templates | Impostos, numeracao fiscal, campos obrigatorios e validade de documento dependem de jurisdicao e aceite juridico/fiscal | Antes de ativar nota/fatura fiscal oficial, calculo automatico de impostos, numeracao fiscal, pagamentos ou recorrencia |
 | MailHealth DNSBL/provider policy | Uso de DNSBLs, reputacao, limites comerciais e termos de provedores exigem revisao juridica/comercial antes de operar volume, lote, API ou white-label | Antes de ativar monitoramento pago, relatorios recorrentes, lote, API publica paga ou verificacoes DNSBL amplas |
 
@@ -35,6 +33,13 @@ Data-base: 2026-06-27
 | Acesso SSH direto a VPS HostGator | Validado via chave local `$HOME/.ssh/id_ed25519_vps_hostgator` para `root@129.121.37.220:22022`. |
 | Aprovar compartilhamento da VPS BigShop360 | Aprovado pelo usuario ao autorizar continuidade; Sprint 0.4b provisionou apenas recursos SuperSites isolados e nao alterou paths/servicos do BigShop360. |
 
+## Resolvido em 2026-06-28
+
+| Item | Resultado |
+|---|---|
+| GitHub Actions bloqueado por billing/spending-limit em repo privado | O usuario autorizou tornar o repositorio publico caso o bloqueio fosse limite de GitHub em repositorio privado. `helberfmelo/supersites-platform` foi alterado para `PUBLIC`; reruns de Quality Gate e Deploy Dry Run voltaram a iniciar jobs. Se o repositorio voltar a privado ou workflows pagos forem exigidos, billing/spending-limit volta a ser uma pendencia humana. |
+| Branch protection bloqueada por repo privado | A causa original de plano privado foi removida ao tornar o repositorio publico. A configuracao efetiva de branch protection/ruleset em `main` deve ser tratada como tarefa tecnica separada, com cuidado para nao bloquear deploys de recuperacao. |
+
 ## Nao bloqueia agora
 
 - Criar estrutura local.
@@ -42,4 +47,4 @@ Data-base: 2026-06-27
 - Preparar scripts.
 - Construir apps localmente.
 - Deploy transitorio em `opentshost.com` apos aprovacao do roadmap e validação tecnica.
-- Continuar commits/pushes com `Quality Gate` path-aware e monitoramento manual mesmo sem branch protection automatica, ate a pendencia de plano GitHub ser resolvida.
+- Continuar commits/pushes com `Quality Gate` path-aware e monitoramento manual mesmo sem branch protection automatica, ate configurar ruleset/branch protection publico de forma controlada.
