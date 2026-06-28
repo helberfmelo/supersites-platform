@@ -4,6 +4,19 @@ export interface HomeCopy {
   eyebrow: string
   title: string
   lead: string
+  workbenchEyebrow: string
+  workbenchTitle: string
+  workbenchBody: string
+  quickToolsTitle: string
+  recentToolsTitle: string
+  emptyRecentBody: string
+  outputViewLabel: string
+  treeViewLabel: string
+  errorViewLabel: string
+  clearLabel: string
+  openFullToolLabel: string
+  inputMetricsLabel: string
+  resultMetricsLabel: string
   searchLabel: string
   searchPlaceholder: string
   categoryLabel: string
@@ -65,6 +78,19 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     eyebrow: 'DevUtility Lab',
     title: 'Developer utilities that keep snippets local first.',
     lead: 'Format, encode, inspect and compare common developer snippets without mandatory signup or product API transfer.',
+    workbenchEyebrow: 'Local developer workbench',
+    workbenchTitle: 'Run a utility before choosing a tool page.',
+    workbenchBody: 'Pick a tool, load the safe example, inspect output, tree view and errors, then continue to the full page when you need guidance.',
+    quickToolsTitle: 'Dense tool navigation',
+    recentToolsTitle: 'Recent in this session',
+    emptyRecentBody: 'Run a tool to build a temporary in-memory recent list. Nothing is saved.',
+    outputViewLabel: 'Output view',
+    treeViewLabel: 'Tree view',
+    errorViewLabel: 'Error view',
+    clearLabel: 'Clear',
+    openFullToolLabel: 'Open full tool page',
+    inputMetricsLabel: 'Input metrics',
+    resultMetricsLabel: 'Result metrics',
     searchLabel: 'Search tools',
     searchPlaceholder: 'Try JSON, JWT, regex, cron, UUID or hash',
     categoryLabel: 'Category',
@@ -91,6 +117,19 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     eyebrow: 'DevUtility Lab',
     title: 'Ferramentas dev que mantem snippets locais primeiro.',
     lead: 'Formate, codifique, inspecione e compare trechos comuns sem cadastro obrigatorio ou envio para API de produto.',
+    workbenchEyebrow: 'Workbench dev local',
+    workbenchTitle: 'Execute um utilitario antes de escolher a pagina.',
+    workbenchBody: 'Escolha a ferramenta, carregue o exemplo seguro, veja saida, arvore e erros, depois abra a pagina completa quando precisar de guia.',
+    quickToolsTitle: 'Navegacao densa',
+    recentToolsTitle: 'Recentes nesta sessao',
+    emptyRecentBody: 'Execute uma ferramenta para criar uma lista temporaria em memoria. Nada e salvo.',
+    outputViewLabel: 'Saida',
+    treeViewLabel: 'Arvore',
+    errorViewLabel: 'Erros',
+    clearLabel: 'Limpar',
+    openFullToolLabel: 'Abrir pagina completa',
+    inputMetricsLabel: 'Metricas da entrada',
+    resultMetricsLabel: 'Metricas do resultado',
     searchLabel: 'Buscar ferramentas',
     searchPlaceholder: 'Tente JSON, JWT, regex, cron, UUID ou hash',
     categoryLabel: 'Categoria',
@@ -117,6 +156,19 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     eyebrow: 'DevUtility Lab',
     title: 'Herramientas dev que mantienen fragmentos locales primero.',
     lead: 'Formatea, codifica, inspecciona y compara fragmentos comunes sin registro obligatorio ni API de producto.',
+    workbenchEyebrow: 'Workbench dev local',
+    workbenchTitle: 'Ejecuta una utilidad antes de elegir pagina.',
+    workbenchBody: 'Elige herramienta, carga el ejemplo seguro, revisa salida, arbol y errores, luego abre la pagina completa si necesitas guia.',
+    quickToolsTitle: 'Navegacion densa',
+    recentToolsTitle: 'Recientes en esta sesion',
+    emptyRecentBody: 'Ejecuta una herramienta para crear una lista temporal en memoria. Nada se guarda.',
+    outputViewLabel: 'Salida',
+    treeViewLabel: 'Arbol',
+    errorViewLabel: 'Errores',
+    clearLabel: 'Limpiar',
+    openFullToolLabel: 'Abrir pagina completa',
+    inputMetricsLabel: 'Metricas de entrada',
+    resultMetricsLabel: 'Metricas del resultado',
     searchLabel: 'Buscar herramientas',
     searchPlaceholder: 'Prueba JSON, JWT, regex, cron, UUID o hash',
     categoryLabel: 'Categoria',
@@ -143,6 +195,19 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     eyebrow: 'DevUtility Lab',
     title: 'Outils dev qui gardent les extraits locaux d abord.',
     lead: 'Formatez, encodez, inspectez et comparez des extraits courants sans compte obligatoire ni API produit.',
+    workbenchEyebrow: 'Workbench dev local',
+    workbenchTitle: 'Lancez un utilitaire avant de choisir une page.',
+    workbenchBody: 'Choisissez un outil, chargez l exemple sur, inspectez sortie, arbre et erreurs, puis ouvrez la page complete pour le guide.',
+    quickToolsTitle: 'Navigation dense',
+    recentToolsTitle: 'Recents dans cette session',
+    emptyRecentBody: 'Lancez un outil pour creer une liste temporaire en memoire. Rien n est enregistre.',
+    outputViewLabel: 'Sortie',
+    treeViewLabel: 'Arbre',
+    errorViewLabel: 'Erreurs',
+    clearLabel: 'Effacer',
+    openFullToolLabel: 'Ouvrir page complete',
+    inputMetricsLabel: 'Metriques entree',
+    resultMetricsLabel: 'Metriques resultat',
     searchLabel: 'Rechercher',
     searchPlaceholder: 'JSON, JWT, regex, cron, UUID ou hash',
     categoryLabel: 'Categorie',
@@ -169,6 +234,19 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     eyebrow: 'DevUtility Lab',
     title: 'Developer-Tools, die Ausschnitte zuerst lokal halten.',
     lead: 'Formatieren, codieren, pruefen und vergleichen Sie haeufige Entwickler-Ausschnitte ohne Pflichtkonto oder Produkt-API.',
+    workbenchEyebrow: 'Lokaler Developer-Workbench',
+    workbenchTitle: 'Starten Sie ein Tool vor der Toolseite.',
+    workbenchBody: 'Waehlen Sie ein Tool, laden Sie das sichere Beispiel, pruefen Sie Ausgabe, Baum und Fehler und oeffnen Sie danach die volle Seite.',
+    quickToolsTitle: 'Dichte Tool-Navigation',
+    recentToolsTitle: 'Zuletzt in dieser Sitzung',
+    emptyRecentBody: 'Starten Sie ein Tool fuer eine temporaere Liste im Speicher. Nichts wird gespeichert.',
+    outputViewLabel: 'Ausgabe',
+    treeViewLabel: 'Baum',
+    errorViewLabel: 'Fehler',
+    clearLabel: 'Leeren',
+    openFullToolLabel: 'Volle Toolseite oeffnen',
+    inputMetricsLabel: 'Eingabemetriken',
+    resultMetricsLabel: 'Ergebnismetriken',
     searchLabel: 'Tools suchen',
     searchPlaceholder: 'JSON, JWT, Regex, Cron, UUID oder Hash',
     categoryLabel: 'Kategorie',

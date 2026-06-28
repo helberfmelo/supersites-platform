@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { getHomeCopy } from '../app/data/copy'
 import { publicLocaleCodes } from '../app/data/locales'
 import { contentPageCatalog, contentPageSlugs, getContentPageBySlug } from '../app/data/pages'
 import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
@@ -23,6 +24,17 @@ describe('DevUtility Lab MVP', () => {
   })
 
   it('keeps localized tool content complete', () => {
+    for (const locale of publicLocaleCodes) {
+      const homeCopy = getHomeCopy(locale)
+
+      expect(homeCopy.workbenchTitle.length).toBeGreaterThan(30)
+      expect(homeCopy.workbenchBody.length).toBeGreaterThan(80)
+      expect(homeCopy.quickToolsTitle.length).toBeGreaterThan(8)
+      expect(homeCopy.outputViewLabel.length).toBeGreaterThan(4)
+      expect(homeCopy.treeViewLabel.length).toBeGreaterThan(3)
+      expect(homeCopy.errorViewLabel.length).toBeGreaterThan(4)
+    }
+
     for (const tool of toolCatalog) {
       for (const locale of publicLocaleCodes) {
         const copy = getToolCopy(tool, locale)

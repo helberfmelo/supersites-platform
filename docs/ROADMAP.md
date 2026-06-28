@@ -445,7 +445,7 @@ Sprint 9.14 - DevUtility Lab workbench density
 - Simbolico: BGR-DEVUTILITY-WORKBENCH.
 - Objetivo: evoluir DevUtility de catalogo para workbench tecnico com editor/output split, exemplos, tree/error views, copy/download/clear, favoritos/recentes locais quando seguro e navegacao densa por categoria.
 - Validacao: testes por ferramenta, dados locais, estados de erro, build/preview/Playwright e smoke publico.
-- Status: planejada; auditoria live confirmou que a home atual ainda e card grid.
+- Status: implementada e validada localmente; aguardando push, Quality Gate, Deploy Dry Run, deploy rotulado e smokes publicos para fechamento. O DevUtility recebeu `DevUtilityWorkbench` na home antes do catalogo, com trilho denso por categoria, editor/output split, exemplos, reset/clear/run, output/tree/error views, copy/download, pagina completa e recentes somente em memoria da sessao. Validacao local passou com `pnpm test:devutility`, `pnpm build:devutility`, `pnpm validate:devutility-preview`, `pnpm test:e2e:devutility`, smoke visual desktop/mobile, public-copy em 891 HTMLs, estrutura, segredos, deploy dry-run, ci:changes e diff check. Nenhum snippet, resultado, recente ou payload foi para storage/analytics/API; nenhum workspace, historico salvo, API paga, checkout, billing, pagamento, anuncio, analytics externo, worker/cron ou storage persistente foi ativado.
 
 Sprint 9.15 - Hub, SEO/AIO e rich footers
 - Simbolico: BGR-HUB-SEO-AIO.

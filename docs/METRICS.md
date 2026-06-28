@@ -737,6 +737,13 @@ Data-base: 2026-06-28
 | Sprint 9.13 public smokes | Passed: static app TimeNexus, aggregate Hub/control-plane/API and control-plane |
 | Sprint 9.13 live UX privacy smoke | Passed: planner before catalog, `global-product` group, 90-minute slot, UTC `2026-06-26T14:30:00.000Z`, Tokyo visible, world-clock mobile page visible, `analyticsEvents: 0`, empty `localStorage`/`sessionStorage`, 0 console errors, no desktop/mobile overflow |
 | Sprint 9.13 time-workflow paid activation | 0 activated; TimeNexus remains browser-side with no saved presets, history, widgets, API, billing, ads or external analytics |
+| Sprint 9.14 DevUtility benchmark UI scope | Home technical workbench before catalog with dense category rail, split editor/result panes, examples, output/tree/error views, copy/download/clear and session-only recents |
+| Sprint 9.14 DevUtility local validation | Passed: `pnpm test:devutility` (8 tests), `pnpm build:devutility`, `pnpm validate:devutility-preview`, `pnpm test:e2e:devutility` (3 tests) |
+| Sprint 9.14 local preview asset | `/_nuxt/Dv85Djbh.js` validated by `pnpm validate:devutility-preview` |
+| Sprint 9.14 visual QA artifacts | `artifacts/playwright-devutility-workbench/sprint-9-14-devutility-desktop.png` and `artifacts/playwright-devutility-workbench/sprint-9-14-devutility-mobile.png` |
+| Sprint 9.14 public copy/structure/security gates | Passed locally: `pnpm validate:public-copy` across 891 HTML files, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
+| Sprint 9.14 live/remote status | Pending feature commit, push, Quality Gate, Deploy Dry Run, HostGator deploy and public smokes |
+| Sprint 9.14 developer-workflow paid activation | 0 activated; DevUtility remains browser-side with no saved snippets, persistent history, workspaces, API, billing, ads, external analytics or storage |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |
 | Real donation payments activated by Fase 9 planning | 0 planned before explicit gates |

@@ -77,6 +77,22 @@ Sprint 9.13 delivered TimeNexus world clock and planning density to production w
 | Public smokes | Passed: static app TimeNexus, aggregate Hub/control-plane/API and control-plane |
 | Live UX smoke | Passed on `/supersites/timenexus/en/` and `/supersites/timenexus/en/world-clock/global-product`; screenshots at `artifacts/playwright-timenexus-planner/sprint-9-13-timenexus-live-desktop.png` and `artifacts/playwright-timenexus-planner/sprint-9-13-timenexus-live-world-clock-mobile.png` |
 
+## Sprint 9.14 execution evidence
+
+Sprint 9.14 delivered DevUtility Lab home workbench density locally and is pending the feature push, remote CI, labeled HostGator deploy and public smokes.
+
+| Evidence | Value |
+|---|---|
+| DevUtility home behavior | `DevUtilityWorkbench` opens before the search/catalog with dense category rail, selectable tool, editor/result split, examples, output/tree/error tabs, copy/download/clear and full-tool navigation |
+| Privacy behavior | Session recents are in-memory only; home workbench writes no `localStorage`, `sessionStorage`, API payload, external analytics or dataLayer event |
+| Local frontend validation | Passed: `pnpm test:devutility` (8 tests), `pnpm build:devutility`, `pnpm validate:devutility-preview`, `pnpm test:e2e:devutility` (3 tests) |
+| Local preview asset | `/_nuxt/Dv85Djbh.js` |
+| Visual QA | Screenshots captured at `artifacts/playwright-devutility-workbench/sprint-9-14-devutility-desktop.png` and `artifacts/playwright-devutility-workbench/sprint-9-14-devutility-mobile.png` |
+| Public copy coverage | `pnpm validate:public-copy` passed across 891 HTML files |
+| Local final gates | Passed: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
+| Remote CI/deploy status | Pending feature commit, Quality Gate, Deploy Dry Run, deploy, public smokes and docs-only closure |
+| Paid/external activation | 0 activated: no saved snippets, persistent history, workspaces, API, billing, ads, external analytics, worker/cron or storage |
+
 | Evidence | Value |
 |---|---|
 | Crawler script | `scripts/benchmark-crawl.mjs` |

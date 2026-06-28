@@ -100,6 +100,54 @@ const reviewed: Record<LocaleCode, string> = {
   de: 'Geprueft am 26. Juni 2026',
 }
 
+const localizedShortNames: Record<LocaleCode, Partial<Record<ToolSlug, string>>> = {
+  en: {},
+  'pt-br': {
+    'structured-data-formatter': 'Formatador',
+    'base64-converter': 'Base64',
+    'jwt-inspector': 'JWT',
+    'regex-tester': 'Regex',
+    'text-diff': 'Comparador',
+    'cron-helper': 'Cron',
+    'uuid-generator': 'UUID',
+    'timestamp-converter': 'Timestamp',
+    'hash-generator': 'Hash',
+  },
+  es: {
+    'structured-data-formatter': 'Formateador',
+    'base64-converter': 'Base64',
+    'jwt-inspector': 'JWT',
+    'regex-tester': 'Regex',
+    'text-diff': 'Comparador',
+    'cron-helper': 'Cron',
+    'uuid-generator': 'UUID',
+    'timestamp-converter': 'Timestamp',
+    'hash-generator': 'Hash',
+  },
+  fr: {
+    'structured-data-formatter': 'Formateur',
+    'base64-converter': 'Base64',
+    'jwt-inspector': 'JWT',
+    'regex-tester': 'Regex',
+    'text-diff': 'Comparateur',
+    'cron-helper': 'Cron',
+    'uuid-generator': 'UUID',
+    'timestamp-converter': 'Timestamp',
+    'hash-generator': 'Hash',
+  },
+  de: {
+    'structured-data-formatter': 'Formatierer',
+    'base64-converter': 'Base64',
+    'jwt-inspector': 'JWT',
+    'regex-tester': 'Regex',
+    'text-diff': 'Vergleich',
+    'cron-helper': 'Cron',
+    'uuid-generator': 'UUID',
+    'timestamp-converter': 'Timestamp',
+    'hash-generator': 'Hash',
+  },
+}
+
 const localizedBasics: Record<LocaleCode, {
   modeLabel: string
   resultLabel: string
@@ -354,7 +402,7 @@ function copyFor(spec: ToolSpec, locale: LocaleCode): ToolCopy {
 
   return {
     title: spec.title,
-    shortName: spec.shortName,
+    shortName: localizedShortNames[locale][spec.slug] ?? spec.shortName,
     headline: spec.headline,
     description: spec.description,
     inputLabel: spec.inputLabel,

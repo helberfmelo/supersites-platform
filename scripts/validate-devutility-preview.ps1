@@ -91,6 +91,8 @@ try {
         'hreflang="en"',
         'hreflang="pt-BR"',
         'Structured Data Formatter',
+        'Run a utility before choosing a tool page',
+        'Dense tool navigation',
         '9 browser tools',
         'No storage or logging'
     )

@@ -141,7 +141,11 @@ a:focus-visible {
 .tool-layout > *,
 .input-panel > *,
 .result-panel > *,
-.related-card > * {
+.related-card > *,
+.dev-workbench-layout > *,
+.home-workbench-main > *,
+.tool-rail > *,
+.result-panel__heading > * {
   min-width: 0;
 }
 
@@ -177,13 +181,13 @@ h1 {
   width: 100%;
   max-width: 820px;
   margin-bottom: 16px;
-  font-size: clamp(2.1rem, 6vw, 4.35rem);
+  font-size: 4rem;
   line-height: 1;
 }
 
 h2 {
   margin-bottom: 12px;
-  font-size: clamp(1.42rem, 3.2vw, 2rem);
+  font-size: 1.78rem;
   line-height: 1.12;
 }
 
@@ -418,6 +422,11 @@ h3 {
   margin-top: 26px;
 }
 
+.home-workbench {
+  padding-bottom: 24px;
+  border-bottom: 1px solid #d8dfd8;
+}
+
 .workbench__header {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(250px, 390px);
@@ -462,6 +471,101 @@ h3 {
   grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
   gap: 14px;
   align-items: stretch;
+}
+
+.dev-workbench-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.tool-rail {
+  display: grid;
+  gap: 14px;
+  padding-top: 4px;
+}
+
+.tool-rail h3,
+.recent-box h3 {
+  margin-bottom: 0;
+}
+
+.category-tabs--compact {
+  gap: 6px;
+}
+
+.category-tabs--compact button,
+.result-view-tabs button,
+.tool-rail__list button,
+.recent-box__links button {
+  cursor: pointer;
+}
+
+.tool-rail__list {
+  display: grid;
+  gap: 8px;
+}
+
+.tool-rail__list button,
+.recent-box__links button {
+  display: grid;
+  width: 100%;
+  min-height: 46px;
+  gap: 2px;
+  justify-items: start;
+  padding: 9px 10px;
+  border: 1px solid #c8d5cf;
+  border-radius: 8px;
+  color: #23352f;
+  background: #ffffff;
+  text-align: left;
+}
+
+.tool-rail__list button[aria-pressed="true"] {
+  color: #ffffff;
+  border-color: #1f5d63;
+  background: #1f5d63;
+}
+
+.tool-rail__list small {
+  color: currentColor;
+  font-size: 0.76rem;
+  font-weight: 750;
+  opacity: 0.78;
+}
+
+.recent-box {
+  display: grid;
+  gap: 8px;
+  padding: 12px 0 0;
+  border-top: 1px solid #d8dfd8;
+}
+
+.recent-box p {
+  margin: 0;
+  color: #40534b;
+  font-size: 0.86rem;
+}
+
+.recent-box__links {
+  display: grid;
+  gap: 6px;
+}
+
+.home-workbench-main {
+  display: grid;
+  gap: 12px;
+}
+
+.home-workbench-main > h3 {
+  margin-bottom: 0;
+  font-size: 1.34rem;
+}
+
+.home-workbench-main > p {
+  margin-bottom: 0;
+  color: #40534b;
 }
 
 .workbench-grid .result-panel {
@@ -604,6 +708,69 @@ h3 {
   margin-top: 12px;
 }
 
+.result-panel__heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.result-panel__heading p {
+  margin-bottom: 0;
+}
+
+.result-view-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-start;
+}
+
+.result-view-tabs button {
+  min-height: 32px;
+  padding: 6px 9px;
+  border: 1px solid #c8d5cf;
+  border-radius: 8px;
+  color: #31423c;
+  background: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.result-view-tabs button[aria-pressed="true"] {
+  color: #ffffff;
+  border-color: #1f5d63;
+  background: #1f5d63;
+}
+
+.tree-output,
+.error-output {
+  min-height: 180px;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid #d8e0d9;
+  border-radius: 8px;
+  color: #17211d;
+  background: #f8faf4;
+}
+
+.tree-output {
+  display: grid;
+  gap: 6px;
+  max-height: 620px;
+  overflow: auto;
+  list-style: none;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.error-output {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
 .result-meta {
   margin-bottom: 12px;
 }
@@ -623,7 +790,7 @@ h3 {
 
 .content-hero h1 {
   max-width: 760px;
-  font-size: clamp(2rem, 5vw, 3.7rem);
+  font-size: 3.25rem;
   line-height: 1.05;
 }
 
@@ -716,7 +883,9 @@ h3 {
   .tool-grid,
   .workbench__header,
   .workbench-grid,
+  .dev-workbench-layout,
   .panel-heading,
+  .result-panel__heading,
   .band-grid,
   .related-grid,
   .tool-layout,
@@ -742,8 +911,14 @@ h3 {
     word-break: break-word;
   }
 
+  h2,
+  .content-hero h1 {
+    font-size: 1.55rem;
+  }
+
   .tool-card {
     min-height: 0;
   }
+
 }
 </style>

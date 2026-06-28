@@ -54,6 +54,13 @@ Medium; ad/support blocks must not sit near editors, errors or copy buttons.
 - P2 remains gated: workspaces, snippets, private history, teams, API, larger files and billing are not active.
 - Playwright desktop/mobile screenshots were inspected under `artifacts/playwright-devutility-report/data/`; no incoherent overlap or horizontal overflow was observed.
 
+## Sprint 9.14 benchmark-grade status
+
+- Home catalog-first gap addressed locally: `DevUtilityWorkbench` now appears before search/catalog with dense category rail and a selected tool ready to run.
+- The home workbench includes editor/result split, example preset, reset/clear/run, output/tree/error views, copy/download controls and a full-tool-page link.
+- Recent tools are session-only in memory; no snippet, result, recent list or payload is persisted or sent to analytics/API from the home workbench.
+- Local validation passed with DevUtility tests, build, preview smoke, Playwright, public-copy, structure, secrets, deploy dry-run, ci:changes, diff check and desktop/mobile screenshots in `artifacts/playwright-devutility-workbench/`.
+
 ## Dashboard backlog
 
 - Local-processing coverage.

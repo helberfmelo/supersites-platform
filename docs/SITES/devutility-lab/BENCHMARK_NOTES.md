@@ -37,3 +37,10 @@ Data-base: 2026-06-27
 - Implemented a reusable split workbench pattern with input metrics, example preset, result states, copy/download controls and privacy cue.
 - Added common-error guidance and related tools on every tool page.
 - Kept benchmark learning at the pattern level; no third-party copy, assets, code, layout or legal text were reused.
+
+## Sprint 9.14 notes
+
+- Moved the benchmark pattern from tool pages into the home first fold with a dense technical workbench before the catalog.
+- Added category rail, mode selector, sample data, result metrics, tree/error views, copy/download/clear and session-only recents.
+- Local visual QA screenshots are in `artifacts/playwright-devutility-workbench/` and cover desktop EN plus mobile PT-BR.
+- The implementation remains browser-side and pattern-derived only; no third-party copy, code, assets or exact competitor layout was reused.

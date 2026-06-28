@@ -11,8 +11,8 @@ Data-base: 2026-06-27
 ## Current state
 
 - Nuxt SSG app exists with nine browser-side developer tools and five locales.
-- Public URL remains placeholder-only until app-specific deploy/smoke/rollback exists.
-- Sprint 7.5 implementation is complete in local/CI; public URL remains placeholder-only.
+- Public URL is deployed under `/supersites/devutility-lab/`.
+- Sprint 7.5 implemented tool-page workbench refinement; Sprint 9.14 implements the home workbench density locally and is pending CI/deploy closure.
 
 ## Scope
 
@@ -39,6 +39,8 @@ Data-base: 2026-06-27
 Local Sprint 7.5 validation passed with all commands above plus `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` and `git diff --check`.
 
 Remote Sprint 7.5 validation passed: Quality Gate `28287478977`, Deploy Dry Run `28287478989` and public smokes for Hub/control-plane/NetProbe.
+
+Local Sprint 9.14 validation passed: `pnpm test:devutility`, `pnpm build:devutility`, `pnpm validate:devutility-preview`, `pnpm test:e2e:devutility`, visual smoke screenshots, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` and `git diff --check`.
 
 ## Gates
 

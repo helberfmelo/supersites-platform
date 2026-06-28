@@ -57,11 +57,40 @@ test.describe('DevUtility Lab MVP', () => {
       'href',
       'https://opentshost.com/supersites/devutility-lab/en',
     )
-    await expect(page.getByRole('heading', { name: 'Structured Data Formatter' })).toBeVisible()
+    await expect(page.getByLabel('DevUtility Lab tools').getByRole('heading', { name: 'Structured Data Formatter' })).toBeVisible()
     await expect(page.getByText('No storage or logging')).toBeVisible()
     await expect(page.getByText('Local tool').first()).toBeVisible()
+    await expect(page.getByRole('heading', { name: /Run a utility before choosing a tool page/ })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Dense tool navigation' })).toBeVisible()
+
+    const homeWorkbench = page.locator('.home-workbench')
+    await homeWorkbench.getByRole('button', { name: 'Run tool' }).click()
+    await expect(homeWorkbench.getByRole('heading', { name: 'Result ready' })).toBeVisible()
+    await expect(homeWorkbench.locator('.result-output')).toContainText('"service": "supersites"')
+    await homeWorkbench.getByRole('button', { name: 'Tree view' }).click()
+    await expect(homeWorkbench.locator('.tree-output')).toContainText('$.service: supersites')
+    await expect(homeWorkbench.getByRole('heading', { name: 'Recent in this session' })).toBeVisible()
+    await expect(homeWorkbench.locator('.recent-box').getByRole('button', { name: 'Formatter' })).toBeVisible()
+    await expect(homeWorkbench.getByRole('link', { name: 'Open full tool page' })).toHaveAttribute(
+      'href',
+      '/en/tools/structured-data-formatter',
+    )
     await expect(page.getByRole('heading', { name: 'Workbench principles' })).toBeVisible()
     await expectNoHorizontalOverflow(page)
+
+    const homePrivacy = await page.evaluate(() => ({
+      localEvents: window.supersitesAnalyticsEvents?.length ?? 0,
+      dataLayerEvents: window.dataLayer?.length ?? 0,
+      localStorageLength: window.localStorage.length,
+      sessionStorageLength: window.sessionStorage.length,
+    }))
+
+    expect(homePrivacy).toEqual({
+      localEvents: 0,
+      dataLayerEvents: 0,
+      localStorageLength: 0,
+      sessionStorageLength: 0,
+    })
 
     const screenshot = await page.screenshot({ fullPage: true })
     await testInfo.attach('devutility-home-desktop', { body: screenshot, contentType: 'image/png' })
