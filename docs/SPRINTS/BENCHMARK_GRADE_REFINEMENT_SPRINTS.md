@@ -66,7 +66,7 @@ Sprint 9.2 delivered the local benchmark crawler baseline without activating rea
 
 ## Sprint 9.3 execution evidence
 
-Sprint 9.3 delivered the local public-copy and localization gate without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs or recurring production workers.
+Sprint 9.3 delivered the public-copy and localization gate to production without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs or recurring production workers.
 
 | Evidence | Value |
 |---|---|
@@ -77,7 +77,10 @@ Sprint 9.3 delivered the local public-copy and localization gate without activat
 | CI gate | `Public copy gate` in `.github/workflows/quality-gate.yml` |
 | Scope sanitized | Hub home/detail/legal/status plus NetProbe Atlas, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch and DocShift copy/pages/tools |
 | Internal terms blocked in public HTML | `MVP`, `gated`, `gate`, `deploy smoke`, `rollback validation`, `placeholder`, `HUMAN_ACTION_REQUIRED` and site-specific stale markers |
-| Remote CI/deploy status | Pending push and Fase 9/Sprint 9.3 labeled deploys |
+| Feature/correction commits | `9b5a1e0` and `b940561` |
+| Remote CI status | Quality Gate `28313347776` passed; correction Quality Gate `28314301032` passed; Deploy Dry Run `28313347789` and correction Deploy Dry Run `28314301019` passed |
+| Production deploy status | Final Fase 9/Sprint 9.3 deploys passed: CalcHarbor `28314385617`, DevUtility Lab `28314386140`, TimeNexus `28314386658`, QRRoute `28314387259`, InvoiceCraft `28314387879`, MailHealth `28314388290`, SitePulse Lab `28314388782`, PixelBatch `28314389339`, DocShift `28314389887`, NetProbe `28314390452`, Hub `28314390962` |
+| Public smoke status | Hub aggregate, control-plane/API, NetProbe, nine static app smokes and 16-page live localized-copy smoke passed |
 
 ## Per-sprint execution rules
 

@@ -596,16 +596,17 @@ Data-base: 2026-06-27
 | Sprint 9.2 production rollout docs-only Quality Gate | `28311809660` passed |
 | Sprint 9.2 remote CI/deploy status | Concluded in production after public repository visibility mitigation, corrected Quality Gate and real HostGator deploys |
 | Sprint 9.3 public copy sanitizer | Implemented in `@supersites/i18n` and applied to Hub plus 10 product sites |
-| Sprint 9.3 public HTML copy gate | `pnpm validate:public-copy` passed locally across 876 generated HTML files |
-| Sprint 9.3 Quality Gate public-copy job | Implemented as `Public copy gate`; remote run pending push |
+| Sprint 9.3 public HTML copy gate | `pnpm validate:public-copy` passed locally and remotely across 876 generated HTML files |
+| Sprint 9.3 Quality Gate public-copy job | Implemented as `Public copy gate`; remote runs `28313347776` and `28314301032` passed |
 | Sprint 9.3 shared package validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages` |
-| Sprint 9.3 frontend tests/builds/previews/E2E | Passed locally for 11 Nuxt frontends |
+| Sprint 9.3 frontend tests/builds/previews/E2E | Passed locally for 11 Nuxt frontends; correction reran NetProbe, TimeNexus, MailHealth and SitePulse targeted checks |
 | Sprint 9.3 local final gates | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
-| Sprint 9.3 feature commit | Pending |
-| Sprint 9.3 Quality Gate run | Pending |
-| Sprint 9.3 Deploy Dry Run run | Pending |
-| Sprint 9.3 production deploy runs | Pending Fase 9/Sprint 9.3 labels |
-| Sprint 9.3 public smokes | Pending post-deploy |
+| Sprint 9.3 feature commits | `9b5a1e0` feature, `b940561` correction |
+| Sprint 9.3 Quality Gate runs | `28313347776` passed; correction run `28314301032` passed |
+| Sprint 9.3 Deploy Dry Run runs | `28313347789` passed; correction run `28314301019` passed |
+| Sprint 9.3 production deploy runs | Initial Fase 9/Sprint 9.3 deploys passed; final corrected deploys passed: CalcHarbor `28314385617`, DevUtility Lab `28314386140`, TimeNexus `28314386658`, QRRoute `28314387259`, InvoiceCraft `28314387879`, MailHealth `28314388290`, SitePulse Lab `28314388782`, PixelBatch `28314389339`, DocShift `28314389887`, NetProbe `28314390452`, Hub `28314390962` |
+| Sprint 9.3 final public assets | Hub `y2wQj9nM.js`; NetProbe `BnWoY1ue.js`; CalcHarbor `C-D8lFZ4.js`; DevUtility Lab `BdNi5yWa.js`; TimeNexus `rblm5Zwz.js`; QRRoute `Bo-YNugx.js`; InvoiceCraft `DWswZ3dy.js`; MailHealth `CFyhN0s7.js`; SitePulse Lab `BVVBcFus.js`; PixelBatch `C2HqwX3t.js`; DocShift `C5yJZR6G.js` |
+| Sprint 9.3 public smokes | Passed after corrected deploy: Hub aggregate, control-plane/API, NetProbe, nine static app smokes and 16-page live localized-copy smoke |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |
 | Real donation payments activated by Fase 9 planning | 0 planned before explicit gates |
