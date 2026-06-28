@@ -407,7 +407,7 @@ Sprint 9.8 - PixelBatch image workbench
 - Simbolico: BGR-PIXELBATCH-P0.
 - Objetivo: criar UX visual de imagem com drag-and-drop, preview antes/depois, economia de tamanho, formato/qualidade, presets por uso e download claro.
 - Validacao: worker/canvas tests, build/preview/Playwright, smoke publico e ausencia de upload backend, storage ou provider externo.
-- Status: planejada.
+- Status: validacao local concluida, aguardando commit/CI/deploy. O PixelBatch recebeu `PixelBatchWorkbench` compartilhado na home e nas paginas de ferramenta, com tabs densas para 6 fluxos de imagem, drag-and-drop real, dropzone dominante, presets de uso, controles de formato/qualidade/dimensao, preview antes/depois, economia de tamanho, snapshot de workflow, privacidade, batch/API/IA planejados e ferramentas relacionadas. O processamento continua worker/Canvas no navegador, sem upload backend, storage persistente, provider externo, batch, API paga, ads, billing ou analytics externo. Validacao local passou com `pnpm test:pixelbatch`, `pnpm build:pixelbatch`, `pnpm validate:pixelbatch-preview`, `pnpm test:e2e:pixelbatch`, screenshots Playwright, package gates, `validate:public-copy`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes` e `git diff --check`.
 
 Sprint 9.9 - InvoiceCraft editor-first workflow
 - Simbolico: BGR-INVOICECRAFT-P0.

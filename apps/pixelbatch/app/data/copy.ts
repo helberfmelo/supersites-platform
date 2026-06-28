@@ -59,6 +59,41 @@ export interface ShellCopy {
   batchQueueItems: string[]
   relatedToolsTitle: string
   relatedToolsBody: string
+  workbenchEyebrow: string
+  workbenchTitle: string
+  workbenchBody: string
+  browserOnlyLabel: string
+  noUploadLabel: string
+  oneImageLabel: string
+  toolTabsLabel: string
+  openGuideLabel: string
+  useCaseTitle: string
+  useCaseBody: string
+  useCaseWebLabel: string
+  useCaseStorefrontLabel: string
+  useCaseSocialLabel: string
+  actualOutputLabel: string
+  savingsLabel: string
+  workerLabel: string
+  browserWorkerLabel: string
+  localFallbackLabel: string
+  fileStateLabel: string
+  noFileSelectedLabel: string
+  renderStateLabel: string
+  renderPendingLabel: string
+  storageStateLabel: string
+  storageStateBody: string
+  upgradeGateBody: string
+  previewEyebrow: string
+  previewPendingLabel: string
+  processingBody: string
+  previewEmptyBody: string
+  previewEmptyTitle: string
+  fileSafetyLabel: string
+  fileSafetyBody: string
+  privacyImageBytesLabel: string
+  privacyObjectUrlLabel: string
+  privacyAnalyticsLabel: string
 }
 
 export const homeCopy: Record<LocaleCode, HomeCopy> = {
@@ -235,6 +270,41 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     batchQueueItems: ['Folders and multi-file queues', 'Saved presets and naming rules', 'API, integrations and high-resolution jobs', 'AI/background-removal providers'],
     relatedToolsTitle: 'Related image tools',
     relatedToolsBody: 'Continue with another local transform without uploading the file.',
+    workbenchEyebrow: 'Image workbench',
+    workbenchTitle: 'Drag, tune, preview and download.',
+    workbenchBody: 'Choose an image task, drop one local file, tune format or quality and compare the output before downloading.',
+    browserOnlyLabel: 'Browser-only',
+    noUploadLabel: 'No upload',
+    oneImageLabel: 'One image free',
+    toolTabsLabel: 'Image workflow tabs',
+    openGuideLabel: 'Open guide',
+    useCaseTitle: 'Use-case presets',
+    useCaseBody: 'Start from common web, storefront or social settings, then adjust the controls.',
+    useCaseWebLabel: 'Web speed',
+    useCaseStorefrontLabel: 'Storefront',
+    useCaseSocialLabel: 'Social post',
+    actualOutputLabel: 'Actual output',
+    savingsLabel: 'Savings',
+    workerLabel: 'Worker',
+    browserWorkerLabel: 'browser worker',
+    localFallbackLabel: 'local fallback',
+    fileStateLabel: 'File',
+    noFileSelectedLabel: 'Waiting for one local image',
+    renderStateLabel: 'Render',
+    renderPendingLabel: 'Canvas output planned after processing',
+    storageStateLabel: 'Storage',
+    storageStateBody: 'No upload endpoint, localStorage, sessionStorage or account.',
+    upgradeGateBody: 'Batch, API, high-res queues and AI remain inactive.',
+    previewEyebrow: 'Preview and output',
+    previewPendingLabel: 'Output pending',
+    processingBody: 'Processing the selected image locally...',
+    previewEmptyBody: 'Choose one image to see source preview, output metrics and download controls.',
+    previewEmptyTitle: 'Drop an image to start',
+    fileSafetyLabel: 'File safety',
+    fileSafetyBody: 'Server-side batch, API and AI processing require upload validation, sandboxing, retention and antivirus checks before activation.',
+    privacyImageBytesLabel: 'No image bytes leave the browser session.',
+    privacyObjectUrlLabel: 'Object URLs are revoked when the page resets or unloads.',
+    privacyAnalyticsLabel: 'Analytics keeps only the tool slug, locale and route.',
   },
   'pt-br': {
     breadcrumbHome: 'PixelBatch',
@@ -276,6 +346,41 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     batchQueueItems: ['Pastas e filas multi-arquivo', 'Presets salvos e regras de nome', 'API, integracoes e jobs em alta resolucao', 'Provedores de IA/remocao de fundo'],
     relatedToolsTitle: 'Ferramentas relacionadas',
     relatedToolsBody: 'Continue com outra transformacao local sem fazer upload.',
+    workbenchEyebrow: 'Bancada de imagem',
+    workbenchTitle: 'Arraste, ajuste, compare e baixe.',
+    workbenchBody: 'Escolha uma tarefa, solte um arquivo local, ajuste formato ou qualidade e compare a saida antes de baixar.',
+    browserOnlyLabel: 'So navegador',
+    noUploadLabel: 'Sem upload',
+    oneImageLabel: 'Uma imagem gratis',
+    toolTabsLabel: 'Abas de workflow de imagem',
+    openGuideLabel: 'Abrir guia',
+    useCaseTitle: 'Presets de uso',
+    useCaseBody: 'Comece por ajustes para web, loja ou social e refine os controles.',
+    useCaseWebLabel: 'Web rapida',
+    useCaseStorefrontLabel: 'Loja',
+    useCaseSocialLabel: 'Post social',
+    actualOutputLabel: 'Saida real',
+    savingsLabel: 'Economia',
+    workerLabel: 'Worker',
+    browserWorkerLabel: 'worker do navegador',
+    localFallbackLabel: 'fallback local',
+    fileStateLabel: 'Arquivo',
+    noFileSelectedLabel: 'Aguardando uma imagem local',
+    renderStateLabel: 'Render',
+    renderPendingLabel: 'Saida Canvas planejada apos processar',
+    storageStateLabel: 'Storage',
+    storageStateBody: 'Sem upload endpoint, localStorage, sessionStorage ou conta.',
+    upgradeGateBody: 'Lotes, API, alta resolucao e IA continuam inativos.',
+    previewEyebrow: 'Preview e saida',
+    previewPendingLabel: 'Saida pendente',
+    processingBody: 'Processando a imagem localmente...',
+    previewEmptyBody: 'Escolha uma imagem para ver preview original, metricas de saida e download.',
+    previewEmptyTitle: 'Solte uma imagem para comecar',
+    fileSafetyLabel: 'Seguranca de arquivo',
+    fileSafetyBody: 'Batch server-side, API e IA exigem validacao de upload, sandbox, retencao e antivirus antes da ativacao.',
+    privacyImageBytesLabel: 'Nenhum byte da imagem sai da sessao do navegador.',
+    privacyObjectUrlLabel: 'Object URLs sao revogados ao resetar ou sair da pagina.',
+    privacyAnalyticsLabel: 'Analytics guarda apenas slug da ferramenta, locale e rota.',
   },
   es: {
     breadcrumbHome: 'PixelBatch',
@@ -317,6 +422,41 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     batchQueueItems: ['Carpetas y colas multiarchivo', 'Presets guardados y reglas de nombre', 'API, integraciones y jobs de alta resolucion', 'Proveedores de IA/remocion de fondo'],
     relatedToolsTitle: 'Herramientas relacionadas',
     relatedToolsBody: 'Continua con otra transformacion local sin subir el archivo.',
+    workbenchEyebrow: 'Banco de imagen',
+    workbenchTitle: 'Arrastra, ajusta, compara y descarga.',
+    workbenchBody: 'Elige una tarea, suelta un archivo local, ajusta formato o calidad y compara la salida antes de descargar.',
+    browserOnlyLabel: 'Solo navegador',
+    noUploadLabel: 'Sin upload',
+    oneImageLabel: 'Una imagen gratis',
+    toolTabsLabel: 'Pestanas de workflow de imagen',
+    openGuideLabel: 'Abrir guia',
+    useCaseTitle: 'Presets de uso',
+    useCaseBody: 'Empieza con ajustes para web, tienda o social y luego refina los controles.',
+    useCaseWebLabel: 'Web rapida',
+    useCaseStorefrontLabel: 'Tienda',
+    useCaseSocialLabel: 'Post social',
+    actualOutputLabel: 'Salida real',
+    savingsLabel: 'Ahorro',
+    workerLabel: 'Worker',
+    browserWorkerLabel: 'worker del navegador',
+    localFallbackLabel: 'fallback local',
+    fileStateLabel: 'Archivo',
+    noFileSelectedLabel: 'Esperando una imagen local',
+    renderStateLabel: 'Render',
+    renderPendingLabel: 'Salida Canvas planeada despues de procesar',
+    storageStateLabel: 'Storage',
+    storageStateBody: 'Sin upload endpoint, localStorage, sessionStorage ni cuenta.',
+    upgradeGateBody: 'Lotes, API, alta resolucion e IA siguen inactivos.',
+    previewEyebrow: 'Preview y salida',
+    previewPendingLabel: 'Salida pendiente',
+    processingBody: 'Procesando la imagen localmente...',
+    previewEmptyBody: 'Elige una imagen para ver preview original, metricas de salida y descarga.',
+    previewEmptyTitle: 'Suelta una imagen para empezar',
+    fileSafetyLabel: 'Seguridad de archivo',
+    fileSafetyBody: 'Batch server-side, API e IA requieren validacion de upload, sandbox, retencion y antivirus antes de activarse.',
+    privacyImageBytesLabel: 'Ningun byte de imagen sale de la sesion del navegador.',
+    privacyObjectUrlLabel: 'Las object URLs se revocan al resetear o salir de la pagina.',
+    privacyAnalyticsLabel: 'Analytics conserva solo slug de herramienta, locale y ruta.',
   },
   fr: {
     breadcrumbHome: 'PixelBatch',
@@ -358,6 +498,41 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     batchQueueItems: ['Dossiers et files multi-fichiers', 'Presets sauvegardes et regles de nom', 'API, integrations et jobs haute resolution', 'Fournisseurs IA/suppression de fond'],
     relatedToolsTitle: 'Outils image lies',
     relatedToolsBody: 'Continuez avec une autre transformation locale sans upload.',
+    workbenchEyebrow: 'Atelier image',
+    workbenchTitle: 'Deposer, regler, comparer et telecharger.',
+    workbenchBody: 'Choisissez une tache, deposez un fichier local, ajustez format ou qualite et comparez la sortie avant telechargement.',
+    browserOnlyLabel: 'Navigateur seul',
+    noUploadLabel: 'Sans upload',
+    oneImageLabel: 'Une image gratuite',
+    toolTabsLabel: 'Onglets de workflow image',
+    openGuideLabel: 'Ouvrir guide',
+    useCaseTitle: 'Presets d usage',
+    useCaseBody: 'Commencez avec web, boutique ou social puis ajustez les controles.',
+    useCaseWebLabel: 'Web rapide',
+    useCaseStorefrontLabel: 'Boutique',
+    useCaseSocialLabel: 'Post social',
+    actualOutputLabel: 'Sortie reelle',
+    savingsLabel: 'Gain',
+    workerLabel: 'Worker',
+    browserWorkerLabel: 'worker navigateur',
+    localFallbackLabel: 'fallback local',
+    fileStateLabel: 'Fichier',
+    noFileSelectedLabel: 'En attente d une image locale',
+    renderStateLabel: 'Rendu',
+    renderPendingLabel: 'Sortie Canvas prevue apres traitement',
+    storageStateLabel: 'Stockage',
+    storageStateBody: 'Sans upload endpoint, localStorage, sessionStorage ou compte.',
+    upgradeGateBody: 'Lots, API, haute resolution et IA restent inactifs.',
+    previewEyebrow: 'Apercu et sortie',
+    previewPendingLabel: 'Sortie en attente',
+    processingBody: 'Traitement local de l image...',
+    previewEmptyBody: 'Choisissez une image pour voir l original, les mesures de sortie et le telechargement.',
+    previewEmptyTitle: 'Deposez une image pour commencer',
+    fileSafetyLabel: 'Securite fichier',
+    fileSafetyBody: 'Le batch server-side, API et IA exigent validation upload, sandbox, retention et antivirus avant activation.',
+    privacyImageBytesLabel: 'Aucun octet image ne quitte la session navigateur.',
+    privacyObjectUrlLabel: 'Les object URLs sont revoquees au reset ou a la sortie de page.',
+    privacyAnalyticsLabel: 'Analytics garde seulement slug d outil, locale et route.',
   },
   de: {
     breadcrumbHome: 'PixelBatch',
@@ -399,6 +574,41 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     batchQueueItems: ['Ordner und Mehrdatei-Queues', 'Gespeicherte Presets und Namensregeln', 'API, Integrationen und High-Res-Jobs', 'KI/Hintergrundentfernung-Provider'],
     relatedToolsTitle: 'Verwandte Bildtools',
     relatedToolsBody: 'Mit einer weiteren lokalen Transformation ohne Upload fortfahren.',
+    workbenchEyebrow: 'Bild-Workbench',
+    workbenchTitle: 'Ablegen, einstellen, vergleichen und laden.',
+    workbenchBody: 'Waehlen Sie eine Aufgabe, legen Sie eine lokale Datei ab, justieren Sie Format oder Qualitaet und vergleichen Sie die Ausgabe.',
+    browserOnlyLabel: 'Nur Browser',
+    noUploadLabel: 'Kein Upload',
+    oneImageLabel: 'Ein Bild frei',
+    toolTabsLabel: 'Bildworkflow-Tabs',
+    openGuideLabel: 'Guide oeffnen',
+    useCaseTitle: 'Use-Case-Presets',
+    useCaseBody: 'Starten Sie mit Web-, Shop- oder Social-Einstellungen und passen Sie die Kontrollen an.',
+    useCaseWebLabel: 'Web-Speed',
+    useCaseStorefrontLabel: 'Shop',
+    useCaseSocialLabel: 'Social Post',
+    actualOutputLabel: 'Echte Ausgabe',
+    savingsLabel: 'Ersparnis',
+    workerLabel: 'Worker',
+    browserWorkerLabel: 'Browser-Worker',
+    localFallbackLabel: 'lokaler Fallback',
+    fileStateLabel: 'Datei',
+    noFileSelectedLabel: 'Wartet auf ein lokales Bild',
+    renderStateLabel: 'Render',
+    renderPendingLabel: 'Canvas-Ausgabe nach Verarbeitung geplant',
+    storageStateLabel: 'Speicher',
+    storageStateBody: 'Kein Upload-Endpunkt, localStorage, sessionStorage oder Konto.',
+    upgradeGateBody: 'Batch, API, High-Res-Queues und KI bleiben inaktiv.',
+    previewEyebrow: 'Vorschau und Ausgabe',
+    previewPendingLabel: 'Ausgabe ausstehend',
+    processingBody: 'Das Bild wird lokal verarbeitet...',
+    previewEmptyBody: 'Waehlen Sie ein Bild fuer Quellvorschau, Ausgabemetriken und Download.',
+    previewEmptyTitle: 'Bild ablegen, um zu starten',
+    fileSafetyLabel: 'Dateisicherheit',
+    fileSafetyBody: 'Serverseitiger Batch, API und KI brauchen Upload-Validierung, Sandbox, Retention und Antivirus vor Aktivierung.',
+    privacyImageBytesLabel: 'Keine Bildbytes verlassen die Browser-Sitzung.',
+    privacyObjectUrlLabel: 'Object URLs werden beim Reset oder Verlassen der Seite widerrufen.',
+    privacyAnalyticsLabel: 'Analytics speichert nur Tool-Slug, Locale und Route.',
   },
 }
 

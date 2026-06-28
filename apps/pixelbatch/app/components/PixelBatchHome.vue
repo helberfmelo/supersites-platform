@@ -76,6 +76,8 @@ useHead(() => ({
       </aside>
     </section>
 
+    <PixelBatchWorkbench :locale="locale" initial-slug="image-compressor" />
+
     <section class="controls" aria-label="Tool controls">
       <div class="field">
         <label for="tool-search">{{ copy.searchLabel }}</label>

@@ -40,3 +40,9 @@ Data-base: 2026-06-27
 - Implemented original dropzone, before/after preview, workflow snapshot, privacy checklist, related tools and gated batch queue messaging with original PixelBatch copy and components.
 - Kept benchmark references as learning inputs only; no third-party screenshots, mascots, text, compression claims, pricing copy or proprietary UI were copied.
 - Local screenshot inspection covered home desktop plus compressor and privacy mobile flows.
+
+## Sprint 9.8 outcome
+
+- Reworked PixelBatch into a shared image workbench on home and tool pages, closer to the reference expectation of an immediate drag/drop image utility instead of a catalog-first page.
+- Added dense task tabs, real drag-and-drop, use-case presets, before/after comparison, output savings, privacy safeguards and related image tools without copying benchmark assets, claims, pricing or proprietary UI.
+- Kept processing local through worker planning and Canvas output; no upload backend, AI provider, batch service, account, checkout, billing, ad serving or external analytics was activated.

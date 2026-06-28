@@ -58,3 +58,9 @@ Medium if upload pages are thin or ads are close to file actions.
 - Image tool pages now expose clearer local-processing guidance, before/after framing, related tools and format/preset education.
 - Public copy no longer exposes internal sprint labels on app surfaces.
 - No forensic metadata-removal, AI/background-removal or bulk-processing claim was introduced before gates.
+
+## Sprint 9.8 result
+
+- Preserved canonical, hreflang, schema, guide, FAQ and reviewed-policy sections while moving the primary task UI into a shared workbench.
+- Added above-fold task specificity for compression, resize, crop, convert, metadata cleanup and social presets, plus related-tool links that support image utility discovery.
+- Public-copy validation passed across 876 generated HTML files; no AI/background-removal, forensic metadata or bulk-processing claim was activated before gates.

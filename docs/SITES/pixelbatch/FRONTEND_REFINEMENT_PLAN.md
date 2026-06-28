@@ -59,3 +59,9 @@ Medium; ads/support must stay away from upload, preview, progress and download c
 - P0 completed locally with dropzone, selected-file state, before/after preview, workflow steps, download/reset controls, privacy checklist and related image tools.
 - P1 queue planning is represented as gated batch queue messaging without enabling server upload.
 - Mobile and desktop screenshots from the Playwright report were inspected with no incoherent overlap or text overflow.
+
+## Sprint 9.8 result
+
+- Added shared `PixelBatchWorkbench` with tabs for all 6 tools, large drag/drop target, use-case preset chips, format/quality/dimension controls and stronger preview/download framing.
+- Home now exposes the working compressor flow above the catalog; tool pages reuse the same workbench with the route tool selected.
+- Visual QA inspected home desktop, compressor mobile and privacy mobile screenshots from the production build with no incoherent overlap or horizontal overflow.

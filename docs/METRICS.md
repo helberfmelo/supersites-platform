@@ -660,6 +660,14 @@ Data-base: 2026-06-27
 | Sprint 9.7 final public asset | `https://opentshost.com/supersites/docshift/_nuxt/AWgMi3M5.js` |
 | Sprint 9.7 public smokes | Passed: DocShift static app, Hub aggregate, control-plane/API and live DocShift workbench/Text-to-PDF/mobile UX smoke |
 | Sprint 9.7 upload/OCR/paid activation | 0 activated; DocShift remains browser-side with no server upload, OCR, batch, API, billing, ads or external analytics |
+| Sprint 9.8 PixelBatch benchmark UI scope | Shared image workbench on home and tool pages with 6 tool tabs, drag-and-drop, dominant dropzone, use-case presets, format/quality controls, before/after preview, size savings, workflow snapshot, privacy checklist and related image tools |
+| Sprint 9.8 PixelBatch local validation | Passed: `pnpm test:pixelbatch`, `pnpm build:pixelbatch`, `pnpm validate:pixelbatch-preview`, `pnpm test:e2e:pixelbatch` |
+| Sprint 9.8 local preview asset | `/_nuxt/BdbU2zyR.js` validated by `pnpm validate:pixelbatch-preview` |
+| Sprint 9.8 visual QA artifacts | Playwright screenshots in `artifacts/playwright-pixelbatch-report/data/` for PixelBatch home desktop, compressor mobile and privacy mobile |
+| Sprint 9.8 package validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages` |
+| Sprint 9.8 public copy/structure/security gates | Passed locally: `pnpm validate:public-copy` across 876 HTML files, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
+| Sprint 9.8 remote CI/deploy status | Pending feature commit, push, Quality Gate, Deploy Dry Run and HostGator deploy |
+| Sprint 9.8 upload/AI/paid activation | 0 activated; PixelBatch remains browser-side with no server upload, batch, API, AI provider, billing, ads or external analytics |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |
 | Real donation payments activated by Fase 9 planning | 0 planned before explicit gates |

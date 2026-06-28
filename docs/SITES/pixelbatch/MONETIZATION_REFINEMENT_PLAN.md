@@ -57,3 +57,9 @@ Medium due to uploads and previews. Keep monetization separated.
 - Batch, folders, saved presets, API, integrations, high-resolution jobs and AI/background-removal providers remain gated/inert upgrade messaging.
 - Free one-image browser processing remains complete without signup.
 - No upload endpoint, checkout, billing provider, ad serving, donation/support payment, affiliate link or paid API was activated.
+
+## Sprint 9.8 result
+
+- Free one-image processing remains the primary visible workflow, now with clearer use-case presets and before/after output proof.
+- Batch folders, saved presets, API, integrations, high-resolution jobs and AI/background-removal providers remain represented only as inert planned/upgrade messaging.
+- No upload endpoint, checkout, billing provider, ad serving, donation/support payment, affiliate link, paid API, external analytics or AI provider was activated.

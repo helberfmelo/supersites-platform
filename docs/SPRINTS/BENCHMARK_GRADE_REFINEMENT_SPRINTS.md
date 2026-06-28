@@ -164,6 +164,24 @@ Sprint 9.7 delivered the DocShift PDF workbench locally without activating real 
 | Production deploy | Passed: Fase 9/Sprint 9.7 DocShift static app deploy `28317896866`, release `1c20e80830ab8cbca6cfb9742d01b5698e917bab-28317896866-1` |
 | Public smoke | Passed: DocShift app asset `https://opentshost.com/supersites/docshift/_nuxt/AWgMi3M5.js`, aggregate Hub smoke, control-plane smoke and live workbench/Text-to-PDF/mobile UX smoke |
 
+## Sprint 9.8 execution evidence
+
+Sprint 9.8 delivered the PixelBatch image workbench locally without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs, server-side upload, AI providers, batch processing, saved files or recurring production workers.
+
+| Evidence | Value |
+|---|---|
+| PixelBatch pages refined | Home `/en` plus all localized `/tools/<slug>` pages |
+| Workbench structure | Shared `PixelBatchWorkbench` with 6 image task tabs, drag-and-drop, dominant dropzone, use-case presets, preview/download panel, before/after comparison, size savings, workflow snapshot, privacy checklist and related image tools |
+| Home above-fold behavior | Image Compressor workbench opens before search/catalog; users can start a local image workflow without signup |
+| Tool-page behavior | Each detail page reuses the same workbench with the route tool selected, preserving breadcrumb, hero, guide, FAQ and schema |
+| Privacy/trust additions | Browser-only/no-upload/one-image safeguards, storage-free checklist and file-safety copy; analytics remains limited to sanitized route/tool metadata and excludes file names, pixels, dimensions, metadata and output settings |
+| Local frontend validation | Passed: `pnpm test:pixelbatch`, `pnpm build:pixelbatch`, `pnpm validate:pixelbatch-preview`, `pnpm test:e2e:pixelbatch` |
+| Local preview asset | `/_nuxt/BdbU2zyR.js` |
+| Visual QA | Desktop/mobile screenshots captured by Playwright in `artifacts/playwright-pixelbatch-report/data/` |
+| Broad validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
+| Remote CI | Pending feature commit and push |
+| Production deploy | Pending Fase 9/Sprint 9.8 static app deploy after Quality Gate and Deploy Dry Run pass |
+
 ## Per-sprint execution rules
 
 Each Sprint 9.x must:
