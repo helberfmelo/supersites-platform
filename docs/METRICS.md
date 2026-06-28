@@ -577,7 +577,10 @@ Data-base: 2026-06-27
 | Sprint 9.2 local artifact builds | Passed for Hub, NetProbe and 9 product apps |
 | Sprint 9.2 local final gates | Passed: Supersite test/build/preview, benchmark crawler, structure, secrets, deploy dry-run, ci:changes and diff check |
 | Sprint 9.2 public smokes before push | Passed: Hub aggregate, control-plane/API and NetProbe; direct Hub status/robots gaps remain until deploy |
-| Sprint 9.2 remote CI/deploy status | Pending commit/push; expected blocker remains GitHub Actions billing/spending-limit until human action |
+| Sprint 9.2 feature commit | `958b9dc` |
+| Sprint 9.2 Quality Gate run | `28307129966` blocked before steps by GitHub Actions billing/spending-limit annotation |
+| Sprint 9.2 Deploy Dry Run run | `28307129941` blocked before steps by GitHub Actions billing/spending-limit annotation |
+| Sprint 9.2 remote CI/deploy status | Blocked by human-gated GitHub Actions billing/spending-limit; no real deploy executed |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |
 | Real donation payments activated by Fase 9 planning | 0 planned before explicit gates |

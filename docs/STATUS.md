@@ -1139,7 +1139,8 @@ Na Sprint 8.6, a Fase 8 foi fechada em producao: o Hub e os nove apps estaticos 
   - Gates finais locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base SHA, comportamento esperado no workstation; `git diff --check` exibiu apenas aviso CRLF no `legal.ts`.
   - Smokes publicos pre-push passaram: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public`. O smoke agregado validou Hub, assets dos nove apps, MailHealth/SitePulse APIs; NetProbe/control-plane tambem passaram.
   - Esta sprint nao ativou anuncio real, AdSense/GTM/GA4, Search Console import, checkout, billing, pagamento, doacao, afiliado, API paga, upload/storage, worker/cron recorrente, analytics externo ou direct-root mapping.
-  - Validacao remota e deploy real permanecem pendentes ate commit/push e ate a regularizacao humana do billing/limite GitHub Actions. Quando destravado, o deploy manual deve informar Fase `9` e Sprint `9.2` nos inputs do workflow.
+  - Feature commit `958b9dc` (`feat: add benchmark crawler baseline`) foi publicado em `main`. `Quality Gate` run `28307129966` e `Deploy Dry Run` run `28307129941` falharam antes de qualquer step. As annotations dos check-runs `Detect changes`, `Quality summary` e `Generate deploy dry-run plan` informaram: `The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings`.
+  - Deploy real nao foi executado nesta sprint porque os gates remotos estao bloqueados por acao humana. Quando o GitHub Actions destravar, o deploy manual deve informar Fase `9` e Sprint `9.2` nos inputs do workflow e validar novamente Hub `/en/status` e `/robots.txt`.
 
 ## Pendencias criticas
 
