@@ -580,6 +580,8 @@ Data-base: 2026-06-27
 | Sprint 9.2 feature commit | `958b9dc` |
 | Sprint 9.2 Quality Gate run | `28307129966` blocked before steps by GitHub Actions billing/spending-limit annotation |
 | Sprint 9.2 Deploy Dry Run run | `28307129941` blocked before steps by GitHub Actions billing/spending-limit annotation |
+| Sprint 9.2 docs closing commit | `2a224b2` |
+| Sprint 9.2 docs-only Quality Gate run | `28307171619` blocked before steps by GitHub Actions billing/spending-limit annotation |
 | Sprint 9.2 remote CI/deploy status | Blocked by human-gated GitHub Actions billing/spending-limit; no real deploy executed |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |
