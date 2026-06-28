@@ -70,7 +70,8 @@ test.describe('SuperSites public hub', () => {
       'https://opentshost.com/supersites/pt-br/privacy',
     )
     await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
-    await expect(page.locator('.page-footer a')).toHaveCount(8)
+    await expect(page.locator('.page-footer a')).toHaveCount(9)
+    await expect(page.getByLabel('Legal and editorial pages').getByRole('link', { name: 'Status' })).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
     const screenshot = await page.screenshot({ fullPage: true })
