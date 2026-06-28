@@ -37,3 +37,11 @@ Data-base: 2026-06-27
 - Standardized result card, secondary metrics, interpretation card and calculation memory across the four MVP calculators.
 - Related calculators are cross-linked by category/order without copying benchmark layouts.
 - Workflow upgrade panel is inert and gated; no checkout, ads, donation or affiliate activation was added.
+
+## Sprint 9.12 benchmark-grade implementation notes
+
+- Home now starts with a calculator workbench instead of a catalogue-only first impression: tabs, editable fields, live result, supporting metrics, scenario bars and comparison table are above the catalogue.
+- Detail pages now include a scenario snapshot built from the same tested formulas, giving each calculator a denser benchmark-style result area without copying competitor layout or educational text.
+- Public copy now avoids MVP/catalogue wording and names browser-side processing, operating principles and workflow checks in user-facing language.
+- Free calculation remains complete without signup, storage, checkout, ads, donations, exports, API access or external analytics.
+- Remaining benchmark gaps: broader calculator depth, richer schema coverage across generated pages and additional original educational content belong to later Phase 9 sprints.

@@ -58,8 +58,41 @@ test.describe('CalcHarbor MVP', () => {
       'https://opentshost.com/supersites/calcharbor/en',
     )
     await expect(page.getByRole('heading', { name: 'Loan Payment Calculator' })).toBeVisible()
-    await expect(page.getByText('No ads or billing')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Compare one calculator across three assumptions.' })).toBeVisible()
+    await expect(page.getByText('Workflow checks ready')).toBeVisible()
+
+    await page.getByLabel('Loan amount').fill('25000')
+    await page.getByLabel('Annual interest rate').fill('8.5')
+    await page.getByLabel('Term in years').fill('5')
+    await page.getByRole('button', { name: 'Compare scenario' }).click()
+
+    await expect(page.locator('.calculator-workbench .primary-result strong')).toContainText('$512.')
+    await expect(page.getByRole('heading', { name: 'Scenario range' })).toBeVisible()
+    await expect(page.getByRole('cell', { name: /Annual interest rate: 8\.5%/ })).toBeVisible()
     await expectNoHorizontalOverflow(page)
+
+    const analytics = await page.evaluate(() => ({
+      localEvents: window.supersitesAnalyticsEvents,
+      dataLayer: window.dataLayer,
+      storage: {
+        local: Object.keys(window.localStorage),
+        session: Object.keys(window.sessionStorage),
+      },
+    }))
+
+    expect(analytics.localEvents).toHaveLength(2)
+    expect(analytics.localEvents?.[1]).toMatchObject({
+      name: 'tool_completed',
+      siteSlug: 'calcharbor',
+      routePath: '/en',
+      properties: {
+        tool_slug: 'loan-payment',
+      },
+    })
+    expect(JSON.stringify(analytics)).not.toContain('25000')
+    expect(JSON.stringify(analytics)).not.toContain('8.5')
+    expect(analytics.storage.local).toEqual([])
+    expect(analytics.storage.session).toEqual([])
 
     const screenshot = await page.screenshot({ fullPage: true })
     await testInfo.attach('calcharbor-home-desktop', { body: screenshot, contentType: 'image/png' })
@@ -84,6 +117,8 @@ test.describe('CalcHarbor MVP', () => {
     await expect(page.locator('code').filter({ hasText: 'M = P x r x (1 + r)^n / ((1 + r)^n - 1)' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Calculation memory' })).toBeVisible()
     await expect(page.getByText('Formula used')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Scenario snapshot' })).toBeVisible()
+    await expect(page.getByRole('cell', { name: /Annual interest rate: 8\.5%/ })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Related calculators' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Workflow upgrades planned' })).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)

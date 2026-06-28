@@ -708,6 +708,16 @@ Data-base: 2026-06-28
 | Sprint 9.11 final public asset | `https://opentshost.com/supersites/sitepulse-lab/_nuxt/C9Q51oa7.js` |
 | Sprint 9.11 public smokes | Passed: SitePulse static app/API, Hub aggregate, control-plane/API and live SitePulse report/mobile UX smoke |
 | Sprint 9.11 monitoring/API/paid activation | 0 activated; SitePulse remains one-shot with no recurring uptime, alerts, status page, history, multi-region probes, billing, ads or external analytics |
+| Post-9.11 full live benchmark audit | `2026-06-28T16-11-17-070Z`; 876 routes, 1752 desktop/mobile checks, 1752 screenshots, 875 internal links checked |
+| Post-9.11 full live audit failures | 0 page failures, 0 console/page errors, 0 broken internal links, 0 horizontal overflow, 0 robots/sitemap failures |
+| Post-9.11 full live audit SEO gaps | 872 checks missing JSON-LD schema, 26 title length warnings, 6 meta description length warnings |
+| Sprint 9.12 CalcHarbor benchmark UI scope | Workbench-first calculator scenario planner on home plus scenario snapshots on detail pages, using same formula helpers and no value persistence |
+| Sprint 9.12 CalcHarbor local validation | Passed: `pnpm test:calcharbor` (10 tests), `pnpm build:calcharbor`, `pnpm validate:calcharbor-preview`, `pnpm test:e2e:calcharbor` |
+| Sprint 9.12 local preview asset | `/_nuxt/CONPV4_J.js` validated by `pnpm validate:calcharbor-preview` |
+| Sprint 9.12 visual QA artifacts | `artifacts/playwright-calcharbor-density/data/sprint-9-12-calcharbor-density-desktop.png` and `artifacts/playwright-calcharbor-density/data/sprint-9-12-calcharbor-density-mobile.png` |
+| Sprint 9.12 package validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages` |
+| Sprint 9.12 public copy/structure/security gates | Passed locally: `pnpm validate:public-copy` across 876 HTML files, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
+| Sprint 9.12 finance/billing/ads activation | 0 activated; CalcHarbor remains browser-side with no saved history, paid export, API, checkout, billing, ads, donation, external analytics or tax/legal automation |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |
 | Real donation payments activated by Fase 9 planning | 0 planned before explicit gates |

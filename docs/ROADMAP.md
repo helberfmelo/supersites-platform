@@ -360,6 +360,8 @@ Sprint 8.6 - Public rollout closure e operacao minima
 
 Status geral: mapeada a partir da auditoria live `docs/AUDITORIA_LIVE_SUPERSITES_BENCHMARK.md`. A Fase 8 colocou as 12 superficies publicas no ar, mas a auditoria estimou score geral 62/100 e apontou lacunas P0 em localizacao, UX task-first, similaridade visual/funcional com benchmarks, legal/trust, AdSense readiness e linguagem publica. A Fase 9 transforma esse diagnostico em sprints sequenciais sem ativar anuncios reais, billing real, doacoes, afiliados, analytics externo, workers recorrentes, APIs pagas ou acoes irreversiveis.
 
+Atualizacao live de 2026-06-28 apos Sprint 9.11: o crawler full navegou 876 rotas, executou 1752 checks desktop/mobile, gerou 1752 screenshots, checou 875 links internos e registrou 0 falhas de pagina, 0 links quebrados, 0 overflow, 0 console/page errors, 0 gaps de robots/sitemap e 0 gaps de title/meta/canonical/hreflang. As lacunas remanescentes sao de benchmark-grade: 872 checks sem JSON-LD schema, 26 titulos longos, 6 meta descriptions longas, Hub ainda catalog-first/consent intrusivo, CalcHarbor/TimeNexus/DevUtility ainda catalog-first e copy operacional residual em surfaces ja refinadas.
+
 Sprint 9.1 - Roadmap benchmark-grade e rotulos de deploy
 - Simbolico: BGR-ROADMAP-LABELS.
 - Objetivo: converter a auditoria live em roadmap executavel e fazer os workflows manuais de deploy registrarem Fase/Sprint nos nomes e logs dos runs, mantendo o Deploy Dry Run automatico compativel com `push`.
@@ -429,32 +431,32 @@ Sprint 9.11 - SitePulse visual report
 
 Sprint 9.12 - CalcHarbor calculator density
 - Simbolico: BGR-CALCHARBOR-DENSITY.
-- Objetivo: expandir o hub de calculadoras com categorias prioritarias, moeda/localizacao por locale, tabelas/graficos leves, exemplos e disclaimers.
-- Validacao: fixtures de formulas, i18n/locale, build/preview/Playwright e smoke publico.
-- Status: planejada.
+- Objetivo: transformar a home e paginas de calculadora de catalogo para workbench task-first com cenarios, tabelas/graficos leves, resultados auditaveis, exemplos, disclaimers e copy publica madura sem linguagem de MVP.
+- Validacao: fixtures de formulas/cenarios, i18n/locale, build/preview/Playwright, auditoria visual desktop/mobile, crawler/smoke publico e analytics sem valores de calculadora.
+- Status: em execucao apos auditoria full live `2026-06-28T16-11-17-070Z`; producao atual ainda e catalog-first e sera corrigida nesta sprint.
 
 Sprint 9.13 - TimeNexus world clock e planner
 - Simbolico: BGR-TIMENEXUS-DENSITY.
-- Objetivo: adicionar current time panel, city/world clock, timeline converter, meeting planner e paginas SEO prioritarias por cidade/fuso sem conteudo raso.
-- Validacao: timezone fixtures, DST edge cases, build/preview/Playwright e smoke publico.
-- Status: planejada.
+- Objetivo: substituir a primeira dobra catalog-first por painel de hora atual, world clock, timeline converter, meeting planner e paginas SEO prioritarias por cidade/fuso sem conteudo raso.
+- Validacao: timezone fixtures, DST edge cases, mobile first-fold, build/preview/Playwright e smoke publico.
+- Status: planejada como proxima sprint apos 9.12; auditoria live confirmou que a home atual ainda abre como catalogo.
 
 Sprint 9.14 - DevUtility Lab workbench density
 - Simbolico: BGR-DEVUTILITY-WORKBENCH.
-- Objetivo: evoluir DevUtility para workbench tecnico com editor/output split, exemplos, tree/error views, copy/download/clear, favoritos/recentes locais quando seguro e navegacao densa por categoria.
-- Validacao: testes por ferramenta, dados locais, build/preview/Playwright e smoke publico.
-- Status: planejada.
+- Objetivo: evoluir DevUtility de catalogo para workbench tecnico com editor/output split, exemplos, tree/error views, copy/download/clear, favoritos/recentes locais quando seguro e navegacao densa por categoria.
+- Validacao: testes por ferramenta, dados locais, estados de erro, build/preview/Playwright e smoke publico.
+- Status: planejada; auditoria live confirmou que a home atual ainda e card grid.
 
 Sprint 9.15 - Hub, SEO/AIO e rich footers
 - Simbolico: BGR-HUB-SEO-AIO.
-- Objetivo: tornar o Hub e os rodapes por vertical mais visuais e navegaveis, com top tools, screenshots, guias, related tools, clusters SEO/AIO e schema sem criar conteudo em massa sem valor.
-- Validacao: Hub tests/build/preview/Playwright, SEO technical checks, sitemap/hreflang/canonical/schema e smoke publico.
-- Status: planejada.
+- Objetivo: tornar o Hub e os rodapes por vertical mais visuais e navegaveis, com top tools, screenshots/preview blocks, guias, related tools, clusters SEO/AIO e schema uniforme sem criar conteudo em massa sem valor.
+- Validacao: Hub tests/build/preview/Playwright, SEO technical checks, sitemap/hreflang/canonical/schema, reducao dos 872 gaps de JSON-LD e smoke publico.
+- Status: planejada; auditoria live confirmou Hub estavel, mas visualmente textual e com consent banner cobrindo cards na primeira dobra.
 
 Sprint 9.16 - Performance, AdSense-safe closure e rollout
 - Simbolico: BGR-PERF-ADSENSE-CLOSURE.
-- Objetivo: fechar a Fase 9 com Lighthouse/PageSpeed local, AdSense-safe layout inerte, smokes publicos finais, deploys com rotulo Fase/Sprint, metricas/status atualizados e pendencias humanas explicitadas.
-- Validacao: testes/builds afetados, Playwright visual, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate/Deploy Dry Run, deploys manuais quando aprovados e smokes publicos finais.
+- Objetivo: fechar a Fase 9 com Lighthouse/PageSpeed local quando disponivel, AdSense-safe layout inerte, consent banner menos intrusivo, copy operacional residual tratada, smokes publicos finais, deploys com rotulo Fase/Sprint, metricas/status atualizados e pendencias humanas explicitadas.
+- Validacao: testes/builds afetados, Playwright visual, crawler full final, `validate:public-copy`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate/Deploy Dry Run, deploys manuais quando aprovados e smokes publicos finais.
 - Status: planejada.
 
 ## Definition of done do programa

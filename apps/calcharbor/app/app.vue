@@ -169,13 +169,13 @@ h1 {
   width: 100%;
   max-width: 790px;
   margin-bottom: 16px;
-  font-size: clamp(2.1rem, 6vw, 4.5rem);
+  font-size: 4.25rem;
   line-height: 1;
 }
 
 h2 {
   margin-bottom: 12px;
-  font-size: clamp(1.45rem, 3.2vw, 2rem);
+  font-size: 2rem;
   line-height: 1.12;
 }
 
@@ -248,6 +248,110 @@ h3 {
   gap: 12px;
   align-items: end;
   padding: 24px 0;
+}
+
+.calculator-workbench {
+  display: grid;
+  gap: 18px;
+  margin-top: 24px;
+  padding: 18px;
+  border: 1px solid #cdd8d2;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.workbench-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 360px);
+  gap: 18px;
+  align-items: start;
+}
+
+.workbench-heading h2 {
+  max-width: 720px;
+}
+
+.workbench-heading p:not(.eyebrow),
+.scenario-snapshot p {
+  color: #3f504a;
+}
+
+.workbench-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.workbench-tabs button {
+  min-height: 46px;
+  border: 1px solid #c9d6d0;
+  border-radius: 8px;
+  color: #26352f;
+  background: #f8faf7;
+  font-size: 0.9rem;
+  font-weight: 850;
+  text-align: left;
+  cursor: pointer;
+}
+
+.workbench-tabs button[aria-selected="true"] {
+  color: #ffffff;
+  border-color: #254c6a;
+  background: #254c6a;
+}
+
+.workbench-body {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.45fr) minmax(0, 0.55fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.workbench-inputs,
+.workbench-results,
+.scenario-snapshot {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.workbench-inputs,
+.workbench-results {
+  padding: 16px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  background: #fbfcfa;
+}
+
+.metric-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.metric-strip div {
+  min-width: 0;
+  padding: 11px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.metric-strip span,
+.metric-strip strong {
+  display: block;
+}
+
+.metric-strip span {
+  color: #607069;
+  font-size: 0.74rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.metric-strip strong {
+  color: #18231f;
+  font-size: 1rem;
 }
 
 .field {
@@ -507,7 +611,7 @@ h3 {
 
 .primary-result strong {
   color: #123f2d;
-  font-size: clamp(1.65rem, 3vw, 2.35rem);
+  font-size: 2.2rem;
   line-height: 1;
 }
 
@@ -613,6 +717,88 @@ h3 {
   font-weight: 800;
 }
 
+.scenario-snapshot {
+  padding: 14px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.scenario-snapshot__head {
+  display: grid;
+  gap: 8px;
+}
+
+.scenario-snapshot h3,
+.scenario-snapshot p {
+  margin-bottom: 0;
+}
+
+.scenario-bars {
+  display: grid;
+  gap: 9px;
+}
+
+.scenario-bar-row {
+  display: grid;
+  grid-template-columns: minmax(90px, 0.4fr) minmax(120px, 1fr) minmax(90px, auto);
+  gap: 10px;
+  align-items: center;
+}
+
+.scenario-bar-row > span {
+  color: #52635d;
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.scenario-bar-row strong {
+  color: #17231e;
+  font-size: 0.92rem;
+  text-align: right;
+}
+
+.scenario-track {
+  position: relative;
+  min-width: 0;
+  height: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e5ece8;
+}
+
+.scenario-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #2e8a57;
+}
+
+.scenario-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-wrap: anywhere;
+}
+
+.scenario-table th,
+.scenario-table td {
+  padding: 10px 8px;
+  border-top: 1px solid #e0e7e2;
+  text-align: left;
+  vertical-align: top;
+}
+
+.scenario-table th {
+  color: #33423d;
+  font-weight: 850;
+}
+
+.scenario-table thead th {
+  color: #607069;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
 .upgrade-panel {
   display: grid;
   gap: 10px;
@@ -684,7 +870,7 @@ code {
 
 .content-hero h1 {
   max-width: 760px;
-  font-size: clamp(2rem, 5vw, 3.7rem);
+  font-size: 3.4rem;
   line-height: 1.05;
 }
 
@@ -733,11 +919,15 @@ code {
   .page-footer,
   .hero,
   .controls,
+  .workbench-heading,
+  .workbench-body,
+  .workbench-tabs,
   .tool-grid,
   .band-grid,
   .tool-layout,
   .content-layout,
   .result-grid,
+  .metric-strip,
   .related-calculators,
   .related-calculator-list,
   .calculation-memory div {
@@ -760,6 +950,23 @@ code {
     font-size: 2rem;
     line-height: 1.04;
     word-break: break-word;
+  }
+
+  h2,
+  .content-hero h1 {
+    font-size: 1.55rem;
+  }
+
+  .primary-result strong {
+    font-size: 1.75rem;
+  }
+
+  .scenario-bar-row {
+    grid-template-columns: 1fr;
+  }
+
+  .scenario-bar-row strong {
+    text-align: left;
   }
 
   .tool-card {

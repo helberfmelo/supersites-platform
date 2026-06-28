@@ -23,6 +23,7 @@ This block is therefore mapped as Fase 9 - Benchmark-Grade Refinement.
 | Public live surfaces | 12 |
 | Public placeholder apps | 0 |
 | Real ads, billing, checkout, donations, affiliates or external analytics | 0 |
+| Full live crawl after Sprint 9.11 | 876 routes, 1752 desktop/mobile checks, 875 internal links, 0 broken links, 0 overflow, 0 console/page errors, 872 missing JSON-LD checks |
 
 ## Symbolic to real sprint mapping
 
@@ -39,11 +40,11 @@ This block is therefore mapped as Fase 9 - Benchmark-Grade Refinement.
 | BGR-INVOICECRAFT-P0 | Sprint 9.9 | InvoiceCraft editor-first workflow | Editable invoice/quote/receipt above the fold, document preview, item rows, currency/locale controls and tax disclaimers |
 | BGR-MAILHEALTH-REPORT | Sprint 9.10 | MailHealth unified domain health report | Single domain check, 0-100 score, SPF/DKIM/DMARC/MX/blacklist/SMTP/header checklist and provider-neutral fix guidance |
 | BGR-SITEPULSE-REPORT | Sprint 9.11 | SitePulse visual status/performance report | Online/down/redirecting/slow answer, score, redirects, headers, robots, sitemap, TTFB, recommendations and corrected branding |
-| BGR-CALCHARBOR-DENSITY | Sprint 9.12 | CalcHarbor calculator hub depth | Expanded calculator catalogue, localized currency/number defaults, tables/charts where useful, related calculators and disclaimers |
-| BGR-TIMENEXUS-DENSITY | Sprint 9.13 | TimeNexus world clock and planning depth | Current time panel, city/world clock, timeline converter, meeting planner and priority city/timezone SEO pages |
+| BGR-CALCHARBOR-DENSITY | Sprint 9.12 | CalcHarbor calculator hub depth | Workbench-first home/detail pages with scenario comparison, tables/charts, localized copy, related calculators and no value persistence |
+| BGR-TIMENEXUS-DENSITY | Sprint 9.13 | TimeNexus world clock and planning depth | Current time panel, city/world clock, timeline converter, meeting planner and priority city/timezone SEO pages visible before catalog cards |
 | BGR-DEVUTILITY-WORKBENCH | Sprint 9.14 | DevUtility Lab premium workbench density | Split editor/result panes, examples, tree/error views, copy/download/clear states, dense category navigation and privacy cues |
-| BGR-HUB-SEO-AIO | Sprint 9.15 | SuperSites Hub, rich footers, related tools and SEO/AIO clusters | Hub feels public-product grade; top tools/screenshots/related links/content clusters are localized and non-deceptive |
-| BGR-PERF-ADSENSE-CLOSURE | Sprint 9.16 | Performance, AdSense-safe layout, production rollout and closure | Lighthouse/PageSpeed targets or exceptions recorded; ad/support spaces are safe and inert; deploy/smoke/run IDs close the phase |
+| BGR-HUB-SEO-AIO | Sprint 9.15 | SuperSites Hub, rich footers, related tools and SEO/AIO clusters | Hub feels public-product grade; top tools/screenshots/related links/content clusters are localized and broad JSON-LD schema coverage improves without low-value mass pages |
+| BGR-PERF-ADSENSE-CLOSURE | Sprint 9.16 | Performance, AdSense-safe layout, production rollout and closure | Final full crawler shows no broken links/overflow and materially reduced schema gaps; consent/ad/support spaces are safe and inert; deploy/smoke/run IDs close the phase |
 
 ## Sprint 9.2 execution evidence
 

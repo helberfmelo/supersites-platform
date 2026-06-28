@@ -3,6 +3,7 @@ import { getButtonClass } from '@supersites/ui'
 import { computed, reactive, ref } from 'vue'
 import { getShellCopy } from '../../../data/copy'
 import {
+  buildCalculatorScenarioRows,
   buildCalculationMemory,
   getCalculatorInterpretationState,
   createCalculatorStructuredData,
@@ -11,6 +12,7 @@ import {
   getCalculatorCopy,
   getCategoryLabel,
   getRelatedCalculators,
+  type CalculatorScenarioRow,
   type CalculationResult,
 } from '../../../data/calculators'
 import { localizedCalculatorPath, localizedContentPath, localizedHomePath, normalizePublicLocale, toHtmlLang } from '../../../data/locales'
@@ -41,6 +43,16 @@ const secondaryMetrics = computed(() => liveResult.value.ok ? liveResult.value.m
 const calculationMemory = computed(() => buildCalculationMemory(calculator, inputs, liveResult.value, locale))
 const interpretationState = computed(() => getCalculatorInterpretationState(calculator.slug, liveResult.value, locale))
 const relatedCalculators = computed(() => getRelatedCalculators(calculator))
+const scenarioRows = computed(() => buildCalculatorScenarioRows(calculator, inputs, locale))
+const maxScenarioValue = computed(() => Math.max(...scenarioRows.value.map((row) => Math.abs(row.numericValue ?? 0)), 1))
+
+function scenarioWidth(row: CalculatorScenarioRow): string {
+  if (!row.ok || row.numericValue === null) {
+    return '0%'
+  }
+
+  return `${Math.max(8, Math.round((Math.abs(row.numericValue) / maxScenarioValue.value) * 100))}%`
+}
 
 function calculate(): void {
   hasCalculated.value = true
@@ -116,7 +128,7 @@ useHead({
       <div>
         <div class="detail-topline">
           <p class="eyebrow">{{ getCategoryLabel(calculator.category, locale) }}</p>
-          <span class="status">Local result</span>
+          <span class="status">{{ shellCopy.browserSideLabel }}</span>
         </div>
         <h1 :id="`${calculator.slug}-title`">{{ copy.title }}</h1>
         <p class="lead">{{ copy.headline }}</p>
@@ -209,6 +221,42 @@ useHead({
               </div>
             </dl>
           </div>
+
+          <section class="scenario-snapshot" :aria-labelledby="`${calculator.slug}-scenario`">
+            <div class="scenario-snapshot__head">
+              <div>
+                <h3 :id="`${calculator.slug}-scenario`">{{ shellCopy.scenarioTitle }}</h3>
+                <p>{{ shellCopy.scenarioBody }}</p>
+              </div>
+            </div>
+
+            <div class="scenario-bars" :aria-label="shellCopy.scenarioChartLabel">
+              <div v-for="row in scenarioRows" :key="row.variant" class="scenario-bar-row">
+                <span>{{ row.label }}</span>
+                <div class="scenario-track">
+                  <span :style="{ width: scenarioWidth(row) }"></span>
+                </div>
+                <strong>{{ row.resultValue }}</strong>
+              </div>
+            </div>
+
+            <table class="scenario-table">
+              <thead>
+                <tr>
+                  <th scope="col">{{ shellCopy.scenarioColumnLabel }}</th>
+                  <th scope="col">{{ shellCopy.assumptionColumnLabel }}</th>
+                  <th scope="col">{{ shellCopy.resultColumnLabel }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="row in scenarioRows" :key="`${row.variant}-table`">
+                  <th scope="row">{{ row.label }}</th>
+                  <td>{{ row.assumption }}</td>
+                  <td>{{ row.resultValue }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
         </section>
       </div>
 

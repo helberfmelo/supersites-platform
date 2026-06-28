@@ -12,10 +12,13 @@ Make each calculator feel immediate, precise and explainable while keeping all i
 - Completed locally in Sprint 7.4: formula and calculation memory block for each MVP calculator.
 - Completed locally in Sprint 7.4: interpretation states for good/warning/needs-review outcomes where meaningful.
 - Completed locally in Sprint 7.4: related calculator grid below the result.
+- Completed locally in Sprint 9.12: home now opens with a scenario workbench instead of only search/cards.
+- Completed locally in Sprint 9.12: detail pages include a scenario snapshot table and bar comparison next to the result/memory stack.
+- Completed locally in Sprint 9.12: desktop/mobile screenshots confirm no overflow and a more benchmark-like calculator surface.
 
 ## P1
 
-- Add lightweight charts/tables only where they clarify a financial scenario.
+- Expand calculator count only when each new formula has tests, localized examples and useful original content.
 - Add examples that reset the calculator to known safe sample values.
 
 ## P2

@@ -13,9 +13,29 @@ export interface HomeCopy {
   freeLabel: string
   upgradeLabel: string
   detailCta: string
+  browserSideLabel: string
   principlesTitle: string
   principles: Array<{ title: string; body: string }>
   statusRows: Array<{ title: string; body: string; tone: 'green' | 'amber' }>
+}
+
+export interface WorkbenchCopy {
+  eyebrow: string
+  title: string
+  body: string
+  tabLabel: string
+  inputsTitle: string
+  compareLabel: string
+  resultTitle: string
+  secondaryTitle: string
+  scenarioTitle: string
+  scenarioBody: string
+  scenarioColumnLabel: string
+  assumptionColumnLabel: string
+  resultColumnLabel: string
+  chartLabel: string
+  privacyNote: string
+  disclaimer: string
 }
 
 export interface ShellCopy {
@@ -48,6 +68,13 @@ export interface ShellCopy {
   liveBody: string
   gatedTitle: string
   gatedBody: string
+  browserSideLabel: string
+  scenarioTitle: string
+  scenarioBody: string
+  scenarioColumnLabel: string
+  assumptionColumnLabel: string
+  resultColumnLabel: string
+  scenarioChartLabel: string
 }
 
 export const homeCopy: Record<LocaleCode, HomeCopy> = {
@@ -64,7 +91,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Free result',
     upgradeLabel: 'Upgrade path',
     detailCta: 'Open calculator',
-    principlesTitle: 'MVP principles',
+    browserSideLabel: 'Browser-side',
+    principlesTitle: 'Operating principles',
     principles: [
       {
         title: 'Transparent formulas',
@@ -81,8 +109,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     ],
     statusRows: [
       {
-        title: '4 live calculators',
-        body: 'Loan payment, break-even, gross margin and ROI run in the browser.',
+        title: '4 calculator workspaces',
+        body: 'Loan payment, break-even, gross margin and ROI include formulas, examples and scenario ranges.',
         tone: 'green',
       },
       {
@@ -91,8 +119,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
         tone: 'green',
       },
       {
-        title: 'No ads or billing',
-        body: 'AdSense, checkout, saved scenarios and external integrations remain gated.',
+        title: 'Workflow checks ready',
+        body: 'Ads, checkout, saved scenarios and external integrations stay behind release checks.',
         tone: 'amber',
       },
     ],
@@ -110,16 +138,17 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Resultado gratuito',
     upgradeLabel: 'Caminho de upgrade',
     detailCta: 'Abrir calculadora',
-    principlesTitle: 'Principios do MVP',
+    browserSideLabel: 'No navegador',
+    principlesTitle: 'Principios operacionais',
     principles: [
       { title: 'Formulas transparentes', body: 'Cada calculadora mostra a formula e as premissas para que a resposta seja auditavel.' },
       { title: 'Cliente por padrao', body: 'Os calculos rodam no navegador e nao armazenam entradas ou resultados.' },
       { title: 'Upgrade e workflow', body: 'Planos pagos vendem cenarios, exportacoes, widgets, equipes, API e ausencia de anuncios.' },
     ],
     statusRows: [
-      { title: '4 calculadoras ativas', body: 'Parcela, ponto de equilibrio, margem bruta e ROI rodam no navegador.', tone: 'green' },
+      { title: '4 areas de calculo', body: 'Parcela, ponto de equilibrio, margem bruta e ROI incluem formulas, exemplos e cenarios.', tone: 'green' },
       { title: '5 rotas de idioma', body: 'Paginas em ingles, portugues, espanhol, frances e alemao sao prerenderizadas.', tone: 'green' },
-      { title: 'Sem anuncios ou billing', body: 'AdSense, checkout, cenarios salvos e integracoes externas seguem bloqueados.', tone: 'amber' },
+      { title: 'Checagens de workflow prontas', body: 'Anuncios, checkout, cenarios salvos e integracoes externas ficam atras de checagens de release.', tone: 'amber' },
     ],
   },
   es: {
@@ -135,16 +164,17 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Resultado gratis',
     upgradeLabel: 'Ruta de upgrade',
     detailCta: 'Abrir calculadora',
-    principlesTitle: 'Principios del MVP',
+    browserSideLabel: 'En navegador',
+    principlesTitle: 'Principios operativos',
     principles: [
       { title: 'Formulas transparentes', body: 'Cada calculadora muestra formula y supuestos para que la respuesta sea auditable.' },
       { title: 'Cliente por defecto', body: 'Los calculos corren en el navegador y no almacenan entradas o resultados.' },
       { title: 'Upgrade como workflow', body: 'Los planes pagos venden escenarios, exportes, widgets, equipos, API y sin anuncios.' },
     ],
     statusRows: [
-      { title: '4 calculadoras activas', body: 'Prestamo, equilibrio, margen bruto y ROI corren en el navegador.', tone: 'green' },
+      { title: '4 espacios de calculo', body: 'Prestamo, equilibrio, margen bruto y ROI incluyen formulas, ejemplos y rangos.', tone: 'green' },
       { title: '5 rutas de idioma', body: 'Paginas en ingles, portugues, espanol, frances y aleman se prerenderizan.', tone: 'green' },
-      { title: 'Sin anuncios ni billing', body: 'AdSense, checkout, escenarios guardados e integraciones externas quedan bloqueados.', tone: 'amber' },
+      { title: 'Revisiones de workflow listas', body: 'Anuncios, checkout, escenarios guardados e integraciones externas quedan tras revisiones de release.', tone: 'amber' },
     ],
   },
   fr: {
@@ -160,16 +190,17 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Resultat gratuit',
     upgradeLabel: 'Offre payante',
     detailCta: 'Ouvrir',
-    principlesTitle: 'Principes MVP',
+    browserSideLabel: 'Dans le navigateur',
+    principlesTitle: 'Principes operationnels',
     principles: [
       { title: 'Formules transparentes', body: 'Chaque calculatrice montre formule et hypotheses pour rendre la reponse verifiable.' },
       { title: 'Client par defaut', body: 'Les calculs s executent dans le navigateur et ne stockent ni entrees ni resultats.' },
       { title: 'Upgrade workflow', body: 'Les offres payantes ajoutent scenarios, exports, widgets, equipes, API et absence de publicite.' },
     ],
     statusRows: [
-      { title: '4 calculatrices actives', body: 'Pret, seuil, marge brute et ROI fonctionnent dans le navigateur.', tone: 'green' },
+      { title: '4 espaces de calcul', body: 'Pret, seuil, marge brute et ROI ajoutent formules, exemples et scenarios.', tone: 'green' },
       { title: '5 routes de langue', body: 'Pages anglaises, portugaises, espagnoles, francaises et allemandes prerenderisees.', tone: 'green' },
-      { title: 'Pas de publicite ni billing', body: 'AdSense, checkout, scenarios sauvegardes et integrations externes restent bloques.', tone: 'amber' },
+      { title: 'Controles workflow prets', body: 'Publicites, checkout, scenarios sauvegardes et integrations externes restent derriere des controles de release.', tone: 'amber' },
     ],
   },
   de: {
@@ -185,17 +216,111 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Kostenloses Ergebnis',
     upgradeLabel: 'Upgrade-Pfad',
     detailCta: 'Rechner oeffnen',
-    principlesTitle: 'MVP-Prinzipien',
+    browserSideLabel: 'Im Browser',
+    principlesTitle: 'Betriebsprinzipien',
     principles: [
       { title: 'Transparente Formeln', body: 'Jeder Rechner zeigt Formel und Annahmen, damit die Antwort pruefbar bleibt.' },
       { title: 'Client-seitig zuerst', body: 'Berechnungen laufen im Browser und speichern keine Eingaben oder Ergebnisse.' },
       { title: 'Bezahlwert ist Workflow', body: 'Upgrades sind Szenarien, Exporte, Widgets, Teams, API und keine Anzeigen.' },
     ],
     statusRows: [
-      { title: '4 Live-Rechner', body: 'Kreditrate, Break-even, Bruttomarge und ROI laufen im Browser.', tone: 'green' },
+      { title: '4 Rechner-Arbeitsbereiche', body: 'Kreditrate, Break-even, Bruttomarge und ROI enthalten Formeln, Beispiele und Szenarien.', tone: 'green' },
       { title: '5 Sprachrouten', body: 'Englische, portugiesische, spanische, franzoesische und deutsche Seiten werden prerendered.', tone: 'green' },
-      { title: 'Keine Anzeigen oder Billing', body: 'AdSense, Checkout, gespeicherte Szenarien und externe Integrationen bleiben gesperrt.', tone: 'amber' },
+      { title: 'Workflow-Pruefungen bereit', body: 'Anzeigen, Checkout, gespeicherte Szenarien und externe Integrationen bleiben hinter Release-Pruefungen.', tone: 'amber' },
     ],
+  },
+}
+
+export const workbenchCopy: Record<LocaleCode, WorkbenchCopy> = {
+  en: {
+    eyebrow: 'Scenario planner',
+    title: 'Compare one calculator across three assumptions.',
+    body: 'Pick a calculator, adjust inputs and see the live result, scenario range and audit trail before opening the full guide.',
+    tabLabel: 'Calculator workbench tabs',
+    inputsTitle: 'Inputs',
+    compareLabel: 'Compare scenario',
+    resultTitle: 'Live result',
+    secondaryTitle: 'Supporting metrics',
+    scenarioTitle: 'Scenario range',
+    scenarioBody: 'The low, base and high rows reuse the same formula with one core assumption shifted by ten percent.',
+    scenarioColumnLabel: 'Scenario',
+    assumptionColumnLabel: 'Assumption',
+    resultColumnLabel: 'Result',
+    chartLabel: 'Scenario chart',
+    privacyNote: 'Values stay in this browser session and are not saved by CalcHarbor.',
+    disclaimer: 'Planning calculator only. Confirm tax, legal, credit and accounting treatment before acting.',
+  },
+  'pt-br': {
+    eyebrow: 'Planejador de cenarios',
+    title: 'Compare uma calculadora em tres premissas.',
+    body: 'Escolha uma calculadora, ajuste entradas e veja resultado ao vivo, faixa de cenarios e trilha auditavel antes do guia completo.',
+    tabLabel: 'Abas da bancada de calculadoras',
+    inputsTitle: 'Entradas',
+    compareLabel: 'Comparar cenario',
+    resultTitle: 'Resultado ao vivo',
+    secondaryTitle: 'Metricas de apoio',
+    scenarioTitle: 'Faixa de cenarios',
+    scenarioBody: 'As linhas menor, base e maior usam a mesma formula com uma premissa central variando dez por cento.',
+    scenarioColumnLabel: 'Cenario',
+    assumptionColumnLabel: 'Premissa',
+    resultColumnLabel: 'Resultado',
+    chartLabel: 'Grafico de cenarios',
+    privacyNote: 'Os valores ficam nesta sessao do navegador e nao sao salvos pelo CalcHarbor.',
+    disclaimer: 'Calculadora de planejamento. Confirme impostos, juridico, credito e contabilidade antes de agir.',
+  },
+  es: {
+    eyebrow: 'Planificador de escenarios',
+    title: 'Compara una calculadora con tres supuestos.',
+    body: 'Elige una calculadora, ajusta entradas y mira resultado en vivo, rango de escenarios y rastro auditable antes de abrir la guia.',
+    tabLabel: 'Pestanas de calculadoras',
+    inputsTitle: 'Entradas',
+    compareLabel: 'Comparar escenario',
+    resultTitle: 'Resultado en vivo',
+    secondaryTitle: 'Metricas de apoyo',
+    scenarioTitle: 'Rango de escenarios',
+    scenarioBody: 'Las filas baja, base y alta usan la misma formula con un supuesto central variando diez por ciento.',
+    scenarioColumnLabel: 'Escenario',
+    assumptionColumnLabel: 'Supuesto',
+    resultColumnLabel: 'Resultado',
+    chartLabel: 'Grafico de escenarios',
+    privacyNote: 'Los valores quedan en esta sesion del navegador y CalcHarbor no los guarda.',
+    disclaimer: 'Calculadora de planificacion. Confirma impuestos, legal, credito y contabilidad antes de actuar.',
+  },
+  fr: {
+    eyebrow: 'Planificateur de scenarios',
+    title: 'Comparez une calculatrice avec trois hypotheses.',
+    body: 'Choisissez une calculatrice, ajustez les entrees et voyez resultat, plage de scenarios et trace de calcul avant le guide.',
+    tabLabel: 'Onglets des calculatrices',
+    inputsTitle: 'Entrees',
+    compareLabel: 'Comparer le scenario',
+    resultTitle: 'Resultat instantane',
+    secondaryTitle: 'Metriques de soutien',
+    scenarioTitle: 'Plage de scenarios',
+    scenarioBody: 'Les lignes basse, base et haute reutilisent la formule avec une hypothese centrale variee de dix pour cent.',
+    scenarioColumnLabel: 'Scenario',
+    assumptionColumnLabel: 'Hypothese',
+    resultColumnLabel: 'Resultat',
+    chartLabel: 'Graphique des scenarios',
+    privacyNote: 'Les valeurs restent dans cette session du navigateur et CalcHarbor ne les sauvegarde pas.',
+    disclaimer: 'Calculatrice de planification. Confirmez taxes, droit, credit et comptabilite avant decision.',
+  },
+  de: {
+    eyebrow: 'Szenario-Planer',
+    title: 'Vergleichen Sie einen Rechner mit drei Annahmen.',
+    body: 'Waehlen Sie einen Rechner, passen Sie Eingaben an und sehen Sie Live-Ergebnis, Szenario-Spanne und Rechenpfad.',
+    tabLabel: 'Rechner-Arbeitsbereich Tabs',
+    inputsTitle: 'Eingaben',
+    compareLabel: 'Szenario vergleichen',
+    resultTitle: 'Live-Ergebnis',
+    secondaryTitle: 'Weitere Kennzahlen',
+    scenarioTitle: 'Szenario-Spanne',
+    scenarioBody: 'Niedrig, Basis und Hoch nutzen dieselbe Formel, waehrend eine zentrale Annahme um zehn Prozent variiert.',
+    scenarioColumnLabel: 'Szenario',
+    assumptionColumnLabel: 'Annahme',
+    resultColumnLabel: 'Ergebnis',
+    chartLabel: 'Szenario-Diagramm',
+    privacyNote: 'Werte bleiben in dieser Browser-Sitzung und werden von CalcHarbor nicht gespeichert.',
+    disclaimer: 'Planungsrechner. Pruefen Sie Steuern, Recht, Kredit und Buchhaltung vor Entscheidungen.',
   },
 }
 
@@ -226,10 +351,17 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     invalidResultTitle: 'Check the inputs',
     privacyNote: 'Calculations run in this browser session. CalcHarbor does not store entered values.',
     pageStatusLabel: 'Calculator status',
-    liveTitle: 'Client-side MVP',
+    liveTitle: 'Client-side calculator',
     liveBody: 'The free calculator works without signup and without sending values to an API.',
     gatedTitle: 'Commercial features gated',
     gatedBody: 'Saved scenarios, exports, widgets, API, billing and ads are not active yet.',
+    browserSideLabel: 'Browser-side',
+    scenarioTitle: 'Scenario snapshot',
+    scenarioBody: 'Compare the current answer with a lower and higher assumption before relying on one number.',
+    scenarioColumnLabel: 'Scenario',
+    assumptionColumnLabel: 'Assumption',
+    resultColumnLabel: 'Result',
+    scenarioChartLabel: 'Scenario comparison',
   },
   'pt-br': {
     breadcrumbHome: 'CalcHarbor',
@@ -257,10 +389,17 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     invalidResultTitle: 'Confira as entradas',
     privacyNote: 'Os calculos rodam neste navegador. O CalcHarbor nao armazena valores digitados.',
     pageStatusLabel: 'Status da calculadora',
-    liveTitle: 'MVP client-side',
+    liveTitle: 'Calculadora local',
     liveBody: 'A calculadora gratuita funciona sem cadastro e sem enviar valores para API.',
     gatedTitle: 'Recursos comerciais bloqueados',
     gatedBody: 'Cenarios salvos, exportacoes, widgets, API, billing e anuncios ainda nao estao ativos.',
+    browserSideLabel: 'No navegador',
+    scenarioTitle: 'Retrato de cenarios',
+    scenarioBody: 'Compare a resposta atual com uma premissa menor e outra maior antes de depender de um numero.',
+    scenarioColumnLabel: 'Cenario',
+    assumptionColumnLabel: 'Premissa',
+    resultColumnLabel: 'Resultado',
+    scenarioChartLabel: 'Comparacao de cenarios',
   },
   es: {
     breadcrumbHome: 'CalcHarbor',
@@ -288,10 +427,17 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     invalidResultTitle: 'Revisa las entradas',
     privacyNote: 'Los calculos corren en este navegador. CalcHarbor no guarda valores.',
     pageStatusLabel: 'Estado de calculadora',
-    liveTitle: 'MVP client-side',
+    liveTitle: 'Calculadora local',
     liveBody: 'La calculadora gratis funciona sin registro y sin enviar valores a una API.',
     gatedTitle: 'Funciones comerciales bloqueadas',
     gatedBody: 'Escenarios, exportes, widgets, API, billing y anuncios aun no estan activos.',
+    browserSideLabel: 'En navegador',
+    scenarioTitle: 'Resumen de escenarios',
+    scenarioBody: 'Compara la respuesta actual con un supuesto menor y otro mayor antes de depender de un numero.',
+    scenarioColumnLabel: 'Escenario',
+    assumptionColumnLabel: 'Supuesto',
+    resultColumnLabel: 'Resultado',
+    scenarioChartLabel: 'Comparacion de escenarios',
   },
   fr: {
     breadcrumbHome: 'CalcHarbor',
@@ -319,10 +465,17 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     invalidResultTitle: 'Verifiez les entrees',
     privacyNote: 'Les calculs s executent dans ce navigateur. CalcHarbor ne stocke pas les valeurs.',
     pageStatusLabel: 'Statut calculatrice',
-    liveTitle: 'MVP client-side',
+    liveTitle: 'Calculatrice locale',
     liveBody: 'La calculatrice gratuite fonctionne sans compte et sans envoyer les valeurs a une API.',
     gatedTitle: 'Fonctions commerciales bloquees',
     gatedBody: 'Scenarios, exports, widgets, API, billing et publicites ne sont pas actifs.',
+    browserSideLabel: 'Dans le navigateur',
+    scenarioTitle: 'Apercu des scenarios',
+    scenarioBody: 'Comparez la reponse actuelle avec une hypothese basse et haute avant de retenir un seul nombre.',
+    scenarioColumnLabel: 'Scenario',
+    assumptionColumnLabel: 'Hypothese',
+    resultColumnLabel: 'Resultat',
+    scenarioChartLabel: 'Comparaison des scenarios',
   },
   de: {
     breadcrumbHome: 'CalcHarbor',
@@ -350,15 +503,26 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     invalidResultTitle: 'Eingaben pruefen',
     privacyNote: 'Berechnungen laufen in diesem Browser. CalcHarbor speichert keine Werte.',
     pageStatusLabel: 'Rechnerstatus',
-    liveTitle: 'Client-seitiges MVP',
+    liveTitle: 'Lokaler Rechner',
     liveBody: 'Der kostenlose Rechner funktioniert ohne Konto und ohne API-Uebertragung der Werte.',
     gatedTitle: 'Kommerzielle Funktionen gesperrt',
     gatedBody: 'Szenarien, Exporte, Widgets, API, Billing und Anzeigen sind noch nicht aktiv.',
+    browserSideLabel: 'Im Browser',
+    scenarioTitle: 'Szenario-Ueberblick',
+    scenarioBody: 'Vergleichen Sie die aktuelle Antwort mit niedrigerer und hoeherer Annahme, bevor Sie eine Zahl nutzen.',
+    scenarioColumnLabel: 'Szenario',
+    assumptionColumnLabel: 'Annahme',
+    resultColumnLabel: 'Ergebnis',
+    scenarioChartLabel: 'Szenario-Vergleich',
   },
 }
 
 export function getHomeCopy(locale: LocaleCode): HomeCopy {
   return sanitizePublicCopy(locale, homeCopy[locale])
+}
+
+export function getWorkbenchCopy(locale: LocaleCode): WorkbenchCopy {
+  return sanitizePublicCopy(locale, workbenchCopy[locale])
 }
 
 export function getShellCopy(locale: LocaleCode): ShellCopy {

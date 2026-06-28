@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
+  buildCalculatorScenarioRows,
   buildCalculationMemory,
   calculatorCatalog,
   calculatorSlugs,
@@ -10,6 +11,7 @@ import {
   getCalculatorInterpretationState,
   getRelatedCalculators,
 } from '../app/data/calculators'
+import { getHomeCopy } from '../app/data/copy'
 import { publicLocaleCodes } from '../app/data/locales'
 import { contentPageCatalog, contentPageSlugs, getContentPageBySlug } from '../app/data/pages'
 import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
@@ -112,6 +114,33 @@ describe('CalcHarbor MVP', () => {
     const related = getRelatedCalculators(loan!)
     expect(related).toHaveLength(3)
     expect(related.map((item) => item.slug)).not.toContain('loan-payment')
+  })
+
+  it('builds scenario rows from the same calculator formulas without storing values', () => {
+    const loan = getCalculatorBySlug('loan-payment')
+    expect(loan).not.toBeNull()
+
+    const rows = buildCalculatorScenarioRows(loan!, {
+      principal: 25000,
+      annualRate: 8.5,
+      years: 5,
+    }, 'en')
+
+    expect(rows.map((row) => row.variant)).toEqual(['low', 'base', 'high'])
+    expect(rows).toHaveLength(3)
+    expect(rows.every((row) => row.ok)).toBe(true)
+    expect(rows[1].assumption).toBe('Annual interest rate: 8.5%')
+    expect(rows[1].resultValue).toContain('$512')
+    expect(rows[0].numericValue).toBeLessThan(rows[2].numericValue!)
+    expect(JSON.stringify(rows)).not.toContain('principal')
+  })
+
+  it('keeps public home copy product-grade after benchmark audit', () => {
+    const copy = getHomeCopy('en')
+
+    expect(copy.principlesTitle).toBe('Operating principles')
+    expect(copy.browserSideLabel).toBe('Browser-side')
+    expect(JSON.stringify(copy)).not.toContain('MVP')
   })
 
   it('rejects invalid break-even contribution margin', () => {

@@ -9,6 +9,70 @@
 
 ---
 
+## 0. Atualizacao live full apos Sprint 9.11
+
+**Data:** 2026-06-28
+**URL:** `https://opentshost.com/supersites/`
+**Run Playwright:** `2026-06-28T16-11-17-070Z`
+**Artefatos locais:** `artifacts/benchmark-crawl/2026-06-28T16-11-17-070Z`
+**Baseline versionado:** `docs/benchmarks/our-sites/latest-baseline.md`
+
+Foi executado crawl full em producao cobrindo Hub, os 10 sites, todas as homes localizadas, paginas de ferramenta/calculadora, paginas legais/editoriais/status e links internos descobertos. O crawl navegou 876 rotas, realizou 1752 checks desktop/mobile e checou 875 links internos unicos.
+
+| Sinal live | Resultado |
+|---|---:|
+| Rotas navegadas | 876 |
+| Checks desktop/mobile | 1752 |
+| Screenshots gerados | 1752 |
+| Links internos checados | 875 |
+| Links internos quebrados | 0 |
+| Page/browser/console errors | 0 |
+| Horizontal overflow | 0 |
+| Robots/sitemaps com falha | 0 |
+| Missing title/meta/canonical/hreflang | 0 |
+| Missing JSON-LD schema | 872 checks |
+| Titulos acima de 70 caracteres | 26 checks |
+| Meta descriptions acima de 170 caracteres | 6 checks |
+| P75 load proxy | 108 ms |
+| P75 CLS proxy | 0 |
+
+### Veredito atualizado
+
+A producao publica esta estavel e navegavel, mas ainda nao esta integralmente benchmark-grade. As Sprints 9.5 a 9.11 melhoraram substancialmente NetProbe Atlas, QRRoute, DocShift, PixelBatch, InvoiceCraft, MailHealth e SitePulse Lab com workbenches task-first e smokes live. As lacunas restantes se concentram em quatro frentes:
+
+1. **CalcHarbor, TimeNexus e DevUtility Lab ainda parecem catalogos antes de ferramentas.** A home live desses tres sites ainda abre com hero + filtros/cards, sem um workbench dominante acima da dobra no padrao Calculator.net/Omni, timeanddate/World Time Buddy e CodeBeautify/Regex101.
+2. **Hub publico ainda parece inventario textual.** Falta portfolio visual com top tools, screenshots/preview blocks, agrupamentos por intencao, links ricos e evidencias de producao que parecam produto final.
+3. **SEO/schema esta incompleto em massa.** O crawl nao encontrou JSON-LD em 872 checks, principalmente homes, paginas legais/status e surfaces de catalogo. As paginas de ferramenta com schema existem em alguns apps, mas a cobertura nao e uniforme.
+4. **Percepcao premium ainda sofre com copy operacional e consent banner.** Exemplos visiveis incluem mensagens como "No server upload backend active", "Advertising not active", "Production IP and DNS checks are live..." e o banner de privacidade cobrindo cards do Hub na primeira dobra. A informacao de gates continua correta, mas deve aparecer como linguagem de produto ou em paginas institucionais, nao como status interno dominante.
+
+### Avaliacao atual por superficie
+
+| Superficie | Estado live apos 9.11 | Gap principal | Sprint de correcao |
+|---|---|---|---|
+| SuperSites Hub | Estavel, 0 links quebrados, mas visual de catalogo textual | Visual catalog premium, top tools, schema, consent menos intrusivo | 9.15 / 9.16 |
+| NetProbe Atlas | Workbench DNS/IP publicado e tecnicamente estavel | Schema nas rotas nao-tool, copy operacional residual e enriquecimento de footer | 9.15 / 9.16 |
+| CalcHarbor | Live ainda catalog-first com 4 calculadoras | Workbench de cenarios, tabelas/graficos, densidade e copy publica madura | 9.12 |
+| DevUtility Lab | Live ainda catalog-first | Editor/output split, exemplos, erros, copy/download e navegacao densa | 9.14 |
+| TimeNexus | Live ainda catalog-first | Relogio/planner acima da dobra, world clock, meeting timeline e paginas SEO de cidades/fusos | 9.13 |
+| QRRoute | Workbench local publicado e satisfatorio como MVP benchmark | Hero alto, schema nao uniforme e copy de gates a suavizar | 9.15 / 9.16 |
+| InvoiceCraft | Editor/preview/download local publicado e visualmente forte | Schema, templates e copy de impostos/planos a lapidar sem ativar pagamentos | 9.15 / 9.16 |
+| MailHealth | Relatorio unificado publicado e alinhado ao benchmark | Schema nao-tool, provider guidance mais rico e copy de monitoramento | 9.15 / 9.16 |
+| SitePulse Lab | Relatorio visual publicado e alinhado ao benchmark | Mobile ainda coloca acao abaixo da dobra apos hero/status | 9.15 / 9.16 |
+| PixelBatch | Workbench imagem publicado e funcionalmente forte | Copy "backend active" e schema nao-tool | 9.15 / 9.16 |
+| DocShift | Workbench PDF publicado e funcionalmente forte | Copy "backend active" e schema nao-tool | 9.15 / 9.16 |
+
+### Roadmap executivo derivado
+
+O roadmap nao cria uma fase paralela. Ele reforca as sprints restantes da Fase 9:
+
+1. **Sprint 9.12 - CalcHarbor density:** publicar workbench de cenarios, tabelas/graficos leves, resultados auditaveis e copy publica sem linguagem de MVP.
+2. **Sprint 9.13 - TimeNexus planner:** publicar world clock/planner/timeline acima da dobra e pages SEO de fuso/cidade com valor real.
+3. **Sprint 9.14 - DevUtility workbench:** publicar editor tecnico split com exemplos, validacao visual, copy/download/clear e estados de erro.
+4. **Sprint 9.15 - Hub/SEO/AIO/rich footers:** transformar Hub/footers em navegacao visual e adicionar schema/copy/content clusters sem conteudo raso.
+5. **Sprint 9.16 - Performance/AdSense-safe closure:** reduzir banner intrusivo, validar Core Web Vitals proxies/Lighthouse quando disponivel, reservar espacos inertes seguros e fechar deploy/smokes finais.
+
+---
+
 ## 1. Veredito executivo
 
 **Resultado geral: parcialmente satisfatório para MVP, ainda não satisfatório para benchmark-grade, SEO agressivo e AdSense-ready.**

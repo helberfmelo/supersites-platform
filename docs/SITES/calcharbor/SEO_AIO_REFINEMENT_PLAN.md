@@ -15,6 +15,12 @@ Data-base: 2026-06-27
 - Ensure FAQ schema reflects real FAQ content.
 - Keep canonical/hreflang stable for all five locales.
 
+## Sprint 9.12 progress
+
+- Added scenario comparison ranges and detail-page scenario snapshots, improving direct-answer density and making assumptions visible near calculator outputs.
+- Reused tested calculator formulas for low/base/high scenarios so the AIO-facing summary remains consistent with on-page results.
+- Full live audit before implementation still found broad JSON-LD coverage gaps across the portfolio; CalcHarbor-specific schema expansion remains in the later SEO/AIO sprint rather than this UI-density sprint.
+
 ## P1
 
 - Add glossary terms for APR, margin, break-even, ROI and fixed/variable costs.
@@ -45,6 +51,7 @@ Medium for financial claims. Avoid investment, tax or legal advice.
 ## Acceptance metrics
 
 - Every calculator has formula, example, interpretation, FAQ and related tools.
+- Calculator pages expose benchmark-grade scenario context without collecting or storing input values.
 - Any tax/legal/fiscal topic is marked human-gated.
 
 ## Dashboard backlog

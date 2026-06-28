@@ -76,6 +76,8 @@ useHead(() => ({
       </aside>
     </section>
 
+    <CalcHarborWorkbench :locale="locale" />
+
     <section class="controls" aria-label="Calculator controls">
       <div class="field">
         <label for="calculator-search">{{ copy.searchLabel }}</label>
@@ -112,7 +114,7 @@ useHead(() => ({
         <div>
           <div class="tool-card__topline">
             <span class="category">{{ getCategoryLabel(calculator.category, locale) }}</span>
-            <span :class="getStatusBadgeClass('foundation')">Local result</span>
+            <span :class="getStatusBadgeClass('foundation')">{{ copy.browserSideLabel }}</span>
           </div>
           <h2>{{ getCalculatorCopy(calculator, locale).title }}</h2>
           <p>{{ getCalculatorCopy(calculator, locale).headline }}</p>

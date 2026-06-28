@@ -67,6 +67,18 @@ export interface CalculationMemoryLine {
   value: string
 }
 
+export type ScenarioVariant = 'low' | 'base' | 'high'
+
+export interface CalculatorScenarioRow {
+  variant: ScenarioVariant
+  label: string
+  assumption: string
+  resultLabel: string
+  resultValue: string
+  numericValue: number | null
+  ok: boolean
+}
+
 export interface InterpretationState {
   tone: 'good' | 'review' | 'warning'
   label: string
@@ -237,6 +249,129 @@ export function buildCalculationMemory(
       value: formatMetricValue(metricValue, locale),
     })),
   ]
+}
+
+const scenarioLabels: Record<LocaleCode, Record<ScenarioVariant, string> & { invalidResult: string }> = {
+  en: {
+    low: 'Lower case',
+    base: 'Base case',
+    high: 'Higher case',
+    invalidResult: 'Needs valid inputs',
+  },
+  'pt-br': {
+    low: 'Caso menor',
+    base: 'Caso base',
+    high: 'Caso maior',
+    invalidResult: 'Precisa de entradas validas',
+  },
+  es: {
+    low: 'Caso bajo',
+    base: 'Caso base',
+    high: 'Caso alto',
+    invalidResult: 'Necesita entradas validas',
+  },
+  fr: {
+    low: 'Cas bas',
+    base: 'Cas de base',
+    high: 'Cas haut',
+    invalidResult: 'Entrees valides requises',
+  },
+  de: {
+    low: 'Niedriger Fall',
+    base: 'Basisfall',
+    high: 'Hoeherer Fall',
+    invalidResult: 'Gueltige Eingaben erforderlich',
+  },
+}
+
+const scenarioFocusFields: Record<CalculatorSlug, { fieldKey: string; lowMultiplier: number; highMultiplier: number }> = {
+  'loan-payment': {
+    fieldKey: 'annualRate',
+    lowMultiplier: 0.9,
+    highMultiplier: 1.1,
+  },
+  'break-even-point': {
+    fieldKey: 'fixedCosts',
+    lowMultiplier: 0.9,
+    highMultiplier: 1.1,
+  },
+  'gross-margin': {
+    fieldKey: 'cost',
+    lowMultiplier: 0.9,
+    highMultiplier: 1.1,
+  },
+  roi: {
+    fieldKey: 'returnValue',
+    lowMultiplier: 0.9,
+    highMultiplier: 1.1,
+  },
+}
+
+function scenarioInputValue(fieldValue: CalculatorField, inputs: Record<string, number>, multiplier: number): number {
+  const inputValue = inputs[fieldValue.key]
+  const baseValue = Number.isFinite(inputValue) ? inputValue : fieldValue.defaultValue
+  const minValue = fieldValue.min > 0 ? fieldValue.min : 0
+
+  return Math.max(minValue, Number((baseValue * multiplier).toFixed(4)))
+}
+
+function buildScenarioInputs(
+  calculator: CalculatorDefinition,
+  inputs: Record<string, number>,
+  variant: ScenarioVariant,
+): Record<string, number> {
+  const focusConfig = scenarioFocusFields[calculator.slug]
+  const multiplier = variant === 'low' ? focusConfig.lowMultiplier : variant === 'high' ? focusConfig.highMultiplier : 1
+
+  return Object.fromEntries(calculator.fields.map((fieldValue) => {
+    const value = fieldValue.key === focusConfig.fieldKey
+      ? scenarioInputValue(fieldValue, inputs, multiplier)
+      : Number.isFinite(inputs[fieldValue.key])
+        ? inputs[fieldValue.key]
+        : fieldValue.defaultValue
+
+    return [fieldValue.key, value]
+  }))
+}
+
+export function buildCalculatorScenarioRows(
+  calculator: CalculatorDefinition,
+  inputs: Record<string, number>,
+  locale: LocaleCode,
+): CalculatorScenarioRow[] {
+  const labels = scenarioLabels[locale]
+  const focusConfig = scenarioFocusFields[calculator.slug]
+  const focusField = calculator.fields.find((fieldValue) => fieldValue.key === focusConfig.fieldKey) ?? calculator.fields[0]
+
+  return (['low', 'base', 'high'] as const).map((variant) => {
+    const scenarioInputs = buildScenarioInputs(calculator, inputs, variant)
+    const result = calculator.calculate(scenarioInputs)
+    const assumption = `${focusField.label[locale]}: ${formatFieldValue(focusField, scenarioInputs[focusField.key], locale)}`
+
+    if (!result.ok) {
+      return {
+        variant,
+        label: labels[variant],
+        assumption,
+        resultLabel: labels.invalidResult,
+        resultValue: result.error[locale],
+        numericValue: null,
+        ok: false,
+      }
+    }
+
+    const primaryMetric = result.metrics[0]
+
+    return {
+      variant,
+      label: labels[variant],
+      assumption,
+      resultLabel: primaryMetric.label[locale],
+      resultValue: formatMetricValue(primaryMetric, locale),
+      numericValue: primaryMetric.value,
+      ok: true,
+    }
+  })
 }
 
 const interpretationCopy: Record<LocaleCode, Record<InterpretationState['tone'], { label: string; body: string }>> = {

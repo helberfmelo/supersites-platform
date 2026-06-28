@@ -91,8 +91,10 @@ try {
         'hreflang="en"',
         'hreflang="pt-BR"',
         'Loan Payment Calculator',
-        '4 live calculators',
-        'No ads or billing'
+        '4 calculator workspaces',
+        'Compare one calculator across three assumptions.',
+        'Scenario range',
+        'Workflow checks ready'
     )
 
     foreach ($needle in $requiredHtml) {
