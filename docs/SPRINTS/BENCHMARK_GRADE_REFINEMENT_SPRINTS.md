@@ -84,7 +84,7 @@ Sprint 9.3 delivered the public-copy and localization gate to production without
 
 ## Sprint 9.4 execution evidence
 
-Sprint 9.4 delivered localized trust/legal/support depth locally without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs or recurring production workers.
+Sprint 9.4 delivered localized trust/legal/support depth in production without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs or recurring production workers.
 
 | Evidence | Value |
 |---|---|
@@ -98,7 +98,10 @@ Sprint 9.4 delivered localized trust/legal/support depth locally without activat
 | Public copy/payment URL gate | `scripts/validate-public-copy.mjs` checks visible internal terms plus payment/support URLs in `href`/`src` |
 | Generated HTML scanned locally | 876 files |
 | Local validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages`, tests/builds/previews/Playwright for 11 Nuxt frontends, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
-| Remote CI/deploy status | Pending feature commit push, Quality Gate, Deploy Dry Run, deploys/smokes and docs-only closure |
+| Feature commit | `99c0262` (`feat: add trust support copy foundation`) |
+| Remote CI | Quality Gate `28315424809` passed; Deploy Dry Run `28315424825` passed |
+| Production deploys | Hub `28315507670`; NetProbe `28315508804`; CalcHarbor `28315509929`; DevUtility Lab `28315511100`; TimeNexus `28315512640`; QRRoute `28315514298`; InvoiceCraft `28315516442`; MailHealth `28315518113`; SitePulse Lab `28315519943`; PixelBatch `28315521494`; DocShift `28315523056`; all labeled Fase 9/Sprint 9.4 and passed |
+| Public smokes | Hub aggregate, control-plane/API, NetProbe/API, nine static app smokes and 165 localized `privacy`/`contact`/`status` trust/legal checks passed |
 
 ## Per-sprint execution rules
 
