@@ -44,7 +44,7 @@ This block is therefore mapped as Fase 9 - Benchmark-Grade Refinement.
 | BGR-TIMENEXUS-DENSITY | Sprint 9.13 | TimeNexus world clock and planning depth | Current time panel, city/world clock, meeting planner and three curated city/timezone group pages visible before catalog cards |
 | BGR-DEVUTILITY-WORKBENCH | Sprint 9.14 | DevUtility Lab premium workbench density | Split editor/result panes, examples, tree/error views, copy/download/clear states, dense category navigation and privacy cues |
 | BGR-HUB-SEO-AIO | Sprint 9.15 | SuperSites Hub, rich footers, related tools and SEO/AIO clusters | Hub feels public-product grade; top tools/screenshots/related links/content clusters are localized and broad JSON-LD schema coverage improves without low-value mass pages |
-| BGR-PERF-ADSENSE-CLOSURE | Sprint 9.16 | Performance, AdSense-safe layout, production rollout and closure | Final full crawler shows no broken links/overflow and materially reduced schema gaps; consent/ad/support spaces are safe and inert; deploy/smoke/run IDs close the phase |
+| BGR-PERF-ADSENSE-CLOSURE | Sprint 9.16 | Performance, AdSense-safe layout, production rollout and closure | Final full crawler shows no broken links/overflow/schema gaps; consent/ad/support spaces are safe and inert; deploy/smoke/run IDs close the phase |
 
 ## Sprint 9.2 execution evidence
 
@@ -337,14 +337,20 @@ Fase 9 is complete only when:
 - Support/donation blocks are configurable and inert until human approval activates a real provider/link.
 - Public smokes pass after production deploys and run IDs are recorded in `docs/STATUS.md`.
 
-## Sprint 9.16 pre-push closure
+## Sprint 9.16 execution evidence
 
-Sprint 9.16 local work added:
+Sprint 9.16 closed Fase 9 in production without activating real AdSense, GTM/GA4, checkout, billing, donations, affiliates, external analytics, paid APIs, ads.txt, publisher IDs, workers, cron jobs or direct-root mapping.
 
-- `pnpm validate:adsense-safe-public`, a Playwright gate that samples Hub/legal/detail/home pages and fails on AdSense/GTM/GA4/payment/donation/affiliate requests or DOM.
-- Configurable crawler labels through `--sprint` and `--symbolic-sprint`, so benchmark artifacts and user agents identify the actual sprint being audited.
-- JSON-LD coverage for 10 app homes (`WebSite`) and applicable static pages (`WebPage`) before production deploy.
-
-Pre-push validation passed for the affected apps: builds, Vitest, Playwright e2e, preview smokes, package tests, public-copy, structure, secrets, deploy dry-run, CI change detection, diff check and built HTML JSON-LD smoke.
-
-The last public full crawler before the app schema deploy is `2026-06-28T18-58-27-647Z`: 876 routes, 1752 checks, 0 page/browser failures, 0 console errors, 0 broken internal links, 0 overflow, 0 robots/sitemap/title/meta/canonical/hreflang gaps, and 680 JSON-LD gaps visible on the previous production build. The post-deploy crawler must be re-run and recorded in `docs/STATUS.md` before closing the phase.
+| Evidence | Value |
+|---|---|
+| New public gate | `pnpm validate:adsense-safe-public`, sampling Hub/legal/detail/home pages and failing on AdSense/GTM/GA4/payment/donation/affiliate requests or DOM |
+| Crawler labeling | `scripts/benchmark-crawl.mjs` accepts `--sprint` and `--symbolic-sprint`, and embeds the sprint in artifacts/user-agent |
+| Schema closure | JSON-LD coverage added for 10 app homes (`WebSite`) and applicable static/legal pages (`WebPage`) |
+| Pre-fix crawler | `2026-06-28T18-58-27-647Z`: 876 routes, 1752 checks, 0 failures, 0 console errors, 0 broken links, 0 overflow, 680 JSON-LD gaps on the previous public build |
+| Feature CI/deploy | Commit `7ea0921`; Quality Gate `28333587563`; Deploy Dry Run `28333587571`; all 10 app deploys passed with Fase 9/Sprint 9.16 labels |
+| Metadata correction | Commit `6fcd03f` capped public metadata lengths; Quality Gate `28334706997` failed only because PixelBatch title truncation removed the brand; Deploy Dry Run `28334706999` passed |
+| Branded-title fix | Commit `d26bc39`; Quality Gate `28334888617` passed; Deploy Dry Run `28334888619` passed |
+| Final redeploys | Hub `28334999357`, DevUtility Lab `28334999933`, QRRoute `28335000553`, InvoiceCraft `28335001289`, MailHealth `28335002071`, PixelBatch `28335002765`, DocShift `28335003445` |
+| Final public crawler | `2026-06-28T20-51-53-722Z`: 876 routes, 1752 checks, 0 recorded gaps, 0 missing schema/title/meta/canonical/hreflang, 0 broken links, 0 overflow |
+| Final timing proxies | Median TTFB 36 ms, P75 TTFB 44 ms, median load 84 ms, P75 load 97 ms, median LCP 88 ms, P75 LCP 100 ms, P75 CLS 0 |
+| Public smokes | Passed: aggregate SuperSites smoke, control-plane/API smoke, AdSense-safe public gate, individual static app smokes for DevUtility Lab, QRRoute, InvoiceCraft, MailHealth, PixelBatch and DocShift |

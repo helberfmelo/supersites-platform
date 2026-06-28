@@ -9,7 +9,38 @@
 
 ---
 
-## 0. Atualizacao live full apos Sprint 9.11
+## 0A. Atualizacao final full apos Sprint 9.16
+
+**Data:** 2026-06-28
+**URL:** `https://opentshost.com/supersites/`
+**Run Playwright:** `2026-06-28T20-51-53-722Z`
+**Artefatos locais:** `artifacts/benchmark-crawl/2026-06-28T20-51-53-722Z`
+**Baseline versionado:** `docs/benchmarks/our-sites/latest-baseline.md`
+
+Depois dos refinamentos de densidade visual, workbenches task-first, Hub discovery, schema uniforme, metadata publica e gate AdSense-safe, o crawler full final navegou Hub, 10 sites, homes localizadas, ferramentas/calculadoras, paginas legais/editoriais/status e links internos descobertos. O resultado tecnico final para a Fase 9 ficou sem gaps registrados pelo crawler.
+
+| Sinal live | Resultado |
+|---|---:|
+| Rotas navegadas | 876 |
+| Checks desktop/mobile | 1752 |
+| Links internos quebrados | 0 |
+| Page/browser/console errors | 0 |
+| Horizontal overflow | 0 |
+| Robots/sitemaps com falha | 0 |
+| Missing title/meta/canonical/hreflang | 0 |
+| Missing JSON-LD schema | 0 |
+| Total de gaps registrados | 0 |
+| P75 load proxy | 97 ms |
+| P75 LCP proxy | 100 ms |
+| P75 CLS proxy | 0 |
+
+### Veredito final da Fase 9
+
+A producao publica esta tecnicamente fechada para o objetivo da Fase 9: os 10 sites e o Hub estao publicados com workbenches ou experiencias task-first, rotas localizadas, schema/canonical/hreflang/sitemap/robots consistentes, smokes publicos verdes e zero gaps no crawler final. O resultado nao ativa monetizacao real: AdSense, GTM/GA4, checkout, billing, pagamentos, doacoes, afiliados, workers recorrentes, APIs pagas, `ads.txt`, publisher id real e direct-root mapping continuam bloqueados por gates futuros.
+
+Riscos remanescentes fora da Fase 9: validacao Lighthouse/PageSpeed/GTmetrix oficial quando a ferramenta/provider for aprovado, revisao juridica/legal humana, revisao AdSense real, branch protection, monitoramento operacional recorrente e decisao de mapeamento direto da raiz/dominios definitivos.
+
+## 0B. Atualizacao live full apos Sprint 9.11
 
 **Data:** 2026-06-28
 **URL:** `https://opentshost.com/supersites/`

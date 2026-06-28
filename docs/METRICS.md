@@ -767,7 +767,15 @@ Data-base: 2026-06-28
 | Sprint 9.16 AdSense-safe artifacts | `artifacts/adsense-safe-public/adsense-safe-public.md` and `.json` generated locally and ignored from git |
 | Sprint 9.16 crawler label smoke | Passed: `--sprint=9.16 --symbolic-sprint=BGR-PERF-ADSENSE-CLOSURE`, 1 route, 2 checks, 0 gaps |
 | Sprint 9.16 local validation | Passed: 10 app builds/tests/Playwright/previews, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
-| Sprint 9.16 remote CI/deploy status | Pending push and monitoring |
+| Sprint 9.16 feature CI/deploy status | Commit `7ea0921`; Quality Gate `28333587563` passed; Deploy Dry Run `28333587571` passed; 10 app deploys passed with Fase 9/Sprint 9.16 labels |
+| Sprint 9.16 feature deploy runs | CalcHarbor `28333692818`; DevUtility Lab `28333692820`; TimeNexus `28333692825`; QRRoute `28333692828`; InvoiceCraft `28333692830`; SitePulse Lab `28333692833`; NetProbe Atlas `28333692834`; PixelBatch `28333692846`; MailHealth `28333692850`; DocShift `28333692867` |
+| Sprint 9.16 metadata correction | Commit `6fcd03f` capped public SEO metadata lengths; Deploy Dry Run `28334706999` passed; Quality Gate `28334706997` failed only because PixelBatch visual smoke detected title truncation without brand |
+| Sprint 9.16 branded-title correction | Commit `d26bc39` preserved branded SEO title suffixes; Quality Gate `28334888617` passed; Deploy Dry Run `28334888619` passed |
+| Sprint 9.16 final redeploy runs | Hub `28334999357`; DevUtility Lab `28334999933`; QRRoute `28335000553`; InvoiceCraft `28335001289`; MailHealth `28335002071`; PixelBatch `28335002765`; DocShift `28335003445` |
+| Sprint 9.16 final public full crawler run | `2026-06-28T20-51-53-722Z`; 876 routes; 1752 desktop/mobile checks; 0 total gaps; 0 schema/title/meta/canonical/hreflang gaps; 0 broken links; 0 overflow; 0 console errors |
+| Sprint 9.16 final timing proxies | Median TTFB 36 ms; P75 TTFB 44 ms; median load 84 ms; P75 load 97 ms; median LCP 88 ms; P75 LCP 100 ms; P75 CLS 0 |
+| Sprint 9.16 final public assets | Hub `BNDSn3oU.js`; CalcHarbor `D2u6NBF-.js`; DevUtility Lab `BBn5gUKy.js`; TimeNexus `BAXbawo1.js`; QRRoute `DnCJVBcv.js`; InvoiceCraft `D2cnhdLE.js`; MailHealth `Dm_wdR4Q.js`; SitePulse Lab `lkcC6TkC.js`; PixelBatch `B912Jsw8.js`; DocShift `DQ93lUzG.js` |
+| Sprint 9.16 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm validate:adsense-safe-public`, and individual static app smokes for DevUtility Lab, QRRoute, InvoiceCraft, MailHealth, PixelBatch and DocShift |
 | Sprint 9.16 ads/billing/analytics activation | 0 activated; no real AdSense, GTM/GA4, checkout, billing, donation, affiliate, external analytics, worker, paid API, `ads.txt`, publisher id or `adsbygoogle` snippet |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |

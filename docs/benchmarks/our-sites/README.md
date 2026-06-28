@@ -42,3 +42,7 @@ The crawler does not log in, submit private payloads, activate ads, call externa
 ## Interpretation
 
 This is not an official Lighthouse, PageSpeed or GTmetrix result. It is a deterministic Playwright baseline used to decide which benchmark-grade refinements should happen next.
+
+## Latest Closure Baseline
+
+The Sprint 9.16 production closure baseline is `2026-06-28T20-51-53-722Z`: 876 routes, 1752 desktop/mobile checks, 0 recorded gaps, 0 broken internal links, 0 horizontal overflow, 0 console errors and 0 missing JSON-LD/title/meta/canonical/hreflang checks.
