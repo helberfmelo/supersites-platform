@@ -686,7 +686,13 @@ Data-base: 2026-06-27
 | Sprint 9.10 visual QA artifacts | Playwright screenshots in `artifacts/playwright-mailhealth-report/data/` for MailHealth home/report desktop, SPF mobile and headers mobile |
 | Sprint 9.10 package validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages` |
 | Sprint 9.10 public copy/structure/security gates | Passed locally: `pnpm validate:public-copy` across 876 HTML files, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
-| Sprint 9.10 remote CI/deploy status | Pending feature commit, push, Quality Gate, Deploy Dry Run and HostGator deploy |
+| Sprint 9.10 feature commit | `55721b1` (`feat: add mailhealth unified report`) |
+| Sprint 9.10 remote Quality Gate | `28319796608` passed |
+| Sprint 9.10 remote Deploy Dry Run | `28319796624` passed |
+| Sprint 9.10 production deploy run | `28319881701` passed with label `Fase 9 Sprint 9.10 - Deploy Static App HostGator - mailhealth - deploy` |
+| Sprint 9.10 production release | `55721b1aa2d0e020f73c3823d580427a48708ab4-28319881701-1` |
+| Sprint 9.10 final public asset | `https://opentshost.com/supersites/mailhealth/_nuxt/fseKxIDq.js` |
+| Sprint 9.10 public smokes | Passed: MailHealth static app/API, Hub aggregate, control-plane/API and live MailHealth report/mobile UX smoke |
 | Sprint 9.10 monitoring/API/paid activation | 0 activated; MailHealth remains point-in-time with no recurring monitoring, alert delivery, DMARC ingestion, paid API, white-label, billing, ads or external analytics |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |

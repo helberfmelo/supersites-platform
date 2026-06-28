@@ -203,7 +203,7 @@ Sprint 9.9 delivered the InvoiceCraft editor-first workflow to production withou
 
 ## Sprint 9.10 execution evidence
 
-Sprint 9.10 delivered the MailHealth unified domain report locally without activating recurring monitoring, alert delivery, DMARC ingestion, batches, paid API, white-label, real ads, checkout, billing, donations, affiliates, external analytics or production workers.
+Sprint 9.10 delivered the MailHealth unified domain report to production without activating recurring monitoring, alert delivery, DMARC ingestion, batches, paid API, white-label, real ads, checkout, billing, donations, affiliates, external analytics or production workers.
 
 | Evidence | Value |
 |---|---|
@@ -216,8 +216,9 @@ Sprint 9.10 delivered the MailHealth unified domain report locally without activ
 | Local preview asset | `/_nuxt/BsCQ7iof.js` |
 | Visual QA | Desktop/mobile screenshots captured by Playwright in `artifacts/playwright-mailhealth-report/data/` |
 | Local final gates | Passed: `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
-| Remote CI | Pending feature commit and push |
-| Production deploy | Pending Fase 9/Sprint 9.10 static app deploy after Quality Gate and Deploy Dry Run pass |
+| Remote CI | Passed: feature commit `55721b1`, Quality Gate `28319796608`, Deploy Dry Run `28319796624` |
+| Production deploy | Passed: Fase 9/Sprint 9.10 static app deploy `28319881701`, release `55721b1aa2d0e020f73c3823d580427a48708ab4-28319881701-1` |
+| Public smokes | Passed: MailHealth static app/API asset `https://opentshost.com/supersites/mailhealth/_nuxt/fseKxIDq.js`, Hub aggregate, control-plane/API and live MailHealth report/mobile UX smoke |
 
 ## Per-sprint execution rules
 

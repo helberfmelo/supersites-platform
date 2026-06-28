@@ -52,6 +52,7 @@ Medium because deliverability claims can be sensitive. Avoid guaranteed inbox-pl
 - The home now has a clear primary action for a unified domain health report, improving task-first relevance without creating shallow pages.
 - Existing localized tool pages remain canonical/hreflang/schema-backed, while the report summarizes the main entities: SPF, DKIM, DMARC, MX, blacklist, SMTP and headers.
 - Copy remains point-in-time and avoids guaranteed deliverability claims.
+- Public smoke confirmed the live localized Nuxt app and API after Fase 9/Sprint 9.10 deploy.
 
 ## Dashboard backlog
 

@@ -53,6 +53,7 @@ Medium; placements must avoid domain fields, headers, results and copy/fix contr
 - The home now opens with a unified domain report before the catalog.
 - The report combines SPF, DKIM, DMARC, MX, blacklist, SMTP and optional local headers into one score/checklist.
 - Desktop and mobile Playwright screenshots passed with no overflow, and the report keeps headers local.
+- Production deploy `28319881701` and live UX smoke passed with sanitized analytics, empty browser storage and mobile layout without horizontal overflow.
 
 ## Dashboard backlog
 

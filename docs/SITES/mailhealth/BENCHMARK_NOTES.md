@@ -38,3 +38,4 @@ Data-base: 2026-06-27
 - A unified report now leads the home experience and mirrors the diagnostic mental model of email health competitors.
 - The free flow uses one domain input, DKIM selector, SMTP port and optional local headers to produce a score and per-signal cards.
 - Monitoring, alerting, DMARC ingestion, API and white-label remain visibly planned but inactive.
+- Production release `55721b1aa2d0e020f73c3823d580427a48708ab4-28319881701-1` is live at `/supersites/mailhealth/` with public asset `fseKxIDq.js`.

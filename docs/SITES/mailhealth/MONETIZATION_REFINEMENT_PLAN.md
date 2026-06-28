@@ -51,6 +51,7 @@ Medium due to technical diagnostics and provider-policy limits.
 - The unified report improves the free diagnostic without signup.
 - Paid value remains limited to inactive monitoring, alerts, DMARC report ingestion, batches, API, exports and white-label.
 - No checkout, API key issuance, paid entitlement, ad serving or external analytics was activated.
+- Production closure kept monetization inert: no billing provider, payment link, ad serving, affiliate link, paid entitlement or external analytics was introduced.
 
 ## Dashboard backlog
 
