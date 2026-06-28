@@ -1,6 +1,6 @@
 # Benchmark-Grade Refinement Sprints
 
-Data-base: 2026-06-27
+Data-base: 2026-06-28
 
 ## Numbering decision
 
@@ -102,6 +102,23 @@ Sprint 9.4 delivered localized trust/legal/support depth in production without a
 | Remote CI | Quality Gate `28315424809` passed; Deploy Dry Run `28315424825` passed |
 | Production deploys | Hub `28315507670`; NetProbe `28315508804`; CalcHarbor `28315509929`; DevUtility Lab `28315511100`; TimeNexus `28315512640`; QRRoute `28315514298`; InvoiceCraft `28315516442`; MailHealth `28315518113`; SitePulse Lab `28315519943`; PixelBatch `28315521494`; DocShift `28315523056`; all labeled Fase 9/Sprint 9.4 and passed |
 | Public smokes | Hub aggregate, control-plane/API, NetProbe/API, nine static app smokes and 165 localized `privacy`/`contact`/`status` trust/legal checks passed |
+
+## Sprint 9.5 execution evidence
+
+Sprint 9.5 implemented the NetProbe DNS/IP benchmark UX locally without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs, multi-region probes or recurring production workers.
+
+| Evidence | Value |
+|---|---|
+| NetProbe pages refined | `/tools/what-is-my-ip` and `/tools/dns-propagation` |
+| DNS propagation controls | Visual record-type tabs for A, AAAA, CNAME, MX, TXT and NS; domain example cleaned to `example.com` |
+| DNS propagation result structure | Summary cards, copy-safe action, coverage disclosure, resolver coverage map/grid, resolver/locality table and distinct values |
+| IP lookup result structure | Visual IP panel, version/source/public-range chips, summary cards, safe copy action and interpretation block |
+| Privacy/trust additions | Inline privacy CTA and related checks; analytics remains limited to route/tool metadata and excludes IP, hostname, record, result and raw error values |
+| Local frontend validation | Passed: `pnpm test:netprobe`, `pnpm build:netprobe`, `pnpm validate:netprobe-preview`, `pnpm test:e2e:netprobe` |
+| Local preview asset | `/_nuxt/CdSZd5rf.js` |
+| Visual QA | Desktop/mobile screenshots captured from the production build at `artifacts/frontend/sprint-9-5-netprobe-dns-desktop.png` and `artifacts/frontend/sprint-9-5-netprobe-dns-mobile.png` |
+| Broad validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
+| Remote CI/deploy | Pending feature commit, push, Quality Gate, Deploy Dry Run, Fase 9/Sprint 9.5 NetProbe deploy and public smokes |
 
 ## Per-sprint execution rules
 

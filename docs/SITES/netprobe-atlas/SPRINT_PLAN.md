@@ -1,25 +1,28 @@
 # NetProbe Atlas Sprint Plan
 
-Data-base: 2026-06-27
+Data-base: 2026-06-28
 
 ## Real sprint
 
 - Symbol: BR-NETPROBE.
 - Real number: Sprint 7.3.
 - Must run after: Sprint 7.2.
+- Current benchmark-grade sprint: BGR-NETPROBE-P0, Sprint 9.5.
 
 ## Current state
 
 - Public NetProbe frontend live at `https://opentshost.com/supersites/netprobe-atlas/`.
 - Public control-plane/API supports bounded NetProbe IP/DNS/RDAP/SSL/propagation/port/reachability.
 - Upgrade monitor MVP exists in control-plane but production workers/billing remain gated.
-- Sprint 7.3 benchmark UX is implemented and locally validated; feature commit/CI/public smoke closure is pending.
+- Sprint 7.3 benchmark UX is implemented and closed.
+- Sprint 9.5 benchmark-grade DNS/IP UX is implemented and locally validated; feature commit, remote CI/deploy and public smoke closure are pending.
 
 ## Scope
 
 - DNS propagation UX refinement.
 - What is my IP UX refinement.
 - Related tools, educational content, safe support/ads placeholders and upgrade CTAs.
+- Sprint 9.5 adds visual DNS record tabs, task-first workbench layout, visual IP panel, inline privacy CTA, related checks, resolver coverage grid and honest bounded-coverage copy.
 
 ## Validation
 

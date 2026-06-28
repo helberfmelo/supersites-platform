@@ -619,6 +619,15 @@ Data-base: 2026-06-27
 | Sprint 9.4 production deploy runs | Hub `28315507670`; NetProbe `28315508804`; CalcHarbor `28315509929`; DevUtility Lab `28315511100`; TimeNexus `28315512640`; QRRoute `28315514298`; InvoiceCraft `28315516442`; MailHealth `28315518113`; SitePulse Lab `28315519943`; PixelBatch `28315521494`; DocShift `28315523056`; all passed with run labels Fase 9/Sprint 9.4 |
 | Sprint 9.4 final public assets | Hub `CnPSAimc.js`; NetProbe `CTTSyJvd.js`; CalcHarbor `C9RDnmw3.js`; DevUtility Lab `BLIEW-4t.js`; TimeNexus `CDw3I4bp.js`; QRRoute `jWJEbVA_.js`; InvoiceCraft `DZRjRUbQ.js`; MailHealth `f5VkmRLb.js`; SitePulse Lab `DE9n_sq5.js`; PixelBatch `B-2x3-vH.js`; DocShift `FrGPExwS.js` |
 | Sprint 9.4 public smokes | Passed: Hub aggregate, control-plane/API, NetProbe/API, nine static app smokes and 165-page live trust/legal smoke |
+| Sprint 9.5 NetProbe benchmark UI scope | DNS Propagation tabs/map/table/disclosure plus What is my IP visual panel/privacy CTA/related checks |
+| Sprint 9.5 DNS propagation example cleanup | `dns-propagation` localized example target is `example.com`; record type is selected in tabs |
+| Sprint 9.5 NetProbe local validation | Passed: `pnpm test:netprobe`, `pnpm build:netprobe`, `pnpm validate:netprobe-preview`, `pnpm test:e2e:netprobe` |
+| Sprint 9.5 local preview asset | `/_nuxt/CdSZd5rf.js` validated by `pnpm validate:netprobe-preview` |
+| Sprint 9.5 visual QA artifacts | `artifacts/frontend/sprint-9-5-netprobe-dns-desktop.png` and `artifacts/frontend/sprint-9-5-netprobe-dns-mobile.png` |
+| Sprint 9.5 package validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages` |
+| Sprint 9.5 local final gates | Passed: `pnpm validate:public-copy` across 876 HTML files, structure, secrets, deploy dry-run, ci:changes and diff check |
+| Sprint 9.5 remote CI/deploy status | Pending feature commit/push and production deploy closure |
+| Sprint 9.5 probes/workers/paid activation | 0 activated; coverage disclosure remains bounded to current runtime |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |
 | Real donation payments activated by Fase 9 planning | 0 planned before explicit gates |

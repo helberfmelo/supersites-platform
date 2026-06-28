@@ -1,6 +1,6 @@
 # NetProbe Atlas Benchmark Notes
 
-Data-base: 2026-06-27
+Data-base: 2026-06-28
 
 ## References
 
@@ -42,3 +42,11 @@ Data-base: 2026-06-27
 - DNS propagation now supports an optional expected value, match/coverage summary cards, distinct values, resolver table and lightweight resolver view.
 - Related tools and gated upgrade CTA appear after the useful result path; no ads, billing, donation payment, affiliate link or provider is active.
 - Playwright now covers IP summary cards, propagation expected-value matching and analytics redaction of raw targets/results.
+
+## Sprint 9.5 implementation notes
+
+- DNS Propagation now uses visual record-type tabs and a cleaner domain example (`example.com`) so the type selection is not duplicated inside the hostname field.
+- The diagnostic workbench places input and result closer together on desktop, with responsive tabs on mobile.
+- The resolver area now labels the bounded coverage map/grid, resolver/locality table and distinct values more explicitly, while keeping the no-worldwide-claim disclosure.
+- What is my IP now has a larger visual IP panel before the summary cards, plus a privacy CTA and related checks.
+- No endpoint, resolver network, analytics payload, storage, worker, billing, ad or payment behavior changed.

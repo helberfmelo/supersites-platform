@@ -1,6 +1,6 @@
 # Status
 
-Data-base: 2026-06-27
+Data-base: 2026-06-28
 
 ## Resumo executivo
 
@@ -31,6 +31,8 @@ Na Sprint 8.6, a Fase 8 foi fechada em producao: o Hub e os nove apps estaticos 
 Na Sprint 9.3, a Fase 9 concluiu em producao a localizacao global e copia publica P0. Foi criado um sanitizer compartilhado em `@supersites/i18n` e aplicado ao Hub, paginas legais/status, homes, paginas editoriais e ferramentas dos 10 sites para remover linguagem interna de MVP/gated/placeholder/deploy smoke/rollback validation/HUMAN_ACTION_REQUIRED das superficies publicas geradas, preservando copy operacional apenas em docs/runbooks/scripts. O novo gate `pnpm validate:public-copy` passou localmente em 876 HTMLs e no GitHub Actions como job `Public copy gate`. Apos um spot check publico encontrar fallbacks visiveis em rotas localizadas, a correcao `b940561` endureceu labels/CTAs e copy longa de MailHealth/SitePulse/TimeNexus; Quality Gate `28314301032`, Deploy Dry Run `28314301019`, deploys Fase 9/Sprint 9.3 e smokes publicos finais passaram.
 
 Na Sprint 9.4, a Fase 9 concluiu em producao a camada compartilhada de trust, legal e suporte publico. O helper `buildTrustPageCopy` em `@supersites/i18n` enriquece paginas `privacy`, `terms`, `cookies`, `contact`, `status`, `about`, `accessibility` e `licenses` para o Hub e os 10 sites em EN/PT-BR/ES/FR/DE, totalizando 440 variantes geradas. As paginas ganharam secoes localizadas sobre status de producao, limites de dados, cookies, acessibilidade, licencas, contato e suporte; o bloco de suporte/doacao permanece apenas informativo e inerte, sem link, QR/PIX, PayPal, Stripe, Buy Me a Coffee, carteira, checkout, webhook, provider externo ou pagamento real. `validate-public-copy` agora tambem bloqueia URLs publicas de provedores de pagamento sem aprovacao humana. Feature commit `99c0262`, Quality Gate `28315424809`, Deploy Dry Run `28315424825`, deploys reais rotulados Fase 9/Sprint 9.4 e smokes publicos finais passaram.
+
+Na Sprint 9.5, o NetProbe Atlas recebeu o refinamento local BGR-NETPROBE-P0 para aproximar `dns-propagation` e `what-is-my-ip` dos benchmarks de DNS/IP sem mudar os endpoints bounded. A pagina de DNS Propagation ganhou workbench mais task-first, tabs visuais de record type, exemplo de dominio separado do tipo, mapa/grid de cobertura, tabela de resolvedor/localidade com disclosure honesto e CTA de privacidade; What is my IP ganhou painel visual de IP, cards de contexto, copy segura e related checks. A validacao local passou com testes NetProbe, build, preview smoke asset `/_nuxt/CdSZd5rf.js`, Playwright NetProbe, screenshots desktop/mobile, typecheck/testes de pacotes, `validate:public-copy` em 876 HTMLs, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes` e `git diff --check`. Nenhum probe multirregiao, worker recorrente, analytics externo, storage de alvo, anuncio, billing, checkout, doacao ou API paga foi ativado.
 
 ## Estado local verificado
 
@@ -1190,6 +1192,17 @@ Na Sprint 9.4, a Fase 9 concluiu em producao a camada compartilhada de trust, le
   - Smokes publicos finais passaram: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public` e `scripts/smoke-static-app-public.ps1 -AppId <app>` para os nove apps. Assets finais validados: Hub `https://opentshost.com/supersites/_nuxt/CnPSAimc.js`, NetProbe `https://opentshost.com/supersites/netprobe-atlas/_nuxt/CTTSyJvd.js`, CalcHarbor `C9RDnmw3.js`, DevUtility Lab `BLIEW-4t.js`, TimeNexus `CDw3I4bp.js`, QRRoute `jWJEbVA_.js`, InvoiceCraft `DZRjRUbQ.js`, MailHealth `f5VkmRLb.js`, SitePulse Lab `DE9n_sq5.js`, PixelBatch `B-2x3-vH.js` e DocShift `FrGPExwS.js`; APIs NetProbe, MailHealth e SitePulse tambem passaram.
   - Smoke live de trust/legal passou em 165 paginas publicas localizadas (`privacy`, `contact` e `status` em 11 superficies x 5 idiomas), com HTTP 200, heading localizado esperado, sem `HUMAN_ACTION_REQUIRED`, `deploy smoke`, `rollback validation`, `MVP` ou URLs publicas para `paypal.com`, `stripe.com`, `buymeacoffee.com`, `mercadopago`, `paddle.com`, `gumroad.com` ou `ko-fi.com`.
   - Esta sprint nao ativou anuncio real, AdSense/GTM/GA4, Search Console import, checkout, billing, pagamento, doacao, afiliado, API paga, upload/storage, worker/cron recorrente, analytics externo ou direct-root mapping.
+
+- Sprint 9.5 validation:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/STATUS.md`, `docs/ROADMAP.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local e ADRs de NetProbe/API.
+  - Estado inicial verificado a partir do fechamento da Sprint 9.4: repositorio publico `helberfmelo/supersites-platform`, head `50d1808`, GitHub Actions e deploys 9.4 verdes, NetProbe publico e API smoke verdes.
+  - `apps/netprobe-atlas/app/pages/[locale]/tools/[slug].vue` recebeu copy localizada de benchmark para tabs, painel IP, disclosure de cobertura, privacy CTA, related checks e headings de tabela/mapa; a pagina preserva analytics sem IP, hostname, record, resultado ou erro bruto.
+  - `apps/netprobe-atlas/app/app.vue` recebeu grid workbench para diagnosticos, record tabs responsivas, painel visual de IP, privacy strip, related tools inline e mapa leve com grid CSS sem dependencia externa.
+  - `apps/netprobe-atlas/app/data/tools.ts` separou o exemplo de `dns-propagation` para `example.com`, deixando o tipo A na tab selecionada.
+  - `tests/e2e/netprobe.spec.ts` foi atualizado para validar painel visual de IP, privacy CTA, tabs DNS, disclosure de cobertura, mapa/tabela e redacao de analytics.
+  - Validacao local passou: `pnpm test:netprobe`, `pnpm build:netprobe`, `pnpm validate:netprobe-preview` com asset `/_nuxt/CdSZd5rf.js`, `pnpm test:e2e:netprobe`, `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`.
+  - QA visual local passou com screenshots Playwright do build final em `artifacts/frontend/sprint-9-5-netprobe-dns-desktop.png` e `artifacts/frontend/sprint-9-5-netprobe-dns-mobile.png`; mobile confirmou dominio limpo no input e tabs sem overflow.
+  - Esta sprint nao ativou probes multirregiao, worker/cron recorrente, analytics externo, armazenamento de alvo/resultado, anuncio real, AdSense/GTM/GA4, checkout, billing, pagamento, doacao, afiliado, API paga ou direct-root mapping.
 
 ## Pendencias criticas
 

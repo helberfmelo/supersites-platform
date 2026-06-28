@@ -64,6 +64,105 @@ const formCopy = sanitizePublicCopy(locale, {
   expectedValueLabel: 'Expected value (optional)',
   expectedValuePlaceholder: '93.184.216.34 or ns1.example.com',
 })
+const benchmarkCopyByLocale = {
+  en: {
+    recordTabsLabel: 'DNS record type shortcuts',
+    ipPanelTitle: 'Visible IP now',
+    ipPanelBody: 'Use this answer to troubleshoot VPN, proxy, carrier NAT or IPv6 preference. It is not a precise identity or location proof.',
+    ipMeaningTitle: 'How to use this IP',
+    privacyTitle: 'Private by design',
+    privacyBody: 'Inputs and returned values stay out of analytics. The IP result is shown to this browser session and the event only records the tool slug.',
+    privacyLink: 'Read privacy details',
+    coverageTitle: 'Coverage disclosure',
+    coverageBody: 'Current propagation uses controlled resolver snapshots available to this runtime. It is not a worldwide propagation claim until regional probes are deployed and documented.',
+    relatedTitle: 'Next checks',
+    mapTitle: 'Resolver coverage map',
+    resolverDetailsTitle: 'Resolver and locality table',
+    distinctValuesTitle: 'Values seen by resolvers',
+    copySummary: 'Copy safe summary',
+  },
+  'pt-br': {
+    recordTabsLabel: 'Atalhos de tipo DNS',
+    ipPanelTitle: 'IP visivel agora',
+    ipPanelBody: 'Use esta resposta para investigar VPN, proxy, NAT de operadora ou preferencia IPv6. Ela nao prova identidade nem localizacao exata.',
+    ipMeaningTitle: 'Como usar este IP',
+    privacyTitle: 'Privacidade por desenho',
+    privacyBody: 'Entradas e valores retornados ficam fora de analytics. O IP aparece apenas nesta sessao do navegador e o evento registra so o slug da ferramenta.',
+    privacyLink: 'Ler detalhes de privacidade',
+    coverageTitle: 'Cobertura declarada',
+    coverageBody: 'A propagacao atual usa snapshots de resolvedores controlados disponiveis neste runtime. Nao e uma promessa mundial ate probes regionais serem publicados e documentados.',
+    relatedTitle: 'Proximas checagens',
+    mapTitle: 'Mapa de cobertura dos resolvedores',
+    resolverDetailsTitle: 'Tabela de resolvedor e localidade',
+    distinctValuesTitle: 'Valores vistos pelos resolvedores',
+    copySummary: 'Copiar resumo seguro',
+  },
+  es: {
+    recordTabsLabel: 'Atajos de tipo DNS',
+    ipPanelTitle: 'IP visible ahora',
+    ipPanelBody: 'Usa esta respuesta para investigar VPN, proxy, NAT del operador o preferencia IPv6. No prueba identidad ni ubicacion exacta.',
+    ipMeaningTitle: 'Como usar esta IP',
+    privacyTitle: 'Privacidad por diseno',
+    privacyBody: 'Entradas y valores devueltos quedan fuera de analytics. La IP se muestra solo en esta sesion y el evento registra solo el slug de herramienta.',
+    privacyLink: 'Leer privacidad',
+    coverageTitle: 'Cobertura declarada',
+    coverageBody: 'La propagacion actual usa snapshots de resolvers controlados disponibles en este runtime. No es una promesa mundial hasta publicar probes regionales documentados.',
+    relatedTitle: 'Siguientes chequeos',
+    mapTitle: 'Mapa de cobertura de resolvers',
+    resolverDetailsTitle: 'Tabla de resolver y localidad',
+    distinctValuesTitle: 'Valores vistos por resolvers',
+    copySummary: 'Copiar resumen seguro',
+  },
+  fr: {
+    recordTabsLabel: 'Raccourcis de type DNS',
+    ipPanelTitle: 'IP visible maintenant',
+    ipPanelBody: 'Utilisez cette reponse pour analyser VPN, proxy, NAT operateur ou preference IPv6. Ce resultat ne prouve ni identite ni localisation exacte.',
+    ipMeaningTitle: 'Comment utiliser cette IP',
+    privacyTitle: 'Confidentialite par conception',
+    privacyBody: 'Les entrees et valeurs retournees restent hors analytics. L IP est affichee dans cette session et l evenement ne garde que le slug outil.',
+    privacyLink: 'Lire la confidentialite',
+    coverageTitle: 'Couverture declaree',
+    coverageBody: 'La propagation actuelle utilise les snapshots de resolveurs controles disponibles dans ce runtime. Ce resultat ne promet pas une couverture mondiale avant des probes regionaux documentes.',
+    relatedTitle: 'Controles suivants',
+    mapTitle: 'Carte de couverture des resolveurs',
+    resolverDetailsTitle: 'Table resolveur et localite',
+    distinctValuesTitle: 'Valeurs vues par les resolveurs',
+    copySummary: 'Copier le resume securise',
+  },
+  de: {
+    recordTabsLabel: 'DNS-Typ Kurzwege',
+    ipPanelTitle: 'Jetzt sichtbare IP',
+    ipPanelBody: 'Nutzen Sie diese Antwort fuer VPN-, Proxy-, Carrier-NAT- oder IPv6-Analyse. Sie ist kein Identitaets- oder exakter Standortnachweis.',
+    ipMeaningTitle: 'So nutzen Sie diese IP',
+    privacyTitle: 'Datenschutz im Design',
+    privacyBody: 'Eingaben und Rueckgabewerte bleiben aus Analytics heraus. Die IP wird nur in dieser Browsersitzung gezeigt; das Event speichert nur den Tool-Slug.',
+    privacyLink: 'Datenschutz lesen',
+    coverageTitle: 'Abgedeckter Umfang',
+    coverageBody: 'Die aktuelle Propagation nutzt kontrollierte Resolver-Snapshots dieses Runtimes. Sie ist keine weltweite Aussage, bis regionale Probes dokumentiert bereitstehen.',
+    relatedTitle: 'Naechste Pruefungen',
+    mapTitle: 'Resolver-Abdeckung',
+    resolverDetailsTitle: 'Resolver- und Standorttabelle',
+    distinctValuesTitle: 'Von Resolvern gesehene Werte',
+    copySummary: 'Sichere Zusammenfassung kopieren',
+  },
+} satisfies Record<LocaleCode, {
+  recordTabsLabel: string
+  ipPanelTitle: string
+  ipPanelBody: string
+  ipMeaningTitle: string
+  privacyTitle: string
+  privacyBody: string
+  privacyLink: string
+  coverageTitle: string
+  coverageBody: string
+  relatedTitle: string
+  mapTitle: string
+  resolverDetailsTitle: string
+  distinctValuesTitle: string
+  copySummary: string
+}>
+const benchmarkCopy = sanitizePublicCopy(locale, benchmarkCopyByLocale[locale])
+const propagationRecordTypes = ['A', 'AAAA', 'CNAME', 'MX', 'TXT', 'NS'] as const
 const runtimeConfig = useRuntimeConfig()
 const previewSubmitted = ref(false)
 const targetValue = ref(tool.slug === 'what-is-my-ip' ? '' : tool.exampleTarget)
@@ -637,8 +736,8 @@ useHead({
       </aside>
     </section>
 
-    <section class="tool-layout">
-      <div>
+    <section :class="['tool-layout', (isIpLookup || isPropagationLookup) ? 'tool-layout--diagnostic' : '']">
+      <div class="tool-workbench">
         <section class="input-panel" :aria-labelledby="`${tool.slug}-input`">
           <h2 :id="`${tool.slug}-input`">{{ copy.navLabel }}</h2>
           <p>{{ copy.description }}</p>
@@ -669,12 +768,19 @@ useHead({
                 :placeholder="copy.inputPlaceholder"
                 autocomplete="off"
               >
-              <label :for="`${tool.slug}-record-type`">{{ shellCopy.recordTypeLabel }}</label>
-              <select :id="`${tool.slug}-record-type`" v-model="propagationRecordType">
-                <option v-for="recordType in ['A', 'AAAA', 'CNAME', 'MX', 'TXT', 'NS']" :key="recordType" :value="recordType">
+              <p :id="`${tool.slug}-record-type-label`" class="field-label">{{ benchmarkCopy.recordTabsLabel }}</p>
+              <div class="record-tabs" role="tablist" :aria-labelledby="`${tool.slug}-record-type-label`">
+                <button
+                  v-for="recordType in propagationRecordTypes"
+                  :key="recordType"
+                  type="button"
+                  role="tab"
+                  :aria-selected="propagationRecordType === recordType"
+                  @click="propagationRecordType = recordType"
+                >
                   {{ recordType }}
-                </option>
-              </select>
+                </button>
+              </div>
               <label :for="`${tool.slug}-expected`">{{ formCopy.expectedValueLabel }}</label>
               <input
                 :id="`${tool.slug}-expected`"
@@ -727,6 +833,17 @@ useHead({
           <p v-else-if="errorMessage" class="result-error">{{ errorMessage }}</p>
 
           <div v-else-if="ipResult">
+            <section class="ip-visual-panel" :aria-label="benchmarkCopy.ipPanelTitle">
+              <p class="eyebrow">{{ benchmarkCopy.ipPanelTitle }}</p>
+              <strong>{{ ipResult.address }}</strong>
+              <div class="ip-visual-panel__meta">
+                <span>{{ ipResult.version }}</span>
+                <span>{{ ipResult.is_public ? 'Public range' : 'Review range' }}</span>
+                <span>{{ ipResult.source }}</span>
+              </div>
+              <p>{{ benchmarkCopy.ipPanelBody }}</p>
+            </section>
+
             <div class="answer-strip" aria-label="IP answer summary">
               <div v-for="card in ipSummaryCards" :key="card.label" :class="['answer-card', card.tone ? `answer-card--${card.tone}` : '']">
                 <strong>{{ card.label }}</strong>
@@ -735,13 +852,13 @@ useHead({
             </div>
             <div class="result-actions">
               <button class="button-link button-link--secondary" type="button" @click="copySafeSummary">
-                Copy safe summary
+                {{ benchmarkCopy.copySummary }}
               </button>
               <span v-if="copyNotice" role="status">{{ copyNotice }}</span>
             </div>
             <section class="result-callout">
-              <h3>What this means</h3>
-              <p>A public IP is the network address visible to this API edge. It can change with VPNs, proxies, carrier NAT or IPv6 preference, and it is not a precise identity or location proof.</p>
+              <h3>{{ benchmarkCopy.ipMeaningTitle }}</h3>
+              <p>{{ benchmarkCopy.ipPanelBody }}</p>
               <p>{{ ipMeta.retention }}</p>
             </section>
           </div>
@@ -909,22 +1026,22 @@ useHead({
 
             <div class="result-actions">
               <button class="button-link button-link--secondary" type="button" @click="copySafeSummary">
-                Copy safe summary
+                {{ benchmarkCopy.copySummary }}
               </button>
               <span v-if="copyNotice" role="status">{{ copyNotice }}</span>
             </div>
 
             <section class="result-callout">
-              <h3>Resolver scope</h3>
-              <p>This is a bounded snapshot from controlled resolver infrastructure, not a promise of worldwide propagation. Use the expected value to compare what this runtime sees right now.</p>
+              <h3>{{ benchmarkCopy.coverageTitle }}</h3>
+              <p>{{ benchmarkCopy.coverageBody }}</p>
               <p>
                 Cache: {{ propagationMeta.cached ? 'cached' : 'fresh' }} / {{ propagationMeta.cache_ttl_seconds }}s.
                 Checked: {{ formatMetaDate(propagationMeta) }}.
               </p>
             </section>
 
-            <section class="resolver-map" aria-label="Lightweight resolver map">
-              <h3>Resolver view</h3>
+            <section class="resolver-map" :aria-label="benchmarkCopy.mapTitle">
+              <h3>{{ benchmarkCopy.mapTitle }}</h3>
               <div class="resolver-grid">
                 <div v-for="snapshot in propagationResult.snapshots" :key="`${snapshot.resolver_id}-pin`" :class="['resolver-pin', snapshot.status === 'answered' ? 'resolver-pin--good' : 'resolver-pin--warning']">
                   <strong>{{ snapshot.region }}</strong>
@@ -934,7 +1051,7 @@ useHead({
             </section>
 
             <section class="content-section">
-              <h3>Resolver details</h3>
+              <h3>{{ benchmarkCopy.resolverDetailsTitle }}</h3>
               <div class="result-table-wrap">
                 <table class="result-table">
                   <thead>
@@ -963,7 +1080,7 @@ useHead({
             </section>
 
             <section v-if="propagationDistinctValues.length > 0" class="content-section">
-              <h3>Distinct values returned</h3>
+              <h3>{{ benchmarkCopy.distinctValuesTitle }}</h3>
               <ul class="pill-list">
                 <li v-for="value in propagationDistinctValues" :key="value">{{ value }}</li>
               </ul>
@@ -1056,6 +1173,25 @@ useHead({
           <NuxtLink class="button-link button-link--secondary" :to="localizedContentPath(locale, 'methodology')">
             {{ upgradePanelCopy.cta }}
           </NuxtLink>
+        </section>
+
+        <section v-if="isIpLookup || isPropagationLookup" class="privacy-strip" :aria-labelledby="`${tool.slug}-privacy-cta`">
+          <div>
+            <h2 :id="`${tool.slug}-privacy-cta`">{{ benchmarkCopy.privacyTitle }}</h2>
+            <p>{{ benchmarkCopy.privacyBody }}</p>
+          </div>
+          <NuxtLink class="button-link button-link--secondary" :to="localizedContentPath(locale, 'privacy')">
+            {{ benchmarkCopy.privacyLink }}
+          </NuxtLink>
+        </section>
+
+        <section v-if="isIpLookup || isPropagationLookup" class="quick-related" :aria-labelledby="`${tool.slug}-next-checks`">
+          <h2 :id="`${tool.slug}-next-checks`">{{ benchmarkCopy.relatedTitle }}</h2>
+          <div class="related-tool-list related-tool-list--inline">
+            <NuxtLink v-for="relatedTool in relatedTools" :key="relatedTool.slug" :to="localizedToolPath(locale, relatedTool.slug)">
+              {{ getToolCopy(relatedTool, locale).navLabel }}
+            </NuxtLink>
+          </div>
         </section>
       </div>
 
