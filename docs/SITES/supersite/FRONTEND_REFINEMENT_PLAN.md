@@ -11,6 +11,8 @@ Refine the Hub and control-plane surfaces so operators can scan portfolio qualit
 - Improve catalog cards with site value, status, language coverage, tool count and primary action. Done in Sprint 7.2.
 - Add admin benchmark readiness overview per site. Done in Sprint 7.2.
 - Add admin opportunity backlog with priority, impact, effort, confidence, risk and gate status. Done in Sprint 7.2.
+- Add a visual Hub discovery block with top public tools, preview frames and workflow clusters before catalog filters. Done locally in Sprint 9.15; production evidence pending feature deploy.
+- Reduce consent-banner intrusion on the first fold while preserving local/fail-closed consent behavior. Done locally in Sprint 9.15.
 - Keep the Blade admin dense, utilitarian and consistent with the current control-plane style.
 
 ## P1
@@ -18,6 +20,7 @@ Refine the Hub and control-plane surfaces so operators can scan portfolio qualit
 - Add filters for category, status, public deploy state, AdSense readiness and benchmark readiness.
 - Add per-site detail pages for benchmark findings.
 - Add CSV export for backlog items.
+- Add richer footer navigation grouped by product vertical. Done locally in Sprint 9.15.
 
 ## P2
 
@@ -47,6 +50,7 @@ Low if the dashboard stays internal and Hub public placeholders remain inert.
 - Benchmark readiness appears for all 11 public surfaces.
 - No provider metrics are shown as real while imports are disabled.
 - Admin pages fit desktop and mobile/tablet widths without overlap.
+- Hub home exposes a task/discovery path before catalog controls on desktop and mobile.
 
 ## Dashboard backlog
 

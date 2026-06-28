@@ -2,6 +2,7 @@
 import { legalPageCatalog, getLegalPageBySlug, getLegalPageCopy, getLegalShellCopy } from '../../data/legal'
 import { localizedHomePath, localizedLegalPath, normalizeLocale } from '../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../data/routes'
+import { createLegalPageStructuredData } from '../../data/schema'
 
 const route = useRoute()
 const locale = normalizeLocale(route.params.locale?.toString())
@@ -17,6 +18,7 @@ if (!locale || !page) {
 const copy = getLegalPageCopy(page, locale)
 const shellCopy = getLegalShellCopy(locale)
 const canonicalPath = localizedLegalPath(locale, page.slug)
+const structuredData = createLegalPageStructuredData(locale, page, copy)
 const relatedPages = legalPageCatalog
   .filter((candidate) => candidate.slug !== page.slug)
   .map((candidate) => ({
@@ -51,6 +53,10 @@ useHead({
     { rel: 'canonical', href: absoluteUrl(canonicalPath) },
     ...localeAlternates((targetLocale) => localizedLegalPath(targetLocale, page.slug)),
   ],
+  script: structuredData.map((item) => ({
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify(item),
+  })),
 })
 </script>
 

@@ -3,6 +3,7 @@ import { getStatusBadgeClass } from '@supersites/ui'
 import { getDetailCopy } from '../../../data/copy'
 import { localizedHomePath, localizedSitePath, normalizeLocale } from '../../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
+import { createSiteDetailStructuredData } from '../../../data/schema'
 import { getCategoryLabel, getSiteBySlug, statusLabels } from '../../../data/sites'
 import { trackOutboundSiteClick } from '../../../utils/analytics'
 
@@ -20,6 +21,7 @@ if (!locale || !site) {
 const copy = getDetailCopy(locale)
 const siteText = site.localized[locale]
 const canonicalPath = localizedSitePath(locale, site.slug)
+const structuredData = createSiteDetailStructuredData(locale, site)
 const isLocalBrowser = ref(false)
 const localNetProbeToolsUrl = computed(() => {
   if (!isLocalBrowser.value || site.slug !== 'netprobe-atlas') {
@@ -72,6 +74,10 @@ useHead({
     { rel: 'canonical', href: absoluteUrl(canonicalPath) },
     ...localeAlternates((targetLocale) => localizedSitePath(targetLocale, site.slug)),
   ],
+  script: structuredData.map((item) => ({
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify(item),
+  })),
 })
 </script>
 

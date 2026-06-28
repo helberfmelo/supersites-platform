@@ -3,11 +3,14 @@ import { getStatusBadgeClass } from '@supersites/ui'
 import { computed, ref } from 'vue'
 import { getHomeCopy } from '../data/copy'
 import { absoluteUrl, localeAlternates } from '../data/routes'
+import { createHubHomeStructuredData } from '../data/schema'
 import {
   categoryCatalog,
   filterSites,
   getCategoryLabel,
+  getSiteBySlug,
   statusLabels,
+  type SiteSummary,
   type SiteCategory,
 } from '../data/sites'
 import { localeCodes, localizedHomePath, localizedSitePath, type LocaleCode } from '../data/locales'
@@ -23,14 +26,27 @@ const searchQuery = ref('')
 const selectedCategory = ref<SiteCategory | 'all'>('all')
 const filteredSites = computed(() => filterSites(searchQuery.value, selectedCategory.value))
 const canonicalPath = computed(() => (props.xDefault ? '/' : localizedHomePath(props.locale)))
+const featuredTools = computed(() => copy.value.featuredTools
+  .map((item) => {
+    const site = getSiteBySlug(item.siteSlug)
 
-function trackPublicSiteClick(siteSlug: string, targetUrl: string): void {
+    return site ? { ...item, site } : null
+  })
+  .filter((item): item is { siteSlug: string; label: string; body: string; site: SiteSummary } => Boolean(item)))
+const intentClusters = computed(() => copy.value.intentClusters.map((cluster) => ({
+  ...cluster,
+  sites: cluster.siteSlugs
+    .map((siteSlug) => getSiteBySlug(siteSlug))
+    .filter((site): site is SiteSummary => Boolean(site)),
+})))
+
+function trackPublicSiteClick(siteSlug: string, targetUrl: string, surface = 'catalog_card'): void {
   trackOutboundSiteClick({
     siteSlug,
     targetUrl,
     locale: props.locale,
     routePath: canonicalPath.value,
-    surface: 'catalog_card',
+    surface,
   })
 }
 
@@ -61,6 +77,10 @@ useHead(() => ({
     { rel: 'canonical', href: absoluteUrl(canonicalPath.value) },
     ...localeAlternates(localizedHomePath),
   ],
+  script: createHubHomeStructuredData(props.locale, copy.value).map((item) => ({
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify(item),
+  })),
 }))
 </script>
 
@@ -84,6 +104,68 @@ useHead(() => ({
           <span :class="['signal', row.tone === 'amber' ? 'signal--amber' : '']" aria-hidden="true"></span>
         </div>
       </aside>
+    </section>
+
+    <section class="launch-desk" aria-labelledby="launch-desk-title">
+      <div class="section-heading">
+        <p class="eyebrow">{{ copy.launchDeskTitle }}</p>
+        <h2 id="launch-desk-title">{{ copy.featuredToolsTitle }}</h2>
+        <p>{{ copy.launchDeskBody }}</p>
+      </div>
+
+      <div class="feature-grid" :aria-label="copy.featuredToolsTitle">
+        <article v-for="item in featuredTools" :key="item.site.slug" class="feature-card">
+          <div class="preview-frame" :data-category="item.site.category" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <i></i>
+          </div>
+          <div>
+            <span class="category">{{ getCategoryLabel(item.site.category, locale) }}</span>
+            <h3>{{ item.label }}</h3>
+            <p>{{ item.body }}</p>
+          </div>
+          <div class="card-actions">
+            <NuxtLink class="button-link" :to="localizedSitePath(locale, item.site.slug)">
+              {{ copy.detailCta }}
+            </NuxtLink>
+            <a
+              class="button-link button-link--secondary"
+              :href="item.site.temporaryUrl"
+              @click="trackPublicSiteClick(item.site.slug, item.site.temporaryUrl, 'featured_tool')"
+            >
+              {{ copy.publicCta }}
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <div class="evidence-strip" :aria-label="copy.liveEvidenceTitle">
+        <strong>{{ copy.liveEvidenceTitle }}</strong>
+        <span>{{ copy.liveEvidenceBody }}</span>
+      </div>
+    </section>
+
+    <section class="intent-section" aria-labelledby="intent-title">
+      <div class="section-heading section-heading--compact">
+        <h2 id="intent-title">{{ copy.clustersTitle }}</h2>
+      </div>
+      <div class="intent-grid">
+        <article v-for="cluster in intentClusters" :key="cluster.title" class="intent-card">
+          <h3>{{ cluster.title }}</h3>
+          <p>{{ cluster.body }}</p>
+          <div class="inline-link-list">
+            <NuxtLink
+              v-for="site in cluster.sites"
+              :key="site.slug"
+              :to="localizedSitePath(locale, site.slug)"
+            >
+              {{ site.name }}
+            </NuxtLink>
+          </div>
+        </article>
+      </div>
     </section>
 
     <section class="controls" aria-label="Catalog controls">

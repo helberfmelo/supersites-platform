@@ -70,8 +70,9 @@ test.describe('SuperSites public hub', () => {
       'https://opentshost.com/supersites/pt-br/privacy',
     )
     await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
-    await expect(page.locator('.page-footer a')).toHaveCount(9)
-    await expect(page.getByLabel('Legal and editorial pages').getByRole('link', { name: 'Status' })).toBeVisible()
+    await expect(page.locator('.page-footer__links--legal a')).toHaveCount(8)
+    await expect(page.getByLabel(/Páginas legais e editoriais/).getByRole('link', { name: 'Status' })).toBeVisible()
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1)
     await expectNoHorizontalOverflow(page)
 
     const screenshot = await page.screenshot({ fullPage: true })
@@ -94,6 +95,8 @@ test.describe('SuperSites public hub', () => {
       'https://opentshost.com/supersites/en/editorial-policy',
     )
     await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
+    await expect(page.locator('.footer-verticals').getByRole('link', { name: 'DevUtility Lab' })).toBeVisible()
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1)
 
     const screenshot = await page.screenshot({ fullPage: true })
     await testInfo.attach('editorial-desktop', { body: screenshot, contentType: 'image/png' })
@@ -106,6 +109,10 @@ test.describe('SuperSites public hub', () => {
 
     await page.goto('/en')
     await dismissConsentBanner(page)
+    await expect(page.getByRole('heading', { name: 'Top public tools' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Choose by workflow' })).toBeVisible()
+    await expect(page.getByText('Production evidence')).toBeVisible()
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(3)
     await page.evaluate(() => {
       window.addEventListener('click', (event) => event.preventDefault(), { capture: true })
     })
@@ -192,6 +199,8 @@ test.describe('SuperSites public hub', () => {
     await expect(localToolsLink).toBeVisible()
     await expect(localToolsLink).toHaveAttribute('href', 'http://127.0.0.1:3002/en/tools/dns-lookup')
     await expect(page.getByRole('link', { name: 'Open public site' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Quality check' })).toBeVisible()
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(2)
     expect(errors).toEqual([])
   })
 })

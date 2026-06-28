@@ -288,6 +288,24 @@ Sprint 9.11 delivered the SitePulse visual report locally without activating rec
 | Production deploy | Passed: Fase 9/Sprint 9.11 SitePulse static app deploy `28320771689`, release `761d3f0e54f09839ba8b5ff9d7a39bc5d176b11d-28320771689-1` |
 | Public smokes | Passed: SitePulse app/API asset `https://opentshost.com/supersites/sitepulse-lab/_nuxt/C9Q51oa7.js`, aggregate Hub smoke, control-plane smoke and live SitePulse report/mobile UX smoke |
 
+## Sprint 9.15 execution evidence
+
+Sprint 9.15 delivered the Hub discovery and SEO/AIO refinement locally without activating real AdSense, GTM/GA4, checkout, billing, donations, affiliates, external analytics, paid APIs, workers or mass low-value content.
+
+| Evidence | Value |
+|---|---|
+| Hub pages refined | Localized home, site detail pages and legal/editorial pages through shared copy/schema/footer components |
+| Discovery structure | `Top public tools` section before catalog filters with NetProbe Atlas, CalcHarbor, DevUtility Lab and TimeNexus feature cards, CSS preview blocks and public/detail CTAs |
+| SEO/AIO structure | `Choose by workflow` clusters for diagnostics, documents, launch assets and operations, preserving curated internal links instead of thin programmatic pages |
+| Schema structure | JSON-LD for home (`WebSite`, `CollectionPage`, `ItemList`), site detail (`WebApplication`, `ItemList`) and legal/editorial pages (`WebPage` variants) |
+| Footer structure | Rich vertical footer groups for diagnostics, finance/documents, launch assets and operations, plus existing legal/editorial navigation |
+| Consent/layout adjustment | Consent banner is less intrusive on the first fold while remaining inert/local and without external CMP/TCF activation |
+| Local frontend validation | Passed: `pnpm test`, `pnpm build`, `pnpm validate:supersite-preview`, `pnpm test:e2e:supersite` |
+| Local preview asset | `/_nuxt/CT-IaHVN.js` |
+| Visual QA | Desktop/mobile screenshots captured in `artifacts/playwright-supersite-hub/` |
+| Local final gates | Passed: `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
+| Remote CI/deploy | Pending feature commit/push, Quality Gate, Deploy Dry Run, deploy and public smokes |
+
 ## Per-sprint execution rules
 
 Each Sprint 9.x must:

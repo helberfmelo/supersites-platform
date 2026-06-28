@@ -38,3 +38,11 @@ Data-base: 2026-06-27
 - Control-plane now stores benchmark readiness and opportunities as local estimated evidence, not provider metrics.
 - `/admin/benchmark-refinement` gives operators the per-site backlog before the technical site refinements continue.
 - Feature CI closed green with Quality Gate `28286110806`, Deploy Dry Run `28286110802` and public smokes for Hub/control-plane/NetProbe.
+
+## Sprint 9.15 implementation notes
+
+- The public Hub now opens with a visual `Top public tools` discovery block before catalog filters, using curated cards and CSS preview blocks for the strongest public surfaces.
+- `Choose by workflow` clusters add useful internal paths for diagnostics, document workflows, launch assets and operations without generating thin page sets.
+- The global footer now groups products by vertical and keeps legal/editorial links available across localized routes.
+- Home, site detail and legal/editorial pages now emit uniform JSON-LD while preserving canonical, hreflang and sitemap behavior.
+- Local validation passed through Hub tests/build/preview/Playwright and global structure/secrets/public-copy/dry-run gates. CI/deploy evidence is pending feature push.

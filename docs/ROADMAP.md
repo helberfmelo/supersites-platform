@@ -451,7 +451,7 @@ Sprint 9.15 - Hub, SEO/AIO e rich footers
 - Simbolico: BGR-HUB-SEO-AIO.
 - Objetivo: tornar o Hub e os rodapes por vertical mais visuais e navegaveis, com top tools, screenshots/preview blocks, guias, related tools, clusters SEO/AIO e schema uniforme sem criar conteudo em massa sem valor.
 - Validacao: Hub tests/build/preview/Playwright, SEO technical checks, sitemap/hreflang/canonical/schema, reducao dos 872 gaps de JSON-LD e smoke publico.
-- Status: planejada; auditoria live confirmou Hub estavel, mas visualmente textual e com consent banner cobrindo cards na primeira dobra.
+- Status: em fechamento local. O Hub recebeu bloco visual `Top public tools`, preview blocks CSS, clusters `Choose by workflow`, rodape rico por verticais e JSON-LD uniforme para home/detalhe/legal sem criar paginas rasas. Validacao local passou com testes/build/preview/Playwright do Hub, typecheck/testes de pacotes, public-copy em 891 HTMLs, estrutura, segredos, deploy dry-run, ci:changes e diff check. Feature commit, Quality Gate, Deploy Dry Run, deploy real rotulado e smokes publicos serao preenchidos apos push.
 
 Sprint 9.16 - Performance, AdSense-safe closure e rollout
 - Simbolico: BGR-PERF-ADSENSE-CLOSURE.

@@ -747,6 +747,13 @@ Data-base: 2026-06-28
 | Sprint 9.14 public smokes | Passed: static app DevUtility Lab, aggregate Hub/control-plane/API and control-plane |
 | Sprint 9.14 live UX privacy smoke | Passed: home workbench before catalog, formatter run, tree view `$.service: supersites`, session-only recents, `analyticsEvents: 0`, `dataLayerEvents: 0`, empty `localStorage`/`sessionStorage`, 0 console errors, no desktop/mobile overflow |
 | Sprint 9.14 developer-workflow paid activation | 0 activated; DevUtility remains browser-side with no saved snippets, persistent history, workspaces, API, billing, ads, external analytics or storage |
+| Sprint 9.15 Hub benchmark UI scope | Visual discovery block before catalog filters with top public tools, CSS preview blocks, workflow clusters, richer vertical footer and uniform JSON-LD schema for home/detail/legal pages |
+| Sprint 9.15 local validation | Passed: `pnpm test` (12 Hub tests), `pnpm build`, `pnpm typecheck:packages`, `pnpm validate:supersite-preview`, `pnpm test:e2e:supersite` (6 tests), `pnpm test:packages` |
+| Sprint 9.15 local preview asset | `/_nuxt/CT-IaHVN.js` validated by `pnpm validate:supersite-preview` |
+| Sprint 9.15 visual QA artifacts | `artifacts/playwright-supersite-hub/sprint-9-15-hub-desktop.png` and `artifacts/playwright-supersite-hub/sprint-9-15-hub-mobile.png` |
+| Sprint 9.15 public copy/structure/security gates | Passed locally: `pnpm validate:public-copy` across 891 HTML files, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
+| Sprint 9.15 remote CI/deploy status | Pending feature commit/push and GitHub Actions monitoring |
+| Sprint 9.15 ads/billing/analytics activation | 0 activated; Hub remains static/public with no real AdSense, GTM/GA4, checkout, billing, donation, affiliate, external analytics, worker or paid API |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |
 | Real donation payments activated by Fase 9 planning | 0 planned before explicit gates |

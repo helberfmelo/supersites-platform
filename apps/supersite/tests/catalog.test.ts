@@ -1,7 +1,13 @@
 import { describe, expect, it } from 'vitest'
+import { getHomeCopy } from '../app/data/copy'
 import { legalPageCatalog, legalPageSlugs } from '../app/data/legal'
 import { localeCodes } from '../app/data/locales'
 import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
+import {
+  createHubHomeStructuredData,
+  createLegalPageStructuredData,
+  createSiteDetailStructuredData,
+} from '../app/data/schema'
 import { categoryCatalog, filterSites, getSiteBySlug, siteCatalog } from '../app/data/sites'
 import { createCatalogOutboundClickEvent } from '../app/utils/analytics'
 
@@ -36,6 +42,26 @@ describe('site catalog', () => {
     for (const category of categoryCatalog) {
       for (const locale of localeCodes) {
         expect(category.labels[locale].length).toBeGreaterThan(2)
+      }
+    }
+  })
+
+  it('documents featured hub tools and workflow clusters with valid site references', () => {
+    for (const locale of localeCodes) {
+      const copy = getHomeCopy(locale)
+
+      expect(copy.featuredTools).toHaveLength(4)
+      expect(copy.intentClusters).toHaveLength(4)
+
+      for (const item of copy.featuredTools) {
+        expect(getSiteBySlug(item.siteSlug)).not.toBeNull()
+        expect(item.label.length).toBeGreaterThan(6)
+        expect(item.body.length).toBeGreaterThan(24)
+      }
+
+      for (const cluster of copy.intentClusters) {
+        expect(cluster.siteSlugs.length).toBeGreaterThanOrEqual(2)
+        expect(cluster.siteSlugs.every((siteSlug) => Boolean(getSiteBySlug(siteSlug)))).toBe(true)
       }
     }
   })
@@ -95,5 +121,28 @@ describe('site catalog', () => {
         expect(localized.sections.every((section) => section.paragraphs.length > 0)).toBe(true)
       }
     }
+  })
+
+  it('creates structured data for hub, site detail and legal pages', () => {
+    const homeSchema = createHubHomeStructuredData('en', getHomeCopy('en'))
+    expect(homeSchema.map((item) => item['@type'])).toEqual(['WebSite', 'CollectionPage', 'ItemList'])
+    expect(JSON.stringify(homeSchema)).toContain('NetProbe Atlas')
+
+    const site = getSiteBySlug('devutility-lab')
+    expect(site).not.toBeNull()
+    const siteSchema = createSiteDetailStructuredData('en', site!)
+    expect(siteSchema[0]).toMatchObject({
+      '@type': 'WebApplication',
+      name: 'DevUtility Lab',
+      operatingSystem: 'Web browser',
+    })
+
+    const legalPage = legalPageCatalog.find((page) => page.slug === 'privacy')
+    expect(legalPage).toBeDefined()
+    const legalSchema = createLegalPageStructuredData('en', legalPage!, legalPage!.localized.en)
+    expect(legalSchema[0]).toMatchObject({
+      name: 'Privacy Policy',
+      url: `${siteBaseUrl}/en/privacy`,
+    })
   })
 })

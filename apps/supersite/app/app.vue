@@ -155,14 +155,14 @@ h1 {
   max-width: 840px;
   width: 100%;
   margin-bottom: 16px;
-  font-size: clamp(2.2rem, 7vw, 5rem);
+  font-size: 4.75rem;
   line-height: 0.98;
   word-break: normal;
 }
 
 h2 {
   margin-bottom: 12px;
-  font-size: clamp(1.55rem, 4vw, 2.2rem);
+  font-size: 2.05rem;
   line-height: 1.1;
 }
 
@@ -225,6 +225,156 @@ h3 {
 .signal--amber {
   background: #bd7424;
   box-shadow: 0 0 0 5px #f5e3ca;
+}
+
+.launch-desk,
+.intent-section {
+  padding: 26px 0;
+  border-bottom: 1px solid #d8ded8;
+}
+
+.section-heading {
+  display: grid;
+  max-width: 760px;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.section-heading h2,
+.section-heading p {
+  margin-bottom: 0;
+}
+
+.section-heading p {
+  color: #46554e;
+}
+
+.section-heading--compact {
+  margin-bottom: 14px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.feature-card,
+.intent-card {
+  display: grid;
+  min-width: 0;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.feature-card {
+  align-content: space-between;
+  min-height: 330px;
+}
+
+.feature-card h3,
+.intent-card h3 {
+  margin-top: 6px;
+  font-size: 1.25rem;
+}
+
+.feature-card p,
+.intent-card p {
+  margin-bottom: 0;
+  color: #3f5048;
+}
+
+.preview-frame {
+  position: relative;
+  display: grid;
+  min-height: 118px;
+  gap: 8px;
+  align-content: end;
+  padding: 14px;
+  overflow: hidden;
+  border: 1px solid #cbd8d1;
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgb(37 76 106 / 12%), rgb(46 138 87 / 10%)),
+    #f8faf7;
+}
+
+.preview-frame::before {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  width: 46px;
+  height: 10px;
+  border-radius: 999px;
+  background: #254c6a;
+  content: "";
+}
+
+.preview-frame span {
+  display: block;
+  height: 10px;
+  border-radius: 999px;
+  background: #d4e2dc;
+}
+
+.preview-frame span:nth-child(1) {
+  width: 82%;
+  background: #254c6a;
+}
+
+.preview-frame span:nth-child(2) {
+  width: 66%;
+}
+
+.preview-frame span:nth-child(3) {
+  width: 46%;
+}
+
+.preview-frame i {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: #bd7424;
+}
+
+.preview-frame[data-category="calculators"] i,
+.preview-frame[data-category="time"] i {
+  background: #2e8a57;
+}
+
+.preview-frame[data-category="developer"] i {
+  background: #7b5aa6;
+}
+
+.evidence-strip {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-left: 4px solid #2e8a57;
+  background: #eef6f0;
+}
+
+.evidence-strip strong {
+  color: #143b2b;
+}
+
+.evidence-strip span {
+  color: #41524a;
+}
+
+.intent-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
 }
 
 .controls {
@@ -508,18 +658,25 @@ h3 {
 
 .page-footer {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
   gap: 18px;
-  align-items: center;
+  align-items: start;
   margin-top: 36px;
   padding-top: 20px;
   border-top: 1px solid #d8ded8;
 }
 
 .page-footer__brand {
+  display: inline-flex;
+  margin-bottom: 8px;
   color: #15231e;
   font-weight: 900;
   text-decoration: none;
+}
+
+.page-footer__intro p {
+  margin-bottom: 0;
+  color: #4c5a53;
 }
 
 .page-footer__links,
@@ -530,7 +687,7 @@ h3 {
 }
 
 .page-footer__links {
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .page-footer__links a,
@@ -553,9 +710,31 @@ h3 {
   background: #254c6a;
 }
 
+.footer-verticals {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.footer-verticals section {
+  min-width: 0;
+}
+
+.footer-verticals h2 {
+  margin-bottom: 8px;
+  color: #17231e;
+  font-size: 0.96rem;
+}
+
+.page-footer__links--legal {
+  grid-column: 1 / -1;
+  padding-top: 16px;
+  border-top: 1px solid #d8ded8;
+}
+
 .content-hero h1 {
   max-width: 760px;
-  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-size: 3.4rem;
   line-height: 1.05;
 }
 
@@ -588,13 +767,13 @@ h3 {
   bottom: 16px;
   left: 16px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   pointer-events: none;
 }
 
 .consent-banner__panel {
   display: grid;
-  width: min(940px, 100%);
+  width: min(560px, 100%);
   gap: 14px;
   padding: 16px;
   border: 1px solid #b9c6c0;
@@ -720,6 +899,21 @@ h3 {
     font-size: 2rem;
     line-height: 1.04;
     word-break: break-word;
+  }
+
+  h2 {
+    font-size: 1.55rem;
+  }
+
+  .content-hero h1 {
+    font-size: 2rem;
+  }
+
+  .feature-grid,
+  .intent-grid,
+  .footer-verticals,
+  .evidence-strip {
+    grid-template-columns: 1fr;
   }
 
   .site-card {

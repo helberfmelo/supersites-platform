@@ -89,7 +89,11 @@ try {
         'name="viewport"',
         'rel="canonical"',
         'hreflang="pt-BR"',
+        'application/ld+json',
         'A curated operating network',
+        'Launch desk',
+        'Top public tools',
+        'Choose by workflow',
         'NetProbe Atlas'
     )
 
