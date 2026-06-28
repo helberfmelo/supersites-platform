@@ -105,7 +105,7 @@ Sprint 9.4 delivered localized trust/legal/support depth in production without a
 
 ## Sprint 9.5 execution evidence
 
-Sprint 9.5 implemented the NetProbe DNS/IP benchmark UX locally without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs, multi-region probes or recurring production workers.
+Sprint 9.5 delivered the NetProbe DNS/IP benchmark UX to production without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs, multi-region probes or recurring production workers.
 
 | Evidence | Value |
 |---|---|
@@ -118,7 +118,11 @@ Sprint 9.5 implemented the NetProbe DNS/IP benchmark UX locally without activati
 | Local preview asset | `/_nuxt/CdSZd5rf.js` |
 | Visual QA | Desktop/mobile screenshots captured from the production build at `artifacts/frontend/sprint-9-5-netprobe-dns-desktop.png` and `artifacts/frontend/sprint-9-5-netprobe-dns-mobile.png` |
 | Broad validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
-| Remote CI/deploy | Pending feature commit, push, Quality Gate, Deploy Dry Run, Fase 9/Sprint 9.5 NetProbe deploy and public smokes |
+| Feature commit | `3fe3732` (`feat: refine netprobe benchmark workflow`) |
+| Remote CI | Quality Gate `28316321439` passed; Deploy Dry Run `28316321508` passed |
+| Production deploy | NetProbe HostGator run `28316402512` passed with Fase 9/Sprint 9.5 label; release `3fe373267c7d6086348ce42bb3aad9ac825d8396-28316402512-1` |
+| Public smokes | NetProbe/API, control-plane/API, Hub aggregate, nine static app assets, MailHealth/SitePulse APIs and live DNS/IP UX smoke passed |
+| Final public asset | `https://opentshost.com/supersites/netprobe-atlas/_nuxt/CgziFN9n.js` |
 
 ## Per-sprint execution rules
 

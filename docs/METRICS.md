@@ -626,7 +626,14 @@ Data-base: 2026-06-27
 | Sprint 9.5 visual QA artifacts | `artifacts/frontend/sprint-9-5-netprobe-dns-desktop.png` and `artifacts/frontend/sprint-9-5-netprobe-dns-mobile.png` |
 | Sprint 9.5 package validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages` |
 | Sprint 9.5 local final gates | Passed: `pnpm validate:public-copy` across 876 HTML files, structure, secrets, deploy dry-run, ci:changes and diff check |
-| Sprint 9.5 remote CI/deploy status | Pending feature commit/push and production deploy closure |
+| Sprint 9.5 feature commit | `3fe3732` (`feat: refine netprobe benchmark workflow`) |
+| Sprint 9.5 remote Quality Gate | `28316321439` passed on head `3fe373267c7d6086348ce42bb3aad9ac825d8396` |
+| Sprint 9.5 remote Deploy Dry Run | `28316321508` passed; only non-blocking Node 20 `actions/upload-artifact@v4.6.2` annotation observed |
+| Sprint 9.5 production deploy | NetProbe HostGator run `28316402512` passed with Fase 9/Sprint 9.5 label |
+| Sprint 9.5 production release | `3fe373267c7d6086348ce42bb3aad9ac825d8396-28316402512-1`; 181 files; 2256573 bytes |
+| Sprint 9.5 final public asset | `https://opentshost.com/supersites/netprobe-atlas/_nuxt/CgziFN9n.js` |
+| Sprint 9.5 public smokes | Passed: NetProbe/API, control-plane/API, Hub aggregate, nine static app assets, MailHealth/SitePulse APIs and live NetProbe DNS/IP UX smoke |
+| Sprint 9.5 remote CI/deploy status | Completed in production |
 | Sprint 9.5 probes/workers/paid activation | 0 activated; coverage disclosure remains bounded to current runtime |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |

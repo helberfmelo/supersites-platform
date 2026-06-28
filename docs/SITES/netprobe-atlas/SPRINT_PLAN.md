@@ -15,7 +15,7 @@ Data-base: 2026-06-28
 - Public control-plane/API supports bounded NetProbe IP/DNS/RDAP/SSL/propagation/port/reachability.
 - Upgrade monitor MVP exists in control-plane but production workers/billing remain gated.
 - Sprint 7.3 benchmark UX is implemented and closed.
-- Sprint 9.5 benchmark-grade DNS/IP UX is implemented and locally validated; feature commit, remote CI/deploy and public smoke closure are pending.
+- Sprint 9.5 benchmark-grade DNS/IP UX is implemented, deployed and publicly smoke-tested: Quality Gate `28316321439`, Deploy Dry Run `28316321508` and NetProbe deploy `28316402512` passed.
 
 ## Scope
 
