@@ -210,6 +210,7 @@ VPS runtime environment variable names:
 ## Obstacles And Contours
 
 - Branch protection is blocked by the current GitHub plan. Continue with monitored `Quality Gate` runs until GitHub Pro, public repo or another approved ruleset path exists.
+- GitHub Actions can fail before any job starts when account billing payments fail or the spending limit is exhausted. Treat those runs as human-gated infrastructure blockers, keep local gates/artifacts current, and record the run id plus annotation in `docs/STATUS.md`.
 - GitHub Actions artifact storage quota can block uploads. Continue by using the job summary as the dry-run audit trail and keep artifact upload best-effort until storage is cleared or quota changes.
 - Nuxt preview must run from `apps/supersite`. Running the built server from the repository root can return 404 for `_nuxt` assets and leave the catalog unhydrated; the preview smoke now catches this.
 - The local package command for the preview smoke uses `pwsh`; Windows PowerShell 5 returned an opaque subprocess exit during Sprint 1.1, while `pwsh` exposed normal logs and exit codes.

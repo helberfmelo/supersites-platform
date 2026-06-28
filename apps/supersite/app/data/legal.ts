@@ -8,6 +8,7 @@ export const legalPageSlugs = [
   'terms',
   'methodology',
   'editorial-policy',
+  'status',
 ] as const
 
 export type LegalPageSlug = (typeof legalPageSlugs)[number]
@@ -1014,6 +1015,141 @@ export const legalPageCatalog: LegalPage[] = [
             heading: 'Korrekturen und Review',
             paragraphs: [
               'Wichtige Seiten sollen ein Review-Datum zeigen und Korrekturen annehmen. Aussagen zu Daten, Policies, Billing oder rechtlichen Pflichten müssen vor Veröffentlichung mit aktuellen offiziellen Quellen geprüft werden.',
+            ],
+          },
+        ],
+      },
+    },
+  },
+  {
+    slug: 'status',
+    localized: {
+      en: {
+        navLabel: 'Status',
+        title: 'Public Status',
+        description: 'Current public availability summary for the SuperSites Hub and product tools on the transitional HostGator domain.',
+        updatedLabel: 'Reviewed June 28, 2026',
+        sections: [
+          {
+            heading: 'What is available',
+            paragraphs: [
+              'The Hub, NetProbe Atlas and the nine product apps are published under the temporary `/supersites/` URL family with HTTPS, localized pages, public sitemaps and static release rollback paths.',
+            ],
+          },
+          {
+            heading: 'Current operating limits',
+            paragraphs: [
+              'The public tools provide free, no-signup utility workflows first. Advanced accounts, paid upgrades, ad delivery, external analytics, recurring workers and automated provider imports are not active on public pages yet.',
+            ],
+          },
+          {
+            heading: 'What is checked',
+            paragraphs: [
+              'Public validation uses release artifacts, browser smoke checks, API health checks where applicable, crawler evidence and documentation records before a surface is treated as ready for wider traffic.',
+            ],
+          },
+        ],
+      },
+      'pt-br': {
+        navLabel: 'Status',
+        title: 'Status Público',
+        description: 'Resumo atual de disponibilidade pública do SuperSites Hub e das ferramentas no domínio transitório da HostGator.',
+        updatedLabel: 'Revisado em 28 de junho de 2026',
+        sections: [
+          {
+            heading: 'O que está disponível',
+            paragraphs: [
+              'O Hub, o NetProbe Atlas e os nove apps de produto estão publicados na família temporária de URLs `/supersites/`, com HTTPS, páginas localizadas, sitemaps públicos e caminhos de reversão por release estático.',
+            ],
+          },
+          {
+            heading: 'Limites operacionais atuais',
+            paragraphs: [
+              'As ferramentas públicas entregam primeiro fluxos gratuitos sem cadastro. Contas avançadas, upgrades pagos, anúncios, analytics externo, workers recorrentes e importações automatizadas de provedores ainda não estão ativos nas páginas públicas.',
+            ],
+          },
+          {
+            heading: 'O que é verificado',
+            paragraphs: [
+              'A validação pública usa artefatos de release, checagens de navegador, saúde de APIs quando aplicável, evidência de crawler e registros documentais antes de tratar uma superfície como pronta para mais tráfego.',
+            ],
+          },
+        ],
+      },
+      es: {
+        navLabel: 'Estado',
+        title: 'Estado Público',
+        description: 'Resumen actual de disponibilidad pública del SuperSites Hub y sus herramientas en el dominio transitorio de HostGator.',
+        updatedLabel: 'Revisado el 28 de junio de 2026',
+        sections: [
+          {
+            heading: 'Qué está disponible',
+            paragraphs: [
+              'El Hub, NetProbe Atlas y las nueve apps de producto están publicados bajo la familia temporal de URLs `/supersites/`, con HTTPS, páginas localizadas, sitemaps públicos y reversión por release estático.',
+            ],
+          },
+          {
+            heading: 'Límites operativos actuales',
+            paragraphs: [
+              'Las herramientas públicas entregan primero flujos gratuitos sin registro. Cuentas avanzadas, upgrades pagos, anuncios, analytics externo, workers recurrentes e importaciones automatizadas aún no están activos en páginas públicas.',
+            ],
+          },
+          {
+            heading: 'Qué se verifica',
+            paragraphs: [
+              'La validación pública usa artefactos de release, pruebas de navegador, salud de APIs cuando aplica, evidencia de crawler y registros documentales antes de tratar una superficie como lista para más tráfico.',
+            ],
+          },
+        ],
+      },
+      fr: {
+        navLabel: 'Statut',
+        title: 'Statut public',
+        description: 'Résumé de disponibilité publique du SuperSites Hub et des outils sur le domaine transitoire HostGator.',
+        updatedLabel: 'Révisé le 28 juin 2026',
+        sections: [
+          {
+            heading: 'Ce qui est disponible',
+            paragraphs: [
+              'Le Hub, NetProbe Atlas et les neuf applications produit sont publiés sous la famille temporaire `/supersites/`, avec HTTPS, pages localisées, sitemaps publics et chemins de retour par release statique.',
+            ],
+          },
+          {
+            heading: 'Limites opérationnelles actuelles',
+            paragraphs: [
+              'Les outils publics fournissent d’abord des workflows gratuits sans compte. Comptes avancés, offres payantes, publicité, analytics externe, workers récurrents et imports automatisés ne sont pas actifs sur les pages publiques.',
+            ],
+          },
+          {
+            heading: 'Ce qui est vérifié',
+            paragraphs: [
+              'La validation publique utilise artefacts de release, contrôles navigateur, santé API si applicable, preuves de crawler et dossiers documentés avant de considérer une surface prête pour plus de trafic.',
+            ],
+          },
+        ],
+      },
+      de: {
+        navLabel: 'Status',
+        title: 'Öffentlicher Status',
+        description: 'Aktuelle öffentliche Verfügbarkeitsübersicht für SuperSites Hub und Produkt-Tools auf der temporären HostGator-Domain.',
+        updatedLabel: 'Geprüft am 28. Juni 2026',
+        sections: [
+          {
+            heading: 'Was verfügbar ist',
+            paragraphs: [
+              'Hub, NetProbe Atlas und die neun Produkt-Apps sind unter der temporären URL-Familie `/supersites/` veröffentlicht, mit HTTPS, lokalisierten Seiten, öffentlichen Sitemaps und statischen Release-Rückwegen.',
+            ],
+          },
+          {
+            heading: 'Aktuelle Betriebsgrenzen',
+            paragraphs: [
+              'Die öffentlichen Tools liefern zuerst kostenlose Workflows ohne Pflichtkonto. Erweiterte Konten, bezahlte Upgrades, Anzeigen, externe Analytics, wiederkehrende Worker und automatisierte Provider-Imports sind auf öffentlichen Seiten noch nicht aktiv.',
+            ],
+          },
+          {
+            heading: 'Was geprüft wird',
+            paragraphs: [
+              'Öffentliche Validierung nutzt Release-Artefakte, Browser-Prüfungen, API-Gesundheit falls relevant, Crawler-Evidenz und Dokumentation, bevor eine Oberfläche für mehr Traffic bereit gilt.',
             ],
           },
         ],

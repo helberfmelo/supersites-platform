@@ -39,6 +39,8 @@
     "test:e2e:pixelbatch": "playwright test -c playwright.pixelbatch.config.ts",
     "test:e2e:docshift": "playwright test -c playwright.docshift.config.ts",
     "test:e2e:report": "playwright show-report artifacts/playwright-report",
+    "benchmark:crawl": "node scripts/benchmark-crawl.mjs --mode=full",
+    "benchmark:crawl:quick": "node scripts/benchmark-crawl.mjs --mode=quick",
     "dev:supersite": "pnpm --filter @supersites/supersite dev",
     "dev:netprobe": "pnpm --filter @supersites/netprobe-atlas dev",
     "dev:calcharbor": "pnpm --filter @supersites/calcharbor dev",

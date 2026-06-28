@@ -15,6 +15,21 @@ This matrix turns `docs/BENCHMARK_FRONTEND_REFINEMENT_PROMPT.md`, the available 
 | AdSense readiness | 52/100 | Improve content depth, legal/trust pages and safe inert placements before any ad request |
 | Trust/legal | 50/100 | Expand legal/contact/methodology/editorial pages and keep final legal acceptance human-gated |
 
+## Crawler baseline after Sprint 9.2
+
+Sprint 9.2 added a Playwright benchmark crawler for the live portfolio and stored the first quick baseline in `docs/benchmarks/our-sites/latest-baseline.md`.
+
+| Signal | Result |
+|---|---|
+| Quick crawl coverage | 95 routes across Hub, NetProbe Atlas and 9 product apps |
+| Viewport checks | 190 desktop/mobile checks |
+| Internal broken links | 0 |
+| Horizontal overflow | 0 |
+| Missing JSON-LD schema gaps | 138, mainly non-rich/legal/content surfaces |
+| Robots/sitemap fetch gaps | 11, caused by production `robots.txt` returning HTTP 500 before redeploy |
+| Hub public status gap | `/supersites/en/status` returned HTTP 500 before redeploy |
+| Local remediation prepared | Static `robots.txt` files and Hub status content added to artifacts |
+
 ## Screenshot inventory
 
 | File | Related site | Observed useful pattern |

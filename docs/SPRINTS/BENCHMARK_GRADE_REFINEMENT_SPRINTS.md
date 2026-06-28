@@ -45,6 +45,23 @@ This block is therefore mapped as Fase 9 - Benchmark-Grade Refinement.
 | BGR-HUB-SEO-AIO | Sprint 9.15 | SuperSites Hub, rich footers, related tools and SEO/AIO clusters | Hub feels public-product grade; top tools/screenshots/related links/content clusters are localized and non-deceptive |
 | BGR-PERF-ADSENSE-CLOSURE | Sprint 9.16 | Performance, AdSense-safe layout, production rollout and closure | Lighthouse/PageSpeed targets or exceptions recorded; ad/support spaces are safe and inert; deploy/smoke/run IDs close the phase |
 
+## Sprint 9.2 execution evidence
+
+Sprint 9.2 delivered the local benchmark crawler baseline without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs or recurring production workers.
+
+| Evidence | Value |
+|---|---|
+| Crawler script | `scripts/benchmark-crawl.mjs` |
+| Commands | `pnpm benchmark:crawl:quick`, `pnpm benchmark:crawl` |
+| Published baseline doc | `docs/benchmarks/our-sites/latest-baseline.md` |
+| Primary artifact run id | `2026-06-28T00-42-36-813Z` |
+| Validation artifact run id | `2026-06-28T00-56-38-742Z` |
+| Quick crawl coverage | 95 routes, 190 viewport checks |
+| Recorded gaps | 166 total; 0 internal broken links; 0 horizontal overflow; 11 robots/sitemap fetch gaps |
+| Production gaps found | Hub `/en/status` and `/robots.txt` returned HTTP 500 before deploy |
+| Local artifact remediation | Hub `/status` content and static `robots.txt` files prepared for Hub, NetProbe and 9 product apps |
+| Remote CI/deploy status | Blocked before steps by GitHub Actions billing/spending-limit pending human action |
+
 ## Per-sprint execution rules
 
 Each Sprint 9.x must:

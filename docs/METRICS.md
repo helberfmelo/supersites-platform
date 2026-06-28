@@ -568,6 +568,16 @@ Data-base: 2026-06-27
 | Sprint 9.1 public smokes | Passed pre-commit: Hub aggregate, control-plane/API and NetProbe |
 | Sprint 9.1 docs closing commit | `d3965a0` |
 | Sprint 9.1 docs-only Quality Gate run | `28306271571` blocked before steps by GitHub billing/spending-limit annotation |
+| Sprint 9.2 benchmark crawler | Implemented in `scripts/benchmark-crawl.mjs`; quick/full package scripts added |
+| Sprint 9.2 primary crawler run | `2026-06-28T00-42-36-813Z`; 95 routes, 190 viewport checks, 166 gaps |
+| Sprint 9.2 validation crawler run | `2026-06-28T00-56-38-742Z`; 95 routes, 190 viewport checks, 166 gaps |
+| Sprint 9.2 public crawler gaps | 0 internal broken links, 0 horizontal overflow, 11 robots/sitemap fetch gaps |
+| Sprint 9.2 production gap check | Hub `/en/status` 500, Hub `/robots.txt` 500, Hub `/sitemap.xml` 200 before redeploy |
+| Sprint 9.2 local artifact remediation | Hub status route plus static `robots.txt` for Hub, NetProbe and 9 product apps |
+| Sprint 9.2 local artifact builds | Passed for Hub, NetProbe and 9 product apps |
+| Sprint 9.2 local final gates | Passed: Supersite test/build/preview, benchmark crawler, structure, secrets, deploy dry-run, ci:changes and diff check |
+| Sprint 9.2 public smokes before push | Passed: Hub aggregate, control-plane/API and NetProbe; direct Hub status/robots gaps remain until deploy |
+| Sprint 9.2 remote CI/deploy status | Pending commit/push; expected blocker remains GitHub Actions billing/spending-limit until human action |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |
 | Real donation payments activated by Fase 9 planning | 0 planned before explicit gates |

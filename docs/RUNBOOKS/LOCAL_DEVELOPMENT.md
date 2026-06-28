@@ -327,6 +327,23 @@ pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\build-control-plane-hostga
 
 The artifact lives under `artifacts/control-plane-hostgator/`, excludes `.env` and includes Composer production dependencies. Public deploy writes release `.env` remotely from secrets; do not copy real credentials into the artifact.
 
+## Benchmark crawler
+
+Run the production-readiness crawler against the public transitional URLs:
+
+```powershell
+pnpm benchmark:crawl:quick
+pnpm benchmark:crawl
+```
+
+Use quick mode for sprint validation and full mode before a benchmark-grade closure or deploy batch. To refresh the tracked baseline document, run:
+
+```powershell
+pnpm exec node scripts/benchmark-crawl.mjs --mode=quick --write-docs
+```
+
+Crawler artifacts are written under `artifacts/benchmark-crawl/<run-id>/`. The script captures desktop/mobile screenshots and records title, description, canonical, hreflang, schema, console errors, internal links, robots/sitemap status, simple timing proxies and overflow checks. It must not log in, submit private payloads, activate ads, checkout, donations, external analytics, paid APIs, workers or crons.
+
 ## Local smoke
 
 ```powershell

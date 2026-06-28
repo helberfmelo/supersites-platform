@@ -365,13 +365,13 @@ Sprint 9.1 - Roadmap benchmark-grade e rotulos de deploy
 - Objetivo: converter a auditoria live em roadmap executavel e fazer os workflows manuais de deploy registrarem Fase/Sprint nos nomes e logs dos runs, mantendo o Deploy Dry Run automatico compativel com `push`.
 - Entregas: `docs/SPRINTS/BENCHMARK_GRADE_REFINEMENT_SPRINTS.md`, atualizacoes de `docs/ROADMAP.md`, `docs/STATUS.md`, `docs/METRICS.md`, `docs/BENCHMARK_MATRIX.md`, runbooks afetados e workflows `.github/workflows/deploy-*.yml`.
 - Validacao: docs/workflow-only, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, smokes publicos aplicaveis, push e monitoramento de Quality Gate/Deploy Dry Run.
-- Status: em execucao nesta entrega.
+- Status: concluida. O roadmap Fase 9 foi criado, os workflows manuais de deploy receberam inputs/logs Fase/Sprint, o Deploy Dry Run automatico foi restaurado para `push`, e a validacao remota final do fechamento docs-only ficou bloqueada por billing/limite do GitHub Actions ja registrado em `docs/HUMAN_ACTION_REQUIRED.md`.
 
 Sprint 9.2 - Crawler, screenshots e baseline tecnico
 - Simbolico: BGR-CRAWLER-BASELINE.
 - Objetivo: criar crawler Playwright para Hub, 10 sites, ferramentas e rotas EN/PT-BR/ES/FR/DE em desktop/mobile, com screenshots, console errors, links, canonical, hreflang, sitemap, robots, title, description, schema e baseline Lighthouse/PageSpeed local.
 - Validacao: crawler deterministico, artefatos em `docs/benchmarks/our-sites` ou `artifacts/`, relatorio de gaps e gates locais/CI.
-- Status: planejada.
+- Status: concluida localmente nesta entrega. O crawler `scripts/benchmark-crawl.mjs` e scripts `benchmark:crawl*` foram adicionados, o baseline quick foi registrado em `docs/benchmarks/our-sites/latest-baseline.md`, artifacts locais foram gerados para Hub, NetProbe e nove apps, e `robots.txt` estatico + rota Hub `/status` foram preparados nos artifacts. Producao ainda responde 500 para Hub `/en/status` e `/robots.txt` ate novo deploy real; Quality Gate/Deploy Dry Run remotos seguem bloqueados pelo billing/limite GitHub Actions.
 
 Sprint 9.3 - Localizacao global e copia publica P0
 - Simbolico: BGR-I18N-COPY-P0.
