@@ -1120,7 +1120,10 @@ Na Sprint 8.6, a Fase 8 foi fechada em producao: o Hub e os nove apps estaticos 
   - Validacao local passou: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation.
   - Smokes publicos pre-commit passaram: `pnpm deploy:smoke-supersite-public` validou Hub, assets dos nove apps publicados e APIs MailHealth/SitePulse; `pnpm deploy:smoke-control-plane-public` passou; `pnpm deploy:smoke-netprobe-public` validou NetProbe e API publica.
   - Esta sprint nao altera UI publica dos produtos, nao aciona deploy real e nao ativa anuncio real, AdSense/GTM/GA4, Search Console import, checkout, billing, pagamento, doacao, afiliado, API paga, upload/storage, worker/cron, analytics externo ou direct-root mapping.
-  - Commit, push, Quality Gate e Deploy Dry Run remotos serao registrados no fechamento desta sprint apos monitoramento.
+  - Commit documental/CI inicial `cdc29e6` (`docs: add benchmark-grade refinement roadmap`) foi publicado; `Quality Gate` `28305966110` passou com matriz completa, mas o `Deploy Dry Run` `28305965792` falhou antes de jobs por incompatibilidade do `run-name`/inputs adicionados ao workflow de dry-run.
+  - Correcoes CI publicadas: `0b11be0` (`ci: fix deploy dry-run run name on push`) e `fba2efb` (`ci: keep deploy dry-run push compatible`) mantiveram `Quality Gate` verde nos runs `28306046742` e `28306128602`, mas ainda falharam o `Deploy Dry Run` automatico (`28306046502`, `28306128428`) antes de jobs.
+  - Correcao final `a53f8e1` (`ci: restore deploy dry-run push trigger`) restaurou o workflow de dry-run para o formato push-compatible; `Deploy Dry Run` `28306159578` passou e publicou o plano no job summary. O upload de artifact registrou a anotacao conhecida de quota de storage, sem bloquear o run.
+  - `Quality Gate` `28306159592` no commit `a53f8e1` executou todos os jobs substantivos com sucesso na primeira tentativa, mas o job `Quality summary` retornou falha sem logs disponiveis; reruns do mesmo run falharam em setup sem passos. O fechamento docs-only desta sprint registra o estado final e deve substituir esse run como validacao do head.
 
 ## Pendencias criticas
 

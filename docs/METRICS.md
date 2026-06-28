@@ -561,10 +561,13 @@ Data-base: 2026-06-27
 | Fase 9 P0 sequence | Crawler baseline, localization/copy cleanup, trust/legal/support, NetProbe P0, tool-first workflows |
 | Deploy workflow phase/sprint labels | Manual deploy run names and logs implemented during Sprint 9.1; Deploy Dry Run kept default push-compatible naming |
 | Sprint 9.1 local final gates | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
-| Sprint 9.1 feature commit | Pending |
-| Sprint 9.1 Quality Gate run | Pending |
-| Sprint 9.1 Deploy Dry Run run | Pending |
+| Sprint 9.1 feature commit | `cdc29e6` |
+| Sprint 9.1 CI correction commits | `0b11be0`, `fba2efb`, `a53f8e1` |
+| Sprint 9.1 Quality Gate runs | `28305966110`, `28306046742`, `28306128602` passed; `28306159592` failed in summary/setup despite substantive jobs passing in first attempt |
+| Sprint 9.1 Deploy Dry Run runs | `28306159578` passed after restoring push-compatible workflow; earlier dry-run runs `28305965792`, `28306046502`, `28306128428` failed before jobs during labeling correction |
 | Sprint 9.1 public smokes | Passed pre-commit: Hub aggregate, control-plane/API and NetProbe |
+| Sprint 9.1 docs closing commit | Pending |
+| Sprint 9.1 docs-only Quality Gate run | Pending |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |
 | Real donation payments activated by Fase 9 planning | 0 planned before explicit gates |
