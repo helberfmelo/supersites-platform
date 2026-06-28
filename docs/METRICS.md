@@ -640,8 +640,15 @@ Data-base: 2026-06-27
 | Sprint 9.6 local preview asset | `/_nuxt/BtAiHTGx.js` validated by `pnpm validate:qrroute-preview` |
 | Sprint 9.6 visual QA artifacts | Playwright screenshots in `artifacts/playwright-qrroute-report/data/` for QRRoute home desktop, UTM mobile and privacy mobile |
 | Sprint 9.6 package validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages` |
-| Sprint 9.6 public copy/structure/security gates | Passed locally: `pnpm validate:public-copy` across 876 HTML files, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run` |
-| Sprint 9.6 remote CI/deploy status | Pending feature commit, push, Quality Gate, Deploy Dry Run, QRRoute deploy and public smokes |
+| Sprint 9.6 public copy/structure/security gates | Passed locally: `pnpm validate:public-copy` across 876 HTML files, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
+| Sprint 9.6 feature commit | `a6562c3` (`feat: refine qrroute benchmark generator`) |
+| Sprint 9.6 remote Quality Gate | `28317041432` passed on head `a6562c308416f693dd2a9bd15294a72f6a7f319b` |
+| Sprint 9.6 remote Deploy Dry Run | `28317041430` passed |
+| Sprint 9.6 production deploy | QRRoute Static App HostGator run `28317125920` passed with Fase 9/Sprint 9.6 label |
+| Sprint 9.6 production release | `a6562c308416f693dd2a9bd15294a72f6a7f319b-28317125920-1`; 175 files; 2054934 bytes |
+| Sprint 9.6 final public asset | `https://opentshost.com/supersites/qrroute/_nuxt/COqZLQg5.js` |
+| Sprint 9.6 public smokes | Passed: QRRoute static app, Hub aggregate, control-plane/API and live QRRoute home/UTM UX smoke |
+| Sprint 9.6 remote CI/deploy status | Completed in production |
 | Sprint 9.6 dynamic/paid activation | 0 activated; redirect/short-link service remains foundation gated and no payload analytics/storage was added |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |

@@ -47,5 +47,5 @@ Data-base: 2026-06-27
 - Added `QRRouteWorkbench` as the shared above-fold generator for the home and tool detail pages.
 - The workbench includes QR/barcode/UTM/vCard/Wi-Fi/preview tabs, dominant SVG preview, payload summary, output copy/download, local privacy strip and inert dynamic/paid workflow panel.
 - Tool detail pages now reuse the same workbench with the selected slug while preserving related tools, guide, FAQ, canonical/hreflang and schema.
-- Local validation passed with `pnpm test:qrroute`, `pnpm build:qrroute`, `pnpm validate:qrroute-preview`, `pnpm test:e2e:qrroute`, `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets` and `pnpm deploy:dry-run`.
-- Production deploy and public smoke evidence will be recorded after the Sprint 9.6 feature commit and Fase 9/Sprint 9.6 deploy run.
+- Local validation passed with `pnpm test:qrroute`, `pnpm build:qrroute`, `pnpm validate:qrroute-preview`, `pnpm test:e2e:qrroute`, `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` and `git diff --check`.
+- Production evidence: feature commit `a6562c3`, Quality Gate `28317041432`, Deploy Dry Run `28317041430`, QRRoute deploy `28317125920`, release `a6562c308416f693dd2a9bd15294a72f6a7f319b-28317125920-1`, public asset `https://opentshost.com/supersites/qrroute/_nuxt/COqZLQg5.js`, QRRoute/Hub/control-plane smokes and live QRRoute home/UTM UX smoke passed.

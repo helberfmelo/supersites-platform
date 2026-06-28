@@ -138,8 +138,12 @@ Sprint 9.6 delivered the QRRoute tool-first generator locally without activating
 | Local frontend validation | Passed: `pnpm test:qrroute`, `pnpm build:qrroute`, `pnpm validate:qrroute-preview`, `pnpm test:e2e:qrroute` |
 | Local preview asset | `/_nuxt/BtAiHTGx.js` |
 | Visual QA | Desktop/mobile screenshots captured by Playwright in `artifacts/playwright-qrroute-report/data/` |
-| Broad validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run` |
-| Remote CI/deploy status | Pending feature commit, push, Quality Gate, Deploy Dry Run, QRRoute deploy and public smokes |
+| Broad validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
+| Feature commit | `a6562c3` (`feat: refine qrroute benchmark generator`) |
+| Remote CI | Quality Gate `28317041432` passed; Deploy Dry Run `28317041430` passed |
+| Production deploy | QRRoute Static App HostGator run `28317125920` passed with Fase 9/Sprint 9.6 label; release `a6562c308416f693dd2a9bd15294a72f6a7f319b-28317125920-1` |
+| Public smokes | QRRoute static app, Hub aggregate, control-plane/API and live QRRoute home/UTM UX smoke passed |
+| Final public asset | `https://opentshost.com/supersites/qrroute/_nuxt/COqZLQg5.js` |
 
 ## Per-sprint execution rules
 

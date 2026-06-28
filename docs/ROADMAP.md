@@ -395,7 +395,7 @@ Sprint 9.6 - QRRoute tool-first generator
 - Simbolico: BGR-QRROUTE-P0.
 - Objetivo: abrir QRRoute diretamente no gerador com tabs QR/barcode/UTM/vCard/Wi-Fi, preview dominante, copy/download, privacidade local e upsell dinamico inerte.
 - Validacao: testes/build/preview/Playwright QRRoute, artifact gate, smoke publico e redirect/abuse gates preservados.
-- Status: implementada e validada localmente; aguardando feature commit, Quality Gate, Deploy Dry Run, deploy QRRoute Fase 9/Sprint 9.6 e smokes publicos para fechamento em producao.
+- Status: concluida em producao. O QRRoute recebeu workbench compartilhado acima da dobra na home e nas paginas de ferramenta, com tabs de fluxo, preview SVG dominante, payload summary, copy/download, faixa de privacidade e upsell dinamico inerte sem ativar short links, QR dinamico, payload analytics, ads, billing ou API paga. Validacao local passou com testes/build/preview/Playwright QRRoute, screenshots, package gates, `validate:public-copy`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes` e `git diff --check`. Commit `a6562c3`, Quality Gate `28317041432`, Deploy Dry Run `28317041430`, deploy QRRoute Fase 9/Sprint 9.6 `28317125920`, release `a6562c308416f693dd2a9bd15294a72f6a7f319b-28317125920-1`, smokes publicos e smoke live de UX passaram.
 
 Sprint 9.7 - DocShift PDF workbench
 - Simbolico: BGR-DOCSHIFT-P0.
