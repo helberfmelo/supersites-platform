@@ -79,7 +79,7 @@ Sprint 9.13 delivered TimeNexus world clock and planning density to production w
 
 ## Sprint 9.14 execution evidence
 
-Sprint 9.14 delivered DevUtility Lab home workbench density locally and is pending the feature push, remote CI, labeled HostGator deploy and public smokes.
+Sprint 9.14 delivered DevUtility Lab home workbench density to production without activating saved snippets, persistent history, workspaces, paid APIs, real ads, checkout, billing, donations, affiliates, external analytics or recurring production workers.
 
 | Evidence | Value |
 |---|---|
@@ -90,7 +90,10 @@ Sprint 9.14 delivered DevUtility Lab home workbench density locally and is pendi
 | Visual QA | Screenshots captured at `artifacts/playwright-devutility-workbench/sprint-9-14-devutility-desktop.png` and `artifacts/playwright-devutility-workbench/sprint-9-14-devutility-mobile.png` |
 | Public copy coverage | `pnpm validate:public-copy` passed across 891 HTML files |
 | Local final gates | Passed: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
-| Remote CI/deploy status | Pending feature commit, Quality Gate, Deploy Dry Run, deploy, public smokes and docs-only closure |
+| Remote CI/deploy status | Passed: feature commit `0f05619`, Quality Gate `28331265610`, Deploy Dry Run `28331265593`, HostGator deploy `28331371180` |
+| Production release | `0f056196427d07355a55761aa05409d406d154e1-28331371180-1`; asset `https://opentshost.com/supersites/devutility-lab/_nuxt/z8AMOABT.js`; 202 files / 2333006 bytes |
+| Public smokes | Passed: static app DevUtility Lab, aggregate Hub/control-plane/API and control-plane |
+| Live UX smoke | Passed on `/supersites/devutility-lab/en/` and `/supersites/devutility-lab/pt-br/`; screenshots at `artifacts/playwright-devutility-workbench/sprint-9-14-devutility-live-desktop.png` and `artifacts/playwright-devutility-workbench/sprint-9-14-devutility-live-mobile.png` |
 | Paid/external activation | 0 activated: no saved snippets, persistent history, workspaces, API, billing, ads, external analytics, worker/cron or storage |
 
 | Evidence | Value |

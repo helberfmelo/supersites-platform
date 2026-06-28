@@ -742,7 +742,10 @@ Data-base: 2026-06-28
 | Sprint 9.14 local preview asset | `/_nuxt/Dv85Djbh.js` validated by `pnpm validate:devutility-preview` |
 | Sprint 9.14 visual QA artifacts | `artifacts/playwright-devutility-workbench/sprint-9-14-devutility-desktop.png` and `artifacts/playwright-devutility-workbench/sprint-9-14-devutility-mobile.png` |
 | Sprint 9.14 public copy/structure/security gates | Passed locally: `pnpm validate:public-copy` across 891 HTML files, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
-| Sprint 9.14 live/remote status | Pending feature commit, push, Quality Gate, Deploy Dry Run, HostGator deploy and public smokes |
+| Sprint 9.14 remote CI/deploy status | Passed: feature commit `0f05619`, Quality Gate `28331265610`, Deploy Dry Run `28331265593`, HostGator deploy `28331371180` |
+| Sprint 9.14 production release | `0f056196427d07355a55761aa05409d406d154e1-28331371180-1`; asset `https://opentshost.com/supersites/devutility-lab/_nuxt/z8AMOABT.js`; 202 files / 2333006 bytes |
+| Sprint 9.14 public smokes | Passed: static app DevUtility Lab, aggregate Hub/control-plane/API and control-plane |
+| Sprint 9.14 live UX privacy smoke | Passed: home workbench before catalog, formatter run, tree view `$.service: supersites`, session-only recents, `analyticsEvents: 0`, `dataLayerEvents: 0`, empty `localStorage`/`sessionStorage`, 0 console errors, no desktop/mobile overflow |
 | Sprint 9.14 developer-workflow paid activation | 0 activated; DevUtility remains browser-side with no saved snippets, persistent history, workspaces, API, billing, ads, external analytics or storage |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |

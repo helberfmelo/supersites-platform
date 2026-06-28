@@ -42,5 +42,5 @@ Data-base: 2026-06-27
 
 - Moved the benchmark pattern from tool pages into the home first fold with a dense technical workbench before the catalog.
 - Added category rail, mode selector, sample data, result metrics, tree/error views, copy/download/clear and session-only recents.
-- Local visual QA screenshots are in `artifacts/playwright-devutility-workbench/` and cover desktop EN plus mobile PT-BR.
+- Local and live visual QA screenshots are in `artifacts/playwright-devutility-workbench/` and cover desktop EN plus mobile PT-BR.
 - The implementation remains browser-side and pattern-derived only; no third-party copy, code, assets or exact competitor layout was reused.

@@ -56,10 +56,10 @@ Medium; ad/support blocks must not sit near editors, errors or copy buttons.
 
 ## Sprint 9.14 benchmark-grade status
 
-- Home catalog-first gap addressed locally: `DevUtilityWorkbench` now appears before search/catalog with dense category rail and a selected tool ready to run.
+- Home catalog-first gap addressed in production: `DevUtilityWorkbench` now appears before search/catalog with dense category rail and a selected tool ready to run.
 - The home workbench includes editor/result split, example preset, reset/clear/run, output/tree/error views, copy/download controls and a full-tool-page link.
 - Recent tools are session-only in memory; no snippet, result, recent list or payload is persisted or sent to analytics/API from the home workbench.
-- Local validation passed with DevUtility tests, build, preview smoke, Playwright, public-copy, structure, secrets, deploy dry-run, ci:changes, diff check and desktop/mobile screenshots in `artifacts/playwright-devutility-workbench/`.
+- Local validation, Quality Gate, Deploy Dry Run, labeled HostGator deploy and public/live smokes passed; screenshots are in `artifacts/playwright-devutility-workbench/`.
 
 ## Dashboard backlog
 
