@@ -28,6 +28,7 @@ const sample: InvoiceCraftDocumentInput = {
   terms: 'Due on receipt.',
   itemsRaw: 'Workflow setup | 1 | 950\nTemplate cleanup | 3 | 125\nReview call | 2 | 90',
   discountAmount: '50',
+  shippingAmount: '0',
   adjustmentLabel: 'Manual tax/adjustment',
   adjustmentAmount: '25',
   notes: 'Generated locally.',
@@ -69,8 +70,10 @@ describe('InvoiceCraft MVP', () => {
     expect(invoice.document?.kind).toBe('invoice')
     expect(invoice.document?.subtotal).toBe(1505)
     expect(invoice.document?.discountAmount).toBe(50)
+    expect(invoice.document?.shippingAmount).toBe(0)
     expect(invoice.document?.adjustmentAmount).toBe(25)
     expect(invoice.document?.total).toBe(1480)
+    expect(invoice.output).toContain('Shipping/freight')
     expect(invoice.output).toContain('Storage: local browser session only')
     expect(invoice.output).toContain('Tax/legal note')
 

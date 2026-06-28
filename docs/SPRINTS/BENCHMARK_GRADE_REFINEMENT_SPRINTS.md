@@ -183,6 +183,23 @@ Sprint 9.8 delivered the PixelBatch image workbench to production without activa
 | Production deploy | Passed: Fase 9/Sprint 9.8 PixelBatch static app deploy `28318554712`, release `9ce7df79eda8d034520d92d9df9a878e84df5c80-28318554712-1` |
 | Public smoke | Passed: PixelBatch app asset `https://opentshost.com/supersites/pixelbatch/_nuxt/CITr2M7k.js`, aggregate Hub smoke, control-plane smoke and live workbench/image-compressor/mobile UX smoke |
 
+## Sprint 9.9 execution evidence
+
+Sprint 9.9 delivered the InvoiceCraft editor-first workflow locally without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs, payment links, official fiscal numbering, jurisdictional tax automation, saved clients/products, recurrence, teams or recurring production workers.
+
+| Evidence | Value |
+|---|---|
+| InvoiceCraft pages refined | Home `/en` plus all localized `/tools/<slug>` pages |
+| Workbench structure | Shared `InvoiceCraftWorkbench` with invoice/quote/receipt tabs, editable item rows, currency/locale controls, discount, shipping/freight, manual tax/adjustment, snapshot, local PDF, copy summary and related documents |
+| Home above-fold behavior | Invoice Builder workbench opens before search/catalog; users can edit a complete document and export a PDF without signup |
+| Tool-page behavior | Each detail page reuses the same workbench with the route tool selected, preserving breadcrumb, hero, guide, FAQ, canonical, hreflang and schema |
+| Privacy/trust additions | Browser-session-only messaging, no-storage checks, sanitized analytics limited to route/tool metadata and explicit tax/legal review copy |
+| Local frontend validation | Passed: `pnpm test:invoicecraft`, `pnpm build:invoicecraft`, `pnpm validate:invoicecraft-preview`, `pnpm test:e2e:invoicecraft` |
+| Local preview asset | `/_nuxt/DV3VL-kb.js` |
+| Visual QA | Desktop/mobile screenshots captured by Playwright in `artifacts/playwright-invoicecraft-report/data/` |
+| Remote CI | Pending feature commit and push |
+| Production deploy | Pending Fase 9/Sprint 9.9 static app deploy after Quality Gate and Deploy Dry Run pass |
+
 ## Per-sprint execution rules
 
 Each Sprint 9.x must:

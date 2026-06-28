@@ -38,3 +38,16 @@ Data-base: 2026-06-27
 - Added template tabs, document snapshot, local PDF/download flow, copy text summary, use-case guidance, related document links and gated paid-workflow prompts.
 - Local validation passed with `pnpm test:invoicecraft`, `pnpm build:invoicecraft`, `pnpm validate:invoicecraft-preview`, `pnpm test:e2e:invoicecraft`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` and `git diff --check`.
 - Remote Quality Gate `28288971344`, Deploy Dry Run `28288971346` and public Hub/control-plane/NetProbe smokes passed before Sprint 7.9.
+
+## Benchmark-grade sprint
+
+- Symbol: BGR-INVOICECRAFT-P0.
+- Real number: Sprint 9.9.
+- Status: local validation complete; feature commit, remote CI, deploy and public smoke pending.
+
+## Sprint 9.9 execution notes
+
+- `InvoiceCraftWorkbench` now powers the home and all localized tool pages with invoice/quote/receipt tabs, editable line rows, locale/currency controls, discount, shipping/freight, manual tax/adjustment fields, document snapshot, local PDF download, copy summary, no-storage privacy copy, inert paid workflow and related documents.
+- The home opens with Invoice Builder before the catalog, while tool pages keep canonical/hreflang/schema, guide sections, FAQ and review links around the shared workbench.
+- Local validation passed: `pnpm test:invoicecraft`, `pnpm build:invoicecraft`, `pnpm validate:invoicecraft-preview` and `pnpm test:e2e:invoicecraft`; Playwright screenshots were inspected for home desktop, editor mobile and privacy mobile.
+- No account, saved client/product, storage, recurrence, branding checkout, payment link, webhook, fiscal numbering, jurisdictional tax automation, billing, ad serving, external analytics or production worker was activated.

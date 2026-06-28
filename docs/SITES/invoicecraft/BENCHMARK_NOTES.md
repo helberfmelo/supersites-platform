@@ -31,3 +31,9 @@ Data-base: 2026-06-27
 - Improve form/preview ergonomics and PDF download clarity.
 - Plan templates and local autosave carefully without storing sensitive data by default.
 - Strengthen legal/tax disclaimers per locale.
+
+## Sprint 9.9 benchmark-grade response
+
+- The editor and live document preview are now the first substantial experience on the home and tool pages.
+- The free flow supports editable item rows, currency, locale context, discount, shipping/freight, manual tax/adjustment and local PDF export.
+- Paid SaaS behaviors remain visibly planned but inactive: saved clients/products, recurrence, branding, teams, payment links and fiscal numbering.

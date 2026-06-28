@@ -44,6 +44,12 @@ Medium due to sensitive business data and download actions.
 - Document data remains local.
 - Fiscal/tax items remain `HUMAN_ACTION_REQUIRED`.
 
+## Sprint 9.9 update
+
+- The free PDF builder remains complete and available without signup.
+- The visible paid path is limited to inert saved-client/product, recurrence, branding, team, payment and fiscal-numbering backlog items.
+- No checkout, payment link, webhook, account, storage, billing entitlement or external analytics was activated.
+
 ## Dashboard backlog
 
 - Payment gate.

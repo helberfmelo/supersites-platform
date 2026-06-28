@@ -671,6 +671,12 @@ Data-base: 2026-06-27
 | Sprint 9.8 final public asset | `https://opentshost.com/supersites/pixelbatch/_nuxt/CITr2M7k.js` |
 | Sprint 9.8 public smokes | Passed: PixelBatch static app, Hub aggregate, control-plane/API and live PixelBatch workbench/image-compressor/mobile UX smoke |
 | Sprint 9.8 upload/AI/paid activation | 0 activated; PixelBatch remains browser-side with no server upload, batch, API, AI provider, billing, ads or external analytics |
+| Sprint 9.9 InvoiceCraft benchmark UI scope | Shared editor-first workbench on home and tool pages with invoice/quote/receipt tabs, editable line rows, currency/locale controls, discount, shipping/freight, manual tax/adjustment, snapshot, local PDF and related documents |
+| Sprint 9.9 InvoiceCraft local validation | Passed: `pnpm test:invoicecraft`, `pnpm build:invoicecraft`, `pnpm validate:invoicecraft-preview`, `pnpm test:e2e:invoicecraft` |
+| Sprint 9.9 local preview asset | `/_nuxt/DV3VL-kb.js` validated by `pnpm validate:invoicecraft-preview` |
+| Sprint 9.9 visual QA artifacts | Playwright screenshots in `artifacts/playwright-invoicecraft-report/data/` for InvoiceCraft home desktop, editor mobile and privacy mobile |
+| Sprint 9.9 remote CI/deploy status | Pending feature commit, push, Quality Gate, Deploy Dry Run and HostGator deploy |
+| Sprint 9.9 tax/payment/paid activation | 0 activated; InvoiceCraft remains browser-side with no saved clients/products, recurrence, checkout, payment links, fiscal numbering, official tax automation, billing, ads or external analytics |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |
 | Real donation payments activated by Fase 9 planning | 0 planned before explicit gates |

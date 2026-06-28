@@ -413,7 +413,7 @@ Sprint 9.9 - InvoiceCraft editor-first workflow
 - Simbolico: BGR-INVOICECRAFT-P0.
 - Objetivo: abrir InvoiceCraft no editor/preview de fatura/orcamento/recibo com linhas editaveis, moeda/locale, desconto/frete/impostos como campos controlados e PDF local.
 - Validacao: PDF rendering, dados locais, templates, Playwright download e impostos/numeracao fiscal como `HUMAN_ACTION_REQUIRED` quando aplicavel.
-- Status: planejada.
+- Status: validacao local concluida, aguardando commit/CI/deploy. O InvoiceCraft recebeu `InvoiceCraftWorkbench` compartilhado na home e nas paginas de ferramenta, com tabs de fatura/orcamento/recibo, linhas editaveis, moeda/locale, desconto, frete, imposto/ajuste manual, preview de exemplo local, snapshot, PDF local, copy summary, privacidade, caminho pago inerte e related documents. O processamento continua no navegador com worker/jsPDF, sem conta, storage, cliente/produto salvo, pagamento, checkout, numeracao fiscal oficial, imposto jurisdicional automatizado, billing, ads ou analytics externo. Validacao local passou com `pnpm test:invoicecraft`, `pnpm build:invoicecraft`, `pnpm validate:invoicecraft-preview`, `pnpm test:e2e:invoicecraft` e screenshots Playwright.
 
 Sprint 9.10 - MailHealth unified report
 - Simbolico: BGR-MAILHEALTH-REPORT.

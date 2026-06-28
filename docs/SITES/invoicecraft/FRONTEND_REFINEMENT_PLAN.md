@@ -48,6 +48,13 @@ Medium. Ads/support cannot sit near document fields, preview or download button.
 - Basic document can be completed without signup.
 - No document field persists or leaves the browser.
 
+## Sprint 9.9 update
+
+- Completed locally with a shared editor-first workbench on home and tool pages.
+- Item rows are now editable controls instead of a raw multiline syntax field.
+- Discount, shipping/freight and manual tax/adjustment are visible controlled fields.
+- Local preview, PDF download, copy summary, mobile layout and no-storage analytics behavior passed Playwright.
+
 ## Dashboard backlog
 
 - PDF UX readiness.

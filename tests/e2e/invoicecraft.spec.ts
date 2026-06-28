@@ -76,8 +76,15 @@ test.describe('InvoiceCraft MVP', () => {
 
     await page.getByLabel('Issuer name').fill('Blue Harbor LLC')
     await page.getByLabel('Client name').fill('Client With Private Name')
-    await page.getByLabel(/Line items/).fill('Consulting | 2 | 150\nDocumentation | 1 | 80')
+    await page.getByRole('button', { name: 'Remove line item 3' }).click()
+    await page.getByLabel('Line item description 1').fill('Consulting')
+    await page.getByLabel('Quantity 1').fill('2')
+    await page.getByLabel('Unit price 1').fill('150')
+    await page.getByLabel('Line item description 2').fill('Documentation')
+    await page.getByLabel('Quantity 2').fill('1')
+    await page.getByLabel('Unit price 2').fill('80')
     await page.getByLabel('Discount amount').fill('10')
+    await page.getByLabel('Shipping/freight amount').fill('0')
     await page.getByLabel('Manual tax/adjustment amount').fill('5')
     await page.getByRole('button', { name: 'Update preview' }).click()
 

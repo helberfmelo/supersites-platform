@@ -51,6 +51,7 @@ export interface InvoiceCraftDocumentInput {
   terms: string
   itemsRaw: string
   discountAmount: string
+  shippingAmount: string
   adjustmentLabel: string
   adjustmentAmount: string
   notes: string
@@ -100,6 +101,7 @@ export interface InvoiceCraftDocumentSummary {
   items: InvoiceCraftDocumentLineItem[]
   subtotal: number
   discountAmount: number
+  shippingAmount: number
   adjustmentLabel: string
   adjustmentAmount: number
   total: number
@@ -231,6 +233,7 @@ const sampleBase: InvoiceCraftDocumentInput = {
   terms: 'Due on receipt unless another written agreement applies.',
   itemsRaw: 'Workflow setup | 1 | 950\nTemplate cleanup | 3 | 125\nReview call | 2 | 90',
   discountAmount: '50',
+  shippingAmount: '0',
   adjustmentLabel: 'Manual tax/adjustment',
   adjustmentAmount: '0',
   notes: 'Generated locally. Review legal, tax and payment details before operational use.',
@@ -567,6 +570,7 @@ function buildOutput(document: InvoiceCraftDocumentSummary, locale: LocaleCode =
     '',
     `Subtotal: ${formatMoney(document.subtotal, document.currency, locale)}`,
     `Discount: ${formatMoney(document.discountAmount, document.currency, locale)}`,
+    `Shipping/freight: ${formatMoney(document.shippingAmount, document.currency, locale)}`,
     `${document.adjustmentLabel}: ${formatMoney(document.adjustmentAmount, document.currency, locale)}`,
     `Total: ${formatMoney(document.total, document.currency, locale)}`,
     '',
@@ -598,8 +602,9 @@ function buildDocument(
   const items = parseItems(input.itemsRaw)
   const subtotal = Math.round(items.reduce((sum, item) => sum + item.lineTotal, 0) * 100) / 100
   const discountAmount = parseAmount(input.discountAmount, 'Discount')
+  const shippingAmount = parseAmount(input.shippingAmount, 'Shipping/freight')
   const adjustmentAmount = parseAmount(input.adjustmentAmount, 'Manual adjustment')
-  const total = Math.round(Math.max(0, subtotal - discountAmount + adjustmentAmount) * 100) / 100
+  const total = Math.round(Math.max(0, subtotal - discountAmount + shippingAmount + adjustmentAmount) * 100) / 100
   const title = tool.kind === 'quote'
     ? 'Quote'
     : tool.kind === 'receipt'
@@ -623,6 +628,7 @@ function buildDocument(
     items,
     subtotal,
     discountAmount,
+    shippingAmount,
     adjustmentLabel,
     adjustmentAmount,
     total,

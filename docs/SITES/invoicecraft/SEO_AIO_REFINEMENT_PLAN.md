@@ -45,6 +45,12 @@ Medium for legal/tax claims. Keep disclaimers and human gates.
 - Every document type has use-case, limitations, FAQ and related tools.
 - No claim of official fiscal compliance.
 
+## Sprint 9.9 update
+
+- Tool pages keep canonical, hreflang, schema, guide sections and FAQ while moving the editor/preview above the fold.
+- The UI now separates invoice, quote and receipt use cases through tabs and related document links without adding shallow country-specific fiscal pages.
+- Tax/fiscal numbering remains a human-gated limitation rather than a public compliance claim.
+
 ## Dashboard backlog
 
 - Tax disclaimer coverage.
