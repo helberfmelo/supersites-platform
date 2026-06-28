@@ -21,6 +21,7 @@ Data-base: 2026-06-27
 | Doacoes reais | PayPal/Stripe/PIX/Buy Me a Coffee, KYC, impostos, termos, conta bancaria, botao/link real e eventual webhook exigem aprovacao humana | Antes de publicar qualquer link ou botao de doacao que aceite pagamento real |
 | Links de afiliado reais | Relacao comercial, termos, divulgacao clara, politica de privacidade, compliance de AdSense/SEO e aprovacao humana | Antes de inserir qualquer link, parametro ou script de afiliado real |
 | Politicas juridicas finais | Aceite juridico | Antes do go-live publico com coleta de dados/ads |
+| Revisao legal/editorial multilingue benchmark-grade | Conteudo juridico, metodologia, contato, suporte, politicas por idioma e claims publicos exigem revisao humana/editorial antes de AdSense, escala SEO ou monetizacao real | Antes de tratar legal/trust/localizacao como finais para AdSense, afiliados, doacoes reais, billing ou escala internacional |
 | Mudanca DNS sem rollback claro | Risco de indisponibilidade | Antes de apontar dominios definitivos |
 | Branch protection no GitHub privado | GitHub retornou HTTP 403 informando que branch protection em repositorio privado exige GitHub Pro ou repositorio publico | Antes de exigir status checks protegidos em `main` |
 | InvoiceCraft fiscal/tax templates | Impostos, numeracao fiscal, campos obrigatorios e validade de documento dependem de jurisdicao e aceite juridico/fiscal | Antes de ativar nota/fatura fiscal oficial, calculo automatico de impostos, numeracao fiscal, pagamentos ou recorrencia |

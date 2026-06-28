@@ -1,8 +1,19 @@
 name: Deploy NetProbe HostGator
+run-name: Fase ${{ inputs.phase || 'unmapped' }} Sprint ${{ inputs.sprint || 'unmapped' }} - Deploy NetProbe HostGator - ${{ inputs.action }}
 
 on:
   workflow_dispatch:
     inputs:
+      phase:
+        description: Roadmap phase/stage number for run labeling, e.g. 9.
+        required: false
+        default: unmapped
+        type: string
+      sprint:
+        description: Roadmap sprint number for run labeling, e.g. 9.16.
+        required: false
+        default: unmapped
+        type: string
       action:
         description: Deploy, rollback to a release, or return /supersites/netprobe-atlas/ to placeholder.
         required: true
@@ -35,6 +46,8 @@ jobs:
       SUPERSITES_CPANEL_PORT: ${{ vars.SUPERSITES_CPANEL_PORT }}
       SUPERSITES_CPANEL_USER: ${{ secrets.SUPERSITES_CPANEL_USER }}
       SUPERSITES_CPANEL_PASSWORD: ${{ secrets.SUPERSITES_CPANEL_PASSWORD }}
+      ROADMAP_PHASE: ${{ inputs.phase || 'unmapped' }}
+      ROADMAP_SPRINT: ${{ inputs.sprint || 'unmapped' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -58,6 +71,8 @@ jobs:
       - name: Deploy or rollback
         shell: pwsh
         run: |
+          Write-Host "Roadmap context: Fase $env:ROADMAP_PHASE Sprint $env:ROADMAP_SPRINT"
+
           $action = '${{ inputs.action }}'
           $releaseId = '${{ inputs.release_id }}'
           $apiBaseUrl = '${{ inputs.api_base_url }}'

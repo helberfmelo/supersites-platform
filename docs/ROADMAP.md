@@ -356,6 +356,107 @@ Sprint 8.6 - Public rollout closure e operacao minima
 - Validacao: smokes publicos de Hub, control-plane/API, NetProbe e nove apps publicados; docs/status/metricas atualizados; Quality Gate docs-only monitorado.
 - Status: concluida tecnicamente em producao. A auditoria de copia publica removeu textos residuais de placeholder das paginas `/en/status` e CTAs do Hub, reforcou os smokes publicos contra `noindex`/placeholder/textos antigos e redeployou Hub mais nove apps. Commit tecnico `22ac333`, Deploy Dry Run `28296597228`, commit corretivo `97ed5bf`, Quality Gate `28296704908`, redeploy final do Hub `28298231558`, redeploys dos nove apps (`28296917133`, `28297069955`, `28297229911`, `28297374719`, `28297528791`, `28297641483`, `28297781873`, `28297936033`, `28298069584`) e smokes publicos finais passaram. O primeiro Hub deploy `28296730836` falhou no smoke apos switch porque apps ainda tinham status antigo; foi corrigido pelos redeploys e pelo Hub deploy final verde. Ads, billing, checkout, workers, upload/storage, analytics externo e direct-root mapping seguem como gates separados.
 
+## Fase 9 - Benchmark-Grade Refinement
+
+Status geral: mapeada a partir da auditoria live `docs/AUDITORIA_LIVE_SUPERSITES_BENCHMARK.md`. A Fase 8 colocou as 12 superficies publicas no ar, mas a auditoria estimou score geral 62/100 e apontou lacunas P0 em localizacao, UX task-first, similaridade visual/funcional com benchmarks, legal/trust, AdSense readiness e linguagem publica. A Fase 9 transforma esse diagnostico em sprints sequenciais sem ativar anuncios reais, billing real, doacoes, afiliados, analytics externo, workers recorrentes, APIs pagas ou acoes irreversiveis.
+
+Sprint 9.1 - Roadmap benchmark-grade e rotulos de deploy
+- Simbolico: BGR-ROADMAP-LABELS.
+- Objetivo: converter a auditoria live em roadmap executavel e fazer os workflows de deploy/dry-run registrarem Fase/Sprint nos nomes e logs dos runs.
+- Entregas: `docs/SPRINTS/BENCHMARK_GRADE_REFINEMENT_SPRINTS.md`, atualizacoes de `docs/ROADMAP.md`, `docs/STATUS.md`, `docs/METRICS.md`, `docs/BENCHMARK_MATRIX.md`, runbooks afetados e workflows `.github/workflows/deploy-*.yml`.
+- Validacao: docs/workflow-only, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, smokes publicos aplicaveis, push e monitoramento de Quality Gate/Deploy Dry Run.
+- Status: em execucao nesta entrega.
+
+Sprint 9.2 - Crawler, screenshots e baseline tecnico
+- Simbolico: BGR-CRAWLER-BASELINE.
+- Objetivo: criar crawler Playwright para Hub, 10 sites, ferramentas e rotas EN/PT-BR/ES/FR/DE em desktop/mobile, com screenshots, console errors, links, canonical, hreflang, sitemap, robots, title, description, schema e baseline Lighthouse/PageSpeed local.
+- Validacao: crawler deterministico, artefatos em `docs/benchmarks/our-sites` ou `artifacts/`, relatorio de gaps e gates locais/CI.
+- Status: planejada.
+
+Sprint 9.3 - Localizacao global e copia publica P0
+- Simbolico: BGR-I18N-COPY-P0.
+- Objetivo: corrigir fallback indevido para ingles, acentuacao e linguagem publica interna em EN/PT-BR/ES/FR/DE.
+- Validacao: snapshots por locale, bloqueio de strings internas (`MVP`, `gated`, `deploy smoke`, `rollback validation`, `placeholder`) em superficies publicas onde nao forem produto/operacao interna, Playwright mobile/desktop e smokes publicos.
+- Status: planejada.
+
+Sprint 9.4 - Trust, legal e support blocks
+- Simbolico: BGR-TRUST-SUPPORT.
+- Objetivo: aprofundar About, Contact, Privacy, Cookies, Terms, Methodology e Editorial por idioma, alem de criar bloco configuravel de apoio/doacao sem link ou pagamento real.
+- Validacao: paginas legais completas para revisao, support block inerte/fail-closed, `HUMAN_ACTION_REQUIRED` atualizado para revisao legal/doacao real e ausencia de provider de pagamento.
+- Status: planejada.
+
+Sprint 9.5 - NetProbe Atlas P0 benchmark UX
+- Simbolico: BGR-NETPROBE-P0.
+- Objetivo: aproximar DNS Propagation e What is my IP do modelo mental dos benchmarks lideres: resultado acima da dobra, tabs de record type, tabela de resolvedores/localidades, mapa/world grid, painel visual de IP, related tools, privacy CTA e disclosure honesto de cobertura.
+- Validacao: NetProbe tests/build/preview/Playwright, endpoints bounded intactos, smokes publicos NetProbe/API e sem promessa falsa de multi-regiao antes de workers.
+- Status: planejada.
+
+Sprint 9.6 - QRRoute tool-first generator
+- Simbolico: BGR-QRROUTE-P0.
+- Objetivo: abrir QRRoute diretamente no gerador com tabs QR/barcode/UTM/vCard/Wi-Fi, preview dominante, copy/download, privacidade local e upsell dinamico inerte.
+- Validacao: testes/build/preview/Playwright QRRoute, artifact gate, smoke publico e redirect/abuse gates preservados.
+- Status: planejada.
+
+Sprint 9.7 - DocShift PDF workbench
+- Simbolico: BGR-DOCSHIFT-P0.
+- Objetivo: transformar DocShift em grid denso tipo PDF tools e paginas com dropzone dominante, preview/status/download, cross-linking e privacidade browser-side.
+- Validacao: testes PDF/browser worker, build/preview/Playwright, smoke publico e ausencia de upload/storage/OCR server-side.
+- Status: planejada.
+
+Sprint 9.8 - PixelBatch image workbench
+- Simbolico: BGR-PIXELBATCH-P0.
+- Objetivo: criar UX visual de imagem com drag-and-drop, preview antes/depois, economia de tamanho, formato/qualidade, presets por uso e download claro.
+- Validacao: worker/canvas tests, build/preview/Playwright, smoke publico e ausencia de upload backend, storage ou provider externo.
+- Status: planejada.
+
+Sprint 9.9 - InvoiceCraft editor-first workflow
+- Simbolico: BGR-INVOICECRAFT-P0.
+- Objetivo: abrir InvoiceCraft no editor/preview de fatura/orcamento/recibo com linhas editaveis, moeda/locale, desconto/frete/impostos como campos controlados e PDF local.
+- Validacao: PDF rendering, dados locais, templates, Playwright download e impostos/numeracao fiscal como `HUMAN_ACTION_REQUIRED` quando aplicavel.
+- Status: planejada.
+
+Sprint 9.10 - MailHealth unified report
+- Simbolico: BGR-MAILHEALTH-REPORT.
+- Objetivo: criar diagnostico unificado de dominio com score, checklist SPF/DKIM/DMARC/MX/blacklist/SMTP/headers, severidade e guidance neutro por provedor.
+- Validacao: DNS/SMTP bounded endpoints, rate limits, antiabuso, testes backend/frontend e smoke publico.
+- Status: planejada.
+
+Sprint 9.11 - SitePulse visual report
+- Simbolico: BGR-SITEPULSE-REPORT.
+- Objetivo: criar resposta visual `online/down/redirecting/slow`, score e report cards de availability, redirects, security headers, crawlability e performance; corrigir branding/prefixos indevidos.
+- Validacao: probe bounded tests, SSRF guard, Playwright, smoke publico e sem monitoramento recorrente antes de worker/gate.
+- Status: planejada.
+
+Sprint 9.12 - CalcHarbor calculator density
+- Simbolico: BGR-CALCHARBOR-DENSITY.
+- Objetivo: expandir o hub de calculadoras com categorias prioritarias, moeda/localizacao por locale, tabelas/graficos leves, exemplos e disclaimers.
+- Validacao: fixtures de formulas, i18n/locale, build/preview/Playwright e smoke publico.
+- Status: planejada.
+
+Sprint 9.13 - TimeNexus world clock e planner
+- Simbolico: BGR-TIMENEXUS-DENSITY.
+- Objetivo: adicionar current time panel, city/world clock, timeline converter, meeting planner e paginas SEO prioritarias por cidade/fuso sem conteudo raso.
+- Validacao: timezone fixtures, DST edge cases, build/preview/Playwright e smoke publico.
+- Status: planejada.
+
+Sprint 9.14 - DevUtility Lab workbench density
+- Simbolico: BGR-DEVUTILITY-WORKBENCH.
+- Objetivo: evoluir DevUtility para workbench tecnico com editor/output split, exemplos, tree/error views, copy/download/clear, favoritos/recentes locais quando seguro e navegacao densa por categoria.
+- Validacao: testes por ferramenta, dados locais, build/preview/Playwright e smoke publico.
+- Status: planejada.
+
+Sprint 9.15 - Hub, SEO/AIO e rich footers
+- Simbolico: BGR-HUB-SEO-AIO.
+- Objetivo: tornar o Hub e os rodapes por vertical mais visuais e navegaveis, com top tools, screenshots, guias, related tools, clusters SEO/AIO e schema sem criar conteudo em massa sem valor.
+- Validacao: Hub tests/build/preview/Playwright, SEO technical checks, sitemap/hreflang/canonical/schema e smoke publico.
+- Status: planejada.
+
+Sprint 9.16 - Performance, AdSense-safe closure e rollout
+- Simbolico: BGR-PERF-ADSENSE-CLOSURE.
+- Objetivo: fechar a Fase 9 com Lighthouse/PageSpeed local, AdSense-safe layout inerte, smokes publicos finais, deploys com rotulo Fase/Sprint, metricas/status atualizados e pendencias humanas explicitadas.
+- Validacao: testes/builds afetados, Playwright visual, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate/Deploy Dry Run, deploys manuais quando aprovados e smokes publicos finais.
+- Status: planejada.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.

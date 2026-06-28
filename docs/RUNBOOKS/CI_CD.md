@@ -36,6 +36,8 @@ File: `.github/workflows/deploy-dry-run.yml`.
 
 Runs on `main` pushes that affect apps, packages, deployment infra, scripts or deploy workflow files. It can also be started manually.
 
+Manual dispatch accepts optional `phase` and `sprint` inputs. Use the current roadmap identifiers, for example `phase=9` and `sprint=9.1`, so the GitHub Actions run name and logs identify which roadmap delivery produced the dry-run plan. Push-triggered dry-runs use `unmapped` unless a future automation supplies roadmap context.
+
 The workflow generates an artifact named `supersites-deploy-dry-run` with:
 
 - `supersites-deploy-plan.json`
@@ -50,6 +52,8 @@ The dry-run does not upload, delete, move, publish or rewrite remote files.
 File: `.github/workflows/deploy-supersite-hostgator.yml`.
 
 Runs only by `workflow_dispatch` against the `production-hostgator` environment.
+
+Required operational convention: fill optional `phase` and `sprint` inputs on every manual deploy or rollback. The workflow run name and deploy log print `Fase <phase> Sprint <sprint>` for auditability.
 
 Actions:
 
@@ -67,6 +71,8 @@ File: `.github/workflows/deploy-netprobe-hostgator.yml`.
 
 Runs only by `workflow_dispatch` against the `production-hostgator` environment.
 
+Required operational convention: fill optional `phase` and `sprint` inputs on every manual deploy or rollback. The workflow run name and deploy log print `Fase <phase> Sprint <sprint>` for auditability.
+
 Actions:
 
 - `deploy`: preflights the public NetProbe API, builds with `NUXT_APP_BASE_URL=/supersites/netprobe-atlas/` and explicit HTTPS `NUXT_PUBLIC_NETPROBE_API_BASE_URL`, validates the static artifact, uploads it to a new `_netprobe-releases/<release-id>` directory and switches only `/supersites/netprobe-atlas/.htaccess`.
@@ -80,6 +86,8 @@ The deploy action must not be run while the public API smoke fails. On 2026-06-2
 File: `.github/workflows/deploy-static-app-hostgator.yml`.
 
 Runs only by `workflow_dispatch` against the `production-hostgator` environment.
+
+Required operational convention: fill optional `phase` and `sprint` inputs on every manual deploy or rollback. The workflow run name and deploy log print `Fase <phase> Sprint <sprint>` for auditability.
 
 Inputs:
 
@@ -102,6 +110,8 @@ MailHealth and SitePulse Lab deploys must keep API smoke enabled unless a contro
 File: `.github/workflows/deploy-control-plane-hostgator.yml`.
 
 Runs only by `workflow_dispatch` against the `production-hostgator` environment.
+
+Required operational convention: fill optional `phase` and `sprint` inputs on every manual deploy or rollback. The workflow run name and deploy log print `Fase <phase> Sprint <sprint>` for auditability.
 
 Actions:
 

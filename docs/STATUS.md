@@ -1110,6 +1110,18 @@ Na Sprint 8.6, a Fase 8 foi fechada em producao: o Hub e os nove apps estaticos 
   - Smokes publicos finais passaram: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public` e `pnpm deploy:smoke-static-app-public -- -AppId <app>` para os nove apps. O smoke agregado validou status pages sem placeholder/noindex, assets dos nove apps e APIs MailHealth/SitePulse.
   - Nenhum anuncio real, AdSense/GTM/GA4, Search Console import, checkout, billing, pagamento, doacao, afiliado, API publica paga, upload/storage, worker/cron recorrente, analytics externo ou direct-root mapping foi ativado.
 
+- Sprint 9.1 validation:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/ROADMAP.md`, `docs/STATUS.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local/release, `docs/AUDITORIA_LIVE_SUPERSITES_BENCHMARK.md`, o anexo `pasted-text.txt`, `docs/SPRINTS/BENCHMARK_REFINEMENT_SPRINTS.md`, `docs/SPRINTS/PUBLIC_ROLLOUT_SPRINTS.md` e todos os ADRs existentes ate `0030`.
+  - Estado inicial verificado: `main...origin/main`, GitHub Actions recentes verdes para o fechamento da Fase 8 (`Quality Gate` `28298544546`) e deploys finais da Sprint 8.6 verdes; a auditoria live apontou score geral estimado 62/100, benchmark similarity 58/100, UX task-first 55/100, multilingual 45/100, AdSense readiness 52/100 e trust/legal 50/100.
+  - Fase 9 foi mapeada como `Benchmark-Grade Refinement`, com 16 sprints de 9.1 a 9.16 cobrindo crawler/QA, localizacao, trust/legal, NetProbe, QRRoute, DocShift, PixelBatch, InvoiceCraft, MailHealth, SitePulse, CalcHarbor, TimeNexus, DevUtility, Hub/SEO/AIO e fechamento performance/AdSense-safe.
+  - `docs/BENCHMARK_MATRIX.md` foi atualizado para refletir o estado real pos-Fase 8: 12 superficies publicas vivas e zero apps placeholder publicos, alem da baseline da auditoria live.
+  - Workflows de deploy e dry-run receberam inputs opcionais `phase` e `sprint`; os nomes dos runs e logs agora imprimem `Fase <phase> Sprint <sprint>`. A convencao operacional foi registrada em `docs/RUNBOOKS/CI_CD.md`.
+  - `docs/HUMAN_ACTION_REQUIRED.md` recebeu pendencia explicita de revisao legal/editorial multilingue benchmark-grade antes de AdSense, billing, doacao real, afiliados ou escala internacional.
+  - Validacao local passou: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base, comportamento esperado no workstation.
+  - Smokes publicos pre-commit passaram: `pnpm deploy:smoke-supersite-public` validou Hub, assets dos nove apps publicados e APIs MailHealth/SitePulse; `pnpm deploy:smoke-control-plane-public` passou; `pnpm deploy:smoke-netprobe-public` validou NetProbe e API publica.
+  - Esta sprint nao altera UI publica dos produtos, nao aciona deploy real e nao ativa anuncio real, AdSense/GTM/GA4, Search Console import, checkout, billing, pagamento, doacao, afiliado, API paga, upload/storage, worker/cron, analytics externo ou direct-root mapping.
+  - Commit, push, Quality Gate e Deploy Dry Run remotos serao registrados no fechamento desta sprint apos monitoramento.
+
 ## Pendencias criticas
 
 - Resolver branch protection de `main` quando houver GitHub Pro, repositorio publico ou alternativa aprovada de ruleset/organizacao.

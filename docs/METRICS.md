@@ -542,6 +542,36 @@ Data-base: 2026-06-27
 | Real checkout/payment activated by Fase 8 | 0 planned |
 | Direct root URL mapping activated by Fase 8 | 0 planned before separate rewrite/domain decision |
 
+## Benchmark-grade refinement KPIs
+
+| KPI | Value |
+|---|---|
+| Benchmark-grade phase mapped | Fase 9 |
+| Benchmark-grade sprints mapped | 16 |
+| Benchmark-grade sprint map | `docs/SPRINTS/BENCHMARK_GRADE_REFINEMENT_SPRINTS.md` |
+| Live audit source | `docs/AUDITORIA_LIVE_SUPERSITES_BENCHMARK.md` plus attachment `pasted-text.txt` |
+| Live audit overall score baseline | 62/100 |
+| Live audit benchmark similarity baseline | 58/100 |
+| Live audit task-first UX baseline | 55/100 |
+| Live audit multilingual baseline | 45/100 |
+| Live audit AdSense readiness baseline | 52/100 |
+| Live audit trust/legal baseline | 50/100 |
+| Public live surfaces at Fase 9 start | 12: Hub, control-plane/API, NetProbe Atlas and 9 product apps |
+| Public placeholder apps at Fase 9 start | 0 |
+| Fase 9 P0 sequence | Crawler baseline, localization/copy cleanup, trust/legal/support, NetProbe P0, tool-first workflows |
+| Deploy workflow phase/sprint labels | Implemented locally in deploy/dry-run workflows during Sprint 9.1 |
+| Sprint 9.1 local final gates | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
+| Sprint 9.1 feature commit | Pending |
+| Sprint 9.1 Quality Gate run | Pending |
+| Sprint 9.1 Deploy Dry Run run | Pending |
+| Sprint 9.1 public smokes | Passed pre-commit: Hub aggregate, control-plane/API and NetProbe |
+| Real ads activated by Fase 9 planning | 0 planned before explicit gates |
+| Real billing activated by Fase 9 planning | 0 planned before explicit gates |
+| Real donation payments activated by Fase 9 planning | 0 planned before explicit gates |
+| Real affiliate links activated by Fase 9 planning | 0 planned before explicit gates |
+| External analytics/provider imports activated by Fase 9 planning | 0 planned before explicit gates |
+| Production workers/crons activated by Fase 9 planning | 0 planned before explicit gates |
+
 ## Product metrics
 
 No product traffic, revenue, AdSense, billing or tool usage metrics exist yet.

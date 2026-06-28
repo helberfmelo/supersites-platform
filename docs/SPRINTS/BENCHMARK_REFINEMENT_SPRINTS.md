@@ -61,7 +61,7 @@ Each real sprint in Fase 7 must:
 
 ## Cross-cutting gates
 
-- Public real deploys are currently active only for the SuperSites Hub, the control-plane/API and NetProbe Atlas.
-- CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch and DocShift remain public placeholders until app-specific HostGator artifact validation, smoke and rollback exist.
+- Historical note: during Fase 7, public real deploys were active only for the SuperSites Hub, the control-plane/API and NetProbe Atlas.
+- Current state after Fase 8: CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch and DocShift are live as Nuxt SSG apps under `/supersites/<app>/`; zero public placeholder apps remain. Use `docs/SPRINTS/PUBLIC_ROLLOUT_SPRINTS.md` and `docs/SPRINTS/BENCHMARK_GRADE_REFINEMENT_SPRINTS.md` for current execution context.
 - AdSense, GA4/GTM/Search Console imports, billing, paid entitlements, donation payments, affiliate links, AI providers and recurring workers remain disabled.
 - Human actions stay in `docs/HUMAN_ACTION_REQUIRED.md`.

@@ -1,4 +1,5 @@
 name: Deploy Dry Run
+run-name: Fase ${{ inputs.phase || 'unmapped' }} Sprint ${{ inputs.sprint || 'unmapped' }} - Deploy Dry Run - ${{ inputs.target_environment || 'staging-hostgator' }}
 
 on:
   push:
@@ -27,6 +28,16 @@ on:
         options:
           - staging-hostgator
           - production-hostgator
+      phase:
+        description: Roadmap phase/stage number for run labeling, e.g. 9.
+        required: false
+        default: unmapped
+        type: string
+      sprint:
+        description: Roadmap sprint number for run labeling, e.g. 9.1.
+        required: false
+        default: unmapped
+        type: string
 
 permissions:
   contents: read
@@ -38,9 +49,15 @@ jobs:
     environment: ${{ inputs.target_environment || 'staging-hostgator' }}
     env:
       TARGET_ENVIRONMENT: ${{ inputs.target_environment || 'staging-hostgator' }}
+      ROADMAP_PHASE: ${{ inputs.phase || 'unmapped' }}
+      ROADMAP_SPRINT: ${{ inputs.sprint || 'unmapped' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+
+      - name: Print roadmap context
+        shell: pwsh
+        run: Write-Host "Roadmap context: Fase $env:ROADMAP_PHASE Sprint $env:ROADMAP_SPRINT"
 
       - name: Prepare deploy dry-run
         shell: pwsh

@@ -1,8 +1,19 @@
 name: Deploy Control Plane HostGator
+run-name: Fase ${{ inputs.phase || 'unmapped' }} Sprint ${{ inputs.sprint || 'unmapped' }} - Deploy Control Plane HostGator - ${{ inputs.action }}
 
 on:
   workflow_dispatch:
     inputs:
+      phase:
+        description: Roadmap phase/stage number for run labeling, e.g. 9.
+        required: false
+        default: unmapped
+        type: string
+      sprint:
+        description: Roadmap sprint number for run labeling, e.g. 9.16.
+        required: false
+        default: unmapped
+        type: string
       action:
         description: Deploy, rollback to a release, or return /supersites/control-plane/ to placeholder.
         required: true
@@ -46,6 +57,8 @@ jobs:
       SUPERSITES_CONTROL_PLANE_DB_DATABASE: ${{ secrets.SUPERSITES_CONTROL_PLANE_DB_DATABASE }}
       SUPERSITES_CONTROL_PLANE_DB_USERNAME: ${{ secrets.SUPERSITES_CONTROL_PLANE_DB_USERNAME }}
       SUPERSITES_CONTROL_PLANE_DB_PASSWORD: ${{ secrets.SUPERSITES_CONTROL_PLANE_DB_PASSWORD }}
+      ROADMAP_PHASE: ${{ inputs.phase || 'unmapped' }}
+      ROADMAP_SPRINT: ${{ inputs.sprint || 'unmapped' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -61,6 +74,8 @@ jobs:
       - name: Deploy or rollback
         shell: pwsh
         run: |
+          Write-Host "Roadmap context: Fase $env:ROADMAP_PHASE Sprint $env:ROADMAP_SPRINT"
+
           $action = '${{ inputs.action }}'
           $releaseId = '${{ inputs.release_id }}'
 
