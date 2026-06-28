@@ -56,11 +56,13 @@ Sprint 9.2 delivered the local benchmark crawler baseline without activating rea
 | Published baseline doc | `docs/benchmarks/our-sites/latest-baseline.md` |
 | Primary artifact run id | `2026-06-28T00-42-36-813Z` |
 | Validation artifact run id | `2026-06-28T00-56-38-742Z` |
+| Post-deploy published baseline run id | `2026-06-28T04-46-52-491Z` |
 | Quick crawl coverage | 95 routes, 190 viewport checks |
-| Recorded gaps | 166 total; 0 internal broken links; 0 horizontal overflow; 11 robots/sitemap fetch gaps |
-| Production gaps found | Hub `/en/status` and `/robots.txt` returned HTTP 500 before deploy |
-| Local artifact remediation | Hub `/status` content and static `robots.txt` files prepared for Hub, NetProbe and 9 product apps |
-| Remote CI/deploy status | Blocked before steps by GitHub Actions billing/spending-limit pending human action |
+| Initial recorded gaps | 166 total; 0 internal broken links; 0 horizontal overflow; 11 robots/sitemap fetch gaps |
+| Post-deploy recorded gaps | 142 total; 0 failures/browser errors; 0 console errors; 0 internal broken links; 0 horizontal overflow; 0 robots/sitemap fetch gaps |
+| Production gaps found before deploy | Hub `/en/status` and `/robots.txt` returned HTTP 500 before deploy |
+| Production remediation | Hub `/status` content and static `robots.txt` files published for Hub, NetProbe and 9 product apps |
+| Remote CI/deploy status | Completed after public repository visibility mitigation; Quality Gate `28308340947`, Hub deploy `28309009196`, NetProbe deploy `28311031901` and nine static app deploys passed |
 
 ## Per-sprint execution rules
 

@@ -1144,7 +1144,12 @@ Na Sprint 8.6, a Fase 8 foi fechada em producao: o Hub e os nove apps estaticos 
   - Apos autorizacao do usuario, o repositorio `helberfmelo/supersites-platform` foi alterado de `PRIVATE` para `PUBLIC` para remover o bloqueio de GitHub Actions associado a billing/spending-limit em repo privado. A visibilidade foi confirmada por `gh repo view` e `gh api`.
   - Reruns apos a mudanca para publico: `Deploy Dry Run` `28307129941` attempt 2 passou; `Quality Gate` docs-only `28307204493` attempt 2 passou. O `Quality Gate` tecnico `28307129966` attempt 2 iniciou todos os jobs, mas falhou no E2E do Hub porque o teste ainda esperava 8 links no footer apos a Sprint 9.2 adicionar `Status`.
   - Correcao de teste publicada: `6c80085` (`test: update supersite footer status link`). Validacao local passou com `pnpm test:e2e:supersite`, `pnpm validate:structure`, `pnpm validate:secrets` e `git diff --check`. `Quality Gate` `28308270717` passou no head `6c80085`.
-  - Deploy real ainda nao foi executado nesta atualizacao de desbloqueio. Quando acionado, o deploy manual deve informar Fase `9` e Sprint `9.2` nos inputs do workflow e validar novamente Hub `/en/status` e `/robots.txt`.
+  - Fechamento do desbloqueio publico registrado em `70f06d9` (`docs: record public repo actions unblock`); `Quality Gate` docs-only `28308340947` passou no head `70f06d9`.
+  - Deploy real rotulado Fase `9` Sprint `9.2` passou para o Hub no workflow `Deploy SuperSite HostGator` run `28309009196`; `/supersites/en/status` e `/supersites/robots.txt` passaram a responder HTTP 200.
+  - Deploy real rotulado Fase `9` Sprint `9.2` passou para NetProbe Atlas no workflow `Deploy NetProbe HostGator` run `28311031901`.
+  - Deploys reais rotulados Fase `9` Sprint `9.2` passaram para os apps estaticos: CalcHarbor `28311150383`, DevUtility Lab `28311150384`, TimeNexus `28311150370`, QRRoute `28311325342`, InvoiceCraft `28311325343`, MailHealth `28311325319`, SitePulse Lab `28311485541`, PixelBatch `28311485547` e DocShift `28311485563`.
+  - Smokes publicos pos-deploy passaram: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public` e `pnpm deploy:smoke-static-app-public -- -AppId <app>` para os nove apps. Checagem direta confirmou HTTP 200 para `robots.txt` do Hub, NetProbe e nove apps.
+  - Crawler quick pos-deploy passou e atualizou `docs/benchmarks/our-sites/latest-baseline.md`: run `2026-06-28T04-46-52-491Z`, 95 rotas, 190 checks, 142 gaps, 0 failures/browser errors, 0 console errors, 0 broken internal links, 0 horizontal overflow e 0 gaps de robots/sitemap. Os gaps remanescentes sao majoritariamente JSON-LD/schema e seguem para sprints posteriores da Fase 9.
 
 ## Pendencias criticas
 
