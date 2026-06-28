@@ -433,7 +433,7 @@ Sprint 9.12 - CalcHarbor calculator density
 - Simbolico: BGR-CALCHARBOR-DENSITY.
 - Objetivo: transformar a home e paginas de calculadora de catalogo para workbench task-first com cenarios, tabelas/graficos leves, resultados auditaveis, exemplos, disclaimers e copy publica madura sem linguagem de MVP.
 - Validacao: fixtures de formulas/cenarios, i18n/locale, build/preview/Playwright, auditoria visual desktop/mobile, crawler/smoke publico e analytics sem valores de calculadora.
-- Status: em execucao apos auditoria full live `2026-06-28T16-11-17-070Z`; producao atual ainda e catalog-first e sera corrigida nesta sprint.
+- Status: concluida em producao. O CalcHarbor recebeu `CalcHarborWorkbench` na home com tabs, inputs reais, resultado ao vivo, metricas de apoio, grafico de barras e tabela lower/base/higher usando `buildCalculatorScenarioRows`; paginas individuais ganharam `Scenario snapshot` com tabela/grafico e copy browser-side madura. Validacao local passou com testes/build/preview/Playwright, screenshots desktop/mobile, pacote/public-copy/estrutura/segredos/dry-run/ci/diff. Commit `97c92f0`, Quality Gate `28329239451`, Deploy Dry Run `28329239457`, deploy CalcHarbor Fase 9/Sprint 9.12 `28329341280`, release `97c92f099ff741220280593c9d96eec34c9e3729-28329341280-1`, asset `https://opentshost.com/supersites/calcharbor/_nuxt/CjP6XAFu.js`, smokes publicos e smoke live de UX passaram. Nenhum valor de calculadora foi para storage/analytics; nenhum checkout, billing, pagamento, anuncio, API paga, worker, storage persistente ou automacao tax/legal foi ativado.
 
 Sprint 9.13 - TimeNexus world clock e planner
 - Simbolico: BGR-TIMENEXUS-DENSITY.

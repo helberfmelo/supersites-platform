@@ -717,6 +717,13 @@ Data-base: 2026-06-28
 | Sprint 9.12 visual QA artifacts | `artifacts/playwright-calcharbor-density/data/sprint-9-12-calcharbor-density-desktop.png` and `artifacts/playwright-calcharbor-density/data/sprint-9-12-calcharbor-density-mobile.png` |
 | Sprint 9.12 package validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages` |
 | Sprint 9.12 public copy/structure/security gates | Passed locally: `pnpm validate:public-copy` across 876 HTML files, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
+| Sprint 9.12 feature commit | `97c92f0 feat: add calcharbor benchmark workbench` |
+| Sprint 9.12 remote Quality Gate | `28329239451` passed |
+| Sprint 9.12 remote Deploy Dry Run | `28329239457` passed |
+| Sprint 9.12 production deploy | `28329341280` passed; release `97c92f099ff741220280593c9d96eec34c9e3729-28329341280-1`; 151 files, 1773003 bytes |
+| Sprint 9.12 public CalcHarbor asset | `https://opentshost.com/supersites/calcharbor/_nuxt/CjP6XAFu.js` |
+| Sprint 9.12 public smokes | Passed: static app CalcHarbor, aggregate Hub/control-plane/API and live CalcHarbor desktop/mobile UX |
+| Sprint 9.12 live UX privacy smoke | Passed: `$512.91` visible, scenarios/detail snapshot visible, `analyticsEvents: 0`, empty `localStorage`/`sessionStorage`, 0 console errors, no desktop/mobile overflow |
 | Sprint 9.12 finance/billing/ads activation | 0 activated; CalcHarbor remains browser-side with no saved history, paid export, API, checkout, billing, ads, donation, external analytics or tax/legal automation |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |

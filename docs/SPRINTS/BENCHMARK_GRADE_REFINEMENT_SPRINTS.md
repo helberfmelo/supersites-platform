@@ -50,6 +50,14 @@ This block is therefore mapped as Fase 9 - Benchmark-Grade Refinement.
 
 Sprint 9.2 delivered the local benchmark crawler baseline without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs or recurring production workers.
 
+## Sprint 9.12 execution evidence
+
+Sprint 9.12 delivered CalcHarbor calculator density in production. Feature commit `97c92f0`, Quality Gate `28329239451`, Deploy Dry Run `28329239457` and deploy `28329341280` passed under display title `Fase 9 Sprint 9.12 - Deploy Static App HostGator - calcharbor - deploy`.
+
+Production release: `97c92f099ff741220280593c9d96eec34c9e3729-28329341280-1`; public asset: `https://opentshost.com/supersites/calcharbor/_nuxt/CjP6XAFu.js`.
+
+Public smokes passed for CalcHarbor, aggregate Hub/control-plane/API and live UX. Live UX smoke confirmed `$512.91` result rendering, scenario rows, detail-page snapshot, mobile PT-BR localization, no horizontal overflow, empty `localStorage`/`sessionStorage`, zero app analytics events and zero console errors.
+
 | Evidence | Value |
 |---|---|
 | Crawler script | `scripts/benchmark-crawl.mjs` |
