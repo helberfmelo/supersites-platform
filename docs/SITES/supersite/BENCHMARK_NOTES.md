@@ -45,4 +45,4 @@ Data-base: 2026-06-27
 - `Choose by workflow` clusters add useful internal paths for diagnostics, document workflows, launch assets and operations without generating thin page sets.
 - The global footer now groups products by vertical and keeps legal/editorial links available across localized routes.
 - Home, site detail and legal/editorial pages now emit uniform JSON-LD while preserving canonical, hreflang and sitemap behavior.
-- Local validation passed through Hub tests/build/preview/Playwright and global structure/secrets/public-copy/dry-run gates. CI/deploy evidence is pending feature push.
+- Local validation passed through Hub tests/build/preview/Playwright and global structure/secrets/public-copy/dry-run gates. Production deploy `28332214304`, asset `https://opentshost.com/supersites/_nuxt/f2kVvvDG.js` and public/live smokes passed.

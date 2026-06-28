@@ -14,7 +14,7 @@ Data-base: 2026-06-27
 - Control-plane/API live at `https://opentshost.com/supersites/control-plane/`.
 - Admin already includes site inventory, readiness foundations, AI growth and executive reports.
 - Benchmark dashboard was completed in Sprint 7.2 with feature CI, deploy dry-run and public smokes passing.
-- Sprint 9.15 is adding benchmark-grade Hub discovery, schema and footer refinements on top of the published Hub.
+- Sprint 9.15 added benchmark-grade Hub discovery, schema and footer refinements on top of the published Hub.
 
 ## Scope
 
@@ -42,8 +42,8 @@ Data-base: 2026-06-27
 - No checkout, donation payment, affiliate link or billing webhook.
 - No provider AI or automated publication.
 
-## Sprint 9.15 local evidence
+## Sprint 9.15 evidence
 
 - Passed: `pnpm test`, `pnpm build`, `pnpm validate:supersite-preview`, `pnpm test:e2e:supersite`, `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check`.
 - Screenshots: `artifacts/playwright-supersite-hub/sprint-9-15-hub-desktop.png` and `artifacts/playwright-supersite-hub/sprint-9-15-hub-mobile.png`.
-- Remote Quality Gate, Deploy Dry Run, production deploy and public smokes are pending feature push.
+- Remote Quality Gate `28332110747`, Deploy Dry Run `28332110760`, production deploy `28332214304`, public smokes and live desktop/mobile UX smoke passed.

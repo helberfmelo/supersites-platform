@@ -752,7 +752,10 @@ Data-base: 2026-06-28
 | Sprint 9.15 local preview asset | `/_nuxt/CT-IaHVN.js` validated by `pnpm validate:supersite-preview` |
 | Sprint 9.15 visual QA artifacts | `artifacts/playwright-supersite-hub/sprint-9-15-hub-desktop.png` and `artifacts/playwright-supersite-hub/sprint-9-15-hub-mobile.png` |
 | Sprint 9.15 public copy/structure/security gates | Passed locally: `pnpm validate:public-copy` across 891 HTML files, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
-| Sprint 9.15 remote CI/deploy status | Pending feature commit/push and GitHub Actions monitoring |
+| Sprint 9.15 remote CI/deploy status | Passed: feature commit `6d5a04b`, Quality Gate `28332110747`, Deploy Dry Run `28332110760`, HostGator Hub deploy `28332214304` |
+| Sprint 9.15 production release | `6d5a04b54c7ec3e796cf1f31140d90d651133b43-28332214304-1`; asset `https://opentshost.com/supersites/_nuxt/f2kVvvDG.js`; 211 files / 2460452 bytes |
+| Sprint 9.15 public smokes | Passed: aggregate Hub/control-plane/API, control-plane and live Hub desktop/mobile UX |
+| Sprint 9.15 live UX schema smoke | Passed: EN desktop and PT-BR mobile show discovery/workflow sections, rich footer, 3 JSON-LD scripts, 0 console/page errors and no overflow |
 | Sprint 9.15 ads/billing/analytics activation | 0 activated; Hub remains static/public with no real AdSense, GTM/GA4, checkout, billing, donation, affiliate, external analytics, worker or paid API |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |

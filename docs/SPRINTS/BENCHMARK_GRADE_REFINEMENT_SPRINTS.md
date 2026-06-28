@@ -290,7 +290,7 @@ Sprint 9.11 delivered the SitePulse visual report locally without activating rec
 
 ## Sprint 9.15 execution evidence
 
-Sprint 9.15 delivered the Hub discovery and SEO/AIO refinement locally without activating real AdSense, GTM/GA4, checkout, billing, donations, affiliates, external analytics, paid APIs, workers or mass low-value content.
+Sprint 9.15 delivered the Hub discovery and SEO/AIO refinement to production without activating real AdSense, GTM/GA4, checkout, billing, donations, affiliates, external analytics, paid APIs, workers or mass low-value content.
 
 | Evidence | Value |
 |---|---|
@@ -304,7 +304,9 @@ Sprint 9.15 delivered the Hub discovery and SEO/AIO refinement locally without a
 | Local preview asset | `/_nuxt/CT-IaHVN.js` |
 | Visual QA | Desktop/mobile screenshots captured in `artifacts/playwright-supersite-hub/` |
 | Local final gates | Passed: `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
-| Remote CI/deploy | Pending feature commit/push, Quality Gate, Deploy Dry Run, deploy and public smokes |
+| Remote CI/deploy | Passed: feature commit `6d5a04b`, Quality Gate `28332110747`, Deploy Dry Run `28332110760`, Hub deploy `28332214304` |
+| Production release | `6d5a04b54c7ec3e796cf1f31140d90d651133b43-28332214304-1`; asset `https://opentshost.com/supersites/_nuxt/f2kVvvDG.js`; 211 files / 2460452 bytes |
+| Public smokes | Passed: Hub aggregate, control-plane/API and live Hub desktop/mobile UX smoke |
 
 ## Per-sprint execution rules
 
