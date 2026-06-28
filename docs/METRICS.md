@@ -666,7 +666,10 @@ Data-base: 2026-06-27
 | Sprint 9.8 visual QA artifacts | Playwright screenshots in `artifacts/playwright-pixelbatch-report/data/` for PixelBatch home desktop, compressor mobile and privacy mobile |
 | Sprint 9.8 package validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages` |
 | Sprint 9.8 public copy/structure/security gates | Passed locally: `pnpm validate:public-copy` across 876 HTML files, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
-| Sprint 9.8 remote CI/deploy status | Pending feature commit, push, Quality Gate, Deploy Dry Run and HostGator deploy |
+| Sprint 9.8 remote CI/deploy status | Completed: commit `9ce7df7`, Quality Gate `28318467331` passed, Deploy Dry Run `28318467334` passed, PixelBatch deploy `28318554712` passed |
+| Sprint 9.8 production release | `9ce7df79eda8d034520d92d9df9a878e84df5c80-28318554712-1` |
+| Sprint 9.8 final public asset | `https://opentshost.com/supersites/pixelbatch/_nuxt/CITr2M7k.js` |
+| Sprint 9.8 public smokes | Passed: PixelBatch static app, Hub aggregate, control-plane/API and live PixelBatch workbench/image-compressor/mobile UX smoke |
 | Sprint 9.8 upload/AI/paid activation | 0 activated; PixelBatch remains browser-side with no server upload, batch, API, AI provider, billing, ads or external analytics |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |

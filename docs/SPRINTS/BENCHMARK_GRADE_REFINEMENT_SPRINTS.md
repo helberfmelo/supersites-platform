@@ -126,7 +126,7 @@ Sprint 9.5 delivered the NetProbe DNS/IP benchmark UX to production without acti
 
 ## Sprint 9.6 execution evidence
 
-Sprint 9.6 delivered the QRRoute tool-first generator locally without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs, public short links, custom domains, dynamic QR editing or recurring production workers.
+Sprint 9.6 delivered the QRRoute tool-first generator to production without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs, public short links, custom domains, dynamic QR editing or recurring production workers.
 
 | Evidence | Value |
 |---|---|
@@ -147,7 +147,7 @@ Sprint 9.6 delivered the QRRoute tool-first generator locally without activating
 
 ## Sprint 9.7 execution evidence
 
-Sprint 9.7 delivered the DocShift PDF workbench locally without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs, server-side upload, OCR, batch processing, document history or recurring production workers.
+Sprint 9.7 delivered the DocShift PDF workbench to production without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs, server-side upload, OCR, batch processing, document history or recurring production workers.
 
 | Evidence | Value |
 |---|---|
@@ -166,7 +166,7 @@ Sprint 9.7 delivered the DocShift PDF workbench locally without activating real 
 
 ## Sprint 9.8 execution evidence
 
-Sprint 9.8 delivered the PixelBatch image workbench locally without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs, server-side upload, AI providers, batch processing, saved files or recurring production workers.
+Sprint 9.8 delivered the PixelBatch image workbench to production without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs, server-side upload, AI providers, batch processing, saved files or recurring production workers.
 
 | Evidence | Value |
 |---|---|
@@ -179,8 +179,9 @@ Sprint 9.8 delivered the PixelBatch image workbench locally without activating r
 | Local preview asset | `/_nuxt/BdbU2zyR.js` |
 | Visual QA | Desktop/mobile screenshots captured by Playwright in `artifacts/playwright-pixelbatch-report/data/` |
 | Broad validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
-| Remote CI | Pending feature commit and push |
-| Production deploy | Pending Fase 9/Sprint 9.8 static app deploy after Quality Gate and Deploy Dry Run pass |
+| Remote CI | Passed: feature commit `9ce7df7`, Quality Gate `28318467331`, Deploy Dry Run `28318467334` |
+| Production deploy | Passed: Fase 9/Sprint 9.8 PixelBatch static app deploy `28318554712`, release `9ce7df79eda8d034520d92d9df9a878e84df5c80-28318554712-1` |
+| Public smoke | Passed: PixelBatch app asset `https://opentshost.com/supersites/pixelbatch/_nuxt/CITr2M7k.js`, aggregate Hub smoke, control-plane smoke and live workbench/image-compressor/mobile UX smoke |
 
 ## Per-sprint execution rules
 
