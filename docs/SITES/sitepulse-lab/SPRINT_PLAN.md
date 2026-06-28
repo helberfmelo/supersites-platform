@@ -49,3 +49,9 @@ Data-base: 2026-06-27
 - Analytics remains sanitized through `visual-report`, with no target URL, result, status, headers or timing values.
 - Local validation passed: `pnpm test:sitepulse`, `php artisan test --filter=SitePulseProbeApiTest`, `pnpm build:sitepulse`, `pnpm validate:sitepulse-preview`, `pnpm test:e2e:sitepulse`, package gates, public-copy gate, structure, secrets, dry-run, ci:changes and diff check.
 - No recurring uptime, incidents, public status page, alerts, history, multi-region probes, checkout, billing, ad serving, external analytics, paid API or worker/cron was activated.
+
+## Sprint 9.11 production closure
+
+- Feature commit `761d3f0`, Quality Gate `28320680554`, Deploy Dry Run `28320680557` and HostGator deploy `28320771689` passed.
+- Production release `761d3f0e54f09839ba8b5ff9d7a39bc5d176b11d-28320771689-1` is live with asset `https://opentshost.com/supersites/sitepulse-lab/_nuxt/C9Q51oa7.js`.
+- Public smokes passed for SitePulse app/API, Hub aggregate and control-plane/API; live UX smoke ran a real `example.com` report and PT-BR mobile localization check.

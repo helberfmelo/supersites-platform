@@ -700,7 +700,13 @@ Data-base: 2026-06-28
 | Sprint 9.11 visual QA artifacts | `artifacts/playwright-sitepulse-report/data/sprint-9-11-sitepulse-report-desktop.png` and `artifacts/playwright-sitepulse-report/data/sprint-9-11-sitepulse-report-mobile.png` |
 | Sprint 9.11 package validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages` |
 | Sprint 9.11 public copy/structure/security gates | Passed locally: `pnpm validate:public-copy` across 876 HTML files, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
-| Sprint 9.11 remote CI/deploy status | Pending feature commit, push, Quality Gate, Deploy Dry Run and HostGator deploy |
+| Sprint 9.11 feature commit | `761d3f0` (`feat: add sitepulse visual report`) |
+| Sprint 9.11 remote Quality Gate | `28320680554` passed |
+| Sprint 9.11 remote Deploy Dry Run | `28320680557` passed; only non-blocking Node 20 `actions/upload-artifact@v4.6.2` annotation observed |
+| Sprint 9.11 production deploy run | `28320771689` passed with label `Fase 9 Sprint 9.11 - Deploy Static App HostGator - sitepulse-lab - deploy` |
+| Sprint 9.11 production release | `761d3f0e54f09839ba8b5ff9d7a39bc5d176b11d-28320771689-1`; 181 files; 2238237 bytes |
+| Sprint 9.11 final public asset | `https://opentshost.com/supersites/sitepulse-lab/_nuxt/C9Q51oa7.js` |
+| Sprint 9.11 public smokes | Passed: SitePulse static app/API, Hub aggregate, control-plane/API and live SitePulse report/mobile UX smoke |
 | Sprint 9.11 monitoring/API/paid activation | 0 activated; SitePulse remains one-shot with no recurring uptime, alerts, status page, history, multi-region probes, billing, ads or external analytics |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |

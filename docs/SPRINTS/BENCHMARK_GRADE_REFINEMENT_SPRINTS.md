@@ -237,8 +237,9 @@ Sprint 9.11 delivered the SitePulse visual report locally without activating rec
 | Local preview asset | `/_nuxt/BSPAO78o.js` |
 | Visual QA | Desktop/mobile screenshots captured by Playwright in `artifacts/playwright-sitepulse-report/data/` |
 | Local final gates | Passed: `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
-| Remote CI | Pending feature commit, push, Quality Gate and Deploy Dry Run |
-| Production deploy | Pending Fase 9/Sprint 9.11 HostGator deploy and public smokes |
+| Remote CI | Passed: feature commit `761d3f0`, Quality Gate `28320680554`, Deploy Dry Run `28320680557` |
+| Production deploy | Passed: Fase 9/Sprint 9.11 SitePulse static app deploy `28320771689`, release `761d3f0e54f09839ba8b5ff9d7a39bc5d176b11d-28320771689-1` |
+| Public smokes | Passed: SitePulse app/API asset `https://opentshost.com/supersites/sitepulse-lab/_nuxt/C9Q51oa7.js`, aggregate Hub smoke, control-plane smoke and live SitePulse report/mobile UX smoke |
 
 ## Per-sprint execution rules
 
