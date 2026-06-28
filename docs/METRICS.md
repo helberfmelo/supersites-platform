@@ -656,7 +656,9 @@ Data-base: 2026-06-27
 | Sprint 9.7 visual QA artifacts | Playwright screenshots in `artifacts/playwright-docshift-report/data/` for DocShift home desktop, Text to PDF mobile and privacy mobile |
 | Sprint 9.7 package validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages` |
 | Sprint 9.7 public copy/structure/security gates | Passed locally: `pnpm validate:public-copy` across 876 HTML files, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
-| Sprint 9.7 remote CI/deploy status | Pending feature commit, push, Quality Gate, Deploy Dry Run and HostGator deploy |
+| Sprint 9.7 remote CI/deploy status | Completed: commit `1c20e80`, Quality Gate `28317815474` passed, Deploy Dry Run `28317815479` passed, DocShift deploy `28317896866` passed |
+| Sprint 9.7 final public asset | `https://opentshost.com/supersites/docshift/_nuxt/AWgMi3M5.js` |
+| Sprint 9.7 public smokes | Passed: DocShift static app, Hub aggregate, control-plane/API and live DocShift workbench/Text-to-PDF/mobile UX smoke |
 | Sprint 9.7 upload/OCR/paid activation | 0 activated; DocShift remains browser-side with no server upload, OCR, batch, API, billing, ads or external analytics |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |

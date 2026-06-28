@@ -160,8 +160,9 @@ Sprint 9.7 delivered the DocShift PDF workbench locally without activating real 
 | Local preview asset | `/_nuxt/B2X-2IPM.js` |
 | Visual QA | Desktop/mobile screenshots captured by Playwright in `artifacts/playwright-docshift-report/data/` |
 | Broad validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
-| Remote CI | Pending feature commit and push |
-| Production deploy | Pending Fase 9/Sprint 9.7 static app deploy after Quality Gate and Deploy Dry Run pass |
+| Remote CI | Passed: feature commit `1c20e80`, Quality Gate `28317815474`, Deploy Dry Run `28317815479` |
+| Production deploy | Passed: Fase 9/Sprint 9.7 DocShift static app deploy `28317896866`, release `1c20e80830ab8cbca6cfb9742d01b5698e917bab-28317896866-1` |
+| Public smoke | Passed: DocShift app asset `https://opentshost.com/supersites/docshift/_nuxt/AWgMi3M5.js`, aggregate Hub smoke, control-plane smoke and live workbench/Text-to-PDF/mobile UX smoke |
 
 ## Per-sprint execution rules
 
