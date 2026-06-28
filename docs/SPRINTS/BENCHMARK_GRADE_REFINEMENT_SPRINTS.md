@@ -124,6 +124,23 @@ Sprint 9.5 delivered the NetProbe DNS/IP benchmark UX to production without acti
 | Public smokes | NetProbe/API, control-plane/API, Hub aggregate, nine static app assets, MailHealth/SitePulse APIs and live DNS/IP UX smoke passed |
 | Final public asset | `https://opentshost.com/supersites/netprobe-atlas/_nuxt/CgziFN9n.js` |
 
+## Sprint 9.6 execution evidence
+
+Sprint 9.6 delivered the QRRoute tool-first generator locally without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs, public short links, custom domains, dynamic QR editing or recurring production workers.
+
+| Evidence | Value |
+|---|---|
+| QRRoute pages refined | Home `/en` plus all localized `/tools/<slug>` pages |
+| Generator structure | Shared `QRRouteWorkbench` with QR/barcode/UTM/vCard/Wi-Fi/preview tabs, local input form, dominant SVG preview, payload summary, output panel and inert dynamic upgrade panel |
+| Home above-fold behavior | Static QR generator opens before the catalog; users can create/download/copy a QR without signup |
+| Tool-page behavior | Each detail page opens the same workbench with its tool selected, preserving related tools, guide, FAQ and schema |
+| Privacy/trust additions | Inline privacy strip and preview disclosure; analytics remains limited to safe route/tool metadata and excludes URLs, Wi-Fi secrets, vCards, barcode values and generated payloads |
+| Local frontend validation | Passed: `pnpm test:qrroute`, `pnpm build:qrroute`, `pnpm validate:qrroute-preview`, `pnpm test:e2e:qrroute` |
+| Local preview asset | `/_nuxt/BtAiHTGx.js` |
+| Visual QA | Desktop/mobile screenshots captured by Playwright in `artifacts/playwright-qrroute-report/data/` |
+| Broad validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run` |
+| Remote CI/deploy status | Pending feature commit, push, Quality Gate, Deploy Dry Run, QRRoute deploy and public smokes |
+
 ## Per-sprint execution rules
 
 Each Sprint 9.x must:

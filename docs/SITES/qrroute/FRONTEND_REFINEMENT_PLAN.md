@@ -8,11 +8,11 @@ Make static QR, barcode, UTM, vCard, Wi-Fi and preview workflows feel immediate,
 
 ## P0
 
-- Add type tabs with concise field sets.
-- Improve live SVG preview and download affordances.
-- Add static vs dynamic explanation next to the upgrade CTA.
-- Improve UTM final URL preview and copy state.
-- Add related tools between QR, UTM, barcode and preview.
+- Done in Sprint 9.6: shared tool-first workbench with QR/barcode/UTM/vCard/Wi-Fi/preview tabs and concise field sets.
+- Done in Sprint 9.6: dominant local SVG preview, download and copy affordances on the home and tool pages.
+- Done in Sprint 9.6: static vs dynamic explanation next to the inert upgrade panel.
+- Done in Sprint 9.6: UTM final URL preview, payload summary and copy state preserved in the unified workbench.
+- Done in Sprint 9.6: related tools remain below the workbench on detail pages, while the home catalog stays available after the generator.
 
 ## P1
 
@@ -46,6 +46,7 @@ Medium. Ads/support must stay away from URL fields, QR preview, download buttons
 - Static QR remains free and complete without signup.
 - No payload goes to analytics/backend.
 - Preview does not overflow mobile.
+- Sprint 9.6 local Playwright confirmed home desktop generation, UTM mobile generation, localized mobile pages and no horizontal overflow.
 
 ## Dashboard backlog
 

@@ -635,6 +635,14 @@ Data-base: 2026-06-27
 | Sprint 9.5 public smokes | Passed: NetProbe/API, control-plane/API, Hub aggregate, nine static app assets, MailHealth/SitePulse APIs and live NetProbe DNS/IP UX smoke |
 | Sprint 9.5 remote CI/deploy status | Completed in production |
 | Sprint 9.5 probes/workers/paid activation | 0 activated; coverage disclosure remains bounded to current runtime |
+| Sprint 9.6 QRRoute benchmark UI scope | Tool-first generator on home and tool pages with QR/barcode/UTM/vCard/Wi-Fi/preview tabs, dominant SVG preview, copy/download, payload summary and local privacy strip |
+| Sprint 9.6 QRRoute local validation | Passed: `pnpm test:qrroute`, `pnpm build:qrroute`, `pnpm validate:qrroute-preview`, `pnpm test:e2e:qrroute` |
+| Sprint 9.6 local preview asset | `/_nuxt/BtAiHTGx.js` validated by `pnpm validate:qrroute-preview` |
+| Sprint 9.6 visual QA artifacts | Playwright screenshots in `artifacts/playwright-qrroute-report/data/` for QRRoute home desktop, UTM mobile and privacy mobile |
+| Sprint 9.6 package validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages` |
+| Sprint 9.6 public copy/structure/security gates | Passed locally: `pnpm validate:public-copy` across 876 HTML files, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run` |
+| Sprint 9.6 remote CI/deploy status | Pending feature commit, push, Quality Gate, Deploy Dry Run, QRRoute deploy and public smokes |
+| Sprint 9.6 dynamic/paid activation | 0 activated; redirect/short-link service remains foundation gated and no payload analytics/storage was added |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |
 | Real donation payments activated by Fase 9 planning | 0 planned before explicit gates |

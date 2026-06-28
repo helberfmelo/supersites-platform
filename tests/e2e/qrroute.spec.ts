@@ -57,7 +57,13 @@ test.describe('QRRoute MVP', () => {
       'href',
       'https://opentshost.com/supersites/qrroute/en',
     )
-    await expect(page.getByRole('heading', { name: 'Static QR Code Generator' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Build a QR, barcode, UTM, vCard or Wi-Fi code in one local workspace.' })).toBeVisible()
+    await expect(page.getByText('Private by design')).toBeVisible()
+    await expect(page.getByRole('tab', { name: /Static QR/ })).toHaveAttribute('aria-selected', 'true')
+    await page.getByLabel('URL, text, email or phone value').fill('https://opentshost.com/supersites/qrroute/en')
+    await page.getByRole('button', { name: 'Generate preview' }).click()
+    await expect(page.locator('.preview-panel--dominant .preview-frame img')).toHaveAttribute('src', /^data:image\/svg\+xml/)
+    await expect(page.getByRole('heading', { name: 'Static QR Code Generator' }).first()).toBeVisible()
     await expect(page.getByText('6 local workflow tools')).toBeVisible()
     await expect(page.getByText('Free result').first()).toBeVisible()
     await expectNoHorizontalOverflow(page)

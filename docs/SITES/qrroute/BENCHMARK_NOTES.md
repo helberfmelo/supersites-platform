@@ -11,7 +11,7 @@ Data-base: 2026-06-27
 
 ## Screenshots available
 
-- No QRRoute-specific screenshots are present yet.
+- Sprint 9.6 Playwright screenshots are available in `artifacts/playwright-qrroute-report/data/` for home desktop, UTM mobile and privacy mobile.
 
 ## Useful patterns to learn
 
@@ -27,6 +27,6 @@ Data-base: 2026-06-27
 
 ## Opportunities
 
-- Refine tabs by payload type and preview area.
-- Improve UTM URL preview and payload validation.
-- Prepare dynamic QR/short-link upsell as gated backlog.
+- Sprint 9.6 delivered tabs by payload type and a dominant local preview area.
+- Sprint 9.6 preserved UTM final URL preview, payload validation and safe copy/download controls.
+- Dynamic QR, short links, analytics, custom domains and batch remain gated backlog until antiabuse, takedown, billing and privacy gates are approved.

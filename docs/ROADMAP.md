@@ -395,7 +395,7 @@ Sprint 9.6 - QRRoute tool-first generator
 - Simbolico: BGR-QRROUTE-P0.
 - Objetivo: abrir QRRoute diretamente no gerador com tabs QR/barcode/UTM/vCard/Wi-Fi, preview dominante, copy/download, privacidade local e upsell dinamico inerte.
 - Validacao: testes/build/preview/Playwright QRRoute, artifact gate, smoke publico e redirect/abuse gates preservados.
-- Status: planejada.
+- Status: implementada e validada localmente; aguardando feature commit, Quality Gate, Deploy Dry Run, deploy QRRoute Fase 9/Sprint 9.6 e smokes publicos para fechamento em producao.
 
 Sprint 9.7 - DocShift PDF workbench
 - Simbolico: BGR-DOCSHIFT-P0.

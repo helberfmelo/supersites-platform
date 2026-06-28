@@ -76,6 +76,8 @@ useHead(() => ({
       </aside>
     </section>
 
+    <QRRouteWorkbench :locale="locale" initial-slug="static-qr-code" />
+
     <section class="controls" aria-label="Tool controls">
       <div class="field">
         <label for="tool-search">{{ copy.searchLabel }}</label>
