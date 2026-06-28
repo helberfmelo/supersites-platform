@@ -57,3 +57,9 @@ Medium. Avoid security/performance guarantees beyond the actual test.
 - Diagnostic pages now expose clearer one-off result framing, safe interpretation, related checks and monitoring limitations.
 - Public copy no longer exposes internal sprint labels on app surfaces.
 - No claim of continuous uptime, public history or real multi-region monitoring was introduced.
+
+## Sprint 9.11 execution notes
+
+- The home now starts with a useful one-shot answer flow and structured report sections, reducing shallow catalog-only behavior for site-status queries.
+- Public copy clarifies point-in-time diagnostics, privacy limits and monitoring boundaries without promising continuous uptime, historical data or multi-region coverage.
+- Localized operating principles were added for PT-BR/ES/FR/DE so non-EN home routes do not fall back to English for this trust block.

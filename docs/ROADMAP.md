@@ -425,7 +425,7 @@ Sprint 9.11 - SitePulse visual report
 - Simbolico: BGR-SITEPULSE-REPORT.
 - Objetivo: criar resposta visual `online/down/redirecting/slow`, score e report cards de availability, redirects, security headers, crawlability e performance; corrigir branding/prefixos indevidos.
 - Validacao: probe bounded tests, SSRF guard, Playwright, smoke publico e sem monitoramento recorrente antes de worker/gate.
-- Status: planejada.
+- Status: validacao local concluida, aguardando commit/CI/deploy. O SitePulse recebeu `SitePulseReportWorkbench` na home com input unico de URL, estados visuais, score, metadados de HTTP/redirect/TTFB/cache, cards de availability/redirects/security headers/crawlability/performance, salvaguardas de privacidade/antiabuso e caminho de monitoramento pago inerte. O fluxo reutiliza o endpoint publico bounded `/api/v1/sitepulse/probe` com `checks: ['performance']`, sem mudanca de backend, storage, worker, probe recorrente ou analytics de URL/resultado. Validacao local passou com `pnpm test:sitepulse`, `php artisan test --filter=SitePulseProbeApiTest`, `pnpm build:sitepulse`, `pnpm validate:sitepulse-preview`, `pnpm test:e2e:sitepulse`, screenshots Playwright e gates de pacotes/public-copy/estrutura/segredos/dry-run/ci/diff. Remote Quality Gate, Deploy Dry Run, deploy HostGator e smokes publicos serao registrados no fechamento da sprint.
 
 Sprint 9.12 - CalcHarbor calculator density
 - Simbolico: BGR-CALCHARBOR-DENSITY.

@@ -1,6 +1,6 @@
 # Metrics
 
-Data-base: 2026-06-27
+Data-base: 2026-06-28
 
 ## Bootstrap metrics
 
@@ -694,6 +694,14 @@ Data-base: 2026-06-27
 | Sprint 9.10 final public asset | `https://opentshost.com/supersites/mailhealth/_nuxt/fseKxIDq.js` |
 | Sprint 9.10 public smokes | Passed: MailHealth static app/API, Hub aggregate, control-plane/API and live MailHealth report/mobile UX smoke |
 | Sprint 9.10 monitoring/API/paid activation | 0 activated; MailHealth remains point-in-time with no recurring monitoring, alert delivery, DMARC ingestion, paid API, white-label, billing, ads or external analytics |
+| Sprint 9.11 SitePulse benchmark UI scope | Visual one-shot site report on home with online/down/redirecting/slow states, score, HTTP/redirect/TTFB/cache metadata and cards for availability, redirects, security headers, crawlability and performance |
+| Sprint 9.11 SitePulse local validation | Passed: `pnpm test:sitepulse`, `php artisan test --filter=SitePulseProbeApiTest`, `pnpm build:sitepulse`, `pnpm validate:sitepulse-preview`, `pnpm test:e2e:sitepulse` |
+| Sprint 9.11 local preview asset | `/_nuxt/BSPAO78o.js` validated by `pnpm validate:sitepulse-preview` |
+| Sprint 9.11 visual QA artifacts | `artifacts/playwright-sitepulse-report/data/sprint-9-11-sitepulse-report-desktop.png` and `artifacts/playwright-sitepulse-report/data/sprint-9-11-sitepulse-report-mobile.png` |
+| Sprint 9.11 package validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages` |
+| Sprint 9.11 public copy/structure/security gates | Passed locally: `pnpm validate:public-copy` across 876 HTML files, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
+| Sprint 9.11 remote CI/deploy status | Pending feature commit, push, Quality Gate, Deploy Dry Run and HostGator deploy |
+| Sprint 9.11 monitoring/API/paid activation | 0 activated; SitePulse remains one-shot with no recurring uptime, alerts, status page, history, multi-region probes, billing, ads or external analytics |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |
 | Real donation payments activated by Fase 9 planning | 0 planned before explicit gates |

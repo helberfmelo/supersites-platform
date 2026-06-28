@@ -57,13 +57,97 @@ test.describe('SitePulse Lab MVP', () => {
       'href',
       'https://opentshost.com/supersites/sitepulse-lab/en',
     )
+    await expect(page.getByRole('heading', { name: /See the public status/ })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'HTTP Status Checker' })).toBeVisible()
-    await expect(page.getByText('Local free version')).toHaveCount(7)
+    await expect(page.getByText('Free one-shot')).toHaveCount(7)
     await expect(page.getByText('7 focused checks')).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
     const screenshot = await page.screenshot({ fullPage: true })
     await testInfo.attach('sitepulse-home-desktop', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('runs the visual home report with sanitized analytics', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.route(/.*\/api\/v1\/sitepulse\/probe$/, async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          data: {
+            url: 'https://example.com',
+            final_url: 'https://www.example.com',
+            status: 'warn',
+            summary: 'The page answered, but one or more website health signals should be reviewed.',
+            findings: [
+              { label: 'HTTP status', status: 'pass', detail: 'Final HTTP response status from the bounded probe.', value: 200 },
+              { label: 'Redirect count', status: 'warn', detail: 'Redirect hops followed before the final response.', value: 1 },
+              { label: 'Security headers present', status: 'pass', detail: 'Baseline browser security headers found on the final response.', value: 4 },
+              { label: 'Security headers missing', status: 'warn', detail: 'content-security-policy should be reviewed.', value: 1 },
+              { label: 'Robots.txt', status: 'pass', detail: 'Robots.txt returned HTTP 200.', value: 200 },
+              { label: 'Sitemap XML', status: 'pass', detail: 'Sitemap XML shape was recognized.', value: 12 },
+              { label: 'TTFB sample', status: 'pass', detail: 'Approximate first-byte/response timing sample from the bounded probe.', value: '420 ms' },
+            ],
+            checks: {
+              status: { code: 200, content_type: 'text/html', duration_ms: 420 },
+              headers: { present: ['strict-transport-security', 'x-frame-options'], missing: ['content-security-policy'] },
+              robots: { status: 200, body_bytes_sampled: 120 },
+              sitemap: { status: 200, xml_shape: 'urlset', url_count: 12 },
+              ttfb: { duration_ms: 420 },
+              performance: { redirect_count: 1, body_bytes_sampled: 4096 },
+            },
+            redirect_chain: [
+              { url: 'https://example.com', status: 301, location: 'https://www.example.com', duration_ms: 80 },
+              { url: 'https://www.example.com', status: 200, location: null, duration_ms: 420 },
+            ],
+            warnings: ['This is a single one-shot probe.'],
+          },
+          meta: {
+            generated_at: '2026-06-28T00:00:00.000Z',
+            cache_ttl_seconds: 30,
+            cached: false,
+          },
+        }),
+      })
+    })
+
+    await page.goto('/en')
+    await page.getByLabel('Website URL').fill('https://private.example/admin')
+    await page.getByRole('button', { name: 'Run visual report' }).click()
+
+    await expect(page.getByText('Redirecting')).toBeVisible()
+    await expect(page.getByText('Report cards')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Availability', exact: true })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Security headers', exact: true })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Crawlability', exact: true })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Performance', exact: true })).toBeVisible()
+    await expectNoHorizontalOverflow(page)
+
+    const analytics = await page.evaluate(() => ({
+      localEvents: window.supersitesAnalyticsEvents,
+      dataLayer: window.dataLayer,
+      localStorageLength: window.localStorage.length,
+      sessionStorageLength: window.sessionStorage.length,
+    }))
+
+    expect(analytics.localEvents?.map((event) => event.name)).toEqual(['tool_viewed', 'tool_started', 'tool_completed'])
+    expect(analytics.localEvents?.[0]).toMatchObject({
+      siteSlug: 'sitepulse-lab',
+      routePath: '/en',
+      properties: {
+        tool_slug: 'visual-report',
+      },
+    })
+    expect(JSON.stringify(analytics)).not.toContain('private.example')
+    expect(JSON.stringify(analytics)).not.toContain('/admin')
+    expect(analytics.localStorageLength).toBe(0)
+    expect(analytics.sessionStorageLength).toBe(0)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('sitepulse-report-desktop', { body: screenshot, contentType: 'image/png' })
 
     expect(errors).toEqual([])
   })

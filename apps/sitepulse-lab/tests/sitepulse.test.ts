@@ -124,5 +124,16 @@ describe('SitePulse Lab MVP', () => {
     expect(event.properties).toEqual({ tool_slug: 'redirect-chain' })
     expect(JSON.stringify(event)).not.toContain('private.example')
     expect(JSON.stringify(event)).not.toContain('/admin')
+
+    const reportEvent = createSitePulseToolEvent({
+      toolSlug: 'visual-report',
+      locale: 'en',
+      routePath: `${siteBaseUrl}/en?url=https://secret.example/private`,
+    }, 'tool_completed')
+
+    expect(reportEvent.routePath).toBe('/en')
+    expect(reportEvent.properties).toEqual({ tool_slug: 'visual-report' })
+    expect(JSON.stringify(reportEvent)).not.toContain('secret.example')
+    expect(JSON.stringify(reportEvent)).not.toContain('/private')
   })
 })

@@ -54,6 +54,30 @@ const sharedPrinciples: HomeCopy['principles'] = [
   { title: 'No PII analytics', body: 'URLs, hosts, response headers, redirects, timings and results stay out of product analytics events.' },
 ]
 
+const localizedPrinciples: Record<LocaleCode, HomeCopy['principles']> = {
+  en: sharedPrinciples,
+  'pt-br': [
+    { title: 'Checks pontuais uteis', body: 'O dono do site inspeciona disponibilidade publica, redirects, headers, robots, sitemap e tempo sem criar conta.' },
+    { title: 'Probes limitadas', body: 'Cada requisicao valida DNS publico, bloqueia ranges privados, limita redirects, usa timeout curto e aplica rate limit.' },
+    { title: 'Analytics sem PII', body: 'URLs, hosts, headers, redirects, tempos e resultados ficam fora dos eventos de analytics do produto.' },
+  ],
+  es: [
+    { title: 'Checks puntuales utiles', body: 'El dueno del sitio inspecciona disponibilidad publica, redirecciones, headers, robots, sitemap y tiempos sin crear cuenta.' },
+    { title: 'Probes limitadas', body: 'Cada solicitud valida DNS publico, bloquea rangos privados, limita redirecciones, usa timeout corto y aplica rate limit.' },
+    { title: 'Analytics sin PII', body: 'URLs, hosts, headers, redirecciones, tiempos y resultados quedan fuera de los eventos de analytics del producto.' },
+  ],
+  fr: [
+    { title: 'Controles ponctuels utiles', body: 'Le proprietaire du site inspecte disponibilite publique, redirections, headers, robots, sitemap et temps sans creer de compte.' },
+    { title: 'Probes limitees', body: 'Chaque requete valide DNS public, bloque les plages privees, limite les redirections, utilise timeout court et rate limit.' },
+    { title: 'Analytics sans PII', body: 'URL, hosts, headers, redirections, timings et resultats restent hors des evenements analytics produit.' },
+  ],
+  de: [
+    { title: 'Nuetzliche Einmal-Checks', body: 'Website-Betreiber pruefen oeffentliche Verfuegbarkeit, Redirects, Header, Robots, Sitemap und Timing ohne Konto.' },
+    { title: 'Begrenzte Probes', body: 'Jeder Request validiert Public DNS, blockiert private Bereiche, begrenzt Redirects, nutzt kurze Timeouts und Rate Limits.' },
+    { title: 'Analytics ohne PII', body: 'URLs, Hosts, Response-Header, Redirects, Timings und Ergebnisse bleiben aus Produkt-Analytics-Ereignissen heraus.' },
+  ],
+}
+
 export const homeCopy: Record<LocaleCode, HomeCopy> = {
   en: {
     eyebrow: 'SitePulse Lab',
@@ -68,9 +92,9 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Free check',
     upgradeLabel: 'Upgrade path',
     detailCta: 'Open check',
-    localBadgeLabel: 'Local MVP',
+    localBadgeLabel: 'Free one-shot',
     principlesTitle: 'Operating principles',
-    principles: sharedPrinciples,
+    principles: localizedPrinciples.en,
     statusRows: [
       { title: '7 focused checks', body: 'Status, redirects, headers, robots, sitemap, TTFB and snapshot pages are represented.', tone: 'green' },
       { title: '5 language route sets', body: 'English, Portuguese, Spanish, French and German pages are prerendered.', tone: 'green' },
@@ -90,9 +114,9 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Check gratuito',
     upgradeLabel: 'Caminho de upgrade',
     detailCta: 'Abrir check',
-    localBadgeLabel: 'MVP local',
+    localBadgeLabel: 'Check pontual',
     principlesTitle: 'Principios operacionais',
-    principles: sharedPrinciples,
+    principles: localizedPrinciples['pt-br'],
     statusRows: [
       { title: '7 checks focados', body: 'Status, redirects, headers, robots, sitemap, TTFB e snapshot estao representados.', tone: 'green' },
       { title: '5 conjuntos de idioma', body: 'Paginas em ingles, portugues, espanhol, frances e alemao sao prerenderizadas.', tone: 'green' },
@@ -112,9 +136,9 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Check gratis',
     upgradeLabel: 'Ruta de upgrade',
     detailCta: 'Abrir check',
-    localBadgeLabel: 'MVP local',
+    localBadgeLabel: 'Prueba puntual',
     principlesTitle: 'Principios operativos',
-    principles: sharedPrinciples,
+    principles: localizedPrinciples.es,
     statusRows: [
       { title: '7 checks enfocados', body: 'Status, redirects, headers, robots, sitemap, TTFB y snapshot estan representados.', tone: 'green' },
       { title: '5 rutas de idioma', body: 'Paginas en ingles, portugues, espanol, frances y aleman se prerenderizan.', tone: 'green' },
@@ -134,9 +158,9 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Controle gratuit',
     upgradeLabel: 'Offre payante',
     detailCta: 'Ouvrir',
-    localBadgeLabel: 'MVP local',
+    localBadgeLabel: 'Controle ponctuel',
     principlesTitle: 'Principes operationnels',
-    principles: sharedPrinciples,
+    principles: localizedPrinciples.fr,
     statusRows: [
       { title: '7 controles cibles', body: 'Statut, redirects, headers, robots, sitemap, TTFB et snapshot sont representes.', tone: 'green' },
       { title: '5 routes langue', body: 'Pages anglaises, portugaises, espagnoles, francaises et allemandes prerenderisees.', tone: 'green' },
@@ -156,9 +180,9 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Kostenloser Check',
     upgradeLabel: 'Upgrade-Pfad',
     detailCta: 'Check oeffnen',
-    localBadgeLabel: 'Lokales MVP',
+    localBadgeLabel: 'Einmal-Check',
     principlesTitle: 'Betriebsprinzipien',
-    principles: sharedPrinciples,
+    principles: localizedPrinciples.de,
     statusRows: [
       { title: '7 fokussierte Checks', body: 'Status, Redirects, Header, Robots, Sitemap, TTFB und Snapshot sind vertreten.', tone: 'green' },
       { title: '5 Sprachrouten', body: 'Englische, portugiesische, spanische, franzoesische und deutsche Seiten werden prerendered.', tone: 'green' },

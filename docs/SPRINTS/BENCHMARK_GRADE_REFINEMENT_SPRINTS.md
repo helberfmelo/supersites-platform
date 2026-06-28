@@ -220,6 +220,26 @@ Sprint 9.10 delivered the MailHealth unified domain report to production without
 | Production deploy | Passed: Fase 9/Sprint 9.10 static app deploy `28319881701`, release `55721b1aa2d0e020f73c3823d580427a48708ab4-28319881701-1` |
 | Public smokes | Passed: MailHealth static app/API asset `https://opentshost.com/supersites/mailhealth/_nuxt/fseKxIDq.js`, Hub aggregate, control-plane/API and live MailHealth report/mobile UX smoke |
 
+## Sprint 9.11 execution evidence
+
+Sprint 9.11 delivered the SitePulse visual report locally without activating recurring uptime monitoring, incident tracking, public status pages, alert delivery, history storage, multi-region probes, paid APIs, real ads, checkout, billing, donations, affiliates, external analytics or production workers.
+
+| Evidence | Value |
+|---|---|
+| SitePulse pages refined | Home `/en` plus localized home variants through shared component rendering |
+| Report structure | `SitePulseReportWorkbench` with URL input, visual state, score, HTTP/redirect/TTFB/cache metadata, report cards, safeguards and inert monitoring path |
+| Checks included | Availability, redirects, security headers, crawlability and performance snapshot via the existing bounded probe |
+| API/security boundary | Reuses `/api/v1/sitepulse/probe` with `checks: ['performance']`; SSRF guard, rate limits, cache and timeout behavior remain unchanged |
+| Analytics boundary | `visual-report` emits only sanitized route/tool metadata; no target URL, domain, status, headers, TTFB, recommendations or probe results |
+| Localization/public copy | Public badge copy changed from internal/local wording to one-shot check copy; operating principles are localized in PT-BR/ES/FR/DE |
+| Local frontend validation | Passed: `pnpm test:sitepulse`, `pnpm build:sitepulse`, `pnpm validate:sitepulse-preview`, `pnpm test:e2e:sitepulse` |
+| Backend bounded tests | Passed: `php artisan test --filter=SitePulseProbeApiTest` |
+| Local preview asset | `/_nuxt/BSPAO78o.js` |
+| Visual QA | Desktop/mobile screenshots captured by Playwright in `artifacts/playwright-sitepulse-report/data/` |
+| Local final gates | Passed: `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
+| Remote CI | Pending feature commit, push, Quality Gate and Deploy Dry Run |
+| Production deploy | Pending Fase 9/Sprint 9.11 HostGator deploy and public smokes |
+
 ## Per-sprint execution rules
 
 Each Sprint 9.x must:

@@ -56,3 +56,9 @@ Medium to high if diagnostics look like intrusive scanning. Keep scope bounded a
 - Monitoring, incidents, status pages, alerts, history, multi-region probes and reports remain gated/inert upgrade messaging.
 - Free one-shot diagnostics remain complete without signup.
 - No checkout, billing provider, ad serving, donation/support payment, affiliate link or paid API was activated.
+
+## Sprint 9.11 execution notes
+
+- The free home report now gives a complete one-shot status/performance answer without account creation.
+- Uptime monitoring, incident workflow, status page, alerts, history and multi-region checks are still presented only as inert workflow upgrade paths.
+- No checkout, billing provider, ad serving, donation/support payment, affiliate link, paid API, external analytics or production worker was activated.

@@ -8,9 +8,10 @@ import { siteBaseUrl } from '../data/routes'
 import type { ToolSlug } from '../data/tools'
 
 type ToolEventName = Extract<AnalyticsEventName, 'tool_viewed' | 'tool_started' | 'tool_completed' | 'tool_failed'>
+type SitePulseTrackedTool = ToolSlug | 'visual-report'
 
 export interface SitePulseToolEventInput {
-  toolSlug: ToolSlug
+  toolSlug: SitePulseTrackedTool
   locale: string
   routePath: string
 }
