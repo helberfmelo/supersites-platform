@@ -18,6 +18,19 @@ if (!locale || !page) {
 const copy = getContentPageCopy(page, locale)
 const shellCopy = getShellCopy(locale)
 const canonicalPath = localizedContentPath(locale, page.slug)
+const pageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: copy.title,
+  description: copy.description,
+  inLanguage: locale,
+  dateModified: '2026-06-28',
+  url: absoluteUrl(canonicalPath),
+  publisher: {
+    '@type': 'Organization',
+    name: 'SuperSites',
+  },
+}
 
 useHead({
   htmlAttrs: {
@@ -45,6 +58,12 @@ useHead({
   link: [
     { rel: 'canonical', href: absoluteUrl(canonicalPath) },
     ...localeAlternates((targetLocale) => localizedContentPath(targetLocale, page.slug)),
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify(pageJsonLd),
+    },
   ],
 })
 </script>

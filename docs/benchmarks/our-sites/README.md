@@ -21,7 +21,13 @@ pnpm benchmark:crawl
 Refresh the versioned latest baseline after an intentional Sprint 9.x audit:
 
 ```powershell
-node scripts/benchmark-crawl.mjs --mode=quick --write-docs
+node scripts/benchmark-crawl.mjs --mode=quick --write-docs --sprint=9.x --symbolic-sprint=BGR-SYMBOLIC-NAME
+```
+
+For Sprint 9.16 closure after production deploy:
+
+```powershell
+node scripts/benchmark-crawl.mjs --mode=full --include-content --write-docs --sprint=9.16 --symbolic-sprint=BGR-PERF-ADSENSE-CLOSURE
 ```
 
 ## Scope

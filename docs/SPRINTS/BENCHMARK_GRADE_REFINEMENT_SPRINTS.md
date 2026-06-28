@@ -336,3 +336,15 @@ Fase 9 is complete only when:
 - AdSense-safe spaces remain inert and avoid accidental-click placement.
 - Support/donation blocks are configurable and inert until human approval activates a real provider/link.
 - Public smokes pass after production deploys and run IDs are recorded in `docs/STATUS.md`.
+
+## Sprint 9.16 pre-push closure
+
+Sprint 9.16 local work added:
+
+- `pnpm validate:adsense-safe-public`, a Playwright gate that samples Hub/legal/detail/home pages and fails on AdSense/GTM/GA4/payment/donation/affiliate requests or DOM.
+- Configurable crawler labels through `--sprint` and `--symbolic-sprint`, so benchmark artifacts and user agents identify the actual sprint being audited.
+- JSON-LD coverage for 10 app homes (`WebSite`) and applicable static pages (`WebPage`) before production deploy.
+
+Pre-push validation passed for the affected apps: builds, Vitest, Playwright e2e, preview smokes, package tests, public-copy, structure, secrets, deploy dry-run, CI change detection, diff check and built HTML JSON-LD smoke.
+
+The last public full crawler before the app schema deploy is `2026-06-28T18-58-27-647Z`: 876 routes, 1752 checks, 0 page/browser failures, 0 console errors, 0 broken internal links, 0 overflow, 0 robots/sitemap/title/meta/canonical/hreflang gaps, and 680 JSON-LD gaps visible on the previous production build. The post-deploy crawler must be re-run and recorded in `docs/STATUS.md` before closing the phase.

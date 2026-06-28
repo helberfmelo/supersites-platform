@@ -23,6 +23,18 @@ const selectedCategory = ref<InvoiceCraftToolCategory | 'all'>('all')
 const filteredTools = computed(() => filterInvoiceCraftTools(searchQuery.value, selectedCategory.value, props.locale))
 const canonicalPath = computed(() => (props.xDefault ? '/' : localizedHomePath(props.locale)))
 const categories = computed(() => Array.from(new Set(invoiceCraftToolCatalog.map((tool) => tool.category))))
+const homeJsonLd = computed(() => ({
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'InvoiceCraft',
+  description: copy.value.lead,
+  inLanguage: props.locale,
+  url: absoluteUrl(canonicalPath.value),
+  publisher: {
+    '@type': 'Organization',
+    name: 'SuperSites',
+  },
+}))
 
 useHead(() => ({
   htmlAttrs: {
@@ -50,6 +62,12 @@ useHead(() => ({
   link: [
     { rel: 'canonical', href: absoluteUrl(canonicalPath.value) },
     ...localeAlternates(localizedHomePath),
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify(homeJsonLd.value),
+    },
   ],
 }))
 </script>

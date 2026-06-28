@@ -118,6 +118,8 @@ function parseArgs(argv) {
     baseUrl: process.env.SUPERSITES_BENCHMARK_BASE_URL || DEFAULT_BASE_URL,
     mode: 'full',
     outputDir: '',
+    sprint: process.env.SUPERSITES_BENCHMARK_SPRINT || '9.2',
+    symbolicSprint: process.env.SUPERSITES_BENCHMARK_SYMBOLIC_SPRINT || 'BGR-CRAWLER-BASELINE',
     writeDocs: false,
     includeContent: false,
     failOnCritical: false,
@@ -128,6 +130,8 @@ function parseArgs(argv) {
     if (item.startsWith('--base-url=')) args.baseUrl = item.slice('--base-url='.length)
     else if (item.startsWith('--mode=')) args.mode = item.slice('--mode='.length)
     else if (item.startsWith('--output-dir=')) args.outputDir = item.slice('--output-dir='.length)
+    else if (item.startsWith('--sprint=')) args.sprint = item.slice('--sprint='.length)
+    else if (item.startsWith('--symbolic-sprint=')) args.symbolicSprint = item.slice('--symbolic-sprint='.length)
     else if (item === '--write-docs') args.writeDocs = true
     else if (item === '--include-content') args.includeContent = true
     else if (item === '--fail-on-critical') args.failOnCritical = true
@@ -682,7 +686,7 @@ function buildMarkdownReport({ args, runId, artifactDir, summary, linkResults, r
 
 Data-base: 2026-06-28
 
-Sprint: Fase 9 / Sprint 9.2 - BGR-CRAWLER-BASELINE
+Sprint: Fase 9 / Sprint ${args.sprint} - ${args.symbolicSprint}
 
 Run id: \`${runId}\`
 
@@ -765,7 +769,7 @@ async function main() {
       const context = await browser.newContext({
         viewport: { width: viewport.width, height: viewport.height },
         isMobile: viewport.isMobile,
-        userAgent: `SuperSitesBenchmarkCrawler/9.2 ${viewport.name}`,
+        userAgent: `SuperSitesBenchmarkCrawler/${args.sprint} ${viewport.name}`,
       })
       await context.addInitScript(createInitScript())
 
@@ -790,8 +794,8 @@ async function main() {
   const summary = summarize(results, linkResults, robotsResults)
   const report = {
     generatedAt: new Date().toISOString(),
-    sprint: '9.2',
-    symbolicSprint: 'BGR-CRAWLER-BASELINE',
+    sprint: args.sprint,
+    symbolicSprint: args.symbolicSprint,
     mode: args.mode,
     baseUrl: args.baseUrl,
     artifactDir: normalizePath(artifactDir),

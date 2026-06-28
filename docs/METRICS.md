@@ -757,6 +757,18 @@ Data-base: 2026-06-28
 | Sprint 9.15 public smokes | Passed: aggregate Hub/control-plane/API, control-plane and live Hub desktop/mobile UX |
 | Sprint 9.15 live UX schema smoke | Passed: EN desktop and PT-BR mobile show discovery/workflow sections, rich footer, 3 JSON-LD scripts, 0 console/page errors and no overflow |
 | Sprint 9.15 ads/billing/analytics activation | 0 activated; Hub remains static/public with no real AdSense, GTM/GA4, checkout, billing, donation, affiliate, external analytics, worker or paid API |
+| Sprint 9.16 pre-fix public full crawler run | `2026-06-28T18-58-27-647Z`; 876 routes; 1752 desktop/mobile checks; 712 total gaps |
+| Sprint 9.16 pre-fix crawler pass signals | 0 page/browser failures, 0 console errors, 0 internal broken links, 0 horizontal overflow, 0 robots/sitemap gaps, 0 missing title/meta/canonical/hreflang |
+| Sprint 9.16 pre-fix public schema gaps | 680 missing JSON-LD checks visible on production before the local app schema fix |
+| Sprint 9.16 local app schema coverage | Added JSON-LD to 10 app homes and applicable static pages; built HTML smoke confirmed `application/ld+json` on sampled EN home/static outputs before deploy |
+| Sprint 9.16 timing proxies | Median TTFB 33 ms; P75 TTFB 38 ms; median load 77 ms; P75 load 86 ms; median LCP 80 ms; P75 LCP 88 ms; P75 CLS 0 |
+| Sprint 9.16 Lighthouse/PageSpeed/LHCI | Not available on local PATH; no external install/provider activated; crawler timing proxies recorded instead |
+| Sprint 9.16 AdSense-safe public gate | Implemented as `pnpm validate:adsense-safe-public`; passed locally across 13 public pages |
+| Sprint 9.16 AdSense-safe artifacts | `artifacts/adsense-safe-public/adsense-safe-public.md` and `.json` generated locally and ignored from git |
+| Sprint 9.16 crawler label smoke | Passed: `--sprint=9.16 --symbolic-sprint=BGR-PERF-ADSENSE-CLOSURE`, 1 route, 2 checks, 0 gaps |
+| Sprint 9.16 local validation | Passed: 10 app builds/tests/Playwright/previews, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
+| Sprint 9.16 remote CI/deploy status | Pending push and monitoring |
+| Sprint 9.16 ads/billing/analytics activation | 0 activated; no real AdSense, GTM/GA4, checkout, billing, donation, affiliate, external analytics, worker, paid API, `ads.txt`, publisher id or `adsbygoogle` snippet |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |
 | Real donation payments activated by Fase 9 planning | 0 planned before explicit gates |

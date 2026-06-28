@@ -113,6 +113,13 @@ AdSense e a monetizacao primaria, mas nenhum site deve ser submetido antes de cu
 - Legal pages, tool inputs/actions/previews/results, file upload/result, conta, checkout, login, admin e erro devem continuar sem placeholders nem ads reais.
 - Cada novo placement deve passar por review de densidade e distancia de controles interativos para evitar clique acidental e CLS.
 
+## Public safety gate
+
+- Sprint 9.16 adiciona `pnpm validate:adsense-safe-public` como gate publico antes de qualquer submissao ou ativacao real de ads.
+- O gate usa Playwright contra paginas publicas e deve falhar se houver requests/DOM de AdSense, GTM/GA4, pagamentos, doacoes ou afiliados enquanto a monetizacao real estiver desligada.
+- Estados permitidos continuam apenas inertes (`blocked-consent` ou `delivery-disabled`), sem foco, sem iframe/script, com reserva visual minima e `pointer-events: none`.
+- O gate nao substitui aprovacao humana, conta AdSense, `ads.txt`, publisher id real, CMP/TCF quando aplicavel, revisao legal, Core Web Vitals e smokes pos-deploy.
+
 ## Account readiness foundation
 
 - Sprint 6.3 adiciona somente readiness de conta publisher e revisao por site.
