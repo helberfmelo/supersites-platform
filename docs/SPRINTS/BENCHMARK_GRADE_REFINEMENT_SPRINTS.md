@@ -201,6 +201,24 @@ Sprint 9.9 delivered the InvoiceCraft editor-first workflow to production withou
 | Production deploy | Passed: Fase 9/Sprint 9.9 InvoiceCraft static app deploy `28319247622`, release `a57083b70a60a34b3fc66394a86d27a0c810db52-28319247622-1` |
 | Public smoke | Passed: InvoiceCraft app asset `https://opentshost.com/supersites/invoicecraft/_nuxt/CAuTAoAj.js`, aggregate Hub smoke, control-plane smoke and live workbench/invoice-builder/mobile UX smoke |
 
+## Sprint 9.10 execution evidence
+
+Sprint 9.10 delivered the MailHealth unified domain report locally without activating recurring monitoring, alert delivery, DMARC ingestion, batches, paid API, white-label, real ads, checkout, billing, donations, affiliates, external analytics or production workers.
+
+| Evidence | Value |
+|---|---|
+| MailHealth pages refined | Home `/en` plus localized home variants through shared component rendering |
+| Report structure | `MailHealthReportWorkbench` with domain, DKIM selector, SMTP port, optional local headers, unified score, per-check cards, guidance and safeguards |
+| Checks included | SPF, DKIM, DMARC, MX, blacklist sample, SMTP TCP reachability and local header analysis |
+| API/security boundary | Reuses existing bounded/rate-limited DNS, DNSBL and SMTP endpoints; headers remain browser-side and no SMTP message is sent |
+| Analytics boundary | `domain-report` emits only sanitized route/tool metadata; no domain, selector, headers, records, probes or result values |
+| Local frontend validation | Passed: `pnpm test:mailhealth`, `pnpm build:mailhealth`, `pnpm validate:mailhealth-preview`, `pnpm test:e2e:mailhealth` |
+| Local preview asset | `/_nuxt/BsCQ7iof.js` |
+| Visual QA | Desktop/mobile screenshots captured by Playwright in `artifacts/playwright-mailhealth-report/data/` |
+| Local final gates | Passed: `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
+| Remote CI | Pending feature commit and push |
+| Production deploy | Pending Fase 9/Sprint 9.10 static app deploy after Quality Gate and Deploy Dry Run pass |
+
 ## Per-sprint execution rules
 
 Each Sprint 9.x must:

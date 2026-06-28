@@ -14,7 +14,7 @@ declare global {
 }
 
 export interface ToolAnalyticsInput {
-  toolSlug: ToolSlug
+  toolSlug: ToolSlug | 'domain-report'
   locale: LocaleCode
   routePath: string
 }

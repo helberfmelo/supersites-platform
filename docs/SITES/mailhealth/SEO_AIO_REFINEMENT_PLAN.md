@@ -47,6 +47,12 @@ Medium because deliverability claims can be sensitive. Avoid guaranteed inbox-pl
 - No claim of exhaustive blacklist or open relay testing.
 - Sprint 7.9 public copy removes internal sprint labels while preserving review dates, canonical/hreflang/schema and gated upgrade boundaries.
 
+## Sprint 9.10 update
+
+- The home now has a clear primary action for a unified domain health report, improving task-first relevance without creating shallow pages.
+- Existing localized tool pages remain canonical/hreflang/schema-backed, while the report summarizes the main entities: SPF, DKIM, DMARC, MX, blacklist, SMTP and headers.
+- Copy remains point-in-time and avoids guaranteed deliverability claims.
+
 ## Dashboard backlog
 
 - DMARC education coverage.

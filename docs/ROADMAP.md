@@ -419,7 +419,7 @@ Sprint 9.10 - MailHealth unified report
 - Simbolico: BGR-MAILHEALTH-REPORT.
 - Objetivo: criar diagnostico unificado de dominio com score, checklist SPF/DKIM/DMARC/MX/blacklist/SMTP/headers, severidade e guidance neutro por provedor.
 - Validacao: DNS/SMTP bounded endpoints, rate limits, antiabuso, testes backend/frontend e smoke publico.
-- Status: planejada.
+- Status: validacao local concluida, aguardando commit/CI/deploy. O MailHealth recebeu `MailHealthReportWorkbench` na home com relatorio unificado de dominio, score 0-100, cards de SPF/DKIM/DMARC/MX/blacklist/SMTP/headers, guidance neutro por provedor, protecoes de privacidade/antiabuso e analytics sanitizado do `domain-report`. O fluxo usa endpoints publicos existentes e limitados para DNS/DNSBL/SMTP, mantendo headers locais no navegador. Validacao local passou com `pnpm test:mailhealth`, `pnpm build:mailhealth`, `pnpm validate:mailhealth-preview`, `pnpm test:e2e:mailhealth`, screenshots Playwright e gates de pacotes/public-copy/estrutura/segredos/dry-run/ci/diff.
 
 Sprint 9.11 - SitePulse visual report
 - Simbolico: BGR-SITEPULSE-REPORT.

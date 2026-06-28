@@ -46,6 +46,12 @@ Medium due to technical diagnostics and provider-policy limits.
 - Monitoring is clearly gated.
 - Sprint 7.9 exposes monitoring/API/white-label value through inert copy only; no checkout, payment link, DMARC ingestion, alert delivery or recurring worker is active.
 
+## Sprint 9.10 update
+
+- The unified report improves the free diagnostic without signup.
+- Paid value remains limited to inactive monitoring, alerts, DMARC report ingestion, batches, API, exports and white-label.
+- No checkout, API key issuance, paid entitlement, ad serving or external analytics was activated.
+
 ## Dashboard backlog
 
 - DMARC report product gate.

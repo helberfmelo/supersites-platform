@@ -45,6 +45,87 @@ async function expectNoHorizontalOverflow(page: Page) {
   expect(metrics.wideElements, JSON.stringify(metrics)).toHaveLength(0)
 }
 
+async function mockUnifiedMailHealthReport(page: Page) {
+  await page.route(/.*\/api\/v1\/mailhealth\/dns$/, async (route) => {
+    const body = route.request().postDataJSON() as { check: string }
+    const recordsByCheck: Record<string, Array<Record<string, unknown>>> = {
+      spf: [{ type: 'TXT', value: 'v=spf1 include:_spf.example.net -all' }],
+      dkim: [{ type: 'TXT', selector: 'default', public_key_present: true }],
+      dmarc: [{ type: 'TXT', policy: 'reject', aggregate_reports_present: true }],
+      mx: [{ type: 'MX', priority: 10, target: 'mail.example.com', public_addresses: ['93.184.216.34'] }],
+    }
+
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({
+        data: {
+          check: body.check,
+          domain: 'example.com',
+          status: 'pass',
+          summary: `${body.check.toUpperCase()} signal passed for the report.`,
+          findings: [
+            { label: `${body.check.toUpperCase()} signal`, status: 'pass', detail: 'The visible signal is healthy.' },
+          ],
+          records: recordsByCheck[body.check] ?? [],
+          warnings: [],
+        },
+        meta: {
+          generated_at: '2026-06-28T00:00:00.000Z',
+          cache_ttl_seconds: 120,
+          cached: false,
+        },
+      }),
+    })
+  })
+
+  await page.route(/.*\/api\/v1\/mailhealth\/blacklist$/, async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({
+        data: {
+          check: 'blacklist',
+          domain: 'example.com',
+          status: 'pass',
+          summary: 'DNSBL sample did not list the sampled address.',
+          findings: [{ label: 'DNSBL sample', status: 'pass', detail: 'No listed address in the bounded sample.' }],
+          probes: [{ zone: 'zen.spamhaus.org', listed: false }],
+          warnings: [],
+        },
+        meta: {
+          generated_at: '2026-06-28T00:00:00.000Z',
+          cache_ttl_seconds: 120,
+          cached: false,
+        },
+      }),
+    })
+  })
+
+  await page.route(/.*\/api\/v1\/mailhealth\/smtp$/, async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({
+        data: {
+          check: 'smtp',
+          domain: 'example.com',
+          status: 'pass',
+          summary: 'SMTP TCP reachability succeeded for the report.',
+          findings: [{ label: 'TCP status', status: 'pass', detail: 'TCP only; no email sent.', value: 'open' }],
+          probes: [{ mx_host: 'mail.example.com', address: '93.184.216.34', port: 25, tcp_status: 'open' }],
+          warnings: [],
+        },
+        meta: {
+          generated_at: '2026-06-28T00:00:00.000Z',
+          cache_ttl_seconds: 60,
+          cached: false,
+        },
+      }),
+    })
+  })
+}
+
 test.describe('MailHealth MVP', () => {
   test('renders the home page on desktop', async ({ page }, testInfo) => {
     const errors = collectBrowserErrors(page)
@@ -58,12 +139,55 @@ test.describe('MailHealth MVP', () => {
       'https://opentshost.com/supersites/mailhealth/en',
     )
     await expect(page.getByRole('heading', { name: 'SPF Checker' })).toBeVisible()
+    await expect(page.getByText('Domain health report')).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Run domain report' })).toBeVisible()
     await expect(page.getByText('Local free version')).toHaveCount(7)
     await expect(page.getByText('7 focused checks')).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
     const screenshot = await page.screenshot({ fullPage: true })
     await testInfo.attach('mailhealth-home-desktop', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('runs a unified domain report without leaking the domain to analytics', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+    await mockUnifiedMailHealthReport(page)
+
+    await page.goto('/en')
+    await page.getByLabel('Domain name').first().fill('secret.example')
+    await page.getByLabel('DKIM selector').first().fill('default')
+    await page.getByRole('button', { name: 'Run domain report' }).click()
+
+    await expect(page.getByText('Unified score')).toBeVisible()
+    await expect(page.locator('.report-summary').getByText('100')).toBeVisible()
+    await expect(page.getByText('SPF signal passed for the report.')).toBeVisible()
+    await expect(page.getByText('SMTP TCP reachability succeeded for the report.')).toBeVisible()
+    await expect(page.getByText('Headers show mostly healthy authentication signals.')).toBeVisible()
+    await expectNoHorizontalOverflow(page)
+
+    const analytics = await page.evaluate(() => ({
+      localEvents: window.supersitesAnalyticsEvents,
+      dataLayer: window.dataLayer,
+      localStorageLength: window.localStorage.length,
+      sessionStorageLength: window.sessionStorage.length,
+    }))
+
+    expect(analytics.localEvents?.map((event) => event.name)).toEqual(['tool_viewed', 'tool_started', 'tool_completed'])
+    expect(analytics.localEvents?.[0]).toMatchObject({
+      siteSlug: 'mailhealth',
+      routePath: '/en',
+      properties: {
+        tool_slug: 'domain-report',
+      },
+    })
+    expect(JSON.stringify(analytics)).not.toContain('secret.example')
+    expect(analytics.localStorageLength).toBe(0)
+    expect(analytics.sessionStorageLength).toBe(0)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('mailhealth-report-desktop', { body: screenshot, contentType: 'image/png' })
 
     expect(errors).toEqual([])
   })

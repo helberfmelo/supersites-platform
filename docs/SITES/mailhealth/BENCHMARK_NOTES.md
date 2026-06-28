@@ -32,3 +32,9 @@ Data-base: 2026-06-27
 - Combined domain health summary implemented as per-tool score card in Sprint 7.9.
 - Severity and fix guidance implemented per issue without changing API contracts.
 - Record builders and monitoring CTAs prepared as gated/inert panels with provider-policy gates.
+
+## Sprint 9.10 benchmark-grade response
+
+- A unified report now leads the home experience and mirrors the diagnostic mental model of email health competitors.
+- The free flow uses one domain input, DKIM selector, SMTP port and optional local headers to produce a score and per-signal cards.
+- Monitoring, alerting, DMARC ingestion, API and white-label remain visibly planned but inactive.

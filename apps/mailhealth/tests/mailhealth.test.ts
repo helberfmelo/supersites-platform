@@ -142,5 +142,15 @@ describe('MailHealth MVP', () => {
     expect(event.properties).toEqual({ tool_slug: 'dkim-checker' })
     expect(JSON.stringify(event)).not.toContain('secret.example')
     expect(JSON.stringify(event)).not.toContain('private')
+
+    const reportEvent = createMailHealthToolEvent({
+      toolSlug: 'domain-report',
+      locale: 'en',
+      routePath: `${siteBaseUrl}/en?domain=secret.example`,
+    }, 'tool_started')
+
+    expect(reportEvent.properties).toEqual({ tool_slug: 'domain-report' })
+    expect(reportEvent.routePath).toBe('/supersites/mailhealth/en')
+    expect(JSON.stringify(reportEvent)).not.toContain('secret.example')
   })
 })

@@ -48,6 +48,12 @@ Medium; placements must avoid domain fields, headers, results and copy/fix contr
 - No domains/selectors/records in analytics.
 - Related checks and planned record builders are visible without activating monitoring, API, billing or storage.
 
+## Sprint 9.10 update
+
+- The home now opens with a unified domain report before the catalog.
+- The report combines SPF, DKIM, DMARC, MX, blacklist, SMTP and optional local headers into one score/checklist.
+- Desktop and mobile Playwright screenshots passed with no overflow, and the report keeps headers local.
+
 ## Dashboard backlog
 
 - Domain health score readiness.
