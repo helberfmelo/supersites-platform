@@ -58,6 +58,7 @@ describe('@supersites/seo', () => {
       'This description intentionally repeats enough useful context to exceed the crawler limit while keeping words intact for a clean search snippet across localized utility pages.'
 
     expect(limitSeoText(longTitle, SEO_TITLE_MAX_LENGTH).length).toBeLessThanOrEqual(SEO_TITLE_MAX_LENGTH)
+    expect(limitSeoText(longTitle, SEO_TITLE_MAX_LENGTH)).toMatch(/\| SuperSites$/)
     expect(limitSeoText(longDescription, SEO_DESCRIPTION_MAX_LENGTH).length).toBeLessThanOrEqual(
       SEO_DESCRIPTION_MAX_LENGTH,
     )

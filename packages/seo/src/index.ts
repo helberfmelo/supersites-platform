@@ -88,7 +88,28 @@ export function limitSeoText(value: string, maxLength: number): string {
     return normalized
   }
 
-  const clipped = normalized.slice(0, maxLength).trimEnd()
+  const brandedSeparator = ' | '
+  const brandedSeparatorIndex = normalized.lastIndexOf(brandedSeparator)
+
+  if (brandedSeparatorIndex > 0 && brandedSeparatorIndex + brandedSeparator.length < normalized.length) {
+    const prefix = normalized.slice(0, brandedSeparatorIndex).trim()
+    const suffix = normalized.slice(brandedSeparatorIndex + brandedSeparator.length).trim()
+    const reservedLength = brandedSeparator.length + suffix.length
+
+    if (reservedLength < maxLength) {
+      const clippedPrefix = clipSeoTextAtWordBoundary(prefix, maxLength - reservedLength)
+
+      if (clippedPrefix) {
+        return `${clippedPrefix}${brandedSeparator}${suffix}`
+      }
+    }
+  }
+
+  return clipSeoTextAtWordBoundary(normalized, maxLength)
+}
+
+function clipSeoTextAtWordBoundary(value: string, maxLength: number): string {
+  const clipped = value.slice(0, maxLength).trimEnd()
   const wordBoundary = clipped.lastIndexOf(' ')
 
   if (wordBoundary >= Math.floor(maxLength * 0.72)) {
