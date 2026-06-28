@@ -732,7 +732,10 @@ Data-base: 2026-06-28
 | Sprint 9.13 visual QA artifacts | `artifacts/playwright-timenexus-planner/sprint-9-13-timenexus-desktop.png` and `artifacts/playwright-timenexus-planner/sprint-9-13-timenexus-world-clock-mobile.png` |
 | Sprint 9.13 package validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages` |
 | Sprint 9.13 public copy/structure/security gates | Passed locally: `pnpm validate:public-copy` across 891 HTML files, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
-| Sprint 9.13 remote CI/deploy status | Pending feature commit, push, Quality Gate, Deploy Dry Run, HostGator deploy and public smokes |
+| Sprint 9.13 remote CI/deploy status | Passed: feature commit `e74a9d9`, Quality Gate `28330255418`, Deploy Dry Run `28330255414`, HostGator deploy `28330387022` |
+| Sprint 9.13 production release | `e74a9d934f68ebd16806e4f826b8ab6b089a3c18-28330387022-1`; asset `https://opentshost.com/supersites/timenexus/_nuxt/DSDvC2kq.js`; 214 files / 2432404 bytes |
+| Sprint 9.13 public smokes | Passed: static app TimeNexus, aggregate Hub/control-plane/API and control-plane |
+| Sprint 9.13 live UX privacy smoke | Passed: planner before catalog, `global-product` group, 90-minute slot, UTC `2026-06-26T14:30:00.000Z`, Tokyo visible, world-clock mobile page visible, `analyticsEvents: 0`, empty `localStorage`/`sessionStorage`, 0 console errors, no desktop/mobile overflow |
 | Sprint 9.13 time-workflow paid activation | 0 activated; TimeNexus remains browser-side with no saved presets, history, widgets, API, billing, ads or external analytics |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |

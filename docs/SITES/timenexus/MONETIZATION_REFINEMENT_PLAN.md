@@ -56,3 +56,4 @@ Low to medium; interactive controls need separation.
 - Added a clear upgrade story around widgets, API, presets, history and team scheduling while leaving those paths informational/inert.
 - The new planner does not persist meeting times, cities or zones and does not emit analytics events on the home/world-clock pages.
 - Real widgets, paid API, saved history, billing, ads and external analytics remain blocked by future gates.
+- Production closeout kept these controls inactive; smokes found empty local/session storage and zero app analytics events on the live planner/world-clock pages.

@@ -58,3 +58,4 @@ Low to medium; keep placements away from controls and results.
 - Implemented `TimeNexusPlanner` with current time panel, city group selector, source zone, duration, UTC instant, business-hour status and nearby slots.
 - Added curated world-clock group pages for Americas + Europe, Global product team and APAC + Europe.
 - Validation passed locally with unit tests, build, preview smoke, Playwright, visual screenshots and standard platform gates.
+- Production deploy and live UX smoke passed in run `28330387022`, with screenshots `sprint-9-13-timenexus-live-desktop.png` and `sprint-9-13-timenexus-live-world-clock-mobile.png`.

@@ -60,7 +60,7 @@ Public smokes passed for CalcHarbor, aggregate Hub/control-plane/API and live UX
 
 ## Sprint 9.13 execution evidence
 
-Sprint 9.13 delivered TimeNexus world clock and planning density locally without activating saved presets, history, widgets, paid APIs, real ads, checkout, billing, donations, affiliates, external analytics or recurring production workers.
+Sprint 9.13 delivered TimeNexus world clock and planning density to production without activating saved presets, history, widgets, paid APIs, real ads, checkout, billing, donations, affiliates, external analytics or recurring production workers.
 
 | Evidence | Value |
 |---|---|
@@ -72,7 +72,10 @@ Sprint 9.13 delivered TimeNexus world clock and planning density locally without
 | Visual QA | Screenshots captured at `artifacts/playwright-timenexus-planner/sprint-9-13-timenexus-desktop.png` and `artifacts/playwright-timenexus-planner/sprint-9-13-timenexus-world-clock-mobile.png` |
 | Public copy coverage | `pnpm validate:public-copy` passed across 891 HTML files |
 | Local final gates | Passed: `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
-| Remote CI/deploy status | Pending feature commit, push, Quality Gate, Deploy Dry Run, HostGator deploy and public smokes |
+| Remote CI/deploy status | Passed: feature commit `e74a9d9`, Quality Gate `28330255418`, Deploy Dry Run `28330255414`, HostGator deploy `28330387022` |
+| Production release | `e74a9d934f68ebd16806e4f826b8ab6b089a3c18-28330387022-1`; asset `https://opentshost.com/supersites/timenexus/_nuxt/DSDvC2kq.js`; 214 files / 2432404 bytes |
+| Public smokes | Passed: static app TimeNexus, aggregate Hub/control-plane/API and control-plane |
+| Live UX smoke | Passed on `/supersites/timenexus/en/` and `/supersites/timenexus/en/world-clock/global-product`; screenshots at `artifacts/playwright-timenexus-planner/sprint-9-13-timenexus-live-desktop.png` and `artifacts/playwright-timenexus-planner/sprint-9-13-timenexus-live-world-clock-mobile.png` |
 
 | Evidence | Value |
 |---|---|

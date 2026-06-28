@@ -1,6 +1,6 @@
 # TimeNexus Benchmark Notes
 
-Data-base: 2026-06-27
+Data-base: 2026-06-28
 
 ## References
 
@@ -36,3 +36,4 @@ Data-base: 2026-06-27
 - Home now opens with a browser-side world clock and meeting planner before the catalog.
 - Three curated comparison pages were added for `americas-europe`, `global-product` and `apac-europe`, each across the five public locales.
 - The city/timezone SEO expansion remains deliberately small and maintained; broad programmatic city pages stay out of scope until quality and maintenance gates exist.
+- Production deploy passed as Fase 9/Sprint 9.13 with run `28330387022`; live desktop/mobile UX smoke screenshots were captured under `artifacts/playwright-timenexus-planner/`.

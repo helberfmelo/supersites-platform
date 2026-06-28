@@ -57,3 +57,4 @@ Low if pages stay useful and localized.
 - Added `/world-clock/americas-europe`, `/world-clock/global-product` and `/world-clock/apac-europe` in EN/PT-BR/ES/FR/DE.
 - Each page includes the selected meeting planner, city/IANA zone coverage and DST/calendar limit copy.
 - Further city/fuso pages remain pending review to avoid thin programmatic content.
+- Production smoke confirmed the live `/en/world-clock/global-product` page on mobile with city/IANA coverage visible.
