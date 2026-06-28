@@ -58,7 +58,7 @@ test.describe('SitePulse Lab MVP', () => {
       'https://opentshost.com/supersites/sitepulse-lab/en',
     )
     await expect(page.getByRole('heading', { name: 'HTTP Status Checker' })).toBeVisible()
-    await expect(page.getByText('Local MVP')).toHaveCount(7)
+    await expect(page.getByText('Local free version')).toHaveCount(7)
     await expect(page.getByText('7 focused checks')).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
@@ -115,7 +115,7 @@ test.describe('SitePulse Lab MVP', () => {
     await page.getByRole('tab', { name: 'Findings' }).click()
     await expect(page.getByRole('cell', { name: 'HTTP status' })).toBeVisible()
     await expect(page.getByText('Recommended actions')).toBeVisible()
-    await expect(page.getByText('Monitoring workflow gated')).toBeVisible()
+    await expect(page.getByText('Monitoring workflow planned')).toBeVisible()
     await expect(page.getByText('Related pages')).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)
     await expectNoHorizontalOverflow(page)
@@ -198,7 +198,7 @@ test.describe('SitePulse Lab MVP', () => {
     await expect(page.getByText('Pulse score')).toBeVisible()
     await page.getByRole('tab', { name: 'Findings' }).click()
     await expect(page.getByRole('cell', { name: 'Content-Security-Policy' })).toBeVisible()
-    await expect(page.getByText('Monitoring workflow gated')).toBeVisible()
+    await expect(page.getByText('Monitoring workflow planned')).toBeVisible()
     await expectNoHorizontalOverflow(page)
     expect(JSON.stringify(await page.evaluate(() => window.supersitesAnalyticsEvents))).not.toContain('headers-secret.example')
 

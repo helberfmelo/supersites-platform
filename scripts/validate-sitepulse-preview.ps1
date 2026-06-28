@@ -93,7 +93,7 @@ try {
         'hreflang="pt-BR"',
         'HTTP Status Checker',
         '7 focused checks',
-        'Monitoring gated'
+        'Monitoring planned'
     )
 
     foreach ($needle in $requiredHtml) {
@@ -118,7 +118,7 @@ try {
         throw 'Status checker smoke failed.'
     }
 
-    $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/tools/sitemap-validator" -RequiredContent 'Sitemap Validator'
+    $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/tools/sitemap-validator" -RequiredContent 'Validador de sitemap'
     if ($localizedTool.StatusCode -ne 200 -or $localizedTool.Content -notmatch 'sitemap') {
         throw 'Localized sitemap validator smoke failed.'
     }

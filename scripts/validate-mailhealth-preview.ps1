@@ -93,7 +93,7 @@ try {
         'hreflang="pt-BR"',
         'SPF Checker',
         '7 focused checks',
-        'Monitoring gated'
+        'Monitoring planned'
     )
 
     foreach ($needle in $requiredHtml) {
@@ -118,7 +118,7 @@ try {
         throw 'SPF checker smoke failed.'
     }
 
-    $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/tools/dmarc-checker" -RequiredContent 'DMARC Checker'
+    $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/tools/dmarc-checker" -RequiredContent 'Verificador DMARC'
     if ($localizedTool.StatusCode -ne 200 -or $localizedTool.Content -notmatch 'DMARC') {
         throw 'Localized DMARC checker smoke failed.'
     }

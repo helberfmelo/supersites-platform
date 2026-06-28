@@ -2,7 +2,7 @@
 import { getButtonClass } from '@supersites/ui'
 import { computed, ref } from 'vue'
 import { getShellCopy } from '../../../data/copy'
-import { localizedContentPath, localizedHomePath, localizedToolPath, normalizePublicLocale, toHtmlLang } from '../../../data/locales'
+import { localizedContentPath, localizedHomePath, localizedToolPath, normalizePublicLocale, sanitizePublicCopy, toHtmlLang, type LocaleCode } from '../../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
 import { createToolStructuredData, getCategoryLabel, getToolBySlug, getToolCopy, toolCatalog } from '../../../data/tools'
 import { trackToolStarted } from '../../../utils/analytics'
@@ -22,6 +22,39 @@ const copy = getToolCopy(tool, locale)
 const shellCopy = getShellCopy(locale)
 const canonicalPath = localizedToolPath(locale, tool.slug)
 const structuredData = createToolStructuredData(tool, locale, absoluteUrl(canonicalPath))
+const upgradePanelCopyByLocale = {
+  en: {
+    ariaLabel: 'Planned upgrade path',
+    eyebrow: 'Planned upgrade path',
+    title: 'Monitor, alert and export later',
+    body: 'Saved history, multi-region checks, alerts, reports and API access remain planned upgrades. Billing, workers and external providers stay disabled until quality checks are complete.',
+  },
+  'pt-br': {
+    ariaLabel: 'Caminho de upgrade planejado',
+    eyebrow: 'Upgrade planejado',
+    title: 'Monitorar, alertar e exportar depois',
+    body: 'Histórico salvo, checagens multi-região, alertas, relatórios e API continuam como upgrades planejados. Billing, workers e provedores externos ficam desativados até as revisões de qualidade.',
+  },
+  es: {
+    ariaLabel: 'Ruta de upgrade planificada',
+    eyebrow: 'Upgrade planificado',
+    title: 'Monitorear, alertar y exportar después',
+    body: 'Historial guardado, chequeos multi-región, alertas, reportes y API siguen como upgrades planificados. Billing, workers y proveedores externos permanecen desactivados hasta completar las revisiones de calidad.',
+  },
+  fr: {
+    ariaLabel: 'Parcours de mise à niveau prévu',
+    eyebrow: 'Mise à niveau prévue',
+    title: 'Surveiller, alerter et exporter plus tard',
+    body: 'Historique sauvegardé, vérifications multi-région, alertes, rapports et API restent des évolutions prévues. Billing, workers et fournisseurs externes restent désactivés jusqu’aux revues qualité.',
+  },
+  de: {
+    ariaLabel: 'Geplanter Upgrade-Pfad',
+    eyebrow: 'Geplanter Upgrade',
+    title: 'Monitoring, Alerts und Exporte später',
+    body: 'Gespeicherter Verlauf, Multi-Region-Prüfungen, Alerts, Reports und API-Zugriff bleiben geplante Upgrades. Billing, Worker und externe Anbieter bleiben deaktiviert, bis die Qualitätsprüfungen abgeschlossen sind.',
+  },
+} satisfies Record<LocaleCode, { ariaLabel: string; eyebrow: string; title: string; body: string }>
+const upgradePanelCopy = sanitizePublicCopy(locale, upgradePanelCopyByLocale[locale])
 const runtimeConfig = useRuntimeConfig()
 const previewSubmitted = ref(false)
 const targetValue = ref(tool.slug === 'what-is-my-ip' ? '' : tool.exampleTarget)
@@ -1005,11 +1038,11 @@ useHead({
           <p v-else>{{ previewSubmitted ? copy.previewResult : shellCopy.plannedBody }}</p>
         </section>
 
-        <section class="upgrade-panel" aria-label="Gated upgrade path">
+        <section class="upgrade-panel" :aria-label="upgradePanelCopy.ariaLabel">
           <div>
-            <p class="eyebrow">Gated upgrade path</p>
-            <h2>Monitor, alert and export later</h2>
-            <p>Saved history, multi-region checks, alerts, reports and API access remain planned upgrades. Billing, workers and external providers stay disabled until their gates pass.</p>
+            <p class="eyebrow">{{ upgradePanelCopy.eyebrow }}</p>
+            <h2>{{ upgradePanelCopy.title }}</h2>
+            <p>{{ upgradePanelCopy.body }}</p>
           </div>
           <NuxtLink class="button-link button-link--secondary" :to="localizedContentPath(locale, 'methodology')">
             Review limits

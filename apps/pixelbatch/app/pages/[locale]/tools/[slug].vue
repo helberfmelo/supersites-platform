@@ -61,7 +61,7 @@ const outputSize = ref(0)
 const resultTitle = computed(() => result.value?.ok === false ? shellCopy.invalidResultTitle : copy.resultLabel)
 const selectedFileLabel = computed(() => selectedFile.value ? `${selectedFile.value.name} (${formatBytes(selectedFile.value.size)})` : shellCopy.privacyNote)
 const relatedTools = computed(() => getRelatedPixelBatchTools(tool.slug, locale))
-const workflowSteps = computed(() => getPixelBatchWorkflowSteps(tool.slug))
+const workflowSteps = computed(() => getPixelBatchWorkflowSteps(tool.slug, locale))
 const displayedMeta = computed(() => {
   if (!result.value?.ok) {
     return []
@@ -89,7 +89,7 @@ const workflowChecklist = computed(() => [
     value: 'No upload endpoint, localStorage, sessionStorage or account.',
   },
   {
-    label: 'Upgrade gate',
+    label: 'Upgrade path',
     value: result.value?.plan?.upgradeGateNote ?? 'Batch, API, high-res queues and AI remain inactive.',
   },
 ])
@@ -399,7 +399,7 @@ useHead({
       <div>
         <div class="detail-topline">
           <p class="eyebrow">{{ getCategoryLabel(tool.category, locale) }}</p>
-          <span class="status">Local MVP</span>
+          <span class="status">{{ shellCopy.liveTitle }}</span>
         </div>
         <h1 :id="`${tool.slug}-title`">{{ copy.title }}</h1>
         <p class="lead">{{ copy.headline }}</p>
@@ -574,7 +574,7 @@ useHead({
             </div>
             <div>
               <dt>File safety</dt>
-              <dd>Server-side batch, API and AI processing require upload validation, sandboxing, retention and antivirus gates before activation.</dd>
+              <dd>Server-side batch, API and AI processing require upload validation, sandboxing, retention and antivirus checks before activation.</dd>
             </div>
           </dl>
         </section>

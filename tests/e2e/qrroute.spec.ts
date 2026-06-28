@@ -59,7 +59,7 @@ test.describe('QRRoute MVP', () => {
     )
     await expect(page.getByRole('heading', { name: 'Static QR Code Generator' })).toBeVisible()
     await expect(page.getByText('6 local workflow tools')).toBeVisible()
-    await expect(page.getByText('Local MVP').first()).toBeVisible()
+    await expect(page.getByText('Free result').first()).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
     const screenshot = await page.screenshot({ fullPage: true })
@@ -137,8 +137,8 @@ test.describe('QRRoute MVP', () => {
     await page.setViewportSize({ width: 390, height: 1050 })
     await page.goto('/pt-br/tools/wifi-qr')
 
-    await expect(page).toHaveTitle(/Wi-Fi QR Builder/)
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Wi-Fi QR Builder')
+    await expect(page).toHaveTitle(/Construtor de QR Wi-Fi/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Construtor de QR Wi-Fi')
     await expect(page.getByLabel('Network SSID')).toBeVisible()
     await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR')
     await expectNoHorizontalOverflow(page)

@@ -132,7 +132,7 @@ Invoke-SmokeRequest -Url $assetUrl | Out-Null
 $requiredPages = @(
     @{ Url = Join-Url $publicBase "en"; Marker = "A curated operating network" },
     @{ Url = Join-Url $publicBase "pt-br/privacy"; Marker = "Privacidade" },
-    @{ Url = Join-Url $publicBase "en/sites/netprobe-atlas"; Marker = "Quality gate" },
+    @{ Url = Join-Url $publicBase "en/sites/netprobe-atlas"; Marker = "Quality check" },
     @{ Url = Join-Url $publicBase "sitemap.xml"; Marker = "<urlset" }
 )
 

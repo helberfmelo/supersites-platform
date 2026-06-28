@@ -377,7 +377,7 @@ Sprint 9.3 - Localizacao global e copia publica P0
 - Simbolico: BGR-I18N-COPY-P0.
 - Objetivo: corrigir fallback indevido para ingles, acentuacao e linguagem publica interna em EN/PT-BR/ES/FR/DE.
 - Validacao: snapshots por locale, bloqueio de strings internas (`MVP`, `gated`, `deploy smoke`, `rollback validation`, `placeholder`) em superficies publicas onde nao forem produto/operacao interna, Playwright mobile/desktop e smokes publicos.
-- Status: planejada.
+- Status: concluida localmente; aguardando push, CI remoto, deploys rotulados e smokes publicos de fechamento. Foi criado o sanitizer compartilhado de copia publica em `@supersites/i18n`, aplicado ao Hub, paginas legais/status, homes, paginas editoriais e ferramentas dos 10 sites, removendo linguagem interna de MVP/gated/placeholder/deploy smoke/rollback validation/HUMAN_ACTION_REQUIRED das superficies publicas geradas. O novo `pnpm validate:public-copy` verificou 876 HTMLs gerados e passou; o Quality Gate agora possui job `Public copy gate` para bloquear regressao de copia publica apos build completo dos frontends. Validacao local passou para testes/builds/previews/Playwright dos 11 frontends, pacotes compartilhados, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes` e `git diff --check`. Nenhum anuncio real, checkout, billing, pagamento, doacao, afiliado, analytics externo, API paga, worker/cron, upload/storage ou direct-root mapping foi ativado.
 
 Sprint 9.4 - Trust, legal e support blocks
 - Simbolico: BGR-TRUST-SUPPORT.

@@ -65,6 +65,7 @@
     "validate:sitepulse-preview": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/validate-sitepulse-preview.ps1",
     "validate:pixelbatch-preview": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/validate-pixelbatch-preview.ps1",
     "validate:docshift-preview": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/validate-docshift-preview.ps1",
+    "validate:public-copy": "node scripts/validate-public-copy.mjs",
     "ci:changes": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/ci-detect-changes.ps1",
     "deploy:dry-run": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/prepare-deploy-dry-run.ps1",
     "deploy:build-supersite-hostgator": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/build-supersite-hostgator-artifact.ps1",

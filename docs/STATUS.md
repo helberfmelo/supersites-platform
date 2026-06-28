@@ -28,6 +28,8 @@ Em seguida, a Fase 8 - Public Rollout e Production Visibility foi aberta para pu
 
 Na Sprint 8.6, a Fase 8 foi fechada em producao: o Hub e os nove apps estaticos foram redeployados com copia publica corrigida, status pages sem linguagem residual de placeholder, smoke agregado endurecido e smokes publicos especificos verdes. O estado publico final em `/supersites/` tem Hub, control-plane/API, NetProbe Atlas e os nove apps de produto ativos; placeholders publicos remanescentes para esses apps: 0. Direct-root mapping, dominios definitivos, ads, billing, checkout, workers recorrentes, storage de upload, APIs pagas e analytics externo continuam fora do escopo ate gates separados.
 
+Na Sprint 9.3, a Fase 9 avancou em localizacao global e copia publica P0. Foi criado um sanitizer compartilhado em `@supersites/i18n` e aplicado ao Hub, paginas legais/status, homes, paginas editoriais e ferramentas dos 10 sites para remover linguagem interna de MVP/gated/placeholder/deploy smoke/rollback validation/HUMAN_ACTION_REQUIRED das superficies publicas geradas, preservando copy operacional apenas em docs/runbooks/scripts. O novo gate `pnpm validate:public-copy` passou localmente em 876 HTMLs e foi ligado ao GitHub Actions como job `Public copy gate`. A entrega ainda aguarda push, CI remoto, deploys rotulados Fase 9/Sprint 9.3 e smokes publicos finais antes do fechamento documental.
+
 ## Estado local verificado
 
 - Raiz local: `D:\Projetos\supersites`.
@@ -1151,6 +1153,18 @@ Na Sprint 8.6, a Fase 8 foi fechada em producao: o Hub e os nove apps estaticos 
   - Smokes publicos pos-deploy passaram: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public` e `pnpm deploy:smoke-static-app-public -- -AppId <app>` para os nove apps. Checagem direta confirmou HTTP 200 para `robots.txt` do Hub, NetProbe e nove apps.
   - Crawler quick pos-deploy passou e atualizou `docs/benchmarks/our-sites/latest-baseline.md`: run `2026-06-28T04-46-52-491Z`, 95 rotas, 190 checks, 142 gaps, 0 failures/browser errors, 0 console errors, 0 broken internal links, 0 horizontal overflow e 0 gaps de robots/sitemap. Os gaps remanescentes sao majoritariamente JSON-LD/schema e seguem para sprints posteriores da Fase 9.
   - Fechamento documental da Sprint 9.2 publicado em `8a72c41` (`docs: close benchmark crawler production rollout`); `Quality Gate` docs-only `28311809660` passou.
+
+- Sprint 9.3 validation:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/STATUS.md`, `docs/ROADMAP.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local, docs de benchmark e todos os ADRs existentes ate `0030`.
+  - Estado inicial verificado a partir do fechamento da Sprint 9.2, com repositorio publico, GitHub Actions desbloqueado, Hub/control-plane/API/NetProbe e nove apps publicados sob `/supersites/...` e smokes publicos verdes.
+  - Foi criado `sanitizePublicCopy` em `@supersites/i18n` para limpar termos internos em valores aninhados de copy, com variantes localizadas para EN/PT-BR/ES/FR/DE e preservacao de acentos publicos.
+  - O Hub passou a sanitizar home, paginas de detalhe, paginas legais/status e navegacao relacionada. NetProbe Atlas, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch e DocShift passaram a sanitizar homes, paginas editoriais e paginas de ferramenta.
+  - Textos hardcoded em componentes/paginas foram ajustados para linguagem publica: `Local tool`, `Free result`, `Advertising not active`, `Monitoring planned`, `Commercial redirects planned`, `No server upload backend active`, `Upgrade path`, `antivirus checks`, `deletion checks` e avisos fiscais localizados sem `HUMAN_ACTION_REQUIRED` visivel.
+  - Foi adicionado `scripts/validate-public-copy.mjs` e o script raiz `pnpm validate:public-copy`; o gate local passou em 876 HTMLs gerados. O Quality Gate remoto agora possui job `Public copy gate`, que faz build dos 11 frontends e executa o validador para bloquear regressao de linguagem interna em HTML publico.
+  - Validacao local passou: `pnpm typecheck:packages`, `pnpm test:packages`, testes unitarios dos 11 frontends, builds dos 11 frontends, preview smokes dos 11 frontends e Playwright E2E dos 11 frontends.
+  - Gates finais locais passaram: `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`. O `ci:changes` local marcou `runAll=true` por nao receber base SHA, comportamento esperado no workstation; `git diff --check` exibiu apenas avisos CRLF nos arquivos tocados.
+  - Esta sprint nao ativou anuncio real, AdSense/GTM/GA4, Search Console import, checkout, billing, pagamento, doacao, afiliado, API paga, upload/storage, worker/cron recorrente, analytics externo ou direct-root mapping.
+  - Commit tecnico, Quality Gate, Deploy Dry Run remoto, deploys rotulados Fase `9` Sprint `9.3`, smokes publicos finais e commit documental de fechamento serao registrados apos o push e monitoramento dos workflows.
 
 ## Pendencias criticas
 

@@ -85,7 +85,7 @@ test.describe('CalcHarbor MVP', () => {
     await expect(page.getByRole('heading', { name: 'Calculation memory' })).toBeVisible()
     await expect(page.getByText('Formula used')).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Related calculators' })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Workflow upgrades gated' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Workflow upgrades planned' })).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)
     await expectNoHorizontalOverflow(page)
 

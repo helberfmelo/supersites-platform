@@ -1,5 +1,4 @@
-import type { LocaleCode } from './locales'
-import { publicLocaleCodes } from './locales'
+import { publicLocaleCodes, sanitizePublicCopy, type LocaleCode } from './locales'
 
 export const docShiftToolSlugs = [
   'pdf-merge',
@@ -434,7 +433,7 @@ export function getDocShiftToolBySlug(slug: string | undefined): DocShiftToolDef
 }
 
 export function getDocShiftToolCopy(tool: DocShiftToolDefinition, locale: LocaleCode): DocShiftToolCopy {
-  return tool.localized[locale]
+  return sanitizePublicCopy(locale, tool.localized[locale])
 }
 
 export function getRelatedDocShiftTools(slug: DocShiftToolSlug, locale: LocaleCode): DocShiftRelatedTool[] {
@@ -452,8 +451,8 @@ export function getRelatedDocShiftTools(slug: DocShiftToolSlug, locale: LocaleCo
     })
 }
 
-export function getDocShiftWorkflowSteps(slug: DocShiftToolSlug): DocShiftWorkflowStep[] {
-  return workflowStepsBySlug[slug]
+export function getDocShiftWorkflowSteps(slug: DocShiftToolSlug, locale: LocaleCode = 'en'): DocShiftWorkflowStep[] {
+  return sanitizePublicCopy(locale, workflowStepsBySlug[slug])
 }
 
 export function getCategoryLabel(category: DocShiftToolCategory, locale: LocaleCode): string {

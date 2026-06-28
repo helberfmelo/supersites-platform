@@ -59,7 +59,7 @@ test.describe('InvoiceCraft MVP', () => {
     )
     await expect(page.getByRole('heading', { name: 'Invoice Builder' })).toBeVisible()
     await expect(page.getByText('3 local builders')).toBeVisible()
-    await expect(page.getByText('Local MVP').first()).toBeVisible()
+    await expect(page.getByText('Local free version').first()).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
     const screenshot = await page.screenshot({ fullPage: true })
@@ -153,8 +153,8 @@ test.describe('InvoiceCraft MVP', () => {
     expect(analytics?.map((event) => event.name)).toContain('file_downloaded')
 
     await page.goto('/pt-br/tools/quote-builder')
-    await expect(page).toHaveTitle(/Quote Builder/)
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Quote Builder')
+    await expect(page).toHaveTitle(/Construtor de orçamentos/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Construtor de orçamentos')
     await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR')
     await expectNoHorizontalOverflow(page)
 

@@ -59,7 +59,7 @@ test.describe('DevUtility Lab MVP', () => {
     )
     await expect(page.getByRole('heading', { name: 'Structured Data Formatter' })).toBeVisible()
     await expect(page.getByText('No storage or logging')).toBeVisible()
-    await expect(page.getByText('Local MVP').first()).toBeVisible()
+    await expect(page.getByText('Local tool').first()).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Workbench principles' })).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
@@ -85,7 +85,7 @@ test.describe('DevUtility Lab MVP', () => {
     await expect(page.getByRole('button', { name: 'Download .txt' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Related tools' })).toBeVisible()
     await expect(page.getByRole('link', { name: /Base64 Converter/ })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Commercial features gated' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Commercial features planned' })).toBeVisible()
     await expect(page.getByText('Private snippet history')).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)
     await expectNoHorizontalOverflow(page)
@@ -129,8 +129,8 @@ test.describe('DevUtility Lab MVP', () => {
     await page.setViewportSize({ width: 390, height: 1000 })
     await page.goto('/pt-br/tools/timestamp-converter')
 
-    await expect(page).toHaveTitle(/Timestamp Converter/)
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Timestamp Converter')
+    await expect(page).toHaveTitle(/Conversor de timestamp/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Conversor de timestamp')
     await expect(page.getByLabel('Timestamp or date')).toBeVisible()
     await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR')
     await expectNoHorizontalOverflow(page)

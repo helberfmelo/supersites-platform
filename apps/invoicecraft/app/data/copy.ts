@@ -1,4 +1,4 @@
-import type { LocaleCode } from './locales'
+import { sanitizePublicCopy, type LocaleCode } from './locales'
 
 export interface HomeCopy {
   eyebrow: string
@@ -355,9 +355,9 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
 }
 
 export function getHomeCopy(locale: LocaleCode): HomeCopy {
-  return homeCopy[locale]
+  return sanitizePublicCopy(locale, homeCopy[locale])
 }
 
 export function getShellCopy(locale: LocaleCode): ShellCopy {
-  return shellCopy[locale]
+  return sanitizePublicCopy(locale, shellCopy[locale])
 }

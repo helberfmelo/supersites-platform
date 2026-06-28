@@ -92,7 +92,7 @@ try {
         'hreflang="pt-BR"',
         'Image Compressor',
         '6 browser tools',
-        'No file backend active'
+        'No server upload backend active'
     )
 
     foreach ($needle in $requiredHtml) {
@@ -117,7 +117,7 @@ try {
         throw 'Image compressor smoke failed.'
     }
 
-    $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/tools/social-preset-generator" -RequiredContent 'Social Preset Generator'
+    $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/tools/social-preset-generator" -RequiredContent 'Gerador de presets sociais'
     if ($localizedTool.StatusCode -ne 200 -or $localizedTool.Content -notmatch 'Preset social') {
         throw 'Localized social preset smoke failed.'
     }

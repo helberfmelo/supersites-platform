@@ -1,5 +1,4 @@
-import type { LocaleCode } from './locales'
-import { publicLocaleCodes } from './locales'
+import { publicLocaleCodes, sanitizePublicCopy, type LocaleCode } from './locales'
 
 export const toolSlugs = [
   'spf-checker',
@@ -453,7 +452,7 @@ export function getToolBySlug(value: string | undefined): ToolDefinition | null 
 }
 
 export function getToolCopy(tool: ToolDefinition, locale: LocaleCode): ToolCopy {
-  return tool.localized[locale] ?? tool.localized.en
+  return sanitizePublicCopy(locale, tool.localized[locale] ?? tool.localized.en)
 }
 
 export function getRelatedMailHealthTools(slug: ToolSlug, locale: LocaleCode): MailHealthRelatedTool[] {

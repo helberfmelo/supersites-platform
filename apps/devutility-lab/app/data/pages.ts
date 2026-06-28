@@ -1,4 +1,4 @@
-import type { LocaleCode } from './locales'
+import { sanitizePublicCopy, type LocaleCode } from './locales'
 
 export const contentPageSlugs = [
   'about',
@@ -293,5 +293,5 @@ export function getContentPageBySlug(value: string | undefined): ContentPage | n
 }
 
 export function getContentPageCopy(page: ContentPage, locale: LocaleCode): ContentPageCopy {
-  return page.localized[locale]
+  return sanitizePublicCopy(locale, page.localized[locale])
 }

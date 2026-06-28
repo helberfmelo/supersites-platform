@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getStatusBadgeClass } from '@supersites/ui'
-import { detailCopy } from '../../../data/copy'
+import { getDetailCopy } from '../../../data/copy'
 import { localizedHomePath, localizedSitePath, normalizeLocale } from '../../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
 import { getCategoryLabel, getSiteBySlug, statusLabels } from '../../../data/sites'
@@ -17,7 +17,7 @@ if (!locale || !site) {
   })
 }
 
-const copy = detailCopy[locale]
+const copy = getDetailCopy(locale)
 const siteText = site.localized[locale]
 const canonicalPath = localizedSitePath(locale, site.slug)
 const isLocalBrowser = ref(false)

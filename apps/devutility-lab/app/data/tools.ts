@@ -1,5 +1,4 @@
-import type { LocaleCode } from './locales'
-import { publicLocaleCodes } from './locales'
+import { publicLocaleCodes, sanitizePublicCopy, type LocaleCode } from './locales'
 
 export const toolSlugs = [
   'structured-data-formatter',
@@ -399,7 +398,7 @@ export function getToolBySlug(slug: string | undefined): ToolDefinition | null {
 }
 
 export function getToolCopy(toolDefinition: ToolDefinition, locale: LocaleCode): ToolCopy {
-  return toolDefinition.localized[locale]
+  return sanitizePublicCopy(locale, toolDefinition.localized[locale])
 }
 
 export function getRelatedTools(toolDefinition: ToolDefinition, limit = 3): ToolDefinition[] {

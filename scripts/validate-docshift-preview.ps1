@@ -92,7 +92,7 @@ try {
         'hreflang="pt-BR"',
         'PDF Merge',
         '8 document tools',
-        'No file backend active'
+        'No server upload backend active'
     )
 
     foreach ($needle in $requiredHtml) {
@@ -117,7 +117,7 @@ try {
         throw 'PDF merge smoke failed.'
     }
 
-    $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/tools/text-to-pdf" -RequiredContent 'Text to PDF'
+    $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/tools/text-to-pdf" -RequiredContent 'Texto para PDF'
     if ($localizedTool.StatusCode -ne 200 -or $localizedTool.Content -notmatch 'Texto simples') {
         throw 'Localized text-to-pdf smoke failed.'
     }

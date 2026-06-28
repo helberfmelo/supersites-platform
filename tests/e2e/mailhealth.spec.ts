@@ -58,7 +58,7 @@ test.describe('MailHealth MVP', () => {
       'https://opentshost.com/supersites/mailhealth/en',
     )
     await expect(page.getByRole('heading', { name: 'SPF Checker' })).toBeVisible()
-    await expect(page.getByText('Local MVP')).toHaveCount(7)
+    await expect(page.getByText('Local free version')).toHaveCount(7)
     await expect(page.getByText('7 focused checks')).toBeVisible()
     await expectNoHorizontalOverflow(page)
 

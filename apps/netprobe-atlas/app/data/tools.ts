@@ -1,4 +1,4 @@
-import type { LocaleCode } from './locales'
+import { sanitizePublicCopy, type LocaleCode } from './locales'
 
 export const toolSlugs = [
   'what-is-my-ip',
@@ -1323,7 +1323,7 @@ export function getToolBySlug(value: string | undefined): ToolDefinition | null 
 }
 
 export function getToolCopy(tool: ToolDefinition, locale: LocaleCode): ToolCopy {
-  return tool.localized[locale] ?? tool.localized.en
+  return sanitizePublicCopy(locale, tool.localized[locale] ?? tool.localized.en)
 }
 
 export function getCategoryLabel(category: ToolCategory, locale: LocaleCode): string {

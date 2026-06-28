@@ -1,4 +1,4 @@
-import type { LocaleCode } from './locales'
+import { sanitizePublicCopy, type LocaleCode } from './locales'
 
 export const legalPageSlugs = [
   'about',
@@ -31,13 +31,15 @@ export interface LegalPage {
   localized: Record<LocaleCode, LocalizedLegalPage>
 }
 
-export const legalShellCopy: Record<LocaleCode, {
+export interface LegalShellCopy {
   breadcrumbHome: string
   pageStatusLabel: string
   launchGateTitle: string
   launchGateBody: string
   relatedTitle: string
-}> = {
+}
+
+export const legalShellCopy: Record<LocaleCode, LegalShellCopy> = {
   en: {
     breadcrumbHome: 'Catalog',
     pageStatusLabel: 'Page status',
@@ -1168,4 +1170,12 @@ export function getLegalPageBySlug(value: string | undefined): LegalPage | null 
   }
 
   return legalPageCatalog.find((page) => page.slug === value) ?? null
+}
+
+export function getLegalShellCopy(locale: LocaleCode): LegalShellCopy {
+  return sanitizePublicCopy(locale, legalShellCopy[locale])
+}
+
+export function getLegalPageCopy(page: LegalPage, locale: LocaleCode): LocalizedLegalPage {
+  return sanitizePublicCopy(locale, page.localized[locale])
 }

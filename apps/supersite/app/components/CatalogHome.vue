@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { getStatusBadgeClass } from '@supersites/ui'
 import { computed, ref } from 'vue'
-import { homeCopy } from '../data/copy'
+import { getHomeCopy } from '../data/copy'
 import { absoluteUrl, localeAlternates } from '../data/routes'
 import {
   categoryCatalog,
@@ -18,7 +18,7 @@ const props = defineProps<{
   xDefault?: boolean
 }>()
 
-const copy = computed(() => homeCopy[props.locale])
+const copy = computed(() => getHomeCopy(props.locale))
 const searchQuery = ref('')
 const selectedCategory = ref<SiteCategory | 'all'>('all')
 const filteredSites = computed(() => filterSites(searchQuery.value, selectedCategory.value))

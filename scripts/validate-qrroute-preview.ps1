@@ -92,7 +92,7 @@ try {
         'hreflang="pt-BR"',
         'Static QR Code Generator',
         '6 local workflow tools',
-        'Commercial redirects gated'
+        'Commercial redirects planned'
     )
 
     foreach ($needle in $requiredHtml) {
@@ -117,7 +117,7 @@ try {
         throw 'UTM builder smoke failed.'
     }
 
-    $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/tools/wifi-qr" -RequiredContent 'Wi-Fi QR Builder'
+    $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/tools/wifi-qr" -RequiredContent 'Construtor de QR Wi-Fi'
     if ($localizedTool.StatusCode -ne 200 -or $localizedTool.Content -notmatch 'Wi-Fi') {
         throw 'Localized Wi-Fi QR smoke failed.'
     }

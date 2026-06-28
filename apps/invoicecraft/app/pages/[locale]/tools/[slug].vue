@@ -36,6 +36,28 @@ function cloneInput(input: InvoiceCraftDocumentInput): InvoiceCraftDocumentInput
 
 const copy = getInvoiceCraftToolCopy(tool, locale)
 const shellCopy = getShellCopy(locale)
+const taxGateCopy = {
+  en: {
+    title: 'Tax/legal review',
+    body: 'Official tax rules, fiscal numbering and payment collection require human legal and billing review before activation.',
+  },
+  'pt-br': {
+    title: 'Revisão fiscal/jurídica',
+    body: 'Regras fiscais oficiais, numeração fiscal e cobrança exigem revisão jurídica e de billing antes de ativação.',
+  },
+  es: {
+    title: 'Revisión fiscal/legal',
+    body: 'Reglas fiscales oficiales, numeración fiscal y cobro requieren revisión legal y de billing antes de activarse.',
+  },
+  fr: {
+    title: 'Revue fiscale/juridique',
+    body: 'Les règles fiscales officielles, la numérotation fiscale et l’encaissement exigent une revue juridique et billing avant activation.',
+  },
+  de: {
+    title: 'Steuerliche/rechtliche Prüfung',
+    body: 'Offizielle Steuerregeln, Steuernummerierung und Zahlungseinzug erfordern vor Aktivierung eine rechtliche und Billing-Prüfung.',
+  },
+}[locale]
 const canonicalPath = localizedToolPath(locale, tool.slug)
 const structuredData = createInvoiceCraftToolStructuredData(tool, locale, absoluteUrl(canonicalPath))
 const selectedMode = ref<InvoiceCraftToolMode>(tool.modes[0]?.value ?? 'clean')
@@ -362,8 +384,8 @@ useHead({
       </div>
 
       <div class="snapshot-gate">
-        <strong>Tax/legal gate</strong>
-        <span>Official tax rules, fiscal numbering and payment collection require HUMAN_ACTION_REQUIRED before activation.</span>
+        <strong>{{ taxGateCopy.title }}</strong>
+        <span>{{ taxGateCopy.body }}</span>
       </div>
     </section>
 
@@ -579,8 +601,8 @@ useHead({
             <dd>{{ copy.upgradeScope }}</dd>
           </div>
           <div>
-            <dt>Tax/legal gate</dt>
-            <dd>Official tax rules, fiscal numbering and payment collection require HUMAN_ACTION_REQUIRED before activation.</dd>
+            <dt>{{ taxGateCopy.title }}</dt>
+            <dd>{{ taxGateCopy.body }}</dd>
           </div>
         </dl>
         </section>

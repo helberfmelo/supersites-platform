@@ -92,7 +92,7 @@ try {
         'hreflang="pt-BR"',
         'Invoice Builder',
         '3 local builders',
-        'Payments and taxes gated'
+        'Payments and taxes planned'
     )
 
     foreach ($needle in $requiredHtml) {
@@ -117,7 +117,7 @@ try {
         throw 'Invoice builder smoke failed.'
     }
 
-    $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/tools/quote-builder" -RequiredContent 'Quote Builder'
+    $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/tools/quote-builder" -RequiredContent 'Construtor de orçamentos'
     if ($localizedTool.StatusCode -ne 200 -or $localizedTool.Content -notmatch 'PDF') {
         throw 'Localized quote builder smoke failed.'
     }

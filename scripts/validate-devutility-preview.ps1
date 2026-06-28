@@ -117,8 +117,8 @@ try {
         throw 'Structured data formatter smoke failed.'
     }
 
-    $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/tools/timestamp-converter" -RequiredContent 'Timestamp Converter'
-    if ($localizedTool.StatusCode -ne 200 -or $localizedTool.Content -notmatch 'historico privado') {
+    $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/tools/timestamp-converter" -RequiredContent 'Conversor de timestamp'
+    if ($localizedTool.StatusCode -ne 200 -or $localizedTool.Content -notmatch 'histórico privado') {
         throw 'Localized timestamp converter smoke failed.'
     }
 

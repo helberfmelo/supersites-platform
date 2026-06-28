@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { legalPageCatalog, getLegalPageBySlug, legalShellCopy } from '../../data/legal'
+import { legalPageCatalog, getLegalPageBySlug, getLegalPageCopy, getLegalShellCopy } from '../../data/legal'
 import { localizedHomePath, localizedLegalPath, normalizeLocale } from '../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../data/routes'
 
@@ -14,10 +14,15 @@ if (!locale || !page) {
   })
 }
 
-const copy = page.localized[locale]
-const shellCopy = legalShellCopy[locale]
+const copy = getLegalPageCopy(page, locale)
+const shellCopy = getLegalShellCopy(locale)
 const canonicalPath = localizedLegalPath(locale, page.slug)
-const relatedPages = legalPageCatalog.filter((candidate) => candidate.slug !== page.slug)
+const relatedPages = legalPageCatalog
+  .filter((candidate) => candidate.slug !== page.slug)
+  .map((candidate) => ({
+    slug: candidate.slug,
+    navLabel: getLegalPageCopy(candidate, locale).navLabel,
+  }))
 
 useHead({
   htmlAttrs: {
@@ -104,7 +109,7 @@ useHead({
             :key="relatedPage.slug"
             :to="localizedLegalPath(locale, relatedPage.slug)"
           >
-            {{ relatedPage.localized[locale].navLabel }}
+            {{ relatedPage.navLabel }}
           </NuxtLink>
         </div>
       </aside>

@@ -72,7 +72,7 @@ test.describe('PixelBatch MVP', () => {
     )
     await expect(page.getByRole('heading', { name: 'Image Compressor' })).toBeVisible()
     await expect(page.getByText('6 browser tools')).toBeVisible()
-    await expect(page.getByText('Local MVP')).toHaveCount(6)
+    await expect(page.getByText('Local free version')).toHaveCount(6)
     await expectNoHorizontalOverflow(page)
 
     const screenshot = await page.screenshot({ fullPage: true })
@@ -97,7 +97,7 @@ test.describe('PixelBatch MVP', () => {
     await expect(page.getByRole('heading', { name: 'Before and after' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Workflow snapshot' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Privacy checklist' })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Batch queue gated' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Batch queue planned' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Related image tools' })).toBeVisible()
     await expect(page.getByAltText('Processed image preview')).toBeVisible()
     await expect(page.getByText('Actual output')).toBeVisible()
@@ -159,7 +159,7 @@ test.describe('PixelBatch MVP', () => {
     expect(analytics?.map((event) => event.name)).toContain('file_downloaded')
 
     await page.goto('/pt-br/tools/social-preset-generator')
-    await expect(page).toHaveTitle(/Social Preset Generator/)
+    await expect(page).toHaveTitle(/Gerador de presets sociais/)
     await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR')
     await expectNoHorizontalOverflow(page)
 

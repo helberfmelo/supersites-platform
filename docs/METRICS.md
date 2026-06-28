@@ -595,6 +595,17 @@ Data-base: 2026-06-27
 | Sprint 9.2 production rollout docs closing commit | `8a72c41` |
 | Sprint 9.2 production rollout docs-only Quality Gate | `28311809660` passed |
 | Sprint 9.2 remote CI/deploy status | Concluded in production after public repository visibility mitigation, corrected Quality Gate and real HostGator deploys |
+| Sprint 9.3 public copy sanitizer | Implemented in `@supersites/i18n` and applied to Hub plus 10 product sites |
+| Sprint 9.3 public HTML copy gate | `pnpm validate:public-copy` passed locally across 876 generated HTML files |
+| Sprint 9.3 Quality Gate public-copy job | Implemented as `Public copy gate`; remote run pending push |
+| Sprint 9.3 shared package validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages` |
+| Sprint 9.3 frontend tests/builds/previews/E2E | Passed locally for 11 Nuxt frontends |
+| Sprint 9.3 local final gates | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
+| Sprint 9.3 feature commit | Pending |
+| Sprint 9.3 Quality Gate run | Pending |
+| Sprint 9.3 Deploy Dry Run run | Pending |
+| Sprint 9.3 production deploy runs | Pending Fase 9/Sprint 9.3 labels |
+| Sprint 9.3 public smokes | Pending post-deploy |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |
 | Real donation payments activated by Fase 9 planning | 0 planned before explicit gates |

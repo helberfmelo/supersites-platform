@@ -1,5 +1,4 @@
-import type { LocaleCode } from './locales'
-import { publicLocaleCodes } from './locales'
+import { publicLocaleCodes, sanitizePublicCopy, type LocaleCode } from './locales'
 
 export const timeToolSlugs = [
   'timezone-converter',
@@ -353,7 +352,7 @@ export function getTimeToolBySlug(slug: string | undefined): TimeToolDefinition 
 }
 
 export function getTimeToolCopy(toolDefinition: TimeToolDefinition, locale: LocaleCode): TimeToolCopy {
-  return toolDefinition.localized[locale]
+  return sanitizePublicCopy(locale, toolDefinition.localized[locale])
 }
 
 export function getCategoryLabel(category: TimeToolCategory, locale: LocaleCode): string {

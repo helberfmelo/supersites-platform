@@ -64,6 +64,21 @@ Sprint 9.2 delivered the local benchmark crawler baseline without activating rea
 | Production remediation | Hub `/status` content and static `robots.txt` files published for Hub, NetProbe and 9 product apps |
 | Remote CI/deploy status | Completed after public repository visibility mitigation; Quality Gate `28308340947`, Hub deploy `28309009196`, NetProbe deploy `28311031901` and nine static app deploys passed |
 
+## Sprint 9.3 execution evidence
+
+Sprint 9.3 delivered the local public-copy and localization gate without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs or recurring production workers.
+
+| Evidence | Value |
+|---|---|
+| Shared sanitizer | `sanitizePublicCopy` in `@supersites/i18n` |
+| Public copy validator | `scripts/validate-public-copy.mjs` |
+| Commands | `pnpm validate:public-copy`, plus tests/builds/previews/Playwright for all 11 Nuxt frontends |
+| Generated HTML scanned locally | 876 files |
+| CI gate | `Public copy gate` in `.github/workflows/quality-gate.yml` |
+| Scope sanitized | Hub home/detail/legal/status plus NetProbe Atlas, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch and DocShift copy/pages/tools |
+| Internal terms blocked in public HTML | `MVP`, `gated`, `gate`, `deploy smoke`, `rollback validation`, `placeholder`, `HUMAN_ACTION_REQUIRED` and site-specific stale markers |
+| Remote CI/deploy status | Pending push and Fase 9/Sprint 9.3 labeled deploys |
+
 ## Per-sprint execution rules
 
 Each Sprint 9.x must:

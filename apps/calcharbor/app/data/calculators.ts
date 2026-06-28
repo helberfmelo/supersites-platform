@@ -1,4 +1,4 @@
-import { formatCurrency, formatNumber, type LocaleCode } from './locales'
+import { formatCurrency, formatNumber, sanitizePublicCopy, type LocaleCode } from './locales'
 
 export const calculatorSlugs = [
   'loan-payment',
@@ -1006,7 +1006,7 @@ export function getCalculatorBySlug(slug: string | undefined): CalculatorDefinit
 }
 
 export function getCalculatorCopy(calculator: CalculatorDefinition, locale: LocaleCode): CalculatorCopy {
-  return calculator.localized[locale]
+  return sanitizePublicCopy(locale, calculator.localized[locale])
 }
 
 export function getCategoryLabel(category: CalculatorCategory, locale: LocaleCode): string {

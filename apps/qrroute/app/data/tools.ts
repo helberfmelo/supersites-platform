@@ -1,5 +1,4 @@
-import type { LocaleCode } from './locales'
-import { publicLocaleCodes } from './locales'
+import { publicLocaleCodes, sanitizePublicCopy, type LocaleCode } from './locales'
 
 export const qrRouteToolSlugs = [
   'static-qr-code',
@@ -341,7 +340,7 @@ export function getQrRouteToolBySlug(slug: string | undefined): QrRouteToolDefin
 }
 
 export function getQrRouteToolCopy(toolDefinition: QrRouteToolDefinition, locale: LocaleCode): QrRouteToolCopy {
-  return toolDefinition.localized[locale]
+  return sanitizePublicCopy(locale, toolDefinition.localized[locale])
 }
 
 export function getCategoryLabel(category: QrRouteToolCategory, locale: LocaleCode): string {

@@ -1,4 +1,4 @@
-import type { LocaleCode } from './locales'
+import { sanitizePublicCopy, type LocaleCode } from './locales'
 
 export interface HomeCopy {
   eyebrow: string
@@ -13,6 +13,7 @@ export interface HomeCopy {
   freeLabel: string
   upgradeLabel: string
   detailCta: string
+  localBadgeLabel: string
   principlesTitle: string
   principles: Array<{ title: string; body: string }>
   statusRows: Array<{ title: string; body: string; tone: 'green' | 'amber' }>
@@ -73,6 +74,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Free result',
     upgradeLabel: 'Upgrade path',
     detailCta: 'Open tool',
+    localBadgeLabel: 'Local tool',
     principlesTitle: 'Workbench principles',
     principles: [
       { title: 'Local by default', body: 'The MVP runs transformations in the browser and uses a Web Worker when the browser supports it.' },
@@ -98,6 +100,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Resultado gratuito',
     upgradeLabel: 'Caminho de upgrade',
     detailCta: 'Abrir ferramenta',
+    localBadgeLabel: 'Ferramenta local',
     principlesTitle: 'Principios do workbench',
     principles: [
       { title: 'Local por padrao', body: 'O MVP roda transformacoes no navegador e usa Web Worker quando o browser suporta.' },
@@ -123,6 +126,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Resultado gratis',
     upgradeLabel: 'Ruta de upgrade',
     detailCta: 'Abrir herramienta',
+    localBadgeLabel: 'Herramienta local',
     principlesTitle: 'Principios del workbench',
     principles: [
       { title: 'Local por defecto', body: 'El MVP ejecuta transformaciones en el navegador y usa Web Worker cuando existe soporte.' },
@@ -148,6 +152,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Resultat gratuit',
     upgradeLabel: 'Offre payante',
     detailCta: 'Ouvrir',
+    localBadgeLabel: 'Outil local',
     principlesTitle: 'Principes du workbench',
     principles: [
       { title: 'Local par defaut', body: 'Le MVP execute les transformations dans le navigateur et utilise un Web Worker si disponible.' },
@@ -173,6 +178,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Kostenloses Ergebnis',
     upgradeLabel: 'Upgrade-Pfad',
     detailCta: 'Tool oeffnen',
+    localBadgeLabel: 'Lokales Tool',
     principlesTitle: 'Workbench-Prinzipien',
     principles: [
       { title: 'Lokal zuerst', body: 'Das MVP fuehrt Transformationen im Browser aus und nutzt Web Worker, wenn der Browser es unterstuetzt.' },
@@ -391,9 +397,9 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
 }
 
 export function getHomeCopy(locale: LocaleCode): HomeCopy {
-  return homeCopy[locale]
+  return sanitizePublicCopy(locale, homeCopy[locale])
 }
 
 export function getShellCopy(locale: LocaleCode): ShellCopy {
-  return shellCopy[locale]
+  return sanitizePublicCopy(locale, shellCopy[locale])
 }

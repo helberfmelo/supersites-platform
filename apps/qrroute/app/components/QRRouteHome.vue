@@ -112,7 +112,7 @@ useHead(() => ({
         <div>
           <div class="tool-card__topline">
             <span class="category">{{ getCategoryLabel(tool.category, locale) }}</span>
-            <span :class="getStatusBadgeClass('foundation')">Local MVP</span>
+            <span :class="getStatusBadgeClass('foundation')">{{ copy.localBadgeLabel }}</span>
           </div>
           <h2>{{ getQrRouteToolCopy(tool, locale).title }}</h2>
           <p>{{ getQrRouteToolCopy(tool, locale).headline }}</p>

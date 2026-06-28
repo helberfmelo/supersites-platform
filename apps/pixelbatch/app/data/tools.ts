@@ -1,5 +1,4 @@
-import type { LocaleCode } from './locales'
-import { publicLocaleCodes } from './locales'
+import { publicLocaleCodes, sanitizePublicCopy, type LocaleCode } from './locales'
 
 export const pixelBatchToolSlugs = [
   'image-compressor',
@@ -386,7 +385,7 @@ export function getPixelBatchToolBySlug(slug: string | undefined): PixelBatchToo
 }
 
 export function getPixelBatchToolCopy(tool: PixelBatchToolDefinition, locale: LocaleCode): PixelBatchToolCopy {
-  return tool.localized[locale]
+  return sanitizePublicCopy(locale, tool.localized[locale])
 }
 
 export function getRelatedPixelBatchTools(slug: PixelBatchToolSlug, locale: LocaleCode): PixelBatchRelatedTool[] {
@@ -404,8 +403,8 @@ export function getRelatedPixelBatchTools(slug: PixelBatchToolSlug, locale: Loca
     })
 }
 
-export function getPixelBatchWorkflowSteps(slug: PixelBatchToolSlug): PixelBatchWorkflowStep[] {
-  return workflowStepsBySlug[slug]
+export function getPixelBatchWorkflowSteps(slug: PixelBatchToolSlug, locale: LocaleCode = 'en'): PixelBatchWorkflowStep[] {
+  return sanitizePublicCopy(locale, workflowStepsBySlug[slug])
 }
 
 export function getCategoryLabel(category: PixelBatchToolCategory, locale: LocaleCode): string {

@@ -37,8 +37,8 @@ test.describe('DocShift MVP', () => {
     )
     await expect(page.getByRole('heading', { name: 'PDF Merge' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Text to PDF' })).toBeVisible()
-    await expect(page.getByText('No file backend active')).toBeVisible()
-    await expect(page.getByText('Local MVP', { exact: true })).toHaveCount(8)
+    await expect(page.getByText('No server upload backend active')).toBeVisible()
+    await expect(page.getByText('Local free version', { exact: true })).toHaveCount(8)
 
     const screenshot = await page.screenshot({ fullPage: true })
     await testInfo.attach('docshift-home-desktop', { body: screenshot, contentType: 'image/png' })
@@ -52,7 +52,7 @@ test.describe('DocShift MVP', () => {
     await expect(page.getByText('File state')).toBeVisible()
     await expect(page.getByText('Workflow snapshot')).toBeVisible()
     await expect(page.getByText('Privacy checklist')).toBeVisible()
-    await expect(page.getByText('Server workflow gated')).toBeVisible()
+    await expect(page.getByText('Server workflow planned')).toBeVisible()
     await expect(page.getByText('Related document tools')).toBeVisible()
 
     await page.getByLabel('Plain text').fill('Private roadmap note\nGenerated locally for the DocShift smoke test.')
@@ -129,7 +129,7 @@ test.describe('DocShift MVP', () => {
     await page.setViewportSize({ width: 390, height: 844 })
     await page.goto('/pt-br/tools/pdf-merge')
 
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('PDF Merge')
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Unir PDFs')
     await expect(page.getByText('Processar documento')).toBeVisible()
     await expect(page.locator('body')).toContainText('Perguntas frequentes')
 

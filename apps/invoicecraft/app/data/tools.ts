@@ -1,5 +1,4 @@
-import type { LocaleCode } from './locales'
-import { publicLocaleCodes } from './locales'
+import { publicLocaleCodes, sanitizePublicCopy, type LocaleCode } from './locales'
 
 export const invoiceCraftToolSlugs = [
   'invoice-builder',
@@ -348,7 +347,7 @@ export function getInvoiceCraftToolBySlug(slug: string | undefined): InvoiceCraf
 }
 
 export function getInvoiceCraftToolCopy(toolDefinition: InvoiceCraftToolDefinition, locale: LocaleCode): InvoiceCraftToolCopy {
-  return toolDefinition.localized[locale]
+  return sanitizePublicCopy(locale, toolDefinition.localized[locale])
 }
 
 export function getRelatedInvoiceCraftTools(slug: InvoiceCraftToolSlug, locale: LocaleCode): InvoiceCraftRelatedTool[] {

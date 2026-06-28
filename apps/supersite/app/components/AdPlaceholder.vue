@@ -30,28 +30,28 @@ const props = withDefaults(defineProps<{
 const copyByLocale: Record<LocaleCode, { label: string; title: string; body: string }> = {
   en: {
     label: 'Reserved advertising slot',
-    title: 'Ad placeholder',
-    body: 'Reserved space only. No ad request runs until consent, AdSense approval and launch gates are complete.',
+    title: 'Reserved ad space',
+    body: 'Reserved space only. No ad request runs until consent, AdSense approval and launch checks are complete.',
   },
   'pt-br': {
-    label: 'Espaco reservado para anuncio',
-    title: 'Placeholder de anuncio',
-    body: 'Apenas espaco reservado. Nenhuma requisicao roda antes de consentimento, aprovacao AdSense e gates de lancamento.',
+    label: 'Espaço reservado para anúncio',
+    title: 'Espaço de anúncio reservado',
+    body: 'Apenas espaço reservado. Nenhuma requisição roda antes de consentimento, aprovação AdSense e revisões de lançamento.',
   },
   es: {
     label: 'Espacio publicitario reservado',
-    title: 'Placeholder de anuncio',
-    body: 'Solo espacio reservado. No se ejecuta ninguna solicitud antes de consentimiento, aprobacion de AdSense y gates.',
+    title: 'Espacio de anuncio reservado',
+    body: 'Solo espacio reservado. No se ejecuta ninguna solicitud antes de consentimiento, aprobación de AdSense y revisiones de lanzamiento.',
   },
   fr: {
-    label: 'Emplacement publicitaire reserve',
-    title: 'Placeholder publicitaire',
-    body: 'Espace reserve seulement. Aucun appel ne part avant consentement, approbation AdSense et gates.',
+    label: 'Emplacement publicitaire réservé',
+    title: 'Espace publicitaire réservé',
+    body: 'Espace réservé seulement. Aucun appel ne part avant consentement, approbation AdSense et revues de lancement.',
   },
   de: {
     label: 'Reservierter Anzeigenplatz',
-    title: 'Anzeigenplatzhalter',
-    body: 'Nur reservierter Platz. Keine Anfrage lauft vor Zustimmung, AdSense-Freigabe und Launch-Gates.',
+    title: 'Reservierter Anzeigenbereich',
+    body: 'Nur reservierter Platz. Keine Anfrage läuft vor Zustimmung, AdSense-Freigabe und Launch-Prüfungen.',
   },
 }
 

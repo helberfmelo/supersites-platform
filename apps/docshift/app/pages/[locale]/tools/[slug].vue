@@ -37,7 +37,7 @@ const copy = getDocShiftToolCopy(tool, locale)
 const shellCopy = getShellCopy(locale)
 const canonicalPath = localizedToolPath(locale, tool.slug)
 const structuredData = createDocShiftToolStructuredData(tool, locale, absoluteUrl(canonicalPath))
-const workflowSteps = getDocShiftWorkflowSteps(tool.slug)
+const workflowSteps = getDocShiftWorkflowSteps(tool.slug, locale)
 const relatedTools = getRelatedDocShiftTools(tool.slug, locale)
 const selectedFiles = ref<File[]>([])
 const pageSelection = ref(tool.defaultPages)
@@ -165,7 +165,7 @@ function applyMetadata(pdf: PdfDocumentInstance, plan: DocShiftTransformPlan): v
   pdf.setAuthor(plan.metadataAuthor)
   pdf.setSubject('DocShift local browser output')
   pdf.setKeywords(['docshift', 'local', 'browser'])
-  pdf.setProducer('DocShift browser-side MVP')
+  pdf.setProducer('DocShift browser-side document workflow')
   pdf.setCreator('DocShift')
   pdf.setCreationDate(new Date(0))
   pdf.setModificationDate(new Date(0))
@@ -447,7 +447,7 @@ useHead({
       <div>
         <div class="detail-topline">
           <p class="eyebrow">{{ getCategoryLabel(tool.category, locale) }}</p>
-          <span class="status">Local MVP</span>
+          <span class="status">{{ shellCopy.liveTitle }}</span>
         </div>
         <h1 :id="`${tool.slug}-title`">{{ copy.title }}</h1>
         <p class="lead">{{ copy.headline }}</p>
@@ -621,7 +621,7 @@ useHead({
             </div>
             <div>
               <dt>File safety</dt>
-              <dd>Server-side batch, OCR, API and history require upload validation, sandboxing, antivirus where applicable, retention and deletion gates before activation.</dd>
+              <dd>Server-side batch, OCR, API and history require upload validation, sandboxing, antivirus where applicable, retention and deletion checks before activation.</dd>
             </div>
           </dl>
         </section>

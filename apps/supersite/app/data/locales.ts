@@ -13,6 +13,7 @@ export {
   localizedPath,
   localizedSitePath,
   normalizeLocale,
+  sanitizePublicCopy,
   toHreflang,
   toHtmlLang,
   toIntlLocale,

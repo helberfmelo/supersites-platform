@@ -59,7 +59,7 @@ test.describe('TimeNexus MVP', () => {
     )
     await expect(page.getByRole('heading', { name: 'Time Zone Converter' })).toBeVisible()
     await expect(page.getByText('7 browser tools')).toBeVisible()
-    await expect(page.getByText('Local MVP').first()).toBeVisible()
+    await expect(page.getByText('Local').first()).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
     const screenshot = await page.screenshot({ fullPage: true })
@@ -135,8 +135,8 @@ test.describe('TimeNexus MVP', () => {
     await page.setViewportSize({ width: 390, height: 1000 })
     await page.goto('/pt-br/tools/unit-converter')
 
-    await expect(page).toHaveTitle(/Unit Converter/)
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Unit Converter')
+    await expect(page).toHaveTitle(/Conversor de unidades/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Conversor de unidades')
     await expect(page.getByLabel('Value')).toBeVisible()
     await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR')
     await expectNoHorizontalOverflow(page)

@@ -117,8 +117,8 @@ try {
         throw 'Time zone converter smoke failed.'
     }
 
-    $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/tools/timestamp-converter" -RequiredContent 'Timestamp Converter'
-    if ($localizedTool.StatusCode -ne 200 -or $localizedTool.Content -notmatch 'historico') {
+    $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/tools/timestamp-converter" -RequiredContent 'Conversor de timestamp'
+    if ($localizedTool.StatusCode -ne 200 -or $localizedTool.Content -notmatch 'histórico') {
         throw 'Localized timestamp converter smoke failed.'
     }
 

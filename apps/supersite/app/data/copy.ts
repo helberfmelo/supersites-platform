@@ -1,4 +1,4 @@
-import type { LocaleCode } from './locales'
+import { sanitizePublicCopy, type LocaleCode } from './locales'
 
 interface HomeCopy {
   eyebrow: string
@@ -280,4 +280,12 @@ export const detailCopy: Record<LocaleCode, DetailCopy> = {
     publicCta: 'Öffentliche Site öffnen',
     relatedTitle: 'Verwandte Betriebsnotizen',
   },
+}
+
+export function getHomeCopy(locale: LocaleCode): HomeCopy {
+  return sanitizePublicCopy(locale, homeCopy[locale])
+}
+
+export function getDetailCopy(locale: LocaleCode): DetailCopy {
+  return sanitizePublicCopy(locale, detailCopy[locale])
 }
