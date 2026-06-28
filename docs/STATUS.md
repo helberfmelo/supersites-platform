@@ -1124,6 +1124,7 @@ Na Sprint 8.6, a Fase 8 foi fechada em producao: o Hub e os nove apps estaticos 
   - Correcoes CI publicadas: `0b11be0` (`ci: fix deploy dry-run run name on push`) e `fba2efb` (`ci: keep deploy dry-run push compatible`) mantiveram `Quality Gate` verde nos runs `28306046742` e `28306128602`, mas ainda falharam o `Deploy Dry Run` automatico (`28306046502`, `28306128428`) antes de jobs.
   - Correcao final `a53f8e1` (`ci: restore deploy dry-run push trigger`) restaurou o workflow de dry-run para o formato push-compatible; `Deploy Dry Run` `28306159578` passou e publicou o plano no job summary. O upload de artifact registrou a anotacao conhecida de quota de storage, sem bloquear o run.
   - `Quality Gate` `28306159592` no commit `a53f8e1` executou todos os jobs substantivos com sucesso na primeira tentativa, mas o job `Quality summary` retornou falha sem logs disponiveis; reruns do mesmo run falharam em setup sem passos. O fechamento docs-only desta sprint registra o estado final e deve substituir esse run como validacao do head.
+  - Fechamento docs-only `d3965a0` (`docs: record benchmark-grade roadmap validation`) foi publicado, mas `Quality Gate` `28306271571` falhou antes de executar steps. A anotacao do check-run `Detect changes` informou: `The job was not started because recent account payments have failed or your spending limit needs to be increased.` Isso foi registrado como `HUMAN_ACTION_REQUIRED`; a validacao remota final fica bloqueada ate regularizacao de billing/limite do GitHub Actions.
 
 ## Pendencias criticas
 
