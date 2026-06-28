@@ -592,6 +592,8 @@ Data-base: 2026-06-27
 | Sprint 9.2 static app deploy runs | CalcHarbor `28311150383`, DevUtility Lab `28311150384`, TimeNexus `28311150370`, QRRoute `28311325342`, InvoiceCraft `28311325343`, MailHealth `28311325319`, SitePulse Lab `28311485541`, PixelBatch `28311485547`, DocShift `28311485563` all passed |
 | Sprint 9.2 public smokes after real deploy | Passed: Hub aggregate, control-plane/API, NetProbe, nine static app smokes and direct `robots.txt` HTTP 200 checks for Hub, NetProbe and nine apps |
 | Sprint 9.2 post-deploy crawler run | `2026-06-28T04-46-52-491Z`; 95 routes, 190 viewport checks, 142 gaps, 0 failures/browser errors, 0 console errors, 0 broken links, 0 overflow, 0 robots/sitemap gaps |
+| Sprint 9.2 production rollout docs closing commit | `8a72c41` |
+| Sprint 9.2 production rollout docs-only Quality Gate | `28311809660` passed |
 | Sprint 9.2 remote CI/deploy status | Concluded in production after public repository visibility mitigation, corrected Quality Gate and real HostGator deploys |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |

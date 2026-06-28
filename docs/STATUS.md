@@ -1150,6 +1150,7 @@ Na Sprint 8.6, a Fase 8 foi fechada em producao: o Hub e os nove apps estaticos 
   - Deploys reais rotulados Fase `9` Sprint `9.2` passaram para os apps estaticos: CalcHarbor `28311150383`, DevUtility Lab `28311150384`, TimeNexus `28311150370`, QRRoute `28311325342`, InvoiceCraft `28311325343`, MailHealth `28311325319`, SitePulse Lab `28311485541`, PixelBatch `28311485547` e DocShift `28311485563`.
   - Smokes publicos pos-deploy passaram: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public` e `pnpm deploy:smoke-static-app-public -- -AppId <app>` para os nove apps. Checagem direta confirmou HTTP 200 para `robots.txt` do Hub, NetProbe e nove apps.
   - Crawler quick pos-deploy passou e atualizou `docs/benchmarks/our-sites/latest-baseline.md`: run `2026-06-28T04-46-52-491Z`, 95 rotas, 190 checks, 142 gaps, 0 failures/browser errors, 0 console errors, 0 broken internal links, 0 horizontal overflow e 0 gaps de robots/sitemap. Os gaps remanescentes sao majoritariamente JSON-LD/schema e seguem para sprints posteriores da Fase 9.
+  - Fechamento documental da Sprint 9.2 publicado em `8a72c41` (`docs: close benchmark crawler production rollout`); `Quality Gate` docs-only `28311809660` passou.
 
 ## Pendencias criticas
 
