@@ -30,3 +30,9 @@ Data-base: 2026-06-27
 - Refine timezone converter and meeting planner as flagship flows.
 - Add stronger educational content for UTC, DST, timestamps and business days.
 - Plan city/fuso expansion carefully to avoid thin pages.
+
+## Sprint 9.13 update
+
+- Home now opens with a browser-side world clock and meeting planner before the catalog.
+- Three curated comparison pages were added for `americas-europe`, `global-product` and `apac-europe`, each across the five public locales.
+- The city/timezone SEO expansion remains deliberately small and maintained; broad programmatic city pages stay out of scope until quality and maintenance gates exist.

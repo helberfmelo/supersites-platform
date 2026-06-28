@@ -439,7 +439,7 @@ Sprint 9.13 - TimeNexus world clock e planner
 - Simbolico: BGR-TIMENEXUS-DENSITY.
 - Objetivo: substituir a primeira dobra catalog-first por painel de hora atual, world clock, timeline converter, meeting planner e paginas SEO prioritarias por cidade/fuso sem conteudo raso.
 - Validacao: timezone fixtures, DST edge cases, mobile first-fold, build/preview/Playwright e smoke publico.
-- Status: planejada como proxima sprint apos 9.12; auditoria live confirmou que a home atual ainda abre como catalogo.
+- Status: validada localmente, com deploy remoto pendente. O TimeNexus recebeu `TimeNexusPlanner` na home antes do catalogo, com relogio mundial por grupos de cidades, meeting planner, conversao UTC, status de horario comercial e tabela de slots proximos. Tambem foram adicionadas 3 paginas curadas de world-clock em 5 idiomas (`americas-europe`, `global-product`, `apac-europe`), com canonical/hreflang/sitemap e conteudo original para evitar paginas rasas em massa. Validacao local passou com `pnpm test:timenexus`, `pnpm build:timenexus`, `pnpm validate:timenexus-preview`, `pnpm test:e2e:timenexus`, smoke visual desktop/mobile, package gates, `validate:public-copy` em 891 HTMLs, estrutura, segredos, deploy dry-run, ci:changes e diff check. Feature commit, Quality Gate remoto, Deploy Dry Run remoto, deploy HostGator rotulado Fase 9/Sprint 9.13 e smokes publicos seguem como pendencia de fechamento da sprint.
 
 Sprint 9.14 - DevUtility Lab workbench density
 - Simbolico: BGR-DEVUTILITY-WORKBENCH.

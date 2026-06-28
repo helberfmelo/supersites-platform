@@ -175,13 +175,13 @@ h1 {
   width: 100%;
   max-width: 820px;
   margin-bottom: 16px;
-  font-size: clamp(2.1rem, 6vw, 4.35rem);
+  font-size: 4.25rem;
   line-height: 1;
 }
 
 h2 {
   margin-bottom: 12px;
-  font-size: clamp(1.42rem, 3.2vw, 2rem);
+  font-size: 2rem;
   line-height: 1.12;
 }
 
@@ -258,6 +258,177 @@ h3 {
   gap: 12px;
   align-items: end;
   padding: 24px 0;
+}
+
+.time-workbench {
+  display: grid;
+  gap: 18px;
+  padding: 24px 0;
+  border-bottom: 1px solid #d8e2e3;
+}
+
+.workbench-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 360px);
+  gap: 18px;
+  align-items: start;
+}
+
+.workbench-heading > *,
+.workbench-grid > *,
+.workbench-panel > *,
+.planner-answer > *,
+.zone-row > *,
+.clock-row > * {
+  min-width: 0;
+}
+
+.privacy-strip {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid #d8e0e1;
+  border-radius: 8px;
+  color: #405455;
+  background: #f8fafb;
+  font-size: 0.88rem;
+}
+
+.workbench-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.36fr) minmax(0, 0.64fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.workbench-panel {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid #d1dcdd;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.panel-heading h3,
+.panel-heading p,
+.world-clock-section h4,
+.slot-section h4 {
+  margin-bottom: 0;
+}
+
+.panel-heading {
+  display: grid;
+  gap: 6px;
+}
+
+.clock-list,
+.zone-grid {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.clock-row,
+.zone-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(120px, auto);
+  gap: 12px;
+  align-items: center;
+  padding: 11px 0;
+  border-top: 1px solid #e0e7e8;
+}
+
+.clock-row dt,
+.clock-row dd {
+  margin: 0;
+}
+
+.clock-row dd {
+  text-align: right;
+}
+
+.clock-row strong,
+.clock-row span,
+.zone-row strong,
+.zone-row span,
+.planner-answer strong,
+.planner-answer span {
+  display: block;
+}
+
+.clock-row span,
+.zone-row span,
+.planner-answer span {
+  color: #607174;
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.planner-controls {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  align-items: end;
+}
+
+.planner-answer {
+  display: grid;
+  grid-template-columns: minmax(0, 0.36fr) minmax(0, 0.64fr);
+  gap: 10px;
+}
+
+.planner-answer div {
+  padding: 12px;
+  border: 1px solid #bdd7d9;
+  border-radius: 8px;
+  background: #edf7f8;
+}
+
+.world-clock-section,
+.slot-section {
+  display: grid;
+  gap: 10px;
+}
+
+.zone-row {
+  grid-template-columns: minmax(0, 1fr) minmax(130px, auto) minmax(112px, auto);
+}
+
+.time-status {
+  justify-self: end;
+  padding: 4px 8px;
+  border-radius: 8px;
+  color: #173d42;
+  background: #d5eef1;
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.time-status--early,
+.time-status--late {
+  color: #6f351e;
+  background: #f3dfd2;
+}
+
+.slot-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-wrap: anywhere;
+}
+
+.slot-table th,
+.slot-table td {
+  padding: 10px 8px;
+  border-top: 1px solid #e0e7e8;
+  text-align: left;
+  vertical-align: top;
+}
+
+.slot-table thead th {
+  color: #607174;
+  font-size: 0.75rem;
+  text-transform: uppercase;
 }
 
 .field {
@@ -487,7 +658,7 @@ h3 {
 .answer-primary {
   display: block;
   color: #18201f;
-  font-size: clamp(1.2rem, 2.6vw, 1.72rem);
+  font-size: 1.72rem;
   line-height: 1.15;
 }
 
@@ -674,7 +845,7 @@ h3 {
 
 .content-hero h1 {
   max-width: 760px;
-  font-size: clamp(2rem, 5vw, 3.7rem);
+  font-size: 3.4rem;
   line-height: 1.05;
 }
 
@@ -728,6 +899,12 @@ h3 {
   .site-header,
   .page-footer,
   .hero,
+  .workbench-heading,
+  .workbench-grid,
+  .planner-controls,
+  .planner-answer,
+  .clock-row,
+  .zone-row,
   .controls,
   .tool-grid,
   .band-grid,
@@ -756,6 +933,21 @@ h3 {
     font-size: 2rem;
     line-height: 1.04;
     word-break: break-word;
+  }
+
+  h2,
+  .content-hero h1 {
+    font-size: 1.55rem;
+  }
+
+  .answer-primary {
+    font-size: 1.3rem;
+  }
+
+  .clock-row dd,
+  .time-status {
+    justify-self: start;
+    text-align: left;
   }
 
   .tool-card {

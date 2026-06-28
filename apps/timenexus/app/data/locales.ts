@@ -51,6 +51,10 @@ export function localizedToolPath(locale: LocaleCode, slug: string): string {
   return localizedPath(locale, 'tools', slug)
 }
 
+export function localizedWorldClockPath(locale: LocaleCode, slug: string): string {
+  return localizedPath(locale, 'world-clock', slug)
+}
+
 export function localizedContentPath(locale: LocaleCode, slug: string): string {
   return localizedPath(locale, slug)
 }

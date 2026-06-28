@@ -90,6 +90,9 @@ try {
         'rel="canonical"',
         'hreflang="en"',
         'hreflang="pt-BR"',
+        'World clock planner',
+        'Meeting planner',
+        'Nearby slots',
         'Time Zone Converter',
         '7 browser tools',
         'No accounts or storage'
@@ -122,13 +125,18 @@ try {
         throw 'Localized timestamp converter smoke failed.'
     }
 
+    $worldClock = Invoke-PreviewRequest -Uri "$baseUrl/en/world-clock/global-product" -RequiredContent 'World clock for Global product team'
+    if ($worldClock.StatusCode -ne 200 -or $worldClock.Content -notmatch 'Asia/Tokyo' -or $worldClock.Content -notmatch 'Business-hour fit') {
+        throw 'World clock planner page smoke failed.'
+    }
+
     $privacy = Invoke-PreviewRequest -Uri "$baseUrl/en/privacy" -RequiredContent 'Data minimization'
     if ($privacy.StatusCode -ne 200 -or $privacy.Content -notmatch 'Privacy Policy') {
         throw 'Privacy page smoke failed.'
     }
 
     $sitemap = Invoke-PreviewRequest -Uri "$baseUrl/sitemap.xml" -RequiredContent '<urlset'
-    if ($sitemap.Content -notmatch '/en/privacy' -or $sitemap.Content -notmatch '/pt-br/tools/timestamp-converter' -or $sitemap.Content -notmatch '/de/tools/unit-converter') {
+    if ($sitemap.Content -notmatch '/en/privacy' -or $sitemap.Content -notmatch '/en/world-clock/global-product' -or $sitemap.Content -notmatch '/pt-br/tools/timestamp-converter' -or $sitemap.Content -notmatch '/de/tools/unit-converter') {
         throw 'Sitemap smoke failed.'
     }
 

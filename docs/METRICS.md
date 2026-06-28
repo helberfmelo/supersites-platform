@@ -725,6 +725,15 @@ Data-base: 2026-06-28
 | Sprint 9.12 public smokes | Passed: static app CalcHarbor, aggregate Hub/control-plane/API and live CalcHarbor desktop/mobile UX |
 | Sprint 9.12 live UX privacy smoke | Passed: `$512.91` visible, scenarios/detail snapshot visible, `analyticsEvents: 0`, empty `localStorage`/`sessionStorage`, 0 console errors, no desktop/mobile overflow |
 | Sprint 9.12 finance/billing/ads activation | 0 activated; CalcHarbor remains browser-side with no saved history, paid export, API, checkout, billing, ads, donation, external analytics or tax/legal automation |
+| Sprint 9.13 TimeNexus benchmark UI scope | Home world clock and meeting planner above catalog plus 3 curated world-clock group pages across 5 locales |
+| Sprint 9.13 TimeNexus local validation | Passed: `pnpm test:timenexus` (10 tests), `pnpm build:timenexus`, `pnpm validate:timenexus-preview`, `pnpm test:e2e:timenexus` |
+| Sprint 9.13 TimeNexus route growth | 15 curated world-clock page variants; TimeNexus prerender increased to 97 routes / 193 generated artifacts |
+| Sprint 9.13 local preview asset | `/_nuxt/BFWW5Bb9.js` validated by `pnpm validate:timenexus-preview` |
+| Sprint 9.13 visual QA artifacts | `artifacts/playwright-timenexus-planner/sprint-9-13-timenexus-desktop.png` and `artifacts/playwright-timenexus-planner/sprint-9-13-timenexus-world-clock-mobile.png` |
+| Sprint 9.13 package validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages` |
+| Sprint 9.13 public copy/structure/security gates | Passed locally: `pnpm validate:public-copy` across 891 HTML files, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
+| Sprint 9.13 remote CI/deploy status | Pending feature commit, push, Quality Gate, Deploy Dry Run, HostGator deploy and public smokes |
+| Sprint 9.13 time-workflow paid activation | 0 activated; TimeNexus remains browser-side with no saved presets, history, widgets, API, billing, ads or external analytics |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |
 | Real donation payments activated by Fase 9 planning | 0 planned before explicit gates |

@@ -57,10 +57,38 @@ test.describe('TimeNexus MVP', () => {
       'href',
       'https://opentshost.com/supersites/timenexus/en',
     )
+    await expect(page.getByRole('heading', { name: 'Plan one meeting across cities before opening the catalog.' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Current time panel' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Meeting planner' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'World clock' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Nearby slots' })).toBeVisible()
+    await expect(page.getByLabel('Local meeting time')).toHaveValue('2026-06-26T09:30')
+    await expect(page.getByText('2026-06-26T13:30:00.000Z')).toBeVisible()
+    await expect(page.locator('.zone-grid')).toContainText('London')
+    await expect(page.locator('.zone-grid')).toContainText('Business hours')
+    await page.getByLabel('City group').selectOption('global-product')
+    await expect(page.locator('.zone-grid')).toContainText('Tokyo')
+    await expect(page.getByRole('link', { name: 'Open city comparison' })).toHaveAttribute(
+      'href',
+      '/en/world-clock/global-product',
+    )
+    await page.getByLabel('Duration').selectOption('90')
+    await expect(page.getByLabel('Duration')).toHaveValue('90')
     await expect(page.getByRole('heading', { name: 'Time Zone Converter' })).toBeVisible()
     await expect(page.getByText('7 browser tools')).toBeVisible()
-    await expect(page.getByText('Local').first()).toBeVisible()
+    await expect(page.getByText('Browser-side').first()).toBeVisible()
     await expectNoHorizontalOverflow(page)
+
+    const homeState = await page.evaluate(() => ({
+      localStorageLength: window.localStorage.length,
+      sessionStorageLength: window.sessionStorage.length,
+      analytics: window.supersitesAnalyticsEvents ?? [],
+      bodyText: document.body.innerText,
+    }))
+    expect(homeState.localStorageLength).toBe(0)
+    expect(homeState.sessionStorageLength).toBe(0)
+    expect(homeState.analytics).toHaveLength(0)
+    expect(homeState.bodyText).not.toContain('secret')
 
     const screenshot = await page.screenshot({ fullPage: true })
     await testInfo.attach('timenexus-home-desktop', { body: screenshot, contentType: 'image/png' })
@@ -145,6 +173,18 @@ test.describe('TimeNexus MVP', () => {
     await expect(page).toHaveTitle(/Privacy Policy/)
     await expect(page.getByText('Data minimization')).toBeVisible()
     await expect(page.getByLabel('Legal and editorial pages').getByRole('link', { name: 'Methodology' })).toBeVisible()
+    await expectNoHorizontalOverflow(page)
+
+    await page.goto('/en/world-clock/global-product')
+    await expect(page).toHaveTitle(/World clock for Global product team/)
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/timenexus/en/world-clock/global-product',
+    )
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('World clock for Global product team')
+    await expect(page.getByLabel('City group')).toHaveValue('global-product')
+    await expect(page.locator('.zone-grid')).toContainText('Tokyo')
+    await expect(page.getByRole('heading', { name: 'Cities and IANA zones covered' })).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
     const screenshot = await page.screenshot({ fullPage: true })

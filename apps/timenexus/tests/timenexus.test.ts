@@ -1,18 +1,23 @@
 import { describe, expect, it } from 'vitest'
 import { publicLocaleCodes } from '../app/data/locales'
 import { contentPageCatalog, contentPageSlugs, getContentPageBySlug } from '../app/data/pages'
+import { getPlannerPageBySlug, getPlannerPageCopy, plannerPageCatalog } from '../app/data/plannerPages'
 import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
 import {
   createTimeToolAnswerSummary,
   createTimeToolStructuredData,
   createTimeToolTimeline,
+  buildMeetingPlannerResult,
   executeTimeTool,
   filterTimeTools,
+  formatPlannerZone,
   getRelatedTimeTools,
   getTimeToolBySlug,
   getTimeToolCopy,
+  plannerZoneGroups,
   timeToolCatalog,
   timeToolSlugs,
+  zonedLocalDateTimeToUtc,
 } from '../app/data/tools'
 import { createTimeNexusToolEvent } from '../app/utils/analytics'
 
@@ -88,6 +93,48 @@ describe('TimeNexus MVP', () => {
     expect(createTimeToolTimeline('business-days', businessDays)).toEqual([])
   })
 
+  it('builds world clock planner slots without persistence', () => {
+    const utc = zonedLocalDateTimeToUtc('2026-06-26T09:30', 'America/New_York')
+    expect(utc.toISOString()).toBe('2026-06-26T13:30:00.000Z')
+
+    const london = formatPlannerZone(utc, { label: 'London', zone: 'Europe/London' }, 'en')
+    expect(london.label).toBe('London')
+    expect(london.zone).toBe('Europe/London')
+    expect(london.businessStatus).toBe('business')
+
+    const result = buildMeetingPlannerResult({
+      localDateTime: '2026-06-26T09:30',
+      sourceZone: 'America/New_York',
+      durationMinutes: 60,
+      targetZones: plannerZoneGroups[0].zones,
+      locale: 'en',
+    })
+
+    expect(result.utcInstant).toBe('2026-06-26T13:30:00.000Z')
+    expect(result.durationMinutes).toBe(60)
+    expect(result.zones.map((zone) => zone.label)).toEqual(['New York', 'Sao Paulo', 'London', 'Berlin'])
+    expect(result.zones.filter((zone) => zone.businessStatus === 'business').length).toBeGreaterThanOrEqual(3)
+    expect(result.suggestions.map((slot) => slot.label)).toEqual(['-2h', 'Anchor', '+2h'])
+    expect(JSON.stringify(result)).not.toContain('localStorage')
+  })
+
+  it('keeps curated world clock pages limited and useful', () => {
+    expect(plannerPageCatalog.map((page) => page.slug)).toEqual(['americas-europe', 'global-product', 'apac-europe'])
+    expect(getPlannerPageBySlug('global-product')?.group.zones.map((zone) => zone.zone)).toContain('Asia/Tokyo')
+    expect(getPlannerPageBySlug('missing')).toBeNull()
+
+    for (const page of plannerPageCatalog) {
+      for (const locale of publicLocaleCodes) {
+        const copy = getPlannerPageCopy(page, locale)
+
+        expect(copy.title.length).toBeGreaterThan(20)
+        expect(copy.description.length).toBeGreaterThan(80)
+        expect(copy.sections).toHaveLength(3)
+        expect(copy.sections[1].paragraphs[0]).toContain(page.group.zones[0].zone)
+      }
+    }
+  })
+
   it('supports timestamp, age, percentage and unit helpers', async () => {
     const timestamp = await executeTimeTool('timestamp-converter', '1767225600', 'America/Sao_Paulo', 'auto')
     expect(timestamp.ok).toBe(true)
@@ -116,10 +163,11 @@ describe('TimeNexus MVP', () => {
     expect(contentPrerenderRoutes).toContain('/')
     expect(contentPrerenderRoutes).toContain('/en')
     expect(contentPrerenderRoutes).toContain('/pt-br/tools/timestamp-converter')
+    expect(contentPrerenderRoutes).toContain('/en/world-clock/global-product')
     expect(contentPrerenderRoutes).toContain('/de/tools/unit-converter')
     expect(contentPrerenderRoutes).toContain('/fr/privacy')
     expect(contentPrerenderRoutes).toHaveLength(
-      1 + publicLocaleCodes.length * (1 + timeToolCatalog.length + contentPageCatalog.length),
+      1 + publicLocaleCodes.length * (1 + timeToolCatalog.length + plannerPageCatalog.length + contentPageCatalog.length),
     )
     expect(prerenderRoutes).toEqual([...contentPrerenderRoutes, '/sitemap.xml'])
   })

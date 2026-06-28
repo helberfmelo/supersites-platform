@@ -41,7 +41,7 @@ This block is therefore mapped as Fase 9 - Benchmark-Grade Refinement.
 | BGR-MAILHEALTH-REPORT | Sprint 9.10 | MailHealth unified domain health report | Single domain check, 0-100 score, SPF/DKIM/DMARC/MX/blacklist/SMTP/header checklist and provider-neutral fix guidance |
 | BGR-SITEPULSE-REPORT | Sprint 9.11 | SitePulse visual status/performance report | Online/down/redirecting/slow answer, score, redirects, headers, robots, sitemap, TTFB, recommendations and corrected branding |
 | BGR-CALCHARBOR-DENSITY | Sprint 9.12 | CalcHarbor calculator hub depth | Workbench-first home/detail pages with scenario comparison, tables/charts, localized copy, related calculators and no value persistence |
-| BGR-TIMENEXUS-DENSITY | Sprint 9.13 | TimeNexus world clock and planning depth | Current time panel, city/world clock, timeline converter, meeting planner and priority city/timezone SEO pages visible before catalog cards |
+| BGR-TIMENEXUS-DENSITY | Sprint 9.13 | TimeNexus world clock and planning depth | Current time panel, city/world clock, meeting planner and three curated city/timezone group pages visible before catalog cards |
 | BGR-DEVUTILITY-WORKBENCH | Sprint 9.14 | DevUtility Lab premium workbench density | Split editor/result panes, examples, tree/error views, copy/download/clear states, dense category navigation and privacy cues |
 | BGR-HUB-SEO-AIO | Sprint 9.15 | SuperSites Hub, rich footers, related tools and SEO/AIO clusters | Hub feels public-product grade; top tools/screenshots/related links/content clusters are localized and broad JSON-LD schema coverage improves without low-value mass pages |
 | BGR-PERF-ADSENSE-CLOSURE | Sprint 9.16 | Performance, AdSense-safe layout, production rollout and closure | Final full crawler shows no broken links/overflow and materially reduced schema gaps; consent/ad/support spaces are safe and inert; deploy/smoke/run IDs close the phase |
@@ -57,6 +57,22 @@ Sprint 9.12 delivered CalcHarbor calculator density in production. Feature commi
 Production release: `97c92f099ff741220280593c9d96eec34c9e3729-28329341280-1`; public asset: `https://opentshost.com/supersites/calcharbor/_nuxt/CjP6XAFu.js`.
 
 Public smokes passed for CalcHarbor, aggregate Hub/control-plane/API and live UX. Live UX smoke confirmed `$512.91` result rendering, scenario rows, detail-page snapshot, mobile PT-BR localization, no horizontal overflow, empty `localStorage`/`sessionStorage`, zero app analytics events and zero console errors.
+
+## Sprint 9.13 execution evidence
+
+Sprint 9.13 delivered TimeNexus world clock and planning density locally without activating saved presets, history, widgets, paid APIs, real ads, checkout, billing, donations, affiliates, external analytics or recurring production workers.
+
+| Evidence | Value |
+|---|---|
+| TimeNexus home behavior | `TimeNexusPlanner` opens before the catalog with current time panel, source zone, city group, duration, UTC instant, business-hour fit and nearby slots |
+| Curated SEO/AIO pages | 3 world-clock groups x 5 locales = 15 route variants; no open-ended city-page generation |
+| Routes added | `/world-clock/americas-europe`, `/world-clock/global-product`, `/world-clock/apac-europe` |
+| Local frontend validation | Passed: `pnpm test:timenexus` (10 tests), `pnpm build:timenexus`, `pnpm validate:timenexus-preview`, `pnpm test:e2e:timenexus` |
+| Local preview asset | `/_nuxt/BFWW5Bb9.js` |
+| Visual QA | Screenshots captured at `artifacts/playwright-timenexus-planner/sprint-9-13-timenexus-desktop.png` and `artifacts/playwright-timenexus-planner/sprint-9-13-timenexus-world-clock-mobile.png` |
+| Public copy coverage | `pnpm validate:public-copy` passed across 891 HTML files |
+| Local final gates | Passed: `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
+| Remote CI/deploy status | Pending feature commit, push, Quality Gate, Deploy Dry Run, HostGator deploy and public smokes |
 
 | Evidence | Value |
 |---|---|

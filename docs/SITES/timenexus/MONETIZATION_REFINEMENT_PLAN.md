@@ -43,9 +43,16 @@ Low to medium; interactive controls need separation.
 
 - Free conversion works without signup.
 - No active checkout/ad/donation payment.
+- Sprint 9.13 keeps the planner and world-clock pages free and browser-side; no API key, saved preset, checkout, ad serving or payment provider is active.
 
 ## Dashboard backlog
 
 - Widget readiness.
 - API readiness.
 - Team scheduling opportunity.
+
+## Sprint 9.13 execution
+
+- Added a clear upgrade story around widgets, API, presets, history and team scheduling while leaving those paths informational/inert.
+- The new planner does not persist meeting times, cities or zones and does not emit analytics events on the home/world-clock pages.
+- Real widgets, paid API, saved history, billing, ads and external analytics remain blocked by future gates.

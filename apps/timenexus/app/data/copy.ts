@@ -13,9 +13,38 @@ export interface HomeCopy {
   freeLabel: string
   upgradeLabel: string
   detailCta: string
+  localBadgeLabel: string
   principlesTitle: string
   principles: Array<{ title: string; body: string }>
   statusRows: Array<{ title: string; body: string; tone: 'green' | 'amber' }>
+}
+
+export interface PlannerCopy {
+  eyebrow: string
+  title: string
+  body: string
+  privacyNote: string
+  currentTitle: string
+  currentBody: string
+  meetingTitle: string
+  meetingBody: string
+  localDateTimeLabel: string
+  sourceZoneLabel: string
+  groupLabel: string
+  durationLabel: string
+  sourceLocalLabel: string
+  utcLabel: string
+  worldClockTitle: string
+  suggestionsTitle: string
+  slotColumnLabel: string
+  fitColumnLabel: string
+  zonesColumnLabel: string
+  businessStatus: string
+  earlyStatus: string
+  lateStatus: string
+  openWorldClockLabel: string
+  openConverterLabel: string
+  openTimestampLabel: string
 }
 
 export interface ShellCopy {
@@ -72,16 +101,17 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Free result',
     upgradeLabel: 'Upgrade path',
     detailCta: 'Open tool',
+    localBadgeLabel: 'Browser-side',
     principlesTitle: 'Operating principles',
     principles: [
       { title: 'Immediate answer', body: 'Each page starts with a working calculator or converter that solves the basic task for free.' },
       { title: 'Locale aware', body: 'Outputs name UTC, local and selected zones clearly so date math stays readable across languages.' },
-      { title: 'Upgrade adds workflow', body: 'Paid value is planned for widgets, API, presets, history, collaboration and no ads.' },
+      { title: 'Upgrade adds workflow', body: 'Paid value adds widgets, API, presets, history, collaboration and no ads.' },
     ],
     statusRows: [
       { title: '7 browser tools', body: 'Time zones, date difference, business days, timestamp, age, percentage and units.', tone: 'green' },
       { title: '5 language route sets', body: 'English, Portuguese, Spanish, French and German pages are prerendered.', tone: 'green' },
-      { title: 'No accounts or storage', body: 'History, widgets, billing, ads and external analytics remain gated.', tone: 'amber' },
+      { title: 'No accounts or storage', body: 'History, widgets, billing, ads and external analytics remain inactive.', tone: 'amber' },
     ],
   },
   'pt-br': {
@@ -97,16 +127,17 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Resultado gratuito',
     upgradeLabel: 'Caminho de upgrade',
     detailCta: 'Abrir ferramenta',
+    localBadgeLabel: 'No navegador',
     principlesTitle: 'Principios de operacao',
     principles: [
       { title: 'Resposta imediata', body: 'Cada pagina comeca com uma calculadora ou conversor funcional e gratuito.' },
       { title: 'Sensivel a locale', body: 'Resultados nomeiam UTC, local e fusos escolhidos para manter datas legiveis.' },
-      { title: 'Upgrade e workflow', body: 'Valor pago planejado: widgets, API, presets, historico, colaboracao e sem anuncios.' },
+      { title: 'Upgrade e workflow', body: 'Valor pago adiciona widgets, API, presets, historico, colaboracao e sem anuncios.' },
     ],
     statusRows: [
       { title: '7 ferramentas no navegador', body: 'Fusos, diferenca de datas, dias uteis, timestamp, idade, porcentagem e unidades.', tone: 'green' },
       { title: '5 conjuntos de idioma', body: 'Paginas em ingles, portugues, espanhol, frances e alemao sao prerenderizadas.', tone: 'green' },
-      { title: 'Sem contas ou storage', body: 'Historico, widgets, billing, ads e analytics externo seguem bloqueados.', tone: 'amber' },
+      { title: 'Sem contas ou storage', body: 'Historico, widgets, billing, ads e analytics externo seguem inativos.', tone: 'amber' },
     ],
   },
   es: {
@@ -122,16 +153,17 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Resultado gratis',
     upgradeLabel: 'Ruta de upgrade',
     detailCta: 'Abrir herramienta',
+    localBadgeLabel: 'En navegador',
     principlesTitle: 'Principios operativos',
     principles: [
       { title: 'Respuesta inmediata', body: 'Cada pagina inicia con una calculadora o conversor gratis y funcional.' },
       { title: 'Con locale', body: 'Los resultados nombran UTC, local y zonas elegidas para que las fechas sean claras.' },
-      { title: 'Upgrade como workflow', body: 'Valor pago planeado: widgets, API, presets, historial, colaboracion y sin anuncios.' },
+      { title: 'Upgrade como workflow', body: 'Valor pago agrega widgets, API, presets, historial, colaboracion y sin anuncios.' },
     ],
     statusRows: [
       { title: '7 herramientas browser', body: 'Zonas, diferencia de fechas, dias laborables, timestamp, edad, porcentaje y unidades.', tone: 'green' },
       { title: '5 rutas de idioma', body: 'Paginas en ingles, portugues, espanol, frances y aleman se prerenderizan.', tone: 'green' },
-      { title: 'Sin cuentas ni storage', body: 'Historial, widgets, billing, ads y analytics externo siguen bloqueados.', tone: 'amber' },
+      { title: 'Sin cuentas ni storage', body: 'Historial, widgets, billing, ads y analytics externo siguen inactivos.', tone: 'amber' },
     ],
   },
   fr: {
@@ -147,16 +179,17 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Resultat gratuit',
     upgradeLabel: 'Offre payante',
     detailCta: 'Ouvrir',
+    localBadgeLabel: 'Dans le navigateur',
     principlesTitle: 'Principes operationnels',
     principles: [
       { title: 'Reponse immediate', body: 'Chaque page commence par un calculateur ou convertisseur gratuit et fonctionnel.' },
       { title: 'Locale lisible', body: 'Les resultats nomment UTC, local et les fuseaux choisis pour clarifier les dates.' },
-      { title: 'Upgrade workflow', body: 'Valeur payante prevue: widgets, API, presets, historique, collaboration et sans publicite.' },
+      { title: 'Upgrade workflow', body: 'La valeur payante ajoute widgets, API, presets, historique, collaboration et sans publicite.' },
     ],
     statusRows: [
       { title: '7 outils navigateur', body: 'Fuseaux, ecart de dates, jours ouvrables, timestamp, age, pourcentage et unites.', tone: 'green' },
       { title: '5 routes de langue', body: 'Pages anglaises, portugaises, espagnoles, francaises et allemandes prerenderisees.', tone: 'green' },
-      { title: 'Pas de comptes ni storage', body: 'Historique, widgets, billing, ads et analytics externe restent bloques.', tone: 'amber' },
+      { title: 'Pas de comptes ni storage', body: 'Historique, widgets, billing, ads et analytics externe restent inactifs.', tone: 'amber' },
     ],
   },
   de: {
@@ -172,17 +205,156 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Kostenloses Ergebnis',
     upgradeLabel: 'Upgrade-Pfad',
     detailCta: 'Tool oeffnen',
+    localBadgeLabel: 'Im Browser',
     principlesTitle: 'Betriebsprinzipien',
     principles: [
       { title: 'Sofortige Antwort', body: 'Jede Seite startet mit einem kostenlosen funktionierenden Rechner oder Konverter.' },
       { title: 'Locale-bewusst', body: 'Ergebnisse nennen UTC, lokal und gewaehlte Zonen klar fuer lesbare Datumslogik.' },
-      { title: 'Bezahlwert ist Workflow', body: 'Geplant sind Widgets, API, Presets, Verlauf, Zusammenarbeit und keine Anzeigen.' },
+      { title: 'Bezahlwert ist Workflow', body: 'Bezahlwert ergaenzt Widgets, API, Presets, Verlauf, Zusammenarbeit und keine Anzeigen.' },
     ],
     statusRows: [
       { title: '7 Browser-Tools', body: 'Zeitzonen, Datumsdifferenz, Arbeitstage, Timestamp, Alter, Prozent und Einheiten.', tone: 'green' },
       { title: '5 Sprachrouten', body: 'Englische, portugiesische, spanische, franzoesische und deutsche Seiten werden prerendered.', tone: 'green' },
-      { title: 'Keine Konten oder Storage', body: 'Verlauf, Widgets, Billing, Ads und externe Analytics bleiben gesperrt.', tone: 'amber' },
+      { title: 'Keine Konten oder Storage', body: 'Verlauf, Widgets, Billing, Ads und externe Analytics bleiben inaktiv.', tone: 'amber' },
     ],
+  },
+}
+
+export const plannerCopy: Record<LocaleCode, PlannerCopy> = {
+  en: {
+    eyebrow: 'World clock planner',
+    title: 'Plan one meeting across cities before opening the catalog.',
+    body: 'Set a local meeting time, compare it across common business zones and see which slots stay inside working hours.',
+    privacyNote: 'Times are calculated in the browser. No city, date or time is saved by TimeNexus.',
+    currentTitle: 'Current time panel',
+    currentBody: 'A quick world clock for common collaboration hubs.',
+    meetingTitle: 'Meeting planner',
+    meetingBody: 'Use the local time and source zone as the anchor, then compare the same instant across the selected group.',
+    localDateTimeLabel: 'Local meeting time',
+    sourceZoneLabel: 'Source zone',
+    groupLabel: 'City group',
+    durationLabel: 'Duration',
+    sourceLocalLabel: 'Source local',
+    utcLabel: 'UTC instant',
+    worldClockTitle: 'World clock',
+    suggestionsTitle: 'Nearby slots',
+    slotColumnLabel: 'Slot',
+    fitColumnLabel: 'Business-hour fit',
+    zonesColumnLabel: 'Zones in working hours',
+    businessStatus: 'Business hours',
+    earlyStatus: 'Early',
+    lateStatus: 'Late',
+    openWorldClockLabel: 'Open city comparison',
+    openConverterLabel: 'Open time zone converter',
+    openTimestampLabel: 'Open timestamp converter',
+  },
+  'pt-br': {
+    eyebrow: 'Planejador de fusos',
+    title: 'Planeje uma reuniao entre cidades antes do catalogo.',
+    body: 'Defina um horario local, compare em fusos de negocio comuns e veja quais opcoes ficam dentro do expediente.',
+    privacyNote: 'Os horarios sao calculados no navegador. Nenhuma cidade, data ou hora e salva pelo TimeNexus.',
+    currentTitle: 'Painel de hora atual',
+    currentBody: 'Um relogio mundial rapido para hubs comuns de colaboracao.',
+    meetingTitle: 'Planejador de reuniao',
+    meetingBody: 'Use o horario local e o fuso de origem como ancora, depois compare o mesmo instante no grupo selecionado.',
+    localDateTimeLabel: 'Horario local da reuniao',
+    sourceZoneLabel: 'Fuso de origem',
+    groupLabel: 'Grupo de cidades',
+    durationLabel: 'Duracao',
+    sourceLocalLabel: 'Local de origem',
+    utcLabel: 'Instante UTC',
+    worldClockTitle: 'Relogio mundial',
+    suggestionsTitle: 'Horarios proximos',
+    slotColumnLabel: 'Horario',
+    fitColumnLabel: 'Aderencia ao expediente',
+    zonesColumnLabel: 'Fusos em horario comercial',
+    businessStatus: 'Horario comercial',
+    earlyStatus: 'Cedo',
+    lateStatus: 'Tarde',
+    openWorldClockLabel: 'Abrir comparacao de cidades',
+    openConverterLabel: 'Abrir conversor de fusos',
+    openTimestampLabel: 'Abrir conversor de timestamp',
+  },
+  es: {
+    eyebrow: 'Planificador de zonas',
+    title: 'Planifica una reunion entre ciudades antes del catalogo.',
+    body: 'Define una hora local, compara zonas de negocio comunes y mira que opciones quedan dentro del horario laboral.',
+    privacyNote: 'Los horarios se calculan en el navegador. TimeNexus no guarda ciudad, fecha ni hora.',
+    currentTitle: 'Panel de hora actual',
+    currentBody: 'Un reloj mundial rapido para hubs comunes de colaboracion.',
+    meetingTitle: 'Planificador de reunion',
+    meetingBody: 'Usa la hora local y zona origen como ancla, luego compara el mismo instante en el grupo elegido.',
+    localDateTimeLabel: 'Hora local de reunion',
+    sourceZoneLabel: 'Zona origen',
+    groupLabel: 'Grupo de ciudades',
+    durationLabel: 'Duracion',
+    sourceLocalLabel: 'Local origen',
+    utcLabel: 'Instante UTC',
+    worldClockTitle: 'Reloj mundial',
+    suggestionsTitle: 'Horarios cercanos',
+    slotColumnLabel: 'Horario',
+    fitColumnLabel: 'Encaje laboral',
+    zonesColumnLabel: 'Zonas en horario laboral',
+    businessStatus: 'Horario laboral',
+    earlyStatus: 'Temprano',
+    lateStatus: 'Tarde',
+    openWorldClockLabel: 'Abrir comparacion de ciudades',
+    openConverterLabel: 'Abrir conversor de zonas',
+    openTimestampLabel: 'Abrir conversor de timestamp',
+  },
+  fr: {
+    eyebrow: 'Planificateur de fuseaux',
+    title: 'Planifiez une reunion entre villes avant le catalogue.',
+    body: 'Definissez une heure locale, comparez les fuseaux business courants et voyez les options en heures ouvrables.',
+    privacyNote: 'Les horaires sont calcules dans le navigateur. TimeNexus ne sauvegarde ni ville, ni date, ni heure.',
+    currentTitle: 'Panneau heure actuelle',
+    currentBody: 'Une horloge mondiale rapide pour les hubs de collaboration.',
+    meetingTitle: 'Planificateur de reunion',
+    meetingBody: 'Utilisez heure locale et fuseau source comme ancre, puis comparez le meme instant dans le groupe choisi.',
+    localDateTimeLabel: 'Heure locale de reunion',
+    sourceZoneLabel: 'Fuseau source',
+    groupLabel: 'Groupe de villes',
+    durationLabel: 'Duree',
+    sourceLocalLabel: 'Local source',
+    utcLabel: 'Instant UTC',
+    worldClockTitle: 'Horloge mondiale',
+    suggestionsTitle: 'Creneaux proches',
+    slotColumnLabel: 'Creneau',
+    fitColumnLabel: 'Compatibilite ouvrable',
+    zonesColumnLabel: 'Fuseaux en heures ouvrables',
+    businessStatus: 'Heures ouvrables',
+    earlyStatus: 'Tot',
+    lateStatus: 'Tard',
+    openWorldClockLabel: 'Ouvrir comparaison de villes',
+    openConverterLabel: 'Ouvrir le convertisseur de fuseaux',
+    openTimestampLabel: 'Ouvrir le convertisseur timestamp',
+  },
+  de: {
+    eyebrow: 'Zeitzonenplaner',
+    title: 'Planen Sie ein Meeting zwischen Staedten vor dem Katalog.',
+    body: 'Setzen Sie eine lokale Zeit, vergleichen Sie wichtige Arbeitszonen und sehen Sie passende Arbeitszeitfenster.',
+    privacyNote: 'Zeiten werden im Browser berechnet. TimeNexus speichert keine Stadt, kein Datum und keine Uhrzeit.',
+    currentTitle: 'Aktuelle-Zeit-Panel',
+    currentBody: 'Eine schnelle Weltuhr fuer haeufige Kollaborations-Hubs.',
+    meetingTitle: 'Meeting-Planer',
+    meetingBody: 'Lokale Zeit und Quellzone dienen als Anker; derselbe Zeitpunkt wird in der Gruppe verglichen.',
+    localDateTimeLabel: 'Lokale Meetingzeit',
+    sourceZoneLabel: 'Quellzone',
+    groupLabel: 'Staedtegruppe',
+    durationLabel: 'Dauer',
+    sourceLocalLabel: 'Quellzeit',
+    utcLabel: 'UTC-Zeitpunkt',
+    worldClockTitle: 'Weltuhr',
+    suggestionsTitle: 'Nahe Zeitfenster',
+    slotColumnLabel: 'Zeitfenster',
+    fitColumnLabel: 'Arbeitszeit-Fit',
+    zonesColumnLabel: 'Zonen in Arbeitszeit',
+    businessStatus: 'Arbeitszeit',
+    earlyStatus: 'Frueh',
+    lateStatus: 'Spaet',
+    openWorldClockLabel: 'Staedtevergleich oeffnen',
+    openConverterLabel: 'Zeitzonen-Konverter oeffnen',
+    openTimestampLabel: 'Timestamp-Konverter oeffnen',
   },
 }
 
@@ -215,16 +387,16 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     contentQualityBody: 'This page combines the working tool, visible limits, FAQ and review date required before AdSense review.',
     privacyNote: 'The tool runs in this browser session. TimeNexus does not store inputs, use localStorage or send values to a product API.',
     invalidResultTitle: 'Check the input',
-    localBadgeLabel: 'Local MVP',
+    localBadgeLabel: 'Browser-side',
     pageStatusLabel: 'Tool status',
-    liveTitle: 'Client-side MVP',
+    liveTitle: 'Client-side utility',
     liveBody: 'The free utility works without signup and runs in a browser worker when supported.',
-    gatedTitle: 'Commercial features gated',
+    gatedTitle: 'Commercial features planned',
     gatedBody: 'Widgets, API, presets, history, billing and ads are not active yet.',
     gatedItemsTitle: 'Planned paid workflow',
     gatedItems: ['Embeddable widgets', 'Saved presets and history', 'Team sharing', 'API access', 'No-ad experience'],
-    supportTitle: 'Support placeholder',
-    supportBody: 'Donation and support links stay inactive until payment, tax and legal gates are approved.',
+    supportTitle: 'Support path planned',
+    supportBody: 'Donation and support links stay inactive until payment, tax and legal reviews are approved.',
   },
   'pt-br': {
     breadcrumbHome: 'TimeNexus',
@@ -254,16 +426,16 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     contentQualityBody: 'Esta pagina combina ferramenta funcional, limites, FAQ e revisao antes de AdSense.',
     privacyNote: 'A ferramenta roda nesta sessao do navegador. O TimeNexus nao armazena entradas, nao usa localStorage e nao envia valores para API.',
     invalidResultTitle: 'Confira a entrada',
-    localBadgeLabel: 'MVP local',
+    localBadgeLabel: 'No navegador',
     pageStatusLabel: 'Status da ferramenta',
-    liveTitle: 'MVP client-side',
+    liveTitle: 'Utilitario client-side',
     liveBody: 'A ferramenta gratuita funciona sem cadastro e roda em Web Worker quando suportado.',
-    gatedTitle: 'Recursos comerciais bloqueados',
+    gatedTitle: 'Recursos comerciais planejados',
     gatedBody: 'Widgets, API, presets, historico, billing e anuncios ainda nao estao ativos.',
     gatedItemsTitle: 'Workflow pago planejado',
     gatedItems: ['Widgets incorporaveis', 'Presets e historico salvos', 'Compartilhamento em equipe', 'Acesso por API', 'Experiencia sem anuncios'],
-    supportTitle: 'Placeholder de suporte',
-    supportBody: 'Links de doacao e suporte ficam inativos ate aprovacao de gates de pagamento, impostos e juridico.',
+    supportTitle: 'Caminho de suporte planejado',
+    supportBody: 'Links de doacao e suporte ficam inativos ate aprovacoes de pagamento, impostos e juridico.',
   },
   es: {
     breadcrumbHome: 'TimeNexus',
@@ -293,16 +465,16 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     contentQualityBody: 'Esta pagina combina herramienta funcional, limites, FAQ y revision antes de AdSense.',
     privacyNote: 'La herramienta corre en esta sesion del navegador. TimeNexus no almacena entradas, no usa localStorage y no envia valores a una API.',
     invalidResultTitle: 'Revisa la entrada',
-    localBadgeLabel: 'MVP local',
+    localBadgeLabel: 'En navegador',
     pageStatusLabel: 'Estado de herramienta',
-    liveTitle: 'MVP client-side',
+    liveTitle: 'Utilidad client-side',
     liveBody: 'La utilidad gratis funciona sin registro y corre en Web Worker cuando hay soporte.',
-    gatedTitle: 'Funciones comerciales bloqueadas',
+    gatedTitle: 'Funciones comerciales planificadas',
     gatedBody: 'Widgets, API, presets, historial, billing y anuncios aun no estan activos.',
     gatedItemsTitle: 'Workflow pago planificado',
     gatedItems: ['Widgets embebibles', 'Presets e historial guardados', 'Compartir con equipo', 'Acceso API', 'Experiencia sin anuncios'],
-    supportTitle: 'Placeholder de soporte',
-    supportBody: 'Los enlaces de donacion y soporte quedan inactivos hasta aprobar gates de pago, impuestos y legales.',
+    supportTitle: 'Ruta de soporte planificada',
+    supportBody: 'Los enlaces de donacion y soporte quedan inactivos hasta aprobar pagos, impuestos y revisiones legales.',
   },
   fr: {
     breadcrumbHome: 'TimeNexus',
@@ -332,16 +504,16 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     contentQualityBody: 'Cette page combine outil fonctionnel, limites, FAQ et date de revue avant AdSense.',
     privacyNote: 'L outil s execute dans cette session du navigateur. TimeNexus ne stocke pas les entrees, n utilise pas localStorage et n envoie pas de valeurs a une API.',
     invalidResultTitle: 'Verifiez l entree',
-    localBadgeLabel: 'MVP local',
+    localBadgeLabel: 'Dans le navigateur',
     pageStatusLabel: 'Statut outil',
-    liveTitle: 'MVP client-side',
+    liveTitle: 'Utilitaire client-side',
     liveBody: 'L utilitaire gratuit fonctionne sans compte et s execute en Web Worker si supporte.',
-    gatedTitle: 'Fonctions commerciales bloquees',
+    gatedTitle: 'Fonctions commerciales prevues',
     gatedBody: 'Widgets, API, presets, historique, billing et publicites ne sont pas actifs.',
     gatedItemsTitle: 'Workflow payant prevu',
     gatedItems: ['Widgets integrables', 'Presets et historique sauvegardes', 'Partage equipe', 'Acces API', 'Experience sans publicite'],
-    supportTitle: 'Placeholder support',
-    supportBody: 'Les liens don et support restent inactifs jusqu aux gates paiement, fiscalite et juridique.',
+    supportTitle: 'Parcours support prevu',
+    supportBody: 'Les liens don et support restent inactifs jusqu aux revues paiement, fiscalite et juridique.',
   },
   de: {
     breadcrumbHome: 'TimeNexus',
@@ -371,21 +543,25 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     contentQualityBody: 'Diese Seite kombiniert funktionierendes Tool, Grenzen, FAQ und Pruefdatum vor AdSense.',
     privacyNote: 'Das Tool laeuft in dieser Browser-Sitzung. TimeNexus speichert keine Eingaben, nutzt kein localStorage und sendet keine Werte an eine API.',
     invalidResultTitle: 'Eingabe pruefen',
-    localBadgeLabel: 'Lokales MVP',
+    localBadgeLabel: 'Im Browser',
     pageStatusLabel: 'Toolstatus',
-    liveTitle: 'Client-seitiges MVP',
+    liveTitle: 'Client-seitiges Tool',
     liveBody: 'Das kostenlose Tool funktioniert ohne Konto und laeuft bei Support in einem Web Worker.',
-    gatedTitle: 'Kommerzielle Funktionen gesperrt',
+    gatedTitle: 'Kommerzielle Funktionen geplant',
     gatedBody: 'Widgets, API, Presets, Verlauf, Billing und Anzeigen sind noch nicht aktiv.',
     gatedItemsTitle: 'Geplanter bezahlter Workflow',
     gatedItems: ['Einbettbare Widgets', 'Gespeicherte Presets und Verlauf', 'Teamfreigabe', 'API-Zugriff', 'Werbefreie Erfahrung'],
-    supportTitle: 'Support-Platzhalter',
-    supportBody: 'Spenden- und Supportlinks bleiben bis zu Zahlungs-, Steuer- und Rechtsfreigaben inaktiv.',
+    supportTitle: 'Support-Pfad geplant',
+    supportBody: 'Spenden- und Supportlinks bleiben bis zu Zahlungs-, Steuer- und Rechtspruefungen inaktiv.',
   },
 }
 
 export function getHomeCopy(locale: LocaleCode): HomeCopy {
   return sanitizePublicCopy(locale, homeCopy[locale])
+}
+
+export function getPlannerCopy(locale: LocaleCode): PlannerCopy {
+  return sanitizePublicCopy(locale, plannerCopy[locale])
 }
 
 export function getShellCopy(locale: LocaleCode): ShellCopy {

@@ -78,6 +78,38 @@ export interface TimeToolTimelineItem {
   value: string
 }
 
+export interface PlannerZonePreset {
+  label: string
+  zone: string
+}
+
+export interface PlannerZoneGroup {
+  value: string
+  label: Record<LocaleCode, string>
+  zones: PlannerZonePreset[]
+}
+
+export interface PlannerZoneResult extends PlannerZonePreset {
+  localTime: string
+  localDate: string
+  hour: number
+  businessStatus: 'business' | 'early' | 'late'
+}
+
+export interface MeetingPlannerResult {
+  sourceLocal: string
+  utcInstant: string
+  durationMinutes: number
+  zones: PlannerZoneResult[]
+  suggestions: Array<{
+    label: string
+    sourceLocal: string
+    utcInstant: string
+    zonesInBusinessHours: number
+    zoneSummary: string
+  }>
+}
+
 interface TimeToolSpec {
   slug: TimeToolSlug
   category: TimeToolCategory
@@ -295,6 +327,65 @@ const specs: TimeToolSpec[] = [
     samplePrimary: '42',
   },
 ]
+
+export const plannerZoneGroups: PlannerZoneGroup[] = [
+  {
+    value: 'americas-europe',
+    label: {
+      en: 'Americas + Europe',
+      'pt-br': 'Americas + Europa',
+      es: 'Americas + Europa',
+      fr: 'Ameriques + Europe',
+      de: 'Amerika + Europa',
+    },
+    zones: [
+      { label: 'New York', zone: 'America/New_York' },
+      { label: 'Sao Paulo', zone: 'America/Sao_Paulo' },
+      { label: 'London', zone: 'Europe/London' },
+      { label: 'Berlin', zone: 'Europe/Berlin' },
+    ],
+  },
+  {
+    value: 'global-product',
+    label: {
+      en: 'Global product team',
+      'pt-br': 'Time global de produto',
+      es: 'Equipo global de producto',
+      fr: 'Equipe produit globale',
+      de: 'Globales Produktteam',
+    },
+    zones: [
+      { label: 'San Francisco', zone: 'America/Los_Angeles' },
+      { label: 'New York', zone: 'America/New_York' },
+      { label: 'London', zone: 'Europe/London' },
+      { label: 'Tokyo', zone: 'Asia/Tokyo' },
+    ],
+  },
+  {
+    value: 'apac-europe',
+    label: {
+      en: 'APAC + Europe',
+      'pt-br': 'APAC + Europa',
+      es: 'APAC + Europa',
+      fr: 'APAC + Europe',
+      de: 'APAC + Europa',
+    },
+    zones: [
+      { label: 'Singapore', zone: 'Asia/Singapore' },
+      { label: 'Tokyo', zone: 'Asia/Tokyo' },
+      { label: 'Sydney', zone: 'Australia/Sydney' },
+      { label: 'Berlin', zone: 'Europe/Berlin' },
+    ],
+  },
+]
+
+export const plannerSourceZones: PlannerZonePreset[] = Array.from(
+  new Map(
+    plannerZoneGroups
+      .flatMap((group) => group.zones)
+      .map((zone) => [zone.zone, zone] as const),
+  ).values(),
+)
 
 function sections(locale: LocaleCode): ContentSection[] {
   const base = localizedBasics[locale]
@@ -579,6 +670,84 @@ function assertTimeZone(zone: string): string {
   return trimmed
 }
 
+function localeTag(locale: LocaleCode): string {
+  const tags: Record<LocaleCode, string> = {
+    en: 'en-US',
+    'pt-br': 'pt-BR',
+    es: 'es-ES',
+    fr: 'fr-FR',
+    de: 'de-DE',
+  }
+
+  return tags[locale]
+}
+
+function dateTimePartsInZone(date: Date, timeZone: string): Record<string, number> {
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hourCycle: 'h23',
+  })
+  const parts = Object.fromEntries(
+    formatter
+      .formatToParts(date)
+      .filter((part) => part.type !== 'literal')
+      .map((part) => [part.type, Number(part.value)]),
+  )
+
+  return {
+    year: parts.year,
+    month: parts.month,
+    day: parts.day,
+    hour: parts.hour,
+    minute: parts.minute,
+    second: parts.second,
+  }
+}
+
+function offsetMinutesAt(date: Date, timeZone: string): number {
+  const parts = dateTimePartsInZone(date, timeZone)
+  const localAsUtc = Date.UTC(parts.year, parts.month - 1, parts.day, parts.hour, parts.minute, parts.second)
+
+  return Math.round((localAsUtc - date.getTime()) / 60_000)
+}
+
+function parseLocalDateTime(value: string): { year: number; month: number; day: number; hour: number; minute: number } {
+  const match = value.trim().match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$/u)
+
+  if (!match) {
+    throw new Error('Use a local date-time in YYYY-MM-DDTHH:mm format.')
+  }
+
+  return {
+    year: Number(match[1]),
+    month: Number(match[2]),
+    day: Number(match[3]),
+    hour: Number(match[4]),
+    minute: Number(match[5]),
+  }
+}
+
+export function zonedLocalDateTimeToUtc(value: string, timeZone: string): Date {
+  const zone = assertTimeZone(timeZone)
+  const parts = parseLocalDateTime(value)
+  const localAsUtc = Date.UTC(parts.year, parts.month - 1, parts.day, parts.hour, parts.minute, 0)
+  const firstOffset = offsetMinutesAt(new Date(localAsUtc), zone)
+  let utc = localAsUtc - firstOffset * 60_000
+  const secondOffset = offsetMinutesAt(new Date(utc), zone)
+
+  if (secondOffset !== firstOffset) {
+    utc = localAsUtc - secondOffset * 60_000
+  }
+
+  return new Date(utc)
+}
+
 function formatInZone(date: Date, timeZone: string): string {
   return new Intl.DateTimeFormat('en-US', {
     timeZone,
@@ -591,6 +760,97 @@ function formatInZone(date: Date, timeZone: string): string {
     hourCycle: 'h23',
     timeZoneName: 'short',
   }).format(date)
+}
+
+function formatPlannerDate(date: Date, timeZone: string, locale: LocaleCode): string {
+  return new Intl.DateTimeFormat(localeTag(locale), {
+    timeZone,
+    weekday: 'short',
+    month: 'short',
+    day: '2-digit',
+  }).format(date)
+}
+
+function formatPlannerTime(date: Date, timeZone: string, locale: LocaleCode): string {
+  return new Intl.DateTimeFormat(localeTag(locale), {
+    timeZone,
+    hour: '2-digit',
+    minute: '2-digit',
+    hourCycle: 'h23',
+    timeZoneName: 'short',
+  }).format(date)
+}
+
+function businessStatus(hour: number): PlannerZoneResult['businessStatus'] {
+  if (hour < 9) {
+    return 'early'
+  }
+
+  if (hour >= 17) {
+    return 'late'
+  }
+
+  return 'business'
+}
+
+export function formatPlannerZone(date: Date, preset: PlannerZonePreset, locale: LocaleCode): PlannerZoneResult {
+  const zone = assertTimeZone(preset.zone)
+  const parts = dateTimePartsInZone(date, zone)
+
+  return {
+    ...preset,
+    zone,
+    localTime: formatPlannerTime(date, zone, locale),
+    localDate: formatPlannerDate(date, zone, locale),
+    hour: parts.hour,
+    businessStatus: businessStatus(parts.hour),
+  }
+}
+
+function slotLabel(offsetMinutes: number): string {
+  if (offsetMinutes === 0) {
+    return 'Anchor'
+  }
+
+  const hours = Math.abs(offsetMinutes / 60)
+
+  return offsetMinutes < 0 ? `-${hours}h` : `+${hours}h`
+}
+
+export function buildMeetingPlannerResult(input: {
+  localDateTime: string
+  sourceZone: string
+  durationMinutes: number
+  targetZones: PlannerZonePreset[]
+  locale: LocaleCode
+}): MeetingPlannerResult {
+  const sourceZone = assertTimeZone(input.sourceZone)
+  const instant = zonedLocalDateTimeToUtc(input.localDateTime, sourceZone)
+  const durationMinutes = Math.max(15, Math.min(180, Math.round(input.durationMinutes)))
+  const zones = input.targetZones.map((zone) => formatPlannerZone(instant, zone, input.locale))
+  const sourceLocal = formatPlannerTime(instant, sourceZone, input.locale)
+  const utcInstant = instant.toISOString()
+  const suggestions = [-120, 0, 120].map((offset) => {
+    const slotInstant = new Date(instant.getTime() + offset * 60_000)
+    const slotZones = input.targetZones.map((zone) => formatPlannerZone(slotInstant, zone, input.locale))
+    const businessZones = slotZones.filter((zone) => zone.businessStatus === 'business')
+
+    return {
+      label: slotLabel(offset),
+      sourceLocal: formatPlannerTime(slotInstant, sourceZone, input.locale),
+      utcInstant: slotInstant.toISOString(),
+      zonesInBusinessHours: businessZones.length,
+      zoneSummary: businessZones.map((zone) => zone.label).join(', '),
+    }
+  })
+
+  return {
+    sourceLocal,
+    utcInstant,
+    durationMinutes,
+    zones,
+    suggestions,
+  }
 }
 
 function splitZonePair(input: string): [string, string] {
