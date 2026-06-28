@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { limitSeoText, SEO_DESCRIPTION_MAX_LENGTH } from '@supersites/seo'
 import { getStatusBadgeClass } from '@supersites/ui'
 import { getDetailCopy } from '../../../data/copy'
 import { localizedHomePath, localizedSitePath, normalizeLocale } from '../../../data/locales'
@@ -20,6 +21,7 @@ if (!locale || !site) {
 
 const copy = getDetailCopy(locale)
 const siteText = site.localized[locale]
+const seoDescription = limitSeoText(siteText.summary, SEO_DESCRIPTION_MAX_LENGTH)
 const canonicalPath = localizedSitePath(locale, site.slug)
 const structuredData = createSiteDetailStructuredData(locale, site)
 const isLocalBrowser = ref(false)
@@ -55,7 +57,7 @@ useHead({
   meta: [
     {
       name: 'description',
-      content: siteText.summary,
+      content: seoDescription,
     },
     {
       property: 'og:title',
@@ -63,7 +65,7 @@ useHead({
     },
     {
       property: 'og:description',
-      content: siteText.summary,
+      content: seoDescription,
     },
     {
       property: 'og:type',

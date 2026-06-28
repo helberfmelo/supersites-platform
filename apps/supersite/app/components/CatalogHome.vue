@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { limitSeoText, SEO_DESCRIPTION_MAX_LENGTH, SEO_TITLE_MAX_LENGTH } from '@supersites/seo'
 import { getStatusBadgeClass } from '@supersites/ui'
 import { computed, ref } from 'vue'
 import { getHomeCopy } from '../data/copy'
@@ -26,6 +27,10 @@ const searchQuery = ref('')
 const selectedCategory = ref<SiteCategory | 'all'>('all')
 const filteredSites = computed(() => filterSites(searchQuery.value, selectedCategory.value))
 const canonicalPath = computed(() => (props.xDefault ? '/' : localizedHomePath(props.locale)))
+const seoTitle = computed(() =>
+  props.xDefault ? 'SuperSites Hub' : limitSeoText(`${copy.value.title} | SuperSites`, SEO_TITLE_MAX_LENGTH),
+)
+const seoDescription = computed(() => limitSeoText(copy.value.lead, SEO_DESCRIPTION_MAX_LENGTH))
 const featuredTools = computed(() => copy.value.featuredTools
   .map((item) => {
     const site = getSiteBySlug(item.siteSlug)
@@ -54,19 +59,19 @@ useHead(() => ({
   htmlAttrs: {
     lang: props.locale,
   },
-  title: props.xDefault ? 'SuperSites Hub' : `${copy.value.title} | SuperSites`,
+  title: seoTitle.value,
   meta: [
     {
       name: 'description',
-      content: copy.value.lead,
+      content: seoDescription.value,
     },
     {
       property: 'og:title',
-      content: 'SuperSites Hub',
+      content: seoTitle.value,
     },
     {
       property: 'og:description',
-      content: copy.value.lead,
+      content: seoDescription.value,
     },
     {
       property: 'og:type',

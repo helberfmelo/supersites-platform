@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { limitSeoText, SEO_DESCRIPTION_MAX_LENGTH, SEO_TITLE_MAX_LENGTH } from '@supersites/seo'
 import { getStatusBadgeClass } from '@supersites/ui'
 import { computed, ref } from 'vue'
 import { getHomeCopy } from '../data/copy'
@@ -23,6 +24,10 @@ const selectedCategory = ref<InvoiceCraftToolCategory | 'all'>('all')
 const filteredTools = computed(() => filterInvoiceCraftTools(searchQuery.value, selectedCategory.value, props.locale))
 const canonicalPath = computed(() => (props.xDefault ? '/' : localizedHomePath(props.locale)))
 const categories = computed(() => Array.from(new Set(invoiceCraftToolCatalog.map((tool) => tool.category))))
+const seoTitle = computed(() =>
+  props.xDefault ? 'InvoiceCraft' : limitSeoText(`${copy.value.title} | InvoiceCraft`, SEO_TITLE_MAX_LENGTH),
+)
+const seoDescription = computed(() => limitSeoText(copy.value.lead, SEO_DESCRIPTION_MAX_LENGTH))
 const homeJsonLd = computed(() => ({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
@@ -40,19 +45,19 @@ useHead(() => ({
   htmlAttrs: {
     lang: toHtmlLang(props.locale),
   },
-  title: props.xDefault ? 'InvoiceCraft' : `${copy.value.title} | InvoiceCraft`,
+  title: seoTitle.value,
   meta: [
     {
       name: 'description',
-      content: copy.value.lead,
+      content: seoDescription.value,
     },
     {
       property: 'og:title',
-      content: 'InvoiceCraft',
+      content: seoTitle.value,
     },
     {
       property: 'og:description',
-      content: copy.value.lead,
+      content: seoDescription.value,
     },
     {
       property: 'og:type',

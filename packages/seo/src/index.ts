@@ -38,6 +38,9 @@ export interface SitemapEntry {
   lastmod?: string
 }
 
+export const SEO_TITLE_MAX_LENGTH = 70
+export const SEO_DESCRIPTION_MAX_LENGTH = 170
+
 export function normalizeBaseUrl(baseUrl: string): string {
   return baseUrl.replace(/\/+$/g, '')
 }
@@ -78,17 +81,36 @@ export function createLocaleAlternates(input: LocaleAlternateInput): LinkDescrip
   ]
 }
 
+export function limitSeoText(value: string, maxLength: number): string {
+  const normalized = value.replace(/\s+/g, ' ').trim()
+
+  if (normalized.length <= maxLength) {
+    return normalized
+  }
+
+  const clipped = normalized.slice(0, maxLength).trimEnd()
+  const wordBoundary = clipped.lastIndexOf(' ')
+
+  if (wordBoundary >= Math.floor(maxLength * 0.72)) {
+    return clipped.slice(0, wordBoundary)
+  }
+
+  return clipped
+}
+
 export function createPageMetadata(input: PageMetadataInput): PageMetadata {
   const type = input.type ?? 'website'
   const siteName = input.siteName ?? 'SuperSites'
   const url = absoluteUrl(input.baseUrl, input.path)
+  const title = limitSeoText(input.title, SEO_TITLE_MAX_LENGTH)
+  const description = limitSeoText(input.description, SEO_DESCRIPTION_MAX_LENGTH)
 
   return {
-    title: input.title,
+    title,
     meta: [
-      { name: 'description', content: input.description },
-      { property: 'og:title', content: input.title },
-      { property: 'og:description', content: input.description },
+      { name: 'description', content: description },
+      { property: 'og:title', content: title },
+      { property: 'og:description', content: description },
       { property: 'og:type', content: type },
       { property: 'og:url', content: url },
       { property: 'og:site_name', content: siteName },

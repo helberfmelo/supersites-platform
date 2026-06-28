@@ -5,6 +5,9 @@ import {
   createLocaleAlternates,
   createPageMetadata,
   createSitemapXml,
+  limitSeoText,
+  SEO_DESCRIPTION_MAX_LENGTH,
+  SEO_TITLE_MAX_LENGTH,
 } from '../src'
 
 const baseUrl = 'https://opentshost.com/supersites/'
@@ -47,6 +50,29 @@ describe('@supersites/seo', () => {
       property: 'og:url',
       content: 'https://opentshost.com/supersites/en/privacy',
     })
+  })
+
+  it('limits SEO title and description text without ellipsis artifacts', () => {
+    const longTitle = 'A very long localized title that explains too many details for a browser title tag | SuperSites'
+    const longDescription =
+      'This description intentionally repeats enough useful context to exceed the crawler limit while keeping words intact for a clean search snippet across localized utility pages.'
+
+    expect(limitSeoText(longTitle, SEO_TITLE_MAX_LENGTH).length).toBeLessThanOrEqual(SEO_TITLE_MAX_LENGTH)
+    expect(limitSeoText(longDescription, SEO_DESCRIPTION_MAX_LENGTH).length).toBeLessThanOrEqual(
+      SEO_DESCRIPTION_MAX_LENGTH,
+    )
+
+    const metadata = createPageMetadata({
+      title: longTitle,
+      description: longDescription,
+      baseUrl,
+      path: '/en/privacy',
+    })
+
+    expect(metadata.title.length).toBeLessThanOrEqual(SEO_TITLE_MAX_LENGTH)
+    expect(metadata.meta.find((item) => item.name === 'description')?.content.length).toBeLessThanOrEqual(
+      SEO_DESCRIPTION_MAX_LENGTH,
+    )
   })
 
   it('creates escaped sitemap XML', () => {
