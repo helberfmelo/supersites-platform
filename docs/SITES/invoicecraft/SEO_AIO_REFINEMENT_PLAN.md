@@ -50,6 +50,7 @@ Medium for legal/tax claims. Keep disclaimers and human gates.
 - Tool pages keep canonical, hreflang, schema, guide sections and FAQ while moving the editor/preview above the fold.
 - The UI now separates invoice, quote and receipt use cases through tabs and related document links without adding shallow country-specific fiscal pages.
 - Tax/fiscal numbering remains a human-gated limitation rather than a public compliance claim.
+- Production closure confirmed the localized home/tool routes and final public asset `CAuTAoAj.js` after Fase 9/Sprint 9.9 deploy.
 
 ## Dashboard backlog
 

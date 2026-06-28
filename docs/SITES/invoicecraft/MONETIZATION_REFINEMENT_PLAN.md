@@ -49,6 +49,7 @@ Medium due to sensitive business data and download actions.
 - The free PDF builder remains complete and available without signup.
 - The visible paid path is limited to inert saved-client/product, recurrence, branding, team, payment and fiscal-numbering backlog items.
 - No checkout, payment link, webhook, account, storage, billing entitlement or external analytics was activated.
+- Public rollout smoke confirmed these monetization gates remained inactive after Sprint 9.9 production deploy.
 
 ## Dashboard backlog
 

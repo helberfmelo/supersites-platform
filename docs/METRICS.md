@@ -675,7 +675,10 @@ Data-base: 2026-06-27
 | Sprint 9.9 InvoiceCraft local validation | Passed: `pnpm test:invoicecraft`, `pnpm build:invoicecraft`, `pnpm validate:invoicecraft-preview`, `pnpm test:e2e:invoicecraft` |
 | Sprint 9.9 local preview asset | `/_nuxt/DV3VL-kb.js` validated by `pnpm validate:invoicecraft-preview` |
 | Sprint 9.9 visual QA artifacts | Playwright screenshots in `artifacts/playwright-invoicecraft-report/data/` for InvoiceCraft home desktop, editor mobile and privacy mobile |
-| Sprint 9.9 remote CI/deploy status | Pending feature commit, push, Quality Gate, Deploy Dry Run and HostGator deploy |
+| Sprint 9.9 remote CI/deploy status | Completed: commit `a57083b`, Quality Gate `28319167672` passed, Deploy Dry Run `28319167671` passed, InvoiceCraft deploy `28319247622` passed |
+| Sprint 9.9 production release | `a57083b70a60a34b3fc66394a86d27a0c810db52-28319247622-1` |
+| Sprint 9.9 final public asset | `https://opentshost.com/supersites/invoicecraft/_nuxt/CAuTAoAj.js` |
+| Sprint 9.9 public smokes | Passed: InvoiceCraft static app, Hub aggregate, control-plane/API and live InvoiceCraft workbench/invoice-builder/mobile UX smoke |
 | Sprint 9.9 tax/payment/paid activation | 0 activated; InvoiceCraft remains browser-side with no saved clients/products, recurrence, checkout, payment links, fiscal numbering, official tax automation, billing, ads or external analytics |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |

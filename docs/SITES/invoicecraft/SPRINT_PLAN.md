@@ -43,11 +43,12 @@ Data-base: 2026-06-27
 
 - Symbol: BGR-INVOICECRAFT-P0.
 - Real number: Sprint 9.9.
-- Status: local validation complete; feature commit, remote CI, deploy and public smoke pending.
+- Status: completed in production; feature commit, remote CI, deploy and public smoke passed.
 
 ## Sprint 9.9 execution notes
 
 - `InvoiceCraftWorkbench` now powers the home and all localized tool pages with invoice/quote/receipt tabs, editable line rows, locale/currency controls, discount, shipping/freight, manual tax/adjustment fields, document snapshot, local PDF download, copy summary, no-storage privacy copy, inert paid workflow and related documents.
 - The home opens with Invoice Builder before the catalog, while tool pages keep canonical/hreflang/schema, guide sections, FAQ and review links around the shared workbench.
 - Local validation passed: `pnpm test:invoicecraft`, `pnpm build:invoicecraft`, `pnpm validate:invoicecraft-preview` and `pnpm test:e2e:invoicecraft`; Playwright screenshots were inspected for home desktop, editor mobile and privacy mobile.
+- Production closure passed: commit `a57083b`, Quality Gate `28319167672`, Deploy Dry Run `28319167671`, Fase 9/Sprint 9.9 deploy `28319247622`, release `a57083b70a60a34b3fc66394a86d27a0c810db52-28319247622-1`, public asset `https://opentshost.com/supersites/invoicecraft/_nuxt/CAuTAoAj.js` and live UX smoke.
 - No account, saved client/product, storage, recurrence, branding checkout, payment link, webhook, fiscal numbering, jurisdictional tax automation, billing, ad serving, external analytics or production worker was activated.

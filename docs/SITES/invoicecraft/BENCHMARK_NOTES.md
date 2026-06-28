@@ -37,3 +37,4 @@ Data-base: 2026-06-27
 - The editor and live document preview are now the first substantial experience on the home and tool pages.
 - The free flow supports editable item rows, currency, locale context, discount, shipping/freight, manual tax/adjustment and local PDF export.
 - Paid SaaS behaviors remain visibly planned but inactive: saved clients/products, recurrence, branding, teams, payment links and fiscal numbering.
+- Production evidence: Sprint 9.9 deploy `28319247622`, final asset `CAuTAoAj.js`, public smokes and live invoice-builder/mobile UX smoke passed.

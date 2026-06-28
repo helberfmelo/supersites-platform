@@ -54,6 +54,7 @@ Medium. Ads/support cannot sit near document fields, preview or download button.
 - Item rows are now editable controls instead of a raw multiline syntax field.
 - Discount, shipping/freight and manual tax/adjustment are visible controlled fields.
 - Local preview, PDF download, copy summary, mobile layout and no-storage analytics behavior passed Playwright.
+- Production deploy and public/live smokes passed in Fase 9/Sprint 9.9; final asset `CAuTAoAj.js`.
 
 ## Dashboard backlog
 

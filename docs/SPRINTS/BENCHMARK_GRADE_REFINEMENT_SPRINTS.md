@@ -185,7 +185,7 @@ Sprint 9.8 delivered the PixelBatch image workbench to production without activa
 
 ## Sprint 9.9 execution evidence
 
-Sprint 9.9 delivered the InvoiceCraft editor-first workflow locally without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs, payment links, official fiscal numbering, jurisdictional tax automation, saved clients/products, recurrence, teams or recurring production workers.
+Sprint 9.9 delivered the InvoiceCraft editor-first workflow to production without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs, payment links, official fiscal numbering, jurisdictional tax automation, saved clients/products, recurrence, teams or recurring production workers.
 
 | Evidence | Value |
 |---|---|
@@ -197,8 +197,9 @@ Sprint 9.9 delivered the InvoiceCraft editor-first workflow locally without acti
 | Local frontend validation | Passed: `pnpm test:invoicecraft`, `pnpm build:invoicecraft`, `pnpm validate:invoicecraft-preview`, `pnpm test:e2e:invoicecraft` |
 | Local preview asset | `/_nuxt/DV3VL-kb.js` |
 | Visual QA | Desktop/mobile screenshots captured by Playwright in `artifacts/playwright-invoicecraft-report/data/` |
-| Remote CI | Pending feature commit and push |
-| Production deploy | Pending Fase 9/Sprint 9.9 static app deploy after Quality Gate and Deploy Dry Run pass |
+| Remote CI | Passed: feature commit `a57083b`, Quality Gate `28319167672`, Deploy Dry Run `28319167671` |
+| Production deploy | Passed: Fase 9/Sprint 9.9 InvoiceCraft static app deploy `28319247622`, release `a57083b70a60a34b3fc66394a86d27a0c810db52-28319247622-1` |
+| Public smoke | Passed: InvoiceCraft app asset `https://opentshost.com/supersites/invoicecraft/_nuxt/CAuTAoAj.js`, aggregate Hub smoke, control-plane smoke and live workbench/invoice-builder/mobile UX smoke |
 
 ## Per-sprint execution rules
 
