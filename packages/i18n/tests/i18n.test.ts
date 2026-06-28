@@ -76,4 +76,21 @@ describe('@supersites/i18n', () => {
     expect(sanitizePublicCopy('fr', 'Traitement lourd gate')).toBe('Traitement lourd prévu')
     expect(sanitizePublicCopy('de', 'Kommerzielle Funktionen gesperrt')).toBe('Kommerzielle Funktionen geplant')
   })
+
+  it('localizes short form labels and actions that often leak from interactive tools', () => {
+    const sanitized = sanitizePublicCopy('pt-br', {
+      inputLabel: 'Domain name',
+      primaryAction: 'Validate sitemap',
+      meta: ['Final URL', 'cached', 'fresh'],
+    })
+
+    expect(sanitized).toEqual({
+      inputLabel: 'Nome de domínio',
+      primaryAction: 'Validar sitemap',
+      meta: ['URL final', 'em cache', 'novo'],
+    })
+
+    expect(sanitizePublicCopy('pt-br', 'The result shows the formula used.')).toBe('O resultado mostra the formula used.')
+    expect(sanitizePublicCopy('pt-br', 'DMARC Checker Checklist')).toBe('Verificador DMARC Checklist')
+  })
 })

@@ -359,6 +359,40 @@ const localeAccentReplacements: Partial<Record<LocaleCode, Array<[RegExp, string
 
 const englishFallbackPhraseReplacements: Partial<Record<LocaleCode, Record<string, string>>> = {
   'pt-br': {
+    'Lookup target': 'Alvo da consulta',
+    'Domain name': 'Nome de domínio',
+    'Website URL': 'URL do site',
+    'Expected value (optional)': 'Valor esperado (opcional)',
+    'Current connection': 'Conexão atual',
+    'Raw headers': 'Headers brutos',
+    'Run IP check': 'Executar consulta de IP',
+    'Run DNS lookup': 'Executar consulta DNS',
+    'Run RDAP lookup': 'Executar consulta RDAP',
+    'Run SSL check': 'Executar verificação SSL',
+    'Run propagation check': 'Executar propagação',
+    'Run port check': 'Executar teste de porta',
+    'Run reachability check': 'Executar teste de alcance',
+    'Run SPF check': 'Executar verificação SPF',
+    'Run DKIM check': 'Executar verificação DKIM',
+    'Run DMARC check': 'Executar verificação DMARC',
+    'Run MX check': 'Executar verificação MX',
+    'Run blacklist check': 'Consultar blacklist',
+    'Run SMTP check': 'Executar teste SMTP',
+    'Analyze headers': 'Analisar headers',
+    'Check status': 'Verificar status',
+    'Trace redirects': 'Rastrear redirecionamentos',
+    'Check headers': 'Verificar headers',
+    'Check robots.txt': 'Verificar robots.txt',
+    'Validate sitemap': 'Validar sitemap',
+    'Measure TTFB': 'Medir TTFB',
+    'Run snapshot': 'Executar snapshot',
+    'Final URL': 'URL final',
+    'Check': 'Verificação',
+    'Status': 'Status',
+    'Cache': 'Cache',
+    'cached': 'em cache',
+    'fresh': 'novo',
+    'The result shows': 'O resultado mostra',
     'Structured Data Formatter': 'Formatador de dados estruturados',
     'Format JSON, XML, YAML and CSV snippets in the browser.': 'Formate trechos JSON, XML, YAML e CSV no navegador.',
     'Base64 Converter': 'Conversor Base64',
@@ -464,6 +498,40 @@ const englishFallbackPhraseReplacements: Partial<Record<LocaleCode, Record<strin
     'Text to PDF': 'Texto para PDF',
   },
   es: {
+    'Lookup target': 'Objetivo de consulta',
+    'Domain name': 'Nombre de dominio',
+    'Website URL': 'URL del sitio',
+    'Expected value (optional)': 'Valor esperado (opcional)',
+    'Current connection': 'Conexión actual',
+    'Raw headers': 'Headers brutos',
+    'Run IP check': 'Ejecutar consulta de IP',
+    'Run DNS lookup': 'Ejecutar consulta DNS',
+    'Run RDAP lookup': 'Ejecutar consulta RDAP',
+    'Run SSL check': 'Ejecutar verificación SSL',
+    'Run propagation check': 'Ejecutar propagación',
+    'Run port check': 'Ejecutar prueba de puerto',
+    'Run reachability check': 'Ejecutar prueba de alcance',
+    'Run SPF check': 'Ejecutar verificación SPF',
+    'Run DKIM check': 'Ejecutar verificación DKIM',
+    'Run DMARC check': 'Ejecutar verificación DMARC',
+    'Run MX check': 'Ejecutar verificación MX',
+    'Run blacklist check': 'Consultar blacklist',
+    'Run SMTP check': 'Ejecutar prueba SMTP',
+    'Analyze headers': 'Analizar headers',
+    'Check status': 'Verificar estado',
+    'Trace redirects': 'Rastrear redirecciones',
+    'Check headers': 'Verificar headers',
+    'Check robots.txt': 'Verificar robots.txt',
+    'Validate sitemap': 'Validar sitemap',
+    'Measure TTFB': 'Medir TTFB',
+    'Run snapshot': 'Ejecutar snapshot',
+    'Final URL': 'URL final',
+    'Check': 'Verificación',
+    'Status': 'Estado',
+    'Cache': 'Cache',
+    'cached': 'en cache',
+    'fresh': 'nuevo',
+    'The result shows': 'El resultado muestra',
     'Structured Data Formatter': 'Formateador de datos estructurados',
     'Base64 Converter': 'Conversor Base64',
     'JWT Inspector': 'Inspector JWT',
@@ -523,6 +591,40 @@ const englishFallbackPhraseReplacements: Partial<Record<LocaleCode, Record<strin
     'Find the SPF TXT record for a domain and flag risky all, duplicate or lookup-heavy policies.': 'Encuentra el registro TXT SPF de un dominio y señala políticas riesgosas, duplicadas o pesadas.',
   },
   fr: {
+    'Lookup target': 'Cible du contrôle',
+    'Domain name': 'Nom de domaine',
+    'Website URL': 'URL du site',
+    'Expected value (optional)': 'Valeur attendue (facultatif)',
+    'Current connection': 'Connexion actuelle',
+    'Raw headers': 'Headers bruts',
+    'Run IP check': 'Lancer le contrôle IP',
+    'Run DNS lookup': 'Lancer la recherche DNS',
+    'Run RDAP lookup': 'Lancer la recherche RDAP',
+    'Run SSL check': 'Lancer le contrôle SSL',
+    'Run propagation check': 'Lancer le contrôle de propagation',
+    'Run port check': 'Lancer le test de port',
+    'Run reachability check': 'Lancer le contrôle d’accès',
+    'Run SPF check': 'Lancer le contrôle SPF',
+    'Run DKIM check': 'Lancer le contrôle DKIM',
+    'Run DMARC check': 'Lancer le contrôle DMARC',
+    'Run MX check': 'Lancer le contrôle MX',
+    'Run blacklist check': 'Vérifier la blacklist',
+    'Run SMTP check': 'Lancer le test SMTP',
+    'Analyze headers': 'Analyser les headers',
+    'Check status': 'Vérifier le statut',
+    'Trace redirects': 'Tracer les redirections',
+    'Check headers': 'Vérifier les headers',
+    'Check robots.txt': 'Vérifier robots.txt',
+    'Validate sitemap': 'Valider le sitemap',
+    'Measure TTFB': 'Mesurer le TTFB',
+    'Run snapshot': 'Lancer le snapshot',
+    'Final URL': 'URL finale',
+    'Check': 'Contrôle',
+    'Status': 'Statut',
+    'Cache': 'Cache',
+    'cached': 'en cache',
+    'fresh': 'récent',
+    'The result shows': 'Le résultat affiche',
     'Structured Data Formatter': 'Formateur de données structurées',
     'Base64 Converter': 'Convertisseur Base64',
     'JWT Inspector': 'Inspecteur JWT',
@@ -582,6 +684,40 @@ const englishFallbackPhraseReplacements: Partial<Record<LocaleCode, Record<strin
     'Find the SPF TXT record for a domain and flag risky all, duplicate or lookup-heavy policies.': 'Trouvez le TXT SPF d’un domaine et signalez les politiques risquées, dupliquées ou trop lourdes.',
   },
   de: {
+    'Lookup target': 'Prüfziel',
+    'Domain name': 'Domainname',
+    'Website URL': 'Website-URL',
+    'Expected value (optional)': 'Erwarteter Wert (optional)',
+    'Current connection': 'Aktuelle Verbindung',
+    'Raw headers': 'Rohheader',
+    'Run IP check': 'IP-Prüfung starten',
+    'Run DNS lookup': 'DNS-Lookup starten',
+    'Run RDAP lookup': 'RDAP-Lookup starten',
+    'Run SSL check': 'SSL-Prüfung starten',
+    'Run propagation check': 'Propagation prüfen',
+    'Run port check': 'Port prüfen',
+    'Run reachability check': 'Erreichbarkeit prüfen',
+    'Run SPF check': 'SPF prüfen',
+    'Run DKIM check': 'DKIM prüfen',
+    'Run DMARC check': 'DMARC prüfen',
+    'Run MX check': 'MX prüfen',
+    'Run blacklist check': 'Blacklist prüfen',
+    'Run SMTP check': 'SMTP prüfen',
+    'Analyze headers': 'Header analysieren',
+    'Check status': 'Status prüfen',
+    'Trace redirects': 'Weiterleitungen verfolgen',
+    'Check headers': 'Header prüfen',
+    'Check robots.txt': 'robots.txt prüfen',
+    'Validate sitemap': 'Sitemap validieren',
+    'Measure TTFB': 'TTFB messen',
+    'Run snapshot': 'Snapshot starten',
+    'Final URL': 'Finale URL',
+    'Check': 'Prüfung',
+    'Status': 'Status',
+    'Cache': 'Cache',
+    'cached': 'aus Cache',
+    'fresh': 'neu',
+    'The result shows': 'Das Ergebnis zeigt',
     'Structured Data Formatter': 'Formatierer für strukturierte Daten',
     'Base64 Converter': 'Base64-Konverter',
     'JWT Inspector': 'JWT-Inspektor',
@@ -642,6 +778,24 @@ const englishFallbackPhraseReplacements: Partial<Record<LocaleCode, Record<strin
   },
 }
 
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+function replaceEnglishFallbackPhrase(value: string, source: string, replacement: string): string {
+  const startsWithWord = /^[A-Za-z0-9]/.test(source)
+  const endsWithWord = /[A-Za-z0-9]$/.test(source)
+  const prefixPattern = startsWithWord ? '(^|[^A-Za-z0-9])' : ''
+  const suffixPattern = endsWithWord ? '(?![A-Za-z0-9])' : ''
+  const pattern = new RegExp(`${prefixPattern}${escapeRegExp(source)}${suffixPattern}`, 'g')
+
+  return value.replace(pattern, (...args: unknown[]) => {
+    const prefix = startsWithWord ? String(args[1] ?? '') : ''
+
+    return `${prefix}${replacement}`
+  })
+}
+
 function applyEnglishFallbackPhraseReplacements(locale: LocaleCode, value: string): string {
   const replacements = englishFallbackPhraseReplacements[locale]
 
@@ -649,7 +803,10 @@ function applyEnglishFallbackPhraseReplacements(locale: LocaleCode, value: strin
     return value
   }
 
-  return Object.entries(replacements).reduce((current, [source, replacement]) => current.split(source).join(replacement), value)
+  return Object.entries(replacements).reduce(
+    (current, [source, replacement]) => replaceEnglishFallbackPhrase(current, source, replacement),
+    value,
+  )
 }
 
 function sanitizePublicString(locale: LocaleCode, value: string): string {

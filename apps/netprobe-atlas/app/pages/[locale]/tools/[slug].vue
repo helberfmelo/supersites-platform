@@ -28,33 +28,42 @@ const upgradePanelCopyByLocale = {
     eyebrow: 'Planned upgrade path',
     title: 'Monitor, alert and export later',
     body: 'Saved history, multi-region checks, alerts, reports and API access remain planned upgrades. Billing, workers and external providers stay disabled until quality checks are complete.',
+    cta: 'Review limits',
   },
   'pt-br': {
     ariaLabel: 'Caminho de upgrade planejado',
     eyebrow: 'Upgrade planejado',
     title: 'Monitorar, alertar e exportar depois',
     body: 'Histórico salvo, checagens multi-região, alertas, relatórios e API continuam como upgrades planejados. Billing, workers e provedores externos ficam desativados até as revisões de qualidade.',
+    cta: 'Revisar limites',
   },
   es: {
     ariaLabel: 'Ruta de upgrade planificada',
     eyebrow: 'Upgrade planificado',
     title: 'Monitorear, alertar y exportar después',
     body: 'Historial guardado, chequeos multi-región, alertas, reportes y API siguen como upgrades planificados. Billing, workers y proveedores externos permanecen desactivados hasta completar las revisiones de calidad.',
+    cta: 'Revisar limites',
   },
   fr: {
     ariaLabel: 'Parcours de mise à niveau prévu',
     eyebrow: 'Mise à niveau prévue',
     title: 'Surveiller, alerter et exporter plus tard',
     body: 'Historique sauvegardé, vérifications multi-région, alertes, rapports et API restent des évolutions prévues. Billing, workers et fournisseurs externes restent désactivés jusqu’aux revues qualité.',
+    cta: 'Revoir les limites',
   },
   de: {
     ariaLabel: 'Geplanter Upgrade-Pfad',
     eyebrow: 'Geplanter Upgrade',
     title: 'Monitoring, Alerts und Exporte später',
     body: 'Gespeicherter Verlauf, Multi-Region-Prüfungen, Alerts, Reports und API-Zugriff bleiben geplante Upgrades. Billing, Worker und externe Anbieter bleiben deaktiviert, bis die Qualitätsprüfungen abgeschlossen sind.',
+    cta: 'Grenzen pruefen',
   },
-} satisfies Record<LocaleCode, { ariaLabel: string; eyebrow: string; title: string; body: string }>
+} satisfies Record<LocaleCode, { ariaLabel: string; eyebrow: string; title: string; body: string; cta: string }>
 const upgradePanelCopy = sanitizePublicCopy(locale, upgradePanelCopyByLocale[locale])
+const formCopy = sanitizePublicCopy(locale, {
+  expectedValueLabel: 'Expected value (optional)',
+  expectedValuePlaceholder: '93.184.216.34 or ns1.example.com',
+})
 const runtimeConfig = useRuntimeConfig()
 const previewSubmitted = ref(false)
 const targetValue = ref(tool.slug === 'what-is-my-ip' ? '' : tool.exampleTarget)
@@ -666,12 +675,12 @@ useHead({
                   {{ recordType }}
                 </option>
               </select>
-              <label :for="`${tool.slug}-expected`">Expected value (optional)</label>
+              <label :for="`${tool.slug}-expected`">{{ formCopy.expectedValueLabel }}</label>
               <input
                 :id="`${tool.slug}-expected`"
                 v-model="expectedPropagationValue"
                 type="text"
-                placeholder="93.184.216.34 or ns1.example.com"
+                :placeholder="formCopy.expectedValuePlaceholder"
                 autocomplete="off"
               >
             </template>
@@ -1045,7 +1054,7 @@ useHead({
             <p>{{ upgradePanelCopy.body }}</p>
           </div>
           <NuxtLink class="button-link button-link--secondary" :to="localizedContentPath(locale, 'methodology')">
-            Review limits
+            {{ upgradePanelCopy.cta }}
           </NuxtLink>
         </section>
       </div>

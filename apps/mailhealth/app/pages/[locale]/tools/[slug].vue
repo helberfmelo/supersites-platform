@@ -2,7 +2,7 @@
 import { getButtonClass } from '@supersites/ui'
 import { computed, onMounted, ref } from 'vue'
 import { getShellCopy } from '../../../data/copy'
-import { localizedContentPath, localizedHomePath, localizedToolPath, normalizePublicLocale, toHtmlLang } from '../../../data/locales'
+import { localizedContentPath, localizedHomePath, localizedToolPath, normalizePublicLocale, sanitizePublicCopy, toHtmlLang } from '../../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
 import {
   analyzeMailHeaders,
@@ -53,6 +53,14 @@ interface ApiResponse<T> {
 
 const copy = getToolCopy(tool, locale)
 const shellCopy = getShellCopy(locale)
+const resultMetaCopy = sanitizePublicCopy(locale, {
+  check: 'Check',
+  status: 'Status',
+  cache: 'Cache',
+  cached: 'cached',
+  fresh: 'fresh',
+  ttl: 'TTL',
+})
 const canonicalPath = localizedToolPath(locale, tool.slug)
 const structuredData = createToolStructuredData(tool, locale, absoluteUrl(canonicalPath))
 const runtimeConfig = useRuntimeConfig()
@@ -74,10 +82,10 @@ const isDnsCheck = computed(() => ['spf', 'dkim', 'dmarc', 'mx'].includes(tool.c
 const displayedFindings = computed(() => headerResult.value?.findings ?? apiResult.value?.findings ?? [])
 const hasResult = computed(() => Boolean(headerResult.value?.ok || apiResult.value))
 const displayedMeta = computed(() => headerResult.value?.meta ?? [
-  { label: 'Check', value: apiResult.value?.check ?? '-' },
-  { label: 'Status', value: apiResult.value?.status ?? '-' },
-  { label: 'Cache', value: apiMeta.value.cached ? 'cached' : 'fresh' },
-  { label: 'TTL', value: String(apiMeta.value.cache_ttl_seconds ?? '-') },
+  { label: resultMetaCopy.check, value: apiResult.value?.check ?? '-' },
+  { label: resultMetaCopy.status, value: apiResult.value?.status ?? '-' },
+  { label: resultMetaCopy.cache, value: apiMeta.value.cached ? resultMetaCopy.cached : resultMetaCopy.fresh },
+  { label: resultMetaCopy.ttl, value: String(apiMeta.value.cache_ttl_seconds ?? '-') },
 ])
 const summary = computed(() => headerResult.value?.summary || apiResult.value?.summary || copy.previewResult)
 const scoreCard = computed(() => createMailHealthScoreCard(displayedFindings.value, copy.previewResult))

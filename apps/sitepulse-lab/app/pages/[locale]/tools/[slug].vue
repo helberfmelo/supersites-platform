@@ -2,7 +2,7 @@
 import { getButtonClass } from '@supersites/ui'
 import { computed, onMounted, ref } from 'vue'
 import { getShellCopy } from '../../../data/copy'
-import { localizedContentPath, localizedHomePath, localizedToolPath, normalizePublicLocale, toHtmlLang } from '../../../data/locales'
+import { localizedContentPath, localizedHomePath, localizedToolPath, normalizePublicLocale, sanitizePublicCopy, toHtmlLang } from '../../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
 import {
   createSitePulseScoreCard,
@@ -51,6 +51,14 @@ interface ApiResponse<T> {
 
 const copy = getToolCopy(tool, locale)
 const shellCopy = getShellCopy(locale)
+const resultMetaCopy = sanitizePublicCopy(locale, {
+  status: 'Status',
+  finalUrl: 'Final URL',
+  cache: 'Cache',
+  cached: 'cached',
+  fresh: 'fresh',
+  ttl: 'TTL',
+})
 const canonicalPath = localizedToolPath(locale, tool.slug)
 const structuredData = createToolStructuredData(tool, locale, absoluteUrl(canonicalPath))
 const runtimeConfig = useRuntimeConfig()
@@ -64,10 +72,10 @@ const activeResultTab = ref<'overview' | 'findings' | 'details'>('overview')
 const displayedFindings = computed(() => apiResult.value?.findings ?? [])
 const hasResult = computed(() => Boolean(apiResult.value))
 const displayedMeta = computed(() => [
-  { label: 'Status', value: apiResult.value?.status ?? '-' },
-  { label: 'Final URL', value: apiResult.value?.final_url ?? '-' },
-  { label: 'Cache', value: apiMeta.value.cached ? 'cached' : 'fresh' },
-  { label: 'TTL', value: String(apiMeta.value.cache_ttl_seconds ?? '-') },
+  { label: resultMetaCopy.status, value: apiResult.value?.status ?? '-' },
+  { label: resultMetaCopy.finalUrl, value: apiResult.value?.final_url ?? '-' },
+  { label: resultMetaCopy.cache, value: apiMeta.value.cached ? resultMetaCopy.cached : resultMetaCopy.fresh },
+  { label: resultMetaCopy.ttl, value: String(apiMeta.value.cache_ttl_seconds ?? '-') },
 ])
 const summary = computed(() => apiResult.value?.summary || copy.previewResult)
 const scoreCard = computed(() => createSitePulseScoreCard(displayedFindings.value, copy.previewResult))

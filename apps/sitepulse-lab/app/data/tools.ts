@@ -187,8 +187,193 @@ const sectionLabelsByLocale: Record<LocaleCode, {
   },
 }
 
-function buildToolCopy(locale: LocaleCode, seed: ToolSeed): ToolCopy {
+const localizedCheckNames: Record<LocaleCode, Record<SitePulseCheck, string>> = {
+  en: {
+    status: 'status',
+    redirects: 'redirects',
+    headers: 'headers',
+    robots: 'robots.txt',
+    sitemap: 'sitemap',
+    ttfb: 'TTFB',
+    performance: 'performance snapshot',
+  },
+  'pt-br': {
+    status: 'status HTTP',
+    redirects: 'redirecionamentos',
+    headers: 'headers',
+    robots: 'robots.txt',
+    sitemap: 'sitemap',
+    ttfb: 'TTFB',
+    performance: 'snapshot de performance',
+  },
+  es: {
+    status: 'estado HTTP',
+    redirects: 'redirecciones',
+    headers: 'headers',
+    robots: 'robots.txt',
+    sitemap: 'sitemap',
+    ttfb: 'TTFB',
+    performance: 'snapshot de rendimiento',
+  },
+  fr: {
+    status: 'statut HTTP',
+    redirects: 'redirections',
+    headers: 'headers',
+    robots: 'robots.txt',
+    sitemap: 'sitemap',
+    ttfb: 'TTFB',
+    performance: 'snapshot de performance',
+  },
+  de: {
+    status: 'HTTP-Status',
+    redirects: 'Weiterleitungen',
+    headers: 'Header',
+    robots: 'robots.txt',
+    sitemap: 'Sitemap',
+    ttfb: 'TTFB',
+    performance: 'Performance-Snapshot',
+  },
+}
+
+const localizedSitePulseCopy = {
+  'pt-br': {
+    inputLabel: 'URL do site',
+    statusLabel: 'Probe pontual',
+    headline: (name: string) => `Teste ${name} de uma pagina publica com limites antiabuso claros.`,
+    description: (name: string) => `Informe uma URL publica para executar um teste pontual de ${name} sem salvar o alvo.`,
+    previewResult: (name: string) => `O resultado resume ${name}, achados principais e detalhes tecnicos limitados.`,
+    freeScope: (name: string) => `Um teste pontual de ${name} para uma URL publica.`,
+    upgradeScope: 'Uptime, incidentes, status page, alertas, historico e multi-regiao continuam planejados.',
+    methodology: (name: string) => [
+      `SitePulse executa uma unica probe de ${name}, com timeout curto, rate limit e validacao SSRF.`,
+      'Use o resultado como linha de base antes de abrir incidente, alterar CDN ou mudar regras de servidor.',
+      'A versao gratuita nao salva URL, headers, redirects, timings ou historico.',
+    ],
+    interpret: 'Priorize falhas que afetem disponibilidade, rastreabilidade, seguranca ou latencia percebida.',
+    example: 'Exemplo: teste https://example.com antes e depois de uma mudanca de DNS, CDN ou configuracao.',
+    commonIssue: 'Problemas comuns incluem redirects em cadeia, robots restritivo, sitemap antigo, headers ausentes e TTFB alto.',
+    fix: 'Corrija na origem ou CDN, aguarde propagacao quando houver cache e execute novo teste pontual.',
+    faq: [
+      { question: 'O SitePulse salva a URL testada?', answer: 'Nao. A rota gratuita evita armazenar URL, headers, redirects, tempos e resultados.' },
+      { question: 'Isto substitui monitoramento de uptime?', answer: 'Nao nesta versao gratuita. Uptime, alertas, historico e multi-regiao seguem planejados como upgrade.' },
+    ],
+  },
+  es: {
+    inputLabel: 'URL del sitio',
+    statusLabel: 'Probe puntual',
+    headline: (name: string) => `Prueba ${name} de una pagina publica con limites antiabuso claros.`,
+    description: (name: string) => `Ingresa una URL publica para ejecutar una prueba puntual de ${name} sin guardar el objetivo.`,
+    previewResult: (name: string) => `El resultado resume ${name}, hallazgos principales y detalles tecnicos limitados.`,
+    freeScope: (name: string) => `Una prueba puntual de ${name} para una URL publica.`,
+    upgradeScope: 'Uptime, incidentes, status page, alertas, historial y multi-region siguen planificados.',
+    methodology: (name: string) => [
+      `SitePulse ejecuta una sola probe de ${name}, con timeout corto, rate limit y validacion SSRF.`,
+      'Usa el resultado como linea base antes de abrir incidente, cambiar CDN o modificar reglas del servidor.',
+      'La version gratuita no guarda URL, headers, redirecciones, tiempos ni historial.',
+    ],
+    interpret: 'Prioriza fallas que afecten disponibilidad, rastreo, seguridad o latencia percibida.',
+    example: 'Ejemplo: prueba https://example.com antes y despues de un cambio de DNS, CDN o configuracion.',
+    commonIssue: 'Problemas comunes incluyen cadenas de redireccion, robots restrictivo, sitemap antiguo, headers ausentes y TTFB alto.',
+    fix: 'Corrige en origen o CDN, espera propagacion cuando haya cache y ejecuta una nueva prueba puntual.',
+    faq: [
+      { question: 'SitePulse guarda la URL probada?', answer: 'No. La ruta gratuita evita almacenar URL, headers, redirecciones, tiempos y resultados.' },
+      { question: 'Esto reemplaza monitoreo de uptime?', answer: 'No en esta version gratuita. Uptime, alertas, historial y multi-region siguen planificados como upgrade.' },
+    ],
+  },
+  fr: {
+    inputLabel: 'URL du site',
+    statusLabel: 'Probe ponctuelle',
+    headline: (name: string) => `Testez ${name} d une page publique avec des limites anti-abus claires.`,
+    description: (name: string) => `Saisissez une URL publique pour lancer un controle ponctuel de ${name} sans stocker la cible.`,
+    previewResult: (name: string) => `Le resultat resume ${name}, les constats principaux et des details techniques limites.`,
+    freeScope: (name: string) => `Un controle ponctuel de ${name} pour une URL publique.`,
+    upgradeScope: 'Uptime, incidents, status page, alertes, historique et multi-region restent planifies.',
+    methodology: (name: string) => [
+      `SitePulse lance une seule probe de ${name}, avec timeout court, rate limit et validation SSRF.`,
+      'Utilisez le resultat comme ligne de base avant incident, changement CDN ou regles serveur.',
+      'La version gratuite ne stocke ni URL, ni headers, ni redirections, ni timings, ni historique.',
+    ],
+    interpret: 'Priorisez les erreurs qui affectent disponibilite, exploration, securite ou latence percue.',
+    example: 'Exemple: testez https://example.com avant et apres un changement DNS, CDN ou configuration.',
+    commonIssue: 'Les problemes courants incluent chaines de redirection, robots restrictif, sitemap ancien, headers absents et TTFB eleve.',
+    fix: 'Corrigez a l origine ou au CDN, attendez la propagation si cache est implique, puis relancez un controle ponctuel.',
+    faq: [
+      { question: 'SitePulse stocke l URL testee?', answer: 'Non. La route gratuite evite le stockage des URL, headers, redirections, temps et resultats.' },
+      { question: 'Cela remplace une surveillance uptime?', answer: 'Non dans cette version gratuite. Uptime, alertes, historique et multi-region restent planifies comme upgrade.' },
+    ],
+  },
+  de: {
+    inputLabel: 'Website-URL',
+    statusLabel: 'Einmalige Probe',
+    headline: (name: string) => `Pruefen Sie ${name} einer oeffentlichen Seite mit klaren Anti-Abuse-Grenzen.`,
+    description: (name: string) => `Geben Sie eine oeffentliche URL ein, um eine einmalige ${name}-Pruefung ohne Speicherung des Ziels zu starten.`,
+    previewResult: (name: string) => `Das Ergebnis fasst ${name}, wichtigste Befunde und begrenzte technische Details zusammen.`,
+    freeScope: (name: string) => `Eine einmalige ${name}-Pruefung fuer eine oeffentliche URL.`,
+    upgradeScope: 'Uptime, Incidents, Status Page, Alarme, Historie und Multi-Region bleiben geplant.',
+    methodology: (name: string) => [
+      `SitePulse fuehrt eine einzelne ${name}-Probe mit kurzem Timeout, Rate Limit und SSRF-Validierung aus.`,
+      'Nutzen Sie das Ergebnis als Basis vor Incident, CDN-Aenderung oder Serverregel-Aenderung.',
+      'Die kostenlose Version speichert weder URL, Header, Weiterleitungen, Timings noch Historie.',
+    ],
+    interpret: 'Priorisieren Sie Fehler, die Verfuegbarkeit, Crawlbarkeit, Sicherheit oder Latenz betreffen.',
+    example: 'Beispiel: pruefen Sie https://example.com vor und nach einer DNS-, CDN- oder Konfigurationsaenderung.',
+    commonIssue: 'Haeufige Probleme sind Redirect-Ketten, restriktive robots.txt, alte Sitemaps, fehlende Header und hoher TTFB.',
+    fix: 'Korrigieren Sie Origin oder CDN, warten Sie bei Cache auf Propagation und starten Sie eine neue Pruefung.',
+    faq: [
+      { question: 'Speichert SitePulse die getestete URL?', answer: 'Nein. Die kostenlose Route speichert keine URL, Header, Weiterleitungen, Zeiten oder Ergebnisse.' },
+      { question: 'Ersetzt das Uptime-Monitoring?', answer: 'Nicht in dieser kostenlosen Version. Uptime, Alarme, Historie und Multi-Region bleiben als Upgrade geplant.' },
+    ],
+  },
+} satisfies Record<Exclude<LocaleCode, 'en'>, {
+  inputLabel: string
+  statusLabel: string
+  headline: (name: string) => string
+  description: (name: string) => string
+  previewResult: (name: string) => string
+  freeScope: (name: string) => string
+  upgradeScope: string
+  methodology: (name: string) => string[]
+  interpret: string
+  example: string
+  commonIssue: string
+  fix: string
+  faq: ToolFaq[]
+}>
+
+function buildToolCopy(locale: LocaleCode, seed: ToolSeed, check: SitePulseCheck): ToolCopy {
   const labels = sectionLabelsByLocale[locale]
+
+  if (locale !== 'en') {
+    const localized = localizedSitePulseCopy[locale]
+    const name = localizedCheckNames[locale][check]
+    const description = localized.description(name)
+    const methodology = localized.methodology(name)
+
+    return {
+      navLabel: seed.navLabel,
+      title: seed.title,
+      headline: localized.headline(name),
+      description,
+      inputLabel: localized.inputLabel,
+      inputPlaceholder: 'https://example.com',
+      primaryAction: seed.primaryAction,
+      previewResult: localized.previewResult(name),
+      statusLabel: localized.statusLabel,
+      freeScope: localized.freeScope(name),
+      upgradeScope: localized.upgradeScope,
+      exampleTarget: seed.exampleTarget,
+      reviewedLabel: reviewedLabelByLocale[locale],
+      methodology,
+      contentSections: [
+        { heading: labels.use, paragraphs: [description, methodology[0]] },
+        { heading: labels.interpret, paragraphs: [localized.interpret] },
+        { heading: labels.example, paragraphs: [localized.example] },
+        { heading: labels.issues, paragraphs: [localized.commonIssue, localized.fix] },
+        { heading: labels.limits, paragraphs: [methodology[2]] },
+      ],
+      faq: localized.faq,
+    }
+  }
 
   return {
     navLabel: seed.navLabel,
@@ -216,8 +401,8 @@ function buildToolCopy(locale: LocaleCode, seed: ToolSeed): ToolCopy {
   }
 }
 
-function localized(seed: ToolSeed): Record<LocaleCode, ToolCopy> {
-  return Object.fromEntries(publicLocaleCodes.map((locale) => [locale, buildToolCopy(locale, seed)])) as Record<LocaleCode, ToolCopy>
+function localized(seed: ToolSeed, check: SitePulseCheck): Record<LocaleCode, ToolCopy> {
+  return Object.fromEntries(publicLocaleCodes.map((locale) => [locale, buildToolCopy(locale, seed, check)])) as Record<LocaleCode, ToolCopy>
 }
 
 function makeTool(
@@ -227,7 +412,7 @@ function makeTool(
   check: SitePulseCheck,
   seed: ToolSeed,
 ): ToolDefinition {
-  const copy = localized(seed)
+  const copy = localized(seed, check)
 
   return {
     slug,

@@ -202,8 +202,212 @@ const sectionLabelsByLocale: Record<LocaleCode, {
   },
 }
 
-function buildToolCopy(locale: LocaleCode, seed: ToolSeed): ToolCopy {
+type MailHealthCheckType = ToolDefinition['checkType']
+
+const localizedCheckNames: Record<LocaleCode, Record<MailHealthCheckType, string>> = {
+  en: {
+    spf: 'SPF',
+    dkim: 'DKIM',
+    dmarc: 'DMARC',
+    mx: 'MX',
+    blacklist: 'blacklist',
+    smtp: 'SMTP',
+    headers: 'headers',
+  },
+  'pt-br': {
+    spf: 'SPF',
+    dkim: 'DKIM',
+    dmarc: 'DMARC',
+    mx: 'MX',
+    blacklist: 'blacklist',
+    smtp: 'SMTP',
+    headers: 'headers',
+  },
+  es: {
+    spf: 'SPF',
+    dkim: 'DKIM',
+    dmarc: 'DMARC',
+    mx: 'MX',
+    blacklist: 'blacklist',
+    smtp: 'SMTP',
+    headers: 'headers',
+  },
+  fr: {
+    spf: 'SPF',
+    dkim: 'DKIM',
+    dmarc: 'DMARC',
+    mx: 'MX',
+    blacklist: 'blacklist',
+    smtp: 'SMTP',
+    headers: 'headers',
+  },
+  de: {
+    spf: 'SPF',
+    dkim: 'DKIM',
+    dmarc: 'DMARC',
+    mx: 'MX',
+    blacklist: 'Blacklist',
+    smtp: 'SMTP',
+    headers: 'Header',
+  },
+}
+
+const localizedMailToolCopy = {
+  'pt-br': {
+    domainInputLabel: 'Nome de dominio',
+    headersInputLabel: 'Headers brutos',
+    statusLabel: 'Consulta limitada',
+    headline: (name: string) => `Verifique ${name} com limites antiabuso claros e sem cadastro obrigatorio.`,
+    description: (name: string, checkType: MailHealthCheckType) =>
+      checkType === 'headers'
+        ? 'Cole headers de uma mensagem para analisar SPF, DKIM, DMARC e alinhamento localmente.'
+        : `Informe um dominio para executar uma verificacao pontual de ${name} sem salvar o alvo.`,
+    previewResult: (name: string) => `O resultado resume sinais de ${name}, lacunas comuns e proximos passos.`,
+    freeScope: (name: string) => `Uma verificacao pontual de ${name} para um dominio.`,
+    upgradeScope: 'Monitoramento, alertas, historico, relatorios, lotes, API e white-label continuam planejados.',
+    methodology: (name: string) => [
+      `MailHealth executa somente a consulta necessaria para ${name}, com timeout e rate limit.`,
+      'Use o resultado como triagem antes de alterar DNS, provedor de email ou politica de envio.',
+      'A versao gratuita nao salva dominio, selector, headers ou resultado.',
+    ],
+    interpret: 'Priorize falhas que afetem autenticacao, entrega ou reputacao.',
+    example: 'Exemplo: rode a verificacao em example.com e compare os sinais antes e depois de uma mudanca.',
+    commonIssue: 'Problemas comuns incluem registros ausentes, politicas fracas, hosts incorretos e configuracoes antigas.',
+    fix: 'Corrija no provedor responsavel, aguarde TTL quando houver DNS e execute nova verificacao pontual.',
+    faq: [
+      { question: 'O MailHealth salva meu dominio ou headers?', answer: 'Nao. A rota gratuita evita armazenamento de alvos, headers e resultados.' },
+      { question: 'Posso usar como monitoramento recorrente?', answer: 'Nao nesta versao gratuita. Monitoramento, alertas e historico seguem planejados como upgrade.' },
+    ],
+  },
+  es: {
+    domainInputLabel: 'Nombre de dominio',
+    headersInputLabel: 'Headers brutos',
+    statusLabel: 'Consulta limitada',
+    headline: (name: string) => `Verifica ${name} con limites antiabuso claros y sin registro obligatorio.`,
+    description: (name: string, checkType: MailHealthCheckType) =>
+      checkType === 'headers'
+        ? 'Pega headers de un mensaje para analizar SPF, DKIM, DMARC y alineacion localmente.'
+        : `Ingresa un dominio para ejecutar una verificacion puntual de ${name} sin guardar el objetivo.`,
+    previewResult: (name: string) => `El resultado resume senales de ${name}, brechas comunes y proximos pasos.`,
+    freeScope: (name: string) => `Una verificacion puntual de ${name} para un dominio.`,
+    upgradeScope: 'Monitoreo, alertas, historial, reportes, lotes, API y white-label siguen planificados.',
+    methodology: (name: string) => [
+      `MailHealth ejecuta solo la consulta necesaria para ${name}, con timeout y rate limit.`,
+      'Usa el resultado como triage antes de cambiar DNS, proveedor de correo o politica de envio.',
+      'La version gratuita no guarda dominio, selector, headers ni resultado.',
+    ],
+    interpret: 'Prioriza fallas que afecten autenticacion, entrega o reputacion.',
+    example: 'Ejemplo: ejecuta la verificacion en example.com y compara las senales antes y despues de un cambio.',
+    commonIssue: 'Problemas comunes incluyen registros ausentes, politicas debiles, hosts incorrectos y configuraciones antiguas.',
+    fix: 'Corrige en el proveedor responsable, espera el TTL cuando haya DNS y ejecuta una nueva verificacion puntual.',
+    faq: [
+      { question: 'MailHealth guarda mi dominio o headers?', answer: 'No. La ruta gratuita evita almacenar objetivos, headers y resultados.' },
+      { question: 'Puedo usarlo como monitoreo recurrente?', answer: 'No en esta version gratuita. Monitoreo, alertas e historial siguen planificados como upgrade.' },
+    ],
+  },
+  fr: {
+    domainInputLabel: 'Nom de domaine',
+    headersInputLabel: 'Headers bruts',
+    statusLabel: 'Controle limite',
+    headline: (name: string) => `Verifiez ${name} avec des limites anti-abus claires et sans compte obligatoire.`,
+    description: (name: string, checkType: MailHealthCheckType) =>
+      checkType === 'headers'
+        ? 'Collez les headers d un message pour analyser SPF, DKIM, DMARC et l alignement localement.'
+        : `Saisissez un domaine pour lancer un controle ponctuel de ${name} sans stocker la cible.`,
+    previewResult: (name: string) => `Le resultat resume les signaux ${name}, les ecarts courants et les prochaines etapes.`,
+    freeScope: (name: string) => `Un controle ponctuel de ${name} pour un domaine.`,
+    upgradeScope: 'Surveillance, alertes, historique, rapports, lots, API et white-label restent planifies.',
+    methodology: (name: string) => [
+      `MailHealth lance seulement la requete necessaire pour ${name}, avec timeout et rate limit.`,
+      'Utilisez le resultat comme triage avant de modifier DNS, fournisseur mail ou politique d envoi.',
+      'La version gratuite ne stocke ni domaine, ni selector, ni headers, ni resultat.',
+    ],
+    interpret: 'Priorisez les erreurs qui affectent authentification, delivrabilite ou reputation.',
+    example: 'Exemple: lancez le controle sur example.com et comparez les signaux avant et apres une modification.',
+    commonIssue: 'Les problemes courants incluent registres absents, politiques faibles, hosts incorrects et configurations anciennes.',
+    fix: 'Corrigez chez le fournisseur responsable, attendez le TTL si DNS est concerne, puis relancez un controle ponctuel.',
+    faq: [
+      { question: 'MailHealth stocke mon domaine ou mes headers?', answer: 'Non. La route gratuite evite le stockage des cibles, headers et resultats.' },
+      { question: 'Puis-je l utiliser comme surveillance recurrente?', answer: 'Non dans cette version gratuite. Surveillance, alertes et historique restent planifies comme upgrade.' },
+    ],
+  },
+  de: {
+    domainInputLabel: 'Domainname',
+    headersInputLabel: 'Rohheader',
+    statusLabel: 'Begrenzte Pruefung',
+    headline: (name: string) => `Pruefen Sie ${name} mit klaren Anti-Abuse-Grenzen und ohne Pflichtkonto.`,
+    description: (name: string, checkType: MailHealthCheckType) =>
+      checkType === 'headers'
+        ? 'Fuegen Sie Nachrichten-Header ein, um SPF, DKIM, DMARC und Alignment lokal zu analysieren.'
+        : `Geben Sie eine Domain ein, um eine einmalige ${name}-Pruefung ohne Speicherung des Ziels zu starten.`,
+    previewResult: (name: string) => `Das Ergebnis fasst ${name}-Signale, haeufige Luecken und naechste Schritte zusammen.`,
+    freeScope: (name: string) => `Eine einmalige ${name}-Pruefung fuer eine Domain.`,
+    upgradeScope: 'Monitoring, Alarme, Historie, Berichte, Batch, API und White-Label bleiben geplant.',
+    methodology: (name: string) => [
+      `MailHealth fuehrt nur die fuer ${name} noetige Anfrage mit Timeout und Rate Limit aus.`,
+      'Nutzen Sie das Ergebnis als Triage vor Aenderungen an DNS, Mailanbieter oder Versandrichtlinie.',
+      'Die kostenlose Version speichert weder Domain, Selector, Header noch Ergebnis.',
+    ],
+    interpret: 'Priorisieren Sie Fehler, die Authentifizierung, Zustellung oder Reputation betreffen.',
+    example: 'Beispiel: pruefen Sie example.com und vergleichen Sie die Signale vor und nach einer Aenderung.',
+    commonIssue: 'Haeufige Probleme sind fehlende Records, schwache Policies, falsche Hosts und alte Konfigurationen.',
+    fix: 'Korrigieren Sie beim verantwortlichen Anbieter, warten Sie bei DNS den TTL ab und starten Sie eine neue Pruefung.',
+    faq: [
+      { question: 'Speichert MailHealth meine Domain oder Header?', answer: 'Nein. Die kostenlose Route speichert keine Ziele, Header oder Ergebnisse.' },
+      { question: 'Kann ich es als wiederkehrendes Monitoring nutzen?', answer: 'Nicht in dieser kostenlosen Version. Monitoring, Alarme und Historie bleiben als Upgrade geplant.' },
+    ],
+  },
+} satisfies Record<Exclude<LocaleCode, 'en'>, {
+  domainInputLabel: string
+  headersInputLabel: string
+  statusLabel: string
+  headline: (name: string) => string
+  description: (name: string, checkType: MailHealthCheckType) => string
+  previewResult: (name: string) => string
+  freeScope: (name: string) => string
+  upgradeScope: string
+  methodology: (name: string) => string[]
+  interpret: string
+  example: string
+  commonIssue: string
+  fix: string
+  faq: ToolFaq[]
+}>
+
+function buildToolCopy(locale: LocaleCode, seed: ToolSeed, checkType: MailHealthCheckType): ToolCopy {
   const labels = sectionLabelsByLocale[locale]
+
+  if (locale !== 'en') {
+    const localized = localizedMailToolCopy[locale]
+    const name = localizedCheckNames[locale][checkType]
+    const description = localized.description(name, checkType)
+    const methodology = localized.methodology(name)
+
+    return {
+      navLabel: seed.navLabel,
+      title: seed.title,
+      headline: localized.headline(name),
+      description,
+      inputLabel: checkType === 'headers' ? localized.headersInputLabel : localized.domainInputLabel,
+      inputPlaceholder: seed.inputPlaceholder,
+      primaryAction: seed.primaryAction,
+      previewResult: localized.previewResult(name),
+      statusLabel: localized.statusLabel,
+      freeScope: localized.freeScope(name),
+      upgradeScope: localized.upgradeScope,
+      exampleTarget: seed.exampleTarget,
+      reviewedLabel: reviewedLabelByLocale[locale],
+      methodology,
+      contentSections: [
+        { heading: labels.use, paragraphs: [description, methodology[0]] },
+        { heading: labels.interpret, paragraphs: [localized.interpret] },
+        { heading: labels.example, paragraphs: [localized.example] },
+        { heading: labels.issues, paragraphs: [localized.commonIssue, localized.fix] },
+        { heading: labels.limits, paragraphs: [methodology[2]] },
+      ],
+      faq: localized.faq,
+    }
+  }
 
   return {
     navLabel: seed.navLabel,
@@ -231,8 +435,8 @@ function buildToolCopy(locale: LocaleCode, seed: ToolSeed): ToolCopy {
   }
 }
 
-function localized(seed: ToolSeed): Record<LocaleCode, ToolCopy> {
-  return Object.fromEntries(publicLocaleCodes.map((locale) => [locale, buildToolCopy(locale, seed)])) as Record<LocaleCode, ToolCopy>
+function localized(seed: ToolSeed, checkType: MailHealthCheckType): Record<LocaleCode, ToolCopy> {
+  return Object.fromEntries(publicLocaleCodes.map((locale) => [locale, buildToolCopy(locale, seed, checkType)])) as Record<LocaleCode, ToolCopy>
 }
 
 function makeTool(
@@ -242,7 +446,7 @@ function makeTool(
   checkType: ToolDefinition['checkType'],
   seed: ToolSeed,
 ): ToolDefinition {
-  const copy = localized(seed)
+  const copy = localized(seed, checkType)
 
   return {
     slug,
