@@ -1227,6 +1227,18 @@ Na Sprint 9.6, o QRRoute recebeu em producao o refinamento BGR-QRROUTE-P0 para a
   - Smoke live de UX em producao passou: `/supersites/qrroute/en` gerou QR estatico no workbench acima do catalogo; `/supersites/qrroute/en/tools/utm-builder` gerou UTM mobile com preview SVG. Ambos ficaram sem console errors, sem localStorage/sessionStorage e sem overflow horizontal.
   - Esta sprint nao ativou short links publicos, QR dinamico, dominio proprio, lote, analytics externo, envio de payload a API, anuncio real, AdSense/GTM/GA4, checkout, billing, pagamento, doacao, afiliado, API paga, worker/cron ou direct-root mapping.
 
+- Sprint 9.7 validation:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/STATUS.md`, `docs/ROADMAP.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local, auditoria live, prompt/matriz de benchmark, docs do DocShift e ADRs existentes ate `0031`.
+  - Estado inicial verificado a partir do fechamento da Sprint 9.6: repositorio publico `helberfmelo/supersites-platform`, branch `main...origin/main` limpa no commit `28f5c05`, Quality Gate docs-only `28317330976` verde, DocShift publicado em `/supersites/docshift/` e smoke publico pre-edicao verde com asset `https://opentshost.com/supersites/docshift/_nuxt/FrGPExwS.js`.
+  - `apps/docshift/app/components/DocShiftWorkbench.vue` foi criado para concentrar tabs densas de 8 fluxos PDF, dropzone/textarea, preview/download, snapshot de workflow, privacidade, workflow servidor planejado e ferramentas relacionadas.
+  - `apps/docshift/app/components/DocShiftHome.vue` passou a abrir com o workbench antes do catalogo/search, mantendo o grid de ferramentas abaixo.
+  - `apps/docshift/app/pages/[locale]/tools/[slug].vue` foi simplificado para SEO/breadcrumb/hero/conteudo e reutiliza o workbench com a ferramenta selecionada, preservando schema, guias, FAQ e tracking `tool_viewed` sanitizado.
+  - `apps/docshift/app/data/copy.ts` recebeu copy localizada de workbench/preview/snapshot/privacidade para EN/PT-BR/ES/FR/DE; `apps/docshift/app/app.vue` recebeu layout responsivo de suite PDF com tabs, dropzone dominante, preview forte e blocos de suporte.
+  - Validacao local passou: `pnpm test:docshift`, `pnpm build:docshift`, `pnpm validate:docshift-preview` com asset `/_nuxt/B2X-2IPM.js`, `pnpm test:e2e:docshift`, `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`.
+  - QA visual local passou com screenshots Playwright do build final em `artifacts/playwright-docshift-report/data/`, cobrindo home desktop com workbench/grid, Text to PDF mobile com preview/download e privacy mobile sem overflow.
+  - Esta sprint ainda nao foi commitada/deployada; run IDs de Quality Gate, Deploy Dry Run, deploy HostGator e smokes publicos finais serao registrados no fechamento documental da Sprint 9.7.
+  - Esta sprint nao ativou upload server-side, storage persistente, OCR, batch worker, API publica paga, historico, equipes, checkout, billing, pagamento, doacao, afiliado, anuncio real, AdSense/GTM/GA4, analytics externo, worker/cron ou direct-root mapping.
+
 ## Pendencias criticas
 
 - Configurar branch protection/ruleset em `main` agora que o repositorio esta publico, sem bloquear caminhos de recuperacao/deploy.

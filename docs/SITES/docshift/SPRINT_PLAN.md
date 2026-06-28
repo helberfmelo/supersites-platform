@@ -39,3 +39,17 @@ Data-base: 2026-06-27
 
 - No server-side uploads, OCR provider, batch worker, checkout, ad serving or API.
 - No analytics values from files, text, page ranges, metadata or PDF bytes.
+
+## Benchmark-grade sprint
+
+- Symbol: BGR-DOCSHIFT-P0.
+- Real number: Sprint 9.7.
+- Status: local validation complete; feature commit, remote CI, deploy and public smoke pending.
+
+## Sprint 9.7 execution notes
+
+- `DocShiftWorkbench` now powers the home and all localized tool pages with dense PDF tabs, dominant dropzone/text input, preview/download, workflow snapshot, privacy checklist, planned server workflow panel and related PDF tools.
+- The home opens with PDF Merge above the catalog, while tool pages keep canonical/hreflang/schema, guide sections, FAQ and review links around the shared workbench.
+- Local validation passed: `pnpm test:docshift`, `pnpm build:docshift`, `pnpm validate:docshift-preview`, `pnpm test:e2e:docshift`, `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` and `git diff --check`.
+- Playwright screenshots in `artifacts/playwright-docshift-report/data/` were inspected for home desktop, Text to PDF mobile and privacy mobile.
+- No upload endpoint, storage, OCR, batch worker, paid API, checkout, billing, ad serving, donation link, affiliate link, external analytics or production worker was activated.

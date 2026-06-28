@@ -130,11 +130,19 @@ a:focus-visible {
   border-bottom: 1px solid #d8e2e3;
 }
 
+.hero--compact {
+  align-items: center;
+  padding-bottom: 26px;
+}
+
 .hero > *,
 .tool-card > *,
 .status-panel > *,
 .content-layout > *,
 .tool-layout > *,
+.pdf-workbench > *,
+.pdf-workbench__grid > *,
+.pdf-support-grid > *,
 .input-panel > *,
 .result-panel > *,
 .preview-panel > * {
@@ -310,6 +318,150 @@ h3 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
+}
+
+.pdf-workbench {
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+  padding: 18px;
+  border: 1px solid #c7d7d9;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.pdf-workbench__intro {
+  display: grid;
+  max-width: 780px;
+  gap: 8px;
+}
+
+.pdf-workbench__intro h2,
+.pdf-workbench__intro p {
+  margin-bottom: 0;
+}
+
+.pdf-tool-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.pdf-tool-tabs button {
+  display: grid;
+  min-height: 64px;
+  gap: 4px;
+  align-content: center;
+  justify-items: start;
+  padding: 10px 12px;
+  border: 1px solid #d3e0e1;
+  border-radius: 8px;
+  color: #203232;
+  background: #f7fafb;
+  text-align: left;
+  cursor: pointer;
+}
+
+.pdf-tool-tabs button[aria-pressed="true"] {
+  color: #ffffff;
+  border-color: #246a73;
+  background: #246a73;
+}
+
+.pdf-tool-tabs span {
+  font-weight: 850;
+}
+
+.pdf-tool-tabs small {
+  color: inherit;
+  opacity: 0.78;
+  font-size: 0.76rem;
+  font-weight: 750;
+}
+
+.pdf-workbench__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.tool-heading-row,
+.preview-heading {
+  display: flex;
+  gap: 14px;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.tool-heading-row h3,
+.preview-heading h3 {
+  margin-bottom: 8px;
+  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+}
+
+.workbench-tool-title {
+  margin-bottom: 8px;
+  color: #18201f;
+  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+  font-weight: 850;
+  line-height: 1.12;
+}
+
+.input-panel--dominant,
+.result-panel--dominant {
+  min-height: 100%;
+  margin-top: 0;
+}
+
+.dropzone--dominant {
+  min-height: 230px;
+  align-content: center;
+  border-width: 2px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(247, 251, 251, 0.96)),
+    repeating-linear-gradient(135deg, #e6f1f2 0 10px, #f7fbfb 10px 20px);
+}
+
+.workflow-steps--compact {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.workflow-steps--compact .workflow-step {
+  align-content: start;
+  min-height: 110px;
+}
+
+.empty-preview {
+  display: grid;
+  min-height: 320px;
+  place-content: center;
+  padding: 20px;
+  border: 1px dashed #b5c9cb;
+  border-radius: 8px;
+  color: #405455;
+  background: #f8fafb;
+  text-align: center;
+}
+
+.empty-preview strong {
+  color: #18201f;
+  font-size: 1.1rem;
+}
+
+.result-meta--dense {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.pdf-support-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.pdf-support-grid .band {
+  margin-top: 0;
 }
 
 .tool-card {
@@ -721,6 +873,20 @@ h3 {
   .tool-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .pdf-tool-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pdf-workbench__grid,
+  .workflow-steps--compact,
+  .result-meta--dense {
+    grid-template-columns: 1fr;
+  }
+
+  .pdf-support-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 820px) {
@@ -737,6 +903,9 @@ h3 {
   .band-grid,
   .tool-layout,
   .content-layout,
+  .pdf-tool-tabs,
+  .pdf-workbench__grid,
+  .pdf-support-grid,
   .form-grid,
   .form-grid--three {
     display: grid;
@@ -762,6 +931,26 @@ h3 {
 
   .tool-card {
     min-height: 0;
+  }
+
+  .pdf-workbench {
+    padding: 14px;
+  }
+
+  .tool-heading-row,
+  .preview-heading {
+    display: grid;
+  }
+
+  .dropzone--dominant,
+  .empty-preview {
+    min-height: 220px;
+  }
+
+  .pdf-preview__frame,
+  .pdf-preview iframe {
+    min-height: 300px;
+    height: 300px;
   }
 
 }

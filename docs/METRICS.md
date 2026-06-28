@@ -650,6 +650,14 @@ Data-base: 2026-06-27
 | Sprint 9.6 public smokes | Passed: QRRoute static app, Hub aggregate, control-plane/API and live QRRoute home/UTM UX smoke |
 | Sprint 9.6 remote CI/deploy status | Completed in production |
 | Sprint 9.6 dynamic/paid activation | 0 activated; redirect/short-link service remains foundation gated and no payload analytics/storage was added |
+| Sprint 9.7 DocShift benchmark UI scope | Shared PDF workbench on home and tool pages with 8 tool tabs, dominant dropzone/text input, preview/download, workflow snapshot, privacy checklist, planned server workflow panel and related PDF tools |
+| Sprint 9.7 DocShift local validation | Passed: `pnpm test:docshift`, `pnpm build:docshift`, `pnpm validate:docshift-preview`, `pnpm test:e2e:docshift` |
+| Sprint 9.7 local preview asset | `/_nuxt/B2X-2IPM.js` validated by `pnpm validate:docshift-preview` |
+| Sprint 9.7 visual QA artifacts | Playwright screenshots in `artifacts/playwright-docshift-report/data/` for DocShift home desktop, Text to PDF mobile and privacy mobile |
+| Sprint 9.7 package validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages` |
+| Sprint 9.7 public copy/structure/security gates | Passed locally: `pnpm validate:public-copy` across 876 HTML files, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
+| Sprint 9.7 remote CI/deploy status | Pending feature commit, push, Quality Gate, Deploy Dry Run and HostGator deploy |
+| Sprint 9.7 upload/OCR/paid activation | 0 activated; DocShift remains browser-side with no server upload, OCR, batch, API, billing, ads or external analytics |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |
 | Real donation payments activated by Fase 9 planning | 0 planned before explicit gates |

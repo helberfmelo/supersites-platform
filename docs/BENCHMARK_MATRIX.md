@@ -52,7 +52,7 @@ Sprint 9.2 added a Playwright benchmark crawler for the live portfolio and store
 | MailHealth | MxToolbox, Mail-Tester, EasyDMARC, dmarcian, Google Admin Toolbox, MailGenius | Public Nuxt SSG live at `/supersites/mailhealth/` plus bounded DNS/SMTP endpoints | Score/checklist first, raw records and fixes second | 9.10 | Create a unified domain health report with score and fix guidance |
 | SitePulse Lab | DownForEveryoneOrJustMe, GTmetrix, PageSpeed Insights, SecurityHeaders, SSL Labs, BuiltWith | Public Nuxt SSG live at `/supersites/sitepulse-lab/` plus bounded probe endpoint | Emergency answer first, report details and recommendations after | 9.11 | Create visual online/down/slow score report and fix branding issues |
 | PixelBatch | remove.bg, iLoveIMG, TinyPNG, Squoosh, Photopea, ResizePixel | Public Nuxt SSG live at `/supersites/pixelbatch/` with browser processing | Dropzone plus before/after preview and privacy clarity | 9.8 | Dominant drag-and-drop image workflow with before/after metrics |
-| DocShift | iLovePDF, Smallpdf, Sejda, PDF24, Online2PDF, Adobe online tools | Public Nuxt SSG live at `/supersites/docshift/` with browser PDF processing | Tool grid and dominant upload flow with strong related tools | 9.7 | Dense PDF tool grid and dominant per-tool dropzone/results workflow |
+| DocShift | iLovePDF, Smallpdf, Sejda, PDF24, Online2PDF, Adobe online tools | Public Nuxt SSG live at `/supersites/docshift/`; Sprint 9.7 local workbench adds dense tabs, dominant dropzone/preview/download and related PDF tools | Tool grid and dominant upload flow with strong related tools | 9.7 | Dense PDF tool grid and dominant per-tool dropzone/results workflow |
 
 ## Acceptance dimensions
 

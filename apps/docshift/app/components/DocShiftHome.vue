@@ -76,6 +76,8 @@ useHead(() => ({
       </aside>
     </section>
 
+    <DocShiftWorkbench :locale="locale" initial-slug="pdf-merge" />
+
     <section class="controls" aria-label="Tool controls">
       <div class="field">
         <label for="tool-search">{{ copy.searchLabel }}</label>

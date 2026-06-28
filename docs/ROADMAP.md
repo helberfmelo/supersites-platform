@@ -401,7 +401,7 @@ Sprint 9.7 - DocShift PDF workbench
 - Simbolico: BGR-DOCSHIFT-P0.
 - Objetivo: transformar DocShift em grid denso tipo PDF tools e paginas com dropzone dominante, preview/status/download, cross-linking e privacidade browser-side.
 - Validacao: testes PDF/browser worker, build/preview/Playwright, smoke publico e ausencia de upload/storage/OCR server-side.
-- Status: planejada.
+- Status: validacao local concluida, aguardando commit/CI/deploy. O DocShift recebeu `DocShiftWorkbench` compartilhado na home e nas paginas de ferramenta, com tabs densas para 8 fluxos PDF, dropzone dominante, preview/download, snapshot de workflow, blocos de privacidade, workflow servidor planejado e ferramentas relacionadas. O processamento permanece `pdf-lib`/worker no navegador, sem upload, storage persistente, OCR server-side, batch, API paga, ads, billing ou analytics externo. Validacao local passou com `pnpm test:docshift`, `pnpm build:docshift`, `pnpm validate:docshift-preview`, `pnpm test:e2e:docshift`, screenshots Playwright, package gates, `validate:public-copy`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes` e `git diff --check`.
 
 Sprint 9.8 - PixelBatch image workbench
 - Simbolico: BGR-PIXELBATCH-P0.

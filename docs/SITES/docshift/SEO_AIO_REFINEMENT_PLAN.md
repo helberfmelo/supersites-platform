@@ -53,6 +53,13 @@ Medium if upload pages are thin or ads are close to file actions.
 - OCR, server-side conversion, batch, history, teams and API are described only as gated future workflow value.
 - Structured data remains free/browser-side; no new route promises OCR or server-side upload.
 
+## Sprint 9.7 result
+
+- Home now presents the primary PDF action before the catalog while keeping the dense tool grid, category filters and operating principles for discovery.
+- Tool pages keep canonical, hreflang, WebApplication/FAQ schema, guide sections, FAQ and related document links while using the shared workbench for the above-fold task.
+- Public copy emphasizes browser-side processing, visible limits and safe document handling without promising OCR, server-side upload, forensic redaction or advanced compression.
+- `pnpm validate:public-copy` passed across 876 generated HTML files after the final DocShift build.
+
 ## Dashboard backlog
 
 - PDF privacy content coverage.

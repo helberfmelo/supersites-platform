@@ -56,6 +56,14 @@ Medium; ads/support must stay away from uploads, progress, previews and download
 - Removed public internal Sprint 5.2 labels from app surfaces and replaced them with user-facing local MVP language.
 - Validated with Vitest, Nuxt build, preview smoke, Playwright PDF generation/rotation/download and screenshot inspection.
 
+## Sprint 9.7 result
+
+- Created `DocShiftWorkbench` as the shared task-first PDF surface for home and tool pages.
+- Added dense PDF tool tabs, above-fold dropzone/text input, preview/download states, workflow snapshot, privacy checklist, planned server workflow panel and related document links.
+- Refactored tool pages to keep SEO/guide/FAQ/schema around the shared workbench instead of duplicating processing logic.
+- Validated home desktop, Text to PDF mobile and privacy mobile screenshots from the production build with no incoherent overlap or horizontal overflow.
+- Free PDF output remains usable without signup; no upload endpoint, storage, OCR, batch worker, account, ads, billing or external analytics was added.
+
 ## Dashboard backlog
 
 - PDF privacy readiness.

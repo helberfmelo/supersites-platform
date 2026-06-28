@@ -51,6 +51,12 @@ Medium due to document uploads and sensitive content.
 - Paid path remains copy-only/gated; no checkout, payment link, billing provider, entitlement, ad serving, API, OCR provider or upload endpoint was activated.
 - Free local PDF output and download remain available without signup.
 
+## Sprint 9.7 result
+
+- The planned server workflow is now visible inside the shared workbench as contextual upgrade value after the free/local controls, not as a blocking paywall.
+- Related PDF tools support task chaining and future conversion without adding checkout, payment links, ad requests, donation links, API access, account creation or entitlement checks.
+- Ads/support remain absent from upload, progress, preview and download controls; no real monetization provider was activated.
+
 ## Dashboard backlog
 
 - OCR provider gate.

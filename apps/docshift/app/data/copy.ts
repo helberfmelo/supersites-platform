@@ -21,6 +21,16 @@ export interface HomeCopy {
 
 export interface ShellCopy {
   breadcrumbHome: string
+  workbenchEyebrow: string
+  workbenchTitle: string
+  workbenchBody: string
+  toolTabsLabel: string
+  openGuideLabel: string
+  previewEyebrow: string
+  previewEmptyTitle: string
+  processingTitle: string
+  processingBody: string
+  localTrustTitle: string
   runLabel: string
   resetLabel: string
   downloadLabel: string
@@ -51,7 +61,24 @@ export interface ShellCopy {
   dropzoneBody: string
   fileStateTitle: string
   workflowSnapshotTitle: string
+  workflowModeLabel: string
+  workflowInputLabel: string
+  workflowOutputLabel: string
+  workflowProcessingLabel: string
+  noFileSelectedLabel: string
+  charactersInMemoryLabel: string
+  outputPendingLabel: string
+  workerPipelineLabel: string
+  tabPipelineLabel: string
+  actualOutputLabel: string
+  workerLabel: string
+  browserWorkerLabel: string
+  localFallbackLabel: string
+  processedPreviewTitle: string
   privacyChecklistTitle: string
+  privacyChecklistItems: string[]
+  fileSafetyLabel: string
+  fileSafetyBody: string
   heavyQueueTitle: string
   heavyQueueBody: string
   heavyQueueItems: string[]
@@ -195,6 +222,16 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
 export const shellCopy: Record<LocaleCode, ShellCopy> = {
   en: {
     breadcrumbHome: 'DocShift',
+    workbenchEyebrow: 'PDF workbench',
+    workbenchTitle: 'Choose a PDF task and process it locally.',
+    workbenchBody: 'Start with merge, split, rotate, compress, watermark, page numbers, metadata cleanup or text-to-PDF. The free workflow runs in this browser session before any advanced server workflow is introduced.',
+    toolTabsLabel: 'PDF tools',
+    openGuideLabel: 'Open guide',
+    previewEyebrow: 'Preview and download',
+    previewEmptyTitle: 'Your output preview appears here',
+    processingTitle: 'Processing locally',
+    processingBody: 'DocShift is validating the document and creating a downloadable PDF in the browser.',
+    localTrustTitle: 'Browser-only',
     runLabel: 'Process document',
     resetLabel: 'Reset settings',
     downloadLabel: 'Download PDF',
@@ -225,7 +262,28 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     dropzoneBody: 'Small PDFs stay in this tab. Text-to-PDF uses only the pasted text in browser memory.',
     fileStateTitle: 'File state',
     workflowSnapshotTitle: 'Workflow snapshot',
+    workflowModeLabel: 'Mode',
+    workflowInputLabel: 'Input',
+    workflowOutputLabel: 'Output',
+    workflowProcessingLabel: 'Processing',
+    noFileSelectedLabel: 'No PDF selected yet',
+    charactersInMemoryLabel: 'characters in browser memory',
+    outputPendingLabel: 'PDF created after processing',
+    workerPipelineLabel: 'browser worker + pdf-lib',
+    tabPipelineLabel: 'browser tab + pdf-lib',
+    actualOutputLabel: 'Actual output',
+    workerLabel: 'Worker',
+    browserWorkerLabel: 'browser worker',
+    localFallbackLabel: 'local fallback',
+    processedPreviewTitle: 'Processed PDF preview',
     privacyChecklistTitle: 'Privacy checklist',
+    privacyChecklistItems: [
+      'Files and pasted text stay in browser memory.',
+      'No upload API, localStorage or sessionStorage is used.',
+      'Analytics records only sanitized tool slug and route path.',
+    ],
+    fileSafetyLabel: 'File safety',
+    fileSafetyBody: 'Server-side batch, OCR, API and history require upload validation, sandboxing, antivirus where applicable, retention and deletion checks before activation.',
     heavyQueueTitle: 'Server workflow gated',
     heavyQueueBody: 'The paid path is reserved for batch folders, OCR, table extraction, history, teams and API after sandbox, antivirus, retention and billing gates.',
     heavyQueueItems: ['Batch folders and larger files', 'OCR and table extraction', 'History, teams and API access', 'Server queues with retention/deletion rules'],
@@ -234,6 +292,16 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
   },
   'pt-br': {
     breadcrumbHome: 'DocShift',
+    workbenchEyebrow: 'Workbench de PDF',
+    workbenchTitle: 'Escolha uma tarefa de PDF e processe localmente.',
+    workbenchBody: 'Comece por unir, dividir, girar, comprimir, marca d agua, numerar paginas, limpar metadados ou converter texto em PDF. O fluxo gratuito roda nesta sessao do navegador antes de qualquer workflow avancado no servidor.',
+    toolTabsLabel: 'Ferramentas de PDF',
+    openGuideLabel: 'Abrir guia',
+    previewEyebrow: 'Preview e download',
+    previewEmptyTitle: 'O preview do resultado aparece aqui',
+    processingTitle: 'Processando localmente',
+    processingBody: 'O DocShift valida o documento e cria um PDF baixavel no navegador.',
+    localTrustTitle: 'Somente navegador',
     runLabel: 'Processar documento',
     resetLabel: 'Restaurar ajustes',
     downloadLabel: 'Baixar PDF',
@@ -264,7 +332,28 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     dropzoneBody: 'PDFs pequenos ficam nesta aba. Texto para PDF usa apenas o texto colado na memoria do navegador.',
     fileStateTitle: 'Estado do arquivo',
     workflowSnapshotTitle: 'Resumo do workflow',
+    workflowModeLabel: 'Modo',
+    workflowInputLabel: 'Entrada',
+    workflowOutputLabel: 'Saida',
+    workflowProcessingLabel: 'Processamento',
+    noFileSelectedLabel: 'Nenhum PDF selecionado ainda',
+    charactersInMemoryLabel: 'caracteres na memoria do navegador',
+    outputPendingLabel: 'PDF criado apos processar',
+    workerPipelineLabel: 'worker do navegador + pdf-lib',
+    tabPipelineLabel: 'aba do navegador + pdf-lib',
+    actualOutputLabel: 'Saida real',
+    workerLabel: 'Worker',
+    browserWorkerLabel: 'worker do navegador',
+    localFallbackLabel: 'fallback local',
+    processedPreviewTitle: 'Preview do PDF processado',
     privacyChecklistTitle: 'Checklist de privacidade',
+    privacyChecklistItems: [
+      'Arquivos e texto colado ficam na memoria do navegador.',
+      'Nenhuma API de upload, localStorage ou sessionStorage e usada.',
+      'Analytics registra apenas ferramenta e rota sanitizadas.',
+    ],
+    fileSafetyLabel: 'Seguranca de arquivo',
+    fileSafetyBody: 'Lote server-side, OCR, API e historico exigem validacao de upload, sandbox, antivirus quando aplicavel, retencao e exclusao antes da ativacao.',
     heavyQueueTitle: 'Workflow server-side bloqueado',
     heavyQueueBody: 'O caminho pago fica para lotes, OCR, tabelas, historico, equipes e API apos gates de sandbox, antivirus, retencao e billing.',
     heavyQueueItems: ['Pastas em lote e arquivos maiores', 'OCR e extracao de tabelas', 'Historico, equipes e API', 'Filas server-side com retencao/exclusao'],
@@ -273,6 +362,16 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
   },
   es: {
     breadcrumbHome: 'DocShift',
+    workbenchEyebrow: 'Workbench PDF',
+    workbenchTitle: 'Elige una tarea PDF y procesa localmente.',
+    workbenchBody: 'Empieza con unir, dividir, rotar, comprimir, marca de agua, numeros de pagina, metadata o texto a PDF. El flujo gratis corre en esta sesion del navegador antes de cualquier workflow avanzado servidor.',
+    toolTabsLabel: 'Herramientas PDF',
+    openGuideLabel: 'Abrir guia',
+    previewEyebrow: 'Vista y descarga',
+    previewEmptyTitle: 'La vista del resultado aparece aqui',
+    processingTitle: 'Procesando localmente',
+    processingBody: 'DocShift valida el documento y crea un PDF descargable en el navegador.',
+    localTrustTitle: 'Solo navegador',
     runLabel: 'Procesar documento',
     resetLabel: 'Restaurar ajustes',
     downloadLabel: 'Descargar PDF',
@@ -303,7 +402,28 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     dropzoneBody: 'PDFs pequenos quedan en esta pestana. Texto a PDF usa solo el texto pegado en memoria del navegador.',
     fileStateTitle: 'Estado del archivo',
     workflowSnapshotTitle: 'Resumen del workflow',
+    workflowModeLabel: 'Modo',
+    workflowInputLabel: 'Entrada',
+    workflowOutputLabel: 'Salida',
+    workflowProcessingLabel: 'Procesamiento',
+    noFileSelectedLabel: 'Ningun PDF seleccionado todavia',
+    charactersInMemoryLabel: 'caracteres en memoria del navegador',
+    outputPendingLabel: 'PDF creado despues de procesar',
+    workerPipelineLabel: 'worker del navegador + pdf-lib',
+    tabPipelineLabel: 'pestana del navegador + pdf-lib',
+    actualOutputLabel: 'Salida real',
+    workerLabel: 'Worker',
+    browserWorkerLabel: 'worker del navegador',
+    localFallbackLabel: 'fallback local',
+    processedPreviewTitle: 'Vista del PDF procesado',
     privacyChecklistTitle: 'Checklist de privacidad',
+    privacyChecklistItems: [
+      'Archivos y texto pegado quedan en memoria del navegador.',
+      'No se usa API de subida, localStorage ni sessionStorage.',
+      'Analytics registra solo herramienta y ruta sanitizadas.',
+    ],
+    fileSafetyLabel: 'Seguridad de archivo',
+    fileSafetyBody: 'Batch servidor, OCR, API e historial requieren validacion de subida, sandbox, antivirus cuando aplique, retencion y borrado antes de activacion.',
     heavyQueueTitle: 'Workflow servidor bloqueado',
     heavyQueueBody: 'El camino pago queda para lotes, OCR, tablas, historial, equipos y API tras gates de sandbox, antivirus, retencion y billing.',
     heavyQueueItems: ['Carpetas batch y archivos mayores', 'OCR y extraccion de tablas', 'Historial, equipos y API', 'Colas servidor con retencion/borrado'],
@@ -312,6 +432,16 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
   },
   fr: {
     breadcrumbHome: 'DocShift',
+    workbenchEyebrow: 'Workbench PDF',
+    workbenchTitle: 'Choisissez une tache PDF et traitez-la localement.',
+    workbenchBody: 'Commencez par fusionner, separer, pivoter, compresser, filigrane, numeros de page, metadonnees ou texte vers PDF. Le flux gratuit tourne dans cette session navigateur avant tout workflow serveur avance.',
+    toolTabsLabel: 'Outils PDF',
+    openGuideLabel: 'Ouvrir le guide',
+    previewEyebrow: 'Apercu et telechargement',
+    previewEmptyTitle: 'L apercu du resultat apparait ici',
+    processingTitle: 'Traitement local',
+    processingBody: 'DocShift valide le document et cree un PDF telechargeable dans le navigateur.',
+    localTrustTitle: 'Navigateur seul',
     runLabel: 'Traiter document',
     resetLabel: 'Reinitialiser',
     downloadLabel: 'Telecharger PDF',
@@ -342,7 +472,28 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     dropzoneBody: 'Les petits PDFs restent dans cet onglet. Texte vers PDF utilise seulement le texte colle en memoire navigateur.',
     fileStateTitle: 'Etat du fichier',
     workflowSnapshotTitle: 'Resume du workflow',
+    workflowModeLabel: 'Mode',
+    workflowInputLabel: 'Entree',
+    workflowOutputLabel: 'Sortie',
+    workflowProcessingLabel: 'Traitement',
+    noFileSelectedLabel: 'Aucun PDF selectionne',
+    charactersInMemoryLabel: 'caracteres en memoire navigateur',
+    outputPendingLabel: 'PDF cree apres traitement',
+    workerPipelineLabel: 'worker navigateur + pdf-lib',
+    tabPipelineLabel: 'onglet navigateur + pdf-lib',
+    actualOutputLabel: 'Sortie reelle',
+    workerLabel: 'Worker',
+    browserWorkerLabel: 'worker navigateur',
+    localFallbackLabel: 'fallback local',
+    processedPreviewTitle: 'Apercu du PDF traite',
     privacyChecklistTitle: 'Checklist confidentialite',
+    privacyChecklistItems: [
+      'Fichiers et texte colle restent en memoire navigateur.',
+      'Aucune API upload, localStorage ou sessionStorage n est utilisee.',
+      'Analytics enregistre seulement outil et route sanitises.',
+    ],
+    fileSafetyLabel: 'Securite fichier',
+    fileSafetyBody: 'Lots serveur, OCR, API et historique exigent validation upload, sandbox, antivirus si applicable, retention et suppression avant activation.',
     heavyQueueTitle: 'Workflow serveur gate',
     heavyQueueBody: 'Le chemin payant couvre lots, OCR, tableaux, historique, equipes et API apres gates sandbox, antivirus, retention et billing.',
     heavyQueueItems: ['Dossiers batch et gros fichiers', 'OCR et extraction de tableaux', 'Historique, equipes et API', 'Queues serveur avec retention/suppression'],
@@ -351,6 +502,16 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
   },
   de: {
     breadcrumbHome: 'DocShift',
+    workbenchEyebrow: 'PDF-Workbench',
+    workbenchTitle: 'PDF-Aufgabe waehlen und lokal verarbeiten.',
+    workbenchBody: 'Starten Sie mit Zusammenfuehren, Teilen, Drehen, Kompression, Wasserzeichen, Seitennummern, Metadaten oder Text zu PDF. Der kostenlose Ablauf laeuft in dieser Browser-Sitzung, bevor ein erweiterter Server-Workflow eingefuehrt wird.',
+    toolTabsLabel: 'PDF-Tools',
+    openGuideLabel: 'Leitfaden oeffnen',
+    previewEyebrow: 'Vorschau und Download',
+    previewEmptyTitle: 'Die Ergebnisvorschau erscheint hier',
+    processingTitle: 'Lokale Verarbeitung',
+    processingBody: 'DocShift validiert das Dokument und erstellt ein herunterladbares PDF im Browser.',
+    localTrustTitle: 'Nur Browser',
     runLabel: 'Dokument verarbeiten',
     resetLabel: 'Einstellungen zuruecksetzen',
     downloadLabel: 'PDF herunterladen',
@@ -381,7 +542,28 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     dropzoneBody: 'Kleine PDFs bleiben in diesem Tab. Text-to-PDF nutzt nur eingefuegten Text im Browser-Speicher.',
     fileStateTitle: 'Dateistatus',
     workflowSnapshotTitle: 'Workflow-Snapshot',
+    workflowModeLabel: 'Modus',
+    workflowInputLabel: 'Eingabe',
+    workflowOutputLabel: 'Ausgabe',
+    workflowProcessingLabel: 'Verarbeitung',
+    noFileSelectedLabel: 'Noch kein PDF ausgewaehlt',
+    charactersInMemoryLabel: 'Zeichen im Browser-Speicher',
+    outputPendingLabel: 'PDF nach Verarbeitung erstellt',
+    workerPipelineLabel: 'Browser-Worker + pdf-lib',
+    tabPipelineLabel: 'Browser-Tab + pdf-lib',
+    actualOutputLabel: 'Tatsaechliche Ausgabe',
+    workerLabel: 'Worker',
+    browserWorkerLabel: 'Browser-Worker',
+    localFallbackLabel: 'lokaler Fallback',
+    processedPreviewTitle: 'Vorschau des verarbeiteten PDFs',
     privacyChecklistTitle: 'Datenschutz-Checkliste',
+    privacyChecklistItems: [
+      'Dateien und eingefuegter Text bleiben im Browser-Speicher.',
+      'Keine Upload-API, kein localStorage und kein sessionStorage.',
+      'Analytics speichert nur sanitisiertes Tool und Route.',
+    ],
+    fileSafetyLabel: 'Dateisicherheit',
+    fileSafetyBody: 'Server-Batch, OCR, API und Verlauf erfordern Upload-Validierung, Sandbox, Antivirus falls noetig, Retention und Loeschung vor Aktivierung.',
     heavyQueueTitle: 'Server-Workflow gesperrt',
     heavyQueueBody: 'Der Bezahlpfad ist fuer Batch, OCR, Tabellen, Verlauf, Teams und API nach Sandbox-, Antivirus-, Retention- und Billing-Gates reserviert.',
     heavyQueueItems: ['Batch-Ordner und groessere Dateien', 'OCR und Tabellenextraktion', 'Verlauf, Teams und API', 'Server-Queues mit Retention/Loeschung'],
