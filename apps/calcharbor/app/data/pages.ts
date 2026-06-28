@@ -1,4 +1,4 @@
-import { sanitizePublicCopy, type LocaleCode } from './locales'
+import { buildTrustPageCopy, sanitizePublicCopy, type LocaleCode, type TrustSupportProfile } from './locales'
 
 export const contentPageSlugs = [
   'about',
@@ -30,6 +30,11 @@ export interface ContentPage {
   slug: ContentPageSlug
   localized: Record<LocaleCode, ContentPageCopy>
 }
+
+const trustProfile = {
+  siteName: 'CalcHarbor',
+  publicPath: '/supersites/calcharbor/',
+} satisfies TrustSupportProfile
 
 function page(slug: ContentPageSlug, localized: Record<LocaleCode, ContentPageCopy>): ContentPage {
   return { slug, localized }
@@ -293,5 +298,5 @@ export function getContentPageBySlug(value: string | undefined): ContentPage | n
 }
 
 export function getContentPageCopy(page: ContentPage, locale: LocaleCode): ContentPageCopy {
-  return sanitizePublicCopy(locale, page.localized[locale])
+  return buildTrustPageCopy(locale, page.slug, sanitizePublicCopy(locale, page.localized[locale]), trustProfile)
 }

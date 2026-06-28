@@ -1,4 +1,4 @@
-import { sanitizePublicCopy, type LocaleCode } from './locales'
+import { buildTrustPageCopy, sanitizePublicCopy, type LocaleCode, type TrustSupportProfile } from './locales'
 
 export const legalPageSlugs = [
   'about',
@@ -38,6 +38,11 @@ export interface LegalShellCopy {
   launchGateBody: string
   relatedTitle: string
 }
+
+const trustProfile = {
+  siteName: 'SuperSites Hub',
+  publicPath: '/supersites/',
+} satisfies TrustSupportProfile
 
 export const legalShellCopy: Record<LocaleCode, LegalShellCopy> = {
   en: {
@@ -1177,5 +1182,5 @@ export function getLegalShellCopy(locale: LocaleCode): LegalShellCopy {
 }
 
 export function getLegalPageCopy(page: LegalPage, locale: LocaleCode): LocalizedLegalPage {
-  return sanitizePublicCopy(locale, page.localized[locale])
+  return buildTrustPageCopy(locale, page.slug, sanitizePublicCopy(locale, page.localized[locale]), trustProfile)
 }

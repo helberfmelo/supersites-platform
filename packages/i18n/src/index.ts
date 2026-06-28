@@ -144,6 +144,477 @@ export function formatCurrency(
 
 type PublicCopyMap = Record<string, unknown>
 
+export type TrustPageSlug =
+  | 'about'
+  | 'contact'
+  | 'privacy'
+  | 'cookies'
+  | 'terms'
+  | 'methodology'
+  | 'editorial-policy'
+  | 'status'
+
+export interface TrustContentSection {
+  heading: string
+  paragraphs: string[]
+}
+
+export interface TrustPageCopyShape {
+  navLabel: string
+  title: string
+  description: string
+  updatedLabel: string
+  sections: TrustContentSection[]
+}
+
+export interface TrustSupportProfile {
+  siteName: string
+  publicPath: string
+}
+
+const trustNavLabels: Record<LocaleCode, Record<TrustPageSlug, string>> = {
+  en: {
+    about: 'About',
+    contact: 'Contact',
+    privacy: 'Privacy',
+    cookies: 'Cookies',
+    terms: 'Terms',
+    methodology: 'Methodology',
+    'editorial-policy': 'Editorial',
+    status: 'Status',
+  },
+  'pt-br': {
+    about: 'Sobre',
+    contact: 'Contato',
+    privacy: 'Privacidade',
+    cookies: 'Cookies',
+    terms: 'Termos',
+    methodology: 'Metodologia',
+    'editorial-policy': 'Editorial',
+    status: 'Status',
+  },
+  es: {
+    about: 'Acerca de',
+    contact: 'Contacto',
+    privacy: 'Privacidad',
+    cookies: 'Cookies',
+    terms: 'Términos',
+    methodology: 'Metodología',
+    'editorial-policy': 'Editorial',
+    status: 'Estado',
+  },
+  fr: {
+    about: 'À propos',
+    contact: 'Contact',
+    privacy: 'Confidentialité',
+    cookies: 'Cookies',
+    terms: 'Conditions',
+    methodology: 'Méthodologie',
+    'editorial-policy': 'Éditorial',
+    status: 'Statut',
+  },
+  de: {
+    about: 'Über',
+    contact: 'Kontakt',
+    privacy: 'Datenschutz',
+    cookies: 'Cookies',
+    terms: 'Bedingungen',
+    methodology: 'Methodik',
+    'editorial-policy': 'Redaktion',
+    status: 'Status',
+  },
+}
+
+function trustSection(heading: string, ...paragraphs: string[]): TrustContentSection {
+  return { heading, paragraphs }
+}
+
+function localizedTrustTitle(locale: LocaleCode, slug: TrustPageSlug, siteName: string): string {
+  const titles: Record<LocaleCode, Record<TrustPageSlug, string>> = {
+    en: {
+      about: `About ${siteName}`,
+      contact: `Contact ${siteName}`,
+      privacy: `${siteName} privacy`,
+      cookies: `${siteName} cookies`,
+      terms: `${siteName} terms of use`,
+      methodology: `${siteName} methodology`,
+      'editorial-policy': `${siteName} editorial policy`,
+      status: `${siteName} public status`,
+    },
+    'pt-br': {
+      about: `Sobre ${siteName}`,
+      contact: `Contato de ${siteName}`,
+      privacy: `Privacidade de ${siteName}`,
+      cookies: `Cookies de ${siteName}`,
+      terms: `Termos de uso de ${siteName}`,
+      methodology: `Metodologia de ${siteName}`,
+      'editorial-policy': `Política editorial de ${siteName}`,
+      status: `Status público de ${siteName}`,
+    },
+    es: {
+      about: `Acerca de ${siteName}`,
+      contact: `Contacto de ${siteName}`,
+      privacy: `Privacidad de ${siteName}`,
+      cookies: `Cookies de ${siteName}`,
+      terms: `Términos de uso de ${siteName}`,
+      methodology: `Metodología de ${siteName}`,
+      'editorial-policy': `Política editorial de ${siteName}`,
+      status: `Estado público de ${siteName}`,
+    },
+    fr: {
+      about: `À propos de ${siteName}`,
+      contact: `Contact ${siteName}`,
+      privacy: `Confidentialité de ${siteName}`,
+      cookies: `Cookies de ${siteName}`,
+      terms: `Conditions d’utilisation de ${siteName}`,
+      methodology: `Méthodologie de ${siteName}`,
+      'editorial-policy': `Politique éditoriale de ${siteName}`,
+      status: `Statut public de ${siteName}`,
+    },
+    de: {
+      about: `Über ${siteName}`,
+      contact: `Kontakt zu ${siteName}`,
+      privacy: `Datenschutz bei ${siteName}`,
+      cookies: `Cookies bei ${siteName}`,
+      terms: `Nutzungsbedingungen für ${siteName}`,
+      methodology: `Methodik von ${siteName}`,
+      'editorial-policy': `Redaktionelle Richtlinie von ${siteName}`,
+      status: `Öffentlicher Status von ${siteName}`,
+    },
+  }
+
+  return titles[locale][slug]
+}
+
+function localizedTrustDescription(locale: LocaleCode, slug: TrustPageSlug, siteName: string): string {
+  const descriptions: Record<LocaleCode, Record<TrustPageSlug, string>> = {
+    en: {
+      about: `${siteName} explains its purpose, current public surface, free access boundary and review status.`,
+      contact: `How to report feedback, privacy requests, security concerns, accessibility issues and corrections for ${siteName}.`,
+      privacy: `${siteName} explains data minimization, tool input boundaries, analytics limits and future account rules.`,
+      cookies: `${siteName} explains essential storage, consent, advertising storage and regional cookie choices.`,
+      terms: `${siteName} sets baseline terms for responsible use, service limits and future paid features.`,
+      methodology: `${siteName} explains how free tools, guidance, limits and corrections are reviewed.`,
+      'editorial-policy': `${siteName} documents useful-content standards, localization review and correction handling.`,
+      status: `${siteName} records public launch status, release recovery, monetization state and review checkpoints.`,
+    },
+    'pt-br': {
+      about: `${siteName} explica propósito, superfície pública atual, limite gratuito e status de revisão.`,
+      contact: `Como relatar feedback, privacidade, segurança, acessibilidade e correções de ${siteName}.`,
+      privacy: `${siteName} explica minimização de dados, limites de entradas, analytics e regras futuras de conta.`,
+      cookies: `${siteName} explica armazenamento essencial, consentimento, publicidade e escolhas regionais de cookies.`,
+      terms: `${siteName} define termos base de uso responsável, limites do serviço e recursos pagos futuros.`,
+      methodology: `${siteName} explica como ferramentas gratuitas, orientação, limites e correções são revisados.`,
+      'editorial-policy': `${siteName} documenta padrões de conteúdo útil, revisão localizada e correções.`,
+      status: `${siteName} registra status público, recuperação por release, monetização e pontos de revisão.`,
+    },
+    es: {
+      about: `${siteName} explica propósito, superficie pública actual, límite gratis y estado de revisión.`,
+      contact: `Cómo reportar feedback, privacidad, seguridad, accesibilidad y correcciones de ${siteName}.`,
+      privacy: `${siteName} explica minimización de datos, límites de entradas, analytics y reglas futuras de cuenta.`,
+      cookies: `${siteName} explica almacenamiento esencial, consentimiento, publicidad y opciones regionales de cookies.`,
+      terms: `${siteName} define términos base de uso responsable, límites del servicio y funciones pagas futuras.`,
+      methodology: `${siteName} explica cómo se revisan herramientas gratis, guía, límites y correcciones.`,
+      'editorial-policy': `${siteName} documenta estándares de contenido útil, revisión localizada y correcciones.`,
+      status: `${siteName} registra estado público, recuperación por release, monetización y puntos de revisión.`,
+    },
+    fr: {
+      about: `${siteName} explique objectif, surface publique actuelle, limite gratuite et statut de revue.`,
+      contact: `Comment signaler retours, confidentialité, sécurité, accessibilité et corrections pour ${siteName}.`,
+      privacy: `${siteName} explique minimisation des données, limites des entrées, analytics et futures règles de compte.`,
+      cookies: `${siteName} explique stockage essentiel, consentement, publicité et choix régionaux de cookies.`,
+      terms: `${siteName} fixe les conditions de base pour usage responsable, limites du service et futures offres payantes.`,
+      methodology: `${siteName} explique la revue des outils gratuits, guides, limites et corrections.`,
+      'editorial-policy': `${siteName} documente standards de contenu utile, revue localisée et corrections.`,
+      status: `${siteName} consigne statut public, récupération par release, monétisation et points de revue.`,
+    },
+    de: {
+      about: `${siteName} erklärt Zweck, aktuelle öffentliche Oberfläche, kostenlosen Umfang und Prüfstatus.`,
+      contact: `So melden Sie Feedback, Datenschutzanfragen, Sicherheitsfragen, Barrierefreiheit und Korrekturen zu ${siteName}.`,
+      privacy: `${siteName} erklärt Datenminimierung, Eingabegrenzen, Analytics-Grenzen und künftige Kontoregeln.`,
+      cookies: `${siteName} erklärt essenziellen Speicher, Einwilligung, Werbespeicher und regionale Cookie-Auswahl.`,
+      terms: `${siteName} legt Basisbedingungen für verantwortliche Nutzung, Servicegrenzen und künftige Bezahlfunktionen fest.`,
+      methodology: `${siteName} erklärt, wie kostenlose Tools, Hinweise, Grenzen und Korrekturen geprüft werden.`,
+      'editorial-policy': `${siteName} dokumentiert Standards für nützliche Inhalte, Lokalisierung und Korrekturen.`,
+      status: `${siteName} dokumentiert öffentlichen Status, Release-Wiederherstellung, Monetarisierung und Prüfpunkte.`,
+    },
+  }
+
+  return descriptions[locale][slug]
+}
+
+function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile: TrustSupportProfile): TrustContentSection[] {
+  const { siteName, publicPath } = profile
+
+  if (locale === 'pt-br') {
+    const common = [
+      trustSection('Revisão humana e escopo', `Estas páginas explicam o estado público de ${siteName}, mas políticas finais, suporte pago, doações e claims jurídicos ainda exigem revisão humana antes de monetização real.`),
+    ]
+    const sections: Record<TrustPageSlug, TrustContentSection[]> = {
+      about: [
+        trustSection('Superfície pública', `${siteName} faz parte do portfólio SuperSites e fica publicado temporariamente em ${publicPath} com HTTPS, sitemap, páginas localizadas e rollback por release.`),
+        trustSection('Gratuito primeiro', 'A necessidade básica deve funcionar sem cadastro obrigatório. Conta, histórico, colaboração, automação, API, branding ou experiência sem anúncios pertencem a ofertas futuras.'),
+        ...common,
+      ],
+      contact: [
+        trustSection('O que enviar', 'Envie URL, idioma, ferramenta, comportamento observado, resultado esperado e contexto do navegador. Não envie senhas, documentos confidenciais, dados bancários, chaves de API ou dados pessoais sensíveis.'),
+        trustSection('Suporte e doações', 'O bloco de apoio é informativo e inerte: não há link de pagamento, PIX, PayPal, Stripe, Buy Me a Coffee, carteira, checkout ou webhook ativo. Qualquer doação real exige aprovação humana, conta, impostos e termos.'),
+        trustSection('Prioridade de correções', 'Privacidade, segurança, acessibilidade, tradução incorreta, link quebrado e resultado enganoso têm prioridade sobre pedidos comerciais.'),
+      ],
+      privacy: [
+        trustSection('Minimização de dados', 'Entradas de ferramentas ficam no navegador ou em APIs públicas limitadas ao mínimo necessário. Eventos permitidos devem usar slugs, rota e locale, sem valores digitados ou arquivos.'),
+        trustSection('Direitos e retenção', 'Contas, histórico salvo, exportação, exclusão e retenção precisam de regras visíveis antes de qualquer recurso pago.'),
+        ...common,
+      ],
+      cookies: [
+        trustSection('Armazenamento essencial', 'Idioma, consentimento e segurança de sessão podem usar armazenamento essencial quando existirem.'),
+        trustSection('Analytics e anúncios', 'Tags externas, publicidade personalizada e armazenamento não essencial não são habilitados sem consentimento regional e revisão de posicionamento.'),
+        ...common,
+      ],
+      terms: [
+        trustSection('Uso responsável', `Use ${siteName} como ferramenta informativa. Não use para fraude, abuso, phishing, malware, spam, violação de privacidade ou decisões críticas sem validação própria.`),
+        trustSection('Recursos pagos futuros', 'Preço, quotas, cancelamento, reembolso, impostos, termos do provedor e suporte precisam aparecer antes de qualquer checkout.'),
+        ...common,
+      ],
+      methodology: [
+        trustSection('Ferramenta antes de conteúdo', 'Cada página deve resolver uma tarefa real com ferramenta gratuita, exemplo, limite, interpretação e links relacionados antes de ser tratada como madura.'),
+        trustSection('Correções e evidência', 'Afirmações sobre dados, privacidade, billing, anúncios, limites técnicos ou leis devem ser corrigidas quando evidência melhor estiver disponível.'),
+        ...common,
+      ],
+      'editorial-policy': [
+        trustSection('Conteúdo útil', 'Não publicar páginas em massa sem valor. Cada página precisa ter utilidade própria, contexto, limites, data de revisão e caminho de correção.'),
+        trustSection('Localização', 'Páginas localizadas devem preservar sentido, limites, exemplos e avisos de segurança no idioma da rota.'),
+        ...common,
+      ],
+      status: [
+        trustSection('Produção atual', `${siteName} está publicado em ${publicPath} por release versionado, com smoke público e recuperação por release ou placeholder controlado.`),
+        trustSection('Monetização e suporte', 'Anúncios reais, checkout, doações, afiliados, analytics externo, workers recorrentes e API paga não estão habilitados nesta superfície pública.'),
+        ...common,
+      ],
+    }
+
+    return sections[slug]
+  }
+
+  if (locale === 'es') {
+    const common = [
+      trustSection('Revisión humana y alcance', `Estas páginas explican el estado público de ${siteName}, pero políticas finales, soporte pago, donaciones y claims legales aún requieren revisión humana antes de monetización real.`),
+    ]
+    const sections: Record<TrustPageSlug, TrustContentSection[]> = {
+      about: [
+        trustSection('Superficie pública', `${siteName} forma parte del portafolio SuperSites y se publica temporalmente en ${publicPath} con HTTPS, sitemap, páginas localizadas y recuperación por release.`),
+        trustSection('Gratis primero', 'La necesidad básica debe funcionar sin registro obligatorio. Cuenta, historial, colaboración, automatización, API, branding o experiencia sin anuncios pertenecen a ofertas futuras.'),
+        ...common,
+      ],
+      contact: [
+        trustSection('Qué enviar', 'Envía URL, idioma, herramienta, comportamiento observado, resultado esperado y navegador. No envíes contraseñas, documentos confidenciales, datos bancarios, claves API o datos personales sensibles.'),
+        trustSection('Soporte y donaciones', 'La sección de apoyo es informativa e inerte: no hay enlace de pago, PIX, PayPal, Stripe, Buy Me a Coffee, wallet, checkout o webhook activo. Cualquier donación real requiere aprobación humana, cuenta, impuestos y términos.'),
+        trustSection('Prioridad de correcciones', 'Privacidad, seguridad, accesibilidad, mala traducción, enlace roto y resultado engañoso tienen prioridad sobre pedidos comerciales.'),
+      ],
+      privacy: [
+        trustSection('Minimización de datos', 'Las entradas quedan en el navegador o en APIs públicas limitadas al mínimo necesario. Eventos permitidos deben usar slugs, ruta y locale, sin valores ingresados ni archivos.'),
+        trustSection('Derechos y retención', 'Cuentas, historial guardado, exportación, eliminación y retención necesitan reglas visibles antes de cualquier función paga.'),
+        ...common,
+      ],
+      cookies: [
+        trustSection('Almacenamiento esencial', 'Idioma, consentimiento y seguridad de sesión pueden usar almacenamiento esencial cuando existan.'),
+        trustSection('Analytics y anuncios', 'Tags externas, publicidad personalizada y almacenamiento no esencial no se habilitan sin consentimiento regional y revisión de ubicación.'),
+        ...common,
+      ],
+      terms: [
+        trustSection('Uso responsable', `Usa ${siteName} como herramienta informativa. No la uses para fraude, abuso, phishing, malware, spam, violación de privacidad o decisiones críticas sin validación propia.`),
+        trustSection('Funciones pagas futuras', 'Precio, cuotas, cancelación, reembolso, impuestos, términos del proveedor y soporte deben mostrarse antes de cualquier checkout.'),
+        ...common,
+      ],
+      methodology: [
+        trustSection('Herramienta antes que contenido', 'Cada página debe resolver una tarea real con herramienta gratis, ejemplo, límite, interpretación y enlaces relacionados antes de considerarse madura.'),
+        trustSection('Correcciones y evidencia', 'Claims sobre datos, privacidad, billing, anuncios, límites técnicos o leyes deben corregirse cuando haya mejor evidencia.'),
+        ...common,
+      ],
+      'editorial-policy': [
+        trustSection('Contenido útil', 'No publicar páginas masivas sin valor. Cada página necesita utilidad propia, contexto, límites, fecha de revisión y vía de corrección.'),
+        trustSection('Localización', 'Las páginas localizadas deben preservar sentido, límites, ejemplos y avisos de seguridad en el idioma de la ruta.'),
+        ...common,
+      ],
+      status: [
+        trustSection('Producción actual', `${siteName} está publicado en ${publicPath} por release versionado, con smoke público y recuperación por release o placeholder controlado.`),
+        trustSection('Monetización y soporte', 'Anuncios reales, checkout, donaciones, afiliados, analytics externo, workers recurrentes y API paga no están habilitados en esta superficie pública.'),
+        ...common,
+      ],
+    }
+
+    return sections[slug]
+  }
+
+  if (locale === 'fr') {
+    const common = [
+      trustSection('Revue humaine et portée', `Ces pages expliquent l’état public de ${siteName}, mais politiques finales, support payant, dons et affirmations juridiques exigent encore une revue humaine avant toute monétisation réelle.`),
+    ]
+    const sections: Record<TrustPageSlug, TrustContentSection[]> = {
+      about: [
+        trustSection('Surface publique', `${siteName} fait partie du portefeuille SuperSites et est publié temporairement sur ${publicPath} avec HTTPS, sitemap, pages localisées et récupération par release.`),
+        trustSection('Gratuit d’abord', 'Le besoin de base doit fonctionner sans inscription obligatoire. Compte, historique, collaboration, automatisation, API, branding ou expérience sans publicité relèvent d’offres futures.'),
+        ...common,
+      ],
+      contact: [
+        trustSection('Quoi envoyer', 'Envoyez URL, langue, outil, comportement observé, résultat attendu et navigateur. N’envoyez pas mots de passe, documents confidentiels, données bancaires, clés API ou données personnelles sensibles.'),
+        trustSection('Support et dons', 'Le bloc de soutien est informatif et inerte : aucun lien de paiement, PIX, PayPal, Stripe, Buy Me a Coffee, wallet, checkout ou webhook n’est actif. Tout don réel exige approbation humaine, compte, taxes et conditions.'),
+        trustSection('Priorité des corrections', 'Confidentialité, sécurité, accessibilité, mauvaise traduction, lien cassé et résultat trompeur priment sur les demandes commerciales.'),
+      ],
+      privacy: [
+        trustSection('Minimisation des données', 'Les entrées restent dans le navigateur ou dans des APIs publiques limitées au minimum nécessaire. Les événements autorisés utilisent slugs, route et locale, sans valeurs saisies ni fichiers.'),
+        trustSection('Droits et conservation', 'Comptes, historique sauvegardé, export, suppression et conservation nécessitent des règles visibles avant toute offre payante.'),
+        ...common,
+      ],
+      cookies: [
+        trustSection('Stockage essentiel', 'Langue, consentement et sécurité de session peuvent utiliser un stockage essentiel quand ces fonctions existent.'),
+        trustSection('Analytics et publicités', 'Tags externes, publicité personnalisée et stockage non essentiel ne sont pas activés sans consentement régional et revue du placement.'),
+        ...common,
+      ],
+      terms: [
+        trustSection('Usage responsable', `Utilisez ${siteName} comme outil informatif. Ne l’utilisez pas pour fraude, abus, phishing, malware, spam, atteinte à la vie privée ou décisions critiques sans validation propre.`),
+        trustSection('Fonctions payantes futures', 'Prix, quotas, annulation, remboursement, taxes, conditions fournisseur et support doivent être visibles avant tout checkout.'),
+        ...common,
+      ],
+      methodology: [
+        trustSection('Outil avant contenu', 'Chaque page doit résoudre une tâche réelle avec outil gratuit, exemple, limite, interprétation et liens connexes avant d’être considérée mature.'),
+        trustSection('Corrections et preuves', 'Les affirmations sur données, confidentialité, billing, publicités, limites techniques ou lois doivent être corrigées si de meilleures preuves existent.'),
+        ...common,
+      ],
+      'editorial-policy': [
+        trustSection('Contenu utile', 'Ne pas publier de pages massives sans valeur. Chaque page doit avoir utilité propre, contexte, limites, date de revue et voie de correction.'),
+        trustSection('Localisation', 'Les pages localisées doivent préserver sens, limites, exemples et avertissements de sécurité dans la langue de la route.'),
+        ...common,
+      ],
+      status: [
+        trustSection('Production actuelle', `${siteName} est publié sur ${publicPath} par release versionné, avec smoke public et récupération par release ou placeholder contrôlé.`),
+        trustSection('Monétisation et support', 'Publicités réelles, checkout, dons, affiliation, analytics externe, workers récurrents et API payante ne sont pas activés sur cette surface publique.'),
+        ...common,
+      ],
+    }
+
+    return sections[slug]
+  }
+
+  if (locale === 'de') {
+    const common = [
+      trustSection('Menschliche Prüfung und Umfang', `Diese Seiten erklären den öffentlichen Stand von ${siteName}; finale Richtlinien, bezahlter Support, Spenden und rechtliche Aussagen benötigen vor realer Monetarisierung weiter menschliche Prüfung.`),
+    ]
+    const sections: Record<TrustPageSlug, TrustContentSection[]> = {
+      about: [
+        trustSection('Öffentliche Oberfläche', `${siteName} gehört zum SuperSites-Portfolio und ist vorübergehend unter ${publicPath} mit HTTPS, Sitemap, lokalisierten Seiten und Release-Wiederherstellung veröffentlicht.`),
+        trustSection('Kostenlos zuerst', 'Die Grundaufgabe muss ohne Pflichtkonto funktionieren. Konto, Verlauf, Zusammenarbeit, Automatisierung, API, Branding oder werbefreie Nutzung gehören zu künftigen Angeboten.'),
+        ...common,
+      ],
+      contact: [
+        trustSection('Was senden', 'Senden Sie URL, Sprache, Tool, beobachtetes Verhalten, erwartetes Ergebnis und Browser. Senden Sie keine Passwörter, vertraulichen Dokumente, Bankdaten, API-Schlüssel oder sensiblen personenbezogenen Daten.'),
+        trustSection('Support und Spenden', 'Der Unterstützungsblock ist informativ und inaktiv: Es gibt keinen Zahlungslink, kein PIX, PayPal, Stripe, Buy Me a Coffee, Wallet, Checkout oder Webhook. Jede echte Spende braucht menschliche Freigabe, Konto, Steuern und Bedingungen.'),
+        trustSection('Priorität von Korrekturen', 'Datenschutz, Sicherheit, Barrierefreiheit, falsche Übersetzung, defekter Link und irreführendes Ergebnis haben Vorrang vor kommerziellen Anfragen.'),
+      ],
+      privacy: [
+        trustSection('Datenminimierung', 'Eingaben bleiben im Browser oder in öffentlichen APIs mit minimal nötigem Umfang. Erlaubte Events nutzen Slugs, Route und Locale, keine eingegebenen Werte oder Dateien.'),
+        trustSection('Rechte und Aufbewahrung', 'Konten, gespeicherter Verlauf, Export, Löschung und Aufbewahrung brauchen sichtbare Regeln vor jeder Bezahlfunktion.'),
+        ...common,
+      ],
+      cookies: [
+        trustSection('Essentieller Speicher', 'Sprache, Einwilligung und Sitzungssicherheit können essenziellen Speicher nutzen, wenn diese Funktionen existieren.'),
+        trustSection('Analytics und Anzeigen', 'Externe Tags, personalisierte Werbung und nicht essenzieller Speicher werden ohne regionale Einwilligung und Platzierungsprüfung nicht aktiviert.'),
+        ...common,
+      ],
+      terms: [
+        trustSection('Verantwortliche Nutzung', `Nutzen Sie ${siteName} als informatives Tool. Nicht für Betrug, Missbrauch, Phishing, Malware, Spam, Datenschutzverletzung oder kritische Entscheidungen ohne eigene Prüfung nutzen.`),
+        trustSection('Künftige Bezahlfunktionen', 'Preis, Quoten, Kündigung, Erstattung, Steuern, Anbieterbedingungen und Support müssen vor jedem Checkout sichtbar sein.'),
+        ...common,
+      ],
+      methodology: [
+        trustSection('Tool vor Inhalt', 'Jede Seite muss eine echte Aufgabe mit kostenlosem Tool, Beispiel, Grenze, Interpretation und verwandten Links lösen, bevor sie als reif gilt.'),
+        trustSection('Korrekturen und Nachweise', 'Aussagen zu Daten, Datenschutz, Billing, Anzeigen, technischen Grenzen oder Gesetzen werden korrigiert, wenn bessere Nachweise vorliegen.'),
+        ...common,
+      ],
+      'editorial-policy': [
+        trustSection('Nützliche Inhalte', 'Keine massenhaften Seiten ohne Wert veröffentlichen. Jede Seite braucht eigenen Nutzen, Kontext, Grenzen, Prüfdatum und Korrekturweg.'),
+        trustSection('Lokalisierung', 'Lokalisierte Seiten müssen Sinn, Grenzen, Beispiele und Sicherheitshinweise in der Routensprache bewahren.'),
+        ...common,
+      ],
+      status: [
+        trustSection('Aktuelle Produktion', `${siteName} ist unter ${publicPath} als versioniertes Release veröffentlicht, mit öffentlichem Smoke und Wiederherstellung per Release oder kontrolliertem Placeholder.`),
+        trustSection('Monetarisierung und Support', 'Reale Anzeigen, Checkout, Spenden, Affiliate-Links, externe Analytics, wiederkehrende Worker und bezahlte API sind auf dieser öffentlichen Oberfläche nicht aktiviert.'),
+        ...common,
+      ],
+    }
+
+    return sections[slug]
+  }
+
+  const common = [
+    trustSection('Human review and scope', `These pages explain the current public state of ${siteName}, but final legal policies, paid support, donations and legal claims still require human review before real monetization.`),
+  ]
+  const sections: Record<TrustPageSlug, TrustContentSection[]> = {
+    about: [
+      trustSection('Public surface', `${siteName} is part of the SuperSites portfolio and is temporarily published at ${publicPath} with HTTPS, localized pages, public sitemap and release recovery.`),
+      trustSection('Free first', 'The basic task must work without mandatory signup. Accounts, history, collaboration, automation, API, branding and ad-free use belong to future offers.'),
+      ...common,
+    ],
+    contact: [
+      trustSection('What to send', 'Include URL, language, tool name, observed behavior, expected result and browser context. Do not send passwords, confidential documents, bank data, API keys or sensitive personal data.'),
+      trustSection('Support and donations', 'The support block is informational and inert: no payment link, PIX, PayPal, Stripe, Buy Me a Coffee, wallet, checkout or webhook is active. Any real donation requires human approval, account setup, taxes and terms.'),
+      trustSection('Correction priority', 'Privacy, security, accessibility, translation errors, broken links and misleading results take priority over commercial requests.'),
+    ],
+    privacy: [
+      trustSection('Input and event boundaries', 'Tool inputs stay in the browser or in public APIs limited to what the task requires. Allowed events use slugs, route and locale, not entered values or files.'),
+      trustSection('Rights and retention', 'Accounts, saved history, export, deletion and retention need visible rules before any paid feature launches.'),
+      ...common,
+    ],
+    cookies: [
+      trustSection('Essential storage', 'Language, consent and session security may use essential storage when those features exist.'),
+      trustSection('Analytics and ads', 'External tags, personalized advertising and non-essential storage are not enabled without regional consent and placement review.'),
+      ...common,
+    ],
+    terms: [
+      trustSection('Responsible use', `Use ${siteName} as an informational tool. Do not use it for fraud, abuse, phishing, malware, spam, privacy violations or critical decisions without your own validation.`),
+      trustSection('Future paid features', 'Pricing, quotas, cancellation, refunds, taxes, provider terms and support must be visible before any checkout launches.'),
+      ...common,
+    ],
+    methodology: [
+      trustSection('Tool before content', 'Each page should solve a real task with a free tool, example, limitation, interpretation and related links before it is treated as mature.'),
+      trustSection('Corrections and evidence', 'Claims about data, privacy, billing, advertising, technical limits or law should be corrected when better evidence is available.'),
+      ...common,
+    ],
+    'editorial-policy': [
+      trustSection('Useful content', 'Do not publish low-value mass pages. Each page needs its own utility, context, limits, review date and correction path.'),
+      trustSection('Localization', 'Localized pages must preserve meaning, limits, examples and safety notices in the route language.'),
+      ...common,
+    ],
+    status: [
+      trustSection('Current production', `${siteName} is published at ${publicPath} as a versioned release, with public smoke checks and recovery by release or controlled placeholder.`),
+      trustSection('Monetization and support', 'Real ads, checkout, donations, affiliates, external analytics, recurring workers and paid API are not enabled on this public surface.'),
+      ...common,
+    ],
+  }
+
+  return sections[slug]
+}
+
+export function buildTrustPageCopy<T extends TrustPageCopyShape>(
+  locale: LocaleCode,
+  slug: TrustPageSlug,
+  baseCopy: T,
+  profile: TrustSupportProfile,
+): T {
+  const trustSections = localizedTrustSections(locale, slug, profile)
+  const localizedCopy = {
+    ...baseCopy,
+    navLabel: trustNavLabels[locale][slug],
+    title: locale === 'en' ? baseCopy.title : localizedTrustTitle(locale, slug, profile.siteName),
+    description: locale === 'en'
+      ? baseCopy.description
+      : localizedTrustDescription(locale, slug, profile.siteName),
+    sections: locale === 'en' ? [...baseCopy.sections, ...trustSections] : trustSections,
+  }
+
+  return sanitizePublicCopy(locale, localizedCopy) as T
+}
+
 const internalTermReplacements: Record<LocaleCode, Array<[RegExp, string]>> = {
   en: [
     [/\bMVPs?\b/gu, 'free version'],

@@ -134,8 +134,8 @@ test.describe('DocShift MVP', () => {
     await expect(page.locator('body')).toContainText('Perguntas frequentes')
 
     await page.goto('/fr/privacy')
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Privacy Policy')
-    await expect(page.getByText('Data minimization')).toBeVisible()
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Confidentialité de DocShift')
+    await expect(page.getByRole('heading', { name: 'Minimisation des données' })).toBeVisible()
 
     const width = await page.evaluate(() => document.documentElement.scrollWidth)
     expect(width).toBeLessThanOrEqual(390)

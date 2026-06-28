@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
+  buildTrustPageCopy,
   buildLanguageOptions,
   formatCurrency,
   formatNumber,
@@ -10,6 +11,7 @@ import {
   sanitizePublicCopy,
   toHreflang,
   toHtmlLang,
+  type TrustPageCopyShape,
 } from '../src'
 
 describe('@supersites/i18n', () => {
@@ -92,5 +94,49 @@ describe('@supersites/i18n', () => {
 
     expect(sanitizePublicCopy('pt-br', 'The result shows the formula used.')).toBe('O resultado mostra the formula used.')
     expect(sanitizePublicCopy('pt-br', 'DMARC Checker Checklist')).toBe('Verificador DMARC Checklist')
+  })
+
+  it('adds localized trust and support sections without enabling payment links', () => {
+    const baseCopy: TrustPageCopyShape = {
+      navLabel: 'Contact',
+      title: 'Contact TestSite',
+      description: 'Original contact copy.',
+      updatedLabel: 'Reviewed 2026-06-28',
+      sections: [{ heading: 'Original', paragraphs: ['Original paragraph.'] }],
+    }
+
+    const contact = buildTrustPageCopy('pt-br', 'contact', baseCopy, {
+      siteName: 'TestSite',
+      publicPath: '/supersites/testsite/',
+    })
+
+    expect(contact.navLabel).toBe('Contato')
+    expect(contact.title).toBe('Contato de TestSite')
+    expect(contact.sections[0].heading).toBe('O que enviar')
+    expect(contact.sections.map((section) => section.heading)).toContain('Suporte e doações')
+
+    const serialized = JSON.stringify(contact)
+
+    expect(serialized).not.toMatch(/https?:\/\//iu)
+    expect(serialized).not.toMatch(/paypal\.com|stripe\.com|buymeacoffee\.com|mercadopago/iu)
+  })
+
+  it('preserves English base sections while adding trust status detail', () => {
+    const baseCopy: TrustPageCopyShape = {
+      navLabel: 'Status',
+      title: 'Status TestSite',
+      description: 'Original status copy.',
+      updatedLabel: 'Reviewed 2026-06-28',
+      sections: [{ heading: 'Original', paragraphs: ['Original paragraph.'] }],
+    }
+
+    const status = buildTrustPageCopy('en', 'status', baseCopy, {
+      siteName: 'TestSite',
+      publicPath: '/supersites/testsite/',
+    })
+
+    expect(status.sections[0]).toEqual(baseCopy.sections[0])
+    expect(status.sections.length).toBeGreaterThan(baseCopy.sections.length)
+    expect(status.sections.map((section) => section.heading)).toContain('Current production')
   })
 })

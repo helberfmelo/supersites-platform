@@ -1,4 +1,5 @@
 export {
+  buildTrustPageCopy,
   buildLanguageOptions,
   defaultLocale,
   formatCurrency,
@@ -20,4 +21,7 @@ export {
   type LanguageOption,
   type LocaleCode,
   type LocaleDefinition,
+  type TrustPageCopyShape,
+  type TrustPageSlug,
+  type TrustSupportProfile,
 } from '@supersites/i18n'

@@ -607,6 +607,14 @@ Data-base: 2026-06-27
 | Sprint 9.3 production deploy runs | Initial Fase 9/Sprint 9.3 deploys passed; final corrected deploys passed: CalcHarbor `28314385617`, DevUtility Lab `28314386140`, TimeNexus `28314386658`, QRRoute `28314387259`, InvoiceCraft `28314387879`, MailHealth `28314388290`, SitePulse Lab `28314388782`, PixelBatch `28314389339`, DocShift `28314389887`, NetProbe `28314390452`, Hub `28314390962` |
 | Sprint 9.3 final public assets | Hub `y2wQj9nM.js`; NetProbe `BnWoY1ue.js`; CalcHarbor `C-D8lFZ4.js`; DevUtility Lab `BdNi5yWa.js`; TimeNexus `rblm5Zwz.js`; QRRoute `Bo-YNugx.js`; InvoiceCraft `DWswZ3dy.js`; MailHealth `CFyhN0s7.js`; SitePulse Lab `BVVBcFus.js`; PixelBatch `C2HqwX3t.js`; DocShift `C5yJZR6G.js` |
 | Sprint 9.3 public smokes | Passed after corrected deploy: Hub aggregate, control-plane/API, NetProbe, nine static app smokes and 16-page live localized-copy smoke |
+| Sprint 9.4 trust/support helper | `buildTrustPageCopy` implemented in `@supersites/i18n` |
+| Sprint 9.4 enriched trust/legal pages | 440 generated page variants: 11 public surfaces x 8 pages x 5 locales |
+| Sprint 9.4 support/donation real payment links | 0 activated; support block is informational/inert |
+| Sprint 9.4 payment URL copy gate | `validate-public-copy` checks public `href`/`src` for known payment/support providers; 876 HTMLs passed locally |
+| Sprint 9.4 local package validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages` |
+| Sprint 9.4 frontend tests/builds/previews/E2E | Passed locally for 11 Nuxt frontends |
+| Sprint 9.4 local final gates | Passed: structure, secrets, public-copy, deploy dry-run, ci:changes and diff check |
+| Sprint 9.4 remote CI/deploy status | Pending feature commit push and monitoring |
 | Real ads activated by Fase 9 planning | 0 planned before explicit gates |
 | Real billing activated by Fase 9 planning | 0 planned before explicit gates |
 | Real donation payments activated by Fase 9 planning | 0 planned before explicit gates |

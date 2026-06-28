@@ -82,6 +82,24 @@ Sprint 9.3 delivered the public-copy and localization gate to production without
 | Production deploy status | Final Fase 9/Sprint 9.3 deploys passed: CalcHarbor `28314385617`, DevUtility Lab `28314386140`, TimeNexus `28314386658`, QRRoute `28314387259`, InvoiceCraft `28314387879`, MailHealth `28314388290`, SitePulse Lab `28314388782`, PixelBatch `28314389339`, DocShift `28314389887`, NetProbe `28314390452`, Hub `28314390962` |
 | Public smoke status | Hub aggregate, control-plane/API, NetProbe, nine static app smokes and 16-page live localized-copy smoke passed |
 
+## Sprint 9.4 execution evidence
+
+Sprint 9.4 delivered localized trust/legal/support depth locally without activating real ads, checkout, billing, donations, affiliates, external analytics, paid APIs or recurring production workers.
+
+| Evidence | Value |
+|---|---|
+| Shared helper | `buildTrustPageCopy` in `@supersites/i18n` |
+| Public surfaces wired | Hub, NetProbe Atlas, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch and DocShift |
+| Pages enriched per surface | About, Contact, Privacy, Cookies, Terms, Methodology, Editorial Policy and Status |
+| Locale coverage | EN, PT-BR, ES, FR and DE |
+| Generated page variants | 440 trust/legal page variants across 11 public surfaces |
+| Support/donation state | Informational and inert; no payment link, checkout, wallet, webhook, provider SDK or real account |
+| Human gates updated | `docs/HUMAN_ACTION_REQUIRED.md` now tracks real support/donation activation separately from general donations |
+| Public copy/payment URL gate | `scripts/validate-public-copy.mjs` checks visible internal terms plus payment/support URLs in `href`/`src` |
+| Generated HTML scanned locally | 876 files |
+| Local validation | Passed: `pnpm typecheck:packages`, `pnpm test:packages`, tests/builds/previews/Playwright for 11 Nuxt frontends, `pnpm validate:public-copy`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check` |
+| Remote CI/deploy status | Pending feature commit push, Quality Gate, Deploy Dry Run, deploys/smokes and docs-only closure |
+
 ## Per-sprint execution rules
 
 Each Sprint 9.x must:

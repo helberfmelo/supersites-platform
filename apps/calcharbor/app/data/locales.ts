@@ -16,6 +16,7 @@ import {
 } from '@supersites/i18n'
 
 export {
+  buildTrustPageCopy,
   buildLanguageOptions,
   defaultLocale,
   getLocaleDefinition,
@@ -31,6 +32,9 @@ export {
   toIntlLocale,
   type LanguageOption,
   type LocaleCode,
+  type TrustPageCopyShape,
+  type TrustPageSlug,
+  type TrustSupportProfile,
 } from '@supersites/i18n'
 
 export const publicLocaleCodes = ['en', 'pt-br', 'es', 'fr', 'de'] satisfies LocaleCode[]

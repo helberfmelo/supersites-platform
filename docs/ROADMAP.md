@@ -383,7 +383,7 @@ Sprint 9.4 - Trust, legal e support blocks
 - Simbolico: BGR-TRUST-SUPPORT.
 - Objetivo: aprofundar About, Contact, Privacy, Cookies, Terms, Methodology e Editorial por idioma, alem de criar bloco configuravel de apoio/doacao sem link ou pagamento real.
 - Validacao: paginas legais completas para revisao, support block inerte/fail-closed, `HUMAN_ACTION_REQUIRED` atualizado para revisao legal/doacao real e ausencia de provider de pagamento.
-- Status: planejada.
+- Status: implementada e validada localmente. Foi criado `buildTrustPageCopy` em `@supersites/i18n` e aplicado ao Hub, NetProbe Atlas, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch e DocShift para enriquecer About/Contact/Privacy/Cookies/Terms/Methodology/Editorial/Status em EN/PT-BR/ES/FR/DE. O bloco de suporte/doacao permanece apenas informativo e inerte, sem `href` de pagamento, checkout, webhook, provider SDK ou conta de pagamento. `validate-public-copy` agora tambem bloqueia URLs conhecidas de pagamento/support em `href`/`src`. Validacao local passou com typecheck/testes de pacotes, testes/builds/previews/Playwright dos 11 frontends, `validate:public-copy` em 876 HTMLs, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes` e `git diff --check`; CI/deploy publico sera registrado no fechamento da sprint apos push.
 
 Sprint 9.5 - NetProbe Atlas P0 benchmark UX
 - Simbolico: BGR-NETPROBE-P0.

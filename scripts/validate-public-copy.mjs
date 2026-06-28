@@ -35,6 +35,16 @@ const forbiddenVisibleTerms = [
   /Commercial redirects gated/iu,
 ]
 
+const forbiddenPaymentUrlPatterns = [
+  /paypal\.com/iu,
+  /stripe\.com/iu,
+  /buymeacoffee\.com/iu,
+  /mercadopago/iu,
+  /paddle\.com/iu,
+  /gumroad\.com/iu,
+  /ko-fi\.com/iu,
+]
+
 const englishFallbackSentinels = [
   'Structured Data Formatter',
   'Base64 Converter',
@@ -175,6 +185,10 @@ function visibleText(html) {
     .trim()
 }
 
+function referencedUrls(html) {
+  return [...html.matchAll(/\s(?:href|src)=["']([^"']+)["']/giu)].map((match) => decodeHtmlEntities(match[1]))
+}
+
 function localeForFile(publicDir, file) {
   const segments = relative(publicDir, file).replace(/\\/gu, '/').split('/')
 
@@ -190,7 +204,9 @@ for (const app of apps) {
 
   for (const file of htmlFiles) {
     scannedFiles += 1
-    const text = visibleText(readFileSync(file, 'utf8'))
+    const html = readFileSync(file, 'utf8')
+    const text = visibleText(html)
+    const urls = referencedUrls(html)
     const relativeFile = relative(process.cwd(), file)
     const locale = localeForFile(publicDir, file)
 
@@ -204,6 +220,14 @@ for (const app of apps) {
       for (const sentinel of englishFallbackSentinels) {
         if (text.includes(sentinel)) {
           failures.push(`${relativeFile}: English fallback copy visible on ${locale}: "${sentinel}"`)
+        }
+      }
+    }
+
+    for (const url of urls) {
+      for (const pattern of forbiddenPaymentUrlPatterns) {
+        if (pattern.test(url)) {
+          failures.push(`${relativeFile}: payment/support URL must remain inactive before human approval: ${url}`)
         }
       }
     }
