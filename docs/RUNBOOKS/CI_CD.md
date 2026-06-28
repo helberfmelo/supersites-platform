@@ -36,7 +36,7 @@ File: `.github/workflows/deploy-dry-run.yml`.
 
 Runs on `main` pushes that affect apps, packages, deployment infra, scripts or deploy workflow files. It can also be started manually.
 
-Manual dispatch accepts optional `phase` and `sprint` inputs. Use the current roadmap identifiers, for example `phase=9` and `sprint=9.1`, so the GitHub Actions job logs identify which roadmap delivery produced the dry-run plan. Push-triggered dry-runs use `unmapped` unless a future automation supplies roadmap context.
+Deploy Dry Run keeps the default workflow naming so the automatic `push` trigger remains compatible. Roadmap phase/sprint labeling is required on the manual real deploy and rollback workflows below.
 
 The workflow generates an artifact named `supersites-deploy-dry-run` with:
 

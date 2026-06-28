@@ -28,7 +28,7 @@ This block is therefore mapped as Fase 9 - Benchmark-Grade Refinement.
 
 | Symbolic sprint | Real sprint | Scope | Primary acceptance |
 |---|---:|---|---|
-| BGR-ROADMAP-LABELS | Sprint 9.1 | Convert the live audit into the Fase 9 roadmap and add phase/sprint labels to deploy workflows | Roadmap, status, metrics and workflows identify Fase/Sprint; no product UI change |
+| BGR-ROADMAP-LABELS | Sprint 9.1 | Convert the live audit into the Fase 9 roadmap and add phase/sprint labels to manual deploy workflows | Roadmap, status, metrics and manual deploy workflows identify Fase/Sprint; no product UI change |
 | BGR-CRAWLER-BASELINE | Sprint 9.2 | Playwright crawler, screenshots, Lighthouse-style baseline and SEO technical audit | Every live surface/locale/tool has crawl evidence, screenshots, console/link/canonical/hreflang/sitemap/schema checks and recorded gaps |
 | BGR-I18N-COPY-P0 | Sprint 9.3 | Global localization, accent correction and public copy cleanup | Non-EN routes have no accidental English fallback; public pages avoid internal MVP/gated/deploy-smoke wording |
 | BGR-TRUST-SUPPORT | Sprint 9.4 | Legal/trust/methodology/contact/cookies depth and inert support block foundation | Legal pages become complete product documents pending human legal review; support/donation UI stays config-gated with no real payment link |

@@ -362,7 +362,7 @@ Status geral: mapeada a partir da auditoria live `docs/AUDITORIA_LIVE_SUPERSITES
 
 Sprint 9.1 - Roadmap benchmark-grade e rotulos de deploy
 - Simbolico: BGR-ROADMAP-LABELS.
-- Objetivo: converter a auditoria live em roadmap executavel e fazer os workflows de deploy/dry-run registrarem Fase/Sprint nos nomes e logs dos runs.
+- Objetivo: converter a auditoria live em roadmap executavel e fazer os workflows manuais de deploy registrarem Fase/Sprint nos nomes e logs dos runs, mantendo o Deploy Dry Run automatico compativel com `push`.
 - Entregas: `docs/SPRINTS/BENCHMARK_GRADE_REFINEMENT_SPRINTS.md`, atualizacoes de `docs/ROADMAP.md`, `docs/STATUS.md`, `docs/METRICS.md`, `docs/BENCHMARK_MATRIX.md`, runbooks afetados e workflows `.github/workflows/deploy-*.yml`.
 - Validacao: docs/workflow-only, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, smokes publicos aplicaveis, push e monitoramento de Quality Gate/Deploy Dry Run.
 - Status: em execucao nesta entrega.
