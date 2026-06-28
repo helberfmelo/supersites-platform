@@ -559,7 +559,7 @@ Data-base: 2026-06-27
 | Public live surfaces at Fase 9 start | 12: Hub, control-plane/API, NetProbe Atlas and 9 product apps |
 | Public placeholder apps at Fase 9 start | 0 |
 | Fase 9 P0 sequence | Crawler baseline, localization/copy cleanup, trust/legal/support, NetProbe P0, tool-first workflows |
-| Deploy workflow phase/sprint labels | Implemented locally in deploy/dry-run workflows during Sprint 9.1 |
+| Deploy workflow phase/sprint labels | Manual deploy run names and logs implemented; dry-run job logs implemented during Sprint 9.1 |
 | Sprint 9.1 local final gates | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
 | Sprint 9.1 feature commit | Pending |
 | Sprint 9.1 Quality Gate run | Pending |

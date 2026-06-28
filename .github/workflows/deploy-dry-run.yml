@@ -1,5 +1,4 @@
 name: Deploy Dry Run
-run-name: Fase ${{ github.event.inputs.phase || 'unmapped' }} Sprint ${{ github.event.inputs.sprint || 'unmapped' }} - Deploy Dry Run - ${{ github.event.inputs.target_environment || 'staging-hostgator' }}
 
 on:
   push:
