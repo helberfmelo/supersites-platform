@@ -46,9 +46,10 @@ Data-base: 2026-06-28
 
 ## Sprint 13.2 product depth
 
-- Status: concluded locally, pending remote CI/public-smoke closure.
+- Status: concluded on `main`, with remote CI/public-smoke closure and no real static app deploy triggered.
 - Added 8 curated city/timezone pages: `new-york`, `sao-paulo`, `london`, `berlin`, `san-francisco`, `tokyo`, `singapore` and `sydney`.
 - Added 40 localized city page variants across EN/PT-BR/ES/FR/DE, with canonical, hreflang, sitemap inclusion, `WebPage`/`Place` JSON-LD, visible business-day timeline and 09:00 local overlap snapshot.
 - Added the `Curated city clocks` home section so city pages are internally linked instead of sitemap-only.
 - Validation passed locally: `pnpm test:timenexus` (11 tests), `pnpm build:timenexus` (137 configured prerender routes / 273 generated artifacts including payloads), `pnpm validate:timenexus-preview` (asset `/_nuxt/AoDGD3Ez.js`), `pnpm test:e2e:timenexus`, `pnpm validate:public-copy` (951 HTML files), `pnpm validate:adsense-safe-public`, structure/secrets/deploy-dry-run/ci/diff gates.
+- Remote closure passed: feature commit `6abcda5`, Quality Gate `28354017920`, Deploy Dry Run `28354017921`, aggregate/TimeNexus/NetProbe/control-plane public smokes against the current production baseline, current TimeNexus public asset `https://opentshost.com/supersites/timenexus/_nuxt/BAXbawo1.js`.
 - No all-IANA timezone generation, external calendar provider, public widget/API, saved history, persistent storage, worker, cron, checkout, billing, ads, donation, affiliate or external analytics was activated.

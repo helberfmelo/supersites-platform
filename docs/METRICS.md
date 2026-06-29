@@ -953,6 +953,11 @@ Data-base: 2026-06-29
 | Sprint 13.2 public copy gate | `pnpm validate:public-copy` passed; 951 HTML files |
 | Sprint 13.2 AdSense-safe gate | `pnpm validate:adsense-safe-public` passed; 13 public pages |
 | Sprint 13.2 local governance gates | Passed: `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` |
+| Sprint 13.2 feature commit | `6abcda5 feat: add timenexus curated city pages` |
+| Sprint 13.2 remote Quality Gate | `28354017920` passed |
+| Sprint 13.2 remote Deploy Dry Run | `28354017921` passed |
+| Sprint 13.2 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, TimeNexus static smoke, `pnpm deploy:smoke-netprobe-public`, `pnpm deploy:smoke-control-plane-public`; current TimeNexus public asset `https://opentshost.com/supersites/timenexus/_nuxt/BAXbawo1.js` |
+| Sprint 13.2 production deploy activation | 0 real static app deploys triggered in this sprint; public smokes validate the existing production baseline |
 | Sprint 13.2 mass page/provider activation | 0 all-timezone generation, external calendar, widget/API, saved history, checkout, billing, ads, donation, affiliate, external analytics, worker or cron activations |
 
 ## Product metrics
