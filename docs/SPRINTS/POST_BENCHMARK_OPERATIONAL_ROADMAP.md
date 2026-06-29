@@ -58,7 +58,7 @@ Objetivo: resolver pendencias criticas tecnicas antes de qualquer monetizacao re
 
 Objetivo: trocar proxies locais por mensuracao operacional real onde permitido.
 
-Status em 2026-06-29: Fase iniciada. A Sprint 12.1 esta localmente validada com `lighthouse` 13.4.0, `@lhci/cli` 0.15.1, `pnpm measure:lighthouse-public`, `.lighthouserc.cjs`, workflow manual `Public Measurement Readiness` e runbook `docs/RUNBOOKS/REAL_MEASUREMENT_READINESS.md`. PageSpeed API e provedores Google/AdSense seguem bloqueados por gate humano.
+Status em 2026-06-29: Fase iniciada. A Sprint 12.1 foi concluida com `lighthouse` 13.4.0, `@lhci/cli` 0.15.1, `pnpm measure:lighthouse-public`, `.lighthouserc.cjs`, workflow manual `Public Measurement Readiness` run `28349998391` e runbook `docs/RUNBOOKS/REAL_MEASUREMENT_READINESS.md`. PageSpeed API e provedores Google/AdSense seguem bloqueados por gate humano.
 
 | Sprint | Simbolico | Escopo | Gates/humanos |
 |---:|---|---|---|

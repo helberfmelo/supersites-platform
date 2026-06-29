@@ -882,7 +882,11 @@ Data-base: 2026-06-29
 | Sprint 12.1 local Lighthouse scores | Hub EN perf/a11y/best/SEO `100/100/96/100`; NetProbe IP `100/100/96/100`; PixelBatch compressor `100/96/96/100` |
 | Sprint 12.1 local Lighthouse web vitals | LCP 349/264/245 ms; CLS 0/0/0 for Hub EN, NetProbe IP and PixelBatch compressor |
 | Sprint 12.1 local LHCI filesystem run | Passed; 3 reports written to `artifacts/lhci-public` |
-| Sprint 12.1 final public readiness smoke | `2026-06-29T05-03-37Z`; status `passed`; 5 checks; 0 failures |
+| Sprint 12.1 feature commit | `709ad60 ops: add public lighthouse measurement readiness` |
+| Sprint 12.1 remote Quality Gate | `28349863030` passed |
+| Sprint 12.1 remote Deploy Dry Run | `28349863062` passed |
+| Sprint 12.1 manual measurement workflow | `Public Measurement Readiness` run `28349998391` passed; artifact `public-measurement-readiness-artifacts` ID `7943108351`; digest `sha256:61651c8cebde9dff69944c875c5324516ecdbc2b43c0d6777e1e5731c08f798a` |
+| Sprint 12.1 final public readiness smoke | `2026-06-29T05-12-04Z`; status `passed`; 5 checks; 0 failures |
 | Sprint 12.1 PageSpeed/Google provider activation | 0 API keys/properties/tags/verifications activated |
 | Sprint 12.1 ads/billing/donation/affiliate activation | 0 activated |
 
