@@ -859,6 +859,12 @@ Data-base: 2026-06-29
 | Sprint 11.4 final public smokes | Passed: aggregate Hub/API, control-plane and NetProbe |
 | Sprint 11.4 final VPS runtime validation | Passed after CI: service active, authenticated Redis PING, local-only bind, public Redis ports closed/filtered |
 | Sprint 11.4 scheduled backup activation | 0 cron/timer/workflow schedules activated |
+| Sprint 11.5 uptime runbook | `docs/RUNBOOKS/UPTIME_INCIDENT_RESPONSE.md` |
+| Sprint 11.5 readiness script | `scripts/run-uptime-incident-readiness.ps1` |
+| Sprint 11.5 readiness command | `pnpm ops:uptime-readiness-smoke` |
+| Sprint 11.5 readiness run | `2026-06-29T04-36-41Z`; status `passed`; 5 checks; 0 failures |
+| Sprint 11.5 readiness checks | Hub/API public smoke, control-plane/API smoke, NetProbe/API smoke, AdSense-safe public gate, VPS Redis runtime validation |
+| Sprint 11.5 external provider activation | 0 uptime providers/workers/crons/paid alerts activated |
 
 ## Product metrics
 

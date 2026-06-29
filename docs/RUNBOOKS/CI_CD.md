@@ -62,6 +62,16 @@ Actions:
 
 The watchdog does not log in, publish, deploy, delete, start workers, call provider APIs, request ads, create checkout sessions, activate donations, or mutate production state. It is an operational visibility gate for the public transitional URLs under `/supersites/...`.
 
+### Uptime/Incident Readiness Smoke
+
+File: `scripts/run-uptime-incident-readiness.ps1`.
+
+Sprint 11.5 adds a local consolidated operational smoke exposed as `pnpm ops:uptime-readiness-smoke`. It runs the current public Hub/API, control-plane/API and NetProbe/API smokes, `pnpm validate:adsense-safe-public` and the VPS Redis runtime validation, then writes local artifacts under `artifacts/uptime-incident-readiness/`.
+
+Runbook: `docs/RUNBOOKS/UPTIME_INCIDENT_RESPONSE.md`.
+
+The readiness smoke does not publish, deploy, rollback, delete, start workers, start crons, activate external providers or mutate production.
+
 ### GitHub Main Guardrails
 
 File: `scripts/sync-github-main-ruleset.ps1`.

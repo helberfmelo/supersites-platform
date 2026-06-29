@@ -1478,6 +1478,13 @@ Em 2026-06-29, a Fase 11 foi aberta como `Operational Hardening`. A Sprint 11.1 
   - Smokes publicos finais passaram: `pnpm deploy:smoke-supersite-public` validou Hub `BNDSn3oU.js`, dez apps publicados e APIs MailHealth/SitePulse; `pnpm deploy:smoke-control-plane-public` passou; `pnpm deploy:smoke-netprobe-public` validou NetProbe `xQOMqDWZ.js` e API publica. `scripts/validate-vps-runtime.ps1` pos-CI tambem passou.
   - Esta sprint nao criou schedule automatico de backup, nao reiniciou/parou Redis, nao sobrescreveu `/var/lib/supersites-redis`, nao alterou `/srv/bigshop360`, Nginx/HTTPD, MariaDB, servicos BigShop360, workers/crons, DNS/root mapping, ads, analytics externo, billing, checkout, doacao, afiliado, API paga ou acao irreversivel.
 
+- Sprint 11.5 - OPS-UPTIME-RUNBOOK:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/STATUS.md`, `docs/ROADMAP.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local e ADRs existentes ate `0031`.
+  - Estado inicial verificado: branch `main...origin/main`, ultimo commit `9dfdcc2`, Quality Gate docs-only `28348789787` verde e historico recente de CI/deploy seco da Fase 11 verde.
+  - Escopo tecnico: adiciona `scripts/run-uptime-incident-readiness.ps1`, exposto como `pnpm ops:uptime-readiness-smoke`, cria `docs/RUNBOOKS/UPTIME_INCIDENT_RESPONSE.md`, atualiza indice de runbooks, CI/CD runbook, scripts README, ROADMAP/STATUS/METRICS.
+  - Readiness smoke local passou com run `2026-06-29T04-36-41Z`: 5 checks, 0 falhas, Hub/API publico, control-plane/API, NetProbe/API, `validate:adsense-safe-public` em 13 paginas e VPS Redis runtime passaram; o artefato local ficou em `artifacts/uptime-incident-readiness/`.
+  - Esta sprint ainda nao ativou provedor externo de uptime, worker/cron, alerta pago, status page publica externa, deploy real, rollback, DNS/root mapping, ads, analytics externo, billing, checkout, doacao, afiliado, API paga ou acao irreversivel.
+
 ## Bloqueios humanos registrados
 
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.

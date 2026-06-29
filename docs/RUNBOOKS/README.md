@@ -7,3 +7,4 @@ Operational runbooks:
 - `LOCAL_DEVELOPMENT.md`
 - `HOSTGATOR_BOOTSTRAP.md`
 - `VPS_RUNTIME.md`
+- `UPTIME_INCIDENT_RESPONSE.md`

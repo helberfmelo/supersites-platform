@@ -519,7 +519,9 @@ Sprint 11.4 - VPS backup/restore drill
 Sprint 11.5 - Uptime and incident runbook
 - Simbolico: OPS-UPTIME-RUNBOOK.
 - Objetivo: consolidar watchdog, smokes, rollback, incidente e evidencias de producao em runbook operacional.
-- Status: pendente apos Sprint 11.4.
+- Escopo: script `scripts/run-uptime-incident-readiness.ps1`, comando `pnpm ops:uptime-readiness-smoke`, runbook `docs/RUNBOOKS/UPTIME_INCIDENT_RESPONSE.md`, severidade, triagem, matriz de rollback, evidencias obrigatorias e limites humanos.
+- Validacao: readiness smoke local, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `test:packages`, `typecheck:packages`, Quality Gate, Deploy Dry Run quando disparado e smokes publicos finais.
+- Status: em execucao. Readiness smoke `2026-06-29T04-36-41Z` passou com 5 checks e 0 falhas: Hub/API publico, control-plane/API, NetProbe/API, `validate:adsense-safe-public` em 13 paginas e VPS Redis runtime. Nenhum provedor externo, worker/cron, alerta pago, deploy real ou rollback foi ativado.
 
 ## Definition of done do programa
 

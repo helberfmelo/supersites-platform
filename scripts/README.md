@@ -7,6 +7,7 @@ Automation scripts. Scripts must not contain real credentials.
 - `plan-hostgator-root-mapping.ps1`: creates a non-mutating root mapping dry-run with public HTTP probes, a proposed root bridge and optional cPanel `.htaccess` metadata inspection when secrets are available in the environment.
 - `plan-hostgator-release-retention.ps1`: creates a non-mutating release retention dry-run for HostGator release folders and can list cPanel release directories when secrets are available in the environment.
 - `run-vps-backup-restore-drill.ps1`: creates a SuperSites-scoped Redis data backup on the VPS, extracts it into a temporary restore-test folder, compares manifests, removes only the restore extraction and writes local drill artifacts without printing credentials.
+- `run-uptime-incident-readiness.ps1`: runs the current public uptime/incident readiness bundle (Hub/API, control-plane/API, NetProbe/API, AdSense-safe public gate and VPS runtime validation) and writes local evidence artifacts.
 - `build-supersite-hostgator-artifact.ps1`: builds the Nuxt catalog with `/supersites/` as `NUXT_APP_BASE_URL` and validates the static artifact for HostGator.
 - `validate-supersite-static-artifact.ps1`: checks the generated static catalog for subdirectory-safe assets, required pages, sitemap entries and forbidden ads/analytics markers.
 - `publish-supersite-hostgator.ps1`: publishes the static catalog to a versioned HostGator release, switches the managed `.htaccess`, and supports rollback.
