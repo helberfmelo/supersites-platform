@@ -128,6 +128,19 @@ Sprint 6.5 adiciona auditoria e priorizacao local sem provider externo de IA:
 - O dashboard admin exibe recomendacoes e anomalias seedadas para readiness, mantendo `automationAllowed=false`.
 - Nao ha SDK/API de IA, chamada externa, worker recorrente, auto-publicacao, alteracao de SEO, mudanca de ads, checkout/billing, Search Console import ou mutation em provider nesta sprint.
 
+## Growth priority readiness
+
+Sprint 16.2 adiciona priorizacao autenticada do growth loop sem provider externo, automacao ou causalidade inferida:
+
+- `@supersites/ai-growth` exporta o contrato `growthPriorityContractVersion` e `resolveGrowthPriorityGate`.
+- `GrowthPriorityReadiness` combina recomendacoes existentes de `ai_growth_recommendations` com o status de `growth_provider_ingestions`.
+- `GET /api/v1/growth/priorities` exige autenticacao e `dashboard.view`.
+- O modelo de prioridade permanece deterministico: `(impact_score * confidence_score) - effort_score - risk_score`.
+- Dados de provider indisponiveis mantem prioridades como `local_evidence_only`; snapshots finalizados futuros podem marcar `real_data_ready`, mas sem automacao.
+- `causality_status=not_inferred`, `automatic_prioritization_enabled=false`, `automatic_pr_creation_enabled=false`, `should_auto_apply=false` e `should_create_pr=false`.
+
+Nenhum provider import, external AI, worker, cron, branch/PR automatico, auto-merge, ads, billing, doacao, afiliado ou publicacao de conteudo e ativado nesta sprint.
+
 ## Executive reports
 
 Sprint 6.6 adiciona relatorios executivos locais e exportaveis no control plane:

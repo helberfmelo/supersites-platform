@@ -31,6 +31,14 @@
             <strong>{{ $summary['growth_ingestion_importing'] }}</strong>
         </article>
         <article class="panel metric">
+            <span class="muted">Priority reviews</span>
+            <strong>{{ $summary['growth_priorities_ready'] }}</strong>
+        </article>
+        <article class="panel metric">
+            <span class="muted">Auto apply</span>
+            <strong>{{ $summary['growth_priority_auto_apply'] }}</strong>
+        </article>
+        <article class="panel metric">
             <span class="muted">Billing gated</span>
             <strong>{{ $summary['billing_gated'] }}</strong>
         </article>
@@ -255,6 +263,49 @@
                 @empty
                     <tr>
                         <td colspan="4">No growth anomalies seeded.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </section>
+
+    <section class="panel">
+        <h2>Growth priorities</h2>
+        <p class="muted">
+            Ready for review {{ $growthPriorityReadiness['data']['summary']['priorities_ready_for_operator_review'] }} /
+            {{ $growthPriorityReadiness['data']['summary']['recommendations'] }} ·
+            provider data {{ $growthPriorityReadiness['data']['summary']['provider_data_status'] }} ·
+            real snapshots {{ $growthPriorityReadiness['data']['summary']['real_provider_data_snapshots'] }} ·
+            causality {{ $growthPriorityReadiness['data']['summary']['causality_status'] }} ·
+            auto apply {{ $growthPriorityReadiness['data']['summary']['automatic_prioritization_enabled'] ? 'enabled' : 'disabled' }}
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Score</th>
+                    <th>Data</th>
+                    <th>Automation</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse (array_slice($growthPriorityReadiness['data']['priorities'], 0, 6) as $priority)
+                    <tr>
+                        <td>{{ $priority['rank'] }}</td>
+                        <td>
+                            {{ $priority['title'] }}
+                            <br><span class="muted">{{ $priority['site_name'] }} · {{ $priority['category'] }}</span>
+                        </td>
+                        <td><span class="status {{ $priority['status'] }}">{{ $priority['status'] }}</span></td>
+                        <td>{{ $priority['priority_score'] }}</td>
+                        <td>{{ $priority['data_status'] }}</td>
+                        <td>{{ $priority['automation_allowed'] ? 'enabled' : 'disabled' }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">No growth priorities available for review.</td>
                     </tr>
                 @endforelse
             </tbody>

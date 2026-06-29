@@ -3,6 +3,7 @@ import {
   buildGrowthRecommendation,
   detectMetricAnomaly,
   prioritizeGrowthRecommendations,
+  resolveGrowthPriorityGate,
   summarizeGrowthBacklog,
 } from '../src/index'
 
@@ -193,6 +194,60 @@ describe('ai growth engine contracts', () => {
       humanGateRequired: 1,
       evidenceBacked: 2,
       automationAllowed: 0,
+    })
+  })
+
+  it('keeps priority gates local-only until provider data is available', () => {
+    const recommendation = buildGrowthRecommendation({
+      category: 'technical',
+      title: 'Prioritize public smoke reliability',
+      recommendation: 'Keep public smoke evidence ahead of automation.',
+      impact: 5,
+      effort: 2,
+      confidence: 5,
+      risk: 2,
+      evidence,
+    })
+
+    expect(resolveGrowthPriorityGate({
+      recommendations: [recommendation],
+      providerDataStatuses: ['unavailable', 'delayed'],
+    })).toMatchObject({
+      status: 'local_evidence_only',
+      dataStatus: 'unavailable',
+      providerDataAvailable: false,
+      causalityStatus: 'not_inferred',
+      automaticPrioritizationEnabled: false,
+      shouldCreatePr: false,
+      reasons: ['provider_data_unavailable'],
+    })
+  })
+
+  it('allows real-data priority review without automation or causality', () => {
+    const recommendation = buildGrowthRecommendation({
+      category: 'seo',
+      title: 'Review high impression pages',
+      recommendation: 'Use finalized provider evidence for operator review.',
+      impact: 5,
+      effort: 2,
+      confidence: 4,
+      risk: 3,
+      evidence,
+    })
+
+    expect(resolveGrowthPriorityGate({
+      recommendations: [recommendation],
+      providerDataStatuses: ['finalized'],
+    })).toMatchObject({
+      status: 'real_data_ready',
+      dataStatus: 'finalized',
+      providerDataAvailable: true,
+      causalityStatus: 'not_inferred',
+      automaticPrioritizationEnabled: false,
+      automationAllowed: false,
+      externalAiAllowed: false,
+      shouldCreatePr: false,
+      reasons: [],
     })
   })
 })

@@ -92,6 +92,14 @@
 - Anomalias devem declarar `causalityStatus=not_inferred` ate haver evidencia suficiente e revisao humana; nao inventar causalidade.
 - Ativar provider externo de IA, enviar prompts com dados operacionais, publicar conteudo, mudar SEO, alterar ads/AdSense, billing, checkout, Search Console ou configuracao de provider exige `HUMAN_ACTION_REQUIRED`, revisao legal/dados/custos, secrets em cofre e smoke/rollback especificos.
 
+## Growth priority gates
+
+- A Sprint 16.2 expõe apenas priorizacao autenticada por evidencia local e readiness de provider; nenhuma importacao, worker, cron, external AI, branch/PR automatico ou auto-merge e ativado.
+- `GET /api/v1/growth/priorities` exige autenticacao e `dashboard.view`.
+- A priorizacao nao deve armazenar PII, queries reais, URLs com identificador, payloads de provider, dados de cliente, receita individual, impressao/clique individual, invoices, prompts externos, tokens ou segredos.
+- `causality_status` deve permanecer `not_inferred`; antes/depois, impacto financeiro, ranking ou atribuicao causal exigem revisao humana e evidencia especifica.
+- Mesmo com `data_status=finalized` em fonte futura, `automatic_prioritization_enabled`, `automatic_pr_creation_enabled`, `should_auto_apply` e `should_create_pr` devem continuar falsos ate um gate separado de automacao.
+
 ## Executive report gates
 
 - A Sprint 6.6 registra apenas relatorios executivos locais; nenhum provider import, envio de e-mail, worker recorrente, webhook de relatorio ou automacao externa e criado.

@@ -311,3 +311,15 @@ A Sprint 16.1 adiciona somente readiness local para ingestao futura de GA4, Sear
 - `GET /api/v1/growth/ingestion-readiness` fica atras de auth e `dashboard.view`.
 - O dashboard mostra fontes prontas para ativacao humana, mas `sources_importing`, `provider_requests_enabled` e `workers_enabled` permanecem 0.
 - Nenhum provider API, token, payload real, worker, cron, retry automatico, receita, impressao, clique, sessao, query Search Console ou metrica billing real e coletado nesta sprint.
+
+## Growth priority readiness
+
+A Sprint 16.2 adiciona somente priorizacao autenticada de backlog a partir de evidencias locais e readiness de ingestao.
+
+- `@supersites/ai-growth` exporta `growthPriorityContractVersion` e `resolveGrowthPriorityGate`.
+- `GET /api/v1/growth/priorities` fica atras de auth e `dashboard.view`.
+- O snapshot ordena `ai_growth_recommendations` por `(impact_score * confidence_score) - effort_score - risk_score`.
+- `growth_provider_ingestions` informa se dados reais de provider ainda estao `unavailable` ou se algum snapshot futuro esta `finalized`.
+- `causality_status` permanece `not_inferred`.
+- `automatic_prioritization_enabled`, `automatic_pr_creation_enabled`, `should_auto_apply` e `should_create_pr` permanecem falsos.
+- Nenhum provider API, external AI, prompt externo, worker, cron, branch, PR, auto-merge, ads, checkout, billing ou publicacao e ativado nesta sprint.

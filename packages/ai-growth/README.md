@@ -16,3 +16,6 @@ Every recommendation must include:
 
 Missing evidence or scores blocks the recommendation. Human-gated work remains
 closed until the relevant operational document records the required approval.
+
+Sprint 16.2 adds `resolveGrowthPriorityGate` for authenticated priority review.
+It keeps provider-data prioritization, causal claims and automation fail-closed.

@@ -192,6 +192,14 @@
 - Anomalias nao devem inferir causalidade sem evidencia; `causalityStatus` permanece `not_inferred` por padrao.
 - Provider externo de IA, prompts com dados operacionais, automacao de conteudo, SEO, ads, billing, Search Console ou provider-side mutation permanecem desligados ate matriz de dados, base legal, termos, custo, retencao e aprovacao humana.
 
+## Growth priority readiness
+
+- A Sprint 16.2 cria apenas um snapshot autenticado derivado de `ai_growth_recommendations` e `growth_provider_ingestions`.
+- Campos permitidos: categoria, titulo, scores de impacto/esforco/confianca/risco, score de prioridade, status, contagem de evidencias, site, status de dado de provider, flags fail-closed e bloqueios operacionais.
+- Campos proibidos: queries reais, URL com query/hash ou identificador, IP, e-mail, cookie, customer id, invoice, receita individual, impressao/clique individual, payload bruto GA4/Search Console/AdSense/billing, prompt externo, resposta de provider, token, OAuth secret, API key, webhook secret, input de ferramenta ou arquivo.
+- `data_status=finalized` em provider futuro pode indicar disponibilidade para revisao do operador, mas nao autoriza causalidade, publicacao, branch/PR automatico, auto-merge ou alteracao de ads/billing/SEO.
+- `causality_status=not_inferred` permanece obrigatorio ate existir contrato de revisao humana e evidencia antes/depois aprovada.
+
 ## Executive reports
 
 - A Sprint 6.6 cria apenas relatorios operacionais locais em `executive_reports` e `executive_report_items`.

@@ -1,4 +1,5 @@
 export const aiGrowthContractVersion = '2026-06-27.1'
+export const growthPriorityContractVersion = '2026-06-29.16.2'
 
 export const growthCategories = ['technical', 'seo', 'aio', 'monetization', 'anomaly', 'prioritization'] as const
 
@@ -9,6 +10,8 @@ export type GrowthEvidenceType = (typeof growthEvidenceTypes)[number]
 export type GrowthStatus = 'candidate' | 'human_required' | 'blocked' | 'accepted' | 'watching'
 export type GrowthAnomalyDirection = 'increase' | 'decrease' | 'any'
 export type GrowthAnomalyStatus = 'within_threshold' | 'watching' | 'insufficient_data'
+export type GrowthPriorityStatus = 'local_evidence_only' | 'real_data_ready' | 'human_required' | 'blocked'
+export type GrowthPriorityDataStatus = 'finalized' | 'estimated' | 'delayed' | 'unavailable'
 
 export interface GrowthEvidenceInput {
   type: string
@@ -87,6 +90,25 @@ export interface GrowthBacklogSummary {
   blocked: number
   evidenceBacked: number
   automationAllowed: 0
+}
+
+export interface GrowthPriorityGateInput {
+  recommendations?: GrowthRecommendation[] | null
+  providerDataStatuses?: Array<string | null | undefined> | null
+  humanReviewRequired?: boolean
+}
+
+export interface GrowthPriorityGate {
+  contractVersion: string
+  status: GrowthPriorityStatus
+  dataStatus: GrowthPriorityDataStatus
+  providerDataAvailable: boolean
+  causalityStatus: 'not_inferred'
+  automaticPrioritizationEnabled: false
+  automationAllowed: false
+  externalAiAllowed: false
+  shouldCreatePr: false
+  reasons: string[]
 }
 
 const safeIdPattern = /^[a-z0-9]+(?:[-_.:][a-z0-9]+)*$/i
@@ -267,6 +289,59 @@ export function summarizeGrowthBacklog(items: GrowthRecommendation[]): GrowthBac
   }
 }
 
+export function resolveGrowthPriorityGate(input: GrowthPriorityGateInput): GrowthPriorityGate {
+  const recommendations = input.recommendations ?? []
+  const providerStatuses = input.providerDataStatuses ?? []
+  const providerDataAvailable = providerStatuses.some((status) => normalizePriorityDataStatus(status) === 'finalized')
+  const hasEvidenceBackedRecommendation = recommendations.some((item) => item.evidence.length > 0 && item.priorityScore !== null)
+  const hasBlockedRecommendation = recommendations.some((item) => item.status === 'blocked')
+  const humanReviewRequired = Boolean(input.humanReviewRequired)
+    || recommendations.some((item) => item.humanGateRequired)
+
+  const reasons: string[] = []
+
+  if (recommendations.length === 0) {
+    reasons.push('missing_recommendations')
+  }
+
+  if (!hasEvidenceBackedRecommendation) {
+    reasons.push('missing_evidence_backed_priority')
+  }
+
+  if (!providerDataAvailable) {
+    reasons.push('provider_data_unavailable')
+  }
+
+  if (hasBlockedRecommendation) {
+    reasons.push('blocked_recommendations_present')
+  }
+
+  if (humanReviewRequired) {
+    reasons.push('human_review_required')
+  }
+
+  const status: GrowthPriorityStatus = recommendations.length === 0 || !hasEvidenceBackedRecommendation
+    ? 'blocked'
+    : humanReviewRequired
+      ? 'human_required'
+      : providerDataAvailable
+        ? 'real_data_ready'
+        : 'local_evidence_only'
+
+  return {
+    contractVersion: growthPriorityContractVersion,
+    status,
+    dataStatus: providerDataAvailable ? 'finalized' : 'unavailable',
+    providerDataAvailable,
+    causalityStatus: 'not_inferred',
+    automaticPrioritizationEnabled: false,
+    automationAllowed: false,
+    externalAiAllowed: false,
+    shouldCreatePr: false,
+    reasons: Array.from(new Set(reasons)),
+  }
+}
+
 export function calculatePriorityScore(impact: number, effort: number, confidence: number, risk: number): number {
   return (impact * confidence) - effort - risk
 }
@@ -374,6 +449,14 @@ function normalizeMetricKey(value: string): string {
     .replace(/^_+|_+$/g, '')
 
   return normalized.slice(0, 120)
+}
+
+function normalizePriorityDataStatus(value: string | null | undefined): GrowthPriorityDataStatus {
+  const normalized = String(value ?? '').trim().toLowerCase()
+
+  return ['finalized', 'estimated', 'delayed', 'unavailable'].includes(normalized)
+    ? normalized as GrowthPriorityDataStatus
+    : 'unavailable'
 }
 
 function normalizeNumber(value: number | null | undefined): number | null {
