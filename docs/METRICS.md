@@ -871,6 +871,20 @@ Data-base: 2026-06-29
 | Sprint 11.5 final readiness smoke | `2026-06-29T04-42-30Z`; status `passed`; 5 checks; 0 failures |
 | Fase 11 completion | Completed 2026-06-29; Sprints 11.1 through 11.5 closed with Quality Gate/docs-only Quality Gate evidence |
 | Fase 11 irreversible/external activation | 0 DNS/root mapping/deploy real/ads/billing/checkout/workers/crons/provider uptime activations |
+| Sprint 12.1 phase opened | Fase 12 - Real Measurement Readiness |
+| Sprint 12.1 Lighthouse dependency | `lighthouse` 13.4.0 versioned as workspace dev dependency |
+| Sprint 12.1 LHCI dependency | `@lhci/cli` 0.15.1 versioned as workspace dev dependency |
+| Sprint 12.1 measurement command | `pnpm measure:lighthouse-public` |
+| Sprint 12.1 LHCI command | `pnpm measure:lhci-public` with filesystem upload to `artifacts/lhci-public` |
+| Sprint 12.1 measurement workflow | `.github/workflows/public-measurement-readiness.yml` manual dispatch only |
+| Sprint 12.1 measurement runbook | `docs/RUNBOOKS/REAL_MEASUREMENT_READINESS.md` |
+| Sprint 12.1 local Lighthouse quick run | `artifacts/lighthouse-public/sprint-12-1-local/summary.md`; status `passed`; 3 public pages |
+| Sprint 12.1 local Lighthouse scores | Hub EN perf/a11y/best/SEO `100/100/96/100`; NetProbe IP `100/100/96/100`; PixelBatch compressor `100/96/96/100` |
+| Sprint 12.1 local Lighthouse web vitals | LCP 349/264/245 ms; CLS 0/0/0 for Hub EN, NetProbe IP and PixelBatch compressor |
+| Sprint 12.1 local LHCI filesystem run | Passed; 3 reports written to `artifacts/lhci-public` |
+| Sprint 12.1 final public readiness smoke | `2026-06-29T05-03-37Z`; status `passed`; 5 checks; 0 failures |
+| Sprint 12.1 PageSpeed/Google provider activation | 0 API keys/properties/tags/verifications activated |
+| Sprint 12.1 ads/billing/donation/affiliate activation | 0 activated |
 
 ## Product metrics
 

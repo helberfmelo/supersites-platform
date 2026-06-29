@@ -1,0 +1,85 @@
+name: Public Measurement Readiness
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Public Lighthouse sample mode.
+        required: true
+        default: quick
+        type: choice
+        options:
+          - quick
+          - full
+      fail_on_thresholds:
+        description: Fail when configured Lighthouse thresholds are below target.
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-measurement-readiness
+  cancel-in-progress: false
+
+jobs:
+  public_measurement:
+    name: Public Lighthouse and LHCI measurement
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v6.4.0
+        with:
+          node-version: '24'
+
+      - name: Enable pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@11.9.0 --activate
+
+      - name: Install Node dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browser
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Configure Chrome path
+        shell: bash
+        run: |
+          CHROME_PATH="$(node -e "const { chromium } = require('@playwright/test'); console.log(chromium.executablePath())")"
+          echo "CHROME_PATH=$CHROME_PATH" >> "$GITHUB_ENV"
+
+      - name: Run public Lighthouse measurement
+        shell: bash
+        run: |
+          args=(--mode="${{ inputs.mode }}")
+          if [ "${{ inputs.fail_on_thresholds }}" = "true" ]; then
+            args+=(--fail-on-thresholds)
+          fi
+          pnpm measure:lighthouse-public -- "${args[@]}"
+
+      - name: Run LHCI filesystem measurement
+        run: pnpm measure:lhci-public
+
+      - name: Publish measurement summary
+        shell: bash
+        run: |
+          report="$(find artifacts/lighthouse-public -name summary.md -print -quit)"
+          if [ -n "$report" ]; then
+            cat "$report" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload measurement artifacts
+        uses: actions/upload-artifact@v4.6.2
+        continue-on-error: true
+        with:
+          name: public-measurement-readiness-artifacts
+          path: |
+            artifacts/lighthouse-public
+            artifacts/lhci-public
+          if-no-files-found: warn

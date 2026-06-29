@@ -478,7 +478,7 @@ Sprint 10.1 - Roadmap pos-benchmark e public watchdog
 As fases futuras completas estao descritas em `docs/SPRINTS/POST_BENCHMARK_OPERATIONAL_ROADMAP.md`:
 
 - Fase 11 - Operational Hardening: concluida em 2026-06-29, cobrindo branch protection, root mapping dry-run, retencao HostGator, VPS backup/restore e runbooks de uptime.
-- Fase 12 - Real Measurement Readiness: Lighthouse/LHCI, auditoria admin autenticada, readiness Google e relatorios executivos com evidencias.
+- Fase 12 - Real Measurement Readiness: em andamento desde 2026-06-29, cobrindo Lighthouse/LHCI, auditoria admin autenticada, readiness Google e relatorios executivos com evidencias.
 - Fase 13 - Product Depth and SEO/AIO Expansion: expansao curada de calculadoras, fusos/cidades, builders MailHealth, detalhes SitePulse e planejamento PixelBatch/DocShift.
 - Fase 14 - Paid Upgrade Foundations: auth, contas, entitlements, webhook foundation e monitores preview sem cobranca real.
 - Fase 15 - Provider and Monetization Go-Live: AdSense, Google providers, billing, doacoes e afiliados apenas apos gates humanos.
@@ -522,6 +522,38 @@ Sprint 11.5 - Uptime and incident runbook
 - Escopo: script `scripts/run-uptime-incident-readiness.ps1`, comando `pnpm ops:uptime-readiness-smoke`, runbook `docs/RUNBOOKS/UPTIME_INCIDENT_RESPONSE.md`, severidade, triagem, matriz de rollback, evidencias obrigatorias e limites humanos.
 - Validacao: readiness smoke local, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `test:packages`, `typecheck:packages`, Quality Gate, Deploy Dry Run quando disparado e smokes publicos finais.
 - Status: concluida. Commit `228d8b7`, Quality Gate `28348989762`, Deploy Dry Run `28348989784` e readiness smoke final `2026-06-29T04-42-30Z` passaram. O readiness final teve 5 checks e 0 falhas: Hub/API publico, control-plane/API, NetProbe/API, `validate:adsense-safe-public` em 13 paginas e VPS Redis runtime. Nenhum provedor externo, worker/cron, alerta pago, deploy real ou rollback foi ativado.
+
+## Fase 12 - Real Measurement Readiness
+
+Status geral: em andamento desde 2026-06-29. A fase troca proxies deterministicos por evidencias reais permitidas e reproduziveis: Lighthouse/LHCI publico sem PageSpeed API, auditoria admin autenticada local, checklist Google sem criar propriedades/tags e relatorios executivos baseados somente em evidencias internas/public watchdog.
+
+Sprint 12.1 - Lighthouse/LHCI public measurement
+- Simbolico: MEASURE-LIGHTHOUSE-CI.
+- Objetivo: versionar Lighthouse/LHCI, criar comandos locais, workflow manual e evidencias publicas sem provider pago.
+- Escopo: dev dependencies `lighthouse`/`@lhci/cli`, comando `pnpm measure:lighthouse-public`, comando `pnpm measure:lhci-public`, config `.lighthouserc.cjs`, workflow manual `Public Measurement Readiness`, runbook `docs/RUNBOOKS/REAL_MEASUREMENT_READINESS.md` e artefatos ignorados por git.
+- Validacao: baseline publico, medicao Lighthouse quick, LHCI filesystem, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate, Deploy Dry Run, workflow manual de medicao e smokes publicos.
+- Status: local validado, remoto pendente. `pnpm measure:lighthouse-public -- --mode=quick --output-dir=artifacts/lighthouse-public/sprint-12-1-local` passou para Hub EN, NetProbe What is my IP e PixelBatch Image Compressor; `pnpm measure:lhci-public` passou com 3 reports filesystem. Nenhuma PageSpeed API key, propriedade Google, tag GA4/GTM, Search Console, AdSense, billing, doacao, afiliado ou provider externo foi ativado.
+
+Sprint 12.2 - Authenticated admin dashboard audit
+- Simbolico: MEASURE-DASHBOARD-AUDIT.
+- Objetivo: auditar o dashboard admin autenticado com Playwright local e registrar cobertura de telas sem expor credenciais.
+- Escopo: criar fluxo local de login/seed controlado, screenshots/coverage do dashboard, benchmark refinement, reports e sites, com redacao de dados sensiveis e sem acesso a producao autenticada.
+- Validacao: testes Laravel/admin, Playwright local, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, CI e smokes publicos.
+- Status: pendente.
+
+Sprint 12.3 - Google readiness checklist
+- Simbolico: MEASURE-GOOGLE-READY.
+- Objetivo: preparar checklist tecnico para GA4/GTM/Search Console sem criar propriedades, verificacoes, containers ou tags reais.
+- Escopo: validar contratos fail-closed, eventos permitidos, consent/ad gates, checklist de verificacao manual e pendencias humanas.
+- Validacao: testes de analytics/ads/seo, gates publicos, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, CI e smokes publicos.
+- Status: pendente.
+
+Sprint 12.4 - Executive reports evidence wiring
+- Simbolico: MEASURE-EXEC-REPORTS.
+- Objetivo: atualizar relatorios executivos para consumir apenas evidencias internas/public watchdog ate providers existirem.
+- Escopo: evidencias internas versionadas, status de dados explicito, sem causalidade inventada, sem receita real e sem automacao de envio.
+- Validacao: testes de `@supersites/executive-reports` e Laravel admin, export CSV/print, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, CI e smokes publicos.
+- Status: pendente.
 
 ## Definition of done do programa
 
