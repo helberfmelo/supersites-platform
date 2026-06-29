@@ -105,7 +105,7 @@ Antes de vender qualquer upgrade, ainda faltam entitlements/quotas por plano, te
 A Sprint 14.2 cria enforcement de quota por entitlement local, ainda sem cobranca real:
 
 - `monitor-slots` limita monitores para planos `free-preview` de NetProbe, MailHealth e SitePulse.
-- `monitor-types` limita tipos de monitor do NetProbe.
+- `monitor-types` limita tipos de monitor de NetProbe, MailHealth e SitePulse.
 - `PlanEntitlementResolver` consulta `billing_entitlements` e declara fallback configurado quando o seed local nao existe.
 - O endpoint de monitores NetProbe bloqueia criacao acima do limite antes de gravar dados.
 - O dashboard de billing exibe limites resumidos por plano local.
@@ -127,6 +127,20 @@ A Sprint 14.3 cria somente o receiver de webhook assinado em modo dry-run:
 Isto nao ativa provider real, SDK, checkout, assinatura, pagamento, invoice, refund, dunning, imposto automatico, customer portal, alteracao de entitlement, revenue import, webhook real ou secret versionado.
 
 Antes de processar webhooks reais, ainda faltam provider aprovado, secrets em cofre, fixtures oficiais de assinatura por provedor, replay/rollback operacional, matriz de dados de payload, termos/cancelamento/reembolso, KYC, impostos e smoke especifico de provider.
+
+## Paid monitor preview
+
+A Sprint 14.4 cria preview autenticado de monitores para NetProbe, MailHealth e SitePulse, ainda sem monetizacao real:
+
+- `GET /api/v1/monitoring/previews` mostra catalogo, quotas, tipos permitidos e estados desligados.
+- `POST /api/v1/monitoring/previews` valida target, tipo e quota e retorna simulacao `preview_only`.
+- `monitor-types` passa a cobrir `dns/ssl/domain` para NetProbe, `dns/blacklist/smtp` para MailHealth e `status/headers/robots/sitemap` para SitePulse.
+- O preview retorna `persisted=false`, `queued=false`, `worker_enabled=false`, `alert_delivery_enabled=false` e `checkout_enabled=false`.
+- Auditoria grava somente hash do target.
+
+Isto nao ativa checkout, plano pago, assinatura, worker recorrente, historico pago, alertas reais, status page, DMARC recorrente, invoice, uso medido comercial, provider SDK, webhook real ou billing provider.
+
+Antes de vender monitores, ainda faltam runtime/worker, backup/restore, politica de alerta, termos, retencao/exportacao/exclusao, provider-policy review, antiabuso, billing real e smokes de producao.
 
 ## AI growth monetization recommendations
 

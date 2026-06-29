@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\V1\MailHealth\MailHealthBlacklistController;
 use App\Http\Controllers\Api\V1\MailHealth\MailHealthDnsController;
 use App\Http\Controllers\Api\V1\MailHealth\MailHealthSmtpController;
 use App\Http\Controllers\Api\V1\MetricSnapshotIndexController;
+use App\Http\Controllers\Api\V1\Monitoring\MonitorPreviewIndexController;
+use App\Http\Controllers\Api\V1\Monitoring\MonitorPreviewStoreController;
 use App\Http\Controllers\Api\V1\NetProbe\ClientIpController;
 use App\Http\Controllers\Api\V1\NetProbe\DnsPropagationController;
 use App\Http\Controllers\Api\V1\NetProbe\DnsLookupController;
@@ -71,6 +73,13 @@ Route::prefix('v1')
         Route::get('/sites', SiteIndexController::class);
         Route::get('/metric-snapshots', MetricSnapshotIndexController::class)
             ->middleware('permission:dashboard.view');
+
+        Route::prefix('monitoring/previews')
+            ->middleware('permission:operations.manage')
+            ->group(function (): void {
+                Route::get('/', MonitorPreviewIndexController::class);
+                Route::post('/', MonitorPreviewStoreController::class);
+            });
 
         Route::prefix('netprobe/monitors')
             ->middleware('permission:operations.manage')

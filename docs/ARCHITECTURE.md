@@ -101,12 +101,22 @@ Sprint 14.1 adiciona controles autenticados de conta sem ativar signup publico o
 Sprint 14.2 conecta quotas tecnicas a entitlements locais sem checkout real:
 
 - `billing_entitlements.monitor-slots` define slots de monitor para planos `free-preview` de NetProbe, MailHealth e SitePulse.
-- `billing_entitlements.monitor-types` define tipos permitidos para NetProbe.
+- `billing_entitlements.monitor-types` define tipos permitidos para NetProbe, MailHealth e SitePulse.
 - `PlanEntitlementResolver` busca o plano local `free-preview` com `checkout_enabled=false` e retorna fallback declarado quando o seed de billing nao existe.
 - `/api/v1/netprobe/monitors` passa a reportar `billing_plan`, `quota_source`, `max_monitors`, `remaining_monitors`, `allowed_types` e `checkout_enabled` nos metadados de quota.
 - A criacao de monitor falha antes de gravar dados quando o uso atinge o limite resolvido.
 - `@supersites/billing` expoe uma decisao deterministica de quota para manter contrato compartilhado testado.
 - Nao ha plano pago real, provider price id, checkout, webhook real, assinatura, cobranca, uso medido comercial, secret novo ou upgrade automatico nesta sprint.
+
+## Paid monitor preview foundation
+
+Sprint 14.4 adiciona preview autenticado de monitores pagos sem ativar runtime recorrente:
+
+- `GET /api/v1/monitoring/previews` lista NetProbe Atlas, MailHealth e SitePulse Lab com quotas, tipos e estados desligados.
+- `POST /api/v1/monitoring/previews` valida target, monitor type e quota, devolvendo uma simulacao `preview_only`.
+- `PaidMonitorPreviewService` reutiliza `PlanEntitlementResolver` e `NetProbeHostGuard`; URLs de SitePulse sao normalizadas sem query, fragmento, credenciais ou portas nao web.
+- O preview grava apenas auditoria com `target_hash`; nao cria monitor persistente, job, alerta, historico, invoice ou uso medido.
+- Workers, alertas reais, backup/restore, termos, retencao e billing continuam gates antes de qualquer monitoramento pago real.
 
 ## AI growth evidence engine
 

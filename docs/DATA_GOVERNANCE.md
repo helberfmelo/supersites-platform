@@ -101,6 +101,14 @@
 - Sprint 7.10 adiciona score, checklist, abas de detalhes, recomendacoes, related pages e painel de monitoring workflow gated como apresentacao local dos fatos retornados; esses elementos nao criam historico, storage persistente, identificador de conta ou nova coleta.
 - Futuros recursos pagos de uptime, incidentes, status page, alertas, historico, multi-regiao, API, white-label e equipes exigem matriz de dados, retencao, exportacao/exclusao, termos, antiabuso, provider-policy review e consentimento aplicavel antes de ativacao.
 
+## Paid monitor preview
+
+- A Sprint 14.4 adiciona preview autenticado para NetProbe, MailHealth e SitePulse sem criar monitor persistente.
+- Campos permitidos na resposta imediata: site, tipo de monitor, target normalizado, target hash, frequencia, quota, plano, estados de ativacao e flags de worker/alerta desligadas.
+- Campos persistidos: apenas auditoria com usuario, site, tipo de monitor, target hash, frequencia, quota source e `persisted=false`.
+- Campos proibidos em persistencia de preview: target bruto, URL com query/fragmento, headers, resultado de probe, historico, alerta, e-mail, webhook URL, invoice, customer id, pagamento, IP, payload de provider ou dados de ferramenta.
+- Ativacao real de monitores pagos exige matriz de dados por produto, retencao, exportacao/exclusao, termos, backup/restore, alert policy e gates de billing.
+
 ## PixelBatch
 
 - Imagens selecionadas, pixels renderizados, nomes de arquivo, dimensoes, metadados e blobs gerados ficam somente na sessao do navegador no MVP da Sprint 5.1.

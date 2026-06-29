@@ -50,8 +50,9 @@ class BillingReadinessSeeder extends Seeder
                     $entitlementsSummary['monitor_slots'] = 3;
                 }
 
-                if ($site->slug === 'netprobe-atlas') {
-                    $entitlementsSummary['monitor_types'] = ['dns', 'ssl', 'domain'];
+                $monitorTypes = $this->monitorTypesForSite($site->slug);
+                if ($monitorTypes !== []) {
+                    $entitlementsSummary['monitor_types'] = $monitorTypes;
                 }
 
                 $plan = BillingPlan::updateOrCreate(
@@ -84,10 +85,24 @@ class BillingReadinessSeeder extends Seeder
                     $this->upsertEntitlement($plan, 'monitor-slots', 'integer', integerValue: 3);
                 }
 
-                if ($site->slug === 'netprobe-atlas') {
-                    $this->upsertEntitlement($plan, 'monitor-types', 'string', stringValue: 'dns,ssl,domain');
+                $monitorTypes = $this->monitorTypesForSite($site->slug);
+                if ($monitorTypes !== []) {
+                    $this->upsertEntitlement($plan, 'monitor-types', 'string', stringValue: implode(',', $monitorTypes));
                 }
             });
+    }
+
+    /**
+     * @return string[]
+     */
+    private function monitorTypesForSite(string $siteSlug): array
+    {
+        return match ($siteSlug) {
+            'netprobe-atlas' => ['dns', 'ssl', 'domain'],
+            'mailhealth' => ['dns', 'blacklist', 'smtp'],
+            'sitepulse-lab' => ['status', 'headers', 'robots', 'sitemap'],
+            default => [],
+        };
     }
 
     private function upsertEntitlement(

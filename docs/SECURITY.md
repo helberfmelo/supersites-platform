@@ -243,3 +243,11 @@
 - O segredo de dry-run vem de ambiente e fica vazio por padrao; nenhum secret real de Stripe, Mercado Pago, Paddle ou outro provider pode ser versionado.
 - A idempotencia e feita por provider + event id + hash de payload; hash divergente para o mesmo evento retorna conflito e gera auditoria.
 - Eventos aceitos ficam `dry_run` e nao disparam alteracao de plano, checkout, entitlement, invoice, pagamento, refund, dunning, imposto ou chamada a provider.
+
+## Paid monitor preview
+
+- `/api/v1/monitoring/previews` exige autenticacao e permissao `operations.manage`.
+- Targets hostname usam `NetProbeHostGuard`; URLs de SitePulse aceitam apenas HTTP/HTTPS, bloqueiam credenciais, fragmentos, query strings e portas nao web.
+- O preview nao executa probe de rede, nao agenda jobs e nao envia alertas; ele apenas valida shape, quota e entitlement.
+- Auditoria grava hash do target, sem target bruto, headers, query string, resultado tecnico ou destino de alerta.
+- Worker recorrente, multi-regiao, alertas reais, DMARC recorrente, status page e billing medido continuam bloqueados ate gates operacionais e humanos.
