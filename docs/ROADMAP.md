@@ -477,12 +477,43 @@ Sprint 10.1 - Roadmap pos-benchmark e public watchdog
 
 As fases futuras completas estao descritas em `docs/SPRINTS/POST_BENCHMARK_OPERATIONAL_ROADMAP.md`:
 
-- Fase 11 - Operational Hardening: branch protection, root mapping dry-run, retencao HostGator, VPS backup/restore e runbooks de uptime.
+- Fase 11 - Operational Hardening: em execucao a partir de 2026-06-29, cobrindo branch protection, root mapping dry-run, retencao HostGator, VPS backup/restore e runbooks de uptime.
 - Fase 12 - Real Measurement Readiness: Lighthouse/LHCI, auditoria admin autenticada, readiness Google e relatorios executivos com evidencias.
 - Fase 13 - Product Depth and SEO/AIO Expansion: expansao curada de calculadoras, fusos/cidades, builders MailHealth, detalhes SitePulse e planejamento PixelBatch/DocShift.
 - Fase 14 - Paid Upgrade Foundations: auth, contas, entitlements, webhook foundation e monitores preview sem cobranca real.
 - Fase 15 - Provider and Monetization Go-Live: AdSense, Google providers, billing, doacoes e afiliados apenas apos gates humanos.
 - Fase 16 - Continuous Growth Loop: ingestao real, priorizacao, automacoes via PR e relatorios executivos recorrentes.
+
+## Fase 11 - Operational Hardening
+
+Status geral: em execucao. Esta fase fecha pendencias operacionais tecnicas antes de monetizacao real, workers recorrentes, billing ou escala SEO com provedores externos.
+
+Sprint 11.1 - Main branch guardrails
+- Simbolico: OPS-BRANCH-PROTECTION.
+- Objetivo: configurar protecao reversivel para `main` sem bloquear recovery/deploy direto governado.
+- Escopo: ruleset GitHub ativo minimo para bloquear exclusao e non-fast-forward, script `scripts/sync-github-main-ruleset.ps1`, runbook `docs/RUNBOOKS/GITHUB_MAIN_GUARDRAILS.md` e registro de evidencias.
+- Validacao: auditoria de protection/rulesets antes/depois, dry-run do script, aplicacao com `-Apply`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate, Deploy Dry Run quando disparado e smokes publicos.
+- Status: em execucao nesta entrega.
+
+Sprint 11.2 - Root mapping dry-run
+- Simbolico: OPS-ROOT-MAPPING-DRYRUN.
+- Objetivo: decidir e simular a estrategia segura para `https://opentshost.com/` apontar ao Hub em `/supersites/` sem sobrescrever `.htaccess` raiz nao gerenciado.
+- Status: pendente apos Sprint 11.1.
+
+Sprint 11.3 - HostGator retention dry-run
+- Simbolico: OPS-HOSTGATOR-RETENTION.
+- Objetivo: criar politica e script dry-run de retencao para releases HostGator antigos, sem remocao real.
+- Status: pendente apos Sprint 11.2.
+
+Sprint 11.4 - VPS backup/restore drill
+- Simbolico: OPS-VPS-BACKUP-RESTORE.
+- Objetivo: documentar e validar backup/restore do Redis runtime e layout `/srv/supersites` sem interromper BigShop360 nem expor credenciais.
+- Status: pendente apos Sprint 11.3.
+
+Sprint 11.5 - Uptime and incident runbook
+- Simbolico: OPS-UPTIME-RUNBOOK.
+- Objetivo: consolidar watchdog, smokes, rollback, incidente e evidencias de producao em runbook operacional.
+- Status: pendente apos Sprint 11.4.
 
 ## Definition of done do programa
 

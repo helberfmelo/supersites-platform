@@ -62,6 +62,14 @@ Actions:
 
 The watchdog does not log in, publish, deploy, delete, start workers, call provider APIs, request ads, create checkout sessions, activate donations, or mutate production state. It is an operational visibility gate for the public transitional URLs under `/supersites/...`.
 
+### GitHub Main Guardrails
+
+File: `scripts/sync-github-main-ruleset.ps1`.
+
+Sprint 11.1 applies a minimal active GitHub Ruleset named `SuperSites main safety guardrails` to the default branch. The ruleset blocks branch deletion and non-fast-forward pushes only. It intentionally does not require pull requests, required checks before direct pushes, deployments, code owners or signed commits yet, so emergency recovery and governed direct-to-main sprint closures remain possible.
+
+Runbook: `docs/RUNBOOKS/GITHUB_MAIN_GUARDRAILS.md`.
+
 ### Deploy SuperSite HostGator
 
 File: `.github/workflows/deploy-supersite-hostgator.yml`.

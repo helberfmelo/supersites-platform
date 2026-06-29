@@ -802,6 +802,14 @@ Data-base: 2026-06-29
 | Sprint 10.1 final public smokes | Passed: aggregate Hub/API, control-plane, NetProbe API and `validate:adsense-safe-public` across 13 public pages |
 | Sprint 10.1 final public assets | Hub `BNDSn3oU.js`; NetProbe Atlas `xQOMqDWZ.js`; app assets unchanged from Sprint 9.16 public deploy |
 | Public watchdog external provider activation | 0; smokes/crawler only |
+| Sprint 11.1 phase opened | Fase 11 - Operational Hardening |
+| Sprint 11.1 initial branch protection | Classic branch protection absent on `main`; repository rulesets empty |
+| Sprint 11.1 baseline public smokes | Passed: aggregate Hub/API, control-plane and NetProbe |
+| Sprint 11.1 GitHub ruleset script | `scripts/sync-github-main-ruleset.ps1` |
+| Sprint 11.1 GitHub ruleset runbook | `docs/RUNBOOKS/GITHUB_MAIN_GUARDRAILS.md` |
+| Sprint 11.1 intended active rules | `deletion`, `non_fast_forward` on default branch |
+| Sprint 11.1 GitHub ruleset applied | `SuperSites main safety guardrails`; ID `18241951`; enforcement `active` |
+| Sprint 11.1 PR/status-check enforcement | 0 activated; deferred to future stricter PR flow |
 
 ## Product metrics
 

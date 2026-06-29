@@ -48,6 +48,8 @@ Na Sprint 9.16, o fechamento em producao da Fase 9 adicionou o gate publico AdSe
 
 Em 2026-06-29, a Fase 10 foi concluida como `Post-Benchmark Operations Watchdog`. A auditoria V2 foi incorporada como baseline historico e reconciliada com o estado real pos-Fase 9: smokes publicos atuais passaram para Hub/API, e o crawler quick `2026-06-29T01-09-47-242Z` registrou 95 rotas, 190 checks e 0 gaps. A Sprint 10.1 adicionou o roadmap operacional pos-benchmark em `docs/SPRINTS/POST_BENCHMARK_OPERATIONAL_ROADMAP.md` e o workflow `Public Watchdog`, que roda smokes publicos, `validate:adsense-safe-public` e crawler quick/full agendado/manual sem mutar producao. O commit tecnico `5143a1f` passou Quality Gate `28342679619`, Deploy Dry Run `28342679627` e Public Watchdog manual `28342779097`; o baseline remoto `2026-06-29T01-22-23-919Z` registrou 95 rotas, 190 checks, 0 gaps, 0 console errors e robots/sitemaps ok. Nenhum anuncio real, GTM/GA4, analytics externo, checkout, billing, pagamento, doacao, afiliado, worker/cron, API paga, `ads.txt`, publisher id real, DNS/root mapping ou acao irreversivel foi ativado.
 
+Em 2026-06-29, a Fase 11 foi aberta como `Operational Hardening`. A Sprint 11.1 `OPS-BRANCH-PROTECTION` iniciou a protecao tecnica reversivel de `main`: auditoria inicial confirmou branch protection classico ausente e rulesets vazios; smokes publicos de baseline passaram para Hub/API, control-plane e NetProbe. O ruleset ativo minimo `SuperSites main safety guardrails` foi aplicado no GitHub como ID `18241951`, bloqueando exclusao e non-fast-forward no default branch, sem exigir pull request, status checks antes de push direto, code owners ou signed commits, preservando recuperacao operacional.
+
 ## Estado local verificado
 
 - Raiz local: `D:\Projetos\supersites`.
@@ -1422,6 +1424,16 @@ Em 2026-06-29, a Fase 10 foi concluida como `Post-Benchmark Operations Watchdog`
   - Baseline remoto do watchdog `2026-06-29T01-22-23-919Z`: 95 rotas, 190 checks desktop/mobile, 0 page/browser failures, 0 console errors, 0 gaps totais, 0 links internos quebrados, 0 overflow, 0 missing title/meta/canonical/hreflang/schema e robots/sitemaps ok. Artefato `public-watchdog-artifacts` ID `7940737629`.
   - Smokes publicos finais locais passaram: `pnpm deploy:smoke-supersite-public` validou Hub `BNDSn3oU.js`, dez apps e APIs MailHealth/SitePulse; `pnpm deploy:smoke-control-plane-public` passou; `pnpm deploy:smoke-netprobe-public` validou NetProbe `xQOMqDWZ.js` e API publica; `pnpm validate:adsense-safe-public` passou em 13 paginas.
   - A unica anotacao remota nao bloqueante foi o aviso de depreciacao de Node.js 20 vindo de `actions/upload-artifact@v4.6.2`, executado em Node 24 pelo runner. Nenhum anuncio real, GTM/GA4, analytics externo, checkout, billing, pagamento, doacao, afiliado, worker/cron, API paga, DNS/root mapping ou acao irreversivel foi ativado.
+
+## Fase 11 em andamento
+
+- Sprint 11.1 - OPS-BRANCH-PROTECTION:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/STATUS.md`, `docs/ROADMAP.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local e ADRs existentes ate `0031`.
+  - Estado inicial verificado: branch `main...origin/main`, ultimo commit `2ee231e`, Quality Gate docs-only `28343201598` verde, branch protection classico ausente em `main` e rulesets do repositorio vazios.
+  - Smokes publicos de baseline passaram: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public`.
+  - Escopo tecnico: adiciona `scripts/sync-github-main-ruleset.ps1`, cria `docs/RUNBOOKS/GITHUB_MAIN_GUARDRAILS.md`, atualiza runbook CI/CD, ROADMAP/STATUS/METRICS e aplica ruleset ativo minimo `SuperSites main safety guardrails`.
+  - Ruleset aplicado e validado via API: ID `18241951`, `enforcement=active`, regras `deletion` e `non_fast_forward`, branch default `~DEFAULT_BRANCH`; API classica de branch protection continua 404 porque a protecao usa GitHub Rulesets.
+  - Aguardando fechamento remoto: rodar gates locais, commit/push, monitorar Quality Gate/Deploy Dry Run aplicaveis, rodar smokes publicos e registrar IDs.
 
 ## Bloqueios humanos registrados
 
