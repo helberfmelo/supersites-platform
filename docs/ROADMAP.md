@@ -500,7 +500,7 @@ Sprint 11.2 - Root mapping dry-run
 - Objetivo: decidir e simular a estrategia segura para `https://opentshost.com/` apontar ao Hub em `/supersites/` sem sobrescrever `.htaccess` raiz nao gerenciado.
 - Escopo: script nao mutante `scripts/plan-hostgator-root-mapping.ps1`, comando `pnpm ops:root-mapping-dry-run`, runbook `docs/RUNBOOKS/HOSTGATOR_ROOT_MAPPING.md`, probes HTTP publicos e gate opcional de inspecao cPanel sem imprimir secrets.
 - Validacao: dry-run local, modo `-ProbeCpanel` fail-closed sem secrets locais, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate, Deploy Dry Run quando disparado e smokes publicos.
-- Status: em execucao nesta entrega. Dry-run local `2026-06-29T03-54-32Z` classificou aplicacao como `blocked` ate inspecao cPanel de `.htaccess` raiz; gates locais passaram e producao permanece em `/supersites/...` sem root mapping.
+- Status: concluida. Commit `b20a0d1`, Quality Gate `28347563479`, Deploy Dry Run `28347563485` e smokes publicos finais passaram. Dry-run final `2026-06-29T04-00-22Z` manteve classificacao `blocked` ate inspecao cPanel de `.htaccess` raiz; producao permanece em `/supersites/...` sem DNS/root mapping, direct product mapping ou escrita remota.
 
 Sprint 11.3 - HostGator retention dry-run
 - Simbolico: OPS-HOSTGATOR-RETENTION.

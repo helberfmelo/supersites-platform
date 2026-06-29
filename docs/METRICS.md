@@ -825,6 +825,11 @@ Data-base: 2026-06-29
 | Sprint 11.2 dry-run artifact | `artifacts/root-mapping-dry-run/root-mapping-dry-run.md`; run `2026-06-29T03-54-32Z` |
 | Sprint 11.2 apply classification | `blocked` until root `.htaccess` is inspected through cPanel in a controlled environment |
 | Sprint 11.2 local validation | Passed: root mapping dry-run, `-ProbeCpanel` fail-closed without local secrets, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `test:packages`, `typecheck:packages` |
+| Sprint 11.2 feature commit | `b20a0d1 ops: add hostgator root mapping dry run` |
+| Sprint 11.2 remote Quality Gate | `28347563479` passed |
+| Sprint 11.2 remote Deploy Dry Run | `28347563485` passed |
+| Sprint 11.2 final public smokes | Passed: aggregate Hub/API, control-plane and NetProbe |
+| Sprint 11.2 final dry-run | Run `2026-06-29T04-00-22Z`; classification `blocked`; direct app folders mapped `0` |
 | Sprint 11.2 production mutations | 0 DNS/root mapping/document-root/.htaccess/deploy changes |
 
 ## Product metrics
