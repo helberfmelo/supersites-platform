@@ -70,6 +70,7 @@
     "ci:changes": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/ci-detect-changes.ps1",
     "deploy:dry-run": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/prepare-deploy-dry-run.ps1",
     "ops:root-mapping-dry-run": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/plan-hostgator-root-mapping.ps1",
+    "ops:hostgator-retention-dry-run": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/plan-hostgator-release-retention.ps1",
     "deploy:build-supersite-hostgator": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/build-supersite-hostgator-artifact.ps1",
     "deploy:smoke-supersite-public": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/smoke-supersite-public.ps1",
     "deploy:build-netprobe-hostgator": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/build-netprobe-hostgator-artifact.ps1",

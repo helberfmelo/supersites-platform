@@ -1,0 +1,80 @@
+name: HostGator Retention Dry Run
+
+run-name: Fase ${{ inputs.phase || 'unmapped' }} Sprint ${{ inputs.sprint || 'unmapped' }} - HostGator Retention Dry Run
+
+on:
+  workflow_dispatch:
+    inputs:
+      phase:
+        description: Roadmap phase/stage number for run labeling, e.g. 11.
+        required: false
+        default: "11"
+        type: string
+      sprint:
+        description: Roadmap sprint number for run labeling, e.g. 11.3.
+        required: false
+        default: "11.3"
+        type: string
+      keep_newest:
+        description: Newest releases to keep per surface.
+        required: true
+        default: "3"
+        type: string
+      keep_days:
+        description: Minimum age in days before a release can become eligible.
+        required: true
+        default: "14"
+        type: string
+      probe_cpanel:
+        description: Inspect cPanel release directories without mutating them.
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  hostgator_retention_dry_run:
+    name: HostGator retention dry-run
+    runs-on: ubuntu-latest
+    environment: production-hostgator
+    env:
+      SUPERSITES_CPANEL_HOST: ${{ vars.SUPERSITES_CPANEL_HOST }}
+      SUPERSITES_CPANEL_PORT: ${{ vars.SUPERSITES_CPANEL_PORT }}
+      SUPERSITES_CPANEL_USER: ${{ secrets.SUPERSITES_CPANEL_USER }}
+      SUPERSITES_CPANEL_PASSWORD: ${{ secrets.SUPERSITES_CPANEL_PASSWORD }}
+      ROADMAP_PHASE: ${{ inputs.phase || 'unmapped' }}
+      ROADMAP_SPRINT: ${{ inputs.sprint || 'unmapped' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Run retention dry-run
+        shell: pwsh
+        run: |
+          Write-Host "Roadmap context: Fase $env:ROADMAP_PHASE Sprint $env:ROADMAP_SPRINT"
+
+          $keepNewest = [int]'${{ inputs.keep_newest }}'
+          $keepDays = [int]'${{ inputs.keep_days }}'
+          $probeCpanel = '${{ inputs.probe_cpanel }}' -eq 'true'
+
+          $args = @{
+            KeepNewest = $keepNewest
+            KeepDays = $keepDays
+            OutputDirectory = 'artifacts/hostgator-retention-dry-run'
+          }
+
+          if ($probeCpanel) {
+            $args.ProbeCpanel = $true
+          }
+
+          pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/plan-hostgator-release-retention.ps1 @args
+
+      - name: Upload retention dry-run artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hostgator-retention-dry-run
+          path: artifacts/hostgator-retention-dry-run/
+          if-no-files-found: error

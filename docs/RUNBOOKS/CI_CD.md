@@ -78,6 +78,14 @@ Sprint 11.2 adds a non-mutating root mapping plan for `https://opentshost.com/` 
 
 Runbook: `docs/RUNBOOKS/HOSTGATOR_ROOT_MAPPING.md`.
 
+### HostGator Retention Dry Run
+
+File: `.github/workflows/hostgator-retention-dry-run.yml`.
+
+Sprint 11.3 adds a manual workflow and local script for release retention planning. The workflow runs in `production-hostgator`, lists managed release directories when cPanel secrets are available, identifies active releases from managed switch files and uploads `hostgator-retention-dry-run` artifacts. It never deletes, moves, uploads, publishes, rewrites, chmods or deploys remote files.
+
+Runbook: `docs/RUNBOOKS/HOSTGATOR_RELEASE_RETENTION.md`.
+
 ### Deploy SuperSite HostGator
 
 File: `.github/workflows/deploy-supersite-hostgator.yml`.

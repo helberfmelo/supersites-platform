@@ -831,6 +831,14 @@ Data-base: 2026-06-29
 | Sprint 11.2 final public smokes | Passed: aggregate Hub/API, control-plane and NetProbe |
 | Sprint 11.2 final dry-run | Run `2026-06-29T04-00-22Z`; classification `blocked`; direct app folders mapped `0` |
 | Sprint 11.2 production mutations | 0 DNS/root mapping/document-root/.htaccess/deploy changes |
+| Sprint 11.3 retention script | `scripts/plan-hostgator-release-retention.ps1` |
+| Sprint 11.3 retention runbook | `docs/RUNBOOKS/HOSTGATOR_RELEASE_RETENTION.md` |
+| Sprint 11.3 retention workflow | `.github/workflows/hostgator-retention-dry-run.yml` |
+| Sprint 11.3 dry-run policy | Keep active release, newest 3 per surface and releases younger than 14 days; older non-active releases become `eligible-for-future-removal` only |
+| Sprint 11.3 local dry-run artifact | `artifacts/hostgator-retention-dry-run/hostgator-retention-dry-run.md`; run `2026-06-29T04-11-09Z`; 12 surfaces; inventory `skipped`; 0 releases; 0 candidates |
+| Sprint 11.3 local cPanel probe guard | `-ProbeCpanel` without local secrets closed as inventory `partial`, 12 failed surfaces, 0 releases, 0 candidates and no secret values printed |
+| Sprint 11.3 local validation | Passed: retention dry-run, `-ProbeCpanel` fail-closed without local secrets, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `test:packages`, `typecheck:packages` |
+| Sprint 11.3 production mutations | 0 deletes/uploads/chmod/deploys/root mapping/DNS changes |
 
 ## Product metrics
 

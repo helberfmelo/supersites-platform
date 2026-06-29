@@ -69,6 +69,24 @@ Switch back to a previous release:
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\publish-supersite-hostgator.ps1 -RollbackReleaseId <release-id> -SkipBuild
 ```
 
+## Release Retention Dry-Run
+
+Plan release retention without deleting remote files:
+
+```powershell
+pnpm ops:hostgator-retention-dry-run
+```
+
+For cPanel inventory, use the manual workflow:
+
+```powershell
+gh workflow run "HostGator Retention Dry Run" --ref main -f phase=11 -f sprint=11.3 -f keep_newest=3 -f keep_days=14 -f probe_cpanel=true
+```
+
+Runbook: `docs/RUNBOOKS/HOSTGATOR_RELEASE_RETENTION.md`.
+
+No release folder removal is approved until a future audited apply path exists.
+
 Return `/supersites/` to the bootstrap placeholder:
 
 ```powershell

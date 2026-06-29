@@ -1453,6 +1453,16 @@ Em 2026-06-29, a Fase 11 foi aberta como `Operational Hardening`. A Sprint 11.1 
   - Dry-run final pos-CI passou com run `2026-06-29T04-00-22Z`, mantendo classificacao `blocked`: raiz publica 200, Hub fallback 200, 0 pastas diretas mapeadas e nenhuma escrita remota.
   - Esta sprint nao ativou DNS, root mapping, direct product mapping, deploy real, alteracao de document root, symlink, alias, `.htaccess` remoto, ads, analytics externo, billing, checkout, doacao, afiliado, worker/cron, API paga ou acao irreversivel.
 
+- Sprint 11.3 - OPS-HOSTGATOR-RETENTION:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/STATUS.md`, `docs/ROADMAP.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local e ADRs existentes ate `0031`.
+  - Estado inicial verificado: branch `main...origin/main`, ultimo commit `80c6b09`, Quality Gate docs-only `28347752876` verde, producao publica baseline com smokes passando para Hub/API, control-plane e NetProbe.
+  - Escopo tecnico: adiciona `scripts/plan-hostgator-release-retention.ps1`, exposto como `pnpm ops:hostgator-retention-dry-run`, cria workflow manual `.github/workflows/hostgator-retention-dry-run.yml`, cria `docs/RUNBOOKS/HOSTGATOR_RELEASE_RETENTION.md` e atualiza runbooks/README de deploy para exigir dry-run antes de qualquer remocao futura.
+  - Politica dry-run: manter release ativo sempre, manter os 3 releases mais novos por superficie, manter releases com menos de 14 dias, classificar releases antigos nao ativos fora da janela como `eligible-for-future-removal` e releases sem mtime como `review-only`; elegibilidade nao autoriza delete.
+  - Dry-run local pre-commit sem cPanel passou com run `2026-06-29T04-11-09Z`: 12 superficies inventariadas por politica, inventario remoto `skipped`, 0 releases listados, 0 candidatos e nenhuma mutacao.
+  - Modo `-ProbeCpanel` sem secrets locais falhou fechado com inventario `partial`, 12 superficies `failed`, 0 releases, 0 candidatos e sem imprimir valores secretos.
+  - Validacao local pre-commit passou: `pnpm ops:hostgator-retention-dry-run`, modo `-ProbeCpanel` fail-closed sem secrets locais, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check`, `pnpm test:packages` e `pnpm typecheck:packages`.
+  - Esta sprint ainda nao removeu releases, nao alterou `.htaccess`, `index.php`, document root, DNS/root mapping, deploy real, chmod, upload, symlink, alias, ads, analytics externo, billing, checkout, doacao, afiliado, worker/cron, API paga ou acao irreversivel.
+
 ## Bloqueios humanos registrados
 
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.
