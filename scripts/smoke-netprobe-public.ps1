@@ -100,7 +100,7 @@ $requiredPages = @(
     @{ Url = Join-Url $publicBase "en"; Marker = "Network facts" },
     @{ Url = Join-Url $publicBase "en/tools/dns-lookup"; Marker = "Run DNS lookup" },
     @{ Url = Join-Url $publicBase "pt-br/tools/dns-lookup"; Marker = "Consulta DNS" },
-    @{ Url = Join-Url $publicBase "en/status"; Marker = "Launch Status" },
+    @{ Url = Join-Url $publicBase "en/status"; Marker = "Public Status" },
     @{ Url = Join-Url $publicBase "sitemap.xml"; Marker = "<urlset" }
 )
 

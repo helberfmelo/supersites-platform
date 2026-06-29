@@ -106,7 +106,7 @@ foreach ($file in $htmlFiles) {
 
 Assert-ContentContains -Content $combinedHtml -Needle "NetProbe Atlas" -Context "NetProbe static artifact"
 Assert-ContentContains -Content $combinedHtml -Needle "DNS Lookup" -Context "NetProbe static artifact"
-Assert-ContentContains -Content $combinedHtml -Needle "Launch Status" -Context "NetProbe static artifact"
+Assert-ContentContains -Content $combinedHtml -Needle "Public Status" -Context "NetProbe static artifact"
 Assert-ContentContains -Content $combinedHtml -Needle $publicBaseUrl -Context "NetProbe static artifact"
 
 if ($basePath) {

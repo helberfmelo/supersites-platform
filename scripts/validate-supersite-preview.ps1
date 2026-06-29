@@ -91,7 +91,7 @@ try {
         'hreflang="pt-BR"',
         'application/ld+json',
         'A curated operating network',
-        'Launch desk',
+        'Free tools first',
         'Top public tools',
         'Choose by workflow',
         'NetProbe Atlas'
@@ -114,8 +114,8 @@ try {
         throw "Nuxt JavaScript asset did not return HTTP 200: $assetPath"
     }
 
-    $detail = Invoke-PreviewRequest -Uri "$baseUrl/en/sites/netprobe-atlas" -RequiredContent 'Quality check'
-    if ($detail.StatusCode -ne 200 -or $detail.Content -notmatch 'Quality check') {
+    $detail = Invoke-PreviewRequest -Uri "$baseUrl/en/sites/netprobe-atlas" -RequiredContent 'Review notes'
+    if ($detail.StatusCode -ne 200 -or $detail.Content -notmatch 'Review notes') {
         throw 'NetProbe Atlas detail page smoke failed.'
     }
 

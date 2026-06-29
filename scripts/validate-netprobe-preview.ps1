@@ -92,7 +92,7 @@ try {
         'hreflang="pt-BR"',
         'DNS Lookup',
         'The free answer is complete',
-        'Advertising not active'
+        'Free results first'
     )
 
     foreach ($needle in $requiredHtml) {

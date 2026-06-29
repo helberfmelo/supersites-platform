@@ -101,6 +101,13 @@ Robots and sitemap checks returned HTTP 200 for the Hub and all 10 product sites
 - DNS Propagation remains honest about limited resolver scope and must not claim worldwide propagation until real regional probes exist.
 - Existing quick crawler validated metadata/link/overflow health, but does not replace the full Phase 18 crawl, Lighthouse or page-by-page visual QA.
 
+## Release Smoke Follow-up
+
+- Initial post-push Quality Gate `28399921848` failed in the Hub and NetProbe preview smoke steps after build, tests, typecheck, repository safety and public-copy validation had passed.
+- Root cause: preview/public smoke scripts still asserted old internal public markers (`Launch desk`, `Quality check`, `Advertising not active`, `Launch Status`) that were intentionally removed from the public surface.
+- Remediation: smoke scripts now assert the new benchmark-facing markers (`Free tools first`, `Review notes`, `Free results first`, `Public Status`) while keeping ads/analytics/noindex/asset checks intact.
+- Local follow-up validation passed with `pwsh` for `scripts/validate-supersite-preview.ps1`, `scripts/validate-netprobe-preview.ps1` and `scripts/validate-netprobe-static-artifact.ps1` using the local artifact runtime API marker.
+
 ## Human Action Required
 
 No identity, KYC, tax, bank, PIN, legal acceptance, purchase, real AdSense, real donation, checkout, external analytics, provider import or irreversible production action was executed in this baseline.
