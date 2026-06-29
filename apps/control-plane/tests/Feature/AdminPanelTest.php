@@ -138,12 +138,16 @@ class AdminPanelTest extends TestCase
 
         $user = $this->userWithRole('operator');
         $report = ExecutiveReport::query()->where('period_type', 'weekly')->firstOrFail();
+        $measurementReport = ExecutiveReport::query()
+            ->where('title', 'Weekly Real Measurement Readiness - 2026-W27')
+            ->firstOrFail();
 
         $this->actingAs($user)
             ->get('/admin/reports')
             ->assertOk()
             ->assertSee('Executive reports')
             ->assertSee('Weekly Executive Readiness')
+            ->assertSee('Weekly Real Measurement Readiness')
             ->assertSee('finalized')
             ->assertSee('estimated');
 
@@ -154,6 +158,14 @@ class AdminPanelTest extends TestCase
             ->assertSee('Download CSV')
             ->assertSee('Causality not_inferred')
             ->assertSee('Phase 6 sprint gates closed before reporting sprint');
+
+        $this->actingAs($user)
+            ->get("/admin/reports/{$measurementReport->id}")
+            ->assertOk()
+            ->assertSee('Weekly Real Measurement Readiness')
+            ->assertSee('artifacts/google-readiness/2026-06-29T05-47-31Z/google-readiness.json')
+            ->assertSee('provider-unavailable:adsense')
+            ->assertSee('Causal claims generated');
 
         $this->actingAs($user)
             ->get("/admin/reports/{$report->id}/print")
@@ -168,9 +180,18 @@ class AdminPanelTest extends TestCase
         $this->assertStringContainsString('text/csv', (string) $response->headers->get('content-type'));
         $this->assertStringContainsString('attachment;', (string) $response->headers->get('content-disposition'));
         $this->assertStringContainsString('data_status', (string) $response->getContent());
+        $this->assertStringContainsString('evidence_sources', (string) $response->getContent());
         $this->assertStringContainsString('causality_status', (string) $response->getContent());
         $this->assertStringContainsString('finalized', (string) $response->getContent());
         $this->assertStringContainsString('estimated', (string) $response->getContent());
+
+        $measurementCsv = $this->actingAs($user)
+            ->get("/admin/reports/{$measurementReport->id}/export.csv");
+
+        $measurementCsv->assertOk();
+        $this->assertStringContainsString('artifacts/lighthouse-public/sprint-12-1-local/summary.md', (string) $measurementCsv->getContent());
+        $this->assertStringContainsString('provider-unavailable:adsense', (string) $measurementCsv->getContent());
+        $this->assertStringContainsString('not_inferred', (string) $measurementCsv->getContent());
 
         $this->assertDatabaseHas('audit_logs', [
             'user_id' => $user->id,

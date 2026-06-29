@@ -83,8 +83,8 @@ Data-base: 2026-06-29
 | Sprint 6.5 public smokes | Hub/control-plane/NetProbe passed |
 | Executive report contract gates implemented | 1 |
 | Executive report storage tables | 2 |
-| Executive reports seeded | 2 |
-| Executive report items seeded | 12 |
+| Executive reports seeded | 3 |
+| Executive report items seeded | 18 |
 | Executive report export routes implemented | 2 |
 | Executive report causality inferred | 0 |
 | Executive report external providers active | 0 |
@@ -910,6 +910,16 @@ Data-base: 2026-06-29
 | Sprint 12.3 remote Deploy Dry Run | `28351452440` passed |
 | Sprint 12.3 final public readiness smoke | `2026-06-29T05-53-40Z`; status `passed`; 5 checks; 0 failures |
 | Sprint 12.3 provider activation | GA4 0; GTM 0; Search Console 0; AdSense 0; PageSpeed API 0 |
+| Sprint 12.4 executive report contract | `@supersites/executive-reports` `2026-06-29.1` |
+| Sprint 12.4 executive evidence source classes | Internal docs, public watchdog artifacts, local measurement artifacts, control-plane seeders and `provider-unavailable:*` markers |
+| Sprint 12.4 blocked executive evidence sources | Active GA4/Search Console/AdSense/billing provider sources remain blocked until human gates |
+| Sprint 12.4 executive reports seeded | 3 reports; 18 items |
+| Sprint 12.4 measurement report | `Weekly Real Measurement Readiness - 2026-W27`; source `internal-evidence-index`; `causality_status=not_inferred` |
+| Sprint 12.4 local package validation | `pnpm --filter @supersites/executive-reports test` passed; 8 tests |
+| Sprint 12.4 local Laravel validation | `php artisan test` passed; 46 tests; 460 assertions |
+| Sprint 12.4 local admin focused validation | `php artisan test --filter=AdminPanelTest` passed; 9 tests; 83 assertions |
+| Sprint 12.4 local admin audit run | `2026-06-29T06-02-58Z`; status `passed`; 7 authenticated page checks |
+| Sprint 12.4 external provider data consumed | 0 active provider imports; unavailable provider data represented only by `provider-unavailable:*` markers |
 
 ## Product metrics
 

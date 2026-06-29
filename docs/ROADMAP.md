@@ -551,9 +551,9 @@ Sprint 12.3 - Google readiness checklist
 Sprint 12.4 - Executive reports evidence wiring
 - Simbolico: MEASURE-EXEC-REPORTS.
 - Objetivo: atualizar relatorios executivos para consumir apenas evidencias internas/public watchdog ate providers existirem.
-- Escopo: evidencias internas versionadas, status de dados explicito, sem causalidade inventada, sem receita real e sem automacao de envio.
+- Escopo: evidencias internas versionadas, artefatos de public watchdog/medicao local, status de dados explicito, fontes/resumos exportaveis, sem causalidade inventada, sem receita real e sem automacao de envio.
 - Validacao: testes de `@supersites/executive-reports` e Laravel admin, export CSV/print, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, CI e smokes publicos.
-- Status: pendente.
+- Status: local validado, remoto pendente. `@supersites/executive-reports` contrato `2026-06-29.1` classifica fontes permitidas e bloqueia fontes ativas de provider externo. O control-plane seeda 3 relatorios/18 itens, incluindo `Weekly Real Measurement Readiness - 2026-W27`, com fontes de Lighthouse, admin audit, Google readiness, smoke publico e `provider-unavailable:*`; CSV/print/detalhe exportam fontes/resumos de evidencia. Testes locais passaram: pacote executive-reports 8 testes/typecheck, `test:packages`, `typecheck:packages`, `php artisan test` 46 testes/460 assertions, `composer validate --strict` e admin audit local `2026-06-29T06-02-58Z`.
 
 ## Definition of done do programa
 

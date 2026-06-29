@@ -107,6 +107,8 @@ class ExecutiveReportController extends Controller
                 'data_status',
                 'source',
                 'evidence_count',
+                'evidence_sources',
+                'evidence_summaries',
                 'causality_status',
                 'notes',
             ],
@@ -122,6 +124,8 @@ class ExecutiveReportController extends Controller
                 $item->data_status,
                 $item->source,
                 (string) count($item->evidence ?? []),
+                $this->evidenceSources($item),
+                $this->evidenceSummaries($item),
                 $report->causality_status,
                 $item->notes ?? '',
             ];
@@ -141,5 +145,21 @@ class ExecutiveReportController extends Controller
         }
 
         return $normalized;
+    }
+
+    private function evidenceSources(ExecutiveReportItem $item): string
+    {
+        return collect($item->evidence ?? [])
+            ->pluck('source')
+            ->filter()
+            ->implode(' | ');
+    }
+
+    private function evidenceSummaries(ExecutiveReportItem $item): string
+    {
+        return collect($item->evidence ?? [])
+            ->pluck('summary')
+            ->filter()
+            ->implode(' | ');
     }
 }

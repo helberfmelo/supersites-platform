@@ -278,6 +278,8 @@ Sprint 6.6 cria somente relatorios executivos operacionais locais:
 - `causality_status` permanece `not_inferred`; causalidade nao deve ser inferida sem evidencia e revisao manual futura.
 - Nenhum provider import, e-mail recorrente, worker, cron de producao, external analytics, ads, checkout, webhook, billing real ou report automation e ativado.
 
+Sprint 12.4 atualiza `@supersites/executive-reports` para o contrato `2026-06-29.1`, classificando fontes permitidas como docs internos, artefatos de public watchdog, artefatos de medicao local, seeders do control-plane e marcadores `provider-unavailable:*`. Fontes ativas de GA4, Search Console, AdSense ou billing provider ficam bloqueadas ate existirem gates humanos, contratos de importacao e matriz de dados. O control-plane passa a seedar `Weekly Real Measurement Readiness - 2026-W27` com evidencias de Lighthouse, auditoria admin, Google readiness e smoke publico, e o CSV/print exporta fontes e resumos de evidencia sem inferir causalidade.
+
 ## Benchmark refinement metrics
 
 Sprint 7.2 cria somente readiness e backlog local de benchmark:

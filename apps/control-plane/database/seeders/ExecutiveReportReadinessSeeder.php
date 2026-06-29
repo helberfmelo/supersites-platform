@@ -187,6 +187,97 @@ class ExecutiveReportReadinessSeeder extends Seeder
                 ],
             ],
         );
+
+        $this->seedReport(
+            [
+                'period_type' => 'weekly',
+                'period_start' => '2026-06-28',
+                'period_end' => '2026-06-29',
+                'title' => 'Weekly Real Measurement Readiness - 2026-W27',
+                'notes' => 'Fase 12 export consumes only internal docs, public watchdog/local measurement artifacts and provider-unavailable markers; no external provider data or causal claims are used.',
+                'source' => 'internal-evidence-index',
+            ],
+            [
+                [
+                    'section' => 'quality',
+                    'label' => 'Public Lighthouse quick sample',
+                    'value' => '3',
+                    'unit' => 'pages',
+                    'data_status' => 'finalized',
+                    'source' => 'artifacts/lighthouse-public/sprint-12-1-local/summary.md',
+                    'evidence' => [
+                        ['source' => 'artifacts/lighthouse-public/sprint-12-1-local/summary.md', 'summary' => 'Sprint 12.1 measured Hub EN, NetProbe What is my IP and PixelBatch Image Compressor with Lighthouse.'],
+                        ['source' => 'docs/RUNBOOKS/REAL_MEASUREMENT_READINESS.md', 'summary' => 'Lighthouse/LHCI evidence is point-in-time technical measurement, not revenue or ranking causality.'],
+                    ],
+                    'sort_order' => 10,
+                ],
+                [
+                    'section' => 'operations',
+                    'label' => 'Authenticated admin pages audited',
+                    'value' => '7',
+                    'unit' => 'checks',
+                    'data_status' => 'finalized',
+                    'source' => 'artifacts/control-plane-admin-audit/2026-06-29T05-31-40Z/admin-audit.json',
+                    'evidence' => [
+                        ['source' => 'artifacts/control-plane-admin-audit/2026-06-29T05-31-40Z/admin-audit.json', 'summary' => 'Local admin audit passed desktop/mobile coverage with 0 overflow, console errors, page errors and external requests.'],
+                        ['source' => 'docs/RUNBOOKS/CONTROL_PLANE_ADMIN_AUDIT.md', 'summary' => 'Authenticated audit uses local loopback and seeded local user only; production auth is not accessed.'],
+                    ],
+                    'sort_order' => 20,
+                ],
+                [
+                    'section' => 'traffic',
+                    'label' => 'Google readiness checks passed',
+                    'value' => '18',
+                    'unit' => 'checks',
+                    'data_status' => 'finalized',
+                    'source' => 'artifacts/google-readiness/2026-06-29T05-47-31Z/google-readiness.json',
+                    'evidence' => [
+                        ['source' => 'artifacts/google-readiness/2026-06-29T05-47-31Z/google-readiness.json', 'summary' => 'GA4, GTM, Search Console, AdSense and PageSpeed API activation remained 0.'],
+                        ['source' => 'docs/RUNBOOKS/GOOGLE_READINESS.md', 'summary' => 'Google readiness check creates no properties, containers, verifications, tags, accounts, snippets or requests.'],
+                    ],
+                    'sort_order' => 30,
+                ],
+                [
+                    'section' => 'operations',
+                    'label' => 'Public readiness smoke checks',
+                    'value' => '5',
+                    'unit' => 'checks',
+                    'data_status' => 'finalized',
+                    'source' => 'artifacts/uptime-incident-readiness/uptime-incident-readiness.json',
+                    'evidence' => [
+                        ['source' => 'artifacts/uptime-incident-readiness/uptime-incident-readiness.json', 'summary' => 'Sprint 12.3 final public readiness smoke passed Hub/API, control-plane/API, NetProbe/API, AdSense-safe and VPS Redis checks.'],
+                        ['source' => 'docs/RUNBOOKS/UPTIME_INCIDENT_RESPONSE.md', 'summary' => 'Readiness smoke is public/internal infrastructure evidence and does not activate external uptime providers.'],
+                    ],
+                    'sort_order' => 40,
+                ],
+                [
+                    'section' => 'monetization',
+                    'label' => 'AdSense revenue consumed by reports',
+                    'value' => 'not_active',
+                    'unit' => null,
+                    'data_status' => 'unavailable',
+                    'source' => 'provider-unavailable:adsense',
+                    'evidence' => [
+                        ['source' => 'docs/ADSENSE_PLAYBOOK.md', 'summary' => 'AdSense serving, Management API, requests, impressions, clicks and revenue remain unavailable until human gates pass.'],
+                        ['source' => 'artifacts/google-readiness/2026-06-29T05-47-31Z/google-readiness.json', 'summary' => 'Readiness check confirmed no public AdSense snippets, publisher ID or ads.txt placeholder.'],
+                    ],
+                    'sort_order' => 50,
+                ],
+                [
+                    'section' => 'growth',
+                    'label' => 'Causal claims generated',
+                    'value' => '0',
+                    'unit' => 'claims',
+                    'data_status' => 'finalized',
+                    'source' => 'docs/ANALYTICS.md',
+                    'evidence' => [
+                        ['source' => 'docs/ANALYTICS.md', 'summary' => 'Executive reports keep causality_status=not_inferred and do not infer causes without manual evidence.'],
+                        ['source' => 'packages/executive-reports/README.md', 'summary' => 'The package blocks active provider sources and causal claims before future manual review contracts exist.'],
+                    ],
+                    'sort_order' => 60,
+                ],
+            ],
+        );
     }
 
     /**
@@ -208,11 +299,11 @@ class ExecutiveReportReadinessSeeder extends Seeder
         $report->fill([
             ...$reportData,
             'status' => 'ready',
-            'contract_version' => '2026-06-27.1',
+            'contract_version' => '2026-06-29.1',
             'data_status_summary' => $this->summarizeDataStatuses($items),
             'causality_status' => 'not_inferred',
             'generated_at' => now(),
-            'source' => 'seeded',
+            'source' => $reportData['source'] ?? 'seeded',
             'export_ready' => true,
         ]);
         $report->save();

@@ -81,7 +81,12 @@
                         <td>{{ $item->value ?? 'n/a' }} {{ $item->unit }}</td>
                         <td><span class="status {{ $item->data_status }}">{{ $item->data_status }}</span></td>
                         <td>{{ $item->source }}</td>
-                        <td>{{ count($item->evidence ?? []) }}</td>
+                        <td>
+                            <strong>{{ count($item->evidence ?? []) }}</strong>
+                            @foreach (($item->evidence ?? []) as $evidence)
+                                <br><span class="muted">{{ $evidence['source'] ?? 'unknown' }}: {{ $evidence['summary'] ?? 'No summary' }}</span>
+                            @endforeach
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

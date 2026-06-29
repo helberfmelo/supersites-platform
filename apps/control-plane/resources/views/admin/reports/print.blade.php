@@ -59,6 +59,7 @@
                     <th>Value</th>
                     <th>Data status</th>
                     <th>Source</th>
+                    <th>Evidence</th>
                 </tr>
             </thead>
             <tbody>
@@ -74,6 +75,12 @@
                         <td>{{ $item->value ?? 'n/a' }} {{ $item->unit }}</td>
                         <td>{{ $item->data_status }}</td>
                         <td>{{ $item->source }}</td>
+                        <td>
+                            {{ count($item->evidence ?? []) }}
+                            @foreach (($item->evidence ?? []) as $evidence)
+                                <br><span class="muted">{{ $evidence['source'] ?? 'unknown' }}</span>
+                            @endforeach
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
