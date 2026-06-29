@@ -853,6 +853,12 @@ Data-base: 2026-06-29
 | Sprint 11.4 restore verification | Manifest match `true`; restore extraction cleanup `removed`; Redis files `1`; layout directories `6` |
 | Sprint 11.4 post-drill runtime validation | Passed: service active, authenticated Redis PING, local-only bind, public Redis ports `6379`, `6380`, `6381` closed/filtered |
 | Sprint 11.4 BigShop360 touch count | 0 paths/services/databases/webserver changes |
+| Sprint 11.4 feature commit | `a663b62 ops: add vps backup restore drill` |
+| Sprint 11.4 remote Quality Gate | `28348620570` passed |
+| Sprint 11.4 remote Deploy Dry Run | `28348620582` passed |
+| Sprint 11.4 final public smokes | Passed: aggregate Hub/API, control-plane and NetProbe |
+| Sprint 11.4 final VPS runtime validation | Passed after CI: service active, authenticated Redis PING, local-only bind, public Redis ports closed/filtered |
+| Sprint 11.4 scheduled backup activation | 0 cron/timer/workflow schedules activated |
 
 ## Product metrics
 

@@ -514,7 +514,7 @@ Sprint 11.4 - VPS backup/restore drill
 - Objetivo: documentar e validar backup/restore do Redis runtime e layout `/srv/supersites` sem interromper BigShop360 nem expor credenciais.
 - Escopo: script `scripts/run-vps-backup-restore-drill.ps1`, comando `pnpm ops:vps-backup-restore-drill`, runbook VPS atualizado, archive Redis em `/srv/supersites/backups/redis-drills/<run>/`, restore-test temporario, comparacao de manifestos e validacao de portas Redis publicas.
 - Validacao: smokes publicos baseline, `scripts/validate-vps-runtime.ps1` antes/depois, drill backup/restore, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `test:packages`, `typecheck:packages`, Quality Gate, Deploy Dry Run quando disparado e smokes publicos finais.
-- Status: em execucao. Drill `2026-06-29T04-25-08Z` passou: archive Redis SHA-256 `dc473b72253feeefabc07a4c3549dbb91287cd920355055389f491da9d35aedd`, restore manifest match `true`, extração temporaria removida, Redis sem interrupcao, portas publicas fechadas/filtradas e BigShop360 nao tocado.
+- Status: concluida. Commit `a663b62`, Quality Gate `28348620570`, Deploy Dry Run `28348620582`, smokes publicos finais e `scripts/validate-vps-runtime.ps1` pos-CI passaram. Drill `2026-06-29T04-25-08Z` passou: archive Redis SHA-256 `dc473b72253feeefabc07a4c3549dbb91287cd920355055389f491da9d35aedd`, restore manifest match `true`, extração temporaria removida, Redis sem interrupcao, portas publicas fechadas/filtradas e BigShop360 nao tocado.
 
 Sprint 11.5 - Uptime and incident runbook
 - Simbolico: OPS-UPTIME-RUNBOOK.
