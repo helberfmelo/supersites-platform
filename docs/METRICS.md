@@ -1096,6 +1096,11 @@ Data-base: 2026-06-29
 | Sprint 15.1 local governance gates | Passed: `composer validate --strict`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `validate:adsense-safe-public` |
 | Sprint 15.1 runbook | `docs/RUNBOOKS/ADSENSE_GO_LIVE_READINESS.md` |
 | Sprint 15.1 ADR | `docs/ADR/0036-adsense-go-live-readiness-preview.md` |
+| Sprint 15.1 feature commit | `9f048f8` |
+| Sprint 15.1 remote Quality Gate | `28362026582` passed |
+| Sprint 15.1 remote Deploy Dry Run | `28362026601` passed |
+| Sprint 15.1 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public`, `pnpm validate:adsense-safe-public`; Hub asset `https://opentshost.com/supersites/_nuxt/BNDSn3oU.js`; NetProbe asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/xQOMqDWZ.js` |
+| Sprint 15.1 production deploy activation | 0 real deploys triggered in this sprint; public smokes validate the existing production baseline |
 | Sprint 15.1 provider/monetization activation | 0 public `ads.txt`, publisher id real, AdSense snippet, Management API, site submission, Auto Ads, manual ads, ad requests, impressions, clicks, revenue, donations, affiliates, checkout, billing or external provider activations |
 
 ## Product metrics
