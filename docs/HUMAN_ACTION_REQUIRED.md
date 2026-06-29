@@ -13,6 +13,7 @@ Data-base: 2026-06-29
 | Informacoes fiscais/bancarias AdSense | Dados legais e banco | Antes de receber pagamentos |
 | PIN postal AdSense | Verificacao fisica | Quando Google solicitar |
 | CMP certificada/TCF para ads reais | Escolha de fornecedor, termos, configuracao legal e compliance regional | Antes de carregar requests reais de ads em regioes que exijam CMP/TCF |
+| Publicar `ads.txt` e submeter sites ao AdSense | A Sprint 15.1 criou apenas preview autenticado; publicacao de arquivo publico, revisao por site e ad serving sao acoes de provider/monetizacao | Depois de conta aprovada, publisher id real validado, dominios definitivos, politicas/consentimento/smokes prontos e decisao humana por site |
 | PageSpeed API ou Google performance provider | API key, termos, quota, billing/conta Google e definicao de retencao/uso de dados | Antes de usar PageSpeed Insights API, CrUX API ou qualquer provider Google externo para medicao automatizada |
 | Acessos Google, GA4, GTM e Search Console | Conta Google, criacao de propriedades/containers, verificacao de dominio e aceite de termos | Antes de carregar tags GA4/GTM ou importar dados Search Console |
 | Contas Stripe/Mercado Pago/Paddle | KYC, impostos e termos | Antes de billing real |

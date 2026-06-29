@@ -123,6 +123,8 @@ Objetivo: preparar contas, autenticacao, entitlements e limites pagos sem cobrar
 
 Objetivo: ativar provedores somente quando as acoes humanas estiverem resolvidas.
 
+Status em 2026-06-29: Fase iniciada em modo fail-closed. A Sprint 15.1 preparou readiness autenticado de AdSense, preview de `ads.txt` e revisao por site sem publicar `ads.txt`, submeter sites, carregar snippet, habilitar Management API ou ativar requests/receita. Validacoes locais pre-commit passaram; gates humanos de beneficiario, termos, fiscal, banco, PIN, publisher id real e decisao por site seguem obrigatorios.
+
 | Sprint | Simbolico | Escopo | Gates/humanos |
 |---:|---|---|---|
 | 15.1 | ADSENSE-ACCOUNT | Configurar publisher id, `ads.txt` e revisao por site apos conta aprovada | Beneficiario, termos, fiscal, banco, PIN |

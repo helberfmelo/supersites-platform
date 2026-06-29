@@ -19,13 +19,15 @@ use App\Models\GoogleIntegration;
 use App\Models\Incident;
 use App\Models\OperationalTask;
 use App\Models\Site;
+use App\Support\AdSense\AdSenseGoLiveReadiness;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
 {
-    public function __invoke(Request $request): View
+    public function __invoke(Request $request, AdSenseGoLiveReadiness $adsenseReadiness): View
     {
+        $adsenseGoLiveReadiness = $adsenseReadiness->snapshot();
         $statusCounts = Site::query()
             ->selectRaw('status, count(*) as total')
             ->groupBy('status')
@@ -75,6 +77,7 @@ class DashboardController extends Controller
                 ->withCount('siteReviews')
                 ->orderBy('id')
                 ->first(),
+            'adsenseGoLiveReadiness' => $adsenseGoLiveReadiness,
             'adsenseSiteReviews' => AdSenseSiteReview::query()
                 ->with('site:id,slug,name')
                 ->orderBy('ad_serving_enabled')

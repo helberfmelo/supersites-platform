@@ -1083,6 +1083,20 @@ Data-base: 2026-06-29
 | Phase 14 latest docs-only Quality Gate | `28361154713` passed |
 | Phase 14 public smoke posture | Hub, control-plane and NetProbe public smokes passed after each technical sprint; public baseline remained existing production, no real deploy triggered |
 | Phase 14 provider/monetization activation | 0 public signup, checkout, paid plans, charges, provider SDKs, real webhooks, real secrets, invoices, taxes, refunds, dunning, customer portal, real ads, donations, affiliates, external analytics, new recurring workers or external provider activations |
+| Phase 15 status | Started on 2026-06-29 in fail-closed provider readiness mode |
+| Sprint 15.1 AdSense readiness endpoint | `GET /api/v1/adsense/go-live-readiness` behind auth and `dashboard.view` |
+| Sprint 15.1 AdSense readiness contract | `AdSenseGoLiveReadiness::CONTRACT_VERSION` `2026-06-29.15.1` |
+| Sprint 15.1 ads.txt helper | `@supersites/ads buildGoogleAdsTxtLine`; invalid publisher ids return `null` |
+| Sprint 15.1 default seeded AdSense state | `primary-publisher` has no real publisher id; preview unavailable; 11 site reviews; 0 ready for human review; 0 serving ads |
+| Sprint 15.1 focused validation | Passed: `@supersites/ads` 11 tests; `AdSenseGoLiveReadinessTest` 4 tests/38 assertions |
+| Sprint 15.1 package validation | `pnpm test:packages` passed with 78 tests; `pnpm typecheck:packages` passed |
+| Sprint 15.1 local Laravel validation | `php artisan test` passed; 66 tests, 635 assertions |
+| Sprint 15.1 admin visual audit | `pnpm measure:admin-audit` passed; run `2026-06-29T09-22-22Z`; 9 authenticated desktop/mobile checks |
+| Sprint 15.1 control-plane artifact build | `pnpm deploy:build-control-plane-hostgator` passed; 7146 files, 28264088 bytes, zip 8421145 bytes |
+| Sprint 15.1 local governance gates | Passed: `composer validate --strict`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `validate:adsense-safe-public` |
+| Sprint 15.1 runbook | `docs/RUNBOOKS/ADSENSE_GO_LIVE_READINESS.md` |
+| Sprint 15.1 ADR | `docs/ADR/0036-adsense-go-live-readiness-preview.md` |
+| Sprint 15.1 provider/monetization activation | 0 public `ads.txt`, publisher id real, AdSense snippet, Management API, site submission, Auto Ads, manual ads, ad requests, impressions, clicks, revenue, donations, affiliates, checkout, billing or external provider activations |
 
 ## Product metrics
 

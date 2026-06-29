@@ -273,6 +273,21 @@ export function normalizeAdSensePublisherId(value: string | null | undefined): s
   return /^ca-pub-\d{16}$/.test(normalized) ? normalized : null
 }
 
+export function buildGoogleAdsTxtLine(
+  publisherId: string | null | undefined,
+  relationship: 'DIRECT' | 'RESELLER' = 'DIRECT',
+): string | null {
+  const normalizedPublisherId = normalizeAdSensePublisherId(publisherId)
+
+  if (!normalizedPublisherId) {
+    return null
+  }
+
+  const sellerAccountId = normalizedPublisherId.replace(/^ca-/, '')
+
+  return `google.com, ${sellerAccountId}, ${relationship}, f08c47fec0942fa0`
+}
+
 export function resolveAdSenseAccountGate(input: AdSenseAccountGateInput): AdSenseAccountGate {
   const reasons: string[] = []
   const normalizedPublisherId = normalizeAdSensePublisherId(input.publisherId)

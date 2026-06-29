@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import {
   adFormats,
+  buildGoogleAdsTxtLine,
   buildAdSenseSiteReviewPlan,
   createAdSlotPlan,
   isAccidentalClickRisk,
@@ -130,6 +131,16 @@ describe('@supersites/ads', () => {
     expect(normalizeAdSensePublisherId(' CA-PUB-1234567890123456 ')).toBe('ca-pub-1234567890123456')
     expect(normalizeAdSensePublisherId('pub-123')).toBeNull()
     expect(normalizeAdSensePublisherId(null)).toBeNull()
+  })
+
+  it('builds a Google ads.txt line only for valid publisher ids', () => {
+    expect(buildGoogleAdsTxtLine(' CA-PUB-1234567890123456 ')).toBe(
+      'google.com, pub-1234567890123456, DIRECT, f08c47fec0942fa0',
+    )
+    expect(buildGoogleAdsTxtLine('ca-pub-1234567890123456', 'RESELLER')).toBe(
+      'google.com, pub-1234567890123456, RESELLER, f08c47fec0942fa0',
+    )
+    expect(buildGoogleAdsTxtLine('pub-1234567890123456')).toBeNull()
   })
 
   it('fails the AdSense account gate closed until human and payment gates pass', () => {

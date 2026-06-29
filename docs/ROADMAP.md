@@ -634,6 +634,17 @@ Fechamento da Fase 14
 - Smokes publicos de Hub/control-plane/NetProbe passaram apos cada sprint tecnica, sem deploy real novo.
 - Proximas fases devem manter AdSense, billing provider, checkout, webhooks reais, workers recorrentes pagos, alertas reais e monitores persistentes de MailHealth/SitePulse bloqueados ate os gates humanos/operacionais.
 
+## Fase 15 - Provider and Monetization Go-Live
+
+Status geral: iniciada em 2026-06-29 em modo fail-closed. Como beneficiario/conta AdSense, Google access, KYC, impostos, banco, secrets, termos, doacoes e afiliados seguem pendentes de gate humano, a fase executa somente readiness tecnico reversivel ate existir aprovacao explicita.
+
+Sprint 15.1 - AdSense account go-live readiness
+- Simbolico: ADSENSE-ACCOUNT.
+- Objetivo: preparar publisher id, `ads.txt` e revisao por site sem publicar arquivo publico, submeter sites ou ativar requests de anuncio.
+- Escopo: helper `buildGoogleAdsTxtLine` em `@supersites/ads`, servico `AdSenseGoLiveReadiness`, endpoint autenticado `GET /api/v1/adsense/go-live-readiness`, resumo no dashboard, testes, ADR `0036`, runbook `ADSENSE_GO_LIVE_READINESS` e gate humano explicito para publicacao/submissao.
+- Validacao: testes do pacote ads, `AdSenseGoLiveReadinessTest`, `php artisan test`, `composer validate --strict`, `test:packages`, `typecheck:packages`, `measure:admin-audit`, build de artifact do control-plane, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate/Deploy Dry Run e smokes publicos apos push.
+- Status: validacao local pre-commit concluida. Passaram `pnpm test:packages` com 78 testes, `pnpm typecheck:packages`, `php artisan test` com 66 testes/635 assertions, `composer validate --strict`, admin audit `2026-06-29T09-22-22Z` em 9 paginas, artifact control-plane com 7146 arquivos/28264088 bytes/zip 8421145 bytes, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` e `validate:adsense-safe-public` em 13 paginas. Nenhum `ads.txt` publico, publisher id real, snippet AdSense, Management API, site submission, Auto Ads/manual ads, request, impressao, clique, receita, doacao, afiliado, checkout, billing, secret real ou provider externo foi ativado.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.

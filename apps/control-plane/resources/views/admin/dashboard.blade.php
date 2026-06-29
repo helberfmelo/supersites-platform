@@ -261,6 +261,13 @@
                 Management API {{ $adsenseAccount->management_api_enabled ? 'enabled' : 'disabled' }} ·
                 Serving {{ $summary['adsense_serving_enabled'] }} / {{ $adsenseAccount->site_reviews_count }} sites
             </p>
+            <p class="muted">
+                Go-live readiness {{ $adsenseGoLiveReadiness['data']['account']['account_ready'] ? 'ready' : 'blocked' }} ·
+                ads.txt preview {{ $adsenseGoLiveReadiness['data']['ads_txt']['preview_available'] ? 'available' : 'unavailable' }} ·
+                human-review ready {{ $adsenseGoLiveReadiness['data']['summary']['sites_ready_for_human_review'] }} /
+                {{ $adsenseGoLiveReadiness['data']['summary']['site_reviews'] }} sites ·
+                automatic submission {{ $adsenseGoLiveReadiness['data']['summary']['automatic_submission_enabled'] ? 'enabled' : 'disabled' }}
+            </p>
         @else
             <p class="muted">No AdSense publisher readiness record seeded.</p>
         @endif

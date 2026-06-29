@@ -130,6 +130,15 @@ AdSense e a monetizacao primaria, mas nenhum site deve ser submetido antes de cu
 - AdSense Management API fica `not_configured` e `management_api_enabled=false` ate OAuth/escopos/quotas serem aprovados.
 - Auto Ads, manual ads, impressoes, cliques, receita e requests externos seguem desligados.
 
+## Go-live readiness preview
+
+- Sprint 15.1 adiciona `GET /api/v1/adsense/go-live-readiness` apenas para usuarios autenticados com `dashboard.view`.
+- O endpoint e o dashboard declaram `provider_activation=false`, `side_effects=none`, `public_file_published=false`, `automatic_submission_enabled=false` e `automatic_ad_serving_enabled=false`.
+- O preview de `ads.txt` so aparece quando existe publisher id valido no formato `ca-pub-0000000000000000` e todos os gates de conta estao prontos.
+- A linha de preview segue o formato Google `google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0`, mas nao publica `/ads.txt`.
+- Publicar o arquivo real, submeter sites, habilitar Management API, inserir snippets ou ativar serving continuam a exigir decisao humana explicita, conta aprovada, dominios definitivos, politicas, consentimento e smokes.
+- Runbook: `docs/RUNBOOKS/ADSENSE_GO_LIVE_READINESS.md`.
+
 ## AI growth readiness
 
 - O motor de growth pode priorizar pendencias de qualidade, conteudo, consentimento, ads e readiness AdSense somente com evidencia, impacto, esforco, confianca e risco.
