@@ -151,6 +151,15 @@
 - Campos proibidos: cartao, dados bancarios, documentos fiscais, CPF/CNPJ ou equivalentes, endereco de cobranca, e-mail de cliente, token de provider, API key, webhook secret, payload bruto de webhook, IP, identificador de visitante, conteudo de ferramenta ou arquivo.
 - Webhooks reais, historico de assinatura, invoices, refunds, chargebacks, taxes e entitlements pagos permanecem desligados ate matriz de dados, termos, retencao, exportacao/exclusao, idempotencia e assinatura verificada estarem implementados.
 
+## Account data controls
+
+- A Sprint 14.1 cria `user_account_privacy_requests` para registrar pedidos autenticados de exportacao e exclusao.
+- Campos permitidos: usuario, tipo do pedido, status, timestamp e metadados minimos de canal/contrato.
+- Campos proibidos: senha, `remember_token`, tokens, secrets, dados bancarios/fiscais, payload bruto de provider, IP completo, inputs de ferramenta, arquivos, documentos de usuario e dados de pagamento.
+- O export de conta inclui apenas dados basicos da propria conta, RBAC global/site-scoped, permissoes e ultimos pedidos de privacidade.
+- Pedidos de exclusao ficam `human_required` ate existir politica aprovada de retencao, backup, verificacao de identidade, obrigacoes legais/fiscais, auditoria e SLA.
+- Conta paga em producao exige ampliar a matriz por produto para dados de historico, monitores, invoices, uso medido, equipes e notificacoes antes de ativacao.
+
 ## AI growth readiness
 
 - A Sprint 6.5 cria apenas metadados operacionais em `ai_growth_audits`, `ai_growth_recommendations` e `ai_growth_anomalies`.
@@ -187,4 +196,4 @@
 
 ## Direitos do titular
 
-Implementar exportacao, exclusao e retificacao antes de contas pagas em producao.
+Sprint 14.1 implementa exportacao autenticada e pedido de exclusao manual como base tecnica. Exclusao automatica, retificacao completa e atendimento final de direitos do titular continuam bloqueados ate politica juridica/retencao aprovada e matriz de dados por produto.

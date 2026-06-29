@@ -309,6 +309,7 @@
                 <a href="{{ route('admin.benchmark-refinement.index') }}">Benchmark</a>
                 <a href="{{ route('admin.reports.index') }}">Reports</a>
                 <a href="{{ route('admin.sites.index') }}">Sites</a>
+                <a href="{{ route('admin.account.show') }}">Account</a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button class="button danger" type="submit">Sign out</button>

@@ -7,6 +7,7 @@ use App\Models\ExecutiveReport;
 use App\Models\Role;
 use App\Models\Site;
 use App\Models\User;
+use App\Models\UserAccountPrivacyRequest;
 use Database\Seeders\AccessControlSeeder;
 use Database\Seeders\AdSenseReadinessSeeder;
 use Database\Seeders\AiGrowthReadinessSeeder;
@@ -196,6 +197,59 @@ class AdminPanelTest extends TestCase
         $this->assertDatabaseHas('audit_logs', [
             'user_id' => $user->id,
             'action' => 'admin.executive_reports.csv_exported',
+        ]);
+    }
+
+    public function test_authenticated_user_can_manage_account_data_controls(): void
+    {
+        $this->seed([PortfolioSiteSeeder::class, AccessControlSeeder::class]);
+
+        $site = Site::query()->where('slug', 'docshift')->firstOrFail();
+        $user = User::factory()->create();
+        $user->roles()->attach(Role::query()->where('slug', 'site-admin')->value('id'), ['site_id' => $site->id]);
+
+        $this->actingAs($user)
+            ->get('/admin/account')
+            ->assertOk()
+            ->assertSee('Account and data controls')
+            ->assertSee('Download account export')
+            ->assertSee('Request deletion review')
+            ->assertSee('DocShift');
+
+        $exportResponse = $this->actingAs($user)
+            ->post('/admin/account/export');
+
+        $exportResponse->assertOk();
+        $this->assertStringContainsString('application/json', (string) $exportResponse->headers->get('content-type'));
+        $this->assertStringContainsString('attachment;', (string) $exportResponse->headers->get('content-disposition'));
+        $this->assertStringContainsString($user->email, (string) $exportResponse->getContent());
+        $this->assertStringContainsString('docshift', (string) $exportResponse->getContent());
+        $this->assertStringNotContainsString('password', (string) $exportResponse->getContent());
+
+        $this->actingAs($user)
+            ->post('/admin/account/delete-request')
+            ->assertRedirect('/admin/account');
+
+        $this->assertDatabaseHas('user_account_privacy_requests', [
+            'user_id' => $user->id,
+            'request_type' => UserAccountPrivacyRequest::TYPE_EXPORT,
+            'status' => UserAccountPrivacyRequest::STATUS_READY,
+        ]);
+
+        $this->assertDatabaseHas('user_account_privacy_requests', [
+            'user_id' => $user->id,
+            'request_type' => UserAccountPrivacyRequest::TYPE_DELETE,
+            'status' => UserAccountPrivacyRequest::STATUS_HUMAN_REQUIRED,
+        ]);
+
+        $this->assertDatabaseHas('users', [
+            'id' => $user->id,
+            'email' => $user->email,
+        ]);
+
+        $this->assertDatabaseHas('audit_logs', [
+            'user_id' => $user->id,
+            'action' => 'admin.account.delete_requested',
         ]);
     }
 

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\V1\AnalyticsEventController;
+use App\Http\Controllers\Api\V1\Account\AccountDeletionRequestController;
+use App\Http\Controllers\Api\V1\Account\AccountExportController;
 use App\Http\Controllers\Api\V1\CurrentUserController;
 use App\Http\Controllers\Api\V1\MailHealth\MailHealthBlacklistController;
 use App\Http\Controllers\Api\V1\MailHealth\MailHealthDnsController;
@@ -60,6 +62,8 @@ Route::prefix('v1')
     ->middleware('auth')
     ->group(function (): void {
         Route::get('/me', CurrentUserController::class);
+        Route::post('/account/export', AccountExportController::class);
+        Route::post('/account/delete-request', AccountDeletionRequestController::class);
         Route::get('/sites', SiteIndexController::class);
         Route::get('/metric-snapshots', MetricSnapshotIndexController::class)
             ->middleware('permission:dashboard.view');

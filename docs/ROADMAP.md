@@ -480,7 +480,7 @@ As fases futuras completas estao descritas em `docs/SPRINTS/POST_BENCHMARK_OPERA
 - Fase 11 - Operational Hardening: concluida em 2026-06-29, cobrindo branch protection, root mapping dry-run, retencao HostGator, VPS backup/restore e runbooks de uptime.
 - Fase 12 - Real Measurement Readiness: concluida em 2026-06-29, cobrindo Lighthouse/LHCI, auditoria admin autenticada, readiness Google e relatorios executivos com evidencias internas/public watchdog.
 - Fase 13 - Product Depth and SEO/AIO Expansion: concluida em 2026-06-29; CalcHarbor, TimeNexus, MailHealth, SitePulse e PixelBatch/DocShift receberam profundidade util/local-first sem conteudo em massa ou provider externo.
-- Fase 14 - Paid Upgrade Foundations: auth, contas, entitlements, webhook foundation e monitores preview sem cobranca real.
+- Fase 14 - Paid Upgrade Foundations: iniciada em 2026-06-29; auth/contas em execucao concluida localmente na Sprint 14.1, entitlements, webhook foundation e monitores preview seguem sem cobranca real.
 - Fase 15 - Provider and Monetization Go-Live: AdSense, Google providers, billing, doacoes e afiliados apenas apos gates humanos.
 - Fase 16 - Continuous Growth Loop: ingestao real, priorizacao, automacoes via PR e relatorios executivos recorrentes.
 
@@ -593,6 +593,17 @@ Sprint 13.5 - PixelBatch/DocShift provider planning
 - Escopo: adicionar cards publicos/localizados de workflows avancados em PixelBatch e DocShift, criar matriz operacional de dados/gates para upload/provider futuro e registrar `HUMAN_ACTION_REQUIRED` antes de IA/OCR/conversao server-side.
 - Validacao: `pnpm test:pixelbatch`, `pnpm test:docshift`, `pnpm build:pixelbatch`, `pnpm build:docshift`, `pnpm validate:pixelbatch-preview`, `pnpm validate:docshift-preview`, `pnpm test:e2e:pixelbatch`, `pnpm test:e2e:docshift`, `validate:public-copy`, `validate:adsense-safe-public`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate/Deploy Dry Run e smokes publicos apos push.
 - Status: concluida em main, sem deploy real. PixelBatch documenta background cleanup, high-volume conversion e API/integracoes; DocShift documenta OCR/table extraction, Office/image conversion e batch/API. O runbook `docs/RUNBOOKS/FILE_PROVIDER_DATA_MATRIX.md` foi criado e os gates humanos foram registrados. Validacoes locais passaram, commit `e3ed365`, Quality Gate `28356961011`, Deploy Dry Run `28356961015` e smokes publicos atuais passaram para Hub agregado, PixelBatch, DocShift, NetProbe e control-plane. Nenhum upload API, OCR, IA, conversion provider, batch queue, storage persistente, API paga, checkout, billing, anuncio real, doacao, afiliado, analytics externo, worker ou cron foi ativado.
+
+## Fase 14 - Paid Upgrade Foundations
+
+Status geral: iniciada em 2026-06-29. A fase prepara contas, entitlements, quotas, webhook dry-run e monitores preview sem ativar cobranca, checkout, provider externo, secrets reais, signup publico ou exclusao automatica.
+
+Sprint 14.1 - Paid auth and account controls
+- Simbolico: PAID-AUTH-ACCOUNTS.
+- Objetivo: criar fundacao autenticada de conta, exportacao, pedido de exclusao e RBAC cliente/site antes de upgrades pagos.
+- Escopo: tabela `user_account_privacy_requests`, export sanitizado de conta, pedido de exclusao `human_required`, `/admin/account`, endpoints `/api/v1/account/export` e `/api/v1/account/delete-request`, RBAC global/site-scoped no export e em `/api/v1/me`, audit logs, ADR `0032` e runbook `ACCOUNT_DATA_CONTROLS`.
+- Validacao: `php artisan test`, `composer validate --strict`, `measure:admin-audit`, build de artifact do control-plane, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate/Deploy Dry Run e smokes publicos apos push.
+- Status: concluida localmente, aguardando commit/push/CI da sprint. Validacoes locais passaram com 49 testes Laravel/499 assertions, audit admin autenticado `2026-06-29T08-11-31Z` em 9 paginas e artifact control-plane validado com 7137 arquivos. Politicas finais de conta paga, privacidade, retencao e exclusao foram registradas como `HUMAN_ACTION_REQUIRED`. Nenhum signup publico, exclusao automatica, checkout, cobranca, assinatura, entitlement pago, provider SDK, webhook real, secret novo, pagamento, imposto, refund, dunning, worker/cron, anuncio real, doacao, afiliado ou provider externo foi ativado.
 
 ## Definition of done do programa
 

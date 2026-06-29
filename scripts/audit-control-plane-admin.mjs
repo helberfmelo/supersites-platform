@@ -8,8 +8,8 @@ const DEFAULT_BASE_URL = 'http://127.0.0.1:8014'
 const DEFAULT_OUTPUT_DIR = path.join('artifacts', 'control-plane-admin-audit')
 
 const profiles = [
-  { id: 'desktop', width: 1366, height: 900, pages: ['dashboard', 'benchmark', 'reports', 'report-detail', 'sites'] },
-  { id: 'mobile', width: 390, height: 844, pages: ['dashboard', 'sites'] },
+  { id: 'desktop', width: 1366, height: 900, pages: ['dashboard', 'benchmark', 'reports', 'report-detail', 'sites', 'account'] },
+  { id: 'mobile', width: 390, height: 844, pages: ['dashboard', 'sites', 'account'] },
 ]
 
 const adminPages = {
@@ -70,6 +70,17 @@ const adminPages = {
       'NetProbe Atlas',
       'foundation',
       'Edit',
+    ],
+  },
+  account: {
+    path: '/admin/account',
+    label: 'Account',
+    expected: [
+      'Account and data controls',
+      'Account summary',
+      'Role assignments',
+      'Download account export',
+      'Request deletion review',
     ],
   },
 }

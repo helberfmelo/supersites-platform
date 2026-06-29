@@ -103,6 +103,11 @@ Objetivo: preparar contas, autenticacao, entitlements e limites pagos sem cobrar
 | 14.3 | PAID-WEBHOOK-FOUNDATION | Endpoint assinado/idempotente em modo test/dry-run | Secrets/provider exigem cofre e aprovacao |
 | 14.4 | PAID-MONITORS-PREVIEW | Monitores NetProbe/MailHealth/SitePulse em preview autenticado | Worker/backup/alerta real precisam Fase 11 |
 
+| Sinal | Evidencia |
+|---|---|
+| Sprint 14.1 local | Account export/delete request foundation implementada; `php artisan test` 49/499, `measure:admin-audit` `2026-06-29T08-11-31Z` com 9 paginas, artifact control-plane 7137 arquivos, gates locais passaram |
+| Sprint 14.1 ativacoes externas | 0 signup publico, 0 exclusao automatica, 0 checkout/billing/provider/webhook real/secrets novos, 0 ads/doacoes/afiliados, 0 worker/cron |
+
 ## Fase 15 - Provider and Monetization Go-Live
 
 Objetivo: ativar provedores somente quando as acoes humanas estiverem resolvidas.

@@ -68,6 +68,14 @@
 - Webhooks futuros exigem assinatura verificada, janela anti-replay, idempotencia por provider/event id e persistencia de hash do payload em vez de payload bruto.
 - Ativar checkout, webhooks reais, impostos automaticos, invoices, refunds, chargebacks ou dunning exige `HUMAN_ACTION_REQUIRED`, termos, politica de cancelamento/reembolso, secrets em cofre e smoke/rollback especificos.
 
+## Account data controls
+
+- A Sprint 14.1 registra apenas exportacao e pedido de exclusao autenticados; nao cria signup publico, checkout, cobranca, assinatura, provider, webhook real ou secret novo.
+- Rotas admin usam sessao Laravel, CSRF e autenticacao existente; rotas API usam Sanctum.
+- Exports de conta devem ser sanitizados e nunca incluir senha, `remember_token`, tokens, secrets, dados bancarios/fiscais, payload bruto de provider, IPs ou inputs de ferramenta.
+- Pedidos de exclusao ficam `human_required`; nenhuma exclusao automatica deve rodar antes de politica legal/retencao aprovada, processo de verificacao e plano de backup/rollback.
+- Acoes de visualizacao, exportacao e pedido de exclusao devem gerar audit log sem payload sensivel.
+
 ## AI growth gates
 
 - A Sprint 6.5 registra apenas recomendacoes e anomalias locais; nenhuma API key, SDK, token, prompt externo, resposta de provider, worker recorrente ou automacao de growth e criado.

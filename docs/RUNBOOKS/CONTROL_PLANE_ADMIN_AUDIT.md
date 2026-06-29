@@ -34,11 +34,13 @@ Desktop:
 - `/admin/reports`
 - first `/admin/reports/{id}` detail discovered from the reports index
 - `/admin/sites`
+- `/admin/account`
 
 Mobile:
 
 - `/admin`
 - `/admin/sites`
+- `/admin/account`
 
 Each page records HTTP status, H1, expected text coverage, horizontal overflow, console errors, page errors, external requests and screenshot path.
 

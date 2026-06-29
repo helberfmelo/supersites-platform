@@ -1004,6 +1004,19 @@ Data-base: 2026-06-29
 | Sprint 13.5 provider/upload activation | 0 upload API, OCR/AI/conversion provider, batch queue, persistent file storage, paid API, billing, ads, donation, affiliate, external analytics, worker or cron activations |
 | Fase 13 completion | Completed 2026-06-29; Sprints 13.1 through 13.5 closed with local validation, Quality Gate, Deploy Dry Run and public smoke evidence |
 | Fase 13 external/provider activation | 0 real static deploys, checkout, billing, ads, donations, affiliates, external analytics, file uploads, OCR/AI providers, conversion providers, workers, crons or paid APIs activated |
+| Sprint 14.1 phase opened | Fase 14 - Paid Upgrade Foundations |
+| Sprint 14.1 account data table | `user_account_privacy_requests` created for authenticated export/delete requests |
+| Sprint 14.1 admin account route | `/admin/account` added with account summary, RBAC assignments, export and deletion request controls |
+| Sprint 14.1 API account routes | `POST /api/v1/account/export`; `POST /api/v1/account/delete-request` |
+| Sprint 14.1 account export contract | `AccountDataExporter::CONTRACT_VERSION` `2026-06-29.1`; sanitized account/RBAC/privacy request payload |
+| Sprint 14.1 deletion mode | `human_required`; 0 automatic account deletions |
+| Sprint 14.1 local Laravel validation | `php artisan test` passed; 49 tests, 499 assertions |
+| Sprint 14.1 admin visual audit | `pnpm measure:admin-audit` passed; run `2026-06-29T08-11-31Z`; 9 authenticated desktop/mobile checks including Account |
+| Sprint 14.1 control-plane artifact build | `pnpm deploy:build-control-plane-hostgator` passed; 7137 files, 28220756 bytes, zip 8408545 bytes |
+| Sprint 14.1 local governance gates | Passed: `composer validate --strict`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` |
+| Sprint 14.1 runbook | `docs/RUNBOOKS/ACCOUNT_DATA_CONTROLS.md` |
+| Sprint 14.1 human gates recorded | Paid account legal/privacy/retention/deletion policy remains in `docs/HUMAN_ACTION_REQUIRED.md` |
+| Sprint 14.1 monetization/provider activation | 0 public signup, checkout, billing, paid entitlement, provider SDK, real webhook, payment, tax, refund, dunning, ads, donation, affiliate, external analytics, worker or cron activations |
 
 ## Product metrics
 

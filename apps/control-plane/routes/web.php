@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\BenchmarkRefinementController;
+use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExecutiveReportController;
 use App\Http\Controllers\Admin\SiteController;
@@ -25,6 +26,10 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
 
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function (): void {
+    Route::get('/account', [AccountController::class, 'show'])->name('account.show');
+    Route::post('/account/export', [AccountController::class, 'export'])->name('account.export');
+    Route::post('/account/delete-request', [AccountController::class, 'requestDeletion'])->name('account.delete-request');
+
     Route::get('/', DashboardController::class)
         ->middleware('permission:dashboard.view')
         ->name('dashboard');

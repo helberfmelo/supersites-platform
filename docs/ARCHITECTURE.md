@@ -85,6 +85,17 @@ Sprint 6.4 adiciona readiness de billing sem ativar cobranca:
 - O dashboard admin exibe provedores bloqueados e planos `free-preview` seedados para os sites publicos.
 - Nao ha provider SDK, API key, checkout endpoint, payment link, webhook publico, assinatura, cobranca, imposto, refund, dunning ou entitlement pago nesta sprint.
 
+## Paid account self-service foundation
+
+Sprint 14.1 adiciona controles autenticados de conta sem ativar signup publico ou cobranca:
+
+- `user_account_privacy_requests` registra pedidos de exportacao e exclusao com metadados minimos e status controlado.
+- `AccountDataExporter` produz um JSON sanitizado da propria conta, com dados basicos, papeis RBAC globais/site-scoped, permissoes, ultimos pedidos de privacidade e flags de limites comerciais.
+- `/admin/account` permite ao usuario autenticado baixar export e registrar pedido de exclusao manual.
+- `/api/v1/account/export` e `/api/v1/account/delete-request` expõem o mesmo fluxo para clientes autenticados da API.
+- Exclusao real permanece manual/humana; nao ha remocao automatica de usuario, papeis, auditoria, monitores, billing, invoices ou dados operacionais.
+- Nao ha checkout, assinatura, entitlement pago, provider SDK, webhook real, secret novo, pagamento, imposto, refund, dunning ou signup publico nesta sprint.
+
 ## AI growth evidence engine
 
 Sprint 6.5 adiciona auditoria e priorizacao local sem provider externo de IA:
