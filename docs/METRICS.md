@@ -1048,6 +1048,12 @@ Data-base: 2026-06-29
 | Sprint 14.3 admin visual audit | `pnpm measure:admin-audit` passed; run `2026-06-29T08-48-01Z`; 9 authenticated desktop/mobile checks |
 | Sprint 14.3 control-plane artifact build | `pnpm deploy:build-control-plane-hostgator` passed; 7141 files, 28239248 bytes, zip 8413892 bytes |
 | Sprint 14.3 package validation | Passed: `test:packages`, `typecheck:packages`; billing package remains 14 tests |
+| Sprint 14.3 local governance gates | Passed: `composer validate --strict`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` |
+| Sprint 14.3 feature commit | `2bb673d` |
+| Sprint 14.3 remote Quality Gate | `28360245701` passed |
+| Sprint 14.3 remote Deploy Dry Run | `28360245696` passed |
+| Sprint 14.3 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public`; Hub asset `https://opentshost.com/supersites/_nuxt/BNDSn3oU.js`; NetProbe asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/xQOMqDWZ.js` |
+| Sprint 14.3 production deploy activation | 0 real deploys triggered in this sprint; public smokes validate the existing production baseline |
 | Sprint 14.3 runbook | `docs/RUNBOOKS/BILLING_WEBHOOK_DRY_RUN.md` |
 | Sprint 14.3 human gates recorded | Real provider webhooks and vault-managed secrets remain in `docs/HUMAN_ACTION_REQUIRED.md` |
 | Sprint 14.3 monetization/provider activation | 0 real webhooks, provider SDKs, checkout, billing providers, charges, subscriptions, invoices, refunds, dunning, tax, entitlement payment mutations, revenue imports, ads, donation, affiliate, external analytics, worker or cron activations |
