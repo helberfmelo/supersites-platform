@@ -61,4 +61,5 @@ Data-base: 2026-06-27
 - Each workflow states the free path today, data touched if enabled and the required gate before any upload/provider activation.
 - Created `docs/RUNBOOKS/FILE_PROVIDER_DATA_MATRIX.md` and updated governance/human gates for AI/background removal, upload queues, API jobs, retention/deletion and billing entitlement.
 - Local validation passed: `pnpm test:pixelbatch` with 10 tests, `pnpm build:pixelbatch`, `pnpm validate:pixelbatch-preview`, `pnpm test:e2e:pixelbatch`, public-copy, AdSense-safe, structure, secrets, deploy dry-run, ci changes and diff check.
+- Remote validation passed: feature commit `e3ed365`, Quality Gate `28356961011`, Deploy Dry Run `28356961015` and public PixelBatch smoke with asset `https://opentshost.com/supersites/pixelbatch/_nuxt/B912Jsw8.js`.
 - No upload API, server-side processing, provider SDK, AI/background removal, batch queue, persistent storage, paid API, checkout, billing, ad serving, donation link, affiliate link, external analytics, worker or cron was activated.

@@ -71,7 +71,7 @@ Status em 2026-06-29: Fase concluida. A Sprint 12.1 foi concluida com `lighthous
 
 Objetivo: expandir profundidade util sem conteudo em massa raso.
 
-Status em 2026-06-29: em fechamento. As Sprints 13.1, 13.2, 13.3 e 13.4 foram concluidas em main, sem deploy real. A Sprint 13.5 concluiu validacao local com matriz de dados/gates para PixelBatch/DocShift antes de qualquer provider/upload; evidencia remota sera registrada apos feature commit/push. Nenhum checkout, billing, ads, provider externo, API paga, worker, publicacao DNS automatica, storage persistente, upload server-side ou conteudo em massa foi ativado.
+Status em 2026-06-29: concluida. As Sprints 13.1 a 13.5 foram concluidas em main, sem deploy real. A Sprint 13.5 fechou a fase com matriz de dados/gates para PixelBatch/DocShift antes de qualquer provider/upload; Quality Gate `28356961011`, Deploy Dry Run `28356961015` e smokes publicos do baseline atual passaram. Nenhum checkout, billing, ads, provider externo, API paga, worker, publicacao DNS automatica, storage persistente, upload server-side ou conteudo em massa foi ativado.
 
 | Sprint | Simbolico | Escopo | Gates/humanos |
 |---:|---|---|---|
@@ -79,7 +79,18 @@ Status em 2026-06-29: em fechamento. As Sprints 13.1, 13.2, 13.3 e 13.4 foram co
 | 13.2 | DEPTH-TIMENEXUS | Adicionar paginas curadas de cidade/fuso e timeline visual sem geracao ilimitada | Concluida em main sem deploy real: 8 cidades curadas x 5 idiomas, timeline visual, overlap 09:00, home links, JSON-LD, 11 testes, build/preview/Playwright/public-copy/AdSense-safe/gates locais, Quality Gate `28354017920`, Deploy Dry Run `28354017921` e smokes publicos do baseline atual passaram; sem geracao all-IANA ou calendario/provider externo |
 | 13.3 | DEPTH-MAILHEALTH | Criar SPF/DMARC builders seguros e guias profundos | Concluida em main sem deploy real: builders TXT locais para SPF/DMARC, copy 5 idiomas, 10 testes, build/preview/Playwright/public-copy/AdSense-safe/gates locais, Quality Gate `28354998649`, Deploy Dry Run `28354998680` e smokes publicos do baseline atual passaram; DNSBL/provider policy, publicacao DNS e ingestao DMARC seguem gate |
 | 13.4 | DEPTH-SITEPULSE | Adicionar detalhes de headers/redirects/tecnologias dentro de limites antiabuso | Concluida em main sem deploy real: redirect path, header matrix, technology clues, performance sample e bounded notes em 5 idiomas; 9 testes, build/preview/Playwright/public-copy/AdSense-safe/gates locais, Quality Gate `28355948547`, Deploy Dry Run `28355948542` e smokes publicos do baseline atual passaram; sem endpoint novo ou crawling amplo |
-| 13.5 | DEPTH-PIXEL-DOC | Planejar background remover/OCR/conversoes com matriz de dados antes de qualquer provider/upload | Validacao local concluida sem deploy real: cards publicos/localizados para PixelBatch background cleanup/high-volume/API e DocShift OCR/Office/batch, runbook `FILE_PROVIDER_DATA_MATRIX`, gates humanos registrados, 20 testes unitarios, builds/previews/Playwright/public-copy/AdSense-safe/gates locais passaram; AI/OCR/provider/upload seguem gate humano |
+| 13.5 | DEPTH-PIXEL-DOC | Planejar background remover/OCR/conversoes com matriz de dados antes de qualquer provider/upload | Concluida em main sem deploy real: cards publicos/localizados para PixelBatch background cleanup/high-volume/API e DocShift OCR/Office/batch, runbook `FILE_PROVIDER_DATA_MATRIX`, gates humanos registrados, 20 testes unitarios, builds/previews/Playwright/public-copy/AdSense-safe/gates locais, Quality Gate `28356961011`, Deploy Dry Run `28356961015` e smokes publicos do baseline atual passaram; AI/OCR/provider/upload seguem gate humano |
+
+## Evidencia de fechamento da Fase 13
+
+| Sinal | Evidencia |
+|---|---|
+| Sprint 13.1 | Commit `dda2647`; Quality Gate `28353160843`; Deploy Dry Run `28353160830`; smokes publicos passaram |
+| Sprint 13.2 | Commit `6abcda5`; Quality Gate `28354017920`; Deploy Dry Run `28354017921`; smokes publicos passaram |
+| Sprint 13.3 | Commit `9259dd9`; Quality Gate `28354998649`; Deploy Dry Run `28354998680`; smokes publicos passaram |
+| Sprint 13.4 | Commit `53809f3`; Quality Gate `28355948547`; Deploy Dry Run `28355948542`; smokes publicos passaram |
+| Sprint 13.5 | Commit `e3ed365`; Quality Gate `28356961011`; Deploy Dry Run `28356961015`; smokes publicos passaram para Hub, PixelBatch, DocShift, NetProbe e control-plane |
+| Ativacoes externas | 0 deploys reais de app estatico, 0 checkout/billing/ads/doacoes/afiliados, 0 providers externos, 0 uploads server-side, 0 OCR/IA/conversao provider, 0 workers/crons, 0 API paga |
 
 ## Fase 14 - Paid Upgrade Foundations
 

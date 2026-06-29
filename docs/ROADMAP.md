@@ -479,7 +479,7 @@ As fases futuras completas estao descritas em `docs/SPRINTS/POST_BENCHMARK_OPERA
 
 - Fase 11 - Operational Hardening: concluida em 2026-06-29, cobrindo branch protection, root mapping dry-run, retencao HostGator, VPS backup/restore e runbooks de uptime.
 - Fase 12 - Real Measurement Readiness: concluida em 2026-06-29, cobrindo Lighthouse/LHCI, auditoria admin autenticada, readiness Google e relatorios executivos com evidencias internas/public watchdog.
-- Fase 13 - Product Depth and SEO/AIO Expansion: em fechamento em 2026-06-29; CalcHarbor, TimeNexus, MailHealth, SitePulse e PixelBatch/DocShift ja receberam profundidade util/local-first sem conteudo em massa ou provider externo.
+- Fase 13 - Product Depth and SEO/AIO Expansion: concluida em 2026-06-29; CalcHarbor, TimeNexus, MailHealth, SitePulse e PixelBatch/DocShift receberam profundidade util/local-first sem conteudo em massa ou provider externo.
 - Fase 14 - Paid Upgrade Foundations: auth, contas, entitlements, webhook foundation e monitores preview sem cobranca real.
 - Fase 15 - Provider and Monetization Go-Live: AdSense, Google providers, billing, doacoes e afiliados apenas apos gates humanos.
 - Fase 16 - Continuous Growth Loop: ingestao real, priorizacao, automacoes via PR e relatorios executivos recorrentes.
@@ -592,7 +592,7 @@ Sprint 13.5 - PixelBatch/DocShift provider planning
 - Objetivo: planejar background remover, OCR e conversoes com matriz de dados antes de qualquer provider/upload.
 - Escopo: adicionar cards publicos/localizados de workflows avancados em PixelBatch e DocShift, criar matriz operacional de dados/gates para upload/provider futuro e registrar `HUMAN_ACTION_REQUIRED` antes de IA/OCR/conversao server-side.
 - Validacao: `pnpm test:pixelbatch`, `pnpm test:docshift`, `pnpm build:pixelbatch`, `pnpm build:docshift`, `pnpm validate:pixelbatch-preview`, `pnpm validate:docshift-preview`, `pnpm test:e2e:pixelbatch`, `pnpm test:e2e:docshift`, `validate:public-copy`, `validate:adsense-safe-public`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate/Deploy Dry Run e smokes publicos apos push.
-- Status: validacao local concluida, aguardando feature commit/push e evidencia remota. PixelBatch documenta background cleanup, high-volume conversion e API/integracoes; DocShift documenta OCR/table extraction, Office/image conversion e batch/API. O runbook `docs/RUNBOOKS/FILE_PROVIDER_DATA_MATRIX.md` foi criado e os gates humanos foram registrados. Nenhum upload API, OCR, IA, conversion provider, batch queue, storage persistente, API paga, checkout, billing, anuncio real, doacao, afiliado, analytics externo, worker ou cron foi ativado.
+- Status: concluida em main, sem deploy real. PixelBatch documenta background cleanup, high-volume conversion e API/integracoes; DocShift documenta OCR/table extraction, Office/image conversion e batch/API. O runbook `docs/RUNBOOKS/FILE_PROVIDER_DATA_MATRIX.md` foi criado e os gates humanos foram registrados. Validacoes locais passaram, commit `e3ed365`, Quality Gate `28356961011`, Deploy Dry Run `28356961015` e smokes publicos atuais passaram para Hub agregado, PixelBatch, DocShift, NetProbe e control-plane. Nenhum upload API, OCR, IA, conversion provider, batch queue, storage persistente, API paga, checkout, billing, anuncio real, doacao, afiliado, analytics externo, worker ou cron foi ativado.
 
 ## Definition of done do programa
 

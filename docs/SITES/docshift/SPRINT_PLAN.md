@@ -63,4 +63,5 @@ Data-base: 2026-06-27
 - Each workflow states the free path today, data touched if enabled and the required gate before any upload/provider activation.
 - Created `docs/RUNBOOKS/FILE_PROVIDER_DATA_MATRIX.md` and updated governance/human gates for OCR providers, conversion providers, upload queues, API jobs, retention/deletion, sandbox/antivirus and billing entitlement.
 - Local validation passed: `pnpm test:docshift` with 10 tests, `pnpm build:docshift`, `pnpm validate:docshift-preview`, `pnpm test:e2e:docshift`, public-copy, AdSense-safe, structure, secrets, deploy dry-run, ci changes and diff check.
+- Remote validation passed: feature commit `e3ed365`, Quality Gate `28356961011`, Deploy Dry Run `28356961015` and public DocShift smoke with asset `https://opentshost.com/supersites/docshift/_nuxt/DQ93lUzG.js`.
 - No upload API, OCR, conversion provider, server queue, persistent storage, paid API, checkout, billing, ad serving, donation link, affiliate link, external analytics, worker or cron was activated.

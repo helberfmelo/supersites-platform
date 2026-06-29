@@ -997,7 +997,13 @@ Data-base: 2026-06-29
 | Sprint 13.5 AdSense-safe gate | `pnpm validate:adsense-safe-public` passed; 13 public pages |
 | Sprint 13.5 local governance gates | Passed: `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` |
 | Sprint 13.5 human gates recorded | PixelBatch/DocShift file AI/OCR/upload providers remain in `docs/HUMAN_ACTION_REQUIRED.md` |
+| Sprint 13.5 feature commit | `e3ed365 feat: add file provider planning matrices` |
+| Sprint 13.5 remote Quality Gate | `28356961011` passed |
+| Sprint 13.5 remote Deploy Dry Run | `28356961015` passed |
+| Sprint 13.5 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, PixelBatch static smoke, DocShift static smoke, `pnpm deploy:smoke-netprobe-public`, `pnpm deploy:smoke-control-plane-public`; current PixelBatch asset `https://opentshost.com/supersites/pixelbatch/_nuxt/B912Jsw8.js`; current DocShift asset `https://opentshost.com/supersites/docshift/_nuxt/DQ93lUzG.js` |
 | Sprint 13.5 provider/upload activation | 0 upload API, OCR/AI/conversion provider, batch queue, persistent file storage, paid API, billing, ads, donation, affiliate, external analytics, worker or cron activations |
+| Fase 13 completion | Completed 2026-06-29; Sprints 13.1 through 13.5 closed with local validation, Quality Gate, Deploy Dry Run and public smoke evidence |
+| Fase 13 external/provider activation | 0 real static deploys, checkout, billing, ads, donations, affiliates, external analytics, file uploads, OCR/AI providers, conversion providers, workers, crons or paid APIs activated |
 
 ## Product metrics
 
