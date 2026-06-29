@@ -478,7 +478,7 @@ Sprint 10.1 - Roadmap pos-benchmark e public watchdog
 As fases futuras completas estao descritas em `docs/SPRINTS/POST_BENCHMARK_OPERATIONAL_ROADMAP.md`:
 
 - Fase 11 - Operational Hardening: concluida em 2026-06-29, cobrindo branch protection, root mapping dry-run, retencao HostGator, VPS backup/restore e runbooks de uptime.
-- Fase 12 - Real Measurement Readiness: em andamento desde 2026-06-29, cobrindo Lighthouse/LHCI, auditoria admin autenticada, readiness Google e relatorios executivos com evidencias.
+- Fase 12 - Real Measurement Readiness: concluida em 2026-06-29, cobrindo Lighthouse/LHCI, auditoria admin autenticada, readiness Google e relatorios executivos com evidencias internas/public watchdog.
 - Fase 13 - Product Depth and SEO/AIO Expansion: expansao curada de calculadoras, fusos/cidades, builders MailHealth, detalhes SitePulse e planejamento PixelBatch/DocShift.
 - Fase 14 - Paid Upgrade Foundations: auth, contas, entitlements, webhook foundation e monitores preview sem cobranca real.
 - Fase 15 - Provider and Monetization Go-Live: AdSense, Google providers, billing, doacoes e afiliados apenas apos gates humanos.
@@ -525,7 +525,7 @@ Sprint 11.5 - Uptime and incident runbook
 
 ## Fase 12 - Real Measurement Readiness
 
-Status geral: em andamento desde 2026-06-29. A fase troca proxies deterministicos por evidencias reais permitidas e reproduziveis: Lighthouse/LHCI publico sem PageSpeed API, auditoria admin autenticada local, checklist Google sem criar propriedades/tags e relatorios executivos baseados somente em evidencias internas/public watchdog.
+Status geral: concluida em 2026-06-29. A fase trocou proxies deterministicos por evidencias reais permitidas e reproduziveis: Lighthouse/LHCI publico sem PageSpeed API, auditoria admin autenticada local, checklist Google sem criar propriedades/tags e relatorios executivos baseados somente em evidencias internas/public watchdog.
 
 Sprint 12.1 - Lighthouse/LHCI public measurement
 - Simbolico: MEASURE-LIGHTHOUSE-CI.
@@ -553,7 +553,7 @@ Sprint 12.4 - Executive reports evidence wiring
 - Objetivo: atualizar relatorios executivos para consumir apenas evidencias internas/public watchdog ate providers existirem.
 - Escopo: evidencias internas versionadas, artefatos de public watchdog/medicao local, status de dados explicito, fontes/resumos exportaveis, sem causalidade inventada, sem receita real e sem automacao de envio.
 - Validacao: testes de `@supersites/executive-reports` e Laravel admin, export CSV/print, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, CI e smokes publicos.
-- Status: local validado, remoto pendente. `@supersites/executive-reports` contrato `2026-06-29.1` classifica fontes permitidas e bloqueia fontes ativas de provider externo. O control-plane seeda 3 relatorios/18 itens, incluindo `Weekly Real Measurement Readiness - 2026-W27`, com fontes de Lighthouse, admin audit, Google readiness, smoke publico e `provider-unavailable:*`; CSV/print/detalhe exportam fontes/resumos de evidencia. Testes locais passaram: pacote executive-reports 8 testes/typecheck, `test:packages`, `typecheck:packages`, `php artisan test` 46 testes/460 assertions, `composer validate --strict` e admin audit local `2026-06-29T06-02-58Z`.
+- Status: concluida. `@supersites/executive-reports` contrato `2026-06-29.1` classifica fontes permitidas e bloqueia fontes ativas de provider externo. O control-plane seeda 3 relatorios/18 itens, incluindo `Weekly Real Measurement Readiness - 2026-W27`, com fontes de Lighthouse, admin audit, Google readiness, smoke publico e `provider-unavailable:*`; CSV/print/detalhe exportam fontes/resumos de evidencia. Testes locais passaram: pacote executive-reports 8 testes/typecheck, `test:packages`, `typecheck:packages`, `php artisan test` 46 testes/460 assertions, `composer validate --strict` e admin audit local `2026-06-29T06-02-58Z`. Commit `6179407`, Quality Gate `28352029810`, Deploy Dry Run `28352029809` e readiness smoke publico final `2026-06-29T06-08-56Z` passaram. Nenhum provider externo, receita real, trafego real, import GA4/Search Console/AdSense/billing, envio automatico, worker, cron ou causalidade foi ativado.
 
 ## Definition of done do programa
 

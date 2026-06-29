@@ -919,7 +919,13 @@ Data-base: 2026-06-29
 | Sprint 12.4 local Laravel validation | `php artisan test` passed; 46 tests; 460 assertions |
 | Sprint 12.4 local admin focused validation | `php artisan test --filter=AdminPanelTest` passed; 9 tests; 83 assertions |
 | Sprint 12.4 local admin audit run | `2026-06-29T06-02-58Z`; status `passed`; 7 authenticated page checks |
+| Sprint 12.4 feature commit | `6179407 feat: wire executive reports to internal evidence` |
+| Sprint 12.4 remote Quality Gate | `28352029810` passed |
+| Sprint 12.4 remote Deploy Dry Run | `28352029809` passed |
+| Sprint 12.4 final public readiness smoke | `2026-06-29T06-08-56Z`; status `passed`; 5 checks; 0 failures |
 | Sprint 12.4 external provider data consumed | 0 active provider imports; unavailable provider data represented only by `provider-unavailable:*` markers |
+| Fase 12 completion | Completed 2026-06-29; Sprints 12.1 through 12.4 closed with Quality Gate/Deploy Dry Run evidence |
+| Fase 12 external provider activation | 0 PageSpeed API/GA4/GTM/Search Console/AdSense/billing/donation/affiliate/provider imports activated |
 
 ## Product metrics
 
