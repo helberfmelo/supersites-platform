@@ -51,7 +51,15 @@ Optional root redirect:
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\publish-supersite-hostgator.ps1 -EnableRootRedirect
 ```
 
-This creates a root bridge only when no unmanaged root `.htaccess` exists. Use `-ForceRootRedirect` only after reviewing root rules.
+Before any future root bridge, run the non-mutating plan:
+
+```powershell
+pnpm ops:root-mapping-dry-run
+```
+
+Runbook: `docs/RUNBOOKS/HOSTGATOR_ROOT_MAPPING.md`.
+
+The deploy script creates a root bridge only when no unmanaged root `.htaccess` exists. Use `-ForceRootRedirect` only after reviewing root rules and recording the rollback path.
 
 ## Rollback
 

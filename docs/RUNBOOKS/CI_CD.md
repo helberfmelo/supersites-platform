@@ -70,6 +70,14 @@ Sprint 11.1 applies a minimal active GitHub Ruleset named `SuperSites main safet
 
 Runbook: `docs/RUNBOOKS/GITHUB_MAIN_GUARDRAILS.md`.
 
+### HostGator Root Mapping Dry-Run
+
+File: `scripts/plan-hostgator-root-mapping.ps1`.
+
+Sprint 11.2 adds a non-mutating root mapping plan for `https://opentshost.com/` to `/supersites/`. The dry-run probes public root/fallback URLs, records whether direct product folders are still unmapped and can optionally inspect root `.htaccess` metadata through cPanel when secrets are already loaded in the environment. It never writes remote files or prints secret values.
+
+Runbook: `docs/RUNBOOKS/HOSTGATOR_ROOT_MAPPING.md`.
+
 ### Deploy SuperSite HostGator
 
 File: `.github/workflows/deploy-supersite-hostgator.yml`.

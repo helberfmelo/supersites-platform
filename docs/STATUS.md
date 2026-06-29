@@ -1399,7 +1399,7 @@ Em 2026-06-29, a Fase 11 foi aberta como `Operational Hardening`. A Sprint 11.1 
 
 ## Pendencias criticas
 
-- Configurar branch protection/ruleset em `main` agora que o repositorio esta publico, sem bloquear caminhos de recuperacao/deploy.
+- Evoluir branch guardrails apenas quando houver fluxo de PR/required checks pronto, preservando caminhos de recuperacao/deploy.
 - Definir se o mapeamento publico direto `https://opentshost.com/<site-folder>` sera feito por rewrite, alias, symlink controlado ou ajuste de document root.
 - Implementar jobs de deploy/operacao da VPS usando o GitHub environment `production-vps-runtime`, com rollback e smoke.
 - Configurar uptime/monitoramento operacional e drill de backup/restore antes de ativar anuncios, billing, monitores pagos, workers recorrentes ou revisao AdSense.
@@ -1437,7 +1437,19 @@ Em 2026-06-29, a Fase 11 foi aberta como `Operational Hardening`. A Sprint 11.1 
   - Feature commit publicado: `e155cbe` (`ci: add main branch guardrails`). GitHub Actions `Quality Gate` run `28347010714` passou com matriz completa; `Deploy Dry Run` run `28347010711` passou com anotacao nao bloqueante conhecida de Node.js 20 em `actions/upload-artifact@v4.6.2`.
   - Smokes publicos finais passaram apos o ruleset: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public`.
   - Estado final do ruleset confirmado via API: ID `18241951`, `name=SuperSites main safety guardrails`, `enforcement=active`, `include=~DEFAULT_BRANCH`, regras `deletion` e `non_fast_forward`.
+  - Commit documental de fechamento `ba60525` (`docs: close sprint 11.1 branch guardrails`) passou Quality Gate docs-only `28347211237`.
   - Esta sprint nao ativou PR obrigatorio, required checks antes de push direto, deploy required, code owners, signed commits, provider externo, deploy real, worker/cron, DNS/root mapping, ads, billing, checkout, doacao, afiliado ou acao irreversivel.
+
+- Sprint 11.2 - OPS-ROOT-MAPPING-DRYRUN:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/STATUS.md`, `docs/ROADMAP.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local e ADRs existentes ate `0031`.
+  - Estado inicial verificado: branch `main...origin/main`, ultimo commit `ba60525`, Quality Gate docs-only `28347211237` verde, secrets/variables do environment `production-hostgator` presentes por nome e sem leitura de valores.
+  - Producao publica pre-edicao: `https://opentshost.com/` respondeu 200, `https://opentshost.com/supersites/` respondeu 200, `https://opentshost.com/netprobe-atlas/` respondeu 404 e `https://opentshost.com/supersites/netprobe-atlas/` respondeu 200.
+  - Escopo tecnico: adiciona `scripts/plan-hostgator-root-mapping.ps1`, exposto como `pnpm ops:root-mapping-dry-run`, cria `docs/RUNBOOKS/HOSTGATOR_ROOT_MAPPING.md` e atualiza runbooks/README de deploy para exigir dry-run antes de qualquer ponte raiz futura.
+  - Dry-run local passou com run `2026-06-29T03-54-32Z`: raiz 200, Hub fallback 200, 0 pastas diretas de app mapeadas, todas as URLs fallback em `/supersites/...` responderam 200, classificacao `blocked` porque o `.htaccess` raiz nao foi inspecionado via cPanel neste ambiente local.
+  - Modo `-ProbeCpanel` sem secrets locais falhou fechado sem imprimir valores, mantendo classificacao `blocked`; a inspecao real deve ocorrer apenas em ambiente controlado com secrets ja carregados.
+  - Validacao local passou: `pnpm ops:root-mapping-dry-run`, modo `-ProbeCpanel` fail-closed sem secrets locais, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check`, `pnpm test:packages` e `pnpm typecheck:packages`.
+  - Aguardando fechamento remoto: commit/push, monitorar Quality Gate/Deploy Dry Run aplicaveis, rodar smokes publicos e registrar IDs.
+  - Esta sprint nao ativou DNS, root mapping, direct product mapping, deploy real, alteracao de document root, symlink, alias, `.htaccess` remoto, ads, analytics externo, billing, checkout, doacao, afiliado, worker/cron, API paga ou acao irreversivel.
 
 ## Bloqueios humanos registrados
 

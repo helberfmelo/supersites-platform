@@ -816,6 +816,16 @@ Data-base: 2026-06-29
 | Sprint 11.1 final public smokes | Passed: aggregate Hub/API, control-plane and NetProbe |
 | Sprint 11.1 ruleset final verification | ID `18241951`; enforcement `active`; include `~DEFAULT_BRANCH`; rules `deletion`, `non_fast_forward` |
 | Sprint 11.1 PR/status-check enforcement | 0 activated; deferred to future stricter PR flow |
+| Sprint 11.1 docs-only close | Commit `ba60525`; Quality Gate `28347211237` passed |
+| Sprint 11.2 root mapping script | `scripts/plan-hostgator-root-mapping.ps1` |
+| Sprint 11.2 root mapping runbook | `docs/RUNBOOKS/HOSTGATOR_ROOT_MAPPING.md` |
+| Sprint 11.2 public root probe | `https://opentshost.com/` returned 200; no redirect to `/supersites/` |
+| Sprint 11.2 hub fallback probe | `https://opentshost.com/supersites/` returned 200 |
+| Sprint 11.2 direct app folder probe | 0 direct app folders mapped; fallback URLs under `/supersites/...` returned 200 |
+| Sprint 11.2 dry-run artifact | `artifacts/root-mapping-dry-run/root-mapping-dry-run.md`; run `2026-06-29T03-54-32Z` |
+| Sprint 11.2 apply classification | `blocked` until root `.htaccess` is inspected through cPanel in a controlled environment |
+| Sprint 11.2 local validation | Passed: root mapping dry-run, `-ProbeCpanel` fail-closed without local secrets, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `test:packages`, `typecheck:packages` |
+| Sprint 11.2 production mutations | 0 DNS/root mapping/document-root/.htaccess/deploy changes |
 
 ## Product metrics
 

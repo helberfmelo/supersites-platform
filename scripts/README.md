@@ -4,6 +4,7 @@ Automation scripts. Scripts must not contain real credentials.
 
 - `ci-detect-changes.ps1`: classifies changed paths for path-aware GitHub Actions jobs.
 - `prepare-deploy-dry-run.ps1`: validates `infra/deployment/apps.json` and creates a non-mutating deploy plan artifact.
+- `plan-hostgator-root-mapping.ps1`: creates a non-mutating root mapping dry-run with public HTTP probes, a proposed root bridge and optional cPanel `.htaccess` metadata inspection when secrets are available in the environment.
 - `build-supersite-hostgator-artifact.ps1`: builds the Nuxt catalog with `/supersites/` as `NUXT_APP_BASE_URL` and validates the static artifact for HostGator.
 - `validate-supersite-static-artifact.ps1`: checks the generated static catalog for subdirectory-safe assets, required pages, sitemap entries and forbidden ads/analytics markers.
 - `publish-supersite-hostgator.ps1`: publishes the static catalog to a versioned HostGator release, switches the managed `.htaccess`, and supports rollback.
