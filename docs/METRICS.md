@@ -1131,6 +1131,11 @@ Data-base: 2026-06-29
 | Sprint 15.3 admin visual audit | `pnpm measure:admin-audit` passed; run `2026-06-29T09-51-55Z`; 9 authenticated desktop/mobile checks |
 | Sprint 15.3 control-plane artifact build | `pnpm deploy:build-control-plane-hostgator` passed; 7150 files, 28286453 bytes, zip 8426950 bytes |
 | Sprint 15.3 local governance gates | Passed: `composer validate --strict`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `validate:adsense-safe-public` |
+| Sprint 15.3 feature commit | `12ae78b` |
+| Sprint 15.3 remote Quality Gate | `28363695657` passed |
+| Sprint 15.3 remote Deploy Dry Run | `28363695714` passed |
+| Sprint 15.3 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public`, `pnpm validate:adsense-safe-public`; Hub asset `https://opentshost.com/supersites/_nuxt/BNDSn3oU.js`; NetProbe asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/xQOMqDWZ.js` |
+| Sprint 15.3 production deploy activation | 0 real deploys triggered in this sprint; public smokes validate the existing production baseline |
 | Sprint 15.3 runbook | `docs/RUNBOOKS/BILLING_PROVIDER_GO_LIVE_READINESS.md` |
 | Sprint 15.3 ADR | `docs/ADR/0038-billing-provider-go-live-readiness.md` |
 | Sprint 15.3 provider/billing activation | 0 checkout sessions, payment links, provider SDKs, live webhooks, subscriptions, charges, invoices, refunds, dunning, revenue imports, provider secrets or entitlement changes by payment |
