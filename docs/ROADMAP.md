@@ -477,7 +477,7 @@ Sprint 10.1 - Roadmap pos-benchmark e public watchdog
 
 As fases futuras completas estao descritas em `docs/SPRINTS/POST_BENCHMARK_OPERATIONAL_ROADMAP.md`:
 
-- Fase 11 - Operational Hardening: em execucao a partir de 2026-06-29, cobrindo branch protection, root mapping dry-run, retencao HostGator, VPS backup/restore e runbooks de uptime.
+- Fase 11 - Operational Hardening: concluida em 2026-06-29, cobrindo branch protection, root mapping dry-run, retencao HostGator, VPS backup/restore e runbooks de uptime.
 - Fase 12 - Real Measurement Readiness: Lighthouse/LHCI, auditoria admin autenticada, readiness Google e relatorios executivos com evidencias.
 - Fase 13 - Product Depth and SEO/AIO Expansion: expansao curada de calculadoras, fusos/cidades, builders MailHealth, detalhes SitePulse e planejamento PixelBatch/DocShift.
 - Fase 14 - Paid Upgrade Foundations: auth, contas, entitlements, webhook foundation e monitores preview sem cobranca real.
@@ -486,7 +486,7 @@ As fases futuras completas estao descritas em `docs/SPRINTS/POST_BENCHMARK_OPERA
 
 ## Fase 11 - Operational Hardening
 
-Status geral: em execucao. Esta fase fecha pendencias operacionais tecnicas antes de monetizacao real, workers recorrentes, billing ou escala SEO com provedores externos.
+Status geral: concluida em 2026-06-29. A fase fechou pendencias operacionais tecnicas antes de monetizacao real, workers recorrentes, billing ou escala SEO com provedores externos: ruleset minimo em `main`, root mapping dry-run, retencao HostGator dry-run, drill VPS backup/restore e runbook/smoke consolidado de uptime/incidentes.
 
 Sprint 11.1 - Main branch guardrails
 - Simbolico: OPS-BRANCH-PROTECTION.
@@ -521,7 +521,7 @@ Sprint 11.5 - Uptime and incident runbook
 - Objetivo: consolidar watchdog, smokes, rollback, incidente e evidencias de producao em runbook operacional.
 - Escopo: script `scripts/run-uptime-incident-readiness.ps1`, comando `pnpm ops:uptime-readiness-smoke`, runbook `docs/RUNBOOKS/UPTIME_INCIDENT_RESPONSE.md`, severidade, triagem, matriz de rollback, evidencias obrigatorias e limites humanos.
 - Validacao: readiness smoke local, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `test:packages`, `typecheck:packages`, Quality Gate, Deploy Dry Run quando disparado e smokes publicos finais.
-- Status: em execucao. Readiness smoke `2026-06-29T04-36-41Z` passou com 5 checks e 0 falhas: Hub/API publico, control-plane/API, NetProbe/API, `validate:adsense-safe-public` em 13 paginas e VPS Redis runtime. Nenhum provedor externo, worker/cron, alerta pago, deploy real ou rollback foi ativado.
+- Status: concluida. Commit `228d8b7`, Quality Gate `28348989762`, Deploy Dry Run `28348989784` e readiness smoke final `2026-06-29T04-42-30Z` passaram. O readiness final teve 5 checks e 0 falhas: Hub/API publico, control-plane/API, NetProbe/API, `validate:adsense-safe-public` em 13 paginas e VPS Redis runtime. Nenhum provedor externo, worker/cron, alerta pago, deploy real ou rollback foi ativado.
 
 ## Definition of done do programa
 

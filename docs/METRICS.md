@@ -865,6 +865,12 @@ Data-base: 2026-06-29
 | Sprint 11.5 readiness run | `2026-06-29T04-36-41Z`; status `passed`; 5 checks; 0 failures |
 | Sprint 11.5 readiness checks | Hub/API public smoke, control-plane/API smoke, NetProbe/API smoke, AdSense-safe public gate, VPS Redis runtime validation |
 | Sprint 11.5 external provider activation | 0 uptime providers/workers/crons/paid alerts activated |
+| Sprint 11.5 feature commit | `228d8b7 ops: add uptime incident readiness runbook` |
+| Sprint 11.5 remote Quality Gate | `28348989762` passed |
+| Sprint 11.5 remote Deploy Dry Run | `28348989784` passed |
+| Sprint 11.5 final readiness smoke | `2026-06-29T04-42-30Z`; status `passed`; 5 checks; 0 failures |
+| Fase 11 completion | Completed 2026-06-29; Sprints 11.1 through 11.5 closed with Quality Gate/docs-only Quality Gate evidence |
+| Fase 11 irreversible/external activation | 0 DNS/root mapping/deploy real/ads/billing/checkout/workers/crons/provider uptime activations |
 
 ## Product metrics
 

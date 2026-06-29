@@ -48,7 +48,7 @@ Na Sprint 9.16, o fechamento em producao da Fase 9 adicionou o gate publico AdSe
 
 Em 2026-06-29, a Fase 10 foi concluida como `Post-Benchmark Operations Watchdog`. A auditoria V2 foi incorporada como baseline historico e reconciliada com o estado real pos-Fase 9: smokes publicos atuais passaram para Hub/API, e o crawler quick `2026-06-29T01-09-47-242Z` registrou 95 rotas, 190 checks e 0 gaps. A Sprint 10.1 adicionou o roadmap operacional pos-benchmark em `docs/SPRINTS/POST_BENCHMARK_OPERATIONAL_ROADMAP.md` e o workflow `Public Watchdog`, que roda smokes publicos, `validate:adsense-safe-public` e crawler quick/full agendado/manual sem mutar producao. O commit tecnico `5143a1f` passou Quality Gate `28342679619`, Deploy Dry Run `28342679627` e Public Watchdog manual `28342779097`; o baseline remoto `2026-06-29T01-22-23-919Z` registrou 95 rotas, 190 checks, 0 gaps, 0 console errors e robots/sitemaps ok. Nenhum anuncio real, GTM/GA4, analytics externo, checkout, billing, pagamento, doacao, afiliado, worker/cron, API paga, `ads.txt`, publisher id real, DNS/root mapping ou acao irreversivel foi ativado.
 
-Em 2026-06-29, a Fase 11 foi aberta como `Operational Hardening`. A Sprint 11.1 `OPS-BRANCH-PROTECTION` iniciou a protecao tecnica reversivel de `main`: auditoria inicial confirmou branch protection classico ausente e rulesets vazios; smokes publicos de baseline passaram para Hub/API, control-plane e NetProbe. O ruleset ativo minimo `SuperSites main safety guardrails` foi aplicado no GitHub como ID `18241951`, bloqueando exclusao e non-fast-forward no default branch, sem exigir pull request, status checks antes de push direto, code owners ou signed commits, preservando recuperacao operacional.
+Em 2026-06-29, a Fase 11 `Operational Hardening` foi concluida. A fase aplicou o ruleset minimo `SuperSites main safety guardrails` no GitHub (ID `18241951`), criou root mapping dry-run sem alterar a raiz, criou inventario/retencao HostGator dry-run com 108 releases listados e 0 candidatos, executou drill VPS backup/restore do Redis sem interromper o servico nem tocar BigShop360, e consolidou o runbook/smoke de uptime/incidentes. Quality Gates, Deploy Dry Runs, smokes publicos e readiness final passaram; nenhum DNS/root mapping, deploy real, anuncio, analytics externo, billing, checkout, worker/cron, provider externo de uptime ou acao irreversivel foi ativado.
 
 ## Estado local verificado
 
@@ -1425,7 +1425,7 @@ Em 2026-06-29, a Fase 11 foi aberta como `Operational Hardening`. A Sprint 11.1 
   - Smokes publicos finais locais passaram: `pnpm deploy:smoke-supersite-public` validou Hub `BNDSn3oU.js`, dez apps e APIs MailHealth/SitePulse; `pnpm deploy:smoke-control-plane-public` passou; `pnpm deploy:smoke-netprobe-public` validou NetProbe `xQOMqDWZ.js` e API publica; `pnpm validate:adsense-safe-public` passou em 13 paginas.
   - A unica anotacao remota nao bloqueante foi o aviso de depreciacao de Node.js 20 vindo de `actions/upload-artifact@v4.6.2`, executado em Node 24 pelo runner. Nenhum anuncio real, GTM/GA4, analytics externo, checkout, billing, pagamento, doacao, afiliado, worker/cron, API paga, DNS/root mapping ou acao irreversivel foi ativado.
 
-## Fase 11 em andamento
+## Fase 11 concluida
 
 - Sprint 11.1 - OPS-BRANCH-PROTECTION:
   - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/STATUS.md`, `docs/ROADMAP.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local e ADRs existentes ate `0031`.
@@ -1483,7 +1483,10 @@ Em 2026-06-29, a Fase 11 foi aberta como `Operational Hardening`. A Sprint 11.1 
   - Estado inicial verificado: branch `main...origin/main`, ultimo commit `9dfdcc2`, Quality Gate docs-only `28348789787` verde e historico recente de CI/deploy seco da Fase 11 verde.
   - Escopo tecnico: adiciona `scripts/run-uptime-incident-readiness.ps1`, exposto como `pnpm ops:uptime-readiness-smoke`, cria `docs/RUNBOOKS/UPTIME_INCIDENT_RESPONSE.md`, atualiza indice de runbooks, CI/CD runbook, scripts README, ROADMAP/STATUS/METRICS.
   - Readiness smoke local passou com run `2026-06-29T04-36-41Z`: 5 checks, 0 falhas, Hub/API publico, control-plane/API, NetProbe/API, `validate:adsense-safe-public` em 13 paginas e VPS Redis runtime passaram; o artefato local ficou em `artifacts/uptime-incident-readiness/`.
-  - Esta sprint ainda nao ativou provedor externo de uptime, worker/cron, alerta pago, status page publica externa, deploy real, rollback, DNS/root mapping, ads, analytics externo, billing, checkout, doacao, afiliado, API paga ou acao irreversivel.
+  - Validacao local pre-commit passou: `pnpm ops:uptime-readiness-smoke`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check`, `pnpm test:packages` e `pnpm typecheck:packages`.
+  - Feature commit publicado: `228d8b7` (`ops: add uptime incident readiness runbook`). GitHub Actions `Quality Gate` run `28348989762` passou com matriz completa; `Deploy Dry Run` run `28348989784` passou.
+  - Readiness smoke final pos-CI passou com run `2026-06-29T04-42-30Z`: 5 checks, 0 falhas, Hub/API publico, control-plane/API, NetProbe/API, `validate:adsense-safe-public` em 13 paginas e VPS Redis runtime passaram.
+  - Esta sprint nao ativou provedor externo de uptime, worker/cron, alerta pago, status page publica externa, deploy real, rollback, DNS/root mapping, ads, analytics externo, billing, checkout, doacao, afiliado, API paga ou acao irreversivel.
 
 ## Bloqueios humanos registrados
 
