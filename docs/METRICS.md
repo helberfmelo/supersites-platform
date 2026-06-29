@@ -1199,9 +1199,15 @@ Data-base: 2026-06-29
 | Sprint 16.4 focused validation | Passed: `@supersites/executive-reports` 10 tests; `GrowthReportingReadinessTest` 4 tests/66 assertions; `AdminPanelTest` 10 tests/105 assertions |
 | Sprint 16.4 full local validation | Passed: `pnpm test:packages` 90 tests, `pnpm typecheck:packages`, `php artisan test` 94 tests/963 assertions, `composer validate --strict`, `pnpm measure:admin-audit` run `2026-06-29T11-27-13Z`, `pnpm deploy:build-control-plane-hostgator`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check`, `pnpm validate:adsense-safe-public` |
 | Sprint 16.4 control-plane artifact | 7166 files, 28360526 bytes, zip 8446091 bytes |
+| Sprint 16.4 feature commit | `ccf2c8d` |
+| Sprint 16.4 remote Quality Gate | `28368838900` passed |
+| Sprint 16.4 remote Deploy Dry Run | `28368838828` passed |
+| Sprint 16.4 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public`, `pnpm validate:adsense-safe-public`; Hub asset `https://opentshost.com/supersites/_nuxt/BNDSn3oU.js`; NetProbe asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/xQOMqDWZ.js` |
+| Sprint 16.4 production deploy activation | 0 real deploys triggered in this sprint; public smokes validate the existing production baseline |
 | Sprint 16.4 runbook | `docs/RUNBOOKS/GROWTH_REPORTING_READINESS.md` |
 | Sprint 16.4 ADR | `docs/ADR/0043-growth-reporting-readiness.md` |
 | Sprint 16.4 reporting/provider activation | 0 scheduled reports, external email deliveries, provider imports, revenue reports, causal claims, external AI calls, prompts, workers, cron jobs, automated branches, PRs, auto-merge, direct publish, ad serving, checkout, billing, donations, affiliates or automated publications |
+| Phase 16 closure | Completed in main on 2026-06-29 with technical commits `2581eab`, `e969bac`, `6a48c31`, `ccf2c8d`; remote Quality Gates `28365619891`, `28366584397`, `28367680725`, `28368838900`; remote Deploy Dry Runs `28365619897`, `28366584414`, `28367680675`, `28368838828`; all public smokes passed; provider/import/automation/report delivery activation remains 0 |
 
 ## Product metrics
 

@@ -671,7 +671,7 @@ Fase 15 - fechamento
 
 ## Fase 16 - Continuous Growth Loop
 
-Status geral: iniciada em 2026-06-29 em modo fail-closed. Como tokens, quotas, provider accounts, dados reais, workers e revisao de causalidade seguem pendentes de gate humano, a fase deve entregar contratos e readiness locais sem ativar imports ou automacoes externas.
+Status geral: concluida em main em 2026-06-29 em modo fail-closed. Como tokens, quotas, provider accounts, dados reais, workers e revisao de causalidade seguem pendentes de gate humano, a fase entregou contratos e readiness locais sem ativar imports, automacoes externas, scheduler de relatorio, e-mail externo ou causalidade.
 
 Sprint 16.1 - Growth provider ingestion readiness
 - Simbolico: GROWTH-INGEST.
@@ -699,7 +699,10 @@ Sprint 16.4 - Growth reporting readiness
 - Objetivo: preparar relatorios semanais/mensais do growth loop com antes/depois, status de dados e causalidade fail-closed, sem envio recorrente.
 - Escopo: contrato `growthReportingContractVersion` em `@supersites/executive-reports`, helper `resolveGrowthReportingGate`, servico `GrowthReportingReadiness`, endpoint autenticado `GET /api/v1/growth/reporting-readiness`, painel no dashboard, testes, ADR `0043`, runbook `GROWTH_REPORTING_READINESS` e gate humano explicito para reports automaticos/dados reais/causalidade.
 - Validacao: testes do pacote executive-reports, `GrowthReportingReadinessTest`, `AdminPanelTest`, `php artisan test`, `composer validate --strict`, `test:packages`, `typecheck:packages`, `measure:admin-audit`, build de artifact do control-plane, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `validate:adsense-safe-public`, Quality Gate/Deploy Dry Run e smokes publicos apos push.
-- Status: concluida localmente/pre-push, sem deploy real. Passaram `pnpm --filter @supersites/executive-reports test` com 10 testes, `GrowthReportingReadinessTest` com 4 testes/66 assertions, `AdminPanelTest` com 10 testes/105 assertions, `pnpm test:packages` com 90 testes, `pnpm typecheck:packages`, `php artisan test` com 94 testes/963 assertions, `composer validate --strict`, admin audit `2026-06-29T11-27-13Z` em 9 paginas, artifact control-plane com 7166 arquivos/28360526 bytes/zip 8446091 bytes, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` e `validate:adsense-safe-public` em 13 paginas. Nenhum scheduled report, email externo, provider import, revenue reporting, causalidade, external AI, branch, PR, auto-merge, publish, anuncio, checkout, billing, doacao, afiliado ou publicacao automatica foi ativado.
+- Status: concluida em main, sem deploy real. Passaram `pnpm --filter @supersites/executive-reports test` com 10 testes, `GrowthReportingReadinessTest` com 4 testes/66 assertions, `AdminPanelTest` com 10 testes/105 assertions, `pnpm test:packages` com 90 testes, `pnpm typecheck:packages`, `php artisan test` com 94 testes/963 assertions, `composer validate --strict`, admin audit `2026-06-29T11-27-13Z` em 9 paginas, artifact control-plane com 7166 arquivos/28360526 bytes/zip 8446091 bytes, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` e `validate:adsense-safe-public` em 13 paginas. Feature commit `ccf2c8d`, Quality Gate `28368838900`, Deploy Dry Run `28368838828` e smokes publicos finais passaram. Nenhum scheduled report, email externo, provider import, revenue reporting, causalidade, external AI, branch, PR, auto-merge, publish, anuncio, checkout, billing, doacao, afiliado ou publicacao automatica foi ativado.
+
+Fase 16 - fechamento
+- Status: concluida em main em 2026-06-29, sem deploy real e sem ativacao de provider/growth automation. Commits tecnicos: `2581eab`, `e969bac`, `6a48c31`, `ccf2c8d`. Quality Gates tecnicos: `28365619891`, `28366584397`, `28367680725`, `28368838900`. Deploy Dry Runs tecnicos: `28365619897`, `28366584414`, `28367680675`, `28368838828`. Smokes publicos de Hub/control-plane/NetProbe e `validate:adsense-safe-public` passaram apos cada sprint tecnica.
 
 ## Definition of done do programa
 

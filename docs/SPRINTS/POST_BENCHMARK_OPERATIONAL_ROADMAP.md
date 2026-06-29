@@ -136,11 +136,21 @@ Status em 2026-06-29: Fase concluida em modo fail-closed. A Sprint 15.1 foi conc
 
 Objetivo: operar o ciclo continuo com evidencias reais.
 
-Status em 2026-06-29: Fase em fechamento fail-closed. A Sprint 16.1 concluiu readiness autenticado de ingestao de GA4/Search Console/AdSense/billing sem provider requests, tokens, workers, cron, retries ou snapshots reais. A Sprint 16.2 concluiu priorizacao autenticada local sem provider real, external AI, PR automatico, causalidade ou automacao. A Sprint 16.3 concluiu readiness de automacao segura com fila `pr_review_only` sem branch/PR/merge/publish real. A Sprint 16.4 concluiu localmente/pre-push readiness de reporting semanal/mensal com before/after e status de dados, mantendo scheduler, e-mail externo, provider import, receita real e causalidade desligados.
+Status em 2026-06-29: Fase concluida em main em modo fail-closed. A Sprint 16.1 concluiu readiness autenticado de ingestao de GA4/Search Console/AdSense/billing sem provider requests, tokens, workers, cron, retries ou snapshots reais. A Sprint 16.2 concluiu priorizacao autenticada local sem provider real, external AI, PR automatico, causalidade ou automacao. A Sprint 16.3 concluiu readiness de automacao segura com fila `pr_review_only` sem branch/PR/merge/publish real. A Sprint 16.4 concluiu readiness de reporting semanal/mensal com before/after e status de dados, mantendo scheduler, e-mail externo, provider import, receita real e causalidade desligados. Commits tecnicos: `2581eab`, `e969bac`, `6a48c31`, `ccf2c8d`.
 
 | Sprint | Simbolico | Escopo | Gates/humanos |
 |---:|---|---|---|
 | 16.1 | GROWTH-INGEST | Concluida em `2581eab`; readiness de ingestao futura GA4/Search Console/AdSense/billing, imports reais 0 | Tokens e quotas em cofre |
 | 16.2 | GROWTH-PRIORITIZE | Concluida em `e969bac`; `GET /api/v1/growth/priorities`, priority model local, provider-backed priorities 0 | Sem causalidade automatica |
 | 16.3 | GROWTH-AUTOMATION-SAFE | Concluida em `6a48c31`; `GET /api/v1/growth/automation-readiness`, candidatos `pr_review_only`, branch/PR/merge/publish 0 | Automacao real segue gate humano |
-| 16.4 | GROWTH-REPORTING | Concluida localmente/pre-push; `GET /api/v1/growth/reporting-readiness`, `growthReportingContractVersion`, 3 relatorios, 18 itens, 14 before/after-ready, scheduled reports 0 e emails 0 | Revisao para receita/causalidade; scheduler/envio/import real seguem gate humano |
+| 16.4 | GROWTH-REPORTING | Concluida em `ccf2c8d`; `GET /api/v1/growth/reporting-readiness`, `growthReportingContractVersion`, 3 relatorios, 18 itens, 14 before/after-ready, scheduled reports 0 e emails 0 | Revisao para receita/causalidade; scheduler/envio/import real seguem gate humano |
+
+## Evidencia de fechamento da Fase 16
+
+| Sinal | Evidencia |
+|---|---|
+| Sprint 16.1 | Commit `2581eab`; Quality Gate `28365619891`; Deploy Dry Run `28365619897`; smokes publicos passaram |
+| Sprint 16.2 | Commit `e969bac`; Quality Gate `28366584397`; Deploy Dry Run `28366584414`; smokes publicos passaram |
+| Sprint 16.3 | Commit `6a48c31`; Quality Gate `28367680725`; Deploy Dry Run `28367680675`; smokes publicos passaram |
+| Sprint 16.4 | Commit `ccf2c8d`; Quality Gate `28368838900`; Deploy Dry Run `28368838828`; smokes publicos passaram |
+| Ativacoes externas | 0 provider imports, 0 tokens, 0 payloads reais, 0 external AI, 0 workers/crons, 0 branches/PRs automaticos, 0 auto-merge, 0 publish, 0 reports agendados, 0 emails externos, 0 revenue reporting, 0 causalidade, 0 ads, 0 checkout/billing, 0 doacoes/afiliados |
