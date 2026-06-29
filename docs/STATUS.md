@@ -1433,7 +1433,11 @@ Em 2026-06-29, a Fase 11 foi aberta como `Operational Hardening`. A Sprint 11.1 
   - Smokes publicos de baseline passaram: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public`.
   - Escopo tecnico: adiciona `scripts/sync-github-main-ruleset.ps1`, cria `docs/RUNBOOKS/GITHUB_MAIN_GUARDRAILS.md`, atualiza runbook CI/CD, ROADMAP/STATUS/METRICS e aplica ruleset ativo minimo `SuperSites main safety guardrails`.
   - Ruleset aplicado e validado via API: ID `18241951`, `enforcement=active`, regras `deletion` e `non_fast_forward`, branch default `~DEFAULT_BRANCH`; API classica de branch protection continua 404 porque a protecao usa GitHub Rulesets.
-  - Aguardando fechamento remoto: rodar gates locais, commit/push, monitorar Quality Gate/Deploy Dry Run aplicaveis, rodar smokes publicos e registrar IDs.
+  - Validacao local passou: dry-run do ruleset, aplicacao com `-Apply`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check`.
+  - Feature commit publicado: `e155cbe` (`ci: add main branch guardrails`). GitHub Actions `Quality Gate` run `28347010714` passou com matriz completa; `Deploy Dry Run` run `28347010711` passou com anotacao nao bloqueante conhecida de Node.js 20 em `actions/upload-artifact@v4.6.2`.
+  - Smokes publicos finais passaram apos o ruleset: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm deploy:smoke-netprobe-public`.
+  - Estado final do ruleset confirmado via API: ID `18241951`, `name=SuperSites main safety guardrails`, `enforcement=active`, `include=~DEFAULT_BRANCH`, regras `deletion` e `non_fast_forward`.
+  - Esta sprint nao ativou PR obrigatorio, required checks antes de push direto, deploy required, code owners, signed commits, provider externo, deploy real, worker/cron, DNS/root mapping, ads, billing, checkout, doacao, afiliado ou acao irreversivel.
 
 ## Bloqueios humanos registrados
 

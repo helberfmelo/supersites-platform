@@ -809,6 +809,12 @@ Data-base: 2026-06-29
 | Sprint 11.1 GitHub ruleset runbook | `docs/RUNBOOKS/GITHUB_MAIN_GUARDRAILS.md` |
 | Sprint 11.1 intended active rules | `deletion`, `non_fast_forward` on default branch |
 | Sprint 11.1 GitHub ruleset applied | `SuperSites main safety guardrails`; ID `18241951`; enforcement `active` |
+| Sprint 11.1 local validation | Passed: ruleset dry-run/apply, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` |
+| Sprint 11.1 feature commit | `e155cbe ci: add main branch guardrails` |
+| Sprint 11.1 remote Quality Gate | `28347010714` passed |
+| Sprint 11.1 remote Deploy Dry Run | `28347010711` passed |
+| Sprint 11.1 final public smokes | Passed: aggregate Hub/API, control-plane and NetProbe |
+| Sprint 11.1 ruleset final verification | ID `18241951`; enforcement `active`; include `~DEFAULT_BRANCH`; rules `deletion`, `non_fast_forward` |
 | Sprint 11.1 PR/status-check enforcement | 0 activated; deferred to future stricter PR flow |
 
 ## Product metrics

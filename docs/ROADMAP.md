@@ -493,7 +493,7 @@ Sprint 11.1 - Main branch guardrails
 - Objetivo: configurar protecao reversivel para `main` sem bloquear recovery/deploy direto governado.
 - Escopo: ruleset GitHub ativo minimo para bloquear exclusao e non-fast-forward, script `scripts/sync-github-main-ruleset.ps1`, runbook `docs/RUNBOOKS/GITHUB_MAIN_GUARDRAILS.md` e registro de evidencias.
 - Validacao: auditoria de protection/rulesets antes/depois, dry-run do script, aplicacao com `-Apply`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate, Deploy Dry Run quando disparado e smokes publicos.
-- Status: em execucao nesta entrega.
+- Status: concluida. Ruleset `SuperSites main safety guardrails` ID `18241951` aplicado em `active` com regras `deletion` e `non_fast_forward`; commit `e155cbe`, Quality Gate `28347010714`, Deploy Dry Run `28347010711` e smokes publicos finais passaram. Nenhum PR obrigatorio, required checks antes de push direto, deploy required, code owners ou signed commits foi ativado.
 
 Sprint 11.2 - Root mapping dry-run
 - Simbolico: OPS-ROOT-MAPPING-DRYRUN.
