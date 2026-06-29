@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             GoogleIntegrationSeeder::class,
             AdSenseReadinessSeeder::class,
             BillingReadinessSeeder::class,
+            SupportMonetizationReadinessSeeder::class,
             AiGrowthReadinessSeeder::class,
             ExecutiveReportReadinessSeeder::class,
             BenchmarkRefinementSeeder::class,

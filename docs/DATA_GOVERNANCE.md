@@ -209,6 +209,13 @@
 - Scores da Sprint 7.2 sao estimados a partir de docs, screenshots, testes e CI; provider imports e metricas reais devem permanecer `unavailable` ate gates futuros.
 - Oportunidades com AdSense, billing, doacoes, afiliados, impostos, KYC, conta, banco, termos ou provider externo devem permanecer `human_required`.
 
+## Support monetization readiness
+
+- A Sprint 15.4 cria apenas readiness local em `support_monetization_channels`.
+- Campos permitidos: site, canal `donation`/`affiliate`, provider label nao secreto, status de conta/termos/impostos/disclosure/privacidade/politica/destino/aprovacao humana, flags fail-closed e URL futura sanitizada para preview sem credenciais, query string ou fragmento.
+- Campos proibidos: payment link real, URL real de afiliado com parametro, PIX payload, QR, carteira, token, webhook secret, conta bancaria, documento fiscal, e-mail, IP, identificador de usuario, receita individual, click id ou payload de provider.
+- Canais com doacao real, afiliado real, widget, tracking, webhook, public link ou provider SDK devem permanecer `human_required` ate KYC, impostos, termos, disclosure, privacidade, AdSense/SEO compliance, cofre e aprovacao humana.
+
 ## Analytics sem PII
 
 - O contrato versionado fica em `packages/analytics`.

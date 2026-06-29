@@ -7,7 +7,9 @@ import {
   isAccidentalClickRisk,
   normalizeAdSensePublisherId,
   normalizeAdSlotId,
+  normalizeSupportMonetizationChannel,
   resolveAdSenseAccountGate,
+  sanitizeMonetizationDestinationUrl,
   summarizeAdSlots,
 } from '../src'
 
@@ -131,6 +133,22 @@ describe('@supersites/ads', () => {
     expect(normalizeAdSensePublisherId(' CA-PUB-1234567890123456 ')).toBe('ca-pub-1234567890123456')
     expect(normalizeAdSensePublisherId('pub-123')).toBeNull()
     expect(normalizeAdSensePublisherId(null)).toBeNull()
+  })
+
+  it('normalizes support monetization channels', () => {
+    expect(normalizeSupportMonetizationChannel(' Donation ')).toBe('donation')
+    expect(normalizeSupportMonetizationChannel('affiliate')).toBe('affiliate')
+    expect(normalizeSupportMonetizationChannel('sponsor')).toBeNull()
+  })
+
+  it('sanitizes future monetization destination urls without query credentials or fragments', () => {
+    expect(sanitizeMonetizationDestinationUrl('https://support.example/path?token=secret#frag')).toBe(
+      'https://support.example/path',
+    )
+    expect(sanitizeMonetizationDestinationUrl('https://user:pass@partner.example/product?aff=abc')).toBe(
+      'https://partner.example/product',
+    )
+    expect(sanitizeMonetizationDestinationUrl('http://support.example/path')).toBeNull()
   })
 
   it('builds a Google ads.txt line only for valid publisher ids', () => {

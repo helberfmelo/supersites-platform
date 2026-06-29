@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\V1\MailHealth\MailHealthSmtpController;
 use App\Http\Controllers\Api\V1\MetricSnapshotIndexController;
 use App\Http\Controllers\Api\V1\Monitoring\MonitorPreviewIndexController;
 use App\Http\Controllers\Api\V1\Monitoring\MonitorPreviewStoreController;
+use App\Http\Controllers\Api\V1\Monetization\SupportMonetizationGoLiveReadinessController;
 use App\Http\Controllers\Api\V1\NetProbe\ClientIpController;
 use App\Http\Controllers\Api\V1\NetProbe\DnsPropagationController;
 use App\Http\Controllers\Api\V1\NetProbe\DnsLookupController;
@@ -81,6 +82,8 @@ Route::prefix('v1')
         Route::get('/google/go-live-readiness', GoogleProviderGoLiveReadinessController::class)
             ->middleware('permission:dashboard.view');
         Route::get('/billing/go-live-readiness', BillingProviderGoLiveReadinessController::class)
+            ->middleware('permission:dashboard.view');
+        Route::get('/monetization/support/go-live-readiness', SupportMonetizationGoLiveReadinessController::class)
             ->middleware('permission:dashboard.view');
 
         Route::prefix('monitoring/previews')

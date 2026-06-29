@@ -69,6 +69,9 @@ export interface AdSlotPlan {
 
 export type AdSenseGateStatus = 'human_required' | 'not_configured' | 'ready' | 'blocked'
 export type AdSenseSiteReviewStatus = 'not_ready' | 'human_required' | 'ready_for_review' | 'blocked'
+export const supportMonetizationChannels = ['donation', 'affiliate'] as const
+
+export type SupportMonetizationChannel = (typeof supportMonetizationChannels)[number]
 
 export interface AdSenseAccountGateInput {
   humanApproved: boolean
@@ -271,6 +274,39 @@ export function normalizeAdSensePublisherId(value: string | null | undefined): s
   const normalized = value.trim().toLowerCase()
 
   return /^ca-pub-\d{16}$/.test(normalized) ? normalized : null
+}
+
+export function normalizeSupportMonetizationChannel(value: string | null | undefined): SupportMonetizationChannel | null {
+  const normalized = String(value ?? '').trim().toLowerCase()
+
+  return supportMonetizationChannels.includes(normalized as SupportMonetizationChannel)
+    ? normalized as SupportMonetizationChannel
+    : null
+}
+
+export function sanitizeMonetizationDestinationUrl(value: string | null | undefined): string | null {
+  const raw = String(value ?? '').trim()
+
+  if (!raw) {
+    return null
+  }
+
+  try {
+    const url = new URL(raw)
+
+    if (url.protocol !== 'https:') {
+      return null
+    }
+
+    url.username = ''
+    url.password = ''
+    url.search = ''
+    url.hash = ''
+
+    return url.toString()
+  } catch {
+    return null
+  }
 }
 
 export function buildGoogleAdsTxtLine(

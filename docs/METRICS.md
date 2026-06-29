@@ -1139,6 +1139,16 @@ Data-base: 2026-06-29
 | Sprint 15.3 runbook | `docs/RUNBOOKS/BILLING_PROVIDER_GO_LIVE_READINESS.md` |
 | Sprint 15.3 ADR | `docs/ADR/0038-billing-provider-go-live-readiness.md` |
 | Sprint 15.3 provider/billing activation | 0 checkout sessions, payment links, provider SDKs, live webhooks, subscriptions, charges, invoices, refunds, dunning, revenue imports, provider secrets or entitlement changes by payment |
+| Sprint 15.4 support monetization endpoint | `GET /api/v1/monetization/support/go-live-readiness` behind auth and `dashboard.view` |
+| Sprint 15.4 support monetization contract | `SupportMonetizationGoLiveReadiness::CONTRACT_VERSION` `2026-06-29.15.4` |
+| Sprint 15.4 support monetization records | `support_monetization_channels` seeded with 22 records: 11 donation, 11 affiliate; public links 0 |
+| Sprint 15.4 support monetization helpers | `@supersites/ads normalizeSupportMonetizationChannel` and `sanitizeMonetizationDestinationUrl` |
+| Sprint 15.4 focused validation | Passed: `@supersites/ads` 13 tests; `SupportMonetizationGoLiveReadinessTest` 4 tests/38 assertions |
+| Sprint 15.4 full local validation | Passed: `pnpm test:packages` 82 tests, `pnpm typecheck:packages`, `php artisan test` 78 tests/752 assertions, `composer validate --strict`, `pnpm measure:admin-audit` run `2026-06-29T10-08-11Z`, `pnpm deploy:build-control-plane-hostgator`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check`, `pnpm validate:adsense-safe-public` |
+| Sprint 15.4 control-plane artifact | 7155 files, 28302875 bytes, zip 8431872 bytes |
+| Sprint 15.4 runbook | `docs/RUNBOOKS/SUPPORT_MONETIZATION_GO_LIVE_READINESS.md` |
+| Sprint 15.4 ADR | `docs/ADR/0039-support-monetization-go-live-readiness.md` |
+| Sprint 15.4 donation/affiliate activation | 0 public donation links, affiliate links, payment widgets, QR/PIX payloads, wallets, provider SDKs, webhooks, affiliate tracking, payment secrets or real support payments |
 
 ## Product metrics
 

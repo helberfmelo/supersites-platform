@@ -19,9 +19,11 @@ use App\Models\GoogleIntegration;
 use App\Models\Incident;
 use App\Models\OperationalTask;
 use App\Models\Site;
+use App\Models\SupportMonetizationChannel;
 use App\Support\AdSense\AdSenseGoLiveReadiness;
 use App\Support\Billing\BillingProviderGoLiveReadiness;
 use App\Support\Google\GoogleProviderGoLiveReadiness;
+use App\Support\Monetization\SupportMonetizationGoLiveReadiness;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -32,10 +34,12 @@ class DashboardController extends Controller
         AdSenseGoLiveReadiness $adsenseReadiness,
         BillingProviderGoLiveReadiness $billingReadiness,
         GoogleProviderGoLiveReadiness $googleReadiness,
+        SupportMonetizationGoLiveReadiness $supportMonetizationReadiness,
     ): View {
         $adsenseGoLiveReadiness = $adsenseReadiness->snapshot();
         $billingGoLiveReadiness = $billingReadiness->snapshot();
         $googleGoLiveReadiness = $googleReadiness->snapshot();
+        $supportMonetizationGoLiveReadiness = $supportMonetizationReadiness->snapshot();
         $statusCounts = Site::query()
             ->selectRaw('status, count(*) as total')
             ->groupBy('status')
@@ -49,6 +53,7 @@ class DashboardController extends Controller
             'adsense_serving_enabled' => AdSenseSiteReview::query()->where('ad_serving_enabled', true)->count(),
             'billing_gated' => BillingProvider::query()->where('checkout_enabled', false)->count(),
             'billing_checkout_enabled' => BillingProvider::query()->where('checkout_enabled', true)->count(),
+            'support_monetization_public_enabled' => SupportMonetizationChannel::query()->where('public_enabled', true)->count(),
             'executive_reports' => ExecutiveReport::query()->count(),
             'executive_reports_export_ready' => ExecutiveReport::query()->where('export_ready', true)->count(),
             'executive_report_estimated_items' => ExecutiveReportItem::query()->where('data_status', 'estimated')->count(),
@@ -150,6 +155,14 @@ class DashboardController extends Controller
                 ->limit(6)
                 ->get(),
             'googleGoLiveReadiness' => $googleGoLiveReadiness,
+            'supportMonetizationChannels' => SupportMonetizationChannel::query()
+                ->with('site:id,slug,name')
+                ->orderBy('public_enabled')
+                ->orderBy('channel')
+                ->orderBy('id')
+                ->limit(8)
+                ->get(),
+            'supportMonetizationGoLiveReadiness' => $supportMonetizationGoLiveReadiness,
             'incidents' => Incident::query()
                 ->with('site:id,slug,name')
                 ->latest('detected_at')

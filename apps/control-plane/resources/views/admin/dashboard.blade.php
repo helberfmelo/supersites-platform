@@ -31,6 +31,10 @@
             <strong>{{ $summary['billing_gated'] }}</strong>
         </article>
         <article class="panel metric">
+            <span class="muted">Support links live</span>
+            <strong>{{ $summary['support_monetization_public_enabled'] }}</strong>
+        </article>
+        <article class="panel metric">
             <span class="muted">Executive reports</span>
             <strong>{{ $summary['executive_reports'] }}</strong>
         </article>
@@ -418,6 +422,46 @@
                 @empty
                     <tr>
                         <td colspan="6">No Google integration records seeded.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </section>
+
+    <section class="panel">
+        <h2>Support monetization</h2>
+        <p class="muted">
+            Go-live ready {{ $supportMonetizationGoLiveReadiness['data']['summary']['channels_ready_for_human_activation'] }} /
+            {{ $supportMonetizationGoLiveReadiness['data']['summary']['channels'] }} channels ·
+            donation payments {{ $supportMonetizationGoLiveReadiness['data']['summary']['real_donation_payments_enabled'] }} ·
+            affiliate links {{ $supportMonetizationGoLiveReadiness['data']['summary']['real_affiliate_links_enabled'] }} ·
+            public links {{ $supportMonetizationGoLiveReadiness['data']['summary']['public_links_enabled'] }} ·
+            widgets {{ $supportMonetizationGoLiveReadiness['data']['summary']['widgets_loaded'] }}
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Site</th>
+                    <th>Channel</th>
+                    <th>Account</th>
+                    <th>Disclosure</th>
+                    <th>Destination</th>
+                    <th>Public</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($supportMonetizationChannels as $channel)
+                    <tr>
+                        <td>{{ $channel->site?->name ?? 'Unknown site' }}</td>
+                        <td>{{ $channel->channel }}</td>
+                        <td><span class="status {{ $channel->account_status }}">{{ $channel->account_status }}</span></td>
+                        <td>{{ $channel->disclosure_status }}</td>
+                        <td>{{ $channel->destination_url_status }}</td>
+                        <td>{{ $channel->public_enabled ? 'enabled' : 'disabled' }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">No support monetization readiness records seeded.</td>
                     </tr>
                 @endforelse
             </tbody>
