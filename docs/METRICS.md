@@ -1113,6 +1113,11 @@ Data-base: 2026-06-29
 | Sprint 15.2 admin visual audit | `pnpm measure:admin-audit` passed; run `2026-06-29T09-37-06Z`; 9 authenticated desktop/mobile checks |
 | Sprint 15.2 control-plane artifact build | `pnpm deploy:build-control-plane-hostgator` passed; 7148 files, 28274065 bytes, zip 8423936 bytes |
 | Sprint 15.2 local governance gates | Passed: `composer validate --strict`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `validate:adsense-safe-public` |
+| Sprint 15.2 feature commit | `ca89769` |
+| Sprint 15.2 remote Quality Gate | `28362869383` passed |
+| Sprint 15.2 remote Deploy Dry Run | `28362869390` passed |
+| Sprint 15.2 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public`, `pnpm validate:adsense-safe-public`; Hub asset `https://opentshost.com/supersites/_nuxt/BNDSn3oU.js`; NetProbe asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/xQOMqDWZ.js` |
+| Sprint 15.2 production deploy activation | 0 real deploys triggered in this sprint; public smokes validate the existing production baseline |
 | Sprint 15.2 runbook | `docs/RUNBOOKS/GOOGLE_PROVIDER_GO_LIVE_READINESS.md` |
 | Sprint 15.2 ADR | `docs/ADR/0037-google-provider-go-live-readiness.md` |
 | Sprint 15.2 provider/analytics activation | 0 GA4/GTM snippets, Google properties, GTM containers, Search Console verification tokens/imports, PageSpeed API calls, cookies, real secrets or external analytics provider activations |
