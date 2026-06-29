@@ -507,7 +507,7 @@ Sprint 11.3 - HostGator retention dry-run
 - Objetivo: criar politica e script dry-run de retencao para releases HostGator antigos, sem remocao real.
 - Escopo: script nao mutante `scripts/plan-hostgator-release-retention.ps1`, comando `pnpm ops:hostgator-retention-dry-run`, workflow manual `.github/workflows/hostgator-retention-dry-run.yml`, runbook `docs/RUNBOOKS/HOSTGATOR_RELEASE_RETENTION.md`, inventario opcional via cPanel sem imprimir secrets e politica de classificacao sem delete.
 - Validacao: dry-run local, modo `-ProbeCpanel` fail-closed sem secrets locais, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `test:packages`, `typecheck:packages`, Quality Gate, Deploy Dry Run, workflow manual HostGator Retention Dry Run e smokes publicos.
-- Status: em execucao. Dry-run local sem cPanel passou com run `2026-06-29T04-11-09Z` e 12 superficies; modo `-ProbeCpanel` local sem secrets fechou como inventario `partial` sem imprimir valores. Nenhuma remocao, deploy, upload, chmod, `.htaccess`, document root, DNS/root mapping ou escrita remota foi ativada.
+- Status: concluida. Commit `3318ff4`, Quality Gate `28348142881`, Deploy Dry Run `28348142892`, workflow manual `HostGator Retention Dry Run` `28348277067` e smokes publicos finais passaram. O inventario remoto `2026-06-29T04-18-16Z` ficou `checked`, com 12 superficies, 108 releases listados, 0 `eligible-for-future-removal`, 0 `review-only` e nenhuma remocao, deploy, upload, chmod, `.htaccess`, document root, DNS/root mapping ou escrita remota.
 
 Sprint 11.4 - VPS backup/restore drill
 - Simbolico: OPS-VPS-BACKUP-RESTORE.

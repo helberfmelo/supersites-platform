@@ -838,6 +838,12 @@ Data-base: 2026-06-29
 | Sprint 11.3 local dry-run artifact | `artifacts/hostgator-retention-dry-run/hostgator-retention-dry-run.md`; run `2026-06-29T04-11-09Z`; 12 surfaces; inventory `skipped`; 0 releases; 0 candidates |
 | Sprint 11.3 local cPanel probe guard | `-ProbeCpanel` without local secrets closed as inventory `partial`, 12 failed surfaces, 0 releases, 0 candidates and no secret values printed |
 | Sprint 11.3 local validation | Passed: retention dry-run, `-ProbeCpanel` fail-closed without local secrets, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `test:packages`, `typecheck:packages` |
+| Sprint 11.3 feature commit | `3318ff4 ops: add hostgator release retention dry run` |
+| Sprint 11.3 remote Quality Gate | `28348142881` passed |
+| Sprint 11.3 remote Deploy Dry Run | `28348142892` passed |
+| Sprint 11.3 manual retention workflow | `28348277067` passed; artifact `hostgator-retention-dry-run` ID `7942511529` |
+| Sprint 11.3 remote retention inventory | Run `2026-06-29T04-18-16Z`; inventory `checked`; 12 surfaces; 108 releases listed; 0 eligible; 0 review-only |
+| Sprint 11.3 final public smokes | Passed: aggregate Hub/API, control-plane and NetProbe |
 | Sprint 11.3 production mutations | 0 deletes/uploads/chmod/deploys/root mapping/DNS changes |
 
 ## Product metrics

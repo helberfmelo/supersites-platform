@@ -1461,7 +1461,10 @@ Em 2026-06-29, a Fase 11 foi aberta como `Operational Hardening`. A Sprint 11.1 
   - Dry-run local pre-commit sem cPanel passou com run `2026-06-29T04-11-09Z`: 12 superficies inventariadas por politica, inventario remoto `skipped`, 0 releases listados, 0 candidatos e nenhuma mutacao.
   - Modo `-ProbeCpanel` sem secrets locais falhou fechado com inventario `partial`, 12 superficies `failed`, 0 releases, 0 candidatos e sem imprimir valores secretos.
   - Validacao local pre-commit passou: `pnpm ops:hostgator-retention-dry-run`, modo `-ProbeCpanel` fail-closed sem secrets locais, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check`, `pnpm test:packages` e `pnpm typecheck:packages`.
-  - Esta sprint ainda nao removeu releases, nao alterou `.htaccess`, `index.php`, document root, DNS/root mapping, deploy real, chmod, upload, symlink, alias, ads, analytics externo, billing, checkout, doacao, afiliado, worker/cron, API paga ou acao irreversivel.
+  - Feature commit publicado: `3318ff4` (`ops: add hostgator release retention dry run`). GitHub Actions `Quality Gate` run `28348142881` passou com matriz completa; `Deploy Dry Run` run `28348142892` passou com anotacao nao bloqueante conhecida de Node.js 20 em `actions/upload-artifact@v4.6.2`.
+  - Workflow manual `HostGator Retention Dry Run` run `28348277067` passou em `production-hostgator`, publicou artefato `hostgator-retention-dry-run` ID `7942511529` e registrou run `2026-06-29T04-18-16Z`: inventario `checked`, 12 superficies, 108 releases listados, 0 `eligible-for-future-removal`, 0 `review-only` e nenhuma mutacao.
+  - Smokes publicos finais passaram: `pnpm deploy:smoke-supersite-public` validou Hub `BNDSn3oU.js`, dez apps publicados e APIs MailHealth/SitePulse; `pnpm deploy:smoke-control-plane-public` passou; `pnpm deploy:smoke-netprobe-public` validou NetProbe `xQOMqDWZ.js` e API publica.
+  - Esta sprint nao removeu releases, nao alterou `.htaccess`, `index.php`, document root, DNS/root mapping, deploy real, chmod, upload, symlink, alias, ads, analytics externo, billing, checkout, doacao, afiliado, worker/cron, API paga ou acao irreversivel.
 
 ## Bloqueios humanos registrados
 
