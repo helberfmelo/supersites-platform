@@ -136,11 +136,11 @@ Status em 2026-06-29: Fase concluida em modo fail-closed. A Sprint 15.1 foi conc
 
 Objetivo: operar o ciclo continuo com evidencias reais.
 
-Status em 2026-06-29: Fase iniciada em modo fail-closed. A Sprint 16.1 esta preparando readiness autenticado de ingestao de GA4/Search Console/AdSense/billing sem provider requests, tokens, workers, cron, retries ou snapshots reais.
+Status em 2026-06-29: Fase iniciada em modo fail-closed. A Sprint 16.1 concluiu readiness autenticado de ingestao de GA4/Search Console/AdSense/billing sem provider requests, tokens, workers, cron, retries ou snapshots reais. Proxima sprint: 16.2 `GROWTH-PRIORITIZE`.
 
 | Sprint | Simbolico | Escopo | Gates/humanos |
 |---:|---|---|---|
-| 16.1 | GROWTH-INGEST | Ingestao de GA4/Search Console/AdSense/billing quando aprovados | Tokens e quotas em cofre |
+| 16.1 | GROWTH-INGEST | Concluida em `2581eab`; readiness de ingestao futura GA4/Search Console/AdSense/billing, imports reais 0 | Tokens e quotas em cofre |
 | 16.2 | GROWTH-PRIORITIZE | Priorizacao por impacto/esforco/confianca/risco com dados reais | Sem causalidade automatica |
 | 16.3 | GROWTH-AUTOMATION-SAFE | Automacoes de baixo risco via PR, nunca publish direto | Auto-merge so com gates verdes |
 | 16.4 | GROWTH-REPORTING | Relatorios semanais/mensais com antes/depois e status de dados | Revisao para receita/causalidade |
