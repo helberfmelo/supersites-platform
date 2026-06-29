@@ -114,6 +114,7 @@ Objetivo: preparar contas, autenticacao, entitlements e limites pagos sem cobrar
 | Sprint 14.3 | Commit `2bb673d`; Quality Gate `28360245701`; Deploy Dry Run `28360245696`; smokes publicos passaram para Hub, control-plane e NetProbe |
 | Sprint 14.3 local | Webhook dry-run foundation implementada; `BillingWebhookDryRunTest` 6/38, `php artisan test` 56/553, `measure:admin-audit` `2026-06-29T08-48-01Z` com 9 paginas, artifact control-plane 7141 arquivos, pacotes compartilhados passaram |
 | Sprint 14.3 ativacoes externas | 0 webhook real, 0 provider SDK/checkout/billing provider/secrets reais, 0 processamento de pagamento/invoice/entitlement pago, 0 ads/doacoes/afiliados, 0 worker/cron |
+| Sprint 14.4 | Commit `f05dea4`; Quality Gate `28360961942`; Deploy Dry Run `28360961952`; smokes publicos passaram para Hub, control-plane e NetProbe |
 | Sprint 14.4 local | Monitor preview autenticado implementado para NetProbe/MailHealth/SitePulse; `PaidMonitorPreviewTest` 6/44, `php artisan test` 62/597, `measure:admin-audit` `2026-06-29T09-02-00Z` com 9 paginas, artifact control-plane 7144 arquivos, pacotes compartilhados passaram |
 | Sprint 14.4 ativacoes externas | 0 monitor persistente MailHealth/SitePulse, 0 worker recorrente/alerta real/status page/DMARC recorrente, 0 checkout/billing provider/secrets reais, 0 ads/doacoes/afiliados, 0 worker/cron novo |
 

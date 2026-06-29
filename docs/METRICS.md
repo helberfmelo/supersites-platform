@@ -1066,6 +1066,12 @@ Data-base: 2026-06-29
 | Sprint 14.4 admin visual audit | `pnpm measure:admin-audit` passed; run `2026-06-29T09-02-00Z`; 9 authenticated desktop/mobile checks |
 | Sprint 14.4 control-plane artifact build | `pnpm deploy:build-control-plane-hostgator` passed; 7144 files, 28252666 bytes, zip 8417997 bytes |
 | Sprint 14.4 package validation | Passed: `test:packages`, `typecheck:packages`; billing package remains 14 tests |
+| Sprint 14.4 local governance gates | Passed: `composer validate --strict`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` |
+| Sprint 14.4 feature commit | `f05dea4` |
+| Sprint 14.4 remote Quality Gate | `28360961942` passed |
+| Sprint 14.4 remote Deploy Dry Run | `28360961952` passed |
+| Sprint 14.4 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public`; Hub asset `https://opentshost.com/supersites/_nuxt/BNDSn3oU.js`; NetProbe asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/xQOMqDWZ.js` |
+| Sprint 14.4 production deploy activation | 0 real deploys triggered in this sprint; public smokes validate the existing production baseline |
 | Sprint 14.4 runbook | `docs/RUNBOOKS/PAID_MONITOR_PREVIEW.md` |
 | Sprint 14.4 human gates recorded | Real paid monitors, workers, alerting and metered usage remain in `docs/HUMAN_ACTION_REQUIRED.md` |
 | Sprint 14.4 monetization/provider activation | 0 persistent MailHealth/SitePulse monitors, recurring workers, real alerts, paid history, status pages, recurring DMARC, metered commercial usage, checkout, billing provider, SDK, real webhook, ads, donation, affiliate, external analytics, worker or cron activations |
