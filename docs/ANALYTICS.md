@@ -343,3 +343,11 @@ A Sprint 16.4 adiciona somente readiness autenticado para relatorios semanais/me
 - O snapshot lista relatorios prontos para revisao, contagens before/after-ready e status de dados.
 - `recurring_delivery_enabled`, `external_recipients_enabled`, `revenue_reporting_enabled`, `should_schedule_report`, `should_send_email`, `should_import_provider_data` e `should_infer_causality` permanecem falsos.
 - Nenhum provider API, worker, cron, e-mail externo, receita real, traffic import, AdSense import, billing import, claim causal ou distribuicao automatica de relatorio e ativado nesta sprint.
+
+## Provider/Growth readiness smoke
+
+A Sprint 17.1 adiciona somente um smoke local de teste para os endpoints de readiness de provider e growth.
+
+- O comando `pnpm ops:provider-growth-readiness-smoke` nao cria eventos analytics, nao acessa GA4/GTM/Search Console/AdSense/billing e nao importa dados reais.
+- Os artefatos registram status do teste e endpoints cobertos, sem payload de provider, query, receita, identificador de usuario, input de ferramenta ou PII.
+- O smoke deve permanecer como gate local complementar; nao substitui consentimento, cofre, matriz de dados, provider import review ou smokes publicos.

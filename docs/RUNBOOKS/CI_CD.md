@@ -72,6 +72,16 @@ Runbook: `docs/RUNBOOKS/UPTIME_INCIDENT_RESPONSE.md`.
 
 The readiness smoke does not publish, deploy, rollback, delete, start workers, start crons, activate external providers or mutate production.
 
+### Provider/Growth Readiness Smoke
+
+File: `scripts/run-provider-growth-readiness-smoke.ps1`.
+
+Sprint 17.1 adds a local authenticated readiness smoke exposed as `pnpm ops:provider-growth-readiness-smoke`. It runs the Laravel `ProviderGrowthReadinessSmokeTest` against the seeded test database and verifies the go-live/growth endpoints for AdSense, Google providers, billing, support monetization, provider ingestion, priorities, automation and reporting remain fail-closed.
+
+Runbook: `docs/RUNBOOKS/PROVIDER_GROWTH_READINESS_SMOKE.md`.
+
+The readiness smoke does not log in to production, publish files, deploy, start workers, start crons, call provider APIs, request ads, create checkout sessions, activate donations/affiliates, open branches/PRs, send reports or mutate production.
+
 ### GitHub Main Guardrails
 
 File: `scripts/sync-github-main-ruleset.ps1`.

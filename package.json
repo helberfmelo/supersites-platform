@@ -73,6 +73,7 @@
     "ops:hostgator-retention-dry-run": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/plan-hostgator-release-retention.ps1",
     "ops:vps-backup-restore-drill": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-vps-backup-restore-drill.ps1",
     "ops:uptime-readiness-smoke": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-uptime-incident-readiness.ps1",
+    "ops:provider-growth-readiness-smoke": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-provider-growth-readiness-smoke.ps1",
     "measure:lighthouse-public": "node scripts/run-public-lighthouse.mjs",
     "measure:lhci-public": "lhci autorun --config=.lighthouserc.cjs",
     "measure:admin-audit": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/run-control-plane-admin-audit.ps1",

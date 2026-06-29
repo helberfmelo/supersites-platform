@@ -704,6 +704,17 @@ Sprint 16.4 - Growth reporting readiness
 Fase 16 - fechamento
 - Status: concluida em main em 2026-06-29, sem deploy real e sem ativacao de provider/growth automation. Commits tecnicos: `2581eab`, `e969bac`, `6a48c31`, `ccf2c8d`. Quality Gates tecnicos: `28365619891`, `28366584397`, `28367680725`, `28368838900`. Deploy Dry Runs tecnicos: `28365619897`, `28366584414`, `28367680675`, `28368838828`. Smokes publicos de Hub/control-plane/NetProbe e `validate:adsense-safe-public` passaram apos cada sprint tecnica.
 
+## Fase 17 - Governed Readiness Consolidation
+
+Status geral: em execucao em 2026-06-29. Como o roadmap pos-benchmark mapeado terminava na Fase 16, a proxima fase tecnica reversivel consolida os gates de provider/monetizacao/growth ja entregues antes de qualquer go-live real.
+
+Sprint 17.1 - Provider/Growth readiness smoke
+- Simbolico: OPS-PROVIDER-GROWTH-SMOKE.
+- Objetivo: criar um smoke unico para validar que readiness de AdSense, Google providers, billing, suporte monetizado e growth loop continua fail-closed em conjunto.
+- Escopo: `ProviderGrowthReadinessSmokeTest`, comando `pnpm ops:provider-growth-readiness-smoke`, artefatos locais em `artifacts/provider-growth-readiness/`, ADR `0044`, runbook `PROVIDER_GROWTH_READINESS_SMOKE` e atualizacao dos documentos operacionais.
+- Validacao: teste focado, `php artisan test`, `composer validate --strict`, `test:packages`, `typecheck:packages`, `measure:admin-audit`, build de artifact do control-plane, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `validate:adsense-safe-public`, Quality Gate/Deploy Dry Run e smokes publicos apos push.
+- Status: em execucao. Nenhum provider externo, tag, anuncio, `ads.txt`, checkout, webhook real, doacao, afiliado, worker/cron, branch/PR automatico, report enviado, deploy real ou acao irreversivel esta autorizado por esta fase.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.

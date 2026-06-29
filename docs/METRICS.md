@@ -11,7 +11,7 @@ Data-base: 2026-06-29
 | Initial languages planned | 5 |
 | Local app folders created | 12 |
 | Shared package folders created | 13 |
-| ADRs created | 30 |
+| ADRs created | 44 |
 | Docs files created/maintained | 122 |
 | Local Docker services healthy | 3 |
 | Local MySQL databases created | 12 |
@@ -1208,6 +1208,26 @@ Data-base: 2026-06-29
 | Sprint 16.4 ADR | `docs/ADR/0043-growth-reporting-readiness.md` |
 | Sprint 16.4 reporting/provider activation | 0 scheduled reports, external email deliveries, provider imports, revenue reports, causal claims, external AI calls, prompts, workers, cron jobs, automated branches, PRs, auto-merge, direct publish, ad serving, checkout, billing, donations, affiliates or automated publications |
 | Phase 16 closure | Completed in main on 2026-06-29 with technical commits `2581eab`, `e969bac`, `6a48c31`, `ccf2c8d`; remote Quality Gates `28365619891`, `28366584397`, `28367680725`, `28368838900`; remote Deploy Dry Runs `28365619897`, `28366584414`, `28367680675`, `28368838828`; all public smokes passed; provider/import/automation/report delivery activation remains 0 |
+
+## Phase 17 readiness consolidation metrics
+
+| Metric | Value |
+|---|---:|
+| Phase 17 status | Started on 2026-06-29 |
+| Sprint 17.1 symbolic name | `OPS-PROVIDER-GROWTH-SMOKE` |
+| Consolidated readiness smoke command | `pnpm ops:provider-growth-readiness-smoke` |
+| Consolidated readiness endpoints covered | 8 |
+| Provider/growth production mutations | 0 |
+| Provider external API calls activated | 0 |
+| Workers or crons activated | 0 |
+| Ads, tags, checkout, donations or affiliates activated | 0 |
+| Automated branches or PRs opened | 0 |
+| Reports scheduled or emailed | 0 |
+| Sprint 17.1 local validation | Pending |
+| Sprint 17.1 feature commit | Pending |
+| Sprint 17.1 remote Quality Gate | Pending |
+| Sprint 17.1 remote Deploy Dry Run | Pending |
+| Sprint 17.1 public smokes | Pending |
 
 ## Product metrics
 

@@ -319,6 +319,14 @@ php artisan queue:work --queue=netprobe-monitors --once
 
 Webhook delivery is disabled by default. Enable only in controlled local/test scenarios with `NETPROBE_ALERT_WEBHOOK_ENABLED=true` and public HTTPS targets that pass the NetProbe host guard.
 
+Run the consolidated provider/growth readiness smoke:
+
+```powershell
+pnpm ops:provider-growth-readiness-smoke
+```
+
+The smoke uses Laravel tests and local artifacts only. It does not call providers, mutate production, start workers or open PRs.
+
 Build the HostGator control-plane/API artifact locally:
 
 ```powershell

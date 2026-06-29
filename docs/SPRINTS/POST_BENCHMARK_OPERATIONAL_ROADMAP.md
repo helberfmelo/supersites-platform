@@ -154,3 +154,20 @@ Status em 2026-06-29: Fase concluida em main em modo fail-closed. A Sprint 16.1 
 | Sprint 16.3 | Commit `6a48c31`; Quality Gate `28367680725`; Deploy Dry Run `28367680675`; smokes publicos passaram |
 | Sprint 16.4 | Commit `ccf2c8d`; Quality Gate `28368838900`; Deploy Dry Run `28368838828`; smokes publicos passaram |
 | Ativacoes externas | 0 provider imports, 0 tokens, 0 payloads reais, 0 external AI, 0 workers/crons, 0 branches/PRs automaticos, 0 auto-merge, 0 publish, 0 reports agendados, 0 emails externos, 0 revenue reporting, 0 causalidade, 0 ads, 0 checkout/billing, 0 doacoes/afiliados |
+
+## Fase 17 - Governed Readiness Consolidation
+
+Objetivo: consolidar os gates fail-closed de provider, monetizacao e growth loop em um smoke operacional unico antes de qualquer go-live real.
+
+Status em 2026-06-29: em execucao. Esta fase e tecnicamente reversivel e nao autoriza ativacao externa.
+
+| Sprint | Simbolico | Escopo | Gates/humanos |
+|---:|---|---|---|
+| 17.1 | OPS-PROVIDER-GROWTH-SMOKE | Criar `ProviderGrowthReadinessSmokeTest`, comando `pnpm ops:provider-growth-readiness-smoke`, artefatos locais, ADR/runbook e docs vivos para validar oito endpoints autenticados fail-closed | Provider real, anuncios, tags, checkout, webhooks, workers, PR automatico, report enviado e causalidade continuam gate humano/tecnico |
+
+## Evidencia planejada da Fase 17
+
+| Sinal | Evidencia |
+|---|---|
+| Sprint 17.1 | Aguardando validacao local, commit tecnico, Quality Gate, Deploy Dry Run, smokes publicos e commit documental de fechamento |
+| Ativacoes externas | 0 provider imports, 0 tags, 0 anuncios, 0 checkout/billing real, 0 doacoes/afiliados, 0 workers/crons, 0 branches/PRs automaticos, 0 reports enviados, 0 deploy real |

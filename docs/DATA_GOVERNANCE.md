@@ -215,6 +215,13 @@
 - `before_after_items` significa somente itens com dados finalizados/estimados e evidencia; nao autoriza claim causal, envio externo, scheduler ou publicacao.
 - `causality_status=not_inferred` permanece obrigatorio ate existir contrato de revisao humana e evidencia aprovada para causalidade.
 
+## Provider/Growth readiness smoke
+
+- A Sprint 17.1 cria apenas evidencia local de teste para os endpoints de readiness.
+- Campos permitidos em artefato: run id, git sha, status, endpoints cobertos, flags negativas de mutacao e cauda sanitizada do output de teste.
+- Campos proibidos em artefato: token, segredo, payload de provider, dados de cliente, input de ferramenta, arquivo, IP real de usuario, invoice, receita individual, query real ou destinatario externo.
+- O smoke nao altera retencao nem autoriza importacao real; provider data continua `unavailable` ate gates humanos e matriz de dados.
+
 ## Executive reports
 
 - A Sprint 6.6 cria apenas relatorios operacionais locais em `executive_reports` e `executive_report_items`.

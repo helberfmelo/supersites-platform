@@ -98,6 +98,8 @@ Na Sprint 16.4 `GROWTH-REPORTING`, foi adicionada readiness autenticada de relat
 
 Com a Sprint 16.4, a Fase 16 `Continuous Growth Loop` foi concluida em main em 2026-06-29 em modo fail-closed. A fase entregou readiness autenticado para ingestao de providers, priorizacao, automacao segura e reporting sem ativar providers reais, dados reais, external AI, workers, crons, branches/PRs automaticos, auto-merge, publicacao, scheduler de relatorio, email externo, receita real, causalidade, ads, checkout, billing, doacao ou afiliados. Commits tecnicos: `2581eab`, `e969bac`, `6a48c31`, `ccf2c8d`. Quality Gates tecnicos: `28365619891`, `28366584397`, `28367680725`, `28368838900`. Deploy Dry Runs tecnicos: `28365619897`, `28366584414`, `28367680675`, `28368838828`. Smokes publicos de Hub/control-plane/NetProbe e `validate:adsense-safe-public` passaram ao fim de cada sprint tecnica.
 
+Em 2026-06-29, a Fase 17 `Governed Readiness Consolidation` foi aberta porque o roadmap pos-benchmark encerrava na Fase 16. O escopo da Sprint 17.1 `OPS-PROVIDER-GROWTH-SMOKE` e criar um smoke local unico para validar que os oito endpoints autenticados de readiness das Fases 15 e 16 continuam fail-closed em conjunto: AdSense, Google providers, billing, suporte monetizado, ingestao de growth, prioridades, automacao e reporting. Nenhum provider externo, tag, anuncio, `ads.txt`, checkout, webhook real, doacao, afiliado, worker/cron, branch/PR automatico, report enviado, deploy real ou acao irreversivel esta autorizado por esta fase.
+
 ## Estado local verificado
 
 - Raiz local: `D:\Projetos\supersites`.
@@ -1539,3 +1541,11 @@ Com a Sprint 16.4, a Fase 16 `Continuous Growth Loop` foi concluida em main em 2
 ## Bloqueios humanos registrados
 
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.
+
+## Fase 17 em execucao
+
+- Sprint 17.1 - OPS-PROVIDER-GROWTH-SMOKE:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/STATUS.md`, `docs/ROADMAP.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local e ADRs existentes ate `0043`.
+  - Estado inicial verificado: branch `main...origin/main`, ultimo commit remoto `a6ee7d8`, Quality Gate docs-only `28369220380` verde, Quality Gate tecnico anterior `28368838900` verde e Deploy Dry Run anterior `28368838828` verde.
+  - Escopo tecnico: adiciona `ProviderGrowthReadinessSmokeTest`, script `scripts/run-provider-growth-readiness-smoke.ps1`, comando `pnpm ops:provider-growth-readiness-smoke`, ADR `0044`, runbook `docs/RUNBOOKS/PROVIDER_GROWTH_READINESS_SMOKE.md` e docs operacionais afetados.
+  - Status: em validacao local; run IDs de CI, smokes publicos e fechamento documental serao registrados apos commit/push/monitoramento.

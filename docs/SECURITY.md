@@ -273,3 +273,9 @@
 - O endpoint retorna apenas metadados agregados de relatorios executivos e status de ingestao; nao retorna provider payload, token, query, invoice, click id, customer id, PII ou segredo.
 - Auditoria registra somente versao do contrato, contagens agregadas, provider activation falso e `causality_status`.
 - Envio recorrente, e-mail externo, provider import, revenue reporting e causalidade ficam bloqueados ate matriz de dados, revisao humana, cofre e smokes especificos.
+
+## Provider/Growth readiness smoke
+
+- `pnpm ops:provider-growth-readiness-smoke` valida apenas ambiente de teste local do control-plane.
+- O smoke deve falhar se qualquer readiness endpoint deixar de declarar `side_effects=none`, `provider_activation=false`, side effects reais em `0` e flags `should_*` falsas.
+- O smoke nao chama provider externo, nao publica arquivo, nao cria checkout, nao inicia worker/cron, nao abre branch/PR, nao envia relatorio e nao muta producao.

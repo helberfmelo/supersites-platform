@@ -169,6 +169,12 @@ Relatorios executivos nao ativam checkout, payment links, webhooks, SDK, provide
 
 Sprint 16.4 adiciona reporting readiness apenas para revisao. Mesmo se `growth_provider_ingestions` indicar dado provider futuro como `finalized`, `should_import_provider_data=false`, `revenue_reporting_enabled=false`, `should_send_email=false` e `should_infer_causality=false` continuam obrigatorios ate billing real, matriz de dados, retencao, cofre e aprovacao humana estarem completos.
 
+## Provider/Growth readiness smoke
+
+A Sprint 17.1 adiciona `pnpm ops:provider-growth-readiness-smoke` para validar em teste que billing go-live, support monetization e growth reporting continuam fail-closed em conjunto.
+
+O smoke nao cria checkout, payment link, provider SDK, webhook real, assinatura, invoice, cobranca, revenue import, entitlement por pagamento, doacao, afiliado ou secret. Qualquer ativacao real continua dependente de KYC, impostos, termos, cofre, matriz de dados, smokes especificos e aprovacao humana.
+
 ## Benchmark monetization backlog
 
 A Sprint 7.2 pode registrar oportunidades de monetizacao, doacao, afiliados e upgrade pago somente como backlog local evidenciado.
