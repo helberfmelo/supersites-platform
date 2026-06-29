@@ -1,0 +1,93 @@
+name: Public Watchdog
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Benchmark crawler mode.
+        required: true
+        default: quick
+        type: choice
+        options:
+          - quick
+          - full
+  schedule:
+    - cron: '17 8 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-watchdog
+  cancel-in-progress: false
+
+jobs:
+  public_watchdog:
+    name: Public smoke and benchmark crawl
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v6.4.0
+        with:
+          node-version: '24'
+
+      - name: Enable pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@11.9.0 --activate
+
+      - name: Install Node dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browser
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Public SuperSites smoke
+        shell: pwsh
+        run: ./scripts/smoke-supersite-public.ps1
+
+      - name: Public control-plane smoke
+        shell: pwsh
+        run: ./scripts/smoke-control-plane-public.ps1
+
+      - name: Public NetProbe smoke
+        shell: pwsh
+        run: ./scripts/smoke-netprobe-public.ps1
+
+      - name: Validate public AdSense safety
+        run: pnpm validate:adsense-safe-public
+
+      - name: Run public benchmark crawler
+        shell: bash
+        run: |
+          mode="${{ github.event.inputs.mode }}"
+          if [ -z "$mode" ]; then
+            mode="quick"
+          fi
+
+          node scripts/benchmark-crawl.mjs \
+            --mode="$mode" \
+            --sprint=10.1 \
+            --symbolic-sprint=POST-BENCHMARK-WATCHDOG \
+            --fail-on-critical
+
+      - name: Publish watchdog summary
+        shell: bash
+        run: |
+          report="$(find artifacts/benchmark-crawl -name baseline.md -print -quit)"
+          if [ -n "$report" ]; then
+            cat "$report" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload watchdog artifacts
+        uses: actions/upload-artifact@v4.6.2
+        continue-on-error: true
+        with:
+          name: public-watchdog-artifacts
+          path: |
+            artifacts/benchmark-crawl
+            artifacts/adsense-safe-public
+          if-no-files-found: warn

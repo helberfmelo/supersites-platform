@@ -47,6 +47,21 @@ The markdown plan is also written to the GitHub job summary. Artifact upload is 
 
 The dry-run does not upload, delete, move, publish or rewrite remote files.
 
+### Public Watchdog
+
+File: `.github/workflows/public-watchdog.yml`.
+
+Runs daily by schedule and manually by `workflow_dispatch`.
+
+Actions:
+
+- runs public SuperSites, control-plane and NetProbe smokes;
+- runs `pnpm validate:adsense-safe-public`;
+- runs `scripts/benchmark-crawl.mjs` in `quick` mode by default, or `full` when selected manually;
+- uploads crawler and AdSense-safe artifacts best-effort.
+
+The watchdog does not log in, publish, deploy, delete, start workers, call provider APIs, request ads, create checkout sessions, activate donations, or mutate production state. It is an operational visibility gate for the public transitional URLs under `/supersites/...`.
+
 ### Deploy SuperSite HostGator
 
 File: `.github/workflows/deploy-supersite-hostgator.yml`.

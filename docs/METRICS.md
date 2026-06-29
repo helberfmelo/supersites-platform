@@ -1,6 +1,6 @@
 # Metrics
 
-Data-base: 2026-06-28
+Data-base: 2026-06-29
 
 ## Bootstrap metrics
 
@@ -783,6 +783,15 @@ Data-base: 2026-06-28
 | Real affiliate links activated by Fase 9 planning | 0 planned before explicit gates |
 | External analytics/provider imports activated by Fase 9 planning | 0 planned before explicit gates |
 | Production workers/crons activated by Fase 9 planning | 0 planned before explicit gates |
+| Sprint 10.1 phase mapped | Fase 10 - Post-Benchmark Operations Watchdog |
+| Sprint 10.1 roadmap file | `docs/SPRINTS/POST_BENCHMARK_OPERATIONAL_ROADMAP.md` |
+| Sprint 10.1 audit V2 versioned | `docs/AUDITORIA_LIVE_SUPERSITES_BENCHMARK_V2.md` |
+| Sprint 10.1 pre-edit public supersite smoke | Passed |
+| Sprint 10.1 pre-edit public control-plane smoke | Passed |
+| Sprint 10.1 pre-edit quick crawler run | `2026-06-29T01-09-47-242Z`; 95 routes; 190 checks; 0 gaps |
+| Public watchdog workflow implemented | `.github/workflows/public-watchdog.yml` |
+| Public watchdog schedule | Daily at 08:17 UTC plus manual dispatch |
+| Public watchdog external provider activation | 0; smokes/crawler only |
 
 ## Product metrics
 

@@ -1,6 +1,6 @@
 # Status
 
-Data-base: 2026-06-28
+Data-base: 2026-06-29
 
 ## Resumo executivo
 
@@ -45,6 +45,8 @@ Na Sprint 9.13, o TimeNexus recebeu em producao o refinamento BGR-TIMENEXUS-DENS
 Nas Sprints 9.14 e 9.15, DevUtility Lab e o Hub receberam refinamentos benchmark-grade em producao. DevUtility Lab passou a abrir com workbench tecnico antes do catalogo, e o Hub ganhou `Top public tools`, preview blocks, clusters `Choose by workflow`, rodape rico por verticais e JSON-LD para home/detalhe/legal. Feature commit Hub `6d5a04b`, Quality Gate `28332110747`, Deploy Dry Run `28332110760`, deploy Hub Fase 9/Sprint 9.15 `28332214304`, release `6d5a04b54c7ec3e796cf1f31140d90d651133b43-28332214304-1`, asset `https://opentshost.com/supersites/_nuxt/f2kVvvDG.js`, smokes publicos e smoke live de UX passaram. Nenhum anuncio real, GTM/GA4, analytics externo, checkout, billing, pagamento, doacao, afiliado, worker/cron, API paga, conteudo em massa ou direct-root mapping foi ativado.
 
 Na Sprint 9.16, o fechamento em producao da Fase 9 adicionou o gate publico AdSense-safe (`pnpm validate:adsense-safe-public`), rotulagem configuravel no crawler benchmark, JSON-LD para homes/paginas estaticas dos 10 apps e correcao de metadata preservando marcas. O crawler publico pre-correcao `2026-06-28T18-58-27-647Z` encontrou 680 gaps de JSON-LD na producao anterior; apos deploys rotulados e correcoes, o crawler publico final `2026-06-28T20-51-53-722Z` navegou 876 rotas e 1752 checks desktop/mobile com 0 gaps totais, 0 falhas de pagina/browser, 0 console errors, 0 links internos quebrados, 0 overflow, 0 robots/sitemap/title/meta/canonical/hreflang gaps e 0 gaps de JSON-LD. Feature commit `7ea0921`, correcao `6fcd03f`, correcao final `d26bc39`, Quality Gates `28333587563`/`28334888617`, Deploy Dry Runs `28333587571`/`28334888619`, deploys rotulados, smokes publicos finais e gate AdSense-safe passaram. Lighthouse/PageSpeed/LHCI nao estavam disponiveis no PATH local, portanto o fechamento registrou proxies deterministicos do crawler final: TTFB mediano 36 ms, P75 load 97 ms, P75 LCP 100 ms e P75 CLS 0. Nenhum anuncio real, GTM/GA4, analytics externo, checkout, billing, pagamento, doacao, afiliado, worker/cron, API paga, snippet AdSense, `ads.txt`, publisher id real ou direct-root mapping foi ativado.
+
+Em 2026-06-29, a Fase 10 foi aberta como `Post-Benchmark Operations Watchdog`. A auditoria V2 foi incorporada como baseline historico e reconciliada com o estado real pos-Fase 9: smokes publicos atuais passaram para Hub/API, e o crawler quick `2026-06-29T01-09-47-242Z` registrou 95 rotas, 190 checks e 0 gaps. A Sprint 10.1 adiciona o roadmap operacional pos-benchmark em `docs/SPRINTS/POST_BENCHMARK_OPERATIONAL_ROADMAP.md` e o workflow `Public Watchdog`, que roda smokes publicos, `validate:adsense-safe-public` e crawler quick/full agendado/manual sem mutar producao. Nenhum anuncio real, GTM/GA4, analytics externo, checkout, billing, pagamento, doacao, afiliado, worker/cron, API paga, `ads.txt`, publisher id real, DNS/root mapping ou acao irreversivel foi ativado.
 
 ## Estado local verificado
 
@@ -1406,6 +1408,15 @@ Na Sprint 9.16, o fechamento em producao da Fase 9 adicionou o gate publico AdSe
 - Definir estrategia tecnica de URL raiz: `opentshost.com` apontando para conteudo em `/public_html/supersites/`.
 - Definir dominios definitivos futuramente.
 - Validar dominio/marca antes de registrar qualquer nome.
+
+## Fase 10 em andamento
+
+- Sprint 10.1 - POST-BENCHMARK-WATCHDOG:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/STATUS.md`, `docs/ROADMAP.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local, auditoria V2, benchmark prompt/matrix/status e ADRs existentes ate `0031`.
+  - Estado inicial verificado: branch `main...origin/main`, ultimo commit remoto `fef513f`, Quality Gate `28336274992` verde, producao publica respondendo em `/supersites/` e `/supersites/control-plane/`.
+  - Validacao publica pre-edicao passou: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public` e `pnpm benchmark:crawl:quick` com run `2026-06-29T01-09-47-242Z`, 95 rotas, 190 checks e 0 gaps.
+  - Escopo tecnico: adiciona `.github/workflows/public-watchdog.yml`, inclui esse workflow nos paths do Deploy Dry Run, cria `docs/SPRINTS/POST_BENCHMARK_OPERATIONAL_ROADMAP.md`, registra a auditoria V2 em `docs/` e atualiza roadmap/status/metricas/runbook.
+  - Aguardando fechamento remoto: commit, push, Quality Gate, Deploy Dry Run, execucao manual do Public Watchdog e commit documental final com IDs dos runs.
 
 ## Bloqueios humanos registrados
 

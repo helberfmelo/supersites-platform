@@ -17,6 +17,7 @@ on:
       - .github/workflows/deploy-control-plane-hostgator.yml
       - .github/workflows/deploy-netprobe-hostgator.yml
       - .github/workflows/deploy-static-app-hostgator.yml
+      - .github/workflows/public-watchdog.yml
   workflow_dispatch:
     inputs:
       target_environment:

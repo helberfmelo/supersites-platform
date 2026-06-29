@@ -461,6 +461,29 @@ Sprint 9.16 - Performance, AdSense-safe closure e rollout
 - Validacao: testes/builds afetados, Playwright visual, crawler full final, `validate:public-copy`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate/Deploy Dry Run, deploys manuais quando aprovados e smokes publicos finais.
 - Status: concluida em producao. O gate `pnpm validate:adsense-safe-public` foi implementado e passou em 13 paginas publicas; `scripts/benchmark-crawl.mjs` agora aceita rotulos `--sprint`/`--symbolic-sprint`; a sprint adicionou JSON-LD para homes/paginas estaticas dos 10 apps e corrigiu metadata publica preservando sufixos de marca. Commit `7ea0921` passou Quality Gate `28333587563`, Deploy Dry Run `28333587571` e deploys dos 10 apps; a correcao `6fcd03f` passou Deploy Dry Run `28334706999`, mas o Quality Gate `28334706997` falhou apenas porque o titulo truncado do PixelBatch perdeu a marca; `d26bc39` corrigiu a preservacao do sufixo e passou Quality Gate `28334888617` e Deploy Dry Run `28334888619`. Os redeploys finais Hub/DevUtility/QRRoute/InvoiceCraft/MailHealth/PixelBatch/DocShift passaram, os smokes publicos finais passaram, e o crawler full final `2026-06-28T20-51-53-722Z` registrou 876 rotas, 1752 checks e 0 gaps. Nenhum anuncio real, GTM/GA4, analytics externo, checkout, billing, pagamento, doacao, afiliado, worker, API paga, `ads.txt`, publisher id real ou snippet AdSense foi ativado.
 
+## Fase 10 - Post-Benchmark Operations Watchdog
+
+Status geral: aberta a partir do fechamento da Fase 9 e da auditoria V2 `docs/AUDITORIA_LIVE_SUPERSITES_BENCHMARK_V2.md`. A Fase 9 ja resolveu as lacunas P0 publicas de localizacao, linguagem interna, NetProbe, tool-first UX, trust/legal, schema, crawler e AdSense-safe layout. A Fase 10 fecha a reconciliacao pos-benchmark com roadmap futuro completo e monitoramento publico recorrente sem mutar producao.
+
+Roadmap detalhado: `docs/SPRINTS/POST_BENCHMARK_OPERATIONAL_ROADMAP.md`.
+
+Sprint 10.1 - Roadmap pos-benchmark e public watchdog
+- Simbolico: POST-BENCHMARK-WATCHDOG.
+- Objetivo: versionar a auditoria V2, registrar o roadmap de Fases 10 a 16, verificar o estado publico atual e criar workflow `Public Watchdog` com smokes publicos, gate AdSense-safe e crawler quick/full agendado/manual.
+- Validacao: `deploy:smoke-supersite-public`, `deploy:smoke-control-plane-public`, crawler quick publico, `validate:adsense-safe-public`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate/Deploy Dry Run e execucao manual do `Public Watchdog`.
+- Status: em execucao nesta entrega. Nenhum anuncio real, GTM/GA4, analytics externo, checkout, billing, pagamento, doacao, afiliado, worker/cron, API paga, DNS/root mapping ou acao irreversivel sera ativado nesta sprint.
+
+## Fases futuras mapeadas
+
+As fases futuras completas estao descritas em `docs/SPRINTS/POST_BENCHMARK_OPERATIONAL_ROADMAP.md`:
+
+- Fase 11 - Operational Hardening: branch protection, root mapping dry-run, retencao HostGator, VPS backup/restore e runbooks de uptime.
+- Fase 12 - Real Measurement Readiness: Lighthouse/LHCI, auditoria admin autenticada, readiness Google e relatorios executivos com evidencias.
+- Fase 13 - Product Depth and SEO/AIO Expansion: expansao curada de calculadoras, fusos/cidades, builders MailHealth, detalhes SitePulse e planejamento PixelBatch/DocShift.
+- Fase 14 - Paid Upgrade Foundations: auth, contas, entitlements, webhook foundation e monitores preview sem cobranca real.
+- Fase 15 - Provider and Monetization Go-Live: AdSense, Google providers, billing, doacoes e afiliados apenas apos gates humanos.
+- Fase 16 - Continuous Growth Loop: ingestao real, priorizacao, automacoes via PR e relatorios executivos recorrentes.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.
