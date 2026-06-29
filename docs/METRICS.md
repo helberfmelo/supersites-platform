@@ -936,6 +936,11 @@ Data-base: 2026-06-29
 | Sprint 13.1 public copy gate | `pnpm validate:public-copy` passed; 911 HTML files |
 | Sprint 13.1 AdSense-safe gate | `pnpm validate:adsense-safe-public` passed; 13 public pages |
 | Sprint 13.1 local governance gates | Passed: `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` |
+| Sprint 13.1 feature commit | `dda2647 feat: expand calcharbor calculator depth` |
+| Sprint 13.1 remote Quality Gate | `28353160843` passed |
+| Sprint 13.1 remote Deploy Dry Run | `28353160830` passed |
+| Sprint 13.1 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, CalcHarbor static smoke, `pnpm deploy:smoke-netprobe-public`, `pnpm deploy:smoke-control-plane-public`; current CalcHarbor public asset `https://opentshost.com/supersites/calcharbor/_nuxt/D2u6NBF-.js` |
+| Sprint 13.1 production deploy activation | 0 real static app deploys triggered in this sprint; public smokes validate the existing production baseline |
 | Sprint 13.1 regulated calculator activation | 0 tax/legal/credit-underwriting/investment-advice calculators activated; human review remains required before regulated themes |
 | Sprint 13.1 monetization/provider activation | 0 checkout/billing/ads/donation/affiliate/external analytics/storage/API paid/worker/provider activations |
 

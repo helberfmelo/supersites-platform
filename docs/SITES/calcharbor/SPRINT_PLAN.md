@@ -55,9 +55,10 @@ Data-base: 2026-06-29
 
 ## Sprint 13.1 product depth
 
-- Status: concluded locally, pending remote CI/public-smoke closure.
+- Status: concluded on `main`, with remote CI/public-smoke closure and no real static app deploy triggered.
 - Added four curated calculators: `compound-interest`, `savings-goal`, `cash-runway` and `discount-price`, bringing CalcHarbor from 4 to 8 calculators.
 - Added localized currency/default handling: EN uses `USD`, PT-BR uses `BRL`, ES/FR/DE use `EUR`; input prefixes, examples, calculation memory, result formatting and JSON-LD `priceCurrency` now follow locale.
 - Added five-language content sections and FAQ coverage for the new calculators without creating tax/legal/credit-advice automation.
 - Validation passed locally: `pnpm test:calcharbor` (12 tests), `pnpm build:calcharbor` (173 prerendered routes), `pnpm validate:calcharbor-preview`, `pnpm test:e2e:calcharbor`, `pnpm validate:public-copy` (911 HTML files), `pnpm validate:adsense-safe-public`, structure/secrets/deploy-dry-run/ci/diff gates.
+- Remote closure passed: feature commit `dda2647`, Quality Gate `28353160843`, Deploy Dry Run `28353160830`, aggregate/CalcHarbor/NetProbe/control-plane public smokes against the current production baseline, current CalcHarbor public asset `https://opentshost.com/supersites/calcharbor/_nuxt/D2u6NBF-.js`.
 - No checkout, billing, ads, donation, affiliate, external analytics, persistent storage, paid API, worker, provider integration or fiscal/legal automation was activated.
