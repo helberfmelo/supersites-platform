@@ -242,7 +242,7 @@ Data-base: 2026-06-29
 | MailHealth tool pages implemented | 7 |
 | MailHealth localized tool pages | 35 |
 | MailHealth live public tools implemented | 7 |
-| MailHealth local browser tools implemented | 1 |
+| MailHealth local browser tools implemented | 3 |
 | MailHealth public API endpoints implemented | 3 |
 | MailHealth DNS/SMTP bounded probe services | 3 |
 | MailHealth legal/editorial pages | 40 |
@@ -252,7 +252,8 @@ Data-base: 2026-06-29
 | MailHealth sitemap routes | 1 |
 | MailHealth benchmark score pages | 35 |
 | MailHealth related check blocks | 35 |
-| MailHealth record-builder gated panels | 35 |
+| MailHealth active local record-builder pages | 10 |
+| MailHealth record-builder guide-only panels | 25 |
 | MailHealth preview smoke | Passed |
 | MailHealth Playwright report | Passed |
 | MailHealth Quality Gate run | `28289435994` passed |
@@ -959,6 +960,18 @@ Data-base: 2026-06-29
 | Sprint 13.2 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, TimeNexus static smoke, `pnpm deploy:smoke-netprobe-public`, `pnpm deploy:smoke-control-plane-public`; current TimeNexus public asset `https://opentshost.com/supersites/timenexus/_nuxt/BAXbawo1.js` |
 | Sprint 13.2 production deploy activation | 0 real static app deploys triggered in this sprint; public smokes validate the existing production baseline |
 | Sprint 13.2 mass page/provider activation | 0 all-timezone generation, external calendar, widget/API, saved history, checkout, billing, ads, donation, affiliate, external analytics, worker or cron activations |
+| Sprint 13.3 MailHealth builder scope | SPF TXT builder and DMARC TXT builder active locally; DKIM/MX/DNSBL/SMTP/header pages remain guide-only |
+| Sprint 13.3 MailHealth active builder pages | 10 localized builder pages: 2 tools x EN/PT-BR/ES/FR/DE |
+| Sprint 13.3 local MailHealth unit validation | `pnpm test:mailhealth` passed; 10 tests |
+| Sprint 13.3 local MailHealth frontend validation | `pnpm build:mailhealth`, `pnpm validate:mailhealth-preview` asset `/_nuxt/NxyQf1L0.js`, `pnpm test:e2e:mailhealth` passed; 6 Playwright tests |
+| Sprint 13.3 public copy gate | `pnpm validate:public-copy` passed; 951 HTML files |
+| Sprint 13.3 AdSense-safe gate | `pnpm validate:adsense-safe-public` passed; 13 public pages |
+| Sprint 13.3 local governance gates | Passed: `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` |
+| Sprint 13.3 feature commit | Pending commit/push at feature close |
+| Sprint 13.3 remote Quality Gate | Pending feature push |
+| Sprint 13.3 remote Deploy Dry Run | Pending feature push |
+| Sprint 13.3 production deploy activation | 0 real static app deploys triggered during local feature work |
+| Sprint 13.3 provider/data activation | 0 DNS publishing, DMARC ingestion, broad DNSBL scans, provider policy integration, storage, paid API, billing, ads, donation, affiliate, external analytics, worker or cron activations |
 
 ## Product metrics
 

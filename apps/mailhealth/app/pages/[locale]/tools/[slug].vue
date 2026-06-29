@@ -3,6 +3,16 @@ import { getButtonClass } from '@supersites/ui'
 import { computed, onMounted, ref } from 'vue'
 import { getShellCopy } from '../../../data/copy'
 import { localizedContentPath, localizedHomePath, localizedToolPath, normalizePublicLocale, sanitizePublicCopy, toHtmlLang } from '../../../data/locales'
+import {
+  buildDmarcRecord,
+  buildSpfRecord,
+  getRecordBuilderCopy,
+  isRecordBuilderTool,
+  type DmarcAlignment,
+  type DmarcPolicy,
+  type DmarcSubdomainPolicy,
+  type SpfAllMechanism,
+} from '../../../data/recordBuilders'
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
 import {
   analyzeMailHeaders,
@@ -53,6 +63,7 @@ interface ApiResponse<T> {
 
 const copy = getToolCopy(tool, locale)
 const shellCopy = getShellCopy(locale)
+const recordBuilderCopy = getRecordBuilderCopy(locale)
 const resultMetaCopy = sanitizePublicCopy(locale, {
   check: 'Check',
   status: 'Status',
@@ -69,6 +80,19 @@ const targetValue = ref('example.com')
 const selectorValue = ref('default')
 const smtpPort = ref(25)
 const headersValue = ref('Authentication-Results: mx.example; spf=pass smtp.mailfrom=example.com; dkim=pass header.d=example.com; dmarc=pass header.from=example.com\nFrom: Example Sender <sender@example.com>\nReturn-Path: <bounce@example.com>\nDKIM-Signature: v=1; a=rsa-sha256; d=example.com; s=default; bh=sample; b=sample')
+const spfIncludes = ref('_spf.example.net')
+const spfIp4 = ref('192.0.2.0/24')
+const spfIp6 = ref('')
+const spfUseMx = ref(true)
+const spfUseA = ref(false)
+const spfAll = ref<SpfAllMechanism>('~all')
+const dmarcPolicy = ref<DmarcPolicy>('none')
+const dmarcSubdomainPolicy = ref<DmarcSubdomainPolicy>('inherit')
+const dmarcPct = ref(100)
+const dmarcRua = ref('dmarc@example.com')
+const dmarcRuf = ref('')
+const dmarcAdkim = ref<DmarcAlignment>('r')
+const dmarcAspf = ref<DmarcAlignment>('r')
 const isLoading = ref(false)
 const errorMessage = ref('')
 const apiResult = ref<MailHealthApiData | null>(null)
@@ -79,6 +103,33 @@ const isDkimCheck = computed(() => tool.checkType === 'dkim')
 const isSmtpCheck = computed(() => tool.checkType === 'smtp')
 const isBlacklistCheck = computed(() => tool.checkType === 'blacklist')
 const isDnsCheck = computed(() => ['spf', 'dkim', 'dmarc', 'mx'].includes(tool.checkType))
+const hasRecordBuilder = computed(() => isRecordBuilderTool(tool.slug))
+const recordBuilderResult = computed(() => {
+  if (tool.slug === 'spf-checker') {
+    return buildSpfRecord({
+      includes: spfIncludes.value,
+      ip4: spfIp4.value,
+      ip6: spfIp6.value,
+      useMx: spfUseMx.value,
+      useA: spfUseA.value,
+      all: spfAll.value,
+    }, locale)
+  }
+
+  if (tool.slug === 'dmarc-checker') {
+    return buildDmarcRecord({
+      policy: dmarcPolicy.value,
+      subdomainPolicy: dmarcSubdomainPolicy.value,
+      pct: dmarcPct.value,
+      rua: dmarcRua.value,
+      ruf: dmarcRuf.value,
+      adkim: dmarcAdkim.value,
+      aspf: dmarcAspf.value,
+    }, locale)
+  }
+
+  return null
+})
 const displayedFindings = computed(() => headerResult.value?.findings ?? apiResult.value?.findings ?? [])
 const hasResult = computed(() => Boolean(headerResult.value?.ok || apiResult.value))
 const displayedMeta = computed(() => headerResult.value?.meta ?? [
@@ -122,6 +173,18 @@ function resetResult(): void {
   apiResult.value = null
   apiMeta.value = {}
   headerResult.value = null
+}
+
+async function copyRecordValue(): Promise<void> {
+  if (!recordBuilderResult.value || typeof navigator === 'undefined' || !navigator.clipboard) {
+    return
+  }
+
+  try {
+    await navigator.clipboard.writeText(recordBuilderResult.value.value)
+  } catch {
+    // Clipboard availability depends on browser permissions; the TXT value remains visible.
+  }
 }
 
 async function runApiCheck(path: string, body: Record<string, unknown>): Promise<void> {
@@ -437,12 +500,188 @@ useHead({
           </dl>
         </section>
 
-        <section class="band">
-          <h2>{{ shellCopy.recordBuilderTitle }}</h2>
-          <p>{{ shellCopy.recordBuilderBody }}</p>
-          <ul class="method-list">
-            <li v-for="item in shellCopy.recordBuilderItems" :key="item">{{ item }}</li>
-          </ul>
+        <section class="band record-builder" :aria-labelledby="`${tool.slug}-record-builder`">
+          <h2 :id="`${tool.slug}-record-builder`">{{ recordBuilderCopy.title }}</h2>
+          <p>{{ hasRecordBuilder ? recordBuilderCopy.body : recordBuilderCopy.unavailableBody }}</p>
+
+          <template v-if="tool.slug === 'spf-checker'">
+            <form class="builder-form" @submit.prevent>
+              <div class="field">
+                <label :for="`${tool.slug}-builder-includes`">{{ recordBuilderCopy.includesLabel }}</label>
+                <textarea
+                  :id="`${tool.slug}-builder-includes`"
+                  v-model="spfIncludes"
+                  rows="3"
+                  spellcheck="false"
+                  placeholder="_spf.example.net"
+                ></textarea>
+                <small>{{ recordBuilderCopy.includesHelp }}</small>
+              </div>
+
+              <div class="builder-grid">
+                <div class="field">
+                  <label :for="`${tool.slug}-builder-ip4`">{{ recordBuilderCopy.ip4Label }}</label>
+                  <input
+                    :id="`${tool.slug}-builder-ip4`"
+                    v-model="spfIp4"
+                    type="text"
+                    autocomplete="off"
+                    placeholder="192.0.2.0/24"
+                  >
+                </div>
+
+                <div class="field">
+                  <label :for="`${tool.slug}-builder-ip6`">{{ recordBuilderCopy.ip6Label }}</label>
+                  <input
+                    :id="`${tool.slug}-builder-ip6`"
+                    v-model="spfIp6"
+                    type="text"
+                    autocomplete="off"
+                    placeholder="2001:db8::/32"
+                  >
+                </div>
+              </div>
+
+              <fieldset class="builder-options">
+                <legend>{{ recordBuilderCopy.spfTitle }}</legend>
+                <label>
+                  <input v-model="spfUseMx" type="checkbox">
+                  <span>{{ recordBuilderCopy.useMxLabel }}</span>
+                </label>
+                <label>
+                  <input v-model="spfUseA" type="checkbox">
+                  <span>{{ recordBuilderCopy.useALabel }}</span>
+                </label>
+              </fieldset>
+
+              <div class="field">
+                <label :for="`${tool.slug}-builder-all`">{{ recordBuilderCopy.allLabel }}</label>
+                <select :id="`${tool.slug}-builder-all`" v-model="spfAll">
+                  <option value="~all">{{ recordBuilderCopy.options.softFail }}</option>
+                  <option value="-all">{{ recordBuilderCopy.options.hardFail }}</option>
+                  <option value="?all">{{ recordBuilderCopy.options.neutral }}</option>
+                </select>
+              </div>
+            </form>
+          </template>
+
+          <template v-else-if="tool.slug === 'dmarc-checker'">
+            <h3>{{ recordBuilderCopy.dmarcTitle }}</h3>
+            <form class="builder-form" @submit.prevent>
+              <div class="builder-grid">
+                <div class="field">
+                  <label :for="`${tool.slug}-builder-policy`">{{ recordBuilderCopy.policyLabel }}</label>
+                  <select :id="`${tool.slug}-builder-policy`" v-model="dmarcPolicy">
+                    <option value="none">{{ recordBuilderCopy.options.none }}</option>
+                    <option value="quarantine">{{ recordBuilderCopy.options.quarantine }}</option>
+                    <option value="reject">{{ recordBuilderCopy.options.reject }}</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label :for="`${tool.slug}-builder-sp`">{{ recordBuilderCopy.subdomainPolicyLabel }}</label>
+                  <select :id="`${tool.slug}-builder-sp`" v-model="dmarcSubdomainPolicy">
+                    <option value="inherit">{{ recordBuilderCopy.options.inherit }}</option>
+                    <option value="none">{{ recordBuilderCopy.options.none }}</option>
+                    <option value="quarantine">{{ recordBuilderCopy.options.quarantine }}</option>
+                    <option value="reject">{{ recordBuilderCopy.options.reject }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label :for="`${tool.slug}-builder-pct`">{{ recordBuilderCopy.pctLabel }}</label>
+                <input
+                  :id="`${tool.slug}-builder-pct`"
+                  v-model.number="dmarcPct"
+                  type="number"
+                  min="1"
+                  max="100"
+                  step="1"
+                >
+              </div>
+
+              <div class="field">
+                <label :for="`${tool.slug}-builder-rua`">{{ recordBuilderCopy.ruaLabel }}</label>
+                <input
+                  :id="`${tool.slug}-builder-rua`"
+                  v-model="dmarcRua"
+                  type="text"
+                  autocomplete="off"
+                  placeholder="dmarc@example.com"
+                >
+              </div>
+
+              <div class="field">
+                <label :for="`${tool.slug}-builder-ruf`">{{ recordBuilderCopy.rufLabel }}</label>
+                <input
+                  :id="`${tool.slug}-builder-ruf`"
+                  v-model="dmarcRuf"
+                  type="text"
+                  autocomplete="off"
+                  placeholder="forensics@example.com"
+                >
+              </div>
+
+              <fieldset class="builder-options">
+                <legend>{{ recordBuilderCopy.alignmentLabel }}</legend>
+                <label>
+                  <input v-model="dmarcAdkim" type="radio" value="r" name="dmarc-adkim">
+                  <span>DKIM {{ recordBuilderCopy.relaxedLabel }}</span>
+                </label>
+                <label>
+                  <input v-model="dmarcAdkim" type="radio" value="s" name="dmarc-adkim">
+                  <span>DKIM {{ recordBuilderCopy.strictLabel }}</span>
+                </label>
+                <label>
+                  <input v-model="dmarcAspf" type="radio" value="r" name="dmarc-aspf">
+                  <span>SPF {{ recordBuilderCopy.relaxedLabel }}</span>
+                </label>
+                <label>
+                  <input v-model="dmarcAspf" type="radio" value="s" name="dmarc-aspf">
+                  <span>SPF {{ recordBuilderCopy.strictLabel }}</span>
+                </label>
+              </fieldset>
+            </form>
+          </template>
+
+          <template v-if="recordBuilderResult">
+            <dl class="builder-output">
+              <div>
+                <dt>{{ recordBuilderCopy.recordNameLabel }}</dt>
+                <dd>{{ recordBuilderResult.recordName }}</dd>
+              </div>
+              <div>
+                <dt>{{ recordBuilderCopy.recordTypeLabel }}</dt>
+                <dd>{{ recordBuilderResult.recordType }}</dd>
+              </div>
+              <div class="builder-output__value">
+                <dt>{{ recordBuilderCopy.recordValueLabel }}</dt>
+                <dd><code>{{ recordBuilderResult.value }}</code></dd>
+              </div>
+            </dl>
+
+            <button class="button-link button-link--secondary builder-copy" type="button" @click="copyRecordValue">
+              {{ recordBuilderCopy.copyValueLabel }}
+            </button>
+
+            <h3>{{ recordBuilderCopy.warningsTitle }}</h3>
+            <ul class="method-list">
+              <li v-for="warning in recordBuilderResult.warnings" :key="warning">{{ warning }}</li>
+            </ul>
+
+            <h3>{{ recordBuilderCopy.stepsTitle }}</h3>
+            <ul class="method-list">
+              <li v-for="step in recordBuilderResult.steps" :key="step">{{ step }}</li>
+            </ul>
+          </template>
+
+          <template v-else>
+            <h3>{{ recordBuilderCopy.unavailableTitle }}</h3>
+            <ul class="method-list">
+              <li v-for="item in shellCopy.recordBuilderItems" :key="item">{{ item }}</li>
+            </ul>
+          </template>
         </section>
 
         <section class="band">

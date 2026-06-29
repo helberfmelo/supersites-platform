@@ -232,7 +232,8 @@ test.describe('MailHealth MVP', () => {
     await expect(page.getByText('100')).toBeVisible()
     await expect(page.getByText('Signal checklist')).toBeVisible()
     await expect(page.getByRole('cell', { name: 'SPF record count' })).toBeVisible()
-    await expect(page.getByText('Record builders planned')).toBeVisible()
+    await expect(page.getByText('SPF record builder')).toBeVisible()
+    await expect(page.getByText('v=spf1 include:_spf.example.net ip4:192.0.2.0/24 mx ~all')).toBeVisible()
     await expect(page.getByText('Related checks')).toBeVisible()
     await expect(page.getByRole('link', { name: /DMARC Checker/ })).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)
@@ -260,6 +261,33 @@ test.describe('MailHealth MVP', () => {
     const screenshot = await page.screenshot({ fullPage: true })
     await testInfo.attach('mailhealth-spf-mobile', { body: screenshot, contentType: 'image/png' })
 
+    expect(errors).toEqual([])
+  })
+
+  test('renders DMARC builder locally without backend calls', async ({ page }) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1040 })
+    await page.goto('/en/tools/dmarc-checker')
+
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('DMARC Checker')
+    await expect(page.getByText('DMARC record builder')).toBeVisible()
+    await page.getByLabel('Domain policy', { exact: true }).selectOption('reject')
+    await page.getByLabel('Subdomain policy').selectOption('quarantine')
+    await page.getByLabel('Rollout percent').fill('50')
+    await expect(page.getByText('v=DMARC1; p=reject; sp=quarantine; pct=50; rua=mailto:dmarc@example.com; adkim=r; aspf=r')).toBeVisible()
+    await expect(page.getByText('A pct below 100 is a staged rollout; revisit it after review.')).toBeVisible()
+    await expectNoHorizontalOverflow(page)
+
+    const analytics = await page.evaluate(() => ({
+      localEvents: window.supersitesAnalyticsEvents,
+      localStorageLength: window.localStorage.length,
+      sessionStorageLength: window.sessionStorage.length,
+    }))
+
+    expect(analytics.localEvents?.map((event) => event.name)).toEqual(['tool_viewed'])
+    expect(analytics.localStorageLength).toBe(0)
+    expect(analytics.sessionStorageLength).toBe(0)
     expect(errors).toEqual([])
   })
 
@@ -314,7 +342,7 @@ test.describe('MailHealth MVP', () => {
     await expect(page.getByText('Health score')).toBeVisible()
     await expect(page.getByText('Signal checklist')).toBeVisible()
     await expect(page.getByRole('cell', { name: 'Visible alignment' })).toBeVisible()
-    await expect(page.getByText('Record builders planned')).toBeVisible()
+    await expect(page.getByText('Record builder limits')).toBeVisible()
     await expectNoHorizontalOverflow(page)
     expect(JSON.stringify(await page.evaluate(() => window.supersitesAnalyticsEvents))).not.toContain('private.example')
 

@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { publicLocaleCodes } from '../app/data/locales'
 import { contentPageCatalog, contentPageSlugs, getContentPageBySlug } from '../app/data/pages'
+import { buildDmarcRecord, buildSpfRecord, getRecordBuilderCopy, isRecordBuilderTool } from '../app/data/recordBuilders'
 import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
 import {
   analyzeMailHeaders,
@@ -70,6 +71,60 @@ describe('MailHealth MVP', () => {
     ])
     expect(filterTools('EHLO', 'transport').map((tool) => tool.slug)).toEqual(['smtp-check'])
     expect(Object.keys(categoryLabels)).toContain('headers')
+  })
+
+  it('builds SPF and DMARC records locally with review guidance', () => {
+    expect(isRecordBuilderTool('spf-checker')).toBe(true)
+    expect(isRecordBuilderTool('dmarc-checker')).toBe(true)
+    expect(isRecordBuilderTool('mx-checker')).toBe(false)
+
+    const spf = buildSpfRecord({
+      includes: '_spf.example.net include:mail.example.net _spf.example.net',
+      ip4: '192.0.2.0/24',
+      ip6: '',
+      useMx: true,
+      useA: false,
+      all: '-all',
+    }, 'en')
+
+    expect(spf).toMatchObject({
+      recordName: '@',
+      recordType: 'TXT',
+      value: 'v=spf1 include:_spf.example.net include:mail.example.net ip4:192.0.2.0/24 mx -all',
+    })
+    expect(spf.warnings.join(' ')).toContain('-all')
+    expect(spf.steps).toHaveLength(3)
+
+    const dmarc = buildDmarcRecord({
+      policy: 'reject',
+      subdomainPolicy: 'quarantine',
+      pct: 50,
+      rua: 'dmarc@example.com mailto:reports@example.net',
+      ruf: 'forensics@example.com',
+      adkim: 's',
+      aspf: 's',
+    }, 'en')
+
+    expect(dmarc).toMatchObject({
+      recordName: '_dmarc',
+      recordType: 'TXT',
+      value: 'v=DMARC1; p=reject; sp=quarantine; pct=50; rua=mailto:dmarc@example.com,mailto:reports@example.net; ruf=mailto:forensics@example.com; adkim=s; aspf=s',
+    })
+    expect(dmarc.warnings.join(' ')).toContain('staged rollout')
+    expect(dmarc.warnings.join(' ')).toContain('failure reports')
+    expect(JSON.stringify({ spf, dmarc })).not.toContain('analytics')
+  })
+
+  it('keeps record builder copy complete across public locales', () => {
+    for (const locale of publicLocaleCodes) {
+      const copy = getRecordBuilderCopy(locale)
+
+      expect(copy.title.length).toBeGreaterThan(8)
+      expect(copy.body.length).toBeGreaterThan(60)
+      expect(copy.spfTitle).toContain('SPF')
+      expect(copy.dmarcTitle).toContain('DMARC')
+      expect(Object.values(copy.options).every((value) => value.length > 2)).toBe(true)
+    }
   })
 
   it('creates related-check links and a privacy-safe health score', () => {

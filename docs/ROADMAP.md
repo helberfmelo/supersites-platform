@@ -576,7 +576,9 @@ Sprint 13.2 - TimeNexus curated city/timezone depth
 Sprint 13.3 - MailHealth DNS builders and guides
 - Simbolico: DEPTH-MAILHEALTH.
 - Objetivo: criar builders SPF/DMARC seguros e guias profundos com policy gate para DNSBL/provider.
-- Status: pendente.
+- Escopo: ativar builders locais de TXT SPF e DMARC nas paginas correspondentes, com campos limitados, preview copiavel, avisos de revisao, passos DNS, copy em 5 idiomas e paineis guide-only para DKIM/MX/DNSBL/SMTP/headers.
+- Validacao: `pnpm test:mailhealth`, `pnpm build:mailhealth`, `pnpm validate:mailhealth-preview`, `pnpm test:e2e:mailhealth`, `validate:public-copy`, `validate:adsense-safe-public`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate/Deploy Dry Run e smokes publicos apos push.
+- Status: validacao local concluida, aguardando commit/push/monitoramento. Foram adicionados builders SPF/DMARC locais sem endpoint novo, publicacao DNS, storage, provider, analytics de valores ou billing. `pnpm test:mailhealth` passou com 10 testes, build/prerender gerou 163 rotas, preview smoke validou asset `/_nuxt/NxyQf1L0.js`, Playwright passou com 6 testes, public-copy passou em 951 HTMLs e AdSense-safe em 13 paginas.
 
 Sprint 13.4 - SitePulse response details
 - Simbolico: DEPTH-SITEPULSE.

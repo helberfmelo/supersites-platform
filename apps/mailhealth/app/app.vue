@@ -744,6 +744,106 @@ h3 {
   margin-top: 0;
 }
 
+.record-builder {
+  display: grid;
+  gap: 14px;
+}
+
+.record-builder h3 {
+  margin: 6px 0 0;
+  color: #17231e;
+  font-size: 0.95rem;
+}
+
+.builder-form {
+  display: grid;
+  gap: 12px;
+}
+
+.builder-form .field textarea {
+  min-height: 82px;
+}
+
+.builder-form small {
+  color: #52635c;
+  font-size: 0.78rem;
+}
+
+.builder-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.builder-options {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 10px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  background: #f7f8f4;
+}
+
+.builder-options legend {
+  padding: 0 4px;
+  color: #4b5b55;
+  font-size: 0.8rem;
+  font-weight: 850;
+}
+
+.builder-options label {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+  color: #25332d;
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.builder-options input {
+  flex: 0 0 auto;
+}
+
+.builder-output {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.builder-output div {
+  min-width: 0;
+  padding: 9px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.builder-output dt {
+  color: #607069;
+  font-size: 0.73rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.builder-output dd {
+  margin: 3px 0 0;
+  color: #25332d;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.builder-output__value code {
+  display: block;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.builder-copy {
+  width: 100%;
+}
+
 .related-list {
   display: grid;
   gap: 8px;
@@ -936,6 +1036,7 @@ h3 {
   .controls,
   .checkbox-grid,
   .tool-grid,
+  .builder-grid,
     .band-grid,
     .tool-layout,
     .content-layout,
