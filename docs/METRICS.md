@@ -905,6 +905,10 @@ Data-base: 2026-06-29
 | Sprint 12.3 local Google readiness run | `2026-06-29T05-47-31Z`; status `passed`; 18 checks; 0 failures |
 | Sprint 12.3 public production files scanned | 318 files; 0 active GA4/GTM/Search Console/AdSense snippets |
 | Sprint 12.3 ads.txt placeholder status | 0 public `ads.txt` files before approved publisher ID |
+| Sprint 12.3 feature commit | `07f4c84 ops: add google readiness measurement check` |
+| Sprint 12.3 remote Quality Gate | `28351452461` passed |
+| Sprint 12.3 remote Deploy Dry Run | `28351452440` passed |
+| Sprint 12.3 final public readiness smoke | `2026-06-29T05-53-40Z`; status `passed`; 5 checks; 0 failures |
 | Sprint 12.3 provider activation | GA4 0; GTM 0; Search Console 0; AdSense 0; PageSpeed API 0 |
 
 ## Product metrics
