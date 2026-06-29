@@ -159,15 +159,17 @@ Status em 2026-06-29: Fase concluida em main em modo fail-closed. A Sprint 16.1 
 
 Objetivo: consolidar os gates fail-closed de provider, monetizacao e growth loop em um smoke operacional unico antes de qualquer go-live real.
 
-Status em 2026-06-29: em execucao. Esta fase e tecnicamente reversivel e nao autoriza ativacao externa.
+Status em 2026-06-29: concluida em main, sem deploy real e sem ativacao externa.
 
 | Sprint | Simbolico | Escopo | Gates/humanos |
 |---:|---|---|---|
-| 17.1 | OPS-PROVIDER-GROWTH-SMOKE | Criar `ProviderGrowthReadinessSmokeTest`, comando `pnpm ops:provider-growth-readiness-smoke`, artefatos locais, ADR/runbook e docs vivos para validar oito endpoints autenticados fail-closed | Provider real, anuncios, tags, checkout, webhooks, workers, PR automatico, report enviado e causalidade continuam gate humano/tecnico |
+| 17.1 | OPS-PROVIDER-GROWTH-SMOKE | Concluida em `6d5d151`; `ProviderGrowthReadinessSmokeTest`, comando `pnpm ops:provider-growth-readiness-smoke`, artefatos locais, ADR/runbook e docs vivos validam oito endpoints autenticados fail-closed | Provider real, anuncios, tags, checkout, webhooks, workers, PR automatico, report enviado e causalidade continuam gate humano/tecnico |
 
-## Evidencia planejada da Fase 17
+## Evidencia de fechamento da Fase 17
 
 | Sinal | Evidencia |
 |---|---|
-| Sprint 17.1 | Aguardando validacao local, commit tecnico, Quality Gate, Deploy Dry Run, smokes publicos e commit documental de fechamento |
+| Sprint 17.1 | Commit `6d5d151`; Quality Gate `28369796751`; Deploy Dry Run `28369796640`; smokes publicos passaram |
+| Smoke consolidado | `2026-06-29T11-46-41Z` pre-commit e `2026-06-29T11-52-48Z` pos-CI passaram com 1 teste/80 assertions cobrindo 8 endpoints |
+| Validacao local | `php artisan test` 95 testes/1043 assertions, `composer validate --strict`, `test:packages` 90 testes, `typecheck:packages`, admin audit `2026-06-29T11-47-16Z`, artifact control-plane 7166 arquivos/28360526 bytes/zip 8446094 bytes, estrutura, segredos, deploy dry-run, ci:changes, diff check e AdSense-safe publico passaram |
 | Ativacoes externas | 0 provider imports, 0 tags, 0 anuncios, 0 checkout/billing real, 0 doacoes/afiliados, 0 workers/crons, 0 branches/PRs automaticos, 0 reports enviados, 0 deploy real |

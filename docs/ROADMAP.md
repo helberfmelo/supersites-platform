@@ -706,14 +706,14 @@ Fase 16 - fechamento
 
 ## Fase 17 - Governed Readiness Consolidation
 
-Status geral: em execucao em 2026-06-29. Como o roadmap pos-benchmark mapeado terminava na Fase 16, a proxima fase tecnica reversivel consolida os gates de provider/monetizacao/growth ja entregues antes de qualquer go-live real.
+Status geral: concluida em 2026-06-29, sem deploy real e sem ativacao de provider externo. Como o roadmap pos-benchmark mapeado terminava na Fase 16, a proxima fase tecnica reversivel consolidou os gates de provider/monetizacao/growth ja entregues antes de qualquer go-live real.
 
 Sprint 17.1 - Provider/Growth readiness smoke
 - Simbolico: OPS-PROVIDER-GROWTH-SMOKE.
 - Objetivo: criar um smoke unico para validar que readiness de AdSense, Google providers, billing, suporte monetizado e growth loop continua fail-closed em conjunto.
 - Escopo: `ProviderGrowthReadinessSmokeTest`, comando `pnpm ops:provider-growth-readiness-smoke`, artefatos locais em `artifacts/provider-growth-readiness/`, ADR `0044`, runbook `PROVIDER_GROWTH_READINESS_SMOKE` e atualizacao dos documentos operacionais.
 - Validacao: teste focado, `php artisan test`, `composer validate --strict`, `test:packages`, `typecheck:packages`, `measure:admin-audit`, build de artifact do control-plane, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `validate:adsense-safe-public`, Quality Gate/Deploy Dry Run e smokes publicos apos push.
-- Status: em execucao. Nenhum provider externo, tag, anuncio, `ads.txt`, checkout, webhook real, doacao, afiliado, worker/cron, branch/PR automatico, report enviado, deploy real ou acao irreversivel esta autorizado por esta fase.
+- Status: concluida em main. Validacao local passou com smoke `2026-06-29T11-46-41Z` e smoke final `2026-06-29T11-52-48Z`, ambos com 1 teste/80 assertions; `php artisan test` passou com 95 testes/1043 assertions; `composer validate --strict`, `test:packages`, `typecheck:packages`, admin audit `2026-06-29T11-47-16Z`, artifact control-plane, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` e `validate:adsense-safe-public` passaram. Feature commit `6d5d151`, Quality Gate `28369796751`, Deploy Dry Run `28369796640` e smokes publicos finais passaram. Nenhum provider externo, tag, anuncio, `ads.txt`, checkout, webhook real, doacao, afiliado, worker/cron, branch/PR automatico, report enviado, deploy real ou acao irreversivel foi ativado por esta fase.
 
 ## Definition of done do programa
 

@@ -1213,7 +1213,7 @@ Data-base: 2026-06-29
 
 | Metric | Value |
 |---|---:|
-| Phase 17 status | Started on 2026-06-29 |
+| Phase 17 status | Completed in main on 2026-06-29 |
 | Sprint 17.1 symbolic name | `OPS-PROVIDER-GROWTH-SMOKE` |
 | Consolidated readiness smoke command | `pnpm ops:provider-growth-readiness-smoke` |
 | Consolidated readiness endpoints covered | 8 |
@@ -1223,11 +1223,17 @@ Data-base: 2026-06-29
 | Ads, tags, checkout, donations or affiliates activated | 0 |
 | Automated branches or PRs opened | 0 |
 | Reports scheduled or emailed | 0 |
-| Sprint 17.1 local validation | Pending |
-| Sprint 17.1 feature commit | Pending |
-| Sprint 17.1 remote Quality Gate | Pending |
-| Sprint 17.1 remote Deploy Dry Run | Pending |
-| Sprint 17.1 public smokes | Pending |
+| Sprint 17.1 focused smoke | Passed: `2026-06-29T11-46-41Z` and `2026-06-29T11-52-48Z`, 1 test/80 assertions |
+| Sprint 17.1 full Laravel validation | Passed: 95 tests/1043 assertions |
+| Sprint 17.1 package validation | Passed: 90 tests and package typechecks |
+| Sprint 17.1 admin visual audit | Passed: `2026-06-29T11-47-16Z`, 9 authenticated checks |
+| Sprint 17.1 control-plane artifact | 7166 files, 28360526 bytes, zip 8446094 bytes |
+| Sprint 17.1 local governance gates | Passed: Composer, structure, secrets, deploy dry-run, ci:changes, diff check and AdSense-safe public |
+| Sprint 17.1 feature commit | `6d5d151` |
+| Sprint 17.1 remote Quality Gate | `28369796751` passed |
+| Sprint 17.1 remote Deploy Dry Run | `28369796640` passed |
+| Sprint 17.1 public smokes | Passed: Hub/control-plane/NetProbe and AdSense-safe public |
+| Sprint 17.1 real deploy activation | 0 |
 
 ## Product metrics
 
