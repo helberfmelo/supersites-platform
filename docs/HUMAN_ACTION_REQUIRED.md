@@ -31,6 +31,7 @@ Data-base: 2026-06-29
 | InvoiceCraft fiscal/tax templates | Impostos, numeracao fiscal, campos obrigatorios e validade de documento dependem de jurisdicao e aceite juridico/fiscal | Antes de ativar nota/fatura fiscal oficial, calculo automatico de impostos, numeracao fiscal, pagamentos ou recorrencia |
 | MailHealth DNSBL/provider policy | Uso de DNSBLs, reputacao, limites comerciais e termos de provedores exigem revisao juridica/comercial antes de operar volume, lote, API ou white-label | Antes de ativar monitoramento pago, relatorios recorrentes, lote, API publica paga ou verificacoes DNSBL amplas |
 | PixelBatch/DocShift file AI/OCR/upload providers | Background removal, OCR, table extraction, Office conversion, large file queues, upload API, provider SDKs and account-backed file storage require provider terms, cost approval, legal/privacy review, retention/deletion policy, sandbox/antivirus strategy and billing entitlement gates | Before activating any server-side file upload, AI/OCR provider, conversion provider, batch queue, paid file API or persistent file history |
+| Billing webhook real | Stripe/Mercado Pago/Paddle ou outro provider exigem conta aprovada, KYC, impostos, termos, segredo de webhook em cofre, fixtures oficiais, rollback e matriz de dados antes de processar eventos reais | Antes de trocar `dry_run` por processamento real de assinatura, invoice, entitlement, pagamento, refund, dunning ou impostos |
 
 ## Resolvido em 2026-06-26
 

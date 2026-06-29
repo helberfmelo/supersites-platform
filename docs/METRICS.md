@@ -1039,6 +1039,18 @@ Data-base: 2026-06-29
 | Sprint 14.2 runbook | `docs/RUNBOOKS/ENTITLEMENT_QUOTA_CONTROLS.md` |
 | Sprint 14.2 human gates recorded | Paid plans and metered quota usage remain in `docs/HUMAN_ACTION_REQUIRED.md` |
 | Sprint 14.2 monetization/provider activation | 0 real paid plans, checkout, billing provider, provider price id, SDK, webhook, metered commercial usage, customer portal, invoice, refund, dunning, tax, ads, donation, affiliate, external analytics, worker or cron activations |
+| Sprint 14.3 webhook dry-run endpoint | `POST /api/v1/billing/webhooks/{provider}` for `stripe`, `mercado_pago`, `paddle` |
+| Sprint 14.3 webhook signature contract | Headers `X-Supersites-Webhook-Timestamp` and `X-Supersites-Webhook-Signature`; HMAC `sha256=<hmac>` over `timestamp.payload` |
+| Sprint 14.3 webhook persistence | Accepted signed dry-run events store provider, external id, type, idempotency key, `verified_test`, `dry_run`, payload hash and timestamps; raw payload is not stored |
+| Sprint 14.3 idempotency controls | Same provider/event id/payload replays as idempotent; same provider/event id with different payload hash returns conflict |
+| Sprint 14.3 focused validation | `BillingWebhookDryRunTest` passed; 6 tests, 38 assertions; `AdminPanelTest` passed; 10 tests, 103 assertions |
+| Sprint 14.3 local Laravel validation | `php artisan test` passed; 56 tests, 553 assertions |
+| Sprint 14.3 admin visual audit | `pnpm measure:admin-audit` passed; run `2026-06-29T08-48-01Z`; 9 authenticated desktop/mobile checks |
+| Sprint 14.3 control-plane artifact build | `pnpm deploy:build-control-plane-hostgator` passed; 7141 files, 28239248 bytes, zip 8413892 bytes |
+| Sprint 14.3 package validation | Passed: `test:packages`, `typecheck:packages`; billing package remains 14 tests |
+| Sprint 14.3 runbook | `docs/RUNBOOKS/BILLING_WEBHOOK_DRY_RUN.md` |
+| Sprint 14.3 human gates recorded | Real provider webhooks and vault-managed secrets remain in `docs/HUMAN_ACTION_REQUIRED.md` |
+| Sprint 14.3 monetization/provider activation | 0 real webhooks, provider SDKs, checkout, billing providers, charges, subscriptions, invoices, refunds, dunning, tax, entitlement payment mutations, revenue imports, ads, donation, affiliate, external analytics, worker or cron activations |
 
 ## Product metrics
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\V1\AnalyticsEventController;
 use App\Http\Controllers\Api\V1\Account\AccountDeletionRequestController;
 use App\Http\Controllers\Api\V1\Account\AccountExportController;
+use App\Http\Controllers\Api\V1\Billing\BillingWebhookDryRunController;
 use App\Http\Controllers\Api\V1\CurrentUserController;
 use App\Http\Controllers\Api\V1\MailHealth\MailHealthBlacklistController;
 use App\Http\Controllers\Api\V1\MailHealth\MailHealthDnsController;
@@ -27,6 +28,9 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->group(function (): void {
     Route::post('/analytics/events', AnalyticsEventController::class)
         ->middleware('throttle:60,1');
+
+    Route::post('/billing/webhooks/{provider}', BillingWebhookDryRunController::class)
+        ->middleware('throttle:20,1');
 
     Route::prefix('netprobe')
         ->middleware('throttle:netprobe-public')

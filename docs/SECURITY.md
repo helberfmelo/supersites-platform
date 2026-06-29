@@ -235,3 +235,11 @@
 - Testes de autorizacao/RBAC quando backend/admin mudar.
 - Testes de SSRF/rate limit quando ferramenta de rede mudar.
 - Smoke em producao apos deploy.
+
+## Billing webhook dry-run
+
+- O endpoint `/api/v1/billing/webhooks/{provider}` aceita somente providers allowlisted e usa throttle publico dedicado pela rota.
+- O receiver exige timestamp, assinatura `sha256=<hmac>` e janela de replay configurada; eventos stale, sem assinatura ou com HMAC invalido sao rejeitados.
+- O segredo de dry-run vem de ambiente e fica vazio por padrao; nenhum secret real de Stripe, Mercado Pago, Paddle ou outro provider pode ser versionado.
+- A idempotencia e feita por provider + event id + hash de payload; hash divergente para o mesmo evento retorna conflito e gera auditoria.
+- Eventos aceitos ficam `dry_run` e nao disparam alteracao de plano, checkout, entitlement, invoice, pagamento, refund, dunning, imposto ou chamada a provider.

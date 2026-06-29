@@ -480,7 +480,7 @@ As fases futuras completas estao descritas em `docs/SPRINTS/POST_BENCHMARK_OPERA
 - Fase 11 - Operational Hardening: concluida em 2026-06-29, cobrindo branch protection, root mapping dry-run, retencao HostGator, VPS backup/restore e runbooks de uptime.
 - Fase 12 - Real Measurement Readiness: concluida em 2026-06-29, cobrindo Lighthouse/LHCI, auditoria admin autenticada, readiness Google e relatorios executivos com evidencias internas/public watchdog.
 - Fase 13 - Product Depth and SEO/AIO Expansion: concluida em 2026-06-29; CalcHarbor, TimeNexus, MailHealth, SitePulse e PixelBatch/DocShift receberam profundidade util/local-first sem conteudo em massa ou provider externo.
-- Fase 14 - Paid Upgrade Foundations: iniciada em 2026-06-29; auth/contas concluida na Sprint 14.1, entitlements/quotas concluidos em main na Sprint 14.2, webhook foundation e monitores preview seguem sem cobranca real.
+- Fase 14 - Paid Upgrade Foundations: iniciada em 2026-06-29; auth/contas concluida na Sprint 14.1, entitlements/quotas concluidos em main na Sprint 14.2, webhook dry-run implementado localmente na Sprint 14.3, monitores preview seguem sem cobranca real.
 - Fase 15 - Provider and Monetization Go-Live: AdSense, Google providers, billing, doacoes e afiliados apenas apos gates humanos.
 - Fase 16 - Continuous Growth Loop: ingestao real, priorizacao, automacoes via PR e relatorios executivos recorrentes.
 
@@ -611,6 +611,13 @@ Sprint 14.2 - Paid entitlements and quota enforcement
 - Escopo: entitlements `monitor-slots` e `monitor-types`, `PlanEntitlementResolver`, metadados de quota nos endpoints de monitores NetProbe, bloqueio antes da criacao acima do limite, dashboard de billing com limites, contrato `@supersites/billing` para decisao de quota, ADR `0033` e runbook `ENTITLEMENT_QUOTA_CONTROLS`.
 - Validacao: testes/typecheck do pacote billing, `test:packages`, `typecheck:packages`, `php artisan test`, `composer validate --strict`, `measure:admin-audit`, build de artifact do control-plane, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate/Deploy Dry Run e smokes publicos apos push.
 - Status: concluida em main, sem deploy real. Validacoes locais passaram com pacote billing 14 testes/typecheck, pacotes compartilhados, 50 testes Laravel/514 assertions, audit admin autenticado `2026-06-29T08-29-48Z` em 9 paginas e artifact control-plane validado com 7138 arquivos. Feature commit `26516c8`, Quality Gate `28359248342`, Deploy Dry Run `28359248307` e smokes publicos de Hub/control-plane/NetProbe passaram. Plano pago real, uso medido comercial e sincronizacao de entitlements por pagamento foram registrados como `HUMAN_ACTION_REQUIRED`. Nenhum plano pago, checkout, provider price id, provider SDK, webhook real, cobranca, assinatura, invoice, refund, dunning, imposto automatico, portal de cliente, worker/cron, anuncio real, doacao, afiliado ou provider externo foi ativado.
+
+Sprint 14.3 - Paid webhook dry-run foundation
+- Simbolico: PAID-WEBHOOK-FOUNDATION.
+- Objetivo: criar endpoint assinado e idempotente em modo dry-run sem provider real.
+- Escopo: config `billing.webhooks`, receiver `BillingWebhookDryRunReceiver`, rota `POST /api/v1/billing/webhooks/{provider}`, persistencia de eventos dry-run em `billing_webhook_events`, idempotencia por provider/event id/hash, status `dry_run_scaffolded`/`dry_run_only` no seeder, ADR `0034` e runbook `BILLING_WEBHOOK_DRY_RUN`.
+- Validacao: `BillingWebhookDryRunTest`, `AdminPanelTest`, `php artisan test`, `composer validate --strict`, `test:packages`, `typecheck:packages`, `measure:admin-audit`, build de artifact do control-plane, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate/Deploy Dry Run e smokes publicos apos push.
+- Status: concluida localmente, aguardando commit/push/CI da sprint. Validacoes locais passaram com 56 testes Laravel/553 assertions, audit admin autenticado `2026-06-29T08-48-01Z` em 9 paginas e artifact control-plane validado com 7141 arquivos. Webhook real, provider secret em cofre e processamento de eventos de pagamento foram registrados como `HUMAN_ACTION_REQUIRED`. Nenhum webhook real, checkout, cobranca, provider SDK, assinatura, invoice, refund, dunning, imposto automatico, mutation de entitlement por pagamento, worker/cron, anuncio real, doacao, afiliado ou provider externo foi ativado.
 
 ## Definition of done do programa
 

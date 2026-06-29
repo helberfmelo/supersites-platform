@@ -83,7 +83,7 @@ A Sprint 6.4 cria a fundacao de billing sem ativar cobranca real:
 - `@supersites/billing` cobre Stripe, Mercado Pago e Paddle como identificadores de provider, com gates fail-closed para checkout e webhooks.
 - `billing_providers` registra readiness operacional de conta, KYC, termos, impostos, perfil de pagamento, API key, webhook secret e endpoint aprovado.
 - `billing_plans` e `billing_entitlements` seedam somente planos locais `free-preview` para os sites publicos, sem provider price id, checkout ou upgrade pago.
-- `billing_webhook_events` define ledger futuro de idempotencia e hash de payload, mas nenhum endpoint publico de webhook foi criado.
+- `billing_webhook_events` define ledger de idempotencia e hash de payload para webhook dry-run; webhooks reais continuam desligados.
 
 Antes de vender qualquer upgrade, ainda faltam conta provider aprovada, KYC, impostos, perfil de pagamentos, termos/cancelamento/reembolso, secrets em cofre, checkout hospedado oficial, assinatura de webhook, replay protection, matriz de dados, exportacao/exclusao e smoke/rollback especificos.
 
@@ -113,6 +113,20 @@ A Sprint 14.2 cria enforcement de quota por entitlement local, ainda sem cobranc
 Isto nao ativa plano pago, checkout, assinatura, provider price id, provider SDK, webhook real, uso medido comercial, invoice, refund, dunning, imposto automatico, portal de cliente ou secret novo.
 
 Antes de vender limites maiores, ainda faltam provider aprovado, KYC, impostos, termos/cancelamento/reembolso, secrets em cofre, assinatura de webhook, matriz de dados de uso medido, exportacao/exclusao e smoke/rollback especificos.
+
+## Webhook dry-run foundation
+
+A Sprint 14.3 cria somente o receiver de webhook assinado em modo dry-run:
+
+- `POST /api/v1/billing/webhooks/{provider}` aceita `stripe`, `mercado_pago` e `paddle`.
+- A assinatura usa `X-Supersites-Webhook-Timestamp` e `X-Supersites-Webhook-Signature` no formato `sha256=<hmac>`.
+- O dry-run fica desligado por padrao e exige `BILLING_WEBHOOK_DRY_RUN_ENABLED=true` e segredo de teste via ambiente/cofre.
+- Eventos aceitos gravam apenas provider, id externo, tipo, idempotency key, status de assinatura, status `dry_run`, hash do payload e timestamps.
+- Replay com mesmo payload e event id e idempotente; replay com hash diferente e rejeitado.
+
+Isto nao ativa provider real, SDK, checkout, assinatura, pagamento, invoice, refund, dunning, imposto automatico, customer portal, alteracao de entitlement, revenue import, webhook real ou secret versionado.
+
+Antes de processar webhooks reais, ainda faltam provider aprovado, secrets em cofre, fixtures oficiais de assinatura por provedor, replay/rollback operacional, matriz de dados de payload, termos/cancelamento/reembolso, KYC, impostos e smoke especifico de provider.
 
 ## AI growth monetization recommendations
 

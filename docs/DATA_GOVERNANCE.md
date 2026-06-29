@@ -151,6 +151,14 @@
 - Campos proibidos: cartao, dados bancarios, documentos fiscais, CPF/CNPJ ou equivalentes, endereco de cobranca, e-mail de cliente, token de provider, API key, webhook secret, payload bruto de webhook, IP, identificador de visitante, conteudo de ferramenta ou arquivo.
 - Webhooks reais, historico de assinatura, invoices, refunds, chargebacks, taxes e entitlements pagos permanecem desligados ate matriz de dados, termos, retencao, exportacao/exclusao, idempotencia e assinatura verificada estarem implementados.
 
+## Billing webhook dry-run
+
+- A Sprint 14.3 permite gravar somente eventos assinados em modo dry-run.
+- Campos permitidos: provider, external event id, event type, signature status, processing status, idempotency key, payload hash, received timestamp e audit metadata sanitizada.
+- Campos proibidos: payload bruto, customer id quando puder identificar pessoa, e-mail, nome, endereco, cartao, banco, documento fiscal, invoice completa, tax id, provider secret, API key, assinatura recebida, IP do remetente e dados de ferramenta.
+- Eventos dry-run nao podem mudar entitlement, plano, assinatura, invoice, cobranca, receita, refund, dunning, imposto ou perfil de cliente.
+- Webhooks reais exigem matriz de dados especifica por provider antes de go-live.
+
 ## Account data controls
 
 - A Sprint 14.1 cria `user_account_privacy_requests` para registrar pedidos autenticados de exportacao e exclusao.

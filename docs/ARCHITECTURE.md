@@ -404,3 +404,11 @@ Paginas indexaveis devem renderizar titulo, conteudo essencial, links, canonical
 - Backend entra para rede, persistencia, billing, filas, seguranca, monitoramento ou processamento pesado.
 - Conteudo de usuario de ferramentas dev, imagem e documento nao deve ser logado.
 - Microservico fora de Laravel exige benchmark ou biblioteca especifica.
+
+## Billing webhook dry-run
+
+- O control-plane expoe `/api/v1/billing/webhooks/{provider}` apenas como receiver dry-run de readiness.
+- `BillingWebhookDryRunReceiver` valida provider suportado, HMAC de teste, timestamp, janela de replay, id externo e tipo de evento.
+- Eventos aceitos sao persistidos em `billing_webhook_events` com hash de payload e idempotency key; payload bruto nao e armazenado.
+- `processing_status=dry_run` significa sem mutacao de checkout, assinatura, invoice, entitlement, receita ou provider externo.
+- O dry-run fica desligado sem configuracao de ambiente; segredo real de provider deve vir de cofre e continua fora do repositorio.
