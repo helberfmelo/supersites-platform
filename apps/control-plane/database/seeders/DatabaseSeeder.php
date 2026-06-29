@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             AdSenseReadinessSeeder::class,
             BillingReadinessSeeder::class,
             SupportMonetizationReadinessSeeder::class,
+            GrowthProviderIngestionSeeder::class,
             AiGrowthReadinessSeeder::class,
             ExecutiveReportReadinessSeeder::class,
             BenchmarkRefinementSeeder::class,

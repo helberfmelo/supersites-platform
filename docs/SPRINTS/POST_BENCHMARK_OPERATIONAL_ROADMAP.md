@@ -136,6 +136,8 @@ Status em 2026-06-29: Fase concluida em modo fail-closed. A Sprint 15.1 foi conc
 
 Objetivo: operar o ciclo continuo com evidencias reais.
 
+Status em 2026-06-29: Fase iniciada em modo fail-closed. A Sprint 16.1 esta preparando readiness autenticado de ingestao de GA4/Search Console/AdSense/billing sem provider requests, tokens, workers, cron, retries ou snapshots reais.
+
 | Sprint | Simbolico | Escopo | Gates/humanos |
 |---:|---|---|---|
 | 16.1 | GROWTH-INGEST | Ingestao de GA4/Search Console/AdSense/billing quando aprovados | Tokens e quotas em cofre |

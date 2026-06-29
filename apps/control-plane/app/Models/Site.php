@@ -148,6 +148,14 @@ class Site extends Model
     }
 
     /**
+     * @return HasMany<GrowthProviderIngestion, $this>
+     */
+    public function growthProviderIngestions(): HasMany
+    {
+        return $this->hasMany(GrowthProviderIngestion::class);
+    }
+
+    /**
      * @return HasMany<ExecutiveReportItem, $this>
      */
     public function executiveReportItems(): HasMany

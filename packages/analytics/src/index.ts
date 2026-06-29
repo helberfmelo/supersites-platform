@@ -464,3 +464,96 @@ function normalizeSearchConsoleUrlPrefix(value: string): string | null {
     return null
   }
 }
+
+export const growthIngestionContractVersion = '2026-06-29.16.1'
+
+export const growthIngestionSources = [
+  'ga4',
+  'search_console',
+  'adsense',
+  'billing',
+] as const
+
+export type GrowthIngestionSource = (typeof growthIngestionSources)[number]
+
+export type GrowthIngestionStatus = 'ready' | 'human_required' | 'blocked' | 'not_configured'
+
+export interface GrowthIngestionGateInput {
+  source: string
+  environment?: 'local' | 'staging' | 'production'
+  humanApproved?: boolean
+  tokenInVault?: boolean
+  quotaApproved?: boolean
+  dataContractApproved?: boolean
+  retentionApproved?: boolean
+  importEnabled?: boolean
+}
+
+export interface GrowthIngestionGate {
+  contractVersion: string
+  source: GrowthIngestionSource | null
+  status: GrowthIngestionStatus
+  shouldImport: boolean
+  providerRequestEnabled: boolean
+  reasons: string[]
+}
+
+export function normalizeGrowthIngestionSource(value: string | null | undefined): GrowthIngestionSource | null {
+  if (!value) {
+    return null
+  }
+
+  const normalized = value.trim().toLowerCase().replace(/[-\s]+/g, '_')
+
+  return growthIngestionSources.includes(normalized as GrowthIngestionSource)
+    ? normalized as GrowthIngestionSource
+    : null
+}
+
+export function resolveGrowthIngestionGate(input: GrowthIngestionGateInput): GrowthIngestionGate {
+  const source = normalizeGrowthIngestionSource(input.source)
+  const reasons: string[] = []
+
+  if (!source) {
+    reasons.push('Growth ingestion source is not supported.')
+  }
+
+  if (input.environment !== 'production') {
+    reasons.push('Provider ingestion is disabled outside production.')
+  }
+
+  if (!input.humanApproved) {
+    reasons.push('Human approval is required before provider ingestion.')
+  }
+
+  if (!input.tokenInVault) {
+    reasons.push('Provider token or secret is not confirmed in an approved vault.')
+  }
+
+  if (!input.quotaApproved) {
+    reasons.push('Provider quota and retry policy are not approved.')
+  }
+
+  if (!input.dataContractApproved) {
+    reasons.push('Provider data contract and minimization matrix are not approved.')
+  }
+
+  if (!input.retentionApproved) {
+    reasons.push('Retention and deletion rules are not approved.')
+  }
+
+  if (!input.importEnabled) {
+    reasons.push('The provider ingestion feature flag is disabled.')
+  }
+
+  const ready = source !== null && reasons.length === 0
+
+  return {
+    contractVersion: growthIngestionContractVersion,
+    source,
+    status: ready ? 'ready' : input.humanApproved ? 'not_configured' : 'human_required',
+    shouldImport: ready,
+    providerRequestEnabled: ready,
+    reasons,
+  }
+}

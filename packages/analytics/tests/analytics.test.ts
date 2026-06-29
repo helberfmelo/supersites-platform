@@ -7,10 +7,13 @@ import {
   createGoogleDataLayerEvent,
   createGoogleEventParameters,
   createOutboundSiteClickEvent,
+  growthIngestionSources,
   googleAnalyticsEventNames,
   isAnalyticsEventName,
   normalizeGa4MeasurementId,
+  normalizeGrowthIngestionSource,
   normalizeGtmContainerId,
+  resolveGrowthIngestionGate,
   resolveGoogleIntegrationGate,
   sanitizeAnalyticsPath,
   sanitizeAnalyticsProperties,
@@ -194,6 +197,46 @@ describe('@supersites/analytics', () => {
       property: 'https://sitepulse.example/tools/',
       verificationStatus: 'verified',
       reason: 'Search Console property is verified and eligible for data import.',
+    })
+  })
+
+  it('keeps growth ingestion sources explicit and normalized', () => {
+    expect(growthIngestionSources).toEqual(['ga4', 'search_console', 'adsense', 'billing'])
+    expect(normalizeGrowthIngestionSource(' Search Console ')).toBe('search_console')
+    expect(normalizeGrowthIngestionSource('google-ads')).toBeNull()
+  })
+
+  it('fails growth provider ingestion closed until every gate is approved', () => {
+    expect(resolveGrowthIngestionGate({
+      source: 'ga4',
+      environment: 'production',
+      humanApproved: false,
+      tokenInVault: true,
+      quotaApproved: true,
+      dataContractApproved: true,
+      retentionApproved: true,
+      importEnabled: true,
+    })).toMatchObject({
+      source: 'ga4',
+      status: 'human_required',
+      shouldImport: false,
+      providerRequestEnabled: false,
+    })
+
+    expect(resolveGrowthIngestionGate({
+      source: 'billing',
+      environment: 'production',
+      humanApproved: true,
+      tokenInVault: true,
+      quotaApproved: true,
+      dataContractApproved: true,
+      retentionApproved: true,
+      importEnabled: true,
+    })).toMatchObject({
+      source: 'billing',
+      status: 'ready',
+      shouldImport: true,
+      providerRequestEnabled: true,
     })
   })
 })

@@ -27,6 +27,10 @@
             <strong>{{ $summary['google_gated'] }}</strong>
         </article>
         <article class="panel metric">
+            <span class="muted">Growth imports live</span>
+            <strong>{{ $summary['growth_ingestion_importing'] }}</strong>
+        </article>
+        <article class="panel metric">
             <span class="muted">Billing gated</span>
             <strong>{{ $summary['billing_gated'] }}</strong>
         </article>
@@ -422,6 +426,45 @@
                 @empty
                     <tr>
                         <td colspan="6">No Google integration records seeded.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </section>
+
+    <section class="panel">
+        <h2>Growth ingestion</h2>
+        <p class="muted">
+            Sources {{ $growthIngestionReadiness['data']['summary']['sources'] }} ·
+            ready {{ $growthIngestionReadiness['data']['summary']['sources_ready_for_human_activation'] }} ·
+            importing {{ $growthIngestionReadiness['data']['summary']['sources_importing'] }} ·
+            provider requests {{ $growthIngestionReadiness['data']['summary']['provider_requests_enabled'] }} ·
+            workers {{ $growthIngestionReadiness['data']['summary']['workers_enabled'] }}
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Site</th>
+                    <th>Source</th>
+                    <th>Access</th>
+                    <th>Token</th>
+                    <th>Data</th>
+                    <th>Import</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($growthProviderIngestions as $ingestion)
+                    <tr>
+                        <td>{{ $ingestion->site?->name ?? 'Unknown site' }}</td>
+                        <td>{{ $ingestion->source }}</td>
+                        <td><span class="status {{ $ingestion->access_status }}">{{ $ingestion->access_status }}</span></td>
+                        <td>{{ $ingestion->token_status }}</td>
+                        <td>{{ $ingestion->data_status }}</td>
+                        <td>{{ $ingestion->import_enabled ? 'enabled' : 'disabled' }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">No growth ingestion readiness records seeded.</td>
                     </tr>
                 @endforelse
             </tbody>

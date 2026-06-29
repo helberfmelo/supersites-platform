@@ -669,6 +669,17 @@ Sprint 15.4 - Donation and affiliate go-live readiness
 Fase 15 - fechamento
 - Status: concluida em main em 2026-06-29, sem deploy real e sem ativacao de provider externo. Commits tecnicos: `9f048f8`, `ca89769`, `12ae78b`, `1a817df`. Quality Gates tecnicos: `28362026582`, `28362869383`, `28363695657`, `28364679035`. Deploy Dry Runs tecnicos: `28362026601`, `28362869390`, `28363695714`, `28364679031`. Smokes publicos de Hub/control-plane/NetProbe e `validate:adsense-safe-public` passaram apos cada sprint tecnica.
 
+## Fase 16 - Continuous Growth Loop
+
+Status geral: iniciada em 2026-06-29 em modo fail-closed. Como tokens, quotas, provider accounts, dados reais, workers e revisao de causalidade seguem pendentes de gate humano, a fase deve entregar contratos e readiness locais sem ativar imports ou automacoes externas.
+
+Sprint 16.1 - Growth provider ingestion readiness
+- Simbolico: GROWTH-INGEST.
+- Objetivo: preparar ingestao futura de GA4, Search Console, AdSense e billing sem chamar providers, armazenar tokens, iniciar workers ou criar snapshots reais.
+- Escopo: helper fail-closed em `@supersites/analytics`, tabela `growth_provider_ingestions`, seeder local com 48 registros, servico `GrowthIngestionReadiness`, endpoint autenticado `GET /api/v1/growth/ingestion-readiness`, resumo no dashboard, testes, ADR `0040`, runbook `GROWTH_PROVIDER_INGESTION_READINESS` e gate humano explicito para importacao real.
+- Validacao: testes do pacote analytics, `GrowthIngestionReadinessTest`, `php artisan test`, `composer validate --strict`, `test:packages`, `typecheck:packages`, `measure:admin-audit`, build de artifact do control-plane, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `validate:adsense-safe-public`, Quality Gate/Deploy Dry Run e smokes publicos apos push.
+- Status: implementacao local concluida e em fechamento remoto, sem deploy real. Passaram `pnpm --filter @supersites/analytics test` com 12 testes, `GrowthIngestionReadinessTest` com 4 testes/30 assertions, `pnpm test:packages` com 84 testes, `pnpm typecheck:packages`, `php artisan test` com 82 testes/782 assertions, `composer validate --strict`, admin audit `2026-06-29T10-27-40Z` em 9 paginas, artifact control-plane com 7160 arquivos/28317875 bytes/zip 8436589 bytes, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` e `validate:adsense-safe-public` em 13 paginas. Nenhuma chamada provider, token, payload real, worker, cron, retry, snapshot real GA4/Search Console/AdSense/billing ou importacao externa foi ativada.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.

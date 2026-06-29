@@ -1155,6 +1155,13 @@ Data-base: 2026-06-29
 | Sprint 15.4 ADR | `docs/ADR/0039-support-monetization-go-live-readiness.md` |
 | Sprint 15.4 donation/affiliate activation | 0 public donation links, affiliate links, payment widgets, QR/PIX payloads, wallets, provider SDKs, webhooks, affiliate tracking, payment secrets or real support payments |
 | Phase 15 closure | Completed in main on 2026-06-29 with technical commits `9f048f8`, `ca89769`, `12ae78b`, `1a817df`; remote Quality Gates `28362026582`, `28362869383`, `28363695657`, `28364679035`; remote Deploy Dry Runs `28362026601`, `28362869390`, `28363695714`, `28364679031`; all public smokes passed; real provider/monetization activation remains 0 |
+| Sprint 16.1 growth ingestion endpoint | `GET /api/v1/growth/ingestion-readiness` behind auth and `dashboard.view` |
+| Sprint 16.1 growth ingestion contract | `GrowthIngestionReadiness::CONTRACT_VERSION` `2026-06-29.16.1`; `@supersites/analytics growthIngestionContractVersion` |
+| Sprint 16.1 growth ingestion records | `growth_provider_ingestions` seeded with 48 records: 12 sites x 4 sources (`ga4`, `search_console`, `adsense`, `billing`) |
+| Sprint 16.1 focused validation | Passed: `@supersites/analytics` 12 tests; `GrowthIngestionReadinessTest` 4 tests/30 assertions |
+| Sprint 16.1 full local validation | Passed: `pnpm test:packages` 84 tests, `pnpm typecheck:packages`, `php artisan test` 82 tests/782 assertions, `composer validate --strict`, `pnpm measure:admin-audit` run `2026-06-29T10-27-40Z`, `pnpm deploy:build-control-plane-hostgator`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check`, `pnpm validate:adsense-safe-public` |
+| Sprint 16.1 control-plane artifact | 7160 files, 28317875 bytes, zip 8436589 bytes |
+| Sprint 16.1 provider import activation | 0 provider requests, OAuth tokens, service-account keys, API keys, provider payloads, workers, cron jobs, retries, real GA4/Search Console/AdSense/billing snapshots or external imports |
 
 ## Product metrics
 

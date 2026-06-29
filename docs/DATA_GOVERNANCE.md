@@ -216,6 +216,14 @@
 - Campos proibidos: payment link real, URL real de afiliado com parametro, PIX payload, QR, carteira, token, webhook secret, conta bancaria, documento fiscal, e-mail, IP, identificador de usuario, receita individual, click id ou payload de provider.
 - Canais com doacao real, afiliado real, widget, tracking, webhook, public link ou provider SDK devem permanecer `human_required` ate KYC, impostos, termos, disclosure, privacidade, AdSense/SEO compliance, cofre e aprovacao humana.
 
+## Growth provider ingestion readiness
+
+- A Sprint 16.1 cria apenas readiness local em `growth_provider_ingestions`.
+- Campos permitidos: site, fonte `ga4`/`search_console`/`adsense`/`billing`, label do provider, status de acesso/token/quota/contrato de dados/retencao/importacao, `data_status`, timestamps de importacao futura, codigo de erro controlado e evidencias documentais.
+- Campos proibidos: OAuth token, refresh token, service-account key, API key, webhook secret, payload bruto GA4/Search Console/AdSense/billing, query real, pagina com identificador, receita individual, click id, impressao individual, e-mail, IP, cookie, customer id, invoice, cartao, banco, documento fiscal ou dados de ferramenta.
+- `data_status=unavailable` deve permanecer ate importacao real aprovada; readiness nao autoriza coleta nem altera retencao.
+- Workers, retries, imports agendados e snapshots reais exigem matriz de dados, cofre, quota, retencao, smoke/rollback e aprovacao humana por fonte/site.
+
 ## Analytics sem PII
 
 - O contrato versionado fica em `packages/analytics`.

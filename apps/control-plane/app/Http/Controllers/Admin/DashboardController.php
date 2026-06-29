@@ -16,6 +16,7 @@ use App\Models\DeploymentRecord;
 use App\Models\ExecutiveReport;
 use App\Models\ExecutiveReportItem;
 use App\Models\GoogleIntegration;
+use App\Models\GrowthProviderIngestion;
 use App\Models\Incident;
 use App\Models\OperationalTask;
 use App\Models\Site;
@@ -23,6 +24,7 @@ use App\Models\SupportMonetizationChannel;
 use App\Support\AdSense\AdSenseGoLiveReadiness;
 use App\Support\Billing\BillingProviderGoLiveReadiness;
 use App\Support\Google\GoogleProviderGoLiveReadiness;
+use App\Support\Growth\GrowthIngestionReadiness;
 use App\Support\Monetization\SupportMonetizationGoLiveReadiness;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -34,11 +36,13 @@ class DashboardController extends Controller
         AdSenseGoLiveReadiness $adsenseReadiness,
         BillingProviderGoLiveReadiness $billingReadiness,
         GoogleProviderGoLiveReadiness $googleReadiness,
+        GrowthIngestionReadiness $growthIngestionReadiness,
         SupportMonetizationGoLiveReadiness $supportMonetizationReadiness,
     ): View {
         $adsenseGoLiveReadiness = $adsenseReadiness->snapshot();
         $billingGoLiveReadiness = $billingReadiness->snapshot();
         $googleGoLiveReadiness = $googleReadiness->snapshot();
+        $growthIngestionReadinessSnapshot = $growthIngestionReadiness->snapshot();
         $supportMonetizationGoLiveReadiness = $supportMonetizationReadiness->snapshot();
         $statusCounts = Site::query()
             ->selectRaw('status, count(*) as total')
@@ -75,6 +79,8 @@ class DashboardController extends Controller
                 })
                 ->count(),
             'google_tags_enabled' => GoogleIntegration::query()->where('tags_enabled', true)->count(),
+            'growth_ingestion_sources' => GrowthProviderIngestion::query()->count(),
+            'growth_ingestion_importing' => GrowthProviderIngestion::query()->where('import_enabled', true)->count(),
             'open_incidents' => Incident::query()->whereIn('status', ['open', 'investigating', 'monitoring'])->count(),
             'open_tasks' => OperationalTask::query()->whereIn('status', ['open', 'blocked'])->count(),
         ];
@@ -155,6 +161,14 @@ class DashboardController extends Controller
                 ->limit(6)
                 ->get(),
             'googleGoLiveReadiness' => $googleGoLiveReadiness,
+            'growthIngestionReadiness' => $growthIngestionReadinessSnapshot,
+            'growthProviderIngestions' => GrowthProviderIngestion::query()
+                ->with('site:id,slug,name')
+                ->orderBy('import_enabled')
+                ->orderBy('source')
+                ->orderBy('id')
+                ->limit(8)
+                ->get(),
             'supportMonetizationChannels' => SupportMonetizationChannel::query()
                 ->with('site:id,slug,name')
                 ->orderBy('public_enabled')

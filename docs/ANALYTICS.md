@@ -301,3 +301,13 @@ Smokes de deploy do control-plane/API e do NetProbe devem validar apenas disponi
 - Tratar paginacao, quota, retry, backoff e datas ausentes.
 - Alertar anomalias de trafego, CTR, erros, latencia e receita.
 - Nao inferir causalidade sem evidencia.
+
+## Growth provider ingestion readiness
+
+A Sprint 16.1 adiciona somente readiness local para ingestao futura de GA4, Search Console, AdSense e billing.
+
+- `@supersites/analytics` exporta `growthIngestionSources`, `normalizeGrowthIngestionSource` e `resolveGrowthIngestionGate`.
+- `growth_provider_ingestions` registra status de acesso, token em cofre, quota, contrato de dados, retencao, importacao e `data_status`.
+- `GET /api/v1/growth/ingestion-readiness` fica atras de auth e `dashboard.view`.
+- O dashboard mostra fontes prontas para ativacao humana, mas `sources_importing`, `provider_requests_enabled` e `workers_enabled` permanecem 0.
+- Nenhum provider API, token, payload real, worker, cron, retry automatico, receita, impressao, clique, sessao, query Search Console ou metrica billing real e coletado nesta sprint.
