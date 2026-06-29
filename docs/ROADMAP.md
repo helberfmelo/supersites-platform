@@ -544,9 +544,9 @@ Sprint 12.2 - Authenticated admin dashboard audit
 Sprint 12.3 - Google readiness checklist
 - Simbolico: MEASURE-GOOGLE-READY.
 - Objetivo: preparar checklist tecnico para GA4/GTM/Search Console sem criar propriedades, verificacoes, containers ou tags reais.
-- Escopo: validar contratos fail-closed, eventos permitidos, consent/ad gates, checklist de verificacao manual e pendencias humanas.
+- Escopo: validar contratos fail-closed, eventos permitidos, consent/ad gates, ausencia de snippets publicos ativos, ausencia de `ads.txt` placeholder, checklist de verificacao manual e pendencias humanas.
 - Validacao: testes de analytics/ads/seo, gates publicos, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, CI e smokes publicos.
-- Status: pendente.
+- Status: local validado, remoto pendente. `pnpm measure:google-ready` passou no run `2026-06-29T05-47-31Z`, com 18 checks, 0 falhas, 318 arquivos publicos de producao verificados, 0 snippets ativos de GA4/GTM/Search Console/AdSense, 0 `ads.txt` publico e ativacao 0 para GA4, GTM, Search Console, AdSense e PageSpeed API. Nenhuma propriedade, container, verificacao, tag, conta, publisher ID, API, snippet ou request de provider foi criado/ativado.
 
 Sprint 12.4 - Executive reports evidence wiring
 - Simbolico: MEASURE-EXEC-REPORTS.

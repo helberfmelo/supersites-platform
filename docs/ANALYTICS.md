@@ -237,6 +237,8 @@ Sprint 6.2 adiciona uma fundacao de integracao Google sem carregar providers ext
 
 Sprint 6.2 nao ativa scripts GA4/GTM, importacao Search Console, contas Google, tags reais, cookies de terceiro, eventos externos ou coleta adicional.
 
+Sprint 12.3 adiciona o comando `pnpm measure:google-ready` para auditar readiness de GA4/GTM/Search Console/AdSense sem ativar provider. O run local `2026-06-29T05-47-31Z` passou com 18 checks e confirmou allowlist de parametros, gates fail-closed, seeders sem IDs reais, ausencia de snippets publicos ativos e ausencia de `ads.txt` placeholder.
+
 ## AdSense metrics
 
 Sprint 6.3 cria somente readiness operacional de AdSense:

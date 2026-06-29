@@ -48,6 +48,12 @@ Nunca enviar email, telefone, documento, nome completo, IP completo, conteudo de
 - `adsense_site_reviews` registra sites publicos como `not_submitted`, com `placements_enabled=false`, `auto_ads_enabled=false` e `ad_serving_enabled=false`.
 - Nenhum site foi adicionado ao AdSense, nenhum `ads.txt` real foi publicado e nenhuma API/snippet/request de anuncio foi ativado.
 
+## Sprint 12.3 readiness check
+
+- `pnpm measure:google-ready` gera evidencia local em `artifacts/google-readiness/` sem chamar APIs Google ou AdSense.
+- O check valida contratos fail-closed, seeders sem IDs reais, ausencia de snippets publicos ativos, ausencia de `ads.txt` placeholder e pendencias humanas.
+- O run `2026-06-29T05-47-31Z` passou com 18 checks, 0 falhas e ativacao 0 para GA4, GTM, Search Console, AdSense e PageSpeed API.
+
 ## Pendencias humanas
 
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.
