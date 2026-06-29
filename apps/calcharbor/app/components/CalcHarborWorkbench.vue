@@ -7,6 +7,8 @@ import {
   calculatorCatalog,
   formatMetricValue,
   getCalculatorCopy,
+  getFieldDefaultValue,
+  getFieldPrefix,
   type CalculatorSlug,
   type CalculationResult,
   type CalculatorScenarioRow,
@@ -36,7 +38,7 @@ function resetInputs(): void {
   }
 
   for (const field of activeCalculator.value.fields) {
-    inputs[field.key] = field.defaultValue
+    inputs[field.key] = getFieldDefaultValue(field, props.locale)
   }
 
   hasCompared.value = false
@@ -103,7 +105,7 @@ watch(activeSlug, resetInputs, { immediate: true })
         <div v-for="field in activeCalculator.fields" :key="field.key" class="field">
           <label :for="`workbench-${field.key}`">{{ field.label[locale] }}</label>
           <div class="number-input">
-            <span v-if="field.prefix" aria-hidden="true">{{ field.prefix }}</span>
+            <span v-if="getFieldPrefix(field, locale)" aria-hidden="true">{{ getFieldPrefix(field, locale) }}</span>
             <input
               :id="`workbench-${field.key}`"
               v-model.number="inputs[field.key]"

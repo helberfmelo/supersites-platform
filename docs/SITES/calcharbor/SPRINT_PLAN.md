@@ -1,6 +1,6 @@
 # CalcHarbor Sprint Plan
 
-Data-base: 2026-06-27
+Data-base: 2026-06-29
 
 ## Real sprint
 
@@ -52,3 +52,12 @@ Data-base: 2026-06-27
 - Remote closure passed: feature commit `97c92f0`, Quality Gate `28329239451`, Deploy Dry Run `28329239457`, deploy `28329341280`, release `97c92f099ff741220280593c9d96eec34c9e3729-28329341280-1`, public asset `https://opentshost.com/supersites/calcharbor/_nuxt/CjP6XAFu.js`.
 - Public smokes passed for CalcHarbor, aggregate Hub/control-plane/API and live UX desktop/mobile; live smoke confirmed `$512.91`, scenario rows, detail snapshot, PT-BR mobile localization, empty storage, 0 app analytics events, 0 console errors and no overflow.
 - No saved scenarios, exports, widgets, API, checkout, billing, ads, donation, external analytics, tax/legal automation or persistent storage was activated.
+
+## Sprint 13.1 product depth
+
+- Status: concluded locally, pending remote CI/public-smoke closure.
+- Added four curated calculators: `compound-interest`, `savings-goal`, `cash-runway` and `discount-price`, bringing CalcHarbor from 4 to 8 calculators.
+- Added localized currency/default handling: EN uses `USD`, PT-BR uses `BRL`, ES/FR/DE use `EUR`; input prefixes, examples, calculation memory, result formatting and JSON-LD `priceCurrency` now follow locale.
+- Added five-language content sections and FAQ coverage for the new calculators without creating tax/legal/credit-advice automation.
+- Validation passed locally: `pnpm test:calcharbor` (12 tests), `pnpm build:calcharbor` (173 prerendered routes), `pnpm validate:calcharbor-preview`, `pnpm test:e2e:calcharbor`, `pnpm validate:public-copy` (911 HTML files), `pnpm validate:adsense-safe-public`, structure/secrets/deploy-dry-run/ci/diff gates.
+- No checkout, billing, ads, donation, affiliate, external analytics, persistent storage, paid API, worker, provider integration or fiscal/legal automation was activated.

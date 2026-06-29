@@ -479,7 +479,7 @@ As fases futuras completas estao descritas em `docs/SPRINTS/POST_BENCHMARK_OPERA
 
 - Fase 11 - Operational Hardening: concluida em 2026-06-29, cobrindo branch protection, root mapping dry-run, retencao HostGator, VPS backup/restore e runbooks de uptime.
 - Fase 12 - Real Measurement Readiness: concluida em 2026-06-29, cobrindo Lighthouse/LHCI, auditoria admin autenticada, readiness Google e relatorios executivos com evidencias internas/public watchdog.
-- Fase 13 - Product Depth and SEO/AIO Expansion: expansao curada de calculadoras, fusos/cidades, builders MailHealth, detalhes SitePulse e planejamento PixelBatch/DocShift.
+- Fase 13 - Product Depth and SEO/AIO Expansion: iniciada em 2026-06-29 com expansao curada do CalcHarbor; proximas sprints cobrem fusos/cidades, builders MailHealth, detalhes SitePulse e planejamento PixelBatch/DocShift.
 - Fase 14 - Paid Upgrade Foundations: auth, contas, entitlements, webhook foundation e monitores preview sem cobranca real.
 - Fase 15 - Provider and Monetization Go-Live: AdSense, Google providers, billing, doacoes e afiliados apenas apos gates humanos.
 - Fase 16 - Continuous Growth Loop: ingestao real, priorizacao, automacoes via PR e relatorios executivos recorrentes.
@@ -554,6 +554,37 @@ Sprint 12.4 - Executive reports evidence wiring
 - Escopo: evidencias internas versionadas, artefatos de public watchdog/medicao local, status de dados explicito, fontes/resumos exportaveis, sem causalidade inventada, sem receita real e sem automacao de envio.
 - Validacao: testes de `@supersites/executive-reports` e Laravel admin, export CSV/print, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, CI e smokes publicos.
 - Status: concluida. `@supersites/executive-reports` contrato `2026-06-29.1` classifica fontes permitidas e bloqueia fontes ativas de provider externo. O control-plane seeda 3 relatorios/18 itens, incluindo `Weekly Real Measurement Readiness - 2026-W27`, com fontes de Lighthouse, admin audit, Google readiness, smoke publico e `provider-unavailable:*`; CSV/print/detalhe exportam fontes/resumos de evidencia. Testes locais passaram: pacote executive-reports 8 testes/typecheck, `test:packages`, `typecheck:packages`, `php artisan test` 46 testes/460 assertions, `composer validate --strict` e admin audit local `2026-06-29T06-02-58Z`. Commit `6179407`, Quality Gate `28352029810`, Deploy Dry Run `28352029809` e readiness smoke publico final `2026-06-29T06-08-56Z` passaram. Nenhum provider externo, receita real, trafego real, import GA4/Search Console/AdSense/billing, envio automatico, worker, cron ou causalidade foi ativado.
+
+## Fase 13 - Product Depth and SEO/AIO Expansion
+
+Status geral: iniciada em 2026-06-29. A fase deve aumentar profundidade util e SEO/AIO sem conteudo em massa raso, mantendo ferramentas gratuitas completas, local-first quando aplicavel e monetizacao apenas preparada por gates.
+
+Sprint 13.1 - CalcHarbor calculator depth
+- Simbolico: DEPTH-CALCHARBOR.
+- Objetivo: expandir calculadoras priorizadas e defaults por locale/moeda sem criar aconselhamento fiscal/juridico automatizado.
+- Escopo: adicionar calculadoras curadas de juros compostos, meta de poupanca, runway de caixa e preco com desconto; introduzir moeda/defaults por locale; manter formulas visiveis, cenarios, copy em 5 idiomas, JSON-LD e analytics sem valores.
+- Validacao: `pnpm test:calcharbor`, `pnpm build:calcharbor`, `pnpm validate:calcharbor-preview`, `pnpm test:e2e:calcharbor`, `validate:public-copy`, `validate:adsense-safe-public`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate/Deploy Dry Run e smokes publicos apos push.
+- Status: concluida localmente, aguardando fechamento remoto. O CalcHarbor passou de 4 para 8 calculadoras, com 40 paginas localizadas, defaults `USD`/`BRL`/`EUR`, exemplos localizados e testes para formulas, defaults, schema `priceCurrency` e erro de runway. Validacoes locais passaram com 12 testes Vitest, build com 173 rotas prerenderizadas, preview smoke, 3 testes Playwright, public-copy em 911 HTMLs e AdSense-safe em 13 paginas. Nenhum checkout, billing, anuncio real, doacao, afiliado, analytics externo, provider financeiro, storage persistente, API paga, worker ou automacao tax/legal foi ativado.
+
+Sprint 13.2 - TimeNexus curated city/timezone depth
+- Simbolico: DEPTH-TIMENEXUS.
+- Objetivo: adicionar paginas curadas de cidade/fuso e timeline visual sem geracao ilimitada.
+- Status: pendente.
+
+Sprint 13.3 - MailHealth DNS builders and guides
+- Simbolico: DEPTH-MAILHEALTH.
+- Objetivo: criar builders SPF/DMARC seguros e guias profundos com policy gate para DNSBL/provider.
+- Status: pendente.
+
+Sprint 13.4 - SitePulse response details
+- Simbolico: DEPTH-SITEPULSE.
+- Objetivo: detalhar headers, redirects e tecnologias dentro dos limites antiabuso existentes.
+- Status: pendente.
+
+Sprint 13.5 - PixelBatch/DocShift provider planning
+- Simbolico: DEPTH-PIXEL-DOC.
+- Objetivo: planejar background remover, OCR e conversoes com matriz de dados antes de qualquer provider/upload.
+- Status: pendente.
 
 ## Definition of done do programa
 

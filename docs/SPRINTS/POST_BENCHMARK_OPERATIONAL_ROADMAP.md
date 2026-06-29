@@ -71,9 +71,11 @@ Status em 2026-06-29: Fase concluida. A Sprint 12.1 foi concluida com `lighthous
 
 Objetivo: expandir profundidade util sem conteudo em massa raso.
 
+Status em 2026-06-29: iniciada. A Sprint 13.1 foi concluida localmente com CalcHarbor ampliado de 4 para 8 calculadoras, defaults/moeda por locale (`USD`, `BRL`, `EUR`), 40 paginas localizadas, build com 173 rotas prerenderizadas, `validate:public-copy` em 911 HTMLs e sem ativacao de checkout, billing, ads, provider externo, API paga, worker ou automacao fiscal/juridica.
+
 | Sprint | Simbolico | Escopo | Gates/humanos |
 |---:|---|---|---|
-| 13.1 | DEPTH-CALCHARBOR | Expandir calculadoras priorizadas e defaults por locale/moeda | Revisao para temas fiscais/juridicos |
+| 13.1 | DEPTH-CALCHARBOR | Expandir calculadoras priorizadas e defaults por locale/moeda | Concluida localmente: `compound-interest`, `savings-goal`, `cash-runway`, `discount-price`, defaults `USD`/`BRL`/`EUR`, 12 testes, build/preview/Playwright/public-copy/AdSense-safe/gates locais passaram; revisao humana continua obrigatoria antes de temas fiscais/juridicos regulados |
 | 13.2 | DEPTH-TIMENEXUS | Adicionar paginas curadas de cidade/fuso e timeline visual sem geracao ilimitada | Evitar pagina programatica rasa |
 | 13.3 | DEPTH-MAILHEALTH | Criar SPF/DMARC builders seguros e guias profundos | DNSBL/provider policy segue gate |
 | 13.4 | DEPTH-SITEPULSE | Adicionar detalhes de headers/redirects/tecnologias dentro de limites antiabuso | Sem crawling amplo |

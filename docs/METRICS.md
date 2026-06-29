@@ -20,7 +20,7 @@ Data-base: 2026-06-29
 | Shared TS packages implemented | 9 |
 | Shared package tests passing | 65 |
 | Shared package typechecks passing | 9 |
-| Frontend tests passing | 84 |
+| Frontend tests passing | 86 |
 | Playwright visual smoke tests passing | 48 |
 | Laravel tests passing | 46 |
 | Control plane API endpoints implemented | 20 |
@@ -168,13 +168,13 @@ Data-base: 2026-06-29
 | NetProbe Atlas preview smoke | Passed |
 | NetProbe Atlas Playwright report | Passed |
 | NetProbe Atlas production status | Live at `https://opentshost.com/supersites/netprobe-atlas/`; ads/billing/external integrations gated |
-| CalcHarbor calculator pages implemented | 4 |
-| CalcHarbor localized calculator pages | 20 |
-| CalcHarbor live public tools implemented | 4 |
+| CalcHarbor calculator pages implemented | 8 |
+| CalcHarbor localized calculator pages | 40 |
+| CalcHarbor live public tools implemented | 8 |
 | CalcHarbor legal/editorial pages | 40 |
-| CalcHarbor FAQ blocks | 20 |
-| CalcHarbor structured data pages | 20 |
-| CalcHarbor prerender content routes | 66 |
+| CalcHarbor FAQ blocks | 40 |
+| CalcHarbor structured data pages | 40 |
+| CalcHarbor prerender content routes | 86 |
 | CalcHarbor sitemap routes | 1 |
 | CalcHarbor preview smoke | Passed |
 | CalcHarbor Playwright report | Passed |
@@ -926,6 +926,18 @@ Data-base: 2026-06-29
 | Sprint 12.4 external provider data consumed | 0 active provider imports; unavailable provider data represented only by `provider-unavailable:*` markers |
 | Fase 12 completion | Completed 2026-06-29; Sprints 12.1 through 12.4 closed with Quality Gate/Deploy Dry Run evidence |
 | Fase 12 external provider activation | 0 PageSpeed API/GA4/GTM/Search Console/AdSense/billing/donation/affiliate/provider imports activated |
+| Sprint 13.1 phase opened | Fase 13 - Product Depth and SEO/AIO Expansion |
+| Sprint 13.1 CalcHarbor catalog size | 8 calculators; 4 existing plus `compound-interest`, `savings-goal`, `cash-runway`, `discount-price` |
+| Sprint 13.1 CalcHarbor localized calculator pages | 40 calculator pages across EN/PT-BR/ES/FR/DE |
+| Sprint 13.1 CalcHarbor currency defaults | EN `USD`; PT-BR `BRL`; ES/FR/DE `EUR` |
+| Sprint 13.1 CalcHarbor prerender routes | 86 content routes; Nuxt build prerendered 173 routes including payloads |
+| Sprint 13.1 local CalcHarbor unit validation | `pnpm test:calcharbor` passed; 12 tests |
+| Sprint 13.1 local CalcHarbor frontend validation | `pnpm build:calcharbor`, `pnpm validate:calcharbor-preview` and `pnpm test:e2e:calcharbor` passed; 3 Playwright tests |
+| Sprint 13.1 public copy gate | `pnpm validate:public-copy` passed; 911 HTML files |
+| Sprint 13.1 AdSense-safe gate | `pnpm validate:adsense-safe-public` passed; 13 public pages |
+| Sprint 13.1 local governance gates | Passed: `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` |
+| Sprint 13.1 regulated calculator activation | 0 tax/legal/credit-underwriting/investment-advice calculators activated; human review remains required before regulated themes |
+| Sprint 13.1 monetization/provider activation | 0 checkout/billing/ads/donation/affiliate/external analytics/storage/API paid/worker/provider activations |
 
 ## Product metrics
 

@@ -11,6 +11,8 @@ import {
   getCalculatorBySlug,
   getCalculatorCopy,
   getCategoryLabel,
+  getFieldDefaultValue,
+  getFieldPrefix,
   getRelatedCalculators,
   type CalculatorScenarioRow,
   type CalculationResult,
@@ -34,7 +36,7 @@ const copy = getCalculatorCopy(calculator, locale)
 const shellCopy = getShellCopy(locale)
 const canonicalPath = localizedCalculatorPath(locale, calculator.slug)
 const structuredData = createCalculatorStructuredData(calculator, locale, absoluteUrl(canonicalPath))
-const inputs = reactive(Object.fromEntries(calculator.fields.map((field) => [field.key, field.defaultValue])) as Record<string, number>)
+const inputs = reactive(Object.fromEntries(calculator.fields.map((field) => [field.key, getFieldDefaultValue(field, locale)])) as Record<string, number>)
 const hasCalculated = ref(false)
 const liveResult = computed<CalculationResult>(() => calculator.calculate(inputs))
 const resultTitle = computed(() => liveResult.value.ok === false ? shellCopy.invalidResultTitle : shellCopy.resultTitle)
@@ -71,7 +73,7 @@ function calculate(): void {
 
 function resetExample(): void {
   for (const field of calculator.fields) {
-    inputs[field.key] = field.defaultValue
+    inputs[field.key] = getFieldDefaultValue(field, locale)
   }
 
   hasCalculated.value = false
@@ -161,7 +163,7 @@ useHead({
             <div v-for="field in calculator.fields" :key="field.key" class="field">
               <label :for="`${calculator.slug}-${field.key}`">{{ field.label[locale] }}</label>
               <div class="number-input">
-                <span v-if="field.prefix" aria-hidden="true">{{ field.prefix }}</span>
+                <span v-if="getFieldPrefix(field, locale)" aria-hidden="true">{{ getFieldPrefix(field, locale) }}</span>
                 <input
                   :id="`${calculator.slug}-${field.key}`"
                   v-model.number="inputs[field.key]"

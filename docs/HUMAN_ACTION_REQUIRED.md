@@ -25,6 +25,7 @@ Data-base: 2026-06-29
 | Politicas juridicas finais | Aceite juridico | Antes do go-live publico com coleta de dados/ads |
 | Revisao legal/editorial multilingue benchmark-grade | Conteudo juridico, metodologia, contato, suporte, politicas por idioma e claims publicos exigem revisao humana/editorial antes de AdSense, escala SEO ou monetizacao real | Antes de tratar legal/trust/localizacao como finais para AdSense, afiliados, doacoes reais, billing ou escala internacional |
 | Mudanca DNS sem rollback claro | Risco de indisponibilidade | Antes de apontar dominios definitivos |
+| CalcHarbor temas financeiros regulados | Calculadoras fiscais, juridicas, de credito/underwriting, investimento personalizado, imposto por jurisdicao ou conselho financeiro exigem revisao legal/editorial e metodologia aprovada | Antes de adicionar calculadoras ou claims regulados alem de planejamento generico com disclaimer |
 | InvoiceCraft fiscal/tax templates | Impostos, numeracao fiscal, campos obrigatorios e validade de documento dependem de jurisdicao e aceite juridico/fiscal | Antes de ativar nota/fatura fiscal oficial, calculo automatico de impostos, numeracao fiscal, pagamentos ou recorrencia |
 | MailHealth DNSBL/provider policy | Uso de DNSBLs, reputacao, limites comerciais e termos de provedores exigem revisao juridica/comercial antes de operar volume, lote, API ou white-label | Antes de ativar monitoramento pago, relatorios recorrentes, lote, API publica paga ou verificacoes DNSBL amplas |
 

@@ -8,6 +8,9 @@ import {
   formatMetricValue,
   getCalculatorBySlug,
   getCalculatorCopy,
+  getDefaultCurrency,
+  getFieldDefaultValue,
+  getFieldPrefix,
   getCalculatorInterpretationState,
   getRelatedCalculators,
 } from '../app/data/calculators'
@@ -17,11 +20,13 @@ import { contentPageCatalog, contentPageSlugs, getContentPageBySlug } from '../a
 import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
 import { createCalcHarborToolEvent } from '../app/utils/analytics'
 
-describe('CalcHarbor MVP', () => {
-  it('lists Sprint 3.1 calculators in roadmap order', () => {
+describe('CalcHarbor calculator catalog', () => {
+  it('lists Phase 13 calculators in roadmap order', () => {
     expect(calculatorCatalog.map((calculator) => calculator.slug)).toEqual([...calculatorSlugs])
-    expect(calculatorCatalog).toHaveLength(4)
+    expect(calculatorCatalog).toHaveLength(8)
     expect(getCalculatorBySlug('loan-payment')?.localized.en.shortName).toBe('Loan payment')
+    expect(getCalculatorBySlug('compound-interest')?.localized.en.shortName).toBe('Compound interest')
+    expect(getCalculatorBySlug('cash-runway')?.category).toBe('business')
     expect(getCalculatorBySlug('missing')).toBeNull()
   })
 
@@ -83,6 +88,82 @@ describe('CalcHarbor MVP', () => {
       expect(roi.metrics[0].value).toBe(6000)
       expect(roi.metrics[1].value).toBe(0.5)
     }
+
+    const compound = getCalculatorBySlug('compound-interest')?.calculate({
+      principal: 10000,
+      monthlyContribution: 250,
+      annualRate: 6,
+      years: 10,
+    })
+    expect(compound?.ok).toBe(true)
+    if (compound?.ok) {
+      expect(compound.metrics[0].value).toBeCloseTo(59163.80, 2)
+      expect(compound.metrics[1].value).toBeCloseTo(19163.80, 2)
+    }
+
+    const savingsGoal = getCalculatorBySlug('savings-goal')?.calculate({
+      targetAmount: 20000,
+      currentSavings: 2500,
+      monthlyContribution: 600,
+      annualRate: 4,
+    })
+    expect(savingsGoal?.ok).toBe(true)
+    if (savingsGoal?.ok) {
+      expect(savingsGoal.metrics[0].value).toBe(28)
+      expect(savingsGoal.metrics[2].value).toBe(16800)
+    }
+
+    const runway = getCalculatorBySlug('cash-runway')?.calculate({
+      cashBalance: 60000,
+      monthlyOperatingCost: 18000,
+      monthlyRevenue: 6000,
+    })
+    expect(runway?.ok).toBe(true)
+    if (runway?.ok) {
+      expect(runway.metrics[0].value).toBe(5)
+      expect(runway.metrics[1].value).toBe(12000)
+    }
+
+    const discount = getCalculatorBySlug('discount-price')?.calculate({
+      listPrice: 120,
+      discountRate: 15,
+      addedFee: 0,
+      quantity: 1,
+    })
+    expect(discount?.ok).toBe(true)
+    if (discount?.ok) {
+      expect(discount.metrics[0].value).toBe(102)
+      expect(discount.metrics[2].value).toBe(18)
+    }
+  })
+
+  it('uses localized currency defaults and schema currencies', () => {
+    const loan = getCalculatorBySlug('loan-payment')
+    expect(loan).not.toBeNull()
+
+    expect(getDefaultCurrency('pt-br')).toBe('BRL')
+    expect(getDefaultCurrency('de')).toBe('EUR')
+    expect(getFieldDefaultValue(loan!.fields[0], 'pt-br')).toBe(125000)
+    expect(getFieldPrefix(loan!.fields[0], 'pt-br')).toBe('R$')
+    expect(getFieldPrefix(loan!.fields[0], 'fr')).toBe('EUR')
+
+    const result = loan!.calculate({
+      principal: getFieldDefaultValue(loan!.fields[0], 'pt-br'),
+      annualRate: 8.5,
+      years: 5,
+    })
+
+    expect(result.ok).toBe(true)
+    if (result.ok) {
+      expect(formatMetricValue(result.metrics[0], 'pt-br')).toContain('R$')
+    }
+
+    const schema = createCalculatorStructuredData(loan!, 'pt-br', `${siteBaseUrl}/pt-br/calculators/loan-payment`)
+    expect(schema[0]).toMatchObject({
+      offers: {
+        priceCurrency: 'BRL',
+      },
+    })
   })
 
   it('builds local calculation memory and related calculator paths', () => {
@@ -156,12 +237,28 @@ describe('CalcHarbor MVP', () => {
     }
   })
 
+  it('rejects runway when revenue already covers operating cost', () => {
+    const result = getCalculatorBySlug('cash-runway')?.calculate({
+      cashBalance: 60000,
+      monthlyOperatingCost: 12000,
+      monthlyRevenue: 12000,
+    })
+
+    expect(result?.ok).toBe(false)
+    if (result && !result.ok) {
+      expect(result.error.en).toContain('operating cost')
+      expect(result.error['pt-br']).toContain('receita mensal')
+    }
+  })
+
   it('prerenders localized calculator and policy routes', () => {
     expect(publicLocaleCodes).toEqual(['en', 'pt-br', 'es', 'fr', 'de'])
     expect(contentPrerenderRoutes).toContain('/')
     expect(contentPrerenderRoutes).toContain('/en')
     expect(contentPrerenderRoutes).toContain('/pt-br/calculators/roi')
+    expect(contentPrerenderRoutes).toContain('/pt-br/calculators/savings-goal')
     expect(contentPrerenderRoutes).toContain('/de/calculators/gross-margin')
+    expect(contentPrerenderRoutes).toContain('/de/calculators/cash-runway')
     expect(contentPrerenderRoutes).toContain('/fr/privacy')
     expect(contentPrerenderRoutes).toHaveLength(
       1 + publicLocaleCodes.length * (1 + calculatorCatalog.length + contentPageCatalog.length),
