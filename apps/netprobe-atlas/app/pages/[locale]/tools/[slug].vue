@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getButtonClass } from '@supersites/ui'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { getShellCopy } from '../../../data/copy'
 import { localizedContentPath, localizedHomePath, localizedToolPath, normalizePublicLocale, sanitizePublicCopy, toHtmlLang, type LocaleCode } from '../../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
@@ -24,38 +24,38 @@ const canonicalPath = localizedToolPath(locale, tool.slug)
 const structuredData = createToolStructuredData(tool, locale, absoluteUrl(canonicalPath))
 const upgradePanelCopyByLocale = {
   en: {
-    ariaLabel: 'Planned upgrade path',
-    eyebrow: 'Planned upgrade path',
-    title: 'Monitor, alert and export later',
-    body: 'Saved history, multi-region checks, alerts, reports and API access remain planned upgrades. Billing, workers and external providers stay disabled until quality checks are complete.',
+    ariaLabel: 'Advanced workflow',
+    eyebrow: 'Advanced workflow',
+    title: 'Need monitoring, history or API access?',
+    body: 'The free check answers the immediate question on this page. Larger workflows can add saved history, alerts, reports, API access and regional monitoring when they are enabled for your account.',
     cta: 'Review limits',
   },
   'pt-br': {
-    ariaLabel: 'Caminho de upgrade planejado',
-    eyebrow: 'Upgrade planejado',
-    title: 'Monitorar, alertar e exportar depois',
-    body: 'Histórico salvo, checagens multi-região, alertas, relatórios e API continuam como upgrades planejados. Billing, workers e provedores externos ficam desativados até as revisões de qualidade.',
+    ariaLabel: 'Fluxo avançado',
+    eyebrow: 'Fluxo avançado',
+    title: 'Precisa de monitoramento, histórico ou API?',
+    body: 'A consulta gratuita responde a pergunta imediata nesta página. Fluxos maiores podem adicionar histórico salvo, alertas, relatórios, API e monitoramento regional quando estiverem disponíveis na conta.',
     cta: 'Revisar limites',
   },
   es: {
-    ariaLabel: 'Ruta de upgrade planificada',
-    eyebrow: 'Upgrade planificado',
-    title: 'Monitorear, alertar y exportar después',
-    body: 'Historial guardado, chequeos multi-región, alertas, reportes y API siguen como upgrades planificados. Billing, workers y proveedores externos permanecen desactivados hasta completar las revisiones de calidad.',
+    ariaLabel: 'Flujo avanzado',
+    eyebrow: 'Flujo avanzado',
+    title: 'Necesitas monitoreo, historial o API?',
+    body: 'La consulta gratuita responde la pregunta inmediata en esta pagina. Los flujos mayores pueden agregar historial, alertas, reportes, API y monitoreo regional cuando esten disponibles en la cuenta.',
     cta: 'Revisar limites',
   },
   fr: {
-    ariaLabel: 'Parcours de mise à niveau prévu',
-    eyebrow: 'Mise à niveau prévue',
-    title: 'Surveiller, alerter et exporter plus tard',
-    body: 'Historique sauvegardé, vérifications multi-région, alertes, rapports et API restent des évolutions prévues. Billing, workers et fournisseurs externes restent désactivés jusqu’aux revues qualité.',
+    ariaLabel: 'Workflow avance',
+    eyebrow: 'Workflow avance',
+    title: 'Besoin de surveillance, historique ou API ?',
+    body: 'Le controle gratuit repond a la question immediate sur cette page. Des workflows plus larges peuvent ajouter historique, alertes, rapports, API et surveillance regionale lorsqu ils sont disponibles pour le compte.',
     cta: 'Revoir les limites',
   },
   de: {
-    ariaLabel: 'Geplanter Upgrade-Pfad',
-    eyebrow: 'Geplanter Upgrade',
-    title: 'Monitoring, Alerts und Exporte später',
-    body: 'Gespeicherter Verlauf, Multi-Region-Prüfungen, Alerts, Reports und API-Zugriff bleiben geplante Upgrades. Billing, Worker und externe Anbieter bleiben deaktiviert, bis die Qualitätsprüfungen abgeschlossen sind.',
+    ariaLabel: 'Erweiterter Workflow',
+    eyebrow: 'Erweiterter Workflow',
+    title: 'Monitoring, Verlauf oder API noetig?',
+    body: 'Die kostenlose Pruefung beantwortet die direkte Frage auf dieser Seite. Groessere Workflows koennen gespeicherten Verlauf, Alerts, Reports, API-Zugriff und regionale Ueberwachung ergaenzen, wenn sie fuer das Konto verfuegbar sind.',
     cta: 'Grenzen pruefen',
   },
 } satisfies Record<LocaleCode, { ariaLabel: string; eyebrow: string; title: string; body: string; cta: string }>
@@ -660,6 +660,12 @@ async function previewResult(): Promise<void> {
     isLoading.value = false
   }
 }
+
+onMounted(() => {
+  if (isIpLookup.value && !previewSubmitted.value && !isLoading.value) {
+    void previewResult()
+  }
+})
 
 useHead({
   htmlAttrs: {

@@ -351,7 +351,7 @@ export const contentPageCatalog: ContentPage[] = [
     en: {
       navLabel: 'Cookies',
       title: 'Cookie Policy',
-      description: 'How NetProbe Atlas plans to use essential storage, consent-aware analytics and advertising controls after launch gates.',
+      description: 'How NetProbe Atlas uses essential storage, consent-aware analytics choices and advertising controls.',
       updatedLabel: 'Reviewed June 26, 2026',
       sections: [
         {
@@ -360,7 +360,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Analytics and ads',
-          paragraphs: ['Analytics and advertising storage remain gated behind consent mode and regional rules. No AdSense placement is active now.'],
+          paragraphs: ['Analytics and advertising storage require consent mode and regional rules. No AdSense placement is active now.'],
         },
         {
           heading: 'Changing choices',
@@ -371,7 +371,7 @@ export const contentPageCatalog: ContentPage[] = [
     'pt-br': {
       navLabel: 'Cookies',
       title: 'Política de Cookies',
-      description: 'Como o NetProbe Atlas pretende usar armazenamento essencial, analytics com consentimento e controles de anúncios após os gates.',
+      description: 'Como o NetProbe Atlas usa armazenamento essencial, escolhas de analytics com consentimento e controles de publicidade.',
       updatedLabel: 'Revisado em 26 de junho de 2026',
       sections: [
         {
@@ -380,7 +380,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Analytics e anúncios',
-          paragraphs: ['Analytics e anúncios seguem bloqueados por consent mode e regras regionais. Nenhum placement AdSense está ativo agora.'],
+          paragraphs: ['Analytics e publicidade exigem consent mode e regras regionais. Nenhum posicionamento AdSense está ativo agora.'],
         },
         {
           heading: 'Alterar escolhas',
@@ -391,7 +391,7 @@ export const contentPageCatalog: ContentPage[] = [
     es: {
       navLabel: 'Cookies',
       title: 'Política de Cookies',
-      description: 'Cómo NetProbe Atlas planea usar almacenamiento esencial, analytics con consentimiento y controles de anuncios tras los gates.',
+      description: 'Cómo NetProbe Atlas usa almacenamiento esencial, opciones de analytics con consentimiento y controles de publicidad.',
       updatedLabel: 'Revisado el 26 de junio de 2026',
       sections: [
         {
@@ -400,7 +400,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Analytics y anuncios',
-          paragraphs: ['Analytics y anuncios siguen bloqueados por consent mode y reglas regionales. No hay AdSense activo ahora.'],
+          paragraphs: ['Analytics y publicidad requieren consent mode y reglas regionales. No hay AdSense activo ahora.'],
         },
         {
           heading: 'Cambiar elecciones',
@@ -411,7 +411,7 @@ export const contentPageCatalog: ContentPage[] = [
     fr: {
       navLabel: 'Cookies',
       title: 'Politique cookies',
-      description: 'Comment NetProbe Atlas prévoit stockage essentiel, analytics avec consentement et contrôles publicitaires après les gates.',
+      description: 'Comment NetProbe Atlas utilise stockage essentiel, choix analytics avec consentement et controles publicitaires.',
       updatedLabel: 'Révisé le 26 juin 2026',
       sections: [
         {
@@ -420,7 +420,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Analytics et publicités',
-          paragraphs: ['Analytics et stockage publicitaire restent bloqués par consent mode et règles régionales. Aucun AdSense n’est actif.'],
+          paragraphs: ['Analytics et stockage publicitaire exigent consent mode et regles regionales. Aucun AdSense n est actif.'],
         },
         {
           heading: 'Modifier les choix',
@@ -431,7 +431,7 @@ export const contentPageCatalog: ContentPage[] = [
     de: {
       navLabel: 'Cookies',
       title: 'Cookie-Richtlinie',
-      description: 'Wie NetProbe Atlas essenziellen Speicher, consent-bewusste Analytics und Anzeigenkontrollen nach Gates nutzen soll.',
+      description: 'Wie NetProbe Atlas essenziellen Speicher, consent-bewusste Analytics-Auswahl und Anzeigenkontrollen nutzt.',
       updatedLabel: 'Geprüft am 26. Juni 2026',
       sections: [
         {
@@ -440,7 +440,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Analytics und Anzeigen',
-          paragraphs: ['Analytics- und Werbespeicher bleiben durch Consent Mode und regionale Regeln blockiert. AdSense ist derzeit nicht aktiv.'],
+          paragraphs: ['Analytics- und Werbespeicher erfordern Consent Mode und regionale Regeln. AdSense ist derzeit nicht aktiv.'],
         },
         {
           heading: 'Auswahl ändern',
@@ -758,101 +758,101 @@ export const contentPageCatalog: ContentPage[] = [
   page('status', {
     en: {
       navLabel: 'Status',
-      title: 'Launch Status',
-      description: 'NetProbe Atlas launch status for public web delivery, lookup API readiness, rollback, backup and AdSense review gates.',
+      title: 'Public Status',
+      description: 'Current public availability summary for NetProbe Atlas web tools, diagnostics and account features.',
       updatedLabel: 'Reviewed June 26, 2026',
       sections: [
         {
           heading: 'Public web',
-          paragraphs: ['The NetProbe static app has a dedicated HostGator release path and must pass HTTPS, canonical, sitemap, asset and noindex smoke checks before traffic is switched.'],
+          paragraphs: ['The NetProbe Atlas public site is available over HTTPS with localized tool pages, canonical URLs, a sitemap and practical diagnostic workflows.'],
         },
         {
           heading: 'Lookup API',
-          paragraphs: ['The public NetProbe API answered IP and DNS smoke checks on June 26, 2026, and the static app was switched to the live API base. Additional probes stay gated until their public smokes, monitoring and rollback checks pass.'],
+          paragraphs: ['IP, DNS, RDAP, SSL, propagation, port and reachability tools return point-in-time answers from controlled request paths. Regional probes are disclosed separately when they are available.'],
         },
         {
-          heading: 'Ads and upgrades',
-          paragraphs: ['AdSense, paid monitoring, webhooks and external analytics stay blocked until consent, backup, rollback, uptime monitoring and incident drills are documented and passing.'],
+          heading: 'Advanced features',
+          paragraphs: ['The free checks answer immediate questions without mandatory signup. Larger workflows such as saved history, alerts, reports, API access and regional monitoring are separate account features.'],
         },
       ],
     },
     'pt-br': {
       navLabel: 'Status',
-      title: 'Status de Lancamento',
-      description: 'Status de lancamento do NetProbe Atlas para web publica, API de consultas, rollback, backup e gate de revisao AdSense.',
+      title: 'Status publico',
+      description: 'Resumo atual de disponibilidade publica das ferramentas web, diagnosticos e recursos de conta do NetProbe Atlas.',
       updatedLabel: 'Revisado em 26 de junho de 2026',
       sections: [
         {
           heading: 'Web publica',
-          paragraphs: ['O app estatico NetProbe tem caminho de release dedicado no HostGator e precisa passar smoke de HTTPS, canonical, sitemap, assets e noindex antes da troca de trafego.'],
+          paragraphs: ['O site publico do NetProbe Atlas esta disponivel em HTTPS, com paginas localizadas, canonical, sitemap e fluxos praticos de diagnostico.'],
         },
         {
           heading: 'API de consultas',
-          paragraphs: ['A API publica NetProbe respondeu aos smokes de IP e DNS em 26 de junho de 2026, e o app estatico foi ligado a base live da API. Probes adicionais seguem bloqueados ate seus smokes publicos, monitoramento e rollback passarem.'],
+          paragraphs: ['Ferramentas de IP, DNS, RDAP, SSL, propagacao, porta e alcance retornam respostas pontuais por caminhos controlados. Probes regionais sao declarados separadamente quando estiverem disponiveis.'],
         },
         {
-          heading: 'Anuncios e upgrades',
-          paragraphs: ['AdSense, monitoramento pago, webhooks e analytics externos ficam bloqueados ate consentimento, backup, rollback, uptime e drill de incidente estarem documentados e passando.'],
+          heading: 'Recursos avancados',
+          paragraphs: ['As consultas gratuitas respondem perguntas imediatas sem cadastro obrigatorio. Fluxos maiores como historico salvo, alertas, relatorios, API e monitoramento regional sao recursos separados de conta.'],
         },
       ],
     },
     es: {
       navLabel: 'Estado',
-      title: 'Estado de lanzamiento',
-      description: 'Estado de lanzamiento de NetProbe Atlas para web publica, API de consultas, rollback, backup y gate de revision AdSense.',
+      title: 'Estado publico',
+      description: 'Resumen actual de disponibilidad publica de herramientas web, diagnosticos y funciones de cuenta de NetProbe Atlas.',
       updatedLabel: 'Revisado el 26 de junio de 2026',
       sections: [
         {
           heading: 'Web publica',
-          paragraphs: ['La app estatica NetProbe tiene ruta de release dedicada en HostGator y debe pasar smoke de HTTPS, canonical, sitemap, assets y noindex antes de cambiar trafico.'],
+          paragraphs: ['El sitio publico de NetProbe Atlas esta disponible con HTTPS, paginas localizadas, canonical, sitemap y flujos practicos de diagnostico.'],
         },
         {
           heading: 'API de consultas',
-          paragraphs: ['La API publica NetProbe respondio los smokes de IP y DNS el 26 de junio de 2026, y la app estatica quedo conectada a la base live de API. Probes adicionales siguen bloqueados hasta pasar smokes publicos, monitoreo y rollback.'],
+          paragraphs: ['Las herramientas de IP, DNS, RDAP, SSL, propagacion, puerto y alcance devuelven respuestas puntuales desde rutas controladas. Los probes regionales se declaran por separado cuando estan disponibles.'],
         },
         {
-          heading: 'Anuncios y upgrades',
-          paragraphs: ['AdSense, monitoreo pago, webhooks y analytics externos quedan bloqueados hasta documentar y pasar consentimiento, backup, rollback, uptime y simulacro de incidente.'],
+          heading: 'Funciones avanzadas',
+          paragraphs: ['Las consultas gratuitas responden preguntas inmediatas sin registro obligatorio. Flujos mayores como historial, alertas, reportes, API y monitoreo regional son funciones separadas de cuenta.'],
         },
       ],
     },
     fr: {
       navLabel: 'Statut',
-      title: 'Statut de lancement',
-      description: 'Statut de lancement NetProbe Atlas pour web public, API de controles, rollback, backup et gate de revue AdSense.',
+      title: 'Statut public',
+      description: 'Resume de disponibilite publique des outils web, diagnostics et fonctions de compte NetProbe Atlas.',
       updatedLabel: 'Revise le 26 juin 2026',
       sections: [
         {
           heading: 'Web public',
-          paragraphs: ['L app statique NetProbe a un chemin de release dedie sur HostGator et doit passer les controles HTTPS, canonical, sitemap, assets et noindex avant bascule du trafic.'],
+          paragraphs: ['Le site public NetProbe Atlas est disponible en HTTPS, avec pages localisees, canonical, sitemap et workflows de diagnostic pratiques.'],
         },
         {
           heading: 'API de controles',
-          paragraphs: ['L API publique NetProbe a repondu aux smokes IP et DNS le 26 juin 2026, et l app statique pointe sur la base API live. Les probes supplementaires restent bloquees jusqu aux smokes publics, monitoring et rollback.'],
+          paragraphs: ['Les outils IP, DNS, RDAP, SSL, propagation, port et accessibilite retournent des reponses ponctuelles depuis des chemins controles. Les probes regionaux sont annonces separement lorsqu ils sont disponibles.'],
         },
         {
-          heading: 'Publicites et upgrades',
-          paragraphs: ['AdSense, surveillance payante, webhooks et analytics externes restent bloques jusqu a consentement, backup, rollback, uptime et exercice incident documentes et valides.'],
+          heading: 'Fonctions avancees',
+          paragraphs: ['Les controles gratuits repondent aux questions immediates sans compte obligatoire. Les workflows plus larges comme historique, alertes, rapports, API et surveillance regionale sont des fonctions separees de compte.'],
         },
       ],
     },
     de: {
       navLabel: 'Status',
-      title: 'Launch-Status',
-      description: 'NetProbe Atlas Launch-Status fuer Public Web, Lookup API, Rollback, Backup und AdSense Review Gate.',
+      title: 'Oeffentlicher Status',
+      description: 'Aktuelle oeffentliche Verfuegbarkeit der NetProbe Atlas Web-Tools, Diagnosen und Konto-Funktionen.',
       updatedLabel: 'Geprueft am 26. Juni 2026',
       sections: [
         {
           heading: 'Public Web',
-          paragraphs: ['Die statische NetProbe App hat einen eigenen HostGator Release-Pfad und muss HTTPS, Canonical, Sitemap, Assets und Noindex-Smokes bestehen, bevor Traffic umgeschaltet wird.'],
+          paragraphs: ['Die oeffentliche NetProbe Atlas Site ist per HTTPS verfuegbar, mit lokalisierten Tool-Seiten, Canonical URLs, Sitemap und praktischen Diagnose-Workflows.'],
         },
         {
           heading: 'Lookup API',
-          paragraphs: ['Die oeffentliche NetProbe API hat IP- und DNS-Smokes am 26. Juni 2026 beantwortet, und die statische App nutzt die Live-API-Basis. Weitere Probes bleiben gesperrt, bis Public Smokes, Monitoring und Rollback bestehen.'],
+          paragraphs: ['IP-, DNS-, RDAP-, SSL-, Propagation-, Port- und Erreichbarkeitstools liefern punktuelle Antworten aus kontrollierten Anfragepfaden. Regionale Probes werden separat beschrieben, sobald sie verfuegbar sind.'],
         },
         {
-          heading: 'Anzeigen und Upgrades',
-          paragraphs: ['AdSense, bezahltes Monitoring, Webhooks und externe Analytics bleiben blockiert, bis Consent, Backup, Rollback, Uptime und Incident Drill dokumentiert und bestanden sind.'],
+          heading: 'Erweiterte Funktionen',
+          paragraphs: ['Die kostenlosen Pruefungen beantworten direkte Fragen ohne Pflichtkonto. Groessere Workflows wie Verlauf, Alerts, Reports, API-Zugriff und regionales Monitoring sind separate Konto-Funktionen.'],
         },
       ],
     },

@@ -1256,6 +1256,34 @@ Data-base: 2026-06-29
 | Manual Public Watchdog retest | `28379669654` passed; job `84078561656` |
 | Real deploy/provider activation | 0 deploys, ads, billing, checkout, workers, crons, providers, DNS/root mapping or irreversible actions |
 
+## Phase 18 benchmark refinement metrics
+
+| Metric | Value |
+|---|---:|
+| Phase 18 status | In progress |
+| Initial sprint slice | Sprint 18.0 baseline + Sprint 18.1 public UX/copy foundations |
+| Full crawler attempts | 2 attempts; timed out locally before completion |
+| Baseline quick crawler | `2026-06-29T19-44-36-078Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Post-change quick crawler | `2026-06-29T20-08-13-569Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Post-change crawler page/browser failures | 0 |
+| Post-change crawler console errors | 0 |
+| Post-change crawler broken internal links | 0 |
+| Post-change crawler horizontal overflow | 0 |
+| Post-change crawler missing title/meta/canonical/hreflang/schema | 0 |
+| Post-change P75 load proxy | 410 ms |
+| Post-change P75 LCP proxy | 324 ms |
+| Post-change P75 CLS proxy | 0 |
+| Hub/NetProbe builds | Passed |
+| Hub unit suite | Passed: 12 tests |
+| NetProbe unit suite | Passed: 7 tests |
+| Hub Playwright suite | Passed: 6 tests |
+| NetProbe Playwright suite | Passed: 8 tests |
+| Public copy validation | Passed: 951 HTML files |
+| AdSense-safe public validation | Passed: 13 pages |
+| Structure/secrets/deploy dry-run/diff check | Passed |
+| Public forbidden phrase scan | 0 matches in `apps/netprobe-atlas/app` and `apps/supersite/app` for the audit term set |
+| Real deploy/provider activation | 0 deploys, ads, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+
 ## Product metrics
 
 No product traffic, revenue, AdSense, billing or tool usage metrics exist yet.

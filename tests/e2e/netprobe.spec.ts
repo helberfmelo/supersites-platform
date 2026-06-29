@@ -173,7 +173,6 @@ test.describe('NetProbe Atlas public foundation', () => {
 
     await page.setViewportSize({ width: 390, height: 1000 })
     await page.goto('/en/tools/what-is-my-ip')
-    await page.getByRole('button', { name: 'Run IP check' }).click()
 
     await expect(page.getByText('Visible address', { exact: true })).toBeVisible()
     await expect(page.getByLabel('Visible IP now').getByText('203.0.113.42')).toBeVisible()
@@ -183,7 +182,7 @@ test.describe('NetProbe Atlas public foundation', () => {
     await expect(page.getByRole('button', { name: 'Copy safe summary' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Private by design' })).toBeVisible()
     await expect(page.getByRole('link', { name: 'Read privacy details' })).toBeVisible()
-    await expect(page.getByText('Monitor, alert and export later')).toBeVisible()
+    await expect(page.getByText('Need monitoring, history or API access?')).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
     const analytics = await page.evaluate(() => ({
@@ -411,7 +410,7 @@ test.describe('NetProbe Atlas public foundation', () => {
             checked_addresses: ['93.184.216.34'],
             tcp_443: { address: '93.184.216.34', status: 'open', latency_ms: 33, error: null },
             icmp: { status: 'not_supported', reason: 'ICMP ping is disabled in the initial web runtime probe.' },
-            traceroute: { status: 'not_supported', reason: 'Traceroute requires controlled worker infrastructure.' },
+            traceroute: { status: 'not_supported', reason: 'Traceroute requires controlled probe infrastructure.' },
           },
           meta: {
             generated_at: '2026-06-26T00:00:00.000Z',

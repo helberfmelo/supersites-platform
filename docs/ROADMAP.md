@@ -721,6 +721,17 @@ Operacao pos-Fase 17 - Public Watchdog transient 500 hardening
 - Validacao: smokes publicos Hub/API, control-plane e NetProbe; `validate:adsense-safe-public`; crawler quick; `validate:structure`; `validate:secrets`; `deploy:dry-run`; `ci:changes`; `git diff --check`; Quality Gate; Deploy Dry Run; reteste manual do `Public Watchdog`.
 - Status: concluida. Commit `91da6c1` passou Quality Gate `28379417007`, Deploy Dry Run `28379416758` e `Public Watchdog` manual `28379669654`/job `84078561656`; crawler quick `2026-06-29T14-23-06-325Z` registrou 95 rotas, 190 checks e 0 gaps. Nenhum deploy real, provider externo, anuncio, billing, checkout, worker/cron, DNS/root mapping ou acao irreversivel foi ativado.
 
+## Fase 18 - Refinamento benchmark-driven pagina por pagina
+
+Status geral: em andamento. A fase agora segue `docs/ROADMAP_FASE_18_REFINAMENTO_BENCHMARK_PAGE_BY_PAGE.md`, com inventario real, QA visual/crawler e correcao pagina por pagina ate remover linguagem interna da superficie publica e aproximar os fluxos dos benchmarks lideres.
+
+Sprint 18.0/18.1 - Baseline e fundamentos publicos
+- Simbolico: `PHASE18-BENCHMARK-FOUNDATION`.
+- Escopo entregue: inventario documentado em `docs/ROUTE_INVENTORY_PHASE_18.md`; crawler quick baseline e pos-mudanca; Hub publico sem launch order/production evidence/monetization readiness na superficie principal; detalhes do Hub sem ordem de lancamento/URL temporaria; NetProbe What is my IP autoexecuta no carregamento; paginas diagnosticas priorizam ferramenta/resultado antes de metodologia; status/cookies/institucionais do Hub e NetProbe receberam copy publica menos operacional.
+- Validacao: builds Hub/NetProbe, Vitest Hub/NetProbe, Playwright Hub/NetProbe, `validate:public-copy`, `validate:adsense-safe-public`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` e crawler quick `2026-06-29T20-08-13-569Z` passaram.
+- Pendente para proximas sprints: crawler full sem timeout, Lighthouse/PageSpeed/GTmetrix quando disponivel, reforma page-by-page dos demais sites, QA multilíngue mais profundo, donation blocks sem link real, slots AdSense reservados por site, e arquitetura real de probes regionais antes de qualquer promessa worldwide no DNS Propagation.
+- Escopo negativo: nenhum deploy real, provider externo, anuncio real, `ads.txt`, checkout, billing, doacao, afiliado, worker/cron, DNS/root mapping ou acao irreversivel foi ativado.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.

@@ -53,11 +53,11 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Free check',
     upgradeLabel: 'Upgrade path',
     detailCta: 'Open tool',
-    principlesTitle: 'Launch principles',
+    principlesTitle: 'Tool principles',
     principles: [
       {
         title: 'The free answer is complete',
-        body: 'The basic lookup should answer the troubleshooting need before signup, billing or saved history.',
+        body: 'The basic lookup should answer the troubleshooting need before signup, account features or saved history.',
       },
       {
         title: 'Public targets only',
@@ -70,18 +70,18 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     ],
     statusRows: [
       {
-        title: '7 live checks',
-        body: 'IP, DNS, RDAP, SSL, propagation, port and reachability checks are wired to the API.',
+        title: '7 practical checks',
+        body: 'IP, DNS, RDAP, SSL, propagation, port and reachability tools are available from the browser.',
         tone: 'green',
       },
       {
-        title: '5 language routes',
-        body: 'English, Portuguese, Spanish, French and German pages are prerendered for the launch gate.',
+        title: '5 language paths',
+        body: 'English, Portuguese, Spanish, French and German pages are available for core diagnostics.',
         tone: 'green',
       },
       {
-        title: 'No ads active',
-        body: 'AdSense remains blocked until production launch, consent, monitoring, backup and rollback pass.',
+        title: 'Free results first',
+        body: 'Basic answers appear on the page before account features, saved history or larger monitoring workflows.',
         tone: 'amber',
       },
     ],
@@ -99,7 +99,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Consulta gratuita',
     upgradeLabel: 'Caminho de upgrade',
     detailCta: 'Abrir ferramenta',
-    principlesTitle: 'Princípios de lançamento',
+    principlesTitle: 'Princípios da ferramenta',
     principles: [
       {
         title: 'A resposta gratuita é completa',
@@ -116,18 +116,18 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     ],
     statusRows: [
       {
-        title: '7 consultas ativas',
-        body: 'IP, DNS, RDAP, SSL, propagação, porta e alcance já estão ligados à API.',
+        title: '7 consultas práticas',
+        body: 'Ferramentas de IP, DNS, RDAP, SSL, propagação, porta e alcance estão disponíveis no navegador.',
         tone: 'green',
       },
       {
-        title: '5 rotas de idioma',
-        body: 'Páginas em inglês, português, espanhol, francês e alemão são prerenderizadas para o launch gate.',
+        title: '5 caminhos de idioma',
+        body: 'Páginas em inglês, português, espanhol, francês e alemão cobrem os diagnósticos principais.',
         tone: 'green',
       },
       {
-        title: 'Sem anúncios ativos',
-        body: 'AdSense segue bloqueado até produção, consentimento, monitoramento, backup e rollback passarem.',
+        title: 'Resultados gratuitos primeiro',
+        body: 'As respostas básicas aparecem na página antes de conta, histórico salvo ou fluxos maiores de monitoramento.',
         tone: 'amber',
       },
     ],
@@ -145,7 +145,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Consulta gratuita',
     upgradeLabel: 'Ruta de upgrade',
     detailCta: 'Abrir herramienta',
-    principlesTitle: 'Principios de lanzamiento',
+    principlesTitle: 'Principios de la herramienta',
     principles: [
       {
         title: 'La respuesta gratuita es completa',
@@ -162,18 +162,18 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     ],
     statusRows: [
       {
-        title: '7 consultas activas',
-        body: 'IP, DNS, RDAP, SSL, propagación, puerto y alcance están conectados a la API.',
+        title: '7 consultas prácticas',
+        body: 'Herramientas de IP, DNS, RDAP, SSL, propagación, puerto y alcance están disponibles en el navegador.',
         tone: 'green',
       },
       {
         title: '5 rutas de idioma',
-        body: 'Páginas en inglés, portugués, español, francés y alemán se prerenderizan para el launch gate.',
+        body: 'Páginas en inglés, portugués, español, francés y alemán cubren los diagnósticos principales.',
         tone: 'green',
       },
       {
-        title: 'Sin anuncios activos',
-        body: 'AdSense queda bloqueado hasta producción, consentimiento, monitoreo, backup y rollback.',
+        title: 'Resultados gratuitos primero',
+        body: 'Las respuestas básicas aparecen en la página antes de cuenta, historial guardado o flujos mayores de monitoreo.',
         tone: 'amber',
       },
     ],
@@ -191,7 +191,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Contrôle gratuit',
     upgradeLabel: 'Offre payante',
     detailCta: 'Ouvrir l’outil',
-    principlesTitle: 'Principes de lancement',
+    principlesTitle: 'Principes de l outil',
     principles: [
       {
         title: 'La réponse gratuite est complète',
@@ -208,18 +208,18 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     ],
     statusRows: [
       {
-        title: '7 contrôles actifs',
-        body: 'IP, DNS, RDAP, SSL, propagation, port et accessibilité sont reliés à l’API.',
+        title: '7 controles pratiques',
+        body: 'Les outils IP, DNS, RDAP, SSL, propagation, port et accessibilite sont disponibles dans le navigateur.',
         tone: 'green',
       },
       {
-        title: '5 routes de langue',
-        body: 'Les pages anglaises, portugaises, espagnoles, françaises et allemandes sont prérendues.',
+        title: '5 parcours de langue',
+        body: 'Les pages anglaises, portugaises, espagnoles, francaises et allemandes couvrent les diagnostics principaux.',
         tone: 'green',
       },
       {
-        title: 'Aucune publicité active',
-        body: 'AdSense reste bloqué jusqu’à production, consentement, surveillance, backup et rollback.',
+        title: 'Resultats gratuits d abord',
+        body: 'Les reponses de base apparaissent sur la page avant le compte, l historique sauvegarde ou les workflows de surveillance.',
         tone: 'amber',
       },
     ],
@@ -237,7 +237,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Kostenlose Prüfung',
     upgradeLabel: 'Upgrade-Pfad',
     detailCta: 'Tool öffnen',
-    principlesTitle: 'Launch-Prinzipien',
+    principlesTitle: 'Tool-Prinzipien',
     principles: [
       {
         title: 'Die kostenlose Antwort ist vollständig',
@@ -254,18 +254,18 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     ],
     statusRows: [
       {
-        title: '7 Live-Prüfungen',
-        body: 'IP, DNS, RDAP, SSL, Propagation, Port und Erreichbarkeit sind mit der API verbunden.',
+        title: '7 praktische Prüfungen',
+        body: 'IP-, DNS-, RDAP-, SSL-, Propagation-, Port- und Erreichbarkeitstools sind im Browser verfuegbar.',
         tone: 'green',
       },
       {
-        title: '5 Sprachrouten',
-        body: 'Englische, portugiesische, spanische, französische und deutsche Seiten werden prerendered.',
+        title: '5 Sprachpfade',
+        body: 'Englische, portugiesische, spanische, franzoesische und deutsche Seiten decken Kerndiagnosen ab.',
         tone: 'green',
       },
       {
-        title: 'Keine Anzeigen aktiv',
-        body: 'AdSense bleibt blockiert, bis Produktion, Consent, Monitoring, Backup und Rollback bestehen.',
+        title: 'Kostenlose Ergebnisse zuerst',
+        body: 'Basisantworten erscheinen auf der Seite vor Konto-Funktionen, gespeichertem Verlauf oder groesseren Monitoring-Workflows.',
         tone: 'amber',
       },
     ],
@@ -277,8 +277,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'NetProbe Atlas',
     pageStatusLabel: 'Page status',
     relatedTitle: 'Related pages',
-    plannedTitle: 'Public API live',
-    plannedBody: 'Production IP and DNS checks are live on HTTPS after deploy smoke and rollback validation; ads and paid upgrades remain gated.',
+    plannedTitle: 'Instant public check',
+    plannedBody: 'Run a point-in-time diagnostic from this page. Results appear above the guide, and methodology, privacy notes and limits stay below the tool.',
     exampleLabel: 'Example',
     methodologyLabel: 'Methodology',
     editorialLabel: 'Editorial policy',
@@ -297,8 +297,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'NetProbe Atlas',
     pageStatusLabel: 'Status da página',
     relatedTitle: 'Páginas relacionadas',
-    plannedTitle: 'API pública ativa',
-    plannedBody: 'Consultas de IP e DNS estão ativas em produção via HTTPS após smoke de deploy e validação de rollback; anúncios e upgrades seguem bloqueados.',
+    plannedTitle: 'Consulta pública instantânea',
+    plannedBody: 'Execute um diagnóstico pontual nesta página. Os resultados aparecem acima do guia, e metodologia, privacidade e limites ficam abaixo da ferramenta.',
     exampleLabel: 'Exemplo',
     methodologyLabel: 'Metodologia',
     editorialLabel: 'Política editorial',
@@ -317,8 +317,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'NetProbe Atlas',
     pageStatusLabel: 'Estado de página',
     relatedTitle: 'Páginas relacionadas',
-    plannedTitle: 'API pública activa',
-    plannedBody: 'Las consultas de IP y DNS están activas en producción con HTTPS después de smoke de deploy y validación de rollback; anuncios y upgrades siguen bloqueados.',
+    plannedTitle: 'Consulta pública instantánea',
+    plannedBody: 'Ejecuta un diagnóstico puntual desde esta página. Los resultados aparecen sobre la guía, y metodología, privacidad y límites quedan debajo de la herramienta.',
     exampleLabel: 'Ejemplo',
     methodologyLabel: 'Metodología',
     editorialLabel: 'Política editorial',
@@ -337,8 +337,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'NetProbe Atlas',
     pageStatusLabel: 'Statut de page',
     relatedTitle: 'Pages liées',
-    plannedTitle: 'API publique active',
-    plannedBody: 'Les contrôles IP et DNS sont actifs en production sur HTTPS après smoke de déploiement et validation rollback; publicités et upgrades restent bloqués.',
+    plannedTitle: 'Controle public instantane',
+    plannedBody: 'Lancez un diagnostic ponctuel depuis cette page. Les resultats apparaissent au-dessus du guide; methodologie, confidentialite et limites restent sous l outil.',
     exampleLabel: 'Exemple',
     methodologyLabel: 'Méthodologie',
     editorialLabel: 'Politique éditoriale',
@@ -357,8 +357,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'NetProbe Atlas',
     pageStatusLabel: 'Seitenstatus',
     relatedTitle: 'Verwandte Seiten',
-    plannedTitle: 'Public API live',
-    plannedBody: 'IP- und DNS-Pruefungen laufen in Produktion per HTTPS nach Deploy-Smoke und Rollback-Validierung; Anzeigen und Upgrades bleiben gesperrt.',
+    plannedTitle: 'Sofortige oeffentliche Pruefung',
+    plannedBody: 'Starten Sie eine punktuelle Diagnose auf dieser Seite. Ergebnisse erscheinen ueber dem Leitfaden; Methodik, Datenschutz und Grenzen stehen darunter.',
     exampleLabel: 'Beispiel',
     methodologyLabel: 'Methodik',
     editorialLabel: 'Redaktionelle Richtlinie',

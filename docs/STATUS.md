@@ -1562,6 +1562,17 @@ Ainda em 2026-06-29, o `Public Watchdog` agendado run `28372846327` falhou no sm
 - Validacao remota: Quality Gate `28379417007` passou; Deploy Dry Run `28379416758` passou; `Public Watchdog` manual `28379669654` passou em modo quick no commit `91da6c1`, job `84078561656`.
 - Escopo negativo: nenhum deploy real, rollback, provider externo, tag GA4/GTM, AdSense, `ads.txt`, checkout, billing, doacao, afiliado, worker/cron, DNS/root mapping, secret novo ou acao irreversivel foi ativado.
 
+## Fase 18 em andamento - Refinamento benchmark-driven
+
+- Sprint 18.0/18.1 inicial:
+  - Documentos obrigatorios e ADRs foram consultados antes da implementacao, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/STATUS.md`, `docs/ROADMAP.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, `docs/RUNBOOKS/SPRINT_EXECUTION.md`, `docs/ROADMAP_FASE_18_REFINAMENTO_BENCHMARK_PAGE_BY_PAGE.md` e o indice de ADRs ate `0044`.
+  - Baseline real: crawler full foi tentado duas vezes, mas nao concluiu dentro da janela local; a evidencia ficou registrada em `docs/ROUTE_INVENTORY_PHASE_18.md`. O crawler quick `2026-06-29T19-44-36-078Z` passou com 95 rotas, 190 viewport checks e 0 gaps.
+  - Ajustes publicos implementados: Hub removeu linguagem de launch order, production evidence, ads/billing readiness e status de monetizacao da superficie principal; paginas de detalhe deixam de renderizar ordem de lancamento/URL temporaria e passam a mostrar escopo gratuito, URL publica e notas de revisao.
+  - NetProbe Atlas: What is my IP passou a autoexecutar no carregamento, mantendo botao como refresh manual; blocos de metodologia em paginas diagnosticas foram movidos para abaixo do workbench; labels/copy publicos trocaram `Public API live`, `Live API`, billing, workers, deploy/rollback e upgrade planejado por linguagem de ferramenta, disponibilidade e recursos avancados.
+  - Paginas institucionais/status/cookies do Hub e NetProbe receberam copy publica menos operacional, sem os termos bloqueadores listados na auditoria.
+  - Validacao local passou: builds Hub e NetProbe, Vitest Hub/NetProbe, Playwright Hub/NetProbe, `validate:public-copy`, `validate:adsense-safe-public`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` e crawler quick `2026-06-29T20-08-13-569Z` com 95 rotas, 190 checks e 0 gaps.
+  - Escopo negativo: nenhum deploy real, anuncio real, `ads.txt`, checkout, billing, doacao, afiliado, analytics externo, provider externo, worker/cron, DNS/root mapping, KYC, banco, imposto, aceite juridico ou acao irreversivel foi ativado.
+
 ## Bloqueios humanos registrados
 
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.

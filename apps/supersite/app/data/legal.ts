@@ -48,36 +48,36 @@ export const legalShellCopy: Record<LocaleCode, LegalShellCopy> = {
   en: {
     breadcrumbHome: 'Catalog',
     pageStatusLabel: 'Page status',
-    launchGateTitle: 'Launch gate',
-    launchGateBody: 'Human legal review remains required before final public launch.',
+    launchGateTitle: 'Public review',
+    launchGateBody: 'Human legal review remains required before final public release.',
     relatedTitle: 'Related pages',
   },
   'pt-br': {
     breadcrumbHome: 'Catálogo',
     pageStatusLabel: 'Status da página',
-    launchGateTitle: 'Gate de lançamento',
-    launchGateBody: 'Revisão jurídica humana continua obrigatória antes do lançamento público final.',
+    launchGateTitle: 'Revisão pública',
+    launchGateBody: 'Revisão jurídica humana continua obrigatória antes da publicação pública final.',
     relatedTitle: 'Páginas relacionadas',
   },
   es: {
     breadcrumbHome: 'Catálogo',
     pageStatusLabel: 'Estado de la página',
-    launchGateTitle: 'Gate de lanzamiento',
-    launchGateBody: 'La revisión legal humana sigue siendo obligatoria antes del lanzamiento público final.',
+    launchGateTitle: 'Revisión pública',
+    launchGateBody: 'La revisión legal humana sigue siendo obligatoria antes de la publicación pública final.',
     relatedTitle: 'Páginas relacionadas',
   },
   fr: {
     breadcrumbHome: 'Catalogue',
     pageStatusLabel: 'Statut de la page',
-    launchGateTitle: 'Gate de lancement',
-    launchGateBody: 'Une révision juridique humaine reste obligatoire avant le lancement public final.',
+    launchGateTitle: 'Revue publique',
+    launchGateBody: 'Une revision juridique humaine reste obligatoire avant la publication publique finale.',
     relatedTitle: 'Pages liées',
   },
   de: {
     breadcrumbHome: 'Katalog',
     pageStatusLabel: 'Seitenstatus',
-    launchGateTitle: 'Launch Gate',
-    launchGateBody: 'Eine menschliche Rechtsprüfung bleibt vor dem finalen öffentlichen Launch erforderlich.',
+    launchGateTitle: 'Oeffentliche Pruefung',
+    launchGateBody: 'Eine menschliche Rechtspruefung bleibt vor der finalen oeffentlichen Veroeffentlichung erforderlich.',
     relatedTitle: 'Verwandte Seiten',
   },
 }
@@ -89,7 +89,7 @@ export const legalPageCatalog: LegalPage[] = [
       en: {
         navLabel: 'About',
         title: 'About SuperSites',
-        description: 'SuperSites is a planned network of practical web tools built around useful free access, clear upgrade value and careful launch gates.',
+        description: 'SuperSites is a network of practical web tools built around useful free access, clear account value and careful public review.',
         updatedLabel: 'Reviewed June 26, 2026',
         sections: [
           {
@@ -99,9 +99,9 @@ export const legalPageCatalog: LegalPage[] = [
             ],
           },
           {
-            heading: 'How sites launch',
+            heading: 'How sites are reviewed',
             paragraphs: [
-              'Each site starts with a working name and a documented quality gate. A site is not treated as launch-ready until its free tool, original guidance, privacy controls, monitoring, backup and rollback are validated.',
+              'Each site starts with a working name and a documented review checklist. A site is treated as ready for wider traffic only when its free tool, original guidance, privacy controls, monitoring and recovery notes are validated.',
             ],
           },
           {
@@ -115,7 +115,7 @@ export const legalPageCatalog: LegalPage[] = [
       'pt-br': {
         navLabel: 'Sobre',
         title: 'Sobre o SuperSites',
-        description: 'SuperSites é uma rede planejada de ferramentas web práticas, com acesso gratuito útil, upgrades claros e gates de lançamento cuidadosos.',
+        description: 'SuperSites é uma rede de ferramentas web práticas, com acesso gratuito útil, recursos de conta claros e revisão pública cuidadosa.',
         updatedLabel: 'Revisado em 26 de junho de 2026',
         sections: [
           {
@@ -125,9 +125,9 @@ export const legalPageCatalog: LegalPage[] = [
             ],
           },
           {
-            heading: 'Como os sites são lançados',
+            heading: 'Como os sites são revisados',
             paragraphs: [
-              'Cada site começa com um nome de trabalho e um gate de qualidade documentado. Um site só é tratado como pronto quando ferramenta gratuita, orientação original, privacidade, monitoramento, backup e rollback forem validados.',
+              'Cada site começa com um nome de trabalho e uma lista de revisão documentada. Um site só é tratado como pronto para mais tráfego quando ferramenta gratuita, orientação original, privacidade, monitoramento e notas de recuperação forem validados.',
             ],
           },
           {
@@ -141,7 +141,7 @@ export const legalPageCatalog: LegalPage[] = [
       es: {
         navLabel: 'Acerca de',
         title: 'Acerca de SuperSites',
-        description: 'SuperSites es una red planificada de herramientas web prácticas con acceso gratuito útil, upgrades claros y controles de lanzamiento.',
+        description: 'SuperSites es una red de herramientas web prácticas con acceso gratuito útil, funciones de cuenta claras y revisión pública cuidadosa.',
         updatedLabel: 'Revisado el 26 de junio de 2026',
         sections: [
           {
@@ -151,9 +151,9 @@ export const legalPageCatalog: LegalPage[] = [
             ],
           },
           {
-            heading: 'Cómo se lanzan los sitios',
+            heading: 'Cómo se revisan los sitios',
             paragraphs: [
-              'Cada sitio empieza con un nombre de trabajo y un gate de calidad documentado. No se considera listo hasta validar la herramienta gratuita, contenido original, privacidad, monitoreo, backup y rollback.',
+              'Cada sitio empieza con un nombre de trabajo y una lista de revisión documentada. Se considera listo para más tráfico solo después de validar herramienta gratuita, contenido original, privacidad, monitoreo y notas de recuperación.',
             ],
           },
           {
@@ -167,7 +167,7 @@ export const legalPageCatalog: LegalPage[] = [
       fr: {
         navLabel: 'À propos',
         title: 'À propos de SuperSites',
-        description: 'SuperSites est un réseau prévu d’outils web pratiques avec accès gratuit utile, offres payantes claires et gates de lancement.',
+        description: 'SuperSites est un reseau d outils web pratiques avec acces gratuit utile, fonctions de compte claires et revue publique attentive.',
         updatedLabel: 'Révisé le 26 juin 2026',
         sections: [
           {
@@ -177,9 +177,9 @@ export const legalPageCatalog: LegalPage[] = [
             ],
           },
           {
-            heading: 'Comment les sites sont lancés',
+            heading: 'Comment les sites sont revus',
             paragraphs: [
-              'Chaque site commence avec un nom de travail et un gate qualité documenté. Il n’est prêt qu’après validation de l’outil gratuit, du contenu original, de la confidentialité, de la surveillance, du backup et du rollback.',
+              'Chaque site commence avec un nom de travail et une liste de revue documentee. Il est pret pour plus de trafic seulement apres validation de l outil gratuit, du contenu original, de la confidentialite, de la surveillance et des notes de reprise.',
             ],
           },
           {
@@ -193,7 +193,7 @@ export const legalPageCatalog: LegalPage[] = [
       de: {
         navLabel: 'Über uns',
         title: 'Über SuperSites',
-        description: 'SuperSites ist ein geplantes Netzwerk praktischer Web-Tools mit nützlichem Gratiszugang, klarem Upgrade-Wert und Launch-Gates.',
+        description: 'SuperSites ist ein Netzwerk praktischer Web-Tools mit nuetzlichem Gratiszugang, klarem Konto-Mehrwert und sorgfaeltiger oeffentlicher Pruefung.',
         updatedLabel: 'Geprüft am 26. Juni 2026',
         sections: [
           {
@@ -203,9 +203,9 @@ export const legalPageCatalog: LegalPage[] = [
             ],
           },
           {
-            heading: 'Wie Sites starten',
+            heading: 'Wie Sites geprueft werden',
             paragraphs: [
-              'Jede Site beginnt mit einem Arbeitsnamen und einem dokumentierten Quality Gate. Startbereit ist sie erst nach validiertem Gratis-Tool, Originalinhalt, Datenschutz, Monitoring, Backup und Rollback.',
+              'Jede Site beginnt mit einem Arbeitsnamen und einer dokumentierten Review-Liste. Sie ist erst fuer mehr Traffic bereit, wenn kostenloses Tool, eigene Inhalte, Datenschutz, Monitoring und Wiederherstellungshinweise validiert sind.',
             ],
           },
           {
@@ -764,7 +764,7 @@ export const legalPageCatalog: LegalPage[] = [
       en: {
         navLabel: 'Methodology',
         title: 'Methodology',
-        description: 'How SuperSites plans to explain tool results, data sources, limitations, quality checks and launch readiness across the portfolio.',
+        description: 'How SuperSites explains tool results, data sources, limitations, review notes and public readiness across the portfolio.',
         updatedLabel: 'Reviewed June 26, 2026',
         sections: [
           {
@@ -780,9 +780,9 @@ export const legalPageCatalog: LegalPage[] = [
             ],
           },
           {
-            heading: 'Launch gate',
+            heading: 'Public review',
             paragraphs: [
-              'A site should not be submitted to AdSense or treated as launched until free tools, useful content, legal pages, metadata, accessibility, monitoring, backup and rollback are validated.',
+              'A site should not be treated as ready for wider traffic until free tools, useful content, legal pages, metadata, accessibility, monitoring and recovery notes are validated.',
             ],
           },
         ],
@@ -806,9 +806,9 @@ export const legalPageCatalog: LegalPage[] = [
             ],
           },
           {
-            heading: 'Gate de lançamento',
+            heading: 'Revisão pública',
             paragraphs: [
-              'Um site não deve ir ao AdSense nem ser tratado como lançado antes de validar ferramentas gratuitas, conteúdo útil, páginas legais, metadata, acessibilidade, monitoramento, backup e rollback.',
+              'Um site não deve ser tratado como pronto para mais tráfego antes de validar ferramentas gratuitas, conteúdo útil, páginas legais, metadata, acessibilidade, monitoramento e notas de recuperação.',
             ],
           },
         ],
@@ -832,9 +832,9 @@ export const legalPageCatalog: LegalPage[] = [
             ],
           },
           {
-            heading: 'Gate de lanzamiento',
+            heading: 'Revisión pública',
             paragraphs: [
-              'Un sitio no debe enviarse a AdSense ni considerarse lanzado hasta validar herramientas gratuitas, contenido útil, páginas legales, metadata, accesibilidad, monitoreo, backup y rollback.',
+              'Un sitio no debe considerarse listo para más tráfico hasta validar herramientas gratuitas, contenido útil, páginas legales, metadata, accesibilidad, monitoreo y notas de recuperación.',
             ],
           },
         ],
@@ -858,9 +858,9 @@ export const legalPageCatalog: LegalPage[] = [
             ],
           },
           {
-            heading: 'Gate de lancement',
+            heading: 'Revue publique',
             paragraphs: [
-              'Un site ne doit pas être soumis à AdSense ni considéré lancé avant validation des outils gratuits, contenu utile, pages légales, métadonnées, accessibilité, surveillance, backup et rollback.',
+              'Un site ne doit pas etre considere pret pour plus de trafic avant validation des outils gratuits, contenu utile, pages legales, metadonnees, accessibilite, surveillance et notes de reprise.',
             ],
           },
         ],
@@ -917,7 +917,7 @@ export const legalPageCatalog: LegalPage[] = [
           {
             heading: 'Corrections and review',
             paragraphs: [
-              'Important pages should show a review date and accept corrections. Claims about data, policies, billing or legal obligations must be checked against current authoritative sources before publication.',
+              'Important pages should show a review date and accept corrections. Claims about data, policies, account features or legal obligations must be checked against current authoritative sources before publication.',
             ],
           },
         ],
@@ -943,7 +943,7 @@ export const legalPageCatalog: LegalPage[] = [
           {
             heading: 'Correções e revisão',
             paragraphs: [
-              'Páginas importantes devem mostrar data de revisão e aceitar correções. Afirmações sobre dados, políticas, billing ou obrigações legais precisam ser checadas em fontes atuais e oficiais antes da publicação.',
+              'Páginas importantes devem mostrar data de revisão e aceitar correções. Afirmações sobre dados, políticas, recursos de conta ou obrigações legais precisam ser checadas em fontes atuais e oficiais antes da publicação.',
             ],
           },
         ],
@@ -969,7 +969,7 @@ export const legalPageCatalog: LegalPage[] = [
           {
             heading: 'Correcciones y revisión',
             paragraphs: [
-              'Las páginas importantes deben mostrar fecha de revisión y aceptar correcciones. Afirmaciones sobre datos, políticas, billing u obligaciones legales deben verificarse en fuentes oficiales vigentes.',
+              'Las páginas importantes deben mostrar fecha de revisión y aceptar correcciones. Afirmaciones sobre datos, políticas, funciones de cuenta u obligaciones legales deben verificarse en fuentes oficiales vigentes.',
             ],
           },
         ],
@@ -995,7 +995,7 @@ export const legalPageCatalog: LegalPage[] = [
           {
             heading: 'Corrections et révision',
             paragraphs: [
-              'Les pages importantes doivent afficher une date de révision et accepter les corrections. Les affirmations sur données, politiques, billing ou obligations légales doivent être vérifiées auprès de sources officielles actuelles.',
+              'Les pages importantes doivent afficher une date de revision et accepter les corrections. Les affirmations sur donnees, politiques, fonctions de compte ou obligations legales doivent etre verifiees aupres de sources officielles actuelles.',
             ],
           },
         ],
@@ -1021,7 +1021,7 @@ export const legalPageCatalog: LegalPage[] = [
           {
             heading: 'Korrekturen und Review',
             paragraphs: [
-              'Wichtige Seiten sollen ein Review-Datum zeigen und Korrekturen annehmen. Aussagen zu Daten, Policies, Billing oder rechtlichen Pflichten müssen vor Veröffentlichung mit aktuellen offiziellen Quellen geprüft werden.',
+              'Wichtige Seiten sollen ein Review-Datum zeigen und Korrekturen annehmen. Aussagen zu Daten, Policies, Konto-Funktionen oder rechtlichen Pflichten muessen vor Veroeffentlichung mit aktuellen offiziellen Quellen geprueft werden.',
             ],
           },
         ],
@@ -1040,19 +1040,19 @@ export const legalPageCatalog: LegalPage[] = [
           {
             heading: 'What is available',
             paragraphs: [
-              'The Hub, NetProbe Atlas and the nine product apps are published under the temporary `/supersites/` URL family with HTTPS, localized pages, public sitemaps and static release rollback paths.',
+              'The Hub, NetProbe Atlas and the nine product apps are published under the `/supersites/` URL family with HTTPS, localized pages, public sitemaps and stable static paths.',
             ],
           },
           {
             heading: 'Current operating limits',
             paragraphs: [
-              'The public tools provide free, no-signup utility workflows first. Advanced accounts, paid upgrades, ad delivery, external analytics, recurring workers and automated provider imports are not active on public pages yet.',
+              'The public tools provide free, no-signup utility workflows first. Advanced accounts, paid upgrades, clearly labeled advertising, recurring automation and provider imports are not active on public pages yet.',
             ],
           },
           {
             heading: 'What is checked',
             paragraphs: [
-              'Public validation uses release artifacts, browser smoke checks, API health checks where applicable, crawler evidence and documentation records before a surface is treated as ready for wider traffic.',
+              'Public validation uses release artifacts, browser checks, API health checks where applicable, crawler evidence and documentation records before a surface is treated as ready for wider traffic.',
             ],
           },
         ],
@@ -1066,13 +1066,13 @@ export const legalPageCatalog: LegalPage[] = [
           {
             heading: 'O que está disponível',
             paragraphs: [
-              'O Hub, o NetProbe Atlas e os nove apps de produto estão publicados na família temporária de URLs `/supersites/`, com HTTPS, páginas localizadas, sitemaps públicos e caminhos de reversão por release estático.',
+              'O Hub, o NetProbe Atlas e os nove apps de produto estão publicados na família de URLs `/supersites/`, com HTTPS, páginas localizadas, sitemaps públicos e caminhos estáticos estáveis.',
             ],
           },
           {
             heading: 'Limites operacionais atuais',
             paragraphs: [
-              'As ferramentas públicas entregam primeiro fluxos gratuitos sem cadastro. Contas avançadas, upgrades pagos, anúncios, analytics externo, workers recorrentes e importações automatizadas de provedores ainda não estão ativos nas páginas públicas.',
+              'As ferramentas públicas entregam primeiro fluxos gratuitos sem cadastro. Contas avançadas, upgrades pagos, publicidade identificada, automação recorrente e importações de provedores ainda não estão ativos nas páginas públicas.',
             ],
           },
           {
@@ -1092,13 +1092,13 @@ export const legalPageCatalog: LegalPage[] = [
           {
             heading: 'Qué está disponible',
             paragraphs: [
-              'El Hub, NetProbe Atlas y las nueve apps de producto están publicados bajo la familia temporal de URLs `/supersites/`, con HTTPS, páginas localizadas, sitemaps públicos y reversión por release estático.',
+              'El Hub, NetProbe Atlas y las nueve apps de producto están publicados bajo la familia de URLs `/supersites/`, con HTTPS, páginas localizadas, sitemaps públicos y rutas estáticas estables.',
             ],
           },
           {
             heading: 'Límites operativos actuales',
             paragraphs: [
-              'Las herramientas públicas entregan primero flujos gratuitos sin registro. Cuentas avanzadas, upgrades pagos, anuncios, analytics externo, workers recurrentes e importaciones automatizadas aún no están activos en páginas públicas.',
+              'Las herramientas públicas entregan primero flujos gratuitos sin registro. Cuentas avanzadas, upgrades pagos, publicidad identificada, automatización recurrente e importaciones de proveedores aún no están activos en páginas públicas.',
             ],
           },
           {
@@ -1118,19 +1118,19 @@ export const legalPageCatalog: LegalPage[] = [
           {
             heading: 'Ce qui est disponible',
             paragraphs: [
-              'Le Hub, NetProbe Atlas et les neuf applications produit sont publiés sous la famille temporaire `/supersites/`, avec HTTPS, pages localisées, sitemaps publics et chemins de retour par release statique.',
+              'Le Hub, NetProbe Atlas et les neuf applications produit sont publies sous la famille `/supersites/`, avec HTTPS, pages localisees, sitemaps publics et chemins statiques stables.',
             ],
           },
           {
             heading: 'Limites opérationnelles actuelles',
             paragraphs: [
-              'Les outils publics fournissent d’abord des workflows gratuits sans compte. Comptes avancés, offres payantes, publicité, analytics externe, workers récurrents et imports automatisés ne sont pas actifs sur les pages publiques.',
+              'Les outils publics fournissent d abord des workflows gratuits sans compte. Comptes avances, offres payantes, publicite identifiee, automatisation recurrente et imports de fournisseurs ne sont pas actifs sur les pages publiques.',
             ],
           },
           {
             heading: 'Ce qui est vérifié',
             paragraphs: [
-              'La validation publique utilise artefacts de release, contrôles navigateur, santé API si applicable, preuves de crawler et dossiers documentés avant de considérer une surface prête pour plus de trafic.',
+              'La validation publique utilise artefacts de release, controles navigateur, sante API si applicable, preuves de crawler et dossiers documentes avant de considerer une surface prete pour plus de trafic.',
             ],
           },
         ],
@@ -1144,19 +1144,19 @@ export const legalPageCatalog: LegalPage[] = [
           {
             heading: 'Was verfügbar ist',
             paragraphs: [
-              'Hub, NetProbe Atlas und die neun Produkt-Apps sind unter der temporären URL-Familie `/supersites/` veröffentlicht, mit HTTPS, lokalisierten Seiten, öffentlichen Sitemaps und statischen Release-Rückwegen.',
+              'Hub, NetProbe Atlas und die neun Produkt-Apps sind unter der URL-Familie `/supersites/` veroeffentlicht, mit HTTPS, lokalisierten Seiten, oeffentlichen Sitemaps und stabilen statischen Pfaden.',
             ],
           },
           {
             heading: 'Aktuelle Betriebsgrenzen',
             paragraphs: [
-              'Die öffentlichen Tools liefern zuerst kostenlose Workflows ohne Pflichtkonto. Erweiterte Konten, bezahlte Upgrades, Anzeigen, externe Analytics, wiederkehrende Worker und automatisierte Provider-Imports sind auf öffentlichen Seiten noch nicht aktiv.',
+              'Die oeffentlichen Tools liefern zuerst kostenlose Workflows ohne Pflichtkonto. Erweiterte Konten, bezahlte Upgrades, gekennzeichnete Werbung, wiederkehrende Automatisierung und Provider-Imports sind auf oeffentlichen Seiten noch nicht aktiv.',
             ],
           },
           {
             heading: 'Was geprüft wird',
             paragraphs: [
-              'Öffentliche Validierung nutzt Release-Artefakte, Browser-Prüfungen, API-Gesundheit falls relevant, Crawler-Evidenz und Dokumentation, bevor eine Oberfläche für mehr Traffic bereit gilt.',
+              'Oeffentliche Validierung nutzt Pruef-Artefakte, Browser-Pruefungen, API-Gesundheit falls relevant, Crawler-Evidenz und Dokumentation, bevor eine Oberflaeche fuer mehr Traffic bereit gilt.',
             ],
           },
         ],

@@ -486,6 +486,7 @@ h3 {
 }
 
 .tool-layout--diagnostic > .tool-workbench {
+  grid-column: 1 / -1;
   display: grid;
   grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.22fr);
   gap: 14px;
@@ -499,7 +500,8 @@ h3 {
 
 .tool-layout--diagnostic .upgrade-panel,
 .tool-layout--diagnostic .privacy-strip,
-.tool-layout--diagnostic .quick-related {
+.tool-layout--diagnostic .quick-related,
+.tool-layout--diagnostic > .band {
   grid-column: 1 / -1;
 }
 

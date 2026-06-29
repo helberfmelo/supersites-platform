@@ -229,10 +229,6 @@ useHead(() => ({
               <dt>{{ copy.upgradeLabel }}</dt>
               <dd>{{ site.localized[locale].upgrade }}</dd>
             </div>
-            <div>
-              <dt>{{ copy.launchOrderLabel }}</dt>
-              <dd>#{{ site.launchOrder }}</dd>
-            </div>
           </dl>
         </div>
         <div class="card-actions">

@@ -111,7 +111,7 @@ test.describe('SuperSites public hub', () => {
     await dismissConsentBanner(page)
     await expect(page.getByRole('heading', { name: 'Top public tools' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Choose by workflow' })).toBeVisible()
-    await expect(page.getByText('Production evidence')).toBeVisible()
+    await expect(page.getByText('Free tools first')).toBeVisible()
     await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(3)
     await page.evaluate(() => {
       window.addEventListener('click', (event) => event.preventDefault(), { capture: true })
@@ -199,7 +199,7 @@ test.describe('SuperSites public hub', () => {
     await expect(localToolsLink).toBeVisible()
     await expect(localToolsLink).toHaveAttribute('href', 'http://127.0.0.1:3002/en/tools/dns-lookup')
     await expect(page.getByRole('link', { name: 'Open public site' })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Quality check' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Review notes' })).toBeVisible()
     await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(2)
     expect(errors).toEqual([])
   })

@@ -118,14 +118,14 @@ useHead({
         </div>
         <div class="network-panel__row">
           <div>
-            <strong>{{ copy.launchOrderLabel }}</strong>
-            <span>#{{ site.launchOrder }}</span>
+            <strong>{{ copy.freeToolsTitle }}</strong>
+            <span>{{ siteText.freeValue }}</span>
           </div>
-          <span class="signal signal--amber" aria-hidden="true"></span>
+          <span class="signal" aria-hidden="true"></span>
         </div>
         <div class="network-panel__row">
           <div>
-            <strong>{{ copy.temporaryUrlLabel }}</strong>
+            <strong>{{ copy.publicCta }}</strong>
             <span>{{ site.temporaryUrl }}</span>
           </div>
           <span class="signal" aria-hidden="true"></span>

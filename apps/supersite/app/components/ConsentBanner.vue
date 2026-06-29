@@ -39,7 +39,7 @@ const copyByLocale: Record<LocaleCode, {
     preferences: 'Preference storage',
     analytics: 'Analytics storage',
     ads: 'Advertising storage',
-    tcfNotice: 'Real ad requests remain blocked until a Google-certified CMP is approved for TCF regions.',
+    tcfNotice: 'Advertising preferences in TCF regions require a Google-certified consent manager before optional ad requests can run.',
   },
   'pt-br': {
     title: 'Escolhas de privacidade',
@@ -51,7 +51,7 @@ const copyByLocale: Record<LocaleCode, {
     preferences: 'Armazenamento de preferencias',
     analytics: 'Armazenamento de analytics',
     ads: 'Armazenamento de publicidade',
-    tcfNotice: 'Requisicoes reais de anuncio seguem bloqueadas ate uma CMP certificada pelo Google ser aprovada para regioes TCF.',
+    tcfNotice: 'Preferencias de publicidade em regioes TCF exigem uma CMP certificada pelo Google antes de requisicoes opcionais de anuncio.',
   },
   es: {
     title: 'Opciones de privacidad',
@@ -63,7 +63,7 @@ const copyByLocale: Record<LocaleCode, {
     preferences: 'Almacenamiento de preferencias',
     analytics: 'Almacenamiento de analytics',
     ads: 'Almacenamiento de publicidad',
-    tcfNotice: 'Las solicitudes reales de anuncios siguen bloqueadas hasta aprobar una CMP certificada por Google para regiones TCF.',
+    tcfNotice: 'Las preferencias de publicidad en regiones TCF requieren una CMP certificada por Google antes de solicitudes opcionales de anuncios.',
   },
   fr: {
     title: 'Choix de confidentialite',
@@ -75,7 +75,7 @@ const copyByLocale: Record<LocaleCode, {
     preferences: 'Stockage des preferences',
     analytics: 'Stockage analytics',
     ads: 'Stockage publicitaire',
-    tcfNotice: 'Les appels publicitaires reels restent bloques jusqu a validation d une CMP certifiee Google pour les regions TCF.',
+    tcfNotice: 'Les preferences publicitaires en regions TCF exigent une CMP certifiee Google avant les appels publicitaires optionnels.',
   },
   de: {
     title: 'Datenschutzauswahl',
@@ -87,7 +87,7 @@ const copyByLocale: Record<LocaleCode, {
     preferences: 'Praferenzspeicher',
     analytics: 'Analytics-Speicher',
     ads: 'Werbespeicher',
-    tcfNotice: 'Echte Anzeigenanfragen bleiben gesperrt, bis eine Google-zertifizierte CMP fur TCF-Regionen freigegeben ist.',
+    tcfNotice: 'Werbepraeferenzen in TCF-Regionen erfordern eine Google-zertifizierte CMP, bevor optionale Anzeigenanfragen laufen koennen.',
   },
 }
 

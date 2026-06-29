@@ -555,25 +555,25 @@ export const siteCatalog: SiteSummary[] = [
 
 export const statusLabels: Record<SiteStatus, Record<LocaleCode, string>> = {
   foundation: {
-    en: 'Foundation',
-    'pt-br': 'Fundação',
-    es: 'Fundación',
-    fr: 'Fondation',
-    de: 'Fundament',
+    en: 'Available',
+    'pt-br': 'Disponível',
+    es: 'Disponible',
+    fr: 'Disponible',
+    de: 'Verfuegbar',
   },
   planned: {
-    en: 'Planned',
-    'pt-br': 'Planejado',
-    es: 'Planificado',
-    fr: 'Planifié',
-    de: 'Geplant',
+    en: 'Preview',
+    'pt-br': 'Prévia',
+    es: 'Vista previa',
+    fr: 'Apercu',
+    de: 'Vorschau',
   },
   blocked: {
-    en: 'Blocked',
-    'pt-br': 'Bloqueado',
-    es: 'Bloqueado',
-    fr: 'Bloqué',
-    de: 'Blockiert',
+    en: 'Limited',
+    'pt-br': 'Limitado',
+    es: 'Limitado',
+    fr: 'Limite',
+    de: 'Begrenzt',
   },
 }
 
