@@ -729,8 +729,9 @@ Sprint 18.0/18.1 - Baseline e fundamentos publicos
 - Simbolico: `PHASE18-BENCHMARK-FOUNDATION`.
 - Escopo entregue: inventario documentado em `docs/ROUTE_INVENTORY_PHASE_18.md`; crawler quick baseline e pos-mudanca; Hub publico sem launch order/production evidence/monetization readiness na superficie principal; detalhes do Hub sem ordem de lancamento/URL temporaria; NetProbe What is my IP autoexecuta no carregamento; paginas diagnosticas priorizam ferramenta/resultado antes de metodologia; status/cookies/institucionais do Hub e NetProbe receberam copy publica menos operacional.
 - Validacao: builds Hub/NetProbe, Vitest Hub/NetProbe, Playwright Hub/NetProbe, `validate:public-copy`, `validate:adsense-safe-public`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` e crawler quick `2026-06-29T20-08-13-569Z` passaram.
+- Publicacao: commits `179b104` e `7777c6a`; Quality Gate final `28400509988` e Deploy Dry Run `28400510010` passaram; Hub publicado pelo run `28400789120` no release `7777c6a15caf3c724d3bee668f4cfc969dbc0971-28400789120-1`; NetProbe publicado pelo run `28401266330` no release `7777c6a15caf3c724d3bee668f4cfc969dbc0971-28401266330-1`; smokes publicos pos-deploy e checagem live do What is my IP passaram.
 - Pendente para proximas sprints: crawler full sem timeout, Lighthouse/PageSpeed/GTmetrix quando disponivel, reforma page-by-page dos demais sites, QA multilíngue mais profundo, donation blocks sem link real, slots AdSense reservados por site, e arquitetura real de probes regionais antes de qualquer promessa worldwide no DNS Propagation.
-- Escopo negativo: nenhum deploy real, provider externo, anuncio real, `ads.txt`, checkout, billing, doacao, afiliado, worker/cron, DNS/root mapping ou acao irreversivel foi ativado.
+- Escopo negativo: apenas releases reversiveis Hub/NetProbe HostGator foram publicados. Nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
 
 ## Definition of done do programa
 

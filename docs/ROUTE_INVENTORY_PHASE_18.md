@@ -108,6 +108,17 @@ Robots and sitemap checks returned HTTP 200 for the Hub and all 10 product sites
 - Remediation: smoke scripts now assert the new benchmark-facing markers (`Free tools first`, `Review notes`, `Free results first`, `Public Status`) while keeping ads/analytics/noindex/asset checks intact.
 - Local follow-up validation passed with `pwsh` for `scripts/validate-supersite-preview.ps1`, `scripts/validate-netprobe-preview.ps1` and `scripts/validate-netprobe-static-artifact.ps1` using the local artifact runtime API marker.
 
+## Production Release Follow-up
+
+- Feature commit: `179b104` (`feat: start phase 18 benchmark refinement`).
+- Smoke-marker fix commit: `7777c6a` (`ci: align phase 18 smoke markers`).
+- Replacement remote Quality Gate `28400509988` passed after smoke-marker alignment.
+- Replacement remote Deploy Dry Run `28400510010` passed.
+- Hub release: `deploy-supersite-hostgator.yml` run `28400789120` passed, publishing `/supersites/` release `7777c6a15caf3c724d3bee668f4cfc969dbc0971-28400789120-1`; root redirect stayed disabled and asset `https://opentshost.com/supersites/_nuxt/DqEUNszz.js` was validated.
+- NetProbe release: `deploy-netprobe-hostgator.yml` run `28401266330` passed, publishing `/supersites/netprobe-atlas/` release `7777c6a15caf3c724d3bee668f4cfc969dbc0971-28401266330-1`; API preflight passed and asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/BXFoZbwf.js` was validated.
+- Post-deploy public smokes passed for Hub/apps/APIs and NetProbe/API using `pnpm deploy:smoke-supersite-public` and `pnpm deploy:smoke-netprobe-public`.
+- Live browser validation for `https://opentshost.com/supersites/netprobe-atlas/en/tools/what-is-my-ip` confirmed automatic IP rendering, canonical URL, no mobile horizontal overflow and no blocked internal public phrases.
+
 ## Human Action Required
 
-No identity, KYC, tax, bank, PIN, legal acceptance, purchase, real AdSense, real donation, checkout, external analytics, provider import or irreversible production action was executed in this baseline.
+No identity, KYC, tax, bank, PIN, legal acceptance, purchase, real AdSense, real donation, checkout, external analytics, provider import or irreversible production action was executed in this baseline. The only production mutations were reversible Hub and NetProbe HostGator releases after green gates.

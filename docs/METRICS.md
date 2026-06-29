@@ -1282,7 +1282,15 @@ Data-base: 2026-06-29
 | AdSense-safe public validation | Passed: 13 pages |
 | Structure/secrets/deploy dry-run/diff check | Passed |
 | Public forbidden phrase scan | 0 matches in `apps/netprobe-atlas/app` and `apps/supersite/app` for the audit term set |
-| Real deploy/provider activation | 0 deploys, ads, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Phase 18 implementation commits | `179b104`, `7777c6a` |
+| Initial remote Quality Gate | `28399921848` failed only on stale preview smoke markers after build, tests, typecheck and public-copy validation passed |
+| Replacement remote Quality Gate | `28400509988` passed |
+| Replacement remote Deploy Dry Run | `28400510010` passed |
+| Hub production deploy | `28400789120` passed; release `7777c6a15caf3c724d3bee668f4cfc969dbc0971-28400789120-1`; asset `DqEUNszz.js` |
+| NetProbe production deploy | `28401266330` passed; release `7777c6a15caf3c724d3bee668f4cfc969dbc0971-28401266330-1`; asset `BXFoZbwf.js`; API preflight passed |
+| Post-deploy public smokes | Passed: `pnpm deploy:smoke-supersite-public` and `pnpm deploy:smoke-netprobe-public` |
+| Live IP auto-run smoke | Passed on `2026-06-29`; IPv4 result rendered automatically, canonical matched, mobile overflow 0 and blocked phrase scan 0 |
+| Real deploy/provider activation | 2 reversible HostGator deploys for Hub and NetProbe; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 
