@@ -1031,6 +1031,11 @@ Data-base: 2026-06-29
 | Sprint 14.2 admin visual audit | `pnpm measure:admin-audit` passed; run `2026-06-29T08-29-48Z`; 9 authenticated desktop/mobile checks |
 | Sprint 14.2 control-plane artifact build | `pnpm deploy:build-control-plane-hostgator` passed; 7138 files, 28227439 bytes, zip 8410451 bytes |
 | Sprint 14.2 local governance gates | Passed: `test:packages`, `typecheck:packages`, `composer validate --strict`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` |
+| Sprint 14.2 feature commit | `26516c8` |
+| Sprint 14.2 remote Quality Gate | `28359248342` passed |
+| Sprint 14.2 remote Deploy Dry Run | `28359248307` passed |
+| Sprint 14.2 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public`; Hub asset `https://opentshost.com/supersites/_nuxt/BNDSn3oU.js`; NetProbe asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/xQOMqDWZ.js` |
+| Sprint 14.2 production deploy activation | 0 real deploys triggered in this sprint; public smokes validate the existing production baseline |
 | Sprint 14.2 runbook | `docs/RUNBOOKS/ENTITLEMENT_QUOTA_CONTROLS.md` |
 | Sprint 14.2 human gates recorded | Paid plans and metered quota usage remain in `docs/HUMAN_ACTION_REQUIRED.md` |
 | Sprint 14.2 monetization/provider activation | 0 real paid plans, checkout, billing provider, provider price id, SDK, webhook, metered commercial usage, customer portal, invoice, refund, dunning, tax, ads, donation, affiliate, external analytics, worker or cron activations |
