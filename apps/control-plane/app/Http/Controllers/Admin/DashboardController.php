@@ -20,6 +20,7 @@ use App\Models\Incident;
 use App\Models\OperationalTask;
 use App\Models\Site;
 use App\Support\AdSense\AdSenseGoLiveReadiness;
+use App\Support\Billing\BillingProviderGoLiveReadiness;
 use App\Support\Google\GoogleProviderGoLiveReadiness;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -29,9 +30,11 @@ class DashboardController extends Controller
     public function __invoke(
         Request $request,
         AdSenseGoLiveReadiness $adsenseReadiness,
+        BillingProviderGoLiveReadiness $billingReadiness,
         GoogleProviderGoLiveReadiness $googleReadiness,
     ): View {
         $adsenseGoLiveReadiness = $adsenseReadiness->snapshot();
+        $billingGoLiveReadiness = $billingReadiness->snapshot();
         $googleGoLiveReadiness = $googleReadiness->snapshot();
         $statusCounts = Site::query()
             ->selectRaw('status, count(*) as total')
@@ -102,6 +105,7 @@ class DashboardController extends Controller
                 ->orderBy('checkout_enabled')
                 ->orderBy('provider')
                 ->get(),
+            'billingGoLiveReadiness' => $billingGoLiveReadiness,
             'benchmarkOpportunities' => BenchmarkOpportunity::query()
                 ->with('site:id,slug,name')
                 ->orderByRaw("case priority when 'p0' then 0 when 'p1' then 1 else 2 end")

@@ -1121,6 +1121,19 @@ Data-base: 2026-06-29
 | Sprint 15.2 runbook | `docs/RUNBOOKS/GOOGLE_PROVIDER_GO_LIVE_READINESS.md` |
 | Sprint 15.2 ADR | `docs/ADR/0037-google-provider-go-live-readiness.md` |
 | Sprint 15.2 provider/analytics activation | 0 GA4/GTM snippets, Google properties, GTM containers, Search Console verification tokens/imports, PageSpeed API calls, cookies, real secrets or external analytics provider activations |
+| Sprint 15.3 billing readiness endpoint | `GET /api/v1/billing/go-live-readiness` behind auth and `dashboard.view` |
+| Sprint 15.3 billing readiness contract | `BillingProviderGoLiveReadiness::CONTRACT_VERSION` `2026-06-29.15.3` |
+| Sprint 15.3 provider price helper | `@supersites/billing normalizeProviderPriceReference`; invalid values return `null` |
+| Sprint 15.3 default seeded billing state | 3 providers; 0 providers ready for human activation; 0 paid plans; checkout sessions 0; live webhooks 0; provider SDK loaded 0; revenue import 0 |
+| Sprint 15.3 focused validation | Passed: `@supersites/billing` 15 tests; `BillingProviderGoLiveReadinessTest` 4 tests/44 assertions |
+| Sprint 15.3 package validation | `pnpm test:packages` passed with 80 tests; `pnpm typecheck:packages` passed |
+| Sprint 15.3 local Laravel validation | `php artisan test` passed; 74 tests, 714 assertions |
+| Sprint 15.3 admin visual audit | `pnpm measure:admin-audit` passed; run `2026-06-29T09-51-55Z`; 9 authenticated desktop/mobile checks |
+| Sprint 15.3 control-plane artifact build | `pnpm deploy:build-control-plane-hostgator` passed; 7150 files, 28286453 bytes, zip 8426950 bytes |
+| Sprint 15.3 local governance gates | Passed: `composer validate --strict`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `validate:adsense-safe-public` |
+| Sprint 15.3 runbook | `docs/RUNBOOKS/BILLING_PROVIDER_GO_LIVE_READINESS.md` |
+| Sprint 15.3 ADR | `docs/ADR/0038-billing-provider-go-live-readiness.md` |
+| Sprint 15.3 provider/billing activation | 0 checkout sessions, payment links, provider SDKs, live webhooks, subscriptions, charges, invoices, refunds, dunning, revenue imports, provider secrets or entitlement changes by payment |
 
 ## Product metrics
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\V1\AnalyticsEventController;
 use App\Http\Controllers\Api\V1\Account\AccountDeletionRequestController;
 use App\Http\Controllers\Api\V1\Account\AccountExportController;
 use App\Http\Controllers\Api\V1\AdSense\AdSenseGoLiveReadinessController;
+use App\Http\Controllers\Api\V1\Billing\BillingProviderGoLiveReadinessController;
 use App\Http\Controllers\Api\V1\Billing\BillingWebhookDryRunController;
 use App\Http\Controllers\Api\V1\CurrentUserController;
 use App\Http\Controllers\Api\V1\Google\GoogleProviderGoLiveReadinessController;
@@ -78,6 +79,8 @@ Route::prefix('v1')
         Route::get('/adsense/go-live-readiness', AdSenseGoLiveReadinessController::class)
             ->middleware('permission:dashboard.view');
         Route::get('/google/go-live-readiness', GoogleProviderGoLiveReadinessController::class)
+            ->middleware('permission:dashboard.view');
+        Route::get('/billing/go-live-readiness', BillingProviderGoLiveReadinessController::class)
             ->middleware('permission:dashboard.view');
 
         Route::prefix('monitoring/previews')

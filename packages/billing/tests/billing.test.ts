@@ -3,6 +3,7 @@ import {
   buildBillingPlan,
   decideBillingWebhook,
   normalizeBillingProvider,
+  normalizeProviderPriceReference,
   resolveBillingQuota,
   resolveBillingProviderGate,
 } from '../src/index'
@@ -12,6 +13,12 @@ describe('billing foundation contracts', () => {
     expect(normalizeBillingProvider('Stripe')).toBe('stripe')
     expect(normalizeBillingProvider('mercado-pago')).toBe('mercado_pago')
     expect(normalizeBillingProvider('unknown')).toBeNull()
+  })
+
+  it('normalizes provider price references without accepting unsafe values', () => {
+    expect(normalizeProviderPriceReference(' price_123:BR ')).toBe('price_123:BR')
+    expect(normalizeProviderPriceReference('x')).toBeNull()
+    expect(normalizeProviderPriceReference('price with spaces')).toBeNull()
   })
 
   it('fails closed until human and configuration gates are complete', () => {

@@ -142,6 +142,19 @@ Isto nao ativa checkout, plano pago, assinatura, worker recorrente, historico pa
 
 Antes de vender monitores, ainda faltam runtime/worker, backup/restore, politica de alerta, termos, retencao/exportacao/exclusao, provider-policy review, antiabuso, billing real e smokes de producao.
 
+## Billing provider go-live readiness
+
+A Sprint 15.3 cria somente readiness autenticado para go-live de Stripe, Mercado Pago e Paddle:
+
+- `GET /api/v1/billing/go-live-readiness` fica atras de auth e `dashboard.view`.
+- `BillingProviderGoLiveReadiness` valida registros de provider, KYC, impostos, termos, perfil de pagamentos, API key, webhook secret, endpoint, flags de checkout/webhook e mapeamentos de plano pago.
+- O dashboard mostra providers e planos pagos prontos para ativacao humana.
+- `@supersites/billing` normaliza provider price references para futuras associacoes de preco.
+
+Isto nao ativa checkout, payment link, provider SDK, assinatura, cobranca, invoice, refund, dunning, imposto automatico, customer portal, webhook live, revenue import, alteracao de entitlement por pagamento, secret real ou cobranca real.
+
+Antes de go-live real, ainda faltam conta provider aprovada, KYC, impostos, perfil de pagamentos, aceite juridico, politicas de cancelamento/reembolso/chargeback, price ids oficiais, secrets em cofre, fixtures oficiais de assinatura, smokes de sandbox/provider, rollback, matriz de dados e aprovacao humana por provider/plano.
+
 ## AI growth monetization recommendations
 
 A Sprint 6.5 pode priorizar pendencias de monetizacao e billing readiness somente com evidencia, impacto, esforco, confianca e risco. O motor nao ativa checkout, payment link, webhook, SDK, provider config, impostos, plano pago, entitlement pago, receita, invoice, refund, dunning ou qualquer mutation em provedor.

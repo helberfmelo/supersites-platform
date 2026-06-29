@@ -307,6 +307,15 @@
             Checkout {{ $summary['billing_checkout_enabled'] }} / {{ $billingProviders->count() }} providers |
             Provider SDKs, payment links and webhook endpoints disabled until human gates pass.
         </p>
+        <p class="muted">
+            Go-live ready {{ $billingGoLiveReadiness['data']['summary']['providers_ready_for_human_activation'] }} /
+            {{ $billingGoLiveReadiness['data']['summary']['providers'] }} providers ·
+            paid plans ready {{ $billingGoLiveReadiness['data']['summary']['paid_plans_ready_for_human_activation'] }} /
+            {{ $billingGoLiveReadiness['data']['summary']['paid_plans'] }} ·
+            checkout sessions {{ $billingGoLiveReadiness['data']['summary']['checkout_sessions_enabled'] }} ·
+            live webhooks {{ $billingGoLiveReadiness['data']['summary']['live_webhooks_enabled'] }} ·
+            revenue import {{ $billingGoLiveReadiness['data']['summary']['revenue_import_enabled'] }}
+        </p>
         <table>
             <thead>
                 <tr>

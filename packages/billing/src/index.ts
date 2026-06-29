@@ -118,6 +118,12 @@ export function normalizeBillingProvider(value: string | null | undefined): Bill
   return isBillingProvider(normalized) ? normalized : null
 }
 
+export function normalizeProviderPriceReference(value: string | null | undefined): string | null {
+  const normalized = String(value ?? '').trim()
+
+  return safeIdentifierPattern.test(normalized) ? normalized : null
+}
+
 export function resolveBillingProviderGate(input: BillingProviderGateInput): BillingProviderGate {
   const provider = normalizeBillingProvider(input.provider)
   const reasons: string[] = []
@@ -199,7 +205,7 @@ export function buildBillingPlan(input: BillingPlanInput, providerGate?: Billing
   const currency = normalizeCurrency(input.currency)
   const amountMinor = normalizeAmount(input.amountMinor)
   const provider = normalizeBillingProvider(input.provider)
-  const providerPriceId = normalizeProviderPriceId(input.providerPriceId)
+  const providerPriceId = normalizeProviderPriceReference(input.providerPriceId)
 
   if (!safeSlugPattern.test(slug)) {
     reasons.push('plan_slug_normalized')
@@ -347,12 +353,6 @@ function normalizeAmount(value: number | null | undefined): number {
   }
 
   return Math.max(0, Math.min(100_000_000, Math.trunc(Number(value))))
-}
-
-function normalizeProviderPriceId(value: string | null | undefined): string | null {
-  const normalized = String(value ?? '').trim()
-
-  return safeIdentifierPattern.test(normalized) ? normalized : null
 }
 
 function normalizeWebhookIdentifier(value: string | null | undefined): string | null {
