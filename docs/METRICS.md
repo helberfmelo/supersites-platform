@@ -986,6 +986,18 @@ Data-base: 2026-06-29
 | Sprint 13.4 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, SitePulse static smoke, `pnpm deploy:smoke-netprobe-public`, `pnpm deploy:smoke-control-plane-public`; current SitePulse public asset `https://opentshost.com/supersites/sitepulse-lab/_nuxt/lkcC6TkC.js` |
 | Sprint 13.4 production deploy activation | 0 real static app deploys triggered in this sprint; public smokes validate the existing production baseline |
 | Sprint 13.4 crawler/provider activation | 0 broad crawling, recurring uptime, alerts, status page, storage, paid API, billing, ads, donation, affiliate, external analytics, worker, cron or provider activations |
+| Sprint 13.5 PixelBatch advanced workflow cards | 3 workflows documented across EN/PT-BR/ES/FR/DE: background cleanup, high-volume conversion, API/integrations |
+| Sprint 13.5 DocShift advanced workflow cards | 3 workflows documented across EN/PT-BR/ES/FR/DE: OCR/table extraction, Office/image conversion, batch/API |
+| Sprint 13.5 file provider data runbook | `docs/RUNBOOKS/FILE_PROVIDER_DATA_MATRIX.md` |
+| Sprint 13.5 local PixelBatch unit validation | `pnpm test:pixelbatch` passed; 10 tests |
+| Sprint 13.5 local DocShift unit validation | `pnpm test:docshift` passed; 10 tests |
+| Sprint 13.5 local PixelBatch frontend validation | `pnpm build:pixelbatch`, `pnpm validate:pixelbatch-preview` asset `/_nuxt/BR6dks08.js`, `pnpm test:e2e:pixelbatch` passed; 3 Playwright tests after sequential rerun |
+| Sprint 13.5 local DocShift frontend validation | `pnpm build:docshift`, `pnpm validate:docshift-preview` asset `/_nuxt/CBB_yMQ4.js`, `pnpm test:e2e:docshift` passed; 4 Playwright tests after sequential rerun |
+| Sprint 13.5 public copy gate | `pnpm validate:public-copy` passed; 951 HTML files |
+| Sprint 13.5 AdSense-safe gate | `pnpm validate:adsense-safe-public` passed; 13 public pages |
+| Sprint 13.5 local governance gates | Passed: `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` |
+| Sprint 13.5 human gates recorded | PixelBatch/DocShift file AI/OCR/upload providers remain in `docs/HUMAN_ACTION_REQUIRED.md` |
+| Sprint 13.5 provider/upload activation | 0 upload API, OCR/AI/conversion provider, batch queue, persistent file storage, paid API, billing, ads, donation, affiliate, external analytics, worker or cron activations |
 
 ## Product metrics
 

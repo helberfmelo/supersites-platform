@@ -108,6 +108,7 @@
 - Object URLs devem ser revogados apos preview/processamento/download para reduzir retencao em memoria.
 - Eventos locais permitidos devem conter apenas `tool_slug`, rota e locale; nunca parametros de arquivo, dimensoes, metadados, qualidade, formato escolhido, tamanho de saida ou conteudo de imagem.
 - Sprint 7.11 adiciona dropzone, preview original/final, workflow snapshot, checklist de privacidade, related tools e batch queue gated como apresentacao local do arquivo/resultado em memoria; esses elementos nao criam historico, storage persistente, identificador de conta ou nova coleta.
+- Sprint 13.5 adiciona matriz de workflows avancados para background cleanup, conversao em volume e API/integracoes, documentada em `docs/RUNBOOKS/FILE_PROVIDER_DATA_MATRIX.md`; a matriz e apenas governanca/copy publica e nao ativa upload, provider, storage, API, billing ou worker.
 - Processamento server-side futuro para batch, API, alta resolucao ou IA exige matriz de dados propria com finalidade, base legal, armazenamento, retencao curta, limpeza automatica, exportacao/exclusao, criptografia, sandbox e antivirus quando aplicavel.
 
 ## DocShift
@@ -117,6 +118,7 @@
 - Object URLs devem ser revogados apos preview/processamento/download para reduzir retencao em memoria.
 - Eventos locais permitidos devem conter apenas `tool_slug`, rota e locale; nunca nome de arquivo, texto de paginas, texto colado, metadados, page count, page range, tamanho de saida ou conteudo do PDF.
 - Sprint 7.12 adiciona dropzone, estado de arquivo, workflow snapshot, checklist de privacidade, related tools e server/OCR/batch gated como apresentacao local do arquivo/texto/resultado em memoria; esses elementos nao criam historico, storage persistente, identificador de conta ou nova coleta.
+- Sprint 13.5 adiciona matriz de workflows avancados para OCR/tabelas, conversoes Office/imagem e filas/API, documentada em `docs/RUNBOOKS/FILE_PROVIDER_DATA_MATRIX.md`; a matriz e apenas governanca/copy publica e nao ativa upload, OCR, provider, storage, API, billing ou worker.
 - Processamento server-side futuro para lote, arquivos maiores, OCR, conversoes, historico ou API exige matriz de dados propria com finalidade, base legal, armazenamento, retencao curta, limpeza automatica, exportacao/exclusao, criptografia, sandbox e antivirus quando aplicavel.
 
 ## Consentimento e ads

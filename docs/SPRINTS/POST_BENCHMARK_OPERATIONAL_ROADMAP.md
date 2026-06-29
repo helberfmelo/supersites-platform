@@ -71,7 +71,7 @@ Status em 2026-06-29: Fase concluida. A Sprint 12.1 foi concluida com `lighthous
 
 Objetivo: expandir profundidade util sem conteudo em massa raso.
 
-Status em 2026-06-29: iniciada. As Sprints 13.1, 13.2, 13.3 e 13.4 foram concluidas em main, sem deploy real. A Sprint 13.4 adicionou detalhes de redirects, headers, tecnologias e performance ao SitePulse a partir do payload bounded existente, com Quality Gate `28355948547`, Deploy Dry Run `28355948542` e smokes publicos do baseline atual verdes. Nenhum checkout, billing, ads, provider externo, API paga, worker, publicacao DNS automatica, storage persistente ou conteudo em massa foi ativado.
+Status em 2026-06-29: em fechamento. As Sprints 13.1, 13.2, 13.3 e 13.4 foram concluidas em main, sem deploy real. A Sprint 13.5 concluiu validacao local com matriz de dados/gates para PixelBatch/DocShift antes de qualquer provider/upload; evidencia remota sera registrada apos feature commit/push. Nenhum checkout, billing, ads, provider externo, API paga, worker, publicacao DNS automatica, storage persistente, upload server-side ou conteudo em massa foi ativado.
 
 | Sprint | Simbolico | Escopo | Gates/humanos |
 |---:|---|---|---|
@@ -79,7 +79,7 @@ Status em 2026-06-29: iniciada. As Sprints 13.1, 13.2, 13.3 e 13.4 foram conclui
 | 13.2 | DEPTH-TIMENEXUS | Adicionar paginas curadas de cidade/fuso e timeline visual sem geracao ilimitada | Concluida em main sem deploy real: 8 cidades curadas x 5 idiomas, timeline visual, overlap 09:00, home links, JSON-LD, 11 testes, build/preview/Playwright/public-copy/AdSense-safe/gates locais, Quality Gate `28354017920`, Deploy Dry Run `28354017921` e smokes publicos do baseline atual passaram; sem geracao all-IANA ou calendario/provider externo |
 | 13.3 | DEPTH-MAILHEALTH | Criar SPF/DMARC builders seguros e guias profundos | Concluida em main sem deploy real: builders TXT locais para SPF/DMARC, copy 5 idiomas, 10 testes, build/preview/Playwright/public-copy/AdSense-safe/gates locais, Quality Gate `28354998649`, Deploy Dry Run `28354998680` e smokes publicos do baseline atual passaram; DNSBL/provider policy, publicacao DNS e ingestao DMARC seguem gate |
 | 13.4 | DEPTH-SITEPULSE | Adicionar detalhes de headers/redirects/tecnologias dentro de limites antiabuso | Concluida em main sem deploy real: redirect path, header matrix, technology clues, performance sample e bounded notes em 5 idiomas; 9 testes, build/preview/Playwright/public-copy/AdSense-safe/gates locais, Quality Gate `28355948547`, Deploy Dry Run `28355948542` e smokes publicos do baseline atual passaram; sem endpoint novo ou crawling amplo |
-| 13.5 | DEPTH-PIXEL-DOC | Planejar background remover/OCR/conversoes com matriz de dados antes de qualquer provider/upload | AI/OCR/provider seguem gate humano |
+| 13.5 | DEPTH-PIXEL-DOC | Planejar background remover/OCR/conversoes com matriz de dados antes de qualquer provider/upload | Validacao local concluida sem deploy real: cards publicos/localizados para PixelBatch background cleanup/high-volume/API e DocShift OCR/Office/batch, runbook `FILE_PROVIDER_DATA_MATRIX`, gates humanos registrados, 20 testes unitarios, builds/previews/Playwright/public-copy/AdSense-safe/gates locais passaram; AI/OCR/provider/upload seguem gate humano |
 
 ## Fase 14 - Paid Upgrade Foundations
 

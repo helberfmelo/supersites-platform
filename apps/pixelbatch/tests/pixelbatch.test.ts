@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { getPixelBatchAdvancedWorkflowCopy } from '../app/data/advancedWorkflows'
 import { publicLocaleCodes } from '../app/data/locales'
 import { contentPageCatalog, contentPageSlugs, getContentPageBySlug } from '../app/data/pages'
 import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
@@ -59,6 +60,18 @@ describe('PixelBatch MVP', () => {
         expect(copy.freeScope.length).toBeGreaterThan(20)
         expect(copy.upgradeScope.length).toBeGreaterThan(20)
       }
+    }
+  })
+
+  it('documents advanced image workflow data gates in every locale', () => {
+    for (const locale of publicLocaleCodes) {
+      const copy = getPixelBatchAdvancedWorkflowCopy(locale)
+
+      expect(copy.title.length).toBeGreaterThan(10)
+      expect(copy.body).toMatch(/upload|local|navegador|Browser|navigateur|Daten|datos/i)
+      expect(copy.items).toHaveLength(3)
+      expect(copy.items.map((item) => item.title).join(' ')).not.toContain('active provider')
+      expect(copy.items.every((item) => item.current.length > 20 && item.data.length > 20 && item.gate.length > 20)).toBe(true)
     }
   })
 

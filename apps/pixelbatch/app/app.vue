@@ -429,6 +429,54 @@ h3 {
   border-color: #b35a2b;
 }
 
+.advanced-workflow-band > p {
+  max-width: 820px;
+}
+
+.readiness-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.readiness-card {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #d8e0e1;
+  border-radius: 8px;
+  background: #f8fafb;
+}
+
+.readiness-card h3,
+.readiness-card p {
+  margin-bottom: 8px;
+}
+
+.readiness-list {
+  display: grid;
+  gap: 10px;
+  margin: 12px 0 0;
+}
+
+.readiness-list div {
+  min-width: 0;
+  padding-top: 10px;
+  border-top: 1px solid #d8e0e1;
+}
+
+.readiness-list dt {
+  color: #607174;
+  font-size: 0.76rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.readiness-list dd {
+  margin: 3px 0 0;
+  color: #253637;
+}
+
 .image-workbench {
   margin: 24px 0 30px;
 }
@@ -955,6 +1003,7 @@ h3 {
 
 @media (max-width: 960px) {
   .tool-grid,
+  .readiness-grid,
   .image-tool-tabs,
   .workbench-support-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -983,6 +1032,7 @@ h3 {
   .controls,
   .tool-grid,
   .band-grid,
+  .readiness-grid,
   .image-tool-tabs,
   .workbench-support-grid,
   .tool-layout,

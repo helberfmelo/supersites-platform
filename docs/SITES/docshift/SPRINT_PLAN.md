@@ -55,3 +55,12 @@ Data-base: 2026-06-27
 - Remote closure passed: commit `1c20e80`, Quality Gate `28317815474`, Deploy Dry Run `28317815479`, DocShift Fase 9/Sprint 9.7 deploy `28317896866`, release `1c20e80830ab8cbca6cfb9742d01b5698e917bab-28317896866-1` and public asset `https://opentshost.com/supersites/docshift/_nuxt/AWgMi3M5.js`.
 - Public smokes passed for DocShift, the aggregate Hub, control-plane/API and live production UX across desktop workbench, Text-to-PDF preview/download and PT-BR mobile layout.
 - No upload endpoint, storage, OCR, batch worker, paid API, checkout, billing, ad serving, donation link, affiliate link, external analytics or production worker was activated.
+
+## Sprint 13.5 provider planning notes
+
+- Symbol: DEPTH-PIXEL-DOC.
+- Added localized `Advanced document workflow review` sections to the home and tool pages for OCR/table extraction, Office/image conversion and batch/API.
+- Each workflow states the free path today, data touched if enabled and the required gate before any upload/provider activation.
+- Created `docs/RUNBOOKS/FILE_PROVIDER_DATA_MATRIX.md` and updated governance/human gates for OCR providers, conversion providers, upload queues, API jobs, retention/deletion, sandbox/antivirus and billing entitlement.
+- Local validation passed: `pnpm test:docshift` with 10 tests, `pnpm build:docshift`, `pnpm validate:docshift-preview`, `pnpm test:e2e:docshift`, public-copy, AdSense-safe, structure, secrets, deploy dry-run, ci changes and diff check.
+- No upload API, OCR, conversion provider, server queue, persistent storage, paid API, checkout, billing, ad serving, donation link, affiliate link, external analytics, worker or cron was activated.

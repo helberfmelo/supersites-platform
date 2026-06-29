@@ -53,3 +53,12 @@ Data-base: 2026-06-27
 - Playwright screenshots in `artifacts/playwright-pixelbatch-report/data/` were inspected for home desktop, compressor mobile and privacy mobile.
 - Feature commit `9ce7df7`, Quality Gate `28318467331`, Deploy Dry Run `28318467334`, PixelBatch deploy `28318554712`, release `9ce7df79eda8d034520d92d9df9a878e84df5c80-28318554712-1`, public asset `https://opentshost.com/supersites/pixelbatch/_nuxt/CITr2M7k.js`, public smokes and live UX smoke passed.
 - No upload endpoint, storage, batch worker, paid API, AI/background-removal provider, checkout, billing, ad serving, donation link, affiliate link, external analytics or production worker was activated.
+
+## Sprint 13.5 provider planning notes
+
+- Symbol: DEPTH-PIXEL-DOC.
+- Added localized `Advanced workflow review` sections to the home and tool pages for background cleanup, high-volume conversion and API/integrations.
+- Each workflow states the free path today, data touched if enabled and the required gate before any upload/provider activation.
+- Created `docs/RUNBOOKS/FILE_PROVIDER_DATA_MATRIX.md` and updated governance/human gates for AI/background removal, upload queues, API jobs, retention/deletion and billing entitlement.
+- Local validation passed: `pnpm test:pixelbatch` with 10 tests, `pnpm build:pixelbatch`, `pnpm validate:pixelbatch-preview`, `pnpm test:e2e:pixelbatch`, public-copy, AdSense-safe, structure, secrets, deploy dry-run, ci changes and diff check.
+- No upload API, server-side processing, provider SDK, AI/background removal, batch queue, persistent storage, paid API, checkout, billing, ad serving, donation link, affiliate link, external analytics, worker or cron was activated.

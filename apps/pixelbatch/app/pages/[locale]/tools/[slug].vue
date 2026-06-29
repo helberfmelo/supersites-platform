@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { getPixelBatchAdvancedWorkflowCopy } from '../../../data/advancedWorkflows'
 import { getShellCopy } from '../../../data/copy'
 import {
   createPixelBatchToolStructuredData,
@@ -22,6 +23,7 @@ if (!locale || !tool) {
 
 const copy = getPixelBatchToolCopy(tool, locale)
 const shellCopy = getShellCopy(locale)
+const advancedCopy = getPixelBatchAdvancedWorkflowCopy(locale)
 const canonicalPath = localizedToolPath(locale, tool.slug)
 const structuredData = createPixelBatchToolStructuredData(tool, locale, absoluteUrl(canonicalPath))
 
@@ -132,6 +134,31 @@ useHead({
           </NuxtLink>
         </div>
       </aside>
+    </section>
+
+    <section class="band advanced-workflow-band" :aria-labelledby="`${tool.slug}-advanced`">
+      <h2 :id="`${tool.slug}-advanced`">{{ advancedCopy.title }}</h2>
+      <p>{{ advancedCopy.body }}</p>
+      <div class="readiness-grid">
+        <article v-for="item in advancedCopy.items" :key="item.title" class="readiness-card">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.body }}</p>
+          <dl class="readiness-list">
+            <div>
+              <dt>{{ advancedCopy.currentLabel }}</dt>
+              <dd>{{ item.current }}</dd>
+            </div>
+            <div>
+              <dt>{{ advancedCopy.dataLabel }}</dt>
+              <dd>{{ item.data }}</dd>
+            </div>
+            <div>
+              <dt>{{ advancedCopy.gateLabel }}</dt>
+              <dd>{{ item.gate }}</dd>
+            </div>
+          </dl>
+        </article>
+      </div>
     </section>
 
     <LegalFooter :locale="locale" />

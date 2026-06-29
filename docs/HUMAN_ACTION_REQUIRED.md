@@ -28,6 +28,7 @@ Data-base: 2026-06-29
 | CalcHarbor temas financeiros regulados | Calculadoras fiscais, juridicas, de credito/underwriting, investimento personalizado, imposto por jurisdicao ou conselho financeiro exigem revisao legal/editorial e metodologia aprovada | Antes de adicionar calculadoras ou claims regulados alem de planejamento generico com disclaimer |
 | InvoiceCraft fiscal/tax templates | Impostos, numeracao fiscal, campos obrigatorios e validade de documento dependem de jurisdicao e aceite juridico/fiscal | Antes de ativar nota/fatura fiscal oficial, calculo automatico de impostos, numeracao fiscal, pagamentos ou recorrencia |
 | MailHealth DNSBL/provider policy | Uso de DNSBLs, reputacao, limites comerciais e termos de provedores exigem revisao juridica/comercial antes de operar volume, lote, API ou white-label | Antes de ativar monitoramento pago, relatorios recorrentes, lote, API publica paga ou verificacoes DNSBL amplas |
+| PixelBatch/DocShift file AI/OCR/upload providers | Background removal, OCR, table extraction, Office conversion, large file queues, upload API, provider SDKs and account-backed file storage require provider terms, cost approval, legal/privacy review, retention/deletion policy, sandbox/antivirus strategy and billing entitlement gates | Before activating any server-side file upload, AI/OCR provider, conversion provider, batch queue, paid file API or persistent file history |
 
 ## Resolvido em 2026-06-26
 

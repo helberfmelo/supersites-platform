@@ -2,6 +2,7 @@
 import { limitSeoText, SEO_DESCRIPTION_MAX_LENGTH, SEO_TITLE_MAX_LENGTH } from '@supersites/seo'
 import { getStatusBadgeClass } from '@supersites/ui'
 import { computed, ref } from 'vue'
+import { getDocShiftAdvancedWorkflowCopy } from '../data/advancedWorkflows'
 import { getHomeCopy } from '../data/copy'
 import { localizedHomePath, localizedToolPath, toHtmlLang, type LocaleCode } from '../data/locales'
 import { absoluteUrl, localeAlternates } from '../data/routes'
@@ -19,6 +20,7 @@ const props = defineProps<{
 }>()
 
 const copy = computed(() => getHomeCopy(props.locale))
+const advancedCopy = computed(() => getDocShiftAdvancedWorkflowCopy(props.locale))
 const searchQuery = ref('')
 const selectedCategory = ref<DocShiftToolCategory | 'all'>('all')
 const filteredTools = computed(() => filterDocShiftTools(searchQuery.value, selectedCategory.value, props.locale))
@@ -172,6 +174,31 @@ useHead(() => ({
           <h3>{{ principle.title }}</h3>
           <p>{{ principle.body }}</p>
         </div>
+      </div>
+    </section>
+
+    <section class="band advanced-workflow-band" aria-labelledby="docshift-advanced-title">
+      <h2 id="docshift-advanced-title">{{ advancedCopy.title }}</h2>
+      <p>{{ advancedCopy.body }}</p>
+      <div class="readiness-grid">
+        <article v-for="item in advancedCopy.items" :key="item.title" class="readiness-card">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.body }}</p>
+          <dl class="readiness-list">
+            <div>
+              <dt>{{ advancedCopy.currentLabel }}</dt>
+              <dd>{{ item.current }}</dd>
+            </div>
+            <div>
+              <dt>{{ advancedCopy.dataLabel }}</dt>
+              <dd>{{ item.data }}</dd>
+            </div>
+            <div>
+              <dt>{{ advancedCopy.gateLabel }}</dt>
+              <dd>{{ item.gate }}</dd>
+            </div>
+          </dl>
+        </article>
       </div>
     </section>
 

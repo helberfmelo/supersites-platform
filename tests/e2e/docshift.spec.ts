@@ -39,6 +39,8 @@ test.describe('DocShift MVP', () => {
     await expect(page.getByRole('heading', { name: 'Text to PDF' })).toBeVisible()
     await expect(page.getByText('No server upload backend active')).toBeVisible()
     await expect(page.getByText('Local free version', { exact: true })).toHaveCount(8)
+    await expect(page.getByRole('heading', { name: 'Advanced document workflow review' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'OCR and table extraction' })).toBeVisible()
 
     const screenshot = await page.screenshot({ fullPage: true })
     await testInfo.attach('docshift-home-desktop', { body: screenshot, contentType: 'image/png' })
@@ -61,6 +63,7 @@ test.describe('DocShift MVP', () => {
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Text to PDF')
     await expect(page.getByTitle('Processed PDF preview')).toBeVisible()
     await expect(page.getByText('Actual output')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Advanced document workflow review' })).toBeVisible()
 
     await expectNoBrowserStorage(page)
 

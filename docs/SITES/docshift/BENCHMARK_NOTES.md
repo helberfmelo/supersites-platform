@@ -48,3 +48,9 @@ Data-base: 2026-06-27
 - Tool pages now reuse the same workbench while preserving SEO guide, FAQ, schema and localized legal/trust links.
 - The implementation follows the benchmark learning from PDF suites without copying competitor layout, icons, pricing, copy, screenshots or legal claims.
 - Server-side upload, OCR, batch, API, billing, ads, document history, accounts and external analytics remain inactive.
+
+## Sprint 13.5 outcome
+
+- Converted OCR, Office conversion and batch/API ambition into an explicit data/readiness matrix instead of enabling uploads.
+- Public pages now state the current browser-side free path, data touched if enabled and required gates for each advanced document workflow.
+- Added the operational file provider matrix runbook so future OCR, conversion, upload queues and API work must pass privacy, retention, sandbox/antivirus, billing and legal/provider gates first.
