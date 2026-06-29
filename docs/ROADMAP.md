@@ -480,7 +480,7 @@ As fases futuras completas estao descritas em `docs/SPRINTS/POST_BENCHMARK_OPERA
 - Fase 11 - Operational Hardening: concluida em 2026-06-29, cobrindo branch protection, root mapping dry-run, retencao HostGator, VPS backup/restore e runbooks de uptime.
 - Fase 12 - Real Measurement Readiness: concluida em 2026-06-29, cobrindo Lighthouse/LHCI, auditoria admin autenticada, readiness Google e relatorios executivos com evidencias internas/public watchdog.
 - Fase 13 - Product Depth and SEO/AIO Expansion: concluida em 2026-06-29; CalcHarbor, TimeNexus, MailHealth, SitePulse e PixelBatch/DocShift receberam profundidade util/local-first sem conteudo em massa ou provider externo.
-- Fase 14 - Paid Upgrade Foundations: iniciada em 2026-06-29; auth/contas concluida na Sprint 14.1, entitlements/quotas concluidos em main na Sprint 14.2, webhook dry-run concluido em main na Sprint 14.3, preview autenticado de monitores concluido em main na Sprint 14.4 sem cobranca real.
+- Fase 14 - Paid Upgrade Foundations: concluida em main em 2026-06-29; auth/contas, entitlements/quotas, webhook dry-run e preview autenticado de monitores foram entregues sem cobranca real, checkout, provider externo ou secrets reais.
 - Fase 15 - Provider and Monetization Go-Live: AdSense, Google providers, billing, doacoes e afiliados apenas apos gates humanos.
 - Fase 16 - Continuous Growth Loop: ingestao real, priorizacao, automacoes via PR e relatorios executivos recorrentes.
 
@@ -596,7 +596,7 @@ Sprint 13.5 - PixelBatch/DocShift provider planning
 
 ## Fase 14 - Paid Upgrade Foundations
 
-Status geral: iniciada em 2026-06-29. A fase prepara contas, entitlements, quotas, webhook dry-run e monitores preview sem ativar cobranca, checkout, provider externo, secrets reais, signup publico ou exclusao automatica.
+Status geral: concluida em main em 2026-06-29. A fase preparou contas, entitlements, quotas, webhook dry-run e monitores preview sem ativar cobranca, checkout, provider externo, secrets reais, signup publico ou exclusao automatica.
 
 Sprint 14.1 - Paid auth and account controls
 - Simbolico: PAID-AUTH-ACCOUNTS.
@@ -625,6 +625,14 @@ Sprint 14.4 - Paid monitor previews
 - Escopo: config de `monitor_previews`, service `PaidMonitorPreviewService`, endpoints `GET/POST /api/v1/monitoring/previews`, entitlements `monitor-types` para NetProbe/MailHealth/SitePulse, auditoria com hash do target, ADR `0035` e runbook `PAID_MONITOR_PREVIEW`.
 - Validacao: `PaidMonitorPreviewTest`, `php artisan test`, `composer validate --strict`, `test:packages`, `typecheck:packages`, `measure:admin-audit`, build de artifact do control-plane, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate/Deploy Dry Run e smokes publicos apos push.
 - Status: concluida em main, sem deploy real. Validacoes locais passaram com 62 testes Laravel/597 assertions, audit admin autenticado `2026-06-29T09-02-00Z` em 9 paginas e artifact control-plane validado com 7144 arquivos. Feature commit `f05dea4`, Quality Gate `28360961942`, Deploy Dry Run `28360961952` e smokes publicos de Hub/control-plane/NetProbe passaram. Monitores pagos reais, worker recorrente, alertas reais e uso medido comercial foram registrados como `HUMAN_ACTION_REQUIRED`. Nenhum monitor persistente de MailHealth/SitePulse, worker recorrente, alerta real, status page, DMARC recorrente, checkout, cobranca, provider SDK, invoice, uso medido comercial, worker/cron novo, anuncio real, doacao, afiliado ou provider externo foi ativado.
+
+Fechamento da Fase 14
+- Commits tecnicos: `da54701`, `26516c8`, `2bb673d`, `f05dea4`.
+- Quality Gates tecnicos: `28358191311`, `28359248342`, `28360245701`, `28360961942`.
+- Deploy Dry Runs tecnicos: `28358191342`, `28359248307`, `28360245696`, `28360961952`.
+- Commits documentais: `8f912d5`, `518cb1d`, `c3c5e17`, `722e9ac`; ultimo Quality Gate docs-only `28361154713`.
+- Smokes publicos de Hub/control-plane/NetProbe passaram apos cada sprint tecnica, sem deploy real novo.
+- Proximas fases devem manter AdSense, billing provider, checkout, webhooks reais, workers recorrentes pagos, alertas reais e monitores persistentes de MailHealth/SitePulse bloqueados ate os gates humanos/operacionais.
 
 ## Definition of done do programa
 

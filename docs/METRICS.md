@@ -1075,6 +1075,14 @@ Data-base: 2026-06-29
 | Sprint 14.4 runbook | `docs/RUNBOOKS/PAID_MONITOR_PREVIEW.md` |
 | Sprint 14.4 human gates recorded | Real paid monitors, workers, alerting and metered usage remain in `docs/HUMAN_ACTION_REQUIRED.md` |
 | Sprint 14.4 monetization/provider activation | 0 persistent MailHealth/SitePulse monitors, recurring workers, real alerts, paid history, status pages, recurring DMARC, metered commercial usage, checkout, billing provider, SDK, real webhook, ads, donation, affiliate, external analytics, worker or cron activations |
+| Phase 14 status | Completed in main on 2026-06-29 |
+| Phase 14 technical commits | `da54701`, `26516c8`, `2bb673d`, `f05dea4` |
+| Phase 14 docs-close commits | `8f912d5`, `518cb1d`, `c3c5e17`, `722e9ac` |
+| Phase 14 technical Quality Gates | `28358191311`, `28359248342`, `28360245701`, `28360961942` passed |
+| Phase 14 technical Deploy Dry Runs | `28358191342`, `28359248307`, `28360245696`, `28360961952` passed |
+| Phase 14 latest docs-only Quality Gate | `28361154713` passed |
+| Phase 14 public smoke posture | Hub, control-plane and NetProbe public smokes passed after each technical sprint; public baseline remained existing production, no real deploy triggered |
+| Phase 14 provider/monetization activation | 0 public signup, checkout, paid plans, charges, provider SDKs, real webhooks, real secrets, invoices, taxes, refunds, dunning, customer portal, real ads, donations, affiliates, external analytics, new recurring workers or external provider activations |
 
 ## Product metrics
 
