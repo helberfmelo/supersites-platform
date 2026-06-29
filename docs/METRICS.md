@@ -1235,6 +1235,27 @@ Data-base: 2026-06-29
 | Sprint 17.1 public smokes | Passed: Hub/control-plane/NetProbe and AdSense-safe public |
 | Sprint 17.1 real deploy activation | 0 |
 
+## Public Watchdog incident metrics
+
+| Metric | Value |
+|---|---:|
+| Failed scheduled Public Watchdog | `28372846327` failed on 2026-06-29 |
+| Failing step | `Public SuperSites smoke` |
+| Failing symptom | Single HTTP 500 from `scripts/smoke-supersite-public.ps1:24` |
+| Incident classification | Transient public smoke/agendamento failure; production retests passed |
+| Hardening commit | `91da6c1` |
+| Public smoke retry policy | 3 max attempts; 3 second delay; retries transport failures and HTTP `408`/`429`/`500`/`502`/`503`/`504` |
+| Local Hub/API smoke | Passed after hardening |
+| Local control-plane smoke | Passed after hardening |
+| Local NetProbe smoke | Passed after hardening |
+| Local AdSense-safe public gate | Passed in 13 pages |
+| Local quick crawler | `2026-06-29T14-23-06-325Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Local governance gates | Passed: structure, secrets, deploy dry-run, ci:changes and diff check |
+| Remote Quality Gate for hardening | `28379417007` passed |
+| Remote Deploy Dry Run for hardening | `28379416758` passed |
+| Manual Public Watchdog retest | `28379669654` passed; job `84078561656` |
+| Real deploy/provider activation | 0 deploys, ads, billing, checkout, workers, crons, providers, DNS/root mapping or irreversible actions |
+
 ## Product metrics
 
 No product traffic, revenue, AdSense, billing or tool usage metrics exist yet.

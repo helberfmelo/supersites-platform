@@ -100,6 +100,8 @@ Com a Sprint 16.4, a Fase 16 `Continuous Growth Loop` foi concluida em main em 2
 
 Em 2026-06-29, a Fase 17 `Governed Readiness Consolidation` foi aberta e concluida porque o roadmap pos-benchmark encerrava na Fase 16. A Sprint 17.1 `OPS-PROVIDER-GROWTH-SMOKE` criou um smoke local unico para validar que os oito endpoints autenticados de readiness das Fases 15 e 16 continuam fail-closed em conjunto: AdSense, Google providers, billing, suporte monetizado, ingestao de growth, prioridades, automacao e reporting. O comando `pnpm ops:provider-growth-readiness-smoke` passou pre-commit no run `2026-06-29T11-46-41Z` e pos-CI no run `2026-06-29T11-52-48Z`, ambos com 1 teste/80 assertions. Feature commit `6d5d151`, Quality Gate `28369796751`, Deploy Dry Run `28369796640` e smokes publicos finais passaram. Nenhum provider externo, tag, anuncio, `ads.txt`, checkout, webhook real, doacao, afiliado, worker/cron, branch/PR automatico, report enviado, deploy real ou acao irreversivel foi ativado.
 
+Ainda em 2026-06-29, o `Public Watchdog` agendado run `28372846327` falhou no smoke publico do Hub com um unico HTTP 500 em `scripts/smoke-supersite-public.ps1:24`. A producao passou no reteste local e no watchdog manual, entao o incidente foi tratado como falha transitoria de smoke publico/agendamento, nao como deploy mutante. O commit `91da6c1` endureceu `scripts/smoke-supersite-public.ps1` com retry limitado para HTTP/transport transitorios (`408`, `429`, `500`, `502`, `503`, `504`) e reaproveitou o mesmo caminho para os smokes JSON das APIs MailHealth/SitePulse. Validacoes locais passaram, incluindo `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public`, `pnpm validate:adsense-safe-public` em 13 paginas, crawler quick `2026-06-29T14-23-06-325Z` com 95 rotas/190 checks/0 gaps, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes` e `git diff --check`. O commit passou Quality Gate `28379417007`, Deploy Dry Run `28379416758` e o `Public Watchdog` manual run `28379669654`/job `84078561656`. Nenhum deploy real, provider externo, anuncio, billing, checkout, worker/cron, DNS/root mapping ou acao irreversivel foi ativado.
+
 ## Estado local verificado
 
 - Raiz local: `D:\Projetos\supersites`.
@@ -1549,6 +1551,16 @@ Em 2026-06-29, a Fase 17 `Governed Readiness Consolidation` foi aberta e conclui
   - Smokes publicos finais passaram: `pnpm deploy:smoke-supersite-public` validou Hub `BNDSn3oU.js`, dez apps e APIs MailHealth/SitePulse; `pnpm deploy:smoke-control-plane-public` passou; `pnpm deploy:smoke-netprobe-public` validou NetProbe `xQOMqDWZ.js`; `pnpm validate:adsense-safe-public` passou em 13 paginas.
   - Smoke consolidado final pos-CI passou com run `2026-06-29T11-52-48Z`, 1 teste/80 assertions, 8 endpoints cobertos, producao mutada `false`, workers/crons `false`, providers externos `false` e payloads provider armazenados `false`.
   - Esta sprint nao ativou provider externo, tag GA4/GTM, Search Console import, anuncio real, `ads.txt`, checkout, billing real, webhook real, doacao, afiliado, worker/cron, branch/PR automatico, auto-merge, report enviado, deploy real, DNS/root mapping ou acao irreversivel.
+
+## Incidente operacional - Public Watchdog 2026-06-29
+
+- Origem: run agendado `Public Watchdog` `28372846327`, evento `schedule`, commit `7ab92b7`, criado em `2026-06-29T12:43:12Z`.
+- Sintoma: job `Public smoke and benchmark crawl` falhou no passo `Public SuperSites smoke`; `Invoke-WebRequest` retornou HTTP `500 Internal Server Error` em `scripts/smoke-supersite-public.ps1:24`.
+- Diagnostico: retestes locais publicos passaram em seguida, classificando o evento como falha transitoria de smoke publico/agendamento. Nao houve evidencia de deploy real novo, alteracao de producao ou falha persistente da superficie publica.
+- Correcao tecnica: commit `91da6c1` (`ops: harden public watchdog smoke`) adicionou `MaxAttempts`, `RetryDelaySec` e retry limitado para falhas HTTP/transport transitorias em `scripts/smoke-supersite-public.ps1`; o mesmo invocador passou a cobrir os smokes JSON das APIs MailHealth/SitePulse.
+- Validacao local: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public`, `pnpm validate:adsense-safe-public`, `pnpm benchmark:crawl:quick`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes` e `git diff --check` passaram. O crawler quick `2026-06-29T14-23-06-325Z` registrou 95 rotas, 190 checks e 0 gaps.
+- Validacao remota: Quality Gate `28379417007` passou; Deploy Dry Run `28379416758` passou; `Public Watchdog` manual `28379669654` passou em modo quick no commit `91da6c1`, job `84078561656`.
+- Escopo negativo: nenhum deploy real, rollback, provider externo, tag GA4/GTM, AdSense, `ads.txt`, checkout, billing, doacao, afiliado, worker/cron, DNS/root mapping, secret novo ou acao irreversivel foi ativado.
 
 ## Bloqueios humanos registrados
 

@@ -715,6 +715,12 @@ Sprint 17.1 - Provider/Growth readiness smoke
 - Validacao: teste focado, `php artisan test`, `composer validate --strict`, `test:packages`, `typecheck:packages`, `measure:admin-audit`, build de artifact do control-plane, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `validate:adsense-safe-public`, Quality Gate/Deploy Dry Run e smokes publicos apos push.
 - Status: concluida em main. Validacao local passou com smoke `2026-06-29T11-46-41Z` e smoke final `2026-06-29T11-52-48Z`, ambos com 1 teste/80 assertions; `php artisan test` passou com 95 testes/1043 assertions; `composer validate --strict`, `test:packages`, `typecheck:packages`, admin audit `2026-06-29T11-47-16Z`, artifact control-plane, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` e `validate:adsense-safe-public` passaram. Feature commit `6d5d151`, Quality Gate `28369796751`, Deploy Dry Run `28369796640` e smokes publicos finais passaram. Nenhum provider externo, tag, anuncio, `ads.txt`, checkout, webhook real, doacao, afiliado, worker/cron, branch/PR automatico, report enviado, deploy real ou acao irreversivel foi ativado por esta fase.
 
+Operacao pos-Fase 17 - Public Watchdog transient 500 hardening
+- Objetivo: fechar o erro do `Public Watchdog` agendado `28372846327`, que falhou em `Public SuperSites smoke` com HTTP 500 unico, sem transformar o incidente em uma nova fase de produto.
+- Escopo: endurecer `scripts/smoke-supersite-public.ps1` com retry limitado para falhas HTTP/transport transitorias e registrar a evidencia operacional em status/metricas/runbooks.
+- Validacao: smokes publicos Hub/API, control-plane e NetProbe; `validate:adsense-safe-public`; crawler quick; `validate:structure`; `validate:secrets`; `deploy:dry-run`; `ci:changes`; `git diff --check`; Quality Gate; Deploy Dry Run; reteste manual do `Public Watchdog`.
+- Status: concluida. Commit `91da6c1` passou Quality Gate `28379417007`, Deploy Dry Run `28379416758` e `Public Watchdog` manual `28379669654`/job `84078561656`; crawler quick `2026-06-29T14-23-06-325Z` registrou 95 rotas, 190 checks e 0 gaps. Nenhum deploy real, provider externo, anuncio, billing, checkout, worker/cron, DNS/root mapping ou acao irreversivel foi ativado.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.
