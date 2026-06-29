@@ -12,7 +12,7 @@ Automation scripts. Scripts must not contain real credentials.
 - `build-supersite-hostgator-artifact.ps1`: builds the Nuxt catalog with `/supersites/` as `NUXT_APP_BASE_URL` and validates the static artifact for HostGator.
 - `validate-supersite-static-artifact.ps1`: checks the generated static catalog for subdirectory-safe assets, required pages, sitemap entries and forbidden ads/analytics markers.
 - `publish-supersite-hostgator.ps1`: publishes the static catalog to a versioned HostGator release, switches the managed `.htaccess`, and supports rollback.
-- `smoke-supersite-public.ps1`: validates the public HostGator catalog, Nuxt assets, localized pages and preserved site placeholders.
+- `smoke-supersite-public.ps1`: validates the public HostGator catalog, Nuxt assets, localized pages and preserved site placeholders, with bounded retries for transient public HTTP failures before it reports a real outage.
 - `static-app-hostgator.config.ps1`: app ids, package names, API URLs and smoke markers for generic static app deploys.
 - `build-static-app-hostgator-artifact.ps1`: builds any supported non-NetProbe Nuxt SSG app with `/supersites/<app>/` as `NUXT_APP_BASE_URL` and validates the artifact.
 - `validate-static-app-artifact.ps1`: checks generic static app artifacts for required pages, sitemap, base-path assets, noindex, forbidden ads/analytics markers, sensitive file names and public API URLs where applicable.

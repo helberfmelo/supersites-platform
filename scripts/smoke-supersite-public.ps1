@@ -1,10 +1,16 @@
 param(
     [string]$PublicBaseUrl = "https://opentshost.com/supersites",
     [string]$RootUrl = "",
-    [int]$TimeoutSec = 30
+    [int]$TimeoutSec = 30,
+    [int]$MaxAttempts = 3,
+    [int]$RetryDelaySec = 3
 )
 
 $ErrorActionPreference = "Stop"
+
+if ($MaxAttempts -lt 1) {
+    throw "MaxAttempts must be at least 1."
+}
 
 function Join-Url {
     param(
@@ -18,11 +24,60 @@ function Join-Url {
 function Invoke-SmokeRequest {
     param(
         [string]$Url,
-        [string]$RequiredContent = ""
+        [string]$RequiredContent = "",
+        [string]$Method = "Get",
+        [string]$ContentType = "",
+        [string]$Body = "",
+        [hashtable]$Headers = @{}
     )
 
-    $response = Invoke-WebRequest -Uri $Url -UseBasicParsing -TimeoutSec $TimeoutSec -Headers @{
+    $requestHeaders = @{
         "User-Agent" = "SuperSitesSmoke/1.0"
+    }
+
+    foreach ($headerName in $Headers.Keys) {
+        $requestHeaders[$headerName] = $Headers[$headerName]
+    }
+
+    $transientStatusCodes = @(408, 429, 500, 502, 503, 504)
+
+    for ($attempt = 1; $attempt -le $MaxAttempts; $attempt++) {
+        try {
+            $request = @{
+                Uri = $Url
+                UseBasicParsing = $true
+                TimeoutSec = $TimeoutSec
+                Headers = $requestHeaders
+                Method = $Method
+            }
+
+            if ($ContentType) {
+                $request["ContentType"] = $ContentType
+            }
+
+            if ($Body) {
+                $request["Body"] = $Body
+            }
+
+            $response = Invoke-WebRequest @request
+            break
+        } catch {
+            $statusCode = $null
+            if ($_.Exception.Response -and $_.Exception.Response.StatusCode) {
+                $statusCode = [int]$_.Exception.Response.StatusCode
+            }
+
+            $isTransient = ($null -eq $statusCode) -or ($transientStatusCodes -contains $statusCode)
+            if ($attempt -lt $MaxAttempts -and $isTransient) {
+                $delay = [Math]::Min($RetryDelaySec * $attempt, 15)
+                $label = if ($statusCode) { "HTTP $statusCode" } else { $_.Exception.Message }
+                Write-Warning "Transient public smoke request failure for ${Url} on attempt ${attempt}/${MaxAttempts}: ${label}. Retrying in ${delay}s."
+                Start-Sleep -Seconds $delay
+                continue
+            }
+
+            throw
+        }
     }
 
     if ($response.StatusCode -ne 200) {
@@ -91,8 +146,7 @@ function Invoke-JsonApiSmoke {
     )
 
     $apiUrl = Join-Url $publicBase $Path
-    $response = Invoke-WebRequest -Uri $apiUrl -UseBasicParsing -TimeoutSec $TimeoutSec -Headers @{
-        "User-Agent" = "SuperSitesSmoke/1.0"
+    $response = Invoke-SmokeRequest -Url $apiUrl -Headers @{
         "Accept" = "application/json"
     } -Method Post -ContentType "application/json" -Body $Body
 

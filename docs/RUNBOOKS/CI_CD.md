@@ -60,6 +60,8 @@ Actions:
 - runs `scripts/benchmark-crawl.mjs` in `quick` mode by default, or `full` when selected manually;
 - uploads crawler and AdSense-safe artifacts best-effort.
 
+The public SuperSites smoke retries transient public HTTP failures (`408`, `429`, `500`, `502`, `503` and `504`) with short bounded backoff before failing. Persistent failures still fail the watchdog.
+
 The watchdog does not log in, publish, deploy, delete, start workers, call provider APIs, request ads, create checkout sessions, activate donations, or mutate production state. It is an operational visibility gate for the public transitional URLs under `/supersites/...`.
 
 ### Uptime/Incident Readiness Smoke
