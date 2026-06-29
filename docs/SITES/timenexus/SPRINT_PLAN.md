@@ -43,3 +43,12 @@ Data-base: 2026-06-28
 - No persistent history/presets.
 - No analytics values from user dates, zones or results.
 - No mass city/timezone pages; only three curated group pages were added to avoid thin content.
+
+## Sprint 13.2 product depth
+
+- Status: concluded locally, pending remote CI/public-smoke closure.
+- Added 8 curated city/timezone pages: `new-york`, `sao-paulo`, `london`, `berlin`, `san-francisco`, `tokyo`, `singapore` and `sydney`.
+- Added 40 localized city page variants across EN/PT-BR/ES/FR/DE, with canonical, hreflang, sitemap inclusion, `WebPage`/`Place` JSON-LD, visible business-day timeline and 09:00 local overlap snapshot.
+- Added the `Curated city clocks` home section so city pages are internally linked instead of sitemap-only.
+- Validation passed locally: `pnpm test:timenexus` (11 tests), `pnpm build:timenexus` (137 configured prerender routes / 273 generated artifacts including payloads), `pnpm validate:timenexus-preview` (asset `/_nuxt/AoDGD3Ez.js`), `pnpm test:e2e:timenexus`, `pnpm validate:public-copy` (951 HTML files), `pnpm validate:adsense-safe-public`, structure/secrets/deploy-dry-run/ci/diff gates.
+- No all-IANA timezone generation, external calendar provider, public widget/API, saved history, persistent storage, worker, cron, checkout, billing, ads, donation, affiliate or external analytics was activated.

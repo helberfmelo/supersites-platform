@@ -1,8 +1,10 @@
 import { absoluteUrl as buildAbsoluteUrl, createSitemapXml } from '@supersites/seo'
+import { cityTimePageCatalog } from './cityPages'
 import { contentPageCatalog } from './pages'
 import { plannerPageCatalog } from './plannerPages'
 import { timeToolCatalog } from './tools'
 import {
+  localizedCityTimePath,
   localizedContentPath,
   localizedHomePath,
   localizedToolPath,
@@ -20,6 +22,7 @@ export const contentPrerenderRoutes = [
     localizedHomePath(locale),
     ...timeToolCatalog.map((tool) => localizedToolPath(locale, tool.slug)),
     ...plannerPageCatalog.map((page) => localizedWorldClockPath(locale, page.slug)),
+    ...cityTimePageCatalog.map((page) => localizedCityTimePath(locale, page.slug)),
     ...contentPageCatalog.map((page) => localizedContentPath(locale, page.slug)),
   ]),
 ]

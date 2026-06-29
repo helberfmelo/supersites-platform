@@ -14,6 +14,9 @@ export interface HomeCopy {
   upgradeLabel: string
   detailCta: string
   localBadgeLabel: string
+  citySectionTitle: string
+  citySectionBody: string
+  cityCtaLabel: string
   principlesTitle: string
   principles: Array<{ title: string; body: string }>
   statusRows: Array<{ title: string; body: string; tone: 'green' | 'amber' }>
@@ -102,6 +105,9 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     upgradeLabel: 'Upgrade path',
     detailCta: 'Open tool',
     localBadgeLabel: 'Browser-side',
+    citySectionTitle: 'Curated city clocks',
+    citySectionBody: 'Start with a reviewed city page, then open the planner for the same IANA time zone and related collaboration hubs.',
+    cityCtaLabel: 'Open city guide',
     principlesTitle: 'Operating principles',
     principles: [
       { title: 'Immediate answer', body: 'Each page starts with a working calculator or converter that solves the basic task for free.' },
@@ -128,6 +134,9 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     upgradeLabel: 'Caminho de upgrade',
     detailCta: 'Abrir ferramenta',
     localBadgeLabel: 'No navegador',
+    citySectionTitle: 'Relogios de cidade curados',
+    citySectionBody: 'Comece por uma pagina revisada de cidade, depois abra o planejador com o mesmo fuso IANA e hubs relacionados.',
+    cityCtaLabel: 'Abrir guia da cidade',
     principlesTitle: 'Principios de operacao',
     principles: [
       { title: 'Resposta imediata', body: 'Cada pagina comeca com uma calculadora ou conversor funcional e gratuito.' },
@@ -154,6 +163,9 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     upgradeLabel: 'Ruta de upgrade',
     detailCta: 'Abrir herramienta',
     localBadgeLabel: 'En navegador',
+    citySectionTitle: 'Relojes de ciudad curados',
+    citySectionBody: 'Empieza con una pagina revisada de ciudad y abre el planificador con la misma zona IANA y hubs relacionados.',
+    cityCtaLabel: 'Abrir guia de ciudad',
     principlesTitle: 'Principios operativos',
     principles: [
       { title: 'Respuesta inmediata', body: 'Cada pagina inicia con una calculadora o conversor gratis y funcional.' },
@@ -180,6 +192,9 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     upgradeLabel: 'Offre payante',
     detailCta: 'Ouvrir',
     localBadgeLabel: 'Dans le navigateur',
+    citySectionTitle: 'Horloges de ville selectionnees',
+    citySectionBody: 'Commencez par une page ville relue, puis ouvrez le planificateur avec le meme fuseau IANA et les hubs lies.',
+    cityCtaLabel: 'Ouvrir le guide ville',
     principlesTitle: 'Principes operationnels',
     principles: [
       { title: 'Reponse immediate', body: 'Chaque page commence par un calculateur ou convertisseur gratuit et fonctionnel.' },
@@ -206,6 +221,9 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     upgradeLabel: 'Upgrade-Pfad',
     detailCta: 'Tool oeffnen',
     localBadgeLabel: 'Im Browser',
+    citySectionTitle: 'Kuratierte Stadtuhren',
+    citySectionBody: 'Starten Sie mit einer geprueften Stadtseite und oeffnen Sie dann den Planer mit derselben IANA-Zone und verbundenen Hubs.',
+    cityCtaLabel: 'Stadtguide oeffnen',
     principlesTitle: 'Betriebsprinzipien',
     principles: [
       { title: 'Sofortige Antwort', body: 'Jede Seite startet mit einem kostenlosen funktionierenden Rechner oder Konverter.' },

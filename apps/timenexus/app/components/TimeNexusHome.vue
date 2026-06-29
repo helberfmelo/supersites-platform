@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { getStatusBadgeClass } from '@supersites/ui'
 import { computed, ref } from 'vue'
+import { cityTimePageCatalog, getCityTimePageCopy } from '../data/cityPages'
 import { getHomeCopy } from '../data/copy'
-import { localizedHomePath, localizedToolPath, toHtmlLang, type LocaleCode } from '../data/locales'
+import { localizedCityTimePath, localizedHomePath, localizedToolPath, toHtmlLang, type LocaleCode } from '../data/locales'
 import { absoluteUrl, localeAlternates } from '../data/routes'
 import {
   filterTimeTools,
@@ -23,6 +24,10 @@ const selectedCategory = ref<TimeToolCategory | 'all'>('all')
 const filteredTools = computed(() => filterTimeTools(searchQuery.value, selectedCategory.value, props.locale))
 const canonicalPath = computed(() => (props.xDefault ? '/' : localizedHomePath(props.locale)))
 const categories = computed(() => Array.from(new Set(timeToolCatalog.map((tool) => tool.category))))
+const cityLinks = computed(() => cityTimePageCatalog.map((page) => ({
+  page,
+  copy: getCityTimePageCopy(page, props.locale),
+})))
 const homeJsonLd = computed(() => ({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
@@ -95,6 +100,28 @@ useHead(() => ({
     </section>
 
     <TimeNexusPlanner :locale="locale" />
+
+    <section class="band city-link-band" aria-labelledby="city-clocks-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="city-clocks-title">{{ copy.citySectionTitle }}</h2>
+          <p>{{ copy.citySectionBody }}</p>
+        </div>
+      </div>
+      <div class="city-link-grid">
+        <NuxtLink
+          v-for="item in cityLinks"
+          :key="item.page.slug"
+          class="city-card"
+          :to="localizedCityTimePath(locale, item.page.slug)"
+        >
+          <span>{{ item.copy.eyebrow }}</span>
+          <strong>{{ item.page.city }}</strong>
+          <small>{{ item.page.timeZone }}</small>
+          <em>{{ copy.cityCtaLabel }}</em>
+        </NuxtLink>
+      </div>
+    </section>
 
     <section class="controls" aria-label="Tool controls">
       <div class="field">

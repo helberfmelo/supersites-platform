@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import { publicLocaleCodes } from '../app/data/locales'
+import {
+  buildCityBusinessTimeline,
+  buildCityOverlapSnapshot,
+  cityTimePageCatalog,
+  getCityTimePageBySlug,
+  getCityTimePageCopy,
+} from '../app/data/cityPages'
 import { contentPageCatalog, contentPageSlugs, getContentPageBySlug } from '../app/data/pages'
 import { getPlannerPageBySlug, getPlannerPageCopy, plannerPageCatalog } from '../app/data/plannerPages'
 import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
@@ -20,6 +27,10 @@ import {
   zonedLocalDateTimeToUtc,
 } from '../app/data/tools'
 import { createTimeNexusToolEvent } from '../app/utils/analytics'
+
+function withoutDiacritics(value: string): string {
+  return value.normalize('NFD').replace(/\p{Diacritic}/gu, '')
+}
 
 describe('TimeNexus MVP', () => {
   it('lists browser tools in roadmap order', () => {
@@ -135,6 +146,46 @@ describe('TimeNexus MVP', () => {
     }
   })
 
+  it('keeps curated city time pages finite and useful', () => {
+    expect(cityTimePageCatalog.map((page) => page.slug)).toEqual([
+      'new-york',
+      'sao-paulo',
+      'london',
+      'berlin',
+      'san-francisco',
+      'tokyo',
+      'singapore',
+      'sydney',
+    ])
+    expect(new Set(cityTimePageCatalog.map((page) => page.timeZone)).size).toBe(8)
+    expect(getCityTimePageBySlug('missing')).toBeNull()
+
+    const tokyo = getCityTimePageBySlug('tokyo')
+    expect(tokyo).not.toBeNull()
+    expect(tokyo?.primaryGroup).toBe('global-product')
+
+    const timeline = buildCityBusinessTimeline(tokyo!, 'en')
+    expect(timeline).toHaveLength(4)
+    expect(timeline[1].localTime).toContain('09:00')
+    expect(timeline[1].utcTime).toBe('2026-06-26T00:00:00.000Z')
+
+    const overlap = buildCityOverlapSnapshot(tokyo!, 'en')
+    expect(overlap.map((zone) => zone.label)).toEqual(['Tokyo', 'San Francisco', 'London', 'Sydney'])
+    expect(overlap[0].businessStatus).toBe('business')
+
+    for (const page of cityTimePageCatalog) {
+      for (const locale of publicLocaleCodes) {
+        const copy = getCityTimePageCopy(page, locale)
+
+        expect(withoutDiacritics(copy.title)).toContain(page.city)
+        expect(copy.description.length).toBeGreaterThan(110)
+        expect(copy.sections).toHaveLength(4)
+        expect(copy.sections[0].paragraphs[0]).toContain(page.timeZone)
+        expect(copy.sections[2].paragraphs[0]).toContain(page.relatedZones[0].label)
+      }
+    }
+  })
+
   it('supports timestamp, age, percentage and unit helpers', async () => {
     const timestamp = await executeTimeTool('timestamp-converter', '1767225600', 'America/Sao_Paulo', 'auto')
     expect(timestamp.ok).toBe(true)
@@ -164,10 +215,17 @@ describe('TimeNexus MVP', () => {
     expect(contentPrerenderRoutes).toContain('/en')
     expect(contentPrerenderRoutes).toContain('/pt-br/tools/timestamp-converter')
     expect(contentPrerenderRoutes).toContain('/en/world-clock/global-product')
+    expect(contentPrerenderRoutes).toContain('/en/world-clock/cities/tokyo')
     expect(contentPrerenderRoutes).toContain('/de/tools/unit-converter')
     expect(contentPrerenderRoutes).toContain('/fr/privacy')
     expect(contentPrerenderRoutes).toHaveLength(
-      1 + publicLocaleCodes.length * (1 + timeToolCatalog.length + plannerPageCatalog.length + contentPageCatalog.length),
+      1 + publicLocaleCodes.length * (
+        1
+        + timeToolCatalog.length
+        + plannerPageCatalog.length
+        + cityTimePageCatalog.length
+        + contentPageCatalog.length
+      ),
     )
     expect(prerenderRoutes).toEqual([...contentPrerenderRoutes, '/sitemap.xml'])
   })

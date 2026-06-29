@@ -55,6 +55,10 @@ export function localizedWorldClockPath(locale: LocaleCode, slug: string): strin
   return localizedPath(locale, 'world-clock', slug)
 }
 
+export function localizedCityTimePath(locale: LocaleCode, slug: string): string {
+  return localizedPath(locale, 'world-clock', 'cities', slug)
+}
+
 export function localizedContentPath(locale: LocaleCode, slug: string): string {
   return localizedPath(locale, slug)
 }

@@ -201,7 +201,9 @@ Data-base: 2026-06-29
 | TimeNexus legal/editorial pages | 40 |
 | TimeNexus FAQ blocks | 35 |
 | TimeNexus structured data pages | 35 |
-| TimeNexus prerender content routes | 81 |
+| TimeNexus curated world-clock group pages | 15 localized variants |
+| TimeNexus curated city time pages | 40 localized variants |
+| TimeNexus prerender content routes | 136 |
 | TimeNexus sitemap routes | 1 |
 | TimeNexus preview smoke | Passed |
 | TimeNexus Playwright report | Passed |
@@ -943,6 +945,15 @@ Data-base: 2026-06-29
 | Sprint 13.1 production deploy activation | 0 real static app deploys triggered in this sprint; public smokes validate the existing production baseline |
 | Sprint 13.1 regulated calculator activation | 0 tax/legal/credit-underwriting/investment-advice calculators activated; human review remains required before regulated themes |
 | Sprint 13.1 monetization/provider activation | 0 checkout/billing/ads/donation/affiliate/external analytics/storage/API paid/worker/provider activations |
+| Sprint 13.2 TimeNexus city page scope | 8 curated city/timezone pages; 40 localized variants; no all-IANA or mass city generation |
+| Sprint 13.2 TimeNexus city slugs | `new-york`, `sao-paulo`, `london`, `berlin`, `san-francisco`, `tokyo`, `singapore`, `sydney` |
+| Sprint 13.2 TimeNexus route growth | TimeNexus content routes now 136; Nuxt prerender configured 137 routes including sitemap and generated 273 artifacts including payloads |
+| Sprint 13.2 local TimeNexus unit validation | `pnpm test:timenexus` passed; 11 tests |
+| Sprint 13.2 local TimeNexus frontend validation | `pnpm build:timenexus`, `pnpm validate:timenexus-preview` asset `/_nuxt/AoDGD3Ez.js`, `pnpm test:e2e:timenexus` passed; 3 Playwright tests |
+| Sprint 13.2 public copy gate | `pnpm validate:public-copy` passed; 951 HTML files |
+| Sprint 13.2 AdSense-safe gate | `pnpm validate:adsense-safe-public` passed; 13 public pages |
+| Sprint 13.2 local governance gates | Passed: `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` |
+| Sprint 13.2 mass page/provider activation | 0 all-timezone generation, external calendar, widget/API, saved history, checkout, billing, ads, donation, affiliate, external analytics, worker or cron activations |
 
 ## Product metrics
 

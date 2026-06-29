@@ -77,6 +77,11 @@ test.describe('TimeNexus MVP', () => {
     await expect(page.getByRole('heading', { name: 'Time Zone Converter' })).toBeVisible()
     await expect(page.getByText('7 browser tools')).toBeVisible()
     await expect(page.getByText('Browser-side').first()).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Curated city clocks' })).toBeVisible()
+    await expect(page.getByRole('link', { name: /Tokyo/ })).toHaveAttribute(
+      'href',
+      '/en/world-clock/cities/tokyo',
+    )
     await expectNoHorizontalOverflow(page)
 
     const homeState = await page.evaluate(() => ({
@@ -185,6 +190,21 @@ test.describe('TimeNexus MVP', () => {
     await expect(page.getByLabel('City group')).toHaveValue('global-product')
     await expect(page.locator('.zone-grid')).toContainText('Tokyo')
     await expect(page.getByRole('heading', { name: 'Cities and IANA zones covered' })).toBeVisible()
+    await expectNoHorizontalOverflow(page)
+
+    await page.goto('/en/world-clock/cities/tokyo')
+    await expect(page).toHaveTitle(/Tokyo time zone and meeting planner/)
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/timenexus/en/world-clock/cities/tokyo',
+    )
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Tokyo time zone and meeting planner')
+    await expect(page.getByText('Asia/Tokyo').first()).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Business-day timeline' })).toBeVisible()
+    await expect(page.locator('.city-timeline')).toContainText('09:00')
+    await expect(page.getByRole('heading', { name: '09:00 local overlap' })).toBeVisible()
+    await expect(page.locator('.city-overlap-grid')).toContainText('San Francisco')
+    await expect(page.getByLabel('City group')).toHaveValue('global-product')
     await expectNoHorizontalOverflow(page)
 
     const screenshot = await page.screenshot({ fullPage: true })

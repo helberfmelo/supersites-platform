@@ -569,7 +569,9 @@ Sprint 13.1 - CalcHarbor calculator depth
 Sprint 13.2 - TimeNexus curated city/timezone depth
 - Simbolico: DEPTH-TIMENEXUS.
 - Objetivo: adicionar paginas curadas de cidade/fuso e timeline visual sem geracao ilimitada.
-- Status: pendente.
+- Escopo: 8 paginas curadas de cidade/fuso em EN/PT-BR/ES/FR/DE, links internos na home, canonical/hreflang/sitemap, JSON-LD `WebPage`/`Place`, timeline de expediente e snapshot de sobreposicao sem iterar todos os fusos IANA.
+- Validacao: `pnpm test:timenexus`, `pnpm build:timenexus`, `pnpm validate:timenexus-preview`, `pnpm test:e2e:timenexus`, `validate:public-copy`, `validate:adsense-safe-public`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate/Deploy Dry Run e smokes publicos apos push.
+- Status: concluida localmente, aguardando fechamento remoto. Foram adicionadas 8 paginas curadas (`new-york`, `sao-paulo`, `london`, `berlin`, `san-francisco`, `tokyo`, `singapore`, `sydney`) em 5 idiomas, totalizando 40 variantes novas. A home ganhou `Curated city clocks`; o build passou com 137 rotas configuradas e 273 artefatos gerados incluindo payloads; `validate:public-copy` passou em 951 HTMLs. Nenhum deploy real de app estatico, geracao em massa de cidades/fusos, calendario externo, widget/API, historico salvo, storage persistente, worker/cron, checkout, billing, anuncio real, doacao, afiliado ou analytics externo foi ativado.
 
 Sprint 13.3 - MailHealth DNS builders and guides
 - Simbolico: DEPTH-MAILHEALTH.
