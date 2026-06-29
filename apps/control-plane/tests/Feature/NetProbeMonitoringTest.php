@@ -5,15 +5,19 @@ namespace Tests\Feature;
 use App\Jobs\RunNetProbeMonitorCheck;
 use App\Mail\NetProbeMonitorAlertMail;
 use App\Models\AuditLog;
+use App\Models\BillingEntitlement;
+use App\Models\BillingPlan;
 use App\Models\NetProbeAlert;
 use App\Models\NetProbeMonitor;
 use App\Models\Role;
+use App\Models\Site;
 use App\Models\User;
 use App\Support\NetProbe\NetProbeCertificateProbe;
 use App\Support\NetProbe\NetProbeDnsResolver;
 use App\Support\NetProbe\NetProbeRdapClient;
 use App\Support\NetProbe\Monitoring\NetProbeMonitorRunner;
 use Database\Seeders\AccessControlSeeder;
+use Database\Seeders\BillingReadinessSeeder;
 use Database\Seeders\PortfolioSiteSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
@@ -61,7 +65,9 @@ class NetProbeMonitoringTest extends TestCase
             ->assertJsonPath('data.target', 'example.com')
             ->assertJsonPath('data.settings.record_types.0', 'A')
             ->assertJsonPath('data.settings.alert_email', 'ops@example.com')
-            ->assertJsonPath('meta.queued_initial_check', true);
+            ->assertJsonPath('meta.queued_initial_check', true)
+            ->assertJsonPath('meta.quota_source', 'config_fallback')
+            ->assertJsonPath('meta.max_monitors', 3);
 
         $monitor = NetProbeMonitor::query()->firstOrFail();
 
@@ -79,9 +85,17 @@ class NetProbeMonitoringTest extends TestCase
 
     public function test_monitor_api_enforces_free_preview_quota(): void
     {
-        $this->seed([PortfolioSiteSeeder::class, AccessControlSeeder::class]);
+        $this->seed([PortfolioSiteSeeder::class, AccessControlSeeder::class, BillingReadinessSeeder::class]);
         Queue::fake();
-        config(['netprobe.quotas.free_preview.max_monitors' => 1]);
+        $site = Site::query()->where('slug', 'netprobe-atlas')->firstOrFail();
+        $plan = BillingPlan::query()
+            ->where('site_id', $site->id)
+            ->where('slug', 'free-preview')
+            ->firstOrFail();
+        BillingEntitlement::query()
+            ->where('billing_plan_id', $plan->id)
+            ->where('code', 'monitor-slots')
+            ->update(['integer_value' => 1]);
 
         $operator = User::factory()->create();
         $operator->roles()->attach(Role::query()->where('slug', 'operator')->value('id'), ['site_id' => null]);
@@ -91,7 +105,11 @@ class NetProbeMonitoringTest extends TestCase
                 'type' => 'ssl',
                 'target' => 'example.com',
             ])
-            ->assertCreated();
+            ->assertCreated()
+            ->assertJsonPath('meta.billing_plan', 'free-preview')
+            ->assertJsonPath('meta.quota_source', 'billing_entitlements')
+            ->assertJsonPath('meta.max_monitors', 1)
+            ->assertJsonPath('meta.remaining_monitors', 0);
 
         $this->actingAs($operator)
             ->postJson('/api/v1/netprobe/monitors', [
@@ -100,6 +118,36 @@ class NetProbeMonitoringTest extends TestCase
             ])
             ->assertUnprocessable()
             ->assertJsonValidationErrors('quota');
+    }
+
+    public function test_monitor_index_reports_entitlement_quota_metadata(): void
+    {
+        $this->seed([PortfolioSiteSeeder::class, AccessControlSeeder::class, BillingReadinessSeeder::class]);
+
+        $operator = User::factory()->create();
+        $operator->roles()->attach(Role::query()->where('slug', 'operator')->value('id'), ['site_id' => null]);
+
+        NetProbeMonitor::create([
+            'user_id' => $operator->id,
+            'type' => 'dns',
+            'target' => 'example.com',
+            'target_hash' => hash('sha256', 'example.com'),
+            'status' => NetProbeMonitor::STATUS_ACTIVE,
+            'quota_plan' => 'free_preview',
+            'frequency_minutes' => 60,
+            'last_status' => NetProbeMonitor::CHECK_UNKNOWN,
+            'next_run_at' => now(),
+        ]);
+
+        $this->actingAs($operator)
+            ->getJson('/api/v1/netprobe/monitors')
+            ->assertOk()
+            ->assertJsonPath('meta.count', 1)
+            ->assertJsonPath('meta.billing_plan', 'free-preview')
+            ->assertJsonPath('meta.quota_source', 'billing_entitlements')
+            ->assertJsonPath('meta.max_monitors', 3)
+            ->assertJsonPath('meta.remaining_monitors', 2)
+            ->assertJsonPath('meta.checkout_enabled', false);
     }
 
     public function test_dns_monitor_runner_records_history_and_queues_email_alert(): void

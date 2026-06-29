@@ -3,6 +3,7 @@ import {
   buildBillingPlan,
   decideBillingWebhook,
   normalizeBillingProvider,
+  resolveBillingQuota,
   resolveBillingProviderGate,
 } from '../src/index'
 
@@ -144,6 +145,72 @@ describe('billing foundation contracts', () => {
     })
 
     expect(plan.entitlements).toEqual({ scans: 1000 })
+  })
+
+  it('resolves quota decisions from numeric plan entitlements', () => {
+    const plan = buildBillingPlan({
+      slug: 'free-preview',
+      name: 'Free Preview',
+      siteSlug: 'netprobe-atlas',
+      entitlements: {
+        'monitor-slots': 3,
+      },
+    })
+
+    expect(resolveBillingQuota({
+      plan,
+      entitlementCode: 'monitor-slots',
+      used: 2,
+      fallbackLimit: 1,
+    })).toMatchObject({
+      allowed: true,
+      limit: 3,
+      remaining: 1,
+      source: 'plan_entitlement',
+      reasons: [],
+    })
+  })
+
+  it('fails closed when quota usage reaches the entitlement limit', () => {
+    const plan = buildBillingPlan({
+      slug: 'free-preview',
+      name: 'Free Preview',
+      siteSlug: 'netprobe-atlas',
+      entitlements: {
+        'monitor-slots': 1,
+      },
+    })
+
+    const decision = resolveBillingQuota({
+      plan,
+      entitlementCode: 'monitor-slots',
+      used: 1,
+      fallbackLimit: 3,
+    })
+
+    expect(decision.allowed).toBe(false)
+    expect(decision.reasons).toContain('quota_exhausted')
+  })
+
+  it('uses a bounded fallback when a quota entitlement is missing', () => {
+    const plan = buildBillingPlan({
+      slug: 'free-preview',
+      name: 'Free Preview',
+      siteSlug: 'mailhealth',
+      entitlements: {},
+    })
+
+    const decision = resolveBillingQuota({
+      plan,
+      entitlementCode: 'monitor-slots',
+      used: 0,
+      fallbackLimit: 2,
+    })
+
+    expect(decision.allowed).toBe(true)
+    expect(decision.limit).toBe(2)
+    expect(decision.source).toBe('fallback_limit')
+    expect(decision.reasons).toContain('entitlement_missing_uses_fallback_limit')
   })
 
   it('rejects unsigned webhook events', () => {

@@ -100,6 +100,20 @@ Isto nao ativa signup publico, checkout, assinatura, cobranca, entitlement pago,
 
 Antes de vender qualquer upgrade, ainda faltam entitlements/quotas por plano, termos finais, politica de privacidade/retencao/exclusao, processo de verificacao quando aplicavel, KYC, impostos, conta bancaria, perfil de pagamentos, secrets em cofre e smoke/rollback de billing.
 
+## Entitlement quota controls
+
+A Sprint 14.2 cria enforcement de quota por entitlement local, ainda sem cobranca real:
+
+- `monitor-slots` limita monitores para planos `free-preview` de NetProbe, MailHealth e SitePulse.
+- `monitor-types` limita tipos de monitor do NetProbe.
+- `PlanEntitlementResolver` consulta `billing_entitlements` e declara fallback configurado quando o seed local nao existe.
+- O endpoint de monitores NetProbe bloqueia criacao acima do limite antes de gravar dados.
+- O dashboard de billing exibe limites resumidos por plano local.
+
+Isto nao ativa plano pago, checkout, assinatura, provider price id, provider SDK, webhook real, uso medido comercial, invoice, refund, dunning, imposto automatico, portal de cliente ou secret novo.
+
+Antes de vender limites maiores, ainda faltam provider aprovado, KYC, impostos, termos/cancelamento/reembolso, secrets em cofre, assinatura de webhook, matriz de dados de uso medido, exportacao/exclusao e smoke/rollback especificos.
+
 ## AI growth monetization recommendations
 
 A Sprint 6.5 pode priorizar pendencias de monetizacao e billing readiness somente com evidencia, impacto, esforco, confianca e risco. O motor nao ativa checkout, payment link, webhook, SDK, provider config, impostos, plano pago, entitlement pago, receita, invoice, refund, dunning ou qualquer mutation em provedor.

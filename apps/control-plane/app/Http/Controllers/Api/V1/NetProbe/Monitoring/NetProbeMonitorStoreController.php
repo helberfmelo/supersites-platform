@@ -7,6 +7,7 @@ use App\Jobs\RunNetProbeMonitorCheck;
 use App\Models\AuditLog;
 use App\Models\NetProbeMonitor;
 use App\Models\Site;
+use App\Support\Billing\PlanEntitlementResolver;
 use App\Support\NetProbe\DnsLookupService;
 use App\Support\NetProbe\NetProbeHostGuard;
 use Illuminate\Http\JsonResponse;
@@ -16,7 +17,7 @@ use Illuminate\Validation\ValidationException;
 
 class NetProbeMonitorStoreController extends Controller
 {
-    public function __invoke(Request $request, NetProbeHostGuard $guard): JsonResponse
+    public function __invoke(Request $request, NetProbeHostGuard $guard, PlanEntitlementResolver $entitlements): JsonResponse
     {
         $validated = $request->validate([
             'type' => ['required', 'string', Rule::in(NetProbeMonitor::allowedTypes())],
@@ -37,11 +38,18 @@ class NetProbeMonitorStoreController extends Controller
             'settings.webhook_url' => ['sometimes', 'nullable', 'url', 'max:2048'],
         ]);
 
-        $this->assertQuotaAllowsMonitor($request);
+        $site = Site::query()->where('slug', 'netprobe-atlas')->first();
+        $quota = $entitlements->monitorQuota(
+            $site,
+            (int) config('netprobe.quotas.free_preview.max_monitors', 3),
+            config('netprobe.quotas.free_preview.allowed_types', NetProbeMonitor::allowedTypes()),
+        );
+
+        $this->assertTypeAllowedByQuota((string) $validated['type'], $quota);
+        $usage = $this->assertQuotaAllowsMonitor($request, $quota);
 
         $target = $guard->normalizeHostname($validated['target']);
         $settings = $this->sanitizeSettings($validated['settings'] ?? [], $validated['type']);
-        $site = Site::query()->where('slug', 'netprobe-atlas')->first();
         $frequency = (int) ($validated['frequency_minutes'] ?? config('netprobe.monitoring.default_frequency_minutes', 60));
 
         $monitor = NetProbeMonitor::create([
@@ -82,14 +90,22 @@ class NetProbeMonitorStoreController extends Controller
             'meta' => [
                 'queued_initial_check' => true,
                 'quota_plan' => $monitor->quota_plan,
-                'max_monitors' => (int) config('netprobe.quotas.free_preview.max_monitors', 3),
+                'billing_plan' => $quota['plan_slug'],
+                'quota_source' => $quota['source'],
+                'max_monitors' => $quota['max_monitors'],
+                'remaining_monitors' => max(0, ((int) $quota['max_monitors']) - $usage - 1),
+                'allowed_types' => $quota['allowed_types'],
+                'checkout_enabled' => $quota['checkout_enabled'],
             ],
         ], 201);
     }
 
-    private function assertQuotaAllowsMonitor(Request $request): void
+    /**
+     * @param array<string, mixed> $quota
+     */
+    private function assertQuotaAllowsMonitor(Request $request, array $quota): int
     {
-        $max = (int) config('netprobe.quotas.free_preview.max_monitors', 3);
+        $max = (int) $quota['max_monitors'];
         $count = NetProbeMonitor::query()
             ->where('user_id', $request->user()?->id)
             ->whereIn('status', [NetProbeMonitor::STATUS_ACTIVE, NetProbeMonitor::STATUS_PAUSED])
@@ -98,6 +114,22 @@ class NetProbeMonitorStoreController extends Controller
         if ($count >= $max) {
             throw ValidationException::withMessages([
                 'quota' => ['The free preview quota allows '.$max.' NetProbe monitors.'],
+            ]);
+        }
+
+        return $count;
+    }
+
+    /**
+     * @param array<string, mixed> $quota
+     */
+    private function assertTypeAllowedByQuota(string $type, array $quota): void
+    {
+        $allowedTypes = array_map('strtolower', $quota['allowed_types']);
+
+        if (!in_array(strtolower($type), $allowedTypes, true)) {
+            throw ValidationException::withMessages([
+                'type' => ['The current plan does not allow this monitor type.'],
             ]);
         }
     }

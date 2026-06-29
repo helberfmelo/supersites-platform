@@ -85,6 +85,24 @@ export interface BillingWebhookDecision {
   reasons: string[]
 }
 
+export interface BillingQuotaDecisionInput {
+  plan?: BillingPlan | null
+  entitlementCode: string
+  used: number
+  fallbackLimit: number
+}
+
+export interface BillingQuotaDecision {
+  contractVersion: string
+  allowed: boolean
+  entitlementCode: string
+  limit: number
+  used: number
+  remaining: number
+  source: 'plan_entitlement' | 'fallback_limit'
+  reasons: string[]
+}
+
 const safeSlugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 const safeIdentifierPattern = /^[A-Za-z0-9._:-]{3,120}$/
 const sensitiveEntitlementPattern =
@@ -259,6 +277,44 @@ export function decideBillingWebhook(input: BillingWebhookDecisionInput): Billin
     idempotencyKey: accepted && provider && eventId ? `${provider}:${eventId}` : null,
     processingStatus: accepted ? 'accepted' : 'rejected',
     reasons,
+  }
+}
+
+export function resolveBillingQuota(input: BillingQuotaDecisionInput): BillingQuotaDecision {
+  const entitlementCode = normalizeSlug(input.entitlementCode, '')
+  const fallbackLimit = clampInteger(input.fallbackLimit, 0, 0, 1_000_000)
+  const used = clampInteger(input.used, 0, 0, 1_000_000)
+  const entitlementValue = entitlementCode ? input.plan?.entitlements[entitlementCode] : undefined
+  const reasons: string[] = []
+  let source: BillingQuotaDecision['source'] = 'fallback_limit'
+  let limit = fallbackLimit
+
+  if (!entitlementCode) {
+    reasons.push('missing_entitlement_code')
+  }
+
+  if (typeof entitlementValue === 'number' && Number.isFinite(entitlementValue)) {
+    source = 'plan_entitlement'
+    limit = clampInteger(entitlementValue, fallbackLimit, 0, 1_000_000)
+  } else {
+    reasons.push('entitlement_missing_uses_fallback_limit')
+  }
+
+  const remaining = Math.max(0, limit - used)
+
+  if (used >= limit) {
+    reasons.push('quota_exhausted')
+  }
+
+  return {
+    contractVersion: billingContractVersion,
+    allowed: used < limit,
+    entitlementCode,
+    limit,
+    used,
+    remaining,
+    source,
+    reasons: Array.from(new Set(reasons)),
   }
 }
 

@@ -4,25 +4,38 @@ namespace App\Http\Controllers\Api\V1\NetProbe\Monitoring;
 
 use App\Http\Controllers\Controller;
 use App\Models\NetProbeMonitor;
+use App\Models\Site;
+use App\Support\Billing\PlanEntitlementResolver;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class NetProbeMonitorIndexController extends Controller
 {
-    public function __invoke(Request $request): JsonResponse
+    public function __invoke(Request $request, PlanEntitlementResolver $entitlements): JsonResponse
     {
         $monitors = NetProbeMonitor::query()
             ->with('latestCheck')
             ->where('user_id', $request->user()?->id)
             ->latest()
             ->get();
+        $site = Site::query()->where('slug', 'netprobe-atlas')->first();
+        $quota = $entitlements->monitorQuota(
+            $site,
+            (int) config('netprobe.quotas.free_preview.max_monitors', 3),
+            config('netprobe.quotas.free_preview.allowed_types', NetProbeMonitor::allowedTypes()),
+        );
 
         return response()->json([
             'data' => $monitors->map(fn (NetProbeMonitor $monitor): array => $this->serializeMonitor($monitor))->values(),
             'meta' => [
                 'count' => $monitors->count(),
                 'quota_plan' => 'free_preview',
-                'max_monitors' => (int) config('netprobe.quotas.free_preview.max_monitors', 3),
+                'billing_plan' => $quota['plan_slug'],
+                'quota_source' => $quota['source'],
+                'max_monitors' => $quota['max_monitors'],
+                'remaining_monitors' => max(0, ((int) $quota['max_monitors']) - $monitors->count()),
+                'allowed_types' => $quota['allowed_types'],
+                'checkout_enabled' => $quota['checkout_enabled'],
             ],
         ]);
     }

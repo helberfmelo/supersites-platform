@@ -39,6 +39,21 @@ class BillingReadinessSeeder extends Seeder
             ->where('kind', '!=', 'admin')
             ->orderBy('id')
             ->each(function (Site $site): void {
+                $entitlementsSummary = [
+                    'free_tier' => true,
+                    'monthly_operations' => 100,
+                    'retention_days' => 0,
+                    'team_seats' => 1,
+                ];
+
+                if (in_array($site->slug, ['netprobe-atlas', 'mailhealth', 'sitepulse-lab'], true)) {
+                    $entitlementsSummary['monitor_slots'] = 3;
+                }
+
+                if ($site->slug === 'netprobe-atlas') {
+                    $entitlementsSummary['monitor_types'] = ['dns', 'ssl', 'domain'];
+                }
+
                 $plan = BillingPlan::updateOrCreate(
                     [
                         'site_id' => $site->id,
@@ -54,12 +69,7 @@ class BillingReadinessSeeder extends Seeder
                         'provider_price_reference' => null,
                         'status' => 'draft',
                         'checkout_enabled' => false,
-                        'entitlements_summary' => [
-                            'free_tier' => true,
-                            'monthly_operations' => 100,
-                            'retention_days' => 0,
-                            'team_seats' => 1,
-                        ],
+                        'entitlements_summary' => $entitlementsSummary,
                         'notes' => 'Seeded readiness plan only; no paid checkout or provider mapping is active.',
                     ],
                 );
@@ -69,6 +79,14 @@ class BillingReadinessSeeder extends Seeder
                 $this->upsertEntitlement($plan, 'monthly-operations', 'integer', integerValue: 100);
                 $this->upsertEntitlement($plan, 'retention-days', 'integer', integerValue: 0);
                 $this->upsertEntitlement($plan, 'team-seats', 'integer', integerValue: 1);
+
+                if (in_array($site->slug, ['netprobe-atlas', 'mailhealth', 'sitepulse-lab'], true)) {
+                    $this->upsertEntitlement($plan, 'monitor-slots', 'integer', integerValue: 3);
+                }
+
+                if ($site->slug === 'netprobe-atlas') {
+                    $this->upsertEntitlement($plan, 'monitor-types', 'string', stringValue: 'dns,ssl,domain');
+                }
             });
     }
 

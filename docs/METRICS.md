@@ -1022,6 +1022,18 @@ Data-base: 2026-06-29
 | Sprint 14.1 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public`; Hub asset `https://opentshost.com/supersites/_nuxt/BNDSn3oU.js`; NetProbe asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/xQOMqDWZ.js` |
 | Sprint 14.1 production deploy activation | 0 real deploys triggered in this sprint; public smokes validate the existing production baseline |
 | Sprint 14.1 monetization/provider activation | 0 public signup, checkout, billing, paid entitlement, provider SDK, real webhook, payment, tax, refund, dunning, ads, donation, affiliate, external analytics, worker or cron activations |
+| Sprint 14.2 entitlement quota scope | Local `free-preview` quota enforcement for NetProbe monitor creation via `billing_entitlements` |
+| Sprint 14.2 seeded monitor entitlements | `monitor-slots=3` for NetProbe, MailHealth and SitePulse; `monitor-types=dns,ssl,domain` for NetProbe |
+| Sprint 14.2 quota resolver | `PlanEntitlementResolver` returns billing plan, source, max monitors, allowed types and checkout state with config fallback |
+| Sprint 14.2 NetProbe monitor API metadata | `billing_plan`, `quota_source`, `max_monitors`, `remaining_monitors`, `allowed_types`, `checkout_enabled` |
+| Sprint 14.2 billing package validation | `@supersites/billing` quota decision added; package test passed with 14 tests; package typecheck passed |
+| Sprint 14.2 local Laravel validation | `php artisan test` passed; 50 tests, 514 assertions |
+| Sprint 14.2 admin visual audit | `pnpm measure:admin-audit` passed; run `2026-06-29T08-29-48Z`; 9 authenticated desktop/mobile checks |
+| Sprint 14.2 control-plane artifact build | `pnpm deploy:build-control-plane-hostgator` passed; 7138 files, 28227439 bytes, zip 8410451 bytes |
+| Sprint 14.2 local governance gates | Passed: `test:packages`, `typecheck:packages`, `composer validate --strict`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` |
+| Sprint 14.2 runbook | `docs/RUNBOOKS/ENTITLEMENT_QUOTA_CONTROLS.md` |
+| Sprint 14.2 human gates recorded | Paid plans and metered quota usage remain in `docs/HUMAN_ACTION_REQUIRED.md` |
+| Sprint 14.2 monetization/provider activation | 0 real paid plans, checkout, billing provider, provider price id, SDK, webhook, metered commercial usage, customer portal, invoice, refund, dunning, tax, ads, donation, affiliate, external analytics, worker or cron activations |
 
 ## Product metrics
 

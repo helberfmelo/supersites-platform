@@ -338,21 +338,30 @@
                     <th>Plan</th>
                     <th>Status</th>
                     <th>Price</th>
+                    <th>Limits</th>
                     <th>Checkout</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($billingPlans as $plan)
+                    @php($planLimits = is_array($plan->entitlements_summary) ? $plan->entitlements_summary : [])
                     <tr>
                         <td>{{ $plan->site?->name ?? 'Unknown site' }}</td>
                         <td>{{ $plan->slug }}</td>
                         <td>{{ $plan->status }}</td>
                         <td>{{ $plan->currency }} {{ number_format($plan->amount_minor / 100, 2) }}</td>
+                        <td>
+                            Ops {{ $planLimits['monthly_operations'] ?? 'n/a' }}
+                            @if (isset($planLimits['monitor_slots']))
+                                | monitors {{ $planLimits['monitor_slots'] }}
+                            @endif
+                            | seats {{ $planLimits['team_seats'] ?? 'n/a' }}
+                        </td>
                         <td>{{ $plan->checkout_enabled ? 'enabled' : 'disabled' }}</td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5">No billing plans seeded.</td>
+                        <td colspan="6">No billing plans seeded.</td>
                     </tr>
                 @endforelse
             </tbody>

@@ -160,6 +160,14 @@
 - Pedidos de exclusao ficam `human_required` ate existir politica aprovada de retencao, backup, verificacao de identidade, obrigacoes legais/fiscais, auditoria e SLA.
 - Conta paga em producao exige ampliar a matriz por produto para dados de historico, monitores, invoices, uso medido, equipes e notificacoes antes de ativacao.
 
+## Entitlement quota controls
+
+- A Sprint 14.2 usa `billing_entitlements` para limites tecnicos locais de plano `free-preview`.
+- Campos permitidos: site, plano, codigo de entitlement, tipo de valor e valor booleano/inteiro/string nao sensivel.
+- Campos proibidos: dados de pagamento, documentos fiscais, provider price id real, e-mail de cliente, token, secret, payload bruto de provider, IP, arquivo, input de ferramenta ou historico individual de uso comercial.
+- Metadados de quota retornados por API podem incluir plano, origem, limite, restante, tipos permitidos e `checkout_enabled=false`.
+- Uso medido comercial, billing real, historico por cobranca, invoices e upgrade por pagamento continuam desligados ate matriz propria de dados, retencao, exportacao/exclusao e gates humanos.
+
 ## AI growth readiness
 
 - A Sprint 6.5 cria apenas metadados operacionais em `ai_growth_audits`, `ai_growth_recommendations` e `ai_growth_anomalies`.

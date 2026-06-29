@@ -96,6 +96,18 @@ Sprint 14.1 adiciona controles autenticados de conta sem ativar signup publico o
 - Exclusao real permanece manual/humana; nao ha remocao automatica de usuario, papeis, auditoria, monitores, billing, invoices ou dados operacionais.
 - Nao ha checkout, assinatura, entitlement pago, provider SDK, webhook real, secret novo, pagamento, imposto, refund, dunning ou signup publico nesta sprint.
 
+## Paid entitlement quota foundation
+
+Sprint 14.2 conecta quotas tecnicas a entitlements locais sem checkout real:
+
+- `billing_entitlements.monitor-slots` define slots de monitor para planos `free-preview` de NetProbe, MailHealth e SitePulse.
+- `billing_entitlements.monitor-types` define tipos permitidos para NetProbe.
+- `PlanEntitlementResolver` busca o plano local `free-preview` com `checkout_enabled=false` e retorna fallback declarado quando o seed de billing nao existe.
+- `/api/v1/netprobe/monitors` passa a reportar `billing_plan`, `quota_source`, `max_monitors`, `remaining_monitors`, `allowed_types` e `checkout_enabled` nos metadados de quota.
+- A criacao de monitor falha antes de gravar dados quando o uso atinge o limite resolvido.
+- `@supersites/billing` expoe uma decisao deterministica de quota para manter contrato compartilhado testado.
+- Nao ha plano pago real, provider price id, checkout, webhook real, assinatura, cobranca, uso medido comercial, secret novo ou upgrade automatico nesta sprint.
+
 ## AI growth evidence engine
 
 Sprint 6.5 adiciona auditoria e priorizacao local sem provider externo de IA:

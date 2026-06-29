@@ -76,6 +76,14 @@
 - Pedidos de exclusao ficam `human_required`; nenhuma exclusao automatica deve rodar antes de politica legal/retencao aprovada, processo de verificacao e plano de backup/rollback.
 - Acoes de visualizacao, exportacao e pedido de exclusao devem gerar audit log sem payload sensivel.
 
+## Entitlement quota controls
+
+- A Sprint 14.2 usa entitlements locais de plano para quotas, sem ativar checkout ou plano pago real.
+- O plano usado para enforcement inicial deve ser `free-preview` e `checkout_enabled=false`.
+- Respostas de API podem expor limites e origem da quota, mas nao devem expor provider ids reais, secrets, dados de pagamento, documentos, e-mails de terceiros ou payloads de billing.
+- Quando o entitlement especifico nao existir, o fallback configurado deve ser declarado como `config_fallback`.
+- Alterar limite local e reversivel; ativar provider, price id, checkout, uso medido comercial ou upgrade por pagamento exige `HUMAN_ACTION_REQUIRED`.
+
 ## AI growth gates
 
 - A Sprint 6.5 registra apenas recomendacoes e anomalias locais; nenhuma API key, SDK, token, prompt externo, resposta de provider, worker recorrente ou automacao de growth e criado.

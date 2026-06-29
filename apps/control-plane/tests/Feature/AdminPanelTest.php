@@ -78,6 +78,8 @@ class AdminPanelTest extends TestCase
             ->assertSee('Billing readiness')
             ->assertSee('stripe')
             ->assertSee('free-preview')
+            ->assertSee('Ops 100')
+            ->assertSee('monitors 3')
             ->assertSee('disabled')
             ->assertSee('Executive reports')
             ->assertSee('Weekly Executive Readiness')
