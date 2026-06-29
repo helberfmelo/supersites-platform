@@ -47,6 +47,14 @@
             <strong>{{ $summary['growth_automation_pull_requests_opened'] }}</strong>
         </article>
         <article class="panel metric">
+            <span class="muted">Report reviews</span>
+            <strong>{{ $summary['growth_reporting_reviews_ready'] }}</strong>
+        </article>
+        <article class="panel metric">
+            <span class="muted">Report emails sent</span>
+            <strong>{{ $summary['growth_reporting_emails_sent'] }}</strong>
+        </article>
+        <article class="panel metric">
             <span class="muted">Billing gated</span>
             <strong>{{ $summary['billing_gated'] }}</strong>
         </article>
@@ -208,6 +216,49 @@
                 @empty
                     <tr>
                         <td colspan="6">No executive reports seeded.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </section>
+
+    <section class="panel">
+        <h2>Growth reporting readiness</h2>
+        <p class="muted">
+            Review-ready reports {{ $growthReportingReadiness['data']['summary']['reports_ready_for_operator_review'] }} /
+            {{ $growthReportingReadiness['data']['summary']['reports'] }} ·
+            before/after items {{ $growthReportingReadiness['data']['summary']['before_after_items'] }} ·
+            provider imports {{ $growthReportingReadiness['data']['summary']['provider_imports_enabled'] }} ·
+            emails {{ $growthReportingReadiness['data']['summary']['emails_sent'] }} ·
+            causality {{ $growthReportingReadiness['data']['summary']['causality_status'] }}
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Report</th>
+                    <th>Status</th>
+                    <th>Data</th>
+                    <th>Before/after</th>
+                    <th>Delivery</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse (array_slice($growthReportingReadiness['data']['reports'], 0, 6) as $report)
+                    <tr>
+                        <td>{{ $report['rank'] }}</td>
+                        <td>
+                            {{ $report['title'] }}
+                            <br><span class="muted">{{ $report['period_type'] }} · {{ $report['period_start'] }} to {{ $report['period_end'] }}</span>
+                        </td>
+                        <td><span class="status {{ $report['status'] }}">{{ $report['status'] }}</span></td>
+                        <td>{{ $report['data_status'] }}</td>
+                        <td>{{ $report['before_after_items'] }}</td>
+                        <td>{{ $report['should_send_email'] ? 'enabled' : 'disabled' }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">No growth reports available for review.</td>
                     </tr>
                 @endforelse
             </tbody>

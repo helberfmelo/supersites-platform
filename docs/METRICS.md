@@ -1193,6 +1193,15 @@ Data-base: 2026-06-29
 | Sprint 16.3 runbook | `docs/RUNBOOKS/GROWTH_AUTOMATION_READINESS.md` |
 | Sprint 16.3 ADR | `docs/ADR/0042-growth-automation-readiness.md` |
 | Sprint 16.3 automation/provider activation | 0 provider imports, external AI calls, prompts, workers, cron jobs, automated branches, PRs, auto-merge, direct publish, causal claims, SEO mutations, ad serving, checkout, billing, donations, affiliates or automated publications |
+| Sprint 16.4 growth reporting endpoint | `GET /api/v1/growth/reporting-readiness` behind auth and `dashboard.view` |
+| Sprint 16.4 growth reporting contract | `GrowthReportingReadiness::CONTRACT_VERSION` `2026-06-29.16.4`; `@supersites/executive-reports growthReportingContractVersion` |
+| Sprint 16.4 default reporting snapshot | 3 reports; 18 report items; 3 reports ready for operator review; 14 before/after-ready items; 12 finalized, 2 estimated, 1 delayed and 3 unavailable items; scheduled reports 0; emails sent 0 |
+| Sprint 16.4 focused validation | Passed: `@supersites/executive-reports` 10 tests; `GrowthReportingReadinessTest` 4 tests/66 assertions; `AdminPanelTest` 10 tests/105 assertions |
+| Sprint 16.4 full local validation | Passed: `pnpm test:packages` 90 tests, `pnpm typecheck:packages`, `php artisan test` 94 tests/963 assertions, `composer validate --strict`, `pnpm measure:admin-audit` run `2026-06-29T11-27-13Z`, `pnpm deploy:build-control-plane-hostgator`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check`, `pnpm validate:adsense-safe-public` |
+| Sprint 16.4 control-plane artifact | 7166 files, 28360526 bytes, zip 8446091 bytes |
+| Sprint 16.4 runbook | `docs/RUNBOOKS/GROWTH_REPORTING_READINESS.md` |
+| Sprint 16.4 ADR | `docs/ADR/0043-growth-reporting-readiness.md` |
+| Sprint 16.4 reporting/provider activation | 0 scheduled reports, external email deliveries, provider imports, revenue reports, causal claims, external AI calls, prompts, workers, cron jobs, automated branches, PRs, auto-merge, direct publish, ad serving, checkout, billing, donations, affiliates or automated publications |
 
 ## Product metrics
 

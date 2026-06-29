@@ -1,4 +1,5 @@
 export const executiveReportContractVersion = '2026-06-29.1'
+export const growthReportingContractVersion = '2026-06-29.16.4'
 
 export const reportPeriodTypes = ['weekly', 'monthly'] as const
 export const reportDataStatuses = ['finalized', 'estimated', 'delayed', 'unavailable'] as const
@@ -22,6 +23,7 @@ export type ReportSection = (typeof reportSections)[number]
 export type ReportStatus = 'ready' | 'needs_review' | 'blocked'
 export type ReportEvidenceSourceKind = (typeof reportEvidenceSourceKinds)[number]
 export type ReportEvidenceSourceStatus = (typeof reportEvidenceSourceStatuses)[number]
+export type GrowthReportingStatus = 'review_ready' | 'human_required' | 'blocked'
 
 export interface ReportEvidenceInput {
   source: string
@@ -96,6 +98,41 @@ export interface ReportEvidencePolicySummary {
   allowed: boolean
   sourceSummary: Record<ReportEvidenceSourceStatus, number>
   blockedSources: ReportEvidenceSourceClassification[]
+}
+
+export interface GrowthReportingGateInput {
+  reportStatus?: string | null
+  exportReady?: boolean | null
+  evidencePolicyAllowed?: boolean | null
+  causalityStatus?: string | null
+  dataStatusSummary?: Partial<Record<ReportDataStatus, number>> | null
+  beforeAfterItems?: number | null
+  recurringDeliveryEnabled?: boolean | null
+  externalRecipientsEnabled?: boolean | null
+  providerImportsEnabled?: boolean | number | null
+  revenueReportingEnabled?: boolean | null
+  humanGateRequired?: boolean | null
+}
+
+export interface GrowthReportingGate {
+  contractVersion: string
+  status: GrowthReportingStatus
+  reportReviewReady: boolean
+  beforeAfterReviewReady: boolean
+  dataStatusSummary: Record<ReportDataStatus, number>
+  beforeAfterItems: number
+  causalityStatus: 'not_inferred'
+  sideEffects: 'none'
+  recurringDeliveryAllowed: false
+  emailDeliveryAllowed: false
+  providerImportAllowed: false
+  revenueReportingAllowed: false
+  shouldScheduleReport: false
+  shouldSendEmail: false
+  shouldImportProviderData: false
+  shouldInferCausality: false
+  blockers: string[]
+  guardrails: string[]
 }
 
 const safeSourcePattern = /^[a-z0-9][a-z0-9._:/-]*$/i
@@ -209,6 +246,87 @@ export function summarizeDataStatuses(items: ExecutiveReportItem[]): Record<Repo
   return summary
 }
 
+export function resolveGrowthReportingGate(input: GrowthReportingGateInput): GrowthReportingGate {
+  const blockers: string[] = []
+  const humanRequirements: string[] = []
+  const dataStatusSummary = normalizeDataStatusSummary(input.dataStatusSummary)
+  const beforeAfterItems = normalizeNonNegativeInteger(input.beforeAfterItems)
+
+  if ((input.reportStatus ?? 'blocked') !== 'ready') {
+    blockers.push('report_not_ready')
+  }
+
+  if (input.exportReady !== true) {
+    blockers.push('export_not_ready')
+  }
+
+  if (input.evidencePolicyAllowed === false) {
+    blockers.push('unsupported_evidence_source')
+  }
+
+  if ((input.causalityStatus ?? 'not_inferred') !== 'not_inferred') {
+    blockers.push('causality_review_required')
+  }
+
+  if (beforeAfterItems === 0) {
+    blockers.push('missing_before_after_items')
+  }
+
+  if (input.humanGateRequired === true) {
+    humanRequirements.push('manual_reporting_gate_required')
+  }
+
+  if (input.recurringDeliveryEnabled === true) {
+    humanRequirements.push('recurring_delivery_human_gate_required')
+  }
+
+  if (input.externalRecipientsEnabled === true) {
+    humanRequirements.push('external_recipients_human_gate_required')
+  }
+
+  if (normalizeEnabledCount(input.providerImportsEnabled) > 0) {
+    humanRequirements.push('provider_import_human_gate_required')
+  }
+
+  if (input.revenueReportingEnabled === true) {
+    humanRequirements.push('revenue_reporting_human_gate_required')
+  }
+
+  const status: GrowthReportingStatus = blockers.length > 0
+    ? 'blocked'
+    : humanRequirements.length > 0
+      ? 'human_required'
+      : 'review_ready'
+
+  return {
+    contractVersion: growthReportingContractVersion,
+    status,
+    reportReviewReady: status === 'review_ready',
+    beforeAfterReviewReady: status === 'review_ready' && beforeAfterItems > 0,
+    dataStatusSummary,
+    beforeAfterItems,
+    causalityStatus: 'not_inferred',
+    sideEffects: 'none',
+    recurringDeliveryAllowed: false,
+    emailDeliveryAllowed: false,
+    providerImportAllowed: false,
+    revenueReportingAllowed: false,
+    shouldScheduleReport: false,
+    shouldSendEmail: false,
+    shouldImportProviderData: false,
+    shouldInferCausality: false,
+    blockers: Array.from(new Set([...blockers, ...humanRequirements])),
+    guardrails: [
+      'manual_operator_review_required',
+      'recurring_delivery_disabled',
+      'external_recipient_delivery_disabled',
+      'provider_import_disabled',
+      'causal_attribution_disabled',
+      'revenue_claims_disabled',
+    ],
+  }
+}
+
 function sanitizeItems(input: ExecutiveReportItemInput[] | null | undefined): ExecutiveReportItem[] {
   return (input ?? [])
     .map((item): ExecutiveReportItem => {
@@ -296,6 +414,31 @@ function normalizeDataStatus(value: string): ReportDataStatus {
   return reportDataStatuses.includes(normalized as ReportDataStatus)
     ? normalized as ReportDataStatus
     : 'unavailable'
+}
+
+function normalizeDataStatusSummary(
+  input: Partial<Record<ReportDataStatus, number>> | null | undefined,
+): Record<ReportDataStatus, number> {
+  return reportDataStatuses.reduce((summary, status) => {
+    summary[status] = normalizeNonNegativeInteger(input?.[status])
+    return summary
+  }, {} as Record<ReportDataStatus, number>)
+}
+
+function normalizeNonNegativeInteger(value: number | null | undefined): number {
+  if (typeof value !== 'number' || !Number.isFinite(value)) {
+    return 0
+  }
+
+  return Math.max(0, Math.trunc(value))
+}
+
+function normalizeEnabledCount(value: boolean | number | null | undefined): number {
+  if (typeof value === 'boolean') {
+    return value ? 1 : 0
+  }
+
+  return normalizeNonNegativeInteger(value)
 }
 
 function normalizeDate(value: string): string | null {

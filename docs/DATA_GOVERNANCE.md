@@ -207,6 +207,14 @@
 - Campos proibidos: branch id real, PR id real, commit patch gerado, prompt externo, resposta de provider, payload bruto GA4/Search Console/AdSense/billing, token, OAuth secret, API key, webhook secret, query real, URL com identificador, PII, input de ferramenta, arquivo ou dados de cliente.
 - `pr_review_only` significa somente fila para revisao do operador; branch, PR, auto-merge, publish e mutacao SEO/ads/billing continuam proibidos sem gate humano separado.
 
+## Growth reporting readiness
+
+- A Sprint 16.4 cria apenas um snapshot autenticado derivado de `executive_reports`, `executive_report_items` e `growth_provider_ingestions`.
+- Campos permitidos: periodo, titulo do relatorio, status, contagens de itens, resumo de `data_status`, contagem de evidencias, readiness before/after, status agregado de provider e flags fail-closed.
+- Campos proibidos: destinatarios externos, e-mail de usuario, query real, URL com identificador, IP, cookie, customer id, invoice, receita individual, impressao/clique individual, payload bruto GA4/Search Console/AdSense/billing, token, OAuth secret, API key, webhook secret, input de ferramenta ou arquivo.
+- `before_after_items` significa somente itens com dados finalizados/estimados e evidencia; nao autoriza claim causal, envio externo, scheduler ou publicacao.
+- `causality_status=not_inferred` permanece obrigatorio ate existir contrato de revisao humana e evidencia aprovada para causalidade.
+
 ## Executive reports
 
 - A Sprint 6.6 cria apenas relatorios operacionais locais em `executive_reports` e `executive_report_items`.

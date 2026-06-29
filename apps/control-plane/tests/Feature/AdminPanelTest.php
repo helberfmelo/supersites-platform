@@ -84,6 +84,8 @@ class AdminPanelTest extends TestCase
             ->assertSee('disabled')
             ->assertSee('Executive reports')
             ->assertSee('Weekly Executive Readiness')
+            ->assertSee('Growth reporting readiness')
+            ->assertSee('Report reviews')
             ->assertSee('not_inferred')
             ->assertSee('Benchmark refinement')
             ->assertSee('Benchmark surfaces')

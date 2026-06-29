@@ -3,6 +3,8 @@ import {
   assertReportUsesInternalEvidence,
   buildExecutiveReport,
   classifyReportEvidenceSource,
+  growthReportingContractVersion,
+  resolveGrowthReportingGate,
   summarizeDataStatuses,
   summarizeReportEvidenceSources,
   toExecutiveReportCsv,
@@ -252,5 +254,76 @@ describe('executive report contracts', () => {
       delayed: 1,
       unavailable: 1,
     })
+  })
+
+  it('keeps growth reporting review-only and fail-closed for delivery', () => {
+    const gate = resolveGrowthReportingGate({
+      reportStatus: 'ready',
+      exportReady: true,
+      evidencePolicyAllowed: true,
+      causalityStatus: 'not_inferred',
+      dataStatusSummary: {
+        finalized: 4,
+        estimated: 1,
+        delayed: 0,
+        unavailable: 1,
+      },
+      beforeAfterItems: 5,
+    })
+
+    expect(gate.contractVersion).toBe(growthReportingContractVersion)
+    expect(gate.status).toBe('review_ready')
+    expect(gate.reportReviewReady).toBe(true)
+    expect(gate.beforeAfterReviewReady).toBe(true)
+    expect(gate.sideEffects).toBe('none')
+    expect(gate.recurringDeliveryAllowed).toBe(false)
+    expect(gate.emailDeliveryAllowed).toBe(false)
+    expect(gate.providerImportAllowed).toBe(false)
+    expect(gate.revenueReportingAllowed).toBe(false)
+    expect(gate.shouldScheduleReport).toBe(false)
+    expect(gate.shouldSendEmail).toBe(false)
+    expect(gate.shouldImportProviderData).toBe(false)
+    expect(gate.shouldInferCausality).toBe(false)
+    expect(gate.causalityStatus).toBe('not_inferred')
+    expect(gate.blockers).toEqual([])
+  })
+
+  it('blocks causal claims and requires human gates for recurring or provider-backed reporting', () => {
+    expect(resolveGrowthReportingGate({
+      reportStatus: 'ready',
+      exportReady: true,
+      evidencePolicyAllowed: true,
+      causalityStatus: 'attributed',
+      beforeAfterItems: 4,
+    })).toMatchObject({
+      status: 'blocked',
+      reportReviewReady: false,
+      shouldInferCausality: false,
+      blockers: ['causality_review_required'],
+    })
+
+    const providerBackedGate = resolveGrowthReportingGate({
+      reportStatus: 'ready',
+      exportReady: true,
+      evidencePolicyAllowed: true,
+      causalityStatus: 'not_inferred',
+      beforeAfterItems: 4,
+      recurringDeliveryEnabled: true,
+      externalRecipientsEnabled: true,
+      providerImportsEnabled: 2,
+      revenueReportingEnabled: true,
+    })
+
+    expect(providerBackedGate.status).toBe('human_required')
+    expect(providerBackedGate.reportReviewReady).toBe(false)
+    expect(providerBackedGate.shouldScheduleReport).toBe(false)
+    expect(providerBackedGate.shouldSendEmail).toBe(false)
+    expect(providerBackedGate.shouldImportProviderData).toBe(false)
+    expect(providerBackedGate.blockers).toEqual([
+      'recurring_delivery_human_gate_required',
+      'external_recipients_human_gate_required',
+      'provider_import_human_gate_required',
+      'revenue_reporting_human_gate_required',
+    ])
   })
 })

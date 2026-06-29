@@ -150,6 +150,7 @@ AdSense e a monetizacao primaria, mas nenhum site deve ser submetido antes de cu
 - Relatorios executivos podem listar apenas readiness AdSense local e status de gates.
 - Impressoes, cliques, CTR, RPM, receita, requests, `publisher_id`, site submission e Management API devem aparecer como `unavailable` enquanto anuncios reais e API estiverem desligados.
 - Relatorios nao devem inferir causalidade de trafego/receita nem sugerir que ads estao ativos antes dos gates humanos, tecnicos e de politica.
+- Sprint 16.4 reporting readiness pode contar itens before/after-ready, mas nao autoriza AdSense revenue reporting, Management API import, claim de RPM/CTR, envio externo ou atribuicao causal.
 
 ## Benchmark refinement
 

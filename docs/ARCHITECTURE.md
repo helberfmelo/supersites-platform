@@ -444,3 +444,11 @@ Paginas indexaveis devem renderizar titulo, conteudo essencial, links, canonical
 - Eventos aceitos sao persistidos em `billing_webhook_events` com hash de payload e idempotency key; payload bruto nao e armazenado.
 - `processing_status=dry_run` significa sem mutacao de checkout, assinatura, invoice, entitlement, receita ou provider externo.
 - O dry-run fica desligado sem configuracao de ambiente; segredo real de provider deve vir de cofre e continua fora do repositorio.
+
+## Growth reporting readiness
+
+- Sprint 16.4 adiciona `GET /api/v1/growth/reporting-readiness` no control-plane atras de auth e `dashboard.view`.
+- O snapshot consome apenas `executive_reports`, `executive_report_items` e `growth_provider_ingestions` ja existentes.
+- O contrato compartilhado `@supersites/executive-reports` expoe `growthReportingContractVersion` e `resolveGrowthReportingGate`.
+- O dashboard mostra relatórios prontos para revisão, itens before/after-ready, status de dado e importações provider visiveis para operador.
+- Scheduler, envio de e-mail, destinatarios externos, provider import, receita real e causalidade permanecem `false`/`0` ate gates humanos e matriz de dados.

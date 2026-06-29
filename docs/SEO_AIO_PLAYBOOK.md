@@ -54,3 +54,9 @@ Cada pagina de ferramenta deve resolver a consulta principal e conter conteudo o
 - A Sprint 16.3 pode marcar trabalho tecnico/local de baixo risco como `pr_review_only`.
 - `pr_review_only` nao autoriza criacao programatica de paginas, conteudo em massa, alteracao de canonical/hreflang/sitemap, copy publica, claims de ranking ou deploy.
 - Qualquer mudanca SEO/AIO gerada a partir dessa fila exige revisao humana, evidencia da pagina, testes verdes e os gates de deploy normais.
+
+## Growth reporting readiness
+
+- A Sprint 16.4 pode resumir relatorios semanais/mensais e itens before/after-ready para revisao do operador.
+- Relatorios com `before_after_items` nao podem declarar ranking, trafego, receita, melhoria ou causa sem evidencia manual aprovada.
+- Export, print ou dashboard de reporting nao autorizam publicacao de paginas, alteracao SEO/AIO, claim de Search Console, snippet, sitemap ou canonical.

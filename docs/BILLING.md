@@ -167,6 +167,8 @@ A Sprint 6.6 pode exportar somente readiness operacional e estados locais de bil
 
 Relatorios executivos nao ativam checkout, payment links, webhooks, SDK, provider config, impostos, plano pago, entitlement pago, receita, invoice, refund, dunning, e-mail recorrente ou cobranca real.
 
+Sprint 16.4 adiciona reporting readiness apenas para revisao. Mesmo se `growth_provider_ingestions` indicar dado provider futuro como `finalized`, `should_import_provider_data=false`, `revenue_reporting_enabled=false`, `should_send_email=false` e `should_infer_causality=false` continuam obrigatorios ate billing real, matriz de dados, retencao, cofre e aprovacao humana estarem completos.
+
 ## Benchmark monetization backlog
 
 A Sprint 7.2 pode registrar oportunidades de monetizacao, doacao, afiliados e upgrade pago somente como backlog local evidenciado.

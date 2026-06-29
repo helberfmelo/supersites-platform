@@ -266,3 +266,10 @@
 - O preview nao executa probe de rede, nao agenda jobs e nao envia alertas; ele apenas valida shape, quota e entitlement.
 - Auditoria grava hash do target, sem target bruto, headers, query string, resultado tecnico ou destino de alerta.
 - Worker recorrente, multi-regiao, alertas reais, DMARC recorrente, status page e billing medido continuam bloqueados ate gates operacionais e humanos.
+
+## Growth reporting readiness
+
+- `/api/v1/growth/reporting-readiness` exige autenticacao e permissao `dashboard.view`.
+- O endpoint retorna apenas metadados agregados de relatorios executivos e status de ingestao; nao retorna provider payload, token, query, invoice, click id, customer id, PII ou segredo.
+- Auditoria registra somente versao do contrato, contagens agregadas, provider activation falso e `causality_status`.
+- Envio recorrente, e-mail externo, provider import, revenue reporting e causalidade ficam bloqueados ate matriz de dados, revisao humana, cofre e smokes especificos.

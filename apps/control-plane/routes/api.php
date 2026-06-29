@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\V1\Google\GoogleProviderGoLiveReadinessController;
 use App\Http\Controllers\Api\V1\Growth\GrowthAutomationReadinessController;
 use App\Http\Controllers\Api\V1\Growth\GrowthIngestionReadinessController;
 use App\Http\Controllers\Api\V1\Growth\GrowthPriorityReadinessController;
+use App\Http\Controllers\Api\V1\Growth\GrowthReportingReadinessController;
 use App\Http\Controllers\Api\V1\MailHealth\MailHealthBlacklistController;
 use App\Http\Controllers\Api\V1\MailHealth\MailHealthDnsController;
 use App\Http\Controllers\Api\V1\MailHealth\MailHealthSmtpController;
@@ -93,6 +94,8 @@ Route::prefix('v1')
         Route::get('/growth/priorities', GrowthPriorityReadinessController::class)
             ->middleware('permission:dashboard.view');
         Route::get('/growth/automation-readiness', GrowthAutomationReadinessController::class)
+            ->middleware('permission:dashboard.view');
+        Route::get('/growth/reporting-readiness', GrowthReportingReadinessController::class)
             ->middleware('permission:dashboard.view');
 
         Route::prefix('monitoring/previews')

@@ -333,3 +333,13 @@ A Sprint 16.3 adiciona somente readiness autenticado para fila de automacao segu
 - O snapshot pode contar candidatos `pr_review_only`, mas isso e apenas uma fila operacional interna.
 - `automatic_branch_creation_enabled`, `automatic_pr_creation_enabled`, `auto_merge_enabled`, `direct_publish_enabled`, `should_create_branch`, `should_open_pull_request`, `should_auto_merge` e `should_publish` permanecem falsos.
 - Nenhum evento externo, provider API, external AI, prompt externo, worker, cron, branch, PR, auto-merge, SEO mutation, ads, checkout, billing ou publicacao e ativado nesta sprint.
+
+## Growth reporting readiness
+
+A Sprint 16.4 adiciona somente readiness autenticado para relatorios semanais/mensais do growth loop.
+
+- `@supersites/executive-reports` exporta `growthReportingContractVersion` e `resolveGrowthReportingGate`.
+- `GET /api/v1/growth/reporting-readiness` fica atras de auth e `dashboard.view`.
+- O snapshot lista relatorios prontos para revisao, contagens before/after-ready e status de dados.
+- `recurring_delivery_enabled`, `external_recipients_enabled`, `revenue_reporting_enabled`, `should_schedule_report`, `should_send_email`, `should_import_provider_data` e `should_infer_causality` permanecem falsos.
+- Nenhum provider API, worker, cron, e-mail externo, receita real, traffic import, AdSense import, billing import, claim causal ou distribuicao automatica de relatorio e ativado nesta sprint.

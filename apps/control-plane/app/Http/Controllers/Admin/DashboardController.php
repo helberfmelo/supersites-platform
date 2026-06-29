@@ -27,6 +27,7 @@ use App\Support\Google\GoogleProviderGoLiveReadiness;
 use App\Support\Growth\GrowthAutomationReadiness;
 use App\Support\Growth\GrowthIngestionReadiness;
 use App\Support\Growth\GrowthPriorityReadiness;
+use App\Support\Growth\GrowthReportingReadiness;
 use App\Support\Monetization\SupportMonetizationGoLiveReadiness;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -41,6 +42,7 @@ class DashboardController extends Controller
         GrowthAutomationReadiness $growthAutomationReadiness,
         GrowthIngestionReadiness $growthIngestionReadiness,
         GrowthPriorityReadiness $growthPriorityReadiness,
+        GrowthReportingReadiness $growthReportingReadiness,
         SupportMonetizationGoLiveReadiness $supportMonetizationReadiness,
     ): View {
         $adsenseGoLiveReadiness = $adsenseReadiness->snapshot();
@@ -49,6 +51,7 @@ class DashboardController extends Controller
         $growthAutomationReadinessSnapshot = $growthAutomationReadiness->snapshot();
         $growthIngestionReadinessSnapshot = $growthIngestionReadiness->snapshot();
         $growthPriorityReadinessSnapshot = $growthPriorityReadiness->snapshot();
+        $growthReportingReadinessSnapshot = $growthReportingReadiness->snapshot();
         $supportMonetizationGoLiveReadiness = $supportMonetizationReadiness->snapshot();
         $statusCounts = Site::query()
             ->selectRaw('status, count(*) as total')
@@ -91,6 +94,8 @@ class DashboardController extends Controller
             'growth_priority_auto_apply' => $growthPriorityReadinessSnapshot['data']['summary']['should_auto_apply'] ? 1 : 0,
             'growth_automation_pr_review_candidates' => $growthAutomationReadinessSnapshot['data']['summary']['pr_review_candidates'],
             'growth_automation_pull_requests_opened' => $growthAutomationReadinessSnapshot['data']['summary']['pull_requests_opened'],
+            'growth_reporting_reviews_ready' => $growthReportingReadinessSnapshot['data']['summary']['reports_ready_for_operator_review'],
+            'growth_reporting_emails_sent' => $growthReportingReadinessSnapshot['data']['summary']['emails_sent'],
             'open_incidents' => Incident::query()->whereIn('status', ['open', 'investigating', 'monitoring'])->count(),
             'open_tasks' => OperationalTask::query()->whereIn('status', ['open', 'blocked'])->count(),
         ];
@@ -174,6 +179,7 @@ class DashboardController extends Controller
             'growthAutomationReadiness' => $growthAutomationReadinessSnapshot,
             'growthIngestionReadiness' => $growthIngestionReadinessSnapshot,
             'growthPriorityReadiness' => $growthPriorityReadinessSnapshot,
+            'growthReportingReadiness' => $growthReportingReadinessSnapshot,
             'growthProviderIngestions' => GrowthProviderIngestion::query()
                 ->with('site:id,slug,name')
                 ->orderBy('import_enabled')
