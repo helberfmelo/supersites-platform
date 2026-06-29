@@ -47,3 +47,10 @@ Data-base: 2026-06-27
 - Preserved the project's own design language while borrowing only product patterns from references: one input, one answer, score, evidence cards, recommendations and honest one-shot limitations.
 - Corrected public branding/copy signals so badges and principles read like a live tool surface, not an internal local build.
 - Monitoring, incidents, alerts, status page and multi-region features remain future upgrade paths; no recurring probe behavior was introduced.
+
+## Sprint 13.4 implementation notes
+
+- Replaced raw technical payload presentation with original, scan-friendly detail cards for redirects, headers, technology clues, performance and bounded probe notes.
+- Kept the benchmark learning pattern of "answer first, evidence second" without copying third-party grades, labels, charts, icons or diagnostic claims.
+- Preserved antiabuse boundaries: one-shot bounded probe only, no broad crawler, no stored history, no status page generation and no multi-region simulation.
+- Localized dynamic result labels across EN/PT-BR/ES/FR/DE to avoid English fallback in localized technical reports.

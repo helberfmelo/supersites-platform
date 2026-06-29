@@ -3,6 +3,7 @@ import { getButtonClass } from '@supersites/ui'
 import { computed, onMounted, ref } from 'vue'
 import { getShellCopy } from '../../../data/copy'
 import { localizedContentPath, localizedHomePath, localizedToolPath, normalizePublicLocale, sanitizePublicCopy, toHtmlLang } from '../../../data/locales'
+import { createSitePulseDetailView, getSitePulseDetailCopy } from '../../../data/probeDetails'
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
 import {
   createSitePulseScoreCard,
@@ -51,6 +52,7 @@ interface ApiResponse<T> {
 
 const copy = getToolCopy(tool, locale)
 const shellCopy = getShellCopy(locale)
+const detailCopy = getSitePulseDetailCopy(locale)
 const resultMetaCopy = sanitizePublicCopy(locale, {
   status: 'Status',
   finalUrl: 'Final URL',
@@ -81,6 +83,7 @@ const summary = computed(() => apiResult.value?.summary || copy.previewResult)
 const scoreCard = computed(() => createSitePulseScoreCard(displayedFindings.value, copy.previewResult))
 const actionItems = computed(() => scoreCard.value.checklist.filter((item) => item.status !== 'pass').slice(0, 4))
 const relatedTools = computed(() => getRelatedSitePulseTools(tool.slug, locale))
+const detailView = computed(() => apiResult.value ? createSitePulseDetailView(apiResult.value, locale) : null)
 const resultTabs = computed(() => [
   { key: 'overview' as const, label: shellCopy.overviewTabLabel },
   { key: 'findings' as const, label: shellCopy.findingsTabLabel },
@@ -329,29 +332,74 @@ useHead({
               </div>
             </section>
 
-            <section v-if="activeResultTab === 'details'" class="result-tab-panel">
-              <section v-if="apiResult.redirect_chain.length" class="content-section">
-                <h3>Redirect chain</h3>
-                <ul class="result-list">
-                  <li v-for="hop in apiResult.redirect_chain" :key="JSON.stringify(hop)">
-                    {{ JSON.stringify(hop) }}
+            <section v-if="activeResultTab === 'details' && detailView" class="result-tab-panel">
+              <section class="technical-section">
+                <h3>{{ detailCopy.redirectPathTitle }}</h3>
+                <ol v-if="detailView.redirectHops.length" class="redirect-timeline">
+                  <li v-for="hop in detailView.redirectHops" :key="`${hop.step}-${hop.url}-${hop.location}`">
+                    <div class="redirect-timeline__step">
+                      <strong>{{ hop.step }}</strong>
+                      <span :class="statusClass(hop.status)">{{ hop.code }}</span>
+                    </div>
+                    <dl>
+                      <div>
+                        <dt>{{ detailCopy.urlLabel }}</dt>
+                        <dd>{{ hop.url }}</dd>
+                      </div>
+                      <div>
+                        <dt>{{ detailCopy.locationLabel }}</dt>
+                        <dd>{{ hop.location }}</dd>
+                      </div>
+                      <div>
+                        <dt>{{ detailCopy.durationLabel }}</dt>
+                        <dd>{{ hop.duration }}</dd>
+                      </div>
+                    </dl>
                   </li>
-                </ul>
+                </ol>
+                <p v-else>{{ detailCopy.emptyRedirects }}</p>
               </section>
 
-              <section v-if="Object.keys(apiResult.checks).length" class="content-section">
-                <h3>Probe details</h3>
-                <ul class="result-list">
-                  <li v-for="(value, key) in apiResult.checks" :key="key">
-                    <strong>{{ key }}:</strong> {{ JSON.stringify(value) }}
-                  </li>
-                </ul>
+              <section class="technical-section">
+                <h3>{{ detailCopy.headerMatrixTitle }}</h3>
+                <div class="detail-card-grid">
+                  <article v-for="item in detailView.headerItems" :key="`${item.label}-${item.detail}`" class="detail-card">
+                    <span :class="statusClass(item.status)">{{ item.status }}</span>
+                    <strong>{{ item.label }}</strong>
+                    <p>{{ item.detail }}</p>
+                    <code v-if="item.value">{{ item.value }}</code>
+                  </article>
+                </div>
               </section>
 
-              <section v-if="apiResult.warnings.length" class="content-section">
-                <h3>Warnings</h3>
-                <ul class="result-list">
-                  <li v-for="warning in apiResult.warnings" :key="warning">{{ warning }}</li>
+              <section class="technical-section">
+                <h3>{{ detailCopy.technologyTitle }}</h3>
+                <div class="detail-card-grid">
+                  <article v-for="item in detailView.technologyItems" :key="`${item.label}-${item.detail}-${item.value}`" class="detail-card">
+                    <span :class="statusClass(item.status)">{{ item.status }}</span>
+                    <strong>{{ item.label }}</strong>
+                    <p>{{ item.detail }}</p>
+                    <code v-if="item.value">{{ item.value }}</code>
+                  </article>
+                </div>
+              </section>
+
+              <section class="technical-section">
+                <h3>{{ detailCopy.performanceTitle }}</h3>
+                <div class="detail-card-grid">
+                  <article v-for="item in detailView.performanceItems" :key="`${item.label}-${item.value}`" class="detail-card">
+                    <span :class="statusClass(item.status)">{{ item.status }}</span>
+                    <strong>{{ item.label }}</strong>
+                    <p>{{ item.detail }}</p>
+                    <code v-if="item.value">{{ item.value }}</code>
+                  </article>
+                </div>
+              </section>
+
+              <section v-if="detailView.warnings.length" class="technical-section">
+                <h3>{{ detailCopy.warningsTitle }}</h3>
+                <ul class="method-list">
+                  <li v-for="warning in detailView.warnings" :key="warning">{{ warning }}</li>
                 </ul>
               </section>
             </section>

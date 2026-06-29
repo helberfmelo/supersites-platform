@@ -973,6 +973,15 @@ Data-base: 2026-06-29
 | Sprint 13.3 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, MailHealth static smoke, `pnpm deploy:smoke-netprobe-public`, `pnpm deploy:smoke-control-plane-public`; current MailHealth public asset `https://opentshost.com/supersites/mailhealth/_nuxt/Dm_wdR4Q.js` |
 | Sprint 13.3 production deploy activation | 0 real static app deploys triggered in this sprint; public smokes validate the existing production baseline |
 | Sprint 13.3 provider/data activation | 0 DNS publishing, DMARC ingestion, broad DNSBL scans, provider policy integration, storage, paid API, billing, ads, donation, affiliate, external analytics, worker or cron activations |
+| Sprint 13.4 SitePulse detail scope | Redirect path, header matrix, technology clues, performance sample and bounded probe notes rendered from existing bounded payload |
+| Sprint 13.4 SitePulse localized detail locales | EN, PT-BR, ES, FR, DE dynamic titles and labels |
+| Sprint 13.4 local SitePulse unit validation | `pnpm test:sitepulse` passed; 9 tests |
+| Sprint 13.4 local SitePulse frontend validation | `pnpm build:sitepulse`, `pnpm validate:sitepulse-preview` asset `/_nuxt/Ba9ZxuHL.js`, `pnpm test:e2e:sitepulse` passed; 5 Playwright tests |
+| Sprint 13.4 public copy gate | `pnpm validate:public-copy` passed; 951 HTML files |
+| Sprint 13.4 AdSense-safe gate | `pnpm validate:adsense-safe-public` passed; 13 public pages |
+| Sprint 13.4 local governance gates | Passed: `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` |
+| Sprint 13.4 remote evidence | Pending feature push |
+| Sprint 13.4 crawler/provider activation | 0 broad crawling, recurring uptime, alerts, status page, storage, paid API, billing, ads, donation, affiliate, external analytics, worker, cron or provider activations |
 
 ## Product metrics
 

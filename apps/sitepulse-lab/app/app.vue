@@ -805,6 +805,118 @@ h3 {
   min-width: 0;
 }
 
+.technical-section {
+  display: grid;
+  gap: 10px;
+  padding: 16px 0;
+  border-top: 1px solid #d8ded8;
+}
+
+.technical-section:first-child {
+  padding-top: 4px;
+  border-top: 0;
+}
+
+.technical-section h3 {
+  margin: 0;
+  color: #17231e;
+  font-size: 1rem;
+}
+
+.redirect-timeline {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.redirect-timeline li {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.redirect-timeline__step {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  justify-items: start;
+}
+
+.redirect-timeline__step strong {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 8px;
+  color: #ffffff;
+  background: #275f57;
+}
+
+.redirect-timeline dl,
+.detail-card-grid {
+  display: grid;
+  min-width: 0;
+  gap: 10px;
+  margin: 0;
+}
+
+.redirect-timeline dl {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.redirect-timeline dt {
+  color: #607069;
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.redirect-timeline dd {
+  margin: 2px 0 0;
+  color: #25332d;
+  overflow-wrap: anywhere;
+}
+
+.detail-card-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.detail-card {
+  display: grid;
+  min-width: 0;
+  gap: 7px;
+  padding: 12px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.detail-card strong {
+  color: #17231e;
+}
+
+.detail-card p {
+  margin: 0;
+  color: #43544e;
+  font-size: 0.88rem;
+}
+
+.detail-card code {
+  display: block;
+  max-width: 100%;
+  color: #25332d;
+  font-size: 0.82rem;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
 .tool-sidebar {
   display: grid;
   gap: 14px;
@@ -1013,6 +1125,9 @@ h3 {
   .site-report__section-heading,
   .site-report-card-grid,
   .site-report-safeguards,
+  .redirect-timeline li,
+  .redirect-timeline dl,
+  .detail-card-grid,
   .band-grid,
   .tool-layout,
   .content-layout,

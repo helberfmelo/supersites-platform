@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { publicLocaleCodes } from '../app/data/locales'
 import { contentPageCatalog, contentPageSlugs, getContentPageBySlug } from '../app/data/pages'
+import { createSitePulseDetailView, getSitePulseDetailCopy } from '../app/data/probeDetails'
 import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
 import {
   categoryLabels,
@@ -91,6 +92,58 @@ describe('SitePulse Lab MVP', () => {
     })
     expect(score.summary).toContain('failing')
     expect(JSON.stringify(score)).not.toContain('example.com')
+  })
+
+  it('creates detailed redirect, header, technology and performance views', () => {
+    const view = createSitePulseDetailView({
+      checks: {
+        status: { code: 200, content_type: 'text/html', duration_ms: 240, server: 'edge' },
+        redirects: { count: 1, final_status: 200 },
+        headers: {
+          present: ['strict-transport-security', 'cache-control', 'x-frame-options'],
+          missing: ['content-security-policy'],
+          technologies: ['CDN cache hint'],
+        },
+        ttfb: { duration_ms: 240 },
+        performance: { redirect_count: 1, body_bytes_sampled: 4096 },
+      },
+      redirect_chain: [
+        { url: 'https://example.com', status: 301, location: 'https://www.example.com', duration_ms: 80 },
+        { url: 'https://www.example.com', status: 200, location: null, duration_ms: 240 },
+      ],
+      warnings: ['This is a single one-shot probe.'],
+    }, 'en')
+
+    expect(view.redirectHops).toHaveLength(2)
+    expect(view.redirectHops[0]).toMatchObject({ code: '301', status: 'pass', duration: '80 ms' })
+    expect(view.headerItems.map((item) => item.label)).toContain('Content-Security-Policy')
+    expect(view.headerItems.find((item) => item.label === 'Content-Security-Policy')?.status).toBe('warn')
+    expect(view.technologyItems.map((item) => item.label)).toEqual(expect.arrayContaining([
+      'Content type',
+      'Server hint',
+      'Technology hint',
+      'Security policy',
+      'Cache/CDN hint',
+    ]))
+    expect(view.performanceItems.map((item) => item.label)).toEqual(expect.arrayContaining([
+      'Final status',
+      'TTFB sample',
+      'Redirect count',
+      'Sampled body',
+    ]))
+    expect(view.warnings).toContain('This is a single one-shot probe.')
+  })
+
+  it('keeps SitePulse detail copy complete across public locales', () => {
+    for (const locale of publicLocaleCodes) {
+      const copy = getSitePulseDetailCopy(locale)
+
+      expect(copy.redirectPathTitle.length).toBeGreaterThan(6)
+      expect(copy.headerMatrixTitle.length).toBeGreaterThan(6)
+      expect(copy.technologyTitle.length).toBeGreaterThan(6)
+      expect(copy.performanceTitle.length).toBeGreaterThan(6)
+      expect(copy.noTechnologySignals.length).toBeGreaterThan(20)
+    }
   })
 
   it('creates tool schema with FAQ and free WebApplication offer', () => {

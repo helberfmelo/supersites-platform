@@ -170,7 +170,9 @@ test.describe('SitePulse Lab MVP', () => {
               { label: 'Timing', status: 'pass', detail: 'TTFB sample was under the warning threshold.', value: '120 ms' },
             ],
             checks: {
-              status: { code: 200, content_type: 'text/html' },
+              status: { code: 200, content_type: 'text/html', duration_ms: 120 },
+              ttfb: { duration_ms: 120 },
+              performance: { redirect_count: 0, body_bytes_sampled: 2048 },
             },
             redirect_chain: [],
             warnings: ['This is a single one-shot probe.'],
@@ -198,6 +200,10 @@ test.describe('SitePulse Lab MVP', () => {
     await expect(page.getByRole('tab', { name: 'Technical details' })).toBeVisible()
     await page.getByRole('tab', { name: 'Findings' }).click()
     await expect(page.getByRole('cell', { name: 'HTTP status' })).toBeVisible()
+    await page.getByRole('tab', { name: 'Technical details' }).click()
+    await expect(page.getByRole('heading', { name: 'Redirect path' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Performance sample' })).toBeVisible()
+    await expect(page.getByText('TTFB sample', { exact: true })).toBeVisible()
     await expect(page.getByText('Recommended actions')).toBeVisible()
     await expect(page.getByText('Monitoring workflow planned')).toBeVisible()
     await expect(page.getByText('Related pages')).toBeVisible()
@@ -249,7 +255,14 @@ test.describe('SitePulse Lab MVP', () => {
             ],
             checks: {
               redirects: { count: 2, final_status: 200 },
-              headers: { present: ['strict-transport-security'], missing: ['content-security-policy'] },
+              status: { code: 200, content_type: 'text/html', duration_ms: 320 },
+              headers: {
+                present: ['strict-transport-security', 'cache-control'],
+                missing: ['content-security-policy'],
+                technologies: ['CDN cache hint'],
+              },
+              ttfb: { duration_ms: 320 },
+              performance: { redirect_count: 2, body_bytes_sampled: 4096 },
             },
             redirect_chain: [
               { url: 'https://example.com', status: 301, location: 'https://www.example.com' },
@@ -272,6 +285,9 @@ test.describe('SitePulse Lab MVP', () => {
     await expect(page.getByText('Redirect chain completed')).toBeVisible()
     await page.getByRole('tab', { name: 'Findings' }).click()
     await expect(page.getByRole('cell', { name: 'Redirect count' })).toBeVisible()
+    await page.getByRole('tab', { name: 'Technical details' }).click()
+    await expect(page.getByRole('heading', { name: 'Redirect path' })).toBeVisible()
+    await expect(page.getByText('https://www.example.com').first()).toBeVisible()
     await expectNoHorizontalOverflow(page)
     expect(JSON.stringify(await page.evaluate(() => window.supersitesAnalyticsEvents))).not.toContain('secret.example')
 
@@ -282,6 +298,10 @@ test.describe('SitePulse Lab MVP', () => {
     await expect(page.getByText('Pulse score')).toBeVisible()
     await page.getByRole('tab', { name: 'Findings' }).click()
     await expect(page.getByRole('cell', { name: 'Content-Security-Policy' })).toBeVisible()
+    await page.getByRole('tab', { name: 'Technical details' }).click()
+    await expect(page.getByRole('heading', { name: 'Header matrix' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Technology clues' })).toBeVisible()
+    await expect(page.getByText('Cache/CDN hint')).toBeVisible()
     await expect(page.getByText('Monitoring workflow planned')).toBeVisible()
     await expectNoHorizontalOverflow(page)
     expect(JSON.stringify(await page.evaluate(() => window.supersitesAnalyticsEvents))).not.toContain('headers-secret.example')
