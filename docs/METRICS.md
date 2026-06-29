@@ -1185,6 +1185,11 @@ Data-base: 2026-06-29
 | Sprint 16.3 focused validation | Passed: `@supersites/ai-growth` 12 tests; `GrowthAutomationReadinessTest` 4 tests/68 assertions |
 | Sprint 16.3 full local validation | Passed: `pnpm test:packages` 88 tests, `pnpm typecheck:packages`, `php artisan test` 90 tests/895 assertions, `composer validate --strict`, `pnpm measure:admin-audit` run `2026-06-29T11-05-06Z`, `pnpm deploy:build-control-plane-hostgator`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check`, `pnpm validate:adsense-safe-public` |
 | Sprint 16.3 control-plane artifact | 7164 files, 28345258 bytes, zip 8442691 bytes |
+| Sprint 16.3 feature commit | `6a48c31` |
+| Sprint 16.3 remote Quality Gate | `28367680725` passed |
+| Sprint 16.3 remote Deploy Dry Run | `28367680675` passed |
+| Sprint 16.3 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public`, `pnpm validate:adsense-safe-public`; Hub asset `https://opentshost.com/supersites/_nuxt/BNDSn3oU.js`; NetProbe asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/xQOMqDWZ.js` |
+| Sprint 16.3 production deploy activation | 0 real deploys triggered in this sprint; public smokes validate the existing production baseline |
 | Sprint 16.3 runbook | `docs/RUNBOOKS/GROWTH_AUTOMATION_READINESS.md` |
 | Sprint 16.3 ADR | `docs/ADR/0042-growth-automation-readiness.md` |
 | Sprint 16.3 automation/provider activation | 0 provider imports, external AI calls, prompts, workers, cron jobs, automated branches, PRs, auto-merge, direct publish, causal claims, SEO mutations, ad serving, checkout, billing, donations, affiliates or automated publications |

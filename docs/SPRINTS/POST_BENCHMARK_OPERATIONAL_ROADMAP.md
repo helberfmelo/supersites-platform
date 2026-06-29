@@ -136,11 +136,11 @@ Status em 2026-06-29: Fase concluida em modo fail-closed. A Sprint 15.1 foi conc
 
 Objetivo: operar o ciclo continuo com evidencias reais.
 
-Status em 2026-06-29: Fase iniciada em modo fail-closed. A Sprint 16.1 concluiu readiness autenticado de ingestao de GA4/Search Console/AdSense/billing sem provider requests, tokens, workers, cron, retries ou snapshots reais. A Sprint 16.2 concluiu priorizacao autenticada local sem provider real, external AI, PR automatico, causalidade ou automacao. A Sprint 16.3 esta validada localmente com fila `pr_review_only` sem branch/PR/merge/publish real. Proxima sprint apos fechamento remoto: 16.4 `GROWTH-REPORTING`.
+Status em 2026-06-29: Fase iniciada em modo fail-closed. A Sprint 16.1 concluiu readiness autenticado de ingestao de GA4/Search Console/AdSense/billing sem provider requests, tokens, workers, cron, retries ou snapshots reais. A Sprint 16.2 concluiu priorizacao autenticada local sem provider real, external AI, PR automatico, causalidade ou automacao. A Sprint 16.3 concluiu readiness de automacao segura com fila `pr_review_only` sem branch/PR/merge/publish real. Proxima sprint: 16.4 `GROWTH-REPORTING`.
 
 | Sprint | Simbolico | Escopo | Gates/humanos |
 |---:|---|---|---|
 | 16.1 | GROWTH-INGEST | Concluida em `2581eab`; readiness de ingestao futura GA4/Search Console/AdSense/billing, imports reais 0 | Tokens e quotas em cofre |
 | 16.2 | GROWTH-PRIORITIZE | Concluida em `e969bac`; `GET /api/v1/growth/priorities`, priority model local, provider-backed priorities 0 | Sem causalidade automatica |
-| 16.3 | GROWTH-AUTOMATION-SAFE | Validada localmente; `GET /api/v1/growth/automation-readiness`, candidatos `pr_review_only`, branch/PR/merge/publish 0 | Automacao real segue gate humano |
+| 16.3 | GROWTH-AUTOMATION-SAFE | Concluida em `6a48c31`; `GET /api/v1/growth/automation-readiness`, candidatos `pr_review_only`, branch/PR/merge/publish 0 | Automacao real segue gate humano |
 | 16.4 | GROWTH-REPORTING | Relatorios semanais/mensais com antes/depois e status de dados | Revisao para receita/causalidade |
