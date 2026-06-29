@@ -34,7 +34,7 @@ Data-base: 2026-06-27
 - Standard structure/secrets/dry-run/ci/diff gates.
 - Sprint 7.9 validation passed for unit, build, preview smoke, Playwright, final local gates, Quality Gate `28289435994`, Deploy Dry Run `28289435995` and public Hub/control-plane/NetProbe smokes.
 - Sprint 9.10 validation passed: `pnpm test:mailhealth`, `pnpm build:mailhealth`, `pnpm validate:mailhealth-preview`, `pnpm test:e2e:mailhealth`, package gates, public-copy, structure, secrets, deploy dry-run, ci:changes and diff check; feature commit `55721b1`, Quality Gate `28319796608`, Deploy Dry Run `28319796624`, deploy `28319881701`, release `55721b1aa2d0e020f73c3823d580427a48708ab4-28319881701-1`, asset `https://opentshost.com/supersites/mailhealth/_nuxt/fseKxIDq.js` and live UX smoke passed.
-- Sprint 13.3 local validation passed: `pnpm test:mailhealth` with 10 tests, `pnpm build:mailhealth`, `pnpm validate:mailhealth-preview` with asset `/_nuxt/NxyQf1L0.js`, `pnpm test:e2e:mailhealth` with 6 tests, public-copy in 951 HTML files, AdSense-safe in 13 pages, structure, secrets, deploy dry-run, ci:changes and diff check.
+- Sprint 13.3 validation passed: `pnpm test:mailhealth` with 10 tests, `pnpm build:mailhealth`, `pnpm validate:mailhealth-preview` with asset `/_nuxt/NxyQf1L0.js`, `pnpm test:e2e:mailhealth` with 6 tests, public-copy in 951 HTML files, AdSense-safe in 13 pages, structure, secrets, deploy dry-run, ci:changes and diff check; feature commit `9259dd9`, Quality Gate `28354998649`, Deploy Dry Run `28354998680` and public Hub/MailHealth/NetProbe/control-plane smokes passed.
 
 ## Gates
 

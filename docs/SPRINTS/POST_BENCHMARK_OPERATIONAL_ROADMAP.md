@@ -71,13 +71,13 @@ Status em 2026-06-29: Fase concluida. A Sprint 12.1 foi concluida com `lighthous
 
 Objetivo: expandir profundidade util sem conteudo em massa raso.
 
-Status em 2026-06-29: iniciada. As Sprints 13.1 e 13.2 foram concluidas em main, sem deploy real. A Sprint 13.3 concluiu validacao local com builders SPF/DMARC locais no MailHealth, aguardando commit/push/monitoramento remoto. Nenhum checkout, billing, ads, provider externo, API paga, worker, publicacao DNS automatica, storage persistente ou conteudo em massa foi ativado.
+Status em 2026-06-29: iniciada. As Sprints 13.1, 13.2 e 13.3 foram concluidas em main, sem deploy real. A Sprint 13.3 adicionou builders SPF/DMARC locais no MailHealth, com Quality Gate `28354998649`, Deploy Dry Run `28354998680` e smokes publicos do baseline atual verdes. Nenhum checkout, billing, ads, provider externo, API paga, worker, publicacao DNS automatica, storage persistente ou conteudo em massa foi ativado.
 
 | Sprint | Simbolico | Escopo | Gates/humanos |
 |---:|---|---|---|
 | 13.1 | DEPTH-CALCHARBOR | Expandir calculadoras priorizadas e defaults por locale/moeda | Concluida em main sem deploy real: `compound-interest`, `savings-goal`, `cash-runway`, `discount-price`, defaults `USD`/`BRL`/`EUR`, 12 testes, build/preview/Playwright/public-copy/AdSense-safe/gates locais, Quality Gate `28353160843`, Deploy Dry Run `28353160830` e smokes publicos do baseline atual passaram; revisao humana continua obrigatoria antes de temas fiscais/juridicos regulados |
 | 13.2 | DEPTH-TIMENEXUS | Adicionar paginas curadas de cidade/fuso e timeline visual sem geracao ilimitada | Concluida em main sem deploy real: 8 cidades curadas x 5 idiomas, timeline visual, overlap 09:00, home links, JSON-LD, 11 testes, build/preview/Playwright/public-copy/AdSense-safe/gates locais, Quality Gate `28354017920`, Deploy Dry Run `28354017921` e smokes publicos do baseline atual passaram; sem geracao all-IANA ou calendario/provider externo |
-| 13.3 | DEPTH-MAILHEALTH | Criar SPF/DMARC builders seguros e guias profundos | Validacao local concluida: builders TXT locais para SPF/DMARC, copy 5 idiomas, 10 testes, build/preview/Playwright/public-copy/AdSense-safe/gates locais; DNSBL/provider policy, publicacao DNS e ingestao DMARC seguem gate |
+| 13.3 | DEPTH-MAILHEALTH | Criar SPF/DMARC builders seguros e guias profundos | Concluida em main sem deploy real: builders TXT locais para SPF/DMARC, copy 5 idiomas, 10 testes, build/preview/Playwright/public-copy/AdSense-safe/gates locais, Quality Gate `28354998649`, Deploy Dry Run `28354998680` e smokes publicos do baseline atual passaram; DNSBL/provider policy, publicacao DNS e ingestao DMARC seguem gate |
 | 13.4 | DEPTH-SITEPULSE | Adicionar detalhes de headers/redirects/tecnologias dentro de limites antiabuso | Sem crawling amplo |
 | 13.5 | DEPTH-PIXEL-DOC | Planejar background remover/OCR/conversoes com matriz de dados antes de qualquer provider/upload | AI/OCR/provider seguem gate humano |
 

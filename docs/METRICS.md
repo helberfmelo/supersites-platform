@@ -967,10 +967,11 @@ Data-base: 2026-06-29
 | Sprint 13.3 public copy gate | `pnpm validate:public-copy` passed; 951 HTML files |
 | Sprint 13.3 AdSense-safe gate | `pnpm validate:adsense-safe-public` passed; 13 public pages |
 | Sprint 13.3 local governance gates | Passed: `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` |
-| Sprint 13.3 feature commit | Pending commit/push at feature close |
-| Sprint 13.3 remote Quality Gate | Pending feature push |
-| Sprint 13.3 remote Deploy Dry Run | Pending feature push |
-| Sprint 13.3 production deploy activation | 0 real static app deploys triggered during local feature work |
+| Sprint 13.3 feature commit | `9259dd9 feat: add mailhealth record builders` |
+| Sprint 13.3 remote Quality Gate | `28354998649` passed |
+| Sprint 13.3 remote Deploy Dry Run | `28354998680` passed |
+| Sprint 13.3 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, MailHealth static smoke, `pnpm deploy:smoke-netprobe-public`, `pnpm deploy:smoke-control-plane-public`; current MailHealth public asset `https://opentshost.com/supersites/mailhealth/_nuxt/Dm_wdR4Q.js` |
+| Sprint 13.3 production deploy activation | 0 real static app deploys triggered in this sprint; public smokes validate the existing production baseline |
 | Sprint 13.3 provider/data activation | 0 DNS publishing, DMARC ingestion, broad DNSBL scans, provider policy integration, storage, paid API, billing, ads, donation, affiliate, external analytics, worker or cron activations |
 
 ## Product metrics
