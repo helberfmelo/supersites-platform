@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\V1\Account\AccountExportController;
 use App\Http\Controllers\Api\V1\AdSense\AdSenseGoLiveReadinessController;
 use App\Http\Controllers\Api\V1\Billing\BillingWebhookDryRunController;
 use App\Http\Controllers\Api\V1\CurrentUserController;
+use App\Http\Controllers\Api\V1\Google\GoogleProviderGoLiveReadinessController;
 use App\Http\Controllers\Api\V1\MailHealth\MailHealthBlacklistController;
 use App\Http\Controllers\Api\V1\MailHealth\MailHealthDnsController;
 use App\Http\Controllers\Api\V1\MailHealth\MailHealthSmtpController;
@@ -75,6 +76,8 @@ Route::prefix('v1')
         Route::get('/metric-snapshots', MetricSnapshotIndexController::class)
             ->middleware('permission:dashboard.view');
         Route::get('/adsense/go-live-readiness', AdSenseGoLiveReadinessController::class)
+            ->middleware('permission:dashboard.view');
+        Route::get('/google/go-live-readiness', GoogleProviderGoLiveReadinessController::class)
             ->middleware('permission:dashboard.view');
 
         Route::prefix('monitoring/previews')

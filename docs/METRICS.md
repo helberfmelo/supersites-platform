@@ -1102,6 +1102,20 @@ Data-base: 2026-06-29
 | Sprint 15.1 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public`, `pnpm validate:adsense-safe-public`; Hub asset `https://opentshost.com/supersites/_nuxt/BNDSn3oU.js`; NetProbe asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/xQOMqDWZ.js` |
 | Sprint 15.1 production deploy activation | 0 real deploys triggered in this sprint; public smokes validate the existing production baseline |
 | Sprint 15.1 provider/monetization activation | 0 public `ads.txt`, publisher id real, AdSense snippet, Management API, site submission, Auto Ads, manual ads, ad requests, impressions, clicks, revenue, donations, affiliates, checkout, billing or external provider activations |
+| Sprint 15.2 Google readiness endpoint | `GET /api/v1/google/go-live-readiness` behind auth and `dashboard.view` |
+| Sprint 15.2 Google readiness contract | `GoogleProviderGoLiveReadiness::CONTRACT_VERSION` `2026-06-29.15.2` |
+| Sprint 15.2 Google ID helpers | `@supersites/analytics normalizeGa4MeasurementId` and `normalizeGtmContainerId`; invalid IDs return `null` |
+| Sprint 15.2 default seeded Google state | 12 integrations; 0 ready for human activation; GA4 loading 0; GTM loading 0; Search Console import 0 |
+| Sprint 15.2 focused validation | Passed: `@supersites/analytics` 10 tests; `GoogleProviderGoLiveReadinessTest` 4 tests/35 assertions |
+| Sprint 15.2 package validation | `pnpm test:packages` passed with 79 tests; `pnpm typecheck:packages` passed |
+| Sprint 15.2 local Laravel validation | `php artisan test` passed; 70 tests, 670 assertions |
+| Sprint 15.2 Google readiness audit | `pnpm measure:google-ready` passed; run `2026-06-29T09-37-06Z` |
+| Sprint 15.2 admin visual audit | `pnpm measure:admin-audit` passed; run `2026-06-29T09-37-06Z`; 9 authenticated desktop/mobile checks |
+| Sprint 15.2 control-plane artifact build | `pnpm deploy:build-control-plane-hostgator` passed; 7148 files, 28274065 bytes, zip 8423936 bytes |
+| Sprint 15.2 local governance gates | Passed: `composer validate --strict`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `validate:adsense-safe-public` |
+| Sprint 15.2 runbook | `docs/RUNBOOKS/GOOGLE_PROVIDER_GO_LIVE_READINESS.md` |
+| Sprint 15.2 ADR | `docs/ADR/0037-google-provider-go-live-readiness.md` |
+| Sprint 15.2 provider/analytics activation | 0 GA4/GTM snippets, Google properties, GTM containers, Search Console verification tokens/imports, PageSpeed API calls, cookies, real secrets or external analytics provider activations |
 
 ## Product metrics
 

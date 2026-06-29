@@ -280,6 +280,26 @@ export interface SearchConsolePropertyPlan {
   reason: string
 }
 
+export function normalizeGa4MeasurementId(value: string | null | undefined): string | null {
+  if (!value) {
+    return null
+  }
+
+  const normalized = value.trim().toUpperCase()
+
+  return /^G-[A-Z0-9]{4,20}$/.test(normalized) ? normalized : null
+}
+
+export function normalizeGtmContainerId(value: string | null | undefined): string | null {
+  if (!value) {
+    return null
+  }
+
+  const normalized = value.trim().toUpperCase()
+
+  return /^GTM-[A-Z0-9]{4,20}$/.test(normalized) ? normalized : null
+}
+
 export function resolveGoogleIntegrationGate(input: GoogleIntegrationGateInput): GoogleIntegrationGate {
   const reasons: string[] = []
 
@@ -299,11 +319,11 @@ export function resolveGoogleIntegrationGate(input: GoogleIntegrationGateInput):
     reasons.push('The Google tag delivery feature flag is disabled.')
   }
 
-  if (!input.ga4MeasurementId) {
+  if (!normalizeGa4MeasurementId(input.ga4MeasurementId)) {
     reasons.push('GA4 measurement id is not configured.')
   }
 
-  if (!input.gtmContainerId) {
+  if (!normalizeGtmContainerId(input.gtmContainerId)) {
     reasons.push('GTM container id is not configured.')
   }
 

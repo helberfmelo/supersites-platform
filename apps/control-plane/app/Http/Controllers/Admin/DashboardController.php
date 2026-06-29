@@ -20,14 +20,19 @@ use App\Models\Incident;
 use App\Models\OperationalTask;
 use App\Models\Site;
 use App\Support\AdSense\AdSenseGoLiveReadiness;
+use App\Support\Google\GoogleProviderGoLiveReadiness;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
 {
-    public function __invoke(Request $request, AdSenseGoLiveReadiness $adsenseReadiness): View
-    {
+    public function __invoke(
+        Request $request,
+        AdSenseGoLiveReadiness $adsenseReadiness,
+        GoogleProviderGoLiveReadiness $googleReadiness,
+    ): View {
         $adsenseGoLiveReadiness = $adsenseReadiness->snapshot();
+        $googleGoLiveReadiness = $googleReadiness->snapshot();
         $statusCounts = Site::query()
             ->selectRaw('status, count(*) as total')
             ->groupBy('status')
@@ -140,6 +145,7 @@ class DashboardController extends Controller
                 ->orderBy('id')
                 ->limit(6)
                 ->get(),
+            'googleGoLiveReadiness' => $googleGoLiveReadiness,
             'incidents' => Incident::query()
                 ->with('site:id,slug,name')
                 ->latest('detected_at')

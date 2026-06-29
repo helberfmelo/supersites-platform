@@ -9,6 +9,8 @@ import {
   createOutboundSiteClickEvent,
   googleAnalyticsEventNames,
   isAnalyticsEventName,
+  normalizeGa4MeasurementId,
+  normalizeGtmContainerId,
   resolveGoogleIntegrationGate,
   sanitizeAnalyticsPath,
   sanitizeAnalyticsProperties,
@@ -94,6 +96,13 @@ describe('@supersites/analytics', () => {
     for (const eventName of analyticsEventNames) {
       expect(googleAnalyticsEventNames[eventName]).toMatch(/^[a-z][a-z0-9_]{0,39}$/)
     }
+  })
+
+  it('normalizes Google provider identifiers without accepting arbitrary values', () => {
+    expect(normalizeGa4MeasurementId(' g-abc123xyz ')).toBe('G-ABC123XYZ')
+    expect(normalizeGtmContainerId(' gtm-test123 ')).toBe('GTM-TEST123')
+    expect(normalizeGa4MeasurementId('UA-123456')).toBeNull()
+    expect(normalizeGtmContainerId('G-ABC123')).toBeNull()
   })
 
   it('fails Google tag delivery closed until human, consent and ids are present', () => {

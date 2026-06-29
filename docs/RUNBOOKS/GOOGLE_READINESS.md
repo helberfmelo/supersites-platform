@@ -11,6 +11,8 @@ This runbook covers Sprint 12.3 readiness checks for GA4, GTM, Search Console an
 
 This check does not create Google properties, GTM containers, Search Console verifications, AdSense accounts, publisher IDs, `ads.txt`, ad requests or external analytics traffic.
 
+Sprint 15.2 adds the authenticated readiness endpoint `GET /api/v1/google/go-live-readiness` and runbook `docs/RUNBOOKS/GOOGLE_PROVIDER_GO_LIVE_READINESS.md`. That endpoint is also read-only and keeps GA4/GTM loading, Search Console import and provider activation at 0 until human gates are approved.
+
 ## Command
 
 ```powershell

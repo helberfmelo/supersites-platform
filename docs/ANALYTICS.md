@@ -239,6 +239,8 @@ Sprint 6.2 nao ativa scripts GA4/GTM, importacao Search Console, contas Google, 
 
 Sprint 12.3 adiciona o comando `pnpm measure:google-ready` para auditar readiness de GA4/GTM/Search Console/AdSense sem ativar provider. O run local `2026-06-29T05-47-31Z` passou com 18 checks e confirmou allowlist de parametros, gates fail-closed, seeders sem IDs reais, ausencia de snippets publicos ativos e ausencia de `ads.txt` placeholder.
 
+Sprint 15.2 adiciona `GET /api/v1/google/go-live-readiness` apenas para usuarios autenticados com `dashboard.view`. O endpoint e o dashboard declaram `provider_activation=false`, `side_effects=none`, `automatic_tag_injection_enabled=false`, `automatic_data_import_enabled=false`, `should_load_ga4=false`, `should_load_gtm=false` e `should_import_search_console=false`. GA4/GTM IDs sao normalizados no contrato `@supersites/analytics`; IDs invalidos nao contam como configurados. A ativacao real de tags ou importacao Search Console continua bloqueada por acesso Google, verificacao de dominio, consentimento/CMP, matriz de dados, secrets em cofre e decisao humana por site. Runbook: `docs/RUNBOOKS/GOOGLE_PROVIDER_GO_LIVE_READINESS.md`.
+
 ## AdSense metrics
 
 Sprint 6.3 cria somente readiness operacional de AdSense:

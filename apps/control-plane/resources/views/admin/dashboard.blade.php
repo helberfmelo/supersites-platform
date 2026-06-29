@@ -377,6 +377,14 @@
 
     <section class="panel">
         <h2>Google integrations</h2>
+        <p class="muted">
+            Go-live ready {{ $googleGoLiveReadiness['data']['summary']['sites_ready_for_human_activation'] }} /
+            {{ $googleGoLiveReadiness['data']['summary']['integrations'] }} sites ·
+            GA4 loading {{ $googleGoLiveReadiness['data']['summary']['sites_loading_ga4'] }} ·
+            GTM loading {{ $googleGoLiveReadiness['data']['summary']['sites_loading_gtm'] }} ·
+            Search Console import {{ $googleGoLiveReadiness['data']['summary']['sites_importing_search_console'] }} ·
+            automatic tags {{ $googleGoLiveReadiness['data']['summary']['automatic_tag_injection_enabled'] ? 'enabled' : 'disabled' }}
+        </p>
         <table>
             <thead>
                 <tr>
