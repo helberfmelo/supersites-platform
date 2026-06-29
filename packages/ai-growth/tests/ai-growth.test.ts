@@ -3,6 +3,7 @@ import {
   buildGrowthRecommendation,
   detectMetricAnomaly,
   prioritizeGrowthRecommendations,
+  resolveGrowthAutomationGate,
   resolveGrowthPriorityGate,
   summarizeGrowthBacklog,
 } from '../src/index'
@@ -248,6 +249,69 @@ describe('ai growth engine contracts', () => {
       externalAiAllowed: false,
       shouldCreatePr: false,
       reasons: [],
+    })
+  })
+
+  it('marks low-risk evidence-backed work as PR-review-only without side effects', () => {
+    const recommendation = buildGrowthRecommendation({
+      category: 'technical',
+      title: 'Tighten growth smoke checks',
+      recommendation: 'Add a local assertion before any automated execution exists.',
+      impact: 4,
+      effort: 2,
+      confidence: 4,
+      risk: 2,
+      evidence,
+    })
+
+    expect(resolveGrowthAutomationGate({
+      recommendation,
+      providerDataAvailable: false,
+    })).toMatchObject({
+      status: 'pr_review_only',
+      riskLevel: 'low',
+      prReviewAllowed: true,
+      providerDataAvailable: false,
+      branchCreationAllowed: false,
+      pullRequestCreationAllowed: false,
+      autoMergeAllowed: false,
+      directPublishAllowed: false,
+      externalAiAllowed: false,
+      shouldCreateBranch: false,
+      shouldOpenPullRequest: false,
+      shouldAutoMerge: false,
+      shouldPublish: false,
+      sideEffects: 'none',
+      reasons: ['provider_data_unavailable'],
+    })
+  })
+
+  it('blocks growth automation for human-gated or higher-risk work', () => {
+    const recommendation = buildGrowthRecommendation({
+      category: 'monetization',
+      title: 'Publish paid checkout',
+      recommendation: 'Never publish checkout from the growth loop.',
+      impact: 5,
+      effort: 3,
+      confidence: 5,
+      risk: 5,
+      evidence,
+      humanGateRequired: true,
+    })
+
+    expect(resolveGrowthAutomationGate({
+      recommendation,
+      providerDataAvailable: true,
+    })).toMatchObject({
+      status: 'human_required',
+      riskLevel: 'high',
+      prReviewAllowed: false,
+      providerDataAvailable: true,
+      shouldCreateBranch: false,
+      shouldOpenPullRequest: false,
+      shouldAutoMerge: false,
+      shouldPublish: false,
+      reasons: ['risk_above_low_risk_threshold', 'human_review_required'],
     })
   })
 })

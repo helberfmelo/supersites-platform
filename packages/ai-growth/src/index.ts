@@ -1,5 +1,6 @@
 export const aiGrowthContractVersion = '2026-06-27.1'
 export const growthPriorityContractVersion = '2026-06-29.16.2'
+export const growthAutomationContractVersion = '2026-06-29.16.3'
 
 export const growthCategories = ['technical', 'seo', 'aio', 'monetization', 'anomaly', 'prioritization'] as const
 
@@ -12,6 +13,8 @@ export type GrowthAnomalyDirection = 'increase' | 'decrease' | 'any'
 export type GrowthAnomalyStatus = 'within_threshold' | 'watching' | 'insufficient_data'
 export type GrowthPriorityStatus = 'local_evidence_only' | 'real_data_ready' | 'human_required' | 'blocked'
 export type GrowthPriorityDataStatus = 'finalized' | 'estimated' | 'delayed' | 'unavailable'
+export type GrowthAutomationStatus = 'pr_review_only' | 'human_required' | 'blocked'
+export type GrowthAutomationRiskLevel = 'low' | 'medium' | 'high' | 'unknown'
 
 export interface GrowthEvidenceInput {
   type: string
@@ -108,6 +111,34 @@ export interface GrowthPriorityGate {
   automationAllowed: false
   externalAiAllowed: false
   shouldCreatePr: false
+  reasons: string[]
+}
+
+export interface GrowthAutomationGateInput {
+  recommendation?: GrowthRecommendation | null
+  riskScore?: number | null
+  evidenceCount?: number | null
+  providerDataAvailable?: boolean
+  humanReviewRequired?: boolean
+  sourceStatus?: GrowthStatus | GrowthPriorityStatus | GrowthAutomationStatus | null
+}
+
+export interface GrowthAutomationGate {
+  contractVersion: string
+  status: GrowthAutomationStatus
+  riskLevel: GrowthAutomationRiskLevel
+  prReviewAllowed: boolean
+  providerDataAvailable: boolean
+  branchCreationAllowed: false
+  pullRequestCreationAllowed: false
+  autoMergeAllowed: false
+  directPublishAllowed: false
+  externalAiAllowed: false
+  shouldCreateBranch: false
+  shouldOpenPullRequest: false
+  shouldAutoMerge: false
+  shouldPublish: false
+  sideEffects: 'none'
   reasons: string[]
 }
 
@@ -342,6 +373,75 @@ export function resolveGrowthPriorityGate(input: GrowthPriorityGateInput): Growt
   }
 }
 
+export function resolveGrowthAutomationGate(input: GrowthAutomationGateInput): GrowthAutomationGate {
+  const recommendation = input.recommendation ?? null
+  const evidenceCount = input.evidenceCount ?? recommendation?.evidence.length ?? 0
+  const riskScore = normalizeScore(input.riskScore ?? recommendation?.riskScore)
+  const sourceStatus = input.sourceStatus ?? recommendation?.status ?? null
+  const humanReviewRequired = Boolean(input.humanReviewRequired)
+    || Boolean(recommendation?.humanGateRequired)
+    || sourceStatus === 'human_required'
+  const providerDataAvailable = Boolean(input.providerDataAvailable)
+  const reasons: string[] = []
+
+  if (recommendation === null) {
+    reasons.push('missing_recommendation')
+  }
+
+  if (evidenceCount === 0) {
+    reasons.push('missing_evidence')
+  }
+
+  if (riskScore === null) {
+    reasons.push('missing_risk_score')
+  } else if (riskScore > 2) {
+    reasons.push('risk_above_low_risk_threshold')
+  }
+
+  if (sourceStatus === 'blocked') {
+    reasons.push('blocked_recommendation')
+  }
+
+  if (humanReviewRequired) {
+    reasons.push('human_review_required')
+  }
+
+  if (!providerDataAvailable) {
+    reasons.push('provider_data_unavailable')
+  }
+
+  const blocked = recommendation === null
+    || evidenceCount === 0
+    || riskScore === null
+    || riskScore > 2
+    || sourceStatus === 'blocked'
+
+  const status: GrowthAutomationStatus = humanReviewRequired
+    ? 'human_required'
+    : blocked
+      ? 'blocked'
+      : 'pr_review_only'
+
+  return {
+    contractVersion: growthAutomationContractVersion,
+    status,
+    riskLevel: automationRiskLevel(riskScore),
+    prReviewAllowed: status === 'pr_review_only',
+    providerDataAvailable,
+    branchCreationAllowed: false,
+    pullRequestCreationAllowed: false,
+    autoMergeAllowed: false,
+    directPublishAllowed: false,
+    externalAiAllowed: false,
+    shouldCreateBranch: false,
+    shouldOpenPullRequest: false,
+    shouldAutoMerge: false,
+    shouldPublish: false,
+    sideEffects: 'none',
+    reasons: Array.from(new Set(reasons)),
+  }
+}
+
 export function calculatePriorityScore(impact: number, effort: number, confidence: number, risk: number): number {
   return (impact * confidence) - effort - risk
 }
@@ -457,6 +557,22 @@ function normalizePriorityDataStatus(value: string | null | undefined): GrowthPr
   return ['finalized', 'estimated', 'delayed', 'unavailable'].includes(normalized)
     ? normalized as GrowthPriorityDataStatus
     : 'unavailable'
+}
+
+function automationRiskLevel(riskScore: number | null): GrowthAutomationRiskLevel {
+  if (riskScore === null) {
+    return 'unknown'
+  }
+
+  if (riskScore <= 2) {
+    return 'low'
+  }
+
+  if (riskScore <= 4) {
+    return 'medium'
+  }
+
+  return 'high'
 }
 
 function normalizeNumber(value: number | null | undefined): number | null {

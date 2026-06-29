@@ -24,6 +24,7 @@ use App\Models\SupportMonetizationChannel;
 use App\Support\AdSense\AdSenseGoLiveReadiness;
 use App\Support\Billing\BillingProviderGoLiveReadiness;
 use App\Support\Google\GoogleProviderGoLiveReadiness;
+use App\Support\Growth\GrowthAutomationReadiness;
 use App\Support\Growth\GrowthIngestionReadiness;
 use App\Support\Growth\GrowthPriorityReadiness;
 use App\Support\Monetization\SupportMonetizationGoLiveReadiness;
@@ -37,6 +38,7 @@ class DashboardController extends Controller
         AdSenseGoLiveReadiness $adsenseReadiness,
         BillingProviderGoLiveReadiness $billingReadiness,
         GoogleProviderGoLiveReadiness $googleReadiness,
+        GrowthAutomationReadiness $growthAutomationReadiness,
         GrowthIngestionReadiness $growthIngestionReadiness,
         GrowthPriorityReadiness $growthPriorityReadiness,
         SupportMonetizationGoLiveReadiness $supportMonetizationReadiness,
@@ -44,6 +46,7 @@ class DashboardController extends Controller
         $adsenseGoLiveReadiness = $adsenseReadiness->snapshot();
         $billingGoLiveReadiness = $billingReadiness->snapshot();
         $googleGoLiveReadiness = $googleReadiness->snapshot();
+        $growthAutomationReadinessSnapshot = $growthAutomationReadiness->snapshot();
         $growthIngestionReadinessSnapshot = $growthIngestionReadiness->snapshot();
         $growthPriorityReadinessSnapshot = $growthPriorityReadiness->snapshot();
         $supportMonetizationGoLiveReadiness = $supportMonetizationReadiness->snapshot();
@@ -86,6 +89,8 @@ class DashboardController extends Controller
             'growth_ingestion_importing' => GrowthProviderIngestion::query()->where('import_enabled', true)->count(),
             'growth_priorities_ready' => $growthPriorityReadinessSnapshot['data']['summary']['priorities_ready_for_operator_review'],
             'growth_priority_auto_apply' => $growthPriorityReadinessSnapshot['data']['summary']['should_auto_apply'] ? 1 : 0,
+            'growth_automation_pr_review_candidates' => $growthAutomationReadinessSnapshot['data']['summary']['pr_review_candidates'],
+            'growth_automation_pull_requests_opened' => $growthAutomationReadinessSnapshot['data']['summary']['pull_requests_opened'],
             'open_incidents' => Incident::query()->whereIn('status', ['open', 'investigating', 'monitoring'])->count(),
             'open_tasks' => OperationalTask::query()->whereIn('status', ['open', 'blocked'])->count(),
         ];
@@ -166,6 +171,7 @@ class DashboardController extends Controller
                 ->limit(6)
                 ->get(),
             'googleGoLiveReadiness' => $googleGoLiveReadiness,
+            'growthAutomationReadiness' => $growthAutomationReadinessSnapshot,
             'growthIngestionReadiness' => $growthIngestionReadinessSnapshot,
             'growthPriorityReadiness' => $growthPriorityReadinessSnapshot,
             'growthProviderIngestions' => GrowthProviderIngestion::query()

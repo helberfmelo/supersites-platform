@@ -39,6 +39,14 @@
             <strong>{{ $summary['growth_priority_auto_apply'] }}</strong>
         </article>
         <article class="panel metric">
+            <span class="muted">PR review candidates</span>
+            <strong>{{ $summary['growth_automation_pr_review_candidates'] }}</strong>
+        </article>
+        <article class="panel metric">
+            <span class="muted">Growth PRs opened</span>
+            <strong>{{ $summary['growth_automation_pull_requests_opened'] }}</strong>
+        </article>
+        <article class="panel metric">
             <span class="muted">Billing gated</span>
             <strong>{{ $summary['billing_gated'] }}</strong>
         </article>
@@ -306,6 +314,49 @@
                 @empty
                     <tr>
                         <td colspan="6">No growth priorities available for review.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </section>
+
+    <section class="panel">
+        <h2>Growth automation readiness</h2>
+        <p class="muted">
+            PR review candidates {{ $growthAutomationReadiness['data']['summary']['pr_review_candidates'] }} /
+            {{ $growthAutomationReadiness['data']['summary']['recommendations'] }} ·
+            branches {{ $growthAutomationReadiness['data']['summary']['branches_created'] }} ·
+            PRs {{ $growthAutomationReadiness['data']['summary']['pull_requests_opened'] }} ·
+            auto-merge {{ $growthAutomationReadiness['data']['summary']['auto_merge_enabled'] ? 'enabled' : 'disabled' }} ·
+            publish {{ $growthAutomationReadiness['data']['summary']['direct_publish_enabled'] ? 'enabled' : 'disabled' }}
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Candidate</th>
+                    <th>Status</th>
+                    <th>Risk</th>
+                    <th>PR</th>
+                    <th>Publish</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse (array_slice($growthAutomationReadiness['data']['automation_queue'], 0, 6) as $candidate)
+                    <tr>
+                        <td>{{ $candidate['rank'] }}</td>
+                        <td>
+                            {{ $candidate['title'] }}
+                            <br><span class="muted">{{ $candidate['site_name'] }} · {{ $candidate['category'] }}</span>
+                        </td>
+                        <td><span class="status {{ $candidate['status'] }}">{{ $candidate['status'] }}</span></td>
+                        <td>{{ $candidate['risk_level'] }}</td>
+                        <td>{{ $candidate['should_open_pull_request'] ? 'enabled' : 'disabled' }}</td>
+                        <td>{{ $candidate['should_publish'] ? 'enabled' : 'disabled' }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">No growth automation candidates available for review.</td>
                     </tr>
                 @endforelse
             </tbody>

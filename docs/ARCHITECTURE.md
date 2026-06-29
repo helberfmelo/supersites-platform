@@ -141,6 +141,15 @@ Sprint 16.2 adiciona priorizacao autenticada do growth loop sem provider externo
 
 Nenhum provider import, external AI, worker, cron, branch/PR automatico, auto-merge, ads, billing, doacao, afiliado ou publicacao de conteudo e ativado nesta sprint.
 
+## Growth automation readiness
+
+Sprint 16.3 adiciona uma fila autenticada de automacao segura sem executar automacao real:
+
+- `@supersites/ai-growth` exporta `growthAutomationContractVersion` e `resolveGrowthAutomationGate`.
+- `GrowthAutomationReadiness` marca apenas recomendacoes com evidencia, sem gate humano e `risk_score <= 2` como `pr_review_only`.
+- `GET /api/v1/growth/automation-readiness` usa auth e `dashboard.view`.
+- Branch creation, PR creation, auto-merge, direct publish, external AI, provider import e mutacoes SEO/ads/billing permanecem desativados.
+
 ## Executive reports
 
 Sprint 6.6 adiciona relatorios executivos locais e exportaveis no control plane:

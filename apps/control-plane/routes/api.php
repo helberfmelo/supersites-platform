@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\V1\Billing\BillingProviderGoLiveReadinessController
 use App\Http\Controllers\Api\V1\Billing\BillingWebhookDryRunController;
 use App\Http\Controllers\Api\V1\CurrentUserController;
 use App\Http\Controllers\Api\V1\Google\GoogleProviderGoLiveReadinessController;
+use App\Http\Controllers\Api\V1\Growth\GrowthAutomationReadinessController;
 use App\Http\Controllers\Api\V1\Growth\GrowthIngestionReadinessController;
 use App\Http\Controllers\Api\V1\Growth\GrowthPriorityReadinessController;
 use App\Http\Controllers\Api\V1\MailHealth\MailHealthBlacklistController;
@@ -90,6 +91,8 @@ Route::prefix('v1')
         Route::get('/growth/ingestion-readiness', GrowthIngestionReadinessController::class)
             ->middleware('permission:dashboard.view');
         Route::get('/growth/priorities', GrowthPriorityReadinessController::class)
+            ->middleware('permission:dashboard.view');
+        Route::get('/growth/automation-readiness', GrowthAutomationReadinessController::class)
             ->middleware('permission:dashboard.view');
 
         Route::prefix('monitoring/previews')

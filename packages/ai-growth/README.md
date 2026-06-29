@@ -19,3 +19,8 @@ closed until the relevant operational document records the required approval.
 
 Sprint 16.2 adds `resolveGrowthPriorityGate` for authenticated priority review.
 It keeps provider-data prioritization, causal claims and automation fail-closed.
+
+Sprint 16.3 adds `resolveGrowthAutomationGate` for low-risk PR-review
+readiness. It may mark work as reviewable by an operator, but branch creation,
+pull request creation, auto-merge, direct publish and external AI remain
+disabled in the contract.

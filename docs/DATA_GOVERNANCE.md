@@ -200,6 +200,13 @@
 - `data_status=finalized` em provider futuro pode indicar disponibilidade para revisao do operador, mas nao autoriza causalidade, publicacao, branch/PR automatico, auto-merge ou alteracao de ads/billing/SEO.
 - `causality_status=not_inferred` permanece obrigatorio ate existir contrato de revisao humana e evidencia antes/depois aprovada.
 
+## Growth automation readiness
+
+- A Sprint 16.3 cria apenas um snapshot autenticado derivado de `ai_growth_recommendations` e `growth_provider_ingestions`.
+- Campos permitidos: site, categoria, titulo, scores de impacto/esforco/confianca/risco, score de prioridade, status `pr_review_only`/`human_required`/`blocked`, contagem de evidencias, status agregado de provider e flags fail-closed.
+- Campos proibidos: branch id real, PR id real, commit patch gerado, prompt externo, resposta de provider, payload bruto GA4/Search Console/AdSense/billing, token, OAuth secret, API key, webhook secret, query real, URL com identificador, PII, input de ferramenta, arquivo ou dados de cliente.
+- `pr_review_only` significa somente fila para revisao do operador; branch, PR, auto-merge, publish e mutacao SEO/ads/billing continuam proibidos sem gate humano separado.
+
 ## Executive reports
 
 - A Sprint 6.6 cria apenas relatorios operacionais locais em `executive_reports` e `executive_report_items`.

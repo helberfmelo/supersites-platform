@@ -323,3 +323,13 @@ A Sprint 16.2 adiciona somente priorizacao autenticada de backlog a partir de ev
 - `causality_status` permanece `not_inferred`.
 - `automatic_prioritization_enabled`, `automatic_pr_creation_enabled`, `should_auto_apply` e `should_create_pr` permanecem falsos.
 - Nenhum provider API, external AI, prompt externo, worker, cron, branch, PR, auto-merge, ads, checkout, billing ou publicacao e ativado nesta sprint.
+
+## Growth automation readiness
+
+A Sprint 16.3 adiciona somente readiness autenticado para fila de automacao segura.
+
+- `@supersites/ai-growth` exporta `growthAutomationContractVersion` e `resolveGrowthAutomationGate`.
+- `GET /api/v1/growth/automation-readiness` fica atras de auth e `dashboard.view`.
+- O snapshot pode contar candidatos `pr_review_only`, mas isso e apenas uma fila operacional interna.
+- `automatic_branch_creation_enabled`, `automatic_pr_creation_enabled`, `auto_merge_enabled`, `direct_publish_enabled`, `should_create_branch`, `should_open_pull_request`, `should_auto_merge` e `should_publish` permanecem falsos.
+- Nenhum evento externo, provider API, external AI, prompt externo, worker, cron, branch, PR, auto-merge, SEO mutation, ads, checkout, billing ou publicacao e ativado nesta sprint.

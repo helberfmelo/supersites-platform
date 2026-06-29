@@ -100,6 +100,13 @@
 - `causality_status` deve permanecer `not_inferred`; antes/depois, impacto financeiro, ranking ou atribuicao causal exigem revisao humana e evidencia especifica.
 - Mesmo com `data_status=finalized` em fonte futura, `automatic_prioritization_enabled`, `automatic_pr_creation_enabled`, `should_auto_apply` e `should_create_pr` devem continuar falsos ate um gate separado de automacao.
 
+## Growth automation gates
+
+- A Sprint 16.3 expoe apenas readiness autenticado de automacao segura; nenhuma branch, PR, merge, publish, provider import, external AI ou mutacao de producao e criada.
+- `GET /api/v1/growth/automation-readiness` exige autenticacao e `dashboard.view`.
+- Apenas recomendacoes com evidencia, sem gate humano e `risk_score <= 2` podem aparecer como `pr_review_only`; isso nao autoriza execucao automatica.
+- Todos os snapshots mantem `side_effects=none`, `should_create_branch=false`, `should_open_pull_request=false`, `should_auto_merge=false` e `should_publish=false`.
+
 ## Executive report gates
 
 - A Sprint 6.6 registra apenas relatorios executivos locais; nenhum provider import, envio de e-mail, worker recorrente, webhook de relatorio ou automacao externa e criado.
