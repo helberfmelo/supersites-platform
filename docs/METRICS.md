@@ -980,7 +980,11 @@ Data-base: 2026-06-29
 | Sprint 13.4 public copy gate | `pnpm validate:public-copy` passed; 951 HTML files |
 | Sprint 13.4 AdSense-safe gate | `pnpm validate:adsense-safe-public` passed; 13 public pages |
 | Sprint 13.4 local governance gates | Passed: `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` |
-| Sprint 13.4 remote evidence | Pending feature push |
+| Sprint 13.4 feature commit | `53809f3 feat: add sitepulse response details` |
+| Sprint 13.4 remote Quality Gate | `28355948547` passed |
+| Sprint 13.4 remote Deploy Dry Run | `28355948542` passed with known non-blocking Node 20 upload-artifact annotation |
+| Sprint 13.4 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, SitePulse static smoke, `pnpm deploy:smoke-netprobe-public`, `pnpm deploy:smoke-control-plane-public`; current SitePulse public asset `https://opentshost.com/supersites/sitepulse-lab/_nuxt/lkcC6TkC.js` |
+| Sprint 13.4 production deploy activation | 0 real static app deploys triggered in this sprint; public smokes validate the existing production baseline |
 | Sprint 13.4 crawler/provider activation | 0 broad crawling, recurring uptime, alerts, status page, storage, paid API, billing, ads, donation, affiliate, external analytics, worker, cron or provider activations |
 
 ## Product metrics
