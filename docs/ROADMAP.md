@@ -539,7 +539,7 @@ Sprint 12.2 - Authenticated admin dashboard audit
 - Objetivo: auditar o dashboard admin autenticado com Playwright local e registrar cobertura de telas sem expor credenciais.
 - Escopo: criar fluxo local de login/seed controlado, screenshots/coverage do dashboard, benchmark refinement, reports e sites, com redacao de dados sensiveis e sem acesso a producao autenticada.
 - Validacao: testes Laravel/admin, Playwright local, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, CI e smokes publicos.
-- Status: local validado, remoto pendente. `pnpm measure:admin-audit` passou no run `2026-06-29T05-31-40Z`, cobrindo 7 checks autenticados em desktop/mobile via SQLite efemero e servidor local `127.0.0.1:8014`, com 0 overflow, 0 console/page errors e 0 requests externos. Nenhuma credencial real, producao autenticada, provider externo, AdSense, Google tag, PageSpeed API, billing, doacao ou afiliado foi acessado/ativado.
+- Status: concluida. `pnpm measure:admin-audit` passou no run `2026-06-29T05-31-40Z`, cobrindo 7 checks autenticados em desktop/mobile via SQLite efemero e servidor local `127.0.0.1:8014`, com 0 overflow, 0 console/page errors e 0 requests externos. Commit `f553f9e`, Quality Gate `28350927064`, Deploy Dry Run `28350927046` e readiness smoke publico final `2026-06-29T05-40-30Z` passaram. Nenhuma credencial real, producao autenticada, provider externo, AdSense, Google tag, PageSpeed API, billing, doacao ou afiliado foi acessado/ativado.
 
 Sprint 12.3 - Google readiness checklist
 - Simbolico: MEASURE-GOOGLE-READY.
