@@ -889,6 +889,14 @@ Data-base: 2026-06-29
 | Sprint 12.1 final public readiness smoke | `2026-06-29T05-12-04Z`; status `passed`; 5 checks; 0 failures |
 | Sprint 12.1 PageSpeed/Google provider activation | 0 API keys/properties/tags/verifications activated |
 | Sprint 12.1 ads/billing/donation/affiliate activation | 0 activated |
+| Sprint 12.2 admin audit command | `pnpm measure:admin-audit` |
+| Sprint 12.2 admin audit runbook | `docs/RUNBOOKS/CONTROL_PLANE_ADMIN_AUDIT.md` |
+| Sprint 12.2 local admin audit run | `2026-06-29T05-31-40Z`; status `passed`; 7 authenticated page checks |
+| Sprint 12.2 admin audit coverage | Desktop `/admin`, `/admin/benchmark-refinement`, `/admin/reports`, first report detail and `/admin/sites`; mobile `/admin` and `/admin/sites` |
+| Sprint 12.2 admin audit browser findings | 0 horizontal overflow; 0 console errors; 0 page errors; 0 external requests |
+| Sprint 12.2 final public readiness smoke | `2026-06-29T05-33-48Z`; status `passed`; 5 checks; 0 failures |
+| Sprint 12.2 authenticated production access | 0; local loopback only |
+| Sprint 12.2 secrets/provider activation | 0 real credentials, external providers, AdSense, Google tags, PageSpeed API, billing, donation or affiliate activations |
 
 ## Product metrics
 
