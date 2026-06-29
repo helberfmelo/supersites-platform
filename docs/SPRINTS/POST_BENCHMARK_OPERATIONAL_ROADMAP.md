@@ -105,6 +105,7 @@ Objetivo: preparar contas, autenticacao, entitlements e limites pagos sem cobrar
 
 | Sinal | Evidencia |
 |---|---|
+| Sprint 14.1 | Commit `da54701`; Quality Gate `28358191311`; Deploy Dry Run `28358191342`; smokes publicos passaram para Hub, control-plane e NetProbe |
 | Sprint 14.1 local | Account export/delete request foundation implementada; `php artisan test` 49/499, `measure:admin-audit` `2026-06-29T08-11-31Z` com 9 paginas, artifact control-plane 7137 arquivos, gates locais passaram |
 | Sprint 14.1 ativacoes externas | 0 signup publico, 0 exclusao automatica, 0 checkout/billing/provider/webhook real/secrets novos, 0 ads/doacoes/afiliados, 0 worker/cron |
 

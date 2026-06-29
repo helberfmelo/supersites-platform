@@ -1016,6 +1016,11 @@ Data-base: 2026-06-29
 | Sprint 14.1 local governance gates | Passed: `composer validate --strict`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` |
 | Sprint 14.1 runbook | `docs/RUNBOOKS/ACCOUNT_DATA_CONTROLS.md` |
 | Sprint 14.1 human gates recorded | Paid account legal/privacy/retention/deletion policy remains in `docs/HUMAN_ACTION_REQUIRED.md` |
+| Sprint 14.1 feature commit | `da54701 feat: add paid account data controls` |
+| Sprint 14.1 remote Quality Gate | `28358191311` passed |
+| Sprint 14.1 remote Deploy Dry Run | `28358191342` passed with known non-blocking Node 20 upload-artifact annotation |
+| Sprint 14.1 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public`; Hub asset `https://opentshost.com/supersites/_nuxt/BNDSn3oU.js`; NetProbe asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/xQOMqDWZ.js` |
+| Sprint 14.1 production deploy activation | 0 real deploys triggered in this sprint; public smokes validate the existing production baseline |
 | Sprint 14.1 monetization/provider activation | 0 public signup, checkout, billing, paid entitlement, provider SDK, real webhook, payment, tax, refund, dunning, ads, donation, affiliate, external analytics, worker or cron activations |
 
 ## Product metrics
