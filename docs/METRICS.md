@@ -791,6 +791,16 @@ Data-base: 2026-06-29
 | Sprint 10.1 pre-edit quick crawler run | `2026-06-29T01-09-47-242Z`; 95 routes; 190 checks; 0 gaps |
 | Public watchdog workflow implemented | `.github/workflows/public-watchdog.yml` |
 | Public watchdog schedule | Daily at 08:17 UTC plus manual dispatch |
+| Sprint 10.1 local validation | Passed: public SuperSites smoke, public control-plane smoke, quick benchmark crawler, `validate:adsense-safe-public`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` |
+| Sprint 10.1 feature commit | `5143a1f ci: add public watchdog roadmap` |
+| Sprint 10.1 remote Quality Gate | `28342679619` passed |
+| Sprint 10.1 remote Deploy Dry Run | `28342679627` passed |
+| Sprint 10.1 manual Public Watchdog | `28342779097` passed on `main` / `5143a1f` in quick mode |
+| Sprint 10.1 watchdog crawler run | `2026-06-29T01-22-23-919Z`; 95 routes; 190 viewport checks; 0 failures; 0 console errors; 0 total gaps |
+| Sprint 10.1 watchdog robots/sitemaps | Passed for Hub and 10 product surfaces; sitemap loc counts recorded in watchdog baseline |
+| Sprint 10.1 watchdog artifact | `public-watchdog-artifacts` ID `7940737629`; includes benchmark crawl and AdSense-safe reports |
+| Sprint 10.1 final public smokes | Passed: aggregate Hub/API, control-plane, NetProbe API and `validate:adsense-safe-public` across 13 public pages |
+| Sprint 10.1 final public assets | Hub `BNDSn3oU.js`; NetProbe Atlas `xQOMqDWZ.js`; app assets unchanged from Sprint 9.16 public deploy |
 | Public watchdog external provider activation | 0; smokes/crawler only |
 
 ## Product metrics

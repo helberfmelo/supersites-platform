@@ -463,7 +463,7 @@ Sprint 9.16 - Performance, AdSense-safe closure e rollout
 
 ## Fase 10 - Post-Benchmark Operations Watchdog
 
-Status geral: aberta a partir do fechamento da Fase 9 e da auditoria V2 `docs/AUDITORIA_LIVE_SUPERSITES_BENCHMARK_V2.md`. A Fase 9 ja resolveu as lacunas P0 publicas de localizacao, linguagem interna, NetProbe, tool-first UX, trust/legal, schema, crawler e AdSense-safe layout. A Fase 10 fecha a reconciliacao pos-benchmark com roadmap futuro completo e monitoramento publico recorrente sem mutar producao.
+Status geral: concluida em 2026-06-29 a partir do fechamento da Fase 9 e da auditoria V2 `docs/AUDITORIA_LIVE_SUPERSITES_BENCHMARK_V2.md`. A Fase 9 ja resolveu as lacunas P0 publicas de localizacao, linguagem interna, NetProbe, tool-first UX, trust/legal, schema, crawler e AdSense-safe layout. A Fase 10 fechou a reconciliacao pos-benchmark com roadmap futuro completo e monitoramento publico recorrente sem mutar producao.
 
 Roadmap detalhado: `docs/SPRINTS/POST_BENCHMARK_OPERATIONAL_ROADMAP.md`.
 
@@ -471,7 +471,7 @@ Sprint 10.1 - Roadmap pos-benchmark e public watchdog
 - Simbolico: POST-BENCHMARK-WATCHDOG.
 - Objetivo: versionar a auditoria V2, registrar o roadmap de Fases 10 a 16, verificar o estado publico atual e criar workflow `Public Watchdog` com smokes publicos, gate AdSense-safe e crawler quick/full agendado/manual.
 - Validacao: `deploy:smoke-supersite-public`, `deploy:smoke-control-plane-public`, crawler quick publico, `validate:adsense-safe-public`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, Quality Gate/Deploy Dry Run e execucao manual do `Public Watchdog`.
-- Status: em execucao nesta entrega. Nenhum anuncio real, GTM/GA4, analytics externo, checkout, billing, pagamento, doacao, afiliado, worker/cron, API paga, DNS/root mapping ou acao irreversivel sera ativado nesta sprint.
+- Status: concluida. Commit tecnico `5143a1f` passou Quality Gate `28342679619` e Deploy Dry Run `28342679627`; `Public Watchdog` manual `28342779097` passou em modo quick, com crawler `2026-06-29T01-22-23-919Z` registrando 95 rotas, 190 checks e 0 gaps. Smokes publicos finais locais passaram para Hub/API, control-plane, NetProbe e gate AdSense-safe em 13 paginas. Nenhum anuncio real, GTM/GA4, analytics externo, checkout, billing, pagamento, doacao, afiliado, worker/cron, API paga, DNS/root mapping ou acao irreversivel foi ativado nesta sprint.
 
 ## Fases futuras mapeadas
 

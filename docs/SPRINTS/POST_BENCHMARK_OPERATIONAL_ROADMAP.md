@@ -21,13 +21,26 @@ O proximo trabalho nao deve ativar anuncios reais, billing, checkout, doacoes, a
 
 ## Fase 10 - Post-Benchmark Operations Watchdog
 
-Status: em execucao nesta entrega.
+Status: concluida em 2026-06-29.
 
 Objetivo: fechar a transicao pos-benchmark com roadmap futuro completo, evidencia de producao atual e monitoramento publico recorrente/manual que valide a superficie sem mutar producao.
 
 | Sprint | Simbolico | Escopo | Gate de aceite |
 |---:|---|---|---|
-| 10.1 | POST-BENCHMARK-WATCHDOG | Versionar a auditoria V2, reconciliar roadmap/status/metricas com Fase 9 fechada, criar workflow `Public Watchdog` para smokes publicos, gate AdSense-safe e crawler quick/full agendado/manual | Smokes publicos locais passam, crawler quick local passa com 0 gaps, workflow versionado, Quality Gate/Deploy Dry Run verdes, workflow manual Public Watchdog executado e registrado |
+| 10.1 | POST-BENCHMARK-WATCHDOG | Versionar a auditoria V2, reconciliar roadmap/status/metricas com Fase 9 fechada, criar workflow `Public Watchdog` para smokes publicos, gate AdSense-safe e crawler quick/full agendado/manual | Concluida: smokes publicos locais passaram, crawler quick local `2026-06-29T01-09-47-242Z` teve 0 gaps, workflow versionado, Quality Gate `28342679619` verde, Deploy Dry Run `28342679627` verde, Public Watchdog manual `28342779097` verde com crawler `2026-06-29T01-22-23-919Z` e 0 gaps |
+
+## Evidencia de fechamento da Fase 10
+
+| Sinal | Evidencia |
+|---|---|
+| Commit tecnico | `5143a1f ci: add public watchdog roadmap` |
+| Quality Gate | `28342679619` passed |
+| Deploy Dry Run | `28342679627` passed |
+| Public Watchdog | `28342779097` passed em modo `quick` |
+| Watchdog crawler | `2026-06-29T01-22-23-919Z`; 95 rotas; 190 checks; 0 failures; 0 console errors; 0 gaps |
+| Watchdog artifact | `public-watchdog-artifacts` ID `7940737629` |
+| Smokes finais locais | Hub/API, control-plane, NetProbe API e `validate:adsense-safe-public` em 13 paginas passaram |
+| Ativacoes externas | 0 anuncios reais, 0 GTM/GA4, 0 checkout, 0 billing real, 0 doacao real, 0 afiliados, 0 worker/cron publico, 0 API paga, 0 DNS/root mapping |
 
 ## Fase 11 - Operational Hardening
 
