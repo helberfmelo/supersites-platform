@@ -85,8 +85,16 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\validate-vps-runtime
 
 The validation checks SSH access, authenticated Redis `PING`, local-only bind, SuperSites directories and public Redis port exposure.
 
+Run the Redis backup/restore drill from the repository root:
+
+```powershell
+pnpm ops:vps-backup-restore-drill
+```
+
+The drill creates a SuperSites-owned archive under `/srv/supersites/backups/redis-drills/<run>/`, restores it only into a temporary test directory, compares manifests and removes the temporary restore extraction. It does not stop Redis and does not touch BigShop360 paths, services, Nginx or MariaDB.
+
 ## Remaining work
 
 - Create a SuperSites-owned deploy key or GitHub environment secret before automated deploys from CI.
-- Define backup and restore jobs for `/var/lib/supersites-redis` before production monitors depend on Redis state.
+- Turn the manual backup/restore drill into a scheduled backup policy before production monitors depend on Redis state.
 - Create workers, queues and crons only after the corresponding app code exists.

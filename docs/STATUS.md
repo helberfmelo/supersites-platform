@@ -1466,6 +1466,15 @@ Em 2026-06-29, a Fase 11 foi aberta como `Operational Hardening`. A Sprint 11.1 
   - Smokes publicos finais passaram: `pnpm deploy:smoke-supersite-public` validou Hub `BNDSn3oU.js`, dez apps publicados e APIs MailHealth/SitePulse; `pnpm deploy:smoke-control-plane-public` passou; `pnpm deploy:smoke-netprobe-public` validou NetProbe `xQOMqDWZ.js` e API publica.
   - Esta sprint nao removeu releases, nao alterou `.htaccess`, `index.php`, document root, DNS/root mapping, deploy real, chmod, upload, symlink, alias, ads, analytics externo, billing, checkout, doacao, afiliado, worker/cron, API paga ou acao irreversivel.
 
+- Sprint 11.4 - OPS-VPS-BACKUP-RESTORE:
+  - Documentos obrigatorios e ADRs foram relidos antes da sprint, incluindo `AGENTS.md`, `docs/MEGA_PROMPT_SUPERSITES.md`, `docs/OPERATING_CONTEXT.md`, `docs/STATUS.md`, `docs/ROADMAP.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/DATA_GOVERNANCE.md`, `docs/SEO_AIO_PLAYBOOK.md`, `docs/ADSENSE_PLAYBOOK.md`, `docs/ANALYTICS.md`, `docs/BILLING.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md`, runbooks de sprint/CI/local e ADRs existentes ate `0031`.
+  - Estado inicial verificado: branch `main...origin/main`, ultimo commit `7c6988a`, Quality Gate docs-only `28348363166` verde, smokes publicos de baseline passando para Hub/API, control-plane e NetProbe.
+  - Runtime VPS baseline passou antes da edicao: `scripts/validate-vps-runtime.ps1` confirmou `supersites-redis.service` ativo, Redis `PING` autenticado, bind local-only em `127.0.0.1:6381`, layout `/srv/supersites` e portas publicas Redis `6379`, `6380`, `6381` fechadas/filtradas.
+  - Escopo tecnico: adiciona `scripts/run-vps-backup-restore-drill.ps1`, exposto como `pnpm ops:vps-backup-restore-drill`, atualiza `docs/RUNBOOKS/VPS_RUNTIME.md`, `infra/environments/production/vps/README.md`, `scripts/README.md`, ROADMAP/STATUS/METRICS.
+  - Drill local/remote passou com run `2026-06-29T04-25-08Z`: backup Redis criado em `/srv/supersites/backups/redis-drills/2026-06-29T04-25-08Z/supersites-redis-data.tar.gz`, SHA-256 `dc473b72253feeefabc07a4c3549dbb91287cd920355055389f491da9d35aedd`, tamanho 170 bytes, restore extraido apenas em `restore-test`, manifesto restaurado igual ao original, extração temporaria removida, 1 arquivo Redis e 6 diretorios de layout inventariados.
+  - Pos-drill VPS runtime passou novamente: Redis permaneceu ativo/autenticado/local-only, portas publicas Redis continuaram fechadas/filtradas e BigShop360 nao foi tocado.
+  - Esta sprint ainda nao criou schedule automatico de backup, nao reiniciou/parou Redis, nao sobrescreveu `/var/lib/supersites-redis`, nao alterou `/srv/bigshop360`, Nginx/HTTPD, MariaDB, servicos BigShop360, workers/crons, DNS/root mapping, ads, analytics externo, billing, checkout, doacao, afiliado, API paga ou acao irreversivel.
+
 ## Bloqueios humanos registrados
 
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.

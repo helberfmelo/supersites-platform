@@ -845,6 +845,14 @@ Data-base: 2026-06-29
 | Sprint 11.3 remote retention inventory | Run `2026-06-29T04-18-16Z`; inventory `checked`; 12 surfaces; 108 releases listed; 0 eligible; 0 review-only |
 | Sprint 11.3 final public smokes | Passed: aggregate Hub/API, control-plane and NetProbe |
 | Sprint 11.3 production mutations | 0 deletes/uploads/chmod/deploys/root mapping/DNS changes |
+| Sprint 11.4 VPS runtime baseline | Passed before edits: service active, authenticated Redis PING, local-only bind, `/srv/supersites` layout, public Redis ports closed/filtered |
+| Sprint 11.4 backup/restore script | `scripts/run-vps-backup-restore-drill.ps1` |
+| Sprint 11.4 backup/restore command | `pnpm ops:vps-backup-restore-drill` |
+| Sprint 11.4 backup/restore run | `2026-06-29T04-25-08Z`; archive `/srv/supersites/backups/redis-drills/2026-06-29T04-25-08Z/supersites-redis-data.tar.gz` |
+| Sprint 11.4 backup archive SHA-256 | `dc473b72253feeefabc07a4c3549dbb91287cd920355055389f491da9d35aedd` |
+| Sprint 11.4 restore verification | Manifest match `true`; restore extraction cleanup `removed`; Redis files `1`; layout directories `6` |
+| Sprint 11.4 post-drill runtime validation | Passed: service active, authenticated Redis PING, local-only bind, public Redis ports `6379`, `6380`, `6381` closed/filtered |
+| Sprint 11.4 BigShop360 touch count | 0 paths/services/databases/webserver changes |
 
 ## Product metrics
 

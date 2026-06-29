@@ -50,6 +50,33 @@ Expected result:
 - Public TCP ports `6379`, `6380` and `6381` are closed or filtered.
 - `/srv/supersites` layout exists.
 
+## Backup/Restore Drill
+
+Run from the repository root:
+
+```powershell
+pnpm ops:vps-backup-restore-drill
+```
+
+The drill:
+
+- checks `supersites-redis.service` and authenticated Redis `PING`;
+- creates a timestamped Redis data archive under `/srv/supersites/backups/redis-drills/<run>/supersites-redis-data.tar.gz`;
+- records source and restore manifests without copying Redis data to Git;
+- extracts the archive only into `/srv/supersites/backups/redis-drills/<run>/restore-test`;
+- compares the restored manifest to the source manifest;
+- removes only the temporary `restore-test` extraction after comparison;
+- writes local metadata artifacts to `artifacts/vps-backup-restore-drill/`.
+
+The drill does not stop or restart Redis, does not overwrite `/var/lib/supersites-redis`, does not touch `/srv/bigshop360`, Nginx/HTTPD, MariaDB or BigShop360 services and must not print credentials.
+
+Expected result:
+
+- restore manifest match is `true`;
+- service interrupted is `no`;
+- BigShop360 touched is `no`;
+- public Redis ports remain closed or filtered.
+
 ## Operational commands
 
 Check service status:

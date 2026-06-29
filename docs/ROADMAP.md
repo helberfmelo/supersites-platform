@@ -512,7 +512,9 @@ Sprint 11.3 - HostGator retention dry-run
 Sprint 11.4 - VPS backup/restore drill
 - Simbolico: OPS-VPS-BACKUP-RESTORE.
 - Objetivo: documentar e validar backup/restore do Redis runtime e layout `/srv/supersites` sem interromper BigShop360 nem expor credenciais.
-- Status: pendente apos Sprint 11.3.
+- Escopo: script `scripts/run-vps-backup-restore-drill.ps1`, comando `pnpm ops:vps-backup-restore-drill`, runbook VPS atualizado, archive Redis em `/srv/supersites/backups/redis-drills/<run>/`, restore-test temporario, comparacao de manifestos e validacao de portas Redis publicas.
+- Validacao: smokes publicos baseline, `scripts/validate-vps-runtime.ps1` antes/depois, drill backup/restore, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `test:packages`, `typecheck:packages`, Quality Gate, Deploy Dry Run quando disparado e smokes publicos finais.
+- Status: em execucao. Drill `2026-06-29T04-25-08Z` passou: archive Redis SHA-256 `dc473b72253feeefabc07a4c3549dbb91287cd920355055389f491da9d35aedd`, restore manifest match `true`, extração temporaria removida, Redis sem interrupcao, portas publicas fechadas/filtradas e BigShop360 nao tocado.
 
 Sprint 11.5 - Uptime and incident runbook
 - Simbolico: OPS-UPTIME-RUNBOOK.
