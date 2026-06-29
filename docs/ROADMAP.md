@@ -636,7 +636,7 @@ Fechamento da Fase 14
 
 ## Fase 15 - Provider and Monetization Go-Live
 
-Status geral: iniciada em 2026-06-29 em modo fail-closed. Como beneficiario/conta AdSense, Google access, KYC, impostos, banco, secrets, termos, doacoes e afiliados seguem pendentes de gate humano, a fase executa somente readiness tecnico reversivel ate existir aprovacao explicita.
+Status geral: concluida em 2026-06-29 em modo fail-closed. Como beneficiario/conta AdSense, Google access, KYC, impostos, banco, secrets, termos, doacoes e afiliados seguem pendentes de gate humano, a fase entregou somente readiness tecnico reversivel, sem ativacao de provider real.
 
 Sprint 15.1 - AdSense account go-live readiness
 - Simbolico: ADSENSE-ACCOUNT.
@@ -664,7 +664,10 @@ Sprint 15.4 - Donation and affiliate go-live readiness
 - Objetivo: preparar suporte/doacao e afiliados para revisao humana sem publicar links reais, QR/PIX, widgets, tracking, webhook ou pagamento.
 - Escopo: helpers de canal/URL em `@supersites/ads`, tabela `support_monetization_channels`, seeder local, servico `SupportMonetizationGoLiveReadiness`, endpoint autenticado `GET /api/v1/monetization/support/go-live-readiness`, resumo no dashboard, testes, ADR `0039`, runbook `SUPPORT_MONETIZATION_GO_LIVE_READINESS` e gate humano explicito por canal.
 - Validacao: testes do pacote ads, `SupportMonetizationGoLiveReadinessTest`, `php artisan test`, `composer validate --strict`, `test:packages`, `typecheck:packages`, `measure:admin-audit`, build de artifact do control-plane, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check`, `validate:adsense-safe-public`, Quality Gate/Deploy Dry Run e smokes publicos apos push.
-- Status: implementacao local concluida e em fechamento remoto, sem deploy real. Passaram `pnpm --filter @supersites/ads test` com 13 testes, `SupportMonetizationGoLiveReadinessTest` com 4 testes/38 assertions, `pnpm test:packages` com 82 testes, `pnpm typecheck:packages`, `php artisan test` com 78 testes/752 assertions, `composer validate --strict`, admin audit `2026-06-29T10-08-11Z` em 9 paginas, artifact control-plane com 7155 arquivos/28302875 bytes/zip 8431872 bytes, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` e `validate:adsense-safe-public` em 13 paginas. Nenhum link publico de doacao, afiliado, widget de pagamento, QR/PIX, carteira, provider SDK, webhook, tracking de afiliado, secret ou pagamento real foi ativado.
+- Status: concluida em main, sem deploy real. Passaram `pnpm --filter @supersites/ads test` com 13 testes, `SupportMonetizationGoLiveReadinessTest` com 4 testes/38 assertions, `pnpm test:packages` com 82 testes, `pnpm typecheck:packages`, `php artisan test` com 78 testes/752 assertions, `composer validate --strict`, admin audit `2026-06-29T10-08-11Z` em 9 paginas, artifact control-plane com 7155 arquivos/28302875 bytes/zip 8431872 bytes, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` e `validate:adsense-safe-public` em 13 paginas. Feature commit `1a817df`, Quality Gate `28364679035`, Deploy Dry Run `28364679031` e smokes publicos finais passaram. Nenhum link publico de doacao, afiliado, widget de pagamento, QR/PIX, carteira, provider SDK, webhook, tracking de afiliado, secret ou pagamento real foi ativado.
+
+Fase 15 - fechamento
+- Status: concluida em main em 2026-06-29, sem deploy real e sem ativacao de provider externo. Commits tecnicos: `9f048f8`, `ca89769`, `12ae78b`, `1a817df`. Quality Gates tecnicos: `28362026582`, `28362869383`, `28363695657`, `28364679035`. Deploy Dry Runs tecnicos: `28362026601`, `28362869390`, `28363695714`, `28364679031`. Smokes publicos de Hub/control-plane/NetProbe e `validate:adsense-safe-public` passaram apos cada sprint tecnica.
 
 ## Definition of done do programa
 

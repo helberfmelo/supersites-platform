@@ -1146,9 +1146,15 @@ Data-base: 2026-06-29
 | Sprint 15.4 focused validation | Passed: `@supersites/ads` 13 tests; `SupportMonetizationGoLiveReadinessTest` 4 tests/38 assertions |
 | Sprint 15.4 full local validation | Passed: `pnpm test:packages` 82 tests, `pnpm typecheck:packages`, `php artisan test` 78 tests/752 assertions, `composer validate --strict`, `pnpm measure:admin-audit` run `2026-06-29T10-08-11Z`, `pnpm deploy:build-control-plane-hostgator`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `git diff --check`, `pnpm validate:adsense-safe-public` |
 | Sprint 15.4 control-plane artifact | 7155 files, 28302875 bytes, zip 8431872 bytes |
+| Sprint 15.4 feature commit | `1a817df` |
+| Sprint 15.4 remote Quality Gate | `28364679035` passed |
+| Sprint 15.4 remote Deploy Dry Run | `28364679031` passed |
+| Sprint 15.4 public smokes | Passed: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-control-plane-public`, `pnpm deploy:smoke-netprobe-public`, `pnpm validate:adsense-safe-public`; Hub asset `https://opentshost.com/supersites/_nuxt/BNDSn3oU.js`; NetProbe asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/xQOMqDWZ.js` |
+| Sprint 15.4 production deploy activation | 0 real deploys triggered in this sprint; public smokes validate the existing production baseline |
 | Sprint 15.4 runbook | `docs/RUNBOOKS/SUPPORT_MONETIZATION_GO_LIVE_READINESS.md` |
 | Sprint 15.4 ADR | `docs/ADR/0039-support-monetization-go-live-readiness.md` |
 | Sprint 15.4 donation/affiliate activation | 0 public donation links, affiliate links, payment widgets, QR/PIX payloads, wallets, provider SDKs, webhooks, affiliate tracking, payment secrets or real support payments |
+| Phase 15 closure | Completed in main on 2026-06-29 with technical commits `9f048f8`, `ca89769`, `12ae78b`, `1a817df`; remote Quality Gates `28362026582`, `28362869383`, `28363695657`, `28364679035`; remote Deploy Dry Runs `28362026601`, `28362869390`, `28363695714`, `28364679031`; all public smokes passed; real provider/monetization activation remains 0 |
 
 ## Product metrics
 
