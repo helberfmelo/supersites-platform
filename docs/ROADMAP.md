@@ -774,7 +774,7 @@ Sprint 18.3 - Pagina de catalogo NetProbe Atlas
 - Gate permanente: paginas de catalogo do Hub nao podem parecer ficha interna de produto quando a sprint pede benchmark-grade. Elas devem funcionar como landing publica da familia de ferramentas, com links profundos para subpaginas reais e screenshots desktop/mobile revisados.
 - Regra operacional registrada: `docs/RUNBOOKS/SPRINT_EXECUTION.md`, `docs/OPERATING_CONTEXT.md` e `docs/PHASE18_BENCHMARK_GRADE_ACCEPTANCE.md` agora reforcam o ciclo objetivo por sprint: implementar, validar, commit/push, monitorar deploy HostGator, smoke publico e proxima sprint.
 - Validacao local pre-commit: Vitest Hub 15 testes, build Hub, preview smoke Hub asset `/_nuxt/58HZvkID.js`, Playwright Hub 8 testes, public-copy 951 HTMLs, AdSense-safe 13 paginas, structure, secrets, package tests/typechecks, deploy dry-run, ci:changes, HostGator artifact Hub 211 arquivos/3700277 bytes, `git diff --check` e screenshots em `artifacts/netprobe-catalog-qa/` passaram.
-- Status: validada localmente; commit, CI remoto, Deploy Dry Run, deploy HostGator e smokes publicos pendentes ate o fechamento do ciclo.
+- Status: concluida em producao. Commit `36b11f5`, Quality Gate `28422393802`, Deploy Dry Run `28422393808` e deploy reversivel do Hub `28422499578` passaram; release `36b11f54ef984e6c6098da971cd5df3248cc1b0e-28422499578-1`, asset `BhQl-Uh-.js`, smokes publicos, AdSense-safe, crawler quick `2026-06-30T05-37-05-797Z` e screenshots live desktop/mobile da rota NetProbe passaram.
 - Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
 
 ## Definition of done do programa

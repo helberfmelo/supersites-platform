@@ -85,3 +85,4 @@ Data-base: 2026-06-27
 - NetProbe Atlas now has a special public landing on `/supersites/en/sites/netprobe-atlas`, with practical first fold, direct tool links and contextual deep-link footer groups.
 - This route correction is now part of the Phase 18 gate: validate the canonical catalog route itself, not only the app home, and keep CTAs pointed to real subtools where they exist.
 - Local evidence before CI/deploy: `artifacts/netprobe-catalog-qa/netprobe-catalog-desktop.png` and `artifacts/netprobe-catalog-qa/netprobe-catalog-mobile-pt-br.png`; Playwright checked desktop EN/mobile PT-BR, no overflow and negative assertions against internal/rollout language.
+- Production deploy `28422499578` published release `36b11f54ef984e6c6098da971cd5df3248cc1b0e-28422499578-1`, asset `https://opentshost.com/supersites/_nuxt/BhQl-Uh-.js`; public smoke, AdSense-safe validation, crawler quick `2026-06-30T05-37-05-797Z` and live desktop/mobile route checks passed.

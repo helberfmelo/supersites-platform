@@ -58,3 +58,4 @@ Data-base: 2026-06-28
 - Seven direct cards route to What is my IP, DNS Propagation, DNS Lookup, RDAP Domain Lookup, SSL Certificate Checker, Port Checker and Ping/Traceroute.
 - The page explains results at three depths: general users, technical teams and ongoing monitoring, then provides DNS Tools, IP Tools, Domain Tools, SSL Tools and Guides deep-link groups.
 - Local evidence: `artifacts/netprobe-catalog-qa/netprobe-catalog-desktop.png` and `artifacts/netprobe-catalog-qa/netprobe-catalog-mobile-pt-br.png` were reviewed; Playwright checked desktop EN/mobile PT-BR, overflow and blocked public terms.
+- Production deploy `28422499578` published release `36b11f54ef984e6c6098da971cd5df3248cc1b0e-28422499578-1`, asset `https://opentshost.com/supersites/_nuxt/BhQl-Uh-.js`; public smoke, AdSense-safe validation, crawler quick `2026-06-30T05-37-05-797Z` and live route screenshots passed.

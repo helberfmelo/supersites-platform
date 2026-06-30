@@ -1383,7 +1383,16 @@ Data-base: 2026-06-29
 | Sprint 18.3 package validation | Passed: 90 package tests and package typechecks |
 | Sprint 18.3 structure/secrets/dry-run/diff | Passed |
 | Sprint 18.3 Hub HostGator artifact | Local passed: 211 files, 3700277 bytes, base path `/supersites` |
-| Real deploy/provider activation | 5 reversible HostGator deploys in Phase 18 so far for Hub/NetProbe/Hub/Hub/Hub; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.3 implementation commit | `36b11f5` |
+| Sprint 18.3 remote Quality Gate | `28422393802` passed |
+| Sprint 18.3 remote Deploy Dry Run | `28422393808` passed |
+| Sprint 18.3 production deploy | `28422499578` passed; release `36b11f54ef984e6c6098da971cd5df3248cc1b0e-28422499578-1`; asset `BhQl-Uh-.js`; 211 files/3691278 bytes |
+| Sprint 18.3 post-deploy public smoke | Passed: Hub/apps/APIs with NetProbe catalog marker |
+| Sprint 18.3 post-deploy AdSense-safe validation | Passed: 13 public pages |
+| Sprint 18.3 post-deploy quick crawler | `2026-06-30T05-37-05-797Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.3 live NetProbe catalog screenshots | `artifacts/netprobe-catalog-qa/netprobe-catalog-live-desktop.png` and `artifacts/netprobe-catalog-qa/netprobe-catalog-live-mobile-pt-br.png` reviewed |
+| Sprint 18.3 live NetProbe catalog smoke | Passed: desktop/mobile markers, blocked phrase scan 0, overflow 0 |
+| Real deploy/provider activation | 6 reversible HostGator deploys in Phase 18 so far for Hub/NetProbe/Hub/Hub/Hub/Hub; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 

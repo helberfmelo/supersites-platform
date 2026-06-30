@@ -15,7 +15,7 @@ Make DNS propagation and What is my IP feel like premium, fast, layered diagnost
 - Refine What is my IP with IPv4/IPv6, reverse DNS, ISP/ASN and approximate location cards. Partially done in Sprint 7.3 with visible address, protocol, source, checked time and privacy context; richer ISP/ASN/location remains gated by provider/data-source review.
 - Add related tools and support/donation placeholder after the useful result and educational content. Done in Sprint 7.3 as related tools plus gated upgrade CTA; real donation remains human-gated.
 - Add benchmark-grade DNS/IP chrome: task-first diagnostic workbench, record-type tabs, visual IP panel, privacy CTA and honest resolver coverage disclosure. Done and deployed in Sprint 9.5 without API contract changes, external analytics, multi-region probes or real monetization.
-- Transform the Hub catalog route for NetProbe into a public network/DNS/IP landing with direct tool cards, three-level explanation and DNS/IP/domain/SSL/guide deep links. Done locally in Phase 18 Sprint 18.3; production deploy pending at the time of this note.
+- Transform the Hub catalog route for NetProbe into a public network/DNS/IP landing with direct tool cards, three-level explanation and DNS/IP/domain/SSL/guide deep links. Done in production in Phase 18 Sprint 18.3 with deploy `28422499578`, release `36b11f54ef984e6c6098da971cd5df3248cc1b0e-28422499578-1` and live desktop/mobile route smoke.
 
 ## P1
 
