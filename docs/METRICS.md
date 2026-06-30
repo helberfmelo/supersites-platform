@@ -1427,8 +1427,19 @@ Data-base: 2026-06-29
 | Sprint 18.5 AdSense-safe validation | Passed locally: 13 public pages |
 | Sprint 18.5 package validation | Passed: 90 package tests and package typechecks |
 | Sprint 18.5 structure/secrets/dry-run/diff | Passed |
-| Sprint 18.5 Hub HostGator artifact | Local passed: 211 files, 4765726 bytes, base path `/supersites` |
-| Real deploy/provider activation | 9 reversible HostGator deploys in Phase 18 so far for Hub/NetProbe/Hub/Hub/Hub/Hub/Hub/Hub/CalcHarbor; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.5 Hub HostGator artifact | Local final passed: 211 files, 4766611 bytes, base path `/supersites`; deploy passed: 211 files, 4757612 bytes |
+| Sprint 18.5 implementation commit | `a5bd2ed` |
+| Sprint 18.5 correction commit | `dd2231b`; fixed Spanish public-copy false positive from decorative `JWT` glyph and localized `bloques` -> `fragmentos` |
+| Sprint 18.5 remote Quality Gate | `28426860570` passed |
+| Sprint 18.5 remote Deploy Dry Run | `28426860559` passed |
+| Sprint 18.5 Hub production deploy | `28427034012` passed; release `dd2231b3eb16230c5c2ac9b82f5e5592e80a2e27-28427034012-1`; asset `CkBlyo7I.js`; 211 files/4757612 bytes |
+| Sprint 18.5 post-deploy public smoke | Passed: Hub/apps/APIs with DevUtility catalog marker and DevUtility static app smoke |
+| Sprint 18.5 post-deploy DevUtility link check | Passed: 18 EN/PT-BR URLs across 9 developer tools returned 200 |
+| Sprint 18.5 post-deploy AdSense-safe validation | Passed: 13 public pages |
+| Sprint 18.5 post-deploy quick crawler | `2026-06-30T07-23-38-654Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.5 live DevUtility catalog screenshots | `artifacts/devutility-catalog-qa/devutility-catalog-live-desktop.png` and `artifacts/devutility-catalog-qa/devutility-catalog-live-mobile-pt-br.png` reviewed |
+| Sprint 18.5 live DevUtility catalog smoke | Passed: desktop/mobile markers, blocked phrase scan 0, overflow 0 |
+| Real deploy/provider activation | 10 reversible HostGator deploys in Phase 18 so far for Hub/NetProbe/Hub/Hub/Hub/Hub/Hub/Hub/CalcHarbor/Hub; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 

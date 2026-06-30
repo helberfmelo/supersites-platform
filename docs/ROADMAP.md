@@ -787,10 +787,10 @@ Sprint 18.4 - Pagina de catalogo CalcHarbor
 
 Sprint 18.5 - Pagina de catalogo DevUtility Lab
 - Simbolico: `PHASE18-DEVUTILITY-CATALOG-WORKBENCH`.
-- Escopo entregue localmente: `/supersites/en/sites/devutility-lab` passa a ser uma landing publica de developer tools, com H1 pratico, CTA para JSON Formatter, busca, filtros por categoria, atalhos locais fixos, grid das 9 ferramentas reais e rodape contextual de links profundos.
+- Escopo entregue: `/supersites/en/sites/devutility-lab` passa a ser uma landing publica de developer tools, com H1 pratico, CTA para JSON Formatter, busca, filtros por categoria, atalhos locais fixos, grid das 9 ferramentas reais e rodape contextual de links profundos.
 - Gate permanente reforcado: quando o Hub/catalogo expuser links profundos para um app estatico, validar esses links em producao e publicar o app no mesmo ciclo se a release publica estiver antiga, com 404 ou 500.
-- Validacao local pre-commit: Vitest Hub 17 testes, build Hub, preview smoke Hub asset `/_nuxt/BVxcZZ_m.js`, Playwright Hub 12 testes, public-copy 951 HTMLs, AdSense-safe 13 paginas, structure, secrets, package tests/typechecks, deploy dry-run, ci:changes, HostGator artifact Hub 211 arquivos/4765726 bytes, `git diff --check` e screenshots em `artifacts/devutility-catalog-qa/` passaram.
-- Status: implementada localmente, aguardando commit, CI, deploy reversivel HostGator, smoke publico, validacao de links do app DevUtility e crawler quick.
+- Validacao local pre-commit: Vitest Hub 17 testes, build Hub, preview smoke Hub asset `/_nuxt/DEXjfTOb.js`, Playwright Hub 12 testes, public-copy 951 HTMLs, AdSense-safe 13 paginas, structure, secrets, package tests/typechecks, deploy dry-run, ci:changes, HostGator artifact Hub 211 arquivos/4766611 bytes, `git diff --check` e screenshots em `artifacts/devutility-catalog-qa/` passaram.
+- Status: concluida em producao. Commit de implementacao `a5bd2ed`, commit corretivo `dd2231b`, Quality Gate `28426860570`, Deploy Dry Run `28426860559` e deploy reversivel do Hub `28427034012` passaram; release `dd2231b3eb16230c5c2ac9b82f5e5592e80a2e27-28427034012-1`, asset `CkBlyo7I.js`, smokes publicos, AdSense-safe, static app smoke DevUtility, 18 links EN/PT-BR das ferramentas e crawler quick `2026-06-30T07-23-38-654Z` passaram.
 - Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
 
 ## Definition of done do programa
