@@ -41,6 +41,7 @@ Only after validation:
 - Execute one sprint at a time as a closed loop: implement, validate, commit, push, monitor HostGator deploy, run public smoke, then move to the next sprint.
 - Keep commits and pushes objective. Group related code, tests and documentation for the sprint instead of fragmenting the same fix across unnecessary commits.
 - Prefer one implementation commit and one short documentation closeout commit per sprint. Add extra corrective commits only when CI, deploy, live visual QA or public smoke exposes a concrete defect.
+- Do not split an approved sprint into repeated handoffs for planning, partial checks or visual guesses. Once the mandatory context is read, finish the sprint loop unless a stop condition below is hit.
 - Do not start the next sprint while the current sprint has failing CI, failing deploy, failing public smoke or unresolved benchmark-grade visual acceptance.
 - When smoke markers fail because public copy intentionally changed, update the smoke marker in the same correction and redeploy before continuing.
 - When a Hub/catalog sprint exposes deep links into a static app, validate those public app routes before closing the sprint. If production still points to a stale app release, deploy that static app in the same sprint cycle, rerun the aggregate public smoke and rerun the benchmark crawler before continuing.

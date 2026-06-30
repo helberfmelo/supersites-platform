@@ -500,6 +500,10 @@ Regra operacional:
 3. Inspirar-se em MxToolbox: input simples por domínio + menu de checks.
 4. Remover linguagem de workers, billing e roadmap do topo.
 
+**Status:** concluída em produção em 2026-06-30. A rota de catálogo MailHealth virou landing pública task-first com relatório visual de saúde de domínio, score, sinais SPF/DKIM/DMARC/MX, atalhos por fluxo, cards para os 7 checks reais, busca/filtros, limites/privacidade abaixo do valor e rodapé contextual com deep links. Commit de implementação `384a9bf`; correção i18n `681734b`; Quality Gates `28436591226` e `28438120880`; Deploy Dry Runs `28436591227` e `28438120905`; deploy final Hub `28438325239`; release `/supersites/` `681734b85cabc8defa91c54cef4b0c14f0ea3584-28438325239-1`; smoke público, AdSense-safe, MailHealth static app smoke, 14 deep links EN/PT-BR, crawler quick e visual live desktop/mobile passaram.
+
+**Regra aprendida reforçada:** catálogos localizados devem validar acentos e texto natural em browser antes do fechamento. Não aceitar transliteração ASCII em PT-BR/ES/FR/DE; o smoke visual deve confirmar H1 localizado, ausência de termos internos, ausência de overflow e screenshot sem banners sobrepondo conteúdo.
+
 ---
 
 ## Sprint 18.10 — Página de catálogo SitePulse Lab

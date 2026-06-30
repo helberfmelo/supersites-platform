@@ -817,6 +817,14 @@ Sprint 18.8 - Pagina de catalogo InvoiceCraft
 - Status: concluida em producao. Commit `de22452`, Quality Gate `28434459664`, Deploy Dry Run `28434459665` e deploy reversivel do Hub `28434690625` passaram; release `de22452861a113981ebb373da06764c017df020d-28434690625-1`, asset Hub `B_-TzziU.js`, asset InvoiceCraft `D2cnhdLE.js`, smokes publicos, AdSense-safe, InvoiceCraft static app smoke, 6 deep links EN/PT-BR e crawler quick `2026-06-30T09-42-35-363Z` passaram.
 - Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, pagamento, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect, app InvoiceCraft novo ou acao irreversivel foi ativado.
 
+Sprint 18.9 - Pagina de catalogo MailHealth
+- Simbolico: `PHASE18-MAILHEALTH-CATALOG-LANDING`.
+- Escopo entregue: `/supersites/en/sites/mailhealth` passa a ser uma landing publica de email diagnostics com H1 pratico, CTA para SPF Checker, `Domain health report` visual acima da dobra, score de exemplo, sinais SPF/DKIM/DMARC/MX, atalhos por autenticacao/recebimento/evidencias, busca/filtros, cards para os 7 checks reais e rodape contextual com deep links.
+- Gate permanente reforcado: catalogos localizados devem passar por browser QA com acentos reais em PT-BR/ES/FR/DE. Nao aceitar copy transliterada em ASCII; H1 localizado, ausencia de termos internos, ausencia de overflow e screenshot sem banner sobreposto viram checks obrigatorios antes do fechamento.
+- Validacao local pre-commit: Vitest Hub 21 testes, build Hub, Playwright Hub 20 testes, preview smoke Hub, public-copy 951 HTMLs, AdSense-safe 13 paginas, structure, secrets, package tests/typechecks, deploy dry-run, ci:changes, HostGator artifact Hub 211 arquivos/7782660 bytes, `git diff --check` e screenshots em `artifacts/mailhealth-catalog-qa/` passaram.
+- Status: concluida em producao. Commit de implementacao `384a9bf` e correcao i18n `681734b` passaram; Quality Gates `28436591226`/`28438120880`, Deploy Dry Runs `28436591227`/`28438120905` e deploy final reversivel do Hub `28438325239` passaram; release `681734b85cabc8defa91c54cef4b0c14f0ea3584-28438325239-1`, asset Hub `zJBMpnOw.js`, asset MailHealth `Dm_wdR4Q.js`, smokes publicos, AdSense-safe, MailHealth static app smoke, 14 deep links EN/PT-BR e crawler quick `2026-06-30T10-47-16-555Z` passaram.
+- Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, pagamento, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect, app MailHealth novo, monitor recorrente, DMARC ingestion, API paga ou acao irreversivel foi ativado.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.

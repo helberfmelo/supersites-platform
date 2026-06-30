@@ -55,6 +55,16 @@ Medium; placements must avoid domain fields, headers, results and copy/fix contr
 - Desktop and mobile Playwright screenshots passed with no overflow, and the report keeps headers local.
 - Production deploy `28319881701` and live UX smoke passed with sanitized analytics, empty browser storage and mobile layout without horizontal overflow.
 
+## Sprint 18.9 catalog update
+
+- The Hub catalog route now opens as a public MailHealth landing instead of a generic product card.
+- The first fold shows a domain health report, sample score, SPF/DKIM/DMARC/MX signals and shortcuts to authentication, receiving and evidence checks.
+- The route links directly to the 7 public checks: SPF, DKIM, DMARC, MX, blacklist, SMTP and header analyzer.
+- EN/PT-BR/ES/FR/DE copy was localized and the PT-BR accent regression found in live QA was corrected before closeout.
+- Final production evidence: commit `681734b`, Hub deploy `28438325239`, release `681734b85cabc8defa91c54cef4b0c14f0ea3584-28438325239-1`, public smoke, AdSense-safe, 14 deep links and crawler quick `2026-06-30T10-47-16-555Z` passed.
+- Screenshots: `artifacts/mailhealth-catalog-qa/mailhealth-catalog-live-desktop.png` and `artifacts/mailhealth-catalog-qa/mailhealth-catalog-live-mobile-pt-br.png`.
+- Monitoring, DMARC ingestion, API, billing, ads, donation and provider activation remain gated and inactive.
+
 ## Dashboard backlog
 
 - Domain health score readiness.

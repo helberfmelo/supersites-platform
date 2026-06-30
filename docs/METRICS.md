@@ -1492,7 +1492,25 @@ Data-base: 2026-06-29
 | Sprint 18.8 post-deploy quick crawler | `2026-06-30T09-42-35-363Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.8 live InvoiceCraft catalog screenshots | `artifacts/invoicecraft-catalog-qa/invoicecraft-catalog-live-desktop.png` and `artifacts/invoicecraft-catalog-qa/invoicecraft-catalog-live-mobile-pt-br.png` reviewed |
 | Sprint 18.8 live InvoiceCraft catalog smoke | Passed: desktop/mobile markers, blocked phrase scan 0, overflow 0 |
-| Real deploy/provider activation | 15 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.8 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.9 MailHealth catalog route | `/supersites/en/sites/mailhealth` converted from generic site detail to task-first email diagnostics landing |
+| Sprint 18.9 direct public links | 14 EN/PT-BR checks passed across 7 MailHealth tool routes |
+| Sprint 18.9 Hub unit suite | Passed: 21 tests |
+| Sprint 18.9 Hub build | Passed |
+| Sprint 18.9 Hub Playwright suite | Passed: 20 tests, including MailHealth desktop EN and mobile PT-BR screenshots |
+| Sprint 18.9 public copy validation | Passed: 951 HTML files |
+| Sprint 18.9 AdSense-safe validation | Passed locally and post-deploy: 13 public pages |
+| Sprint 18.9 package/structure/secrets/dry-run/diff | Passed, including package tests/typechecks, `ci:changes` and deploy dry-run |
+| Sprint 18.9 Hub HostGator artifact | Local passed: 211 files, 7782660 bytes; final deploy passed: 211 files, 7773661 bytes |
+| Sprint 18.9 implementation commit | `384a9bf` |
+| Sprint 18.9 localization correction commit | `681734b`; fixed PT-BR/ES/FR/DE accent and natural-language QA before closeout |
+| Sprint 18.9 remote Quality Gates | `28436591226` and `28438120880` passed |
+| Sprint 18.9 remote Deploy Dry Runs | `28436591227` and `28438120905` passed |
+| Sprint 18.9 Hub production deploys | Initial `28436838552` passed; final corrective deploy `28438325239` passed; release `681734b85cabc8defa91c54cef4b0c14f0ea3584-28438325239-1`; asset `zJBMpnOw.js`; MailHealth asset `Dm_wdR4Q.js` |
+| Sprint 18.9 post-deploy public smoke | Passed: Hub/apps/APIs, MailHealth static app smoke and 14 EN/PT-BR deep links |
+| Sprint 18.9 post-deploy quick crawler | `2026-06-30T10-47-16-555Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.9 live MailHealth catalog screenshots | `artifacts/mailhealth-catalog-qa/mailhealth-catalog-live-desktop.png` and `artifacts/mailhealth-catalog-qa/mailhealth-catalog-live-mobile-pt-br.png` reviewed |
+| Sprint 18.9 live MailHealth catalog smoke | Passed: desktop/mobile markers, accented PT-BR H1, blocked phrase scan 0, overflow 0 |
+| Real deploy/provider activation | 17 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.9 initial and corrective Hub deploys; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 
