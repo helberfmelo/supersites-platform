@@ -161,3 +161,11 @@ Data-base: 2026-06-27
 - Keep Editorial Policy curated directly in `apps/supersite/app/data/legal.ts`; generic trust helper fallback can reintroduce operational wording that is inappropriate for public legal/trust pages.
 - Local evidence: Playwright added Editorial Policy desktop/mobile coverage and generated HTML checks passed across 5 locales. Live evidence: `artifacts/editorial-policy-qa/editorial-en-live-desktop-clean.png` and `artifacts/editorial-policy-qa/editorial-pt-br-live-mobile-clean.png`.
 - Production deploy `28469514798` published release `e4eb99834a4bc587478f7463d877e224e73055f9-28469514798-1`, asset `https://opentshost.com/supersites/_nuxt/Vib1iYtU.js`; public smoke, AdSense-safe validation, five Editorial Policy locale route checks and crawler quick `2026-06-30T19-22-35-242Z` passed.
+
+## Phase 18 Sprint 18.20 Public Status notes
+
+- The Hub Status route now behaves as a visitor-facing availability page, not a release/readiness page. It covers current availability, known incidents, maintenance windows, useful checks, contact and public scope.
+- Public status pages must not expose monetization, billing, dry-run, rollback, provider, artifact, crawler evidence, release check or quality-check language. Detailed operational status belongs in admin/docs.
+- The legal page panel can use page-specific rows; Status should show public availability and known incidents, never the generic `Page care` fallback.
+- Local evidence: Playwright added Status desktop/mobile coverage and generated HTML checks passed across 5 locales. Live evidence: `artifacts/public-status-qa/status-en-live-desktop-clean.png` and `artifacts/public-status-qa/status-pt-br-live-mobile-clean.png`.
+- Production deploy `28472435568` published release `f5457889eec6a901ed0a4ff568f60cd9ea5ab844-28472435568-1`, asset `https://opentshost.com/supersites/_nuxt/B_BSjuR5.js`; public smoke, AdSense-safe validation, five Status locale route checks and crawler quick `2026-06-30T20-15-07-045Z` passed.

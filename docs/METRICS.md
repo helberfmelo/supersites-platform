@@ -1694,7 +1694,24 @@ Data-base: 2026-06-29
 | Sprint 18.19 post-deploy quick crawler | `2026-06-30T19-22-35-242Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.19 live Editorial Policy screenshots | `artifacts/editorial-policy-qa/editorial-en-live-desktop-clean.png` and `artifacts/editorial-policy-qa/editorial-pt-br-live-mobile-clean.png` reviewed |
 | Sprint 18.19 live Editorial Policy smoke | Passed: localized markers, canonical/hreflang checks, WebPage schema, correction mailto, blocked phrase scan 0, console errors 0 and overflow 0 |
-| Real deploy/provider activation | 28 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.19 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.20 Public Status route | `/supersites/en/status` converted to public availability/status page with current availability, known incidents, maintenance windows, useful checks, contact and public scope |
+| Sprint 18.20 localized Status checks | 5 routes passed: `/supersites/en/status`, `/supersites/pt-br/status`, `/supersites/es/status`, `/supersites/fr/status`, `/supersites/de/status` |
+| Sprint 18.20 Hub unit suite | Passed: 32 tests |
+| Sprint 18.20 Hub build | Passed |
+| Sprint 18.20 Hub Playwright suite | Passed: 40 tests, including Status desktop EN and mobile PT-BR screenshots |
+| Sprint 18.20 Status generated HTML check | Passed: 5 locales, required sections present, panel rows specific to availability/incidents and 0 blocked deploy/provider/monetization phrases |
+| Sprint 18.20 AdSense-safe validation | Passed locally and post-deploy: 13 public pages |
+| Sprint 18.20 package/structure/secrets/dry-run/diff | Passed, including package tests/typechecks, `ci:changes`, deploy dry-run and `git diff --check` |
+| Sprint 18.20 Hub HostGator artifact | Local passed: 211 files, 8887199 bytes; production deploy passed: 211 files, 8878200 bytes |
+| Sprint 18.20 implementation commit | `f545788` |
+| Sprint 18.20 remote Quality Gate | `28471979783` passed |
+| Sprint 18.20 remote Deploy Dry Run | `28471979761` passed |
+| Sprint 18.20 Hub production deploy | `28472435568` passed; release `f5457889eec6a901ed0a4ff568f60cd9ea5ab844-28472435568-1`; asset `B_BSjuR5.js` |
+| Sprint 18.20 post-deploy public smoke | Passed: Hub/apps/APIs and 5 Status locale routes via browser validation |
+| Sprint 18.20 post-deploy quick crawler | `2026-06-30T20-15-07-045Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.20 live Public Status screenshots | `artifacts/public-status-qa/status-en-live-desktop-clean.png` and `artifacts/public-status-qa/status-pt-br-live-mobile-clean.png` reviewed |
+| Sprint 18.20 live Public Status smoke | Passed: localized markers, canonical/hreflang checks, WebPage schema, blocked phrase scan 0, console errors 0 and overflow 0 |
+| Real deploy/provider activation | 29 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.20 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 

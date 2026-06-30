@@ -687,6 +687,10 @@ Regra operacional:
 2. Mostrar somente disponibilidade, incidentes conhecidos, manutenção, links úteis e contato.
 3. Mover status técnico detalhado para admin/docs.
 
+**Status em 2026-06-30:** concluida em producao. A pagina publica de Status do Hub foi reescrita em EN/PT-BR/ES/FR/DE para mostrar somente disponibilidade atual, incidentes conhecidos, janelas de manutencao, checagens uteis, contato e escopo publico da pagina. Os paineis laterais agora exibem disponibilidade/incidentes em vez de blocos genericos de cuidado da pagina, e os detalhes de deploy, monetizacao, billing, dry-run, rollback, provider, artefatos e checks tecnicos ficam fora da superficie publica.
+
+- Ciclo executado: validacao local completa, commit objetivo `f545788`, push, Quality Gate `28471979783`, Deploy Dry Run `28471979761`, deploy HostGator `28472435568`, release `f5457889eec6a901ed0a4ff568f60cd9ea5ab844-28472435568-1`, asset Hub `B_BSjuR5.js`, smoke publico, AdSense-safe, validacao live das 5 rotas Status, screenshots live desktop/mobile limpos e crawler quick live `2026-06-30T20-15-07-045Z` com 95 rotas/190 checks/0 gaps.
+
 ---
 
 # 12. NetProbe Atlas
