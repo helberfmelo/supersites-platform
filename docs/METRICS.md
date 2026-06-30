@@ -1392,6 +1392,21 @@ Data-base: 2026-06-29
 | Sprint 18.3 post-deploy quick crawler | `2026-06-30T05-37-05-797Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.3 live NetProbe catalog screenshots | `artifacts/netprobe-catalog-qa/netprobe-catalog-live-desktop.png` and `artifacts/netprobe-catalog-qa/netprobe-catalog-live-mobile-pt-br.png` reviewed |
 | Sprint 18.3 live NetProbe catalog smoke | Passed: desktop/mobile markers, blocked phrase scan 0, overflow 0 |
+| Sprint 18.4 CalcHarbor catalog route | `/supersites/en/sites/calcharbor` converted from generic site detail to task-first calculator landing |
+| Sprint 18.4 featured calculator links | 4 required highlights: loan payment, break-even point, gross margin, ROI |
+| Sprint 18.4 public calculator links | 8 real calculator paths; future topics kept non-linked to avoid thin pages |
+| Sprint 18.4 contextual footer groups | 5 groups with deep links to existing CalcHarbor tools |
+| Sprint 18.4 Hub unit suite | Passed: 16 tests |
+| Sprint 18.4 Hub build | Passed |
+| Sprint 18.4 Hub preview smoke | Passed: asset `/_nuxt/RqTHRSb3.js` |
+| Sprint 18.4 Hub Playwright suite | Passed: 10 tests, including CalcHarbor desktop EN and mobile PT-BR screenshots |
+| Sprint 18.4 visual artifacts | `artifacts/calcharbor-catalog-qa/calcharbor-catalog-desktop.png` and `artifacts/calcharbor-catalog-qa/calcharbor-catalog-mobile-pt-br.png` reviewed |
+| Sprint 18.4 public copy validation | Passed: 951 HTML files |
+| Sprint 18.4 AdSense-safe validation | Passed: 13 public pages |
+| Sprint 18.4 package validation | Passed: 90 package tests and package typechecks |
+| Sprint 18.4 structure/secrets/dry-run/diff | Passed |
+| Sprint 18.4 Hub HostGator artifact | Local passed: 211 files, 4236462 bytes, base path `/supersites` |
+| Sprint 18.4 deploy status | Pending commit, push, remote CI, HostGator deploy and public smoke |
 | Real deploy/provider activation | 6 reversible HostGator deploys in Phase 18 so far for Hub/NetProbe/Hub/Hub/Hub/Hub; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics

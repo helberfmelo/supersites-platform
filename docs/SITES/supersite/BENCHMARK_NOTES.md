@@ -86,3 +86,10 @@ Data-base: 2026-06-27
 - This route correction is now part of the Phase 18 gate: validate the canonical catalog route itself, not only the app home, and keep CTAs pointed to real subtools where they exist.
 - Local evidence before CI/deploy: `artifacts/netprobe-catalog-qa/netprobe-catalog-desktop.png` and `artifacts/netprobe-catalog-qa/netprobe-catalog-mobile-pt-br.png`; Playwright checked desktop EN/mobile PT-BR, no overflow and negative assertions against internal/rollout language.
 - Production deploy `28422499578` published release `36b11f54ef984e6c6098da971cd5df3248cc1b0e-28422499578-1`, asset `https://opentshost.com/supersites/_nuxt/BhQl-Uh-.js`; public smoke, AdSense-safe validation, crawler quick `2026-06-30T05-37-05-797Z` and live desktop/mobile route checks passed.
+
+## Phase 18 Sprint 18.4 CalcHarbor catalog route notes
+
+- CalcHarbor now follows the corrected catalog-route pattern: `/supersites/en/sites/calcharbor` is a practical calculator landing with search, filters, featured calculators and dense cards for existing public calculators.
+- The route intentionally avoids launch/order/status/product-sheet language and does not link future topics until they are real, tested pages with localized useful content.
+- For upcoming site catalog sprints, apply this route-level rule first: validate the canonical Hub catalog route, confirm real deep links, inspect desktop/mobile screenshots and keep smoke markers aligned with user-facing copy.
+- Local evidence before CI/deploy: `artifacts/calcharbor-catalog-qa/calcharbor-catalog-desktop.png` and `artifacts/calcharbor-catalog-qa/calcharbor-catalog-mobile-pt-br.png`; Playwright checked desktop EN/mobile PT-BR, search/filter behavior, overflow and blocked terms.

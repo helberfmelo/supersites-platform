@@ -142,6 +142,11 @@ try {
         throw 'NetProbe Atlas detail page smoke failed.'
     }
 
+    $calcHarborDetail = Invoke-PreviewRequest -Uri "$baseUrl/en/sites/calcharbor" -RequiredContent 'Find the right calculator before the spreadsheet.'
+    if ($calcHarborDetail.StatusCode -ne 200 -or $calcHarborDetail.Content -notmatch 'Find the right calculator before the spreadsheet.') {
+        throw 'CalcHarbor detail page smoke failed.'
+    }
+
     $legal = Invoke-PreviewRequest -Uri "$baseUrl/en/privacy" -RequiredContent 'Data minimization'
     if ($legal.StatusCode -ne 200 -or $legal.Content -notmatch 'Privacy Policy') {
         throw 'Privacy page smoke failed.'

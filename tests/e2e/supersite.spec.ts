@@ -312,4 +312,84 @@ test.describe('SuperSites public hub', () => {
 
     expect(errors).toEqual([])
   })
+
+  test('renders the CalcHarbor catalog page as a benchmark-grade calculator landing', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.goto('/en/sites/calcharbor')
+    await dismissConsentBanner(page)
+
+    await expect(page.getByRole('heading', { name: 'Find the right calculator before the spreadsheet.' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Calculator finder' })).toBeVisible()
+    await expect(page.getByRole('searchbox', { name: 'Search calculators' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Popular business calculators' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'All published calculators' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Next calculator areas' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Finance calculators' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Business calculators', exact: true })).toBeVisible()
+
+    for (const path of [
+      'loan-payment',
+      'compound-interest',
+      'savings-goal',
+      'break-even-point',
+      'gross-margin',
+      'cash-runway',
+      'discount-price',
+      'roi',
+    ]) {
+      await expect(
+        page.locator(`.calcharbor-tool-grid a[href="https://opentshost.com/supersites/calcharbor/en/calculators/${path}"]`),
+      ).toBeVisible()
+    }
+
+    await page.getByRole('searchbox', { name: 'Search calculators' }).fill('roi')
+    await expect(page.locator('#calcharbor-all .calcharbor-tool-card').filter({ hasText: 'ROI Calculator' })).toBeVisible()
+    await expect(page.locator('#calcharbor-all .calcharbor-tool-card').filter({ hasText: 'Loan Payment' })).toHaveCount(0)
+
+    await expect(page.locator('main')).not.toContainText('Temporary public URL')
+    await expect(page.locator('main')).not.toContainText('Launch order')
+    await expect(page.locator('main')).not.toContainText('Quality check')
+    await expect(page.locator('main')).not.toContainText('Workflow checks ready')
+    await expect(page.locator('main')).not.toContainText('checkout inactive')
+    await expect(page.locator('main')).not.toContainText('billing disabled')
+    await expect(page.locator('main')).not.toContainText('ads planned')
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(2)
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('calcharbor-catalog-desktop', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('renders the localized CalcHarbor catalog page on mobile', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/pt-br/sites/calcharbor')
+    await dismissConsentBanner(page)
+
+    await expect(page.getByRole('heading', { name: 'Encontre a calculadora certa antes da planilha.' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Buscador de calculadoras' })).toBeVisible()
+    await expect(page.getByRole('searchbox', { name: 'Buscar calculadoras' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Calculadoras empresariais populares' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Todas as calculadoras publicadas' })).toBeVisible()
+    await expect(
+      page.locator('.calcharbor-tool-grid a[href="https://opentshost.com/supersites/calcharbor/pt-br/calculators/loan-payment"]'),
+    ).toBeVisible()
+    await expect(
+      page.locator('.calcharbor-tool-grid a[href="https://opentshost.com/supersites/calcharbor/pt-br/calculators/roi"]'),
+    ).toBeVisible()
+    await expect(page.locator('main')).not.toContainText('Find the right calculator before the spreadsheet.')
+    await expect(page.locator('main')).not.toContainText('Workflow checks ready')
+    await expect(page.locator('main')).not.toContainText('Temporary public URL')
+    await expect(page.locator('main')).not.toContainText('Launch order')
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('calcharbor-catalog-pt-mobile', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
 })

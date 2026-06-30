@@ -534,6 +534,305 @@ h3 {
   padding: 18px 0 0;
 }
 
+.calcharbor-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(330px, 460px);
+  gap: 28px;
+  align-items: stretch;
+  padding: 28px 0 34px;
+  border-bottom: 1px solid #d8ded8;
+}
+
+.calcharbor-hero > *,
+.calcharbor-section > *,
+.calcharbor-footer-cluster > * {
+  min-width: 0;
+}
+
+.calcharbor-hero__copy {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+}
+
+.calcharbor-hero__copy h1,
+.calcharbor-hero__copy p {
+  margin-bottom: 0;
+}
+
+.calcharbor-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.calcharbor-finder {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  padding: 18px;
+  border: 1px solid #cfd8d3;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 16px 42px rgb(24 35 31 / 8%);
+}
+
+.calcharbor-finder h2 {
+  margin-bottom: 0;
+  font-size: 1.35rem;
+}
+
+.calcharbor-finder p {
+  margin-bottom: 0;
+  color: #46554e;
+  font-size: 0.94rem;
+}
+
+.calcharbor-category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.calcharbor-category-tabs button {
+  min-height: 32px;
+  padding: 6px 9px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  color: #31453b;
+  background: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 780;
+  cursor: pointer;
+}
+
+.calcharbor-category-tabs button[aria-pressed="true"] {
+  color: #ffffff;
+  border-color: #254c6a;
+  background: #254c6a;
+}
+
+.calcharbor-finder__shortcuts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.calcharbor-finder__shortcuts a {
+  display: grid;
+  min-width: 0;
+  min-height: 64px;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 9px;
+  align-items: center;
+  padding: 9px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  color: #17231e;
+  background: #f8faf7;
+  text-decoration: none;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.calcharbor-finder__shortcuts a:hover,
+.calcharbor-finder__shortcuts a:focus-visible {
+  transform: translateY(-1px);
+  border-color: #254c6a;
+  background: #ffffff;
+}
+
+.calcharbor-finder__shortcuts span,
+.calcharbor-tool-card__glyph {
+  display: grid;
+  width: 42px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid #cbd6bd;
+  border-radius: 8px;
+  color: #395018;
+  background: #f1f6e8;
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+.calcharbor-finder__shortcuts strong {
+  min-width: 0;
+  color: #1e3028;
+  font-size: 0.9rem;
+  line-height: 1.25;
+}
+
+.calcharbor-section,
+.calcharbor-footer-cluster {
+  padding: 26px 0;
+  border-bottom: 1px solid #d8ded8;
+}
+
+.calcharbor-popular-grid,
+.calcharbor-tool-grid,
+.calcharbor-topic-grid,
+.calcharbor-footer-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.calcharbor-popular-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.calcharbor-tool-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.calcharbor-tool-card {
+  display: grid;
+  min-width: 0;
+  min-height: 188px;
+  grid-template-rows: auto 1fr auto;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  color: #17231e;
+  background: #ffffff;
+  text-decoration: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.calcharbor-tool-card--featured {
+  border-top: 3px solid #bd7424;
+}
+
+.calcharbor-tool-card:hover,
+.calcharbor-tool-card:focus-visible {
+  transform: translateY(-1px);
+  border-color: #254c6a;
+  box-shadow: 0 10px 28px rgb(37 76 106 / 10%);
+}
+
+.calcharbor-tool-card__body {
+  display: grid;
+  gap: 7px;
+  align-content: start;
+}
+
+.calcharbor-tool-card__body span {
+  color: #65746c;
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.calcharbor-tool-card__body strong {
+  color: #17231e;
+  font-size: 1.02rem;
+  line-height: 1.25;
+}
+
+.calcharbor-tool-card__body em {
+  color: #3f5048;
+  font-size: 0.88rem;
+  font-style: normal;
+  line-height: 1.42;
+}
+
+.calcharbor-tool-card b {
+  color: #254c6a;
+  font-size: 0.84rem;
+  font-weight: 850;
+}
+
+.calcharbor-empty {
+  padding: 16px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.calcharbor-empty h3 {
+  margin-bottom: 6px;
+  font-size: 1.05rem;
+}
+
+.calcharbor-empty p {
+  margin-bottom: 0;
+  color: #3f5048;
+}
+
+.calcharbor-topic-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.calcharbor-topic-grid article {
+  min-width: 0;
+  padding: 15px 0 0;
+  border-top: 3px solid #2e8a57;
+}
+
+.calcharbor-topic-grid article:nth-child(2) {
+  border-color: #254c6a;
+}
+
+.calcharbor-topic-grid article:nth-child(3) {
+  border-color: #bd7424;
+}
+
+.calcharbor-topic-grid article:nth-child(4) {
+  border-color: #607069;
+}
+
+.calcharbor-topic-grid h3 {
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
+.calcharbor-topic-grid p {
+  margin-bottom: 0;
+  color: #3f5048;
+  font-size: 0.91rem;
+}
+
+.calcharbor-footer-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.calcharbor-footer-grid h2 {
+  margin-bottom: 8px;
+  color: #17231e;
+  font-size: 0.76rem;
+  font-weight: 760;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.calcharbor-footer-grid ul {
+  display: grid;
+  gap: 6px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.calcharbor-footer-grid a {
+  display: inline-block;
+  color: #3f4f47;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.35;
+  text-decoration: none;
+  transform-origin: left center;
+  transition: color 160ms ease, transform 160ms ease, font-weight 160ms ease;
+}
+
+.calcharbor-footer-grid a:hover,
+.calcharbor-footer-grid a:focus-visible {
+  color: #0f4d70;
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateX(2px) scale(1.025);
+}
+
 .signal {
   width: 12px;
   height: 12px;
@@ -1378,7 +1677,11 @@ h3 {
   }
 
   .netprobe-tool-grid,
-  .netprobe-footer-grid {
+  .netprobe-footer-grid,
+  .calcharbor-popular-grid,
+  .calcharbor-tool-grid,
+  .calcharbor-topic-grid,
+  .calcharbor-footer-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
@@ -1393,6 +1696,7 @@ h3 {
   .page-footer,
   .hero,
   .netprobe-hero,
+  .calcharbor-hero,
   .tool-finder,
   .trust-row,
   .controls,
@@ -1437,9 +1741,17 @@ h3 {
   .netprobe-tool-grid,
   .netprobe-level-grid,
   .netprobe-footer-grid,
+  .calcharbor-popular-grid,
+  .calcharbor-tool-grid,
+  .calcharbor-topic-grid,
+  .calcharbor-footer-grid,
   .support-block,
   .footer-verticals,
   .evidence-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .calcharbor-finder__shortcuts {
     grid-template-columns: 1fr;
   }
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getFooterCopy, getHomeCopy, getNetProbeCatalogCopy } from '../app/data/copy'
+import { getCalcHarborCatalogCopy, getFooterCopy, getHomeCopy, getNetProbeCatalogCopy } from '../app/data/copy'
 import { legalPageCatalog, legalPageSlugs } from '../app/data/legal'
 import { localeCodes } from '../app/data/locales'
 import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
@@ -138,6 +138,38 @@ describe('site catalog', () => {
       expect(copy.levels).toHaveLength(3)
       expect(copy.footerGroups.map((group) => group.title)).toHaveLength(5)
       expect(copy.footerGroups.flatMap((group) => group.links).length).toBeGreaterThanOrEqual(20)
+      expect(JSON.stringify(copy)).not.toMatch(forbiddenPublicTerms)
+    }
+  })
+
+  it('keeps the CalcHarbor catalog page benchmark-grade and linked to real calculators', () => {
+    const expectedCalculatorPaths = [
+      '/calculators/loan-payment',
+      '/calculators/compound-interest',
+      '/calculators/savings-goal',
+      '/calculators/break-even-point',
+      '/calculators/gross-margin',
+      '/calculators/cash-runway',
+      '/calculators/discount-price',
+      '/calculators/roi',
+    ]
+    const forbiddenPublicTerms =
+      /temporary public url|launch order|quality check|review notes|public api live|ads planned|billing disabled|external analytics inactive|release checks|rollback|human_action_required|worker planned|deploy smoke|production checks|workflow checks ready|checkout inactive/i
+
+    for (const locale of localeCodes) {
+      const copy = getCalcHarborCatalogCopy(locale)
+
+      expect(copy.calculators.map((tool) => tool.path)).toEqual(expectedCalculatorPaths)
+      expect(copy.calculators.filter((tool) => tool.featured).map((tool) => tool.path)).toEqual([
+        '/calculators/loan-payment',
+        '/calculators/break-even-point',
+        '/calculators/gross-margin',
+        '/calculators/roi',
+      ])
+      expect(copy.categories.map((category) => category.key)).toEqual(['finance', 'business', 'pricing', 'planning'])
+      expect(copy.futureTopics).toHaveLength(4)
+      expect(copy.footerGroups.map((group) => group.title)).toHaveLength(5)
+      expect(copy.footerGroups.flatMap((group) => group.links).length).toBeGreaterThanOrEqual(17)
       expect(JSON.stringify(copy)).not.toMatch(forbiddenPublicTerms)
     }
   })

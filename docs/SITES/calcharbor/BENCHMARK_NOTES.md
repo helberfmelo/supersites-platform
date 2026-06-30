@@ -45,3 +45,11 @@ Data-base: 2026-06-27
 - Public copy now avoids MVP/catalogue wording and names browser-side processing, operating principles and workflow checks in user-facing language.
 - Free calculation remains complete without signup, storage, checkout, ads, donations, exports, API access or external analytics.
 - Remaining benchmark gaps: broader calculator depth, richer schema coverage across generated pages and additional original educational content belong to later Phase 9 sprints.
+
+## Phase 18 Sprint 18.4 catalog route correction notes
+
+- The Hub catalog route `/supersites/en/sites/calcharbor` now behaves like a public calculator directory, not an internal product sheet.
+- The first fold is task-first: localized H1, search input, category filters and featured links for Loan Payment, Break-even Point, Gross Margin and ROI.
+- The page links only to the 8 existing public calculator routes; future calculator topics are presented as editorial direction without URLs so the Hub does not create thin pages.
+- Internal language such as `Temporary public URL`, `Launch order`, `Quality check`, rollout status, billing and ads is blocked by unit/e2e assertions for this route.
+- Local evidence before CI/deploy: `artifacts/calcharbor-catalog-qa/calcharbor-catalog-desktop.png` and `artifacts/calcharbor-catalog-qa/calcharbor-catalog-mobile-pt-br.png`; Playwright checked desktop EN/mobile PT-BR, no overflow and localized labels.

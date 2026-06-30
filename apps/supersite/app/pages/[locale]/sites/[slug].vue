@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { limitSeoText, SEO_DESCRIPTION_MAX_LENGTH } from '@supersites/seo'
 import { getStatusBadgeClass } from '@supersites/ui'
-import { getDetailCopy, getNetProbeCatalogCopy } from '../../../data/copy'
+import {
+  getCalcHarborCatalogCopy,
+  getDetailCopy,
+  getNetProbeCatalogCopy,
+  type CalcHarborCatalogCategoryKey,
+} from '../../../data/copy'
 import { localizedHomePath, localizedSitePath, normalizeLocale } from '../../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
 import { createSiteDetailStructuredData } from '../../../data/schema'
@@ -21,13 +26,29 @@ if (!locale || !site) {
 
 const copy = getDetailCopy(locale)
 const netProbeCopy = getNetProbeCatalogCopy(locale)
+const calcHarborCopy = getCalcHarborCatalogCopy(locale)
 const siteText = site.localized[locale]
 const seoDescription = limitSeoText(siteText.summary, SEO_DESCRIPTION_MAX_LENGTH)
 const canonicalPath = localizedSitePath(locale, site.slug)
 const structuredData = createSiteDetailStructuredData(locale, site)
 const isNetProbeCatalog = site.slug === 'netprobe-atlas'
+const isCalcHarborCatalog = site.slug === 'calcharbor'
 const primaryNetProbePath = netProbeCopy.toolLinks[0]?.path ?? '/tools/what-is-my-ip'
 const secondaryNetProbePath = netProbeCopy.toolLinks[1]?.path ?? '/tools/dns-propagation'
+const primaryCalcHarborPath = calcHarborCopy.calculators.find((tool) => tool.path === '/calculators/loan-payment')?.path ?? '/calculators/loan-payment'
+const calcHarborFeaturedCalculators = calcHarborCopy.calculators.filter((tool) => tool.featured)
+const calcHarborSearchQuery = ref('')
+const calcHarborSelectedCategory = ref<CalcHarborCatalogCategoryKey | 'all'>('all')
+const filteredCalcHarborCalculators = computed(() => {
+  const query = calcHarborSearchQuery.value.trim().toLowerCase()
+
+  return calcHarborCopy.calculators.filter((tool) => {
+    const matchesCategory = calcHarborSelectedCategory.value === 'all' || tool.category === calcHarborSelectedCategory.value
+    const searchable = [tool.label, tool.body, tool.path, tool.glyph].join(' ').toLowerCase()
+
+    return matchesCategory && (!query || searchable.includes(query))
+  })
+})
 const isLocalBrowser = ref(false)
 const localNetProbeToolsUrl = computed(() => {
   if (!isLocalBrowser.value || site.slug !== 'netprobe-atlas') {
@@ -61,6 +82,24 @@ function trackNetProbeToolClick(path: string): void {
   trackOutboundSiteClick({
     siteSlug: site.slug,
     targetUrl: getNetProbeToolUrl(path),
+    locale,
+    routePath: canonicalPath,
+    surface: 'site_detail',
+  })
+}
+
+function getCalcHarborToolUrl(path: string): string {
+  return `${site.temporaryUrl}${locale}${path}`
+}
+
+function getCalcHarborCategoryLabel(key: CalcHarborCatalogCategoryKey): string {
+  return calcHarborCopy.categories.find((category) => category.key === key)?.label ?? key
+}
+
+function trackCalcHarborToolClick(path: string): void {
+  trackOutboundSiteClick({
+    siteSlug: site.slug,
+    targetUrl: getCalcHarborToolUrl(path),
     locale,
     routePath: canonicalPath,
     surface: 'site_detail',
@@ -225,6 +264,154 @@ useHead({
           {{ copy.localDevCta }}
         </a>
       </aside>
+    </template>
+
+    <template v-else-if="isCalcHarborCatalog">
+      <section class="calcharbor-hero" :aria-labelledby="`${site.slug}-title`">
+        <div class="calcharbor-hero__copy">
+          <p class="eyebrow">{{ calcHarborCopy.eyebrow }}</p>
+          <h1 :id="`${site.slug}-title`">{{ calcHarborCopy.title }}</h1>
+          <p class="lead">{{ calcHarborCopy.lead }}</p>
+          <div class="calcharbor-hero__actions">
+            <a
+              class="button-link"
+              :href="getCalcHarborToolUrl(primaryCalcHarborPath)"
+              @click="trackCalcHarborToolClick(primaryCalcHarborPath)"
+            >
+              {{ calcHarborCopy.primaryCta }}
+            </a>
+            <a class="button-link button-link--secondary" :href="`#${site.slug}-all`">
+              {{ calcHarborCopy.secondaryCta }}
+            </a>
+          </div>
+        </div>
+
+        <aside class="calcharbor-finder" :aria-labelledby="`${site.slug}-finder`">
+          <h2 :id="`${site.slug}-finder`">{{ calcHarborCopy.finderTitle }}</h2>
+          <p>{{ calcHarborCopy.finderBody }}</p>
+          <div class="field">
+            <label for="calcharbor-search">{{ calcHarborCopy.searchLabel }}</label>
+            <input
+              id="calcharbor-search"
+              v-model="calcHarborSearchQuery"
+              type="search"
+              :placeholder="calcHarborCopy.searchPlaceholder"
+            >
+          </div>
+          <div class="calcharbor-category-tabs" :aria-label="calcHarborCopy.searchLabel">
+            <button
+              type="button"
+              :aria-pressed="calcHarborSelectedCategory === 'all'"
+              @click="calcHarborSelectedCategory = 'all'"
+            >
+              {{ calcHarborCopy.allCategories }}
+            </button>
+            <button
+              v-for="category in calcHarborCopy.categories"
+              :key="category.key"
+              type="button"
+              :aria-pressed="calcHarborSelectedCategory === category.key"
+              @click="calcHarborSelectedCategory = category.key"
+            >
+              {{ category.label }}
+            </button>
+          </div>
+          <div class="calcharbor-finder__shortcuts">
+            <a
+              v-for="tool in calcHarborFeaturedCalculators"
+              :key="`finder-${tool.path}`"
+              :href="getCalcHarborToolUrl(tool.path)"
+              @click="trackCalcHarborToolClick(tool.path)"
+            >
+              <span>{{ tool.glyph }}</span>
+              <strong>{{ tool.label }}</strong>
+            </a>
+          </div>
+        </aside>
+      </section>
+
+      <section class="calcharbor-section" :aria-labelledby="`${site.slug}-popular`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-popular`">{{ calcHarborCopy.popularTitle }}</h2>
+          <p>{{ calcHarborCopy.popularBody }}</p>
+        </div>
+        <div class="calcharbor-popular-grid">
+          <a
+            v-for="tool in calcHarborFeaturedCalculators"
+            :key="`popular-${tool.path}`"
+            class="calcharbor-tool-card calcharbor-tool-card--featured"
+            :href="getCalcHarborToolUrl(tool.path)"
+            @click="trackCalcHarborToolClick(tool.path)"
+          >
+            <span class="calcharbor-tool-card__glyph" aria-hidden="true">{{ tool.glyph }}</span>
+            <span class="calcharbor-tool-card__body">
+              <span>{{ getCalcHarborCategoryLabel(tool.category) }}</span>
+              <strong>{{ tool.label }}</strong>
+              <em>{{ tool.body }}</em>
+            </span>
+            <b>{{ calcHarborCopy.toolCta }}</b>
+          </a>
+        </div>
+      </section>
+
+      <section :id="`${site.slug}-all`" class="calcharbor-section" :aria-labelledby="`${site.slug}-all-title`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-all-title`">{{ calcHarborCopy.allTitle }}</h2>
+          <p>{{ calcHarborCopy.allBody }}</p>
+        </div>
+        <div v-if="filteredCalcHarborCalculators.length > 0" class="calcharbor-tool-grid">
+          <a
+            v-for="tool in filteredCalcHarborCalculators"
+            :key="tool.path"
+            class="calcharbor-tool-card"
+            :href="getCalcHarborToolUrl(tool.path)"
+            @click="trackCalcHarborToolClick(tool.path)"
+          >
+            <span class="calcharbor-tool-card__glyph" aria-hidden="true">{{ tool.glyph }}</span>
+            <span class="calcharbor-tool-card__body">
+              <span>{{ getCalcHarborCategoryLabel(tool.category) }}</span>
+              <strong>{{ tool.label }}</strong>
+              <em>{{ tool.body }}</em>
+            </span>
+            <b>{{ calcHarborCopy.toolCta }}</b>
+          </a>
+        </div>
+        <div v-else class="calcharbor-empty" aria-live="polite">
+          <h3>{{ calcHarborCopy.noResultsTitle }}</h3>
+          <p>{{ calcHarborCopy.noResultsBody }}</p>
+        </div>
+      </section>
+
+      <section class="calcharbor-section" :aria-labelledby="`${site.slug}-future`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-future`">{{ calcHarborCopy.futureTitle }}</h2>
+          <p>{{ calcHarborCopy.futureBody }}</p>
+        </div>
+        <div class="calcharbor-topic-grid">
+          <article v-for="topic in calcHarborCopy.futureTopics" :key="topic.title">
+            <h3>{{ topic.title }}</h3>
+            <p>{{ topic.body }}</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="calcharbor-footer-cluster" :aria-labelledby="`${site.slug}-deep-links`">
+        <div class="calcharbor-footer-grid">
+          <section v-for="group in calcHarborCopy.footerGroups" :key="group.title">
+            <h2>{{ group.title }}</h2>
+            <ul>
+              <li v-for="link in group.links" :key="`${group.title}-${link.label}`">
+                <a
+                  :href="getCalcHarborToolUrl(link.path)"
+                  @click="trackCalcHarborToolClick(link.path)"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
     </template>
 
     <template v-else>

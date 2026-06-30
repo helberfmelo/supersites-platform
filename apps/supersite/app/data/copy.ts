@@ -90,6 +90,48 @@ export interface NetProbeCatalogCopy {
   footerGroups: NetProbeCatalogFooterGroup[]
 }
 
+export type CalcHarborCatalogCategoryKey = 'finance' | 'business' | 'pricing' | 'planning'
+
+export interface CalcHarborCatalogCalculatorLink {
+  label: string
+  body: string
+  path: string
+  glyph: string
+  category: CalcHarborCatalogCategoryKey
+  featured: boolean
+}
+
+export interface CalcHarborCatalogFooterGroup {
+  title: string
+  links: Array<{ label: string; path: string }>
+}
+
+export interface CalcHarborCatalogCopy {
+  eyebrow: string
+  title: string
+  lead: string
+  primaryCta: string
+  secondaryCta: string
+  finderTitle: string
+  finderBody: string
+  searchLabel: string
+  searchPlaceholder: string
+  allCategories: string
+  noResultsTitle: string
+  noResultsBody: string
+  popularTitle: string
+  popularBody: string
+  allTitle: string
+  allBody: string
+  futureTitle: string
+  futureBody: string
+  toolCta: string
+  categories: Array<{ key: CalcHarborCatalogCategoryKey; label: string }>
+  calculators: CalcHarborCatalogCalculatorLink[]
+  futureTopics: Array<{ title: string; body: string }>
+  footerGroups: CalcHarborCatalogFooterGroup[]
+}
+
 export interface FooterCopy {
   brandBody: string
   productNavLabel: string
@@ -841,6 +883,444 @@ export const netProbeCatalogCopy: Record<LocaleCode, NetProbeCatalogCopy> = {
   },
 }
 
+export const calcHarborCatalogCopy: Record<LocaleCode, CalcHarborCatalogCopy> = {
+  en: {
+    eyebrow: 'Business and finance calculators',
+    title: 'Find the right calculator before the spreadsheet.',
+    lead: 'Search practical formulas for payments, margins, break-even, ROI, runway, savings and pricing. Open the free calculator that answers the first question without an account.',
+    primaryCta: 'Open loan calculator',
+    secondaryCta: 'Browse all calculators',
+    finderTitle: 'Calculator finder',
+    finderBody: 'Search by task or choose a category. The popular calculators stay visible while the full list filters below.',
+    searchLabel: 'Search calculators',
+    searchPlaceholder: 'Try loan, margin, ROI, break-even...',
+    allCategories: 'All calculators',
+    noResultsTitle: 'No matching calculator',
+    noResultsBody: 'Try another keyword or category. Only calculators with tested formulas are linked here.',
+    popularTitle: 'Popular business calculators',
+    popularBody: 'Start with high-intent tools that show the formula, example and scenario context.',
+    allTitle: 'All published calculators',
+    allBody: 'Dense categories make it easy to move between finance, business, pricing and planning tasks.',
+    futureTitle: 'Next calculator areas',
+    futureBody: 'Topics stay here as editorial direction until formula, examples, localization and tests are complete.',
+    toolCta: 'Open calculator',
+    categories: [
+      { key: 'finance', label: 'Finance' },
+      { key: 'business', label: 'Business' },
+      { key: 'pricing', label: 'Pricing' },
+      { key: 'planning', label: 'Planning' },
+    ],
+    calculators: [
+      { label: 'Loan Payment', body: 'Estimate payment, total interest and payoff range.', path: '/calculators/loan-payment', glyph: 'LOAN', category: 'finance', featured: true },
+      { label: 'Compound Interest', body: 'Project balance, contributions and interest earned.', path: '/calculators/compound-interest', glyph: 'CMPD', category: 'finance', featured: false },
+      { label: 'Savings Goal', body: 'Estimate time to reach a goal with contributions and growth.', path: '/calculators/savings-goal', glyph: 'SAVE', category: 'planning', featured: false },
+      { label: 'Break-even Point', body: 'Find units and revenue needed to cover fixed costs.', path: '/calculators/break-even-point', glyph: 'BE', category: 'business', featured: true },
+      { label: 'Gross Margin', body: 'Calculate gross profit, margin and markup from revenue and cost.', path: '/calculators/gross-margin', glyph: 'M%', category: 'business', featured: true },
+      { label: 'Cash Runway', body: 'Estimate how many months cash covers net monthly burn.', path: '/calculators/cash-runway', glyph: 'RUN', category: 'planning', featured: false },
+      { label: 'Discount Price', body: 'Compare final unit price, order total and savings.', path: '/calculators/discount-price', glyph: 'SALE', category: 'pricing', featured: false },
+      { label: 'ROI Calculator', body: 'Calculate net return and return on investment.', path: '/calculators/roi', glyph: 'ROI', category: 'finance', featured: true },
+    ],
+    futureTopics: [
+      { title: 'Operating ratios', body: 'Profitability, burn and efficiency topics wait for tested formulas and original explanations.' },
+      { title: 'Marketing math', body: 'Campaign calculators need clear attribution limits before they become public pages.' },
+      { title: 'Commerce fees', body: 'Marketplace and payment-fee topics require localized examples before linking.' },
+      { title: 'Team workflows', body: 'Saved comparisons and exports remain separate from the free one-off answer.' },
+    ],
+    footerGroups: [
+      {
+        title: 'Finance calculators',
+        links: [
+          { label: 'Loan Payment', path: '/calculators/loan-payment' },
+          { label: 'Compound Interest', path: '/calculators/compound-interest' },
+          { label: 'Savings Goal', path: '/calculators/savings-goal' },
+          { label: 'ROI Calculator', path: '/calculators/roi' },
+        ],
+      },
+      {
+        title: 'Business calculators',
+        links: [
+          { label: 'Break-even Point', path: '/calculators/break-even-point' },
+          { label: 'Gross Margin', path: '/calculators/gross-margin' },
+          { label: 'Cash Runway', path: '/calculators/cash-runway' },
+        ],
+      },
+      {
+        title: 'Pricing calculators',
+        links: [
+          { label: 'Discount Price', path: '/calculators/discount-price' },
+          { label: 'Gross Margin', path: '/calculators/gross-margin' },
+          { label: 'Break-even Point', path: '/calculators/break-even-point' },
+        ],
+      },
+      {
+        title: 'Planning calculators',
+        links: [
+          { label: 'Savings Goal', path: '/calculators/savings-goal' },
+          { label: 'Cash Runway', path: '/calculators/cash-runway' },
+          { label: 'Loan Payment', path: '/calculators/loan-payment' },
+        ],
+      },
+      {
+        title: 'Popular calculators',
+        links: [
+          { label: 'Loan Payment', path: '/calculators/loan-payment' },
+          { label: 'Break-even Point', path: '/calculators/break-even-point' },
+          { label: 'Gross Margin', path: '/calculators/gross-margin' },
+          { label: 'ROI Calculator', path: '/calculators/roi' },
+        ],
+      },
+    ],
+  },
+  'pt-br': {
+    eyebrow: 'Calculadoras financeiras e empresariais',
+    title: 'Encontre a calculadora certa antes da planilha.',
+    lead: 'Busque fórmulas práticas para parcelas, margem, ponto de equilíbrio, ROI, runway, poupança e preços. Abra a calculadora gratuita que responde à primeira pergunta sem cadastro.',
+    primaryCta: 'Abrir cálculo de empréstimo',
+    secondaryCta: 'Ver todas as calculadoras',
+    finderTitle: 'Buscador de calculadoras',
+    finderBody: 'Busque por tarefa ou escolha uma categoria. As calculadoras populares continuam visíveis enquanto a lista completa filtra abaixo.',
+    searchLabel: 'Buscar calculadoras',
+    searchPlaceholder: 'Tente empréstimo, margem, ROI, equilíbrio...',
+    allCategories: 'Todas as calculadoras',
+    noResultsTitle: 'Nenhuma calculadora encontrada',
+    noResultsBody: 'Tente outra palavra ou categoria. Só entram links para calculadoras com fórmulas testadas.',
+    popularTitle: 'Calculadoras empresariais populares',
+    popularBody: 'Comece por ferramentas de alta intenção com fórmula, exemplo e contexto de cenário.',
+    allTitle: 'Todas as calculadoras publicadas',
+    allBody: 'Categorias densas facilitam alternar entre finanças, negócios, preços e planejamento.',
+    futureTitle: 'Próximas áreas de cálculo',
+    futureBody: 'Tópicos ficam aqui como direção editorial até fórmula, exemplos, localização e testes estarem completos.',
+    toolCta: 'Abrir calculadora',
+    categories: [
+      { key: 'finance', label: 'Finanças' },
+      { key: 'business', label: 'Negócios' },
+      { key: 'pricing', label: 'Preços' },
+      { key: 'planning', label: 'Planejamento' },
+    ],
+    calculators: [
+      { label: 'Pagamento de empréstimo', body: 'Estime parcela, juros totais e faixa de pagamento.', path: '/calculators/loan-payment', glyph: 'PARC', category: 'finance', featured: true },
+      { label: 'Juros compostos', body: 'Projete saldo, aportes e juros acumulados.', path: '/calculators/compound-interest', glyph: 'JUR', category: 'finance', featured: false },
+      { label: 'Meta de poupança', body: 'Estime prazo para atingir uma meta com aportes e crescimento.', path: '/calculators/savings-goal', glyph: 'META', category: 'planning', featured: false },
+      { label: 'Ponto de equilíbrio', body: 'Encontre unidades e receita para cobrir custos fixos.', path: '/calculators/break-even-point', glyph: 'EQ', category: 'business', featured: true },
+      { label: 'Margem bruta', body: 'Calcule lucro bruto, margem e markup por receita e custo.', path: '/calculators/gross-margin', glyph: 'M%', category: 'business', featured: true },
+      { label: 'Runway de caixa', body: 'Estime por quantos meses o caixa cobre a queima líquida.', path: '/calculators/cash-runway', glyph: 'RUN', category: 'planning', featured: false },
+      { label: 'Preço com desconto', body: 'Compare preço final, total do pedido e economia.', path: '/calculators/discount-price', glyph: 'DESC', category: 'pricing', featured: false },
+      { label: 'Calculadora de ROI', body: 'Calcule retorno líquido e retorno sobre investimento.', path: '/calculators/roi', glyph: 'ROI', category: 'finance', featured: true },
+    ],
+    futureTopics: [
+      { title: 'Índices operacionais', body: 'Lucratividade, burn e eficiência aguardam fórmulas testadas e explicações originais.' },
+      { title: 'Matemática de marketing', body: 'Calculadoras de campanha precisam declarar limites de atribuição antes de virar página pública.' },
+      { title: 'Taxas de comércio', body: 'Temas de marketplace e taxas de pagamento exigem exemplos localizados antes de links.' },
+      { title: 'Fluxos de equipe', body: 'Comparações salvas e exportações ficam separadas da resposta gratuita pontual.' },
+    ],
+    footerGroups: [
+      {
+        title: 'Calculadoras financeiras',
+        links: [
+          { label: 'Pagamento de empréstimo', path: '/calculators/loan-payment' },
+          { label: 'Juros compostos', path: '/calculators/compound-interest' },
+          { label: 'Meta de poupança', path: '/calculators/savings-goal' },
+          { label: 'Calculadora de ROI', path: '/calculators/roi' },
+        ],
+      },
+      {
+        title: 'Calculadoras de negócio',
+        links: [
+          { label: 'Ponto de equilíbrio', path: '/calculators/break-even-point' },
+          { label: 'Margem bruta', path: '/calculators/gross-margin' },
+          { label: 'Runway de caixa', path: '/calculators/cash-runway' },
+        ],
+      },
+      {
+        title: 'Calculadoras de preço',
+        links: [
+          { label: 'Preço com desconto', path: '/calculators/discount-price' },
+          { label: 'Margem bruta', path: '/calculators/gross-margin' },
+          { label: 'Ponto de equilíbrio', path: '/calculators/break-even-point' },
+        ],
+      },
+      {
+        title: 'Planejamento',
+        links: [
+          { label: 'Meta de poupança', path: '/calculators/savings-goal' },
+          { label: 'Runway de caixa', path: '/calculators/cash-runway' },
+          { label: 'Pagamento de empréstimo', path: '/calculators/loan-payment' },
+        ],
+      },
+      {
+        title: 'Populares',
+        links: [
+          { label: 'Pagamento de empréstimo', path: '/calculators/loan-payment' },
+          { label: 'Ponto de equilíbrio', path: '/calculators/break-even-point' },
+          { label: 'Margem bruta', path: '/calculators/gross-margin' },
+          { label: 'Calculadora de ROI', path: '/calculators/roi' },
+        ],
+      },
+    ],
+  },
+  es: {
+    eyebrow: 'Calculadoras financieras y de negocio',
+    title: 'Encuentra la calculadora correcta antes de la hoja.',
+    lead: 'Busca fórmulas prácticas para pagos, margen, equilibrio, ROI, runway, ahorro y precios. Abre la calculadora gratuita que responde la primera pregunta sin registro.',
+    primaryCta: 'Abrir pago de préstamo',
+    secondaryCta: 'Ver todas las calculadoras',
+    finderTitle: 'Buscador de calculadoras',
+    finderBody: 'Busca por tarea o elige una categoría. Las calculadoras populares siguen visibles mientras la lista se filtra.',
+    searchLabel: 'Buscar calculadoras',
+    searchPlaceholder: 'Prueba préstamo, margen, ROI, equilibrio...',
+    allCategories: 'Todas las calculadoras',
+    noResultsTitle: 'No hay calculadora coincidente',
+    noResultsBody: 'Prueba otra palabra o categoría. Solo se enlazan calculadoras con fórmulas probadas.',
+    popularTitle: 'Calculadoras de negocio populares',
+    popularBody: 'Empieza por herramientas de alta intención con fórmula, ejemplo y contexto de escenario.',
+    allTitle: 'Todas las calculadoras publicadas',
+    allBody: 'Categorías densas ayudan a moverse entre finanzas, negocio, precios y planificación.',
+    futureTitle: 'Próximas áreas de cálculo',
+    futureBody: 'Los temas quedan como dirección editorial hasta completar fórmula, ejemplos, localización y pruebas.',
+    toolCta: 'Abrir calculadora',
+    categories: [
+      { key: 'finance', label: 'Finanzas' },
+      { key: 'business', label: 'Negocio' },
+      { key: 'pricing', label: 'Precios' },
+      { key: 'planning', label: 'Planificación' },
+    ],
+    calculators: [
+      { label: 'Pago de préstamo', body: 'Estima cuota, interés total y rango de pago.', path: '/calculators/loan-payment', glyph: 'PRE', category: 'finance', featured: true },
+      { label: 'Interés compuesto', body: 'Proyecta saldo, aportes e interés ganado.', path: '/calculators/compound-interest', glyph: 'INT', category: 'finance', featured: false },
+      { label: 'Meta de ahorro', body: 'Estima plazo para alcanzar una meta con aportes y crecimiento.', path: '/calculators/savings-goal', glyph: 'META', category: 'planning', featured: false },
+      { label: 'Punto de equilibrio', body: 'Encuentra unidades e ingresos para cubrir costos fijos.', path: '/calculators/break-even-point', glyph: 'EQ', category: 'business', featured: true },
+      { label: 'Margen bruto', body: 'Calcula ganancia bruta, margen y markup desde ingresos y costo.', path: '/calculators/gross-margin', glyph: 'M%', category: 'business', featured: true },
+      { label: 'Runway de caja', body: 'Estima cuántos meses el efectivo cubre la quema neta.', path: '/calculators/cash-runway', glyph: 'RUN', category: 'planning', featured: false },
+      { label: 'Precio con descuento', body: 'Compara precio final, total del pedido y ahorro.', path: '/calculators/discount-price', glyph: 'DESC', category: 'pricing', featured: false },
+      { label: 'Calculadora ROI', body: 'Calcula retorno neto y retorno sobre inversión.', path: '/calculators/roi', glyph: 'ROI', category: 'finance', featured: true },
+    ],
+    futureTopics: [
+      { title: 'Ratios operativos', body: 'Rentabilidad, burn y eficiencia esperan fórmulas probadas y explicaciones originales.' },
+      { title: 'Matemática de marketing', body: 'Las calculadoras de campaña necesitan límites de atribución claros antes de publicarse.' },
+      { title: 'Costos de comercio', body: 'Marketplace y pagos requieren ejemplos localizados antes de tener enlaces.' },
+      { title: 'Flujos de equipo', body: 'Comparaciones guardadas y exportes permanecen separados de la respuesta gratuita puntual.' },
+    ],
+    footerGroups: [
+      {
+        title: 'Calculadoras financieras',
+        links: [
+          { label: 'Pago de préstamo', path: '/calculators/loan-payment' },
+          { label: 'Interés compuesto', path: '/calculators/compound-interest' },
+          { label: 'Meta de ahorro', path: '/calculators/savings-goal' },
+          { label: 'Calculadora ROI', path: '/calculators/roi' },
+        ],
+      },
+      {
+        title: 'Calculadoras de negocio',
+        links: [
+          { label: 'Punto de equilibrio', path: '/calculators/break-even-point' },
+          { label: 'Margen bruto', path: '/calculators/gross-margin' },
+          { label: 'Runway de caja', path: '/calculators/cash-runway' },
+        ],
+      },
+      {
+        title: 'Calculadoras de precio',
+        links: [
+          { label: 'Precio con descuento', path: '/calculators/discount-price' },
+          { label: 'Margen bruto', path: '/calculators/gross-margin' },
+          { label: 'Punto de equilibrio', path: '/calculators/break-even-point' },
+        ],
+      },
+      {
+        title: 'Planificación',
+        links: [
+          { label: 'Meta de ahorro', path: '/calculators/savings-goal' },
+          { label: 'Runway de caja', path: '/calculators/cash-runway' },
+          { label: 'Pago de préstamo', path: '/calculators/loan-payment' },
+        ],
+      },
+      {
+        title: 'Populares',
+        links: [
+          { label: 'Pago de préstamo', path: '/calculators/loan-payment' },
+          { label: 'Punto de equilibrio', path: '/calculators/break-even-point' },
+          { label: 'Margen bruto', path: '/calculators/gross-margin' },
+          { label: 'Calculadora ROI', path: '/calculators/roi' },
+        ],
+      },
+    ],
+  },
+  fr: {
+    eyebrow: 'Calculatrices finance et entreprise',
+    title: 'Trouvez la bonne calculatrice avant la feuille de calcul.',
+    lead: 'Recherchez des formules pratiques pour prêt, marge, seuil, ROI, trésorerie, épargne et prix. Ouvrez la calculatrice gratuite qui répond à la première question sans compte.',
+    primaryCta: 'Ouvrir paiement de prêt',
+    secondaryCta: 'Voir toutes les calculatrices',
+    finderTitle: 'Recherche de calculatrices',
+    finderBody: 'Cherchez par tâche ou choisissez une catégorie. Les calculatrices populaires restent visibles pendant le filtrage.',
+    searchLabel: 'Rechercher',
+    searchPlaceholder: 'Prêt, marge, ROI, seuil...',
+    allCategories: 'Toutes les calculatrices',
+    noResultsTitle: 'Aucune calculatrice trouvée',
+    noResultsBody: 'Essayez un autre mot ou une autre catégorie. Seules les calculatrices avec formules testées sont liées.',
+    popularTitle: 'Calculatrices business populaires',
+    popularBody: 'Commencez par les outils à forte intention avec formule, exemple et contexte de scénario.',
+    allTitle: 'Toutes les calculatrices publiées',
+    allBody: 'Des catégories denses facilitent le passage entre finance, entreprise, prix et planification.',
+    futureTitle: 'Prochaines familles de calcul',
+    futureBody: 'Les sujets restent ici comme direction éditoriale jusqu’à formule, exemples, localisation et tests complets.',
+    toolCta: 'Ouvrir',
+    categories: [
+      { key: 'finance', label: 'Finance' },
+      { key: 'business', label: 'Entreprise' },
+      { key: 'pricing', label: 'Prix' },
+      { key: 'planning', label: 'Planification' },
+    ],
+    calculators: [
+      { label: 'Paiement de prêt', body: 'Estimez mensualité, intérêts et plage de paiement.', path: '/calculators/loan-payment', glyph: 'PRT', category: 'finance', featured: true },
+      { label: 'Intérêts composés', body: 'Projetez solde, versements et intérêts gagnés.', path: '/calculators/compound-interest', glyph: 'INT', category: 'finance', featured: false },
+      { label: 'Objectif épargne', body: 'Estimez le délai pour atteindre un objectif avec versements et croissance.', path: '/calculators/savings-goal', glyph: 'OBJ', category: 'planning', featured: false },
+      { label: 'Seuil de rentabilité', body: 'Trouvez unités et revenus nécessaires pour couvrir les coûts fixes.', path: '/calculators/break-even-point', glyph: 'SR', category: 'business', featured: true },
+      { label: 'Marge brute', body: 'Calculez profit brut, marge et markup depuis revenus et coûts.', path: '/calculators/gross-margin', glyph: 'M%', category: 'business', featured: true },
+      { label: 'Runway de trésorerie', body: 'Estimez combien de mois la trésorerie couvre le burn net.', path: '/calculators/cash-runway', glyph: 'RUN', category: 'planning', featured: false },
+      { label: 'Prix remisé', body: 'Comparez prix final, total de commande et économie.', path: '/calculators/discount-price', glyph: 'REM', category: 'pricing', featured: false },
+      { label: 'Calculateur ROI', body: 'Calculez retour net et retour sur investissement.', path: '/calculators/roi', glyph: 'ROI', category: 'finance', featured: true },
+    ],
+    futureTopics: [
+      { title: 'Ratios opérationnels', body: 'Rentabilité, burn et efficacité attendent formules testées et explications originales.' },
+      { title: 'Math marketing', body: 'Les calculatrices de campagne exigent des limites d’attribution claires avant publication.' },
+      { title: 'Frais commerce', body: 'Marketplace et frais de paiement demandent des exemples localisés avant liens.' },
+      { title: 'Flux équipe', body: 'Comparaisons sauvegardées et exports restent séparés de la réponse gratuite ponctuelle.' },
+    ],
+    footerGroups: [
+      {
+        title: 'Calculatrices finance',
+        links: [
+          { label: 'Paiement de prêt', path: '/calculators/loan-payment' },
+          { label: 'Intérêts composés', path: '/calculators/compound-interest' },
+          { label: 'Objectif épargne', path: '/calculators/savings-goal' },
+          { label: 'Calculateur ROI', path: '/calculators/roi' },
+        ],
+      },
+      {
+        title: 'Calculatrices entreprise',
+        links: [
+          { label: 'Seuil de rentabilité', path: '/calculators/break-even-point' },
+          { label: 'Marge brute', path: '/calculators/gross-margin' },
+          { label: 'Runway de trésorerie', path: '/calculators/cash-runway' },
+        ],
+      },
+      {
+        title: 'Calculatrices prix',
+        links: [
+          { label: 'Prix remisé', path: '/calculators/discount-price' },
+          { label: 'Marge brute', path: '/calculators/gross-margin' },
+          { label: 'Seuil de rentabilité', path: '/calculators/break-even-point' },
+        ],
+      },
+      {
+        title: 'Planification',
+        links: [
+          { label: 'Objectif épargne', path: '/calculators/savings-goal' },
+          { label: 'Runway de trésorerie', path: '/calculators/cash-runway' },
+          { label: 'Paiement de prêt', path: '/calculators/loan-payment' },
+        ],
+      },
+      {
+        title: 'Populaires',
+        links: [
+          { label: 'Paiement de prêt', path: '/calculators/loan-payment' },
+          { label: 'Seuil de rentabilité', path: '/calculators/break-even-point' },
+          { label: 'Marge brute', path: '/calculators/gross-margin' },
+          { label: 'Calculateur ROI', path: '/calculators/roi' },
+        ],
+      },
+    ],
+  },
+  de: {
+    eyebrow: 'Finanz- und Business-Rechner',
+    title: 'Finden Sie den passenden Rechner vor der Tabelle.',
+    lead: 'Suchen Sie praktische Formeln für Rate, Marge, Break-even, ROI, Runway, Sparziel und Preis. Öffnen Sie den kostenlosen Rechner ohne Pflichtkonto.',
+    primaryCta: 'Kreditrate öffnen',
+    secondaryCta: 'Alle Rechner ansehen',
+    finderTitle: 'Rechner-Finder',
+    finderBody: 'Suchen Sie nach Aufgabe oder Kategorie. Beliebte Rechner bleiben sichtbar, während die Liste filtert.',
+    searchLabel: 'Rechner suchen',
+    searchPlaceholder: 'Kredit, Marge, ROI, Break-even...',
+    allCategories: 'Alle Rechner',
+    noResultsTitle: 'Kein passender Rechner',
+    noResultsBody: 'Versuchen Sie ein anderes Wort oder eine Kategorie. Verlinkt sind nur Rechner mit getesteten Formeln.',
+    popularTitle: 'Beliebte Business-Rechner',
+    popularBody: 'Starten Sie mit stark nachgefragten Tools mit Formel, Beispiel und Szenario-Kontext.',
+    allTitle: 'Alle veröffentlichten Rechner',
+    allBody: 'Dichte Kategorien erleichtern den Wechsel zwischen Finanzen, Business, Preisen und Planung.',
+    futureTitle: 'Nächste Rechnerbereiche',
+    futureBody: 'Themen bleiben hier redaktionelle Richtung, bis Formel, Beispiele, Lokalisierung und Tests komplett sind.',
+    toolCta: 'Rechner öffnen',
+    categories: [
+      { key: 'finance', label: 'Finanzen' },
+      { key: 'business', label: 'Business' },
+      { key: 'pricing', label: 'Preise' },
+      { key: 'planning', label: 'Planung' },
+    ],
+    calculators: [
+      { label: 'Kreditrate', body: 'Schätzen Sie Rate, Gesamtzins und Zahlungsbereich.', path: '/calculators/loan-payment', glyph: 'KRD', category: 'finance', featured: true },
+      { label: 'Zinseszins', body: 'Projizieren Sie Saldo, Beiträge und Zinsertrag.', path: '/calculators/compound-interest', glyph: 'ZNS', category: 'finance', featured: false },
+      { label: 'Sparziel', body: 'Schätzen Sie Zeit bis zum Ziel mit Beiträgen und Wachstum.', path: '/calculators/savings-goal', glyph: 'ZIEL', category: 'planning', featured: false },
+      { label: 'Break-even Point', body: 'Finden Sie Einheiten und Umsatz zur Deckung fixer Kosten.', path: '/calculators/break-even-point', glyph: 'BE', category: 'business', featured: true },
+      { label: 'Bruttomarge', body: 'Berechnen Sie Bruttogewinn, Marge und Markup aus Umsatz und Kosten.', path: '/calculators/gross-margin', glyph: 'M%', category: 'business', featured: true },
+      { label: 'Cash Runway', body: 'Schätzen Sie, wie viele Monate Bargeld den Netto-Burn deckt.', path: '/calculators/cash-runway', glyph: 'RUN', category: 'planning', featured: false },
+      { label: 'Rabattpreis', body: 'Vergleichen Sie Endpreis, Bestellsumme und Ersparnis.', path: '/calculators/discount-price', glyph: 'RAB', category: 'pricing', featured: false },
+      { label: 'ROI-Rechner', body: 'Berechnen Sie Nettoertrag und Return on Investment.', path: '/calculators/roi', glyph: 'ROI', category: 'finance', featured: true },
+    ],
+    futureTopics: [
+      { title: 'Operative Kennzahlen', body: 'Profitabilität, Burn und Effizienz warten auf getestete Formeln und eigene Erklärungen.' },
+      { title: 'Marketing-Mathematik', body: 'Kampagnenrechner brauchen klare Attributionsgrenzen, bevor sie öffentlich werden.' },
+      { title: 'Commerce-Gebühren', body: 'Marketplace- und Zahlungsgebühren brauchen lokalisierte Beispiele vor Links.' },
+      { title: 'Team-Abläufe', body: 'Gespeicherte Vergleiche und Exporte bleiben von der kostenlosen Einzelantwort getrennt.' },
+    ],
+    footerGroups: [
+      {
+        title: 'Finanzrechner',
+        links: [
+          { label: 'Kreditrate', path: '/calculators/loan-payment' },
+          { label: 'Zinseszins', path: '/calculators/compound-interest' },
+          { label: 'Sparziel', path: '/calculators/savings-goal' },
+          { label: 'ROI-Rechner', path: '/calculators/roi' },
+        ],
+      },
+      {
+        title: 'Business-Rechner',
+        links: [
+          { label: 'Break-even Point', path: '/calculators/break-even-point' },
+          { label: 'Bruttomarge', path: '/calculators/gross-margin' },
+          { label: 'Cash Runway', path: '/calculators/cash-runway' },
+        ],
+      },
+      {
+        title: 'Preisrechner',
+        links: [
+          { label: 'Rabattpreis', path: '/calculators/discount-price' },
+          { label: 'Bruttomarge', path: '/calculators/gross-margin' },
+          { label: 'Break-even Point', path: '/calculators/break-even-point' },
+        ],
+      },
+      {
+        title: 'Planung',
+        links: [
+          { label: 'Sparziel', path: '/calculators/savings-goal' },
+          { label: 'Cash Runway', path: '/calculators/cash-runway' },
+          { label: 'Kreditrate', path: '/calculators/loan-payment' },
+        ],
+      },
+      {
+        title: 'Beliebt',
+        links: [
+          { label: 'Kreditrate', path: '/calculators/loan-payment' },
+          { label: 'Break-even Point', path: '/calculators/break-even-point' },
+          { label: 'Bruttomarge', path: '/calculators/gross-margin' },
+          { label: 'ROI-Rechner', path: '/calculators/roi' },
+        ],
+      },
+    ],
+  },
+}
+
 export const detailCopy: Record<LocaleCode, DetailCopy> = {
   en: {
     breadcrumbHome: 'Catalog',
@@ -1312,6 +1792,10 @@ export function getDetailCopy(locale: LocaleCode): DetailCopy {
 
 export function getNetProbeCatalogCopy(locale: LocaleCode): NetProbeCatalogCopy {
   return sanitizePublicCopy(locale, netProbeCatalogCopy[locale])
+}
+
+export function getCalcHarborCatalogCopy(locale: LocaleCode): CalcHarborCatalogCopy {
+  return sanitizePublicCopy(locale, calcHarborCatalogCopy[locale])
 }
 
 export function getFooterCopy(locale: LocaleCode): FooterCopy {

@@ -777,6 +777,14 @@ Sprint 18.3 - Pagina de catalogo NetProbe Atlas
 - Status: concluida em producao. Commit `36b11f5`, Quality Gate `28422393802`, Deploy Dry Run `28422393808` e deploy reversivel do Hub `28422499578` passaram; release `36b11f54ef984e6c6098da971cd5df3248cc1b0e-28422499578-1`, asset `BhQl-Uh-.js`, smokes publicos, AdSense-safe, crawler quick `2026-06-30T05-37-05-797Z` e screenshots live desktop/mobile da rota NetProbe passaram.
 - Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
 
+Sprint 18.4 - Pagina de catalogo CalcHarbor
+- Simbolico: `PHASE18-CALCHARBOR-CATALOG-LANDING`.
+- Escopo entregue localmente: `/supersites/en/sites/calcharbor` passa a ser uma landing publica de calculadoras, com busca, filtros por categoria, atalhos de alto valor para Loan Payment, Break-even Point, Gross Margin e ROI, cards densos para as 8 calculadoras existentes e topicos futuros sem links para evitar thin pages.
+- Gate permanente: catalogos de site devem abrir com uso pratico, nao com ficha de produto. A rota canonica deve ter screenshots desktop/mobile, links profundos reais, negativas contra `Temporary public URL`, `Launch order`, `Quality check`, rollout, billing e ads, e smoke alinhado ao texto publico novo antes de commit/push/deploy.
+- Validacao local pre-commit: Vitest Hub 16 testes, build Hub, preview smoke Hub asset `/_nuxt/RqTHRSb3.js`, Playwright Hub 10 testes, public-copy 951 HTMLs, AdSense-safe 13 paginas, structure, secrets, package tests/typechecks, deploy dry-run, ci:changes, HostGator artifact Hub 211 arquivos/4236462 bytes, `git diff --check` e screenshots em `artifacts/calcharbor-catalog-qa/` passaram.
+- Status: implementada e validada localmente; commit, push, Quality Gate, Deploy Dry Run, deploy HostGator, smoke publico e fechamento documental final ainda pendentes antes da Sprint 18.5.
+- Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.
