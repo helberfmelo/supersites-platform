@@ -531,7 +531,7 @@ useHead({
                 :href="getDevUtilityToolUrl(tool.path)"
                 @click="trackDevUtilityToolClick(tool.path)"
               >
-                <span>{{ tool.glyph }}</span>
+                <span aria-hidden="true">{{ tool.glyph }}</span>
                 <strong>{{ tool.label }}</strong>
               </a>
             </div>

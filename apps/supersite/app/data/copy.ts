@@ -1593,7 +1593,7 @@ export const devUtilityCatalogCopy: Record<LocaleCode, DevUtilityCatalogCopy> = 
       { label: 'Conversor Base64', body: 'Codifica o decodifica texto UTF-8 en el navegador.', path: '/tools/base64-converter', glyph: 'B64', category: 'encoding', featured: true },
       { label: 'Inspector JWT', body: 'Decodifica header y payload sin prometer verificación de firma.', path: '/tools/jwt-inspector', glyph: 'JWT', category: 'inspection', featured: true },
       { label: 'Probador regex', body: 'Ejecuta patrones JavaScript contra texto de ejemplo localmente.', path: '/tools/regex-tester', glyph: 'RX', category: 'text', featured: true },
-      { label: 'Comparador de texto', body: 'Compara dos bloques y ve un diff compacto por línea.', path: '/tools/text-diff', glyph: 'DIFF', category: 'text', featured: true },
+      { label: 'Comparador de texto', body: 'Compara dos fragmentos y ve un diff compacto por línea.', path: '/tools/text-diff', glyph: 'DIFF', category: 'text', featured: true },
       { label: 'Ayuda cron', body: 'Explica cron de cinco campos y próximas ejecuciones UTC.', path: '/tools/cron-helper', glyph: 'CRON', category: 'time', featured: true },
       { label: 'Generador UUID', body: 'Genera UUID v4 en el navegador para fixtures y tests.', path: '/tools/uuid-generator', glyph: 'UUID', category: 'identity', featured: true },
       { label: 'Conversor timestamp', body: 'Convierte Unix seconds, milliseconds y fechas.', path: '/tools/timestamp-converter', glyph: 'TIME', category: 'time', featured: true },

@@ -176,6 +176,7 @@ function decodeHtmlEntities(value) {
 function visibleText(html) {
   return decodeHtmlEntities(html)
     .replace(/<!--[\s\S]*?-->/gu, ' ')
+    .replace(/<([a-z][\w:-]*)(?=[^>]*\saria-hidden=["']true["'])[^>]*>[\s\S]*?<\/\1>/giu, ' ')
     .replace(/<script[\s\S]*?<\/script>/giu, ' ')
     .replace(/<style[\s\S]*?<\/style>/giu, ' ')
     .replace(/<noscript[\s\S]*?<\/noscript>/giu, ' ')
