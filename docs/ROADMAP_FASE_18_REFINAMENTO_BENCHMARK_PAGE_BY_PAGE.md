@@ -485,6 +485,10 @@ Regra operacional:
 3. Remover `tax/legal review` do topo; mover para nota discreta no fim e registrar pendência jurídica em docs.
 4. Destacar invoice, quote e receipt.
 
+**Status:** concluída em produção em 2026-06-30. A rota de catálogo InvoiceCraft virou landing pública task-first para fatura, orçamento e recibo, com prévia de documento acima da dobra, CTAs para gerador de fatura, navegação por fluxo, busca/filtros, cards para invoice/quote/receipt, nota fiscal/legal discreta abaixo do valor e rodapé contextual com deep links reais. Commit `de22452`; Quality Gate `28434459664`; Deploy Dry Run `28434459665`; Hub deploy `28434690625`; release `/supersites/` `de22452861a113981ebb373da06764c017df020d-28434690625-1`; smoke público, AdSense-safe, InvoiceCraft static app smoke, 6 deep links EN/PT-BR, crawler quick e visual live desktop/mobile passaram.
+
+**Regra aprendida reforçada:** catálogos de documento devem abrir por ação/prévia, não por explicação institucional. Restrições fiscal/legal/pagamento ficam em nota discreta abaixo do valor e nunca como destaque de topo.
+
 ---
 
 ## Sprint 18.9 — Página de catálogo MailHealth

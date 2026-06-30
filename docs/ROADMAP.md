@@ -809,6 +809,14 @@ Sprint 18.7 - Pagina de catalogo QRRoute
 - Status: concluida em producao. Commit `ffe1ecf`, Quality Gate `28432484601`, Deploy Dry Run `28432484446` e deploy reversivel do Hub `28432708930` passaram; release `ffe1ecf9f0c2cf092f62a068af14f6802401c75a-28432708930-1`, asset `WVsZKAFz.js`, QRRoute asset `DnCJVBcv.js`, smokes publicos, AdSense-safe, QRRoute static app smoke, 12 deep links EN/PT-BR e crawler quick `2026-06-30T09-08-26-242Z` passaram.
 - Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect, app QRRoute novo ou acao irreversivel foi ativado.
 
+Sprint 18.8 - Pagina de catalogo InvoiceCraft
+- Simbolico: `PHASE18-INVOICECRAFT-CATALOG-LANDING`.
+- Escopo entregue: `/supersites/en/sites/invoicecraft` passa a ser uma landing publica de documento/cliente, com H1 pratico, CTA para Invoice Builder, previa de documento acima da dobra, navegacao por fluxo invoice/quote/receipt, busca/filtros, cards para os 3 builders reais e rodape contextual com deep links.
+- Gate permanente reforcado: catalogos de documentos devem colocar editor/preview e acao antes de metodologia. Notas fiscal/legal/pagamento ficam abaixo do valor util, sem linguagem de `tax/legal review`, billing, roadmap ou status interno no topo.
+- Validacao local pre-commit: Vitest Hub 20 testes, build Hub, Playwright Hub 18 testes, preview smoke Hub, public-copy 951 HTMLs, AdSense-safe 13 paginas, structure, secrets, package tests/typechecks, deploy dry-run, ci:changes, HostGator artifact Hub 211 arquivos/7021539 bytes, `git diff --check` e screenshots em `artifacts/invoicecraft-catalog-qa/` passaram.
+- Status: concluida em producao. Commit `de22452`, Quality Gate `28434459664`, Deploy Dry Run `28434459665` e deploy reversivel do Hub `28434690625` passaram; release `de22452861a113981ebb373da06764c017df020d-28434690625-1`, asset Hub `B_-TzziU.js`, asset InvoiceCraft `D2cnhdLE.js`, smokes publicos, AdSense-safe, InvoiceCraft static app smoke, 6 deep links EN/PT-BR e crawler quick `2026-06-30T09-42-35-363Z` passaram.
+- Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, pagamento, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect, app InvoiceCraft novo ou acao irreversivel foi ativado.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.

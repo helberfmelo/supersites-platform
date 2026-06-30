@@ -61,3 +61,11 @@ Medium. Ads/support cannot sit near document fields, preview or download button.
 - PDF UX readiness.
 - Tax/legal gate.
 - Branding/payment upgrade readiness.
+
+## Sprint 18.8 catalog update
+
+- Completed in production with a task-first Hub catalog landing at `/supersites/en/sites/invoicecraft`.
+- The first fold now shows the invoice/quote/receipt value, CTA to the invoice builder and a live document preview instead of a generic product card.
+- Search, category filters, workflow shortcuts and contextual footer links point to the three real public builders.
+- Fiscal numbering, jurisdiction-specific tax rules and payment collection stay below the tool value as review guidance, not as top-page development language.
+- Local and live desktop/mobile QA passed with no overflow and no blocked public/internal terms.

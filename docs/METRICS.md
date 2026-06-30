@@ -1475,7 +1475,24 @@ Data-base: 2026-06-29
 | Sprint 18.7 post-deploy quick crawler | `2026-06-30T09-08-26-242Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.7 live QRRoute catalog screenshots | `artifacts/qrroute-catalog-qa/qrroute-catalog-live-desktop.png` and `artifacts/qrroute-catalog-qa/qrroute-catalog-live-mobile-pt-br.png` reviewed |
 | Sprint 18.7 live QRRoute catalog smoke | Passed: desktop/mobile markers, blocked phrase scan 0, overflow 0 |
-| Real deploy/provider activation | 14 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.7 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.8 InvoiceCraft catalog route | `/supersites/en/sites/invoicecraft` converted from generic site detail to task-first invoice/quote/receipt landing |
+| Sprint 18.8 direct public links | 6 EN/PT-BR checks passed across 3 InvoiceCraft tool routes |
+| Sprint 18.8 Hub unit suite | Passed: 20 tests |
+| Sprint 18.8 Hub build | Passed |
+| Sprint 18.8 Hub Playwright suite | Passed: 18 tests, including InvoiceCraft desktop EN and mobile PT-BR screenshots |
+| Sprint 18.8 public copy validation | Passed: 951 HTML files |
+| Sprint 18.8 AdSense-safe validation | Passed locally and post-deploy: 13 public pages |
+| Sprint 18.8 package/structure/secrets/dry-run/diff | Passed, including package tests/typechecks, `ci:changes` and deploy dry-run |
+| Sprint 18.8 Hub HostGator artifact | Local passed: 211 files, 7021539 bytes; deploy passed: 211 files, 7012540 bytes |
+| Sprint 18.8 implementation commit | `de22452` |
+| Sprint 18.8 remote Quality Gate | `28434459664` passed |
+| Sprint 18.8 remote Deploy Dry Run | `28434459665` passed |
+| Sprint 18.8 Hub production deploy | `28434690625` passed; release `de22452861a113981ebb373da06764c017df020d-28434690625-1`; asset `B_-TzziU.js`; InvoiceCraft asset `D2cnhdLE.js` |
+| Sprint 18.8 post-deploy public smoke | Passed: Hub/apps/APIs, InvoiceCraft static app smoke and 6 EN/PT-BR deep links |
+| Sprint 18.8 post-deploy quick crawler | `2026-06-30T09-42-35-363Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.8 live InvoiceCraft catalog screenshots | `artifacts/invoicecraft-catalog-qa/invoicecraft-catalog-live-desktop.png` and `artifacts/invoicecraft-catalog-qa/invoicecraft-catalog-live-mobile-pt-br.png` reviewed |
+| Sprint 18.8 live InvoiceCraft catalog smoke | Passed: desktop/mobile markers, blocked phrase scan 0, overflow 0 |
+| Real deploy/provider activation | 15 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.8 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 

@@ -13,7 +13,10 @@ Data-base: 2026-06-27
 
 ## Screenshots available
 
-- No InvoiceCraft-specific screenshots are present yet.
+- `artifacts/invoicecraft-catalog-qa/invoicecraft-catalog-local-desktop.png`
+- `artifacts/invoicecraft-catalog-qa/invoicecraft-catalog-local-mobile-pt-br.png`
+- `artifacts/invoicecraft-catalog-qa/invoicecraft-catalog-live-desktop.png`
+- `artifacts/invoicecraft-catalog-qa/invoicecraft-catalog-live-mobile-pt-br.png`
 
 ## Useful patterns to learn
 
@@ -38,3 +41,10 @@ Data-base: 2026-06-27
 - The free flow supports editable item rows, currency, locale context, discount, shipping/freight, manual tax/adjustment and local PDF export.
 - Paid SaaS behaviors remain visibly planned but inactive: saved clients/products, recurrence, branding, teams, payment links and fiscal numbering.
 - Production evidence: Sprint 9.9 deploy `28319247622`, final asset `CAuTAoAj.js`, public smokes and live invoice-builder/mobile UX smoke passed.
+
+## Sprint 18.8 catalog response
+
+- The Hub catalog route now uses the same mental model as invoice-generator benchmarks: action first, document preview visible, then workflow navigation.
+- Invoice, quote and receipt are exposed as real deep links instead of a generic site page.
+- Legal/tax/payment constraints moved below the main value in a short review note; the top no longer reads like an internal tax/legal gate.
+- Production evidence: Hub deploy `28434690625`, release `de22452861a113981ebb373da06764c017df020d-28434690625-1`, Hub asset `B_-TzziU.js`, InvoiceCraft asset `D2cnhdLE.js`, public smokes, 6 deep links, crawler quick and live desktop/mobile visual QA passed.
