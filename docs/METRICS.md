@@ -1439,7 +1439,26 @@ Data-base: 2026-06-29
 | Sprint 18.5 post-deploy quick crawler | `2026-06-30T07-23-38-654Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.5 live DevUtility catalog screenshots | `artifacts/devutility-catalog-qa/devutility-catalog-live-desktop.png` and `artifacts/devutility-catalog-qa/devutility-catalog-live-mobile-pt-br.png` reviewed |
 | Sprint 18.5 live DevUtility catalog smoke | Passed: desktop/mobile markers, blocked phrase scan 0, overflow 0 |
-| Real deploy/provider activation | 10 reversible HostGator deploys in Phase 18 so far for Hub/NetProbe/Hub/Hub/Hub/Hub/Hub/Hub/CalcHarbor/Hub; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.6 TimeNexus catalog route | `/supersites/en/sites/timenexus` converted from generic site detail to task-first time/world-clock/date landing |
+| Sprint 18.6 direct public links | 32 EN/PT-BR checks passed across 16 world-clock group, city clock and TimeNexus tool routes |
+| Sprint 18.6 Hub unit suite | Passed: 18 tests |
+| Sprint 18.6 Hub build | Passed |
+| Sprint 18.6 Hub Playwright suite | Passed: 14 tests, including TimeNexus desktop EN and mobile PT-BR screenshots |
+| Sprint 18.6 public copy validation | Passed: 951 HTML files |
+| Sprint 18.6 AdSense-safe validation | Passed locally and post-deploy: 13 public pages |
+| Sprint 18.6 package/structure/secrets/dry-run/diff | Passed, including package tests/typechecks, `ci:changes` and deploy dry-run |
+| Sprint 18.6 Hub HostGator artifact | Local final passed: 211 files, 5409622 bytes; deploy passed: 211 files, 5400623 bytes |
+| Sprint 18.6 implementation commit | `0e29572` |
+| Sprint 18.6 correction commit | `485fb27`; fixed current-time clock wrapping on the live catalog panel |
+| Sprint 18.6 remote Quality Gate | `28430398894` passed |
+| Sprint 18.6 remote Deploy Dry Run | `28430398812` passed |
+| Sprint 18.6 Hub production deploys | Initial `28428962922` passed for `0e29572`; final corrective deploy `28430723674` passed for `485fb27`, release `485fb276726e720197373de4f0e002bc06c16532-28430723674-1`, asset `_VMopQQ_.js` |
+| Sprint 18.6 TimeNexus app production deploy | `28429491292` passed; release `0e29572a6a608f27a473a1f1886593f72b2dc58b-28429491292-1`; asset `CDXTrBfv.js`; 295 files/3815635 bytes |
+| Sprint 18.6 post-deploy public smoke | Passed: Hub/apps/APIs, TimeNexus static app smoke and 32 EN/PT-BR deep links |
+| Sprint 18.6 post-deploy quick crawler | `2026-06-30T08-32-51-790Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.6 live TimeNexus catalog screenshots | `artifacts/timenexus-catalog-qa/timenexus-catalog-live-desktop-final.png` and `artifacts/timenexus-catalog-qa/timenexus-catalog-live-mobile-pt-br-final.png` reviewed |
+| Sprint 18.6 live TimeNexus catalog smoke | Passed: desktop/mobile markers, no overflow, no clock wrapping, route CTA visible |
+| Real deploy/provider activation | 13 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.6 Hub correction and TimeNexus app deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 

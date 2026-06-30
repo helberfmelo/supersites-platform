@@ -36,6 +36,7 @@ Padroes aproveitados:
 - Commits pequenos, push e monitoramento de deploy sao obrigatorios quando uma sprint for aprovada para execucao.
 - Na Fase 18 e em ciclos page-by-page, cada sprint deve ser fechada como loop unico e objetivo: implementar, validar, commit/push, monitorar o deploy HostGator, rodar smoke publico e so entao iniciar a proxima sprint.
 - Commits/pushes devem ser objetivos e agrupados por sprint; evitar dividir a mesma correcao visual em varias entregas quando puder ser validada e publicada no mesmo ciclo.
+- Entregas benchmark-grade so fecham depois de validacao visual live desktop/mobile e checagem das rotas profundas reais. Se o Hub apontar para app estatico com release antiga, 404 ou 500, publicar o app no mesmo ciclo antes da proxima sprint.
 - Obstaculos tecnicos reversiveis devem ser contornados com dry-run, fallback, validacao ou modo degradado e a sprint deve continuar.
 - Obstaculos humanos, juridicos, fiscais, bancarios, compra, KYC, PIN ou acoes irreversiveis devem ser registrados em `HUMAN_ACTION_REQUIRED` e o restante deve continuar.
 

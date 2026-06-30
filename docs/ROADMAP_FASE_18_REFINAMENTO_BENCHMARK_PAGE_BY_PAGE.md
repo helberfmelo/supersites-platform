@@ -455,6 +455,10 @@ Regra operacional:
 3. Mostrar relógio atual automaticamente.
 4. Remover linguagem interna.
 
+**Status:** concluída em produção em 2026-06-30. A rota de catálogo TimeNexus virou landing pública task-first com relógio atual automático, atalhos para world clock, fusos, datas e calculadoras, busca/filtros, links profundos reais e rodapé contextual. Commits `0e29572` e `485fb27`; Hub deploy final `28430723674`; TimeNexus static app deploy `28429491292`; smoke público, AdSense-safe, 32 deep links EN/PT-BR, crawler quick e visual live desktop/mobile passaram.
+
+**Regra aprendida:** páginas de catálogo com links profundos não podem ser fechadas apenas pelo deploy do Hub. Validar as rotas reais do app em produção e publicar o app estático no mesmo ciclo se a release pública estiver stale, 404 ou 500.
+
 ---
 
 ## Sprint 18.7 — Página de catálogo QRRoute

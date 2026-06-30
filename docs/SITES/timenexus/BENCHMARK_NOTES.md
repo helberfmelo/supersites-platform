@@ -37,3 +37,9 @@ Data-base: 2026-06-28
 - Three curated comparison pages were added for `americas-europe`, `global-product` and `apac-europe`, each across the five public locales.
 - The city/timezone SEO expansion remains deliberately small and maintained; broad programmatic city pages stay out of scope until quality and maintenance gates exist.
 - Production deploy passed as Fase 9/Sprint 9.13 with run `28330387022`; live desktop/mobile UX smoke screenshots were captured under `artifacts/playwright-timenexus-planner/`.
+
+## Sprint 18.6 catalog update
+
+- The Hub catalog page now behaves like a public time-tools landing rather than an internal product card.
+- Benchmark patterns applied: current time visible immediately, world-clock/time-zone/date-calculator navigation, dense but readable cards, and methodology/support content kept below the practical entry points.
+- Production validation included final live desktop/mobile screenshots, no horizontal overflow, no clock wrapping, and 32 checked deep links for EN/PT-BR after the TimeNexus static app was redeployed.

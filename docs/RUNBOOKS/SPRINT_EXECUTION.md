@@ -43,6 +43,7 @@ Only after validation:
 - Do not start the next sprint while the current sprint has failing CI, failing deploy, failing public smoke or unresolved benchmark-grade visual acceptance.
 - When smoke markers fail because public copy intentionally changed, update the smoke marker in the same correction and redeploy before continuing.
 - When a Hub/catalog sprint exposes deep links into a static app, validate those public app routes before closing the sprint. If production still points to a stale app release, deploy that static app in the same sprint cycle, rerun the aggregate public smoke and rerun the benchmark crawler before continuing.
+- For benchmark-grade UI changes, do not close the sprint with only local screenshots. Capture or inspect the live production route after the HostGator switch, including desktop and mobile, and fix visible layout issues such as wrapping, overflow, stale copy or benchmark-incoherent navigation before documentation closeout.
 
 ## Stop conditions
 

@@ -793,6 +793,14 @@ Sprint 18.5 - Pagina de catalogo DevUtility Lab
 - Status: concluida em producao. Commit de implementacao `a5bd2ed`, commit corretivo `dd2231b`, Quality Gate `28426860570`, Deploy Dry Run `28426860559` e deploy reversivel do Hub `28427034012` passaram; release `dd2231b3eb16230c5c2ac9b82f5e5592e80a2e27-28427034012-1`, asset `CkBlyo7I.js`, smokes publicos, AdSense-safe, static app smoke DevUtility, 18 links EN/PT-BR das ferramentas e crawler quick `2026-06-30T07-23-38-654Z` passaram.
 - Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
 
+Sprint 18.6 - Pagina de catalogo TimeNexus
+- Simbolico: `PHASE18-TIMENEXUS-CATALOG-LANDING`.
+- Escopo entregue: `/supersites/en/sites/timenexus` passa a ser uma landing publica de tempo/fusos/datas, com relogio atual automatico, CTA para conversor de fusos, busca/filtros por categoria, blocos por workflow, grid de ferramentas reais e rodape contextual com world clock, cidades e calculadoras.
+- Gate permanente reforcado: depois do deploy HostGator, a rota live desktop/mobile deve ser validada visualmente antes do fechamento documental. Problemas visiveis como texto quebrado, overflow, rota stale ou link profundo 404/500 bloqueiam a proxima sprint.
+- Validacao local pre-commit: Vitest Hub 18 testes, build Hub, Playwright Hub 14 testes, preview smoke Hub, public-copy 951 HTMLs, AdSense-safe 13 paginas, structure, secrets, package tests/typechecks, deploy dry-run, ci:changes, HostGator artifact Hub 211 arquivos/5409622 bytes, `git diff --check` e screenshots em `artifacts/timenexus-catalog-qa/` passaram.
+- Status: concluida em producao. Commit de implementacao `0e29572`, commit corretivo `485fb27`, Quality Gate `28430398894`, Deploy Dry Run `28430398812`, deploy Hub inicial `28428962922`, deploy TimeNexus app `28429491292` e deploy Hub corretivo `28430723674` passaram; release final do Hub `485fb276726e720197373de4f0e002bc06c16532-28430723674-1`, asset `_VMopQQ_.js`, release TimeNexus `0e29572a6a608f27a473a1f1886593f72b2dc58b-28429491292-1`, asset `CDXTrBfv.js`, smokes publicos, AdSense-safe, 32 deep links EN/PT-BR e crawler quick `2026-06-30T08-32-51-790Z` passaram.
+- Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.
