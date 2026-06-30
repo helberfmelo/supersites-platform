@@ -50,3 +50,11 @@ Data-base: 2026-06-28
 - The resolver area now labels the bounded coverage map/grid, resolver/locality table and distinct values more explicitly, while keeping the no-worldwide-claim disclosure.
 - What is my IP now has a larger visual IP panel before the summary cards, plus a privacy CTA and related checks.
 - No endpoint, resolver network, analytics payload, storage, worker, billing, ad or payment behavior changed.
+
+## Phase 18 Sprint 18.3 catalog landing notes
+
+- The Hub catalog route `/supersites/en/sites/netprobe-atlas` now behaves as a public network/DNS/IP landing instead of a generic product-status detail page.
+- The first fold leads with `Network diagnostics you can start now.`, direct IP/DNS CTAs and a quick-start panel, without rollout status, public URL, launch order, quality check, deploy or monetization language.
+- Seven direct cards route to What is my IP, DNS Propagation, DNS Lookup, RDAP Domain Lookup, SSL Certificate Checker, Port Checker and Ping/Traceroute.
+- The page explains results at three depths: general users, technical teams and ongoing monitoring, then provides DNS Tools, IP Tools, Domain Tools, SSL Tools and Guides deep-link groups.
+- Local evidence: `artifacts/netprobe-catalog-qa/netprobe-catalog-desktop.png` and `artifacts/netprobe-catalog-qa/netprobe-catalog-mobile-pt-br.png` were reviewed; Playwright checked desktop EN/mobile PT-BR, overflow and blocked public terms.

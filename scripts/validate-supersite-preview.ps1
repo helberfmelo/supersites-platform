@@ -137,8 +137,8 @@ try {
         throw "Nuxt JavaScript asset did not return HTTP 200: $assetPath"
     }
 
-    $detail = Invoke-PreviewRequest -Uri "$baseUrl/en/sites/netprobe-atlas" -RequiredContent 'Review notes'
-    if ($detail.StatusCode -ne 200 -or $detail.Content -notmatch 'Review notes') {
+    $detail = Invoke-PreviewRequest -Uri "$baseUrl/en/sites/netprobe-atlas" -RequiredContent 'Network diagnostics you can start now.'
+    if ($detail.StatusCode -ne 200 -or $detail.Content -notmatch 'Network diagnostics you can start now.') {
         throw 'NetProbe Atlas detail page smoke failed.'
     }
 

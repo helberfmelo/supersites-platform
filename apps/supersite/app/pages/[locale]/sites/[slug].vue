@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { limitSeoText, SEO_DESCRIPTION_MAX_LENGTH } from '@supersites/seo'
 import { getStatusBadgeClass } from '@supersites/ui'
-import { getDetailCopy } from '../../../data/copy'
+import { getDetailCopy, getNetProbeCatalogCopy } from '../../../data/copy'
 import { localizedHomePath, localizedSitePath, normalizeLocale } from '../../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
 import { createSiteDetailStructuredData } from '../../../data/schema'
@@ -20,10 +20,14 @@ if (!locale || !site) {
 }
 
 const copy = getDetailCopy(locale)
+const netProbeCopy = getNetProbeCatalogCopy(locale)
 const siteText = site.localized[locale]
 const seoDescription = limitSeoText(siteText.summary, SEO_DESCRIPTION_MAX_LENGTH)
 const canonicalPath = localizedSitePath(locale, site.slug)
 const structuredData = createSiteDetailStructuredData(locale, site)
+const isNetProbeCatalog = site.slug === 'netprobe-atlas'
+const primaryNetProbePath = netProbeCopy.toolLinks[0]?.path ?? '/tools/what-is-my-ip'
+const secondaryNetProbePath = netProbeCopy.toolLinks[1]?.path ?? '/tools/dns-propagation'
 const isLocalBrowser = ref(false)
 const localNetProbeToolsUrl = computed(() => {
   if (!isLocalBrowser.value || site.slug !== 'netprobe-atlas') {
@@ -43,6 +47,20 @@ function trackPublicSiteClick(): void {
   trackOutboundSiteClick({
     siteSlug: site.slug,
     targetUrl: site.temporaryUrl,
+    locale,
+    routePath: canonicalPath,
+    surface: 'site_detail',
+  })
+}
+
+function getNetProbeToolUrl(path: string): string {
+  return `${site.temporaryUrl}${locale}${path}`
+}
+
+function trackNetProbeToolClick(path: string): void {
+  trackOutboundSiteClick({
+    siteSlug: site.slug,
+    targetUrl: getNetProbeToolUrl(path),
     locale,
     routePath: canonicalPath,
     surface: 'site_detail',
@@ -96,96 +114,211 @@ useHead({
       <span>{{ site.name }}</span>
     </nav>
 
-    <section class="hero" :aria-labelledby="`${site.slug}-title`">
-      <div>
-        <div class="detail-topline">
-          <p class="eyebrow">{{ getCategoryLabel(site.category, locale) }}</p>
-          <span :class="getStatusBadgeClass(site.status)">
-            {{ statusLabels[site.status][locale] }}
-          </span>
+    <template v-if="isNetProbeCatalog">
+      <section class="netprobe-hero" :aria-labelledby="`${site.slug}-title`">
+        <div class="netprobe-hero__copy">
+          <p class="eyebrow">{{ netProbeCopy.eyebrow }}</p>
+          <h1 :id="`${site.slug}-title`">{{ netProbeCopy.title }}</h1>
+          <p class="lead">{{ netProbeCopy.lead }}</p>
+          <div class="netprobe-hero__actions">
+            <a
+              class="button-link"
+              :href="getNetProbeToolUrl(primaryNetProbePath)"
+              @click="trackNetProbeToolClick(primaryNetProbePath)"
+            >
+              {{ netProbeCopy.primaryCta }}
+            </a>
+            <a
+              class="button-link button-link--secondary"
+              :href="getNetProbeToolUrl(secondaryNetProbePath)"
+              @click="trackNetProbeToolClick(secondaryNetProbePath)"
+            >
+              {{ netProbeCopy.secondaryCta }}
+            </a>
+          </div>
         </div>
-        <h1 :id="`${site.slug}-title`">{{ site.name }}</h1>
-        <p class="lead">{{ siteText.headline }}</p>
-      </div>
 
-      <aside class="network-panel" :aria-label="copy.detailsTitle">
-        <div class="network-panel__row">
-          <div>
-            <strong>{{ copy.categoryLabel }}</strong>
-            <span>{{ getCategoryLabel(site.category, locale) }}</span>
+        <aside class="netprobe-start-panel" :aria-labelledby="`${site.slug}-start`">
+          <h2 :id="`${site.slug}-start`">{{ netProbeCopy.startTitle }}</h2>
+          <p>{{ netProbeCopy.startBody }}</p>
+          <div class="netprobe-start-list">
+            <a
+              v-for="tool in netProbeCopy.toolLinks.slice(0, 4)"
+              :key="tool.path"
+              class="netprobe-start-link"
+              :href="getNetProbeToolUrl(tool.path)"
+              @click="trackNetProbeToolClick(tool.path)"
+            >
+              <span>{{ tool.glyph }}</span>
+              <strong>{{ tool.label }}</strong>
+            </a>
           </div>
-          <span class="signal" aria-hidden="true"></span>
+        </aside>
+      </section>
+
+      <section class="netprobe-section" :aria-labelledby="`${site.slug}-tools`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-tools`">{{ netProbeCopy.toolsTitle }}</h2>
+          <p>{{ netProbeCopy.toolsBody }}</p>
         </div>
-        <div class="network-panel__row">
-          <div>
-            <strong>{{ copy.freeToolsTitle }}</strong>
-            <span>{{ siteText.freeValue }}</span>
-          </div>
-          <span class="signal" aria-hidden="true"></span>
-        </div>
-        <div class="network-panel__row">
-          <div>
-            <strong>{{ copy.publicCta }}</strong>
-            <span>{{ site.temporaryUrl }}</span>
-          </div>
-          <span class="signal" aria-hidden="true"></span>
-        </div>
-      </aside>
-    </section>
-
-    <section class="detail-layout">
-      <div>
-        <p class="detail-copy">{{ siteText.summary }}</p>
-
-        <section class="detail-section" :aria-labelledby="`${site.slug}-free`">
-          <h2 :id="`${site.slug}-free`">{{ copy.freeToolsTitle }}</h2>
-          <ul class="check-list">
-            <li v-for="tool in site.freeTools" :key="tool">{{ tool }}</li>
-          </ul>
-        </section>
-
-        <section class="detail-section" :aria-labelledby="`${site.slug}-paid`">
-          <h2 :id="`${site.slug}-paid`">{{ copy.paidBenefitsTitle }}</h2>
-          <ul class="check-list">
-            <li v-for="benefit in site.paidBenefits" :key="benefit">{{ benefit }}</li>
-          </ul>
-        </section>
-      </div>
-
-      <aside class="band" :aria-labelledby="`${site.slug}-quality`">
-        <h2 :id="`${site.slug}-quality`">{{ copy.methodologyTitle }}</h2>
-        <p>{{ copy.methodologyBody }}</p>
-        <dl class="fact-list">
-          <div>
-            <dt>{{ copy.freeToolsTitle }}</dt>
-            <dd>{{ siteText.freeValue }}</dd>
-          </div>
-          <div>
-            <dt>{{ copy.paidBenefitsTitle }}</dt>
-            <dd>{{ siteText.upgrade }}</dd>
-          </div>
-        </dl>
-        <div class="detail-actions">
-          <NuxtLink class="button-link" :to="localizedHomePath(locale)">
-            {{ copy.backToCatalog }}
-          </NuxtLink>
+        <div class="netprobe-tool-grid">
           <a
-            v-if="localNetProbeToolsUrl"
-            class="button-link button-link--secondary"
-            :href="localNetProbeToolsUrl"
+            v-for="tool in netProbeCopy.toolLinks"
+            :key="tool.path"
+            class="netprobe-tool-card"
+            :href="getNetProbeToolUrl(tool.path)"
+            @click="trackNetProbeToolClick(tool.path)"
           >
-            {{ copy.localDevCta }}
-          </a>
-          <a
-            class="button-link button-link--secondary"
-            :href="site.temporaryUrl"
-            @click="trackPublicSiteClick"
-          >
-            {{ copy.publicCta }}
+            <span class="netprobe-tool-card__glyph" aria-hidden="true">{{ tool.glyph }}</span>
+            <span class="netprobe-tool-card__body">
+              <strong>{{ tool.label }}</strong>
+              <span>{{ tool.body }}</span>
+            </span>
+            <em>{{ netProbeCopy.toolCta }}</em>
           </a>
         </div>
+      </section>
+
+      <section class="netprobe-section" :aria-labelledby="`${site.slug}-levels`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-levels`">{{ netProbeCopy.levelsTitle }}</h2>
+        </div>
+        <div class="netprobe-level-grid">
+          <article
+            v-for="level in netProbeCopy.levels"
+            :key="level.title"
+            class="netprobe-level-card"
+          >
+            <h3>{{ level.title }}</h3>
+            <p>{{ level.body }}</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="netprobe-footer-cluster" :aria-labelledby="`${site.slug}-deep-links`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-deep-links`">{{ netProbeCopy.footerTitle }}</h2>
+          <p>{{ netProbeCopy.footerBody }}</p>
+        </div>
+        <div class="netprobe-footer-grid">
+          <section v-for="group in netProbeCopy.footerGroups" :key="group.title">
+            <h3>{{ group.title }}</h3>
+            <ul>
+              <li v-for="link in group.links" :key="`${group.title}-${link.label}`">
+                <a
+                  :href="getNetProbeToolUrl(link.path)"
+                  @click="trackNetProbeToolClick(link.path)"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <aside v-if="localNetProbeToolsUrl" class="netprobe-dev-shortcut">
+        <a
+          class="button-link button-link--secondary"
+          :href="localNetProbeToolsUrl"
+        >
+          {{ copy.localDevCta }}
+        </a>
       </aside>
-    </section>
+    </template>
+
+    <template v-else>
+      <section class="hero" :aria-labelledby="`${site.slug}-title`">
+        <div>
+          <div class="detail-topline">
+            <p class="eyebrow">{{ getCategoryLabel(site.category, locale) }}</p>
+            <span :class="getStatusBadgeClass(site.status)">
+              {{ statusLabels[site.status][locale] }}
+            </span>
+          </div>
+          <h1 :id="`${site.slug}-title`">{{ site.name }}</h1>
+          <p class="lead">{{ siteText.headline }}</p>
+        </div>
+
+        <aside class="network-panel" :aria-label="copy.detailsTitle">
+          <div class="network-panel__row">
+            <div>
+              <strong>{{ copy.categoryLabel }}</strong>
+              <span>{{ getCategoryLabel(site.category, locale) }}</span>
+            </div>
+            <span class="signal" aria-hidden="true"></span>
+          </div>
+          <div class="network-panel__row">
+            <div>
+              <strong>{{ copy.freeToolsTitle }}</strong>
+              <span>{{ siteText.freeValue }}</span>
+            </div>
+            <span class="signal" aria-hidden="true"></span>
+          </div>
+          <div class="network-panel__row">
+            <div>
+              <strong>{{ copy.publicCta }}</strong>
+              <span>{{ site.temporaryUrl }}</span>
+            </div>
+            <span class="signal" aria-hidden="true"></span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="detail-layout">
+        <div>
+          <p class="detail-copy">{{ siteText.summary }}</p>
+
+          <section class="detail-section" :aria-labelledby="`${site.slug}-free`">
+            <h2 :id="`${site.slug}-free`">{{ copy.freeToolsTitle }}</h2>
+            <ul class="check-list">
+              <li v-for="tool in site.freeTools" :key="tool">{{ tool }}</li>
+            </ul>
+          </section>
+
+          <section class="detail-section" :aria-labelledby="`${site.slug}-paid`">
+            <h2 :id="`${site.slug}-paid`">{{ copy.paidBenefitsTitle }}</h2>
+            <ul class="check-list">
+              <li v-for="benefit in site.paidBenefits" :key="benefit">{{ benefit }}</li>
+            </ul>
+          </section>
+        </div>
+
+        <aside class="band" :aria-labelledby="`${site.slug}-quality`">
+          <h2 :id="`${site.slug}-quality`">{{ copy.methodologyTitle }}</h2>
+          <p>{{ copy.methodologyBody }}</p>
+          <dl class="fact-list">
+            <div>
+              <dt>{{ copy.freeToolsTitle }}</dt>
+              <dd>{{ siteText.freeValue }}</dd>
+            </div>
+            <div>
+              <dt>{{ copy.paidBenefitsTitle }}</dt>
+              <dd>{{ siteText.upgrade }}</dd>
+            </div>
+          </dl>
+          <div class="detail-actions">
+            <NuxtLink class="button-link" :to="localizedHomePath(locale)">
+              {{ copy.backToCatalog }}
+            </NuxtLink>
+            <a
+              v-if="localNetProbeToolsUrl"
+              class="button-link button-link--secondary"
+              :href="localNetProbeToolsUrl"
+            >
+              {{ copy.localDevCta }}
+            </a>
+            <a
+              class="button-link button-link--secondary"
+              :href="site.temporaryUrl"
+              @click="trackPublicSiteClick"
+            >
+              {{ copy.publicCta }}
+            </a>
+          </div>
+        </aside>
+      </section>
+    </template>
 
     <LegalFooter :locale="locale" />
   </main>

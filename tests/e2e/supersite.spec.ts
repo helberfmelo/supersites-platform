@@ -236,19 +236,80 @@ test.describe('SuperSites public hub', () => {
     expect(errors).toEqual([])
   })
 
-  test('shows the local NetProbe tools shortcut from the site detail page', async ({ page }) => {
+  test('renders the NetProbe catalog page as a benchmark-grade network landing', async ({ page }, testInfo) => {
     const errors = collectBrowserErrors(page)
 
     await page.goto('/en/sites/netprobe-atlas')
     await dismissConsentBanner(page)
 
-    const localToolsLink = page.getByRole('link', { name: 'Open local NetProbe tools' })
+    await expect(page.getByRole('heading', { name: 'Network diagnostics you can start now.' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Start a network check' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'NetProbe tools' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'For everyone' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'For technical teams' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'For ongoing monitoring' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'DNS Tools' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'IP Tools' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Domain Tools' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'SSL Tools' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Guides' })).toBeVisible()
 
-    await expect(localToolsLink).toBeVisible()
-    await expect(localToolsLink).toHaveAttribute('href', 'http://127.0.0.1:3002/en/tools/dns-lookup')
-    await expect(page.getByRole('link', { name: 'Open public site' })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Review notes' })).toBeVisible()
+    for (const path of [
+      'what-is-my-ip',
+      'dns-propagation',
+      'dns-lookup',
+      'rdap-domain-lookup',
+      'ssl-certificate-checker',
+      'port-checker',
+      'ping-traceroute',
+    ]) {
+      await expect(
+        page.locator(`.netprobe-tool-grid a[href="https://opentshost.com/supersites/netprobe-atlas/en/tools/${path}"]`),
+      ).toBeVisible()
+    }
+
+    await expect(page.locator('main')).not.toContainText('Review notes')
+    await expect(page.locator('main')).not.toContainText('Available')
+    await expect(page.locator('main')).not.toContainText('Temporary public URL')
+    await expect(page.locator('main')).not.toContainText('Launch order')
+    await expect(page.locator('main')).not.toContainText('Quality check')
+    await expect(page.locator('main')).not.toContainText('Public API live')
+    await expect(page.locator('main')).not.toContainText('billing disabled')
+    await expect(page.locator('main')).not.toContainText('ads planned')
     await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(2)
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('netprobe-catalog-desktop', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('renders the localized NetProbe catalog page on mobile', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/pt-br/sites/netprobe-atlas')
+    await dismissConsentBanner(page)
+
+    await expect(page.getByRole('heading', { name: 'Diagnósticos de rede para começar agora.' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Comece uma verificação de rede' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Ferramentas NetProbe' })).toBeVisible()
+    await expect(
+      page.locator('.netprobe-tool-grid a[href="https://opentshost.com/supersites/netprobe-atlas/pt-br/tools/what-is-my-ip"]'),
+    ).toBeVisible()
+    await expect(
+      page.locator('.netprobe-tool-grid a[href="https://opentshost.com/supersites/netprobe-atlas/pt-br/tools/dns-propagation"]'),
+    ).toBeVisible()
+    await expect(page.locator('main')).not.toContainText('Network diagnostics you can start now.')
+    await expect(page.locator('main')).not.toContainText('Review notes')
+    await expect(page.locator('main')).not.toContainText('Available')
+    await expect(page.locator('main')).not.toContainText('Public API live')
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('netprobe-catalog-pt-mobile', { body: screenshot, contentType: 'image/png' })
+
     expect(errors).toEqual([])
   })
 })

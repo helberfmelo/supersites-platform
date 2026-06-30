@@ -51,6 +51,13 @@ Antes de commit em uma sprint publica:
 - atualizar `docs/SITES/<site>/BENCHMARK_NOTES.md` com o before/after de produto;
 - atualizar `docs/SITES/<site>/FRONTEND_REFINEMENT_PLAN.md` com o criterio fechado ou pendente.
 
+## Cadencia e rotas
+
+- A rota canonica da sprint deve ser validada diretamente, com screenshots e smoke no path publico real.
+- Paginas de catalogo do Hub, como `/supersites/en/sites/<site>`, devem funcionar como landing publica de descoberta para a familia de ferramentas, nao como ficha interna de produto.
+- Links de CTA e rodape precisam apontar para subpaginas/ferramentas publicas reais do site quando existirem; evitar linkar apenas para a home do app se o benchmark espera navegacao profunda.
+- Cada sprint deve fechar o ciclo objetivo: implementar, validar, commit/push, monitorar deploy HostGator, rodar smoke publico e so entao iniciar a proxima sprint.
+
 ## Regra especifica do Hub
 
 O Hub publico deve abrir como finder de ferramentas, nao como catalogo de rollout.

@@ -78,3 +78,10 @@ Data-base: 2026-06-27
 - Hover may give the user a clear response by increasing weight and slightly scaling/moving the text, but it must remain underline-free.
 - Local evidence before CI/deploy: `artifacts/footer-qa/hub-footer-typography-desktop-wide.png` and `artifacts/footer-qa/hub-footer-typography-mobile-pt-br.png`; computed hover check confirmed weight `500` at rest, `700` on hover and no underline in either state.
 - Production deploy `28420973782` published release `f13cef7ab668da1166ae1b7fafd86d54fdeaa6ed-28420973782-1`, asset `https://opentshost.com/supersites/_nuxt/CvYAdSlM.js`; public smoke, AdSense-safe validation, crawler quick `2026-06-30T04-56-11-086Z`, live footer screenshots and live hover check passed.
+
+## Phase 18 Sprint 18.3 catalog route correction notes
+
+- Catalog detail routes must not default to an internal product sheet when the sprint asks for benchmark-grade public UX.
+- NetProbe Atlas now has a special public landing on `/supersites/en/sites/netprobe-atlas`, with practical first fold, direct tool links and contextual deep-link footer groups.
+- This route correction is now part of the Phase 18 gate: validate the canonical catalog route itself, not only the app home, and keep CTAs pointed to real subtools where they exist.
+- Local evidence before CI/deploy: `artifacts/netprobe-catalog-qa/netprobe-catalog-desktop.png` and `artifacts/netprobe-catalog-qa/netprobe-catalog-mobile-pt-br.png`; Playwright checked desktop EN/mobile PT-BR, no overflow and negative assertions against internal/rollout language.

@@ -34,6 +34,8 @@ Padroes aproveitados:
 - Deploy em HostGator exige cuidado com subdiretorio, `APP_URL`, `ASSET_URL`, base path e migrations.
 - Publicacao por FTP/SSH deve preservar `.env`, evitar wipe remoto total e executar smoke pos-deploy.
 - Commits pequenos, push e monitoramento de deploy sao obrigatorios quando uma sprint for aprovada para execucao.
+- Na Fase 18 e em ciclos page-by-page, cada sprint deve ser fechada como loop unico e objetivo: implementar, validar, commit/push, monitorar o deploy HostGator, rodar smoke publico e so entao iniciar a proxima sprint.
+- Commits/pushes devem ser objetivos e agrupados por sprint; evitar dividir a mesma correcao visual em varias entregas quando puder ser validada e publicada no mesmo ciclo.
 - Obstaculos tecnicos reversiveis devem ser contornados com dry-run, fallback, validacao ou modo degradado e a sprint deve continuar.
 - Obstaculos humanos, juridicos, fiscais, bancarios, compra, KYC, PIN ou acoes irreversiveis devem ser registrados em `HUMAN_ACTION_REQUIRED` e o restante deve continuar.
 

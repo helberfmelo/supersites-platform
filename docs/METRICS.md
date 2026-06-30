@@ -1370,6 +1370,19 @@ Data-base: 2026-06-29
 | Sprint 18.2d post-deploy quick crawler | `2026-06-30T04-56-11-086Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.2d live footer screenshots | `artifacts/footer-qa/hub-footer-typography-live-desktop-wide.png` and `artifacts/footer-qa/hub-footer-typography-live-mobile-pt-br.png` reviewed |
 | Sprint 18.2d live hover check | Passed: before `12.48px`/weight `500`/no underline; hover weight `700`/no underline/transform scale |
+| Sprint 18.3 NetProbe catalog route | `/supersites/en/sites/netprobe-atlas` converted from generic site detail to task-first network/DNS/IP landing |
+| Sprint 18.3 direct tool links | 7 required paths: IP, DNS propagation, DNS lookup, RDAP, SSL, port checker, ping/traceroute |
+| Sprint 18.3 contextual footer groups | 5 required groups: DNS Tools, IP Tools, Domain Tools, SSL Tools, Guides |
+| Sprint 18.3 Hub unit suite | Passed: 15 tests |
+| Sprint 18.3 Hub build | Passed |
+| Sprint 18.3 Hub preview smoke | Passed: asset `/_nuxt/58HZvkID.js` |
+| Sprint 18.3 Hub Playwright suite | Passed: 8 tests, including NetProbe desktop EN and mobile PT-BR screenshots |
+| Sprint 18.3 visual artifacts | `artifacts/netprobe-catalog-qa/netprobe-catalog-desktop.png` and `artifacts/netprobe-catalog-qa/netprobe-catalog-mobile-pt-br.png` reviewed |
+| Sprint 18.3 public copy validation | Passed: 951 HTML files |
+| Sprint 18.3 AdSense-safe validation | Passed: 13 public pages |
+| Sprint 18.3 package validation | Passed: 90 package tests and package typechecks |
+| Sprint 18.3 structure/secrets/dry-run/diff | Passed |
+| Sprint 18.3 Hub HostGator artifact | Local passed: 211 files, 3700277 bytes, base path `/supersites` |
 | Real deploy/provider activation | 5 reversible HostGator deploys in Phase 18 so far for Hub/NetProbe/Hub/Hub/Hub; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics

@@ -16,6 +16,7 @@ Refine the Hub and control-plane surfaces so operators can scan portfolio qualit
 - Replace the public Hub first fold with a real tool finder: search, category filters, direct free tool cards and no operational status/preview/upgrade badges in the main experience. Corrective Phase 18 benchmark-grade sprint in progress on 2026-06-30.
 - Replace footer chips/buttons with benchmark-style text menus in columns, using deep links to public tools/subpages instead of only linking product home pages. Done in production in Phase 18 Sprint 18.2c.
 - Tune footer typography so column menu links are light and compact at rest, while hover gains weight/scale without underline. Done in production in Phase 18 Sprint 18.2d.
+- Convert benchmark-grade catalog detail routes into public landing pages when required by the sprint, starting with NetProbe Atlas network/DNS/IP in Phase 18 Sprint 18.3. Done locally; production deploy pending at the time of this note.
 - Reduce consent-banner intrusion on the first fold while preserving local/fail-closed consent behavior. Done in production in Sprint 9.15.
 - Keep the Blade admin dense, utilitarian and consistent with the current control-plane style.
 
@@ -59,6 +60,7 @@ Low if the dashboard stays internal and Hub public placeholders remain inert.
 - Hub home first viewport reads as a public tool finder, not an operating catalog: no visible `Available`/`Preview`, launch/status counters, `upgrade path`, billing, ads or rollout wording.
 - Hub footer reads as navigation, not controls: text lists in columns, hover state, legal links as text, no chip/button styling for structural navigation, and direct links to tool/subpage URLs across the portfolio.
 - Hub footer menu typography stays compact/light at rest, with no underline; hover may increase weight and visual scale, but must not reintroduce underline or button/chip styling.
+- Site catalog detail pages must be validated on their canonical routes and cannot show rollout/status/product-sheet language when the sprint calls for a public benchmark-grade landing.
 - Desktop/mobile screenshots are inspected before closure and linked from the sprint artifacts or status notes.
 
 ## Dashboard backlog

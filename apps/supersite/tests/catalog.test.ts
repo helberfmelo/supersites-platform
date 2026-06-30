@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getFooterCopy, getHomeCopy } from '../app/data/copy'
+import { getFooterCopy, getHomeCopy, getNetProbeCatalogCopy } from '../app/data/copy'
 import { legalPageCatalog, legalPageSlugs } from '../app/data/legal'
 import { localeCodes } from '../app/data/locales'
 import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
@@ -116,6 +116,30 @@ describe('site catalog', () => {
     expect(copy.title).toBe('Find the right web tool in seconds.')
     expect(copy.popularToolsTitle).toBe('Free tools ready to use')
     expect(renderedHomeCopy).not.toMatch(/operating network|utility sites live|launch order|quality checks|upgrade path|ads planned|billing disabled/i)
+  })
+
+  it('keeps the NetProbe catalog page benchmark-grade and free of internal rollout language', () => {
+    const expectedToolPaths = [
+      '/tools/what-is-my-ip',
+      '/tools/dns-propagation',
+      '/tools/dns-lookup',
+      '/tools/rdap-domain-lookup',
+      '/tools/ssl-certificate-checker',
+      '/tools/port-checker',
+      '/tools/ping-traceroute',
+    ]
+    const forbiddenPublicTerms =
+      /temporary public url|launch order|quality check|review notes|public api live|ads planned|billing disabled|external analytics inactive|release checks|rollback|human_action_required|worker planned|deploy smoke|production checks/i
+
+    for (const locale of localeCodes) {
+      const copy = getNetProbeCatalogCopy(locale)
+
+      expect(copy.toolLinks.map((tool) => tool.path)).toEqual(expectedToolPaths)
+      expect(copy.levels).toHaveLength(3)
+      expect(copy.footerGroups.map((group) => group.title)).toHaveLength(5)
+      expect(copy.footerGroups.flatMap((group) => group.links).length).toBeGreaterThanOrEqual(20)
+      expect(JSON.stringify(copy)).not.toMatch(forbiddenPublicTerms)
+    }
   })
 
   it('generates the catalog prerender routes for home and localized site pages', () => {

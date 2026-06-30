@@ -768,6 +768,15 @@ Sprint 18.2d - Ajuste tipografico do rodape benchmark do Hub
 - Status: concluida em producao. Commit `f13cef7`, Quality Gate `28420829913`, Deploy Dry Run `28420829943` e deploy reversivel do Hub `28420973782` passaram; release `f13cef7ab668da1166ae1b7fafd86d54fdeaa6ed-28420973782-1`, asset `CvYAdSlM.js`, smokes publicos, AdSense-safe, crawler quick `2026-06-30T04-56-11-086Z`, screenshot live do rodape e checagem live de hover passaram.
 - Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
 
+Sprint 18.3 - Pagina de catalogo NetProbe Atlas
+- Simbolico: `PHASE18-NETPROBE-CATALOG-LANDING`.
+- Escopo entregue: `/supersites/en/sites/netprobe-atlas` passa a ser uma landing publica de rede/DNS/IP, com primeira dobra pratica, CTAs para IP e DNS propagation, painel de inicio rapido, 7 cards diretos de ferramentas e rodape contextual com DNS Tools, IP Tools, Domain Tools, SSL Tools e Guides.
+- Gate permanente: paginas de catalogo do Hub nao podem parecer ficha interna de produto quando a sprint pede benchmark-grade. Elas devem funcionar como landing publica da familia de ferramentas, com links profundos para subpaginas reais e screenshots desktop/mobile revisados.
+- Regra operacional registrada: `docs/RUNBOOKS/SPRINT_EXECUTION.md`, `docs/OPERATING_CONTEXT.md` e `docs/PHASE18_BENCHMARK_GRADE_ACCEPTANCE.md` agora reforcam o ciclo objetivo por sprint: implementar, validar, commit/push, monitorar deploy HostGator, smoke publico e proxima sprint.
+- Validacao local pre-commit: Vitest Hub 15 testes, build Hub, preview smoke Hub asset `/_nuxt/58HZvkID.js`, Playwright Hub 8 testes, public-copy 951 HTMLs, AdSense-safe 13 paginas, structure, secrets, package tests/typechecks, deploy dry-run, ci:changes, HostGator artifact Hub 211 arquivos/3700277 bytes, `git diff --check` e screenshots em `artifacts/netprobe-catalog-qa/` passaram.
+- Status: validada localmente; commit, CI remoto, Deploy Dry Run, deploy HostGator e smokes publicos pendentes ate o fechamento do ciclo.
+- Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.

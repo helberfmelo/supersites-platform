@@ -294,6 +294,246 @@ h3 {
   font-size: 0.84rem;
 }
 
+.netprobe-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 430px);
+  gap: 28px;
+  align-items: stretch;
+  padding: 28px 0 34px;
+  border-bottom: 1px solid #d8ded8;
+}
+
+.netprobe-hero > *,
+.netprobe-section > *,
+.netprobe-footer-cluster > * {
+  min-width: 0;
+}
+
+.netprobe-hero__copy {
+  display: grid;
+  align-content: center;
+  gap: 16px;
+}
+
+.netprobe-hero__copy h1,
+.netprobe-hero__copy p {
+  margin-bottom: 0;
+}
+
+.netprobe-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.netprobe-start-panel {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  padding: 18px;
+  border: 1px solid #cfd8d3;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 16px 42px rgb(24 35 31 / 8%);
+}
+
+.netprobe-start-panel h2 {
+  margin-bottom: 0;
+  font-size: 1.35rem;
+}
+
+.netprobe-start-panel p {
+  margin-bottom: 0;
+  color: #46554e;
+  font-size: 0.94rem;
+}
+
+.netprobe-start-list {
+  display: grid;
+  gap: 8px;
+}
+
+.netprobe-start-link {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  min-height: 52px;
+  padding: 9px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  color: #17231e;
+  background: #f8faf7;
+  text-decoration: none;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.netprobe-start-link span,
+.netprobe-tool-card__glyph {
+  display: grid;
+  width: 42px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid #b9d2cf;
+  border-radius: 8px;
+  color: #173f55;
+  background: #edf7f5;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.netprobe-start-link strong {
+  min-width: 0;
+  color: #1e3028;
+  font-size: 0.94rem;
+}
+
+.netprobe-start-link:hover,
+.netprobe-start-link:focus-visible {
+  transform: translateY(-1px);
+  border-color: #254c6a;
+  background: #ffffff;
+}
+
+.netprobe-section,
+.netprobe-footer-cluster {
+  padding: 26px 0;
+  border-bottom: 1px solid #d8ded8;
+}
+
+.netprobe-tool-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.netprobe-tool-card {
+  display: grid;
+  min-width: 0;
+  min-height: 190px;
+  grid-template-rows: auto 1fr auto;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  color: #17231e;
+  background: #ffffff;
+  text-decoration: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.netprobe-tool-card:hover,
+.netprobe-tool-card:focus-visible {
+  transform: translateY(-1px);
+  border-color: #254c6a;
+  box-shadow: 0 10px 28px rgb(37 76 106 / 10%);
+}
+
+.netprobe-tool-card__body {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+
+.netprobe-tool-card__body strong {
+  color: #17231e;
+  font-size: 1.04rem;
+  line-height: 1.25;
+}
+
+.netprobe-tool-card__body span {
+  color: #3f5048;
+  font-size: 0.9rem;
+}
+
+.netprobe-tool-card em {
+  color: #254c6a;
+  font-size: 0.86rem;
+  font-style: normal;
+  font-weight: 850;
+}
+
+.netprobe-level-grid,
+.netprobe-footer-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.netprobe-level-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.netprobe-level-card {
+  min-width: 0;
+  padding: 16px 0 0;
+  border-top: 3px solid #2e8a57;
+}
+
+.netprobe-level-card:nth-child(2) {
+  border-color: #254c6a;
+}
+
+.netprobe-level-card:nth-child(3) {
+  border-color: #bd7424;
+}
+
+.netprobe-level-card h3 {
+  margin-bottom: 6px;
+  font-size: 1.02rem;
+}
+
+.netprobe-level-card p {
+  margin-bottom: 0;
+  color: #3f5048;
+  font-size: 0.93rem;
+}
+
+.netprobe-footer-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  padding-top: 4px;
+}
+
+.netprobe-footer-grid h3 {
+  margin-bottom: 8px;
+  color: #17231e;
+  font-size: 0.76rem;
+  font-weight: 760;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.netprobe-footer-grid ul {
+  display: grid;
+  gap: 6px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.netprobe-footer-grid a {
+  display: inline-block;
+  color: #3f4f47;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.35;
+  text-decoration: none;
+  transform-origin: left center;
+  transition: color 160ms ease, transform 160ms ease, font-weight 160ms ease;
+}
+
+.netprobe-footer-grid a:hover,
+.netprobe-footer-grid a:focus-visible {
+  color: #0f4d70;
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateX(2px) scale(1.025);
+}
+
+.netprobe-dev-shortcut {
+  padding: 18px 0 0;
+}
+
 .signal {
   width: 12px;
   height: 12px;
@@ -1136,6 +1376,11 @@ h3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px 26px;
   }
+
+  .netprobe-tool-grid,
+  .netprobe-footer-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 820px) {
@@ -1147,6 +1392,7 @@ h3 {
   .site-header,
   .page-footer,
   .hero,
+  .netprobe-hero,
   .tool-finder,
   .trust-row,
   .controls,
@@ -1188,6 +1434,9 @@ h3 {
   .feature-grid,
   .intent-grid,
   .tool-shortcut-grid,
+  .netprobe-tool-grid,
+  .netprobe-level-grid,
+  .netprobe-footer-grid,
   .support-block,
   .footer-verticals,
   .evidence-strip {

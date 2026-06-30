@@ -36,6 +36,13 @@ Only after validation:
 5. Update `docs/STATUS.md`.
 6. Read mandatory docs before starting next sprint.
 
+## Sprint cadence for page-by-page execution
+
+- Execute one sprint at a time as a closed loop: implement, validate, commit, push, monitor HostGator deploy, run public smoke, then move to the next sprint.
+- Keep commits and pushes objective. Group related code, tests and documentation for the sprint instead of fragmenting the same fix across unnecessary commits.
+- Do not start the next sprint while the current sprint has failing CI, failing deploy, failing public smoke or unresolved benchmark-grade visual acceptance.
+- When smoke markers fail because public copy intentionally changed, update the smoke marker in the same correction and redeploy before continuing.
+
 ## Stop conditions
 
 - Failed deploy.

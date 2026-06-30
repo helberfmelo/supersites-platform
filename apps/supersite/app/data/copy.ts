@@ -59,6 +59,37 @@ export interface DetailCopy {
   relatedTitle: string
 }
 
+export interface NetProbeCatalogToolLink {
+  label: string
+  body: string
+  path: string
+  glyph: string
+}
+
+export interface NetProbeCatalogFooterGroup {
+  title: string
+  links: Array<{ label: string; path: string }>
+}
+
+export interface NetProbeCatalogCopy {
+  eyebrow: string
+  title: string
+  lead: string
+  primaryCta: string
+  secondaryCta: string
+  startTitle: string
+  startBody: string
+  toolsTitle: string
+  toolsBody: string
+  toolCta: string
+  levelsTitle: string
+  levels: Array<{ title: string; body: string }>
+  footerTitle: string
+  footerBody: string
+  toolLinks: NetProbeCatalogToolLink[]
+  footerGroups: NetProbeCatalogFooterGroup[]
+}
+
 export interface FooterCopy {
   brandBody: string
   productNavLabel: string
@@ -424,6 +455,389 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     supportTitle: 'Das kostenlose Netzwerk unterstützen',
     supportBody: 'Die beste Unterstützung ist heute praktisch: Teilen Sie nützliche Tools, senden Sie Korrekturen und speichern Sie die Abläufe, die Sie am häufigsten verwenden.',
     supportActions: ['Tool teilen', 'Korrektur senden', 'Kostenlose Abläufe nutzen'],
+  },
+}
+
+export const netProbeCatalogCopy: Record<LocaleCode, NetProbeCatalogCopy> = {
+  en: {
+    eyebrow: 'Network, DNS and IP tools',
+    title: 'Network diagnostics you can start now.',
+    lead: 'Open a public IP, DNS, domain, SSL, port or reachability check directly. Each free tool gives the first answer without account signup.',
+    primaryCta: 'Check my IP',
+    secondaryCta: 'Check DNS propagation',
+    startTitle: 'Start a network check',
+    startBody: 'Choose the question you need answered and go straight to the matching tool.',
+    toolsTitle: 'NetProbe tools',
+    toolsBody: 'Use these public checks for one-time troubleshooting, DNS changes, domain facts and TLS checks.',
+    toolCta: 'Open tool',
+    levelsTitle: 'Use the result at the right depth',
+    levels: [
+      { title: 'For everyone', body: 'Confirm the public address, domain answer or certificate state in plain language before changing settings.' },
+      { title: 'For technical teams', body: 'Inspect DNS records, RDAP details, TLS facts, open ports and reachability signals with focused outputs.' },
+      { title: 'For ongoing monitoring', body: 'Use the same checks as the basis for alert rules, history and API workflows when repeated evidence matters.' },
+    ],
+    footerTitle: 'Explore DNS, IP and domain references',
+    footerBody: 'Deep links keep related checks close without sending you back to a generic catalog.',
+    toolLinks: [
+      { label: 'What is my IP', body: 'See the public address this service observes from your browser.', path: '/tools/what-is-my-ip', glyph: 'IP' },
+      { label: 'DNS Propagation', body: 'Compare DNS answers for a domain and expected value.', path: '/tools/dns-propagation', glyph: 'DNS' },
+      { label: 'DNS Lookup', body: 'Read A, AAAA, CNAME, MX, NS, TXT and other records.', path: '/tools/dns-lookup', glyph: 'REC' },
+      { label: 'RDAP Domain Lookup', body: 'Inspect public registration facts for a domain.', path: '/tools/rdap-domain-lookup', glyph: 'RDAP' },
+      { label: 'SSL Certificate Checker', body: 'Check certificate issuer, validity window and domain fit.', path: '/tools/ssl-certificate-checker', glyph: 'SSL' },
+      { label: 'Port Checker', body: 'Test whether a public TCP port responds from the service.', path: '/tools/port-checker', glyph: 'PORT' },
+      { label: 'Ping and Traceroute', body: 'Check basic reachability and path evidence for a host.', path: '/tools/ping-traceroute', glyph: 'PING' },
+    ],
+    footerGroups: [
+      {
+        title: 'DNS Tools',
+        links: [
+          { label: 'DNS Propagation', path: '/tools/dns-propagation' },
+          { label: 'DNS Lookup', path: '/tools/dns-lookup' },
+          { label: 'A and AAAA Lookup', path: '/tools/dns-lookup' },
+          { label: 'MX and TXT Lookup', path: '/tools/dns-lookup' },
+        ],
+      },
+      {
+        title: 'IP Tools',
+        links: [
+          { label: 'What is my IP', path: '/tools/what-is-my-ip' },
+          { label: 'Public IP Check', path: '/tools/what-is-my-ip' },
+          { label: 'Reachability Check', path: '/tools/ping-traceroute' },
+          { label: 'Port Checker', path: '/tools/port-checker' },
+        ],
+      },
+      {
+        title: 'Domain Tools',
+        links: [
+          { label: 'RDAP Domain Lookup', path: '/tools/rdap-domain-lookup' },
+          { label: 'Domain Registration Facts', path: '/tools/rdap-domain-lookup' },
+          { label: 'Nameserver Check', path: '/tools/dns-lookup' },
+          { label: 'DNS Propagation', path: '/tools/dns-propagation' },
+        ],
+      },
+      {
+        title: 'SSL Tools',
+        links: [
+          { label: 'SSL Certificate Checker', path: '/tools/ssl-certificate-checker' },
+          { label: 'TLS Certificate Facts', path: '/tools/ssl-certificate-checker' },
+          { label: 'HTTPS Port Check', path: '/tools/port-checker' },
+          { label: 'Domain to Certificate Check', path: '/tools/ssl-certificate-checker' },
+        ],
+      },
+      {
+        title: 'Guides',
+        links: [
+          { label: 'DNS TTL Basics', path: '/tools/dns-propagation' },
+          { label: 'DNS Records Explained', path: '/tools/dns-lookup' },
+          { label: 'Public IP Privacy', path: '/tools/what-is-my-ip' },
+          { label: 'Safe Port Testing', path: '/tools/port-checker' },
+        ],
+      },
+    ],
+  },
+  'pt-br': {
+    eyebrow: 'Ferramentas de rede, DNS e IP',
+    title: 'Diagnósticos de rede para começar agora.',
+    lead: 'Abra direto uma consulta de IP público, DNS, domínio, SSL, porta ou alcance. Cada ferramenta gratuita entrega a primeira resposta sem cadastro.',
+    primaryCta: 'Ver meu IP',
+    secondaryCta: 'Ver propagação DNS',
+    startTitle: 'Comece uma verificação de rede',
+    startBody: 'Escolha a pergunta que precisa responder e vá direto para a ferramenta certa.',
+    toolsTitle: 'Ferramentas NetProbe',
+    toolsBody: 'Use estas consultas públicas para investigação pontual, mudanças de DNS, dados de domínio e checagens TLS.',
+    toolCta: 'Abrir ferramenta',
+    levelsTitle: 'Use o resultado no nível certo',
+    levels: [
+      { title: 'Para qualquer pessoa', body: 'Confirme o IP público, a resposta do domínio ou o estado do certificado em linguagem direta antes de mudar configurações.' },
+      { title: 'Para equipes técnicas', body: 'Inspecione registros DNS, dados RDAP, fatos TLS, portas abertas e sinais de alcance com saídas focadas.' },
+      { title: 'Para monitoramento contínuo', body: 'Use as mesmas checagens como base para alertas, histórico e fluxos de API quando evidência recorrente for necessária.' },
+    ],
+    footerTitle: 'Explore referências de DNS, IP e domínio',
+    footerBody: 'Links profundos deixam consultas relacionadas próximas sem voltar para um catálogo genérico.',
+    toolLinks: [
+      { label: 'Qual é meu IP', body: 'Veja o endereço público observado por este serviço a partir do navegador.', path: '/tools/what-is-my-ip', glyph: 'IP' },
+      { label: 'Propagação DNS', body: 'Compare respostas DNS de um domínio com um valor esperado.', path: '/tools/dns-propagation', glyph: 'DNS' },
+      { label: 'Consulta DNS', body: 'Leia registros A, AAAA, CNAME, MX, NS, TXT e outros.', path: '/tools/dns-lookup', glyph: 'REG' },
+      { label: 'Consulta RDAP de domínio', body: 'Inspecione dados públicos de registro de um domínio.', path: '/tools/rdap-domain-lookup', glyph: 'RDAP' },
+      { label: 'Verificador de certificado SSL', body: 'Confira emissor, validade e compatibilidade do certificado.', path: '/tools/ssl-certificate-checker', glyph: 'SSL' },
+      { label: 'Teste de porta', body: 'Teste se uma porta TCP pública responde a partir do serviço.', path: '/tools/port-checker', glyph: 'PORT' },
+      { label: 'Ping e Traceroute', body: 'Cheque alcance básico e evidências de rota para um host.', path: '/tools/ping-traceroute', glyph: 'PING' },
+    ],
+    footerGroups: [
+      {
+        title: 'Ferramentas DNS',
+        links: [
+          { label: 'Propagação DNS', path: '/tools/dns-propagation' },
+          { label: 'Consulta DNS', path: '/tools/dns-lookup' },
+          { label: 'Consulta A e AAAA', path: '/tools/dns-lookup' },
+          { label: 'Consulta MX e TXT', path: '/tools/dns-lookup' },
+        ],
+      },
+      {
+        title: 'Ferramentas IP',
+        links: [
+          { label: 'Qual é meu IP', path: '/tools/what-is-my-ip' },
+          { label: 'Consulta de IP público', path: '/tools/what-is-my-ip' },
+          { label: 'Teste de alcance', path: '/tools/ping-traceroute' },
+          { label: 'Teste de porta', path: '/tools/port-checker' },
+        ],
+      },
+      {
+        title: 'Ferramentas de domínio',
+        links: [
+          { label: 'Consulta RDAP de domínio', path: '/tools/rdap-domain-lookup' },
+          { label: 'Dados de registro do domínio', path: '/tools/rdap-domain-lookup' },
+          { label: 'Checagem de nameserver', path: '/tools/dns-lookup' },
+          { label: 'Propagação DNS', path: '/tools/dns-propagation' },
+        ],
+      },
+      {
+        title: 'Ferramentas SSL',
+        links: [
+          { label: 'Verificador de certificado SSL', path: '/tools/ssl-certificate-checker' },
+          { label: 'Dados de certificado TLS', path: '/tools/ssl-certificate-checker' },
+          { label: 'Teste de porta HTTPS', path: '/tools/port-checker' },
+          { label: 'Domínio e certificado', path: '/tools/ssl-certificate-checker' },
+        ],
+      },
+      {
+        title: 'Guias',
+        links: [
+          { label: 'Noções de TTL DNS', path: '/tools/dns-propagation' },
+          { label: 'Registros DNS explicados', path: '/tools/dns-lookup' },
+          { label: 'Privacidade do IP público', path: '/tools/what-is-my-ip' },
+          { label: 'Teste seguro de portas', path: '/tools/port-checker' },
+        ],
+      },
+    ],
+  },
+  es: {
+    eyebrow: 'Herramientas de red, DNS e IP',
+    title: 'Diagnósticos de red para empezar ahora.',
+    lead: 'Abre directamente una consulta de IP pública, DNS, dominio, SSL, puerto o alcance. Cada herramienta gratuita entrega la primera respuesta sin registro.',
+    primaryCta: 'Ver mi IP',
+    secondaryCta: 'Ver propagación DNS',
+    startTitle: 'Empieza una revisión de red',
+    startBody: 'Elige la pregunta que necesitas responder y entra directo a la herramienta correcta.',
+    toolsTitle: 'Herramientas NetProbe',
+    toolsBody: 'Usa estas consultas públicas para resolución puntual, cambios DNS, datos de dominio y revisiones TLS.',
+    toolCta: 'Abrir herramienta',
+    levelsTitle: 'Usa el resultado en el nivel correcto',
+    levels: [
+      { title: 'Para todos', body: 'Confirma la IP pública, la respuesta del dominio o el estado del certificado en lenguaje claro antes de cambiar ajustes.' },
+      { title: 'Para equipos técnicos', body: 'Inspecciona registros DNS, datos RDAP, hechos TLS, puertos abiertos y señales de alcance con salidas enfocadas.' },
+      { title: 'Para monitoreo continuo', body: 'Usa las mismas revisiones como base para alertas, historial y flujos de API cuando importe la evidencia repetida.' },
+    ],
+    footerTitle: 'Explora referencias de DNS, IP y dominio',
+    footerBody: 'Los enlaces profundos mantienen cerca las revisiones relacionadas sin volver a un catálogo genérico.',
+    toolLinks: [
+      { label: 'Cuál es mi IP', body: 'Ve la dirección pública observada por este servicio desde el navegador.', path: '/tools/what-is-my-ip', glyph: 'IP' },
+      { label: 'Propagación DNS', body: 'Compara respuestas DNS de un dominio con un valor esperado.', path: '/tools/dns-propagation', glyph: 'DNS' },
+      { label: 'Consulta DNS', body: 'Lee registros A, AAAA, CNAME, MX, NS, TXT y otros.', path: '/tools/dns-lookup', glyph: 'REG' },
+      { label: 'Consulta RDAP de dominio', body: 'Inspecciona datos públicos de registro de un dominio.', path: '/tools/rdap-domain-lookup', glyph: 'RDAP' },
+      { label: 'Verificador de certificado SSL', body: 'Revisa emisor, vigencia y compatibilidad del certificado.', path: '/tools/ssl-certificate-checker', glyph: 'SSL' },
+      { label: 'Prueba de puerto', body: 'Comprueba si un puerto TCP público responde desde el servicio.', path: '/tools/port-checker', glyph: 'PORT' },
+      { label: 'Ping y Traceroute', body: 'Revisa alcance básico y evidencia de ruta para un host.', path: '/tools/ping-traceroute', glyph: 'PING' },
+    ],
+    footerGroups: [
+      {
+        title: 'Herramientas DNS',
+        links: [
+          { label: 'Propagación DNS', path: '/tools/dns-propagation' },
+          { label: 'Consulta DNS', path: '/tools/dns-lookup' },
+          { label: 'Consulta A y AAAA', path: '/tools/dns-lookup' },
+          { label: 'Consulta MX y TXT', path: '/tools/dns-lookup' },
+        ],
+      },
+      {
+        title: 'Herramientas IP',
+        links: [
+          { label: 'Cuál es mi IP', path: '/tools/what-is-my-ip' },
+          { label: 'Consulta de IP pública', path: '/tools/what-is-my-ip' },
+          { label: 'Prueba de alcance', path: '/tools/ping-traceroute' },
+          { label: 'Prueba de puerto', path: '/tools/port-checker' },
+        ],
+      },
+      {
+        title: 'Herramientas de dominio',
+        links: [
+          { label: 'Consulta RDAP de dominio', path: '/tools/rdap-domain-lookup' },
+          { label: 'Datos de registro del dominio', path: '/tools/rdap-domain-lookup' },
+          { label: 'Revisión de nameserver', path: '/tools/dns-lookup' },
+          { label: 'Propagación DNS', path: '/tools/dns-propagation' },
+        ],
+      },
+      {
+        title: 'Herramientas SSL',
+        links: [
+          { label: 'Verificador de certificado SSL', path: '/tools/ssl-certificate-checker' },
+          { label: 'Datos de certificado TLS', path: '/tools/ssl-certificate-checker' },
+          { label: 'Prueba de puerto HTTPS', path: '/tools/port-checker' },
+          { label: 'Dominio y certificado', path: '/tools/ssl-certificate-checker' },
+        ],
+      },
+      {
+        title: 'Guías',
+        links: [
+          { label: 'Conceptos de TTL DNS', path: '/tools/dns-propagation' },
+          { label: 'Registros DNS explicados', path: '/tools/dns-lookup' },
+          { label: 'Privacidad de IP pública', path: '/tools/what-is-my-ip' },
+          { label: 'Prueba segura de puertos', path: '/tools/port-checker' },
+        ],
+      },
+    ],
+  },
+  fr: {
+    eyebrow: 'Outils réseau, DNS et IP',
+    title: 'Diagnostics réseau à lancer maintenant.',
+    lead: 'Ouvrez directement une vérification IP publique, DNS, domaine, SSL, port ou joignabilité. Chaque outil gratuit donne une première réponse sans compte.',
+    primaryCta: 'Vérifier mon IP',
+    secondaryCta: 'Vérifier la propagation DNS',
+    startTitle: 'Lancer une vérification réseau',
+    startBody: 'Choisissez la question à résoudre et ouvrez directement l’outil adapté.',
+    toolsTitle: 'Outils NetProbe',
+    toolsBody: 'Utilisez ces vérifications publiques pour dépanner ponctuellement, suivre un changement DNS, lire un domaine ou contrôler TLS.',
+    toolCta: 'Ouvrir l’outil',
+    levelsTitle: 'Utilisez le résultat au bon niveau',
+    levels: [
+      { title: 'Pour tout le monde', body: 'Confirmez l’adresse IP publique, la réponse du domaine ou l’état du certificat en langage clair avant de modifier des réglages.' },
+      { title: 'Pour les équipes techniques', body: 'Inspectez les enregistrements DNS, les données RDAP, les faits TLS, les ports ouverts et la joignabilité avec des sorties ciblées.' },
+      { title: 'Pour le suivi continu', body: 'Utilisez les mêmes vérifications comme base d’alertes, d’historique et de flux API lorsque des preuves répétées comptent.' },
+    ],
+    footerTitle: 'Explorer les références DNS, IP et domaine',
+    footerBody: 'Les liens profonds gardent les vérifications liées à portée sans retour à un catalogue générique.',
+    toolLinks: [
+      { label: 'Quelle est mon IP', body: 'Voyez l’adresse publique observée par ce service depuis votre navigateur.', path: '/tools/what-is-my-ip', glyph: 'IP' },
+      { label: 'Propagation DNS', body: 'Comparez les réponses DNS d’un domaine avec une valeur attendue.', path: '/tools/dns-propagation', glyph: 'DNS' },
+      { label: 'Recherche DNS', body: 'Lisez les enregistrements A, AAAA, CNAME, MX, NS, TXT et autres.', path: '/tools/dns-lookup', glyph: 'REC' },
+      { label: 'Recherche RDAP de domaine', body: 'Inspectez les données publiques d’enregistrement d’un domaine.', path: '/tools/rdap-domain-lookup', glyph: 'RDAP' },
+      { label: 'Vérificateur de certificat SSL', body: 'Contrôlez l’émetteur, la période de validité et le domaine du certificat.', path: '/tools/ssl-certificate-checker', glyph: 'SSL' },
+      { label: 'Test de port', body: 'Testez si un port TCP public répond depuis le service.', path: '/tools/port-checker', glyph: 'PORT' },
+      { label: 'Ping et Traceroute', body: 'Vérifiez la joignabilité de base et les preuves de route d’un hôte.', path: '/tools/ping-traceroute', glyph: 'PING' },
+    ],
+    footerGroups: [
+      {
+        title: 'Outils DNS',
+        links: [
+          { label: 'Propagation DNS', path: '/tools/dns-propagation' },
+          { label: 'Recherche DNS', path: '/tools/dns-lookup' },
+          { label: 'Recherche A et AAAA', path: '/tools/dns-lookup' },
+          { label: 'Recherche MX et TXT', path: '/tools/dns-lookup' },
+        ],
+      },
+      {
+        title: 'Outils IP',
+        links: [
+          { label: 'Quelle est mon IP', path: '/tools/what-is-my-ip' },
+          { label: 'Vérification IP publique', path: '/tools/what-is-my-ip' },
+          { label: 'Test de joignabilité', path: '/tools/ping-traceroute' },
+          { label: 'Test de port', path: '/tools/port-checker' },
+        ],
+      },
+      {
+        title: 'Outils domaine',
+        links: [
+          { label: 'Recherche RDAP de domaine', path: '/tools/rdap-domain-lookup' },
+          { label: 'Données d’enregistrement', path: '/tools/rdap-domain-lookup' },
+          { label: 'Vérification nameserver', path: '/tools/dns-lookup' },
+          { label: 'Propagation DNS', path: '/tools/dns-propagation' },
+        ],
+      },
+      {
+        title: 'Outils SSL',
+        links: [
+          { label: 'Vérificateur de certificat SSL', path: '/tools/ssl-certificate-checker' },
+          { label: 'Données de certificat TLS', path: '/tools/ssl-certificate-checker' },
+          { label: 'Test de port HTTPS', path: '/tools/port-checker' },
+          { label: 'Domaine et certificat', path: '/tools/ssl-certificate-checker' },
+        ],
+      },
+      {
+        title: 'Guides',
+        links: [
+          { label: 'Bases du TTL DNS', path: '/tools/dns-propagation' },
+          { label: 'Enregistrements DNS expliqués', path: '/tools/dns-lookup' },
+          { label: 'Confidentialité de l’IP publique', path: '/tools/what-is-my-ip' },
+          { label: 'Test de ports sûr', path: '/tools/port-checker' },
+        ],
+      },
+    ],
+  },
+  de: {
+    eyebrow: 'Netzwerk-, DNS- und IP-Tools',
+    title: 'Netzwerkdiagnosen, die sofort starten.',
+    lead: 'Öffnen Sie direkt eine öffentliche IP-, DNS-, Domain-, SSL-, Port- oder Erreichbarkeitsprüfung. Jedes kostenlose Tool liefert die erste Antwort ohne Konto.',
+    primaryCta: 'Meine IP prüfen',
+    secondaryCta: 'DNS-Propagation prüfen',
+    startTitle: 'Netzwerkprüfung starten',
+    startBody: 'Wählen Sie die Frage aus und öffnen Sie direkt das passende Tool.',
+    toolsTitle: 'NetProbe-Tools',
+    toolsBody: 'Nutzen Sie diese öffentlichen Prüfungen für einzelne Analysen, DNS-Änderungen, Domain-Fakten und TLS-Kontrollen.',
+    toolCta: 'Tool öffnen',
+    levelsTitle: 'Ergebnis in der passenden Tiefe nutzen',
+    levels: [
+      { title: 'Für alle', body: 'Bestätigen Sie öffentliche IP, Domain-Antwort oder Zertifikatsstatus in klarer Sprache, bevor Sie Einstellungen ändern.' },
+      { title: 'Für technische Teams', body: 'Prüfen Sie DNS-Records, RDAP-Daten, TLS-Fakten, offene Ports und Erreichbarkeit mit fokussierten Ausgaben.' },
+      { title: 'Für laufende Überwachung', body: 'Nutzen Sie dieselben Prüfungen als Basis für Alerts, Historie und API-Abläufe, wenn wiederholte Nachweise wichtig sind.' },
+    ],
+    footerTitle: 'DNS-, IP- und Domain-Referenzen erkunden',
+    footerBody: 'Direkte Links halten verwandte Prüfungen nah, ohne zurück in einen allgemeinen Katalog zu führen.',
+    toolLinks: [
+      { label: 'Was ist meine IP', body: 'Sehen Sie die öffentliche Adresse, die dieser Dienst aus Ihrem Browser erkennt.', path: '/tools/what-is-my-ip', glyph: 'IP' },
+      { label: 'DNS-Propagation', body: 'Vergleichen Sie DNS-Antworten einer Domain mit einem erwarteten Wert.', path: '/tools/dns-propagation', glyph: 'DNS' },
+      { label: 'DNS-Lookup', body: 'Lesen Sie A-, AAAA-, CNAME-, MX-, NS-, TXT- und weitere Records.', path: '/tools/dns-lookup', glyph: 'REC' },
+      { label: 'RDAP-Domain-Lookup', body: 'Prüfen Sie öffentliche Registrierungsdaten einer Domain.', path: '/tools/rdap-domain-lookup', glyph: 'RDAP' },
+      { label: 'SSL-Zertifikat prüfen', body: 'Kontrollieren Sie Aussteller, Gültigkeit und Domain-Bezug des Zertifikats.', path: '/tools/ssl-certificate-checker', glyph: 'SSL' },
+      { label: 'Port-Checker', body: 'Testen Sie, ob ein öffentlicher TCP-Port aus Sicht des Dienstes antwortet.', path: '/tools/port-checker', glyph: 'PORT' },
+      { label: 'Ping und Traceroute', body: 'Prüfen Sie grundlegende Erreichbarkeit und Routenhinweise für einen Host.', path: '/tools/ping-traceroute', glyph: 'PING' },
+    ],
+    footerGroups: [
+      {
+        title: 'DNS Tools',
+        links: [
+          { label: 'DNS-Propagation', path: '/tools/dns-propagation' },
+          { label: 'DNS-Lookup', path: '/tools/dns-lookup' },
+          { label: 'A- und AAAA-Lookup', path: '/tools/dns-lookup' },
+          { label: 'MX- und TXT-Lookup', path: '/tools/dns-lookup' },
+        ],
+      },
+      {
+        title: 'IP Tools',
+        links: [
+          { label: 'Was ist meine IP', path: '/tools/what-is-my-ip' },
+          { label: 'Öffentliche IP prüfen', path: '/tools/what-is-my-ip' },
+          { label: 'Erreichbarkeit prüfen', path: '/tools/ping-traceroute' },
+          { label: 'Port-Checker', path: '/tools/port-checker' },
+        ],
+      },
+      {
+        title: 'Domain Tools',
+        links: [
+          { label: 'RDAP-Domain-Lookup', path: '/tools/rdap-domain-lookup' },
+          { label: 'Domain-Registrierungsdaten', path: '/tools/rdap-domain-lookup' },
+          { label: 'Nameserver-Prüfung', path: '/tools/dns-lookup' },
+          { label: 'DNS-Propagation', path: '/tools/dns-propagation' },
+        ],
+      },
+      {
+        title: 'SSL Tools',
+        links: [
+          { label: 'SSL-Zertifikat prüfen', path: '/tools/ssl-certificate-checker' },
+          { label: 'TLS-Zertifikatdaten', path: '/tools/ssl-certificate-checker' },
+          { label: 'HTTPS-Port prüfen', path: '/tools/port-checker' },
+          { label: 'Domain und Zertifikat', path: '/tools/ssl-certificate-checker' },
+        ],
+      },
+      {
+        title: 'Guides',
+        links: [
+          { label: 'DNS-TTL Grundlagen', path: '/tools/dns-propagation' },
+          { label: 'DNS-Records erklärt', path: '/tools/dns-lookup' },
+          { label: 'Privatsphäre öffentlicher IPs', path: '/tools/what-is-my-ip' },
+          { label: 'Sichere Porttests', path: '/tools/port-checker' },
+        ],
+      },
+    ],
   },
 }
 
@@ -894,6 +1308,10 @@ export function getHomeCopy(locale: LocaleCode): HomeCopy {
 
 export function getDetailCopy(locale: LocaleCode): DetailCopy {
   return sanitizePublicCopy(locale, detailCopy[locale])
+}
+
+export function getNetProbeCatalogCopy(locale: LocaleCode): NetProbeCatalogCopy {
+  return sanitizePublicCopy(locale, netProbeCatalogCopy[locale])
 }
 
 export function getFooterCopy(locale: LocaleCode): FooterCopy {
