@@ -72,6 +72,32 @@ describe('@supersites/i18n', () => {
     })
   })
 
+  it('does not accent technical route fields while sanitizing visible labels', () => {
+    const sanitized = sanitizePublicCopy('pt-br', {
+      links: [
+        {
+          label: 'Horario em Sao Paulo',
+          path: '/world-clock/cities/sao-paulo',
+          href: 'https://opentshost.com/supersites/timenexus/pt-br/world-clock/cities/sao-paulo',
+          timeZone: 'America/Sao_Paulo',
+        },
+      ],
+      paths: ['/world-clock/cities/sao-paulo'],
+    })
+
+    expect(sanitized).toEqual({
+      links: [
+        {
+          label: 'Horario em São Paulo',
+          path: '/world-clock/cities/sao-paulo',
+          href: 'https://opentshost.com/supersites/timenexus/pt-br/world-clock/cities/sao-paulo',
+          timeZone: 'America/Sao_Paulo',
+        },
+      ],
+      paths: ['/world-clock/cities/sao-paulo'],
+    })
+  })
+
   it('sanitizes localized gated terms from public copy', () => {
     expect(sanitizePublicCopy('pt-br', 'Recursos comerciais bloqueados')).toBe('Recursos comerciais planejados')
     expect(sanitizePublicCopy('es', 'Workflow comercial bloqueado')).toBe('Workflow comercial planificado')

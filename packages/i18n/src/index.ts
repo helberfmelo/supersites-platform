@@ -1292,20 +1292,58 @@ function isPlainObject(value: unknown): value is PublicCopyMap {
   return Object.prototype.toString.call(value) === '[object Object]'
 }
 
-export function sanitizePublicCopy<T>(locale: LocaleCode, value: T): T {
+const technicalCopyKeys = new Set([
+  'apiBase',
+  'apiPath',
+  'asset',
+  'assetUrl',
+  'basePath',
+  'canonical',
+  'canonicalPath',
+  'href',
+  'hreflang',
+  'htmlLang',
+  'id',
+  'locale',
+  'locales',
+  'path',
+  'paths',
+  'publicPath',
+  'route',
+  'routes',
+  'siteSlug',
+  'siteSlugs',
+  'slug',
+  'slugs',
+  'timeZone',
+  'url',
+  'urls',
+  'zone',
+  'zones',
+])
+
+function sanitizePublicCopyValue<T>(locale: LocaleCode, value: T, key?: string): T {
+  if (key && technicalCopyKeys.has(key)) {
+    return value
+  }
+
   if (typeof value === 'string') {
     return sanitizePublicString(locale, value) as T
   }
 
   if (Array.isArray(value)) {
-    return value.map((item) => sanitizePublicCopy(locale, item)) as T
+    return value.map((item) => sanitizePublicCopyValue(locale, item)) as T
   }
 
   if (value && isPlainObject(value)) {
     return Object.fromEntries(
-      Object.entries(value).map(([key, item]) => [key, sanitizePublicCopy(locale, item)]),
+      Object.entries(value).map(([childKey, item]) => [childKey, sanitizePublicCopyValue(locale, item, childKey)]),
     ) as T
   }
 
   return value
+}
+
+export function sanitizePublicCopy<T>(locale: LocaleCode, value: T): T {
+  return sanitizePublicCopyValue(locale, value)
 }
