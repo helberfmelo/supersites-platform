@@ -3052,6 +3052,176 @@ h3 {
   border-color: #254c6a;
 }
 
+.docshift-drop-panel {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #cfd8df;
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgb(37 76 106 / 10%), transparent 48%),
+    #ffffff;
+  box-shadow: 0 18px 42px rgb(23 35 30 / 7%);
+}
+
+.docshift-drop-target {
+  display: grid;
+  min-height: 230px;
+  place-items: center;
+  gap: 10px;
+  padding: 22px;
+  border: 2px dashed #254c6a;
+  border-radius: 8px;
+  background: #f1f7fb;
+  text-align: center;
+}
+
+.docshift-drop-target span {
+  display: grid;
+  width: 58px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid #b8ccd8;
+  border-radius: 8px;
+  color: #173f55;
+  background: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.docshift-drop-target h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.docshift-drop-target p {
+  max-width: 38ch;
+  margin: 0;
+  color: #4a5a52;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.docshift-drop-target a {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 14px;
+  border: 1px solid #254c6a;
+  border-radius: 8px;
+  color: #ffffff;
+  background: #254c6a;
+  font-size: 0.86rem;
+  font-weight: 780;
+  text-decoration: none;
+}
+
+.docshift-drop-meta {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #d7ded8;
+  border-radius: 8px;
+  background: #f8fbf9;
+}
+
+.docshift-drop-meta strong,
+.docshift-drop-meta span {
+  display: block;
+}
+
+.docshift-drop-meta strong {
+  color: #173f55;
+  font-size: 0.94rem;
+}
+
+.docshift-drop-meta span {
+  margin-top: 3px;
+  color: #5a6a62;
+  font-size: 0.82rem;
+}
+
+.docshift-preview-table {
+  display: grid;
+  gap: 9px;
+}
+
+.docshift-preview-table h3 {
+  margin: 0;
+  color: #17231e;
+  font-size: 0.95rem;
+}
+
+.docshift-preview-table dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.docshift-preview-table div {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.docshift-preview-table dt {
+  color: #65746c;
+  font-size: 0.68rem;
+  font-weight: 820;
+  text-transform: uppercase;
+}
+
+.docshift-preview-table dd {
+  margin: 4px 0 0;
+  color: #17231e;
+  font-size: 0.86rem;
+  font-weight: 760;
+  line-height: 1.25;
+}
+
+.docshift-tool-card b {
+  color: #254c6a;
+}
+
+.docshift-tool-card--featured {
+  border-top-color: #254c6a;
+}
+
+.docshift-tool-card:hover,
+.docshift-tool-card:focus-visible {
+  border-color: #254c6a;
+  box-shadow: 0 10px 28px rgb(37 76 106 / 11%);
+}
+
+.docshift-tool-card__glyph,
+.docshift-shortcut-list span {
+  color: #173f55;
+  border-color: #b8ccd8;
+  background: #eef7fb;
+}
+
+.docshift-category-tabs button[aria-pressed="true"] {
+  border-color: #254c6a;
+  background: #254c6a;
+}
+
+.docshift-shortcut-grid article {
+  border-top-color: #254c6a;
+}
+
+.docshift-shortcut-grid article:nth-child(2) {
+  border-color: #2e8a57;
+}
+
+.docshift-shortcut-grid article:nth-child(3) {
+  border-color: #bd7424;
+}
+
 .signal {
   width: 12px;
   height: 12px;
@@ -3916,6 +4086,9 @@ h3 {
   .pixelbatch-featured-grid,
   .pixelbatch-tool-grid,
   .pixelbatch-footer-grid,
+  .docshift-featured-grid,
+  .docshift-tool-grid,
+  .docshift-footer-grid,
   .devutility-tool-grid,
   .devutility-footer-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3943,6 +4116,8 @@ h3 {
   .mailhealth-limit-note,
   .pixelbatch-hero,
   .pixelbatch-limit-note,
+  .docshift-hero,
+  .docshift-limit-note,
   .tool-finder,
   .trust-row,
   .controls,
@@ -4014,6 +4189,10 @@ h3 {
   .pixelbatch-featured-grid,
   .pixelbatch-tool-grid,
   .pixelbatch-footer-grid,
+  .docshift-shortcut-grid,
+  .docshift-featured-grid,
+  .docshift-tool-grid,
+  .docshift-footer-grid,
   .support-block,
   .footer-verticals,
   .evidence-strip {
@@ -4033,7 +4212,9 @@ h3 {
   .mailhealth-report-score,
   .mailhealth-signal-list,
   .pixelbatch-shortcut-list,
-  .pixelbatch-preview-table dl {
+  .pixelbatch-preview-table dl,
+  .docshift-shortcut-list,
+  .docshift-preview-table dl {
     grid-template-columns: 1fr;
   }
 

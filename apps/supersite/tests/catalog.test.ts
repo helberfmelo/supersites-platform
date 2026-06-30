@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   getCalcHarborCatalogCopy,
   getDevUtilityCatalogCopy,
+  getDocShiftCatalogCopy,
   getFooterCopy,
   getHomeCopy,
   getInvoiceCraftCatalogCopy,
@@ -416,6 +417,43 @@ describe('site catalog', () => {
       expect(copy.shortcutGroups).toHaveLength(3)
       expect(copy.footerGroups.map((group) => group.title)).toHaveLength(5)
       expect(copy.footerGroups.flatMap((group) => group.links).length).toBeGreaterThanOrEqual(11)
+      expect(JSON.stringify(copy)).not.toMatch(forbiddenPublicTerms)
+    }
+  })
+
+  it('keeps the DocShift catalog page benchmark-grade and linked to real PDF tools', () => {
+    const expectedToolPaths = [
+      '/tools/pdf-merge',
+      '/tools/pdf-split',
+      '/tools/pdf-rotate',
+      '/tools/pdf-compressor',
+      '/tools/pdf-watermark',
+      '/tools/page-numbers',
+      '/tools/metadata-cleaner',
+      '/tools/text-to-pdf',
+    ]
+    const forbiddenPublicTerms =
+      /temporary public url|launch order|quality check|review notes|public api live|ads planned|billing disabled|external analytics inactive|release checks|rollback|human_action_required|worker planned|deploy smoke|production checks|workflow checks ready|checkout inactive|commercial redirects planned|roadmap|mvp|no server upload backend active|billing|worker/i
+
+    for (const locale of localeCodes) {
+      const copy = getDocShiftCatalogCopy(locale)
+
+      expect(copy.tools.map((tool) => tool.path)).toEqual(expectedToolPaths)
+      expect(copy.tools.filter((tool) => tool.featured).map((tool) => tool.path)).toEqual(expectedToolPaths)
+      expect(copy.categories.map((category) => category.key)).toEqual([
+        'organize',
+        'pages',
+        'optimize',
+        'annotate',
+        'privacy',
+        'convert',
+      ])
+      expect(copy.dropTitle.length).toBeGreaterThan(12)
+      expect(copy.dropPrivacy.length).toBeGreaterThan(12)
+      expect(copy.previewRows).toHaveLength(3)
+      expect(copy.shortcutGroups).toHaveLength(3)
+      expect(copy.footerGroups.map((group) => group.title)).toHaveLength(5)
+      expect(copy.footerGroups.flatMap((group) => group.links).length).toBeGreaterThanOrEqual(12)
       expect(JSON.stringify(copy)).not.toMatch(forbiddenPublicTerms)
     }
   })

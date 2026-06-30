@@ -5,6 +5,7 @@ import {
   getCalcHarborCatalogCopy,
   getDetailCopy,
   getDevUtilityCatalogCopy,
+  getDocShiftCatalogCopy,
   getInvoiceCraftCatalogCopy,
   getMailHealthCatalogCopy,
   getNetProbeCatalogCopy,
@@ -15,6 +16,8 @@ import {
   type CalcHarborCatalogCategoryKey,
   type DevUtilityCatalogCategoryKey,
   type DevUtilityCatalogToolLink,
+  type DocShiftCatalogCategoryKey,
+  type DocShiftCatalogToolLink,
   type InvoiceCraftCatalogCategoryKey,
   type InvoiceCraftCatalogToolLink,
   type MailHealthCatalogCategoryKey,
@@ -55,6 +58,7 @@ const invoiceCraftCopy = getInvoiceCraftCatalogCopy(locale)
 const mailHealthCopy = getMailHealthCatalogCopy(locale)
 const sitePulseCopy = getSitePulseCatalogCopy(locale)
 const pixelBatchCopy = getPixelBatchCatalogCopy(locale)
+const docShiftCopy = getDocShiftCatalogCopy(locale)
 const siteText = site.localized[locale]
 const seoDescription = limitSeoText(siteText.summary, SEO_DESCRIPTION_MAX_LENGTH)
 const canonicalPath = localizedSitePath(locale, site.slug)
@@ -68,6 +72,7 @@ const isInvoiceCraftCatalog = site.slug === 'invoicecraft'
 const isMailHealthCatalog = site.slug === 'mailhealth'
 const isSitePulseCatalog = site.slug === 'sitepulse-lab'
 const isPixelBatchCatalog = site.slug === 'pixelbatch'
+const isDocShiftCatalog = site.slug === 'docshift'
 const primaryNetProbePath = netProbeCopy.toolLinks[0]?.path ?? '/tools/what-is-my-ip'
 const secondaryNetProbePath = netProbeCopy.toolLinks[1]?.path ?? '/tools/dns-propagation'
 const primaryCalcHarborPath = calcHarborCopy.calculators.find((tool) => tool.path === '/calculators/loan-payment')?.path ?? '/calculators/loan-payment'
@@ -238,6 +243,28 @@ const pixelBatchShortcutGroups = computed(() => (
     tools: group.paths
       .map((path) => pixelBatchCopy.tools.find((tool) => tool.path === path))
       .filter((tool): tool is PixelBatchCatalogToolLink => Boolean(tool)),
+  }))
+))
+const primaryDocShiftPath = docShiftCopy.tools.find((tool) => tool.path === '/tools/pdf-merge')?.path ?? '/tools/pdf-merge'
+const docShiftFeaturedTools = docShiftCopy.tools.filter((tool) => tool.featured)
+const docShiftSearchQuery = ref('')
+const docShiftSelectedCategory = ref<DocShiftCatalogCategoryKey | 'all'>('all')
+const filteredDocShiftTools = computed(() => {
+  const query = docShiftSearchQuery.value.trim().toLowerCase()
+
+  return docShiftCopy.tools.filter((tool) => {
+    const matchesCategory = docShiftSelectedCategory.value === 'all' || tool.category === docShiftSelectedCategory.value
+    const searchable = [tool.label, tool.body, tool.path, tool.glyph].join(' ').toLowerCase()
+
+    return matchesCategory && (!query || searchable.includes(query))
+  })
+})
+const docShiftShortcutGroups = computed(() => (
+  docShiftCopy.shortcutGroups.map((group) => ({
+    ...group,
+    tools: group.paths
+      .map((path) => docShiftCopy.tools.find((tool) => tool.path === path))
+      .filter((tool): tool is DocShiftCatalogToolLink => Boolean(tool)),
   }))
 ))
 const isLocalBrowser = ref(false)
@@ -445,6 +472,24 @@ function trackPixelBatchToolClick(path: string): void {
   trackOutboundSiteClick({
     siteSlug: site.slug,
     targetUrl: getPixelBatchToolUrl(path),
+    locale,
+    routePath: canonicalPath,
+    surface: 'site_detail',
+  })
+}
+
+function getDocShiftToolUrl(path: string): string {
+  return `${site.temporaryUrl}${locale}${path}`
+}
+
+function getDocShiftCategoryLabel(key: DocShiftCatalogCategoryKey): string {
+  return docShiftCopy.categories.find((category) => category.key === key)?.label ?? key
+}
+
+function trackDocShiftToolClick(path: string): void {
+  trackOutboundSiteClick({
+    siteSlug: site.slug,
+    targetUrl: getDocShiftToolUrl(path),
     locale,
     routePath: canonicalPath,
     surface: 'site_detail',
@@ -1966,6 +2011,191 @@ useHead({
                 <a
                   :href="getPixelBatchToolUrl(link.path)"
                   @click="trackPixelBatchToolClick(link.path)"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
+    </template>
+
+    <template v-else-if="isDocShiftCatalog">
+      <section class="mailhealth-hero docshift-hero" :aria-labelledby="`${site.slug}-title`">
+        <div class="mailhealth-hero__copy docshift-hero__copy">
+          <p class="eyebrow">{{ docShiftCopy.eyebrow }}</p>
+          <h1 :id="`${site.slug}-title`">{{ docShiftCopy.title }}</h1>
+          <p class="lead">{{ docShiftCopy.lead }}</p>
+          <div class="mailhealth-hero__actions docshift-hero__actions">
+            <a
+              class="button-link"
+              :href="getDocShiftToolUrl(primaryDocShiftPath)"
+              @click="trackDocShiftToolClick(primaryDocShiftPath)"
+            >
+              {{ docShiftCopy.primaryCta }}
+            </a>
+            <a class="button-link button-link--secondary" :href="`#${site.slug}-all`">
+              {{ docShiftCopy.secondaryCta }}
+            </a>
+          </div>
+        </div>
+
+        <aside class="docshift-drop-panel" :aria-labelledby="`${site.slug}-drop`">
+          <div class="docshift-drop-target">
+            <span aria-hidden="true">PDF</span>
+            <h2 :id="`${site.slug}-drop`">{{ docShiftCopy.dropTitle }}</h2>
+            <p>{{ docShiftCopy.dropBody }}</p>
+            <a
+              :href="getDocShiftToolUrl(primaryDocShiftPath)"
+              @click="trackDocShiftToolClick(primaryDocShiftPath)"
+            >
+              {{ docShiftCopy.dropAction }}
+            </a>
+          </div>
+          <div class="docshift-drop-meta">
+            <div>
+              <strong>{{ docShiftCopy.dropPrivacy }}</strong>
+              <span>{{ docShiftCopy.dropFormatsLabel }}: {{ docShiftCopy.dropFormats }}</span>
+            </div>
+          </div>
+          <div class="docshift-preview-table" :aria-label="docShiftCopy.previewTitle">
+            <h3>{{ docShiftCopy.previewTitle }}</h3>
+            <dl>
+              <div v-for="row in docShiftCopy.previewRows" :key="row.label">
+                <dt>{{ row.label }}</dt>
+                <dd>{{ row.value }}</dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
+      </section>
+
+      <section class="mailhealth-section docshift-section" :aria-labelledby="`${site.slug}-browse`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-browse`">{{ docShiftCopy.browseTitle }}</h2>
+          <p>{{ docShiftCopy.browseBody }}</p>
+        </div>
+        <div class="mailhealth-shortcut-grid docshift-shortcut-grid">
+          <article v-for="group in docShiftShortcutGroups" :key="group.title">
+            <h3>{{ group.title }}</h3>
+            <p>{{ group.body }}</p>
+            <div class="mailhealth-shortcut-list docshift-shortcut-list">
+              <a
+                v-for="tool in group.tools"
+                :key="`${group.title}-${tool.path}`"
+                :href="getDocShiftToolUrl(tool.path)"
+                @click="trackDocShiftToolClick(tool.path)"
+              >
+                <span aria-hidden="true">{{ tool.glyph }}</span>
+                <strong>{{ tool.label }}</strong>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="mailhealth-section docshift-section" :aria-labelledby="`${site.slug}-featured`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-featured`">{{ docShiftCopy.featuredTitle }}</h2>
+          <p>{{ docShiftCopy.featuredBody }}</p>
+        </div>
+        <div class="mailhealth-featured-grid docshift-featured-grid">
+          <a
+            v-for="tool in docShiftFeaturedTools"
+            :key="`featured-${tool.path}`"
+            class="mailhealth-tool-card docshift-tool-card mailhealth-tool-card--featured docshift-tool-card--featured"
+            :href="getDocShiftToolUrl(tool.path)"
+            @click="trackDocShiftToolClick(tool.path)"
+          >
+            <span class="mailhealth-tool-card__glyph docshift-tool-card__glyph" aria-hidden="true">{{ tool.glyph }}</span>
+            <span class="mailhealth-tool-card__body docshift-tool-card__body">
+              <span>{{ getDocShiftCategoryLabel(tool.category) }}</span>
+              <strong>{{ tool.label }}</strong>
+              <em>{{ tool.body }}</em>
+            </span>
+            <b>{{ docShiftCopy.toolCta }}</b>
+          </a>
+        </div>
+      </section>
+
+      <section class="mailhealth-limit-note docshift-limit-note" :aria-labelledby="`${site.slug}-limits`">
+        <div>
+          <h2 :id="`${site.slug}-limits`">{{ docShiftCopy.limitsTitle }}</h2>
+          <p>{{ docShiftCopy.limitsBody }}</p>
+        </div>
+        <div>
+          <h3>{{ docShiftCopy.privacyTitle }}</h3>
+          <p>{{ docShiftCopy.privacyBody }}</p>
+        </div>
+      </section>
+
+      <section :id="`${site.slug}-all`" class="mailhealth-section docshift-section" :aria-labelledby="`${site.slug}-all-title`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-all-title`">{{ docShiftCopy.allTitle }}</h2>
+          <p>{{ docShiftCopy.allBody }}</p>
+        </div>
+        <div class="mailhealth-finder docshift-finder" role="search" :aria-label="docShiftCopy.searchLabel">
+          <div class="field">
+            <label for="docshift-search">{{ docShiftCopy.searchLabel }}</label>
+            <input
+              id="docshift-search"
+              v-model="docShiftSearchQuery"
+              type="search"
+              :placeholder="docShiftCopy.searchPlaceholder"
+            >
+          </div>
+          <div class="mailhealth-category-tabs docshift-category-tabs" :aria-label="docShiftCopy.searchLabel">
+            <button
+              type="button"
+              :aria-pressed="docShiftSelectedCategory === 'all'"
+              @click="docShiftSelectedCategory = 'all'"
+            >
+              {{ docShiftCopy.allCategories }}
+            </button>
+            <button
+              v-for="category in docShiftCopy.categories"
+              :key="category.key"
+              type="button"
+              :aria-pressed="docShiftSelectedCategory === category.key"
+              @click="docShiftSelectedCategory = category.key"
+            >
+              {{ category.label }}
+            </button>
+          </div>
+        </div>
+        <div v-if="filteredDocShiftTools.length > 0" class="mailhealth-tool-grid docshift-tool-grid">
+          <a
+            v-for="tool in filteredDocShiftTools"
+            :key="tool.path"
+            class="mailhealth-tool-card docshift-tool-card"
+            :href="getDocShiftToolUrl(tool.path)"
+            @click="trackDocShiftToolClick(tool.path)"
+          >
+            <span class="mailhealth-tool-card__glyph docshift-tool-card__glyph" aria-hidden="true">{{ tool.glyph }}</span>
+            <span class="mailhealth-tool-card__body docshift-tool-card__body">
+              <span>{{ getDocShiftCategoryLabel(tool.category) }}</span>
+              <strong>{{ tool.label }}</strong>
+              <em>{{ tool.body }}</em>
+            </span>
+            <b>{{ docShiftCopy.toolCta }}</b>
+          </a>
+        </div>
+        <div v-else class="mailhealth-empty docshift-empty" aria-live="polite">
+          <h3>{{ docShiftCopy.noResultsTitle }}</h3>
+          <p>{{ docShiftCopy.noResultsBody }}</p>
+        </div>
+      </section>
+
+      <section class="mailhealth-footer-cluster docshift-footer-cluster" :aria-labelledby="`${site.slug}-deep-links`">
+        <div class="mailhealth-footer-grid docshift-footer-grid">
+          <section v-for="group in docShiftCopy.footerGroups" :key="group.title">
+            <h2>{{ group.title }}</h2>
+            <ul>
+              <li v-for="link in group.links" :key="`${group.title}-${link.label}`">
+                <a
+                  :href="getDocShiftToolUrl(link.path)"
+                  @click="trackDocShiftToolClick(link.path)"
                 >
                   {{ link.label }}
                 </a>
