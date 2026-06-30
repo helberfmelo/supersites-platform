@@ -765,7 +765,7 @@ Sprint 18.2d - Ajuste tipografico do rodape benchmark do Hub
 - Escopo entregue: `app.vue` reduziu descricao do bloco SuperSites, links de menu e titulos de coluna; links estruturais agora ficam leves em repouso, sem underline, e o hover ganha peso/escala discreta sem sublinhado.
 - Gate permanente: rodapes benchmark-grade devem usar texto leve em repouso, hover com peso/escala sem underline, links profundos reais e screenshots desktop/mobile revisados antes do fechamento.
 - Validacao local pre-commit: Vitest Hub 14 testes, build Hub, preview smoke Hub asset `/_nuxt/Pz7BRfek.js`, Playwright Hub 7 testes, public-copy 951 HTMLs, AdSense-safe 13 paginas, structure, secrets, deploy dry-run, ci:changes, package tests/typechecks, HostGator artifact Hub 211 arquivos/3286524 bytes, `git diff --check`, checagem computada de hover e screenshots em `artifacts/footer-qa/hub-footer-typography-*.png` passaram.
-- Status: em validacao local/CI nesta entrega; completar com Quality Gate, Deploy Dry Run, deploy reversivel do Hub, smokes publicos e crawler quick antes de encerrar a sprint.
+- Status: concluida em producao. Commit `f13cef7`, Quality Gate `28420829913`, Deploy Dry Run `28420829943` e deploy reversivel do Hub `28420973782` passaram; release `f13cef7ab668da1166ae1b7fafd86d54fdeaa6ed-28420973782-1`, asset `CvYAdSlM.js`, smokes publicos, AdSense-safe, crawler quick `2026-06-30T04-56-11-086Z`, screenshot live do rodape e checagem live de hover passaram.
 - Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
 
 ## Definition of done do programa

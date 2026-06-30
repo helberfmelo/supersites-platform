@@ -1624,6 +1624,8 @@ Ainda em 2026-06-29, o `Public Watchdog` agendado run `28372846327` falhou no sm
   - Artefato local: HostGator Hub validado com 211 arquivos, 3286524 bytes e base path `/supersites`.
   - Checagem Playwright de hover confirmou repouso sem underline/peso `500` e hover sem underline/peso `700` com escala.
   - Evidencia visual local: screenshots revisados em `artifacts/footer-qa/hub-footer-typography-desktop-wide.png` e `artifacts/footer-qa/hub-footer-typography-mobile-pt-br.png`, sem overflow horizontal.
+  - CI e deploy finais: feature commit `f13cef7`, Quality Gate `28420829913`, Deploy Dry Run `28420829943` e deploy HostGator `28420973782` passaram. A release ativa de `/supersites/` passou a ser `f13cef7ab668da1166ae1b7fafd86d54fdeaa6ed-28420973782-1`, com artefato publico validado em 211 arquivos/3277525 bytes e asset `https://opentshost.com/supersites/_nuxt/CvYAdSlM.js`.
+  - Validacao publica final: `pnpm deploy:smoke-supersite-public` passou para Hub, dez apps e APIs MailHealth/SitePulse; `pnpm validate:adsense-safe-public` passou em 13 paginas; `pnpm benchmark:crawl:quick` passou no report `2026-06-30T04-56-11-086Z` com 95 rotas, 190 checks desktop/mobile e 0 gaps; screenshots live foram salvos em `artifacts/footer-qa/hub-footer-typography-live-desktop-wide.png` e `artifacts/footer-qa/hub-footer-typography-live-mobile-pt-br.png`; checagem live de hover confirmou sem underline e peso `500` -> `700`.
   - Escopo negativo: a correcao nao ativou anuncio real, `ads.txt`, pagamento, doacao real, afiliado, checkout, billing, analytics externo, provider externo, worker/cron, DNS/root mapping, root redirect ou acao irreversivel.
 
 ## Bloqueios humanos registrados

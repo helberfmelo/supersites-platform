@@ -77,3 +77,4 @@ Data-base: 2026-06-27
 - The footer menu default state should stay compact and light: small text, regular weight, no underline and no chip/button affordance.
 - Hover may give the user a clear response by increasing weight and slightly scaling/moving the text, but it must remain underline-free.
 - Local evidence before CI/deploy: `artifacts/footer-qa/hub-footer-typography-desktop-wide.png` and `artifacts/footer-qa/hub-footer-typography-mobile-pt-br.png`; computed hover check confirmed weight `500` at rest, `700` on hover and no underline in either state.
+- Production deploy `28420973782` published release `f13cef7ab668da1166ae1b7fafd86d54fdeaa6ed-28420973782-1`, asset `https://opentshost.com/supersites/_nuxt/CvYAdSlM.js`; public smoke, AdSense-safe validation, crawler quick `2026-06-30T04-56-11-086Z`, live footer screenshots and live hover check passed.

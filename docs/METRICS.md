@@ -1357,7 +1357,20 @@ Data-base: 2026-06-29
 | Sprint 18.2d Hub Playwright suite | Passed: 7 tests |
 | Sprint 18.2d hover computed-style check | Passed: before `12.48px`/weight `500`/no underline; hover weight `700`/no underline/transform scale |
 | Sprint 18.2d footer visual artifacts | `artifacts/footer-qa/hub-footer-typography-desktop-wide.png` and `artifacts/footer-qa/hub-footer-typography-mobile-pt-br.png` reviewed |
-| Real deploy/provider activation | 4 reversible HostGator deploys in Phase 18 so far for Hub/NetProbe/Hub/Hub; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.2d public copy validation | Passed: 951 HTML files |
+| Sprint 18.2d AdSense-safe validation | Passed locally and post-deploy: 13 public pages |
+| Sprint 18.2d structure/secrets/dry-run/diff | Passed |
+| Sprint 18.2d package validation | Passed: 90 package tests and package typechecks |
+| Sprint 18.2d Hub HostGator artifact | Local passed: 211 files, 3286524 bytes; deploy passed: 211 files, 3277525 bytes, base path `/supersites` |
+| Sprint 18.2d implementation commit | `f13cef7` |
+| Sprint 18.2d remote Quality Gate | `28420829913` passed |
+| Sprint 18.2d remote Deploy Dry Run | `28420829943` passed |
+| Sprint 18.2d production deploy | `28420973782` passed; release `f13cef7ab668da1166ae1b7fafd86d54fdeaa6ed-28420973782-1`; asset `CvYAdSlM.js`; 211 files/3277525 bytes |
+| Sprint 18.2d post-deploy public smoke | Passed: Hub/apps/APIs with footer typography release asset |
+| Sprint 18.2d post-deploy quick crawler | `2026-06-30T04-56-11-086Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.2d live footer screenshots | `artifacts/footer-qa/hub-footer-typography-live-desktop-wide.png` and `artifacts/footer-qa/hub-footer-typography-live-mobile-pt-br.png` reviewed |
+| Sprint 18.2d live hover check | Passed: before `12.48px`/weight `500`/no underline; hover weight `700`/no underline/transform scale |
+| Real deploy/provider activation | 5 reversible HostGator deploys in Phase 18 so far for Hub/NetProbe/Hub/Hub/Hub; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 
