@@ -510,7 +510,7 @@ describe('site catalog', () => {
 
         expect(localized.title.length).toBeGreaterThan(5)
         expect(localized.description.length).toBeGreaterThan(60)
-        expect(localized.sections).toHaveLength(['about', 'contact', 'privacy', 'cookies', 'terms', 'methodology'].includes(page.slug) ? 6 : 3)
+        expect(localized.sections).toHaveLength(['about', 'contact', 'privacy', 'cookies', 'terms', 'methodology', 'editorial-policy'].includes(page.slug) ? 6 : 3)
         expect(localized.sections.every((section) => section.paragraphs.length > 0)).toBe(true)
       }
     }
@@ -798,6 +798,66 @@ describe('site catalog', () => {
       expect(copy.sections.map((section) => section.heading)).toEqual(requiredHeadings[locale])
       expect(JSON.stringify(copy)).toContain('DNS')
       expect(searchableCopy).not.toMatch(blockedMethodologyLanguage)
+    }
+  })
+
+  it('keeps the public Editorial Policy complete and free of internal process language', () => {
+    const editorial = legalPageCatalog.find((page) => page.slug === 'editorial-policy')
+    expect(editorial).toBeDefined()
+
+    const requiredHeadings = {
+      en: [
+        'Useful content',
+        'Review and updates',
+        'Corrections',
+        'Translations',
+        'Sources and examples',
+        'Quality standards',
+      ],
+      'pt-br': [
+        'Conteúdo útil',
+        'Revisão e atualizações',
+        'Correções',
+        'Traduções',
+        'Fontes e exemplos',
+        'Padrões de qualidade',
+      ],
+      es: [
+        'Contenido útil',
+        'Revisión y actualizaciones',
+        'Correcciones',
+        'Traducciones',
+        'Fuentes y ejemplos',
+        'Estándares de calidad',
+      ],
+      fr: [
+        'Contenu utile',
+        'Révision et mises à jour',
+        'Corrections',
+        'Traductions',
+        'Sources et exemples',
+        'Standards de qualité',
+      ],
+      de: [
+        'Nützliche Inhalte',
+        'Prüfung und Aktualisierungen',
+        'Korrekturen',
+        'Übersetzungen',
+        'Quellen und Beispiele',
+        'Qualitätsstandards',
+      ],
+    }
+    const blockedEditorialLanguage =
+      /launch status|first public launch|roadmap|public readiness|human review|legal review|quality checks|release checks|rollback|billing disabled|ads planned|plans to|planned|\bshould\b|\bmust\b|status de lançamento|primeiro lançamento|roteiro|prontidão|revisão humana|revisão jurídica|checagens de qualidade|planeja|planejado|\bdeve\b|\bdevem\b|estado de lanzamiento|primer lanzamiento|hoja de ruta|preparación|revisión humana|revisión legal|controles de calidad|planea|planeado|\bdebe\b|\bdeben\b|statut de lancement|premier lancement|feuille de route|préparation|revue humaine|révision juridique|contrôles qualité|prévoit|prévu|\bdoit\b|\bdoivent\b|Launch-Status|ersten Launch|Roadmap|Bereitschaft|menschliche Prüfung|Rechtsprüfung|Qualitätsprüfungen|geplant|\bsoll\b|\bsollen\b|\bmuss\b|\bmüssen\b/iu
+
+    for (const locale of localeCodes) {
+      const copy = getLegalPageCopy(editorial!, locale)
+      const links = copy.sections.flatMap((section) => section.links ?? [])
+
+      expect(copy.sections.map((section) => section.heading)).toEqual(requiredHeadings[locale])
+      expect(links).toHaveLength(1)
+      expect(links[0].href).toBe('mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Editorial%20correction')
+      expect(JSON.stringify(copy)).not.toMatch(blockedEditorialLanguage)
     }
   })
 

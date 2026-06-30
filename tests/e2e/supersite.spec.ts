@@ -364,6 +364,17 @@ test.describe('SuperSites public hub', () => {
 
     await expect(page).toHaveTitle(/Editorial Policy/)
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Editorial Policy')
+    const contentHeadings = page.locator('.content-section h3')
+    await expect(contentHeadings.filter({ hasText: 'Useful content' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Review and updates' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Corrections' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Translations' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Sources and examples' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Quality standards' })).toBeVisible()
+    await expect(page.getByRole('link', { name: /Send a correction/i })).toHaveAttribute(
+      'href',
+      'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Editorial%20correction',
+    )
     await expect(page.getByLabel('Legal and editorial pages').getByRole('link', { name: 'Privacy' })).toBeVisible()
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       'href',
@@ -378,10 +389,58 @@ test.describe('SuperSites public hub', () => {
       'href',
       'https://opentshost.com/supersites/docshift/en/tools/pdf-merge',
     )
+    await expect(page.locator('main')).not.toContainText(
+      /launch status|roadmap|public readiness|human review|legal review|quality checks|release checks|rollback|billing disabled|ads planned|plans to|planned|\bshould\b|\bmust\b/i,
+    )
     await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1)
+
+    const schemaType = await page.locator('script[type="application/ld+json"]').evaluate((script) => {
+      const schema = JSON.parse(script.textContent || '{}')
+
+      return schema['@type']
+    })
+
+    expect(schemaType).toBe('WebPage')
+    await expectNoHorizontalOverflow(page)
 
     const screenshot = await page.screenshot({ fullPage: true })
     await testInfo.attach('editorial-desktop', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('renders the localized Editorial Policy on mobile', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/pt-br/editorial-policy')
+    await dismissConsentBanner(page)
+
+    await expect(page).toHaveTitle(/Política Editorial/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Política Editorial')
+    const contentHeadings = page.locator('.content-section h3')
+    await expect(contentHeadings.filter({ hasText: 'Conteúdo útil' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Revisão e atualizações' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Correções' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Traduções' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Fontes e exemplos' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Padrões de qualidade' })).toBeVisible()
+    await expect(page.getByRole('link', { name: /Enviar correção/i })).toHaveAttribute(
+      'href',
+      'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Editorial%20correction',
+    )
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/pt-br/editorial-policy',
+    )
+    await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
+    await expect(page.locator('main')).not.toContainText(
+      /status de lançamento|roteiro|prontidão|revisão humana|revisão jurídica|checagens de qualidade|planeja|planejado|\bdeve\b|\bdevem\b|human review|legal review|quality checks|billing disabled|ads planned/i,
+    )
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('editorial-pt-mobile', { body: screenshot, contentType: 'image/png' })
 
     expect(errors).toEqual([])
   })

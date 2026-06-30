@@ -1676,25 +1676,55 @@ export const legalPageCatalog: LegalPage[] = [
       en: {
         navLabel: 'Editorial',
         title: 'Editorial Policy',
-        description: 'The editorial rules for useful content, translations, review dates, corrections and avoidance of low-value mass pages across SuperSites.',
-        updatedLabel: 'Reviewed June 26, 2026',
+        description: 'How SuperSites keeps public tool content useful, reviewed, corrected, localized and supported by sources across the network.',
+        updatedLabel: 'Reviewed June 30, 2026',
         sections: [
           {
-            heading: 'Useful original pages',
+            heading: 'Useful content',
             paragraphs: [
-              'Pages should answer a real user need with a working tool, context, examples, limitations and next steps. SuperSites must not publish thin mass pages just to target search traffic.',
+              'Each public page starts from a practical task: a tool, answer, checklist or reference that helps the visitor finish a real workflow.',
+              'Background text supports that task with context, limits, examples and related tools instead of padding the page for search traffic.',
+            ],
+          },
+          {
+            heading: 'Review and updates',
+            paragraphs: [
+              'Pages carry a review date when they describe policy, privacy, methodology, tools or operational guidance.',
+              'Updates focus on changed product behavior, stale examples, inaccurate wording, broken links, accessibility issues and localization quality.',
+            ],
+          },
+          {
+            heading: 'Corrections',
+            paragraphs: [
+              'Correction requests work best with the page URL, language, current text or behavior, preferred correction and a source when one is available.',
+            ],
+            links: [
+              {
+                label: 'Send a correction',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Editorial%20correction',
+                note: 'Email contact@opentshost.com with the affected page and language.',
+              },
             ],
           },
           {
             heading: 'Translations',
             paragraphs: [
-              'Localized pages should adapt wording, units and examples for the audience. Incomplete or low-quality translations should not be indexed.',
+              'Localized pages adapt terms, units, examples and tone for the language route instead of copying English literally.',
+              'When a translation is incomplete, confusing or mixed with another language, it is treated as a correction item for that route.',
             ],
           },
           {
-            heading: 'Corrections and review',
+            heading: 'Sources and examples',
             paragraphs: [
-              'Important pages should show a review date and accept corrections. Claims about data, policies, account features or legal obligations must be checked against current authoritative sources before publication.',
+              'Factual claims use official documentation, product behavior, public standards or direct tool output when those sources fit the topic.',
+              'Examples are kept generic and safe: no private data, account secrets, payment details or personal documents are needed to understand the guidance.',
+            ],
+          },
+          {
+            heading: 'Quality standards',
+            paragraphs: [
+              'Pages avoid clickbait, fake scarcity, hidden results, mass-generated thin content and claims that the tool cannot support.',
+              'Commercial, legal and provider topics stay factual and separate from active configuration until the public service visibly supports them.',
             ],
           },
         ],
@@ -1702,25 +1732,55 @@ export const legalPageCatalog: LegalPage[] = [
       'pt-br': {
         navLabel: 'Editorial',
         title: 'Política Editorial',
-        description: 'Regras editoriais para conteúdo útil, traduções, revisão, correções e prevenção de páginas em massa sem valor no SuperSites.',
-        updatedLabel: 'Revisado em 26 de junho de 2026',
+        description: 'Como o SuperSites mantém conteúdo público útil, revisado, corrigido, localizado e sustentado por fontes em toda a rede.',
+        updatedLabel: 'Revisado em 30 de junho de 2026',
         sections: [
           {
-            heading: 'Páginas originais úteis',
+            heading: 'Conteúdo útil',
             paragraphs: [
-              'Páginas devem responder a uma necessidade real com ferramenta funcionando, contexto, exemplos, limitações e próximos passos. O SuperSites não deve publicar páginas rasas em massa apenas para capturar busca.',
+              'Cada página pública parte de uma tarefa prática: ferramenta, resposta, checklist ou referência que ajuda a concluir um fluxo real.',
+              'Texto de apoio traz contexto, limites, exemplos e ferramentas relacionadas, sem enchimento para capturar busca.',
+            ],
+          },
+          {
+            heading: 'Revisão e atualizações',
+            paragraphs: [
+              'As páginas exibem data de revisão quando tratam de política, privacidade, metodologia, ferramentas ou orientação operacional.',
+              'Atualizações focam comportamento de produto alterado, exemplos antigos, texto impreciso, links quebrados, acessibilidade e qualidade da localização.',
+            ],
+          },
+          {
+            heading: 'Correções',
+            paragraphs: [
+              'Pedidos de correção funcionam melhor com URL da página, idioma, texto ou comportamento atual, correção sugerida e fonte quando existir.',
+            ],
+            links: [
+              {
+                label: 'Enviar correção',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Editorial%20correction',
+                note: 'Envie e-mail para contact@opentshost.com com página e idioma afetados.',
+              },
             ],
           },
           {
             heading: 'Traduções',
             paragraphs: [
-              'Páginas localizadas devem adaptar termos, unidades e exemplos ao público. Traduções incompletas ou fracas não devem ser indexadas.',
+              'Rotas localizadas adaptam termos, unidades, exemplos e tom ao idioma em vez de copiar o inglês literalmente.',
+              'Tradução incompleta, confusa ou misturada com outro idioma entra como correção daquela rota.',
             ],
           },
           {
-            heading: 'Correções e revisão',
+            heading: 'Fontes e exemplos',
             paragraphs: [
-              'Páginas importantes devem mostrar data de revisão e aceitar correções. Afirmações sobre dados, políticas, recursos de conta ou obrigações legais precisam ser checadas em fontes atuais e oficiais antes da publicação.',
+              'Afirmações factuais usam documentação oficial, comportamento do produto, padrões públicos ou resultado direto da ferramenta quando isso se aplica ao tema.',
+              'Exemplos permanecem genéricos e seguros: nenhum dado privado, segredo de conta, pagamento ou documento pessoal é necessário para entender a orientação.',
+            ],
+          },
+          {
+            heading: 'Padrões de qualidade',
+            paragraphs: [
+              'Páginas evitam clickbait, escassez falsa, resultado escondido, conteúdo raso em massa e afirmações que a ferramenta não sustenta.',
+              'Temas comerciais, jurídicos e de provedores ficam factuais e separados de configurações ativas até o serviço público mostrar suporte visível.',
             ],
           },
         ],
@@ -1728,25 +1788,55 @@ export const legalPageCatalog: LegalPage[] = [
       es: {
         navLabel: 'Editorial',
         title: 'Política Editorial',
-        description: 'Reglas editoriales para contenido útil, traducciones, revisiones, correcciones y prevención de páginas masivas de bajo valor.',
-        updatedLabel: 'Revisado el 26 de junio de 2026',
+        description: 'Cómo SuperSites mantiene contenido público útil, revisado, corregido, localizado y respaldado por fuentes en toda la red.',
+        updatedLabel: 'Revisado el 30 de junio de 2026',
         sections: [
           {
-            heading: 'Páginas originales útiles',
+            heading: 'Contenido útil',
             paragraphs: [
-              'Las páginas deben responder a una necesidad real con una herramienta funcional, contexto, ejemplos, límites y próximos pasos. SuperSites no debe publicar páginas delgadas en masa para captar búsquedas.',
+              'Cada página pública parte de una tarea práctica: herramienta, respuesta, lista de verificación o referencia que ayuda a completar un flujo real.',
+              'El texto de apoyo aporta contexto, límites, ejemplos y herramientas relacionadas en lugar de rellenar la página para captar búsquedas.',
+            ],
+          },
+          {
+            heading: 'Revisión y actualizaciones',
+            paragraphs: [
+              'Las páginas muestran una fecha de revisión cuando tratan políticas, privacidad, metodología, herramientas u orientación operativa.',
+              'Las actualizaciones se centran en cambios del producto, ejemplos antiguos, texto impreciso, enlaces rotos, accesibilidad y calidad de localización.',
+            ],
+          },
+          {
+            heading: 'Correcciones',
+            paragraphs: [
+              'Las solicitudes de corrección funcionan mejor con URL de la página, idioma, texto o comportamiento actual, corrección sugerida y fuente cuando exista.',
+            ],
+            links: [
+              {
+                label: 'Enviar corrección',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Editorial%20correction',
+                note: 'Envía un correo a contact@opentshost.com con la página y el idioma afectados.',
+              },
             ],
           },
           {
             heading: 'Traducciones',
             paragraphs: [
-              'Las páginas localizadas deben adaptar términos, unidades y ejemplos al público. Traducciones incompletas o débiles no deben indexarse.',
+              'Las rutas localizadas adaptan términos, unidades, ejemplos y tono al idioma en vez de copiar el inglés literalmente.',
+              'Una traducción incompleta, confusa o mezclada con otro idioma se trata como corrección de esa ruta.',
             ],
           },
           {
-            heading: 'Correcciones y revisión',
+            heading: 'Fuentes y ejemplos',
             paragraphs: [
-              'Las páginas importantes deben mostrar fecha de revisión y aceptar correcciones. Afirmaciones sobre datos, políticas, funciones de cuenta u obligaciones legales deben verificarse en fuentes oficiales vigentes.',
+              'Las afirmaciones factuales usan documentación oficial, comportamiento del producto, estándares públicos o salida directa de la herramienta cuando esas fuentes encajan con el tema.',
+              'Los ejemplos se mantienen genéricos y seguros: no hacen falta datos privados, secretos de cuenta, detalles de pago ni documentos personales para entender la guía.',
+            ],
+          },
+          {
+            heading: 'Estándares de calidad',
+            paragraphs: [
+              'Las páginas evitan clickbait, falsa escasez, resultados ocultos, contenido superficial en masa y afirmaciones que la herramienta no respalda.',
+              'Los temas comerciales, legales y de proveedores permanecen factuales y separados de configuraciones activas hasta que el servicio público muestre soporte visible.',
             ],
           },
         ],
@@ -1754,25 +1844,55 @@ export const legalPageCatalog: LegalPage[] = [
       fr: {
         navLabel: 'Éditorial',
         title: 'Politique éditoriale',
-        description: 'Règles éditoriales pour contenu utile, traductions, révisions, corrections et prévention des pages massives à faible valeur.',
-        updatedLabel: 'Révisé le 26 juin 2026',
+        description: 'Comment SuperSites garde un contenu public utile, révisé, corrigé, localisé et appuyé par des sources dans tout le réseau.',
+        updatedLabel: 'Révisé le 30 juin 2026',
         sections: [
           {
-            heading: 'Pages originales utiles',
+            heading: 'Contenu utile',
             paragraphs: [
-              'Les pages doivent répondre à un besoin réel avec outil fonctionnel, contexte, exemples, limites et prochaines étapes. SuperSites ne doit pas publier de pages faibles en masse pour capter la recherche.',
+              'Chaque page publique part d’une tâche pratique : outil, réponse, liste de contrôle ou référence qui aide à terminer un vrai flux.',
+              'Le texte d’accompagnement apporte contexte, limites, exemples et outils liés au lieu de remplir la page pour capter la recherche.',
+            ],
+          },
+          {
+            heading: 'Révision et mises à jour',
+            paragraphs: [
+              'Les pages affichent une date de révision lorsqu’elles traitent de politiques, confidentialité, méthodologie, outils ou orientation opérationnelle.',
+              'Les mises à jour ciblent les changements de produit, exemples anciens, textes imprécis, liens cassés, accessibilité et qualité de localisation.',
+            ],
+          },
+          {
+            heading: 'Corrections',
+            paragraphs: [
+              'Les demandes de correction fonctionnent mieux avec l’URL de la page, la langue, le texte ou comportement actuel, la correction souhaitée et une source lorsqu’elle existe.',
+            ],
+            links: [
+              {
+                label: 'Envoyer une correction',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Editorial%20correction',
+                note: 'Envoyez un e-mail à contact@opentshost.com avec la page et la langue concernées.',
+              },
             ],
           },
           {
             heading: 'Traductions',
             paragraphs: [
-              'Les pages localisées doivent adapter termes, unités et exemples au public. Les traductions incomplètes ou faibles ne doivent pas être indexées.',
+              'Les routes localisées adaptent termes, unités, exemples et ton à la langue au lieu de copier l’anglais littéralement.',
+              'Une traduction incomplète, confuse ou mélangée avec une autre langue devient une correction pour cette route.',
             ],
           },
           {
-            heading: 'Corrections et révision',
+            heading: 'Sources et exemples',
             paragraphs: [
-              'Les pages importantes doivent afficher une date de revision et accepter les corrections. Les affirmations sur donnees, politiques, fonctions de compte ou obligations legales doivent etre verifiees aupres de sources officielles actuelles.',
+              'Les affirmations factuelles utilisent documentation officielle, comportement du produit, standards publics ou sortie directe de l’outil lorsque ces sources conviennent au sujet.',
+              'Les exemples restent génériques et sûrs : aucune donnée privée, secret de compte, information de paiement ni document personnel n’est nécessaire pour comprendre la guidance.',
+            ],
+          },
+          {
+            heading: 'Standards de qualité',
+            paragraphs: [
+              'Les pages évitent clickbait, rareté artificielle, résultats cachés, contenu superficiel en masse et affirmations non soutenues par l’outil.',
+              'Les sujets commerciaux, juridiques et de fournisseurs restent factuels et séparés des configurations actives jusqu’à ce que le service public affiche une prise en charge visible.',
             ],
           },
         ],
@@ -1780,25 +1900,55 @@ export const legalPageCatalog: LegalPage[] = [
       de: {
         navLabel: 'Redaktion',
         title: 'Redaktionelle Richtlinie',
-        description: 'Redaktionelle Regeln für nützliche Inhalte, Übersetzungen, Review-Daten, Korrekturen und Vermeidung minderwertiger Massen-Seiten.',
-        updatedLabel: 'Geprüft am 26. Juni 2026',
+        description: 'Wie SuperSites öffentliche Tool-Inhalte im Netzwerk nützlich, geprüft, korrigiert, lokalisiert und quellenbasiert hält.',
+        updatedLabel: 'Geprüft am 30. Juni 2026',
         sections: [
           {
-            heading: 'Nützliche Originalseiten',
+            heading: 'Nützliche Inhalte',
             paragraphs: [
-              'Seiten sollen ein echtes Nutzerbedürfnis mit funktionierendem Tool, Kontext, Beispielen, Grenzen und nächsten Schritten beantworten. SuperSites veröffentlicht keine dünnen Massen-Seiten für Suchtraffic.',
+              'Jede öffentliche Seite beginnt mit einer praktischen Aufgabe: Tool, Antwort, Checkliste oder Referenz, die einen realen Ablauf abschließen hilft.',
+              'Begleittext liefert Kontext, Grenzen, Beispiele und verwandte Tools, statt die Seite für Suchtraffic aufzublähen.',
+            ],
+          },
+          {
+            heading: 'Prüfung und Aktualisierungen',
+            paragraphs: [
+              'Seiten zeigen ein Prüfdatum, wenn sie Richtlinien, Datenschutz, Methodik, Tools oder operative Hinweise beschreiben.',
+              'Aktualisierungen konzentrieren sich auf geändertes Produktverhalten, alte Beispiele, ungenauen Text, defekte Links, Barrierefreiheit und Lokalisierungsqualität.',
+            ],
+          },
+          {
+            heading: 'Korrekturen',
+            paragraphs: [
+              'Korrekturanfragen funktionieren am besten mit Seiten-URL, Sprache, aktuellem Text oder Verhalten, gewünschter Korrektur und Quelle, wenn eine vorhanden ist.',
+            ],
+            links: [
+              {
+                label: 'Korrektur senden',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Editorial%20correction',
+                note: 'Senden Sie eine E-Mail an contact@opentshost.com mit betroffener Seite und Sprache.',
+              },
             ],
           },
           {
             heading: 'Übersetzungen',
             paragraphs: [
-              'Lokalisierte Seiten sollen Begriffe, Einheiten und Beispiele an das Publikum anpassen. Unvollständige oder schwache Übersetzungen sollen nicht indexiert werden.',
+              'Lokalisierte Routen passen Begriffe, Einheiten, Beispiele und Ton an die Sprache an, statt Englisch wörtlich zu kopieren.',
+              'Eine unvollständige, verwirrende oder mit anderer Sprache vermischte Übersetzung gilt als Korrekturpunkt für diese Route.',
             ],
           },
           {
-            heading: 'Korrekturen und Review',
+            heading: 'Quellen und Beispiele',
             paragraphs: [
-              'Wichtige Seiten sollen ein Review-Datum zeigen und Korrekturen annehmen. Aussagen zu Daten, Policies, Konto-Funktionen oder rechtlichen Pflichten muessen vor Veroeffentlichung mit aktuellen offiziellen Quellen geprueft werden.',
+              'Faktische Aussagen nutzen offizielle Dokumentation, Produktverhalten, öffentliche Standards oder direkte Tool-Ausgabe, wenn diese Quellen zum Thema passen.',
+              'Beispiele bleiben generisch und sicher: keine privaten Daten, Konto-Geheimnisse, Zahlungsdetails oder persönlichen Dokumente sind nötig, um die Hinweise zu verstehen.',
+            ],
+          },
+          {
+            heading: 'Qualitätsstandards',
+            paragraphs: [
+              'Seiten vermeiden Clickbait, künstliche Knappheit, versteckte Ergebnisse, dünne Masseninhalte und Aussagen, die das Tool nicht stützt.',
+              'Kommerzielle, rechtliche und Provider-Themen bleiben sachlich und getrennt von aktiven Konfigurationen, bis der öffentliche Dienst sichtbare Unterstützung bietet.',
             ],
           },
         ],
@@ -1965,7 +2115,8 @@ export function getLegalPageCopy(page: LegalPage, locale: LocaleCode): Localized
     page.slug === 'privacy' ||
     page.slug === 'cookies' ||
     page.slug === 'terms' ||
-    page.slug === 'methodology'
+    page.slug === 'methodology' ||
+    page.slug === 'editorial-policy'
   ) {
     return sanitizePublicCopy(locale, page.localized[locale])
   }

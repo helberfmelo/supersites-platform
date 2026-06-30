@@ -197,6 +197,11 @@ try {
         throw 'Methodology page smoke failed.'
     }
 
+    $editorial = Invoke-PreviewRequest -Uri "$baseUrl/en/editorial-policy" -RequiredContent 'Useful content'
+    if ($editorial.StatusCode -ne 200 -or $editorial.Content -notmatch 'Editorial Policy' -or $editorial.Content -notmatch 'Send a correction' -or $editorial.Content -notmatch 'Quality standards') {
+        throw 'Editorial Policy page smoke failed.'
+    }
+
     $sitemap = Invoke-PreviewRequest -Uri "$baseUrl/sitemap.xml" -RequiredContent '<urlset'
     if ($sitemap.Content -notmatch '/en/privacy' -or $sitemap.Content -notmatch '/de/editorial-policy') {
         throw 'Sitemap smoke failed.'
