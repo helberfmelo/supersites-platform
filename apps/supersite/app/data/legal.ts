@@ -48,36 +48,36 @@ export const legalShellCopy: Record<LocaleCode, LegalShellCopy> = {
   en: {
     breadcrumbHome: 'Catalog',
     pageStatusLabel: 'Page status',
-    launchGateTitle: 'Public review',
-    launchGateBody: 'Human legal review remains required before final public release.',
+    launchGateTitle: 'Page care',
+    launchGateBody: 'This page is maintained as public guidance for the SuperSites network. Corrections and privacy requests can be sent through the contact page.',
     relatedTitle: 'Related pages',
   },
   'pt-br': {
     breadcrumbHome: 'Catálogo',
     pageStatusLabel: 'Status da página',
-    launchGateTitle: 'Revisão pública',
-    launchGateBody: 'Revisão jurídica humana continua obrigatória antes da publicação pública final.',
+    launchGateTitle: 'Cuidado da página',
+    launchGateBody: 'Esta página é mantida como orientação pública da rede SuperSites. Correções e pedidos de privacidade podem ser enviados pela página de contato.',
     relatedTitle: 'Páginas relacionadas',
   },
   es: {
     breadcrumbHome: 'Catálogo',
     pageStatusLabel: 'Estado de la página',
-    launchGateTitle: 'Revisión pública',
-    launchGateBody: 'La revisión legal humana sigue siendo obligatoria antes de la publicación pública final.',
+    launchGateTitle: 'Cuidado de la página',
+    launchGateBody: 'Esta página se mantiene como orientación pública de la red SuperSites. Las correcciones y solicitudes de privacidad pueden enviarse desde la página de contacto.',
     relatedTitle: 'Páginas relacionadas',
   },
   fr: {
     breadcrumbHome: 'Catalogue',
     pageStatusLabel: 'Statut de la page',
-    launchGateTitle: 'Revue publique',
-    launchGateBody: 'Une revision juridique humaine reste obligatoire avant la publication publique finale.',
+    launchGateTitle: 'Suivi de la page',
+    launchGateBody: 'Cette page est maintenue comme guide public du réseau SuperSites. Les corrections et demandes de confidentialité peuvent passer par la page de contact.',
     relatedTitle: 'Pages liées',
   },
   de: {
     breadcrumbHome: 'Katalog',
     pageStatusLabel: 'Seitenstatus',
-    launchGateTitle: 'Oeffentliche Pruefung',
-    launchGateBody: 'Eine menschliche Rechtspruefung bleibt vor der finalen oeffentlichen Veroeffentlichung erforderlich.',
+    launchGateTitle: 'Seitenpflege',
+    launchGateBody: 'Diese Seite wird als öffentliche Orientierung für das SuperSites-Netzwerk gepflegt. Korrekturen und Datenschutzanfragen können über die Kontaktseite gesendet werden.',
     relatedTitle: 'Verwandte Seiten',
   },
 }
@@ -89,25 +89,43 @@ export const legalPageCatalog: LegalPage[] = [
       en: {
         navLabel: 'About',
         title: 'About SuperSites',
-        description: 'SuperSites is a network of practical web tools built around useful free access, clear account value and careful public review.',
+        description: 'SuperSites is a portfolio of practical web tools that helps people finish everyday web tasks with free, localized pages and clear privacy boundaries.',
         updatedLabel: 'Reviewed June 26, 2026',
         sections: [
           {
-            heading: 'What the network is for',
+            heading: 'Mission',
             paragraphs: [
-              'SuperSites Hub catalogs a portfolio of utility sites for network diagnostics, calculators, developer tools, time conversion, QR workflows, invoices, email health, site checks, image work and documents.',
+              'SuperSites makes common web tasks faster to finish: checking DNS and IP details, using business calculators, preparing documents, formatting code, working with images, planning time zones and checking websites.',
             ],
           },
           {
-            heading: 'How sites are reviewed',
+            heading: 'How the network works',
             paragraphs: [
-              'Each site starts with a working name and a documented review checklist. A site is treated as ready for wider traffic only when its free tool, original guidance, privacy controls, monitoring and recovery notes are validated.',
+              'The hub curates focused tool suites. Each product page starts with a practical free workflow, then links to deeper tools when a visitor needs a more specific task.',
             ],
           },
           {
-            heading: 'Free first',
+            heading: 'Privacy by default',
             paragraphs: [
-              'The basic task that brought a visitor to a tool should work without mandatory signup. Paid plans are reserved for extra volume, history, automation, collaboration, API access, branding or an ad-free experience.',
+              'Browser-side processing is preferred when it reduces collection. Tool content is kept out of analytics events, and account or paid features stay separated from the basic free answer.',
+            ],
+          },
+          {
+            heading: 'Contact and corrections',
+            paragraphs: [
+              'Corrections, broken links, translation issues, accessibility problems and privacy requests should include the page URL, language and the expected result so the right surface can be fixed.',
+            ],
+          },
+          {
+            heading: 'Languages',
+            paragraphs: [
+              'The public hub supports English, Portuguese, Spanish, French and German routes with localized navigation, canonical URLs and hreflang alternates without forcing visitors by IP.',
+            ],
+          },
+          {
+            heading: 'Responsible growth',
+            paragraphs: [
+              'The free task remains usable without mandatory signup. Advertising, support options and upgrades must stay clearly separated from the result a visitor came to get.',
             ],
           },
         ],
@@ -115,25 +133,43 @@ export const legalPageCatalog: LegalPage[] = [
       'pt-br': {
         navLabel: 'Sobre',
         title: 'Sobre o SuperSites',
-        description: 'SuperSites é uma rede de ferramentas web práticas, com acesso gratuito útil, recursos de conta claros e revisão pública cuidadosa.',
+        description: 'SuperSites é um portfólio de ferramentas web práticas para concluir tarefas do dia a dia com páginas gratuitas, localizadas e limites claros de privacidade.',
         updatedLabel: 'Revisado em 26 de junho de 2026',
         sections: [
           {
-            heading: 'Para que a rede existe',
+            heading: 'Missão',
             paragraphs: [
-              'O SuperSites Hub cataloga um portfólio de sites úteis para diagnóstico de rede, calculadoras, ferramentas de desenvolvimento, tempo, QR, faturas, saúde de e-mail, checagens web, imagem e documentos.',
+              'O SuperSites torna tarefas comuns da web mais rápidas: consultar DNS e IP, usar calculadoras de negócio, preparar documentos, formatar código, trabalhar imagens, planejar fusos e checar sites.',
             ],
           },
           {
-            heading: 'Como os sites são revisados',
+            heading: 'Como a rede funciona',
             paragraphs: [
-              'Cada site começa com um nome de trabalho e uma lista de revisão documentada. Um site só é tratado como pronto para mais tráfego quando ferramenta gratuita, orientação original, privacidade, monitoramento e notas de recuperação forem validados.',
+              'O hub organiza conjuntos de ferramentas focados. Cada página de produto começa por um fluxo gratuito prático e aponta para ferramentas mais profundas quando a pessoa precisa de uma tarefa específica.',
             ],
           },
           {
-            heading: 'Gratuito primeiro',
+            heading: 'Privacidade por padrão',
             paragraphs: [
-              'A tarefa básica que trouxe a pessoa até a ferramenta deve funcionar sem cadastro obrigatório. Planos pagos ficam para volume, histórico, automação, colaboração, API, marca própria ou experiência sem anúncios.',
+              'Processamento no navegador é preferido quando reduz coleta. Conteúdo digitado nas ferramentas fica fora de eventos de analytics, e recursos de conta ou pagos permanecem separados da resposta gratuita básica.',
+            ],
+          },
+          {
+            heading: 'Contato e correções',
+            paragraphs: [
+              'Correções, links quebrados, problemas de tradução, acessibilidade e pedidos de privacidade devem trazer URL da página, idioma e resultado esperado para que a superfície certa seja corrigida.',
+            ],
+          },
+          {
+            heading: 'Idiomas',
+            paragraphs: [
+              'O hub público atende rotas em inglês, português, espanhol, francês e alemão, com navegação localizada, URLs canônicas e alternates hreflang sem forçar visitantes por IP.',
+            ],
+          },
+          {
+            heading: 'Crescimento responsável',
+            paragraphs: [
+              'A tarefa gratuita continua utilizável sem cadastro obrigatório. Publicidade, opções de apoio e upgrades devem ficar claramente separados do resultado que a pessoa veio buscar.',
             ],
           },
         ],
@@ -141,25 +177,43 @@ export const legalPageCatalog: LegalPage[] = [
       es: {
         navLabel: 'Acerca de',
         title: 'Acerca de SuperSites',
-        description: 'SuperSites es una red de herramientas web prácticas con acceso gratuito útil, funciones de cuenta claras y revisión pública cuidadosa.',
+        description: 'SuperSites es un portafolio de herramientas web prácticas para completar tareas cotidianas con páginas gratuitas, localizadas y límites claros de privacidad.',
         updatedLabel: 'Revisado el 26 de junio de 2026',
         sections: [
           {
-            heading: 'Para qué existe la red',
+            heading: 'Misión',
             paragraphs: [
-              'SuperSites Hub cataloga sitios de utilidad para diagnósticos de red, calculadoras, herramientas de desarrollo, tiempo, QR, facturas, salud de correo, revisiones web, imagen y documentos.',
+              'SuperSites hace más rápidas tareas comunes de la web: revisar DNS e IP, usar calculadoras de negocio, preparar documentos, formatear código, trabajar con imágenes, planear zonas horarias y comprobar sitios.',
             ],
           },
           {
-            heading: 'Cómo se revisan los sitios',
+            heading: 'Cómo funciona la red',
             paragraphs: [
-              'Cada sitio empieza con un nombre de trabajo y una lista de revisión documentada. Se considera listo para más tráfico solo después de validar herramienta gratuita, contenido original, privacidad, monitoreo y notas de recuperación.',
+              'El hub organiza suites de herramientas enfocadas. Cada página de producto empieza con un flujo gratuito práctico y enlaza herramientas más profundas cuando una persona necesita una tarea específica.',
             ],
           },
           {
-            heading: 'Gratis primero',
+            heading: 'Privacidad por defecto',
             paragraphs: [
-              'La tarea básica que trae a una persona debe funcionar sin registro obligatorio. Los planes pagos agregan volumen, historial, automatización, colaboración, API, marca propia o una experiencia sin anuncios.',
+              'Se prefiere el procesamiento en el navegador cuando reduce la recolección. El contenido de las herramientas queda fuera de analytics, y las funciones de cuenta o pagas se mantienen separadas de la respuesta gratuita básica.',
+            ],
+          },
+          {
+            heading: 'Contacto y correcciones',
+            paragraphs: [
+              'Correcciones, enlaces rotos, problemas de traducción, accesibilidad y solicitudes de privacidad deben incluir URL, idioma y resultado esperado para corregir la superficie adecuada.',
+            ],
+          },
+          {
+            heading: 'Idiomas',
+            paragraphs: [
+              'El hub público admite rutas en inglés, portugués, español, francés y alemán, con navegación localizada, URLs canónicas y hreflang alternates sin forzar visitantes por IP.',
+            ],
+          },
+          {
+            heading: 'Crecimiento responsable',
+            paragraphs: [
+              'La tarea gratuita sigue usable sin registro obligatorio. Publicidad, opciones de apoyo y upgrades deben mantenerse claramente separados del resultado que la persona vino a obtener.',
             ],
           },
         ],
@@ -167,25 +221,43 @@ export const legalPageCatalog: LegalPage[] = [
       fr: {
         navLabel: 'À propos',
         title: 'À propos de SuperSites',
-        description: 'SuperSites est un reseau d outils web pratiques avec acces gratuit utile, fonctions de compte claires et revue publique attentive.',
+        description: 'SuperSites est un portefeuille d outils web pratiques pour terminer des tâches courantes avec des pages gratuites, localisées et des limites de confidentialité claires.',
         updatedLabel: 'Révisé le 26 juin 2026',
         sections: [
           {
-            heading: 'Pourquoi le réseau existe',
+            heading: 'Mission',
             paragraphs: [
-              'SuperSites Hub catalogue des sites utiles pour diagnostic réseau, calculateurs, outils développeur, temps, QR, factures, santé e-mail, contrôles web, image et documents.',
+              'SuperSites accélère des tâches web courantes : vérifier DNS et IP, utiliser des calculateurs métier, préparer des documents, formater du code, travailler des images, planifier des fuseaux et contrôler des sites.',
             ],
           },
           {
-            heading: 'Comment les sites sont revus',
+            heading: 'Fonctionnement du réseau',
             paragraphs: [
-              'Chaque site commence avec un nom de travail et une liste de revue documentee. Il est pret pour plus de trafic seulement apres validation de l outil gratuit, du contenu original, de la confidentialite, de la surveillance et des notes de reprise.',
+              'Le hub organise des suites d outils ciblées. Chaque page produit commence par un flux gratuit pratique et renvoie vers des outils plus précis quand une personne a besoin d une tâche spécifique.',
             ],
           },
           {
-            heading: 'Le gratuit d’abord',
+            heading: 'Confidentialité par défaut',
             paragraphs: [
-              'La tâche de base qui amène une personne vers un outil doit fonctionner sans compte obligatoire. Les offres payantes ajoutent volume, historique, automatisation, collaboration, API, marque propre ou absence de publicité.',
+              'Le traitement dans le navigateur est préféré quand il réduit la collecte. Le contenu des outils reste hors des événements analytics, et les fonctions de compte ou payantes restent séparées de la réponse gratuite de base.',
+            ],
+          },
+          {
+            heading: 'Contact et corrections',
+            paragraphs: [
+              'Corrections, liens cassés, problèmes de traduction, accessibilité et demandes de confidentialité doivent inclure URL, langue et résultat attendu pour corriger la bonne surface.',
+            ],
+          },
+          {
+            heading: 'Langues',
+            paragraphs: [
+              'Le hub public prend en charge des routes en anglais, portugais, espagnol, français et allemand, avec navigation localisée, URLs canoniques et hreflang alternates sans forcer les visiteurs par IP.',
+            ],
+          },
+          {
+            heading: 'Croissance responsable',
+            paragraphs: [
+              'La tâche gratuite reste utilisable sans compte obligatoire. Publicité, options de soutien et upgrades doivent rester clairement séparés du résultat recherché par la personne.',
             ],
           },
         ],
@@ -193,25 +265,43 @@ export const legalPageCatalog: LegalPage[] = [
       de: {
         navLabel: 'Über uns',
         title: 'Über SuperSites',
-        description: 'SuperSites ist ein Netzwerk praktischer Web-Tools mit nuetzlichem Gratiszugang, klarem Konto-Mehrwert und sorgfaeltiger oeffentlicher Pruefung.',
+        description: 'SuperSites ist ein Portfolio praktischer Web-Tools, mit denen Menschen alltägliche Webaufgaben über kostenlose, lokalisierte Seiten mit klaren Datenschutzgrenzen erledigen.',
         updatedLabel: 'Geprüft am 26. Juni 2026',
         sections: [
           {
-            heading: 'Wofür das Netzwerk gedacht ist',
+            heading: 'Mission',
             paragraphs: [
-              'SuperSites Hub katalogisiert Utility-Sites für Netzwerkdiagnose, Rechner, Entwicklerwerkzeuge, Zeit, QR, Rechnungen, E-Mail-Gesundheit, Website-Checks, Bilder und Dokumente.',
+              'SuperSites macht häufige Webaufgaben schneller: DNS- und IP-Daten prüfen, Geschäftsrechner nutzen, Dokumente vorbereiten, Code formatieren, Bilder bearbeiten, Zeitzonen planen und Websites prüfen.',
             ],
           },
           {
-            heading: 'Wie Sites geprueft werden',
+            heading: 'Wie das Netzwerk funktioniert',
             paragraphs: [
-              'Jede Site beginnt mit einem Arbeitsnamen und einer dokumentierten Review-Liste. Sie ist erst fuer mehr Traffic bereit, wenn kostenloses Tool, eigene Inhalte, Datenschutz, Monitoring und Wiederherstellungshinweise validiert sind.',
+              'Der Hub kuratiert fokussierte Tool-Suites. Jede Produktseite beginnt mit einem praktischen kostenlosen Workflow und verlinkt tiefere Tools, wenn Besucher eine spezifischere Aufgabe haben.',
             ],
           },
           {
-            heading: 'Kostenlos zuerst',
+            heading: 'Datenschutz als Standard',
             paragraphs: [
-              'Die grundlegende Aufgabe muss ohne Pflichtkonto funktionieren. Bezahlte Pläne liefern zusätzliches Volumen, Historie, Automatisierung, Zusammenarbeit, API, Branding oder eine werbefreie Nutzung.',
+              'Verarbeitung im Browser wird bevorzugt, wenn sie Datenerfassung reduziert. Tool-Inhalte bleiben aus Analytics-Ereignissen heraus, und Konto- oder Bezahlfunktionen bleiben von der kostenlosen Grundantwort getrennt.',
+            ],
+          },
+          {
+            heading: 'Kontakt und Korrekturen',
+            paragraphs: [
+              'Korrekturen, defekte Links, Übersetzungsprobleme, Barrierefreiheit und Datenschutzanfragen sollten URL, Sprache und erwartetes Ergebnis enthalten, damit die richtige Oberfläche korrigiert werden kann.',
+            ],
+          },
+          {
+            heading: 'Sprachen',
+            paragraphs: [
+              'Der öffentliche Hub unterstützt englische, portugiesische, spanische, französische und deutsche Routen mit lokalisierter Navigation, Canonical-URLs und hreflang-Alternates ohne IP-Zwang.',
+            ],
+          },
+          {
+            heading: 'Verantwortliches Wachstum',
+            paragraphs: [
+              'Die kostenlose Aufgabe bleibt ohne Pflichtkonto nutzbar. Werbung, Support-Optionen und Upgrades müssen klar vom Ergebnis getrennt bleiben, wegen dem eine Person gekommen ist.',
             ],
           },
         ],
@@ -1182,5 +1272,9 @@ export function getLegalShellCopy(locale: LocaleCode): LegalShellCopy {
 }
 
 export function getLegalPageCopy(page: LegalPage, locale: LocaleCode): LocalizedLegalPage {
+  if (page.slug === 'about') {
+    return sanitizePublicCopy(locale, page.localized[locale])
+  }
+
   return buildTrustPageCopy(locale, page.slug, sanitizePublicCopy(locale, page.localized[locale]), trustProfile)
 }

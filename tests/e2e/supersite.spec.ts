@@ -111,6 +111,78 @@ test.describe('SuperSites public hub', () => {
     expect(errors).toEqual([])
   })
 
+  test('renders the About page as a public institutional page on desktop', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.goto('/en/about')
+    await dismissConsentBanner(page)
+
+    await expect(page).toHaveTitle(/About SuperSites/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('About SuperSites')
+    await expect(page.getByRole('heading', { name: 'Mission' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'How the network works' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Privacy by default' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Contact and corrections' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Languages' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Responsible growth' })).toBeVisible()
+    await expect(page.getByText('Page care')).toBeVisible()
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/en/about',
+    )
+    await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
+    await expect(page.locator('main')).not.toContainText(
+      /Human legal review|human review|legal review|required before final public|final public launch|final public release|public review/i,
+    )
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1)
+
+    const schemaType = await page.locator('script[type="application/ld+json"]').evaluate((script) => {
+      const schema = JSON.parse(script.textContent || '{}')
+
+      return schema['@type']
+    })
+
+    expect(schemaType).toBe('AboutPage')
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('about-desktop', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('renders the localized About page as an institutional page on mobile', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/pt-br/about')
+    await dismissConsentBanner(page)
+
+    await expect(page).toHaveTitle(/Sobre o SuperSites/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Sobre o SuperSites')
+    await expect(page.getByRole('heading', { name: 'Missão' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Como a rede funciona' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Privacidade por padrão' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Contato e correções' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Idiomas' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Crescimento responsável' })).toBeVisible()
+    await expect(page.getByText('Cuidado da página')).toBeVisible()
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/pt-br/about',
+    )
+    await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
+    await expect(page.locator('main')).not.toContainText(
+      /Human legal review|human review|legal review|revisão jurídica|revisão pública|revisão humana|required before final public|final public launch|final public release/i,
+    )
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('about-pt-mobile', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
   test('renders the benchmark-grade tool finder and records sanitized outbound site clicks', async ({
     page,
   }, testInfo) => {

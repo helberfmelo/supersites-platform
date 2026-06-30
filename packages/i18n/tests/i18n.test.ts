@@ -57,7 +57,7 @@ describe('@supersites/i18n', () => {
 
     expect(sanitized.title).toBe('Client-side free version')
     expect(sanitized.body).toBe('Commercial redirects planned after public release check and release recovery check.')
-    expect(sanitized.items).toEqual(['Ad preview', 'human review'])
+    expect(sanitized.items).toEqual(['Ad preview', 'manual follow-up'])
   })
 
   it('applies locale accents while preserving nested public copy shape', () => {
@@ -145,6 +145,7 @@ describe('@supersites/i18n', () => {
 
     expect(serialized).not.toMatch(/https?:\/\//iu)
     expect(serialized).not.toMatch(/paypal\.com|stripe\.com|buymeacoffee\.com|mercadopago/iu)
+    expect(serialized).not.toMatch(/human review|legal review|monetization real|monetização real|revisão humana/iu)
   })
 
   it('preserves English base sections while adding trust status detail', () => {

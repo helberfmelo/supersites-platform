@@ -13,7 +13,7 @@ import {
   getSitePulseCatalogCopy,
   getTimeNexusCatalogCopy,
 } from '../app/data/copy'
-import { legalPageCatalog, legalPageSlugs } from '../app/data/legal'
+import { getLegalPageCopy, getLegalShellCopy, legalPageCatalog, legalPageSlugs } from '../app/data/legal'
 import { localeCodes } from '../app/data/locales'
 import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
 import {
@@ -510,9 +510,32 @@ describe('site catalog', () => {
 
         expect(localized.title.length).toBeGreaterThan(5)
         expect(localized.description.length).toBeGreaterThan(60)
-        expect(localized.sections).toHaveLength(3)
+        expect(localized.sections).toHaveLength(page.slug === 'about' ? 6 : 3)
         expect(localized.sections.every((section) => section.paragraphs.length > 0)).toBe(true)
       }
+    }
+  })
+
+  it('keeps the public About page institutional and free of legal launch review language', () => {
+    const about = legalPageCatalog.find((page) => page.slug === 'about')
+    expect(about).toBeDefined()
+
+    const requiredHeadings = {
+      en: ['Mission', 'How the network works', 'Privacy by default', 'Contact and corrections', 'Languages', 'Responsible growth'],
+      'pt-br': ['Missão', 'Como a rede funciona', 'Privacidade por padrão', 'Contato e correções', 'Idiomas', 'Crescimento responsável'],
+      es: ['Misión', 'Cómo funciona la red', 'Privacidad por defecto', 'Contacto y correcciones', 'Idiomas', 'Crecimiento responsable'],
+      fr: ['Mission', 'Fonctionnement du réseau', 'Confidentialité par défaut', 'Contact et corrections', 'Langues', 'Croissance responsable'],
+      de: ['Mission', 'Wie das Netzwerk funktioniert', 'Datenschutz als Standard', 'Kontakt und Korrekturen', 'Sprachen', 'Verantwortliches Wachstum'],
+    }
+    const blockedPublicReviewLanguage =
+      /Human legal review|human review|legal review|legal policies|required before final public|final public launch|final public release|public review|revisão jurídica|revisão pública|revisão humana|revisión legal|revisión pública|revisión humana|revision juridique|revue publique|revue humaine|Rechtspruefung|Rechtsprüfung|Oeffentliche Pruefung|oeffentliche Pruefung|menschliche Prüfung/iu
+
+    for (const locale of localeCodes) {
+      const copy = getLegalPageCopy(about!, locale)
+      const shell = getLegalShellCopy(locale)
+
+      expect(copy.sections.map((section) => section.heading)).toEqual(requiredHeadings[locale])
+      expect(JSON.stringify({ copy, shell })).not.toMatch(blockedPublicReviewLanguage)
     }
   })
 

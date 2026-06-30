@@ -348,7 +348,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
 
   if (locale === 'pt-br') {
     const common = [
-      trustSection('Revisão humana e escopo', `Estas páginas explicam o estado público de ${siteName}, mas políticas finais, suporte pago, doações e claims jurídicos ainda exigem revisão humana antes de monetização real.`),
+      trustSection('Escopo e correções', `Estas páginas explicam a orientação pública atual de ${siteName}. Correções de conteúdo, privacidade, acessibilidade ou tradução podem ser enviadas pelo canal de contato sem incluir dados sensíveis.`),
     ]
     const sections: Record<TrustPageSlug, TrustContentSection[]> = {
       about: [
@@ -358,7 +358,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
       ],
       contact: [
         trustSection('O que enviar', 'Envie URL, idioma, ferramenta, comportamento observado, resultado esperado e contexto do navegador. Não envie senhas, documentos confidenciais, dados bancários, chaves de API ou dados pessoais sensíveis.'),
-        trustSection('Suporte e doações', 'O bloco de apoio é informativo e inerte: não há link de pagamento, PIX, PayPal, Stripe, Buy Me a Coffee, carteira, checkout ou webhook ativo. Qualquer doação real exige aprovação humana, conta, impostos e termos.'),
+        trustSection('Suporte e doações', 'O bloco de apoio é informativo e inerte: não há link de pagamento, PIX, PayPal, Stripe, Buy Me a Coffee, carteira, checkout ou webhook ativo nesta página.'),
         trustSection('Prioridade de correções', 'Privacidade, segurança, acessibilidade, tradução incorreta, link quebrado e resultado enganoso têm prioridade sobre pedidos comerciais.'),
       ],
       privacy: [
@@ -398,7 +398,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
 
   if (locale === 'es') {
     const common = [
-      trustSection('Revisión humana y alcance', `Estas páginas explican el estado público de ${siteName}, pero políticas finales, soporte pago, donaciones y claims legales aún requieren revisión humana antes de monetización real.`),
+      trustSection('Alcance y correcciones', `Estas páginas explican la orientación pública actual de ${siteName}. Las correcciones de contenido, privacidad, accesibilidad o traducción pueden enviarse por el canal de contacto sin incluir datos sensibles.`),
     ]
     const sections: Record<TrustPageSlug, TrustContentSection[]> = {
       about: [
@@ -408,7 +408,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
       ],
       contact: [
         trustSection('Qué enviar', 'Envía URL, idioma, herramienta, comportamiento observado, resultado esperado y navegador. No envíes contraseñas, documentos confidenciales, datos bancarios, claves API o datos personales sensibles.'),
-        trustSection('Soporte y donaciones', 'La sección de apoyo es informativa e inerte: no hay enlace de pago, PIX, PayPal, Stripe, Buy Me a Coffee, wallet, checkout o webhook activo. Cualquier donación real requiere aprobación humana, cuenta, impuestos y términos.'),
+        trustSection('Soporte y donaciones', 'La sección de apoyo es informativa e inerte: no hay enlace de pago, PIX, PayPal, Stripe, Buy Me a Coffee, wallet, checkout o webhook activo en esta página.'),
         trustSection('Prioridad de correcciones', 'Privacidad, seguridad, accesibilidad, mala traducción, enlace roto y resultado engañoso tienen prioridad sobre pedidos comerciales.'),
       ],
       privacy: [
@@ -448,7 +448,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
 
   if (locale === 'fr') {
     const common = [
-      trustSection('Revue humaine et portée', `Ces pages expliquent l’état public de ${siteName}, mais politiques finales, support payant, dons et affirmations juridiques exigent encore une revue humaine avant toute monétisation réelle.`),
+      trustSection('Portée et corrections', `Ces pages expliquent l orientation publique actuelle de ${siteName}. Les corrections de contenu, confidentialité, accessibilité ou traduction peuvent passer par le canal de contact sans données sensibles.`),
     ]
     const sections: Record<TrustPageSlug, TrustContentSection[]> = {
       about: [
@@ -458,7 +458,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
       ],
       contact: [
         trustSection('Quoi envoyer', 'Envoyez URL, langue, outil, comportement observé, résultat attendu et navigateur. N’envoyez pas mots de passe, documents confidentiels, données bancaires, clés API ou données personnelles sensibles.'),
-        trustSection('Support et dons', 'Le bloc de soutien est informatif et inerte : aucun lien de paiement, PIX, PayPal, Stripe, Buy Me a Coffee, wallet, checkout ou webhook n’est actif. Tout don réel exige approbation humaine, compte, taxes et conditions.'),
+        trustSection('Support et dons', 'Le bloc de soutien est informatif et inerte : aucun lien de paiement, PIX, PayPal, Stripe, Buy Me a Coffee, wallet, checkout ou webhook n’est actif sur cette page.'),
         trustSection('Priorité des corrections', 'Confidentialité, sécurité, accessibilité, mauvaise traduction, lien cassé et résultat trompeur priment sur les demandes commerciales.'),
       ],
       privacy: [
@@ -498,7 +498,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
 
   if (locale === 'de') {
     const common = [
-      trustSection('Menschliche Prüfung und Umfang', `Diese Seiten erklären den öffentlichen Stand von ${siteName}; finale Richtlinien, bezahlter Support, Spenden und rechtliche Aussagen benötigen vor realer Monetarisierung weiter menschliche Prüfung.`),
+      trustSection('Umfang und Korrekturen', `Diese Seiten erklären die aktuelle öffentliche Orientierung von ${siteName}. Korrekturen zu Inhalt, Datenschutz, Barrierefreiheit oder Übersetzung können über den Kontaktkanal ohne sensible Daten gesendet werden.`),
     ]
     const sections: Record<TrustPageSlug, TrustContentSection[]> = {
       about: [
@@ -508,7 +508,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
       ],
       contact: [
         trustSection('Was senden', 'Senden Sie URL, Sprache, Tool, beobachtetes Verhalten, erwartetes Ergebnis und Browser. Senden Sie keine Passwörter, vertraulichen Dokumente, Bankdaten, API-Schlüssel oder sensiblen personenbezogenen Daten.'),
-        trustSection('Support und Spenden', 'Der Unterstützungsblock ist informativ und inaktiv: Es gibt keinen Zahlungslink, kein PIX, PayPal, Stripe, Buy Me a Coffee, Wallet, Checkout oder Webhook. Jede echte Spende braucht menschliche Freigabe, Konto, Steuern und Bedingungen.'),
+        trustSection('Support und Spenden', 'Der Unterstützungsblock ist informativ und inaktiv: Es gibt auf dieser Seite keinen Zahlungslink, kein PIX, PayPal, Stripe, Buy Me a Coffee, Wallet, Checkout oder Webhook.'),
         trustSection('Priorität von Korrekturen', 'Datenschutz, Sicherheit, Barrierefreiheit, falsche Übersetzung, defekter Link und irreführendes Ergebnis haben Vorrang vor kommerziellen Anfragen.'),
       ],
       privacy: [
@@ -547,7 +547,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
   }
 
   const common = [
-    trustSection('Human review and scope', `These pages explain the current public state of ${siteName}, but final legal policies, paid support, donations and legal claims still require human review before real monetization.`),
+    trustSection('Scope and corrections', `These pages explain the current public guidance for ${siteName}. Content, privacy, accessibility or translation corrections can be sent through the contact channel without including sensitive data.`),
   ]
   const sections: Record<TrustPageSlug, TrustContentSection[]> = {
     about: [
@@ -557,7 +557,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
     ],
     contact: [
       trustSection('What to send', 'Include URL, language, tool name, observed behavior, expected result and browser context. Do not send passwords, confidential documents, bank data, API keys or sensitive personal data.'),
-      trustSection('Support and donations', 'The support block is informational and inert: no payment link, PIX, PayPal, Stripe, Buy Me a Coffee, wallet, checkout or webhook is active. Any real donation requires human approval, account setup, taxes and terms.'),
+      trustSection('Support and donations', 'The support block is informational and inert: no payment link, PIX, PayPal, Stripe, Buy Me a Coffee, wallet, checkout or webhook is active on this page.'),
       trustSection('Correction priority', 'Privacy, security, accessibility, translation errors, broken links and misleading results take priority over commercial requests.'),
     ],
     privacy: [
@@ -629,7 +629,7 @@ const internalTermReplacements: Record<LocaleCode, Array<[RegExp, string]>> = {
     [/deploy smoke/giu, 'public release check'],
     [/rollback validation/giu, 'release recovery check'],
     [/placeholder/giu, 'preview'],
-    [/HUMAN_ACTION_REQUIRED/gu, 'human review'],
+    [/HUMAN_ACTION_REQUIRED/gu, 'manual follow-up'],
     [/No ads active/gu, 'Advertising not active'],
     [/No file backend active/gu, 'No server upload backend active'],
     [/Monitoring gated/gu, 'Monitoring planned'],
@@ -649,7 +649,7 @@ const internalTermReplacements: Record<LocaleCode, Array<[RegExp, string]>> = {
     [/deploy smoke/giu, 'verificação pública de lançamento'],
     [/rollback validation/giu, 'verificação de recuperação do lançamento'],
     [/placeholder/giu, 'prévia'],
-    [/HUMAN_ACTION_REQUIRED/gu, 'revisão humana'],
+    [/HUMAN_ACTION_REQUIRED/gu, 'acompanhamento manual'],
     [/No ads active/gu, 'Anúncios não ativos'],
     [/No file backend active/gu, 'Sem backend de upload no servidor'],
     [/Monitoring gated/gu, 'Monitoramento planejado'],
@@ -669,7 +669,7 @@ const internalTermReplacements: Record<LocaleCode, Array<[RegExp, string]>> = {
     [/deploy smoke/giu, 'verificación pública de lanzamiento'],
     [/rollback validation/giu, 'verificación de recuperación del lanzamiento'],
     [/placeholder/giu, 'vista previa'],
-    [/HUMAN_ACTION_REQUIRED/gu, 'revisión humana'],
+    [/HUMAN_ACTION_REQUIRED/gu, 'seguimiento manual'],
     [/No ads active/gu, 'Anuncios no activos'],
     [/No file backend active/gu, 'Sin backend de subida en servidor'],
     [/Monitoring gated/gu, 'Monitoreo planificado'],
@@ -691,7 +691,7 @@ const internalTermReplacements: Record<LocaleCode, Array<[RegExp, string]>> = {
     [/deploy smoke/giu, 'vérification publique de lancement'],
     [/rollback validation/giu, 'vérification de reprise du lancement'],
     [/placeholder/giu, 'aperçu'],
-    [/HUMAN_ACTION_REQUIRED/gu, 'revue humaine'],
+    [/HUMAN_ACTION_REQUIRED/gu, 'suivi manuel'],
     [/No ads active/gu, 'Publicités non actives'],
     [/No file backend active/gu, 'Aucun backend de téléversement serveur'],
     [/Monitoring gated/gu, 'Monitoring prévu'],
@@ -709,7 +709,7 @@ const internalTermReplacements: Record<LocaleCode, Array<[RegExp, string]>> = {
     [/deploy smoke/giu, 'öffentliche Release-Prüfung'],
     [/rollback validation/giu, 'Release-Wiederherstellungsprüfung'],
     [/placeholder/giu, 'Vorschau'],
-    [/HUMAN_ACTION_REQUIRED/gu, 'menschliche Prüfung'],
+    [/HUMAN_ACTION_REQUIRED/gu, 'manuelle Nachverfolgung'],
     [/No ads active/gu, 'Anzeigen nicht aktiv'],
     [/No file backend active/gu, 'Kein serverseitiges Upload-Backend'],
     [/Monitoring gated/gu, 'Monitoring geplant'],
