@@ -1185,11 +1185,12 @@ h3 {
 .timenexus-clock-panel__time {
   display: block;
   color: #17231e;
-  font-size: 2.45rem;
+  font-size: 2rem;
   font-variant-numeric: tabular-nums;
   font-weight: 820;
   letter-spacing: 0;
   line-height: 1;
+  white-space: nowrap;
 }
 
 .timenexus-clock-panel__date {
@@ -2434,6 +2435,10 @@ h3 {
 
   .consent-banner__actions .button-link {
     width: 100%;
+  }
+
+  .timenexus-clock-panel__time {
+    font-size: 1.65rem;
   }
 
   .ad-placeholder {
