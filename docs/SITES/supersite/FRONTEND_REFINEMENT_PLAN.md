@@ -19,8 +19,10 @@ Refine the Hub and control-plane surfaces so operators can scan portfolio qualit
 - Convert benchmark-grade catalog detail routes into public landing pages when required by the sprint, starting with NetProbe Atlas network/DNS/IP in Phase 18 Sprint 18.3. Done in production with deploy `28422499578`, public smoke, crawler quick and live desktop/mobile route checks.
 - Convert CalcHarbor's catalog detail route into a benchmark-grade calculator landing with search, categories, highlighted real calculators and non-linked future topics. Done in production in Phase 18 Sprint 18.4 with Hub deploy `28424159062`, CalcHarbor deploy `28424625903`, public smoke and crawler quick 0 gaps.
 - Convert DevUtility Lab's catalog detail route into a benchmark-grade developer workbench directory with search, category filters, pinned shortcuts and links to existing public tools. Implemented locally in Phase 18 Sprint 18.5; CI/deploy pending.
+- Convert institutional pages when their sprint arrives so they read as public trust/content pages, not internal launch-gate surfaces. About was completed in production in Phase 18 Sprint 18.13 with localized mission, how it works, privacy, contact/corrections, languages and responsible growth.
 - Operational rule for the remaining Phase 18 site catalog routes: implement the route, validate screenshots/Playwright/smoke, commit/push, monitor HostGator deploy, run public smoke, then start the next sprint.
 - Operational route rule: if the Hub catalog route exposes deep links into a static app, validate or deploy that static app in the same sprint before moving on.
+- Operational process rule: when user feedback corrects the delivery cadence, register the rule in the required docs during sprint closeout, then continue the next sprint from that documented base.
 - Reduce consent-banner intrusion on the first fold while preserving local/fail-closed consent behavior. Done in production in Sprint 9.15.
 - Keep the Blade admin dense, utilitarian and consistent with the current control-plane style.
 
@@ -67,6 +69,7 @@ Low if the dashboard stays internal and Hub public placeholders remain inert.
 - Site catalog detail pages must be validated on their canonical routes and cannot show rollout/status/product-sheet language when the sprint calls for a public benchmark-grade landing.
 - Site catalog detail pages must link to real tools/subpages when available; future ideas stay non-linked until they have tested useful pages, localized copy and SEO value.
 - When a Hub catalog route adds or exposes deep links to a static app, validate or deploy that app in the same sprint so public links are not left pointing at stale releases.
+- Institutional pages must keep legal/KYC/provider/payment pending items out of the public first fold. Human-gated items belong in `docs/HUMAN_ACTION_REQUIRED.md`, while public copy should explain current user-facing policy, contact paths and correction paths clearly.
 - Desktop/mobile screenshots are inspected before closure and linked from the sprint artifacts or status notes.
 
 ## Dashboard backlog

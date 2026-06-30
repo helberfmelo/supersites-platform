@@ -567,6 +567,13 @@ Regra operacional:
 2. Transformar em página institucional real: missão, como funciona, privacidade, contato, correções, idiomas.
 3. Manter pendências jurídicas somente em `HUMAN_ACTION_REQUIRED.md`.
 
+**Status em 2026-06-30:** concluida em producao.
+
+- A rota About do Hub deixou de expor `Human legal review remains required`, `Public review`, `revisao publica` e equivalentes. O painel publico das paginas institucionais agora usa copy de cuidado/correcao de pagina, e o helper compartilhado de trust/i18n nao transforma mais `HUMAN_ACTION_REQUIRED` em `human review` publico.
+- O About virou pagina institucional localizada em EN/PT-BR/ES/FR/DE, com seis secoes reais: missao, como a rede funciona, privacidade por padrao, contato/correcoes, idiomas e crescimento responsavel. A rota About do Hub usa essa copy curada diretamente, sem acrescentar blocos genericos de pendencia legal.
+- Ciclo executado: validacao local completa, commit objetivo `398ef0c`, push, Quality Gate `28451195092`, Deploy Dry Run `28451195046`, deploy HostGator `28451482856`, smoke publico, checagem das 5 rotas About, crawler quick `2026-06-30T14-32-30-580Z` com 95 rotas/190 checks/0 gaps e visual live desktop/mobile revisado.
+- Regra registrada para proximas etapas: correcoes operacionais do usuario sobre cadencia, commits/pushes, monitoramento e documentacao devem entrar no fechamento documental da sprint e nas docs de leitura obrigatoria quando alterarem o modo de execucao.
+
 ---
 
 ## Sprint 18.14 — Página Contact

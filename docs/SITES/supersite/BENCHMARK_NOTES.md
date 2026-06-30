@@ -101,3 +101,11 @@ Data-base: 2026-06-27
 - The route avoids generic product-sheet, roadmap, launch/status, billing and ads language; privacy is present as a short cue beside the finder, not as the dominant first-fold message.
 - Gate reinforcement: Hub catalog routes that expose deep links into a static app must validate those production app routes and deploy the app in the same sprint if the public release is stale.
 - Local evidence before CI/deploy: `artifacts/devutility-catalog-qa/devutility-catalog-desktop.png` and `artifacts/devutility-catalog-qa/devutility-catalog-mobile-pt-br.png`; Playwright checked desktop EN/mobile PT-BR, search behavior, overflow and blocked terms.
+
+## Phase 18 Sprint 18.13 About page notes
+
+- The Hub About route now follows the institutional-page benchmark pattern: it explains mission, how the network works, privacy defaults, contact/corrections, languages and responsible growth before any operational detail.
+- Public trust pages must not expose legal launch gates such as `Human legal review remains required`, `public review`, `revisao publica` or equivalent human/legal review language. Those pending items stay in `docs/HUMAN_ACTION_REQUIRED.md`.
+- The shared trust/i18n helper was adjusted so fallback public copy uses contact/correction language instead of publishing human/legal review requirements.
+- Local evidence: `artifacts/about-page-qa/about-en-desktop.png` and `artifacts/about-page-qa/about-pt-br-mobile.png`; live evidence: `artifacts/about-page-qa/about-en-live-desktop.png` and `artifacts/about-page-qa/about-pt-br-live-mobile.png`.
+- Production deploy `28451482856` published release `398ef0c516d6e7348420d1238ce85ac92952155a-28451482856-1`, asset `https://opentshost.com/supersites/_nuxt/BQ5vxgN9.js`; public smoke, AdSense-safe validation, five About locale route checks and crawler quick `2026-06-30T14-32-30-580Z` passed.

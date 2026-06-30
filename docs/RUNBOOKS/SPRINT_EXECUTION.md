@@ -49,6 +49,7 @@ Only after validation:
 - Keep route-like fields (`path`, `href`, `slug`, `url`, `canonical`, `locale`, time zone ids and equivalent technical keys) outside natural-language accent/sanitization rewrites. Visible labels may be localized; route fields must remain byte-stable and must be checked in generated/public HTML when i18n code changes.
 - For benchmark-grade UI changes, do not close the sprint with only local screenshots. Capture or inspect the live production route after the HostGator switch, including desktop and mobile, and fix visible layout issues such as wrapping, overflow, stale copy or benchmark-incoherent navigation before documentation closeout.
 - Keep progress updates concise while deploys run. Record detailed evidence in docs/status after the sprint is objectively green, not as fragmented handoffs between small subtasks.
+- When the project owner corrects cadence, commit strategy, deploy monitoring or acceptance expectations, register the process rule in this runbook, `docs/OPERATING_CONTEXT.md`, the active roadmap or the relevant site notes during sprint closeout before starting the next sprint.
 - Close the sprint with documentation in the same cycle: update roadmap/status/metrics and site notes after the live validation is green, then commit/push that closeout before reading mandatory docs for the next sprint.
 
 ## Stop conditions
