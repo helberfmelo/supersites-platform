@@ -6,8 +6,10 @@ Este roadmap deve ser aprovado antes de iniciar a execucao de sprints com mutaco
 
 ## Principios de execucao
 
-- Ciclo obrigatorio: sprint -> validacao -> commit -> push -> monitoramento do deploy -> leitura obrigatoria -> proxima sprint.
-- Toda sprint deve atualizar `docs/STATUS.md`.
+- A execucao segue os perfis de entrega em `docs/RUNBOOKS/SPRINT_EXECUTION.md`, com validacao proporcional ao risco.
+- Sprints page/UI da Fase 18 usam P1 por padrao: app/rota afetada, screenshots desktop/mobile quando houver UI, commit objetivo, push e monitoramento do Quality Gate.
+- Deploy HostGator, smoke publico, crawler benchmark, Deploy Dry Run e fechamento documental amplo entram quando o perfil, o risco ou o pedido do dono exigir.
+- `docs/STATUS.md` e `docs/METRICS.md` devem ser atualizados em marcos, releases relevantes, mudancas operacionais, fechamento de fase ou a cada 3 a 5 sprints, nao em toda microcorrecao.
 - Mudancas de arquitetura ou processo devem gerar ADR.
 - Segredos reais nunca entram no Git.
 - Funcionalidade gratuita deve resolver a necessidade basica sem cadastro.

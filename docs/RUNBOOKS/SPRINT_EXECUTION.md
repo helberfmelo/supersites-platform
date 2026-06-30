@@ -1,63 +1,99 @@
 # Sprint Execution Runbook
 
-## Before sprint
+Data-base: 2026-06-30
 
-1. Read mandatory docs listed in `AGENTS.md`.
-2. Check `git status`.
-3. Check current environment/production state affected by the sprint.
-4. Define objective, affected files/systems, risks and validation.
-5. Confirm no human-gated action is required; if required, update `docs/HUMAN_ACTION_REQUIRED.md`.
+Este runbook define como executar sprints do SuperSites sem transformar toda alteracao em um lancamento pesado. A regra principal e validacao proporcional ao risco.
 
-## During sprint
+## Conceitos
 
-1. Implement in small reversible steps.
-2. Keep docs, tests and status updated with the change.
-3. Never edit projects of reference.
-4. Never log or commit secrets.
+- `Quality Gate`: workflow de CI apos o push. Ele valida estrutura, segredos, builds/testes afetados e checks path-aware antes de considerar o commit confiavel.
+- `Deploy Dry Run`: ensaio de empacotamento/deploy que gera plano ou artefato auditavel sem trocar producao. Ele serve para mudancas de deploy, manifesto, base path, scripts, secrets ou primeiro deploy de um app.
+- `Smoke publico`: checagem curta da URL real depois do deploy para confirmar HTTP, conteudo essencial, asset principal e ausencia de rota stale.
 
-## Validation
+## Perfis de entrega
 
-1. Run narrow tests first.
-2. Run build/lint/typecheck when applicable.
-3. Run browser/visual checks for frontend work.
-4. Run smoke checks for deploy or production-impacting work.
-5. Run secret scan before commit.
-6. When VPS runtime changes, run `scripts/validate-vps-runtime.ps1`.
-7. When deployment files change, run `scripts/prepare-deploy-dry-run.ps1`.
+### P0 - Incidente ou hotfix critico
 
-## Commit, push and deploy
+Uso: producao quebrada, deploy falhou, seguranca, rota publica 500/404 critica.
 
-Only after validation:
+- Ler apenas contexto necessario para mitigar o problema.
+- Corrigir com o menor diff reversivel.
+- Validar o caso quebrado e o smoke minimo relacionado.
+- Commit/push direto; monitorar CI/deploy ate o estado final.
+- Registrar causa/acao em `docs/STATUS.md` somente se houver impacto publico, rollback, incidente ou risco residual.
 
-1. Commit with a clear title.
-2. Push.
-3. Monitor CI/deploy to final status.
-4. Validate public URL or production smoke.
-5. Update `docs/STATUS.md`.
-6. Read mandatory docs before starting next sprint.
+### P1 - Page/UI sprint
 
-## Sprint cadence for page-by-page execution
+Uso padrao da Fase 18 para pagina, copy, layout, rodape, catalogo, ferramenta client-side ou refinamento visual sem alterar contrato de API, deploy ou dados.
 
-- These cadence rules are mandatory for Phase 18 and the following benchmark page-by-page cycles after the roadmap is approved.
-- Execute one sprint at a time as a closed loop: implement, validate, commit, push, monitor HostGator deploy, run public smoke, then move to the next sprint.
-- Keep commits and pushes objective. Group related code, tests and documentation for the sprint instead of fragmenting the same fix across unnecessary commits.
-- Prefer one implementation commit and one short documentation closeout commit per sprint. Add extra corrective commits only when CI, deploy, live visual QA or public smoke exposes a concrete defect.
-- Do not split an approved sprint into repeated handoffs for planning, partial checks or visual guesses. Once the mandatory context is read, finish the sprint loop unless a stop condition below is hit.
-- Keep chat updates concise during the loop. Put detailed evidence, run ids, assets, screenshots and crawler reports in the closing docs instead of turning the delivery into many fragmented status handoffs.
-- Do not start the next sprint while the current sprint has failing CI, failing deploy, failing public smoke or unresolved benchmark-grade visual acceptance.
-- When smoke markers fail because public copy intentionally changed, update the smoke marker in the same correction and redeploy before continuing.
-- When a Hub/catalog sprint exposes deep links into a static app, validate those public app routes before closing the sprint. If production still points to a stale app release, deploy that static app in the same sprint cycle, rerun the aggregate public smoke and rerun the benchmark crawler before continuing.
-- Keep route-like fields (`path`, `href`, `slug`, `url`, `canonical`, `locale`, time zone ids and equivalent technical keys) outside natural-language accent/sanitization rewrites. Visible labels may be localized; route fields must remain byte-stable and must be checked in generated/public HTML when i18n code changes.
-- For benchmark-grade UI changes, do not close the sprint with only local screenshots. Capture or inspect the live production route after the HostGator switch, including desktop and mobile, and fix visible layout issues such as wrapping, overflow, stale copy or benchmark-incoherent navigation before documentation closeout.
-- Keep progress updates concise while deploys run. Record detailed evidence in docs/status after the sprint is objectively green, not as fragmented handoffs between small subtasks.
-- When the project owner corrects cadence, commit strategy, deploy monitoring or acceptance expectations, register the process rule in this runbook, `docs/OPERATING_CONTEXT.md`, the active roadmap or the relevant site notes during sprint closeout before starting the next sprint.
-- Close the sprint with documentation in the same cycle: update roadmap/status/metrics and site notes after the live validation is green, then commit/push that closeout before reading mandatory docs for the next sprint.
+- Ler `AGENTS.md`, `docs/OPERATING_CONTEXT.md`, este runbook, a secao ativa do roadmap e as notas do site/rota afetada.
+- Implementar a sprint completa antes de handoffs intermediarios.
+- Validar com o menor conjunto significativo:
+  - testes/build do app afetado;
+  - screenshot ou browser check desktop/mobile da rota afetada quando houver UI;
+  - smoke local ou preview do app afetado;
+  - `git diff --check`;
+  - estrutura/segredos quando o diff tocar arquivos publicos, scripts, CI ou docs sensiveis.
+- Preferir um unico commit objetivo com codigo, testes e docs estritamente afetados.
+- Push e monitoramento do `Quality Gate` quando a sprint for para publicacao.
+- Deploy/smoke publico somente do app/rota afetada quando a entrega precisa aparecer em producao.
+- Nao rodar crawler benchmark completo, dry run de deploy, todos os packages ou fechamento documental amplo por padrao.
+
+### P2 - App/API behavior
+
+Uso: endpoint, contrato compartilhado, i18n/SEO compartilhado, analytics local, helpers comuns, pacote usado por mais de um app.
+
+- Ler os docs tecnicos diretamente relacionados: arquitetura, seguranca, dados, SEO/AIO, analytics ou AdSense conforme o escopo.
+- Validar testes unitarios/integracao do modulo afetado e build dos consumidores relevantes.
+- Rodar smokes de rotas que exercitam o contrato alterado.
+- Commit unico quando possivel; commit corretivo separado apenas se CI/deploy revelar defeito concreto.
+
+### P3 - Release, deploy, provider, seguranca ou dados
+
+Uso: workflow GitHub Actions, scripts de deploy, HostGator/VPS, manifestos, migrations, filas, backups, secrets, billing, AdSense real, analytics externo, operacao remota ou acao com risco de producao.
+
+- Ler os playbooks obrigatorios do tema afetado antes da mutacao.
+- Executar `Deploy Dry Run` quando deploy, empacotamento, manifestos, base path, secrets ou primeiro deploy de app forem alterados.
+- Validar rollback/smoke publico quando houver publicacao.
+- Atualizar `docs/STATUS.md`, `docs/METRICS.md`, `docs/HUMAN_ACTION_REQUIRED.md` ou ADR somente se o estado operacional, risco, decisao ou pendencia humana mudou.
+
+### P4 - Fechamento de fase ou auditoria benchmark
+
+Uso: marco de fase, pre-AdSense, grande revisao SEO/i18n, mudanca de navegacao global, fechamento de lote de paginas ou auditoria solicitada.
+
+- Rodar crawler benchmark quick/full conforme o objetivo.
+- Capturar evidencias desktop/mobile das rotas representativas ou obrigatorias.
+- Atualizar roadmap, status, metricas, notas dos sites e criterios pendentes.
+- Fazer commit documental de fechamento apenas quando houver volume suficiente para justificar separacao do commit de implementacao.
+
+## Cadencia padrao
+
+1. Escolher o perfil de entrega antes de editar.
+2. Checar `git status`.
+3. Implementar a sprint inteira em passos reversiveis.
+4. Validar pelo perfil escolhido.
+5. Commit objetivo.
+6. Push.
+7. Monitorar `Quality Gate`.
+8. Deploy e smoke publico somente quando o perfil ou o pedido do dono exigir publicacao.
+9. Atualizar docs apenas quando comportamento, operacao, risco, criterio de aceite ou roadmap realmente mudou.
+10. Seguir para a proxima sprint depois que CI/deploy/smoke obrigatorios do perfil estiverem verdes.
+
+## Regras para Fase 18
+
+- O perfil padrao e P1.
+- Crawler benchmark quick/full nao e obrigatorio por pagina. Use quando houver mudanca de shell global, navegacao, rotas, sitemap/hreflang/canonical, i18n compartilhado, rodape global, regressao suspeita ou fechamento de lote/fase.
+- `Deploy Dry Run` nao e obrigatorio para copy/layout estatico quando o workflow de deploy ja esta estavel. Use quando o pacote/deploy mudou.
+- Screenshots desktop/mobile devem cobrir a rota alterada; nao precisam cobrir todas as 95 rotas do catalogo.
+- Se o Hub criar deep links para app estatico, validar esses links publicos. Publicar o app no mesmo ciclo apenas se a producao estiver antiga, 404, 500 ou incoerente.
+- Commits devem ser curtos e objetivos. Evitar commit de implementacao + commit de docs quando um unico commit representa bem a sprint.
+- Detalhes longos de evidencias ficam em artefatos ou notas de fechamento de lote, nao em toda microcorrecao.
 
 ## Stop conditions
 
-- Failed deploy.
-- Failed production smoke.
-- Security risk.
-- Data-loss risk.
-- Unclear production ownership.
-- Human-gated action blocking the sprint.
+- Deploy falhou.
+- Smoke publico obrigatorio falhou.
+- Risco de seguranca ou vazamento de segredo.
+- Risco de perda de dados.
+- Propriedade de producao ou rollback incertos.
+- Acao humana irreversivel bloqueando o objetivo.

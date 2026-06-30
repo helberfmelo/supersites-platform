@@ -29,17 +29,17 @@ Fonte da verdade operacional complementar ao `MEGA_PROMPT_SUPERSITES.md`.
 
 Padroes aproveitados:
 
-- Sprint sempre inicia com leitura obrigatoria, status real e plano de validacao.
+- Sprint sempre inicia com leitura proporcional ao risco, status real do escopo afetado e plano de validacao.
 - Secrets reais ficam em arquivo local ignorado, GitHub Secrets, cPanel seguro ou cofre.
 - Deploy em HostGator exige cuidado com subdiretorio, `APP_URL`, `ASSET_URL`, base path e migrations.
 - Publicacao por FTP/SSH deve preservar `.env`, evitar wipe remoto total e executar smoke pos-deploy.
-- Commits pequenos, push e monitoramento de deploy sao obrigatorios quando uma sprint for aprovada para execucao.
-- Na Fase 18 e em ciclos page-by-page, cada sprint deve ser fechada como loop unico e objetivo: implementar, validar, commit/push, monitorar o deploy HostGator, rodar smoke publico e so entao iniciar a proxima sprint.
-- Commits/pushes devem ser objetivos e agrupados por sprint; evitar dividir a mesma correcao visual em varias entregas quando puder ser validada e publicada no mesmo ciclo.
-- O ritmo operacional esperado e direto: implementar a sprint completa, validar, fazer commit/push, monitorar CI/deploy, validar producao e entao seguir para a proxima sprint. Detalhamento longo deve ir para docs de fechamento, nao para ciclos intermediarios desnecessarios.
-- Diretriz reforcada em 2026-06-30: apos leitura obrigatoria e escopo aprovado, nao interromper a sprint para handoffs parciais de plano, validacao visual especulativa ou commits picados. Implementar a etapa completa, validar, publicar, monitorar e documentar o fechamento antes da proxima sprint.
-- Quando o dono do projeto corrigir cadencia, estrategia de commit/push, monitoramento de deploy ou criterio de aceite, registrar a regra nas docs obrigatorias durante o fechamento da sprint antes de iniciar a proxima etapa.
-- Entregas benchmark-grade so fecham depois de validacao visual live desktop/mobile e checagem das rotas profundas reais. Se o Hub apontar para app estatico com release antiga, 404 ou 500, publicar o app no mesmo ciclo antes da proxima sprint.
+- Diretriz de simplificacao aprovada em 2026-06-30: usar os perfis P0-P4 de `docs/RUNBOOKS/SPRINT_EXECUTION.md`; page/UI da Fase 18 usa P1 por padrao.
+- Commits/pushes devem ser objetivos e agrupados por sprint; preferir um unico commit com codigo, testes e docs estritamente afetados.
+- O ritmo operacional esperado e direto: implementar a sprint completa, validar o app/rota afetada, fazer commit/push, monitorar o Quality Gate e publicar apenas quando o escopo exigir producao.
+- `Deploy Dry Run`, crawler benchmark quick/full, todos os package tests, STATUS/METRICS e fechamento documental amplo nao sao rotina de microcorrecao visual; entram por risco, mudanca de deploy/rotas globais/SEO compartilhado, release relevante ou fechamento de lote/fase.
+- A higiene documental ampla deve acontecer em marcos, releases relevantes, fechamento de fase ou apos 3 a 5 sprints, seguindo o padrao observado em projetos de referencia mais ageis.
+- Quando o dono do projeto corrigir cadencia, estrategia de commit/push, monitoramento de deploy ou criterio de aceite, registrar a regra nas fontes de verdade aplicaveis, sem criar fechamento documental pesado para toda microentrega.
+- Entregas benchmark-grade publicadas so fecham depois de validacao visual live desktop/mobile da rota afetada e checagem dos deep links reais adicionados ou alterados. Se o Hub apontar para app estatico com release antiga, 404 ou 500, publicar o app no mesmo ciclo antes da proxima sprint.
 - Campos tecnicos de rota e SEO (`path`, `href`, `slug`, `url`, `canonical`, `locale`, `timeZone` e equivalentes) nao devem ser alterados por sanitizacao linguistica ou acentuacao. Labels visiveis podem ser localizadas; rotas devem permanecer estaveis e validadas no HTML publicado/crawler antes de seguir.
 - Obstaculos tecnicos reversiveis devem ser contornados com dry-run, fallback, validacao ou modo degradado e a sprint deve continuar.
 - Obstaculos humanos, juridicos, fiscais, bancarios, compra, KYC, PIN ou acoes irreversiveis devem ser registrados em `HUMAN_ACTION_REQUIRED` e o restante deve continuar.
