@@ -64,3 +64,11 @@ Medium; ads/support must stay away from URL input, results and diagnostics.
 - The report exposes `online`, `down`, `redirecting`, `slow` and ready states, a numeric score, compact metadata and cards for availability, redirects, security headers, crawlability and performance.
 - Empty/loading/success/error states, localized principle copy and public one-shot badges were validated in unit/E2E/Playwright smoke.
 - Desktop and mobile screenshots of the production build were captured under `artifacts/playwright-sitepulse-report/data/`; no console errors, storage use or horizontal overflow were observed.
+
+## Sprint 18.10 execution notes
+
+- The Hub catalog route now opens as a SitePulse-specific public landing instead of a generic product profile.
+- The first fold presents a practical website status report, sample score and direct CTA before methodology, limits or privacy text.
+- The route links to the 7 real SitePulse checks: status, redirects, security headers, robots.txt, sitemap, TTFB and performance snapshot.
+- Local and live desktop/mobile QA, public copy validation, AdSense-safe validation, SitePulse static app smoke and EN/PT-BR deep-link checks passed before documentation closeout.
+- No recurring uptime, alert, status page, multi-region probe, paid API, provider, billing, ad serving or irreversible action was activated.

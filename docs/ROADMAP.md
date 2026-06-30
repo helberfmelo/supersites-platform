@@ -825,6 +825,14 @@ Sprint 18.9 - Pagina de catalogo MailHealth
 - Status: concluida em producao. Commit de implementacao `384a9bf` e correcao i18n `681734b` passaram; Quality Gates `28436591226`/`28438120880`, Deploy Dry Runs `28436591227`/`28438120905` e deploy final reversivel do Hub `28438325239` passaram; release `681734b85cabc8defa91c54cef4b0c14f0ea3584-28438325239-1`, asset Hub `zJBMpnOw.js`, asset MailHealth `Dm_wdR4Q.js`, smokes publicos, AdSense-safe, MailHealth static app smoke, 14 deep links EN/PT-BR e crawler quick `2026-06-30T10-47-16-555Z` passaram.
 - Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, pagamento, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect, app MailHealth novo, monitor recorrente, DMARC ingestion, API paga ou acao irreversivel foi ativado.
 
+Sprint 18.10 - Pagina de catalogo SitePulse Lab
+- Simbolico: `PHASE18-SITEPULSE-CATALOG-LANDING`.
+- Escopo entregue: `/supersites/en/sites/sitepulse-lab` passa a ser uma landing publica de website status/page health, com H1 pratico, CTA para Website Status, relatorio visual acima da dobra, score de exemplo, sinais de disponibilidade/redirects/headers/timing, atalhos por diagnostico, busca/filtros, cards para os 7 checks reais e rodape contextual com deep links.
+- Gate permanente reforcado: catalogos de status/performance devem responder primeiro a pergunta pratica do usuario, depois separar detalhes tecnicos, limites e privacidade. A sprint so fecha apos visual live desktop/mobile, deep links reais EN/PT-BR e smoke do app estatico quando o Hub apontar para ferramentas desse app.
+- Validacao local pre-commit: Vitest Hub 22 testes, build Hub, Playwright Hub 22 testes, preview smoke Hub, public-copy 951 HTMLs, AdSense-safe 13 paginas, structure, secrets, package tests/typechecks, deploy dry-run, ci:changes, HostGator artifact Hub 211 arquivos/7978695 bytes, `git diff --check` e screenshots em `artifacts/sitepulse-catalog-qa/` passaram.
+- Status: concluida em producao. Commit `10765e7`, Quality Gate `28440535346`, Deploy Dry Run `28440535344` e deploy reversivel do Hub `28440771101` passaram; release `10765e70ece762bb0eaf84ea4e8a39a3fbe1a57f-28440771101-1`, asset Hub `mwraAvTd.js`, asset SitePulse `lkcC6TkC.js`, smokes publicos, AdSense-safe, SitePulse static app smoke, 14 deep links EN/PT-BR e crawler quick `2026-06-30T11-35-54-823Z` passaram.
+- Escopo negativo: nenhum app estatico SitePulse novo foi publicado porque os deep links publicos ja estavam 200 e coerentes. Nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, pagamento, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect, uptime recorrente, alerta, status page, monitor persistente, API paga, multi-regiao ou acao irreversivel foi ativado.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.

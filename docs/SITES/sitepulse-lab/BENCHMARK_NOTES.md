@@ -16,7 +16,8 @@ Data-base: 2026-06-27
 
 ## Screenshots available
 
-- No SitePulse-specific screenshots are present yet.
+- Local Sprint 18.10 Hub catalog screenshots: `artifacts/sitepulse-catalog-qa/sitepulse-catalog-local-desktop.png` and `artifacts/sitepulse-catalog-qa/sitepulse-catalog-local-mobile-pt-br.png`.
+- Live Sprint 18.10 Hub catalog screenshots: `artifacts/sitepulse-catalog-qa/sitepulse-catalog-live-desktop.png` and `artifacts/sitepulse-catalog-qa/sitepulse-catalog-live-mobile-pt-br.png`.
 
 ## Useful patterns to learn
 
@@ -54,3 +55,10 @@ Data-base: 2026-06-27
 - Kept the benchmark learning pattern of "answer first, evidence second" without copying third-party grades, labels, charts, icons or diagnostic claims.
 - Preserved antiabuse boundaries: one-shot bounded probe only, no broad crawler, no stored history, no status page generation and no multi-region simulation.
 - Localized dynamic result labels across EN/PT-BR/ES/FR/DE to avoid English fallback in localized technical reports.
+
+## Sprint 18.10 implementation notes
+
+- Converted the Hub catalog detail for SitePulse into a task-first status/page-health landing with original copy and layout.
+- Borrowed only product patterns from the benchmarks: answer first, score/report panel, grouped diagnostics, technical cards and related checks.
+- Kept methodology, limitations, privacy and monitoring/backlog ideas below the useful public workflow.
+- Verified live desktop/mobile visuals after HostGator switch and confirmed deep links to the current SitePulse static app release were 200.

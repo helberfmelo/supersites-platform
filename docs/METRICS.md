@@ -1510,7 +1510,24 @@ Data-base: 2026-06-29
 | Sprint 18.9 post-deploy quick crawler | `2026-06-30T10-47-16-555Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.9 live MailHealth catalog screenshots | `artifacts/mailhealth-catalog-qa/mailhealth-catalog-live-desktop.png` and `artifacts/mailhealth-catalog-qa/mailhealth-catalog-live-mobile-pt-br.png` reviewed |
 | Sprint 18.9 live MailHealth catalog smoke | Passed: desktop/mobile markers, accented PT-BR H1, blocked phrase scan 0, overflow 0 |
-| Real deploy/provider activation | 17 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.9 initial and corrective Hub deploys; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.10 SitePulse catalog route | `/supersites/en/sites/sitepulse-lab` converted from generic site detail to task-first website status/page health landing |
+| Sprint 18.10 direct public links | 14 EN/PT-BR checks passed across 7 SitePulse tool routes |
+| Sprint 18.10 Hub unit suite | Passed: 22 tests |
+| Sprint 18.10 Hub build | Passed |
+| Sprint 18.10 Hub Playwright suite | Passed: 22 tests, including SitePulse desktop EN and mobile PT-BR screenshots |
+| Sprint 18.10 public copy validation | Passed: 951 HTML files |
+| Sprint 18.10 AdSense-safe validation | Passed locally and post-deploy: 13 public pages |
+| Sprint 18.10 package/structure/secrets/dry-run/diff | Passed, including package tests/typechecks, `ci:changes` and deploy dry-run |
+| Sprint 18.10 Hub HostGator artifact | Local passed: 211 files, 7978695 bytes; deploy passed: 211 files, 7969696 bytes |
+| Sprint 18.10 implementation commit | `10765e7` |
+| Sprint 18.10 remote Quality Gate | `28440535346` passed |
+| Sprint 18.10 remote Deploy Dry Run | `28440535344` passed |
+| Sprint 18.10 Hub production deploy | `28440771101` passed; release `10765e70ece762bb0eaf84ea4e8a39a3fbe1a57f-28440771101-1`; asset `mwraAvTd.js`; SitePulse asset `lkcC6TkC.js` |
+| Sprint 18.10 post-deploy public smoke | Passed: Hub/apps/APIs, SitePulse static app smoke and 14 EN/PT-BR deep links |
+| Sprint 18.10 post-deploy quick crawler | `2026-06-30T11-35-54-823Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.10 live SitePulse catalog screenshots | `artifacts/sitepulse-catalog-qa/sitepulse-catalog-live-desktop.png` and `artifacts/sitepulse-catalog-qa/sitepulse-catalog-live-mobile-pt-br.png` reviewed |
+| Sprint 18.10 live SitePulse catalog smoke | Passed: desktop/mobile markers, PT-BR H1, blocked phrase scan 0, overflow 0 |
+| Real deploy/provider activation | 18 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.10 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 

@@ -515,6 +515,10 @@ Regra operacional:
 3. Destacar status, redirect, headers, robots, sitemap, TTFB, snapshot.
 4. Remover `monitoring planned` do topo.
 
+**Status:** concluída em produção em 2026-06-30. A rota de catálogo SitePulse Lab virou landing pública task-first com relatório visual de status acima da dobra, score de exemplo, sinais de disponibilidade, redirect, headers e timing, atalhos por workflow, cards para os 7 checks reais, busca/filtros, limites/privacidade abaixo do valor útil e rodapé contextual com deep links. Commit `10765e7`; Quality Gate `28440535346`; Deploy Dry Run `28440535344`; deploy reversível do Hub `28440771101`; release `/supersites/` `10765e70ece762bb0eaf84ea4e8a39a3fbe1a57f-28440771101-1`; smoke público, AdSense-safe, SitePulse static app smoke, 14 deep links EN/PT-BR, crawler quick `2026-06-30T11-35-54-823Z` e visual live desktop/mobile passaram.
+
+**Regra aprendida reforçada:** para as próximas etapas, o fechamento da sprint só ocorre depois de implementar a página inteira, validar localmente, commit/push objetivo, monitorar CI/deploy HostGator, rodar smoke público, validar deep links reais e revisar visual live desktop/mobile. O detalhe técnico deve ficar no fechamento documental; não fragmentar uma mesma sprint em handoffs ou commits parciais quando não houver falha concreta.
+
 ---
 
 ## Sprint 18.11 — Página de catálogo PixelBatch
