@@ -187,6 +187,11 @@ try {
         throw 'Cookie Policy page smoke failed.'
     }
 
+    $terms = Invoke-PreviewRequest -Uri "$baseUrl/en/terms" -RequiredContent 'Permitted use'
+    if ($terms.StatusCode -ne 200 -or $terms.Content -notmatch 'Terms of Use' -or $terms.Content -notmatch 'Future paid services') {
+        throw 'Terms of Use page smoke failed.'
+    }
+
     $sitemap = Invoke-PreviewRequest -Uri "$baseUrl/sitemap.xml" -RequiredContent '<urlset'
     if ($sitemap.Content -notmatch '/en/privacy' -or $sitemap.Content -notmatch '/de/editorial-policy') {
         throw 'Sitemap smoke failed.'

@@ -214,6 +214,76 @@ test.describe('SuperSites public hub', () => {
     expect(errors).toEqual([])
   })
 
+  test('renders the Terms of Use as complete public terms on desktop', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.goto('/en/terms')
+    await dismissConsentBanner(page)
+
+    await expect(page).toHaveTitle(/Terms of Use/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Terms of Use')
+    await expect(page.getByRole('heading', { name: 'Permitted use' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Abuse and prohibited activity' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Tool limits' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Information and results' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Future paid services' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Responsibility and contact' })).toBeVisible()
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/en/terms',
+    )
+    await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
+    await expect(page.locator('main')).not.toContainText(
+      /catalog phase|launched|launch|rollout|public review|human review|legal review|quality checks|release checks|rollback|worker planned|billing disabled|ads planned|plans to|planned|\bshould\b|\bmust\b/i,
+    )
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1)
+
+    const schemaType = await page.locator('script[type="application/ld+json"]').evaluate((script) => {
+      const schema = JSON.parse(script.textContent || '{}')
+
+      return schema['@type']
+    })
+
+    expect(schemaType).toBe('TermsOfService')
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('terms-desktop', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('renders the localized Terms of Use on mobile', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/pt-br/terms')
+    await dismissConsentBanner(page)
+
+    await expect(page).toHaveTitle(/Termos de Uso/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Termos de Uso')
+    await expect(page.getByRole('heading', { name: 'Uso permitido' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Abuso e atividades proibidas' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Limites das ferramentas' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Informações e resultados' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Serviços pagos futuros' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Responsabilidade e contato' })).toBeVisible()
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/pt-br/terms',
+    )
+    await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
+    await expect(page.locator('main')).not.toContainText(
+      /fase do catálogo|lançamento|revisão pública|revisão humana|revisão jurídica|planeja|planejado|\bdeve\b|\bdevem\b|human review|legal review|quality checks|billing disabled|ads planned/i,
+    )
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('terms-pt-mobile', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
   test('renders the editorial policy page on desktop', async ({ page }, testInfo) => {
     const errors = collectBrowserErrors(page)
 

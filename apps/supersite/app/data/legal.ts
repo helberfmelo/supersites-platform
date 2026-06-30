@@ -1166,25 +1166,49 @@ export const legalPageCatalog: LegalPage[] = [
       en: {
         navLabel: 'Terms',
         title: 'Terms of Use',
-        description: 'The baseline terms for lawful use, service limitations, responsible testing and future paid upgrades across the SuperSites portfolio.',
-        updatedLabel: 'Reviewed June 26, 2026',
+        description: 'Public terms for lawful use, abuse prevention, free tool limits, informational results, future paid services and responsibility across SuperSites.',
+        updatedLabel: 'Reviewed June 30, 2026',
         sections: [
           {
-            heading: 'Use the tools responsibly',
+            heading: 'Permitted use',
             paragraphs: [
-              'Do not use SuperSites to attack systems, scan targets without authorization, upload illegal content, bypass rate limits, commit fraud or interfere with other users.',
+              'Use the public tools for lawful, practical tasks such as checking your own domains, formatting local files, preparing documents, comparing calculations and learning how a result was produced.',
+              'The free public workflows remain available without mandatory account creation. Account features, saved history, automation and commercial volume are separate from the basic answer a visitor can get on the page.',
             ],
           },
           {
-            heading: 'Results are informational',
+            heading: 'Abuse and prohibited activity',
             paragraphs: [
-              'Tool results, calculations and diagnostics are provided for practical guidance and can be affected by third-party data, network conditions, browser limits and incomplete inputs.',
+              'Do not use SuperSites to attack systems, test targets without authorization, submit illegal content, collect sensitive data, mislead people, infringe third-party rights, bypass limits, overload services, automate scraping, commit fraud or interfere with another person using the tools.',
+              'Security reports, unsafe redirects, phishing, malware, impersonation, spam or other abuse concerns can be sent through the contact page with the affected URL and safe reproduction details.',
             ],
           },
           {
-            heading: 'Paid features',
+            heading: 'Tool limits',
             paragraphs: [
-              'Paid plans are not active in this catalog phase. When launched, pricing, quotas, cancellation, refunds, entitlements and provider terms must be shown before checkout.',
+              'Free tools use fair limits so the public service stays available: browser memory, file size, request volume, network timeouts, record availability and regional resolver coverage can affect what a page can return.',
+              'Results can be delayed, unavailable or incomplete when a browser blocks a feature, a network request fails, a public source is cached, a domain has no record, or a file is too large for local processing.',
+            ],
+          },
+          {
+            heading: 'Information and results',
+            paragraphs: [
+              'Diagnostics, calculators, document helpers and formatters provide informational output for everyday decisions. They are not legal, tax, financial, medical, security certification or professional advice.',
+              'Verify important results with authoritative sources before changing DNS, sending invoices, making financial decisions, publishing documents, deleting metadata or relying on an uptime, email, IP or website signal.',
+            ],
+          },
+          {
+            heading: 'Future paid services',
+            paragraphs: [
+              'SuperSites currently presents the public tools here without checkout. Future paid services can cover higher limits, saved history, monitoring, batch work, API access, teams, automation, customization or removal of ads.',
+              'When a paid service is offered, the payment surface presents price, renewal, quotas, taxes when applicable, cancellation, refund handling, support scope and provider terms before payment is accepted.',
+            ],
+          },
+          {
+            heading: 'Responsibility and contact',
+            paragraphs: [
+              'You remain responsible for the content you enter, the rights you have to test or process it, the decisions you make from the output and the local laws or third-party terms that apply to your work.',
+              'SuperSites is maintained with reasonable care, but availability and accuracy can vary. Send corrections, privacy requests, accessibility issues, security reports or legal notices through the contact page.',
             ],
           },
         ],
@@ -1192,25 +1216,49 @@ export const legalPageCatalog: LegalPage[] = [
       'pt-br': {
         navLabel: 'Termos',
         title: 'Termos de Uso',
-        description: 'Termos básicos para uso lícito, limitações do serviço, testes responsáveis e futuros upgrades pagos no portfólio SuperSites.',
-        updatedLabel: 'Revisado em 26 de junho de 2026',
+        description: 'Termos públicos para uso lícito, prevenção de abuso, limites gratuitos, resultados informativos, serviços pagos futuros e responsabilidade no SuperSites.',
+        updatedLabel: 'Revisado em 30 de junho de 2026',
         sections: [
           {
-            heading: 'Use as ferramentas com responsabilidade',
+            heading: 'Uso permitido',
             paragraphs: [
-              'Não use o SuperSites para atacar sistemas, testar alvos sem autorização, enviar conteúdo ilegal, burlar limites, cometer fraude ou interferir em outros usuários.',
+              'Use as ferramentas públicas para tarefas lícitas e práticas, como checar seus próprios domínios, formatar arquivos locais, preparar documentos, comparar cálculos e entender como um resultado foi produzido.',
+              'Os fluxos gratuitos continuam disponíveis sem cadastro obrigatório. Recursos de conta, histórico salvo, automação e volume comercial ficam separados da resposta básica que a pessoa obtém na página.',
             ],
           },
           {
-            heading: 'Resultados são informativos',
+            heading: 'Abuso e atividades proibidas',
             paragraphs: [
-              'Resultados, cálculos e diagnósticos servem como orientação prática e podem depender de dados de terceiros, rede, navegador e entradas incompletas.',
+              'Não use o SuperSites para atacar sistemas, testar alvos sem autorização, enviar conteúdo ilegal, coletar dados sensíveis, enganar pessoas, violar direitos de terceiros, burlar limites, sobrecarregar serviços, automatizar scraping, cometer fraude ou interferir no uso de outra pessoa.',
+              'Relatos de segurança, redirecionamentos inseguros, phishing, malware, falsidade de identidade, spam ou outros abusos podem ser enviados pela página de contato com a URL afetada e detalhes seguros de reprodução.',
             ],
           },
           {
-            heading: 'Recursos pagos',
+            heading: 'Limites das ferramentas',
             paragraphs: [
-              'Planos pagos não estão ativos nesta fase do catálogo. Quando lançados, preços, cotas, cancelamento, reembolsos, direitos e termos do provedor devem aparecer antes do checkout.',
+              'Ferramentas gratuitas usam limites justos para manter o serviço público disponível: memória do navegador, tamanho de arquivo, volume de solicitações, timeouts de rede, disponibilidade de registros e cobertura regional de resolvedores podem afetar a resposta.',
+              'Resultados podem atrasar, falhar ou ficar incompletos quando o navegador bloqueia um recurso, uma requisição de rede falha, uma fonte pública está em cache, um domínio não tem registro ou um arquivo é grande demais para processamento local.',
+            ],
+          },
+          {
+            heading: 'Informações e resultados',
+            paragraphs: [
+              'Diagnósticos, calculadoras, auxiliares de documento e formatadores entregam saída informativa para decisões do dia a dia. Eles não substituem orientação jurídica, fiscal, financeira, médica, certificação de segurança ou aconselhamento profissional.',
+              'Confirme resultados importantes em fontes oficiais antes de alterar DNS, enviar faturas, tomar decisões financeiras, publicar documentos, apagar metadados ou confiar em sinais de uptime, e-mail, IP ou website.',
+            ],
+          },
+          {
+            heading: 'Serviços pagos futuros',
+            paragraphs: [
+              'O SuperSites apresenta aqui as ferramentas públicas sem checkout. Serviços pagos futuros podem cobrir limites maiores, histórico salvo, monitoramento, lote, acesso por API, equipes, automação, personalização ou remoção de anúncios.',
+              'Quando um serviço pago for oferecido, a superfície de pagamento apresenta preço, renovação, cotas, impostos quando aplicável, cancelamento, tratamento de reembolso, escopo de suporte e termos do provedor antes de aceitar pagamento.',
+            ],
+          },
+          {
+            heading: 'Responsabilidade e contato',
+            paragraphs: [
+              'Você continua responsável pelo conteúdo inserido, pelos direitos para testar ou processar esse conteúdo, pelas decisões tomadas a partir da saída e pelas leis locais ou termos de terceiros aplicáveis ao seu trabalho.',
+              'O SuperSites é mantido com cuidado razoável, mas disponibilidade e precisão podem variar. Envie correções, pedidos de privacidade, problemas de acessibilidade, relatos de segurança ou avisos legais pela página de contato.',
             ],
           },
         ],
@@ -1218,25 +1266,49 @@ export const legalPageCatalog: LegalPage[] = [
       es: {
         navLabel: 'Términos',
         title: 'Términos de Uso',
-        description: 'Términos base para uso lícito, limitaciones del servicio, pruebas responsables y futuros upgrades pagos en SuperSites.',
-        updatedLabel: 'Revisado el 26 de junio de 2026',
+        description: 'Términos públicos para uso lícito, prevención de abuso, límites gratuitos, resultados informativos, futuros servicios pagos y responsabilidad en SuperSites.',
+        updatedLabel: 'Revisado el 30 de junio de 2026',
         sections: [
           {
-            heading: 'Usa las herramientas responsablemente',
+            heading: 'Uso permitido',
             paragraphs: [
-              'No uses SuperSites para atacar sistemas, probar objetivos sin autorización, subir contenido ilegal, eludir límites, cometer fraude o interferir con otras personas.',
+              'Usa las herramientas públicas para tareas lícitas y prácticas, como revisar tus propios dominios, formatear archivos locales, preparar documentos, comparar cálculos y entender cómo se produjo un resultado.',
+              'Los flujos gratuitos siguen disponibles sin registro obligatorio. Funciones de cuenta, historial guardado, automatización y volumen comercial quedan separados de la respuesta básica que una persona obtiene en la página.',
             ],
           },
           {
-            heading: 'Resultados informativos',
+            heading: 'Abuso y actividad prohibida',
             paragraphs: [
-              'Resultados, cálculos y diagnósticos son orientación práctica y pueden depender de datos de terceros, red, navegador y entradas incompletas.',
+              'No uses SuperSites para atacar sistemas, probar objetivos sin autorización, enviar contenido ilegal, recolectar datos sensibles, engañar a personas, infringir derechos de terceros, eludir límites, sobrecargar servicios, automatizar scraping, cometer fraude o interferir con el uso de otra persona.',
+              'Informes de seguridad, redirecciones inseguras, phishing, malware, suplantación, spam u otros abusos pueden enviarse desde la página de contacto con la URL afectada y detalles seguros de reproducción.',
             ],
           },
           {
-            heading: 'Funciones pagas',
+            heading: 'Límites de las herramientas',
             paragraphs: [
-              'Los planes pagos no están activos en esta fase. Cuando se lancen, precios, cuotas, cancelación, reembolsos, derechos y términos del proveedor deben aparecer antes del checkout.',
+              'Las herramientas gratuitas usan límites justos para mantener disponible el servicio público: memoria del navegador, tamaño de archivo, volumen de solicitudes, tiempos de espera de red, disponibilidad de registros y cobertura regional de resolvers pueden afectar la respuesta.',
+              'Los resultados pueden retrasarse, fallar o quedar incompletos cuando el navegador bloquea una función, una solicitud de red falla, una fuente pública está en caché, un dominio no tiene registro o un archivo es demasiado grande para procesamiento local.',
+            ],
+          },
+          {
+            heading: 'Información y resultados',
+            paragraphs: [
+              'Diagnósticos, calculadoras, asistentes de documentos y formateadores entregan salida informativa para decisiones cotidianas. No sustituyen orientación legal, fiscal, financiera, médica, certificación de seguridad ni asesoría profesional.',
+              'Verifica resultados importantes con fuentes oficiales antes de cambiar DNS, enviar facturas, tomar decisiones financieras, publicar documentos, borrar metadatos o confiar en señales de uptime, correo, IP o sitio web.',
+            ],
+          },
+          {
+            heading: 'Servicios pagos futuros',
+            paragraphs: [
+              'SuperSites presenta aquí las herramientas públicas sin checkout. Servicios pagos futuros pueden cubrir límites mayores, historial guardado, monitoreo, lote, acceso por API, equipos, automatización, personalización o eliminación de anuncios.',
+              'Cuando se ofrezca un servicio pago, la superficie de pago presenta precio, renovación, cuotas, impuestos cuando apliquen, cancelación, tratamiento de reembolsos, alcance de soporte y términos del proveedor antes de aceptar el pago.',
+            ],
+          },
+          {
+            heading: 'Responsabilidad y contacto',
+            paragraphs: [
+              'Sigues siendo responsable por el contenido ingresado, los derechos para probarlo o procesarlo, las decisiones tomadas a partir de la salida y las leyes locales o términos de terceros aplicables a tu trabajo.',
+              'SuperSites se mantiene con cuidado razonable, pero disponibilidad y precisión pueden variar. Envía correcciones, solicitudes de privacidad, problemas de accesibilidad, informes de seguridad o avisos legales desde la página de contacto.',
             ],
           },
         ],
@@ -1244,25 +1316,49 @@ export const legalPageCatalog: LegalPage[] = [
       fr: {
         navLabel: 'Conditions',
         title: 'Conditions d’utilisation',
-        description: 'Conditions de base pour usage licite, limites du service, tests responsables et futures offres payantes dans SuperSites.',
-        updatedLabel: 'Révisé le 26 juin 2026',
+        description: 'Conditions publiques pour usage licite, prévention des abus, limites gratuites, résultats informatifs, futurs services payants et responsabilité dans SuperSites.',
+        updatedLabel: 'Révisé le 30 juin 2026',
         sections: [
           {
-            heading: 'Utiliser les outils de façon responsable',
+            heading: 'Utilisation autorisée',
             paragraphs: [
-              'N’utilisez pas SuperSites pour attaquer des systèmes, tester sans autorisation, envoyer du contenu illégal, contourner les limites, frauder ou gêner d’autres utilisateurs.',
+              'Utilisez les outils publics pour des tâches licites et pratiques, comme vérifier vos propres domaines, formater des fichiers locaux, préparer des documents, comparer des calculs et comprendre comment un résultat a été produit.',
+              'Les flux gratuits restent disponibles sans compte obligatoire. Les fonctions de compte, historique enregistré, automatisation et volume commercial restent séparées de la réponse de base obtenue sur la page.',
             ],
           },
           {
-            heading: 'Résultats informatifs',
+            heading: 'Abus et activités interdites',
             paragraphs: [
-              'Résultats, calculs et diagnostics sont une aide pratique et peuvent dépendre de données tierces, du réseau, du navigateur et d’entrées incomplètes.',
+              'N’utilisez pas SuperSites pour attaquer des systèmes, tester des cibles sans autorisation, envoyer du contenu illégal, collecter des données sensibles, tromper des personnes, porter atteinte aux droits de tiers, contourner les limites, surcharger les services, automatiser le scraping, frauder ou gêner l’usage d’une autre personne.',
+              'Les signalements de sécurité, redirections dangereuses, phishing, malware, usurpation, spam ou autres abus peuvent être envoyés depuis la page de contact avec l’URL concernée et des détails de reproduction sûrs.',
             ],
           },
           {
-            heading: 'Fonctions payantes',
+            heading: 'Limites des outils',
             paragraphs: [
-              'Les plans payants ne sont pas actifs dans cette phase. Au lancement, prix, quotas, annulation, remboursements, droits et termes fournisseur devront être visibles avant le checkout.',
+              'Les outils gratuits utilisent des limites équitables pour garder le service public disponible : mémoire du navigateur, taille de fichier, volume de requêtes, délais réseau, disponibilité des enregistrements et couverture régionale des résolveurs peuvent affecter la réponse.',
+              'Les résultats peuvent être retardés, indisponibles ou incomplets quand une fonction du navigateur est indisponible, une requête réseau échoue, une source publique est en cache, un domaine n’a pas d’enregistrement ou un fichier dépasse le traitement local.',
+            ],
+          },
+          {
+            heading: 'Informations et résultats',
+            paragraphs: [
+              'Diagnostics, calculateurs, assistants de documents et formateurs fournissent une sortie informative pour les décisions courantes. Ils ne remplacent pas un conseil juridique, fiscal, financier, médical, une certification de sécurité ou un avis professionnel.',
+              'Vérifiez les résultats importants auprès de sources officielles avant de modifier DNS, envoyer des factures, prendre des décisions financières, publier des documents, supprimer des métadonnées ou vous appuyer sur un signal uptime, e-mail, IP ou site web.',
+            ],
+          },
+          {
+            heading: 'Services payants futurs',
+            paragraphs: [
+              'SuperSites présente ici les outils publics sans checkout. De futurs services payants peuvent couvrir limites plus élevées, historique enregistré, surveillance, lots, accès API, équipes, automatisation, personnalisation ou suppression des annonces.',
+              'Lorsqu’un service payant est proposé, la surface de paiement présente prix, renouvellement, quotas, taxes le cas échéant, annulation, traitement des remboursements, périmètre de support et termes fournisseur avant acceptation du paiement.',
+            ],
+          },
+          {
+            heading: 'Responsabilité et contact',
+            paragraphs: [
+              'Vous restez responsable du contenu saisi, des droits permettant de le tester ou le traiter, des décisions prises à partir de la sortie et des lois locales ou conditions tierces applicables à votre travail.',
+              'SuperSites est maintenu avec un soin raisonnable, mais disponibilité et précision peuvent varier. Envoyez corrections, demandes de confidentialité, problèmes d’accessibilité, signalements de sécurité ou avis juridiques depuis la page de contact.',
             ],
           },
         ],
@@ -1270,25 +1366,49 @@ export const legalPageCatalog: LegalPage[] = [
       de: {
         navLabel: 'Nutzungsbedingungen',
         title: 'Nutzungsbedingungen',
-        description: 'Grundbedingungen für rechtmäßige Nutzung, Dienstgrenzen, verantwortliche Tests und künftige bezahlte Upgrades im SuperSites-Portfolio.',
-        updatedLabel: 'Geprüft am 26. Juni 2026',
+        description: 'Öffentliche Bedingungen für rechtmäßige Nutzung, Missbrauchsschutz, kostenlose Tool-Grenzen, informative Ergebnisse, künftige bezahlte Dienste und Verantwortung bei SuperSites.',
+        updatedLabel: 'Geprüft am 30. Juni 2026',
         sections: [
           {
-            heading: 'Tools verantwortungsvoll nutzen',
+            heading: 'Erlaubte Nutzung',
             paragraphs: [
-              'Nutzen Sie SuperSites nicht für Angriffe, Tests ohne Autorisierung, illegale Inhalte, Umgehung von Limits, Betrug oder Störungen anderer Nutzer.',
+              'Nutzen Sie die öffentlichen Tools für rechtmäßige, praktische Aufgaben wie das Prüfen eigener Domains, Formatieren lokaler Dateien, Vorbereiten von Dokumenten, Vergleichen von Berechnungen und Verstehen eines Ergebnisses.',
+              'Die kostenlosen Workflows bleiben ohne Pflichtkonto verfügbar. Konto-Funktionen, gespeicherter Verlauf, Automatisierung und kommerzielles Volumen sind von der Grundantwort auf der Seite getrennt.',
             ],
           },
           {
-            heading: 'Ergebnisse sind informativ',
+            heading: 'Missbrauch und verbotene Aktivität',
             paragraphs: [
-              'Tool-Ergebnisse, Berechnungen und Diagnosen sind praktische Hinweise und können von Drittanbieterdaten, Netzwerk, Browsergrenzen und unvollständigen Eingaben abhängen.',
+              'Nutzen Sie SuperSites nicht für Angriffe, Tests ohne Autorisierung, illegale Inhalte, Sammlung sensibler Daten, Irreführung, Verletzung von Rechten Dritter, Umgehung von Limits, Überlastung von Diensten, automatisiertes Scraping, Betrug oder Störung anderer Nutzer.',
+              'Sicherheitsmeldungen, unsichere Weiterleitungen, Phishing, Malware, Identitätsmissbrauch, Spam oder andere Missbrauchshinweise können über die Kontaktseite mit betroffener URL und sicheren Reproduktionsdetails gesendet werden.',
             ],
           },
           {
-            heading: 'Bezahlte Funktionen',
+            heading: 'Grenzen der Tools',
             paragraphs: [
-              'Bezahlte Pläne sind in dieser Katalogphase nicht aktiv. Bei Start müssen Preise, Quoten, Kündigung, Erstattungen, Ansprüche und Anbieterbedingungen vor dem Checkout sichtbar sein.',
+              'Kostenlose Tools verwenden faire Grenzen, damit der öffentliche Dienst verfügbar bleibt: Browserspeicher, Dateigröße, Anfragevolumen, Netzwerk-Timeouts, Verfügbarkeit von Einträgen und regionale Resolver-Abdeckung können die Antwort beeinflussen.',
+              'Ergebnisse können verzögert, nicht verfügbar oder unvollständig sein, wenn der Browser eine Funktion blockiert, eine Netzwerkanfrage fehlschlägt, eine öffentliche Quelle gecacht ist, eine Domain keinen Eintrag hat oder eine Datei für lokale Verarbeitung zu groß ist.',
+            ],
+          },
+          {
+            heading: 'Informationen und Ergebnisse',
+            paragraphs: [
+              'Diagnosen, Rechner, Dokumenthelfer und Formatter liefern informative Ausgaben für Alltagsentscheidungen. Sie ersetzen keine rechtliche, steuerliche, finanzielle, medizinische, sicherheitszertifizierende oder professionelle Beratung.',
+              'Prüfen Sie wichtige Ergebnisse bei maßgeblichen Quellen, bevor Sie DNS ändern, Rechnungen senden, finanzielle Entscheidungen treffen, Dokumente veröffentlichen, Metadaten löschen oder sich auf Uptime-, E-Mail-, IP- oder Website-Signale verlassen.',
+            ],
+          },
+          {
+            heading: 'Künftige kostenpflichtige Dienste',
+            paragraphs: [
+              'SuperSites zeigt die öffentlichen Tools hier ohne Checkout. Künftige kostenpflichtige Dienste können höhere Limits, gespeicherten Verlauf, Monitoring, Stapelarbeit, API-Zugang, Teams, Automatisierung, Anpassung oder Entfernung von Werbung umfassen.',
+              'Wenn ein kostenpflichtiger Dienst angeboten wird, zeigt die Zahlungsfläche Preis, Verlängerung, Quoten, Steuern falls anwendbar, Kündigung, Erstattungsabwicklung, Supportumfang und Anbieterbedingungen vor Annahme der Zahlung.',
+            ],
+          },
+          {
+            heading: 'Verantwortung und Kontakt',
+            paragraphs: [
+              'Sie bleiben verantwortlich für eingegebene Inhalte, die Rechte zum Testen oder Verarbeiten, Entscheidungen aus der Ausgabe und lokale Gesetze oder Drittbedingungen, die für Ihre Arbeit gelten.',
+              'SuperSites wird mit angemessener Sorgfalt gepflegt, aber Verfügbarkeit und Genauigkeit können variieren. Senden Sie Korrekturen, Datenschutzanfragen, Barrierefreiheitsprobleme, Sicherheitsmeldungen oder rechtliche Hinweise über die Kontaktseite.',
             ],
           },
         ],
@@ -1719,7 +1839,7 @@ export function getLegalShellCopy(locale: LocaleCode): LegalShellCopy {
 }
 
 export function getLegalPageCopy(page: LegalPage, locale: LocaleCode): LocalizedLegalPage {
-  if (page.slug === 'about' || page.slug === 'contact' || page.slug === 'privacy' || page.slug === 'cookies') {
+  if (page.slug === 'about' || page.slug === 'contact' || page.slug === 'privacy' || page.slug === 'cookies' || page.slug === 'terms') {
     return sanitizePublicCopy(locale, page.localized[locale])
   }
 

@@ -510,7 +510,7 @@ describe('site catalog', () => {
 
         expect(localized.title.length).toBeGreaterThan(5)
         expect(localized.description.length).toBeGreaterThan(60)
-        expect(localized.sections).toHaveLength(['about', 'contact', 'privacy', 'cookies'].includes(page.slug) ? 6 : 3)
+        expect(localized.sections).toHaveLength(['about', 'contact', 'privacy', 'cookies', 'terms'].includes(page.slug) ? 6 : 3)
         expect(localized.sections.every((section) => section.paragraphs.length > 0)).toBe(true)
       }
     }
@@ -678,6 +678,63 @@ describe('site catalog', () => {
       expect(links).toHaveLength(1)
       expect(links[0]).toMatchObject({ href: '#consent-preferences' })
       expect(JSON.stringify(copy)).not.toMatch(blockedCookiePolicyLanguage)
+    }
+  })
+
+  it('keeps the public Terms of Use complete and free of internal legal-gate language', () => {
+    const terms = legalPageCatalog.find((page) => page.slug === 'terms')
+    expect(terms).toBeDefined()
+
+    const requiredHeadings = {
+      en: [
+        'Permitted use',
+        'Abuse and prohibited activity',
+        'Tool limits',
+        'Information and results',
+        'Future paid services',
+        'Responsibility and contact',
+      ],
+      'pt-br': [
+        'Uso permitido',
+        'Abuso e atividades proibidas',
+        'Limites das ferramentas',
+        'Informações e resultados',
+        'Serviços pagos futuros',
+        'Responsabilidade e contato',
+      ],
+      es: [
+        'Uso permitido',
+        'Abuso y actividad prohibida',
+        'Límites de las herramientas',
+        'Información y resultados',
+        'Servicios pagos futuros',
+        'Responsabilidad y contacto',
+      ],
+      fr: [
+        'Utilisation autorisée',
+        'Abus et activités interdites',
+        'Limites des outils',
+        'Informations et résultats',
+        'Services payants futurs',
+        'Responsabilité et contact',
+      ],
+      de: [
+        'Erlaubte Nutzung',
+        'Missbrauch und verbotene Aktivität',
+        'Grenzen der Tools',
+        'Informationen und Ergebnisse',
+        'Künftige kostenpflichtige Dienste',
+        'Verantwortung und Kontakt',
+      ],
+    }
+    const blockedTermsLanguage =
+      /catalog phase|launched|launch|rollout|public review|human review|legal review|quality checks|release checks|rollback|worker planned|billing disabled|ads planned|plans to|planned|\bshould\b|\bmust\b|fase do catálogo|lançamento|revisão pública|revisão humana|revisão jurídica|planeja|planejado|\bdeve\b|\bdevem\b|fase del catálogo|lanzamiento|revisión pública|revisión humana|revisión legal|planea|planeado|\bdebe\b|\bdeben\b|phase de catalogue|lancement|revue publique|revue humaine|révision juridique|prévoit|prévu|\bdoit\b|\bdoivent\b|Katalogphase|Launch|öffentliche Prüfung|menschliche Prüfung|Rechtsprüfung|geplant|\bsoll\b|\bsollen\b|\bmuss\b|\bmüssen\b/iu
+
+    for (const locale of localeCodes) {
+      const copy = getLegalPageCopy(terms!, locale)
+
+      expect(copy.sections.map((section) => section.heading)).toEqual(requiredHeadings[locale])
+      expect(JSON.stringify(copy)).not.toMatch(blockedTermsLanguage)
     }
   })
 
