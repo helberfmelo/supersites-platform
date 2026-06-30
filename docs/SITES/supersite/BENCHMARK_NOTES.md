@@ -153,3 +153,11 @@ Data-base: 2026-06-27
 - The curated Methodology copy bypasses generic trust helpers because fallback helper text can reintroduce conditional or internal wording.
 - Local evidence: Playwright added Methodology desktop/mobile coverage and generated HTML checks passed across 5 locales. Live evidence: `artifacts/methodology-page-qa/methodology-en-live-desktop-clean.png` and `artifacts/methodology-page-qa/methodology-pt-br-live-mobile-clean.png`.
 - Production deploy `28467173864` published release `015d58557ccb0215a0ecfb604ce626d02ea95051-28467173864-1`, asset `https://opentshost.com/supersites/_nuxt/C_jWVPgU.js`; public smoke, AdSense-safe validation, five Methodology locale route checks and crawler quick `2026-06-30T18-44-31-515Z` passed.
+
+## Phase 18 Sprint 18.19 Editorial Policy notes
+
+- The Hub Editorial Policy route now explains how public tool content is kept useful, reviewed, corrected, translated and source-backed, instead of exposing internal editorial or launch process.
+- Public correction flow should remain simple and user-facing: page URL, language, current text/behavior, suggested correction and source when available. Internal triage, legal review, provider review, KYC and monetization gates stay in docs/admin.
+- Keep Editorial Policy curated directly in `apps/supersite/app/data/legal.ts`; generic trust helper fallback can reintroduce operational wording that is inappropriate for public legal/trust pages.
+- Local evidence: Playwright added Editorial Policy desktop/mobile coverage and generated HTML checks passed across 5 locales. Live evidence: `artifacts/editorial-policy-qa/editorial-en-live-desktop-clean.png` and `artifacts/editorial-policy-qa/editorial-pt-br-live-mobile-clean.png`.
+- Production deploy `28469514798` published release `e4eb99834a4bc587478f7463d877e224e73055f9-28469514798-1`, asset `https://opentshost.com/supersites/_nuxt/Vib1iYtU.js`; public smoke, AdSense-safe validation, five Editorial Policy locale route checks and crawler quick `2026-06-30T19-22-35-242Z` passed.

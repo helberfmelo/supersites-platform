@@ -670,6 +670,13 @@ Regra operacional:
 2. Explicar revisão, correções, traduções, fontes, exemplos, qualidade e atualização.
 3. Criar processo de solicitação de correção.
 
+**Fechamento em 2026-06-30:**
+
+- A pagina Editorial Policy do Hub agora e publica, localizada em EN/PT-BR/ES/FR/DE e organizada em seis secoes: conteudo util, revisao/atualizacoes, correcoes, traducoes, fontes/exemplos e padroes de qualidade.
+- O processo publico de correcao usa link `mailto:` para `contact@opentshost.com` com assunto de correcao editorial, mantendo pedidos juridicos, provider, KYC, monetizacao e operacao fora da superficie principal.
+- A copy curada passa direto pelo helper legal para evitar fallback generico com linguagem interna. O gate de public copy e os testes cobrem ausencia de termos como release, rollback, billing, ads, quality checks e human review.
+- Ciclo executado: validacao local completa, commit objetivo `e4eb998`, push, Quality Gate `28469279752`, Deploy Dry Run `28469279691`, deploy HostGator `28469514798`, release `e4eb99834a4bc587478f7463d877e224e73055f9-28469514798-1`, asset Hub `Vib1iYtU.js`, smoke publico, AdSense-safe, validacao live das 5 rotas Editorial Policy, screenshots live desktop/mobile limpos e crawler quick live `2026-06-30T19-22-35-242Z` com 95 rotas/190 checks/0 gaps.
+
 ---
 
 ## Sprint 18.20 — Public Status
