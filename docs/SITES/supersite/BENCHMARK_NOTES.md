@@ -126,3 +126,12 @@ Data-base: 2026-06-27
 - Smoke/preview markers are part of the product surface contract. When intended public copy changes, update the marker in the same sprint before deploy; Sprint 18.15 replaced `Data minimization` with `Data categories`.
 - Local evidence: `artifacts/privacy-page-qa/privacy-en-desktop.png` and `artifacts/privacy-page-qa/privacy-pt-br-mobile.png`; live evidence: `artifacts/privacy-page-qa/privacy-en-live-desktop.png` and `artifacts/privacy-page-qa/privacy-pt-br-live-mobile.png`.
 - Production deploy `28459409612` published release `7f3c8fc6e8061bec9a6a1ce8f0cb8f559e39601a-28459409612-1`, asset `https://opentshost.com/supersites/_nuxt/CBkswxPe.js`; public smoke, AdSense-safe validation, five Privacy locale route checks and crawler quick `2026-06-30T16-31-39-885Z` passed.
+
+## Phase 18 Sprint 18.16 Cookie Policy notes
+
+- The Hub Cookie Policy route now follows the public legal/trust benchmark pattern: clear current-state cookie and storage policy, localized in EN/PT-BR/ES/FR/DE, with necessary storage, preferences, analytics storage, advertising storage and preference management.
+- Cookie pages must not expose launch status, roadmap, `should`, `plans to`, human review or equivalent conditional/internal language. CMP/legal validation by region stays in `docs/HUMAN_ACTION_REQUIRED.md`.
+- The public `#consent-preferences` link opens the local CMP preferences panel. It is a user control, not a provider activation: no GA4/GTM, AdSense request, third-party ad cookie, checkout, billing, donation or affiliate feature was activated.
+- Public copy checks should inspect blocked terms in rendered `<main>` for legal pages; global footer/workflow text can contain legitimate product vocabulary such as launch workflows without making the policy itself internal.
+- Local evidence: `artifacts/cookies-page-qa/cookies-en-desktop.png` and `artifacts/cookies-page-qa/cookies-pt-br-mobile.png`; live evidence: `artifacts/cookies-page-qa/cookies-en-live-desktop.png` and `artifacts/cookies-page-qa/cookies-pt-br-live-mobile.png`.
+- Production deploy `28462709911` published release `d032777ff1fe25949bef5071f294c8c08a481705-28462709911-1`, asset `https://opentshost.com/supersites/_nuxt/BR8uvxHm.js`; public smoke, AdSense-safe validation, five Cookie locale route checks and crawler quick `2026-06-30T17-24-32-421Z` passed.

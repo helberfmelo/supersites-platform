@@ -1622,7 +1622,25 @@ Data-base: 2026-06-29
 | Sprint 18.15 post-deploy quick crawler | `2026-06-30T16-31-39-885Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.15 live Privacy screenshots | `artifacts/privacy-page-qa/privacy-en-live-desktop.png` and `artifacts/privacy-page-qa/privacy-pt-br-live-mobile.png` reviewed |
 | Sprint 18.15 live Privacy smoke | Passed: localized markers, canonical checks, blocked phrase scan 0 in rendered main content, overflow covered by Playwright/crawler |
-| Real deploy/provider activation | 24 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.15 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.16 Cookie Policy route | `/supersites/en/cookies` converted to complete localized public cookie policy with consent-preferences link |
+| Sprint 18.16 localized Cookie checks | 5 routes passed: `/supersites/en/cookies`, `/supersites/pt-br/cookies`, `/supersites/es/cookies`, `/supersites/fr/cookies`, `/supersites/de/cookies` |
+| Sprint 18.16 Hub unit suite | Passed: 28 tests |
+| Sprint 18.16 i18n/consent unit suites | Passed: 12 i18n tests and 8 consent tests |
+| Sprint 18.16 Hub build | Passed |
+| Sprint 18.16 Hub Playwright suite | Passed: 33 tests, including Cookie Policy desktop EN and mobile PT-BR screenshots |
+| Sprint 18.16 Cookie generated HTML check | Passed: 5 locales, required sections and `#consent-preferences` present, 0 blocked conditional/internal phrases in rendered main content |
+| Sprint 18.16 AdSense-safe validation | Passed locally and post-deploy: 13 public pages |
+| Sprint 18.16 package/structure/secrets/dry-run/diff | Passed, including package tests/typechecks, `ci:changes`, deploy dry-run and `git diff --check` |
+| Sprint 18.16 Hub HostGator artifact | Local passed: 211 files, 8802677 bytes; production deploy passed: 211 files, 8793700 bytes |
+| Sprint 18.16 implementation commit | `d032777` |
+| Sprint 18.16 remote Quality Gate | `28462440900` passed |
+| Sprint 18.16 remote Deploy Dry Run | `28462440678` passed |
+| Sprint 18.16 Hub production deploy | `28462709911` passed; release `d032777ff1fe25949bef5071f294c8c08a481705-28462709911-1`; asset `BR8uvxHm.js` |
+| Sprint 18.16 post-deploy public smoke | Passed: Hub/apps/APIs and 5 Cookie Policy locale routes |
+| Sprint 18.16 post-deploy quick crawler | `2026-06-30T17-24-32-421Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.16 live Cookie Policy screenshots | `artifacts/cookies-page-qa/cookies-en-live-desktop.png` and `artifacts/cookies-page-qa/cookies-pt-br-live-mobile.png` reviewed |
+| Sprint 18.16 live Cookie Policy smoke | Passed: localized markers, canonical checks, consent-preferences link opened CMP preferences, blocked phrase scan 0 in rendered main content, overflow covered by browser/crawler |
+| Real deploy/provider activation | 25 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.16 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 

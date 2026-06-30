@@ -621,6 +621,14 @@ Regra operacional:
 3. Explicar cookies essenciais, analytics, ads e preferências.
 4. Criar link visível para gerenciar preferências quando o CMP estiver pronto.
 
+**Status em 2026-06-30:** concluida em producao.
+
+- A Cookie Policy do Hub agora e uma pagina publica completa e localizada em EN/PT-BR/ES/FR/DE, com seis secoes por idioma: categorias de cookies, armazenamento necessario, preferencias locais, analytics, publicidade e gerenciamento de preferencias.
+- A pagina removeu linguagem de lancamento/status/condicional como `plans to`, `should`, `human review`, release/rollout e equivalentes localizados. A pendencia juridica/CMP regional fica registrada em `docs/HUMAN_ACTION_REQUIRED.md`, nao na superficie publica.
+- O link `#consent-preferences` abre o painel local de preferencias da CMP sem carregar provider externo, tag real, request de anuncio, AdSense, GA4/GTM, billing, doacao ou afiliado.
+- Ciclo executado: validacao local completa, commit objetivo `d032777`, push, Quality Gate `28462440900`, Deploy Dry Run `28462440678`, deploy HostGator `28462709911`, release `d032777ff1fe25949bef5071f294c8c08a481705-28462709911-1`, asset Hub `BR8uvxHm.js`, smoke publico, AdSense-safe, validacao live das 5 rotas Cookies, screenshots live desktop/mobile e crawler quick live `2026-06-30T17-24-32-421Z` com 95 rotas/190 checks/0 gaps.
+- Observacao operacional: o crawler pre-commit `2026-06-30T17-01-20-093Z` registrou um 500 transitorio de recurso em `/supersites/en/sites/calcharbor`; rerun `2026-06-30T17-07-38-985Z` passou com 0 gaps antes do commit, e o crawler live final tambem passou.
+
 ---
 
 ## Sprint 18.17 — Terms of Use
