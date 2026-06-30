@@ -144,3 +144,12 @@ Data-base: 2026-06-27
 - Public copy checks should inspect blocked terms in rendered `<main>` for legal pages and should keep smoke markers aligned to the public headings that users actually see.
 - Local evidence: Playwright added Terms desktop/mobile coverage and generated HTML checks passed across 5 locales. Live evidence: `artifacts/terms-page-qa/terms-en-live-desktop-clean.png` and `artifacts/terms-page-qa/terms-pt-br-live-mobile-clean.png`.
 - Production deploy `28464837909` published release `2543c6cc49dccb328016f180e5c08286b803dc90-28464837909-1`, asset `https://opentshost.com/supersites/_nuxt/CuqcMwZ9.js`; public smoke, AdSense-safe validation, five Terms locale route checks and crawler quick `2026-06-30T18-03-26-594Z` passed.
+
+## Phase 18 Sprint 18.18 Methodology notes
+
+- The Hub Methodology route now explains how result types are produced and limited by family, not how the project is being launched.
+- Public methodology copy must stay useful to a user comparing results: network/DNS, calculators, documents/PDF, images, email deliverability and website checks. Launch status, roadmap, readiness, review gates, release checks, rollback, ads and billing belong in docs/admin only.
+- Keep Methodology as a trust/support page and link to it from tool pages below the result area. Tool pages should still open with the practical input/result experience, not with methodology as the first-fold dominant content.
+- The curated Methodology copy bypasses generic trust helpers because fallback helper text can reintroduce conditional or internal wording.
+- Local evidence: Playwright added Methodology desktop/mobile coverage and generated HTML checks passed across 5 locales. Live evidence: `artifacts/methodology-page-qa/methodology-en-live-desktop-clean.png` and `artifacts/methodology-page-qa/methodology-pt-br-live-mobile-clean.png`.
+- Production deploy `28467173864` published release `015d58557ccb0215a0ecfb604ce626d02ea95051-28467173864-1`, asset `https://opentshost.com/supersites/_nuxt/C_jWVPgU.js`; public smoke, AdSense-safe validation, five Methodology locale route checks and crawler quick `2026-06-30T18-44-31-515Z` passed.

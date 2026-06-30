@@ -654,6 +654,12 @@ Regra operacional:
 3. Criar seções por família: rede, calculadoras, documentos, imagem, e-mail, website.
 4. Linkar das tool pages apenas abaixo do resultado.
 
+**Fechamento em 2026-06-30:**
+
+- A pagina Methodology do Hub agora e publica, util e localizada em EN/PT-BR/ES/FR/DE, com seis familias de resultado: rede/DNS, calculadoras, documentos/PDF, imagens, entregabilidade de e-mail e checagens de website.
+- A copy publica deixou de funcionar como status de lancamento e bloqueia linguagem de roadmap, rollout, readiness, review humano/legal, quality/release checks, rollback, AdSense, billing, ads planned, `should`/`must` e equivalentes localizados. A pagina usa copy curada direta para evitar fallback generico com linguagem interna.
+- Ciclo executado: validacao local completa, commit objetivo `015d585`, push, Quality Gate `28466903460`, Deploy Dry Run `28466903611`, deploy HostGator `28467173864`, release `015d58557ccb0215a0ecfb604ce626d02ea95051-28467173864-1`, asset Hub `C_jWVPgU.js`, smoke publico, AdSense-safe, validacao live das 5 rotas Methodology, screenshots live desktop/mobile limpos e crawler quick live `2026-06-30T18-44-31-515Z` com 95 rotas/190 checks/0 gaps.
+
 ---
 
 ## Sprint 18.19 — Editorial Policy

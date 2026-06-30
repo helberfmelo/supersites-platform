@@ -1658,7 +1658,25 @@ Data-base: 2026-06-29
 | Sprint 18.17 post-deploy quick crawler | `2026-06-30T18-03-26-594Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.17 live Terms screenshots | `artifacts/terms-page-qa/terms-en-live-desktop-clean.png` and `artifacts/terms-page-qa/terms-pt-br-live-mobile-clean.png` reviewed |
 | Sprint 18.17 live Terms smoke | Passed: localized markers, canonical/hreflang checks, blocked phrase scan 0 in rendered main content, overflow covered by browser/crawler |
-| Real deploy/provider activation | 26 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.17 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.18 Methodology route | `/supersites/en/methodology` converted to complete localized public methodology with six result families: network/DNS, calculators, documents/PDF, images, email deliverability and website checks |
+| Sprint 18.18 localized Methodology checks | 5 routes passed: `/supersites/en/methodology`, `/supersites/pt-br/methodology`, `/supersites/es/methodology`, `/supersites/fr/methodology`, `/supersites/de/methodology` |
+| Sprint 18.18 Hub unit suite | Passed: 30 tests |
+| Sprint 18.18 i18n/consent unit suites | Passed: 12 i18n tests and 8 consent tests |
+| Sprint 18.18 Hub build | Passed |
+| Sprint 18.18 Hub Playwright suite | Passed: 37 tests, including Methodology desktop EN and mobile PT-BR screenshots |
+| Sprint 18.18 Methodology generated HTML check | Passed: 5 locales, required result-family sections present, 0 blocked rollout/status/review/ads/billing phrases |
+| Sprint 18.18 AdSense-safe validation | Passed locally and post-deploy: 13 public pages |
+| Sprint 18.18 package/structure/secrets/dry-run/diff | Passed, including package tests/typechecks, `ci:changes`, deploy dry-run and `git diff --check` |
+| Sprint 18.18 Hub HostGator artifact | Local passed: 211 files, 8851867 bytes; production deploy passed: 211 files, 8842868 bytes |
+| Sprint 18.18 implementation commit | `015d585` |
+| Sprint 18.18 remote Quality Gate | `28466903460` passed |
+| Sprint 18.18 remote Deploy Dry Run | `28466903611` passed |
+| Sprint 18.18 Hub production deploy | `28467173864` passed; release `015d58557ccb0215a0ecfb604ce626d02ea95051-28467173864-1`; asset `C_jWVPgU.js` |
+| Sprint 18.18 post-deploy public smoke | Passed: Hub/apps/APIs and 5 Methodology locale routes via browser validation |
+| Sprint 18.18 post-deploy quick crawler | `2026-06-30T18-44-31-515Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.18 live Methodology screenshots | `artifacts/methodology-page-qa/methodology-en-live-desktop-clean.png` and `artifacts/methodology-page-qa/methodology-pt-br-live-mobile-clean.png` reviewed |
+| Sprint 18.18 live Methodology smoke | Passed: localized markers, canonical/hreflang checks, blocked phrase scan 0 in rendered main content, overflow covered by browser/crawler |
+| Real deploy/provider activation | 27 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.18 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 
