@@ -756,7 +756,7 @@ Sprint 18.2c - Correcao do rodape benchmark do Hub
 - Escopo entregue: `LegalFooter.vue` agora renderiza listas textuais com 38 deep links localizados para ferramentas dos 10 sites; `copy.ts` guarda grupos de links profundos por idioma; `app.vue` separa chips de conteudo do footer, aplica hover discreto e usa 6 colunas desktop, 3 em viewport intermediario e 1 no mobile.
 - Gate permanente: rodapes publicos benchmark-grade nao devem voltar a usar botoes/chips para navegacao estrutural nem linkar apenas para paginas principais quando houver ferramentas publicas. Antes de fechar sprint, revisar screenshots desktop/mobile e garantir links profundos reais.
 - Validacao local: Vitest Hub 14 testes, build Hub, Playwright Hub 7 testes, preview smoke Hub asset `/_nuxt/SLMjSLmn.js`, public-copy 951 HTMLs, AdSense-safe 13 paginas, structure, secrets, deploy dry-run, ci:changes, HostGator artifact Hub 211 arquivos/3280219 bytes, `git diff --check` e screenshots em `artifacts/footer-qa/` passaram.
-- Status: pronto para commit/push, Quality Gate remoto, Deploy Dry Run remoto e deploy reversivel do Hub.
+- Status: concluida em producao. Commit `0abf5b6`, Quality Gate `28419197120`, Deploy Dry Run `28419197136` e deploy reversivel do Hub `28419357564` passaram; release `0abf5b6a27fc6e6864866e4d8f857df1b08699d3-28419357564-1`, asset `DxU4_SPz.js`, smokes publicos, AdSense-safe, crawler quick `2026-06-30T04-08-32-953Z` e screenshot live do rodape passaram.
 - Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
 
 ## Definition of done do programa

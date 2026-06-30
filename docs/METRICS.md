@@ -1339,7 +1339,15 @@ Data-base: 2026-06-29
 | Sprint 18.2c AdSense-safe validation | Passed: 13 public pages |
 | Sprint 18.2c structure/secrets/dry-run/diff | Passed |
 | Sprint 18.2c Hub HostGator artifact | Passed: 211 files, 3280219 bytes, base path `/supersites` |
-| Real deploy/provider activation | 3 reversible HostGator deploys in Phase 18 so far for Hub/NetProbe/Hub; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.2c implementation commit | `0abf5b6` |
+| Sprint 18.2c remote Quality Gate | `28419197120` passed |
+| Sprint 18.2c remote Deploy Dry Run | `28419197136` passed |
+| Sprint 18.2c production deploy | `28419357564` passed; release `0abf5b6a27fc6e6864866e4d8f857df1b08699d3-28419357564-1`; asset `DxU4_SPz.js`; 211 files/3271220 bytes |
+| Sprint 18.2c post-deploy public smoke | Passed: Hub/apps/APIs with footer release asset |
+| Sprint 18.2c post-deploy AdSense-safe validation | Passed: 13 public pages |
+| Sprint 18.2c post-deploy quick crawler | `2026-06-30T04-08-32-953Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.2c live footer screenshots | `artifacts/footer-qa/hub-footer-live-desktop-wide.png` and `artifacts/footer-qa/hub-footer-live-mobile-pt-br.png` reviewed |
+| Real deploy/provider activation | 4 reversible HostGator deploys in Phase 18 so far for Hub/NetProbe/Hub/Hub; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 

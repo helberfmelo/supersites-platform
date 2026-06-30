@@ -69,3 +69,4 @@ Data-base: 2026-06-27
 - The footer now uses localized text columns with 38 deep links per locale to public tools/subpages across the 10 sites, plus a separate text-only legal row.
 - Future footer refinements must not regress to product-home-only navigation. Prefer practical tool links such as DNS Propagation, JSON Formatter, PDF Merge, SPF Checker, Image Compressor and similar task routes.
 - Visual acceptance requires desktop and mobile screenshots after build/preview; current local evidence is in `artifacts/footer-qa/hub-footer-desktop-wide.png` and `artifacts/footer-qa/hub-footer-mobile-pt-br.png`.
+- Production deploy `28419357564` published release `0abf5b6a27fc6e6864866e4d8f857df1b08699d3-28419357564-1`, asset `https://opentshost.com/supersites/_nuxt/DxU4_SPz.js`; public smoke, AdSense-safe validation, crawler quick `2026-06-30T04-08-32-953Z` and live footer screenshots passed.
