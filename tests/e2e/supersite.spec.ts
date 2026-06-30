@@ -644,4 +644,81 @@ test.describe('SuperSites public hub', () => {
 
     expect(errors).toEqual([])
   })
+
+  test('renders the InvoiceCraft catalog page as a benchmark-grade document builder landing', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.goto('/en/sites/invoicecraft')
+    await dismissConsentBanner(page)
+
+    await expect(page.getByRole('heading', { name: 'Create a client document and download a local PDF.' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Live document preview' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Choose the document flow' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Start with the right client document' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Review before sending' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'All published InvoiceCraft tools' })).toBeVisible()
+    await expect(page.getByRole('searchbox', { name: 'Search InvoiceCraft tools' })).toBeVisible()
+    await expect(page.locator('.invoicecraft-document-preview')).toBeVisible()
+
+    for (const path of ['invoice-builder', 'quote-builder', 'receipt-builder']) {
+      await expect(
+        page.locator(`.invoicecraft-tool-grid a[href="https://opentshost.com/supersites/invoicecraft/en/tools/${path}"]`),
+      ).toBeVisible()
+    }
+
+    await page.getByRole('searchbox', { name: 'Search InvoiceCraft tools' }).fill('receipt')
+    await expect(page.locator('#invoicecraft-all .invoicecraft-tool-card').filter({ hasText: 'Receipt Builder' })).toBeVisible()
+    await expect(page.locator('#invoicecraft-all .invoicecraft-tool-card').filter({ hasText: 'Invoice Builder' })).toHaveCount(0)
+
+    await expect(page.locator('main')).not.toContainText('Faturas, orçamentos e recibos sem cadastro obrigatório.')
+    await expect(page.locator('main')).not.toContainText('Payments and taxes planned')
+    await expect(page.locator('main')).not.toContainText('Tax/legal review')
+    await expect(page.locator('main')).not.toContainText('Temporary public URL')
+    await expect(page.locator('main')).not.toContainText('Launch order')
+    await expect(page.locator('main')).not.toContainText('Quality check')
+    await expect(page.locator('main')).not.toContainText('billing')
+    await expect(page.locator('main')).not.toContainText('ads planned')
+    await expect(page.locator('main')).not.toContainText('roadmap')
+    await expect(page.locator('main')).not.toContainText('MVP')
+    await expect(page.locator('main')).not.toContainText('HUMAN_ACTION_REQUIRED')
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(2)
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('invoicecraft-catalog-desktop', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('renders the localized InvoiceCraft catalog page on mobile', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/pt-br/sites/invoicecraft')
+    await dismissConsentBanner(page)
+
+    await expect(page.getByRole('heading', { name: 'Crie um documento de cliente e baixe um PDF local.' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Prévia de documento ao vivo' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Escolha o fluxo de documento' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Todas as ferramentas InvoiceCraft publicadas' })).toBeVisible()
+    await expect(page.getByRole('searchbox', { name: 'Buscar ferramentas InvoiceCraft' })).toBeVisible()
+    await expect(
+      page.locator('.invoicecraft-tool-grid a[href="https://opentshost.com/supersites/invoicecraft/pt-br/tools/invoice-builder"]'),
+    ).toBeVisible()
+    await expect(
+      page.locator('.invoicecraft-tool-grid a[href="https://opentshost.com/supersites/invoicecraft/pt-br/tools/receipt-builder"]'),
+    ).toBeVisible()
+    await expect(page.locator('main')).not.toContainText('Create a client document and download a local PDF.')
+    await expect(page.locator('main')).not.toContainText('tax/legal')
+    await expect(page.locator('main')).not.toContainText('Payments and taxes planned')
+    await expect(page.locator('main')).not.toContainText('Temporary public URL')
+    await expect(page.locator('main')).not.toContainText('Launch order')
+    await expect(page.locator('main')).not.toContainText('roadmap')
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('invoicecraft-catalog-pt-mobile', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
 })

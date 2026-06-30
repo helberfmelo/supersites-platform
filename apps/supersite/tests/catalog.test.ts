@@ -4,6 +4,7 @@ import {
   getDevUtilityCatalogCopy,
   getFooterCopy,
   getHomeCopy,
+  getInvoiceCraftCatalogCopy,
   getNetProbeCatalogCopy,
   getQrRouteCatalogCopy,
   getTimeNexusCatalogCopy,
@@ -288,6 +289,29 @@ describe('site catalog', () => {
       expect(copy.shortcutGroups).toHaveLength(3)
       expect(copy.footerGroups.map((group) => group.title)).toHaveLength(5)
       expect(copy.footerGroups.flatMap((group) => group.links).length).toBeGreaterThanOrEqual(11)
+      expect(JSON.stringify(copy)).not.toMatch(forbiddenPublicTerms)
+    }
+  })
+
+  it('keeps the InvoiceCraft catalog page benchmark-grade and linked to real document builders', () => {
+    const expectedToolPaths = [
+      '/tools/invoice-builder',
+      '/tools/quote-builder',
+      '/tools/receipt-builder',
+    ]
+    const forbiddenPublicTerms =
+      /temporary public url|launch order|quality check|review notes|public api live|ads planned|billing disabled|external analytics inactive|release checks|rollback|human_action_required|worker planned|deploy smoke|production checks|workflow checks ready|checkout inactive|commercial redirects planned|roadmap|mvp|tax\/legal review|payment collection planned/i
+
+    for (const locale of localeCodes) {
+      const copy = getInvoiceCraftCatalogCopy(locale)
+
+      expect(copy.tools.map((tool) => tool.path)).toEqual(expectedToolPaths)
+      expect(copy.tools.filter((tool) => tool.featured).map((tool) => tool.path)).toEqual(expectedToolPaths)
+      expect(copy.categories.map((category) => category.key)).toEqual(['invoice', 'quote', 'receipt'])
+      expect(copy.shortcutGroups).toHaveLength(3)
+      expect(copy.footerGroups.map((group) => group.title)).toHaveLength(4)
+      expect(copy.footerGroups.flatMap((group) => group.links)).toHaveLength(8)
+      expect(copy.reviewTitle).not.toMatch(/tax\/legal review/i)
       expect(JSON.stringify(copy)).not.toMatch(forbiddenPublicTerms)
     }
   })

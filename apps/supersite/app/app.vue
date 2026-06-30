@@ -1949,6 +1949,443 @@ h3 {
   transform: translateX(2px) scale(1.025);
 }
 
+.invoicecraft-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 470px);
+  gap: 30px;
+  align-items: stretch;
+  padding: 36px 0 32px;
+  border-bottom: 1px solid #d8ded8;
+}
+
+.invoicecraft-hero > *,
+.invoicecraft-section > *,
+.invoicecraft-review-note > *,
+.invoicecraft-footer-cluster > * {
+  min-width: 0;
+}
+
+.invoicecraft-hero__copy {
+  display: grid;
+  align-content: center;
+  gap: 16px;
+}
+
+.invoicecraft-hero__copy h1,
+.invoicecraft-hero__copy p {
+  margin-bottom: 0;
+}
+
+.invoicecraft-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.invoicecraft-preview-panel {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid #d9ded7;
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgb(189 116 36 / 10%), transparent 48%),
+    #ffffff;
+  box-shadow: 0 18px 42px rgb(23 35 30 / 7%);
+}
+
+.invoicecraft-preview-panel__header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.invoicecraft-preview-panel__header h2 {
+  margin-bottom: 0;
+  font-size: 1.15rem;
+}
+
+.invoicecraft-preview-panel__header span {
+  flex: 0 0 auto;
+  color: #5b4630;
+  font-size: 0.76rem;
+  font-weight: 760;
+  text-transform: uppercase;
+}
+
+.invoicecraft-document-preview {
+  display: grid;
+  gap: 14px;
+  min-height: 320px;
+  padding: 20px;
+  border: 1px solid #d6d8d0;
+  border-radius: 8px;
+  color: #17231e;
+  background:
+    linear-gradient(180deg, #ffffff 0 72%, #f7f5ef 72% 100%);
+}
+
+.invoicecraft-document-preview__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #dfe2dc;
+}
+
+.invoicecraft-document-preview__top div,
+.invoicecraft-preview-lines div,
+.invoicecraft-preview-total {
+  min-width: 0;
+}
+
+.invoicecraft-document-preview__top span,
+.invoicecraft-preview-total span {
+  display: block;
+  color: #607069;
+  font-size: 0.72rem;
+  font-weight: 760;
+  text-transform: uppercase;
+}
+
+.invoicecraft-document-preview__top strong {
+  display: block;
+  margin-top: 4px;
+  overflow-wrap: anywhere;
+  font-size: 1.02rem;
+  line-height: 1.25;
+}
+
+.invoicecraft-preview-lines {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.invoicecraft-preview-lines div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ecefe9;
+}
+
+.invoicecraft-preview-lines dt {
+  color: #31443b;
+  font-size: 0.9rem;
+}
+
+.invoicecraft-preview-lines dd {
+  margin: 0;
+  color: #17231e;
+  font-size: 0.92rem;
+  font-weight: 760;
+  white-space: nowrap;
+}
+
+.invoicecraft-preview-total {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  margin-top: auto;
+  border-top: 2px solid #bd7424;
+}
+
+.invoicecraft-preview-total strong {
+  color: #254c6a;
+  font-size: 1.35rem;
+  line-height: 1.1;
+}
+
+.invoicecraft-section,
+.invoicecraft-footer-cluster {
+  padding: 26px 0;
+  border-bottom: 1px solid #d8ded8;
+}
+
+.invoicecraft-shortcut-grid,
+.invoicecraft-featured-grid,
+.invoicecraft-tool-grid,
+.invoicecraft-footer-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.invoicecraft-shortcut-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.invoicecraft-shortcut-grid article {
+  min-width: 0;
+  padding-top: 15px;
+  border-top: 3px solid #bd7424;
+}
+
+.invoicecraft-shortcut-grid article:nth-child(2) {
+  border-color: #254c6a;
+}
+
+.invoicecraft-shortcut-grid article:nth-child(3) {
+  border-color: #2e8a57;
+}
+
+.invoicecraft-shortcut-grid h3 {
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
+.invoicecraft-shortcut-grid p {
+  margin-bottom: 12px;
+  color: #3f5048;
+  font-size: 0.9rem;
+}
+
+.invoicecraft-shortcut-list {
+  display: grid;
+  gap: 8px;
+}
+
+.invoicecraft-shortcut-list a {
+  display: grid;
+  min-width: 0;
+  min-height: 58px;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 9px;
+  align-items: center;
+  padding: 9px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  color: #17231e;
+  background: #ffffff;
+  text-decoration: none;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.invoicecraft-shortcut-list a:hover,
+.invoicecraft-shortcut-list a:focus-visible {
+  transform: translateY(-1px);
+  border-color: #bd7424;
+  background: #fbfaf6;
+}
+
+.invoicecraft-shortcut-list span,
+.invoicecraft-tool-card__glyph {
+  display: grid;
+  width: 40px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid #d7cbb5;
+  border-radius: 8px;
+  color: #6a3c12;
+  background: #fbf3e5;
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+.invoicecraft-shortcut-list strong {
+  min-width: 0;
+  color: #17231e;
+  font-size: 0.86rem;
+  line-height: 1.22;
+}
+
+.invoicecraft-featured-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.invoicecraft-tool-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.invoicecraft-tool-card {
+  display: grid;
+  min-width: 0;
+  min-height: 176px;
+  grid-template-rows: auto 1fr auto;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  color: #17231e;
+  background: #ffffff;
+  text-decoration: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.invoicecraft-tool-card--featured {
+  min-height: 198px;
+  border-top: 3px solid #bd7424;
+}
+
+.invoicecraft-tool-card:hover,
+.invoicecraft-tool-card:focus-visible {
+  transform: translateY(-1px);
+  border-color: #bd7424;
+  box-shadow: 0 10px 28px rgb(189 116 36 / 10%);
+}
+
+.invoicecraft-tool-card__body {
+  display: grid;
+  gap: 7px;
+  align-content: start;
+}
+
+.invoicecraft-tool-card__body span {
+  color: #65746c;
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.invoicecraft-tool-card__body strong {
+  color: #17231e;
+  font-size: 1.02rem;
+  line-height: 1.25;
+}
+
+.invoicecraft-tool-card__body em {
+  color: #3f5048;
+  font-size: 0.88rem;
+  font-style: normal;
+  line-height: 1.42;
+}
+
+.invoicecraft-tool-card b {
+  color: #254c6a;
+  font-size: 0.84rem;
+  font-weight: 850;
+}
+
+.invoicecraft-review-note {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+  gap: 18px;
+  padding: 22px 0;
+  border-bottom: 1px solid #d8ded8;
+}
+
+.invoicecraft-review-note > div {
+  min-width: 0;
+  padding-top: 14px;
+  border-top: 3px solid #254c6a;
+}
+
+.invoicecraft-review-note > div:last-child {
+  border-color: #2e8a57;
+}
+
+.invoicecraft-review-note h2,
+.invoicecraft-review-note h3 {
+  margin-bottom: 7px;
+  color: #17231e;
+  font-size: 1rem;
+}
+
+.invoicecraft-review-note p {
+  margin: 0;
+  color: #3f5048;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.invoicecraft-finder {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr);
+  gap: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 10px 28px rgb(23 35 30 / 5%);
+}
+
+.invoicecraft-category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.invoicecraft-category-tabs button {
+  padding: 9px 11px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  color: #31453b;
+  background: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 760;
+  cursor: pointer;
+}
+
+.invoicecraft-category-tabs button[aria-pressed="true"] {
+  color: #ffffff;
+  border-color: #bd7424;
+  background: #8d4f17;
+}
+
+.invoicecraft-empty {
+  padding: 16px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.invoicecraft-empty h3 {
+  margin-bottom: 6px;
+  font-size: 1.05rem;
+}
+
+.invoicecraft-empty p {
+  margin-bottom: 0;
+  color: #3f5048;
+}
+
+.invoicecraft-footer-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.invoicecraft-footer-grid h2 {
+  margin-bottom: 8px;
+  color: #17231e;
+  font-size: 0.76rem;
+  font-weight: 760;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.invoicecraft-footer-grid ul {
+  display: grid;
+  gap: 6px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.invoicecraft-footer-grid a {
+  display: inline-block;
+  color: #3f4f47;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.35;
+  text-decoration: none;
+  transform-origin: left center;
+  transition: color 160ms ease, transform 160ms ease, font-weight 160ms ease;
+}
+
+.invoicecraft-footer-grid a:hover,
+.invoicecraft-footer-grid a:focus-visible {
+  color: #8d4f17;
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateX(2px) scale(1.025);
+}
+
 .signal {
   width: 12px;
   height: 12px;
@@ -2804,6 +3241,9 @@ h3 {
   .qrroute-featured-grid,
   .qrroute-tool-grid,
   .qrroute-footer-grid,
+  .invoicecraft-featured-grid,
+  .invoicecraft-tool-grid,
+  .invoicecraft-footer-grid,
   .devutility-tool-grid,
   .devutility-footer-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2825,6 +3265,8 @@ h3 {
   .timenexus-hero,
   .qrroute-hero,
   .qrroute-static-note,
+  .invoicecraft-hero,
+  .invoicecraft-review-note,
   .tool-finder,
   .trust-row,
   .controls,
@@ -2884,6 +3326,10 @@ h3 {
   .qrroute-featured-grid,
   .qrroute-tool-grid,
   .qrroute-footer-grid,
+  .invoicecraft-shortcut-grid,
+  .invoicecraft-featured-grid,
+  .invoicecraft-tool-grid,
+  .invoicecraft-footer-grid,
   .support-block,
   .footer-verticals,
   .evidence-strip {
@@ -2896,7 +3342,9 @@ h3 {
   .timenexus-shortcut-list,
   .qrroute-shortcut-list,
   .qrroute-preview-panel__body,
-  .qrroute-preview-meta {
+  .qrroute-preview-meta,
+  .invoicecraft-shortcut-list,
+  .invoicecraft-document-preview__top {
     grid-template-columns: 1fr;
   }
 

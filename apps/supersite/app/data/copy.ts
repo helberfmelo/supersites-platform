@@ -291,6 +291,65 @@ export interface QrRouteCatalogCopy {
   footerGroups: QrRouteCatalogFooterGroup[]
 }
 
+export type InvoiceCraftCatalogCategoryKey = 'invoice' | 'quote' | 'receipt'
+
+export interface InvoiceCraftCatalogToolLink {
+  label: string
+  body: string
+  path: string
+  glyph: string
+  category: InvoiceCraftCatalogCategoryKey
+  featured: boolean
+}
+
+export interface InvoiceCraftCatalogShortcutGroup {
+  title: string
+  body: string
+  paths: string[]
+}
+
+export interface InvoiceCraftCatalogFooterGroup {
+  title: string
+  links: Array<{ label: string; path: string }>
+}
+
+export interface InvoiceCraftCatalogCopy {
+  eyebrow: string
+  title: string
+  lead: string
+  primaryCta: string
+  secondaryCta: string
+  previewTitle: string
+  previewBadge: string
+  previewDocumentLabel: string
+  previewDocumentValue: string
+  previewClientLabel: string
+  previewClientValue: string
+  previewRows: Array<{ label: string; value: string }>
+  previewTotalLabel: string
+  previewTotalValue: string
+  browseTitle: string
+  browseBody: string
+  featuredTitle: string
+  featuredBody: string
+  reviewTitle: string
+  reviewBody: string
+  privacyTitle: string
+  privacyBody: string
+  searchLabel: string
+  searchPlaceholder: string
+  allCategories: string
+  noResultsTitle: string
+  noResultsBody: string
+  allTitle: string
+  allBody: string
+  toolCta: string
+  categories: Array<{ key: InvoiceCraftCatalogCategoryKey; label: string }>
+  tools: InvoiceCraftCatalogToolLink[]
+  shortcutGroups: InvoiceCraftCatalogShortcutGroup[]
+  footerGroups: InvoiceCraftCatalogFooterGroup[]
+}
+
 export interface FooterCopy {
   brandBody: string
   productNavLabel: string
@@ -2437,6 +2496,294 @@ export const qrRouteCatalogCopy: Record<LocaleCode, QrRouteCatalogCopy> = {
   },
 }
 
+export const invoiceCraftCatalogCopy: Record<LocaleCode, InvoiceCraftCatalogCopy> = {
+  en: {
+    eyebrow: 'Invoices, quotes and receipts',
+    title: 'Create a client document and download a local PDF.',
+    lead: 'Start with an invoice, quote or receipt builder that keeps names, items and amounts in the browser. The free workflow creates one polished PDF without an account.',
+    primaryCta: 'Open invoice builder',
+    secondaryCta: 'Browse document builders',
+    previewTitle: 'Live document preview',
+    previewBadge: 'Local PDF',
+    previewDocumentLabel: 'Document',
+    previewDocumentValue: 'Invoice IC-2026-018',
+    previewClientLabel: 'Bill to',
+    previewClientValue: 'Acme Studio',
+    previewRows: [
+      { label: 'Design sprint', value: '$1,250.00' },
+      { label: 'Hosting setup', value: '$180.00' },
+      { label: 'Manual adjustment', value: '$35.00' },
+    ],
+    previewTotalLabel: 'Total due',
+    previewTotalValue: '$1,465.00',
+    browseTitle: 'Choose the document flow',
+    browseBody: 'InvoiceCraft mirrors the common invoice-generator pattern: document type first, then itemized preview, totals and PDF export.',
+    featuredTitle: 'Start with the right client document',
+    featuredBody: 'Open the exact public builder for a billable invoice, pre-work estimate or paid receipt without passing through an account wall.',
+    reviewTitle: 'Review before sending',
+    reviewBody: 'The free builder formats visible fields and totals. Official fiscal numbering, jurisdiction-specific tax rules and payment collection stay outside this public document flow.',
+    privacyTitle: 'Local document data',
+    privacyBody: 'Issuer, client, item, note and amount fields stay in the browser session. The catalog only links to public builders and does not store document entries.',
+    searchLabel: 'Search InvoiceCraft tools',
+    searchPlaceholder: 'Try invoice, quote, receipt, PDF...',
+    allCategories: 'All document tools',
+    noResultsTitle: 'No matching document builder',
+    noResultsBody: 'Try another keyword or category. Only public InvoiceCraft pages that already exist are linked here.',
+    allTitle: 'All published InvoiceCraft tools',
+    allBody: 'Move between the invoice, quote and receipt builders for one-off browser-side document creation.',
+    toolCta: 'Open builder',
+    categories: [
+      { key: 'invoice', label: 'Invoices' },
+      { key: 'quote', label: 'Quotes' },
+      { key: 'receipt', label: 'Receipts' },
+    ],
+    tools: [
+      { label: 'Invoice Builder', body: 'Create an itemized invoice preview and download a local PDF.', path: '/tools/invoice-builder', glyph: 'INV', category: 'invoice', featured: true },
+      { label: 'Quote Builder', body: 'Prepare a scoped estimate with validity details and itemized totals.', path: '/tools/quote-builder', glyph: 'QT', category: 'quote', featured: true },
+      { label: 'Receipt Builder', body: 'Draft a paid receipt with date, payer and itemized record.', path: '/tools/receipt-builder', glyph: 'RCT', category: 'receipt', featured: true },
+    ],
+    shortcutGroups: [
+      { title: 'Bill for completed work', body: 'Use an invoice when the client needs a document for payable work.', paths: ['/tools/invoice-builder', '/tools/receipt-builder'] },
+      { title: 'Estimate before approval', body: 'Use a quote when scope, validity and pricing need review before work starts.', paths: ['/tools/quote-builder', '/tools/invoice-builder'] },
+      { title: 'Record a payment', body: 'Use a receipt after payment so the payer gets a simple downloadable record.', paths: ['/tools/receipt-builder', '/tools/quote-builder'] },
+    ],
+    footerGroups: [
+      { title: 'Invoices', links: [{ label: 'Invoice Builder', path: '/tools/invoice-builder' }, { label: 'Invoice PDF', path: '/tools/invoice-builder' }] },
+      { title: 'Quotes', links: [{ label: 'Quote Builder', path: '/tools/quote-builder' }, { label: 'Estimate PDF', path: '/tools/quote-builder' }] },
+      { title: 'Receipts', links: [{ label: 'Receipt Builder', path: '/tools/receipt-builder' }, { label: 'Paid receipt', path: '/tools/receipt-builder' }] },
+      { title: 'Document checks', links: [{ label: 'Review totals', path: '/tools/invoice-builder' }, { label: 'Record payment', path: '/tools/receipt-builder' }] },
+    ],
+  },
+  'pt-br': {
+    eyebrow: 'Faturas, orçamentos e recibos',
+    title: 'Crie um documento de cliente e baixe um PDF local.',
+    lead: 'Comece por gerador de fatura, orçamento ou recibo mantendo nomes, itens e valores no navegador. O fluxo gratuito cria um PDF limpo sem conta.',
+    primaryCta: 'Abrir gerador de fatura',
+    secondaryCta: 'Ver geradores de documentos',
+    previewTitle: 'Prévia de documento ao vivo',
+    previewBadge: 'PDF local',
+    previewDocumentLabel: 'Documento',
+    previewDocumentValue: 'Fatura IC-2026-018',
+    previewClientLabel: 'Cliente',
+    previewClientValue: 'Acme Studio',
+    previewRows: [
+      { label: 'Sprint de design', value: 'R$ 1.250,00' },
+      { label: 'Setup de hospedagem', value: 'R$ 180,00' },
+      { label: 'Ajuste manual', value: 'R$ 35,00' },
+    ],
+    previewTotalLabel: 'Total',
+    previewTotalValue: 'R$ 1.465,00',
+    browseTitle: 'Escolha o fluxo de documento',
+    browseBody: 'O InvoiceCraft segue o padrão mental dos geradores de fatura: tipo de documento primeiro, depois prévia, totais e exportação PDF.',
+    featuredTitle: 'Comece pelo documento certo',
+    featuredBody: 'Abra o gerador público exato para fatura, orçamento prévio ou recibo pago sem passar por uma parede de conta.',
+    reviewTitle: 'Revise antes de enviar',
+    reviewBody: 'O gerador gratuito formata campos visíveis e totais. Numeração fiscal oficial, regras tributárias por jurisdição e cobrança ficam fora deste fluxo público.',
+    privacyTitle: 'Dados locais do documento',
+    privacyBody: 'Emissor, cliente, itens, notas e valores ficam na sessão do navegador. O catálogo apenas abre geradores públicos e não armazena entradas.',
+    searchLabel: 'Buscar ferramentas InvoiceCraft',
+    searchPlaceholder: 'Tente fatura, orçamento, recibo, PDF...',
+    allCategories: 'Todas as ferramentas de documento',
+    noResultsTitle: 'Nenhum gerador encontrado',
+    noResultsBody: 'Tente outra palavra ou categoria. Só entram links para páginas InvoiceCraft públicas existentes.',
+    allTitle: 'Todas as ferramentas InvoiceCraft publicadas',
+    allBody: 'Alterne entre geradores de fatura, orçamento e recibo para criar documentos pontuais no navegador.',
+    toolCta: 'Abrir gerador',
+    categories: [
+      { key: 'invoice', label: 'Faturas' },
+      { key: 'quote', label: 'Orçamentos' },
+      { key: 'receipt', label: 'Recibos' },
+    ],
+    tools: [
+      { label: 'Gerador de fatura', body: 'Crie uma prévia de fatura itemizada e baixe um PDF local.', path: '/tools/invoice-builder', glyph: 'FAT', category: 'invoice', featured: true },
+      { label: 'Gerador de orçamento', body: 'Prepare uma estimativa com validade, escopo e totais itemizados.', path: '/tools/quote-builder', glyph: 'ORC', category: 'quote', featured: true },
+      { label: 'Gerador de recibo', body: 'Monte um recibo pago com data, pagador e registro itemizado.', path: '/tools/receipt-builder', glyph: 'REC', category: 'receipt', featured: true },
+    ],
+    shortcutGroups: [
+      { title: 'Cobrar trabalho concluído', body: 'Use fatura quando o cliente precisa de um documento para trabalho a pagar.', paths: ['/tools/invoice-builder', '/tools/receipt-builder'] },
+      { title: 'Estimar antes da aprovação', body: 'Use orçamento quando escopo, validade e preço precisam de revisão antes do início.', paths: ['/tools/quote-builder', '/tools/invoice-builder'] },
+      { title: 'Registrar pagamento', body: 'Use recibo depois do pagamento para entregar um comprovante simples em PDF.', paths: ['/tools/receipt-builder', '/tools/quote-builder'] },
+    ],
+    footerGroups: [
+      { title: 'Faturas', links: [{ label: 'Gerador de fatura', path: '/tools/invoice-builder' }, { label: 'PDF de fatura', path: '/tools/invoice-builder' }] },
+      { title: 'Orçamentos', links: [{ label: 'Gerador de orçamento', path: '/tools/quote-builder' }, { label: 'PDF de orçamento', path: '/tools/quote-builder' }] },
+      { title: 'Recibos', links: [{ label: 'Gerador de recibo', path: '/tools/receipt-builder' }, { label: 'Recibo pago', path: '/tools/receipt-builder' }] },
+      { title: 'Conferência', links: [{ label: 'Revisar totais', path: '/tools/invoice-builder' }, { label: 'Registrar pagamento', path: '/tools/receipt-builder' }] },
+    ],
+  },
+  es: {
+    eyebrow: 'Facturas, presupuestos y recibos',
+    title: 'Crea un documento de cliente y descarga un PDF local.',
+    lead: 'Empieza con factura, presupuesto o recibo manteniendo nombres, items e importes en el navegador. El flujo gratis crea un PDF limpio sin cuenta.',
+    primaryCta: 'Abrir generador de facturas',
+    secondaryCta: 'Ver generadores de documentos',
+    previewTitle: 'Vista previa del documento',
+    previewBadge: 'PDF local',
+    previewDocumentLabel: 'Documento',
+    previewDocumentValue: 'Factura IC-2026-018',
+    previewClientLabel: 'Cliente',
+    previewClientValue: 'Acme Studio',
+    previewRows: [
+      { label: 'Sprint de diseño', value: '1250,00 €' },
+      { label: 'Configuración hosting', value: '180,00 €' },
+      { label: 'Ajuste manual', value: '35,00 €' },
+    ],
+    previewTotalLabel: 'Total',
+    previewTotalValue: '1465,00 €',
+    browseTitle: 'Elige el flujo de documento',
+    browseBody: 'InvoiceCraft sigue el patrón de generadores de facturas: tipo de documento, vista previa, totales y exportación PDF.',
+    featuredTitle: 'Empieza por el documento correcto',
+    featuredBody: 'Abre el generador público exacto para factura, presupuesto previo o recibo pagado sin pasar por una cuenta.',
+    reviewTitle: 'Revisar antes de enviar',
+    reviewBody: 'El generador gratis formatea campos visibles y totales. Numeración fiscal oficial, reglas tributarias y cobro quedan fuera del flujo público.',
+    privacyTitle: 'Datos locales del documento',
+    privacyBody: 'Emisor, cliente, items, notas e importes quedan en la sesión del navegador. El catálogo solo abre generadores públicos.',
+    searchLabel: 'Buscar herramientas InvoiceCraft',
+    searchPlaceholder: 'Prueba factura, presupuesto, recibo, PDF...',
+    allCategories: 'Todas las herramientas de documento',
+    noResultsTitle: 'No hay generador coincidente',
+    noResultsBody: 'Prueba otra palabra o categoría. Solo enlazamos páginas públicas InvoiceCraft existentes.',
+    allTitle: 'Todas las herramientas InvoiceCraft publicadas',
+    allBody: 'Alterna entre generadores de factura, presupuesto y recibo para documentos puntuales en el navegador.',
+    toolCta: 'Abrir generador',
+    categories: [
+      { key: 'invoice', label: 'Facturas' },
+      { key: 'quote', label: 'Presupuestos' },
+      { key: 'receipt', label: 'Recibos' },
+    ],
+    tools: [
+      { label: 'Generador de facturas', body: 'Crea una vista de factura itemizada y descarga un PDF local.', path: '/tools/invoice-builder', glyph: 'FAC', category: 'invoice', featured: true },
+      { label: 'Generador de presupuestos', body: 'Prepara una estimación con validez, alcance y totales.', path: '/tools/quote-builder', glyph: 'PRE', category: 'quote', featured: true },
+      { label: 'Generador de recibos', body: 'Crea un recibo pagado con fecha, pagador y registro itemizado.', path: '/tools/receipt-builder', glyph: 'REC', category: 'receipt', featured: true },
+    ],
+    shortcutGroups: [
+      { title: 'Cobrar trabajo terminado', body: 'Usa factura cuando el cliente necesita un documento pagable.', paths: ['/tools/invoice-builder', '/tools/receipt-builder'] },
+      { title: 'Estimar antes de aprobar', body: 'Usa presupuesto cuando alcance, validez y precio requieren revisión.', paths: ['/tools/quote-builder', '/tools/invoice-builder'] },
+      { title: 'Registrar un pago', body: 'Usa recibo después del pago para entregar un PDF simple.', paths: ['/tools/receipt-builder', '/tools/quote-builder'] },
+    ],
+    footerGroups: [
+      { title: 'Facturas', links: [{ label: 'Generador de facturas', path: '/tools/invoice-builder' }, { label: 'PDF de factura', path: '/tools/invoice-builder' }] },
+      { title: 'Presupuestos', links: [{ label: 'Generador de presupuestos', path: '/tools/quote-builder' }, { label: 'PDF de presupuesto', path: '/tools/quote-builder' }] },
+      { title: 'Recibos', links: [{ label: 'Generador de recibos', path: '/tools/receipt-builder' }, { label: 'Recibo pagado', path: '/tools/receipt-builder' }] },
+      { title: 'Revisión', links: [{ label: 'Revisar totales', path: '/tools/invoice-builder' }, { label: 'Registrar pago', path: '/tools/receipt-builder' }] },
+    ],
+  },
+  fr: {
+    eyebrow: 'Factures, devis et reçus',
+    title: 'Créez un document client et téléchargez un PDF local.',
+    lead: 'Commencez par facture, devis ou reçu en gardant noms, lignes et montants dans le navigateur. Le flux gratuit crée un PDF propre sans compte.',
+    primaryCta: 'Ouvrir le générateur de facture',
+    secondaryCta: 'Voir les générateurs',
+    previewTitle: 'Aperçu du document',
+    previewBadge: 'PDF local',
+    previewDocumentLabel: 'Document',
+    previewDocumentValue: 'Facture IC-2026-018',
+    previewClientLabel: 'Client',
+    previewClientValue: 'Acme Studio',
+    previewRows: [
+      { label: 'Sprint design', value: '1 250,00 €' },
+      { label: 'Configuration hébergement', value: '180,00 €' },
+      { label: 'Ajustement manuel', value: '35,00 €' },
+    ],
+    previewTotalLabel: 'Total',
+    previewTotalValue: '1 465,00 €',
+    browseTitle: 'Choisir le flux document',
+    browseBody: 'InvoiceCraft suit le modèle des générateurs de facture: type de document, aperçu, totaux puis export PDF.',
+    featuredTitle: 'Commencer par le bon document',
+    featuredBody: 'Ouvrez le générateur public exact pour facture, devis préalable ou reçu payé sans passage par compte.',
+    reviewTitle: 'Revoir avant envoi',
+    reviewBody: 'Le générateur gratuit formate les champs visibles et totaux. Numérotation fiscale officielle, règles de taxe et paiement restent hors du flux public.',
+    privacyTitle: 'Données locales',
+    privacyBody: 'Émetteur, client, lignes, notes et montants restent dans la session du navigateur. Le catalogue ouvre seulement des générateurs publics.',
+    searchLabel: 'Chercher des outils InvoiceCraft',
+    searchPlaceholder: 'Essayez facture, devis, reçu, PDF...',
+    allCategories: 'Tous les outils document',
+    noResultsTitle: 'Aucun générateur trouvé',
+    noResultsBody: 'Essayez un autre mot ou une catégorie. Seules les pages publiques InvoiceCraft existantes sont liées.',
+    allTitle: 'Tous les outils InvoiceCraft publiés',
+    allBody: 'Passez entre facture, devis et reçu pour créer des documents ponctuels dans le navigateur.',
+    toolCta: 'Ouvrir',
+    categories: [
+      { key: 'invoice', label: 'Factures' },
+      { key: 'quote', label: 'Devis' },
+      { key: 'receipt', label: 'Reçus' },
+    ],
+    tools: [
+      { label: 'Générateur de facture', body: 'Créez un aperçu de facture détaillée et téléchargez un PDF local.', path: '/tools/invoice-builder', glyph: 'FAC', category: 'invoice', featured: true },
+      { label: 'Générateur de devis', body: 'Préparez une estimation avec validité, périmètre et totaux.', path: '/tools/quote-builder', glyph: 'DEV', category: 'quote', featured: true },
+      { label: 'Générateur de reçu', body: 'Rédigez un reçu payé avec date, payeur et lignes.', path: '/tools/receipt-builder', glyph: 'REC', category: 'receipt', featured: true },
+    ],
+    shortcutGroups: [
+      { title: 'Facturer un travail terminé', body: 'Utilisez une facture quand le client a besoin d un document payable.', paths: ['/tools/invoice-builder', '/tools/receipt-builder'] },
+      { title: 'Estimer avant accord', body: 'Utilisez un devis quand périmètre, validité et prix doivent être relus.', paths: ['/tools/quote-builder', '/tools/invoice-builder'] },
+      { title: 'Enregistrer un paiement', body: 'Utilisez un reçu après paiement pour donner une trace PDF simple.', paths: ['/tools/receipt-builder', '/tools/quote-builder'] },
+    ],
+    footerGroups: [
+      { title: 'Factures', links: [{ label: 'Générateur de facture', path: '/tools/invoice-builder' }, { label: 'PDF facture', path: '/tools/invoice-builder' }] },
+      { title: 'Devis', links: [{ label: 'Générateur de devis', path: '/tools/quote-builder' }, { label: 'PDF devis', path: '/tools/quote-builder' }] },
+      { title: 'Reçus', links: [{ label: 'Générateur de reçu', path: '/tools/receipt-builder' }, { label: 'Reçu payé', path: '/tools/receipt-builder' }] },
+      { title: 'Contrôles', links: [{ label: 'Revoir les totaux', path: '/tools/invoice-builder' }, { label: 'Enregistrer paiement', path: '/tools/receipt-builder' }] },
+    ],
+  },
+  de: {
+    eyebrow: 'Rechnungen, Angebote und Belege',
+    title: 'Erstellen Sie ein Kundendokument und laden Sie ein lokales PDF.',
+    lead: 'Starten Sie mit Rechnung, Angebot oder Beleg. Namen, Positionen und Beträge bleiben im Browser, und der kostenlose Ablauf erstellt ein PDF ohne Konto.',
+    primaryCta: 'Rechnung erstellen',
+    secondaryCta: 'Dokument-Builder ansehen',
+    previewTitle: 'Live-Dokumentvorschau',
+    previewBadge: 'Lokales PDF',
+    previewDocumentLabel: 'Dokument',
+    previewDocumentValue: 'Rechnung IC-2026-018',
+    previewClientLabel: 'Kunde',
+    previewClientValue: 'Acme Studio',
+    previewRows: [
+      { label: 'Design-Sprint', value: '1.250,00 €' },
+      { label: 'Hosting-Setup', value: '180,00 €' },
+      { label: 'Manuelle Anpassung', value: '35,00 €' },
+    ],
+    previewTotalLabel: 'Gesamt',
+    previewTotalValue: '1.465,00 €',
+    browseTitle: 'Dokumentablauf wählen',
+    browseBody: 'InvoiceCraft folgt dem bekannten Muster: Dokumenttyp, Vorschau, Summen und PDF-Export.',
+    featuredTitle: 'Mit dem passenden Dokument starten',
+    featuredBody: 'Öffnen Sie den passenden öffentlichen Builder für Rechnung, Angebot oder Zahlungsbeleg ohne Konto-Pflicht.',
+    reviewTitle: 'Vor dem Senden prüfen',
+    reviewBody: 'Der kostenlose Builder formatiert sichtbare Felder und Summen. Offizielle Steuernummern, länderspezifische Steuerregeln und Zahlung bleiben außerhalb dieses öffentlichen Ablaufs.',
+    privacyTitle: 'Lokale Dokumentdaten',
+    privacyBody: 'Aussteller, Kunde, Positionen, Notizen und Beträge bleiben in der Browser-Sitzung. Der Katalog öffnet nur öffentliche Builder.',
+    searchLabel: 'InvoiceCraft-Tools suchen',
+    searchPlaceholder: 'Rechnung, Angebot, Beleg, PDF...',
+    allCategories: 'Alle Dokument-Tools',
+    noResultsTitle: 'Kein passender Builder',
+    noResultsBody: 'Versuchen Sie ein anderes Wort oder eine Kategorie. Es werden nur bestehende öffentliche InvoiceCraft-Seiten verlinkt.',
+    allTitle: 'Alle veröffentlichten InvoiceCraft-Tools',
+    allBody: 'Wechseln Sie zwischen Rechnung, Angebot und Beleg für einmalige Browser-Dokumente.',
+    toolCta: 'Öffnen',
+    categories: [
+      { key: 'invoice', label: 'Rechnungen' },
+      { key: 'quote', label: 'Angebote' },
+      { key: 'receipt', label: 'Belege' },
+    ],
+    tools: [
+      { label: 'Rechnung erstellen', body: 'Erstellen Sie eine Positionsvorschau und laden Sie ein lokales PDF.', path: '/tools/invoice-builder', glyph: 'INV', category: 'invoice', featured: true },
+      { label: 'Angebot erstellen', body: 'Bereiten Sie Schätzung, Gültigkeit, Umfang und Summen vor.', path: '/tools/quote-builder', glyph: 'ANG', category: 'quote', featured: true },
+      { label: 'Beleg erstellen', body: 'Erstellen Sie einen Zahlungsbeleg mit Datum, Zahler und Positionen.', path: '/tools/receipt-builder', glyph: 'BEL', category: 'receipt', featured: true },
+    ],
+    shortcutGroups: [
+      { title: 'Fertige Arbeit abrechnen', body: 'Nutzen Sie eine Rechnung, wenn der Kunde ein zahlbares Dokument braucht.', paths: ['/tools/invoice-builder', '/tools/receipt-builder'] },
+      { title: 'Vor Freigabe schätzen', body: 'Nutzen Sie ein Angebot, wenn Umfang, Gültigkeit und Preis geprüft werden.', paths: ['/tools/quote-builder', '/tools/invoice-builder'] },
+      { title: 'Zahlung dokumentieren', body: 'Nutzen Sie einen Beleg nach Zahlung für einen einfachen PDF-Nachweis.', paths: ['/tools/receipt-builder', '/tools/quote-builder'] },
+    ],
+    footerGroups: [
+      { title: 'Rechnungen', links: [{ label: 'Rechnung erstellen', path: '/tools/invoice-builder' }, { label: 'Rechnungs-PDF', path: '/tools/invoice-builder' }] },
+      { title: 'Angebote', links: [{ label: 'Angebot erstellen', path: '/tools/quote-builder' }, { label: 'Angebots-PDF', path: '/tools/quote-builder' }] },
+      { title: 'Belege', links: [{ label: 'Beleg erstellen', path: '/tools/receipt-builder' }, { label: 'Zahlungsbeleg', path: '/tools/receipt-builder' }] },
+      { title: 'Prüfung', links: [{ label: 'Summen prüfen', path: '/tools/invoice-builder' }, { label: 'Zahlung erfassen', path: '/tools/receipt-builder' }] },
+    ],
+  },
+}
+
 export const footerCopy: Record<LocaleCode, FooterCopy> = {
   en: {
     brandBody: 'A portfolio of practical web tools with localized public pages, useful free workflows and clearly separated account features.',
@@ -2841,6 +3188,10 @@ export function getTimeNexusCatalogCopy(locale: LocaleCode): TimeNexusCatalogCop
 
 export function getQrRouteCatalogCopy(locale: LocaleCode): QrRouteCatalogCopy {
   return sanitizePublicCopy(locale, qrRouteCatalogCopy[locale])
+}
+
+export function getInvoiceCraftCatalogCopy(locale: LocaleCode): InvoiceCraftCatalogCopy {
+  return sanitizePublicCopy(locale, invoiceCraftCatalogCopy[locale])
 }
 
 export function getFooterCopy(locale: LocaleCode): FooterCopy {

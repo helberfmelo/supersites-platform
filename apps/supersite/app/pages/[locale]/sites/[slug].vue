@@ -5,12 +5,15 @@ import {
   getCalcHarborCatalogCopy,
   getDetailCopy,
   getDevUtilityCatalogCopy,
+  getInvoiceCraftCatalogCopy,
   getNetProbeCatalogCopy,
   getQrRouteCatalogCopy,
   getTimeNexusCatalogCopy,
   type CalcHarborCatalogCategoryKey,
   type DevUtilityCatalogCategoryKey,
   type DevUtilityCatalogToolLink,
+  type InvoiceCraftCatalogCategoryKey,
+  type InvoiceCraftCatalogToolLink,
   type QrRouteCatalogCategoryKey,
   type QrRouteCatalogToolLink,
   type TimeNexusCatalogCategoryKey,
@@ -39,6 +42,7 @@ const calcHarborCopy = getCalcHarborCatalogCopy(locale)
 const devUtilityCopy = getDevUtilityCatalogCopy(locale)
 const timeNexusCopy = getTimeNexusCatalogCopy(locale)
 const qrRouteCopy = getQrRouteCatalogCopy(locale)
+const invoiceCraftCopy = getInvoiceCraftCatalogCopy(locale)
 const siteText = site.localized[locale]
 const seoDescription = limitSeoText(siteText.summary, SEO_DESCRIPTION_MAX_LENGTH)
 const canonicalPath = localizedSitePath(locale, site.slug)
@@ -48,6 +52,7 @@ const isCalcHarborCatalog = site.slug === 'calcharbor'
 const isDevUtilityCatalog = site.slug === 'devutility-lab'
 const isTimeNexusCatalog = site.slug === 'timenexus'
 const isQrRouteCatalog = site.slug === 'qrroute'
+const isInvoiceCraftCatalog = site.slug === 'invoicecraft'
 const primaryNetProbePath = netProbeCopy.toolLinks[0]?.path ?? '/tools/what-is-my-ip'
 const secondaryNetProbePath = netProbeCopy.toolLinks[1]?.path ?? '/tools/dns-propagation'
 const primaryCalcHarborPath = calcHarborCopy.calculators.find((tool) => tool.path === '/calculators/loan-payment')?.path ?? '/calculators/loan-payment'
@@ -130,6 +135,28 @@ const qrRouteShortcutGroups = computed(() => (
     tools: group.paths
       .map((path) => qrRouteCopy.tools.find((tool) => tool.path === path))
       .filter((tool): tool is QrRouteCatalogToolLink => Boolean(tool)),
+  }))
+))
+const primaryInvoiceCraftPath = invoiceCraftCopy.tools.find((tool) => tool.path === '/tools/invoice-builder')?.path ?? '/tools/invoice-builder'
+const invoiceCraftFeaturedTools = invoiceCraftCopy.tools.filter((tool) => tool.featured)
+const invoiceCraftSearchQuery = ref('')
+const invoiceCraftSelectedCategory = ref<InvoiceCraftCatalogCategoryKey | 'all'>('all')
+const filteredInvoiceCraftTools = computed(() => {
+  const query = invoiceCraftSearchQuery.value.trim().toLowerCase()
+
+  return invoiceCraftCopy.tools.filter((tool) => {
+    const matchesCategory = invoiceCraftSelectedCategory.value === 'all' || tool.category === invoiceCraftSelectedCategory.value
+    const searchable = [tool.label, tool.body, tool.path, tool.glyph].join(' ').toLowerCase()
+
+    return matchesCategory && (!query || searchable.includes(query))
+  })
+})
+const invoiceCraftShortcutGroups = computed(() => (
+  invoiceCraftCopy.shortcutGroups.map((group) => ({
+    ...group,
+    tools: group.paths
+      .map((path) => invoiceCraftCopy.tools.find((tool) => tool.path === path))
+      .filter((tool): tool is InvoiceCraftCatalogToolLink => Boolean(tool)),
   }))
 ))
 const isLocalBrowser = ref(false)
@@ -265,6 +292,24 @@ function trackQrRouteToolClick(path: string): void {
   trackOutboundSiteClick({
     siteSlug: site.slug,
     targetUrl: getQrRouteToolUrl(path),
+    locale,
+    routePath: canonicalPath,
+    surface: 'site_detail',
+  })
+}
+
+function getInvoiceCraftToolUrl(path: string): string {
+  return `${site.temporaryUrl}${locale}${path}`
+}
+
+function getInvoiceCraftCategoryLabel(key: InvoiceCraftCatalogCategoryKey): string {
+  return invoiceCraftCopy.categories.find((category) => category.key === key)?.label ?? key
+}
+
+function trackInvoiceCraftToolClick(path: string): void {
+  trackOutboundSiteClick({
+    siteSlug: site.slug,
+    targetUrl: getInvoiceCraftToolUrl(path),
     locale,
     routePath: canonicalPath,
     surface: 'site_detail',
@@ -1050,6 +1095,191 @@ useHead({
                 <a
                   :href="getQrRouteToolUrl(link.path)"
                   @click="trackQrRouteToolClick(link.path)"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
+    </template>
+
+    <template v-else-if="isInvoiceCraftCatalog">
+      <section class="invoicecraft-hero" :aria-labelledby="`${site.slug}-title`">
+        <div class="invoicecraft-hero__copy">
+          <p class="eyebrow">{{ invoiceCraftCopy.eyebrow }}</p>
+          <h1 :id="`${site.slug}-title`">{{ invoiceCraftCopy.title }}</h1>
+          <p class="lead">{{ invoiceCraftCopy.lead }}</p>
+          <div class="invoicecraft-hero__actions">
+            <a
+              class="button-link"
+              :href="getInvoiceCraftToolUrl(primaryInvoiceCraftPath)"
+              @click="trackInvoiceCraftToolClick(primaryInvoiceCraftPath)"
+            >
+              {{ invoiceCraftCopy.primaryCta }}
+            </a>
+            <a class="button-link button-link--secondary" :href="`#${site.slug}-all`">
+              {{ invoiceCraftCopy.secondaryCta }}
+            </a>
+          </div>
+        </div>
+
+        <aside class="invoicecraft-preview-panel" :aria-labelledby="`${site.slug}-preview`">
+          <div class="invoicecraft-preview-panel__header">
+            <h2 :id="`${site.slug}-preview`">{{ invoiceCraftCopy.previewTitle }}</h2>
+            <span>{{ invoiceCraftCopy.previewBadge }}</span>
+          </div>
+          <div class="invoicecraft-document-preview">
+            <div class="invoicecraft-document-preview__top">
+              <div>
+                <span>{{ invoiceCraftCopy.previewDocumentLabel }}</span>
+                <strong>{{ invoiceCraftCopy.previewDocumentValue }}</strong>
+              </div>
+              <div>
+                <span>{{ invoiceCraftCopy.previewClientLabel }}</span>
+                <strong>{{ invoiceCraftCopy.previewClientValue }}</strong>
+              </div>
+            </div>
+            <dl class="invoicecraft-preview-lines">
+              <div v-for="row in invoiceCraftCopy.previewRows" :key="row.label">
+                <dt>{{ row.label }}</dt>
+                <dd>{{ row.value }}</dd>
+              </div>
+            </dl>
+            <div class="invoicecraft-preview-total">
+              <span>{{ invoiceCraftCopy.previewTotalLabel }}</span>
+              <strong>{{ invoiceCraftCopy.previewTotalValue }}</strong>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="invoicecraft-section" :aria-labelledby="`${site.slug}-browse`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-browse`">{{ invoiceCraftCopy.browseTitle }}</h2>
+          <p>{{ invoiceCraftCopy.browseBody }}</p>
+        </div>
+        <div class="invoicecraft-shortcut-grid">
+          <article v-for="group in invoiceCraftShortcutGroups" :key="group.title">
+            <h3>{{ group.title }}</h3>
+            <p>{{ group.body }}</p>
+            <div class="invoicecraft-shortcut-list">
+              <a
+                v-for="tool in group.tools"
+                :key="`${group.title}-${tool.path}`"
+                :href="getInvoiceCraftToolUrl(tool.path)"
+                @click="trackInvoiceCraftToolClick(tool.path)"
+              >
+                <span aria-hidden="true">{{ tool.glyph }}</span>
+                <strong>{{ tool.label }}</strong>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="invoicecraft-section" :aria-labelledby="`${site.slug}-featured`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-featured`">{{ invoiceCraftCopy.featuredTitle }}</h2>
+          <p>{{ invoiceCraftCopy.featuredBody }}</p>
+        </div>
+        <div class="invoicecraft-featured-grid">
+          <a
+            v-for="tool in invoiceCraftFeaturedTools"
+            :key="`featured-${tool.path}`"
+            class="invoicecraft-tool-card invoicecraft-tool-card--featured"
+            :href="getInvoiceCraftToolUrl(tool.path)"
+            @click="trackInvoiceCraftToolClick(tool.path)"
+          >
+            <span class="invoicecraft-tool-card__glyph" aria-hidden="true">{{ tool.glyph }}</span>
+            <span class="invoicecraft-tool-card__body">
+              <span>{{ getInvoiceCraftCategoryLabel(tool.category) }}</span>
+              <strong>{{ tool.label }}</strong>
+              <em>{{ tool.body }}</em>
+            </span>
+            <b>{{ invoiceCraftCopy.toolCta }}</b>
+          </a>
+        </div>
+      </section>
+
+      <section class="invoicecraft-review-note" :aria-labelledby="`${site.slug}-review`">
+        <div>
+          <h2 :id="`${site.slug}-review`">{{ invoiceCraftCopy.reviewTitle }}</h2>
+          <p>{{ invoiceCraftCopy.reviewBody }}</p>
+        </div>
+        <div>
+          <h3>{{ invoiceCraftCopy.privacyTitle }}</h3>
+          <p>{{ invoiceCraftCopy.privacyBody }}</p>
+        </div>
+      </section>
+
+      <section :id="`${site.slug}-all`" class="invoicecraft-section" :aria-labelledby="`${site.slug}-all-title`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-all-title`">{{ invoiceCraftCopy.allTitle }}</h2>
+          <p>{{ invoiceCraftCopy.allBody }}</p>
+        </div>
+        <div class="invoicecraft-finder" role="search" :aria-label="invoiceCraftCopy.searchLabel">
+          <div class="field">
+            <label for="invoicecraft-search">{{ invoiceCraftCopy.searchLabel }}</label>
+            <input
+              id="invoicecraft-search"
+              v-model="invoiceCraftSearchQuery"
+              type="search"
+              :placeholder="invoiceCraftCopy.searchPlaceholder"
+            >
+          </div>
+          <div class="invoicecraft-category-tabs" :aria-label="invoiceCraftCopy.searchLabel">
+            <button
+              type="button"
+              :aria-pressed="invoiceCraftSelectedCategory === 'all'"
+              @click="invoiceCraftSelectedCategory = 'all'"
+            >
+              {{ invoiceCraftCopy.allCategories }}
+            </button>
+            <button
+              v-for="category in invoiceCraftCopy.categories"
+              :key="category.key"
+              type="button"
+              :aria-pressed="invoiceCraftSelectedCategory === category.key"
+              @click="invoiceCraftSelectedCategory = category.key"
+            >
+              {{ category.label }}
+            </button>
+          </div>
+        </div>
+        <div v-if="filteredInvoiceCraftTools.length > 0" class="invoicecraft-tool-grid">
+          <a
+            v-for="tool in filteredInvoiceCraftTools"
+            :key="tool.path"
+            class="invoicecraft-tool-card"
+            :href="getInvoiceCraftToolUrl(tool.path)"
+            @click="trackInvoiceCraftToolClick(tool.path)"
+          >
+            <span class="invoicecraft-tool-card__glyph" aria-hidden="true">{{ tool.glyph }}</span>
+            <span class="invoicecraft-tool-card__body">
+              <span>{{ getInvoiceCraftCategoryLabel(tool.category) }}</span>
+              <strong>{{ tool.label }}</strong>
+              <em>{{ tool.body }}</em>
+            </span>
+            <b>{{ invoiceCraftCopy.toolCta }}</b>
+          </a>
+        </div>
+        <div v-else class="invoicecraft-empty" aria-live="polite">
+          <h3>{{ invoiceCraftCopy.noResultsTitle }}</h3>
+          <p>{{ invoiceCraftCopy.noResultsBody }}</p>
+        </div>
+      </section>
+
+      <section class="invoicecraft-footer-cluster" :aria-labelledby="`${site.slug}-deep-links`">
+        <div class="invoicecraft-footer-grid">
+          <section v-for="group in invoiceCraftCopy.footerGroups" :key="group.title">
+            <h2>{{ group.title }}</h2>
+            <ul>
+              <li v-for="link in group.links" :key="`${group.title}-${link.label}`">
+                <a
+                  :href="getInvoiceCraftToolUrl(link.path)"
+                  @click="trackInvoiceCraftToolClick(link.path)"
                 >
                   {{ link.label }}
                 </a>

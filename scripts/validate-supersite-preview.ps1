@@ -162,6 +162,11 @@ try {
         throw 'QRRoute detail page smoke failed.'
     }
 
+    $invoiceCraftDetail = Invoke-PreviewRequest -Uri "$baseUrl/en/sites/invoicecraft" -RequiredContent 'Create a client document and download a local PDF.'
+    if ($invoiceCraftDetail.StatusCode -ne 200 -or $invoiceCraftDetail.Content -notmatch 'Create a client document and download a local PDF.') {
+        throw 'InvoiceCraft detail page smoke failed.'
+    }
+
     $legal = Invoke-PreviewRequest -Uri "$baseUrl/en/privacy" -RequiredContent 'Data minimization'
     if ($legal.StatusCode -ne 200 -or $legal.Content -notmatch 'Privacy Policy') {
         throw 'Privacy page smoke failed.'
