@@ -1,6 +1,6 @@
 # NetProbe Atlas Benchmark Notes
 
-Data-base: 2026-06-28
+Data-base: 2026-06-30
 
 ## References
 
@@ -59,3 +59,15 @@ Data-base: 2026-06-28
 - The page explains results at three depths: general users, technical teams and ongoing monitoring, then provides DNS Tools, IP Tools, Domain Tools, SSL Tools and Guides deep-link groups.
 - Local evidence: `artifacts/netprobe-catalog-qa/netprobe-catalog-desktop.png` and `artifacts/netprobe-catalog-qa/netprobe-catalog-mobile-pt-br.png` were reviewed; Playwright checked desktop EN/mobile PT-BR, overflow and blocked public terms.
 - Production deploy `28422499578` published release `36b11f54ef984e6c6098da971cd5df3248cc1b0e-28422499578-1`, asset `https://opentshost.com/supersites/_nuxt/BhQl-Uh-.js`; public smoke, AdSense-safe validation, crawler quick `2026-06-30T05-37-05-797Z` and live route screenshots passed.
+
+## Phase 18 Sprint 18.21 home notes
+
+- The NetProbe app home `/supersites/netprobe-atlas/en/` now opens as a practical network diagnostics hub rather than a product/status page.
+- The first fold leads with `Check IP, DNS and domain signals in seconds.`, a universal target input (`Enter a domain, hostname or IP`) and direct paths to What is my IP, DNS Lookup and DNS Propagation.
+- Seven quick cards route to What is my IP, DNS Lookup, DNS Propagation, RDAP Domain Lookup, SSL Certificate Checker, Port Checker and Ping/Traceroute.
+- Public status/upgrade language was removed from the home surface, including launch status, API/release checks, advertising readiness, upgrade path and free-results-first wording.
+- The footer uses text-column topical menus for DNS Tools, DNS Guides, DNS Lookup by type, IP Tools, Domain Tools and SSL Tools. Keep this footer link-oriented, not button-heavy.
+- The support block is community/inert only. Do not activate donation payments, provider widgets, checkout, PIX, PayPal, Stripe or affiliate links without the human gates documented in the monetization playbooks.
+- The universal input does not append the typed target to a shareable URL and must keep analytics free of raw IP/domain/host values.
+- Operational correction: deploy `28474757009` failed only because the smoke marker was stale after intentional copy change. Commit `8441814` updated `scripts/smoke-netprobe-public.ps1` to assert the new H1 and block internal terms; final deploy `28475475506` passed with release `8441814e224be60ef9baa7b81dc8e32be2c35311-28475475506-1` and asset `DjMxIF8r.js`.
+- Evidence: local screenshots `artifacts/netprobe-home-qa/netprobe-home-en-desktop.png` and `artifacts/netprobe-home-qa/netprobe-home-pt-br-mobile.png`; live screenshots `artifacts/netprobe-home-live-qa/netprobe-home-live-en-desktop.png` and `artifacts/netprobe-home-live-qa/netprobe-home-live-pt-br-mobile.png`; crawler quick live `2026-06-30T21-07-05-749Z` with 95 routes, 190 viewport checks and 0 gaps.

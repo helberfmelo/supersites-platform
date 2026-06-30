@@ -1,6 +1,6 @@
 # Metrics
 
-Data-base: 2026-06-29
+Data-base: 2026-06-30
 
 ## Bootstrap metrics
 
@@ -1711,7 +1711,26 @@ Data-base: 2026-06-29
 | Sprint 18.20 post-deploy quick crawler | `2026-06-30T20-15-07-045Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.20 live Public Status screenshots | `artifacts/public-status-qa/status-en-live-desktop-clean.png` and `artifacts/public-status-qa/status-pt-br-live-mobile-clean.png` reviewed |
 | Sprint 18.20 live Public Status smoke | Passed: localized markers, canonical/hreflang checks, WebPage schema, blocked phrase scan 0, console errors 0 and overflow 0 |
-| Real deploy/provider activation | 29 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.20 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.21 NetProbe home route | `/supersites/netprobe-atlas/en/` converted to a public network diagnostics hub with universal target input, seven direct tool cards, no public status/upgrade badges and DNS/IP/domain/SSL footer columns |
+| Sprint 18.21 localized home checks | EN/PT-BR live browser checks passed with localized H1/placeholder/footer/support content and no blocked internal terms |
+| Sprint 18.21 NetProbe unit suite | Passed: 8 tests |
+| Sprint 18.21 NetProbe build | Passed |
+| Sprint 18.21 NetProbe Playwright suite | Passed: 9 tests, including desktop EN and mobile PT-BR home checks |
+| Sprint 18.21 NetProbe preview smoke | Passed; required markers updated to `Enter a domain, hostname or IP` and `DNS Lookup by type` |
+| Sprint 18.21 AdSense-safe validation | Passed locally and post-deploy: 13 public pages |
+| Sprint 18.21 package/structure/secrets/dry-run/diff | Passed, including package tests/typechecks, `ci:changes`, deploy dry-run and `git diff --check` |
+| Sprint 18.21 NetProbe HostGator artifact | Local passed: 180 files, 2615551 bytes; production deploy passed: 180 files, 2606552 bytes |
+| Sprint 18.21 implementation commit | `8f7b4f3` |
+| Sprint 18.21 smoke correction commit | `8441814`; replaced stale `Network facts` marker and added blocked-term smoke checks for NetProbe home |
+| Sprint 18.21 remote Quality Gates | `28474506579` and `28475246759` passed |
+| Sprint 18.21 remote Deploy Dry Runs | `28474506358` and `28475246669` passed |
+| Sprint 18.21 initial NetProbe deploy correction | Deploy run `28474757009` switched release but failed public smoke on stale marker; corrected by `8441814` before final redeploy |
+| Sprint 18.21 NetProbe production deploy | `28475475506` passed; release `8441814e224be60ef9baa7b81dc8e32be2c35311-28475475506-1`; asset `DjMxIF8r.js` |
+| Sprint 18.21 post-deploy public smoke | Passed: NetProbe public smoke and API smoke |
+| Sprint 18.21 post-deploy quick crawler | `2026-06-30T21-07-05-749Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.21 live NetProbe home screenshots | `artifacts/netprobe-home-live-qa/netprobe-home-live-en-desktop.png` and `artifacts/netprobe-home-live-qa/netprobe-home-live-pt-br-mobile.png` reviewed |
+| Sprint 18.21 live NetProbe home smoke | Passed: localized markers, canonical/hreflang checks, WebPage schema, blocked phrase scan 0, console errors 0 and overflow 0 |
+| Real deploy/provider activation | 30 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.21 NetProbe deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 

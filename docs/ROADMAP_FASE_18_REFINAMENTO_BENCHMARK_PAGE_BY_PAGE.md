@@ -706,6 +706,12 @@ Regra operacional:
 5. Criar footer inspirado no whatsmydns: DNS Tools, DNS Guides, DNS Lookup by type, IP Tools, Domain Tools, SSL Tools.
 6. Adicionar donation block.
 
+**Status em 2026-06-30:** concluida em producao. A home do NetProbe Atlas foi transformada em hub publico de diagnostico de rede: H1 task-first, input universal `Enter a domain, hostname or IP`, sete cards diretos para IP/DNS/RDAP/SSL/port/ping, catalogo sem status/upgrade publico, suporte comunitario inerte e footer tecnico em colunas com DNS Tools, DNS Guides, DNS Lookup by type, IP Tools, Domain Tools e SSL Tools.
+
+- Ciclo executado: validacao local completa, commits objetivos `8f7b4f3` e `8441814`, push, Quality Gates `28474506579`/`28475246759`, Deploy Dry Runs `28474506358`/`28475246669`, deploy final NetProbe HostGator `28475475506`, release `8441814e224be60ef9baa7b81dc8e32be2c35311-28475475506-1`, asset NetProbe `DjMxIF8r.js`, smoke publico, AdSense-safe, crawler quick live `2026-06-30T21-07-05-749Z` com 95 rotas/190 checks/0 gaps e screenshots live desktop/mobile revisados.
+- Correcao de processo registrada: o primeiro deploy (`28474757009`) trocou a release publica, mas falhou porque `scripts/smoke-netprobe-public.ps1` ainda exigia o marcador antigo `Network facts`. O smoke foi corrigido no commit `8441814` para exigir o novo H1 e bloquear termos internos na home antes do redeploy verde. Quando copy publica muda de forma intencional, preview/smoke publico precisa ser atualizado no mesmo ciclo antes de considerar a sprint fechada.
+- Escopo negativo: nenhum anuncio real, `ads.txt`, checkout, billing, pagamento, doacao real, afiliado, provider externo, worker/cron, probe global falso, DNS/root mapping, root redirect, analytics externo ou acao irreversivel foi ativado.
+
 ---
 
 ## Sprint 18.22 — NetProbe: What is my IP

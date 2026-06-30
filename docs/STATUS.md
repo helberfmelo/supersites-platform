@@ -1,6 +1,6 @@
 # Status
 
-Data-base: 2026-06-29
+Data-base: 2026-06-30
 
 ## Resumo executivo
 
@@ -1799,6 +1799,15 @@ Ainda em 2026-06-29, o `Public Watchdog` agendado run `28372846327` falhou no sm
   - CI e deploy finais: commit `f545788`; Quality Gate `28471979783`; Deploy Dry Run `28471979761`; deploy reversivel do Hub `28472435568` passou. A release ativa de `/supersites/` passou a ser `f5457889eec6a901ed0a4ff568f60cd9ea5ab844-28472435568-1`, com artefato publico validado em 211 arquivos/8878200 bytes e asset Hub `https://opentshost.com/supersites/_nuxt/B_BSjuR5.js`.
   - Validacao publica final: `pnpm deploy:smoke-supersite-public`, `pnpm validate:adsense-safe-public`, validacao browser das 5 rotas Status em producao, visual live limpo `artifacts/public-status-qa/status-en-live-desktop-clean.png` e `artifacts/public-status-qa/status-pt-br-live-mobile-clean.png`, e crawler benchmark quick live `2026-06-30T20-15-07-045Z` passaram com 95 rotas, 190 checks desktop/mobile e 0 gaps.
   - Escopo negativo: nenhum monitoramento novo, status API publico novo, provider externo, anuncio real, `ads.txt`, checkout, billing, pagamento, conta paga, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect, analytics externo, SLA ou acao irreversivel foi ativado.
+
+- Sprint 18.21 - NetProbe home:
+  - Escopo tecnico: a home do NetProbe Atlas foi convertida em hub publico de diagnostico de rede, com H1 pratico, input universal `Enter a domain, hostname or IP`, cards diretos para What is my IP, DNS Lookup, DNS Propagation, RDAP, SSL, Port Checker e Ping/Traceroute, catalogo sem badges de status/upgrade e footer tecnico em colunas de deep links.
+  - Limpeza publica: removidos `Launch status`, `API live`, `release checks`, `Advertising not active`, `Upgrade path`, `Free results first` e linguagem de operacao interna da primeira dobra. O bloco de suporte ficou inerte e comunitario, sem provider de pagamento, checkout, PIX, PayPal, Stripe ou doacao real.
+  - Correcao operacional: o deploy `28474757009` trocou a release publica, mas falhou porque o smoke ainda exigia o marcador antigo `Network facts`. O commit `8441814` atualizou `scripts/smoke-netprobe-public.ps1` para exigir o novo H1 e bloquear termos internos na home; o redeploy final passou.
+  - Validacao local pre-commit passou: `pnpm test:netprobe`, `pnpm build:netprobe`, `pnpm validate:public-copy`, `pnpm validate:netprobe-preview`, `pnpm test:e2e:netprobe`, `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:adsense-safe-public`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `pnpm deploy:build-netprobe-hostgator` e `git diff --check`. O comando `pnpm --filter @supersites/netprobe-atlas typecheck` nao existe nesse pacote; build/typecheck compartilhado cobriram a validacao aplicavel.
+  - CI e deploy finais: commits `8f7b4f3` e `8441814`; Quality Gates `28474506579` e `28475246759`; Deploy Dry Runs `28474506358` e `28475246669`; deploy reversivel NetProbe `28475475506` passou. A release ativa de `/supersites/netprobe-atlas/` passou a ser `8441814e224be60ef9baa7b81dc8e32be2c35311-28475475506-1`, com artefato publico validado em 180 arquivos/2606552 bytes e asset NetProbe `https://opentshost.com/supersites/netprobe-atlas/_nuxt/DjMxIF8r.js`.
+  - Validacao publica final: `pnpm deploy:smoke-netprobe-public`, `pnpm validate:adsense-safe-public`, crawler benchmark quick live `2026-06-30T21-07-05-749Z` com 95 rotas/190 checks/0 gaps e validacao browser desktop/mobile da home EN/PT-BR sem termos bloqueados, sem overflow, canonical/hreflang/schema OK e screenshots `artifacts/netprobe-home-live-qa/netprobe-home-live-en-desktop.png` e `artifacts/netprobe-home-live-qa/netprobe-home-live-pt-br-mobile.png`.
+  - Escopo negativo: nenhum anuncio real, `ads.txt`, checkout, billing, pagamento, conta paga, doacao real, afiliado, provider externo, worker/cron, probe multirregional novo, DNS/root mapping, root redirect, analytics externo, armazenamento de alvo digitado ou acao irreversivel foi ativado.
 
 ## Bloqueios humanos registrados
 
