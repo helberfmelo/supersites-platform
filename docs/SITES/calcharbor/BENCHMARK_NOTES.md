@@ -53,3 +53,4 @@ Data-base: 2026-06-27
 - The page links only to the 8 existing public calculator routes; future calculator topics are presented as editorial direction without URLs so the Hub does not create thin pages.
 - Internal language such as `Temporary public URL`, `Launch order`, `Quality check`, rollout status, billing and ads is blocked by unit/e2e assertions for this route.
 - Local evidence before CI/deploy: `artifacts/calcharbor-catalog-qa/calcharbor-catalog-desktop.png` and `artifacts/calcharbor-catalog-qa/calcharbor-catalog-mobile-pt-br.png`; Playwright checked desktop EN/mobile PT-BR, no overflow and localized labels.
+- Production evidence: Hub deploy `28424159062` and CalcHarbor static app deploy `28424625903` passed. The app deploy published the four newer calculators that were still 500 on the old public release, and a post-deploy direct check confirmed all 8 calculator URLs in EN/PT-BR returned 200.

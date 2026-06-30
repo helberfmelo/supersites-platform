@@ -1406,8 +1406,16 @@ Data-base: 2026-06-29
 | Sprint 18.4 package validation | Passed: 90 package tests and package typechecks |
 | Sprint 18.4 structure/secrets/dry-run/diff | Passed |
 | Sprint 18.4 Hub HostGator artifact | Local passed: 211 files, 4236462 bytes, base path `/supersites` |
-| Sprint 18.4 deploy status | Pending commit, push, remote CI, HostGator deploy and public smoke |
-| Real deploy/provider activation | 6 reversible HostGator deploys in Phase 18 so far for Hub/NetProbe/Hub/Hub/Hub/Hub; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.4 implementation commit | `82be984` |
+| Sprint 18.4 remote Quality Gate | `28424001584` passed |
+| Sprint 18.4 remote Deploy Dry Run | `28424001574` passed |
+| Sprint 18.4 Hub production deploy | `28424159062` passed; release `82be98492a999dbc61d0adcc5a16d0ab9ae22928-28424159062-1`; asset `tFB0kZwd.js`; 211 files/4227463 bytes |
+| Sprint 18.4 CalcHarbor app production deploy | `28424625903` passed; release `82be98492a999dbc61d0adcc5a16d0ab9ae22928-28424625903-1`; asset `Da67e5s1.js`; 191 files/2389795 bytes |
+| Sprint 18.4 post-deploy public smoke | Passed: Hub/apps/APIs with CalcHarbor catalog marker and CalcHarbor static app smoke |
+| Sprint 18.4 post-deploy calculator link check | Passed: 16 EN/PT-BR URLs across 8 calculators returned 200 |
+| Sprint 18.4 post-deploy AdSense-safe validation | Passed: 13 public pages |
+| Sprint 18.4 post-deploy quick crawler | `2026-06-30T06-33-49-205Z`; 95 routes; 190 viewport checks; 0 gaps; 0 broken internal links |
+| Real deploy/provider activation | 9 reversible HostGator deploys in Phase 18 so far for Hub/NetProbe/Hub/Hub/Hub/Hub/Hub/Hub/CalcHarbor; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 

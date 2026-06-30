@@ -15,7 +15,7 @@ Make each calculator feel immediate, precise and explainable while keeping all i
 - Completed locally in Sprint 9.12: home now opens with a scenario workbench instead of only search/cards.
 - Completed locally in Sprint 9.12: detail pages include a scenario snapshot table and bar comparison next to the result/memory stack.
 - Completed locally in Sprint 9.12: desktop/mobile screenshots confirm no overflow and a more benchmark-like calculator surface.
-- Completed locally in Phase 18 Sprint 18.4: the Hub catalog route for CalcHarbor opens as a calculator finder with search, category filters, featured high-value calculators and links only to existing public calculator routes.
+- Completed in production in Phase 18 Sprint 18.4: the Hub catalog route for CalcHarbor opens as a calculator finder with search, category filters, featured high-value calculators and links only to existing public calculator routes; Hub deploy `28424159062` and CalcHarbor static app deploy `28424625903` passed.
 - Phase 18 gate for this site: do not close any CalcHarbor catalog or tool page sprint while the first fold reads as launch/status/product-sheet copy; screenshots desktop/mobile, route-specific smoke and negative assertions against internal terms are mandatory before commit/push/deploy.
 
 ## P1
@@ -52,6 +52,7 @@ Medium where finance/tax/labor interpretation appears. Keep disclaimers and avoi
 - No numeric input/result sent to analytics in unit/E2E regression.
 - Related calculator links present on each tool page.
 - The Hub catalog route links to real calculators and keeps future calculator ideas non-linked until each page has tested formula, localized copy and useful original content.
+- After changing catalog deep links, run the static app public smoke or a direct URL check for every exposed calculator before closing the sprint.
 
 ## Dashboard backlog
 
