@@ -445,6 +445,118 @@ test.describe('SuperSites public hub', () => {
     expect(errors).toEqual([])
   })
 
+  test('renders the Public Status page as visitor availability guidance on desktop', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.goto('/en/status')
+    await dismissConsentBanner(page)
+
+    await expect(page).toHaveTitle(/Public Status/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Public Status')
+    const contentHeadings = page.locator('.content-section h3')
+    const statusPanel = page.locator('.network-panel')
+    await expect(statusPanel.getByText('Public availability')).toBeVisible()
+    await expect(statusPanel.getByText('No public Hub incident is listed at this review time.')).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Current availability' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Known incidents' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Maintenance windows' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Useful checks' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Contact' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'What this page covers' })).toBeVisible()
+    await expect(page.getByRole('link', { name: /Open the SuperSites Hub/i })).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/en',
+    )
+    await expect(page.getByRole('link', { name: /Check website status/i })).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/sitepulse-lab/en/tools/status-checker',
+    )
+    await expect(page.getByRole('link', { name: /Check DNS propagation/i })).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/netprobe-atlas/en/tools/dns-propagation',
+    )
+    await expect(page.getByRole('link', { name: /Report a public status issue/i })).toHaveAttribute(
+      'href',
+      'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Public%20status%20report',
+    )
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/en/status',
+    )
+    await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
+    await expect(page.locator('main')).not.toContainText(
+      /hostgator|transitional|monetization|billing|dry-run|rollback|release checks|quality checks|deploy smoke|production checks|public readiness|launch status|public api live|ads planned|paid upgrades|advanced accounts|provider imports|artifacts|crawler evidence|plans to|planned|\bshould\b|\bmust\b/i,
+    )
+    await expect(page.locator('main')).not.toContainText('Page care')
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1)
+
+    const schemaType = await page.locator('script[type="application/ld+json"]').evaluate((script) => {
+      const schema = JSON.parse(script.textContent || '{}')
+
+      return schema['@type']
+    })
+
+    expect(schemaType).toBe('WebPage')
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('status-desktop', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('renders the localized Public Status page on mobile', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/pt-br/status')
+    await dismissConsentBanner(page)
+
+    await expect(page).toHaveTitle(/Status Público/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Status Público')
+    const contentHeadings = page.locator('.content-section h3')
+    const statusPanel = page.locator('.network-panel')
+    await expect(statusPanel.getByText('Disponibilidade pública')).toBeVisible()
+    await expect(statusPanel.getByText('Nenhum incidente público do Hub está listado nesta revisão.')).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Disponibilidade atual' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Incidentes conhecidos' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Janelas de manutenção' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Checagens úteis' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Contato' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Escopo da página' })).toBeVisible()
+    await expect(page.getByRole('link', { name: /Abrir o Hub SuperSites/i })).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/pt-br',
+    )
+    await expect(page.getByRole('link', { name: /Checar status do website/i })).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/sitepulse-lab/pt-br/tools/status-checker',
+    )
+    await expect(page.getByRole('link', { name: /Checar propagação DNS/i })).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/netprobe-atlas/pt-br/tools/dns-propagation',
+    )
+    await expect(page.getByRole('link', { name: /Informar problema de status público/i })).toHaveAttribute(
+      'href',
+      'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Public%20status%20report',
+    )
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/pt-br/status',
+    )
+    await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
+    await expect(page.locator('main')).not.toContainText(
+      /hostgator|transitório|monetização|billing|cobrança|dry-run|rollback|release checks|quality checks|deploy smoke|production checks|prontidão|status de lançamento|public api live|ads planned|upgrades pagos|contas avançadas|importações de provedores|artefatos|evidência de crawler|planeja|planejado|\bdeve\b|\bdevem\b/i,
+    )
+    await expect(page.locator('main')).not.toContainText('Cuidado da página')
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('status-pt-mobile', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
   test('renders the About page as a public institutional page on desktop', async ({ page }, testInfo) => {
     const errors = collectBrowserErrors(page)
 

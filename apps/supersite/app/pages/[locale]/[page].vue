@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { legalPageCatalog, getLegalPageBySlug, getLegalPageCopy, getLegalShellCopy } from '../../data/legal'
+import {
+  legalPageCatalog,
+  getLegalPageBySlug,
+  getLegalPageCopy,
+  getLegalShellCopy,
+  type LegalPanelRow,
+} from '../../data/legal'
 import { localizedHomePath, localizedLegalPath, normalizeLocale } from '../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../data/routes'
 import { createLegalPageStructuredData } from '../../data/schema'
@@ -19,6 +25,18 @@ const copy = getLegalPageCopy(page, locale)
 const shellCopy = getLegalShellCopy(locale)
 const canonicalPath = localizedLegalPath(locale, page.slug)
 const structuredData = createLegalPageStructuredData(locale, page, copy)
+const panelRows: LegalPanelRow[] = copy.panelRows ?? [
+  {
+    title: copy.updatedLabel,
+    body: copy.navLabel,
+    tone: 'green',
+  },
+  {
+    title: shellCopy.launchGateTitle,
+    body: shellCopy.launchGateBody,
+    tone: 'amber',
+  },
+]
 const relatedPages = legalPageCatalog
   .filter((candidate) => candidate.slug !== page.slug)
   .map((candidate) => ({
@@ -93,19 +111,12 @@ useHead({
       </div>
 
       <aside class="network-panel" :aria-label="shellCopy.pageStatusLabel">
-        <div class="network-panel__row">
+        <div v-for="row in panelRows" :key="row.title" class="network-panel__row">
           <div>
-            <strong>{{ copy.updatedLabel }}</strong>
-            <span>{{ copy.navLabel }}</span>
+            <strong>{{ row.title }}</strong>
+            <span>{{ row.body }}</span>
           </div>
-          <span class="signal" aria-hidden="true"></span>
-        </div>
-        <div class="network-panel__row">
-          <div>
-            <strong>{{ shellCopy.launchGateTitle }}</strong>
-            <span>{{ shellCopy.launchGateBody }}</span>
-          </div>
-          <span class="signal signal--amber" aria-hidden="true"></span>
+          <span :class="['signal', { 'signal--amber': row.tone === 'amber' }]" aria-hidden="true"></span>
         </div>
       </aside>
     </section>

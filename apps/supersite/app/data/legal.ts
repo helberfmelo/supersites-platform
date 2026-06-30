@@ -25,12 +25,19 @@ export interface LegalSection {
   links?: LegalSectionLink[]
 }
 
+export interface LegalPanelRow {
+  title: string
+  body: string
+  tone: 'green' | 'amber'
+}
+
 export interface LocalizedLegalPage {
   navLabel: string
   title: string
   description: string
   updatedLabel: string
   sections: LegalSection[]
+  panelRows?: LegalPanelRow[]
 }
 
 export interface LegalPage {
@@ -1961,25 +1968,84 @@ export const legalPageCatalog: LegalPage[] = [
       en: {
         navLabel: 'Status',
         title: 'Public Status',
-        description: 'Current public availability summary for the SuperSites Hub and product tools on the transitional HostGator domain.',
-        updatedLabel: 'Reviewed June 28, 2026',
+        description: 'Plain availability summary for the SuperSites Hub and public tools, with incident notes, maintenance windows and support links.',
+        updatedLabel: 'Reviewed June 30, 2026',
+        panelRows: [
+          {
+            title: 'Public availability',
+            body: 'Hub and public tool pages are available from the main catalog.',
+            tone: 'green',
+          },
+          {
+            title: 'Known incidents',
+            body: 'No public Hub incident is listed at this review time.',
+            tone: 'amber',
+          },
+        ],
         sections: [
           {
-            heading: 'What is available',
+            heading: 'Current availability',
             paragraphs: [
-              'The Hub, NetProbe Atlas and the nine product apps are published under the `/supersites/` URL family with HTTPS, localized pages, public sitemaps and stable static paths.',
+              'The Hub and public tool pages are served over HTTPS for visitors using the `/supersites/` URL family. The first response on each tool remains free to open without an account.',
+              'If a page does not load, try the Hub link below and then the specific tool page again. A persistent failure is useful to report with the page URL and language.',
+            ],
+            links: [
+              {
+                label: 'Open the SuperSites Hub',
+                href: 'https://opentshost.com/supersites/en',
+                note: 'Start from the public catalog if a deep link is unavailable.',
+              },
             ],
           },
           {
-            heading: 'Current operating limits',
+            heading: 'Known incidents',
             paragraphs: [
-              'The public tools provide free, no-signup utility workflows first. Advanced accounts, paid upgrades, clearly labeled advertising, recurring automation and provider imports are not active on public pages yet.',
+              'No public Hub incident is listed at this review time. Tool-specific interruptions appear here when they affect visitors across browsers or locations.',
+              'Intermittent local network failures, blocked corporate networks or stale browser caches can look similar to a site incident. Include those details when you contact us.',
             ],
           },
           {
-            heading: 'What is checked',
+            heading: 'Maintenance windows',
             paragraphs: [
-              'Public validation uses release artifacts, browser checks, API health checks where applicable, crawler evidence and documentation records before a surface is treated as ready for wider traffic.',
+              'Maintenance windows are listed here when they affect public access. During a window, a free tool may load more slowly or briefly return an error.',
+              'When there is no active notice in this section, use the contact link if you see repeated errors on a public page.',
+            ],
+          },
+          {
+            heading: 'Useful checks',
+            paragraphs: [
+              'The fastest way to confirm a routing issue is to compare the affected page with a public website check and a DNS propagation check.',
+            ],
+            links: [
+              {
+                label: 'Check website status',
+                href: 'https://opentshost.com/supersites/sitepulse-lab/en/tools/status-checker',
+                note: 'Check reachability and first response for a public URL.',
+              },
+              {
+                label: 'Check DNS propagation',
+                href: 'https://opentshost.com/supersites/netprobe-atlas/en/tools/dns-propagation',
+                note: 'Compare DNS answers when a domain resolves differently for visitors.',
+              },
+            ],
+          },
+          {
+            heading: 'Contact',
+            paragraphs: [
+              'Reports are easier to triage when they include the exact URL, language, browser, device, approximate time and what result you expected.',
+            ],
+            links: [
+              {
+                label: 'Report a public status issue',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Public%20status%20report',
+                note: 'Send a concise report to contact@opentshost.com.',
+              },
+            ],
+          },
+          {
+            heading: 'What this page covers',
+            paragraphs: [
+              'This page is a public summary for visitor-facing availability, incidents, maintenance notes and contact paths. Detailed operational logs stay in protected internal records.',
             ],
           },
         ],
@@ -1987,25 +2053,84 @@ export const legalPageCatalog: LegalPage[] = [
       'pt-br': {
         navLabel: 'Status',
         title: 'Status Público',
-        description: 'Resumo atual de disponibilidade pública do SuperSites Hub e das ferramentas no domínio transitório da HostGator.',
-        updatedLabel: 'Revisado em 28 de junho de 2026',
+        description: 'Resumo simples de disponibilidade do SuperSites Hub e das ferramentas públicas, com incidentes, manutenção e canais de suporte.',
+        updatedLabel: 'Revisado em 30 de junho de 2026',
+        panelRows: [
+          {
+            title: 'Disponibilidade pública',
+            body: 'Hub e ferramentas públicas estão disponíveis a partir do catálogo principal.',
+            tone: 'green',
+          },
+          {
+            title: 'Incidentes conhecidos',
+            body: 'Nenhum incidente público do Hub está listado nesta revisão.',
+            tone: 'amber',
+          },
+        ],
         sections: [
           {
-            heading: 'O que está disponível',
+            heading: 'Disponibilidade atual',
             paragraphs: [
-              'O Hub, o NetProbe Atlas e os nove apps de produto estão publicados na família de URLs `/supersites/`, com HTTPS, páginas localizadas, sitemaps públicos e caminhos estáticos estáveis.',
+              'O Hub e as páginas públicas de ferramentas são servidos por HTTPS na família de URLs `/supersites/`. A primeira resposta de cada ferramenta continua gratuita e sem cadastro obrigatório.',
+              'Se uma página não carregar, abra o Hub pelo link abaixo e tente a ferramenta específica novamente. Falha persistente ajuda mais quando vem com URL e idioma.',
+            ],
+            links: [
+              {
+                label: 'Abrir o Hub SuperSites',
+                href: 'https://opentshost.com/supersites/pt-br',
+                note: 'Comece pelo catálogo público se um link profundo estiver indisponível.',
+              },
             ],
           },
           {
-            heading: 'Limites operacionais atuais',
+            heading: 'Incidentes conhecidos',
             paragraphs: [
-              'As ferramentas públicas entregam primeiro fluxos gratuitos sem cadastro. Contas avançadas, upgrades pagos, publicidade identificada, automação recorrente e importações de provedores ainda não estão ativos nas páginas públicas.',
+              'Nenhum incidente público do Hub está listado nesta revisão. Interrupções de ferramentas aparecem aqui quando afetam visitantes em diferentes navegadores ou locais.',
+              'Falhas locais de rede, bloqueios corporativos ou cache antigo do navegador podem parecer um incidente do site. Inclua esses detalhes ao entrar em contato.',
             ],
           },
           {
-            heading: 'O que é verificado',
+            heading: 'Janelas de manutenção',
             paragraphs: [
-              'A validação pública usa artefatos de release, checagens de navegador, saúde de APIs quando aplicável, evidência de crawler e registros documentais antes de tratar uma superfície como pronta para mais tráfego.',
+              'Janelas de manutenção aparecem aqui quando afetam o acesso público. Durante uma janela, uma ferramenta gratuita pode carregar mais devagar ou retornar erro por pouco tempo.',
+              'Quando não houver aviso ativo nesta seção, use o contato se você encontrar erros repetidos em uma página pública.',
+            ],
+          },
+          {
+            heading: 'Checagens úteis',
+            paragraphs: [
+              'O caminho mais rápido para confirmar um problema de rota é comparar a página afetada com uma checagem pública de website e uma checagem de propagação DNS.',
+            ],
+            links: [
+              {
+                label: 'Checar status do website',
+                href: 'https://opentshost.com/supersites/sitepulse-lab/pt-br/tools/status-checker',
+                note: 'Verifique alcance e primeira resposta de uma URL pública.',
+              },
+              {
+                label: 'Checar propagação DNS',
+                href: 'https://opentshost.com/supersites/netprobe-atlas/pt-br/tools/dns-propagation',
+                note: 'Compare respostas DNS quando um domínio resolver diferente para visitantes.',
+              },
+            ],
+          },
+          {
+            heading: 'Contato',
+            paragraphs: [
+              'Relatos ficam mais fáceis de analisar quando incluem URL exata, idioma, navegador, dispositivo, horário aproximado e resultado esperado.',
+            ],
+            links: [
+              {
+                label: 'Informar problema de status público',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Public%20status%20report',
+                note: 'Envie um relato direto para contact@opentshost.com.',
+              },
+            ],
+          },
+          {
+            heading: 'Escopo da página',
+            paragraphs: [
+              'Resumo público de disponibilidade, incidentes, notas de manutenção e caminhos de contato para visitantes. Registros operacionais detalhados ficam em áreas internas protegidas.',
             ],
           },
         ],
@@ -2013,25 +2138,84 @@ export const legalPageCatalog: LegalPage[] = [
       es: {
         navLabel: 'Estado',
         title: 'Estado Público',
-        description: 'Resumen actual de disponibilidad pública del SuperSites Hub y sus herramientas en el dominio transitorio de HostGator.',
-        updatedLabel: 'Revisado el 28 de junio de 2026',
+        description: 'Resumen simple de disponibilidad del SuperSites Hub y las herramientas públicas, con incidentes, mantenimiento y enlaces de soporte.',
+        updatedLabel: 'Revisado el 30 de junio de 2026',
+        panelRows: [
+          {
+            title: 'Disponibilidad pública',
+            body: 'El Hub y las herramientas públicas están disponibles desde el catálogo principal.',
+            tone: 'green',
+          },
+          {
+            title: 'Incidentes conocidos',
+            body: 'No hay ningún incidente público del Hub listado en esta revisión.',
+            tone: 'amber',
+          },
+        ],
         sections: [
           {
-            heading: 'Qué está disponible',
+            heading: 'Disponibilidad actual',
             paragraphs: [
-              'El Hub, NetProbe Atlas y las nueve apps de producto están publicados bajo la familia de URLs `/supersites/`, con HTTPS, páginas localizadas, sitemaps públicos y rutas estáticas estables.',
+              'El Hub y las páginas públicas de herramientas se sirven con HTTPS dentro de la familia de URLs `/supersites/`. La primera respuesta de cada herramienta sigue siendo gratuita y sin cuenta obligatoria.',
+              'Si una página no carga, abre el Hub con el enlace inferior y vuelve a probar la herramienta específica. Un fallo persistente ayuda más cuando llega con URL e idioma.',
+            ],
+            links: [
+              {
+                label: 'Abrir el Hub SuperSites',
+                href: 'https://opentshost.com/supersites/es',
+                note: 'Empieza por el catálogo público si un enlace profundo no está disponible.',
+              },
             ],
           },
           {
-            heading: 'Límites operativos actuales',
+            heading: 'Incidentes conocidos',
             paragraphs: [
-              'Las herramientas públicas entregan primero flujos gratuitos sin registro. Cuentas avanzadas, upgrades pagos, publicidad identificada, automatización recurrente e importaciones de proveedores aún no están activos en páginas públicas.',
+              'No hay ningún incidente público del Hub listado en esta revisión. Las interrupciones de herramientas aparecen aquí cuando afectan a visitantes en varios navegadores o ubicaciones.',
+              'Fallos de red locales, bloqueos corporativos o caché antigua del navegador pueden parecer un incidente del sitio. Incluye esos detalles al contactar.',
             ],
           },
           {
-            heading: 'Qué se verifica',
+            heading: 'Ventanas de mantenimiento',
             paragraphs: [
-              'La validación pública usa artefactos de release, pruebas de navegador, salud de APIs cuando aplica, evidencia de crawler y registros documentales antes de tratar una superficie como lista para más tráfico.',
+              'Las ventanas de mantenimiento se muestran aquí cuando afectan el acceso público. Durante una ventana, una herramienta gratuita puede cargar más lento o devolver un error breve.',
+              'Cuando esta sección no tenga un aviso activo, usa el contacto si ves errores repetidos en una página pública.',
+            ],
+          },
+          {
+            heading: 'Comprobaciones útiles',
+            paragraphs: [
+              'La forma más rápida de confirmar un problema de ruta es comparar la página afectada con una comprobación pública de sitio web y una comprobación de propagación DNS.',
+            ],
+            links: [
+              {
+                label: 'Comprobar estado del sitio',
+                href: 'https://opentshost.com/supersites/sitepulse-lab/es/tools/status-checker',
+                note: 'Revisa alcance y primera respuesta de una URL pública.',
+              },
+              {
+                label: 'Comprobar propagación DNS',
+                href: 'https://opentshost.com/supersites/netprobe-atlas/es/tools/dns-propagation',
+                note: 'Compara respuestas DNS cuando un dominio resuelve distinto para visitantes.',
+              },
+            ],
+          },
+          {
+            heading: 'Contacto',
+            paragraphs: [
+              'Los reportes son más fáciles de analizar cuando incluyen URL exacta, idioma, navegador, dispositivo, hora aproximada y resultado esperado.',
+            ],
+            links: [
+              {
+                label: 'Reportar un problema de estado público',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Public%20status%20report',
+                note: 'Envía un reporte breve a contact@opentshost.com.',
+              },
+            ],
+          },
+          {
+            heading: 'Qué cubre esta página',
+            paragraphs: [
+              'Esta página es un resumen público de disponibilidad, incidentes, notas de mantenimiento y vías de contacto para visitantes. Los registros operativos detallados quedan en áreas internas protegidas.',
             ],
           },
         ],
@@ -2039,25 +2223,84 @@ export const legalPageCatalog: LegalPage[] = [
       fr: {
         navLabel: 'Statut',
         title: 'Statut public',
-        description: 'Résumé de disponibilité publique du SuperSites Hub et des outils sur le domaine transitoire HostGator.',
-        updatedLabel: 'Révisé le 28 juin 2026',
+        description: 'Résumé simple de disponibilité du SuperSites Hub et des outils publics, avec incidents, maintenance et liens de support.',
+        updatedLabel: 'Révisé le 30 juin 2026',
+        panelRows: [
+          {
+            title: 'Disponibilité publique',
+            body: 'Le Hub et les outils publics sont disponibles depuis le catalogue principal.',
+            tone: 'green',
+          },
+          {
+            title: 'Incidents connus',
+            body: 'Aucun incident public du Hub n est listé lors de cette révision.',
+            tone: 'amber',
+          },
+        ],
         sections: [
           {
-            heading: 'Ce qui est disponible',
+            heading: 'Disponibilité actuelle',
             paragraphs: [
-              'Le Hub, NetProbe Atlas et les neuf applications produit sont publies sous la famille `/supersites/`, avec HTTPS, pages localisees, sitemaps publics et chemins statiques stables.',
+              'Le Hub et les pages publiques d outils sont servis en HTTPS dans la famille d URL `/supersites/`. La première réponse de chaque outil reste gratuite et sans compte obligatoire.',
+              'Si une page ne charge pas, ouvre le Hub avec le lien ci-dessous puis réessaie la page d outil. Une panne persistante est plus utile avec URL et langue.',
+            ],
+            links: [
+              {
+                label: 'Ouvrir le Hub SuperSites',
+                href: 'https://opentshost.com/supersites/fr',
+                note: 'Commence par le catalogue public si un lien profond est indisponible.',
+              },
             ],
           },
           {
-            heading: 'Limites opérationnelles actuelles',
+            heading: 'Incidents connus',
             paragraphs: [
-              'Les outils publics fournissent d abord des workflows gratuits sans compte. Comptes avances, offres payantes, publicite identifiee, automatisation recurrente et imports de fournisseurs ne sont pas actifs sur les pages publiques.',
+              'Aucun incident public du Hub n est listé lors de cette révision. Les interruptions d outils apparaissent ici quand elles touchent des visiteurs sur plusieurs navigateurs ou lieux.',
+              'Une panne réseau locale, un blocage d entreprise ou un ancien cache navigateur peut ressembler à un incident du site. Ajoute ces détails lors du contact.',
             ],
           },
           {
-            heading: 'Ce qui est vérifié',
+            heading: 'Fenêtres de maintenance',
             paragraphs: [
-              'La validation publique utilise artefacts de release, controles navigateur, sante API si applicable, preuves de crawler et dossiers documentes avant de considerer une surface prete pour plus de trafic.',
+              'Les fenêtres de maintenance sont indiquées ici quand elles affectent l accès public. Pendant une fenêtre, un outil gratuit peut charger plus lentement ou renvoyer brièvement une erreur.',
+              'Quand cette section ne contient aucun avis actif, utilise le contact si tu vois des erreurs répétées sur une page publique.',
+            ],
+          },
+          {
+            heading: 'Contrôles utiles',
+            paragraphs: [
+              'Le moyen le plus rapide de confirmer un problème de route est de comparer la page touchée avec un contrôle public de site web et un contrôle de propagation DNS.',
+            ],
+            links: [
+              {
+                label: 'Contrôler le statut du site',
+                href: 'https://opentshost.com/supersites/sitepulse-lab/fr/tools/status-checker',
+                note: 'Vérifie l accès et la première réponse pour une URL publique.',
+              },
+              {
+                label: 'Contrôler la propagation DNS',
+                href: 'https://opentshost.com/supersites/netprobe-atlas/fr/tools/dns-propagation',
+                note: 'Compare les réponses DNS lorsqu un domaine résout différemment selon les visiteurs.',
+              },
+            ],
+          },
+          {
+            heading: 'Contact',
+            paragraphs: [
+              'Les signalements sont plus faciles à analyser avec URL exacte, langue, navigateur, appareil, heure approximative et résultat attendu.',
+            ],
+            links: [
+              {
+                label: 'Signaler un problème de statut public',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Public%20status%20report',
+                note: 'Envoie un signalement bref à contact@opentshost.com.',
+              },
+            ],
+          },
+          {
+            heading: 'Ce que couvre cette page',
+            paragraphs: [
+              'Cette page est un résumé public de disponibilité, incidents, notes de maintenance et chemins de contact pour les visiteurs. Les journaux opérationnels détaillés restent dans des espaces internes protégés.',
             ],
           },
         ],
@@ -2065,25 +2308,84 @@ export const legalPageCatalog: LegalPage[] = [
       de: {
         navLabel: 'Status',
         title: 'Öffentlicher Status',
-        description: 'Aktuelle öffentliche Verfügbarkeitsübersicht für SuperSites Hub und Produkt-Tools auf der temporären HostGator-Domain.',
-        updatedLabel: 'Geprüft am 28. Juni 2026',
+        description: 'Einfache Verfügbarkeitsübersicht für den SuperSites Hub und öffentliche Tools, mit Vorfällen, Wartung und Supportlinks.',
+        updatedLabel: 'Geprüft am 30. Juni 2026',
+        panelRows: [
+          {
+            title: 'Öffentliche Verfügbarkeit',
+            body: 'Hub und öffentliche Tools sind über den Hauptkatalog verfügbar.',
+            tone: 'green',
+          },
+          {
+            title: 'Bekannte Vorfälle',
+            body: 'Für den öffentlichen Hub ist bei dieser Prüfung kein Vorfall gelistet.',
+            tone: 'amber',
+          },
+        ],
         sections: [
           {
-            heading: 'Was verfügbar ist',
+            heading: 'Aktuelle Verfügbarkeit',
             paragraphs: [
-              'Hub, NetProbe Atlas und die neun Produkt-Apps sind unter der URL-Familie `/supersites/` veroeffentlicht, mit HTTPS, lokalisierten Seiten, oeffentlichen Sitemaps und stabilen statischen Pfaden.',
+              'Der Hub und die öffentlichen Toolseiten werden per HTTPS in der URL-Familie `/supersites/` ausgeliefert. Die erste Antwort jedes Tools bleibt kostenlos und ohne Pflichtkonto.',
+              'Wenn eine Seite nicht lädt, öffne den Hub über den Link unten und versuche die konkrete Toolseite erneut. Eine anhaltende Störung hilft mit URL und Sprache am meisten.',
+            ],
+            links: [
+              {
+                label: 'SuperSites Hub öffnen',
+                href: 'https://opentshost.com/supersites/de',
+                note: 'Starte im öffentlichen Katalog, wenn ein tiefer Link nicht verfügbar ist.',
+              },
             ],
           },
           {
-            heading: 'Aktuelle Betriebsgrenzen',
+            heading: 'Bekannte Vorfälle',
             paragraphs: [
-              'Die oeffentlichen Tools liefern zuerst kostenlose Workflows ohne Pflichtkonto. Erweiterte Konten, bezahlte Upgrades, gekennzeichnete Werbung, wiederkehrende Automatisierung und Provider-Imports sind auf oeffentlichen Seiten noch nicht aktiv.',
+              'Für den öffentlichen Hub ist bei dieser Prüfung kein Vorfall gelistet. Tool-Unterbrechungen erscheinen hier, wenn sie Besucher über mehrere Browser oder Orte betreffen.',
+              'Lokale Netzwerkfehler, Unternehmenssperren oder alter Browser-Cache können ähnlich wie ein Seitenvorfall wirken. Nenne diese Details bei der Kontaktaufnahme.',
             ],
           },
           {
-            heading: 'Was geprüft wird',
+            heading: 'Wartungsfenster',
             paragraphs: [
-              'Oeffentliche Validierung nutzt Pruef-Artefakte, Browser-Pruefungen, API-Gesundheit falls relevant, Crawler-Evidenz und Dokumentation, bevor eine Oberflaeche fuer mehr Traffic bereit gilt.',
+              'Wartungsfenster erscheinen hier, wenn sie den öffentlichen Zugriff betreffen. Während eines Fensters kann ein kostenloses Tool langsamer laden oder kurz einen Fehler zurückgeben.',
+              'Wenn in diesem Abschnitt kein aktiver Hinweis steht, nutze den Kontakt, falls du wiederholte Fehler auf einer öffentlichen Seite siehst.',
+            ],
+          },
+          {
+            heading: 'Nützliche Prüfungen',
+            paragraphs: [
+              'Ein Routingproblem lässt sich am schnellsten eingrenzen, indem du die betroffene Seite mit einer öffentlichen Website-Prüfung und einer DNS-Propagation-Prüfung vergleichst.',
+            ],
+            links: [
+              {
+                label: 'Website-Status prüfen',
+                href: 'https://opentshost.com/supersites/sitepulse-lab/de/tools/status-checker',
+                note: 'Prüfe Erreichbarkeit und erste Antwort einer öffentlichen URL.',
+              },
+              {
+                label: 'DNS-Propagation prüfen',
+                href: 'https://opentshost.com/supersites/netprobe-atlas/de/tools/dns-propagation',
+                note: 'Vergleiche DNS-Antworten, wenn eine Domain für Besucher unterschiedlich auflöst.',
+              },
+            ],
+          },
+          {
+            heading: 'Kontakt',
+            paragraphs: [
+              'Meldungen lassen sich leichter auswerten, wenn sie exakte URL, Sprache, Browser, Gerät, ungefähre Uhrzeit und erwartetes Ergebnis enthalten.',
+            ],
+            links: [
+              {
+                label: 'Öffentliches Statusproblem melden',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Public%20status%20report',
+                note: 'Sende eine kurze Meldung an contact@opentshost.com.',
+              },
+            ],
+          },
+          {
+            heading: 'Was diese Seite abdeckt',
+            paragraphs: [
+              'Diese Seite ist eine öffentliche Zusammenfassung zu Verfügbarkeit, Vorfällen, Wartungshinweisen und Kontaktwegen für Besucher. Detaillierte Betriebsprotokolle bleiben in geschützten internen Bereichen.',
             ],
           },
         ],
@@ -2116,7 +2418,8 @@ export function getLegalPageCopy(page: LegalPage, locale: LocaleCode): Localized
     page.slug === 'cookies' ||
     page.slug === 'terms' ||
     page.slug === 'methodology' ||
-    page.slug === 'editorial-policy'
+    page.slug === 'editorial-policy' ||
+    page.slug === 'status'
   ) {
     return sanitizePublicCopy(locale, page.localized[locale])
   }

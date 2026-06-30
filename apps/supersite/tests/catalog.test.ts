@@ -510,7 +510,7 @@ describe('site catalog', () => {
 
         expect(localized.title.length).toBeGreaterThan(5)
         expect(localized.description.length).toBeGreaterThan(60)
-        expect(localized.sections).toHaveLength(['about', 'contact', 'privacy', 'cookies', 'terms', 'methodology', 'editorial-policy'].includes(page.slug) ? 6 : 3)
+        expect(localized.sections).toHaveLength(['about', 'contact', 'privacy', 'cookies', 'terms', 'methodology', 'editorial-policy', 'status'].includes(page.slug) ? 6 : 3)
         expect(localized.sections.every((section) => section.paragraphs.length > 0)).toBe(true)
       }
     }
@@ -858,6 +858,71 @@ describe('site catalog', () => {
       expect(links).toHaveLength(1)
       expect(links[0].href).toBe('mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Editorial%20correction')
       expect(JSON.stringify(copy)).not.toMatch(blockedEditorialLanguage)
+    }
+  })
+
+  it('keeps the public Status page visitor-focused and free of deploy/provider language', () => {
+    const status = legalPageCatalog.find((page) => page.slug === 'status')
+    expect(status).toBeDefined()
+
+    const requiredHeadings = {
+      en: [
+        'Current availability',
+        'Known incidents',
+        'Maintenance windows',
+        'Useful checks',
+        'Contact',
+        'What this page covers',
+      ],
+      'pt-br': [
+        'Disponibilidade atual',
+        'Incidentes conhecidos',
+        'Janelas de manutenção',
+        'Checagens úteis',
+        'Contato',
+        'Escopo da página',
+      ],
+      es: [
+        'Disponibilidad actual',
+        'Incidentes conocidos',
+        'Ventanas de mantenimiento',
+        'Comprobaciones útiles',
+        'Contacto',
+        'Qué cubre esta página',
+      ],
+      fr: [
+        'Disponibilité actuelle',
+        'Incidents connus',
+        'Fenêtres de maintenance',
+        'Contrôles utiles',
+        'Contact',
+        'Ce que couvre cette page',
+      ],
+      de: [
+        'Aktuelle Verfügbarkeit',
+        'Bekannte Vorfälle',
+        'Wartungsfenster',
+        'Nützliche Prüfungen',
+        'Kontakt',
+        'Was diese Seite abdeckt',
+      ],
+    }
+    const blockedStatusLanguage =
+      /hostgator|transitional|transitorio|transitório|temporäre|temporary domain|monetization|monetização|monetización|monétisation|billing|cobrança|facturación|facturation|abrechnung|dry-run|rollback|release checks|quality checks|deploy smoke|production checks|public readiness|launch status|public api live|ads planned|paid upgrades|advanced accounts|provider imports|artefacts|artifacts|crawler evidence|final public launch|plans to|planned|\bshould\b|\bmust\b|lançamento|prontidão|planeja|planejado|\bdeve\b|\bdevem\b|lanzamiento|preparación|planea|planeado|\bdebe\b|\bdeben\b|lancement|préparation|prévoit|prévu|\bdoit\b|\bdoivent\b|Launch|Bereitschaft|geplant|\bsoll\b|\bsollen\b|\bmuss\b|\bmüssen\b/iu
+
+    for (const locale of localeCodes) {
+      const copy = getLegalPageCopy(status!, locale)
+      const links = copy.sections.flatMap((section) => section.links ?? [])
+
+      expect(copy.sections.map((section) => section.heading)).toEqual(requiredHeadings[locale])
+      expect(copy.panelRows).toHaveLength(2)
+      expect(copy.panelRows?.map((row) => row.tone)).toEqual(['green', 'amber'])
+      expect(links).toHaveLength(4)
+      expect(links.some((link) => link.href === `https://opentshost.com/supersites/${locale}`)).toBe(true)
+      expect(links.some((link) => link.href.includes('/sitepulse-lab/'))).toBe(true)
+      expect(links.some((link) => link.href.includes('/netprobe-atlas/'))).toBe(true)
+      expect(links.some((link) => link.href === 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Public%20status%20report')).toBe(true)
+      expect(JSON.stringify(copy)).not.toMatch(blockedStatusLanguage)
     }
   })
 

@@ -202,8 +202,13 @@ try {
         throw 'Editorial Policy page smoke failed.'
     }
 
+    $status = Invoke-PreviewRequest -Uri "$baseUrl/en/status" -RequiredContent 'Current availability'
+    if ($status.StatusCode -ne 200 -or $status.Content -notmatch 'Public Status' -or $status.Content -notmatch 'Known incidents' -or $status.Content -notmatch 'Report a public status issue') {
+        throw 'Public Status page smoke failed.'
+    }
+
     $sitemap = Invoke-PreviewRequest -Uri "$baseUrl/sitemap.xml" -RequiredContent '<urlset'
-    if ($sitemap.Content -notmatch '/en/privacy' -or $sitemap.Content -notmatch '/de/editorial-policy') {
+    if ($sitemap.Content -notmatch '/en/privacy' -or $sitemap.Content -notmatch '/de/editorial-policy' -or $sitemap.Content -notmatch '/pt-br/status') {
         throw 'Sitemap smoke failed.'
     }
 
