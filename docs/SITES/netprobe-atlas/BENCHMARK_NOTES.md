@@ -71,3 +71,12 @@ Data-base: 2026-06-30
 - The universal input does not append the typed target to a shareable URL and must keep analytics free of raw IP/domain/host values.
 - Operational correction: deploy `28474757009` failed only because the smoke marker was stale after intentional copy change. Commit `8441814` updated `scripts/smoke-netprobe-public.ps1` to assert the new H1 and block internal terms; final deploy `28475475506` passed with release `8441814e224be60ef9baa7b81dc8e32be2c35311-28475475506-1` and asset `DjMxIF8r.js`.
 - Evidence: local screenshots `artifacts/netprobe-home-qa/netprobe-home-en-desktop.png` and `artifacts/netprobe-home-qa/netprobe-home-pt-br-mobile.png`; live screenshots `artifacts/netprobe-home-live-qa/netprobe-home-live-en-desktop.png` and `artifacts/netprobe-home-live-qa/netprobe-home-live-pt-br-mobile.png`; crawler quick live `2026-06-30T21-07-05-749Z` with 95 routes, 190 viewport checks and 0 gaps.
+
+## Phase 18 Sprint 18.22 What is my IP notes
+
+- The IP page now opens with the observed public IP automatically loaded; there is no mandatory run button in the first task path.
+- The first fold focuses on the practical answer: IP, IPv4/IPv6, public-range status, last checked time, refresh, copy and details.
+- The details section covers ISP/ASN, reverse DNS, approximate location, proxy/VPN/Tor/data center, browser, platform, user agent and approximate map. Fields that need a trusted enrichment provider are marked unavailable instead of being guessed.
+- Methodology, privacy and limits moved below the useful result as a disclosure, keeping the benchmark-grade mental model: answer first, technical context after.
+- No affiliate VPN CTA, payment link, ad request, provider script, analytics payload with IP, geolocation provider or external monetization was activated.
+- Evidence: implementation commit `ae30bda`; deploy `28478351303`; release `ae30bda4f77c00f95ae8393b3911b1e409097071-28478351303-1`; asset `CIQKG5SX.js`; live screenshots `artifacts/netprobe-ip-live-qa/netprobe-ip-live-en-desktop.png` and `artifacts/netprobe-ip-live-qa/netprobe-ip-live-pt-br-mobile-details.png`; crawler quick live `2026-06-30T22-12-55-566Z` with 95 routes, 190 viewport checks and 0 gaps.

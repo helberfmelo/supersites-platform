@@ -65,7 +65,7 @@ Padroes aproveitados:
 - Catalogo transitorio publico ativo: `https://opentshost.com/supersites/`.
 - Release HostGator ativo do catalogo: `740e0f1968e7b0a2fd60eeb9e6edffd6252d94ae-28241237377-1`.
 - Release HostGator ativo do control-plane/API: `a33fcbfdc31c328d71c6fa046d9fac99ec610575-28264453068-1`.
-- Release HostGator ativo do NetProbe Atlas: `decfaa818545203597e74b898741f6114315a624-28265295302-1`.
+- Release HostGator ativo do NetProbe Atlas: `ae30bda4f77c00f95ae8393b3911b1e409097071-28478351303-1`.
 - O deploy do catalogo sobe arquivos para `_supersites-releases/<release-id>/`, preserva `.env`, placeholders e pastas remotas gerenciadas fora do release, e troca somente o `.htaccess` gerenciado em `/supersites/`.
 - O deploy do control-plane/API exige handler cPanel `ea-php84___lsphp`; o front controller gerenciado faz bootstrap direto do Laravel no release ativo.
 - As entradas `skip_smoke` e `enable_diagnostics` do workflow de control-plane existem apenas para diagnostico controlado, nao para deploy normal.

@@ -742,6 +742,14 @@ Regra operacional:
 7. Mover metodologia para accordion inferior.
 8. Inspirar-se em `whatismyipaddress.com/pt/meu-ip` e `whatismyip.com.br`.
 
+**Status em 2026-06-30:** concluida em producao. A pagina `What is my IP` agora autoexecuta a consulta ao carregar, mostra `Your public IP is ...` acima da dobra, mantem apenas `Refresh`, `Copy IP` e `Show details`, e move metodologia/privacidade/limites para abaixo do resultado.
+
+- Escopo entregue: painel de IP com IPv4/IPv6, faixa publica, timestamp, status de privacidade, cards de endereco/protocolo/origem/ultima checagem, detalhes expandiveis para ISP/ASN, DNS reverso, localizacao aproximada, proxy/VPN/Tor/data center, navegador/plataforma/user agent e mapa aproximado. Campos dependentes de fonte confiavel ficam explicitamente indisponiveis, sem simular enriquecimento.
+- Validacao local pre-commit: `pnpm test:netprobe` com 9 testes, `pnpm build:netprobe`, `pnpm validate:public-copy`, `pnpm validate:netprobe-preview`, `pnpm validate:adsense-safe-public`, `pnpm test:e2e:netprobe`, `pnpm typecheck:packages`, `pnpm test:packages`, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `pnpm deploy:build-netprobe-hostgator`, `git diff --check` e screenshots locais `artifacts/netprobe-ip-qa/netprobe-ip-en-desktop.png` e `artifacts/netprobe-ip-qa/netprobe-ip-pt-br-mobile-details.png` passaram.
+- CI/deploy: commit `ae30bda`, Quality Gate `28478093718`, Deploy Dry Run `28478101304` e deploy reversivel NetProbe HostGator `28478351303` passaram. A release ativa de `/supersites/netprobe-atlas/` passou a ser `ae30bda4f77c00f95ae8393b3911b1e409097071-28478351303-1`, com 180 arquivos/2851577 bytes e asset `https://opentshost.com/supersites/netprobe-atlas/_nuxt/CIQKG5SX.js`.
+- Validacao publica final: `pnpm deploy:smoke-netprobe-public`, `pnpm validate:adsense-safe-public`, crawler quick live `2026-06-30T22-12-55-566Z` com 95 rotas/190 checks/0 gaps e validacao browser live EN/PT-BR passaram. Screenshots live revisados: `artifacts/netprobe-ip-live-qa/netprobe-ip-live-en-desktop.png` e `artifacts/netprobe-ip-live-qa/netprobe-ip-live-pt-br-mobile-details.png`.
+- Escopo negativo: nenhum provider de geolocalizacao/IP intelligence, afiliado VPN, link de doacao real, anuncio real, `ads.txt`, checkout, billing, pagamento, conta paga, worker/cron, probe multirregional novo, DNS/root mapping, root redirect, analytics externo, armazenamento de IP em analytics ou acao irreversivel foi ativado.
+
 ---
 
 ## Sprint 18.23 — NetProbe: DNS Propagation

@@ -136,7 +136,7 @@ Data-base: 2026-06-30
 | HostGator control-plane API releases published | 1 |
 | HostGator active supersite release | `740e0f1968e7b0a2fd60eeb9e6edffd6252d94ae-28241237377-1` |
 | HostGator active control-plane release | `a33fcbfdc31c328d71c6fa046d9fac99ec610575-28264453068-1` |
-| HostGator active NetProbe release | `decfaa818545203597e74b898741f6114315a624-28265295302-1` |
+| HostGator active NetProbe release | `ae30bda4f77c00f95ae8393b3911b1e409097071-28478351303-1` |
 | Supersite prerender content routes | 91 |
 | Supersite sitemap routes | 1 |
 | Supersite legal/editorial pages | 35 |
@@ -1730,7 +1730,24 @@ Data-base: 2026-06-30
 | Sprint 18.21 post-deploy quick crawler | `2026-06-30T21-07-05-749Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.21 live NetProbe home screenshots | `artifacts/netprobe-home-live-qa/netprobe-home-live-en-desktop.png` and `artifacts/netprobe-home-live-qa/netprobe-home-live-pt-br-mobile.png` reviewed |
 | Sprint 18.21 live NetProbe home smoke | Passed: localized markers, canonical/hreflang checks, WebPage schema, blocked phrase scan 0, console errors 0 and overflow 0 |
-| Real deploy/provider activation | 30 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.21 NetProbe deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.22 NetProbe What is my IP route | `/supersites/netprobe-atlas/en/tools/what-is-my-ip` auto-loads observed public IP above the fold with refresh, copy and details actions |
+| Sprint 18.22 localized IP checks | EN/PT-BR live browser checks passed with IP auto-load, localized PT-BR details, no blocked internal terms and no horizontal overflow |
+| Sprint 18.22 NetProbe unit suite | Passed: 9 tests |
+| Sprint 18.22 NetProbe build | Passed |
+| Sprint 18.22 NetProbe Playwright suite | Passed: 9 tests, including IP desktop EN and mobile PT-BR detail screenshots |
+| Sprint 18.22 NetProbe preview smoke | Passed; asset `/_nuxt/JuORoVEW.js` validated locally |
+| Sprint 18.22 AdSense-safe validation | Passed locally and post-deploy: 13 public pages |
+| Sprint 18.22 package/structure/secrets/dry-run/diff | Passed, including package tests/typechecks, `ci:changes`, deploy dry-run and `git diff --check` |
+| Sprint 18.22 NetProbe HostGator artifact | Local passed: 180 files; production deploy passed: 180 files, 2851577 bytes |
+| Sprint 18.22 implementation commit | `ae30bda` |
+| Sprint 18.22 remote Quality Gate | `28478093718` passed |
+| Sprint 18.22 remote Deploy Dry Run | `28478101304` passed |
+| Sprint 18.22 NetProbe production deploy | `28478351303` passed; release `ae30bda4f77c00f95ae8393b3911b1e409097071-28478351303-1`; asset `CIQKG5SX.js` |
+| Sprint 18.22 post-deploy public smoke | Passed: NetProbe public smoke and API smoke |
+| Sprint 18.22 post-deploy quick crawler | `2026-06-30T22-12-55-566Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.22 live NetProbe IP screenshots | `artifacts/netprobe-ip-live-qa/netprobe-ip-live-en-desktop.png` and `artifacts/netprobe-ip-live-qa/netprobe-ip-live-pt-br-mobile-details.png` reviewed |
+| Sprint 18.22 live NetProbe IP smoke | Passed: auto IP result, refresh/copy/details actions, canonical/hreflang checks, schema, blocked phrase scan 0, console errors 0 and overflow 0 |
+| Real deploy/provider activation | 31 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.22 NetProbe deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 

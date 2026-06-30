@@ -833,6 +833,13 @@ Sprint 18.10 - Pagina de catalogo SitePulse Lab
 - Status: concluida em producao. Commit `10765e7`, Quality Gate `28440535346`, Deploy Dry Run `28440535344` e deploy reversivel do Hub `28440771101` passaram; release `10765e70ece762bb0eaf84ea4e8a39a3fbe1a57f-28440771101-1`, asset Hub `mwraAvTd.js`, asset SitePulse `lkcC6TkC.js`, smokes publicos, AdSense-safe, SitePulse static app smoke, 14 deep links EN/PT-BR e crawler quick `2026-06-30T11-35-54-823Z` passaram.
 - Escopo negativo: nenhum app estatico SitePulse novo foi publicado porque os deep links publicos ja estavam 200 e coerentes. Nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, pagamento, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect, uptime recorrente, alerta, status page, monitor persistente, API paga, multi-regiao ou acao irreversivel foi ativado.
 
+Sprints 18.21 e 18.22 - NetProbe app home e What is my IP
+- Simbolico: `PHASE18-NETPROBE-HOME` e `PHASE18-NETPROBE-IP`.
+- Escopo entregue: a home do NetProbe passou a abrir como hub publico de diagnostico de rede com input universal, sete cards diretos e rodape tecnico por clusters; a pagina `What is my IP` passou a autoexecutar a consulta, mostrar o IP observado acima da dobra, remover o botao obrigatorio de execucao e mover metodologia/privacidade/limites para abaixo do resultado.
+- Status: concluidas em producao. Home: commits `8f7b4f3`/`8441814`, deploy `28475475506`, release `8441814e224be60ef9baa7b81dc8e32be2c35311-28475475506-1`. IP: commit `ae30bda`, Quality Gate `28478093718`, Deploy Dry Run `28478101304`, deploy NetProbe `28478351303`, release `ae30bda4f77c00f95ae8393b3911b1e409097071-28478351303-1`, asset `CIQKG5SX.js`.
+- Validacao: smokes publicos NetProbe/API, AdSense-safe, screenshots live desktop/mobile, browser checks de canonical/hreflang/schema/overflow/termos bloqueados e crawler quick live `2026-06-30T22-12-55-566Z` com 95 rotas/190 checks/0 gaps passaram.
+- Escopo negativo: nenhum anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, provider externo, worker/cron, probe multirregional novo, DNS/root mapping, root redirect, analytics externo, persistencia de IP em analytics ou acao irreversivel foi ativado.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.

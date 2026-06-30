@@ -17,6 +17,7 @@ Make DNS propagation and What is my IP feel like premium, fast, layered diagnost
 - Add benchmark-grade DNS/IP chrome: task-first diagnostic workbench, record-type tabs, visual IP panel, privacy CTA and honest resolver coverage disclosure. Done and deployed in Sprint 9.5 without API contract changes, external analytics, multi-region probes or real monetization.
 - Transform the Hub catalog route for NetProbe into a public network/DNS/IP landing with direct tool cards, three-level explanation and DNS/IP/domain/SSL/guide deep links. Done in production in Phase 18 Sprint 18.3 with deploy `28422499578`, release `36b11f54ef984e6c6098da971cd5df3248cc1b0e-28422499578-1` and live desktop/mobile route smoke.
 - Transform the NetProbe app home into a benchmark-grade diagnostic hub with universal target input, seven direct tool cards, support block below the free value path, no public status/upgrade/internal language and DNS/IP/domain/SSL footer columns. Done in production in Phase 18 Sprint 18.21 with deploy `28475475506`, release `8441814e224be60ef9baa7b81dc8e32be2c35311-28475475506-1` and live desktop/mobile home smoke.
+- Convert What is my IP into an automatic answer page: auto-run on load, no mandatory run button, visible IP above the fold, refresh/copy/details actions, enriched-but-honest detail cards, methodology below the result and no raw IP analytics. Done in production in Phase 18 Sprint 18.22 with deploy `28478351303`, release `ae30bda4f77c00f95ae8393b3911b1e409097071-28478351303-1` and live desktop/mobile IP smoke.
 
 ## P1
 
@@ -57,6 +58,7 @@ Medium if ad/support blocks get too close to inputs or results. Keep placements 
 - DNS propagation mobile input keeps the domain example separate from record type tabs.
 - Hub catalog route `/supersites/<locale>/sites/netprobe-atlas` opens as a practical landing, not a status/product sheet, and includes direct paths for IP, DNS propagation, DNS lookup, RDAP, SSL, port and ping/traceroute.
 - NetProbe app home `/supersites/netprobe-atlas/<locale>/` opens with practical diagnostic input/results navigation above the fold, not launch status, methodology or upgrade/status language.
+- NetProbe What is my IP `/supersites/netprobe-atlas/<locale>/tools/what-is-my-ip` opens with a live IP result above the fold, not a mandatory run button or public API/status language.
 - Smoke/preview markers must follow intentional public copy changes in the same sprint; stale markers such as `Network facts` cannot block a benchmark-grade copy update after deploy.
 - Footer navigation should remain text-column topical menus with hover emphasis, not button grids or product-status chips.
 
