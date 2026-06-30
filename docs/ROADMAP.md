@@ -6,10 +6,10 @@ Este roadmap deve ser aprovado antes de iniciar a execucao de sprints com mutaco
 
 ## Principios de execucao
 
-- A execucao segue os perfis de entrega em `docs/RUNBOOKS/SPRINT_EXECUTION.md`, com validacao proporcional ao risco.
-- Sprints page/UI da Fase 18 usam P1 por padrao: app/rota afetada, screenshots desktop/mobile quando houver UI, commit objetivo, push e monitoramento do Quality Gate.
-- Deploy HostGator, smoke publico, crawler benchmark, Deploy Dry Run e fechamento documental amplo entram quando o perfil, o risco ou o pedido do dono exigir.
-- `docs/STATUS.md` e `docs/METRICS.md` devem ser atualizados em marcos, releases relevantes, mudancas operacionais, fechamento de fase ou a cada 3 a 5 sprints, nao em toda microcorrecao.
+- Enquanto o projeto nao for divulgado publicamente, a execucao segue cadencia por etapa em `docs/RUNBOOKS/SPRINT_EXECUTION.md`: implementar todas as sprints da etapa, validacao minima, commit objetivo, push, Quality Gate e deploy somente se a etapa exigir.
+- Nao fazer commit/push/deploy por sprint individual, salvo pedido do dono ou etapa grande demais avisada antes.
+- Screenshots, Playwright/E2E, crawler benchmark, Lighthouse/PageSpeed, Deploy Dry Run, smokes publicos e fechamento documental amplo entram somente quando o dono pedir, quando a etapa for QA/fechamento/pre-divulgacao, ou quando houver risco real de deploy, rotas globais, SEO compartilhado, dados, segredos, provider externo, monetizacao real ou acao irreversivel.
+- `docs/STATUS.md` e `docs/METRICS.md` devem ser atualizados em marcos, releases relevantes, mudancas operacionais, fechamento de etapa/fase ou quando o dono pedir, nao em toda microcorrecao.
 - Mudancas de arquitetura ou processo devem gerar ADR.
 - Segredos reais nunca entram no Git.
 - Funcionalidade gratuita deve resolver a necessidade basica sem cadastro.
@@ -725,14 +725,14 @@ Operacao pos-Fase 17 - Public Watchdog transient 500 hardening
 
 ## Fase 18 - Refinamento benchmark-driven pagina por pagina
 
-Status geral: em andamento. A fase agora segue `docs/ROADMAP_FASE_18_REFINAMENTO_BENCHMARK_PAGE_BY_PAGE.md`, com inventario real, QA visual/crawler e correcao pagina por pagina ate remover linguagem interna da superficie publica e aproximar os fluxos dos benchmarks lideres.
+Status geral: em andamento. A fase agora segue `docs/ROADMAP_FASE_18_REFINAMENTO_BENCHMARK_PAGE_BY_PAGE.md` e a cadencia por etapa de `docs/RUNBOOKS/SPRINT_EXECUTION.md`: implementar todas as sprints da etapa, validacao minima, commit/push objetivo, Quality Gate e deploy/QA profundo somente quando o owner pedir ou quando a etapa for de pre-divulgacao/fechamento.
 
 Sprint 18.0/18.1 - Baseline e fundamentos publicos
 - Simbolico: `PHASE18-BENCHMARK-FOUNDATION`.
 - Escopo entregue: inventario documentado em `docs/ROUTE_INVENTORY_PHASE_18.md`; crawler quick baseline e pos-mudanca; Hub publico sem launch order/production evidence/monetization readiness na superficie principal; detalhes do Hub sem ordem de lancamento/URL temporaria; NetProbe What is my IP autoexecuta no carregamento; paginas diagnosticas priorizam ferramenta/resultado antes de metodologia; status/cookies/institucionais do Hub e NetProbe receberam copy publica menos operacional.
 - Validacao: builds Hub/NetProbe, Vitest Hub/NetProbe, Playwright Hub/NetProbe, `validate:public-copy`, `validate:adsense-safe-public`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes`, `git diff --check` e crawler quick `2026-06-29T20-08-13-569Z` passaram.
 - Publicacao: commits `179b104` e `7777c6a`; Quality Gate final `28400509988` e Deploy Dry Run `28400510010` passaram; Hub publicado pelo run `28400789120` no release `7777c6a15caf3c724d3bee668f4cfc969dbc0971-28400789120-1`; NetProbe publicado pelo run `28401266330` no release `7777c6a15caf3c724d3bee668f4cfc969dbc0971-28401266330-1`; smokes publicos pos-deploy e checagem live do What is my IP passaram.
-- Pendente para proximas sprints: crawler full sem timeout, Lighthouse/PageSpeed/GTmetrix quando disponivel, reforma page-by-page dos demais sites, QA multilíngue mais profundo, donation blocks sem link real, slots AdSense reservados por site, e arquitetura real de probes regionais antes de qualquer promessa worldwide no DNS Propagation.
+- Pendente para proximas etapas: reforma page-by-page dos demais sites, donation blocks sem link real, slots AdSense reservados por site e arquitetura real de probes regionais antes de qualquer promessa worldwide no DNS Propagation. Crawler full, Lighthouse/PageSpeed/GTmetrix e QA multilíngue profundo ficam para etapa de QA/pre-divulgacao/fechamento ou pedido explicito do owner.
 - Escopo negativo: apenas releases reversiveis Hub/NetProbe HostGator foram publicados. Nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
 
 Sprint 18.2 - Hub principal benchmark-driven
@@ -746,7 +746,7 @@ Sprint 18.2b - Correcao do aceite visual do Hub
 - Simbolico: `PHASE18-HUB-BENCHMARK-CORRECTION`.
 - Motivo: a revisao visual reprovou a Sprint 18.2 porque a home ainda parecia catalogo operacional/institucional. O erro de processo foi aceitar atalhos e rodape rico sem exigir que a primeira dobra fosse uma experiencia publica de uso pratico.
 - Escopo entregue: home do Hub transformada em finder de ferramentas com busca, categorias, sinais publicos de confianca e 11 cards diretos de ferramenta antes do diretorio dos 10 sites; diretorio secundario sem badges de status/preview, contadores operacionais, free value, upgrade path, billing, ads ou rollout; copy e placeholder de ads sem linguagem interna.
-- Gate permanente: `docs/PHASE18_BENCHMARK_GRADE_ACCEPTANCE.md` deve ser aplicado antes de qualquer sprint page-by-page. Sem screenshot desktop/mobile revisado, ferramenta/resultado/input acima da dobra, linguagem localizada e negative assertions contra termos internos, a pagina fica reprovada.
+- Gate permanente atualizado: `docs/PHASE18_BENCHMARK_GRADE_ACCEPTANCE.md` define o alvo benchmark-grade, mas screenshots, Playwright e negative assertions ficam sob demanda do owner ou para etapa de QA/pre-divulgacao/fechamento.
 - Validacao local: Vitest Hub 13 testes, build Hub, preview smoke Hub, public-copy 951 HTMLs, Playwright Hub 7 testes com screenshots desktop EN/mobile PT-BR, structure, secrets, package typecheck/test, ci:changes, deploy dry-run, artifact HostGator Hub 211 arquivos/2808734 bytes e `git diff --check` passaram.
 - Status: concluida em producao. Commit de implementacao `44f6eb1`, commit de smoke `aa8f3f8`, Quality Gate `28417419704`, Deploy Dry Run `28417419706` e deploy reversivel do Hub `28417561537` passaram; release `aa8f3f820f7b76f072ad923c552ca8f9cc345816-28417561537-1`, asset `DffgcYRx.js`, smokes publicos, AdSense-safe e crawler quick `2026-06-30T03-19-01-758Z` passaram.
 - Incidente fechado: deploy `28416990131` falhou apenas por smoke obsoleto que ainda exigia o headline anterior `A curated operating network` apos a remocao intencional desse texto. A release ja havia sido apontada, o smoke foi atualizado para o novo finder benchmark-grade e o workflow seguinte ficou verde.

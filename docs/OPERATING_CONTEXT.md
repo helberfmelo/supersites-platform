@@ -16,6 +16,7 @@ Fonte da verdade operacional complementar ao `MEGA_PROMPT_SUPERSITES.md`.
 - Nenhuma credencial deve ser versionada.
 - Credenciais uteis recebidas por chat ou encontradas em documentos devem ficar no inventario local ignorado pelo Git.
 - Nao alterar projetos de referencia localmente ou em producao.
+- O projeto ainda nao foi divulgado publicamente. Ate divulgacao explicita, `opentshost.com/supersites` deve ser tratado como producao tecnica interna, com tolerancia alta a quebra temporaria de UI/rotas durante desenvolvimento.
 
 ## Projetos de referencia auditados em modo leitura
 
@@ -33,15 +34,15 @@ Padroes aproveitados:
 - Secrets reais ficam em arquivo local ignorado, GitHub Secrets, cPanel seguro ou cofre.
 - Deploy em HostGator exige cuidado com subdiretorio, `APP_URL`, `ASSET_URL`, base path e migrations.
 - Publicacao por FTP/SSH deve preservar `.env`, evitar wipe remoto total e executar smoke pos-deploy.
-- Diretriz de simplificacao aprovada em 2026-06-30: usar os perfis P0-P4 de `docs/RUNBOOKS/SPRINT_EXECUTION.md`; page/UI da Fase 18 usa P1 por padrao.
-- Commits/pushes devem ser objetivos e agrupados por sprint; preferir um unico commit com codigo, testes e docs estritamente afetados.
-- O ritmo operacional esperado e direto: implementar a sprint completa, validar o app/rota afetada, fazer commit/push, monitorar o Quality Gate e publicar apenas quando o escopo exigir producao.
-- `Deploy Dry Run`, crawler benchmark quick/full, todos os package tests, STATUS/METRICS e fechamento documental amplo nao sao rotina de microcorrecao visual; entram por risco, mudanca de deploy/rotas globais/SEO compartilhado, release relevante ou fechamento de lote/fase.
-- A higiene documental ampla deve acontecer em marcos, releases relevantes, fechamento de fase ou apos 3 a 5 sprints, seguindo o padrao observado em projetos de referencia mais ageis.
+- Diretriz de simplificacao aprovada em 2026-06-30: executar por etapa, nao por sprint individual. Concluir todas as sprints da etapa, fazer validacao minima, um commit/push objetivo, monitorar Quality Gate e publicar/deployar somente quando a etapa exigir ou quando o dono pedir.
+- Se a etapa for grande demais para um unico ciclo, o dono avisara antes e a etapa sera quebrada em lotes.
+- `Deploy Dry Run`, crawler benchmark quick/full, screenshots, Playwright/E2E, Lighthouse/PageSpeed, todos os package tests, STATUS/METRICS e fechamento documental amplo nao sao rotina de desenvolvimento. Entram apenas quando o dono pedir, quando a etapa for QA/fechamento/pre-divulgacao, ou quando houver risco de deploy, rotas globais, SEO compartilhado, dados, segredos, provider externo, monetizacao real ou acao irreversivel.
+- A validacao visual/produto padrao fica com o dono depois da entrega; o Codex nao deve gastar ciclos longos em capturas e validacoes profundas salvo pedido explicito.
+- A higiene documental ampla deve acontecer em marcos, releases relevantes, fechamento de etapa/fase ou quando o dono pedir.
 - Quando o dono do projeto corrigir cadencia, estrategia de commit/push, monitoramento de deploy ou criterio de aceite, registrar a regra nas fontes de verdade aplicaveis, sem criar fechamento documental pesado para toda microentrega.
-- Entregas benchmark-grade publicadas so fecham depois de validacao visual live desktop/mobile da rota afetada e checagem dos deep links reais adicionados ou alterados. Se o Hub apontar para app estatico com release antiga, 404 ou 500, publicar o app no mesmo ciclo antes da proxima sprint.
+- Entregas benchmark-grade devem priorizar implementacao do produto. Validacao visual live, screenshots e checagem profunda de deep links ficam sob demanda do dono ou para etapa de QA/fechamento/pre-divulgacao.
 - Campos tecnicos de rota e SEO (`path`, `href`, `slug`, `url`, `canonical`, `locale`, `timeZone` e equivalentes) nao devem ser alterados por sanitizacao linguistica ou acentuacao. Labels visiveis podem ser localizadas; rotas devem permanecer estaveis e validadas no HTML publicado/crawler antes de seguir.
-- Obstaculos tecnicos reversiveis devem ser contornados com dry-run, fallback, validacao ou modo degradado e a sprint deve continuar.
+- Obstaculos tecnicos reversiveis devem ser contornados com fallback, modo degradado ou correcao direta; dry-run so deve ser usado quando necessario pelo tipo de etapa ou quando pedido.
 - Obstaculos humanos, juridicos, fiscais, bancarios, compra, KYC, PIN ou acoes irreversiveis devem ser registrados em `HUMAN_ACTION_REQUIRED` e o restante deve continuar.
 
 ## CI/CD SuperSites

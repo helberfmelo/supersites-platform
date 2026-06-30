@@ -2,7 +2,7 @@
 
 Data-base: 2026-06-30
 
-Este checklist define o aceite visual da Fase 18. Por padrao, sprints page/UI usam o perfil P1 de `docs/RUNBOOKS/SPRINT_EXECUTION.md`: validar a rota afetada com profundidade, sem exigir crawler completo, dry run ou fechamento documental amplo em toda microentrega.
+Este checklist define o que significa benchmark-grade na Fase 18. Ele nao obriga validacao visual profunda em toda entrega. Enquanto o projeto nao for divulgado publicamente, o fluxo padrao e implementar a etapa completa, fazer validacao minima e deixar a validacao visual/produto para o dono do projeto, salvo pedido explicito de QA.
 
 ## Regra de bloqueio
 
@@ -38,36 +38,33 @@ Nao renderizar no topo publico:
 
 Esses itens pertencem a docs, admin, runbooks ou readiness autenticado.
 
-## Aceite visual obrigatorio para P1
+## Criterios visuais de benchmark
 
-Antes de commit em uma sprint publica page/UI:
+Uma pagina deve buscar estes criterios:
 
-- capturar desktop e mobile da rota alterada;
-- verificar manualmente os screenshots;
 - confirmar que nao ha overflow horizontal;
 - confirmar que a primeira dobra resolve uma intencao pratica;
 - confirmar que blocos de ads/doacao/suporte aparecem abaixo do valor entregue e continuam inertes;
 - confirmar que a rota localizada nao exibe ingles residual indevido;
 - atualizar notas do site ou roadmap ativo somente quando houver criterio novo, decisao de produto, pendencia real ou fechamento de lote.
 
-Apos deploy HostGator, a mesma rota deve ser revalidada em producao quando a entrega foi publicada. Screenshot local nao substitui smoke live quando a entrega pretende corrigir percepcao visual benchmark-grade.
+Screenshots, validacao live, Playwright e revisao visual profunda so devem ser feitos quando o dono pedir, quando a etapa for de QA/fechamento/pre-divulgacao ou quando o proprio objetivo da etapa for validar a superficie.
 
 ## Cadencia e rotas
 
-- A rota canonica da sprint deve ser validada diretamente, com screenshots e smoke no path publico real.
+- A rota canonica da etapa deve ser implementada de forma direta e orientada a uso pratico.
 - Paginas de catalogo do Hub, como `/supersites/en/sites/<site>`, devem funcionar como landing publica de descoberta para a familia de ferramentas, nao como ficha interna de produto.
 - Links de CTA e rodape precisam apontar para subpaginas/ferramentas publicas reais do site quando existirem; evitar linkar apenas para a home do app se o benchmark espera navegacao profunda.
-- Cada sprint deve fechar o ciclo objetivo definido pelo perfil de entrega: implementar, validar, commit/push, monitorar Quality Gate e, quando houver publicacao, monitorar deploy HostGator e smoke publico da rota/app afetado.
-- O ciclo deve ser enxuto: usar commits objetivos, evitar fragmentacao burocratica e registrar evidencia detalhada apenas quando houver fechamento de lote/fase ou risco que justifique.
-- Se a rota do Hub/catalogo divulgar links profundos para um app estatico, o app tambem deve ser validado na producao real. Se qualquer link retornar release antiga, 404 ou 500, publicar o app estatico no mesmo ciclo e repetir o smoke publico dos links afetados antes de fechar a sprint. Crawler benchmark so entra se a correcao mexer em navegacao, rotas globais ou geracao de SEO.
-- Rotas profundas adicionadas por uma sprint precisam ser checadas em producao nos idiomas principais alterados. Nao fechar a sprint enquanto houver 404/500, asset stale ou release antiga servindo conteudo incoerente com o Hub.
+- A etapa deve seguir a cadencia de `docs/RUNBOOKS/SPRINT_EXECUTION.md`: implementar todas as sprints da etapa, validacao minima, commit/push e Quality Gate.
+- Evidencia detalhada, smoke publico, validacao live e crawler entram somente quando o dono pedir, quando a etapa for publicada com objetivo de QA ou quando houver risco de rotas/deploy/SEO global.
+- Se a rota do Hub/catalogo divulgar links profundos para um app estatico, o ideal e manter links reais e estaveis, mas a checagem profunda de producao fica sob demanda ou para etapa de QA/pre-divulgacao.
 - Campos tecnicos de rota e SEO nao podem ser tratados como copy visivel. `path`, `href`, `slug`, `url`, `canonical`, `hreflang`, `locale`, `timeZone` e chaves equivalentes devem permanecer estaveis, sem acentuacao ou traducao; apenas labels, titulos e descricoes devem receber localizacao natural.
 
 ## Quando usar crawler ou dry run
 
-- Crawler benchmark quick/full: usar em mudanca de shell global, navegacao, rodape global, sitemap, canonical/hreflang, i18n compartilhado, rota gerada em massa, regressao suspeita ou fechamento de lote/fase.
-- Deploy Dry Run: usar quando scripts/workflows de deploy, manifestos, artefatos, base path, secrets, primeiro deploy de app ou rollback mudarem.
-- Para copy/layout de uma rota isolada com deploy estavel, usar build/testes do app afetado, screenshots desktop/mobile e smoke publico da rota publicada.
+- Crawler benchmark quick/full: usar somente quando o dono pedir, em QA/pre-divulgacao/fechamento, ou em mudanca ampla de shell global, navegacao, sitemap, canonical/hreflang, i18n compartilhado ou rota gerada em massa.
+- Deploy Dry Run: usar somente quando o dono pedir ou quando scripts/workflows de deploy, manifestos, artefatos, base path, secrets, primeiro deploy de app ou rollback mudarem.
+- Para copy/layout de uma rota isolada, a validacao padrao e minima; o dono validara o visual depois.
 
 ## Regra especifica do Hub
 

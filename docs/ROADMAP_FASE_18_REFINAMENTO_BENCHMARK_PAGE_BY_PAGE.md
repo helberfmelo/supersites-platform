@@ -5,9 +5,9 @@
 **Próxima fase obrigatória:** Fase 18
 **Objetivo:** transformar os sites de MVP público em páginas mais próximas dos benchmarks líderes, sem copiar marca, layout 1:1, texto, código, imagens ou identidade visual.
 
-Use este documento como prompt complementar para o Codex. Execute uma sprint por vez, corrigindo uma página ou template de página por vez, mas aplique os perfis de entrega de `docs/RUNBOOKS/SPRINT_EXECUTION.md`. O padrão da Fase 18 é P1: validação focada no app/rota afetada, commit objetivo, push e Quality Gate. Dry-run, deploy HostGator, crawler amplo, smoke público e registro documental detalhado entram quando houver publicação, risco, mudança de deploy/rotas globais/SEO compartilhado ou fechamento de lote/fase.
+Use este documento como prompt complementar para o Codex. A cadencia atual nao e fechar sprint por sprint. Execute a etapa ativa inteira, incluindo todas as sprints listadas nela; depois faca validacao minima, commit objetivo, push, Quality Gate e deploy/monitoramento somente se a etapa exigir publicacao. Se uma etapa estiver grande demais para esse fluxo, o owner avisara antes.
 
-Quando uma sprint do Hub/catalogo criar ou destacar links profundos para ferramentas de um app estático, validar esses links na produção real antes de fechar. Se o app em produção estiver stale, com 404 ou 500, publicar também o app estático no mesmo ciclo e repetir o smoke público dos links afetados. Crawler benchmark só é obrigatório se a correção mexer em navegação, rotas globais, SEO gerado ou fechamento de lote/fase.
+O projeto ainda nao foi divulgado publicamente. Ate a divulgacao, `opentshost.com/supersites` e as rotas dos apps funcionam como producao tecnica interna, com risco publico relaxado. Nao gastar ciclos longos em validacao profunda, screenshots, crawler, Lighthouse, Playwright, dry-run ou smoke publico salvo pedido explicito, etapa de QA/pre-divulgacao/fechamento, ou risco real de dados, segredos, deploy, provider externo, monetizacao real ou acao irreversivel.
 
 ---
 
@@ -56,16 +56,16 @@ Antes de qualquer alteração:
    - `docs/AUDITORIA_LIVE_SUPERSITES_BENCHMARK.md`
    - `docs/AUDITORIA_LIVE_SUPERSITES_BENCHMARK_V2.md`
    - `docs/PROMPT_COMPLEMENTAR_BENCHMARK_EVOLUCAO_CONTINUACAO.md`
-5. Verifique estado real de git, branch, código, ambientes e superfície pública afetada.
+5. Verifique estado real de git, branch, código e ambiente afetado somente no nivel necessario para executar a etapa.
 6. Nunca exponha ou versiona segredos.
 7. Execute com autonomia tudo que for técnico, reversível e coberto por testes.
 8. Para KYC, impostos, banco, aceite jurídico, compra, ativação real de AdSense, ativação real de checkout, doação real, afiliado real, webhook externo real ou qualquer ação irreversível, registre `HUMAN_ACTION_REQUIRED` e continue o restante.
 
 ---
 
-## 3. Benchmarks obrigatórios a estudar durante a Fase 18
+## 3. Benchmarks de referência durante a Fase 18
 
-Acesse, tire prints desktop/mobile quando possível, navegue e entenda os padrões dos benchmarks. Não copie. Extraia o raciocínio de produto.
+Use os benchmarks como referência de produto. Não copie marca, layout 1:1, texto, código, imagens ou identidade visual. Prints e navegação profunda só são necessários quando o owner pedir ou quando a etapa for de QA/pre-divulgação/fechamento.
 
 ### NetProbe Atlas
 
@@ -269,7 +269,7 @@ Cada sprint de página deve aplicar a alteração em todas as rotas equivalentes
 /de/...
 ```
 
-Tarefas de qualidade por sprint:
+Tarefas de qualidade por pagina/etapa:
 
 1. Corrigir inglês residual.
 2. Corrigir acentos em PT-BR: `obrigatório`, `páginas`, `inglês`, `português`, `operação`, `cópia`, `saída`, `segurança`, `estático`, `dinâmico`, `domínio`, `histórico`, `integrações`, `validação`, `retenção`, `exclusão` etc.
@@ -279,31 +279,24 @@ Tarefas de qualidade por sprint:
 
 ---
 
-## 9. Padrão de validação por sprint
+## 9. Padrão de execução e validação por etapa
 
 Aplicar `docs/RUNBOOKS/SPRINT_EXECUTION.md`.
 
-Para sprint P1 page/UI, que é o padrão da Fase 18:
+Para a Fase 18, o padrão é executar a etapa completa, com todas as suas sprints, antes de commit/push/deploy:
 
-1. Ler o contexto mínimo: `AGENTS.md`, `docs/OPERATING_CONTEXT.md`, `docs/RUNBOOKS/SPRINT_EXECUTION.md`, a seção ativa deste roadmap e notas do site/rota afetada.
-2. Acessar a página atual local e/ou produção quando a comparação visual for necessária.
-3. Consultar o benchmark correspondente com foco no comportamento de produto, não em cópia literal.
-4. Implementar a página alvo, sem alterar escopo fora da sprint salvo componentes compartilhados necessários.
-5. Validar:
-   - testes unitários ou de frontend relevantes ao app afetado;
-   - build/preview do app afetado;
-   - Playwright, smoke ou browser check da rota alterada;
-   - screenshots desktop/mobile quando houver mudança visual;
-   - idioma, acentos e ausência de inglês residual na rota alterada;
-   - metadata/canonical/hreflang quando a sprint tocar SEO ou rota;
-   - `validate:structure` e `validate:secrets` quando o diff tocar scripts, CI, deploy, docs sensíveis ou superfície pública compartilhada;
-   - `git diff --check`.
-6. Atualizar apenas docs afetados: roadmap ativo, notas do site/rota ou `HUMAN_ACTION_REQUIRED.md` se houver bloqueio humano.
-7. Commitar de forma objetiva, preferindo um único commit por sprint.
-8. Pushar e monitorar Quality Gate.
-9. Deploy/smoke público apenas quando a entrega precisa aparecer em produção.
+1. Ler o contexto mínimo: `AGENTS.md`, `docs/OPERATING_CONTEXT.md`, `docs/RUNBOOKS/SPRINT_EXECUTION.md` e a seção ativa deste roadmap.
+2. Implementar todas as sprints da etapa.
+3. Fazer validação mínima: revisar o diff, `git status` e `git diff --check`.
+4. Rodar teste/build focado apenas se o diff indicar risco imediato de erro sintático, import quebrado ou empacotamento.
+5. Atualizar apenas docs afetados quando houver mudança real de regra, roadmap, pendência humana ou fechamento de etapa/fase.
+6. Fazer um commit objetivo da etapa.
+7. Pushar e monitorar Quality Gate.
+8. Fazer deploy/monitoramento somente se a etapa exigir publicação ou se o owner pedir.
 
-Elevar para P2/P3/P4 quando houver API/contrato compartilhado, segurança, dados, deploy, provider, rotas globais, SEO compartilhado, monetização, primeiro deploy de app, rollback ou fechamento de lote/fase. Nesses casos entram dry-run, crawler, docs amplas, STATUS/METRICS e evidências completas conforme o perfil.
+Não rodar por padrão: screenshots, Playwright, crawler, Lighthouse, PageSpeed, GTmetrix, smokes públicos, deploy dry-run, todos os package tests, build de todos os apps ou relatórios longos. O owner validará o visual/produto depois e pedirá validações adicionais quando necessário.
+
+Elevar validação somente quando houver pedido explícito, etapa de QA/pre-divulgação/fechamento, ou risco real de API/contrato compartilhado, segurança, dados, deploy, provider externo, rotas globais, SEO compartilhado, monetização real, primeiro deploy de app, rollback ou ação irreversível.
 
 ### 9.1. Gate adicional criado após correção do Hub
 
@@ -311,12 +304,12 @@ Depois da auditoria visual da Sprint 18.2, fica obrigatório consultar `docs/PHA
 
 Motivo: uma página pode passar em links, footer, i18n e testes técnicos e ainda assim falhar como produto público se a primeira dobra continuar parecendo catálogo operacional, status de rollout ou documentação de desenvolvimento.
 
-Regra operacional:
+Regra de produto:
 
-1. Screenshot desktop/mobile precisa mostrar uma intenção prática resolvida acima da dobra.
+1. A primeira dobra precisa resolver uma intenção prática.
 2. A página não pode depender de badges de status, monetização, rollout, qualidade ou readiness para explicar valor ao usuário.
 3. O benchmark da sprint deve ser traduzido em comportamento de produto próprio, não apenas em novas seções adicionadas.
-4. O smoke/Playwright da rota alterada deve conter pelo menos uma asserção contra regressão de linguagem interna quando a página já tiver histórico de falha desse tipo.
+4. Smoke/Playwright contra regressão de linguagem interna só é necessário quando o owner pedir ou quando a etapa for de QA/pre-divulgação/fechamento.
 
 ---
 
@@ -513,9 +506,9 @@ Regra operacional:
 
 **Correção pós-watchdog:** concluída em 2026-06-30. O `Public Watchdog` encontrou link acentuado indevidamente para TimeNexus (`são-paulo`) gerado por sanitização linguística aplicada a campos técnicos. O commit `f1cf0c8` preserva `path`, `href`, `slug`, `url` e campos técnicos equivalentes em `sanitizePublicCopy`; Quality Gate `28442797278`, Deploy Dry Run `28442797012`, deploy Hub `28443060889`, crawler quick `2026-06-30T12-15-12-355Z` e `Public Watchdog` `28443668162` passaram. A release ativa passou a ser `f1cf0c8797df387b24048e5575447bbd440d01b9-28443060889-1`.
 
-**Regra aprendida reforçada:** para as próximas etapas, implementar a página inteira, validar pelo perfil de entrega, fazer commit/push objetivo e monitorar o Quality Gate. Deploy HostGator, smoke público, deep links live, crawler e visual live entram quando a sprint for publicada ou quando o risco exigir. O detalhe técnico deve ficar no fechamento de lote/fase; não fragmentar uma mesma sprint em handoffs ou commits parciais quando não houver falha concreta.
+**Regra aprendida reforçada:** para as próximas etapas, implementar a etapa inteira com todas as sprints planejadas, fazer validação mínima, commit/push objetivo e monitorar o Quality Gate. Deploy HostGator, smoke público, deep links live, crawler e visual live entram somente quando o owner pedir, quando a etapa for de QA/pre-divulgação/fechamento ou quando houver risco real. Não fragmentar uma mesma etapa em handoffs ou commits parciais sem necessidade.
 
-**Regra técnica aprendida:** copy visível pode ser localizada e acentuada; campos técnicos de navegação, canonical, href, path, slug, url, locale e time zone não podem ser reescritos por saneamento linguístico. Sempre que i18n tocar rotas, validar o HTML publicado e o crawler com links internos antes da próxima sprint.
+**Regra técnica aprendida:** copy visível pode ser localizada e acentuada; campos técnicos de navegação, canonical, href, path, slug, url, locale e time zone não podem ser reescritos por saneamento linguístico. Validar HTML publicado e crawler com links internos somente em etapa de QA/pre-divulgação/fechamento ou quando o owner pedir.
 
 ---
 
@@ -1628,6 +1621,8 @@ Regra operacional:
 
 # 22. Fechamento transversal da Fase 18
 
+As sprints 18.96 a 18.99 sao etapas de QA/pre-divulgacao/fechamento. Elas devem rodar validacoes profundas apenas quando o owner pedir para preparar a fase para divulgacao ou auditoria final.
+
 ## Sprint 18.96 — QA multilíngue completa
 
 **Codex deve:**
@@ -1714,7 +1709,7 @@ A Fase 18 só estará concluída quando:
 11. Lighthouse/performance estiver dentro das metas ou com bloqueios documentados.
 12. Dashboard admin refletir status de benchmark readiness por site e página.
 13. Roadmap, status, métricas e human actions estiverem atualizados nos marcos, releases relevantes, mudanças operacionais e fechamento de fase.
-14. Cada sprint tiver commit, push e validação compatíveis com o perfil de entrega; dry-run, deploy, smoke público e crawler ficam registrados quando forem exigidos por risco, publicação ou fechamento de fase.
+14. Cada etapa tiver commit, push e validação mínima compatíveis com `docs/RUNBOOKS/SPRINT_EXECUTION.md`; dry-run, deploy, smoke público, screenshots e crawler ficam registrados somente quando forem exigidos por pedido do owner, QA/pre-divulgação/fechamento ou risco real.
 
 ---
 
