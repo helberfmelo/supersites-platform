@@ -782,9 +782,9 @@ test.describe('SuperSites public hub', () => {
     await page.goto('/pt-br/sites/mailhealth')
     await dismissConsentBanner(page)
 
-    await expect(page.getByRole('heading', { name: 'Verifique a saude de email antes de alterar DNS.' })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Relatorio de saude do domínio' })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Escolha um diagnostico de email' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Verifique a saúde de e-mail antes de alterar DNS.' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Relatório de saúde do domínio' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Escolha um diagnóstico de e-mail' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Todos os checks MailHealth publicados' })).toBeVisible()
     await expect(page.getByRole('searchbox', { name: 'Buscar checks MailHealth' })).toBeVisible()
     await expect(
