@@ -38,6 +38,14 @@ const featuredTools = computed(() => copy.value.featuredTools
     return site ? { ...item, site } : null
   })
   .filter((item): item is { siteSlug: string; label: string; body: string; site: SiteSummary } => Boolean(item)))
+const popularTools = computed(() => copy.value.popularTools
+  .map((item) => {
+    const site = getSiteBySlug(item.siteSlug)
+    const url = site ? `${site.temporaryUrl}${props.locale}${item.path}` : ''
+
+    return site ? { ...item, site, url } : null
+  })
+  .filter((item): item is { siteSlug: string; label: string; body: string; path: string; site: SiteSummary; url: string } => Boolean(item)))
 const intentClusters = computed(() => copy.value.intentClusters.map((cluster) => ({
   ...cluster,
   sites: cluster.siteSlugs
@@ -45,7 +53,7 @@ const intentClusters = computed(() => copy.value.intentClusters.map((cluster) =>
     .filter((site): site is SiteSummary => Boolean(site)),
 })))
 
-function trackPublicSiteClick(siteSlug: string, targetUrl: string, surface = 'catalog_card'): void {
+function trackPublicSiteClick(siteSlug: string, targetUrl: string, surface: 'catalog_card' = 'catalog_card'): void {
   trackOutboundSiteClick({
     siteSlug,
     targetUrl,
@@ -138,7 +146,7 @@ useHead(() => ({
             <a
               class="button-link button-link--secondary"
               :href="item.site.temporaryUrl"
-              @click="trackPublicSiteClick(item.site.slug, item.site.temporaryUrl, 'featured_tool')"
+              @click="trackPublicSiteClick(item.site.slug, item.site.temporaryUrl)"
             >
               {{ copy.publicCta }}
             </a>
@@ -149,6 +157,29 @@ useHead(() => ({
       <div class="evidence-strip" :aria-label="copy.liveEvidenceTitle">
         <strong>{{ copy.liveEvidenceTitle }}</strong>
         <span>{{ copy.liveEvidenceBody }}</span>
+      </div>
+    </section>
+
+    <section class="popular-tools-section" aria-labelledby="popular-tools-title">
+      <div class="section-heading">
+        <p class="eyebrow">{{ copy.launchDeskTitle }}</p>
+        <h2 id="popular-tools-title">{{ copy.popularToolsTitle }}</h2>
+        <p>{{ copy.popularToolsBody }}</p>
+      </div>
+
+      <div class="tool-shortcut-grid" :aria-label="copy.popularToolsTitle">
+        <a
+          v-for="item in popularTools"
+          :key="`${item.site.slug}-${item.path}`"
+          class="tool-shortcut-card"
+          :href="item.url"
+          @click="trackPublicSiteClick(item.site.slug, item.url)"
+        >
+          <span class="tool-shortcut-card__meta">{{ item.site.name }}</span>
+          <h3>{{ item.label }}</h3>
+          <p>{{ item.body }}</p>
+          <strong>{{ copy.popularToolsCta }}</strong>
+        </a>
       </div>
     </section>
 
@@ -259,6 +290,17 @@ useHead(() => ({
           <p>{{ principle.body }}</p>
         </div>
       </div>
+    </section>
+
+    <section class="support-block" aria-labelledby="support-title">
+      <div>
+        <p class="eyebrow">{{ copy.supportEyebrow }}</p>
+        <h2 id="support-title">{{ copy.supportTitle }}</h2>
+        <p>{{ copy.supportBody }}</p>
+      </div>
+      <ul>
+        <li v-for="action in copy.supportActions" :key="action">{{ action }}</li>
+      </ul>
     </section>
 
     <AdPlaceholder

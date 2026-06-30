@@ -59,15 +59,15 @@ export function createHubHomeStructuredData(locale: LocaleCode, copy: HomeCopy):
     {
       '@context': 'https://schema.org',
       '@type': 'ItemList',
-      name: copy.featuredToolsTitle,
-      itemListElement: copy.featuredTools.map((item, index) => {
+      name: copy.popularToolsTitle,
+      itemListElement: copy.popularTools.map((item, index) => {
         const site = siteCatalog.find((candidate) => candidate.slug === item.siteSlug)
 
         return listItem(
           index + 1,
           item.label,
-          absoluteUrl(localizedSitePath(locale, item.siteSlug)),
-          site?.localized[locale].headline ?? item.body,
+          site ? `${site.temporaryUrl}${locale}${item.path}` : absoluteUrl(localizedSitePath(locale, item.siteSlug)),
+          item.body,
         )
       }),
     },

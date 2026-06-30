@@ -228,6 +228,7 @@ h3 {
 }
 
 .launch-desk,
+.popular-tools-section,
 .intent-section {
   padding: 26px 0;
   border-bottom: 1px solid #d8ded8;
@@ -375,6 +376,55 @@ h3 {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
+}
+
+.tool-shortcut-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.tool-shortcut-card {
+  display: grid;
+  min-width: 0;
+  min-height: 174px;
+  align-content: space-between;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  color: #17231e;
+  background: #ffffff;
+  text-decoration: none;
+}
+
+.tool-shortcut-card:hover,
+.tool-shortcut-card:focus-visible {
+  border-color: #254c6a;
+  box-shadow: 0 10px 28px rgb(37 76 106 / 10%);
+}
+
+.tool-shortcut-card__meta {
+  color: #617069;
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.tool-shortcut-card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.tool-shortcut-card p {
+  margin-bottom: 0;
+  color: #3f5048;
+  font-size: 0.9rem;
+}
+
+.tool-shortcut-card strong {
+  color: #254c6a;
+  font-size: 0.86rem;
 }
 
 .controls {
@@ -602,6 +652,42 @@ h3 {
 
 .band-grid div:nth-child(3) {
   border-color: #bd7424;
+}
+
+.support-block {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 340px);
+  gap: 18px;
+  align-items: start;
+  margin-top: 24px;
+  padding: 18px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.support-block p {
+  margin-bottom: 0;
+  color: #3f5048;
+}
+
+.support-block ul {
+  display: grid;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.support-block li {
+  min-height: 34px;
+  padding: 7px 10px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  color: #31453b;
+  background: #f8faf7;
+  font-size: 0.88rem;
+  font-weight: 850;
 }
 
 .breadcrumb {
@@ -911,6 +997,8 @@ h3 {
 
   .feature-grid,
   .intent-grid,
+  .tool-shortcut-grid,
+  .support-block,
   .footer-verticals,
   .evidence-strip {
     grid-template-columns: 1fr;

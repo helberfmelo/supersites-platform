@@ -119,6 +119,14 @@ Robots and sitemap checks returned HTTP 200 for the Hub and all 10 product sites
 - Post-deploy public smokes passed for Hub/apps/APIs and NetProbe/API using `pnpm deploy:smoke-supersite-public` and `pnpm deploy:smoke-netprobe-public`.
 - Live browser validation for `https://opentshost.com/supersites/netprobe-atlas/en/tools/what-is-my-ip` confirmed automatic IP rendering, canonical URL, no mobile horizontal overflow and no blocked internal public phrases.
 
+## Sprint 18.2 Hub Follow-up
+
+- The next page-by-page slice targeted the public Hub home at `/supersites/`.
+- The home now includes 11 localized direct tool shortcuts for high-intent free tasks: public IP, DNS propagation, loan payment, JSON formatting, timezone conversion, static QR, invoice builder, SPF check, website status, image compression and PDF merge.
+- Footer navigation now exposes nine vertical clusters plus legal/editorial links, reducing reliance on product-only discovery.
+- The support block remains informational and inert, with 0 public payment links or provider widgets.
+- Local checks passed for Hub unit tests, Hub Playwright, Hub build, Hub preview smoke, Hub HostGator artifact, public copy, AdSense-safe public pages, packages, typechecks, structure, secrets, deploy dry-run, ci:changes and diff check.
+
 ## Human Action Required
 
 No identity, KYC, tax, bank, PIN, legal acceptance, purchase, real AdSense, real donation, checkout, external analytics, provider import or irreversible production action was executed in this baseline. The only production mutations were reversible Hub and NetProbe HostGator releases after green gates.

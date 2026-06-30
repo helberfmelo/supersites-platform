@@ -733,6 +733,13 @@ Sprint 18.0/18.1 - Baseline e fundamentos publicos
 - Pendente para proximas sprints: crawler full sem timeout, Lighthouse/PageSpeed/GTmetrix quando disponivel, reforma page-by-page dos demais sites, QA multilíngue mais profundo, donation blocks sem link real, slots AdSense reservados por site, e arquitetura real de probes regionais antes de qualquer promessa worldwide no DNS Propagation.
 - Escopo negativo: apenas releases reversiveis Hub/NetProbe HostGator foram publicados. Nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
 
+Sprint 18.2 - Hub principal benchmark-driven
+- Simbolico: `PHASE18-HUB-DISCOVERY`.
+- Escopo entregue: home publica do Hub com faixa localizada de 11 atalhos diretos para ferramentas gratuitas populares, rodape ampliado por clusters de vertical, JSON-LD orientado a ferramentas e bloco de suporte/doacao informativo sem link real.
+- Validacao: Vitest Hub, Playwright Hub com checagem de overflow na home, build Hub, preview smoke Hub, artefato HostGator Hub, `validate:public-copy`, `validate:adsense-safe-public`, `test:packages`, `typecheck:packages`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes` e `git diff --check` passaram localmente.
+- Status: implementada localmente, aguardando commit, Quality Gate, Deploy Dry Run, deploy reversivel do Hub e smoke publico pos-deploy.
+- Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.

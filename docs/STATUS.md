@@ -1579,6 +1579,15 @@ Ainda em 2026-06-29, o `Public Watchdog` agendado run `28372846327` falhou no sm
   - Smokes publicos pos-deploy passaram: `pnpm deploy:smoke-supersite-public` validou Hub, dez apps e APIs MailHealth/SitePulse; `pnpm deploy:smoke-netprobe-public` validou NetProbe e API publica. Checagem Playwright live em `https://opentshost.com/supersites/netprobe-atlas/en/tools/what-is-my-ip` confirmou IP renderizado automaticamente, canonical correto, sem overflow mobile e sem frases bloqueadas.
   - Escopo negativo: apenas releases reversiveis Hub/NetProbe HostGator foram publicados. Nenhum root redirect, DNS/root mapping, anuncio real, `ads.txt`, checkout, billing, doacao, afiliado, analytics externo, provider externo, worker/cron, KYC, banco, imposto, aceite juridico ou acao irreversivel foi ativado.
 
+- Sprint 18.2 - Hub principal benchmark-driven:
+  - Documentos obrigatorios, runbooks, auditorias, benchmarks, docs do Hub e ADRs foram consultados antes da implementacao, mantendo o fluxo da Fase 18 pagina por pagina.
+  - Escopo tecnico: a home publica do Hub ganhou uma faixa localizada de 11 atalhos diretos para ferramentas gratuitas populares, cobrindo IP publico, DNS propagation, loan payment, JSON formatter, timezone converter, static QR, invoice builder, SPF checker, website status, image compressor e PDF merge.
+  - O rodape publico foi enriquecido por clusters de descoberta por vertical, incluindo diagnosticos, calculadoras, developer tools, tempo, QR/links, documentos, email, website, imagens e paginas legais/editoriais.
+  - O Hub recebeu bloco de suporte/doacao apenas informativo e inerte, sem link de pagamento, QR/PIX, checkout, provider SDK, webhook, cobranca, entitlement ou ativacao comercial.
+  - JSON-LD da home passou a destacar os atalhos de ferramentas populares, e os testes cobrem localizacao, URLs diretas, analytics sanitizado e ausencia de overflow horizontal na home.
+  - Validacao local pre-commit passou: Vitest Hub, Playwright Hub, build Hub, preview smoke Hub, `deploy:build-supersite-hostgator`, `validate:public-copy`, `validate:adsense-safe-public`, `test:packages`, `typecheck:packages`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes` e `git diff --check`.
+  - Escopo negativo: nenhum anuncio real, `ads.txt`, pagamento, doacao real, afiliado, checkout, billing, analytics externo, provider externo, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
+
 ## Bloqueios humanos registrados
 
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.

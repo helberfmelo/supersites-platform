@@ -93,6 +93,9 @@ try {
         'A curated operating network',
         'Free tools first',
         'Top public tools',
+        'Popular free tools',
+        'Support the free network',
+        '/supersites/netprobe-atlas/en/tools/what-is-my-ip',
         'Choose by workflow',
         'NetProbe Atlas'
     )
@@ -103,7 +106,7 @@ try {
         }
     }
 
-    $assetMatch = [regex]::Match($homeHtml, 'src="/(_nuxt/[^"]+\.js)"')
+    $assetMatch = [regex]::Match($homeHtml, 'src="/((?:supersites/)?_nuxt/[^"]+\.js)"')
     if (-not $assetMatch.Success) {
         throw 'Could not find Nuxt JavaScript asset in preview HTML.'
     }

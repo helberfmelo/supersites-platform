@@ -29,6 +29,7 @@ Data-base: 2026-06-27
 ## Opportunities
 
 - Make the public catalog read as a curated utility network.
+- Make the first public Hub scan behave more like a practical utility index: task-first, direct tools, fewer internal operating signals.
 - Add benchmark readiness and SEO/AIO/AdSense readiness in the admin.
 - Feed executive reports from local evidence without provider imports.
 
@@ -46,3 +47,10 @@ Data-base: 2026-06-27
 - The global footer now groups products by vertical and keeps legal/editorial links available across localized routes.
 - Home, site detail and legal/editorial pages now emit uniform JSON-LD while preserving canonical, hreflang and sitemap behavior.
 - Local validation passed through Hub tests/build/preview/Playwright and global structure/secrets/public-copy/dry-run gates. Production deploy `28332214304`, asset `https://opentshost.com/supersites/_nuxt/f2kVvvDG.js` and public/live smokes passed.
+
+## Phase 18 Sprint 18.2 implementation notes
+
+- The public Hub home now includes 11 localized direct links to popular free tools across the portfolio, including What is my IP, DNS Propagation, loan payment, JSON formatter, timezone converter, static QR, invoice builder, SPF checker, website status, image compressor and PDF merge.
+- Footer discovery was expanded into nine vertical clusters so users can browse by practical task area instead of only by product name.
+- The support/donation block is public but inert: no payment link, QR/PIX, checkout, provider SDK, webhook or billing activation.
+- Tests now assert the direct links, JSON-LD tool ItemList, sanitized outbound analytics and home overflow safety.

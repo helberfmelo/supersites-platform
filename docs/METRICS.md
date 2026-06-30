@@ -1290,6 +1290,16 @@ Data-base: 2026-06-29
 | NetProbe production deploy | `28401266330` passed; release `7777c6a15caf3c724d3bee668f4cfc969dbc0971-28401266330-1`; asset `BXFoZbwf.js`; API preflight passed |
 | Post-deploy public smokes | Passed: `pnpm deploy:smoke-supersite-public` and `pnpm deploy:smoke-netprobe-public` |
 | Live IP auto-run smoke | Passed on `2026-06-29`; IPv4 result rendered automatically, canonical matched, mobile overflow 0 and blocked phrase scan 0 |
+| Sprint 18.2 Hub direct popular tool links | 11 localized direct links |
+| Sprint 18.2 Hub footer vertical clusters | 9 public clusters plus legal/editorial navigation |
+| Sprint 18.2 Hub support block | 1 localized inert support/donation block; 0 payment links |
+| Sprint 18.2 Hub JSON-LD tool list | Popular free tools ItemList generated from direct tool shortcuts |
+| Sprint 18.2 Hub unit suite | Passed: 12 tests |
+| Sprint 18.2 Hub Playwright suite | Passed: 6 tests, including home horizontal overflow check |
+| Sprint 18.2 Hub HostGator artifact | Passed: 211 files, 2672149 bytes |
+| Sprint 18.2 public copy validation | Passed: 951 HTML files |
+| Sprint 18.2 AdSense-safe validation | Passed: 13 pages |
+| Sprint 18.2 package validation | Passed: 90 tests and package typechecks |
 | Real deploy/provider activation | 2 reversible HostGator deploys for Hub and NetProbe; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics

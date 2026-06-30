@@ -51,12 +51,20 @@ describe('site catalog', () => {
       const copy = getHomeCopy(locale)
 
       expect(copy.featuredTools).toHaveLength(4)
+      expect(copy.popularTools).toHaveLength(11)
       expect(copy.intentClusters).toHaveLength(4)
 
       for (const item of copy.featuredTools) {
         expect(getSiteBySlug(item.siteSlug)).not.toBeNull()
         expect(item.label.length).toBeGreaterThan(6)
         expect(item.body.length).toBeGreaterThan(24)
+      }
+
+      for (const item of copy.popularTools) {
+        expect(getSiteBySlug(item.siteSlug)).not.toBeNull()
+        expect(item.label.length).toBeGreaterThan(5)
+        expect(item.body.length).toBeGreaterThan(24)
+        expect(item.path).toMatch(/^\/(tools|calculators)\//)
       }
 
       for (const cluster of copy.intentClusters) {
@@ -127,6 +135,7 @@ describe('site catalog', () => {
     const homeSchema = createHubHomeStructuredData('en', getHomeCopy('en'))
     expect(homeSchema.map((item) => item['@type'])).toEqual(['WebSite', 'CollectionPage', 'ItemList'])
     expect(JSON.stringify(homeSchema)).toContain('NetProbe Atlas')
+    expect(JSON.stringify(homeSchema)).toContain('/netprobe-atlas/en/tools/what-is-my-ip')
 
     const site = getSiteBySlug('devutility-lab')
     expect(site).not.toBeNull()
