@@ -1527,7 +1527,14 @@ Data-base: 2026-06-29
 | Sprint 18.10 post-deploy quick crawler | `2026-06-30T11-35-54-823Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.10 live SitePulse catalog screenshots | `artifacts/sitepulse-catalog-qa/sitepulse-catalog-live-desktop.png` and `artifacts/sitepulse-catalog-qa/sitepulse-catalog-live-mobile-pt-br.png` reviewed |
 | Sprint 18.10 live SitePulse catalog smoke | Passed: desktop/mobile markers, PT-BR H1, blocked phrase scan 0, overflow 0 |
-| Real deploy/provider activation | 18 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.10 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.10 route-field correction commit | `f1cf0c8`; preserves technical route fields in `sanitizePublicCopy` while still localizing visible labels |
+| Sprint 18.10 corrective remote Quality Gate | `28442797278` passed |
+| Sprint 18.10 corrective remote Deploy Dry Run | `28442797012` passed |
+| Sprint 18.10 corrective Hub production deploy | `28443060889` passed; release `f1cf0c8797df387b24048e5575447bbd440d01b9-28443060889-1`; asset `CTfbaHbA.js`; 211 files/7970019 bytes |
+| Sprint 18.10 corrective live route check | `/supersites/pt-br/sites/timenexus` contains `world-clock/cities/sao-paulo`; 0 `são-paulo` or `s%C3%A3o-paulo` route occurrences |
+| Sprint 18.10 corrective post-deploy quick crawler | `2026-06-30T12-15-12-355Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.10 corrective Public Watchdog | `28443668162` passed after public smoke, control-plane smoke, NetProbe smoke, AdSense-safe and benchmark crawler |
+| Real deploy/provider activation | 19 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.10 corrective Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 

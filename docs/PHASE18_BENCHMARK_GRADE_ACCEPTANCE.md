@@ -62,6 +62,7 @@ Apos o deploy HostGator, a mesma rota precisa ser revalidada em producao. Screen
 - O ciclo deve ser enxuto: usar commits objetivos, evitar fragmentacao burocratica e registrar evidencia detalhada no fechamento documental depois que CI, deploy, smoke publico, crawler e visual live estiverem verdes.
 - Se a rota do Hub/catalogo divulgar links profundos para um app estatico, o app tambem deve ser validado na producao real. Se qualquer link retornar release antiga, 404 ou 500, publicar o app estatico no mesmo ciclo e repetir smoke publico agregado e crawler benchmark antes de fechar a sprint.
 - Rotas profundas adicionadas por uma sprint precisam ser checadas em producao nos idiomas principais alterados. Nao fechar a sprint enquanto houver 404/500, asset stale ou release antiga servindo conteudo incoerente com o Hub.
+- Campos tecnicos de rota e SEO nao podem ser tratados como copy visivel. `path`, `href`, `slug`, `url`, `canonical`, `hreflang`, `locale`, `timeZone` e chaves equivalentes devem permanecer estaveis, sem acentuacao ou traducao; apenas labels, titulos e descricoes devem receber localizacao natural.
 
 ## Regra especifica do Hub
 

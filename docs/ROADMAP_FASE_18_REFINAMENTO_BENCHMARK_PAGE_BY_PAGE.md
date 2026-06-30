@@ -517,7 +517,11 @@ Regra operacional:
 
 **Status:** concluída em produção em 2026-06-30. A rota de catálogo SitePulse Lab virou landing pública task-first com relatório visual de status acima da dobra, score de exemplo, sinais de disponibilidade, redirect, headers e timing, atalhos por workflow, cards para os 7 checks reais, busca/filtros, limites/privacidade abaixo do valor útil e rodapé contextual com deep links. Commit `10765e7`; Quality Gate `28440535346`; Deploy Dry Run `28440535344`; deploy reversível do Hub `28440771101`; release `/supersites/` `10765e70ece762bb0eaf84ea4e8a39a3fbe1a57f-28440771101-1`; smoke público, AdSense-safe, SitePulse static app smoke, 14 deep links EN/PT-BR, crawler quick `2026-06-30T11-35-54-823Z` e visual live desktop/mobile passaram.
 
+**Correção pós-watchdog:** concluída em 2026-06-30. O `Public Watchdog` encontrou link acentuado indevidamente para TimeNexus (`são-paulo`) gerado por sanitização linguística aplicada a campos técnicos. O commit `f1cf0c8` preserva `path`, `href`, `slug`, `url` e campos técnicos equivalentes em `sanitizePublicCopy`; Quality Gate `28442797278`, Deploy Dry Run `28442797012`, deploy Hub `28443060889`, crawler quick `2026-06-30T12-15-12-355Z` e `Public Watchdog` `28443668162` passaram. A release ativa passou a ser `f1cf0c8797df387b24048e5575447bbd440d01b9-28443060889-1`.
+
 **Regra aprendida reforçada:** para as próximas etapas, o fechamento da sprint só ocorre depois de implementar a página inteira, validar localmente, commit/push objetivo, monitorar CI/deploy HostGator, rodar smoke público, validar deep links reais e revisar visual live desktop/mobile. O detalhe técnico deve ficar no fechamento documental; não fragmentar uma mesma sprint em handoffs ou commits parciais quando não houver falha concreta.
+
+**Regra técnica aprendida:** copy visível pode ser localizada e acentuada; campos técnicos de navegação, canonical, href, path, slug, url, locale e time zone não podem ser reescritos por saneamento linguístico. Sempre que i18n tocar rotas, validar o HTML publicado e o crawler com links internos antes da próxima sprint.
 
 ---
 

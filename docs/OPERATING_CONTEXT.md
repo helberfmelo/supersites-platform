@@ -39,6 +39,7 @@ Padroes aproveitados:
 - O ritmo operacional esperado e direto: implementar a sprint completa, validar, fazer commit/push, monitorar CI/deploy, validar producao e entao seguir para a proxima sprint. Detalhamento longo deve ir para docs de fechamento, nao para ciclos intermediarios desnecessarios.
 - Diretriz reforcada em 2026-06-30: apos leitura obrigatoria e escopo aprovado, nao interromper a sprint para handoffs parciais de plano, validacao visual especulativa ou commits picados. Implementar a etapa completa, validar, publicar, monitorar e documentar o fechamento antes da proxima sprint.
 - Entregas benchmark-grade so fecham depois de validacao visual live desktop/mobile e checagem das rotas profundas reais. Se o Hub apontar para app estatico com release antiga, 404 ou 500, publicar o app no mesmo ciclo antes da proxima sprint.
+- Campos tecnicos de rota e SEO (`path`, `href`, `slug`, `url`, `canonical`, `locale`, `timeZone` e equivalentes) nao devem ser alterados por sanitizacao linguistica ou acentuacao. Labels visiveis podem ser localizadas; rotas devem permanecer estaveis e validadas no HTML publicado/crawler antes de seguir.
 - Obstaculos tecnicos reversiveis devem ser contornados com dry-run, fallback, validacao ou modo degradado e a sprint deve continuar.
 - Obstaculos humanos, juridicos, fiscais, bancarios, compra, KYC, PIN ou acoes irreversiveis devem ser registrados em `HUMAN_ACTION_REQUIRED` e o restante deve continuar.
 
