@@ -6,6 +6,7 @@ import {
   getDetailCopy,
   getDevUtilityCatalogCopy,
   getInvoiceCraftCatalogCopy,
+  getMailHealthCatalogCopy,
   getNetProbeCatalogCopy,
   getQrRouteCatalogCopy,
   getTimeNexusCatalogCopy,
@@ -14,6 +15,8 @@ import {
   type DevUtilityCatalogToolLink,
   type InvoiceCraftCatalogCategoryKey,
   type InvoiceCraftCatalogToolLink,
+  type MailHealthCatalogCategoryKey,
+  type MailHealthCatalogToolLink,
   type QrRouteCatalogCategoryKey,
   type QrRouteCatalogToolLink,
   type TimeNexusCatalogCategoryKey,
@@ -43,6 +46,7 @@ const devUtilityCopy = getDevUtilityCatalogCopy(locale)
 const timeNexusCopy = getTimeNexusCatalogCopy(locale)
 const qrRouteCopy = getQrRouteCatalogCopy(locale)
 const invoiceCraftCopy = getInvoiceCraftCatalogCopy(locale)
+const mailHealthCopy = getMailHealthCatalogCopy(locale)
 const siteText = site.localized[locale]
 const seoDescription = limitSeoText(siteText.summary, SEO_DESCRIPTION_MAX_LENGTH)
 const canonicalPath = localizedSitePath(locale, site.slug)
@@ -53,6 +57,7 @@ const isDevUtilityCatalog = site.slug === 'devutility-lab'
 const isTimeNexusCatalog = site.slug === 'timenexus'
 const isQrRouteCatalog = site.slug === 'qrroute'
 const isInvoiceCraftCatalog = site.slug === 'invoicecraft'
+const isMailHealthCatalog = site.slug === 'mailhealth'
 const primaryNetProbePath = netProbeCopy.toolLinks[0]?.path ?? '/tools/what-is-my-ip'
 const secondaryNetProbePath = netProbeCopy.toolLinks[1]?.path ?? '/tools/dns-propagation'
 const primaryCalcHarborPath = calcHarborCopy.calculators.find((tool) => tool.path === '/calculators/loan-payment')?.path ?? '/calculators/loan-payment'
@@ -157,6 +162,28 @@ const invoiceCraftShortcutGroups = computed(() => (
     tools: group.paths
       .map((path) => invoiceCraftCopy.tools.find((tool) => tool.path === path))
       .filter((tool): tool is InvoiceCraftCatalogToolLink => Boolean(tool)),
+  }))
+))
+const primaryMailHealthPath = mailHealthCopy.tools.find((tool) => tool.path === '/tools/spf-checker')?.path ?? '/tools/spf-checker'
+const mailHealthFeaturedTools = mailHealthCopy.tools.filter((tool) => tool.featured)
+const mailHealthSearchQuery = ref('')
+const mailHealthSelectedCategory = ref<MailHealthCatalogCategoryKey | 'all'>('all')
+const filteredMailHealthTools = computed(() => {
+  const query = mailHealthSearchQuery.value.trim().toLowerCase()
+
+  return mailHealthCopy.tools.filter((tool) => {
+    const matchesCategory = mailHealthSelectedCategory.value === 'all' || tool.category === mailHealthSelectedCategory.value
+    const searchable = [tool.label, tool.body, tool.path, tool.glyph].join(' ').toLowerCase()
+
+    return matchesCategory && (!query || searchable.includes(query))
+  })
+})
+const mailHealthShortcutGroups = computed(() => (
+  mailHealthCopy.shortcutGroups.map((group) => ({
+    ...group,
+    tools: group.paths
+      .map((path) => mailHealthCopy.tools.find((tool) => tool.path === path))
+      .filter((tool): tool is MailHealthCatalogToolLink => Boolean(tool)),
   }))
 ))
 const isLocalBrowser = ref(false)
@@ -310,6 +337,24 @@ function trackInvoiceCraftToolClick(path: string): void {
   trackOutboundSiteClick({
     siteSlug: site.slug,
     targetUrl: getInvoiceCraftToolUrl(path),
+    locale,
+    routePath: canonicalPath,
+    surface: 'site_detail',
+  })
+}
+
+function getMailHealthToolUrl(path: string): string {
+  return `${site.temporaryUrl}${locale}${path}`
+}
+
+function getMailHealthCategoryLabel(key: MailHealthCatalogCategoryKey): string {
+  return mailHealthCopy.categories.find((category) => category.key === key)?.label ?? key
+}
+
+function trackMailHealthToolClick(path: string): void {
+  trackOutboundSiteClick({
+    siteSlug: site.slug,
+    targetUrl: getMailHealthToolUrl(path),
     locale,
     routePath: canonicalPath,
     surface: 'site_detail',
@@ -1280,6 +1325,189 @@ useHead({
                 <a
                   :href="getInvoiceCraftToolUrl(link.path)"
                   @click="trackInvoiceCraftToolClick(link.path)"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
+    </template>
+
+    <template v-else-if="isMailHealthCatalog">
+      <section class="mailhealth-hero" :aria-labelledby="`${site.slug}-title`">
+        <div class="mailhealth-hero__copy">
+          <p class="eyebrow">{{ mailHealthCopy.eyebrow }}</p>
+          <h1 :id="`${site.slug}-title`">{{ mailHealthCopy.title }}</h1>
+          <p class="lead">{{ mailHealthCopy.lead }}</p>
+          <div class="mailhealth-hero__actions">
+            <a
+              class="button-link"
+              :href="getMailHealthToolUrl(primaryMailHealthPath)"
+              @click="trackMailHealthToolClick(primaryMailHealthPath)"
+            >
+              {{ mailHealthCopy.primaryCta }}
+            </a>
+            <a class="button-link button-link--secondary" :href="`#${site.slug}-all`">
+              {{ mailHealthCopy.secondaryCta }}
+            </a>
+          </div>
+        </div>
+
+        <aside class="mailhealth-report-panel" :aria-labelledby="`${site.slug}-report`">
+          <div class="mailhealth-report-panel__header">
+            <h2 :id="`${site.slug}-report`">{{ mailHealthCopy.reportTitle }}</h2>
+            <span>{{ mailHealthCopy.reportGrade }}</span>
+          </div>
+          <div class="mailhealth-report-score">
+            <div>
+              <span>{{ mailHealthCopy.reportScoreLabel }}</span>
+              <strong>{{ mailHealthCopy.reportScoreValue }}</strong>
+            </div>
+            <dl>
+              <div>
+                <dt>{{ mailHealthCopy.reportDomainLabel }}</dt>
+                <dd>{{ mailHealthCopy.reportDomainValue }}</dd>
+              </div>
+            </dl>
+          </div>
+          <p>{{ mailHealthCopy.reportBody }}</p>
+          <div class="mailhealth-signal-list">
+            <article v-for="signal in mailHealthCopy.reportSignals" :key="signal.label">
+              <span>{{ signal.label }}</span>
+              <strong>{{ signal.status }}</strong>
+              <p>{{ signal.detail }}</p>
+            </article>
+          </div>
+        </aside>
+      </section>
+
+      <section class="mailhealth-section" :aria-labelledby="`${site.slug}-browse`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-browse`">{{ mailHealthCopy.browseTitle }}</h2>
+          <p>{{ mailHealthCopy.browseBody }}</p>
+        </div>
+        <div class="mailhealth-shortcut-grid">
+          <article v-for="group in mailHealthShortcutGroups" :key="group.title">
+            <h3>{{ group.title }}</h3>
+            <p>{{ group.body }}</p>
+            <div class="mailhealth-shortcut-list">
+              <a
+                v-for="tool in group.tools"
+                :key="`${group.title}-${tool.path}`"
+                :href="getMailHealthToolUrl(tool.path)"
+                @click="trackMailHealthToolClick(tool.path)"
+              >
+                <span aria-hidden="true">{{ tool.glyph }}</span>
+                <strong>{{ tool.label }}</strong>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="mailhealth-section" :aria-labelledby="`${site.slug}-featured`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-featured`">{{ mailHealthCopy.featuredTitle }}</h2>
+          <p>{{ mailHealthCopy.featuredBody }}</p>
+        </div>
+        <div class="mailhealth-featured-grid">
+          <a
+            v-for="tool in mailHealthFeaturedTools"
+            :key="`featured-${tool.path}`"
+            class="mailhealth-tool-card mailhealth-tool-card--featured"
+            :href="getMailHealthToolUrl(tool.path)"
+            @click="trackMailHealthToolClick(tool.path)"
+          >
+            <span class="mailhealth-tool-card__glyph" aria-hidden="true">{{ tool.glyph }}</span>
+            <span class="mailhealth-tool-card__body">
+              <span>{{ getMailHealthCategoryLabel(tool.category) }}</span>
+              <strong>{{ tool.label }}</strong>
+              <em>{{ tool.body }}</em>
+            </span>
+            <b>{{ mailHealthCopy.toolCta }}</b>
+          </a>
+        </div>
+      </section>
+
+      <section class="mailhealth-limit-note" :aria-labelledby="`${site.slug}-limits`">
+        <div>
+          <h2 :id="`${site.slug}-limits`">{{ mailHealthCopy.limitsTitle }}</h2>
+          <p>{{ mailHealthCopy.limitsBody }}</p>
+        </div>
+        <div>
+          <h3>{{ mailHealthCopy.privacyTitle }}</h3>
+          <p>{{ mailHealthCopy.privacyBody }}</p>
+        </div>
+      </section>
+
+      <section :id="`${site.slug}-all`" class="mailhealth-section" :aria-labelledby="`${site.slug}-all-title`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-all-title`">{{ mailHealthCopy.allTitle }}</h2>
+          <p>{{ mailHealthCopy.allBody }}</p>
+        </div>
+        <div class="mailhealth-finder" role="search" :aria-label="mailHealthCopy.searchLabel">
+          <div class="field">
+            <label for="mailhealth-search">{{ mailHealthCopy.searchLabel }}</label>
+            <input
+              id="mailhealth-search"
+              v-model="mailHealthSearchQuery"
+              type="search"
+              :placeholder="mailHealthCopy.searchPlaceholder"
+            >
+          </div>
+          <div class="mailhealth-category-tabs" :aria-label="mailHealthCopy.searchLabel">
+            <button
+              type="button"
+              :aria-pressed="mailHealthSelectedCategory === 'all'"
+              @click="mailHealthSelectedCategory = 'all'"
+            >
+              {{ mailHealthCopy.allCategories }}
+            </button>
+            <button
+              v-for="category in mailHealthCopy.categories"
+              :key="category.key"
+              type="button"
+              :aria-pressed="mailHealthSelectedCategory === category.key"
+              @click="mailHealthSelectedCategory = category.key"
+            >
+              {{ category.label }}
+            </button>
+          </div>
+        </div>
+        <div v-if="filteredMailHealthTools.length > 0" class="mailhealth-tool-grid">
+          <a
+            v-for="tool in filteredMailHealthTools"
+            :key="tool.path"
+            class="mailhealth-tool-card"
+            :href="getMailHealthToolUrl(tool.path)"
+            @click="trackMailHealthToolClick(tool.path)"
+          >
+            <span class="mailhealth-tool-card__glyph" aria-hidden="true">{{ tool.glyph }}</span>
+            <span class="mailhealth-tool-card__body">
+              <span>{{ getMailHealthCategoryLabel(tool.category) }}</span>
+              <strong>{{ tool.label }}</strong>
+              <em>{{ tool.body }}</em>
+            </span>
+            <b>{{ mailHealthCopy.toolCta }}</b>
+          </a>
+        </div>
+        <div v-else class="mailhealth-empty" aria-live="polite">
+          <h3>{{ mailHealthCopy.noResultsTitle }}</h3>
+          <p>{{ mailHealthCopy.noResultsBody }}</p>
+        </div>
+      </section>
+
+      <section class="mailhealth-footer-cluster" :aria-labelledby="`${site.slug}-deep-links`">
+        <div class="mailhealth-footer-grid">
+          <section v-for="group in mailHealthCopy.footerGroups" :key="group.title">
+            <h2>{{ group.title }}</h2>
+            <ul>
+              <li v-for="link in group.links" :key="`${group.title}-${link.label}`">
+                <a
+                  :href="getMailHealthToolUrl(link.path)"
+                  @click="trackMailHealthToolClick(link.path)"
                 >
                   {{ link.label }}
                 </a>

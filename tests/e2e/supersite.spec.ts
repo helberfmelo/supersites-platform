@@ -721,4 +721,90 @@ test.describe('SuperSites public hub', () => {
 
     expect(errors).toEqual([])
   })
+
+  test('renders the MailHealth catalog page as a benchmark-grade email diagnostic landing', async ({
+    page,
+  }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.goto('/en/sites/mailhealth')
+    await dismissConsentBanner(page)
+
+    await expect(page.getByRole('heading', { name: "Check a domain's email health before changing DNS." })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Domain health report' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Choose an email diagnostic' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Start with the checks senders expect' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Point-in-time checks' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'All published MailHealth checks' })).toBeVisible()
+    await expect(page.getByRole('searchbox', { name: 'Search MailHealth checks' })).toBeVisible()
+    await expect(page.locator('.mailhealth-report-panel')).toBeVisible()
+
+    for (const path of [
+      'spf-checker',
+      'dkim-checker',
+      'dmarc-checker',
+      'mx-checker',
+      'blacklist-check',
+      'smtp-check',
+      'header-analyzer',
+    ]) {
+      await expect(
+        page.locator(`.mailhealth-tool-grid a[href="https://opentshost.com/supersites/mailhealth/en/tools/${path}"]`),
+      ).toBeVisible()
+    }
+
+    await page.getByRole('searchbox', { name: 'Search MailHealth checks' }).fill('smtp')
+    await expect(page.locator('#mailhealth-all .mailhealth-tool-card').filter({ hasText: 'SMTP Check' })).toBeVisible()
+    await expect(page.locator('#mailhealth-all .mailhealth-tool-card').filter({ hasText: 'SPF Check' })).toHaveCount(0)
+
+    await expect(page.locator('main')).not.toContainText('Email authentication and deliverability checks for safer domains.')
+    await expect(page.locator('main')).not.toContainText('Monitoring gated')
+    await expect(page.locator('main')).not.toContainText('monitoring planned')
+    await expect(page.locator('main')).not.toContainText('worker')
+    await expect(page.locator('main')).not.toContainText('billing')
+    await expect(page.locator('main')).not.toContainText('Temporary public URL')
+    await expect(page.locator('main')).not.toContainText('Launch order')
+    await expect(page.locator('main')).not.toContainText('roadmap')
+    await expect(page.locator('main')).not.toContainText('MVP')
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(2)
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('mailhealth-catalog-desktop', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('renders the localized MailHealth catalog page on mobile', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/pt-br/sites/mailhealth')
+    await dismissConsentBanner(page)
+
+    await expect(page.getByRole('heading', { name: 'Verifique a saude de email antes de alterar DNS.' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Relatorio de saude do domínio' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Escolha um diagnostico de email' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Todos os checks MailHealth publicados' })).toBeVisible()
+    await expect(page.getByRole('searchbox', { name: 'Buscar checks MailHealth' })).toBeVisible()
+    await expect(
+      page.locator('.mailhealth-tool-grid a[href="https://opentshost.com/supersites/mailhealth/pt-br/tools/spf-checker"]'),
+    ).toBeVisible()
+    await expect(
+      page.locator('.mailhealth-tool-grid a[href="https://opentshost.com/supersites/mailhealth/pt-br/tools/header-analyzer"]'),
+    ).toBeVisible()
+    await expect(page.locator('main')).not.toContainText("Check a domain's email health before changing DNS.")
+    await expect(page.locator('main')).not.toContainText('Monitoring gated')
+    await expect(page.locator('main')).not.toContainText('worker')
+    await expect(page.locator('main')).not.toContainText('billing')
+    await expect(page.locator('main')).not.toContainText('Temporary public URL')
+    await expect(page.locator('main')).not.toContainText('Launch order')
+    await expect(page.locator('main')).not.toContainText('roadmap')
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('mailhealth-catalog-pt-mobile', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
 })

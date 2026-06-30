@@ -5,6 +5,7 @@ import {
   getFooterCopy,
   getHomeCopy,
   getInvoiceCraftCatalogCopy,
+  getMailHealthCatalogCopy,
   getNetProbeCatalogCopy,
   getQrRouteCatalogCopy,
   getTimeNexusCatalogCopy,
@@ -312,6 +313,39 @@ describe('site catalog', () => {
       expect(copy.footerGroups.map((group) => group.title)).toHaveLength(4)
       expect(copy.footerGroups.flatMap((group) => group.links)).toHaveLength(8)
       expect(copy.reviewTitle).not.toMatch(/tax\/legal review/i)
+      expect(JSON.stringify(copy)).not.toMatch(forbiddenPublicTerms)
+    }
+  })
+
+  it('keeps the MailHealth catalog page benchmark-grade and linked to real email checks', () => {
+    const expectedToolPaths = [
+      '/tools/spf-checker',
+      '/tools/dkim-checker',
+      '/tools/dmarc-checker',
+      '/tools/mx-checker',
+      '/tools/blacklist-check',
+      '/tools/smtp-check',
+      '/tools/header-analyzer',
+    ]
+    const forbiddenPublicTerms =
+      /temporary public url|launch order|quality check|review notes|public api live|ads planned|billing disabled|external analytics inactive|release checks|rollback|human_action_required|worker planned|deploy smoke|production checks|workflow checks ready|checkout inactive|commercial redirects planned|roadmap|mvp|monitoring gated|monitoring planned|billing|worker/i
+
+    for (const locale of localeCodes) {
+      const copy = getMailHealthCatalogCopy(locale)
+
+      expect(copy.tools.map((tool) => tool.path)).toEqual(expectedToolPaths)
+      expect(copy.tools.filter((tool) => tool.featured).map((tool) => tool.path)).toEqual(expectedToolPaths)
+      expect(copy.categories.map((category) => category.key)).toEqual([
+        'authentication',
+        'dns',
+        'reputation',
+        'transport',
+        'headers',
+      ])
+      expect(copy.reportSignals).toHaveLength(4)
+      expect(copy.shortcutGroups).toHaveLength(3)
+      expect(copy.footerGroups.map((group) => group.title)).toHaveLength(5)
+      expect(copy.footerGroups.flatMap((group) => group.links).length).toBeGreaterThanOrEqual(12)
       expect(JSON.stringify(copy)).not.toMatch(forbiddenPublicTerms)
     }
   })

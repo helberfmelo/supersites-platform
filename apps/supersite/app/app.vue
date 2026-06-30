@@ -2386,6 +2386,443 @@ h3 {
   transform: translateX(2px) scale(1.025);
 }
 
+.mailhealth-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 500px);
+  gap: 30px;
+  align-items: stretch;
+  padding: 36px 0 32px;
+  border-bottom: 1px solid #d8ded8;
+}
+
+.mailhealth-hero > *,
+.mailhealth-section > *,
+.mailhealth-limit-note > *,
+.mailhealth-footer-cluster > * {
+  min-width: 0;
+}
+
+.mailhealth-hero__copy {
+  display: grid;
+  align-content: center;
+  gap: 16px;
+}
+
+.mailhealth-hero__copy h1,
+.mailhealth-hero__copy p {
+  margin-bottom: 0;
+}
+
+.mailhealth-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.mailhealth-report-panel {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid #cfdbd7;
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgb(31 122 140 / 10%), transparent 46%),
+    #ffffff;
+  box-shadow: 0 18px 42px rgb(23 35 30 / 7%);
+}
+
+.mailhealth-report-panel__header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mailhealth-report-panel__header h2 {
+  margin-bottom: 0;
+  font-size: 1.15rem;
+}
+
+.mailhealth-report-panel__header span {
+  flex: 0 0 auto;
+  padding: 5px 8px;
+  border: 1px solid #d8d0bc;
+  border-radius: 999px;
+  color: #6a3c12;
+  background: #fff7e8;
+  font-size: 0.72rem;
+  font-weight: 780;
+  text-transform: uppercase;
+}
+
+.mailhealth-report-score {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.mailhealth-report-score > div,
+.mailhealth-report-score dl {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #d9e0dc;
+  border-radius: 8px;
+  background: #f8fbf9;
+}
+
+.mailhealth-report-score span,
+.mailhealth-report-score dt {
+  display: block;
+  color: #607069;
+  font-size: 0.72rem;
+  font-weight: 760;
+  text-transform: uppercase;
+}
+
+.mailhealth-report-score strong {
+  display: block;
+  margin-top: 4px;
+  color: #1f7a8c;
+  font-size: 2.6rem;
+  font-weight: 860;
+  letter-spacing: 0;
+  line-height: 0.95;
+}
+
+.mailhealth-report-score dl {
+  display: grid;
+  align-content: center;
+  margin: 0;
+}
+
+.mailhealth-report-score dd {
+  margin: 4px 0 0;
+  color: #17231e;
+  font-size: 1.02rem;
+  font-weight: 760;
+}
+
+.mailhealth-report-panel p {
+  margin: 0;
+  color: #3f5048;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.mailhealth-signal-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.mailhealth-signal-list article {
+  min-width: 0;
+  padding: 11px;
+  border: 1px solid #d9e0dc;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.mailhealth-signal-list span {
+  color: #607069;
+  font-size: 0.72rem;
+  font-weight: 820;
+  text-transform: uppercase;
+}
+
+.mailhealth-signal-list strong {
+  display: block;
+  margin: 4px 0;
+  color: #17231e;
+  font-size: 0.92rem;
+}
+
+.mailhealth-section,
+.mailhealth-footer-cluster {
+  padding: 26px 0;
+  border-bottom: 1px solid #d8ded8;
+}
+
+.mailhealth-shortcut-grid,
+.mailhealth-featured-grid,
+.mailhealth-tool-grid,
+.mailhealth-footer-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.mailhealth-shortcut-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mailhealth-shortcut-grid article {
+  min-width: 0;
+  padding-top: 15px;
+  border-top: 3px solid #1f7a8c;
+}
+
+.mailhealth-shortcut-grid article:nth-child(2) {
+  border-color: #254c6a;
+}
+
+.mailhealth-shortcut-grid article:nth-child(3) {
+  border-color: #bd7424;
+}
+
+.mailhealth-shortcut-grid h3 {
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
+.mailhealth-shortcut-grid p {
+  margin-bottom: 12px;
+  color: #3f5048;
+  font-size: 0.9rem;
+}
+
+.mailhealth-shortcut-list {
+  display: grid;
+  gap: 8px;
+}
+
+.mailhealth-shortcut-list a {
+  display: grid;
+  min-width: 0;
+  min-height: 58px;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 9px;
+  align-items: center;
+  padding: 9px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  color: #17231e;
+  background: #ffffff;
+  text-decoration: none;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.mailhealth-shortcut-list a:hover,
+.mailhealth-shortcut-list a:focus-visible {
+  transform: translateY(-1px);
+  border-color: #1f7a8c;
+  background: #f8fbf9;
+}
+
+.mailhealth-shortcut-list span,
+.mailhealth-tool-card__glyph {
+  display: grid;
+  width: 42px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid #c8d7d8;
+  border-radius: 8px;
+  color: #1f6f7a;
+  background: #edf7f7;
+  font-size: 0.66rem;
+  font-weight: 900;
+}
+
+.mailhealth-shortcut-list strong {
+  min-width: 0;
+  color: #17231e;
+  font-size: 0.86rem;
+  line-height: 1.22;
+}
+
+.mailhealth-featured-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.mailhealth-tool-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.mailhealth-tool-card {
+  display: grid;
+  min-width: 0;
+  min-height: 178px;
+  grid-template-rows: auto 1fr auto;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  color: #17231e;
+  background: #ffffff;
+  text-decoration: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.mailhealth-tool-card--featured {
+  min-height: 198px;
+  border-top: 3px solid #1f7a8c;
+}
+
+.mailhealth-tool-card:hover,
+.mailhealth-tool-card:focus-visible {
+  transform: translateY(-1px);
+  border-color: #1f7a8c;
+  box-shadow: 0 10px 28px rgb(31 122 140 / 10%);
+}
+
+.mailhealth-tool-card__body {
+  display: grid;
+  gap: 7px;
+  align-content: start;
+}
+
+.mailhealth-tool-card__body span {
+  color: #65746c;
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.mailhealth-tool-card__body strong {
+  color: #17231e;
+  font-size: 1.02rem;
+  line-height: 1.25;
+}
+
+.mailhealth-tool-card__body em {
+  color: #3f5048;
+  font-size: 0.88rem;
+  font-style: normal;
+  line-height: 1.42;
+}
+
+.mailhealth-tool-card b {
+  color: #1f6f7a;
+  font-size: 0.84rem;
+  font-weight: 850;
+}
+
+.mailhealth-limit-note {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+  gap: 18px;
+  padding: 22px 0;
+  border-bottom: 1px solid #d8ded8;
+}
+
+.mailhealth-limit-note > div {
+  min-width: 0;
+  padding-top: 14px;
+  border-top: 3px solid #254c6a;
+}
+
+.mailhealth-limit-note > div:last-child {
+  border-color: #2e8a57;
+}
+
+.mailhealth-limit-note h2,
+.mailhealth-limit-note h3 {
+  margin-bottom: 7px;
+  color: #17231e;
+  font-size: 1rem;
+}
+
+.mailhealth-limit-note p {
+  margin: 0;
+  color: #3f5048;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.mailhealth-finder {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr);
+  gap: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 10px 28px rgb(23 35 30 / 5%);
+}
+
+.mailhealth-category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mailhealth-category-tabs button {
+  padding: 9px 11px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  color: #31453b;
+  background: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 760;
+  cursor: pointer;
+}
+
+.mailhealth-category-tabs button[aria-pressed="true"] {
+  color: #ffffff;
+  border-color: #1f7a8c;
+  background: #1f6f7a;
+}
+
+.mailhealth-empty {
+  padding: 16px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.mailhealth-empty h3 {
+  margin-bottom: 6px;
+  font-size: 1.05rem;
+}
+
+.mailhealth-empty p {
+  margin-bottom: 0;
+  color: #3f5048;
+}
+
+.mailhealth-footer-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.mailhealth-footer-grid h2 {
+  margin-bottom: 8px;
+  color: #17231e;
+  font-size: 0.76rem;
+  font-weight: 760;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.mailhealth-footer-grid ul {
+  display: grid;
+  gap: 6px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.mailhealth-footer-grid a {
+  display: inline-block;
+  color: #3f4f47;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.35;
+  text-decoration: none;
+  transform-origin: left center;
+  transition: color 160ms ease, transform 160ms ease, font-weight 160ms ease;
+}
+
+.mailhealth-footer-grid a:hover,
+.mailhealth-footer-grid a:focus-visible {
+  color: #1f6f7a;
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateX(2px) scale(1.025);
+}
+
 .signal {
   width: 12px;
   height: 12px;
@@ -3244,6 +3681,9 @@ h3 {
   .invoicecraft-featured-grid,
   .invoicecraft-tool-grid,
   .invoicecraft-footer-grid,
+  .mailhealth-featured-grid,
+  .mailhealth-tool-grid,
+  .mailhealth-footer-grid,
   .devutility-tool-grid,
   .devutility-footer-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3267,6 +3707,8 @@ h3 {
   .qrroute-static-note,
   .invoicecraft-hero,
   .invoicecraft-review-note,
+  .mailhealth-hero,
+  .mailhealth-limit-note,
   .tool-finder,
   .trust-row,
   .controls,
@@ -3330,6 +3772,10 @@ h3 {
   .invoicecraft-featured-grid,
   .invoicecraft-tool-grid,
   .invoicecraft-footer-grid,
+  .mailhealth-shortcut-grid,
+  .mailhealth-featured-grid,
+  .mailhealth-tool-grid,
+  .mailhealth-footer-grid,
   .support-block,
   .footer-verticals,
   .evidence-strip {
@@ -3344,7 +3790,10 @@ h3 {
   .qrroute-preview-panel__body,
   .qrroute-preview-meta,
   .invoicecraft-shortcut-list,
-  .invoicecraft-document-preview__top {
+  .invoicecraft-document-preview__top,
+  .mailhealth-shortcut-list,
+  .mailhealth-report-score,
+  .mailhealth-signal-list {
     grid-template-columns: 1fr;
   }
 

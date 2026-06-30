@@ -167,6 +167,11 @@ try {
         throw 'InvoiceCraft detail page smoke failed.'
     }
 
+    $mailHealthDetail = Invoke-PreviewRequest -Uri "$baseUrl/en/sites/mailhealth" -RequiredContent 'Domain health report'
+    if ($mailHealthDetail.StatusCode -ne 200 -or $mailHealthDetail.Content -notmatch 'Domain health report') {
+        throw 'MailHealth detail page smoke failed.'
+    }
+
     $legal = Invoke-PreviewRequest -Uri "$baseUrl/en/privacy" -RequiredContent 'Data minimization'
     if ($legal.StatusCode -ne 200 -or $legal.Content -notmatch 'Privacy Policy') {
         throw 'Privacy page smoke failed.'

@@ -350,6 +350,70 @@ export interface InvoiceCraftCatalogCopy {
   footerGroups: InvoiceCraftCatalogFooterGroup[]
 }
 
+export type MailHealthCatalogCategoryKey = 'authentication' | 'dns' | 'reputation' | 'transport' | 'headers'
+
+export interface MailHealthCatalogToolLink {
+  label: string
+  body: string
+  path: string
+  glyph: string
+  category: MailHealthCatalogCategoryKey
+  featured: boolean
+}
+
+export interface MailHealthCatalogShortcutGroup {
+  title: string
+  body: string
+  paths: string[]
+}
+
+export interface MailHealthCatalogFooterGroup {
+  title: string
+  links: Array<{ label: string; path: string }>
+}
+
+export interface MailHealthCatalogSignal {
+  label: string
+  status: string
+  detail: string
+}
+
+export interface MailHealthCatalogCopy {
+  eyebrow: string
+  title: string
+  lead: string
+  primaryCta: string
+  secondaryCta: string
+  reportTitle: string
+  reportDomainLabel: string
+  reportDomainValue: string
+  reportScoreLabel: string
+  reportScoreValue: string
+  reportGrade: string
+  reportBody: string
+  reportSignals: MailHealthCatalogSignal[]
+  browseTitle: string
+  browseBody: string
+  featuredTitle: string
+  featuredBody: string
+  limitsTitle: string
+  limitsBody: string
+  privacyTitle: string
+  privacyBody: string
+  searchLabel: string
+  searchPlaceholder: string
+  allCategories: string
+  noResultsTitle: string
+  noResultsBody: string
+  allTitle: string
+  allBody: string
+  toolCta: string
+  categories: Array<{ key: MailHealthCatalogCategoryKey; label: string }>
+  tools: MailHealthCatalogToolLink[]
+  shortcutGroups: MailHealthCatalogShortcutGroup[]
+  footerGroups: MailHealthCatalogFooterGroup[]
+}
+
 export interface FooterCopy {
   brandBody: string
   productNavLabel: string
@@ -2784,6 +2848,329 @@ export const invoiceCraftCatalogCopy: Record<LocaleCode, InvoiceCraftCatalogCopy
   },
 }
 
+export const mailHealthCatalogCopy: Record<LocaleCode, MailHealthCatalogCopy> = {
+  en: {
+    eyebrow: 'Email authentication and domain health',
+    title: "Check a domain's email health before changing DNS.",
+    lead: 'Start with SPF, DKIM, DMARC, MX, blacklist, SMTP and header checks from one public page. The free flow gives a point-in-time answer before any account path.',
+    primaryCta: 'Run SPF check',
+    secondaryCta: 'Browse email checks',
+    reportTitle: 'Domain health report',
+    reportDomainLabel: 'Domain',
+    reportDomainValue: 'example.com',
+    reportScoreLabel: 'Sample score',
+    reportScoreValue: '82',
+    reportGrade: 'Review',
+    reportBody: 'A useful report starts with authentication, receiving path, sender reputation and message evidence. Open each check for a real result on your own domain.',
+    reportSignals: [
+      { label: 'SPF', status: 'Pass', detail: 'One TXT policy with strict all handling.' },
+      { label: 'DKIM', status: 'Review', detail: 'Selector evidence depends on the sending provider.' },
+      { label: 'DMARC', status: 'Improve', detail: 'Policy can move toward enforcement after alignment is healthy.' },
+      { label: 'MX', status: 'Pass', detail: 'Public exchanger records and host resolution are visible.' },
+    ],
+    browseTitle: 'Choose an email diagnostic',
+    browseBody: 'MailHealth follows the common toolbox model: enter a domain, choose the exact check, read the signal and fix the responsible DNS or mail setting.',
+    featuredTitle: 'Start with the checks senders expect',
+    featuredBody: 'Open SPF, DKIM, DMARC, MX, blacklist, SMTP or header analysis directly. Each page keeps the free answer first and the limits below it.',
+    limitsTitle: 'Point-in-time checks',
+    limitsBody: 'Public tools inspect current records, selected public hosts or pasted headers. Recurring alerts, history, report ingestion, exports and team workflows are separate account features.',
+    privacyTitle: 'Targets stay out of analytics',
+    privacyBody: 'Domains, selectors, mail hosts, headers and results are not sent to product analytics events. Header analysis runs in the browser.',
+    searchLabel: 'Search MailHealth checks',
+    searchPlaceholder: 'Try SPF, DMARC, SMTP, blacklist...',
+    allCategories: 'All email checks',
+    noResultsTitle: 'No matching email check',
+    noResultsBody: 'Try another keyword or category. Only public MailHealth pages that already exist are linked here.',
+    allTitle: 'All published MailHealth checks',
+    allBody: 'Move between authentication, DNS routing, reputation, SMTP reachability and message header analysis.',
+    toolCta: 'Open check',
+    categories: [
+      { key: 'authentication', label: 'Authentication' },
+      { key: 'dns', label: 'DNS and MX' },
+      { key: 'reputation', label: 'Reputation' },
+      { key: 'transport', label: 'SMTP' },
+      { key: 'headers', label: 'Headers' },
+    ],
+    tools: [
+      { label: 'SPF Check', body: 'Inspect the SPF TXT record and flag duplicate, permissive or lookup-heavy policies.', path: '/tools/spf-checker', glyph: 'SPF', category: 'authentication', featured: true },
+      { label: 'DKIM Check', body: 'Check a selector._domainkey record and confirm that a public key is visible.', path: '/tools/dkim-checker', glyph: 'DKIM', category: 'authentication', featured: true },
+      { label: 'DMARC Check', body: 'Read policy, alignment and reporting tags from the _dmarc TXT record.', path: '/tools/dmarc-checker', glyph: 'DM', category: 'authentication', featured: true },
+      { label: 'MX Check', body: 'Review mail exchanger priority and public host resolution before delivery debugging.', path: '/tools/mx-checker', glyph: 'MX', category: 'dns', featured: true },
+      { label: 'Blacklist Check', body: 'Run a bounded DNSBL sample for public mail-related addresses.', path: '/tools/blacklist-check', glyph: 'BL', category: 'reputation', featured: true },
+      { label: 'SMTP Check', body: 'Test bounded TCP reachability to a selected domain mail exchanger.', path: '/tools/smtp-check', glyph: 'SMTP', category: 'transport', featured: true },
+      { label: 'Header Analysis', body: 'Parse raw message headers locally for SPF, DKIM, DMARC and alignment clues.', path: '/tools/header-analyzer', glyph: 'HDR', category: 'headers', featured: true },
+    ],
+    shortcutGroups: [
+      { title: 'Authenticate outbound mail', body: 'Start with records receivers use to trust a sender domain.', paths: ['/tools/spf-checker', '/tools/dkim-checker', '/tools/dmarc-checker'] },
+      { title: 'Check receiving path', body: 'Review exchanger records and SMTP reachability before blaming content or reputation.', paths: ['/tools/mx-checker', '/tools/smtp-check'] },
+      { title: 'Investigate evidence', body: 'Compare reputation signals with pasted message headers when a real message looks suspicious.', paths: ['/tools/blacklist-check', '/tools/header-analyzer', '/tools/dmarc-checker'] },
+    ],
+    footerGroups: [
+      { title: 'Authentication', links: [{ label: 'SPF check', path: '/tools/spf-checker' }, { label: 'DKIM check', path: '/tools/dkim-checker' }, { label: 'DMARC check', path: '/tools/dmarc-checker' }] },
+      { title: 'DNS and routing', links: [{ label: 'MX check', path: '/tools/mx-checker' }, { label: 'SMTP check', path: '/tools/smtp-check' }] },
+      { title: 'Reputation', links: [{ label: 'Blacklist check', path: '/tools/blacklist-check' }, { label: 'DMARC policy', path: '/tools/dmarc-checker' }] },
+      { title: 'Message evidence', links: [{ label: 'Header analysis', path: '/tools/header-analyzer' }, { label: 'SPF from headers', path: '/tools/header-analyzer' }] },
+      { title: 'Fix sequence', links: [{ label: 'Start with SPF', path: '/tools/spf-checker' }, { label: 'Then DKIM', path: '/tools/dkim-checker' }, { label: 'Then DMARC', path: '/tools/dmarc-checker' }] },
+    ],
+  },
+  'pt-br': {
+    eyebrow: 'Autenticacao de email e saude do dominio',
+    title: 'Verifique a saude de email antes de alterar DNS.',
+    lead: 'Comece por SPF, DKIM, DMARC, MX, blacklist, SMTP e headers em uma pagina publica. O fluxo gratuito entrega uma resposta pontual antes de qualquer caminho de conta.',
+    primaryCta: 'Verificar SPF',
+    secondaryCta: 'Ver checks de email',
+    reportTitle: 'Relatorio de saude do dominio',
+    reportDomainLabel: 'Dominio',
+    reportDomainValue: 'example.com',
+    reportScoreLabel: 'Score exemplo',
+    reportScoreValue: '82',
+    reportGrade: 'Revisar',
+    reportBody: 'Um relatorio util começa por autenticacao, rota de recebimento, reputacao e evidencias da mensagem. Abra cada check para resultado real no seu dominio.',
+    reportSignals: [
+      { label: 'SPF', status: 'Ok', detail: 'Uma politica TXT com tratamento all restrito.' },
+      { label: 'DKIM', status: 'Revisar', detail: 'A evidencia de selector depende do provedor de envio.' },
+      { label: 'DMARC', status: 'Melhorar', detail: 'A politica pode avançar depois que o alinhamento estiver saudavel.' },
+      { label: 'MX', status: 'Ok', detail: 'Registros de exchanger e resolucao publica estao visiveis.' },
+    ],
+    browseTitle: 'Escolha um diagnostico de email',
+    browseBody: 'O MailHealth segue o modelo de toolbox: informe um dominio, escolha o check exato, leia o sinal e corrija o DNS ou ajuste de email responsavel.',
+    featuredTitle: 'Comece pelos checks esperados',
+    featuredBody: 'Abra SPF, DKIM, DMARC, MX, blacklist, SMTP ou analise de headers diretamente. Cada pagina deixa a resposta gratuita primeiro e os limites abaixo.',
+    limitsTitle: 'Checks pontuais',
+    limitsBody: 'As ferramentas publicas inspecionam registros atuais, hosts publicos selecionados ou headers colados. Alertas recorrentes, historico, ingestao de relatorios, exportacoes e fluxos de equipe ficam separados em conta.',
+    privacyTitle: 'Alvos fora do analytics',
+    privacyBody: 'Dominios, selectors, hosts de email, headers e resultados nao entram em eventos de analytics. A analise de headers roda no navegador.',
+    searchLabel: 'Buscar checks MailHealth',
+    searchPlaceholder: 'Tente SPF, DMARC, SMTP, blacklist...',
+    allCategories: 'Todos os checks de email',
+    noResultsTitle: 'Nenhum check encontrado',
+    noResultsBody: 'Tente outra palavra ou categoria. So entram links para paginas MailHealth publicas existentes.',
+    allTitle: 'Todos os checks MailHealth publicados',
+    allBody: 'Alterne entre autenticacao, roteamento DNS, reputacao, alcance SMTP e analise de headers.',
+    toolCta: 'Abrir check',
+    categories: [
+      { key: 'authentication', label: 'Autenticacao' },
+      { key: 'dns', label: 'DNS e MX' },
+      { key: 'reputation', label: 'Reputacao' },
+      { key: 'transport', label: 'SMTP' },
+      { key: 'headers', label: 'Headers' },
+    ],
+    tools: [
+      { label: 'Verificador SPF', body: 'Inspecione o TXT SPF e sinalize politicas duplicadas, permissivas ou com muitas consultas.', path: '/tools/spf-checker', glyph: 'SPF', category: 'authentication', featured: true },
+      { label: 'Verificador DKIM', body: 'Confira selector._domainkey e confirme se uma chave publica esta visivel.', path: '/tools/dkim-checker', glyph: 'DKIM', category: 'authentication', featured: true },
+      { label: 'Verificador DMARC', body: 'Leia policy, alinhamento e tags de relatorio no TXT _dmarc.', path: '/tools/dmarc-checker', glyph: 'DM', category: 'authentication', featured: true },
+      { label: 'Verificador MX', body: 'Revise prioridade dos exchangers e resolucao publica antes de depurar entrega.', path: '/tools/mx-checker', glyph: 'MX', category: 'dns', featured: true },
+      { label: 'Consulta de blacklist', body: 'Execute uma amostra DNSBL limitada para enderecos publicos ligados ao email.', path: '/tools/blacklist-check', glyph: 'BL', category: 'reputation', featured: true },
+      { label: 'Teste SMTP', body: 'Teste alcance TCP limitado ate um exchanger do dominio.', path: '/tools/smtp-check', glyph: 'SMTP', category: 'transport', featured: true },
+      { label: 'Analisador de headers', body: 'Analise headers brutos localmente em busca de SPF, DKIM, DMARC e alinhamento.', path: '/tools/header-analyzer', glyph: 'HDR', category: 'headers', featured: true },
+    ],
+    shortcutGroups: [
+      { title: 'Autenticar envio', body: 'Comece pelos registros que receptores usam para confiar no dominio remetente.', paths: ['/tools/spf-checker', '/tools/dkim-checker', '/tools/dmarc-checker'] },
+      { title: 'Checar recebimento', body: 'Revise exchangers e alcance SMTP antes de culpar conteudo ou reputacao.', paths: ['/tools/mx-checker', '/tools/smtp-check'] },
+      { title: 'Investigar evidencias', body: 'Compare reputacao com headers colados quando uma mensagem real parecer suspeita.', paths: ['/tools/blacklist-check', '/tools/header-analyzer', '/tools/dmarc-checker'] },
+    ],
+    footerGroups: [
+      { title: 'Autenticacao', links: [{ label: 'Verificar SPF', path: '/tools/spf-checker' }, { label: 'Verificar DKIM', path: '/tools/dkim-checker' }, { label: 'Verificar DMARC', path: '/tools/dmarc-checker' }] },
+      { title: 'DNS e rota', links: [{ label: 'Verificar MX', path: '/tools/mx-checker' }, { label: 'Teste SMTP', path: '/tools/smtp-check' }] },
+      { title: 'Reputacao', links: [{ label: 'Consulta blacklist', path: '/tools/blacklist-check' }, { label: 'Policy DMARC', path: '/tools/dmarc-checker' }] },
+      { title: 'Mensagem', links: [{ label: 'Analisar headers', path: '/tools/header-analyzer' }, { label: 'SPF nos headers', path: '/tools/header-analyzer' }] },
+      { title: 'Sequencia de ajuste', links: [{ label: 'Comece por SPF', path: '/tools/spf-checker' }, { label: 'Depois DKIM', path: '/tools/dkim-checker' }, { label: 'Depois DMARC', path: '/tools/dmarc-checker' }] },
+    ],
+  },
+  es: {
+    eyebrow: 'Autenticacion de email y salud del dominio',
+    title: 'Revisa la salud de email antes de cambiar DNS.',
+    lead: 'Empieza con SPF, DKIM, DMARC, MX, blacklist, SMTP y headers desde una pagina publica. El flujo gratis da una respuesta puntual antes de cualquier cuenta.',
+    primaryCta: 'Revisar SPF',
+    secondaryCta: 'Ver controles de email',
+    reportTitle: 'Reporte de salud del dominio',
+    reportDomainLabel: 'Dominio',
+    reportDomainValue: 'example.com',
+    reportScoreLabel: 'Score ejemplo',
+    reportScoreValue: '82',
+    reportGrade: 'Revisar',
+    reportBody: 'Un reporte util empieza por autenticacion, ruta de recepcion, reputacion y evidencia del mensaje. Abre cada control para resultado real en tu dominio.',
+    reportSignals: [
+      { label: 'SPF', status: 'Ok', detail: 'Una politica TXT con manejo all estricto.' },
+      { label: 'DKIM', status: 'Revisar', detail: 'La evidencia de selector depende del proveedor de envio.' },
+      { label: 'DMARC', status: 'Mejorar', detail: 'La politica puede avanzar despues de tener alineacion sana.' },
+      { label: 'MX', status: 'Ok', detail: 'Exchangers y resolucion publica son visibles.' },
+    ],
+    browseTitle: 'Elige un diagnostico de email',
+    browseBody: 'MailHealth sigue el modelo toolbox: ingresa dominio, elige el control exacto, lee la senal y corrige DNS o correo responsable.',
+    featuredTitle: 'Empieza por los controles esperados',
+    featuredBody: 'Abre SPF, DKIM, DMARC, MX, blacklist, SMTP o analisis de headers directamente. Cada pagina pone la respuesta gratis primero y los limites despues.',
+    limitsTitle: 'Controles puntuales',
+    limitsBody: 'Las herramientas publicas inspeccionan registros actuales, hosts publicos seleccionados o headers pegados. Alertas recurrentes, historial, ingestion de reportes, exportaciones y equipos quedan separados en cuenta.',
+    privacyTitle: 'Objetivos fuera de analytics',
+    privacyBody: 'Dominios, selectors, hosts de email, headers y resultados no entran en eventos de analytics. El analisis de headers corre en el navegador.',
+    searchLabel: 'Buscar controles MailHealth',
+    searchPlaceholder: 'Prueba SPF, DMARC, SMTP, blacklist...',
+    allCategories: 'Todos los controles',
+    noResultsTitle: 'No hay control coincidente',
+    noResultsBody: 'Prueba otra palabra o categoria. Solo enlazamos paginas publicas MailHealth existentes.',
+    allTitle: 'Todos los controles MailHealth publicados',
+    allBody: 'Alterna entre autenticacion, ruteo DNS, reputacion, alcance SMTP y analisis de headers.',
+    toolCta: 'Abrir control',
+    categories: [
+      { key: 'authentication', label: 'Autenticacion' },
+      { key: 'dns', label: 'DNS y MX' },
+      { key: 'reputation', label: 'Reputacion' },
+      { key: 'transport', label: 'SMTP' },
+      { key: 'headers', label: 'Headers' },
+    ],
+    tools: [
+      { label: 'Revision SPF', body: 'Inspecciona el TXT SPF y senala politicas duplicadas, permisivas o pesadas.', path: '/tools/spf-checker', glyph: 'SPF', category: 'authentication', featured: true },
+      { label: 'Revision DKIM', body: 'Consulta selector._domainkey y confirma que la clave publica sea visible.', path: '/tools/dkim-checker', glyph: 'DKIM', category: 'authentication', featured: true },
+      { label: 'Revision DMARC', body: 'Lee policy, alineacion y tags de reporte en el TXT _dmarc.', path: '/tools/dmarc-checker', glyph: 'DM', category: 'authentication', featured: true },
+      { label: 'Revision MX', body: 'Revisa prioridad de exchangers y resolucion publica antes de depurar entrega.', path: '/tools/mx-checker', glyph: 'MX', category: 'dns', featured: true },
+      { label: 'Consulta blacklist', body: 'Ejecuta una muestra DNSBL limitada para direcciones publicas de email.', path: '/tools/blacklist-check', glyph: 'BL', category: 'reputation', featured: true },
+      { label: 'Prueba SMTP', body: 'Prueba alcance TCP limitado hacia un exchanger del dominio.', path: '/tools/smtp-check', glyph: 'SMTP', category: 'transport', featured: true },
+      { label: 'Analisis de headers', body: 'Analiza headers brutos localmente para SPF, DKIM, DMARC y alineacion.', path: '/tools/header-analyzer', glyph: 'HDR', category: 'headers', featured: true },
+    ],
+    shortcutGroups: [
+      { title: 'Autenticar envio', body: 'Empieza por registros que receptores usan para confiar en el dominio remitente.', paths: ['/tools/spf-checker', '/tools/dkim-checker', '/tools/dmarc-checker'] },
+      { title: 'Revisar recepcion', body: 'Revisa exchangers y alcance SMTP antes de culpar contenido o reputacion.', paths: ['/tools/mx-checker', '/tools/smtp-check'] },
+      { title: 'Investigar evidencia', body: 'Compara reputacion con headers pegados cuando un mensaje real parece sospechoso.', paths: ['/tools/blacklist-check', '/tools/header-analyzer', '/tools/dmarc-checker'] },
+    ],
+    footerGroups: [
+      { title: 'Autenticacion', links: [{ label: 'Revisar SPF', path: '/tools/spf-checker' }, { label: 'Revisar DKIM', path: '/tools/dkim-checker' }, { label: 'Revisar DMARC', path: '/tools/dmarc-checker' }] },
+      { title: 'DNS y ruta', links: [{ label: 'Revisar MX', path: '/tools/mx-checker' }, { label: 'Prueba SMTP', path: '/tools/smtp-check' }] },
+      { title: 'Reputacion', links: [{ label: 'Consulta blacklist', path: '/tools/blacklist-check' }, { label: 'Policy DMARC', path: '/tools/dmarc-checker' }] },
+      { title: 'Mensaje', links: [{ label: 'Analizar headers', path: '/tools/header-analyzer' }, { label: 'SPF en headers', path: '/tools/header-analyzer' }] },
+      { title: 'Secuencia', links: [{ label: 'Primero SPF', path: '/tools/spf-checker' }, { label: 'Luego DKIM', path: '/tools/dkim-checker' }, { label: 'Luego DMARC', path: '/tools/dmarc-checker' }] },
+    ],
+  },
+  fr: {
+    eyebrow: 'Authentification email et sante domaine',
+    title: 'Verifiez la sante email avant de changer DNS.',
+    lead: 'Commencez par SPF, DKIM, DMARC, MX, blacklist, SMTP et headers depuis une page publique. Le flux gratuit donne une reponse ponctuelle avant tout compte.',
+    primaryCta: 'Verifier SPF',
+    secondaryCta: 'Voir les controles email',
+    reportTitle: 'Rapport sante domaine',
+    reportDomainLabel: 'Domaine',
+    reportDomainValue: 'example.com',
+    reportScoreLabel: 'Score exemple',
+    reportScoreValue: '82',
+    reportGrade: 'Revoir',
+    reportBody: 'Un rapport utile commence par authentification, reception, reputation et preuves message. Ouvrez chaque controle pour un vrai resultat.',
+    reportSignals: [
+      { label: 'SPF', status: 'Ok', detail: 'Une politique TXT avec mecanisme all strict.' },
+      { label: 'DKIM', status: 'Revoir', detail: 'La preuve selector depend du fournisseur d envoi.' },
+      { label: 'DMARC', status: 'Ameliorer', detail: 'La politique peut avancer apres alignement sain.' },
+      { label: 'MX', status: 'Ok', detail: 'Exchangers publics et resolution host visibles.' },
+    ],
+    browseTitle: 'Choisir un diagnostic email',
+    browseBody: 'MailHealth suit le modele toolbox: saisissez un domaine, choisissez le controle exact, lisez le signal et corrigez DNS ou reglage mail.',
+    featuredTitle: 'Commencer par les controles attendus',
+    featuredBody: 'Ouvrez SPF, DKIM, DMARC, MX, blacklist, SMTP ou analyse headers directement. Chaque page place la reponse gratuite avant les limites.',
+    limitsTitle: 'Controles ponctuels',
+    limitsBody: 'Les outils publics inspectent registres actuels, hosts publics selectionnes ou headers colles. Alertes recurrentes, historique, rapports, exports et flux equipe restent separes dans un compte.',
+    privacyTitle: 'Cibles hors analytics',
+    privacyBody: 'Domaines, selectors, hosts mail, headers et resultats ne partent pas dans les evenements analytics. L analyse headers tourne dans le navigateur.',
+    searchLabel: 'Chercher controles MailHealth',
+    searchPlaceholder: 'Essayez SPF, DMARC, SMTP, blacklist...',
+    allCategories: 'Tous les controles email',
+    noResultsTitle: 'Aucun controle correspondant',
+    noResultsBody: 'Essayez un autre mot ou une categorie. Seules les pages publiques MailHealth existantes sont liees.',
+    allTitle: 'Tous les controles MailHealth publies',
+    allBody: 'Passez entre authentification, routage DNS, reputation, portee SMTP et analyse headers.',
+    toolCta: 'Ouvrir',
+    categories: [
+      { key: 'authentication', label: 'Authentification' },
+      { key: 'dns', label: 'DNS et MX' },
+      { key: 'reputation', label: 'Reputation' },
+      { key: 'transport', label: 'SMTP' },
+      { key: 'headers', label: 'Headers' },
+    ],
+    tools: [
+      { label: 'Controle SPF', body: 'Inspectez le TXT SPF et signalez politiques dupliquees, permissives ou lourdes.', path: '/tools/spf-checker', glyph: 'SPF', category: 'authentication', featured: true },
+      { label: 'Controle DKIM', body: 'Verifiez selector._domainkey et confirmez qu une cle publique est visible.', path: '/tools/dkim-checker', glyph: 'DKIM', category: 'authentication', featured: true },
+      { label: 'Controle DMARC', body: 'Lisez policy, alignement et tags rapport dans le TXT _dmarc.', path: '/tools/dmarc-checker', glyph: 'DM', category: 'authentication', featured: true },
+      { label: 'Controle MX', body: 'Revoyez priorite exchanger et resolution publique avant debug livraison.', path: '/tools/mx-checker', glyph: 'MX', category: 'dns', featured: true },
+      { label: 'Controle blacklist', body: 'Lancez un echantillon DNSBL borne pour adresses publiques liees au mail.', path: '/tools/blacklist-check', glyph: 'BL', category: 'reputation', featured: true },
+      { label: 'Test SMTP', body: 'Testez une portee TCP bornee vers un exchanger du domaine.', path: '/tools/smtp-check', glyph: 'SMTP', category: 'transport', featured: true },
+      { label: 'Analyse headers', body: 'Analysez des headers bruts localement pour SPF, DKIM, DMARC et alignement.', path: '/tools/header-analyzer', glyph: 'HDR', category: 'headers', featured: true },
+    ],
+    shortcutGroups: [
+      { title: 'Authentifier l envoi', body: 'Commencez par les registres que les recepteurs utilisent pour faire confiance.', paths: ['/tools/spf-checker', '/tools/dkim-checker', '/tools/dmarc-checker'] },
+      { title: 'Verifier reception', body: 'Revoyez exchangers et portee SMTP avant contenu ou reputation.', paths: ['/tools/mx-checker', '/tools/smtp-check'] },
+      { title: 'Enqueter preuves', body: 'Comparez reputation et headers quand un message reel semble suspect.', paths: ['/tools/blacklist-check', '/tools/header-analyzer', '/tools/dmarc-checker'] },
+    ],
+    footerGroups: [
+      { title: 'Authentification', links: [{ label: 'Verifier SPF', path: '/tools/spf-checker' }, { label: 'Verifier DKIM', path: '/tools/dkim-checker' }, { label: 'Verifier DMARC', path: '/tools/dmarc-checker' }] },
+      { title: 'DNS et route', links: [{ label: 'Verifier MX', path: '/tools/mx-checker' }, { label: 'Test SMTP', path: '/tools/smtp-check' }] },
+      { title: 'Reputation', links: [{ label: 'Controle blacklist', path: '/tools/blacklist-check' }, { label: 'Policy DMARC', path: '/tools/dmarc-checker' }] },
+      { title: 'Message', links: [{ label: 'Analyser headers', path: '/tools/header-analyzer' }, { label: 'SPF dans headers', path: '/tools/header-analyzer' }] },
+      { title: 'Sequence', links: [{ label: 'Commencer SPF', path: '/tools/spf-checker' }, { label: 'Puis DKIM', path: '/tools/dkim-checker' }, { label: 'Puis DMARC', path: '/tools/dmarc-checker' }] },
+    ],
+  },
+  de: {
+    eyebrow: 'E-Mail-Authentifizierung und Domain-Gesundheit',
+    title: 'Pruefen Sie E-Mail-Gesundheit vor DNS-Aenderungen.',
+    lead: 'Starten Sie mit SPF, DKIM, DMARC, MX, Blacklist, SMTP und Headern auf einer oeffentlichen Seite. Der kostenlose Ablauf liefert eine Punktpruefung vor jedem Konto.',
+    primaryCta: 'SPF pruefen',
+    secondaryCta: 'E-Mail-Pruefungen ansehen',
+    reportTitle: 'Domain-Health-Bericht',
+    reportDomainLabel: 'Domain',
+    reportDomainValue: 'example.com',
+    reportScoreLabel: 'Beispielscore',
+    reportScoreValue: '82',
+    reportGrade: 'Pruefen',
+    reportBody: 'Ein nuetzlicher Bericht beginnt mit Authentifizierung, Empfangspfad, Reputation und Nachrichtenbelegen. Oeffnen Sie jede Pruefung fuer echte Ergebnisse.',
+    reportSignals: [
+      { label: 'SPF', status: 'Ok', detail: 'Eine TXT-Policy mit strengem all-Mechanismus.' },
+      { label: 'DKIM', status: 'Pruefen', detail: 'Selector-Nachweis haengt vom Sendeanbieter ab.' },
+      { label: 'DMARC', status: 'Verbessern', detail: 'Policy kann nach gesundem Alignment verschaerft werden.' },
+      { label: 'MX', status: 'Ok', detail: 'Oeffentliche Exchanger und Hostaufloesung sind sichtbar.' },
+    ],
+    browseTitle: 'E-Mail-Diagnose waehlen',
+    browseBody: 'MailHealth folgt dem Toolbox-Modell: Domain eingeben, exakte Pruefung waehlen, Signal lesen und verantwortliche DNS- oder Mail-Einstellung korrigieren.',
+    featuredTitle: 'Mit erwarteten Pruefungen starten',
+    featuredBody: 'Oeffnen Sie SPF, DKIM, DMARC, MX, Blacklist, SMTP oder Headeranalyse direkt. Jede Seite stellt die kostenlose Antwort vor die Grenzen.',
+    limitsTitle: 'Punktuelle Pruefungen',
+    limitsBody: 'Oeffentliche Tools pruefen aktuelle Records, ausgewaehlte Public Hosts oder eingefuegte Header. Wiederkehrende Alarme, Historie, Reports, Exporte und Teamablaeufe bleiben getrennte Kontofunktionen.',
+    privacyTitle: 'Ziele bleiben aus Analytics',
+    privacyBody: 'Domains, Selectors, Mailhosts, Header und Ergebnisse gehen nicht in Produkt-Analytics. Headeranalyse laeuft im Browser.',
+    searchLabel: 'MailHealth-Pruefungen suchen',
+    searchPlaceholder: 'SPF, DMARC, SMTP, Blacklist...',
+    allCategories: 'Alle E-Mail-Pruefungen',
+    noResultsTitle: 'Keine passende Pruefung',
+    noResultsBody: 'Versuchen Sie ein anderes Wort oder eine Kategorie. Nur bestehende oeffentliche MailHealth-Seiten werden verlinkt.',
+    allTitle: 'Alle veroeffentlichten MailHealth-Pruefungen',
+    allBody: 'Wechseln Sie zwischen Authentifizierung, DNS-Routing, Reputation, SMTP-Erreichbarkeit und Headeranalyse.',
+    toolCta: 'Oeffnen',
+    categories: [
+      { key: 'authentication', label: 'Authentifizierung' },
+      { key: 'dns', label: 'DNS und MX' },
+      { key: 'reputation', label: 'Reputation' },
+      { key: 'transport', label: 'SMTP' },
+      { key: 'headers', label: 'Header' },
+    ],
+    tools: [
+      { label: 'SPF-Pruefung', body: 'Prueft TXT-SPF und markiert doppelte, zu offene oder lookup-starke Policies.', path: '/tools/spf-checker', glyph: 'SPF', category: 'authentication', featured: true },
+      { label: 'DKIM-Pruefung', body: 'Prueft selector._domainkey und ob ein oeffentlicher Schluessel sichtbar ist.', path: '/tools/dkim-checker', glyph: 'DKIM', category: 'authentication', featured: true },
+      { label: 'DMARC-Pruefung', body: 'Liest Policy, Alignment und Report-Tags im TXT _dmarc.', path: '/tools/dmarc-checker', glyph: 'DM', category: 'authentication', featured: true },
+      { label: 'MX-Pruefung', body: 'Prueft Exchanger-Prioritaet und oeffentliche Hostaufloesung vor Delivery-Debugging.', path: '/tools/mx-checker', glyph: 'MX', category: 'dns', featured: true },
+      { label: 'Blacklist-Pruefung', body: 'Fuehrt eine begrenzte DNSBL-Stichprobe fuer oeffentliche Mail-Adressen aus.', path: '/tools/blacklist-check', glyph: 'BL', category: 'reputation', featured: true },
+      { label: 'SMTP-Test', body: 'Testet begrenzte TCP-Erreichbarkeit zu einem Domain-Exchanger.', path: '/tools/smtp-check', glyph: 'SMTP', category: 'transport', featured: true },
+      { label: 'Headeranalyse', body: 'Analysiert rohe Header lokal fuer SPF, DKIM, DMARC und Alignment.', path: '/tools/header-analyzer', glyph: 'HDR', category: 'headers', featured: true },
+    ],
+    shortcutGroups: [
+      { title: 'Ausgehende Mail absichern', body: 'Starten Sie mit Records, die Empfaenger fuer Vertrauen nutzen.', paths: ['/tools/spf-checker', '/tools/dkim-checker', '/tools/dmarc-checker'] },
+      { title: 'Empfangspfad pruefen', body: 'Pruefen Sie Exchanger und SMTP-Erreichbarkeit vor Content oder Reputation.', paths: ['/tools/mx-checker', '/tools/smtp-check'] },
+      { title: 'Belege untersuchen', body: 'Vergleichen Sie Reputation und Header, wenn eine echte Nachricht auffaellig wirkt.', paths: ['/tools/blacklist-check', '/tools/header-analyzer', '/tools/dmarc-checker'] },
+    ],
+    footerGroups: [
+      { title: 'Authentifizierung', links: [{ label: 'SPF pruefen', path: '/tools/spf-checker' }, { label: 'DKIM pruefen', path: '/tools/dkim-checker' }, { label: 'DMARC pruefen', path: '/tools/dmarc-checker' }] },
+      { title: 'DNS und Route', links: [{ label: 'MX pruefen', path: '/tools/mx-checker' }, { label: 'SMTP-Test', path: '/tools/smtp-check' }] },
+      { title: 'Reputation', links: [{ label: 'Blacklist pruefen', path: '/tools/blacklist-check' }, { label: 'DMARC Policy', path: '/tools/dmarc-checker' }] },
+      { title: 'Nachricht', links: [{ label: 'Header analysieren', path: '/tools/header-analyzer' }, { label: 'SPF in Headern', path: '/tools/header-analyzer' }] },
+      { title: 'Reihenfolge', links: [{ label: 'Start mit SPF', path: '/tools/spf-checker' }, { label: 'Dann DKIM', path: '/tools/dkim-checker' }, { label: 'Dann DMARC', path: '/tools/dmarc-checker' }] },
+    ],
+  },
+}
+
 export const footerCopy: Record<LocaleCode, FooterCopy> = {
   en: {
     brandBody: 'A portfolio of practical web tools with localized public pages, useful free workflows and clearly separated account features.',
@@ -3192,6 +3579,10 @@ export function getQrRouteCatalogCopy(locale: LocaleCode): QrRouteCatalogCopy {
 
 export function getInvoiceCraftCatalogCopy(locale: LocaleCode): InvoiceCraftCatalogCopy {
   return sanitizePublicCopy(locale, invoiceCraftCatalogCopy[locale])
+}
+
+export function getMailHealthCatalogCopy(locale: LocaleCode): MailHealthCatalogCopy {
+  return sanitizePublicCopy(locale, mailHealthCatalogCopy[locale])
 }
 
 export function getFooterCopy(locale: LocaleCode): FooterCopy {
