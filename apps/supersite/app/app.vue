@@ -897,6 +897,8 @@ h3 {
 .page-footer__intro p {
   margin-bottom: 0;
   color: #4c5a53;
+  font-size: 0.86rem;
+  line-height: 1.48;
 }
 
 .inline-link-list {
@@ -936,7 +938,8 @@ h3 {
 .footer-verticals h2 {
   margin-bottom: 9px;
   color: #17231e;
-  font-size: 0.76rem;
+  font-size: 0.72rem;
+  font-weight: 760;
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
@@ -953,25 +956,28 @@ h3 {
 .page-footer__links a {
   display: inline-block;
   color: #3f4f47;
-  font-size: 0.86rem;
-  font-weight: 650;
+  font-size: 0.78rem;
+  font-weight: 500;
   line-height: 1.35;
   text-decoration: none;
-  transition: color 160ms ease, transform 160ms ease, text-decoration-color 160ms ease;
-  text-decoration-color: transparent;
-  text-decoration-line: underline;
-  text-underline-offset: 4px;
+  transform-origin: left center;
+  transition: color 160ms ease, transform 160ms ease, font-weight 160ms ease;
 }
 
 .footer-menu a:hover,
 .page-footer__links a:hover,
 .page-footer__links a[aria-current="page"] {
   color: #0f4d70;
-  text-decoration-color: #0f4d70;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .footer-menu a:hover {
-  transform: translateX(2px);
+  transform: translateX(2px) scale(1.025);
+}
+
+.page-footer__links a:hover {
+  transform: translateY(-1px) scale(1.02);
 }
 
 .footer-menu a:focus-visible,

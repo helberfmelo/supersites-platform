@@ -759,6 +759,15 @@ Sprint 18.2c - Correcao do rodape benchmark do Hub
 - Status: concluida em producao. Commit `0abf5b6`, Quality Gate `28419197120`, Deploy Dry Run `28419197136` e deploy reversivel do Hub `28419357564` passaram; release `0abf5b6a27fc6e6864866e4d8f857df1b08699d3-28419357564-1`, asset `DxU4_SPz.js`, smokes publicos, AdSense-safe, crawler quick `2026-06-30T04-08-32-953Z` e screenshot live do rodape passaram.
 - Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
 
+Sprint 18.2d - Ajuste tipografico do rodape benchmark do Hub
+- Simbolico: `PHASE18-HUB-FOOTER-TYPOGRAPHY`.
+- Motivo: o rodape em colunas ja estava correto estruturalmente, mas a revisao visual apontou que a fonte dos menus e a descricao do SuperSites ainda estavam grandes/pesadas demais.
+- Escopo entregue: `app.vue` reduziu descricao do bloco SuperSites, links de menu e titulos de coluna; links estruturais agora ficam leves em repouso, sem underline, e o hover ganha peso/escala discreta sem sublinhado.
+- Gate permanente: rodapes benchmark-grade devem usar texto leve em repouso, hover com peso/escala sem underline, links profundos reais e screenshots desktop/mobile revisados antes do fechamento.
+- Validacao local pre-commit: Vitest Hub 14 testes, build Hub, preview smoke Hub asset `/_nuxt/Pz7BRfek.js`, Playwright Hub 7 testes, public-copy 951 HTMLs, AdSense-safe 13 paginas, structure, secrets, deploy dry-run, ci:changes, package tests/typechecks, HostGator artifact Hub 211 arquivos/3286524 bytes, `git diff --check`, checagem computada de hover e screenshots em `artifacts/footer-qa/hub-footer-typography-*.png` passaram.
+- Status: em validacao local/CI nesta entrega; completar com Quality Gate, Deploy Dry Run, deploy reversivel do Hub, smokes publicos e crawler quick antes de encerrar a sprint.
+- Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.

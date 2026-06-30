@@ -70,3 +70,10 @@ Data-base: 2026-06-27
 - Future footer refinements must not regress to product-home-only navigation. Prefer practical tool links such as DNS Propagation, JSON Formatter, PDF Merge, SPF Checker, Image Compressor and similar task routes.
 - Visual acceptance requires desktop and mobile screenshots after build/preview; current local evidence is in `artifacts/footer-qa/hub-footer-desktop-wide.png` and `artifacts/footer-qa/hub-footer-mobile-pt-br.png`.
 - Production deploy `28419357564` published release `0abf5b6a27fc6e6864866e4d8f857df1b08699d3-28419357564-1`, asset `https://opentshost.com/supersites/_nuxt/DxU4_SPz.js`; public smoke, AdSense-safe validation, crawler quick `2026-06-30T04-08-32-953Z` and live footer screenshots passed.
+
+## Phase 18 Sprint 18.2d footer typography notes
+
+- Follow-up feedback on the Hub footer approved the text-column direction but rejected the visual weight of the menu links and SuperSites description.
+- The footer menu default state should stay compact and light: small text, regular weight, no underline and no chip/button affordance.
+- Hover may give the user a clear response by increasing weight and slightly scaling/moving the text, but it must remain underline-free.
+- Local evidence before CI/deploy: `artifacts/footer-qa/hub-footer-typography-desktop-wide.png` and `artifacts/footer-qa/hub-footer-typography-mobile-pt-br.png`; computed hover check confirmed weight `500` at rest, `700` on hover and no underline in either state.

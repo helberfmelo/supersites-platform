@@ -1616,6 +1616,16 @@ Ainda em 2026-06-29, o `Public Watchdog` agendado run `28372846327` falhou no sm
   - Validacao publica final: `pnpm deploy:smoke-supersite-public` passou para Hub, dez apps e APIs MailHealth/SitePulse; `pnpm validate:adsense-safe-public` passou em 13 paginas; `pnpm benchmark:crawl:quick` passou no report `2026-06-30T04-08-32-953Z` com 95 rotas, 190 checks desktop/mobile e 0 gaps; screenshots live do rodape foram salvos em `artifacts/footer-qa/hub-footer-live-desktop-wide.png` e `artifacts/footer-qa/hub-footer-live-mobile-pt-br.png`.
   - Escopo negativo: a correcao nao ativou anuncio real, `ads.txt`, pagamento, doacao real, afiliado, checkout, billing, analytics externo, provider externo, worker/cron, DNS/root mapping, root redirect ou acao irreversivel.
 
+- Sprint 18.2d - Ajuste tipografico do rodape benchmark do Hub:
+  - Motivo: a revisao visual do rodape pos-18.2c aprovou a estrutura em colunas, mas apontou peso excessivo nos menus e na descricao do bloco SuperSites.
+  - Escopo tecnico: `app.vue` reduziu a fonte da descricao do SuperSites no rodape, reduziu os links de menu de `0.86rem`/peso `650` para `0.78rem`/peso `500`, reduziu os titulos de coluna para `0.72rem`, removeu o comportamento de sublinhado e definiu hover com peso `700` e escala/deslocamento leve.
+  - Gate permanente registrado: rodapes publicos benchmark-grade devem manter menus textuais leves em repouso; hover pode ganhar peso e escala, mas nao deve usar sublinhado nem voltar para chips/botoes.
+  - Validacao local pre-commit passou: `pnpm --filter @supersites/supersite test` com 14 testes, `pnpm --filter @supersites/supersite build`, `pnpm validate:supersite-preview` com asset `/_nuxt/Pz7BRfek.js`, `pnpm test:e2e:supersite` com 7 testes, `pnpm validate:public-copy` em 951 HTMLs, `pnpm validate:adsense-safe-public` em 13 paginas, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `pnpm test:packages`, `pnpm typecheck:packages`, `pnpm deploy:build-supersite-hostgator` e `git diff --check`.
+  - Artefato local: HostGator Hub validado com 211 arquivos, 3286524 bytes e base path `/supersites`.
+  - Checagem Playwright de hover confirmou repouso sem underline/peso `500` e hover sem underline/peso `700` com escala.
+  - Evidencia visual local: screenshots revisados em `artifacts/footer-qa/hub-footer-typography-desktop-wide.png` e `artifacts/footer-qa/hub-footer-typography-mobile-pt-br.png`, sem overflow horizontal.
+  - Escopo negativo: a correcao nao ativou anuncio real, `ads.txt`, pagamento, doacao real, afiliado, checkout, billing, analytics externo, provider externo, worker/cron, DNS/root mapping, root redirect ou acao irreversivel.
+
 ## Bloqueios humanos registrados
 
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.

@@ -1347,6 +1347,16 @@ Data-base: 2026-06-29
 | Sprint 18.2c post-deploy AdSense-safe validation | Passed: 13 public pages |
 | Sprint 18.2c post-deploy quick crawler | `2026-06-30T04-08-32-953Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.2c live footer screenshots | `artifacts/footer-qa/hub-footer-live-desktop-wide.png` and `artifacts/footer-qa/hub-footer-live-mobile-pt-br.png` reviewed |
+| Sprint 18.2d corrective reason | Hub footer menu typography still felt too large/heavy after the structural footer correction |
+| Sprint 18.2d footer menu resting style | Links reduced to `0.78rem`, font weight `500`, no underline |
+| Sprint 18.2d footer hover style | Hover uses font weight `700`, slight transform scale/offset and no underline |
+| Sprint 18.2d SuperSites intro style | Footer intro text reduced to `0.86rem` with tighter line-height |
+| Sprint 18.2d Hub unit suite | Passed: 14 tests |
+| Sprint 18.2d Hub build | Passed |
+| Sprint 18.2d Hub preview smoke | Passed: asset `/_nuxt/Pz7BRfek.js` |
+| Sprint 18.2d Hub Playwright suite | Passed: 7 tests |
+| Sprint 18.2d hover computed-style check | Passed: before `12.48px`/weight `500`/no underline; hover weight `700`/no underline/transform scale |
+| Sprint 18.2d footer visual artifacts | `artifacts/footer-qa/hub-footer-typography-desktop-wide.png` and `artifacts/footer-qa/hub-footer-typography-mobile-pt-br.png` reviewed |
 | Real deploy/provider activation | 4 reversible HostGator deploys in Phase 18 so far for Hub/NetProbe/Hub/Hub; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
