@@ -1421,25 +1421,49 @@ export const legalPageCatalog: LegalPage[] = [
       en: {
         navLabel: 'Methodology',
         title: 'Methodology',
-        description: 'How SuperSites explains tool results, data sources, limitations, review notes and public readiness across the portfolio.',
-        updatedLabel: 'Reviewed June 26, 2026',
+        description: 'How SuperSites explains network checks, calculators, documents, images, email diagnostics and website results in practical public tools.',
+        updatedLabel: 'Reviewed June 30, 2026',
         sections: [
           {
-            heading: 'Explain the result',
+            heading: 'Network and DNS',
             paragraphs: [
-              'Each public tool should show the result, what it means, what may be wrong, how to improve it and what the tool cannot know.',
+              'Network tools combine the value entered by the visitor with DNS records, IP data, SSL certificate details, RDAP fields, response timing and resolver answers that are available during the request.',
+              'Results explain the observed answer, the source used, the time of the check and the limits of the measurement. DNS propagation can vary by resolver, cache, record type, TTL and regional availability.',
             ],
           },
           {
-            heading: 'Use transparent sources',
+            heading: 'Calculators',
             paragraphs: [
-              'Network and domain tools should distinguish direct measurements from cached public records, third-party data and estimates. Calculators should expose formulas, assumptions and examples.',
+              'Calculator pages show the inputs used in the formula and keep the free answer visible before deeper scenario work. Rounding, currency labels and time periods are shown next to the result when they affect interpretation.',
+              'Financial and business calculators provide informational estimates for planning. Important tax, legal, investment or credit decisions belong with qualified professionals and current official sources.',
             ],
           },
           {
-            heading: 'Public review',
+            heading: 'Documents and PDF',
             paragraphs: [
-              'A site should not be treated as ready for wider traffic until free tools, useful content, legal pages, metadata, accessibility, monitoring and recovery notes are validated.',
+              'Document tools favor browser-side processing when it reduces collection. Inputs, generated files, page counts, merge order and extraction choices are presented so the visitor can inspect the result before using it.',
+              'Template helpers explain which fields were supplied by the visitor and which parts are examples. The output remains a draft until the visitor checks names, values, dates, taxes, signatures and local requirements.',
+            ],
+          },
+          {
+            heading: 'Images',
+            paragraphs: [
+              'Image tools display source dimensions, output format, size changes and processing choices such as compression, resizing, cropping and metadata removal.',
+              'Visual quality depends on the original file, chosen format, compression level, transparency, color profile and browser support. The preview helps compare the output before download.',
+            ],
+          },
+          {
+            heading: 'Email deliverability',
+            paragraphs: [
+              'Email diagnostics read public DNS records such as SPF, DKIM, DMARC and MX, then explain the record found, missing pieces, syntax problems and common alignment issues.',
+              'Deliverability depends on mailbox providers, sending reputation, authentication alignment, content, complaints and policy configuration. Record checks are one signal, not a guarantee that every message reaches an inbox.',
+            ],
+          },
+          {
+            heading: 'Website checks',
+            paragraphs: [
+              'Website tools inspect the public response available to the browser or service at check time: status code, redirects, headers, robots.txt, sitemap hints, timing and security-related signals.',
+              'A single check can be affected by cache, hosting region, rate limits, firewall rules, CDN behavior and temporary network conditions. Repeating a check and comparing with authoritative dashboards gives a clearer picture.',
             ],
           },
         ],
@@ -1447,25 +1471,49 @@ export const legalPageCatalog: LegalPage[] = [
       'pt-br': {
         navLabel: 'Metodologia',
         title: 'Metodologia',
-        description: 'Como o SuperSites deve explicar resultados, fontes, limitações, qualidade e prontidão de lançamento em todo o portfólio.',
-        updatedLabel: 'Revisado em 26 de junho de 2026',
+        description: 'Como o SuperSites explica diagnósticos de rede, calculadoras, documentos, imagens, e-mail e resultados de website em ferramentas públicas práticas.',
+        updatedLabel: 'Revisado em 30 de junho de 2026',
         sections: [
           {
-            heading: 'Explicar o resultado',
+            heading: 'Rede e DNS',
             paragraphs: [
-              'Cada ferramenta pública deve mostrar o resultado, o significado, o que pode estar errado, como melhorar e o que a ferramenta não consegue saber.',
+              'Ferramentas de rede combinam o valor informado pelo visitante com registros DNS, dados de IP, detalhes de certificado SSL, campos RDAP, tempo de resposta e respostas de resolvedores disponíveis durante a consulta.',
+              'Os resultados explicam a resposta observada, a fonte usada, o horário da checagem e os limites da medição. Propagação DNS varia por resolvedor, cache, tipo de registro, TTL e disponibilidade regional.',
             ],
           },
           {
-            heading: 'Usar fontes transparentes',
+            heading: 'Calculadoras',
             paragraphs: [
-              'Ferramentas de rede e domínio devem separar medições diretas de registros públicos em cache, dados de terceiros e estimativas. Calculadoras devem exibir fórmulas, premissas e exemplos.',
+              'Páginas de calculadora mostram as entradas usadas na fórmula e mantêm a resposta gratuita visível antes de cenários mais detalhados. Arredondamento, moeda e período aparecem junto do resultado quando mudam a interpretação.',
+              'Calculadoras financeiras e empresariais entregam estimativas informativas para simulações. Decisões fiscais, jurídicas, de investimento ou crédito pertencem a profissionais qualificados e fontes oficiais atuais.',
             ],
           },
           {
-            heading: 'Revisão pública',
+            heading: 'Documentos e PDF',
             paragraphs: [
-              'Um site não deve ser tratado como pronto para mais tráfego antes de validar ferramentas gratuitas, conteúdo útil, páginas legais, metadata, acessibilidade, monitoramento e notas de recuperação.',
+              'Ferramentas de documentos priorizam processamento no navegador quando isso reduz coleta. Entradas, arquivos gerados, contagem de páginas, ordem de união e escolhas de extração aparecem para inspeção antes do uso.',
+              'Auxiliares de modelo explicam quais campos vieram do visitante e quais partes são exemplos. A saída continua sendo rascunho até a conferência de nomes, valores, datas, impostos, assinaturas e exigências locais.',
+            ],
+          },
+          {
+            heading: 'Imagens',
+            paragraphs: [
+              'Ferramentas de imagem exibem dimensões de origem, formato de saída, mudança de tamanho e escolhas de processamento como compressão, redimensionamento, corte e remoção de metadados.',
+              'A qualidade visual depende do arquivo original, formato escolhido, nível de compressão, transparência, perfil de cor e suporte do navegador. O preview ajuda a comparar o resultado antes do download.',
+            ],
+          },
+          {
+            heading: 'Entregabilidade de e-mail',
+            paragraphs: [
+              'Diagnósticos de e-mail leem registros DNS públicos como SPF, DKIM, DMARC e MX, depois explicam o registro encontrado, partes ausentes, problemas de sintaxe e desalinhamentos comuns.',
+              'Entregabilidade depende de provedores de caixa postal, reputação de envio, alinhamento de autenticação, conteúdo, reclamações e configuração de políticas. Checar registros é um sinal, não uma garantia de caixa de entrada.',
+            ],
+          },
+          {
+            heading: 'Checagens de website',
+            paragraphs: [
+              'Ferramentas de website inspecionam a resposta pública disponível ao navegador ou serviço no momento da checagem: status code, redirecionamentos, headers, robots.txt, pistas de sitemap, tempo e sinais de segurança.',
+              'Uma checagem isolada pode sofrer efeito de cache, região da hospedagem, limites de taxa, regras de firewall, comportamento de CDN e condições temporárias de rede. Repetir e comparar com painéis oficiais dá uma visão mais clara.',
             ],
           },
         ],
@@ -1473,25 +1521,49 @@ export const legalPageCatalog: LegalPage[] = [
       es: {
         navLabel: 'Metodología',
         title: 'Metodología',
-        description: 'Cómo SuperSites explica resultados, fuentes, limitaciones, controles de calidad y preparación de lanzamiento en el portafolio.',
-        updatedLabel: 'Revisado el 26 de junio de 2026',
+        description: 'Cómo SuperSites explica diagnósticos de red, calculadoras, documentos, imágenes, correo y resultados de sitios web en herramientas públicas prácticas.',
+        updatedLabel: 'Revisado el 30 de junio de 2026',
         sections: [
           {
-            heading: 'Explicar el resultado',
+            heading: 'Red y DNS',
             paragraphs: [
-              'Cada herramienta debe mostrar el resultado, su significado, qué puede estar mal, cómo mejorarlo y qué no puede saber la herramienta.',
+              'Las herramientas de red combinan el valor ingresado por el visitante con registros DNS, datos de IP, detalles de certificados SSL, campos RDAP, tiempos de respuesta y respuestas de resolutores disponibles durante la consulta.',
+              'Los resultados explican la respuesta observada, la fuente usada, la hora de la comprobación y los límites de la medición. La propagación DNS varía por resolutor, caché, tipo de registro, TTL y disponibilidad regional.',
             ],
           },
           {
-            heading: 'Fuentes transparentes',
+            heading: 'Calculadoras',
             paragraphs: [
-              'Herramientas de red y dominio deben separar mediciones directas, registros públicos en caché, datos de terceros y estimaciones. Las calculadoras deben exponer fórmulas, supuestos y ejemplos.',
+              'Las páginas de calculadora muestran las entradas usadas en la fórmula y mantienen la respuesta gratuita visible antes del trabajo con escenarios más detallados. Redondeo, moneda y período aparecen junto al resultado cuando afectan la interpretación.',
+              'Las calculadoras financieras y empresariales entregan estimaciones informativas para planificación. Decisiones fiscales, legales, de inversión o crédito corresponden a profesionales calificados y fuentes oficiales actuales.',
             ],
           },
           {
-            heading: 'Revisión pública',
+            heading: 'Documentos y PDF',
             paragraphs: [
-              'Un sitio no debe considerarse listo para más tráfico hasta validar herramientas gratuitas, contenido útil, páginas legales, metadata, accesibilidad, monitoreo y notas de recuperación.',
+              'Las herramientas de documentos priorizan el procesamiento en el navegador cuando reduce la recolección. Entradas, archivos generados, conteo de páginas, orden de unión y opciones de extracción aparecen para inspección antes del uso.',
+              'Los asistentes de plantillas explican qué campos aportó el visitante y qué partes son ejemplos. La salida sigue siendo un borrador hasta revisar nombres, valores, fechas, impuestos, firmas y requisitos locales.',
+            ],
+          },
+          {
+            heading: 'Imágenes',
+            paragraphs: [
+              'Las herramientas de imagen muestran dimensiones de origen, formato de salida, cambios de tamaño y decisiones de procesamiento como compresión, redimensionamiento, recorte y eliminación de metadatos.',
+              'La calidad visual depende del archivo original, formato elegido, nivel de compresión, transparencia, perfil de color y soporte del navegador. La vista previa ayuda a comparar el resultado antes de descargar.',
+            ],
+          },
+          {
+            heading: 'Entregabilidad de correo',
+            paragraphs: [
+              'Los diagnósticos de correo leen registros DNS públicos como SPF, DKIM, DMARC y MX, luego explican el registro encontrado, piezas ausentes, problemas de sintaxis y desalineaciones comunes.',
+              'La entregabilidad depende de proveedores de buzón, reputación de envío, alineación de autenticación, contenido, quejas y configuración de políticas. Revisar registros es una señal, no una garantía de llegada a la bandeja de entrada.',
+            ],
+          },
+          {
+            heading: 'Comprobaciones de sitios web',
+            paragraphs: [
+              'Las herramientas de sitios web inspeccionan la respuesta pública disponible para el navegador o servicio en el momento de la comprobación: código de estado, redirecciones, headers, robots.txt, pistas de sitemap, tiempos y señales de seguridad.',
+              'Una comprobación aislada puede verse afectada por caché, región del hosting, límites de tasa, reglas de firewall, comportamiento de CDN y condiciones temporales de red. Repetir y comparar con paneles oficiales ofrece una imagen más clara.',
             ],
           },
         ],
@@ -1499,25 +1571,49 @@ export const legalPageCatalog: LegalPage[] = [
       fr: {
         navLabel: 'Méthodologie',
         title: 'Méthodologie',
-        description: 'Comment SuperSites explique résultats, sources, limites, contrôles qualité et préparation au lancement dans le portefeuille.',
-        updatedLabel: 'Révisé le 26 juin 2026',
+        description: 'Comment SuperSites explique les diagnostics réseau, calculateurs, documents, images, e-mail et résultats de sites web dans des outils publics pratiques.',
+        updatedLabel: 'Révisé le 30 juin 2026',
         sections: [
           {
-            heading: 'Expliquer le résultat',
+            heading: 'Réseau et DNS',
             paragraphs: [
-              'Chaque outil public doit montrer le résultat, son sens, ce qui peut être faux, comment l’améliorer et ce que l’outil ne peut pas savoir.',
+              'Les outils réseau combinent la valeur saisie par le visiteur avec les enregistrements DNS, données IP, détails de certificat SSL, champs RDAP, temps de réponse et réponses de résolveurs disponibles pendant la requête.',
+              'Les résultats expliquent la réponse observée, la source utilisée, l’heure de la vérification et les limites de la mesure. La propagation DNS varie selon le résolveur, le cache, le type d’enregistrement, le TTL et la disponibilité régionale.',
             ],
           },
           {
-            heading: 'Sources transparentes',
+            heading: 'Calculateurs',
             paragraphs: [
-              'Les outils réseau et domaine doivent distinguer mesures directes, enregistrements publics en cache, données tierces et estimations. Les calculateurs doivent exposer formules, hypothèses et exemples.',
+              'Les pages de calculateur affichent les entrées utilisées dans la formule et gardent la réponse gratuite visible avant les scénarios plus détaillés. Arrondi, devise et période accompagnent le résultat quand ils changent l’interprétation.',
+              'Les calculateurs financiers et métiers fournissent des estimations informatives pour la planification. Les décisions fiscales, juridiques, d’investissement ou de crédit relèvent de professionnels qualifiés et de sources officielles actuelles.',
             ],
           },
           {
-            heading: 'Revue publique',
+            heading: 'Documents et PDF',
             paragraphs: [
-              'Un site ne doit pas etre considere pret pour plus de trafic avant validation des outils gratuits, contenu utile, pages legales, metadonnees, accessibilite, surveillance et notes de reprise.',
+              'Les outils de documents privilégient le traitement dans le navigateur quand cela réduit la collecte. Entrées, fichiers générés, nombre de pages, ordre de fusion et choix d’extraction restent visibles pour inspection avant usage.',
+              'Les assistants de modèles indiquent quels champs viennent du visiteur et quelles parties sont des exemples. La sortie reste un brouillon jusqu’à la vérification des noms, valeurs, dates, taxes, signatures et exigences locales.',
+            ],
+          },
+          {
+            heading: 'Images',
+            paragraphs: [
+              'Les outils d’image affichent dimensions source, format de sortie, changements de taille et choix de traitement comme compression, redimensionnement, recadrage et suppression de métadonnées.',
+              'La qualité visuelle dépend du fichier original, du format choisi, du niveau de compression, de la transparence, du profil colorimétrique et du support du navigateur. L’aperçu aide à comparer le résultat avant téléchargement.',
+            ],
+          },
+          {
+            heading: 'Délivrabilité e-mail',
+            paragraphs: [
+              'Les diagnostics e-mail lisent les enregistrements DNS publics comme SPF, DKIM, DMARC et MX, puis expliquent l’enregistrement trouvé, les éléments absents, les erreurs de syntaxe et les problèmes d’alignement courants.',
+              'La délivrabilité dépend des fournisseurs de boîtes mail, de la réputation d’envoi, de l’alignement d’authentification, du contenu, des plaintes et de la configuration des politiques. Le contrôle des enregistrements est un signal, pas une garantie d’arrivée en boîte de réception.',
+            ],
+          },
+          {
+            heading: 'Contrôles de sites web',
+            paragraphs: [
+              'Les outils de site web inspectent la réponse publique disponible pour le navigateur ou le service au moment du contrôle : code de statut, redirections, headers, robots.txt, indices de sitemap, temps et signaux de sécurité.',
+              'Un contrôle isolé peut être affecté par le cache, la région d’hébergement, les limites de taux, les règles de pare-feu, le comportement CDN et les conditions réseau temporaires. Répéter et comparer avec des tableaux de bord officiels donne une image plus claire.',
             ],
           },
         ],
@@ -1525,25 +1621,49 @@ export const legalPageCatalog: LegalPage[] = [
       de: {
         navLabel: 'Methodik',
         title: 'Methodik',
-        description: 'Wie SuperSites Ergebnisse, Quellen, Grenzen, Qualitätsprüfungen und Launch-Bereitschaft im Portfolio erklären soll.',
-        updatedLabel: 'Geprüft am 26. Juni 2026',
+        description: 'Wie SuperSites Netzwerkprüfungen, Rechner, Dokumente, Bilder, E-Mail-Diagnosen und Website-Ergebnisse in praktischen öffentlichen Tools erklärt.',
+        updatedLabel: 'Geprüft am 30. Juni 2026',
         sections: [
           {
-            heading: 'Ergebnis erklären',
+            heading: 'Netzwerk und DNS',
             paragraphs: [
-              'Jedes öffentliche Tool soll Ergebnis, Bedeutung, mögliche Fehler, Verbesserungen und Grenzen verständlich zeigen.',
+              'Netzwerk-Tools verbinden die vom Besucher eingegebene Angabe mit DNS-Einträgen, IP-Daten, SSL-Zertifikatsdetails, RDAP-Feldern, Antwortzeiten und Resolver-Antworten, die während der Anfrage verfügbar sind.',
+              'Die Ergebnisse erklären die beobachtete Antwort, die verwendete Quelle, den Zeitpunkt der Prüfung und die Grenzen der Messung. DNS-Propagation variiert nach Resolver, Cache, Eintragstyp, TTL und regionaler Verfügbarkeit.',
             ],
           },
           {
-            heading: 'Transparente Quellen',
+            heading: 'Rechner',
             paragraphs: [
-              'Netzwerk- und Domain-Tools müssen direkte Messungen, gecachte öffentliche Einträge, Drittanbieterdaten und Schätzungen trennen. Rechner zeigen Formeln, Annahmen und Beispiele.',
+              'Rechnerseiten zeigen die Eingaben der Formel und halten die kostenlose Antwort sichtbar, bevor detailliertere Szenarien folgen. Rundung, Währung und Zeitraum stehen beim Ergebnis, wenn sie die Interpretation verändern.',
+              'Finanz- und Geschäftsrechner liefern informative Schätzungen für Planung. Steuerliche, rechtliche, Investment- oder Kreditentscheidungen gehören zu qualifizierten Fachleuten und aktuellen offiziellen Quellen.',
             ],
           },
           {
-            heading: 'Launch Gate',
+            heading: 'Dokumente und PDF',
             paragraphs: [
-              'Eine Site wird nicht bei AdSense eingereicht oder als gestartet behandelt, bis Gratis-Tools, hilfreicher Inhalt, Rechtstexte, Metadaten, Barrierefreiheit, Monitoring, Backup und Rollback validiert sind.',
+              'Dokument-Tools bevorzugen Verarbeitung im Browser, wenn dadurch weniger Daten gesammelt werden. Eingaben, erzeugte Dateien, Seitenanzahl, Zusammenführungsreihenfolge und Extraktionsauswahl bleiben vor der Nutzung sichtbar.',
+              'Vorlagenhelfer zeigen, welche Felder vom Besucher stammen und welche Teile Beispiele sind. Das Ergebnis bleibt ein Entwurf, bis Namen, Werte, Daten, Steuern, Signaturen und lokale Anforderungen geprüft sind.',
+            ],
+          },
+          {
+            heading: 'Bilder',
+            paragraphs: [
+              'Bild-Tools zeigen Quelldimensionen, Ausgabeformat, Größenänderungen und Verarbeitungsauswahl wie Kompression, Skalierung, Zuschnitt und Entfernung von Metadaten.',
+              'Visuelle Qualität hängt von Originaldatei, gewähltem Format, Kompressionsstufe, Transparenz, Farbprofil und Browserunterstützung ab. Die Vorschau hilft beim Vergleich vor dem Download.',
+            ],
+          },
+          {
+            heading: 'E-Mail-Zustellbarkeit',
+            paragraphs: [
+              'E-Mail-Diagnosen lesen öffentliche DNS-Einträge wie SPF, DKIM, DMARC und MX und erklären den gefundenen Eintrag, fehlende Teile, Syntaxprobleme und häufige Ausrichtungsfehler.',
+              'Zustellbarkeit hängt von Mailbox-Anbietern, Senderreputation, Authentifizierungsausrichtung, Inhalt, Beschwerden und Richtlinieneinstellungen ab. Eintragsprüfungen sind ein Signal, keine Garantie für den Posteingang.',
+            ],
+          },
+          {
+            heading: 'Website-Prüfungen',
+            paragraphs: [
+              'Website-Tools prüfen die öffentliche Antwort, die Browser oder Dienst im Moment der Prüfung erreichen: Statuscode, Weiterleitungen, Header, robots.txt, Sitemap-Hinweise, Timing und sicherheitsbezogene Signale.',
+              'Eine einzelne Prüfung kann durch Cache, Hosting-Region, Ratenlimits, Firewall-Regeln, CDN-Verhalten und vorübergehende Netzwerkbedingungen beeinflusst werden. Wiederholung und Vergleich mit offiziellen Dashboards ergeben ein klareres Bild.',
             ],
           },
         ],
@@ -1839,7 +1959,14 @@ export function getLegalShellCopy(locale: LocaleCode): LegalShellCopy {
 }
 
 export function getLegalPageCopy(page: LegalPage, locale: LocaleCode): LocalizedLegalPage {
-  if (page.slug === 'about' || page.slug === 'contact' || page.slug === 'privacy' || page.slug === 'cookies' || page.slug === 'terms') {
+  if (
+    page.slug === 'about' ||
+    page.slug === 'contact' ||
+    page.slug === 'privacy' ||
+    page.slug === 'cookies' ||
+    page.slug === 'terms' ||
+    page.slug === 'methodology'
+  ) {
     return sanitizePublicCopy(locale, page.localized[locale])
   }
 

@@ -510,7 +510,7 @@ describe('site catalog', () => {
 
         expect(localized.title.length).toBeGreaterThan(5)
         expect(localized.description.length).toBeGreaterThan(60)
-        expect(localized.sections).toHaveLength(['about', 'contact', 'privacy', 'cookies', 'terms'].includes(page.slug) ? 6 : 3)
+        expect(localized.sections).toHaveLength(['about', 'contact', 'privacy', 'cookies', 'terms', 'methodology'].includes(page.slug) ? 6 : 3)
         expect(localized.sections.every((section) => section.paragraphs.length > 0)).toBe(true)
       }
     }
@@ -735,6 +735,69 @@ describe('site catalog', () => {
 
       expect(copy.sections.map((section) => section.heading)).toEqual(requiredHeadings[locale])
       expect(JSON.stringify(copy)).not.toMatch(blockedTermsLanguage)
+    }
+  })
+
+  it('keeps the public Methodology page result-focused and free of rollout status language', () => {
+    const methodology = legalPageCatalog.find((page) => page.slug === 'methodology')
+    expect(methodology).toBeDefined()
+
+    const requiredHeadings = {
+      en: [
+        'Network and DNS',
+        'Calculators',
+        'Documents and PDF',
+        'Images',
+        'Email deliverability',
+        'Website checks',
+      ],
+      'pt-br': [
+        'Rede e DNS',
+        'Calculadoras',
+        'Documentos e PDF',
+        'Imagens',
+        'Entregabilidade de e-mail',
+        'Checagens de website',
+      ],
+      es: [
+        'Red y DNS',
+        'Calculadoras',
+        'Documentos y PDF',
+        'Imágenes',
+        'Entregabilidad de correo',
+        'Comprobaciones de sitios web',
+      ],
+      fr: [
+        'Réseau et DNS',
+        'Calculateurs',
+        'Documents et PDF',
+        'Images',
+        'Délivrabilité e-mail',
+        'Contrôles de sites web',
+      ],
+      de: [
+        'Netzwerk und DNS',
+        'Rechner',
+        'Dokumente und PDF',
+        'Bilder',
+        'E-Mail-Zustellbarkeit',
+        'Website-Prüfungen',
+      ],
+    }
+    const blockedMethodologyLanguage =
+      /launch|rollout|roadmap|public readiness|readiness|status of launch|public review|human review|legal review|quality checks|release checks|rollback|adsense|billing disabled|ads planned|plans to|planned|\bshould\b|\bmust\b|lançamento|prontidão|roteiro|revisão pública|revisão humana|revisão jurídica|planeja|planejado|\bdeve\b|\bdevem\b|lanzamiento|preparación|hoja de ruta|revisión pública|revisión humana|revisión legal|planea|planeado|\bdebe\b|\bdeben\b|lancement|préparation|feuille de route|revue publique|revue humaine|révision juridique|prévoit|prévu|\bdoit\b|\bdoivent\b|Launch|Bereitschaft|Roadmap|öffentliche Prüfung|menschliche Prüfung|Rechtsprüfung|geplant|\bsoll\b|\bsollen\b|\bmuss\b|\bmüssen\b/iu
+
+    for (const locale of localeCodes) {
+      const copy = getLegalPageCopy(methodology!, locale)
+      const searchableCopy = JSON.stringify({
+        title: copy.title,
+        description: copy.description,
+        sections: copy.sections,
+      })
+
+      expect(copy.sections.map((section) => section.heading)).toEqual(requiredHeadings[locale])
+      expect(JSON.stringify(copy)).toContain('DNS')
+      expect(searchableCopy).not.toMatch(blockedMethodologyLanguage)
     }
   })
 

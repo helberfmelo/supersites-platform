@@ -192,6 +192,11 @@ try {
         throw 'Terms of Use page smoke failed.'
     }
 
+    $methodology = Invoke-PreviewRequest -Uri "$baseUrl/en/methodology" -RequiredContent 'Network and DNS'
+    if ($methodology.StatusCode -ne 200 -or $methodology.Content -notmatch 'Methodology' -or $methodology.Content -notmatch 'Email deliverability') {
+        throw 'Methodology page smoke failed.'
+    }
+
     $sitemap = Invoke-PreviewRequest -Uri "$baseUrl/sitemap.xml" -RequiredContent '<urlset'
     if ($sitemap.Content -notmatch '/en/privacy' -or $sitemap.Content -notmatch '/de/editorial-policy') {
         throw 'Sitemap smoke failed.'

@@ -284,6 +284,78 @@ test.describe('SuperSites public hub', () => {
     expect(errors).toEqual([])
   })
 
+  test('renders the Methodology page as result-focused public guidance on desktop', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.goto('/en/methodology')
+    await dismissConsentBanner(page)
+
+    await expect(page).toHaveTitle(/Methodology/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Methodology')
+    const contentHeadings = page.locator('.content-section h3')
+    await expect(contentHeadings.filter({ hasText: 'Network and DNS' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Calculators' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Documents and PDF' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Images' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Email deliverability' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Website checks' })).toBeVisible()
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/en/methodology',
+    )
+    await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
+    await expect(page.locator('main')).not.toContainText(
+      /launch|rollout|roadmap|public readiness|public review|human review|legal review|quality checks|release checks|rollback|adsense|billing disabled|ads planned|plans to|planned|\bshould\b|\bmust\b/i,
+    )
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1)
+
+    const schemaType = await page.locator('script[type="application/ld+json"]').evaluate((script) => {
+      const schema = JSON.parse(script.textContent || '{}')
+
+      return schema['@type']
+    })
+
+    expect(schemaType).toBe('WebPage')
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('methodology-desktop', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('renders the localized Methodology page on mobile', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/pt-br/methodology')
+    await dismissConsentBanner(page)
+
+    await expect(page).toHaveTitle(/Metodologia/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Metodologia')
+    const contentHeadings = page.locator('.content-section h3')
+    await expect(contentHeadings.filter({ hasText: 'Rede e DNS' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Calculadoras' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Documentos e PDF' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Imagens' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Entregabilidade de e-mail' })).toBeVisible()
+    await expect(contentHeadings.filter({ hasText: 'Checagens de website' })).toBeVisible()
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/pt-br/methodology',
+    )
+    await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
+    await expect(page.locator('main')).not.toContainText(
+      /lançamento|prontidão|roteiro|revisão pública|revisão humana|revisão jurídica|planeja|planejado|\bdeve\b|\bdevem\b|human review|legal review|quality checks|billing disabled|ads planned/i,
+    )
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('methodology-pt-mobile', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
   test('renders the editorial policy page on desktop', async ({ page }, testInfo) => {
     const errors = collectBrowserErrors(page)
 
