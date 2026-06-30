@@ -1586,7 +1586,25 @@ Data-base: 2026-06-29
 | Sprint 18.13 post-deploy quick crawler | `2026-06-30T14-32-30-580Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.13 live About screenshots | `artifacts/about-page-qa/about-en-live-desktop.png` and `artifacts/about-page-qa/about-pt-br-live-mobile.png` reviewed |
 | Sprint 18.13 live About smoke | Passed: desktop/mobile markers, blocked phrase scan 0, overflow 0 |
-| Real deploy/provider activation | 22 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.13 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.14 Contact route | `/supersites/en/contact` converted to channel-based public contact page with product support, security/abuse, editorial correction, privacy and partnership/legal channels |
+| Sprint 18.14 localized Contact checks | 5 routes passed: `/supersites/en/contact`, `/supersites/pt-br/contact`, `/supersites/es/contact`, `/supersites/fr/contact`, `/supersites/de/contact` |
+| Sprint 18.14 Hub unit suite | Passed: 26 tests |
+| Sprint 18.14 i18n unit suite | Passed: 12 tests |
+| Sprint 18.14 Hub build | Passed |
+| Sprint 18.14 Hub Playwright suite | Passed: 30 tests, including Contact desktop EN and mobile PT-BR screenshots |
+| Sprint 18.14 Contact generated HTML check | Passed: 5 locales, required channel sections present, 0 blocked launch/mailbox/form language phrases |
+| Sprint 18.14 AdSense-safe validation | Passed locally and post-deploy: 13 public pages |
+| Sprint 18.14 package/structure/secrets/dry-run/diff | Passed, including typechecks, `ci:changes`, deploy dry-run and `git diff --check` |
+| Sprint 18.14 Hub HostGator artifact | Local passed: 211 files, 8774848 bytes; deploy passed: 211 files, 8765849 bytes |
+| Sprint 18.14 implementation commit | `8cef11c` |
+| Sprint 18.14 remote Quality Gate | `28454308318` passed |
+| Sprint 18.14 remote Deploy Dry Run | `28454307004` passed |
+| Sprint 18.14 Hub production deploy | `28454599720` passed; release `8cef11c0907188662b486121ca66941a5784f0e9-28454599720-1`; asset `BpxgSDhZ.js` |
+| Sprint 18.14 post-deploy public smoke | Passed: Hub/apps/APIs and 5 Contact locale routes via browser validation |
+| Sprint 18.14 post-deploy quick crawler | `2026-06-30T15-17-02-999Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.14 live Contact screenshots | `artifacts/contact-page-qa/contact-en-live-desktop.png` and `artifacts/contact-page-qa/contact-pt-br-live-mobile.png` reviewed |
+| Sprint 18.14 live Contact smoke | Passed: browser-decoded mailto links, blocked phrase scan 0, overflow covered by Playwright/crawler |
+| Real deploy/provider activation | 23 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.14 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 

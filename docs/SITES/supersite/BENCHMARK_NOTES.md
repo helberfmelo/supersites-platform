@@ -109,3 +109,11 @@ Data-base: 2026-06-27
 - The shared trust/i18n helper was adjusted so fallback public copy uses contact/correction language instead of publishing human/legal review requirements.
 - Local evidence: `artifacts/about-page-qa/about-en-desktop.png` and `artifacts/about-page-qa/about-pt-br-mobile.png`; live evidence: `artifacts/about-page-qa/about-en-live-desktop.png` and `artifacts/about-page-qa/about-pt-br-live-mobile.png`.
 - Production deploy `28451482856` published release `398ef0c516d6e7348420d1238ce85ac92952155a-28451482856-1`, asset `https://opentshost.com/supersites/_nuxt/BQ5vxgN9.js`; public smoke, AdSense-safe validation, five About locale route checks and crawler quick `2026-06-30T14-32-30-580Z` passed.
+
+## Phase 18 Sprint 18.14 Contact page notes
+
+- The Hub Contact route now follows the public-channel benchmark pattern: product support, security/abuse, editorial correction, privacy and partnership/legal are visible as subject-based channels before the longer guidance text.
+- Contact pages must not publish launch mailbox status, future-public-mailbox promises or unfinished-form language. If a mailbox, SLA, alias or secure intake path requires owner/provider action, record it in `docs/HUMAN_ACTION_REQUIRED.md`, not on the public page.
+- The current architecture uses browser-visible `mailto:` links with subject prefixes because no public form backend exists. Cloudflare may obfuscate the raw HTML, so production validation must use a browser check to confirm links decode to `mailto:contact@opentshost.com`.
+- Local evidence: `artifacts/contact-page-qa/contact-en-desktop-clean.png` and `artifacts/contact-page-qa/contact-pt-br-mobile-clean.png`; live evidence: `artifacts/contact-page-qa/contact-en-live-desktop.png` and `artifacts/contact-page-qa/contact-pt-br-live-mobile.png`.
+- Production deploy `28454599720` published release `8cef11c0907188662b486121ca66941a5784f0e9-28454599720-1`, asset `https://opentshost.com/supersites/_nuxt/BpxgSDhZ.js`; public smoke, AdSense-safe validation, five Contact browser route checks and crawler quick `2026-06-30T15-17-02-999Z` passed.

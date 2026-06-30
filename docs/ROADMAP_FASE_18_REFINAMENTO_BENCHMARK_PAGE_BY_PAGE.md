@@ -585,6 +585,12 @@ Regra operacional:
 3. Não exibir mensagens de desenvolvimento.
 4. Validar formulário ou mailto conforme arquitetura atual.
 
+**Status em 2026-06-30:** concluida em producao.
+
+- A rota Contact do Hub agora e uma pagina publica localizada em EN/PT-BR/ES/FR/DE com canais por assunto: suporte de produto, seguranca/abuso, correcao editorial, privacidade e parceria/legal. A pagina usa links `mailto:` com assunto predefinido porque nao ha backend de formulario publico nesta arquitetura.
+- A pagina removeu linguagem de lancamento/status de mailbox/formulario inacabado e manteve orientacoes praticas sobre o que enviar sem expor processo interno. A pendencia humana para confirmar `contact@opentshost.com` e triagem por assunto foi registrada em `docs/HUMAN_ACTION_REQUIRED.md`, nao na superficie publica.
+- Ciclo executado: validacao local completa, commit objetivo `8cef11c`, push, Quality Gate `28454308318`, Deploy Dry Run `28454307004`, deploy HostGator `28454599720`, smoke publico, validacao browser das 5 rotas Contact com links decodificados para `mailto:contact@opentshost.com`, AdSense-safe, crawler quick live `2026-06-30T15-17-02-999Z` com 95 rotas/190 checks/0 gaps e visual live desktop/mobile revisado.
+
 ---
 
 ## Sprint 18.15 — Privacy Policy
