@@ -74,6 +74,26 @@ describe('site catalog', () => {
     }
   })
 
+  it('keeps the public hub copy tool-first and free of operational status language', () => {
+    const copy = getHomeCopy('en')
+    const renderedHomeCopy = [
+      copy.eyebrow,
+      copy.title,
+      copy.lead,
+      copy.launchDeskTitle,
+      copy.launchDeskBody,
+      copy.featuredToolsTitle,
+      copy.previewTitle,
+      copy.popularToolsTitle,
+      copy.popularToolsBody,
+      ...copy.networkRows.flatMap((row) => [row.title, row.body]),
+    ].join(' ')
+
+    expect(copy.title).toBe('Find the right web tool in seconds.')
+    expect(copy.popularToolsTitle).toBe('Free tools ready to use')
+    expect(renderedHomeCopy).not.toMatch(/operating network|utility sites live|launch order|quality checks|upgrade path|ads planned|billing disabled/i)
+  })
+
   it('generates the catalog prerender routes for home and localized site pages', () => {
     expect(contentPrerenderRoutes).toContain('/')
     expect(contentPrerenderRoutes).toContain('/pt-br')
@@ -94,6 +114,7 @@ describe('site catalog', () => {
   it('filters sites by search and category', () => {
     expect(filterSites('dns', 'all').map((site) => site.slug)).toContain('netprobe-atlas')
     expect(filterSites('', 'documents').map((site) => site.slug)).toEqual(['invoicecraft', 'docshift'])
+    expect(filterSites('faturas', 'all', 'pt-br').map((site) => site.slug)).toContain('invoicecraft')
   })
 
   it('finds detail pages by slug', () => {

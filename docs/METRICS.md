@@ -1307,6 +1307,18 @@ Data-base: 2026-06-29
 | Sprint 18.2 post-deploy public smoke | Passed: Hub/apps/APIs and AdSense-safe public |
 | Sprint 18.2 post-deploy quick crawler | `2026-06-30T02-00-09-977Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.2 live Hub browser smoke | Passed: desktop/mobile, no overflow, direct tool links visible, blocked phrase scan 0 |
+| Sprint 18.2b corrective reason | Previous Hub first fold still read as operational catalog/status surface, not benchmark-grade public tool finder |
+| Sprint 18.2b acceptance gate | `docs/PHASE18_BENCHMARK_GRADE_ACCEPTANCE.md` created and referenced from Phase 18/Hub docs |
+| Sprint 18.2b Hub first experience | Search, category filters, public trust row and 11 direct tool cards before the 10-site directory |
+| Sprint 18.2b forbidden Hub markers | `Available`, `Preview`, `Upgrade path`, `10 utility sites live`, launch/status/billing/ads/quality markers blocked in preview/e2e gates |
+| Sprint 18.2b Hub unit suite | Passed: 13 tests |
+| Sprint 18.2b Hub Playwright suite | Passed: 7 tests, including benchmark finder desktop EN and mobile PT-BR screenshots |
+| Sprint 18.2b Hub preview smoke | Passed: asset `/_nuxt/Du1KWhYP.js` |
+| Sprint 18.2b public copy validation | Passed: 951 HTML files |
+| Sprint 18.2b package validation | Passed: 90 package tests and package typechecks |
+| Sprint 18.2b structure/secrets/dry-run/diff | Passed |
+| Sprint 18.2b Hub HostGator artifact | Passed: 211 files, 2808734 bytes, base path `/supersites` |
+| Sprint 18.2b screenshots | Desktop EN and mobile PT-BR reviewed manually from Playwright report artifacts |
 | Real deploy/provider activation | 3 reversible HostGator deploys in Phase 18 so far for Hub/NetProbe/Hub; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics

@@ -155,8 +155,8 @@ h1 {
   max-width: 840px;
   width: 100%;
   margin-bottom: 16px;
-  font-size: 4.75rem;
-  line-height: 0.98;
+  font-size: 3.35rem;
+  line-height: 1.02;
   word-break: normal;
 }
 
@@ -176,6 +176,86 @@ h3 {
   margin-bottom: 0;
   color: #46554e;
   font-size: 1.05rem;
+}
+
+.tool-finder {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+  gap: 28px;
+  align-items: start;
+  padding: 26px 0 24px;
+  border-bottom: 1px solid #d8ded8;
+}
+
+.tool-finder > *,
+.finder-panel > *,
+.trust-row > * {
+  min-width: 0;
+}
+
+.tool-finder__intro {
+  display: grid;
+  gap: 12px;
+}
+
+.tool-finder__intro h1,
+.tool-finder__intro p {
+  margin-bottom: 0;
+}
+
+.finder-panel {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid #cfd8d3;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 16px 42px rgb(24 35 31 / 8%);
+}
+
+.field--finder label {
+  color: #17231e;
+  font-size: 0.92rem;
+}
+
+.field--finder input {
+  min-height: 56px;
+  border-color: #97aaa0;
+  font-size: 1rem;
+}
+
+.category-tabs--finder {
+  margin-bottom: 0;
+}
+
+.trust-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.trust-row div {
+  min-height: 86px;
+  padding: 11px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  background: #f8faf7;
+}
+
+.trust-row strong,
+.trust-row span {
+  display: block;
+}
+
+.trust-row strong {
+  margin-bottom: 4px;
+  color: #143b2b;
+  font-size: 0.88rem;
+}
+
+.trust-row span {
+  color: #4d5d55;
+  font-size: 0.82rem;
 }
 
 .network-panel {
@@ -229,9 +309,15 @@ h3 {
 
 .launch-desk,
 .popular-tools-section,
-.intent-section {
+.tool-results-section,
+.intent-section,
+.site-directory {
   padding: 26px 0;
   border-bottom: 1px solid #d8ded8;
+}
+
+.tool-results-section {
+  padding-top: 22px;
 }
 
 .section-heading {
@@ -384,31 +470,73 @@ h3 {
   gap: 10px;
 }
 
+.tool-shortcut-grid--primary {
+  gap: 12px;
+}
+
 .tool-shortcut-card {
   display: grid;
   min-width: 0;
-  min-height: 174px;
-  align-content: space-between;
-  gap: 8px;
-  padding: 14px;
+  min-height: 184px;
+  grid-template-rows: auto 1fr auto;
+  gap: 12px;
+  padding: 16px;
   border: 1px solid #d4dcd6;
   border-radius: 8px;
   color: #17231e;
   background: #ffffff;
   text-decoration: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
 
 .tool-shortcut-card:hover,
 .tool-shortcut-card:focus-visible {
+  transform: translateY(-1px);
   border-color: #254c6a;
   box-shadow: 0 10px 28px rgb(37 76 106 / 10%);
 }
 
+.tool-shortcut-card__top {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+
+.tool-shortcut-card__glyph {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid #b9d2cf;
+  border-radius: 8px;
+  color: #173f55;
+  background: #edf7f5;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
 .tool-shortcut-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
   color: #617069;
   font-size: 0.78rem;
   font-weight: 850;
   text-transform: uppercase;
+}
+
+.tool-shortcut-card__meta span::before {
+  margin-right: 5px;
+  color: #9aa8a1;
+  content: "/";
+}
+
+.tool-shortcut-card__body {
+  display: grid;
+  gap: 8px;
+  align-content: start;
 }
 
 .tool-shortcut-card h3 {
@@ -498,7 +626,7 @@ h3 {
 .site-card {
   display: grid;
   min-width: 0;
-  min-height: 310px;
+  min-height: 210px;
   align-content: space-between;
   gap: 16px;
   padding: 18px;
@@ -514,6 +642,12 @@ h3 {
   gap: 10px;
   align-items: center;
   justify-content: space-between;
+}
+
+.site-card h3 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 1.55rem;
 }
 
 .site-card__signals {
@@ -959,6 +1093,8 @@ h3 {
   .site-header,
   .page-footer,
   .hero,
+  .tool-finder,
+  .trust-row,
   .controls,
   .catalog-grid,
   .band-grid,

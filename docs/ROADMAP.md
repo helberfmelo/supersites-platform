@@ -740,6 +740,15 @@ Sprint 18.2 - Hub principal benchmark-driven
 - Status: concluida em producao. Commit `2719229`, Quality Gate `28414743413`, Deploy Dry Run `28414743406` e deploy reversivel do Hub `28414876705` passaram; release `2719229cf6e1e36c29f5f6f7bd4d153bfcbdb978-28414876705-1`, asset `C46NIGfN.js`, smokes publicos, AdSense-safe, crawler quick `2026-06-30T02-00-09-977Z` e checagem live desktop/mobile passaram.
 - Escopo negativo: apenas release reversivel do Hub HostGator foi publicado. Nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
 
+Sprint 18.2b - Correcao do aceite visual do Hub
+- Simbolico: `PHASE18-HUB-BENCHMARK-CORRECTION`.
+- Motivo: a revisao visual reprovou a Sprint 18.2 porque a home ainda parecia catalogo operacional/institucional. O erro de processo foi aceitar atalhos e rodape rico sem exigir que a primeira dobra fosse uma experiencia publica de uso pratico.
+- Escopo entregue: home do Hub transformada em finder de ferramentas com busca, categorias, sinais publicos de confianca e 11 cards diretos de ferramenta antes do diretorio dos 10 sites; diretorio secundario sem badges de status/preview, contadores operacionais, free value, upgrade path, billing, ads ou rollout; copy e placeholder de ads sem linguagem interna.
+- Gate permanente: `docs/PHASE18_BENCHMARK_GRADE_ACCEPTANCE.md` deve ser aplicado antes de qualquer sprint page-by-page. Sem screenshot desktop/mobile revisado, ferramenta/resultado/input acima da dobra, linguagem localizada e negative assertions contra termos internos, a pagina fica reprovada.
+- Validacao local: Vitest Hub 13 testes, build Hub, preview smoke Hub, public-copy 951 HTMLs, Playwright Hub 7 testes com screenshots desktop EN/mobile PT-BR, structure, secrets, package typecheck/test, ci:changes, deploy dry-run, artifact HostGator Hub 211 arquivos/2808734 bytes e `git diff --check` passaram.
+- Status: aguardando commit/push/deploy desta entrega para registrar Quality Gate, Deploy Dry Run, release e smokes publicos finais.
+- Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.

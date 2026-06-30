@@ -1,0 +1,72 @@
+# Phase 18 Benchmark-Grade Acceptance
+
+Data-base: 2026-06-30
+
+Este checklist passa a ser obrigatorio para cada sprint publica da Fase 18.
+
+## Regra de bloqueio
+
+Uma pagina publica nao pode ser marcada como benchmark-grade quando a primeira dobra ainda parece roadmap, catalogo operacional, status interno, release note, painel de monetizacao ou documentacao tecnica.
+
+Benchmark-grade exige que a primeira tela entregue uma intencao pratica:
+
+- ferramenta, busca, editor, input, upload, mapa/lista ou resultado acima da dobra;
+- H1 direto sobre a tarefa do usuario;
+- CTA ou acao primaria visivel sem cadastro;
+- linguagem publica natural no idioma da rota;
+- metodologia, privacidade, limites, suporte e monetizacao somente depois do valor util.
+
+Atalhos, links uteis ou rodape rico abaixo de uma abertura institucional nao bastam. Se a primeira dobra ainda comunica portfolio, roadmap, rollout, disponibilidade interna ou monetizacao, a pagina deve voltar para correcao visual antes de commit.
+
+## Linguagem proibida na superficie principal
+
+Nao renderizar no topo publico:
+
+- `Public API live`
+- `ads planned`
+- `billing disabled`
+- `external analytics inactive`
+- `release checks`
+- `rollback`
+- `human review required`
+- `worker planned`
+- `deploy smoke`
+- `production checks`
+- `launch order`
+- `quality checks`
+- status de rollout, disponibilidade interna, preview comercial ou caminho pago como destaque de home.
+
+Esses itens pertencem a docs, admin, runbooks ou readiness autenticado.
+
+## Aceite visual obrigatorio
+
+Antes de commit em uma sprint publica:
+
+- capturar desktop e mobile da rota alterada;
+- verificar manualmente os screenshots;
+- confirmar que nao ha overflow horizontal;
+- confirmar que a primeira dobra resolve uma intencao pratica;
+- confirmar que blocos de ads/doacao/suporte aparecem abaixo do valor entregue e continuam inertes;
+- confirmar que a rota localizada nao exibe ingles residual indevido;
+- atualizar `docs/SITES/<site>/BENCHMARK_NOTES.md` com o before/after de produto;
+- atualizar `docs/SITES/<site>/FRONTEND_REFINEMENT_PLAN.md` com o criterio fechado ou pendente.
+
+## Regra especifica do Hub
+
+O Hub publico deve abrir como finder de ferramentas, nao como catalogo de rollout.
+
+Permitido na primeira experiencia:
+
+- busca de ferramenta;
+- filtros por categoria;
+- atalhos diretos para ferramentas gratuitas;
+- sinais publicos de uso, como sem cadastro obrigatorio e resposta gratuita primeiro.
+
+Nao permitido como destaque da home:
+
+- cards grandes de status de produto;
+- badges `Available`/`Preview`/`Disponivel`/`Previa`;
+- contadores de frentes, idiomas ou status de monetizacao;
+- `free value`, `upgrade path`, `billing`, `ads`, `rollout`, `quality`, `release`.
+
+O catalogo dos 10 sites pode existir, mas deve ser secundario, compacto e orientado a navegacao por tarefa.

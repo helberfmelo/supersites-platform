@@ -29,29 +29,29 @@ const props = withDefaults(defineProps<{
 
 const copyByLocale: Record<LocaleCode, { label: string; title: string; body: string }> = {
   en: {
-    label: 'Reserved advertising slot',
-    title: 'Reserved ad space',
-    body: 'Reserved space only. No ad request runs until consent, AdSense approval and launch checks are complete.',
+    label: 'Advertising space',
+    title: 'Advertising space',
+    body: 'Reserved placement. No ad is loaded from this page area.',
   },
   'pt-br': {
-    label: 'Espaço reservado para anúncio',
-    title: 'Espaço de anúncio reservado',
-    body: 'Apenas espaço reservado. Nenhuma requisição roda antes de consentimento, aprovação AdSense e revisões de lançamento.',
+    label: 'Espaço publicitário',
+    title: 'Espaço publicitário',
+    body: 'Área reservada. Nenhum anúncio é carregado a partir deste espaço.',
   },
   es: {
-    label: 'Espacio publicitario reservado',
-    title: 'Espacio de anuncio reservado',
-    body: 'Solo espacio reservado. No se ejecuta ninguna solicitud antes de consentimiento, aprobación de AdSense y revisiones de lanzamiento.',
+    label: 'Espacio publicitario',
+    title: 'Espacio publicitario',
+    body: 'Área reservada. No se carga ningún anuncio desde este espacio.',
   },
   fr: {
-    label: 'Emplacement publicitaire réservé',
-    title: 'Espace publicitaire réservé',
-    body: 'Espace réservé seulement. Aucun appel ne part avant consentement, approbation AdSense et revues de lancement.',
+    label: 'Espace publicitaire',
+    title: 'Espace publicitaire',
+    body: 'Emplacement réservé. Aucune annonce n’est chargée depuis cet espace.',
   },
   de: {
-    label: 'Reservierter Anzeigenplatz',
-    title: 'Reservierter Anzeigenbereich',
-    body: 'Nur reservierter Platz. Keine Anfrage läuft vor Zustimmung, AdSense-Freigabe und Launch-Prüfungen.',
+    label: 'Werbefläche',
+    title: 'Werbefläche',
+    body: 'Reservierter Bereich. Aus diesem Bereich wird keine Anzeige geladen.',
   },
 }
 

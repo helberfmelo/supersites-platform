@@ -90,10 +90,10 @@ try {
         'rel="canonical"',
         'hreflang="pt-BR"',
         'application/ld+json',
-        'A curated operating network',
-        'Free tools first',
-        'Top public tools',
-        'Popular free tools',
+        'Find the right web tool in seconds.',
+        'Free tools ready to use',
+        'No account required',
+        'Explore focused tool suites',
         'Support the free network',
         '/supersites/netprobe-atlas/en/tools/what-is-my-ip',
         'Choose by workflow',
@@ -103,6 +103,26 @@ try {
     foreach ($needle in $requiredHtml) {
         if ($homeHtml -notmatch [regex]::Escape($needle)) {
             throw "Preview HTML is missing required marker: $needle"
+        }
+    }
+
+    $forbiddenHomeHtml = @(
+        'A curated operating network',
+        'Top public tools',
+        'Free tools first',
+        '10 utility sites live',
+        'Upgrade path',
+        'Available</span>',
+        'Preview</span>',
+        'tool tracks',
+        'quality checks',
+        'billing disabled',
+        'ads planned'
+    )
+
+    foreach ($needle in $forbiddenHomeHtml) {
+        if ($homeHtml -match [regex]::Escape($needle)) {
+            throw "Preview HTML contains public operational marker that must stay off the Hub home: $needle"
         }
     }
 

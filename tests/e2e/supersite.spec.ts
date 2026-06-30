@@ -104,20 +104,32 @@ test.describe('SuperSites public hub', () => {
     expect(errors).toEqual([])
   })
 
-  test('records sanitized outbound site clicks in the local data layer', async ({ page }) => {
+  test('renders the benchmark-grade tool finder and records sanitized outbound site clicks', async ({
+    page,
+  }, testInfo) => {
     const errors = collectBrowserErrors(page)
 
     await page.goto('/en')
     await dismissConsentBanner(page)
-    await expect(page.getByRole('heading', { name: 'Top public tools' })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Popular free tools' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Find the right web tool in seconds.' })).toBeVisible()
+    await expect(page.getByRole('search', { name: 'Search the catalog' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Free tools ready to use' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Choose by workflow' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Explore focused tool suites' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Support the free network' })).toBeVisible()
-    await expect(page.locator('.evidence-strip').getByText('Free tools first')).toBeVisible()
+    await expect(page.locator('.trust-row').getByText('No account required')).toBeVisible()
     await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(3)
     await expect(page.locator('a[href="https://opentshost.com/supersites/netprobe-atlas/en/tools/what-is-my-ip"]')).toBeVisible()
     await expect(page.locator('a[href="https://opentshost.com/supersites/docshift/en/tools/pdf-merge"]')).toBeVisible()
+    await expect(page.locator('main')).not.toContainText('Available')
+    await expect(page.locator('main')).not.toContainText('Preview')
+    await expect(page.locator('main')).not.toContainText('Upgrade path')
+    await expect(page.locator('main')).not.toContainText('10 utility sites live')
     await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('hub-tool-finder-desktop', { body: screenshot, contentType: 'image/png' })
+
     await page.evaluate(() => {
       window.addEventListener('click', (event) => event.preventDefault(), { capture: true })
     })
@@ -142,6 +154,30 @@ test.describe('SuperSites public hub', () => {
       event: 'outbound_site_click',
     })
     expect(JSON.stringify(analytics)).not.toContain('?')
+    expect(errors).toEqual([])
+  })
+
+  test('renders the benchmark-grade tool finder in Portuguese on mobile', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/pt-br')
+    await dismissConsentBanner(page)
+
+    await expect(page.getByRole('heading', { name: 'Encontre a ferramenta certa em segundos.' })).toBeVisible()
+    await expect(page.getByRole('search', { name: 'Buscar no catálogo' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Ferramentas gratuitas prontas para uso' })).toBeVisible()
+    await expect(page.locator('.trust-row').getByText('Sem cadastro obrigatório')).toBeVisible()
+    await expect(page.locator('main')).not.toContainText('Available')
+    await expect(page.locator('main')).not.toContainText('Preview')
+    await expect(page.locator('main')).not.toContainText('Upgrade path')
+    await expect(page.locator('main')).not.toContainText('Search the catalog')
+    await expect(page.locator('main')).not.toContainText('Public API live')
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('hub-tool-finder-pt-mobile', { body: screenshot, contentType: 'image/png' })
+
     expect(errors).toEqual([])
   })
 

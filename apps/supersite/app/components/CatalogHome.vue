@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { limitSeoText, SEO_DESCRIPTION_MAX_LENGTH, SEO_TITLE_MAX_LENGTH } from '@supersites/seo'
-import { getStatusBadgeClass } from '@supersites/ui'
 import { computed, ref } from 'vue'
 import { getHomeCopy } from '../data/copy'
 import { absoluteUrl, localeAlternates } from '../data/routes'
@@ -10,11 +9,10 @@ import {
   filterSites,
   getCategoryLabel,
   getSiteBySlug,
-  statusLabels,
   type SiteSummary,
   type SiteCategory,
 } from '../data/sites'
-import { localeCodes, localizedHomePath, localizedSitePath, type LocaleCode } from '../data/locales'
+import { localizedHomePath, localizedSitePath, type LocaleCode } from '../data/locales'
 import { trackOutboundSiteClick } from '../utils/analytics'
 
 const props = defineProps<{
@@ -25,27 +23,62 @@ const props = defineProps<{
 const copy = computed(() => getHomeCopy(props.locale))
 const searchQuery = ref('')
 const selectedCategory = ref<SiteCategory | 'all'>('all')
-const filteredSites = computed(() => filterSites(searchQuery.value, selectedCategory.value))
+const filteredSites = computed(() => filterSites(searchQuery.value, selectedCategory.value, props.locale))
 const canonicalPath = computed(() => (props.xDefault ? '/' : localizedHomePath(props.locale)))
+const toolGlyphs: Record<string, string> = {
+  '/tools/what-is-my-ip': 'IP',
+  '/tools/dns-propagation': 'DNS',
+  '/calculators/loan-payment': '$',
+  '/tools/structured-data-formatter': '{}',
+  '/tools/timezone-converter': 'TZ',
+  '/tools/static-qr-code': 'QR',
+  '/tools/invoice-builder': 'INV',
+  '/tools/spf-checker': 'SPF',
+  '/tools/status-checker': '200',
+  '/tools/image-compressor': 'IMG',
+  '/tools/pdf-merge': 'PDF',
+}
 const seoTitle = computed(() =>
   props.xDefault ? 'SuperSites Hub' : limitSeoText(`${copy.value.title} | SuperSites`, SEO_TITLE_MAX_LENGTH),
 )
 const seoDescription = computed(() => limitSeoText(copy.value.lead, SEO_DESCRIPTION_MAX_LENGTH))
-const featuredTools = computed(() => copy.value.featuredTools
-  .map((item) => {
-    const site = getSiteBySlug(item.siteSlug)
-
-    return site ? { ...item, site } : null
-  })
-  .filter((item): item is { siteSlug: string; label: string; body: string; site: SiteSummary } => Boolean(item)))
 const popularTools = computed(() => copy.value.popularTools
   .map((item) => {
     const site = getSiteBySlug(item.siteSlug)
     const url = site ? `${site.temporaryUrl}${props.locale}${item.path}` : ''
 
-    return site ? { ...item, site, url } : null
+    return site ? { ...item, site, url, glyph: toolGlyphs[item.path] ?? site.name.slice(0, 3).toUpperCase() } : null
   })
-  .filter((item): item is { siteSlug: string; label: string; body: string; path: string; site: SiteSummary; url: string } => Boolean(item)))
+  .filter((item): item is {
+    siteSlug: string
+    label: string
+    body: string
+    path: string
+    site: SiteSummary
+    url: string
+    glyph: string
+  } => Boolean(item)))
+const filteredTools = computed(() => {
+  const normalizedQuery = searchQuery.value.trim().toLowerCase()
+
+  return popularTools.value.filter((item) => {
+    const matchesCategory = selectedCategory.value === 'all' || item.site.category === selectedCategory.value
+    const localizedSite = item.site.localized[props.locale]
+    const searchableText = [
+      item.label,
+      item.body,
+      item.site.name,
+      item.site.slug,
+      getCategoryLabel(item.site.category, props.locale),
+      localizedSite.headline,
+      localizedSite.summary,
+    ]
+      .join(' ')
+      .toLowerCase()
+
+    return matchesCategory && (!normalizedQuery || searchableText.includes(normalizedQuery))
+  })
+})
 const intentClusters = computed(() => copy.value.intentClusters.map((cluster) => ({
   ...cluster,
   sites: cluster.siteSlugs
@@ -101,86 +134,77 @@ useHead(() => ({
   <main class="page-shell">
     <SiteHeader :locale="locale" :path-for-locale="localizedHomePath" />
 
-    <section class="hero" aria-labelledby="catalog-title">
-      <div>
+    <section class="tool-finder" aria-labelledby="catalog-title">
+      <div class="tool-finder__intro">
         <p class="eyebrow">{{ copy.eyebrow }}</p>
         <h1 id="catalog-title">{{ copy.title }}</h1>
         <p class="lead">{{ copy.lead }}</p>
       </div>
 
-      <aside class="network-panel" aria-label="Network status">
-        <div v-for="row in copy.networkRows" :key="row.title" class="network-panel__row">
-          <div>
+      <div class="finder-panel" role="search" :aria-label="copy.searchLabel">
+        <div class="field field--finder">
+          <label for="catalog-search">{{ copy.searchLabel }}</label>
+          <input id="catalog-search" v-model="searchQuery" type="search" :placeholder="copy.searchPlaceholder">
+        </div>
+
+        <div class="category-tabs category-tabs--finder" :aria-label="copy.categoryLabel">
+          <button type="button" :aria-pressed="selectedCategory === 'all'" @click="selectedCategory = 'all'">
+            {{ copy.allCategories }}
+          </button>
+          <button
+            v-for="category in categoryCatalog"
+            :key="category.key"
+            type="button"
+            :aria-pressed="selectedCategory === category.key"
+            @click="selectedCategory = category.key"
+          >
+            {{ category.labels[locale] }}
+          </button>
+        </div>
+
+        <div class="trust-row" aria-label="Public tool qualities">
+          <div v-for="row in copy.networkRows" :key="row.title">
             <strong>{{ row.title }}</strong>
             <span>{{ row.body }}</span>
           </div>
-          <span :class="['signal', row.tone === 'amber' ? 'signal--amber' : '']" aria-hidden="true"></span>
         </div>
-      </aside>
-    </section>
-
-    <section class="launch-desk" aria-labelledby="launch-desk-title">
-      <div class="section-heading">
-        <p class="eyebrow">{{ copy.launchDeskTitle }}</p>
-        <h2 id="launch-desk-title">{{ copy.featuredToolsTitle }}</h2>
-        <p>{{ copy.launchDeskBody }}</p>
-      </div>
-
-      <div class="feature-grid" :aria-label="copy.featuredToolsTitle">
-        <article v-for="item in featuredTools" :key="item.site.slug" class="feature-card">
-          <div class="preview-frame" :data-category="item.site.category" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-            <i></i>
-          </div>
-          <div>
-            <span class="category">{{ getCategoryLabel(item.site.category, locale) }}</span>
-            <h3>{{ item.label }}</h3>
-            <p>{{ item.body }}</p>
-          </div>
-          <div class="card-actions">
-            <NuxtLink class="button-link" :to="localizedSitePath(locale, item.site.slug)">
-              {{ copy.detailCta }}
-            </NuxtLink>
-            <a
-              class="button-link button-link--secondary"
-              :href="item.site.temporaryUrl"
-              @click="trackPublicSiteClick(item.site.slug, item.site.temporaryUrl)"
-            >
-              {{ copy.publicCta }}
-            </a>
-          </div>
-        </article>
-      </div>
-
-      <div class="evidence-strip" :aria-label="copy.liveEvidenceTitle">
-        <strong>{{ copy.liveEvidenceTitle }}</strong>
-        <span>{{ copy.liveEvidenceBody }}</span>
       </div>
     </section>
 
-    <section class="popular-tools-section" aria-labelledby="popular-tools-title">
+    <section class="tool-results-section" aria-labelledby="popular-tools-title">
       <div class="section-heading">
         <p class="eyebrow">{{ copy.launchDeskTitle }}</p>
         <h2 id="popular-tools-title">{{ copy.popularToolsTitle }}</h2>
         <p>{{ copy.popularToolsBody }}</p>
       </div>
 
-      <div class="tool-shortcut-grid" :aria-label="copy.popularToolsTitle">
+      <div class="tool-shortcut-grid tool-shortcut-grid--primary" :aria-label="copy.popularToolsTitle">
         <a
-          v-for="item in popularTools"
+          v-for="item in filteredTools"
           :key="`${item.site.slug}-${item.path}`"
           class="tool-shortcut-card"
           :href="item.url"
           @click="trackPublicSiteClick(item.site.slug, item.url)"
         >
-          <span class="tool-shortcut-card__meta">{{ item.site.name }}</span>
-          <h3>{{ item.label }}</h3>
-          <p>{{ item.body }}</p>
+          <span class="tool-shortcut-card__top">
+            <span class="tool-shortcut-card__glyph" aria-hidden="true">{{ item.glyph }}</span>
+            <span class="tool-shortcut-card__meta">
+              {{ getCategoryLabel(item.site.category, locale) }}
+              <span>{{ item.site.name }}</span>
+            </span>
+          </span>
+          <span class="tool-shortcut-card__body">
+            <h3>{{ item.label }}</h3>
+            <p>{{ item.body }}</p>
+          </span>
           <strong>{{ copy.popularToolsCta }}</strong>
         </a>
       </div>
+
+      <section v-if="filteredTools.length === 0" class="empty-state" aria-live="polite">
+        <h2>{{ copy.noResultsTitle }}</h2>
+        <p>{{ copy.noResultsBody }}</p>
+      </section>
     </section>
 
     <section class="intent-section" aria-labelledby="intent-title">
@@ -204,77 +228,36 @@ useHead(() => ({
       </div>
     </section>
 
-    <section class="controls" aria-label="Catalog controls">
-      <div class="field">
-        <label for="catalog-search">{{ copy.searchLabel }}</label>
-        <input id="catalog-search" v-model="searchQuery" type="search" :placeholder="copy.searchPlaceholder">
+    <section class="site-directory" aria-labelledby="site-directory-title">
+      <div class="section-heading">
+        <p class="eyebrow">{{ copy.featuredToolsTitle }}</p>
+        <h2 id="site-directory-title">{{ copy.previewTitle }}</h2>
+        <p>{{ copy.launchDeskBody }}</p>
       </div>
-      <div class="field">
-        <label for="catalog-category">{{ copy.categoryLabel }}</label>
-        <select id="catalog-category" v-model="selectedCategory">
-          <option value="all">{{ copy.allCategories }}</option>
-          <option v-for="category in categoryCatalog" :key="category.key" :value="category.key">
-            {{ category.labels[locale] }}
-          </option>
-        </select>
-      </div>
-    </section>
 
-    <section class="category-tabs" aria-label="Category shortcuts">
-      <button type="button" :aria-pressed="selectedCategory === 'all'" @click="selectedCategory = 'all'">
-        {{ copy.allCategories }}
-      </button>
-      <button
-        v-for="category in categoryCatalog"
-        :key="category.key"
-        type="button"
-        :aria-pressed="selectedCategory === category.key"
-        @click="selectedCategory = category.key"
-      >
-        {{ category.labels[locale] }}
-      </button>
-    </section>
-
-    <section class="catalog-grid" aria-label="SuperSites catalog">
-      <article v-for="site in filteredSites" :key="site.slug" class="site-card">
-        <div>
-          <div class="site-card__topline">
-            <span class="category">{{ getCategoryLabel(site.category, locale) }}</span>
-            <span :class="getStatusBadgeClass(site.status)">
-              {{ statusLabels[site.status][locale] }}
-            </span>
+      <div class="catalog-grid" aria-label="SuperSites catalog">
+        <article v-for="site in filteredSites" :key="site.slug" class="site-card">
+          <div>
+            <div class="site-card__topline">
+              <span class="category">{{ getCategoryLabel(site.category, locale) }}</span>
+            </div>
+            <h3>{{ site.name }}</h3>
+            <p>{{ site.localized[locale].headline }}</p>
           </div>
-          <h2>{{ site.name }}</h2>
-          <p>{{ site.localized[locale].headline }}</p>
-          <ul class="site-card__signals" :aria-label="`${site.name} operating signals`">
-            <li>{{ site.freeTools.length }} {{ copy.toolTracksLabel }}</li>
-            <li>{{ localeCodes.length }} {{ copy.localesLabel }}</li>
-            <li>{{ copy.gatedLabel }}</li>
-          </ul>
-          <dl>
-            <div>
-              <dt>{{ copy.freeLabel }}</dt>
-              <dd>{{ site.localized[locale].freeValue }}</dd>
-            </div>
-            <div>
-              <dt>{{ copy.upgradeLabel }}</dt>
-              <dd>{{ site.localized[locale].upgrade }}</dd>
-            </div>
-          </dl>
-        </div>
-        <div class="card-actions">
-          <NuxtLink class="button-link" :to="localizedSitePath(locale, site.slug)">
-            {{ copy.detailCta }}
-          </NuxtLink>
-          <a
-            class="button-link button-link--secondary"
-            :href="site.temporaryUrl"
-            @click="trackPublicSiteClick(site.slug, site.temporaryUrl)"
-          >
-            {{ copy.publicCta }}
-          </a>
-        </div>
-      </article>
+          <div class="card-actions">
+            <NuxtLink class="button-link" :to="localizedSitePath(locale, site.slug)">
+              {{ copy.detailCta }}
+            </NuxtLink>
+            <a
+              class="button-link button-link--secondary"
+              :href="site.temporaryUrl"
+              @click="trackPublicSiteClick(site.slug, site.temporaryUrl)"
+            >
+              {{ copy.publicCta }}
+            </a>
+          </div>
+        </article>
+      </div>
     </section>
 
     <section v-if="filteredSites.length === 0" class="empty-state" aria-live="polite">

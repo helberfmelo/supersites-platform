@@ -585,18 +585,19 @@ export function getSiteBySlug(slug: string | undefined): SiteSummary | null {
   return siteCatalog.find((site) => site.slug === slug) ?? null
 }
 
-export function filterSites(query: string, category: SiteCategory | 'all'): SiteSummary[] {
+export function filterSites(query: string, category: SiteCategory | 'all', locale: LocaleCode = 'en'): SiteSummary[] {
   const normalizedQuery = query.trim().toLowerCase()
 
   return siteCatalog.filter((site) => {
     const matchesCategory = category === 'all' || site.category === category
+    const localized = site.localized[locale] ?? site.localized.en
     const searchableText = [
       site.name,
       site.slug,
-      site.localized.en.headline,
-      site.localized.en.summary,
-      site.localized.en.freeValue,
-      site.localized.en.upgrade,
+      localized.headline,
+      localized.summary,
+      localized.freeValue,
+      localized.upgrade,
       ...site.freeTools,
       ...site.paidBenefits,
     ]

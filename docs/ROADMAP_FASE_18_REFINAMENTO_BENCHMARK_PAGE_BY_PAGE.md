@@ -309,6 +309,19 @@ Para cada sprint:
 12. Fazer commit documental de fechamento quando necessário.
 13. Só então seguir para a próxima sprint.
 
+### 9.1. Gate adicional criado após correção do Hub
+
+Depois da auditoria visual da Sprint 18.2, fica obrigatório consultar `docs/PHASE18_BENCHMARK_GRADE_ACCEPTANCE.md` antes de marcar qualquer página pública como benchmark-grade.
+
+Motivo: uma página pode passar em links, footer, i18n e testes técnicos e ainda assim falhar como produto público se a primeira dobra continuar parecendo catálogo operacional, status de rollout ou documentação de desenvolvimento.
+
+Regra operacional:
+
+1. Screenshot desktop/mobile precisa mostrar uma intenção prática resolvida acima da dobra.
+2. A página não pode depender de badges de status, monetização, rollout, qualidade ou readiness para explicar valor ao usuário.
+3. O benchmark da sprint deve ser traduzido em comportamento de produto próprio, não apenas em novas seções adicionadas.
+4. O smoke/Playwright da rota alterada deve conter pelo menos uma asserção contra regressão de linguagem interna quando a página já tiver histórico de falha desse tipo.
+
 ---
 
 # 10. FASE 18 — ROADMAP DE REFINAMENTO PÁGINA POR PÁGINA

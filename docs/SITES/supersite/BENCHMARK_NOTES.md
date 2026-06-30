@@ -55,3 +55,10 @@ Data-base: 2026-06-27
 - The support/donation block is public but inert: no payment link, QR/PIX, checkout, provider SDK, webhook or billing activation.
 - Tests now assert the direct links, JSON-LD tool ItemList, sanitized outbound analytics and home overflow safety.
 - Production deploy `28414876705` published release `2719229cf6e1e36c29f5f6f7bd4d153bfcbdb978-28414876705-1`, asset `https://opentshost.com/supersites/_nuxt/C46NIGfN.js`; public smoke, AdSense-safe validation, quick crawler and live desktop/mobile checks passed.
+
+## Corrective Phase 18 benchmark-grade note
+
+- Audit feedback after Sprint 18.2 showed the Hub was still visually closer to an operating catalog than a benchmark-grade public tool finder.
+- The first fold must prioritize search, categories and direct tool use. Product/network status, rollout counters, preview badges, tool-count badges, `free value` and `upgrade path` do not belong in the public home main experience.
+- The corrected Hub pattern is: concise user-facing H1, prominent tool search, category chips, filtered direct tool cards, workflow clusters and only then a compact site directory.
+- New guardrail: `docs/PHASE18_BENCHMARK_GRADE_ACCEPTANCE.md` is mandatory for every remaining Phase 18 sprint; technical pass plus added sections is not enough without visual first-fold acceptance.
