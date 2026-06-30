@@ -65,3 +65,9 @@ Medium; ads/support must stay away from upload, preview, progress and download c
 - Added shared `PixelBatchWorkbench` with tabs for all 6 tools, large drag/drop target, use-case preset chips, format/quality/dimension controls and stronger preview/download framing.
 - Home now exposes the working compressor flow above the catalog; tool pages reuse the same workbench with the route tool selected.
 - Visual QA inspected home desktop, compressor mobile and privacy mobile screenshots from the production build with no incoherent overlap or horizontal overflow.
+
+## Sprint 18.11 catalog result
+
+- The SuperSites catalog route `/supersites/<locale>/sites/pixelbatch` now opens as a benchmark-grade image landing instead of a generic site card: practical H1, dominant dropzone, local-preview plan, workflow shortcuts, searchable tool cards and contextual footer links.
+- The public copy highlights browser-side privacy with `Your image stays in this browser` / `Sua imagem fica neste navegador` and removes `No server upload backend active` from the public top surface.
+- Validation closed with 23 Hub unit tests, 24 Hub Playwright tests, generated HTML route checks, 12 live EN/PT-BR deep links, public smoke, AdSense-safe smoke, benchmark crawler `2026-06-30T12-54-57-039Z` with 0 gaps, and live desktop/mobile screenshots reviewed.

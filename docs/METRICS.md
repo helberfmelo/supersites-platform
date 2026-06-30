@@ -1534,7 +1534,24 @@ Data-base: 2026-06-29
 | Sprint 18.10 corrective live route check | `/supersites/pt-br/sites/timenexus` contains `world-clock/cities/sao-paulo`; 0 `são-paulo` or `s%C3%A3o-paulo` route occurrences |
 | Sprint 18.10 corrective post-deploy quick crawler | `2026-06-30T12-15-12-355Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.10 corrective Public Watchdog | `28443668162` passed after public smoke, control-plane smoke, NetProbe smoke, AdSense-safe and benchmark crawler |
-| Real deploy/provider activation | 19 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.10 corrective Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.11 PixelBatch catalog route | `/supersites/en/sites/pixelbatch` converted from generic site detail to task-first browser image landing with dominant dropzone |
+| Sprint 18.11 direct public links | 12 EN/PT-BR checks passed across 6 PixelBatch tool routes |
+| Sprint 18.11 Hub unit suite | Passed: 23 tests |
+| Sprint 18.11 Hub build | Passed |
+| Sprint 18.11 Hub Playwright suite | Passed: 24 tests, including PixelBatch desktop EN and mobile PT-BR screenshots |
+| Sprint 18.11 public copy validation | Passed: 951 HTML files |
+| Sprint 18.11 AdSense-safe validation | Passed locally and post-deploy: 13 public pages |
+| Sprint 18.11 package/structure/secrets/dry-run/diff | Passed, including package tests/typechecks, generated HTML route check, `ci:changes` and deploy dry-run |
+| Sprint 18.11 Hub HostGator artifact | Local passed: 211 files, 8336069 bytes; deploy passed: 211 files, 8327070 bytes |
+| Sprint 18.11 implementation commit | `8ba0bf3` |
+| Sprint 18.11 remote Quality Gate | `28445103010` passed |
+| Sprint 18.11 remote Deploy Dry Run | `28445103023` passed |
+| Sprint 18.11 Hub production deploy | `28445345367` passed; release `8ba0bf3da1cc4a4cc84a19568deb7df51ba1b75b-28445345367-1`; asset `fSRaEo_u.js`; PixelBatch asset `B912Jsw8.js` |
+| Sprint 18.11 post-deploy public smoke | Passed: Hub/apps/APIs, PixelBatch static app smoke and 12 EN/PT-BR deep links |
+| Sprint 18.11 post-deploy quick crawler | `2026-06-30T12-54-57-039Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.11 live PixelBatch catalog screenshots | `artifacts/pixelbatch-catalog-qa/pixelbatch-catalog-live-desktop-consented.png` and `artifacts/pixelbatch-catalog-qa/pixelbatch-catalog-live-mobile-pt-br-consented.png` reviewed |
+| Sprint 18.11 live PixelBatch catalog smoke | Passed: desktop/mobile markers, PT-BR H1, blocked phrase scan 0, overflow 0 |
+| Real deploy/provider activation | 20 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.11 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 

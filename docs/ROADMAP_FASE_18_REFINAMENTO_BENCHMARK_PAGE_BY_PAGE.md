@@ -534,6 +534,12 @@ Regra operacional:
 3. Remover `No server upload backend active` do topo; usar “Your image stays in this browser”.
 4. Destacar compress, resize, crop, convert, metadata, social presets.
 
+**Status em 2026-06-30:** concluida em producao.
+
+- A rota `/supersites/en/sites/pixelbatch` deixou de usar ficha generica e passou a abrir como landing de imagem: H1 pratico, CTA para compressor, dropzone dominante, plano de preview local, workflows e cards para compressor, resizer, cropper, converter, metadata remover e social presets.
+- A copy `pixelBatchCatalogCopy` cobre EN/PT-BR/ES/FR/DE, substitui linguagem interna por privacidade publica (`Your image stays in this browser` / `Sua imagem fica neste navegador`) e preserva deep links tecnicos reais para `/supersites/pixelbatch/<locale>/tools/...`.
+- Ciclo executado: validacao local completa, commit objetivo `8ba0bf3`, push, Quality Gate `28445103010`, Deploy Dry Run `28445103023`, deploy HostGator `28445345367`, smoke publico, checagem de 12 deep links EN/PT-BR, crawler quick `2026-06-30T12-54-57-039Z` com 95 rotas/190 checks/0 gaps e visual live desktop/mobile revisado.
+
 ---
 
 ## Sprint 18.12 — Página de catálogo DocShift

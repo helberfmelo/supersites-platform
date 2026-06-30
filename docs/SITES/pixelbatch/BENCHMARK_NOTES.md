@@ -52,3 +52,9 @@ Data-base: 2026-06-27
 - Converted the previous future-provider idea into a visible data/readiness matrix instead of enabling uploads.
 - Background cleanup, high-volume conversion and API/integrations now explain data boundaries, current free browser path and human gates before any provider.
 - Added the operational file provider matrix runbook so future image AI, upload, batch and API work must pass data, privacy, retention, sandbox and billing gates first.
+
+## Sprint 18.11 outcome
+
+- Applied the TinyPNG/iLoveIMG/Squoosh mental model to the SuperSites catalog page: file/dropzone first, preview plan next, then concrete image tasks and tool links.
+- Kept all claims original and bounded: no copied assets, no compression guarantee from benchmarks, no server upload promise, and no fake batch/provider capability.
+- Required next PixelBatch-facing work to keep public value above the fold, keep methodology/limits below the tool, validate real deep links after deploy, and review live desktop/mobile screenshots before closing the sprint.
