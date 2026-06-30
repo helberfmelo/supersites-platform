@@ -1586,7 +1586,11 @@ Ainda em 2026-06-29, o `Public Watchdog` agendado run `28372846327` falhou no sm
   - O Hub recebeu bloco de suporte/doacao apenas informativo e inerte, sem link de pagamento, QR/PIX, checkout, provider SDK, webhook, cobranca, entitlement ou ativacao comercial.
   - JSON-LD da home passou a destacar os atalhos de ferramentas populares, e os testes cobrem localizacao, URLs diretas, analytics sanitizado e ausencia de overflow horizontal na home.
   - Validacao local pre-commit passou: Vitest Hub, Playwright Hub, build Hub, preview smoke Hub, `deploy:build-supersite-hostgator`, `validate:public-copy`, `validate:adsense-safe-public`, `test:packages`, `typecheck:packages`, `validate:structure`, `validate:secrets`, `deploy:dry-run`, `ci:changes` e `git diff --check`.
-  - Escopo negativo: nenhum anuncio real, `ads.txt`, pagamento, doacao real, afiliado, checkout, billing, analytics externo, provider externo, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
+  - Feature commit publicado: `2719229` (`feat: refine phase 18 hub discovery`). GitHub Actions `Quality Gate` run `28414743413` passou com matriz completa, incluindo Hub preview/Playwright e public copy gate; `Deploy Dry Run` run `28414743406` passou.
+  - Deploy real reversivel do Hub executado apos gate verde: workflow `deploy-supersite-hostgator.yml` run `28414876705` passou, release `/supersites/` `2719229cf6e1e36c29f5f6f7bd4d153bfcbdb978-28414876705-1`, asset validado `https://opentshost.com/supersites/_nuxt/C46NIGfN.js`, 211 arquivos/2663150 bytes e root redirect mantido desativado.
+  - Smokes publicos pos-deploy passaram: `pnpm deploy:smoke-supersite-public` validou Hub, dez apps e APIs MailHealth/SitePulse; `pnpm validate:adsense-safe-public` passou em 13 paginas; crawler quick `2026-06-30T02-00-09-977Z` registrou 95 rotas, 190 checks e 0 gaps.
+  - Checagem Playwright live em `https://opentshost.com/supersites/en/?phase18=28414876705` confirmou `Popular free tools`, `Support the free network`, links diretos para What is my IP e PDF Merge, sem overflow em 1440px/390px e sem frases publicas bloqueadas da auditoria.
+  - Escopo negativo: apenas release reversivel do Hub HostGator foi publicado nesta sprint. Nenhum anuncio real, `ads.txt`, pagamento, doacao real, afiliado, checkout, billing, analytics externo, provider externo, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
 
 ## Bloqueios humanos registrados
 

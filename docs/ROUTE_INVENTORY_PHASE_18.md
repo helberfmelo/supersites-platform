@@ -126,6 +126,10 @@ Robots and sitemap checks returned HTTP 200 for the Hub and all 10 product sites
 - Footer navigation now exposes nine vertical clusters plus legal/editorial links, reducing reliance on product-only discovery.
 - The support block remains informational and inert, with 0 public payment links or provider widgets.
 - Local checks passed for Hub unit tests, Hub Playwright, Hub build, Hub preview smoke, Hub HostGator artifact, public copy, AdSense-safe public pages, packages, typechecks, structure, secrets, deploy dry-run, ci:changes and diff check.
+- Remote checks passed with commit `2719229`, Quality Gate `28414743413`, Deploy Dry Run `28414743406` and Hub deploy `28414876705`.
+- The Hub deploy published release `2719229cf6e1e36c29f5f6f7bd4d153bfcbdb978-28414876705-1`, validated asset `https://opentshost.com/supersites/_nuxt/C46NIGfN.js`, kept root redirect disabled and completed with 211 files/2663150 bytes.
+- Post-deploy public smoke, AdSense-safe validation and quick crawler `2026-06-30T02-00-09-977Z` passed with 95 routes, 190 viewport checks and 0 gaps.
+- Live browser validation for `https://opentshost.com/supersites/en/?phase18=28414876705` confirmed popular tool links, support copy, no desktop/mobile overflow and no blocked audit phrases.
 
 ## Human Action Required
 

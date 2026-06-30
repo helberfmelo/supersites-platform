@@ -54,3 +54,4 @@ Data-base: 2026-06-27
 - Footer discovery was expanded into nine vertical clusters so users can browse by practical task area instead of only by product name.
 - The support/donation block is public but inert: no payment link, QR/PIX, checkout, provider SDK, webhook or billing activation.
 - Tests now assert the direct links, JSON-LD tool ItemList, sanitized outbound analytics and home overflow safety.
+- Production deploy `28414876705` published release `2719229cf6e1e36c29f5f6f7bd4d153bfcbdb978-28414876705-1`, asset `https://opentshost.com/supersites/_nuxt/C46NIGfN.js`; public smoke, AdSense-safe validation, quick crawler and live desktop/mobile checks passed.

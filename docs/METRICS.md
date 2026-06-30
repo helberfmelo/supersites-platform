@@ -1300,7 +1300,14 @@ Data-base: 2026-06-29
 | Sprint 18.2 public copy validation | Passed: 951 HTML files |
 | Sprint 18.2 AdSense-safe validation | Passed: 13 pages |
 | Sprint 18.2 package validation | Passed: 90 tests and package typechecks |
-| Real deploy/provider activation | 2 reversible HostGator deploys for Hub and NetProbe; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.2 implementation commit | `2719229` |
+| Sprint 18.2 remote Quality Gate | `28414743413` passed |
+| Sprint 18.2 remote Deploy Dry Run | `28414743406` passed |
+| Sprint 18.2 Hub production deploy | `28414876705` passed; release `2719229cf6e1e36c29f5f6f7bd4d153bfcbdb978-28414876705-1`; asset `C46NIGfN.js`; 211 files/2663150 bytes |
+| Sprint 18.2 post-deploy public smoke | Passed: Hub/apps/APIs and AdSense-safe public |
+| Sprint 18.2 post-deploy quick crawler | `2026-06-30T02-00-09-977Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.2 live Hub browser smoke | Passed: desktop/mobile, no overflow, direct tool links visible, blocked phrase scan 0 |
+| Real deploy/provider activation | 3 reversible HostGator deploys in Phase 18 so far for Hub/NetProbe/Hub; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 
