@@ -61,6 +61,13 @@ Medium; ad/support blocks must not sit near editors, errors or copy buttons.
 - Recent tools are session-only in memory; no snippet, result, recent list or payload is persisted or sent to analytics/API from the home workbench.
 - Local validation, Quality Gate, Deploy Dry Run, labeled HostGator deploy and public/live smokes passed; screenshots are in `artifacts/playwright-devutility-workbench/`.
 
+## Sprint 18.5 catalog route status
+
+- Hub catalog route P0 addressed locally: `/supersites/en/sites/devutility-lab` now behaves like a developer workbench directory instead of a product sheet.
+- It includes task-first H1, JSON Formatter primary CTA, search, category filters, pinned local shortcuts, all-tools grid and deep footer links to existing DevUtility tool pages.
+- Acceptance gates added: unit copy contract, Playwright desktop EN/mobile PT-BR, preview smoke marker and public smoke marker for the canonical catalog route.
+- Local validation passed with 17 Hub unit tests, 12 Hub Playwright tests, Hub build/preview, public-copy, AdSense-safe, package tests/typechecks, structure, secrets, deploy dry-run, CI change detection, HostGator artifact build and visual screenshots in `artifacts/devutility-catalog-qa/`.
+
 ## Dashboard backlog
 
 - Local-processing coverage.

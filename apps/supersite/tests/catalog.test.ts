@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest'
-import { getCalcHarborCatalogCopy, getFooterCopy, getHomeCopy, getNetProbeCatalogCopy } from '../app/data/copy'
+import {
+  getCalcHarborCatalogCopy,
+  getDevUtilityCatalogCopy,
+  getFooterCopy,
+  getHomeCopy,
+  getNetProbeCatalogCopy,
+} from '../app/data/copy'
 import { legalPageCatalog, legalPageSlugs } from '../app/data/legal'
 import { localeCodes } from '../app/data/locales'
 import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
@@ -170,6 +176,42 @@ describe('site catalog', () => {
       expect(copy.futureTopics).toHaveLength(4)
       expect(copy.footerGroups.map((group) => group.title)).toHaveLength(5)
       expect(copy.footerGroups.flatMap((group) => group.links).length).toBeGreaterThanOrEqual(17)
+      expect(JSON.stringify(copy)).not.toMatch(forbiddenPublicTerms)
+    }
+  })
+
+  it('keeps the DevUtility Lab catalog page benchmark-grade and linked to real developer tools', () => {
+    const expectedToolPaths = [
+      '/tools/structured-data-formatter',
+      '/tools/base64-converter',
+      '/tools/jwt-inspector',
+      '/tools/regex-tester',
+      '/tools/text-diff',
+      '/tools/cron-helper',
+      '/tools/uuid-generator',
+      '/tools/timestamp-converter',
+      '/tools/hash-generator',
+    ]
+    const forbiddenPublicTerms =
+      /temporary public url|launch order|quality check|review notes|public api live|ads planned|billing disabled|external analytics inactive|release checks|rollback|human_action_required|worker planned|deploy smoke|production checks|workflow checks ready|checkout inactive|commercial redirects planned|roadmap|mvp/i
+
+    for (const locale of localeCodes) {
+      const copy = getDevUtilityCatalogCopy(locale)
+
+      expect(copy.tools.map((tool) => tool.path)).toEqual(expectedToolPaths)
+      expect(copy.tools.filter((tool) => tool.featured).map((tool) => tool.path)).toEqual(expectedToolPaths)
+      expect(copy.categories.map((category) => category.key)).toEqual([
+        'data',
+        'encoding',
+        'inspection',
+        'text',
+        'time',
+        'identity',
+        'security',
+      ])
+      expect(copy.shortcutGroups).toHaveLength(3)
+      expect(copy.footerGroups.map((group) => group.title)).toHaveLength(5)
+      expect(copy.footerGroups.flatMap((group) => group.links).length).toBeGreaterThanOrEqual(10)
       expect(JSON.stringify(copy)).not.toMatch(forbiddenPublicTerms)
     }
   })

@@ -188,6 +188,7 @@ $requiredPages = @(
     @{ Url = Join-Url $publicBase "pt-br/privacy"; Marker = "Privacidade" },
     @{ Url = Join-Url $publicBase "en/sites/netprobe-atlas"; Marker = "Network diagnostics you can start now." },
     @{ Url = Join-Url $publicBase "en/sites/calcharbor"; Marker = "Find the right calculator before the spreadsheet." },
+    @{ Url = Join-Url $publicBase "en/sites/devutility-lab"; Marker = "Format, inspect and compare code snippets locally." },
     @{ Url = Join-Url $publicBase "sitemap.xml"; Marker = "<urlset" }
 )
 

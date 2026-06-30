@@ -1415,6 +1415,19 @@ Data-base: 2026-06-29
 | Sprint 18.4 post-deploy calculator link check | Passed: 16 EN/PT-BR URLs across 8 calculators returned 200 |
 | Sprint 18.4 post-deploy AdSense-safe validation | Passed: 13 public pages |
 | Sprint 18.4 post-deploy quick crawler | `2026-06-30T06-33-49-205Z`; 95 routes; 190 viewport checks; 0 gaps; 0 broken internal links |
+| Sprint 18.5 DevUtility catalog route | `/supersites/en/sites/devutility-lab` converted from generic site detail to task-first developer workbench directory |
+| Sprint 18.5 direct tool links | 9 real tool paths: JSON Formatter, Base64 Converter, JWT Inspector, Regex Tester, Text Diff, Cron Helper, UUID Generator, Timestamp Converter and Hash Generator |
+| Sprint 18.5 shortcut/footer groups | 3 pinned local shortcut groups and 5 contextual footer groups with deep links to existing DevUtility tools |
+| Sprint 18.5 Hub unit suite | Passed: 17 tests |
+| Sprint 18.5 Hub build | Passed |
+| Sprint 18.5 Hub preview smoke | Passed: asset `/_nuxt/BVxcZZ_m.js` |
+| Sprint 18.5 Hub Playwright suite | Passed: 12 tests, including DevUtility desktop EN and mobile PT-BR screenshots |
+| Sprint 18.5 visual artifacts | `artifacts/devutility-catalog-qa/devutility-catalog-desktop.png` and `artifacts/devutility-catalog-qa/devutility-catalog-mobile-pt-br.png` reviewed; 0 overflow in metrics |
+| Sprint 18.5 public copy validation | Passed: 951 HTML files |
+| Sprint 18.5 AdSense-safe validation | Passed locally: 13 public pages |
+| Sprint 18.5 package validation | Passed: 90 package tests and package typechecks |
+| Sprint 18.5 structure/secrets/dry-run/diff | Passed |
+| Sprint 18.5 Hub HostGator artifact | Local passed: 211 files, 4765726 bytes, base path `/supersites` |
 | Real deploy/provider activation | 9 reversible HostGator deploys in Phase 18 so far for Hub/NetProbe/Hub/Hub/Hub/Hub/Hub/Hub/CalcHarbor; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics

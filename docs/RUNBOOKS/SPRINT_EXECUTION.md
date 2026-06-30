@@ -42,6 +42,7 @@ Only after validation:
 - Keep commits and pushes objective. Group related code, tests and documentation for the sprint instead of fragmenting the same fix across unnecessary commits.
 - Do not start the next sprint while the current sprint has failing CI, failing deploy, failing public smoke or unresolved benchmark-grade visual acceptance.
 - When smoke markers fail because public copy intentionally changed, update the smoke marker in the same correction and redeploy before continuing.
+- When a Hub/catalog sprint exposes deep links into a static app, validate those public app routes before closing the sprint. If production still points to a stale app release, deploy that static app in the same sprint cycle, rerun the aggregate public smoke and rerun the benchmark crawler before continuing.
 
 ## Stop conditions
 

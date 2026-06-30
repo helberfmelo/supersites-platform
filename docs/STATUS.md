@@ -1650,6 +1650,15 @@ Ainda em 2026-06-29, o `Public Watchdog` agendado run `28372846327` falhou no sm
   - Validacao publica final: `pnpm deploy:smoke-supersite-public`, `scripts/smoke-static-app-public.ps1 -AppId calcharbor` e `pnpm validate:adsense-safe-public` passaram; os 16 links EN/PT-BR das 8 calculadoras responderam 200; `pnpm benchmark:crawl:quick` passou no report `2026-06-30T06-33-49-205Z` com 95 rotas, 190 checks desktop/mobile, 0 gaps e 0 links internos quebrados.
   - Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
 
+- Sprint 18.5 - Pagina de catalogo DevUtility Lab:
+  - Escopo tecnico: a rota canonica `/supersites/en/sites/devutility-lab` deixou de usar a ficha generica de site e passou a renderizar uma landing publica de developer tools. A primeira dobra agora traz H1 pratico, CTA para JSON Formatter, busca, filtros por categoria e sinal curto de privacidade; abaixo, ha atalhos locais, grid das 9 ferramentas publicas reais e rodape contextual com links profundos.
+  - Conteudo/localizacao: a copy especifica `devUtilityCatalogCopy` cobre EN/PT-BR/ES/FR/DE, organiza ferramentas por data, encoding, inspection, text, time, identity e security, e evita termos internos como `Temporary public URL`, `Launch order`, `Quality check`, roadmap, MVP, status de rollout, billing e ads.
+  - Gate operacional reforcado: `docs/RUNBOOKS/SPRINT_EXECUTION.md`, `docs/PHASE18_BENCHMARK_GRADE_ACCEPTANCE.md` e o roadmap especifico da Fase 18 agora registram que catalogos do Hub com links profundos para apps estaticos precisam validar/deployar o app no mesmo ciclo quando a producao estiver stale ou quebrada.
+  - Validacao local pre-commit passou: `pnpm --filter @supersites/supersite test` com 17 testes, `pnpm --filter @supersites/supersite build`, `pnpm validate:supersite-preview` asset `/_nuxt/BVxcZZ_m.js`, `pnpm test:e2e:supersite` com 12 testes, `pnpm validate:public-copy` em 951 HTMLs, `pnpm validate:adsense-safe-public` em 13 paginas, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm test:packages`, `pnpm typecheck:packages`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `pnpm deploy:build-supersite-hostgator` com 211 arquivos/4765726 bytes e `git diff --check`.
+  - Evidencia visual local: screenshots revisados em `artifacts/devutility-catalog-qa/devutility-catalog-desktop.png` e `artifacts/devutility-catalog-qa/devutility-catalog-mobile-pt-br.png`; metricas confirmaram 9 tool cards, 10 footer links e 0 overflow em desktop/mobile.
+  - Status: implementada localmente, aguardando commit, CI, deploy reversivel HostGator, smoke publico, validacao de links do app DevUtility e crawler quick antes de iniciar a Sprint 18.6.
+  - Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
+
 ## Bloqueios humanos registrados
 
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.

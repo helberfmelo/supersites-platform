@@ -94,3 +94,10 @@ Data-base: 2026-06-27
 - For upcoming site catalog sprints, apply this route-level rule first: validate the canonical Hub catalog route, confirm real deep links, inspect desktop/mobile screenshots and keep smoke markers aligned with user-facing copy.
 - Local evidence before CI/deploy: `artifacts/calcharbor-catalog-qa/calcharbor-catalog-desktop.png` and `artifacts/calcharbor-catalog-qa/calcharbor-catalog-mobile-pt-br.png`; Playwright checked desktop EN/mobile PT-BR, search/filter behavior, overflow and blocked terms.
 - Production deploys `28424159062` for the Hub and `28424625903` for CalcHarbor passed. The extra CalcHarbor deploy was required because the Hub exposes deep links to all 8 calculators; final smoke confirmed no broken CalcHarbor calculator URLs and crawler quick `2026-06-30T06-33-49-205Z` finished with 0 gaps.
+
+## Phase 18 Sprint 18.5 DevUtility Lab catalog route notes
+
+- DevUtility Lab now follows the corrected catalog-route pattern: `/supersites/en/sites/devutility-lab` is a practical developer workbench directory with search, category filters, local shortcuts and direct links to existing public tools.
+- The route avoids generic product-sheet, roadmap, launch/status, billing and ads language; privacy is present as a short cue beside the finder, not as the dominant first-fold message.
+- Gate reinforcement: Hub catalog routes that expose deep links into a static app must validate those production app routes and deploy the app in the same sprint if the public release is stale.
+- Local evidence before CI/deploy: `artifacts/devutility-catalog-qa/devutility-catalog-desktop.png` and `artifacts/devutility-catalog-qa/devutility-catalog-mobile-pt-br.png`; Playwright checked desktop EN/mobile PT-BR, search behavior, overflow and blocked terms.

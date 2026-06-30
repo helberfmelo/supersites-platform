@@ -392,4 +392,88 @@ test.describe('SuperSites public hub', () => {
 
     expect(errors).toEqual([])
   })
+
+  test('renders the DevUtility Lab catalog page as a benchmark-grade developer workbench', async ({
+    page,
+  }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.goto('/en/sites/devutility-lab')
+    await dismissConsentBanner(page)
+
+    await expect(page.getByRole('heading', { name: 'Format, inspect and compare code snippets locally.' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Developer workbench finder' })).toBeVisible()
+    await expect(page.getByRole('searchbox', { name: 'Search developer tools' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Pinned local shortcuts' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'All published developer tools' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Formatters', exact: true })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Encoding and tokens' })).toBeVisible()
+
+    for (const path of [
+      'structured-data-formatter',
+      'base64-converter',
+      'jwt-inspector',
+      'regex-tester',
+      'text-diff',
+      'cron-helper',
+      'uuid-generator',
+      'timestamp-converter',
+      'hash-generator',
+    ]) {
+      await expect(
+        page.locator(`.devutility-tool-grid a[href="https://opentshost.com/supersites/devutility-lab/en/tools/${path}"]`),
+      ).toBeVisible()
+    }
+
+    await page.getByRole('searchbox', { name: 'Search developer tools' }).fill('uuid')
+    await expect(page.locator('#devutility-lab-all .devutility-tool-card').filter({ hasText: 'UUID Generator' })).toBeVisible()
+    await expect(page.locator('#devutility-lab-all .devutility-tool-card').filter({ hasText: 'JSON Formatter' })).toHaveCount(0)
+
+    await expect(page.locator('main')).not.toContainText('Temporary public URL')
+    await expect(page.locator('main')).not.toContainText('Launch order')
+    await expect(page.locator('main')).not.toContainText('Quality check')
+    await expect(page.locator('main')).not.toContainText('Workflow checks ready')
+    await expect(page.locator('main')).not.toContainText('checkout inactive')
+    await expect(page.locator('main')).not.toContainText('billing disabled')
+    await expect(page.locator('main')).not.toContainText('ads planned')
+    await expect(page.locator('main')).not.toContainText('roadmap')
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(2)
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('devutility-catalog-desktop', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('renders the localized DevUtility Lab catalog page on mobile', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/pt-br/sites/devutility-lab')
+    await dismissConsentBanner(page)
+
+    await expect(page.getByRole('heading', { name: 'Formate, inspecione e compare snippets localmente.' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Buscador de workbench dev' })).toBeVisible()
+    await expect(page.getByRole('searchbox', { name: 'Buscar ferramentas dev' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Atalhos locais fixos' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Todas as ferramentas dev publicadas' })).toBeVisible()
+    await expect(
+      page.locator('.devutility-tool-grid a[href="https://opentshost.com/supersites/devutility-lab/pt-br/tools/structured-data-formatter"]'),
+    ).toBeVisible()
+    await expect(
+      page.locator('.devutility-tool-grid a[href="https://opentshost.com/supersites/devutility-lab/pt-br/tools/hash-generator"]'),
+    ).toBeVisible()
+    await expect(page.locator('main')).not.toContainText('Format, inspect and compare code snippets locally.')
+    await expect(page.locator('main')).not.toContainText('Workflow checks ready')
+    await expect(page.locator('main')).not.toContainText('Temporary public URL')
+    await expect(page.locator('main')).not.toContainText('Launch order')
+    await expect(page.locator('main')).not.toContainText('roadmap')
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('devutility-catalog-pt-mobile', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
 })

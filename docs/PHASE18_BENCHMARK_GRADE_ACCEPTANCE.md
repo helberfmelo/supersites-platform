@@ -57,6 +57,7 @@ Antes de commit em uma sprint publica:
 - Paginas de catalogo do Hub, como `/supersites/en/sites/<site>`, devem funcionar como landing publica de descoberta para a familia de ferramentas, nao como ficha interna de produto.
 - Links de CTA e rodape precisam apontar para subpaginas/ferramentas publicas reais do site quando existirem; evitar linkar apenas para a home do app se o benchmark espera navegacao profunda.
 - Cada sprint deve fechar o ciclo objetivo: implementar, validar, commit/push, monitorar deploy HostGator, rodar smoke publico e so entao iniciar a proxima sprint.
+- Se a rota do Hub/catalogo divulgar links profundos para um app estatico, o app tambem deve ser validado na producao real. Se qualquer link retornar release antiga, 404 ou 500, publicar o app estatico no mesmo ciclo e repetir smoke publico agregado e crawler benchmark antes de fechar a sprint.
 
 ## Regra especifica do Hub
 

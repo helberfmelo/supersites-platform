@@ -18,7 +18,9 @@ Refine the Hub and control-plane surfaces so operators can scan portfolio qualit
 - Tune footer typography so column menu links are light and compact at rest, while hover gains weight/scale without underline. Done in production in Phase 18 Sprint 18.2d.
 - Convert benchmark-grade catalog detail routes into public landing pages when required by the sprint, starting with NetProbe Atlas network/DNS/IP in Phase 18 Sprint 18.3. Done in production with deploy `28422499578`, public smoke, crawler quick and live desktop/mobile route checks.
 - Convert CalcHarbor's catalog detail route into a benchmark-grade calculator landing with search, categories, highlighted real calculators and non-linked future topics. Done in production in Phase 18 Sprint 18.4 with Hub deploy `28424159062`, CalcHarbor deploy `28424625903`, public smoke and crawler quick 0 gaps.
+- Convert DevUtility Lab's catalog detail route into a benchmark-grade developer workbench directory with search, category filters, pinned shortcuts and links to existing public tools. Implemented locally in Phase 18 Sprint 18.5; CI/deploy pending.
 - Operational rule for the remaining Phase 18 site catalog routes: implement the route, validate screenshots/Playwright/smoke, commit/push, monitor HostGator deploy, run public smoke, then start the next sprint.
+- Operational route rule: if the Hub catalog route exposes deep links into a static app, validate or deploy that static app in the same sprint before moving on.
 - Reduce consent-banner intrusion on the first fold while preserving local/fail-closed consent behavior. Done in production in Sprint 9.15.
 - Keep the Blade admin dense, utilitarian and consistent with the current control-plane style.
 

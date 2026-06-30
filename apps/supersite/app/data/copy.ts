@@ -132,6 +132,54 @@ export interface CalcHarborCatalogCopy {
   footerGroups: CalcHarborCatalogFooterGroup[]
 }
 
+export type DevUtilityCatalogCategoryKey = 'data' | 'encoding' | 'inspection' | 'text' | 'time' | 'identity' | 'security'
+
+export interface DevUtilityCatalogToolLink {
+  label: string
+  body: string
+  path: string
+  glyph: string
+  category: DevUtilityCatalogCategoryKey
+  featured: boolean
+}
+
+export interface DevUtilityCatalogShortcutGroup {
+  title: string
+  body: string
+  paths: string[]
+}
+
+export interface DevUtilityCatalogFooterGroup {
+  title: string
+  links: Array<{ label: string; path: string }>
+}
+
+export interface DevUtilityCatalogCopy {
+  eyebrow: string
+  title: string
+  lead: string
+  primaryCta: string
+  secondaryCta: string
+  finderTitle: string
+  finderBody: string
+  searchLabel: string
+  searchPlaceholder: string
+  allCategories: string
+  noResultsTitle: string
+  noResultsBody: string
+  workbenchTitle: string
+  workbenchBody: string
+  allTitle: string
+  allBody: string
+  privacyTitle: string
+  privacyBody: string
+  toolCta: string
+  categories: Array<{ key: DevUtilityCatalogCategoryKey; label: string }>
+  tools: DevUtilityCatalogToolLink[]
+  shortcutGroups: DevUtilityCatalogShortcutGroup[]
+  footerGroups: DevUtilityCatalogFooterGroup[]
+}
+
 export interface FooterCopy {
   brandBody: string
   productNavLabel: string
@@ -1404,6 +1452,274 @@ export const detailCopy: Record<LocaleCode, DetailCopy> = {
   },
 }
 
+export const devUtilityCatalogCopy: Record<LocaleCode, DevUtilityCatalogCopy> = {
+  en: {
+    eyebrow: 'Local developer tools',
+    title: 'Format, inspect and compare code snippets locally.',
+    lead: 'Search focused browser tools for JSON, Base64, JWT, regex, diff, cron, UUID, timestamp and hashes. Open the utility you need without an account or upload step.',
+    primaryCta: 'Open JSON Formatter',
+    secondaryCta: 'Browse all tools',
+    finderTitle: 'Developer workbench finder',
+    finderBody: 'Search by task, choose a category or jump through the dense local shortcuts. Tools open on real public pages.',
+    searchLabel: 'Search developer tools',
+    searchPlaceholder: 'Try JSON, Base64, JWT, regex, cron...',
+    allCategories: 'All developer tools',
+    noResultsTitle: 'No matching tool',
+    noResultsBody: 'Try another keyword or category. Only public tools that already exist are linked here.',
+    workbenchTitle: 'Pinned local shortcuts',
+    workbenchBody: 'Favorites and recents are presented as quick local entry points; snippets are not stored by this catalog route.',
+    allTitle: 'All published developer tools',
+    allBody: 'A dense tool directory helps you jump between formatting, encoding, inspection, text, time, identifiers and hashes.',
+    privacyTitle: 'Privacy cue',
+    privacyBody: 'Use short snippets and redact secrets. The linked free tools run in the browser and the catalog does not collect pasted content.',
+    toolCta: 'Open tool',
+    categories: [
+      { key: 'data', label: 'Data' },
+      { key: 'encoding', label: 'Encoding' },
+      { key: 'inspection', label: 'Inspection' },
+      { key: 'text', label: 'Text' },
+      { key: 'time', label: 'Time' },
+      { key: 'identity', label: 'IDs' },
+      { key: 'security', label: 'Security' },
+    ],
+    tools: [
+      { label: 'JSON Formatter', body: 'Format and inspect JSON, XML, YAML and CSV snippets.', path: '/tools/structured-data-formatter', glyph: 'JSON', category: 'data', featured: true },
+      { label: 'Base64 Converter', body: 'Encode or decode UTF-8 text snippets in the browser.', path: '/tools/base64-converter', glyph: 'B64', category: 'encoding', featured: true },
+      { label: 'JWT Inspector', body: 'Decode JWT header and payload without claiming signature verification.', path: '/tools/jwt-inspector', glyph: 'JWT', category: 'inspection', featured: true },
+      { label: 'Regex Tester', body: 'Run JavaScript regex patterns against sample text locally.', path: '/tools/regex-tester', glyph: 'RX', category: 'text', featured: true },
+      { label: 'Text Diff', body: 'Compare two text blocks and see a compact line diff.', path: '/tools/text-diff', glyph: 'DIFF', category: 'text', featured: true },
+      { label: 'Cron Helper', body: 'Explain five-field cron expressions and preview UTC runs.', path: '/tools/cron-helper', glyph: 'CRON', category: 'time', featured: true },
+      { label: 'UUID Generator', body: 'Generate browser-side UUID v4 values for fixtures and tests.', path: '/tools/uuid-generator', glyph: 'UUID', category: 'identity', featured: true },
+      { label: 'Timestamp Converter', body: 'Convert Unix seconds, milliseconds and date strings.', path: '/tools/timestamp-converter', glyph: 'TIME', category: 'time', featured: true },
+      { label: 'Hash Generator', body: 'Create SHA digests for small text snippets with Web Crypto.', path: '/tools/hash-generator', glyph: 'HASH', category: 'security', featured: true },
+    ],
+    shortcutGroups: [
+      { title: 'Favorite formatters', body: 'High-frequency transforms for pasted data and tokens.', paths: ['/tools/structured-data-formatter', '/tools/base64-converter', '/tools/jwt-inspector', '/tools/regex-tester'] },
+      { title: 'Recent session set', body: 'Quick jumps for comparison, schedules and time conversion.', paths: ['/tools/text-diff', '/tools/cron-helper', '/tools/timestamp-converter'] },
+      { title: 'Identifiers and hashes', body: 'Local helpers for IDs, digests and test fixtures.', paths: ['/tools/uuid-generator', '/tools/hash-generator'] },
+    ],
+    footerGroups: [
+      { title: 'Formatters', links: [{ label: 'JSON Formatter', path: '/tools/structured-data-formatter' }, { label: 'Text Diff', path: '/tools/text-diff' }] },
+      { title: 'Encoding and tokens', links: [{ label: 'Base64 Converter', path: '/tools/base64-converter' }, { label: 'JWT Inspector', path: '/tools/jwt-inspector' }] },
+      { title: 'Text testing', links: [{ label: 'Regex Tester', path: '/tools/regex-tester' }, { label: 'Text Diff', path: '/tools/text-diff' }] },
+      { title: 'Time utilities', links: [{ label: 'Cron Helper', path: '/tools/cron-helper' }, { label: 'Timestamp Converter', path: '/tools/timestamp-converter' }] },
+      { title: 'IDs and hashes', links: [{ label: 'UUID Generator', path: '/tools/uuid-generator' }, { label: 'Hash Generator', path: '/tools/hash-generator' }] },
+    ],
+  },
+  'pt-br': {
+    eyebrow: 'Ferramentas dev locais',
+    title: 'Formate, inspecione e compare snippets localmente.',
+    lead: 'Busque ferramentas de navegador para JSON, Base64, JWT, regex, diff, cron, UUID, timestamp e hashes. Abra o utilitário que precisa sem cadastro nem upload.',
+    primaryCta: 'Abrir Formatador JSON',
+    secondaryCta: 'Ver todas as ferramentas',
+    finderTitle: 'Buscador de workbench dev',
+    finderBody: 'Busque por tarefa, escolha uma categoria ou use atalhos locais densos. Os links abrem páginas públicas reais.',
+    searchLabel: 'Buscar ferramentas dev',
+    searchPlaceholder: 'Tente JSON, Base64, JWT, regex, cron...',
+    allCategories: 'Todas as ferramentas dev',
+    noResultsTitle: 'Nenhuma ferramenta encontrada',
+    noResultsBody: 'Tente outra palavra ou categoria. Só entram links para ferramentas públicas existentes.',
+    workbenchTitle: 'Atalhos locais fixos',
+    workbenchBody: 'Favoritos e recentes aparecem como entradas rápidas locais; esta rota de catálogo não armazena snippets.',
+    allTitle: 'Todas as ferramentas dev publicadas',
+    allBody: 'Um diretório denso ajuda a alternar entre formatação, codificação, inspeção, texto, tempo, identificadores e hashes.',
+    privacyTitle: 'Sinal de privacidade',
+    privacyBody: 'Use snippets curtos e remova segredos. As ferramentas gratuitas rodam no navegador e o catálogo não coleta conteúdo colado.',
+    toolCta: 'Abrir ferramenta',
+    categories: [
+      { key: 'data', label: 'Dados' },
+      { key: 'encoding', label: 'Codificação' },
+      { key: 'inspection', label: 'Inspeção' },
+      { key: 'text', label: 'Texto' },
+      { key: 'time', label: 'Tempo' },
+      { key: 'identity', label: 'IDs' },
+      { key: 'security', label: 'Segurança' },
+    ],
+    tools: [
+      { label: 'Formatador JSON', body: 'Formate e inspecione JSON, XML, YAML e CSV.', path: '/tools/structured-data-formatter', glyph: 'JSON', category: 'data', featured: true },
+      { label: 'Conversor Base64', body: 'Codifique ou decodifique texto UTF-8 no navegador.', path: '/tools/base64-converter', glyph: 'B64', category: 'encoding', featured: true },
+      { label: 'Inspetor JWT', body: 'Decodifique header e payload sem prometer verificação de assinatura.', path: '/tools/jwt-inspector', glyph: 'JWT', category: 'inspection', featured: true },
+      { label: 'Teste de regex', body: 'Rode padrões JavaScript contra texto de exemplo localmente.', path: '/tools/regex-tester', glyph: 'RX', category: 'text', featured: true },
+      { label: 'Comparador de texto', body: 'Compare dois blocos e veja um diff compacto por linha.', path: '/tools/text-diff', glyph: 'DIFF', category: 'text', featured: true },
+      { label: 'Helper de cron', body: 'Explique expressões cron de cinco campos e próximas execuções UTC.', path: '/tools/cron-helper', glyph: 'CRON', category: 'time', featured: true },
+      { label: 'Gerador de UUID', body: 'Gere UUID v4 no navegador para fixtures e testes.', path: '/tools/uuid-generator', glyph: 'UUID', category: 'identity', featured: true },
+      { label: 'Conversor de timestamp', body: 'Converta Unix seconds, milliseconds e datas.', path: '/tools/timestamp-converter', glyph: 'TIME', category: 'time', featured: true },
+      { label: 'Gerador de hash', body: 'Crie digests SHA para textos curtos com Web Crypto.', path: '/tools/hash-generator', glyph: 'HASH', category: 'security', featured: true },
+    ],
+    shortcutGroups: [
+      { title: 'Formatadores favoritos', body: 'Transformações frequentes para dados colados e tokens.', paths: ['/tools/structured-data-formatter', '/tools/base64-converter', '/tools/jwt-inspector', '/tools/regex-tester'] },
+      { title: 'Recentes da sessão', body: 'Atalhos para comparação, agendas e conversão de tempo.', paths: ['/tools/text-diff', '/tools/cron-helper', '/tools/timestamp-converter'] },
+      { title: 'Identificadores e hashes', body: 'Ajudantes locais para IDs, digests e fixtures.', paths: ['/tools/uuid-generator', '/tools/hash-generator'] },
+    ],
+    footerGroups: [
+      { title: 'Formatadores', links: [{ label: 'Formatador JSON', path: '/tools/structured-data-formatter' }, { label: 'Comparador de texto', path: '/tools/text-diff' }] },
+      { title: 'Codificação e tokens', links: [{ label: 'Conversor Base64', path: '/tools/base64-converter' }, { label: 'Inspetor JWT', path: '/tools/jwt-inspector' }] },
+      { title: 'Teste de texto', links: [{ label: 'Teste de regex', path: '/tools/regex-tester' }, { label: 'Comparador de texto', path: '/tools/text-diff' }] },
+      { title: 'Utilitários de tempo', links: [{ label: 'Helper de cron', path: '/tools/cron-helper' }, { label: 'Conversor de timestamp', path: '/tools/timestamp-converter' }] },
+      { title: 'IDs e hashes', links: [{ label: 'Gerador de UUID', path: '/tools/uuid-generator' }, { label: 'Gerador de hash', path: '/tools/hash-generator' }] },
+    ],
+  },
+  es: {
+    eyebrow: 'Herramientas dev locales',
+    title: 'Formatea, inspecciona y compara snippets localmente.',
+    lead: 'Busca herramientas de navegador para JSON, Base64, JWT, regex, diff, cron, UUID, timestamp y hashes. Abre la utilidad sin registro ni upload.',
+    primaryCta: 'Abrir Formateador JSON',
+    secondaryCta: 'Ver todas las herramientas',
+    finderTitle: 'Buscador de workbench dev',
+    finderBody: 'Busca por tarea, elige categoría o usa atajos locales densos. Los enlaces abren páginas públicas reales.',
+    searchLabel: 'Buscar herramientas dev',
+    searchPlaceholder: 'Prueba JSON, Base64, JWT, regex, cron...',
+    allCategories: 'Todas las herramientas dev',
+    noResultsTitle: 'No hay herramienta coincidente',
+    noResultsBody: 'Prueba otra palabra o categoría. Solo se enlazan herramientas públicas existentes.',
+    workbenchTitle: 'Atajos locales fijos',
+    workbenchBody: 'Favoritos y recientes aparecen como entradas rápidas locales; esta ruta de catálogo no guarda snippets.',
+    allTitle: 'Todas las herramientas dev publicadas',
+    allBody: 'Un directorio denso ayuda a saltar entre formato, codificación, inspección, texto, tiempo, IDs y hashes.',
+    privacyTitle: 'Señal de privacidad',
+    privacyBody: 'Usa snippets cortos y elimina secretos. Las herramientas gratuitas corren en el navegador y el catálogo no recopila contenido pegado.',
+    toolCta: 'Abrir herramienta',
+    categories: [
+      { key: 'data', label: 'Datos' },
+      { key: 'encoding', label: 'Codificación' },
+      { key: 'inspection', label: 'Inspección' },
+      { key: 'text', label: 'Texto' },
+      { key: 'time', label: 'Tiempo' },
+      { key: 'identity', label: 'IDs' },
+      { key: 'security', label: 'Seguridad' },
+    ],
+    tools: [
+      { label: 'Formateador JSON', body: 'Formatea e inspecciona JSON, XML, YAML y CSV.', path: '/tools/structured-data-formatter', glyph: 'JSON', category: 'data', featured: true },
+      { label: 'Conversor Base64', body: 'Codifica o decodifica texto UTF-8 en el navegador.', path: '/tools/base64-converter', glyph: 'B64', category: 'encoding', featured: true },
+      { label: 'Inspector JWT', body: 'Decodifica header y payload sin prometer verificación de firma.', path: '/tools/jwt-inspector', glyph: 'JWT', category: 'inspection', featured: true },
+      { label: 'Probador regex', body: 'Ejecuta patrones JavaScript contra texto de ejemplo localmente.', path: '/tools/regex-tester', glyph: 'RX', category: 'text', featured: true },
+      { label: 'Comparador de texto', body: 'Compara dos bloques y ve un diff compacto por línea.', path: '/tools/text-diff', glyph: 'DIFF', category: 'text', featured: true },
+      { label: 'Ayuda cron', body: 'Explica cron de cinco campos y próximas ejecuciones UTC.', path: '/tools/cron-helper', glyph: 'CRON', category: 'time', featured: true },
+      { label: 'Generador UUID', body: 'Genera UUID v4 en el navegador para fixtures y tests.', path: '/tools/uuid-generator', glyph: 'UUID', category: 'identity', featured: true },
+      { label: 'Conversor timestamp', body: 'Convierte Unix seconds, milliseconds y fechas.', path: '/tools/timestamp-converter', glyph: 'TIME', category: 'time', featured: true },
+      { label: 'Generador hash', body: 'Crea digests SHA para textos cortos con Web Crypto.', path: '/tools/hash-generator', glyph: 'HASH', category: 'security', featured: true },
+    ],
+    shortcutGroups: [
+      { title: 'Formateadores favoritos', body: 'Transformaciones frecuentes para datos pegados y tokens.', paths: ['/tools/structured-data-formatter', '/tools/base64-converter', '/tools/jwt-inspector', '/tools/regex-tester'] },
+      { title: 'Recientes de sesión', body: 'Atajos para comparación, agendas y conversión de tiempo.', paths: ['/tools/text-diff', '/tools/cron-helper', '/tools/timestamp-converter'] },
+      { title: 'IDs y hashes', body: 'Ayudas locales para identificadores, digests y fixtures.', paths: ['/tools/uuid-generator', '/tools/hash-generator'] },
+    ],
+    footerGroups: [
+      { title: 'Formateadores', links: [{ label: 'Formateador JSON', path: '/tools/structured-data-formatter' }, { label: 'Comparador de texto', path: '/tools/text-diff' }] },
+      { title: 'Codificación y tokens', links: [{ label: 'Conversor Base64', path: '/tools/base64-converter' }, { label: 'Inspector JWT', path: '/tools/jwt-inspector' }] },
+      { title: 'Pruebas de texto', links: [{ label: 'Probador regex', path: '/tools/regex-tester' }, { label: 'Comparador de texto', path: '/tools/text-diff' }] },
+      { title: 'Utilidades de tiempo', links: [{ label: 'Ayuda cron', path: '/tools/cron-helper' }, { label: 'Conversor timestamp', path: '/tools/timestamp-converter' }] },
+      { title: 'IDs y hashes', links: [{ label: 'Generador UUID', path: '/tools/uuid-generator' }, { label: 'Generador hash', path: '/tools/hash-generator' }] },
+    ],
+  },
+  fr: {
+    eyebrow: 'Outils dev locaux',
+    title: 'Formatez, inspectez et comparez des extraits localement.',
+    lead: 'Cherchez des outils navigateur pour JSON, Base64, JWT, regex, diff, cron, UUID, timestamp et hashes. Ouvrez l’utilitaire sans compte ni upload.',
+    primaryCta: 'Ouvrir le formateur JSON',
+    secondaryCta: 'Voir tous les outils',
+    finderTitle: 'Recherche de workbench dev',
+    finderBody: 'Cherchez par tâche, catégorie ou raccourcis locaux denses. Les liens ouvrent des pages publiques réelles.',
+    searchLabel: 'Rechercher des outils dev',
+    searchPlaceholder: 'JSON, Base64, JWT, regex, cron...',
+    allCategories: 'Tous les outils dev',
+    noResultsTitle: 'Aucun outil trouvé',
+    noResultsBody: 'Essayez un autre mot ou une autre catégorie. Seuls les outils publics existants sont liés.',
+    workbenchTitle: 'Raccourcis locaux épinglés',
+    workbenchBody: 'Favoris et récents servent d’entrées rapides locales; cette route catalogue ne stocke pas les extraits.',
+    allTitle: 'Tous les outils dev publiés',
+    allBody: 'Un répertoire dense aide à passer entre formatage, encodage, inspection, texte, temps, IDs et hashes.',
+    privacyTitle: 'Signal de confidentialité',
+    privacyBody: 'Utilisez de courts extraits et masquez les secrets. Les outils gratuits tournent dans le navigateur et le catalogue ne collecte pas le contenu collé.',
+    toolCta: 'Ouvrir l’outil',
+    categories: [
+      { key: 'data', label: 'Données' },
+      { key: 'encoding', label: 'Encodage' },
+      { key: 'inspection', label: 'Inspection' },
+      { key: 'text', label: 'Texte' },
+      { key: 'time', label: 'Temps' },
+      { key: 'identity', label: 'IDs' },
+      { key: 'security', label: 'Sécurité' },
+    ],
+    tools: [
+      { label: 'Formateur JSON', body: 'Formatez et inspectez JSON, XML, YAML et CSV.', path: '/tools/structured-data-formatter', glyph: 'JSON', category: 'data', featured: true },
+      { label: 'Convertisseur Base64', body: 'Encodez ou décodez du texte UTF-8 dans le navigateur.', path: '/tools/base64-converter', glyph: 'B64', category: 'encoding', featured: true },
+      { label: 'Inspecteur JWT', body: 'Décodez header et payload sans promettre la vérification de signature.', path: '/tools/jwt-inspector', glyph: 'JWT', category: 'inspection', featured: true },
+      { label: 'Testeur regex', body: 'Exécutez des motifs JavaScript sur un texte local.', path: '/tools/regex-tester', glyph: 'RX', category: 'text', featured: true },
+      { label: 'Comparateur texte', body: 'Comparez deux blocs et voyez un diff compact par ligne.', path: '/tools/text-diff', glyph: 'DIFF', category: 'text', featured: true },
+      { label: 'Assistant cron', body: 'Expliquez un cron à cinq champs et les prochaines exécutions UTC.', path: '/tools/cron-helper', glyph: 'CRON', category: 'time', featured: true },
+      { label: 'Générateur UUID', body: 'Générez des UUID v4 côté navigateur pour fixtures et tests.', path: '/tools/uuid-generator', glyph: 'UUID', category: 'identity', featured: true },
+      { label: 'Convertisseur timestamp', body: 'Convertissez Unix seconds, milliseconds et dates.', path: '/tools/timestamp-converter', glyph: 'TIME', category: 'time', featured: true },
+      { label: 'Générateur hash', body: 'Créez des digests SHA pour courts textes avec Web Crypto.', path: '/tools/hash-generator', glyph: 'HASH', category: 'security', featured: true },
+    ],
+    shortcutGroups: [
+      { title: 'Formateurs favoris', body: 'Transformations fréquentes pour données collées et tokens.', paths: ['/tools/structured-data-formatter', '/tools/base64-converter', '/tools/jwt-inspector', '/tools/regex-tester'] },
+      { title: 'Récents de session', body: 'Raccourcis pour comparaison, calendriers et conversion de temps.', paths: ['/tools/text-diff', '/tools/cron-helper', '/tools/timestamp-converter'] },
+      { title: 'IDs et hashes', body: 'Aides locales pour identifiants, digests et fixtures.', paths: ['/tools/uuid-generator', '/tools/hash-generator'] },
+    ],
+    footerGroups: [
+      { title: 'Formateurs', links: [{ label: 'Formateur JSON', path: '/tools/structured-data-formatter' }, { label: 'Comparateur texte', path: '/tools/text-diff' }] },
+      { title: 'Encodage et tokens', links: [{ label: 'Convertisseur Base64', path: '/tools/base64-converter' }, { label: 'Inspecteur JWT', path: '/tools/jwt-inspector' }] },
+      { title: 'Tests texte', links: [{ label: 'Testeur regex', path: '/tools/regex-tester' }, { label: 'Comparateur texte', path: '/tools/text-diff' }] },
+      { title: 'Temps', links: [{ label: 'Assistant cron', path: '/tools/cron-helper' }, { label: 'Convertisseur timestamp', path: '/tools/timestamp-converter' }] },
+      { title: 'IDs et hashes', links: [{ label: 'Générateur UUID', path: '/tools/uuid-generator' }, { label: 'Générateur hash', path: '/tools/hash-generator' }] },
+    ],
+  },
+  de: {
+    eyebrow: 'Lokale Entwickler-Tools',
+    title: 'Formatieren, pruefen und vergleichen Sie Snippets lokal.',
+    lead: 'Suchen Sie Browser-Tools fuer JSON, Base64, JWT, Regex, Diff, Cron, UUID, Timestamp und Hashes. Oeffnen Sie das passende Tool ohne Konto oder Upload.',
+    primaryCta: 'JSON-Formatter öffnen',
+    secondaryCta: 'Alle Tools ansehen',
+    finderTitle: 'Developer-Workbench-Finder',
+    finderBody: 'Suchen Sie nach Aufgabe, Kategorie oder dichten lokalen Kurzwegen. Links fuehren zu echten oeffentlichen Seiten.',
+    searchLabel: 'Developer-Tools suchen',
+    searchPlaceholder: 'JSON, Base64, JWT, Regex, Cron...',
+    allCategories: 'Alle Developer-Tools',
+    noResultsTitle: 'Kein passendes Tool',
+    noResultsBody: 'Versuchen Sie ein anderes Wort oder eine Kategorie. Verlinkt sind nur vorhandene oeffentliche Tools.',
+    workbenchTitle: 'Lokale Kurzwege',
+    workbenchBody: 'Favoriten und letzte Tools dienen als schnelle lokale Einstiege; diese Katalogroute speichert keine Snippets.',
+    allTitle: 'Alle veroeffentlichten Developer-Tools',
+    allBody: 'Ein dichtes Verzeichnis erleichtert den Wechsel zwischen Formatierung, Codierung, Pruefung, Text, Zeit, IDs und Hashes.',
+    privacyTitle: 'Datenschutz-Hinweis',
+    privacyBody: 'Nutzen Sie kurze Snippets und entfernen Sie Secrets. Die kostenlosen Tools laufen im Browser; der Katalog sammelt keine eingefuegten Inhalte.',
+    toolCta: 'Tool oeffnen',
+    categories: [
+      { key: 'data', label: 'Daten' },
+      { key: 'encoding', label: 'Codierung' },
+      { key: 'inspection', label: 'Pruefung' },
+      { key: 'text', label: 'Text' },
+      { key: 'time', label: 'Zeit' },
+      { key: 'identity', label: 'IDs' },
+      { key: 'security', label: 'Sicherheit' },
+    ],
+    tools: [
+      { label: 'JSON-Formatter', body: 'Formatieren und pruefen Sie JSON, XML, YAML und CSV.', path: '/tools/structured-data-formatter', glyph: 'JSON', category: 'data', featured: true },
+      { label: 'Base64-Konverter', body: 'Codieren oder decodieren Sie UTF-8-Text im Browser.', path: '/tools/base64-converter', glyph: 'B64', category: 'encoding', featured: true },
+      { label: 'JWT-Inspector', body: 'Decodiert Header und Payload ohne Signaturpruefung zu behaupten.', path: '/tools/jwt-inspector', glyph: 'JWT', category: 'inspection', featured: true },
+      { label: 'Regex-Tester', body: 'Fuehren Sie JavaScript-Regex lokal gegen Beispieltext aus.', path: '/tools/regex-tester', glyph: 'RX', category: 'text', featured: true },
+      { label: 'Textvergleich', body: 'Vergleichen Sie zwei Textbloecke als kompakten Zeilendiff.', path: '/tools/text-diff', glyph: 'DIFF', category: 'text', featured: true },
+      { label: 'Cron-Helfer', body: 'Erklaert fuenfteilige Cron-Ausdruecke und naechste UTC-Laeufe.', path: '/tools/cron-helper', glyph: 'CRON', category: 'time', featured: true },
+      { label: 'UUID-Generator', body: 'Erzeugt UUID v4 im Browser fuer Fixtures und Tests.', path: '/tools/uuid-generator', glyph: 'UUID', category: 'identity', featured: true },
+      { label: 'Timestamp-Konverter', body: 'Konvertiert Unix seconds, milliseconds und Datumswerte.', path: '/tools/timestamp-converter', glyph: 'TIME', category: 'time', featured: true },
+      { label: 'Hash-Generator', body: 'Erstellt SHA-Digests fuer kurze Texte mit Web Crypto.', path: '/tools/hash-generator', glyph: 'HASH', category: 'security', featured: true },
+    ],
+    shortcutGroups: [
+      { title: 'Favorisierte Formatter', body: 'Haeufige Umwandlungen fuer eingefuegte Daten und Tokens.', paths: ['/tools/structured-data-formatter', '/tools/base64-converter', '/tools/jwt-inspector', '/tools/regex-tester'] },
+      { title: 'Letzte Sitzung', body: 'Kurzwege fuer Vergleich, Zeitplaene und Zeitkonvertierung.', paths: ['/tools/text-diff', '/tools/cron-helper', '/tools/timestamp-converter'] },
+      { title: 'IDs und Hashes', body: 'Lokale Helfer fuer Kennungen, Digests und Fixtures.', paths: ['/tools/uuid-generator', '/tools/hash-generator'] },
+    ],
+    footerGroups: [
+      { title: 'Formatter', links: [{ label: 'JSON-Formatter', path: '/tools/structured-data-formatter' }, { label: 'Textvergleich', path: '/tools/text-diff' }] },
+      { title: 'Codierung und Tokens', links: [{ label: 'Base64-Konverter', path: '/tools/base64-converter' }, { label: 'JWT-Inspector', path: '/tools/jwt-inspector' }] },
+      { title: 'Texttests', links: [{ label: 'Regex-Tester', path: '/tools/regex-tester' }, { label: 'Textvergleich', path: '/tools/text-diff' }] },
+      { title: 'Zeittools', links: [{ label: 'Cron-Helfer', path: '/tools/cron-helper' }, { label: 'Timestamp-Konverter', path: '/tools/timestamp-converter' }] },
+      { title: 'IDs und Hashes', links: [{ label: 'UUID-Generator', path: '/tools/uuid-generator' }, { label: 'Hash-Generator', path: '/tools/hash-generator' }] },
+    ],
+  },
+}
+
 export const footerCopy: Record<LocaleCode, FooterCopy> = {
   en: {
     brandBody: 'A portfolio of practical web tools with localized public pages, useful free workflows and clearly separated account features.',
@@ -1796,6 +2112,10 @@ export function getNetProbeCatalogCopy(locale: LocaleCode): NetProbeCatalogCopy 
 
 export function getCalcHarborCatalogCopy(locale: LocaleCode): CalcHarborCatalogCopy {
   return sanitizePublicCopy(locale, calcHarborCatalogCopy[locale])
+}
+
+export function getDevUtilityCatalogCopy(locale: LocaleCode): DevUtilityCatalogCopy {
+  return sanitizePublicCopy(locale, devUtilityCatalogCopy[locale])
 }
 
 export function getFooterCopy(locale: LocaleCode): FooterCopy {

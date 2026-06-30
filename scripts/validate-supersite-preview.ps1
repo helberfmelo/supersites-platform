@@ -147,6 +147,11 @@ try {
         throw 'CalcHarbor detail page smoke failed.'
     }
 
+    $devUtilityDetail = Invoke-PreviewRequest -Uri "$baseUrl/en/sites/devutility-lab" -RequiredContent 'Format, inspect and compare code snippets locally.'
+    if ($devUtilityDetail.StatusCode -ne 200 -or $devUtilityDetail.Content -notmatch 'Format, inspect and compare code snippets locally.') {
+        throw 'DevUtility Lab detail page smoke failed.'
+    }
+
     $legal = Invoke-PreviewRequest -Uri "$baseUrl/en/privacy" -RequiredContent 'Data minimization'
     if ($legal.StatusCode -ne 200 -or $legal.Content -notmatch 'Privacy Policy') {
         throw 'Privacy page smoke failed.'

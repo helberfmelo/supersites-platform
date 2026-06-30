@@ -4,8 +4,11 @@ import { getStatusBadgeClass } from '@supersites/ui'
 import {
   getCalcHarborCatalogCopy,
   getDetailCopy,
+  getDevUtilityCatalogCopy,
   getNetProbeCatalogCopy,
   type CalcHarborCatalogCategoryKey,
+  type DevUtilityCatalogCategoryKey,
+  type DevUtilityCatalogToolLink,
 } from '../../../data/copy'
 import { localizedHomePath, localizedSitePath, normalizeLocale } from '../../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
@@ -27,12 +30,14 @@ if (!locale || !site) {
 const copy = getDetailCopy(locale)
 const netProbeCopy = getNetProbeCatalogCopy(locale)
 const calcHarborCopy = getCalcHarborCatalogCopy(locale)
+const devUtilityCopy = getDevUtilityCatalogCopy(locale)
 const siteText = site.localized[locale]
 const seoDescription = limitSeoText(siteText.summary, SEO_DESCRIPTION_MAX_LENGTH)
 const canonicalPath = localizedSitePath(locale, site.slug)
 const structuredData = createSiteDetailStructuredData(locale, site)
 const isNetProbeCatalog = site.slug === 'netprobe-atlas'
 const isCalcHarborCatalog = site.slug === 'calcharbor'
+const isDevUtilityCatalog = site.slug === 'devutility-lab'
 const primaryNetProbePath = netProbeCopy.toolLinks[0]?.path ?? '/tools/what-is-my-ip'
 const secondaryNetProbePath = netProbeCopy.toolLinks[1]?.path ?? '/tools/dns-propagation'
 const primaryCalcHarborPath = calcHarborCopy.calculators.find((tool) => tool.path === '/calculators/loan-payment')?.path ?? '/calculators/loan-payment'
@@ -49,6 +54,27 @@ const filteredCalcHarborCalculators = computed(() => {
     return matchesCategory && (!query || searchable.includes(query))
   })
 })
+const primaryDevUtilityPath = devUtilityCopy.tools.find((tool) => tool.path === '/tools/structured-data-formatter')?.path ?? '/tools/structured-data-formatter'
+const devUtilitySearchQuery = ref('')
+const devUtilitySelectedCategory = ref<DevUtilityCatalogCategoryKey | 'all'>('all')
+const filteredDevUtilityTools = computed(() => {
+  const query = devUtilitySearchQuery.value.trim().toLowerCase()
+
+  return devUtilityCopy.tools.filter((tool) => {
+    const matchesCategory = devUtilitySelectedCategory.value === 'all' || tool.category === devUtilitySelectedCategory.value
+    const searchable = [tool.label, tool.body, tool.path, tool.glyph].join(' ').toLowerCase()
+
+    return matchesCategory && (!query || searchable.includes(query))
+  })
+})
+const devUtilityShortcutGroups = computed(() => (
+  devUtilityCopy.shortcutGroups.map((group) => ({
+    ...group,
+    tools: group.paths
+      .map((path) => devUtilityCopy.tools.find((tool) => tool.path === path))
+      .filter((tool): tool is DevUtilityCatalogToolLink => Boolean(tool)),
+  }))
+))
 const isLocalBrowser = ref(false)
 const localNetProbeToolsUrl = computed(() => {
   if (!isLocalBrowser.value || site.slug !== 'netprobe-atlas') {
@@ -100,6 +126,24 @@ function trackCalcHarborToolClick(path: string): void {
   trackOutboundSiteClick({
     siteSlug: site.slug,
     targetUrl: getCalcHarborToolUrl(path),
+    locale,
+    routePath: canonicalPath,
+    surface: 'site_detail',
+  })
+}
+
+function getDevUtilityToolUrl(path: string): string {
+  return `${site.temporaryUrl}${locale}${path}`
+}
+
+function getDevUtilityCategoryLabel(key: DevUtilityCatalogCategoryKey): string {
+  return devUtilityCopy.categories.find((category) => category.key === key)?.label ?? key
+}
+
+function trackDevUtilityToolClick(path: string): void {
+  trackOutboundSiteClick({
+    siteSlug: site.slug,
+    targetUrl: getDevUtilityToolUrl(path),
     locale,
     routePath: canonicalPath,
     surface: 'site_detail',
@@ -404,6 +448,134 @@ useHead({
                 <a
                   :href="getCalcHarborToolUrl(link.path)"
                   @click="trackCalcHarborToolClick(link.path)"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
+    </template>
+
+    <template v-else-if="isDevUtilityCatalog">
+      <section class="devutility-hero" :aria-labelledby="`${site.slug}-title`">
+        <div class="devutility-hero__copy">
+          <p class="eyebrow">{{ devUtilityCopy.eyebrow }}</p>
+          <h1 :id="`${site.slug}-title`">{{ devUtilityCopy.title }}</h1>
+          <p class="lead">{{ devUtilityCopy.lead }}</p>
+          <div class="devutility-hero__actions">
+            <a
+              class="button-link"
+              :href="getDevUtilityToolUrl(primaryDevUtilityPath)"
+              @click="trackDevUtilityToolClick(primaryDevUtilityPath)"
+            >
+              {{ devUtilityCopy.primaryCta }}
+            </a>
+            <a class="button-link button-link--secondary" :href="`#${site.slug}-all`">
+              {{ devUtilityCopy.secondaryCta }}
+            </a>
+          </div>
+        </div>
+
+        <aside class="devutility-finder" :aria-labelledby="`${site.slug}-finder`">
+          <h2 :id="`${site.slug}-finder`">{{ devUtilityCopy.finderTitle }}</h2>
+          <p>{{ devUtilityCopy.finderBody }}</p>
+          <div class="field">
+            <label for="devutility-search">{{ devUtilityCopy.searchLabel }}</label>
+            <input
+              id="devutility-search"
+              v-model="devUtilitySearchQuery"
+              type="search"
+              :placeholder="devUtilityCopy.searchPlaceholder"
+            >
+          </div>
+          <div class="devutility-category-tabs" :aria-label="devUtilityCopy.searchLabel">
+            <button
+              type="button"
+              :aria-pressed="devUtilitySelectedCategory === 'all'"
+              @click="devUtilitySelectedCategory = 'all'"
+            >
+              {{ devUtilityCopy.allCategories }}
+            </button>
+            <button
+              v-for="category in devUtilityCopy.categories"
+              :key="category.key"
+              type="button"
+              :aria-pressed="devUtilitySelectedCategory === category.key"
+              @click="devUtilitySelectedCategory = category.key"
+            >
+              {{ category.label }}
+            </button>
+          </div>
+          <div class="devutility-privacy-note">
+            <strong>{{ devUtilityCopy.privacyTitle }}</strong>
+            <span>{{ devUtilityCopy.privacyBody }}</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="devutility-section" :aria-labelledby="`${site.slug}-workbench`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-workbench`">{{ devUtilityCopy.workbenchTitle }}</h2>
+          <p>{{ devUtilityCopy.workbenchBody }}</p>
+        </div>
+        <div class="devutility-shortcut-grid">
+          <article v-for="group in devUtilityShortcutGroups" :key="group.title">
+            <h3>{{ group.title }}</h3>
+            <p>{{ group.body }}</p>
+            <div class="devutility-shortcut-list">
+              <a
+                v-for="tool in group.tools"
+                :key="`${group.title}-${tool.path}`"
+                :href="getDevUtilityToolUrl(tool.path)"
+                @click="trackDevUtilityToolClick(tool.path)"
+              >
+                <span>{{ tool.glyph }}</span>
+                <strong>{{ tool.label }}</strong>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section :id="`${site.slug}-all`" class="devutility-section" :aria-labelledby="`${site.slug}-all-title`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-all-title`">{{ devUtilityCopy.allTitle }}</h2>
+          <p>{{ devUtilityCopy.allBody }}</p>
+        </div>
+        <div v-if="filteredDevUtilityTools.length > 0" class="devutility-tool-grid">
+          <a
+            v-for="tool in filteredDevUtilityTools"
+            :key="tool.path"
+            class="devutility-tool-card"
+            :href="getDevUtilityToolUrl(tool.path)"
+            @click="trackDevUtilityToolClick(tool.path)"
+          >
+            <span class="devutility-tool-card__glyph" aria-hidden="true">{{ tool.glyph }}</span>
+            <span class="devutility-tool-card__body">
+              <span>{{ getDevUtilityCategoryLabel(tool.category) }}</span>
+              <strong>{{ tool.label }}</strong>
+              <em>{{ tool.body }}</em>
+            </span>
+            <b>{{ devUtilityCopy.toolCta }}</b>
+          </a>
+        </div>
+        <div v-else class="devutility-empty" aria-live="polite">
+          <h3>{{ devUtilityCopy.noResultsTitle }}</h3>
+          <p>{{ devUtilityCopy.noResultsBody }}</p>
+        </div>
+      </section>
+
+      <section class="devutility-footer-cluster" :aria-labelledby="`${site.slug}-deep-links`">
+        <div class="devutility-footer-grid">
+          <section v-for="group in devUtilityCopy.footerGroups" :key="group.title">
+            <h2>{{ group.title }}</h2>
+            <ul>
+              <li v-for="link in group.links" :key="`${group.title}-${link.label}`">
+                <a
+                  :href="getDevUtilityToolUrl(link.path)"
+                  @click="trackDevUtilityToolClick(link.path)"
                 >
                   {{ link.label }}
                 </a>

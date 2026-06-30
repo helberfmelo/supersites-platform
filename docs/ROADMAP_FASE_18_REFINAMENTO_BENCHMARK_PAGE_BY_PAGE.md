@@ -5,7 +5,9 @@
 **Próxima fase obrigatória:** Fase 18
 **Objetivo:** transformar os sites de MVP público em páginas mais próximas dos benchmarks líderes, sem copiar marca, layout 1:1, texto, código, imagens ou identidade visual.
 
-Use este documento como prompt complementar para o Codex. Execute uma sprint por vez, corrigindo uma página ou template de página por vez, com commit, push, CI, dry-run e registro documental ao fim de cada sprint.
+Use este documento como prompt complementar para o Codex. Execute uma sprint por vez, corrigindo uma página ou template de página por vez, com commit, push, CI, dry-run, deploy HostGator monitorado, smoke público e registro documental ao fim de cada sprint.
+
+Quando uma sprint do Hub/catalogo criar ou destacar links profundos para ferramentas de um app estático, validar esses links na produção real antes de fechar. Se o app em produção estiver stale, com 404 ou 500, publicar também o app estático no mesmo ciclo e repetir smoke público agregado e crawler benchmark antes de seguir para a próxima sprint.
 
 ---
 

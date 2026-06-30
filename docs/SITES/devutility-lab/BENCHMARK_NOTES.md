@@ -44,3 +44,11 @@ Data-base: 2026-06-27
 - Added category rail, mode selector, sample data, result metrics, tree/error views, copy/download/clear and session-only recents.
 - Local and live visual QA screenshots are in `artifacts/playwright-devutility-workbench/` and cover desktop EN plus mobile PT-BR.
 - The implementation remains browser-side and pattern-derived only; no third-party copy, code, assets or exact competitor layout was reused.
+
+## Sprint 18.5 notes
+
+- Converted the Hub catalog route `/supersites/en/sites/devutility-lab` from generic product detail into a developer workbench landing.
+- The first fold now opens with a practical developer-tool promise, JSON Formatter CTA, search, category filters and short privacy cue.
+- Added dense navigation to the 9 existing public DevUtility tools: JSON Formatter, Base64, JWT, Regex, Text Diff, Cron, UUID, Timestamp and Hash.
+- Added local shortcut groups and footer clusters inspired by developer utility directories, without copying third-party taxonomy, text, styling or assets.
+- Local evidence before deploy is in `artifacts/devutility-catalog-qa/`; desktop EN and mobile PT-BR screenshots were reviewed with 0 horizontal overflow.

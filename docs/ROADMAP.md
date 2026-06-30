@@ -785,6 +785,14 @@ Sprint 18.4 - Pagina de catalogo CalcHarbor
 - Status: concluida em producao. Commit `82be984`, Quality Gate `28424001584`, Deploy Dry Run `28424001574`, deploy reversivel do Hub `28424159062` e deploy reversivel do app CalcHarbor `28424625903` passaram; releases `82be98492a999dbc61d0adcc5a16d0ab9ae22928-28424159062-1` para `/supersites/` e `82be98492a999dbc61d0adcc5a16d0ab9ae22928-28424625903-1` para `/supersites/calcharbor/`, assets `tFB0kZwd.js` e `Da67e5s1.js`, smokes publicos, AdSense-safe, links das 8 calculadoras e crawler quick `2026-06-30T06-33-49-205Z` passaram.
 - Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
 
+Sprint 18.5 - Pagina de catalogo DevUtility Lab
+- Simbolico: `PHASE18-DEVUTILITY-CATALOG-WORKBENCH`.
+- Escopo entregue localmente: `/supersites/en/sites/devutility-lab` passa a ser uma landing publica de developer tools, com H1 pratico, CTA para JSON Formatter, busca, filtros por categoria, atalhos locais fixos, grid das 9 ferramentas reais e rodape contextual de links profundos.
+- Gate permanente reforcado: quando o Hub/catalogo expuser links profundos para um app estatico, validar esses links em producao e publicar o app no mesmo ciclo se a release publica estiver antiga, com 404 ou 500.
+- Validacao local pre-commit: Vitest Hub 17 testes, build Hub, preview smoke Hub asset `/_nuxt/BVxcZZ_m.js`, Playwright Hub 12 testes, public-copy 951 HTMLs, AdSense-safe 13 paginas, structure, secrets, package tests/typechecks, deploy dry-run, ci:changes, HostGator artifact Hub 211 arquivos/4765726 bytes, `git diff --check` e screenshots em `artifacts/devutility-catalog-qa/` passaram.
+- Status: implementada localmente, aguardando commit, CI, deploy reversivel HostGator, smoke publico, validacao de links do app DevUtility e crawler quick.
+- Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.
