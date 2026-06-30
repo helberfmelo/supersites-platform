@@ -52,16 +52,40 @@ test.describe('NetProbe Atlas public foundation', () => {
     await page.goto('/en')
 
     await expect(page).toHaveTitle(/NetProbe Atlas/)
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Network facts')
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Check IP, DNS and domain signals')
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       'href',
       'https://opentshost.com/supersites/netprobe-atlas/en',
     )
-    await expect(page.getByRole('heading', { name: 'DNS Lookup' })).toBeVisible()
+    await expect(page.getByPlaceholder('Enter a domain, hostname or IP')).toBeVisible()
+    await expect(page.getByRole('link', { name: 'What is my IP' }).first()).toBeVisible()
+    await expect(page.getByLabel('Run a network check').getByRole('heading', { name: 'DNS Lookup' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'DNS Lookup by type' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Support the free diagnostics' })).toBeVisible()
+    await expect(page.locator('main')).not.toContainText(/Launch status|Advertising not active|API live|release checks|Upgrade path|Free results first|PayPal|Stripe|PIX/i)
     await expectNoHorizontalOverflow(page)
 
     const screenshot = await page.screenshot({ fullPage: true })
     await testInfo.attach('netprobe-home-desktop', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('renders the localized home page on mobile', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/pt-br')
+
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Verifique sinais de IP')
+    await expect(page.getByPlaceholder('Digite um domínio, hostname ou IP')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Consulta DNS por tipo' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Apoie os diagnósticos gratuitos' })).toBeVisible()
+    await expect(page.locator('main')).not.toContainText(/Launch status|Tool finder|Advertising not active|API live|release checks|Upgrade path|Free results first|PayPal|Stripe|PIX/i)
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('netprobe-home-pt-mobile', { body: screenshot, contentType: 'image/png' })
 
     expect(errors).toEqual([])
   })

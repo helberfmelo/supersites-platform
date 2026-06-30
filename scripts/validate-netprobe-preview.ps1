@@ -91,8 +91,9 @@ try {
         'hreflang="en"',
         'hreflang="pt-BR"',
         'DNS Lookup',
+        'Enter a domain, hostname or IP',
         'The free answer is complete',
-        'Free results first'
+        'DNS Lookup by type'
     )
 
     foreach ($needle in $requiredHtml) {

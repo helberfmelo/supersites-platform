@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { getHomeCopy } from '../app/data/copy'
 import { publicLocaleCodes } from '../app/data/locales'
 import { contentPageCatalog, contentPageSlugs, getContentPageBySlug } from '../app/data/pages'
 import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
@@ -51,7 +52,22 @@ describe('NetProbe Atlas foundation', () => {
     }
   })
 
-  it('filters tools without hiding safety status', () => {
+  it('keeps the home page task-first and free of internal launch language', () => {
+    const blocked = /Launch status|Advertising not active|API live|release checks|Upgrade path|Free results first|PayPal|Stripe|PIX/i
+
+    for (const locale of publicLocaleCodes) {
+      const copy = getHomeCopy(locale)
+
+      expect(copy.footerGroups.map((group) => group.title)).toEqual(expect.arrayContaining([
+        expect.stringMatching(/DNS/i),
+      ]))
+      expect(copy.supportActions).toHaveLength(3)
+      expect(copy.footerGroups).toHaveLength(6)
+      expect(JSON.stringify(copy)).not.toMatch(blocked)
+    }
+  })
+
+  it('filters tools across categories', () => {
     expect(filterTools('ssl', 'all').map((tool) => tool.slug)).toEqual(['ssl-certificate-checker'])
     expect(filterTools('', 'dns').map((tool) => tool.slug)).toEqual(['dns-lookup', 'dns-propagation'])
     expect(filterTools('allowlist', 'reachability', 'pt-br').map((tool) => tool.slug)).toEqual(['port-checker'])
