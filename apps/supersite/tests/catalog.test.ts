@@ -510,7 +510,7 @@ describe('site catalog', () => {
 
         expect(localized.title.length).toBeGreaterThan(5)
         expect(localized.description.length).toBeGreaterThan(60)
-        expect(localized.sections).toHaveLength(['about', 'contact', 'privacy'].includes(page.slug) ? 6 : 3)
+        expect(localized.sections).toHaveLength(['about', 'contact', 'privacy', 'cookies'].includes(page.slug) ? 6 : 3)
         expect(localized.sections.every((section) => section.paragraphs.length > 0)).toBe(true)
       }
     }
@@ -618,6 +618,66 @@ describe('site catalog', () => {
 
       expect(copy.sections.map((section) => section.heading)).toEqual(requiredHeadings[locale])
       expect(JSON.stringify(copy)).not.toMatch(blockedConditionalLanguage)
+    }
+  })
+
+  it('keeps the public Cookie Policy complete and connected to consent preferences', () => {
+    const cookies = legalPageCatalog.find((page) => page.slug === 'cookies')
+    expect(cookies).toBeDefined()
+
+    const requiredHeadings = {
+      en: [
+        'Cookie categories',
+        'Necessary storage',
+        'Preference storage',
+        'Analytics storage',
+        'Advertising storage',
+        'Managing preferences',
+      ],
+      'pt-br': [
+        'Categorias de cookies',
+        'Armazenamento necessário',
+        'Preferências locais',
+        'Armazenamento de analytics',
+        'Armazenamento de publicidade',
+        'Gerenciar preferências',
+      ],
+      es: [
+        'Categorías de cookies',
+        'Almacenamiento necesario',
+        'Preferencias locales',
+        'Almacenamiento de analytics',
+        'Almacenamiento de publicidad',
+        'Gestionar preferencias',
+      ],
+      fr: [
+        'Catégories de cookies',
+        'Stockage nécessaire',
+        'Préférences locales',
+        'Stockage analytics',
+        'Stockage publicitaire',
+        'Gérer les préférences',
+      ],
+      de: [
+        'Cookie-Kategorien',
+        'Notwendige Speicherung',
+        'Lokale Präferenzen',
+        'Analytics-Speicherung',
+        'Werbespeicherung',
+        'Präferenzen verwalten',
+      ],
+    }
+    const blockedCookiePolicyLanguage =
+      /plans to|planned|launch|rollout|public review|human review|quality checks|policy checks|\bshould\b|\bmust\b|planeja|planejado|lançamento|revisão pública|revisão humana|\bdeve\b|\bdevem\b|planea|lanzamiento|revisión pública|revisión humana|\bdebe\b|\bdeben\b|prévoit|lancement|revue publique|revue humaine|\bdoit\b|\bdoivent\b|einsetzen soll|Launch|öffentliche Prüfung|menschliche Prüfung|\bsoll\b|\bsollen\b|\bmuss\b|\bmüssen\b/iu
+
+    for (const locale of localeCodes) {
+      const copy = getLegalPageCopy(cookies!, locale)
+      const links = copy.sections.flatMap((section) => section.links ?? [])
+
+      expect(copy.sections.map((section) => section.heading)).toEqual(requiredHeadings[locale])
+      expect(links).toHaveLength(1)
+      expect(links[0]).toMatchObject({ href: '#consent-preferences' })
+      expect(JSON.stringify(copy)).not.toMatch(blockedCookiePolicyLanguage)
     }
   })
 

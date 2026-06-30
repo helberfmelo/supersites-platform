@@ -26,6 +26,18 @@ const relatedPages = legalPageCatalog
     navLabel: getLegalPageCopy(candidate, locale).navLabel,
   }))
 
+function handleContentLinkClick(href: string, event: MouseEvent): void {
+  if (href !== '#consent-preferences') {
+    return
+  }
+
+  event.preventDefault()
+
+  if (import.meta.client) {
+    window.dispatchEvent(new CustomEvent('supersites-open-consent-preferences'))
+  }
+}
+
 useHead({
   htmlAttrs: {
     lang: locale,
@@ -105,7 +117,12 @@ useHead({
           <h3>{{ section.heading }}</h3>
           <p v-for="paragraph in section.paragraphs" :key="paragraph">{{ paragraph }}</p>
           <div v-if="section.links?.length" class="content-link-list">
-            <a v-for="link in section.links" :key="link.href" :href="link.href">
+            <a
+              v-for="link in section.links"
+              :key="link.href"
+              :href="link.href"
+              @click="handleContentLinkClick(link.href, $event)"
+            >
               <strong>{{ link.label }}</strong>
               <span>{{ link.note }}</span>
             </a>

@@ -906,25 +906,50 @@ export const legalPageCatalog: LegalPage[] = [
       en: {
         navLabel: 'Cookies',
         title: 'Cookie Policy',
-        description: 'How SuperSites plans to use essential cookies, analytics storage, advertising storage and consent controls across the catalog and tools.',
+        description: 'How SuperSites uses necessary browser storage, local privacy choices, optional analytics signals and advertising controls across the catalog and tools.',
         updatedLabel: 'Reviewed June 26, 2026',
         sections: [
           {
-            heading: 'Essential storage',
+            heading: 'Cookie categories',
             paragraphs: [
-              'Essential cookies or local storage may remember language, consent choices, session security and basic preferences needed for the service to work.',
+              'SuperSites separates necessary storage, preference storage, analytics storage and advertising storage. Necessary storage keeps the site usable; optional categories stay off until a visitor chooses them in this browser.',
             ],
           },
           {
-            heading: 'Analytics and ads',
+            heading: 'Necessary storage',
             paragraphs: [
-              'Analytics and advertising storage must wait for the proper consent mode and regional rules. Advertising placements should not appear until each site has passed quality and policy checks.',
+              'The Hub uses local storage for privacy choices and basic browser storage for language, route state and security-safe operation. Tool inputs and results are not stored in cookies by the Hub.',
             ],
           },
           {
-            heading: 'Managing choices',
+            heading: 'Preference storage',
             paragraphs: [
-              'A consent interface must allow supported regions to change choices before analytics or ads run. Browser settings can also delete or block cookies, but some preferences may reset.',
+              'Preference storage remembers voluntary choices such as language and consent settings on the same browser. Clearing site data resets those choices.',
+            ],
+          },
+          {
+            heading: 'Analytics storage',
+            paragraphs: [
+              'Analytics storage is off by default. When allowed, events are limited to page and interaction signals; tool content, raw inputs, emails and payment data stay out of analytics events.',
+            ],
+          },
+          {
+            heading: 'Advertising storage',
+            paragraphs: [
+              'Advertising storage is off by default. Public pages reserve inert advertising spaces only; no AdSense request, ad auction or third-party ad cookie is loaded from the Hub.',
+            ],
+          },
+          {
+            heading: 'Managing preferences',
+            paragraphs: [
+              'Use the privacy choices panel to change optional storage for this browser. Browser settings also clear or block cookies and local storage.',
+            ],
+            links: [
+              {
+                label: 'Manage privacy choices',
+                href: '#consent-preferences',
+                note: 'Open the local preferences panel for this browser.',
+              },
             ],
           },
         ],
@@ -932,25 +957,50 @@ export const legalPageCatalog: LegalPage[] = [
       'pt-br': {
         navLabel: 'Cookies',
         title: 'Política de Cookies',
-        description: 'Como o SuperSites planeja usar cookies essenciais, analytics, publicidade e controles de consentimento no catálogo e nas ferramentas.',
+        description: 'Como o SuperSites usa armazenamento essencial do navegador, escolhas locais de privacidade, sinais opcionais de analytics e controles de publicidade no catálogo e nas ferramentas.',
         updatedLabel: 'Revisado em 26 de junho de 2026',
         sections: [
           {
-            heading: 'Armazenamento essencial',
+            heading: 'Categorias de cookies',
             paragraphs: [
-              'Cookies essenciais ou armazenamento local podem guardar idioma, consentimento, segurança de sessão e preferências básicas necessárias para o serviço funcionar.',
+              'O SuperSites separa armazenamento necessário, preferências, analytics e publicidade. O necessário mantém o site utilizável; categorias opcionais ficam desligadas até a pessoa escolher neste navegador.',
             ],
           },
           {
-            heading: 'Analytics e anúncios',
+            heading: 'Armazenamento necessário',
             paragraphs: [
-              'Analytics e publicidade dependem de consent mode e regras regionais. Anúncios só devem aparecer quando cada site passar pelos checks de qualidade e política.',
+              'O Hub usa armazenamento local para escolhas de privacidade e armazenamento básico do navegador para idioma, rota e operação segura. Entradas e resultados das ferramentas não são gravados em cookies pelo Hub.',
             ],
           },
           {
-            heading: 'Gerenciar escolhas',
+            heading: 'Preferências locais',
             paragraphs: [
-              'Uma interface de consentimento deve permitir mudar escolhas em regiões suportadas antes de analytics ou anúncios rodarem. O navegador também pode apagar ou bloquear cookies, mas preferências podem reiniciar.',
+              'O armazenamento de preferências lembra escolhas voluntárias, como idioma e consentimento, no mesmo navegador. Limpar dados do site reinicia essas escolhas.',
+            ],
+          },
+          {
+            heading: 'Armazenamento de analytics',
+            paragraphs: [
+              'Analytics fica desligado por padrão. Quando permitido, os eventos ficam limitados a páginas e interações; conteúdo das ferramentas, entradas brutas, e-mails e dados de pagamento ficam fora de analytics.',
+            ],
+          },
+          {
+            heading: 'Armazenamento de publicidade',
+            paragraphs: [
+              'Publicidade fica desligada por padrão. As páginas públicas reservam apenas espaços inertes; nenhum request AdSense, leilão de anúncio ou cookie de anúncio de terceiros é carregado pelo Hub.',
+            ],
+          },
+          {
+            heading: 'Gerenciar preferências',
+            paragraphs: [
+              'Use o painel de escolhas de privacidade para alterar armazenamento opcional neste navegador. As configurações do navegador também limpam ou bloqueiam cookies e armazenamento local.',
+            ],
+            links: [
+              {
+                label: 'Gerenciar escolhas de privacidade',
+                href: '#consent-preferences',
+                note: 'Abre o painel local de preferências deste navegador.',
+              },
             ],
           },
         ],
@@ -958,25 +1008,50 @@ export const legalPageCatalog: LegalPage[] = [
       es: {
         navLabel: 'Cookies',
         title: 'Política de Cookies',
-        description: 'Cómo SuperSites planea usar cookies esenciales, analytics, publicidad y controles de consentimiento en el catálogo y las herramientas.',
+        description: 'Cómo SuperSites usa almacenamiento necesario del navegador, opciones locales de privacidad, señales opcionales de analytics y controles de publicidad en el catálogo y las herramientas.',
         updatedLabel: 'Revisado el 26 de junio de 2026',
         sections: [
           {
-            heading: 'Almacenamiento esencial',
+            heading: 'Categorías de cookies',
             paragraphs: [
-              'Cookies esenciales o almacenamiento local pueden recordar idioma, consentimiento, seguridad de sesión y preferencias básicas necesarias para el servicio.',
+              'SuperSites separa almacenamiento necesario, preferencias, analytics y publicidad. Lo necesario mantiene el sitio usable; las categorías opcionales quedan apagadas hasta que la persona las elige en este navegador.',
             ],
           },
           {
-            heading: 'Analytics y anuncios',
+            heading: 'Almacenamiento necesario',
             paragraphs: [
-              'Analytics y publicidad deben esperar consent mode y reglas regionales. Los anuncios solo aparecen cuando cada sitio pasa los controles de calidad y política.',
+              'El Hub usa almacenamiento local para opciones de privacidad y almacenamiento básico del navegador para idioma, ruta y operación segura. Las entradas y resultados de herramientas no se guardan en cookies del Hub.',
             ],
           },
           {
-            heading: 'Gestionar opciones',
+            heading: 'Preferencias locales',
             paragraphs: [
-              'Una interfaz de consentimiento debe permitir cambiar opciones antes de analytics o anuncios. El navegador también puede borrar o bloquear cookies, aunque algunas preferencias se reinicien.',
+              'El almacenamiento de preferencias recuerda opciones voluntarias, como idioma y consentimiento, en el mismo navegador. Borrar datos del sitio reinicia esas opciones.',
+            ],
+          },
+          {
+            heading: 'Almacenamiento de analytics',
+            paragraphs: [
+              'Analytics queda apagado por defecto. Cuando se permite, los eventos se limitan a páginas e interacciones; contenido de herramientas, entradas brutas, correos y datos de pago quedan fuera de analytics.',
+            ],
+          },
+          {
+            heading: 'Almacenamiento de publicidad',
+            paragraphs: [
+              'La publicidad queda apagada por defecto. Las páginas públicas reservan solo espacios inertes; el Hub no carga solicitudes AdSense, subastas de anuncios ni cookies publicitarias de terceros.',
+            ],
+          },
+          {
+            heading: 'Gestionar preferencias',
+            paragraphs: [
+              'Usa el panel de opciones de privacidad para cambiar almacenamiento opcional en este navegador. La configuración del navegador también borra o bloquea cookies y almacenamiento local.',
+            ],
+            links: [
+              {
+                label: 'Gestionar opciones de privacidad',
+                href: '#consent-preferences',
+                note: 'Abre el panel local de preferencias de este navegador.',
+              },
             ],
           },
         ],
@@ -984,25 +1059,50 @@ export const legalPageCatalog: LegalPage[] = [
       fr: {
         navLabel: 'Cookies',
         title: 'Politique de cookies',
-        description: 'Comment SuperSites prévoit d’utiliser cookies essentiels, analytics, publicité et contrôles de consentement dans le catalogue et les outils.',
+        description: 'Comment SuperSites utilise le stockage nécessaire du navigateur, les choix locaux de confidentialité, les signaux analytics optionnels et les contrôles publicitaires dans le catalogue et les outils.',
         updatedLabel: 'Révisé le 26 juin 2026',
         sections: [
           {
-            heading: 'Stockage essentiel',
+            heading: 'Catégories de cookies',
             paragraphs: [
-              'Des cookies essentiels ou le stockage local peuvent mémoriser langue, consentement, sécurité de session et préférences nécessaires au fonctionnement.',
+              "SuperSites sépare stockage nécessaire, préférences, analytics et publicité. Le stockage nécessaire garde le site utilisable; les catégories optionnelles restent désactivées jusqu'au choix exprimé dans ce navigateur.",
             ],
           },
           {
-            heading: 'Analytics et publicité',
+            heading: 'Stockage nécessaire',
             paragraphs: [
-              'Analytics et publicité doivent attendre le consent mode et les règles régionales. Les annonces n’apparaissent qu’après les contrôles qualité et politiques de chaque site.',
+              'Le Hub utilise le stockage local pour les choix de confidentialité et le stockage de base du navigateur pour la langue, la route et une utilisation sûre. Les entrées et résultats des outils ne sont pas enregistrés dans les cookies du Hub.',
             ],
           },
           {
-            heading: 'Gérer les choix',
+            heading: 'Préférences locales',
             paragraphs: [
-              'Une interface de consentement doit permettre de modifier les choix avant analytics ou publicités. Le navigateur peut aussi supprimer ou bloquer les cookies, mais certaines préférences peuvent être réinitialisées.',
+              'Le stockage des préférences garde les choix volontaires, comme la langue et le consentement, dans le même navigateur. Effacer les données du site réinitialise ces choix.',
+            ],
+          },
+          {
+            heading: 'Stockage analytics',
+            paragraphs: [
+              'Analytics reste désactivé par défaut. Une fois autorisé, les événements restent limités aux pages et interactions; contenu des outils, entrées brutes, e-mails et données de paiement restent hors analytics.',
+            ],
+          },
+          {
+            heading: 'Stockage publicitaire',
+            paragraphs: [
+              'La publicité reste désactivée par défaut. Les pages publiques réservent seulement des espaces inertes; le Hub ne charge aucune requête AdSense, enchère publicitaire ni cookie publicitaire tiers.',
+            ],
+          },
+          {
+            heading: 'Gérer les préférences',
+            paragraphs: [
+              'Utilisez le panneau de choix de confidentialité pour modifier le stockage optionnel dans ce navigateur. Les paramètres du navigateur effacent ou bloquent aussi les cookies et le stockage local.',
+            ],
+            links: [
+              {
+                label: 'Gérer les choix de confidentialité',
+                href: '#consent-preferences',
+                note: 'Ouvre le panneau local de préférences de ce navigateur.',
+              },
             ],
           },
         ],
@@ -1010,25 +1110,50 @@ export const legalPageCatalog: LegalPage[] = [
       de: {
         navLabel: 'Cookies',
         title: 'Cookie-Richtlinie',
-        description: 'Wie SuperSites essenzielle Cookies, Analytics-Speicher, Werbespeicher und Einwilligungskontrollen im Katalog und in Tools einsetzen soll.',
+        description: 'Wie SuperSites notwendigen Browserspeicher, lokale Datenschutzauswahl, optionale Analytics-Signale und Werbekontrollen im Katalog und in Tools nutzt.',
         updatedLabel: 'Geprüft am 26. Juni 2026',
         sections: [
           {
-            heading: 'Essenzielle Speicherung',
+            heading: 'Cookie-Kategorien',
             paragraphs: [
-              'Essenzielle Cookies oder lokaler Speicher können Sprache, Einwilligung, Sitzungssicherheit und grundlegende Einstellungen speichern, damit der Dienst funktioniert.',
+              'SuperSites trennt notwendige Speicherung, Präferenzen, Analytics und Werbung. Notwendige Speicherung hält die Seite nutzbar; optionale Kategorien bleiben aus, bis eine Person sie in diesem Browser auswählt.',
             ],
           },
           {
-            heading: 'Analytics und Werbung',
+            heading: 'Notwendige Speicherung',
             paragraphs: [
-              'Analytics- und Werbespeicher warten auf Consent Mode und regionale Regeln. Anzeigen erscheinen erst nach Qualitäts- und Policy-Prüfungen der jeweiligen Site.',
+              'Der Hub nutzt lokalen Speicher für Datenschutzauswahl und einfachen Browserspeicher für Sprache, Route und sicheren Betrieb. Tool-Eingaben und Ergebnisse werden nicht in Hub-Cookies gespeichert.',
             ],
           },
           {
-            heading: 'Auswahl verwalten',
+            heading: 'Lokale Präferenzen',
             paragraphs: [
-              'Eine Einwilligungsoberfläche muss Änderungen erlauben, bevor Analytics oder Werbung laufen. Browser können Cookies löschen oder blockieren, wodurch manche Einstellungen zurückgesetzt werden.',
+              'Präferenzspeicher merkt sich freiwillige Auswahl wie Sprache und Einwilligung im selben Browser. Das Löschen von Websitedaten setzt diese Auswahl zurück.',
+            ],
+          },
+          {
+            heading: 'Analytics-Speicherung',
+            paragraphs: [
+              'Analytics ist standardmäßig aus. Nach Zustimmung bleiben Ereignisse auf Seiten und Interaktionen begrenzt; Tool-Inhalte, Rohdaten, E-Mails und Zahlungsdaten bleiben aus Analytics heraus.',
+            ],
+          },
+          {
+            heading: 'Werbespeicherung',
+            paragraphs: [
+              'Werbung ist standardmäßig aus. Öffentliche Seiten reservieren nur inerte Werbeflächen; der Hub lädt keine AdSense-Anfrage, Anzeigenauktion oder Werbe-Cookies Dritter.',
+            ],
+          },
+          {
+            heading: 'Präferenzen verwalten',
+            paragraphs: [
+              'Nutzen Sie das Datenschutzauswahl-Panel, um optionale Speicherung in diesem Browser zu ändern. Browsereinstellungen löschen oder blockieren Cookies und lokalen Speicher ebenfalls.',
+            ],
+            links: [
+              {
+                label: 'Datenschutzauswahl verwalten',
+                href: '#consent-preferences',
+                note: 'Öffnet das lokale Präferenz-Panel für diesen Browser.',
+              },
             ],
           },
         ],
@@ -1594,7 +1719,7 @@ export function getLegalShellCopy(locale: LocaleCode): LegalShellCopy {
 }
 
 export function getLegalPageCopy(page: LegalPage, locale: LocaleCode): LocalizedLegalPage {
-  if (page.slug === 'about' || page.slug === 'contact' || page.slug === 'privacy') {
+  if (page.slug === 'about' || page.slug === 'contact' || page.slug === 'privacy' || page.slug === 'cookies') {
     return sanitizePublicCopy(locale, page.localized[locale])
   }
 

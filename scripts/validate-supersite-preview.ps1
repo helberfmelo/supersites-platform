@@ -182,6 +182,11 @@ try {
         throw 'Privacy page smoke failed.'
     }
 
+    $cookies = Invoke-PreviewRequest -Uri "$baseUrl/en/cookies" -RequiredContent 'Cookie categories'
+    if ($cookies.StatusCode -ne 200 -or $cookies.Content -notmatch 'Cookie Policy' -or $cookies.Content -notmatch '#consent-preferences') {
+        throw 'Cookie Policy page smoke failed.'
+    }
+
     $sitemap = Invoke-PreviewRequest -Uri "$baseUrl/sitemap.xml" -RequiredContent '<urlset'
     if ($sitemap.Content -notmatch '/en/privacy' -or $sitemap.Content -notmatch '/de/editorial-policy') {
         throw 'Sitemap smoke failed.'

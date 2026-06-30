@@ -129,6 +129,91 @@ test.describe('SuperSites public hub', () => {
     expect(errors).toEqual([])
   })
 
+  test('renders the Cookie Policy with a working preferences link on desktop', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.goto('/en/cookies')
+    await dismissConsentBanner(page)
+
+    await expect(page).toHaveTitle(/Cookie Policy/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Cookie Policy')
+    await expect(page.getByRole('heading', { name: 'Cookie categories' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Necessary storage' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Preference storage' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Analytics storage' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Advertising storage' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Managing preferences' })).toBeVisible()
+    await expect(page.getByRole('link', { name: /Manage privacy choices/ })).toHaveAttribute(
+      'href',
+      '#consent-preferences',
+    )
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/en/cookies',
+    )
+    await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
+    await expect(page.locator('main')).not.toContainText(
+      /plans to|planned|launch|rollout|public review|human review|quality checks|policy checks|\bshould\b|\bmust\b/i,
+    )
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1)
+
+    await page.getByRole('link', { name: /Manage privacy choices/ }).click()
+    const banner = page.getByTestId('consent-banner')
+    await expect(banner).toBeVisible()
+    await expect(page.getByLabel('Preference storage')).toBeVisible()
+    await expect(page.getByLabel('Analytics storage')).toBeVisible()
+    await expect(page.getByLabel('Advertising storage')).toBeVisible()
+
+    const schemaType = await page.locator('script[type="application/ld+json"]').evaluate((script) => {
+      const schema = JSON.parse(script.textContent || '{}')
+
+      return schema['@type']
+    })
+
+    expect(schemaType).toBe('WebPage')
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('cookies-desktop', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('renders the localized Cookie Policy on mobile', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/pt-br/cookies')
+    await dismissConsentBanner(page)
+
+    await expect(page).toHaveTitle(/Política de Cookies/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Política de Cookies')
+    await expect(page.getByRole('heading', { name: 'Categorias de cookies' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Armazenamento necessário' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Preferências locais' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Armazenamento de analytics' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Armazenamento de publicidade' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Gerenciar preferências' })).toBeVisible()
+    await expect(page.getByRole('link', { name: /Gerenciar escolhas de privacidade/ })).toHaveAttribute(
+      'href',
+      '#consent-preferences',
+    )
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/pt-br/cookies',
+    )
+    await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
+    await expect(page.locator('main')).not.toContainText(
+      /plans to|planned|launch|rollout|public review|human review|quality checks|policy checks|planeja|lançamento|revisão pública|revisão humana|\bdeve\b|\bdevem\b/i,
+    )
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('cookies-pt-mobile', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
   test('renders the editorial policy page on desktop', async ({ page }, testInfo) => {
     const errors = collectBrowserErrors(page)
 

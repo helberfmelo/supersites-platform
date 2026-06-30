@@ -8,7 +8,7 @@ import {
   serializeConsentState,
   type ConsentState,
 } from '@supersites/consent'
-import { computed, onMounted, reactive, ref } from 'vue'
+import { computed, onMounted, onUnmounted, reactive, ref } from 'vue'
 import { normalizeLocale, type LocaleCode } from '../data/locales'
 
 declare global {
@@ -112,12 +112,23 @@ onMounted(() => {
   isOpen.value = !stored
   isMounted.value = true
   pushConsentMode(stored ? 'update' : 'default')
+  window.addEventListener('supersites-open-consent-preferences', openPreferences)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('supersites-open-consent-preferences', openPreferences)
 })
 
 function syncDraft(next: ConsentState): void {
   draft.preferences = next.preferences
   draft.analytics = next.analytics
   draft.ads = next.ads
+}
+
+function openPreferences(): void {
+  syncDraft(state.value)
+  showCustomize.value = true
+  isOpen.value = true
 }
 
 function makeState(values: Pick<ConsentState, 'preferences' | 'analytics' | 'ads'>): ConsentState {
