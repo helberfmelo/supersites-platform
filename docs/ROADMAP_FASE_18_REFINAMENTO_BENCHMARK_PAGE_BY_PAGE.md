@@ -551,6 +551,12 @@ Regra operacional:
 3. Destacar merge, split, rotate, compress, watermark, page numbers, metadata, text-to-PDF.
 4. Criar footer PDF Tools rico.
 
+**Status em 2026-06-30:** concluida em producao.
+
+- A rota `/supersites/en/sites/docshift` deixou de usar ficha generica e passou a abrir como landing publica PDF: H1 pratico, CTA para merge, dropzone dominante, promessa de processamento no navegador, snapshot de workflow, atalhos por fluxo, grid completo de 8 ferramentas PDF e busca/filtros.
+- A copy `docShiftCatalogCopy` cobre EN/PT-BR/ES/FR/DE, substitui `No server upload backend active` por privacidade publica (`Files stay in this browser for supported free tasks` / `Os arquivos ficam neste navegador nas tarefas gratuitas compativeis`) e preserva deep links tecnicos reais para `/supersites/docshift/<locale>/tools/...`.
+- Ciclo executado: validacao local completa, commit objetivo `8761a93`, push, Quality Gate `28447920100`, Deploy Dry Run `28447920167`, deploy HostGator `28448208431`, smoke publico, checagem de 16 deep links EN/PT-BR, crawler quick `2026-06-30T13-41-51-582Z` com 95 rotas/190 checks/0 gaps e visual live desktop/mobile revisado.
+
 ---
 
 ## Sprint 18.13 — Página About

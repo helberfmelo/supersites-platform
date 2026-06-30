@@ -54,3 +54,10 @@ Data-base: 2026-06-27
 - Converted OCR, Office conversion and batch/API ambition into an explicit data/readiness matrix instead of enabling uploads.
 - Public pages now state the current browser-side free path, data touched if enabled and required gates for each advanced document workflow.
 - Added the operational file provider matrix runbook so future OCR, conversion, upload queues and API work must pass privacy, retention, sandbox/antivirus, billing and legal/provider gates first.
+
+## Sprint 18.12 outcome
+
+- The catalog route now follows the PDF-suite mental model learned from iLovePDF/Smallpdf-style benchmarks: task-first hero, dominant dropzone, immediate tool grid, workflow shortcuts, search/facets and rich PDF footer.
+- The implementation uses original copy and local visual language; no benchmark layouts, icons, pricing, legal text, claims, screenshots or assets were copied.
+- Live screenshots reviewed: `artifacts/docshift-catalog-qa/docshift-catalog-live-desktop-consented.png` and `artifacts/docshift-catalog-qa/docshift-catalog-live-mobile-pt-br-consented.png`.
+- Server-side upload, OCR, batch, API, billing, ads, document history, accounts and external analytics remain inactive behind documented gates.

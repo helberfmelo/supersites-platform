@@ -38,6 +38,7 @@ Only after validation:
 
 ## Sprint cadence for page-by-page execution
 
+- These cadence rules are mandatory for Phase 18 and the following benchmark page-by-page cycles after the roadmap is approved.
 - Execute one sprint at a time as a closed loop: implement, validate, commit, push, monitor HostGator deploy, run public smoke, then move to the next sprint.
 - Keep commits and pushes objective. Group related code, tests and documentation for the sprint instead of fragmenting the same fix across unnecessary commits.
 - Prefer one implementation commit and one short documentation closeout commit per sprint. Add extra corrective commits only when CI, deploy, live visual QA or public smoke exposes a concrete defect.

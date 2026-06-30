@@ -64,6 +64,14 @@ Medium; ads/support must stay away from uploads, progress, previews and download
 - Validated home desktop, Text to PDF mobile and privacy mobile screenshots from the production build with no incoherent overlap or horizontal overflow.
 - Free PDF output remains usable without signup; no upload endpoint, storage, OCR, batch worker, account, ads, billing or external analytics was added.
 
+## Sprint 18.12 catalog result
+
+- Converted the SuperSites catalog route for DocShift into a PDF-suite landing instead of a generic product card.
+- Added a dominant browser-side PDF dropzone, visible workflow shortcuts, eight published PDF tool cards, search/category filters and a contextual PDF footer with real deep links.
+- Removed top-level internal upload/backend language from the public catalog route and kept privacy/limits below the user-facing tool value.
+- Validated local and live desktop/mobile screenshots, 16 EN/PT-BR deep links, public copy, AdSense-safe layout, Playwright and benchmark crawler with 0 gaps.
+- No server upload, OCR, batch worker, persistent storage, account, ads, billing, donation, affiliate or external analytics was enabled.
+
 ## Dashboard backlog
 
 - PDF privacy readiness.

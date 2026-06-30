@@ -1551,7 +1551,24 @@ Data-base: 2026-06-29
 | Sprint 18.11 post-deploy quick crawler | `2026-06-30T12-54-57-039Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.11 live PixelBatch catalog screenshots | `artifacts/pixelbatch-catalog-qa/pixelbatch-catalog-live-desktop-consented.png` and `artifacts/pixelbatch-catalog-qa/pixelbatch-catalog-live-mobile-pt-br-consented.png` reviewed |
 | Sprint 18.11 live PixelBatch catalog smoke | Passed: desktop/mobile markers, PT-BR H1, blocked phrase scan 0, overflow 0 |
-| Real deploy/provider activation | 20 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.11 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.12 DocShift catalog route | `/supersites/en/sites/docshift` converted from generic site detail to task-first browser PDF landing with dominant dropzone |
+| Sprint 18.12 direct public links | 16 EN/PT-BR checks passed across 8 DocShift tool routes |
+| Sprint 18.12 Hub unit suite | Passed: 24 tests |
+| Sprint 18.12 Hub build | Passed |
+| Sprint 18.12 Hub Playwright suite | Passed: 26 tests, including DocShift desktop EN and mobile PT-BR screenshots |
+| Sprint 18.12 public copy validation | Passed: 951 HTML files |
+| Sprint 18.12 AdSense-safe validation | Passed locally and post-deploy: 13 public pages |
+| Sprint 18.12 package/structure/secrets/dry-run/diff | Passed, including package tests/typechecks, generated HTML route check, `ci:changes` and deploy dry-run |
+| Sprint 18.12 Hub HostGator artifact | Local passed: 211 files, 8693647 bytes; deploy passed: 211 files, 8684648 bytes |
+| Sprint 18.12 implementation commit | `8761a93` |
+| Sprint 18.12 remote Quality Gate | `28447920100` passed |
+| Sprint 18.12 remote Deploy Dry Run | `28447920167` passed |
+| Sprint 18.12 Hub production deploy | `28448208431` passed; release `8761a93135935640e7494fffc2b22fc744d5e804-28448208431-1`; asset `DqNRMetO.js`; DocShift asset `DQ93lUzG.js` |
+| Sprint 18.12 post-deploy public smoke | Passed: Hub/apps/APIs, DocShift static app smoke and 16 EN/PT-BR deep links |
+| Sprint 18.12 post-deploy quick crawler | `2026-06-30T13-41-51-582Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.12 live DocShift catalog screenshots | `artifacts/docshift-catalog-qa/docshift-catalog-live-desktop-consented.png` and `artifacts/docshift-catalog-qa/docshift-catalog-live-mobile-pt-br-consented.png` reviewed |
+| Sprint 18.12 live DocShift catalog smoke | Passed: desktop/mobile markers, PT-BR H1, blocked phrase scan 0, overflow 0 |
+| Real deploy/provider activation | 21 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.12 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 
