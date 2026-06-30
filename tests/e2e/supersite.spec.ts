@@ -65,6 +65,12 @@ test.describe('SuperSites public hub', () => {
 
     await expect(page).toHaveTitle(/SuperSites/)
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Privacidade')
+    await expect(page.getByRole('heading', { name: 'Categorias de dados' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Entradas das ferramentas' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Analytics e publicidade' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Cookies e preferências' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Retenção e segurança' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Direitos e contato' })).toBeVisible()
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       'href',
       'https://opentshost.com/supersites/pt-br/privacy',
@@ -72,11 +78,53 @@ test.describe('SuperSites public hub', () => {
     await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
     await expect(page.locator('.page-footer__links--legal a')).toHaveCount(8)
     await expect(page.getByLabel(/Páginas legais e editoriais/).getByRole('link', { name: 'Status' })).toBeVisible()
+    await expect(page.locator('main')).not.toContainText(
+      /\bshould\b|plans to|planned|human review|legal review|paid accounts launch|final public launch|public review|revisão jurídica|revisão humana|\bdeve\b|\bdevem\b|\bprecisa\b|\bprecisam\b/i,
+    )
     await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1)
     await expectNoHorizontalOverflow(page)
 
     const screenshot = await page.screenshot({ fullPage: true })
     await testInfo.attach('privacy-mobile', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('renders the Privacy Policy as a complete public policy on desktop', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.goto('/en/privacy')
+    await dismissConsentBanner(page)
+
+    await expect(page).toHaveTitle(/Privacy Policy/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Privacy Policy')
+    await expect(page.getByRole('heading', { name: 'Data categories' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Tool inputs' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Analytics and advertising' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Cookies and preferences' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Retention and security' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Rights and contact' })).toBeVisible()
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/en/privacy',
+    )
+    await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
+    await expect(page.locator('main')).not.toContainText(
+      /\bshould\b|plans to|planned|human review|legal review|paid accounts launch|final public launch|public review/i,
+    )
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1)
+
+    const schemaType = await page.locator('script[type="application/ld+json"]').evaluate((script) => {
+      const schema = JSON.parse(script.textContent || '{}')
+
+      return schema['@type']
+    })
+
+    expect(schemaType).toBe('PrivacyPolicy')
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('privacy-desktop', { body: screenshot, contentType: 'image/png' })
 
     expect(errors).toEqual([])
   })

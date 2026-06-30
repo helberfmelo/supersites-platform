@@ -681,25 +681,43 @@ export const legalPageCatalog: LegalPage[] = [
       en: {
         navLabel: 'Privacy',
         title: 'Privacy Policy',
-        description: 'The SuperSites privacy approach minimizes collection, prefers browser-side processing and blocks personal data from analytics and advertising events.',
-        updatedLabel: 'Reviewed June 26, 2026',
+        description: 'How SuperSites handles tool inputs, essential service data, analytics limits, advertising separation, cookies, retention and privacy requests across the public hub.',
+        updatedLabel: 'Reviewed June 30, 2026',
         sections: [
           {
-            heading: 'Data minimization',
+            heading: 'Data categories',
             paragraphs: [
-              'SuperSites should collect only what is needed to deliver the requested tool, protect the service, operate accounts or support paid features. Tool inputs are not used for training without explicit opt-in.',
+              'SuperSites processes the information needed to deliver public pages and free tools: route, language, browser and device basics, consent choices, security signals and the input a visitor submits to a tool.',
             ],
           },
           {
-            heading: 'Tool inputs and analytics',
+            heading: 'Tool inputs',
             paragraphs: [
-              'Developer text, uploaded files and private business content should stay in the browser when possible. Analytics events must not include email, phone, full name, full IP address, document content or file content.',
+              'Inputs such as domains, URLs, text, files, dates, numbers and business details are used to produce the requested result. Browser-first tools keep supported inputs on the visitor device. Public diagnostics that require network checks send only a bounded target to the relevant public API.',
             ],
           },
           {
-            heading: 'Retention and rights',
+            heading: 'Analytics and advertising',
             paragraphs: [
-              'Temporary files should be deleted automatically and paid history should be retained only as described by the relevant product terms. Access, export, correction and deletion workflows must exist before paid accounts launch.',
+              'Analytics is limited to sanitized product events such as route, locale, tool slug, action type and completion state. Events exclude full IP addresses, email addresses, phone numbers, names, document text, file content, DNS answers, URL query strings and submitted secrets. Legal pages do not display ad placements, and the public hub does not load real AdSense requests while monetization is off.',
+            ],
+          },
+          {
+            heading: 'Cookies and preferences',
+            paragraphs: [
+              'Essential storage keeps language, consent and basic service preferences. Optional analytics or advertising storage stays separated from tool inputs and follows the consent controls described on the Cookie Policy page.',
+            ],
+          },
+          {
+            heading: 'Retention and security',
+            paragraphs: [
+              'Browser-side results remain on the visitor device unless the visitor downloads or copies them. Server logs, cache entries and bounded diagnostic requests are kept only for security, abuse prevention, troubleshooting and operational reliability for the shortest practical period.',
+            ],
+          },
+          {
+            heading: 'Rights and contact',
+            paragraphs: [
+              'Visitors can request access, correction, deletion, consent review or a privacy explanation through the Contact page. Include the product, page URL, language, request type and reply address. Ask for a secure intake path before sending identity documents or sensitive personal data.',
             ],
           },
         ],
@@ -707,25 +725,43 @@ export const legalPageCatalog: LegalPage[] = [
       'pt-br': {
         navLabel: 'Privacidade',
         title: 'Política de Privacidade',
-        description: 'A abordagem de privacidade do SuperSites minimiza coleta, prefere processamento no navegador e bloqueia dados pessoais em analytics e anúncios.',
-        updatedLabel: 'Revisado em 26 de junho de 2026',
+        description: 'Como o SuperSites trata entradas de ferramentas, dados essenciais de serviço, limites de analytics, separação de publicidade, cookies, retenção e pedidos de privacidade no hub público.',
+        updatedLabel: 'Revisado em 30 de junho de 2026',
         sections: [
           {
-            heading: 'Minimização de dados',
+            heading: 'Categorias de dados',
             paragraphs: [
-              'O SuperSites deve coletar apenas o necessário para entregar a ferramenta solicitada, proteger o serviço, operar contas ou viabilizar recursos pagos. Entradas de ferramentas não serão usadas para treinamento sem opt-in explícito.',
+              'O SuperSites trata as informações necessárias para entregar páginas públicas e ferramentas gratuitas: rota acessada, idioma, dados básicos de navegador e dispositivo, escolhas de consentimento, sinais de segurança e a entrada enviada pela pessoa em uma ferramenta.',
             ],
           },
           {
-            heading: 'Entradas e analytics',
+            heading: 'Entradas das ferramentas',
             paragraphs: [
-              'Textos de ferramentas dev, arquivos enviados e conteúdo empresarial privado devem ficar no navegador quando possível. Eventos de analytics não podem incluir e-mail, telefone, nome completo, IP completo, conteúdo de documento ou arquivo.',
+              'Domínios, URLs, textos, arquivos, datas, números e detalhes de negócio são usados para gerar o resultado solicitado. Ferramentas browser-first mantêm entradas compatíveis no dispositivo da pessoa visitante. Diagnósticos públicos com consulta de rede enviam somente um alvo limitado para a API pública correspondente.',
             ],
           },
           {
-            heading: 'Retenção e direitos',
+            heading: 'Analytics e publicidade',
             paragraphs: [
-              'Arquivos temporários devem ser apagados automaticamente e histórico pago deve seguir os termos do produto. Fluxos de acesso, exportação, correção e exclusão precisam existir antes de contas pagas em produção.',
+              'Analytics fica limitado a eventos sanitizados de produto, como rota, idioma, slug da ferramenta, tipo de ação e estado de conclusão. Eventos excluem IP completo, e-mail, telefone, nome, texto de documento, conteúdo de arquivo, respostas DNS, query strings de URL e segredos enviados. Páginas legais não exibem placements de anúncio, e o hub público não carrega requests reais de AdSense enquanto a monetização está desligada.',
+            ],
+          },
+          {
+            heading: 'Cookies e preferências',
+            paragraphs: [
+              'Armazenamento essencial guarda idioma, consentimento e preferências básicas de serviço. Armazenamento opcional de analytics ou publicidade fica separado das entradas das ferramentas e segue os controles de consentimento descritos na Política de Cookies.',
+            ],
+          },
+          {
+            heading: 'Retenção e segurança',
+            paragraphs: [
+              'Resultados processados no navegador permanecem no dispositivo da pessoa visitante, exceto quando ela baixa ou copia o conteúdo. Logs de servidor, cache e solicitações diagnósticas limitadas são mantidos somente para segurança, prevenção de abuso, solução de problemas e confiabilidade operacional pelo menor período prático.',
+            ],
+          },
+          {
+            heading: 'Direitos e contato',
+            paragraphs: [
+              'Visitantes podem pedir acesso, correção, exclusão, revisão de consentimento ou explicação de privacidade pela página de Contato. Inclua produto, URL da página, idioma, tipo de pedido e endereço para resposta. Solicite um caminho seguro antes de enviar documentos de identidade ou dados pessoais sensíveis.',
             ],
           },
         ],
@@ -733,25 +769,43 @@ export const legalPageCatalog: LegalPage[] = [
       es: {
         navLabel: 'Privacidad',
         title: 'Política de Privacidad',
-        description: 'La privacidad en SuperSites minimiza la recolección, favorece el procesamiento en el navegador y bloquea datos personales en analytics y anuncios.',
-        updatedLabel: 'Revisado el 26 de junio de 2026',
+        description: 'Cómo SuperSites trata entradas de herramientas, datos esenciales del servicio, límites de analytics, separación de publicidad, cookies, retención y solicitudes de privacidad en el hub público.',
+        updatedLabel: 'Revisado el 30 de junio de 2026',
         sections: [
           {
-            heading: 'Minimización de datos',
+            heading: 'Categorías de datos',
             paragraphs: [
-              'SuperSites debe recopilar solo lo necesario para entregar la herramienta, proteger el servicio, operar cuentas o habilitar funciones pagas. Las entradas no se usan para entrenamiento sin opt-in explícito.',
+              'SuperSites trata la información necesaria para entregar páginas públicas y herramientas gratuitas: ruta visitada, idioma, datos básicos del navegador y dispositivo, opciones de consentimiento, señales de seguridad y la entrada que la persona envía a una herramienta.',
             ],
           },
           {
-            heading: 'Entradas y analytics',
+            heading: 'Entradas de herramientas',
             paragraphs: [
-              'Texto de herramientas dev, archivos y contenido privado deben quedarse en el navegador cuando sea posible. Los eventos no deben incluir email, teléfono, nombre completo, IP completa, documentos ni contenido de archivos.',
+              'Dominios, URLs, texto, archivos, fechas, números y datos de negocio se usan para producir el resultado solicitado. Las herramientas browser-first mantienen entradas compatibles en el dispositivo de la persona visitante. Los diagnósticos públicos que requieren red envían solo un objetivo acotado a la API pública correspondiente.',
             ],
           },
           {
-            heading: 'Retención y derechos',
+            heading: 'Analytics y publicidad',
             paragraphs: [
-              'Los archivos temporales deben borrarse automáticamente y el historial pago debe seguir los términos del producto. Acceso, exportación, corrección y eliminación deben existir antes de cuentas pagas en producción.',
+              'Analytics queda limitado a eventos sanitizados de producto, como ruta, idioma, slug de herramienta, tipo de acción y estado de finalización. Los eventos excluyen IP completa, email, teléfono, nombre, texto de documento, contenido de archivo, respuestas DNS, query strings de URL y secretos enviados. Las páginas legales no muestran placements de anuncio, y el hub público no carga requests reales de AdSense mientras la monetización está apagada.',
+            ],
+          },
+          {
+            heading: 'Cookies y preferencias',
+            paragraphs: [
+              'El almacenamiento esencial conserva idioma, consentimiento y preferencias básicas del servicio. El almacenamiento opcional de analytics o publicidad queda separado de las entradas de herramientas y sigue los controles de consentimiento descritos en la Política de Cookies.',
+            ],
+          },
+          {
+            heading: 'Retención y seguridad',
+            paragraphs: [
+              'Los resultados procesados en el navegador permanecen en el dispositivo de la persona visitante, salvo cuando ella descarga o copia el contenido. Logs de servidor, caché y solicitudes diagnósticas acotadas se conservan solo para seguridad, prevención de abuso, solución de problemas y confiabilidad operativa durante el periodo práctico más corto.',
+            ],
+          },
+          {
+            heading: 'Derechos y contacto',
+            paragraphs: [
+              'Las personas visitantes pueden pedir acceso, corrección, eliminación, revisión de consentimiento o una explicación de privacidad desde la página de Contacto. Incluye producto, URL de la página, idioma, tipo de solicitud y dirección de respuesta. Solicita una vía segura antes de enviar documentos de identidad o datos personales sensibles.',
             ],
           },
         ],
@@ -759,25 +813,43 @@ export const legalPageCatalog: LegalPage[] = [
       fr: {
         navLabel: 'Confidentialité',
         title: 'Politique de confidentialité',
-        description: 'L’approche SuperSites limite la collecte, préfère le traitement dans le navigateur et bloque les données personnelles dans analytics et publicité.',
-        updatedLabel: 'Révisé le 26 juin 2026',
+        description: 'Comment SuperSites traite les entrées d’outils, les données essentielles du service, les limites analytics, la séparation publicitaire, les cookies, la conservation et les demandes de confidentialité dans le hub public.',
+        updatedLabel: 'Révisé le 30 juin 2026',
         sections: [
           {
-            heading: 'Minimisation des données',
+            heading: 'Catégories de données',
             paragraphs: [
-              'SuperSites doit collecter seulement ce qui est nécessaire pour fournir l’outil, protéger le service, gérer les comptes ou activer des fonctions payantes. Les entrées ne servent pas à l’entraînement sans opt-in explicite.',
+              'SuperSites traite les informations nécessaires pour fournir les pages publiques et les outils gratuits : route visitée, langue, éléments de base du navigateur et de l’appareil, choix de consentement, signaux de sécurité et entrée envoyée par la personne dans un outil.',
             ],
           },
           {
-            heading: 'Entrées et analytics',
+            heading: 'Entrées des outils',
             paragraphs: [
-              'Textes développeur, fichiers et contenus privés doivent rester dans le navigateur quand c’est possible. Les événements ne doivent pas inclure e-mail, téléphone, nom complet, IP complète, documents ou contenu de fichier.',
+              'Domaines, URLs, textes, fichiers, dates, nombres et détails métier servent à produire le résultat demandé. Les outils browser-first gardent les entrées compatibles sur l’appareil de la personne visiteuse. Les diagnostics publics nécessitant le réseau envoient seulement une cible limitée à l’API publique correspondante.',
             ],
           },
           {
-            heading: 'Rétention et droits',
+            heading: 'Analytics et publicité',
             paragraphs: [
-              'Les fichiers temporaires doivent être supprimés automatiquement et l’historique payant suivre les termes du produit. Accès, export, correction et suppression doivent exister avant les comptes payants en production.',
+              'Analytics se limite à des événements produit assainis, comme route, langue, slug d’outil, type d’action et état de finalisation. Les événements excluent IP complète, e-mail, téléphone, nom, texte de document, contenu de fichier, réponses DNS, query strings d’URL et secrets envoyés. Les pages légales n’affichent pas de placements publicitaires, et le hub public ne charge pas de requêtes AdSense réelles tant que la monétisation est désactivée.',
+            ],
+          },
+          {
+            heading: 'Cookies et préférences',
+            paragraphs: [
+              'Le stockage essentiel conserve langue, consentement et préférences de service de base. Le stockage optionnel analytics ou publicitaire reste séparé des entrées d’outils et suit les contrôles de consentement décrits dans la Politique de cookies.',
+            ],
+          },
+          {
+            heading: 'Conservation et sécurité',
+            paragraphs: [
+              'Les résultats traités dans le navigateur restent sur l’appareil de la personne visiteuse, sauf téléchargement ou copie volontaire. Les logs serveur, caches et demandes diagnostiques limitées sont conservés seulement pour sécurité, prévention des abus, dépannage et fiabilité opérationnelle pendant la période pratique la plus courte.',
+            ],
+          },
+          {
+            heading: 'Droits et contact',
+            paragraphs: [
+              'Les personnes visiteuses peuvent demander accès, correction, suppression, revue du consentement ou explication de confidentialité via la page Contact. Indiquez produit, URL de page, langue, type de demande et adresse de réponse. Demandez un canal sécurisé avant d’envoyer documents d’identité ou données personnelles sensibles.',
             ],
           },
         ],
@@ -785,25 +857,43 @@ export const legalPageCatalog: LegalPage[] = [
       de: {
         navLabel: 'Datenschutz',
         title: 'Datenschutzerklärung',
-        description: 'SuperSites minimiert Datenerhebung, bevorzugt Verarbeitung im Browser und hält personenbezogene Daten aus Analytics- und Werbeereignissen heraus.',
-        updatedLabel: 'Geprüft am 26. Juni 2026',
+        description: 'Wie SuperSites Tool-Eingaben, notwendige Servicedaten, Analytics-Grenzen, Werbetrennung, Cookies, Aufbewahrung und Datenschutzanfragen im öffentlichen Hub behandelt.',
+        updatedLabel: 'Geprüft am 30. Juni 2026',
         sections: [
           {
-            heading: 'Datenminimierung',
+            heading: 'Datenkategorien',
             paragraphs: [
-              'SuperSites soll nur erfassen, was für das angefragte Tool, den Schutz des Dienstes, Konten oder bezahlte Funktionen nötig ist. Tool-Eingaben werden ohne ausdrückliches Opt-in nicht für Training genutzt.',
+              'SuperSites verarbeitet die Informationen, die für öffentliche Seiten und kostenlose Tools erforderlich sind: besuchte Route, Sprache, Browser- und Gerätebasisdaten, Einwilligungsoptionen, Sicherheitssignale und die Eingabe, die eine Person an ein Tool übermittelt.',
             ],
           },
           {
-            heading: 'Eingaben und Analytics',
+            heading: 'Tool-Eingaben',
             paragraphs: [
-              'Entwicklertexte, Dateien und private Inhalte sollen möglichst im Browser bleiben. Analytics-Ereignisse dürfen keine E-Mail, Telefonnummer, vollständigen Namen, vollständige IP, Dokumente oder Dateiinhalte enthalten.',
+              'Domains, URLs, Text, Dateien, Datumswerte, Zahlen und Geschäftsdaten werden verwendet, um das angefragte Ergebnis zu erzeugen. Browser-first-Tools behalten unterstützte Eingaben auf dem Gerät der besuchenden Person. Öffentliche Diagnosen mit Netzwerkbedarf senden nur ein begrenztes Ziel an die passende öffentliche API.',
             ],
           },
           {
-            heading: 'Aufbewahrung und Rechte',
+            heading: 'Analytics und Werbung',
             paragraphs: [
-              'Temporäre Dateien sollen automatisch gelöscht werden; bezahlte Historie folgt den Produktbedingungen. Zugriff, Export, Berichtigung und Löschung müssen vor bezahlten Produktionskonten bereitstehen.',
+              'Analytics bleibt auf bereinigte Produktereignisse wie Route, Sprache, Tool-Slug, Aktionstyp und Abschlussstatus begrenzt. Ereignisse enthalten keine vollständigen IP-Adressen, E-Mail-Adressen, Telefonnummern, Namen, Dokumenttexte, Dateiinhalte, DNS-Antworten, URL-Query-Strings oder übermittelten Secrets. Rechtliche Seiten zeigen keine Anzeigenplacements, und der öffentliche Hub lädt keine echten AdSense-Requests, solange Monetarisierung ausgeschaltet ist.',
+            ],
+          },
+          {
+            heading: 'Cookies und Präferenzen',
+            paragraphs: [
+              'Essenzielle Speicherung hält Sprache, Einwilligung und grundlegende Servicepräferenzen fest. Optionale Analytics- oder Werbespeicherung bleibt von Tool-Eingaben getrennt und folgt den Einwilligungskontrollen in der Cookie-Richtlinie.',
+            ],
+          },
+          {
+            heading: 'Aufbewahrung und Sicherheit',
+            paragraphs: [
+              'Im Browser verarbeitete Ergebnisse bleiben auf dem Gerät der besuchenden Person, außer sie werden heruntergeladen oder kopiert. Serverlogs, Cache-Einträge und begrenzte Diagnoseanfragen werden nur für Sicherheit, Missbrauchsprävention, Fehlerbehebung und operative Zuverlässigkeit für den kürzesten praktikablen Zeitraum aufbewahrt.',
+            ],
+          },
+          {
+            heading: 'Rechte und Kontakt',
+            paragraphs: [
+              'Besuchende Personen können über die Kontaktseite Auskunft, Korrektur, Löschung, Einwilligungsprüfung oder eine Datenschutzerklärung anfragen. Geben Sie Produkt, Seiten-URL, Sprache, Anfragetyp und Antwortadresse an. Fragen Sie nach einem sicheren Kanal, bevor Ausweisdokumente oder sensible personenbezogene Daten gesendet werden.',
             ],
           },
         ],
@@ -1504,7 +1594,7 @@ export function getLegalShellCopy(locale: LocaleCode): LegalShellCopy {
 }
 
 export function getLegalPageCopy(page: LegalPage, locale: LocaleCode): LocalizedLegalPage {
-  if (page.slug === 'about' || page.slug === 'contact') {
+  if (page.slug === 'about' || page.slug === 'contact' || page.slug === 'privacy') {
     return sanitizePublicCopy(locale, page.localized[locale])
   }
 

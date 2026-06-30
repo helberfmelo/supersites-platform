@@ -510,7 +510,7 @@ describe('site catalog', () => {
 
         expect(localized.title.length).toBeGreaterThan(5)
         expect(localized.description.length).toBeGreaterThan(60)
-        expect(localized.sections).toHaveLength(['about', 'contact'].includes(page.slug) ? 6 : 3)
+        expect(localized.sections).toHaveLength(['about', 'contact', 'privacy'].includes(page.slug) ? 6 : 3)
         expect(localized.sections.every((section) => section.paragraphs.length > 0)).toBe(true)
       }
     }
@@ -561,6 +561,63 @@ describe('site catalog', () => {
       expect(links).toHaveLength(5)
       expect(links.every((link) => link.href.startsWith('mailto:contact@opentshost.com?subject='))).toBe(true)
       expect(JSON.stringify(copy)).not.toMatch(blockedLaunchLanguage)
+    }
+  })
+
+  it('keeps the public Privacy Policy complete and free of conditional/internal language', () => {
+    const privacy = legalPageCatalog.find((page) => page.slug === 'privacy')
+    expect(privacy).toBeDefined()
+
+    const requiredHeadings = {
+      en: [
+        'Data categories',
+        'Tool inputs',
+        'Analytics and advertising',
+        'Cookies and preferences',
+        'Retention and security',
+        'Rights and contact',
+      ],
+      'pt-br': [
+        'Categorias de dados',
+        'Entradas das ferramentas',
+        'Analytics e publicidade',
+        'Cookies e preferências',
+        'Retenção e segurança',
+        'Direitos e contato',
+      ],
+      es: [
+        'Categorías de datos',
+        'Entradas de herramientas',
+        'Analytics y publicidad',
+        'Cookies y preferencias',
+        'Retención y seguridad',
+        'Derechos y contacto',
+      ],
+      fr: [
+        'Catégories de données',
+        'Entrées des outils',
+        'Analytics et publicité',
+        'Cookies et préférences',
+        'Conservation et sécurité',
+        'Droits et contact',
+      ],
+      de: [
+        'Datenkategorien',
+        'Tool-Eingaben',
+        'Analytics und Werbung',
+        'Cookies und Präferenzen',
+        'Aufbewahrung und Sicherheit',
+        'Rechte und Kontakt',
+      ],
+    }
+    const blockedConditionalLanguage =
+      /\bshould\b|plans to|planned|human review|legal review|paid accounts launch|final public launch|public review|revisão jurídica|revisão humana|\bdeve\b|\bdevem\b|\bprecisa\b|\bprecisam\b|revisión legal|revisión humana|\bdebe\b|\bdeben\b|révision juridique|revue humaine|\bdoit\b|\bdoivent\b|\bdevraient\b|Rechtsprüfung|menschliche Prüfung|\bsoll\b|\bsollen\b|\bmuss\b|\bmüssen\b/iu
+
+    for (const locale of localeCodes) {
+      const copy = getLegalPageCopy(privacy!, locale)
+
+      expect(copy.sections.map((section) => section.heading)).toEqual(requiredHeadings[locale])
+      expect(JSON.stringify(copy)).not.toMatch(blockedConditionalLanguage)
     }
   })
 

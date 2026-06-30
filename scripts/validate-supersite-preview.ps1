@@ -177,7 +177,7 @@ try {
         throw 'SitePulse Lab detail page smoke failed.'
     }
 
-    $legal = Invoke-PreviewRequest -Uri "$baseUrl/en/privacy" -RequiredContent 'Data minimization'
+    $legal = Invoke-PreviewRequest -Uri "$baseUrl/en/privacy" -RequiredContent 'Data categories'
     if ($legal.StatusCode -ne 200 -or $legal.Content -notmatch 'Privacy Policy') {
         throw 'Privacy page smoke failed.'
     }
