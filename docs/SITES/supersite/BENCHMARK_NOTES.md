@@ -62,3 +62,10 @@ Data-base: 2026-06-27
 - The first fold must prioritize search, categories and direct tool use. Product/network status, rollout counters, preview badges, tool-count badges, `free value` and `upgrade path` do not belong in the public home main experience.
 - The corrected Hub pattern is: concise user-facing H1, prominent tool search, category chips, filtered direct tool cards, workflow clusters and only then a compact site directory.
 - New guardrail: `docs/PHASE18_BENCHMARK_GRADE_ACCEPTANCE.md` is mandatory for every remaining Phase 18 sprint; technical pass plus added sections is not enough without visual first-fold acceptance.
+
+## Phase 18 Sprint 18.2c footer correction notes
+
+- Benchmark feedback on the Hub footer requires text navigation, not chip/button controls. Footer links should feel like a mature utility-site directory footer.
+- The footer now uses localized text columns with 38 deep links per locale to public tools/subpages across the 10 sites, plus a separate text-only legal row.
+- Future footer refinements must not regress to product-home-only navigation. Prefer practical tool links such as DNS Propagation, JSON Formatter, PDF Merge, SPF Checker, Image Compressor and similar task routes.
+- Visual acceptance requires desktop and mobile screenshots after build/preview; current local evidence is in `artifacts/footer-qa/hub-footer-desktop-wide.png` and `artifacts/footer-qa/hub-footer-mobile-pt-br.png`.

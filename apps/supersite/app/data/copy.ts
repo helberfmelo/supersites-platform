@@ -63,7 +63,10 @@ export interface FooterCopy {
   brandBody: string
   productNavLabel: string
   legalNavLabel: string
-  groups: Array<{ title: string; siteSlugs: string[] }>
+  groups: Array<{
+    title: string
+    links: Array<{ label: string; siteSlug: string; path: string }>
+  }>
 }
 
 export const homeCopy: Record<LocaleCode, HomeCopy> = {
@@ -513,15 +516,74 @@ export const footerCopy: Record<LocaleCode, FooterCopy> = {
     productNavLabel: 'Product verticals',
     legalNavLabel: 'Legal and editorial pages',
     groups: [
-      { title: 'Diagnostics', siteSlugs: ['netprobe-atlas'] },
-      { title: 'Calculators', siteSlugs: ['calcharbor'] },
-      { title: 'Developer tools', siteSlugs: ['devutility-lab'] },
-      { title: 'Time', siteSlugs: ['timenexus'] },
-      { title: 'QR and links', siteSlugs: ['qrroute'] },
-      { title: 'Documents', siteSlugs: ['invoicecraft', 'docshift'] },
-      { title: 'Email', siteSlugs: ['mailhealth'] },
-      { title: 'Website', siteSlugs: ['sitepulse-lab'] },
-      { title: 'Images', siteSlugs: ['pixelbatch'] },
+      {
+        title: 'Network and DNS',
+        links: [
+          { label: 'What is my IP', siteSlug: 'netprobe-atlas', path: '/tools/what-is-my-ip' },
+          { label: 'DNS Propagation', siteSlug: 'netprobe-atlas', path: '/tools/dns-propagation' },
+          { label: 'DNS Lookup', siteSlug: 'netprobe-atlas', path: '/tools/dns-lookup' },
+          { label: 'RDAP Lookup', siteSlug: 'netprobe-atlas', path: '/tools/rdap-domain-lookup' },
+          { label: 'SSL Certificate Checker', siteSlug: 'netprobe-atlas', path: '/tools/ssl-certificate-checker' },
+          { label: 'Port Checker', siteSlug: 'netprobe-atlas', path: '/tools/port-checker' },
+        ],
+      },
+      {
+        title: 'Email and website',
+        links: [
+          { label: 'SPF Checker', siteSlug: 'mailhealth', path: '/tools/spf-checker' },
+          { label: 'DKIM Checker', siteSlug: 'mailhealth', path: '/tools/dkim-checker' },
+          { label: 'DMARC Checker', siteSlug: 'mailhealth', path: '/tools/dmarc-checker' },
+          { label: 'MX Checker', siteSlug: 'mailhealth', path: '/tools/mx-checker' },
+          { label: 'Website Status', siteSlug: 'sitepulse-lab', path: '/tools/status-checker' },
+          { label: 'Redirect Chain', siteSlug: 'sitepulse-lab', path: '/tools/redirect-chain' },
+          { label: 'Security Headers', siteSlug: 'sitepulse-lab', path: '/tools/security-headers' },
+        ],
+      },
+      {
+        title: 'Calculators and time',
+        links: [
+          { label: 'Loan Payment', siteSlug: 'calcharbor', path: '/calculators/loan-payment' },
+          { label: 'Break-even Point', siteSlug: 'calcharbor', path: '/calculators/break-even-point' },
+          { label: 'Gross Margin', siteSlug: 'calcharbor', path: '/calculators/gross-margin' },
+          { label: 'ROI Calculator', siteSlug: 'calcharbor', path: '/calculators/roi' },
+          { label: 'Time Zone Converter', siteSlug: 'timenexus', path: '/tools/timezone-converter' },
+          { label: 'World Clock', siteSlug: 'timenexus', path: '/world-clock/americas-europe' },
+        ],
+      },
+      {
+        title: 'Developer and QR',
+        links: [
+          { label: 'JSON Formatter', siteSlug: 'devutility-lab', path: '/tools/structured-data-formatter' },
+          { label: 'Base64 Converter', siteSlug: 'devutility-lab', path: '/tools/base64-converter' },
+          { label: 'JWT Inspector', siteSlug: 'devutility-lab', path: '/tools/jwt-inspector' },
+          { label: 'Regex Tester', siteSlug: 'devutility-lab', path: '/tools/regex-tester' },
+          { label: 'Static QR Code', siteSlug: 'qrroute', path: '/tools/static-qr-code' },
+          { label: 'UTM Builder', siteSlug: 'qrroute', path: '/tools/utm-builder' },
+          { label: 'Barcode Generator', siteSlug: 'qrroute', path: '/tools/barcode-generator' },
+        ],
+      },
+      {
+        title: 'Documents and PDF',
+        links: [
+          { label: 'Invoice Builder', siteSlug: 'invoicecraft', path: '/tools/invoice-builder' },
+          { label: 'Quote Builder', siteSlug: 'invoicecraft', path: '/tools/quote-builder' },
+          { label: 'Receipt Builder', siteSlug: 'invoicecraft', path: '/tools/receipt-builder' },
+          { label: 'PDF Merge', siteSlug: 'docshift', path: '/tools/pdf-merge' },
+          { label: 'PDF Split', siteSlug: 'docshift', path: '/tools/pdf-split' },
+          { label: 'PDF Rotate', siteSlug: 'docshift', path: '/tools/pdf-rotate' },
+        ],
+      },
+      {
+        title: 'Images',
+        links: [
+          { label: 'Image Compressor', siteSlug: 'pixelbatch', path: '/tools/image-compressor' },
+          { label: 'Image Resizer', siteSlug: 'pixelbatch', path: '/tools/image-resizer' },
+          { label: 'Image Cropper', siteSlug: 'pixelbatch', path: '/tools/image-cropper' },
+          { label: 'Image Converter', siteSlug: 'pixelbatch', path: '/tools/image-converter' },
+          { label: 'Metadata Remover', siteSlug: 'pixelbatch', path: '/tools/metadata-remover' },
+          { label: 'Social Presets', siteSlug: 'pixelbatch', path: '/tools/social-preset-generator' },
+        ],
+      },
     ],
   },
   'pt-br': {
@@ -529,15 +591,74 @@ export const footerCopy: Record<LocaleCode, FooterCopy> = {
     productNavLabel: 'Verticais de produto',
     legalNavLabel: 'Páginas legais e editoriais',
     groups: [
-      { title: 'Diagnóstico', siteSlugs: ['netprobe-atlas'] },
-      { title: 'Calculadoras', siteSlugs: ['calcharbor'] },
-      { title: 'Ferramentas dev', siteSlugs: ['devutility-lab'] },
-      { title: 'Tempo', siteSlugs: ['timenexus'] },
-      { title: 'QR e links', siteSlugs: ['qrroute'] },
-      { title: 'Documentos', siteSlugs: ['invoicecraft', 'docshift'] },
-      { title: 'E-mail', siteSlugs: ['mailhealth'] },
-      { title: 'Sites', siteSlugs: ['sitepulse-lab'] },
-      { title: 'Imagens', siteSlugs: ['pixelbatch'] },
+      {
+        title: 'Rede e DNS',
+        links: [
+          { label: 'Qual é meu IP', siteSlug: 'netprobe-atlas', path: '/tools/what-is-my-ip' },
+          { label: 'Propagação DNS', siteSlug: 'netprobe-atlas', path: '/tools/dns-propagation' },
+          { label: 'Consulta DNS', siteSlug: 'netprobe-atlas', path: '/tools/dns-lookup' },
+          { label: 'Consulta RDAP', siteSlug: 'netprobe-atlas', path: '/tools/rdap-domain-lookup' },
+          { label: 'Certificado SSL', siteSlug: 'netprobe-atlas', path: '/tools/ssl-certificate-checker' },
+          { label: 'Teste de porta', siteSlug: 'netprobe-atlas', path: '/tools/port-checker' },
+        ],
+      },
+      {
+        title: 'E-mail e sites',
+        links: [
+          { label: 'Verificador SPF', siteSlug: 'mailhealth', path: '/tools/spf-checker' },
+          { label: 'Verificador DKIM', siteSlug: 'mailhealth', path: '/tools/dkim-checker' },
+          { label: 'Verificador DMARC', siteSlug: 'mailhealth', path: '/tools/dmarc-checker' },
+          { label: 'Verificador MX', siteSlug: 'mailhealth', path: '/tools/mx-checker' },
+          { label: 'Status de site', siteSlug: 'sitepulse-lab', path: '/tools/status-checker' },
+          { label: 'Cadeia de redirecionamento', siteSlug: 'sitepulse-lab', path: '/tools/redirect-chain' },
+          { label: 'Cabeçalhos de segurança', siteSlug: 'sitepulse-lab', path: '/tools/security-headers' },
+        ],
+      },
+      {
+        title: 'Calculadoras e tempo',
+        links: [
+          { label: 'Pagamento de empréstimo', siteSlug: 'calcharbor', path: '/calculators/loan-payment' },
+          { label: 'Ponto de equilíbrio', siteSlug: 'calcharbor', path: '/calculators/break-even-point' },
+          { label: 'Margem bruta', siteSlug: 'calcharbor', path: '/calculators/gross-margin' },
+          { label: 'Calculadora de ROI', siteSlug: 'calcharbor', path: '/calculators/roi' },
+          { label: 'Conversor de fuso horário', siteSlug: 'timenexus', path: '/tools/timezone-converter' },
+          { label: 'Relógio mundial', siteSlug: 'timenexus', path: '/world-clock/americas-europe' },
+        ],
+      },
+      {
+        title: 'Desenvolvimento e QR',
+        links: [
+          { label: 'Formatador JSON', siteSlug: 'devutility-lab', path: '/tools/structured-data-formatter' },
+          { label: 'Conversor Base64', siteSlug: 'devutility-lab', path: '/tools/base64-converter' },
+          { label: 'Inspetor JWT', siteSlug: 'devutility-lab', path: '/tools/jwt-inspector' },
+          { label: 'Teste de regex', siteSlug: 'devutility-lab', path: '/tools/regex-tester' },
+          { label: 'QR estático', siteSlug: 'qrroute', path: '/tools/static-qr-code' },
+          { label: 'Gerador UTM', siteSlug: 'qrroute', path: '/tools/utm-builder' },
+          { label: 'Gerador de código de barras', siteSlug: 'qrroute', path: '/tools/barcode-generator' },
+        ],
+      },
+      {
+        title: 'Documentos e PDF',
+        links: [
+          { label: 'Gerador de fatura', siteSlug: 'invoicecraft', path: '/tools/invoice-builder' },
+          { label: 'Gerador de orçamento', siteSlug: 'invoicecraft', path: '/tools/quote-builder' },
+          { label: 'Gerador de recibo', siteSlug: 'invoicecraft', path: '/tools/receipt-builder' },
+          { label: 'Unir PDFs', siteSlug: 'docshift', path: '/tools/pdf-merge' },
+          { label: 'Dividir PDF', siteSlug: 'docshift', path: '/tools/pdf-split' },
+          { label: 'Girar PDF', siteSlug: 'docshift', path: '/tools/pdf-rotate' },
+        ],
+      },
+      {
+        title: 'Imagens',
+        links: [
+          { label: 'Compressor de imagem', siteSlug: 'pixelbatch', path: '/tools/image-compressor' },
+          { label: 'Redimensionador de imagem', siteSlug: 'pixelbatch', path: '/tools/image-resizer' },
+          { label: 'Cortador de imagem', siteSlug: 'pixelbatch', path: '/tools/image-cropper' },
+          { label: 'Conversor de imagem', siteSlug: 'pixelbatch', path: '/tools/image-converter' },
+          { label: 'Removedor de metadados', siteSlug: 'pixelbatch', path: '/tools/metadata-remover' },
+          { label: 'Formatos sociais', siteSlug: 'pixelbatch', path: '/tools/social-preset-generator' },
+        ],
+      },
     ],
   },
   es: {
@@ -545,15 +666,74 @@ export const footerCopy: Record<LocaleCode, FooterCopy> = {
     productNavLabel: 'Verticales de producto',
     legalNavLabel: 'Páginas legales y editoriales',
     groups: [
-      { title: 'Diagnóstico', siteSlugs: ['netprobe-atlas'] },
-      { title: 'Calculadoras', siteSlugs: ['calcharbor'] },
-      { title: 'Herramientas dev', siteSlugs: ['devutility-lab'] },
-      { title: 'Tiempo', siteSlugs: ['timenexus'] },
-      { title: 'QR y enlaces', siteSlugs: ['qrroute'] },
-      { title: 'Documentos', siteSlugs: ['invoicecraft', 'docshift'] },
-      { title: 'Email', siteSlugs: ['mailhealth'] },
-      { title: 'Sitio web', siteSlugs: ['sitepulse-lab'] },
-      { title: 'Imágenes', siteSlugs: ['pixelbatch'] },
+      {
+        title: 'Red y DNS',
+        links: [
+          { label: 'Cuál es mi IP', siteSlug: 'netprobe-atlas', path: '/tools/what-is-my-ip' },
+          { label: 'Propagación DNS', siteSlug: 'netprobe-atlas', path: '/tools/dns-propagation' },
+          { label: 'Consulta DNS', siteSlug: 'netprobe-atlas', path: '/tools/dns-lookup' },
+          { label: 'Consulta RDAP', siteSlug: 'netprobe-atlas', path: '/tools/rdap-domain-lookup' },
+          { label: 'Certificado SSL', siteSlug: 'netprobe-atlas', path: '/tools/ssl-certificate-checker' },
+          { label: 'Prueba de puerto', siteSlug: 'netprobe-atlas', path: '/tools/port-checker' },
+        ],
+      },
+      {
+        title: 'Email y sitios',
+        links: [
+          { label: 'Verificador SPF', siteSlug: 'mailhealth', path: '/tools/spf-checker' },
+          { label: 'Verificador DKIM', siteSlug: 'mailhealth', path: '/tools/dkim-checker' },
+          { label: 'Verificador DMARC', siteSlug: 'mailhealth', path: '/tools/dmarc-checker' },
+          { label: 'Verificador MX', siteSlug: 'mailhealth', path: '/tools/mx-checker' },
+          { label: 'Estado del sitio', siteSlug: 'sitepulse-lab', path: '/tools/status-checker' },
+          { label: 'Cadena de redirección', siteSlug: 'sitepulse-lab', path: '/tools/redirect-chain' },
+          { label: 'Encabezados de seguridad', siteSlug: 'sitepulse-lab', path: '/tools/security-headers' },
+        ],
+      },
+      {
+        title: 'Calculadoras y tiempo',
+        links: [
+          { label: 'Pago de préstamo', siteSlug: 'calcharbor', path: '/calculators/loan-payment' },
+          { label: 'Punto de equilibrio', siteSlug: 'calcharbor', path: '/calculators/break-even-point' },
+          { label: 'Margen bruto', siteSlug: 'calcharbor', path: '/calculators/gross-margin' },
+          { label: 'Calculadora ROI', siteSlug: 'calcharbor', path: '/calculators/roi' },
+          { label: 'Conversor de zona horaria', siteSlug: 'timenexus', path: '/tools/timezone-converter' },
+          { label: 'Reloj mundial', siteSlug: 'timenexus', path: '/world-clock/americas-europe' },
+        ],
+      },
+      {
+        title: 'Dev y QR',
+        links: [
+          { label: 'Formateador JSON', siteSlug: 'devutility-lab', path: '/tools/structured-data-formatter' },
+          { label: 'Conversor Base64', siteSlug: 'devutility-lab', path: '/tools/base64-converter' },
+          { label: 'Inspector JWT', siteSlug: 'devutility-lab', path: '/tools/jwt-inspector' },
+          { label: 'Probador regex', siteSlug: 'devutility-lab', path: '/tools/regex-tester' },
+          { label: 'QR estático', siteSlug: 'qrroute', path: '/tools/static-qr-code' },
+          { label: 'Generador UTM', siteSlug: 'qrroute', path: '/tools/utm-builder' },
+          { label: 'Generador de código de barras', siteSlug: 'qrroute', path: '/tools/barcode-generator' },
+        ],
+      },
+      {
+        title: 'Documentos y PDF',
+        links: [
+          { label: 'Generador de facturas', siteSlug: 'invoicecraft', path: '/tools/invoice-builder' },
+          { label: 'Generador de presupuestos', siteSlug: 'invoicecraft', path: '/tools/quote-builder' },
+          { label: 'Generador de recibos', siteSlug: 'invoicecraft', path: '/tools/receipt-builder' },
+          { label: 'Unir PDF', siteSlug: 'docshift', path: '/tools/pdf-merge' },
+          { label: 'Dividir PDF', siteSlug: 'docshift', path: '/tools/pdf-split' },
+          { label: 'Rotar PDF', siteSlug: 'docshift', path: '/tools/pdf-rotate' },
+        ],
+      },
+      {
+        title: 'Imágenes',
+        links: [
+          { label: 'Compresor de imagen', siteSlug: 'pixelbatch', path: '/tools/image-compressor' },
+          { label: 'Redimensionar imagen', siteSlug: 'pixelbatch', path: '/tools/image-resizer' },
+          { label: 'Recortar imagen', siteSlug: 'pixelbatch', path: '/tools/image-cropper' },
+          { label: 'Convertir imagen', siteSlug: 'pixelbatch', path: '/tools/image-converter' },
+          { label: 'Eliminar metadatos', siteSlug: 'pixelbatch', path: '/tools/metadata-remover' },
+          { label: 'Formatos sociales', siteSlug: 'pixelbatch', path: '/tools/social-preset-generator' },
+        ],
+      },
     ],
   },
   fr: {
@@ -561,15 +741,74 @@ export const footerCopy: Record<LocaleCode, FooterCopy> = {
     productNavLabel: 'Verticales produit',
     legalNavLabel: 'Pages légales et éditoriales',
     groups: [
-      { title: 'Diagnostic', siteSlugs: ['netprobe-atlas'] },
-      { title: 'Calculateurs', siteSlugs: ['calcharbor'] },
-      { title: 'Outils dev', siteSlugs: ['devutility-lab'] },
-      { title: 'Temps', siteSlugs: ['timenexus'] },
-      { title: 'QR et liens', siteSlugs: ['qrroute'] },
-      { title: 'Documents', siteSlugs: ['invoicecraft', 'docshift'] },
-      { title: 'E-mail', siteSlugs: ['mailhealth'] },
-      { title: 'Site web', siteSlugs: ['sitepulse-lab'] },
-      { title: 'Images', siteSlugs: ['pixelbatch'] },
+      {
+        title: 'Réseau et DNS',
+        links: [
+          { label: 'Quelle est mon IP', siteSlug: 'netprobe-atlas', path: '/tools/what-is-my-ip' },
+          { label: 'Propagation DNS', siteSlug: 'netprobe-atlas', path: '/tools/dns-propagation' },
+          { label: 'Recherche DNS', siteSlug: 'netprobe-atlas', path: '/tools/dns-lookup' },
+          { label: 'Recherche RDAP', siteSlug: 'netprobe-atlas', path: '/tools/rdap-domain-lookup' },
+          { label: 'Certificat SSL', siteSlug: 'netprobe-atlas', path: '/tools/ssl-certificate-checker' },
+          { label: 'Test de port', siteSlug: 'netprobe-atlas', path: '/tools/port-checker' },
+        ],
+      },
+      {
+        title: 'E-mail et sites',
+        links: [
+          { label: 'Vérificateur SPF', siteSlug: 'mailhealth', path: '/tools/spf-checker' },
+          { label: 'Vérificateur DKIM', siteSlug: 'mailhealth', path: '/tools/dkim-checker' },
+          { label: 'Vérificateur DMARC', siteSlug: 'mailhealth', path: '/tools/dmarc-checker' },
+          { label: 'Vérificateur MX', siteSlug: 'mailhealth', path: '/tools/mx-checker' },
+          { label: 'Statut du site', siteSlug: 'sitepulse-lab', path: '/tools/status-checker' },
+          { label: 'Chaîne de redirection', siteSlug: 'sitepulse-lab', path: '/tools/redirect-chain' },
+          { label: 'En-têtes de sécurité', siteSlug: 'sitepulse-lab', path: '/tools/security-headers' },
+        ],
+      },
+      {
+        title: 'Calculateurs et temps',
+        links: [
+          { label: 'Paiement de prêt', siteSlug: 'calcharbor', path: '/calculators/loan-payment' },
+          { label: 'Seuil de rentabilité', siteSlug: 'calcharbor', path: '/calculators/break-even-point' },
+          { label: 'Marge brute', siteSlug: 'calcharbor', path: '/calculators/gross-margin' },
+          { label: 'Calculateur ROI', siteSlug: 'calcharbor', path: '/calculators/roi' },
+          { label: 'Convertisseur de fuseau', siteSlug: 'timenexus', path: '/tools/timezone-converter' },
+          { label: 'Horloge mondiale', siteSlug: 'timenexus', path: '/world-clock/americas-europe' },
+        ],
+      },
+      {
+        title: 'Dev et QR',
+        links: [
+          { label: 'Formateur JSON', siteSlug: 'devutility-lab', path: '/tools/structured-data-formatter' },
+          { label: 'Convertisseur Base64', siteSlug: 'devutility-lab', path: '/tools/base64-converter' },
+          { label: 'Inspecteur JWT', siteSlug: 'devutility-lab', path: '/tools/jwt-inspector' },
+          { label: 'Testeur regex', siteSlug: 'devutility-lab', path: '/tools/regex-tester' },
+          { label: 'QR statique', siteSlug: 'qrroute', path: '/tools/static-qr-code' },
+          { label: 'Générateur UTM', siteSlug: 'qrroute', path: '/tools/utm-builder' },
+          { label: 'Générateur de code-barres', siteSlug: 'qrroute', path: '/tools/barcode-generator' },
+        ],
+      },
+      {
+        title: 'Documents et PDF',
+        links: [
+          { label: 'Générateur de facture', siteSlug: 'invoicecraft', path: '/tools/invoice-builder' },
+          { label: 'Générateur de devis', siteSlug: 'invoicecraft', path: '/tools/quote-builder' },
+          { label: 'Générateur de reçu', siteSlug: 'invoicecraft', path: '/tools/receipt-builder' },
+          { label: 'Fusion PDF', siteSlug: 'docshift', path: '/tools/pdf-merge' },
+          { label: 'Division PDF', siteSlug: 'docshift', path: '/tools/pdf-split' },
+          { label: 'Rotation PDF', siteSlug: 'docshift', path: '/tools/pdf-rotate' },
+        ],
+      },
+      {
+        title: 'Images',
+        links: [
+          { label: 'Compresseur d’image', siteSlug: 'pixelbatch', path: '/tools/image-compressor' },
+          { label: 'Redimensionner image', siteSlug: 'pixelbatch', path: '/tools/image-resizer' },
+          { label: 'Recadrer image', siteSlug: 'pixelbatch', path: '/tools/image-cropper' },
+          { label: 'Convertir image', siteSlug: 'pixelbatch', path: '/tools/image-converter' },
+          { label: 'Supprimer métadonnées', siteSlug: 'pixelbatch', path: '/tools/metadata-remover' },
+          { label: 'Formats sociaux', siteSlug: 'pixelbatch', path: '/tools/social-preset-generator' },
+        ],
+      },
     ],
   },
   de: {
@@ -577,15 +816,74 @@ export const footerCopy: Record<LocaleCode, FooterCopy> = {
     productNavLabel: 'Produktbereiche',
     legalNavLabel: 'Rechtliche und redaktionelle Seiten',
     groups: [
-      { title: 'Diagnostik', siteSlugs: ['netprobe-atlas'] },
-      { title: 'Rechner', siteSlugs: ['calcharbor'] },
-      { title: 'Entwickler-Tools', siteSlugs: ['devutility-lab'] },
-      { title: 'Zeit', siteSlugs: ['timenexus'] },
-      { title: 'QR und Links', siteSlugs: ['qrroute'] },
-      { title: 'Dokumente', siteSlugs: ['invoicecraft', 'docshift'] },
-      { title: 'E-Mail', siteSlugs: ['mailhealth'] },
-      { title: 'Website', siteSlugs: ['sitepulse-lab'] },
-      { title: 'Bilder', siteSlugs: ['pixelbatch'] },
+      {
+        title: 'Netzwerk und DNS',
+        links: [
+          { label: 'Was ist meine IP', siteSlug: 'netprobe-atlas', path: '/tools/what-is-my-ip' },
+          { label: 'DNS-Propagation', siteSlug: 'netprobe-atlas', path: '/tools/dns-propagation' },
+          { label: 'DNS-Lookup', siteSlug: 'netprobe-atlas', path: '/tools/dns-lookup' },
+          { label: 'RDAP-Lookup', siteSlug: 'netprobe-atlas', path: '/tools/rdap-domain-lookup' },
+          { label: 'SSL-Zertifikat', siteSlug: 'netprobe-atlas', path: '/tools/ssl-certificate-checker' },
+          { label: 'Port-Checker', siteSlug: 'netprobe-atlas', path: '/tools/port-checker' },
+        ],
+      },
+      {
+        title: 'E-Mail und Website',
+        links: [
+          { label: 'SPF-Checker', siteSlug: 'mailhealth', path: '/tools/spf-checker' },
+          { label: 'DKIM-Checker', siteSlug: 'mailhealth', path: '/tools/dkim-checker' },
+          { label: 'DMARC-Checker', siteSlug: 'mailhealth', path: '/tools/dmarc-checker' },
+          { label: 'MX-Checker', siteSlug: 'mailhealth', path: '/tools/mx-checker' },
+          { label: 'Website-Status', siteSlug: 'sitepulse-lab', path: '/tools/status-checker' },
+          { label: 'Redirect-Kette', siteSlug: 'sitepulse-lab', path: '/tools/redirect-chain' },
+          { label: 'Sicherheits-Header', siteSlug: 'sitepulse-lab', path: '/tools/security-headers' },
+        ],
+      },
+      {
+        title: 'Rechner und Zeit',
+        links: [
+          { label: 'Kreditrate', siteSlug: 'calcharbor', path: '/calculators/loan-payment' },
+          { label: 'Break-even Point', siteSlug: 'calcharbor', path: '/calculators/break-even-point' },
+          { label: 'Bruttomarge', siteSlug: 'calcharbor', path: '/calculators/gross-margin' },
+          { label: 'ROI-Rechner', siteSlug: 'calcharbor', path: '/calculators/roi' },
+          { label: 'Zeitzonen-Konverter', siteSlug: 'timenexus', path: '/tools/timezone-converter' },
+          { label: 'Weltuhr', siteSlug: 'timenexus', path: '/world-clock/americas-europe' },
+        ],
+      },
+      {
+        title: 'Dev und QR',
+        links: [
+          { label: 'JSON-Formatter', siteSlug: 'devutility-lab', path: '/tools/structured-data-formatter' },
+          { label: 'Base64-Konverter', siteSlug: 'devutility-lab', path: '/tools/base64-converter' },
+          { label: 'JWT-Inspector', siteSlug: 'devutility-lab', path: '/tools/jwt-inspector' },
+          { label: 'Regex-Tester', siteSlug: 'devutility-lab', path: '/tools/regex-tester' },
+          { label: 'Statischer QR-Code', siteSlug: 'qrroute', path: '/tools/static-qr-code' },
+          { label: 'UTM-Builder', siteSlug: 'qrroute', path: '/tools/utm-builder' },
+          { label: 'Barcode-Generator', siteSlug: 'qrroute', path: '/tools/barcode-generator' },
+        ],
+      },
+      {
+        title: 'Dokumente und PDF',
+        links: [
+          { label: 'Rechnung erstellen', siteSlug: 'invoicecraft', path: '/tools/invoice-builder' },
+          { label: 'Angebot erstellen', siteSlug: 'invoicecraft', path: '/tools/quote-builder' },
+          { label: 'Quittung erstellen', siteSlug: 'invoicecraft', path: '/tools/receipt-builder' },
+          { label: 'PDF zusammenführen', siteSlug: 'docshift', path: '/tools/pdf-merge' },
+          { label: 'PDF teilen', siteSlug: 'docshift', path: '/tools/pdf-split' },
+          { label: 'PDF drehen', siteSlug: 'docshift', path: '/tools/pdf-rotate' },
+        ],
+      },
+      {
+        title: 'Bilder',
+        links: [
+          { label: 'Bild komprimieren', siteSlug: 'pixelbatch', path: '/tools/image-compressor' },
+          { label: 'Bild skalieren', siteSlug: 'pixelbatch', path: '/tools/image-resizer' },
+          { label: 'Bild zuschneiden', siteSlug: 'pixelbatch', path: '/tools/image-cropper' },
+          { label: 'Bild konvertieren', siteSlug: 'pixelbatch', path: '/tools/image-converter' },
+          { label: 'Metadaten entfernen', siteSlug: 'pixelbatch', path: '/tools/metadata-remover' },
+          { label: 'Social-Media-Formate', siteSlug: 'pixelbatch', path: '/tools/social-preset-generator' },
+        ],
+      },
     ],
   },
 }

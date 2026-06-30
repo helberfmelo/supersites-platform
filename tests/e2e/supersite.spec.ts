@@ -95,7 +95,14 @@ test.describe('SuperSites public hub', () => {
       'https://opentshost.com/supersites/en/editorial-policy',
     )
     await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
-    await expect(page.locator('.footer-verticals').getByRole('link', { name: 'DevUtility Lab' })).toBeVisible()
+    await expect(page.locator('.footer-verticals').getByRole('link', { name: 'JSON Formatter' })).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/devutility-lab/en/tools/structured-data-formatter',
+    )
+    await expect(page.locator('.footer-verticals').getByRole('link', { name: 'PDF Merge' })).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/docshift/en/tools/pdf-merge',
+    )
     await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1)
 
     const screenshot = await page.screenshot({ fullPage: true })
@@ -119,8 +126,8 @@ test.describe('SuperSites public hub', () => {
     await expect(page.getByRole('heading', { name: 'Support the free network' })).toBeVisible()
     await expect(page.locator('.trust-row').getByText('No account required')).toBeVisible()
     await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(3)
-    await expect(page.locator('a[href="https://opentshost.com/supersites/netprobe-atlas/en/tools/what-is-my-ip"]')).toBeVisible()
-    await expect(page.locator('a[href="https://opentshost.com/supersites/docshift/en/tools/pdf-merge"]')).toBeVisible()
+    await expect(page.locator('.tool-shortcut-card[href="https://opentshost.com/supersites/netprobe-atlas/en/tools/what-is-my-ip"]')).toBeVisible()
+    await expect(page.locator('.footer-verticals a[href="https://opentshost.com/supersites/docshift/en/tools/pdf-merge"]')).toBeVisible()
     await expect(page.locator('main')).not.toContainText('Available')
     await expect(page.locator('main')).not.toContainText('Preview')
     await expect(page.locator('main')).not.toContainText('Upgrade path')

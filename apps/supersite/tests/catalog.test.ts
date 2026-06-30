@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getHomeCopy } from '../app/data/copy'
+import { getFooterCopy, getHomeCopy } from '../app/data/copy'
 import { legalPageCatalog, legalPageSlugs } from '../app/data/legal'
 import { localeCodes } from '../app/data/locales'
 import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
@@ -70,6 +70,30 @@ describe('site catalog', () => {
       for (const cluster of copy.intentClusters) {
         expect(cluster.siteSlugs.length).toBeGreaterThanOrEqual(2)
         expect(cluster.siteSlugs.every((siteSlug) => Boolean(getSiteBySlug(siteSlug)))).toBe(true)
+      }
+    }
+  })
+
+  it('keeps the footer as deep textual navigation to real tool paths', () => {
+    for (const locale of localeCodes) {
+      const copy = getFooterCopy(locale)
+      const footerLinks = copy.groups.flatMap((group) => group.links)
+
+      expect(copy.groups).toHaveLength(6)
+      expect(footerLinks.length).toBeGreaterThanOrEqual(36)
+      expect(footerLinks.some((link) => link.path === '/tools/dns-propagation')).toBe(true)
+      expect(footerLinks.some((link) => link.path === '/tools/structured-data-formatter')).toBe(true)
+      expect(footerLinks.some((link) => link.path === '/tools/pdf-merge')).toBe(true)
+
+      for (const group of copy.groups) {
+        expect(group.title.length).toBeGreaterThan(3)
+        expect(group.links.length).toBeGreaterThanOrEqual(6)
+      }
+
+      for (const link of footerLinks) {
+        expect(getSiteBySlug(link.siteSlug)).not.toBeNull()
+        expect(link.label.length).toBeGreaterThan(2)
+        expect(link.path).toMatch(/^\/(tools|calculators|world-clock)\//)
       }
     }
   })

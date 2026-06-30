@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { getFooterCopy } from '../data/copy'
 import { legalPageCatalog, type LegalPageSlug } from '../data/legal'
-import { localizedLegalPath, localizedSitePath, type LocaleCode } from '../data/locales'
+import { localizedLegalPath, type LocaleCode } from '../data/locales'
 import { getSiteBySlug, type SiteSummary } from '../data/sites'
 
 const props = defineProps<{
@@ -13,9 +13,27 @@ const props = defineProps<{
 const copy = computed(() => getFooterCopy(props.locale))
 const productGroups = computed(() => copy.value.groups.map((group) => ({
   ...group,
-  sites: group.siteSlugs
-    .map((siteSlug) => getSiteBySlug(siteSlug))
-    .filter((site): site is SiteSummary => Boolean(site)),
+  links: group.links
+    .map((link) => {
+      const site = getSiteBySlug(link.siteSlug)
+
+      if (!site) {
+        return null
+      }
+
+      return {
+        ...link,
+        site,
+        href: `${site.temporaryUrl}${props.locale}${link.path}`,
+      }
+    })
+    .filter((link): link is {
+      label: string
+      siteSlug: string
+      path: string
+      site: SiteSummary
+      href: string
+    } => Boolean(link)),
 })))
 </script>
 
@@ -29,15 +47,16 @@ const productGroups = computed(() => copy.value.groups.map((group) => ({
     <nav class="footer-verticals" :aria-label="copy.productNavLabel">
       <section v-for="group in productGroups" :key="group.title">
         <h2>{{ group.title }}</h2>
-        <div class="page-footer__links">
-          <NuxtLink
-            v-for="site in group.sites"
-            :key="site.slug"
-            :to="localizedSitePath(locale, site.slug)"
-          >
-            {{ site.name }}
-          </NuxtLink>
-        </div>
+        <ul class="footer-menu">
+          <li v-for="link in group.links" :key="`${link.site.slug}-${link.path}`">
+            <a
+              :href="link.href"
+              :title="link.site.name"
+            >
+              {{ link.label }}
+            </a>
+          </li>
+        </ul>
       </section>
     </nav>
 

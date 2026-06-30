@@ -878,8 +878,8 @@ h3 {
 
 .page-footer {
   display: grid;
-  grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
-  gap: 18px;
+  grid-template-columns: minmax(190px, 240px) minmax(0, 1fr);
+  gap: 20px 30px;
   align-items: start;
   margin-top: 36px;
   padding-top: 20px;
@@ -899,18 +899,12 @@ h3 {
   color: #4c5a53;
 }
 
-.page-footer__links,
 .inline-link-list {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-.page-footer__links {
-  justify-content: flex-start;
-}
-
-.page-footer__links a,
 .inline-link-list a {
   min-height: 34px;
   padding: 7px 10px;
@@ -923,7 +917,6 @@ h3 {
   text-decoration: none;
 }
 
-.page-footer__links a[aria-current="page"],
 .inline-link-list a:hover {
   color: #ffffff;
   border-color: #254c6a;
@@ -932,8 +925,8 @@ h3 {
 
 .footer-verticals {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 18px;
 }
 
 .footer-verticals section {
@@ -941,12 +934,56 @@ h3 {
 }
 
 .footer-verticals h2 {
-  margin-bottom: 8px;
+  margin-bottom: 9px;
   color: #17231e;
-  font-size: 0.96rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.footer-menu {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-menu a,
+.page-footer__links a {
+  display: inline-block;
+  color: #3f4f47;
+  font-size: 0.86rem;
+  font-weight: 650;
+  line-height: 1.35;
+  text-decoration: none;
+  transition: color 160ms ease, transform 160ms ease, text-decoration-color 160ms ease;
+  text-decoration-color: transparent;
+  text-decoration-line: underline;
+  text-underline-offset: 4px;
+}
+
+.footer-menu a:hover,
+.page-footer__links a:hover,
+.page-footer__links a[aria-current="page"] {
+  color: #0f4d70;
+  text-decoration-color: #0f4d70;
+}
+
+.footer-menu a:hover {
+  transform: translateX(2px);
+}
+
+.footer-menu a:focus-visible,
+.page-footer__links a:focus-visible {
+  outline: 3px solid rgba(15, 77, 112, 0.24);
+  outline-offset: 3px;
 }
 
 .page-footer__links--legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
   grid-column: 1 / -1;
   padding-top: 16px;
   border-top: 1px solid #d8ded8;
@@ -1082,6 +1119,17 @@ h3 {
 .ad-placeholder span {
   color: #5c6a63;
   font-size: 0.82rem;
+}
+
+@media (max-width: 1120px) {
+  .page-footer {
+    grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+  }
+
+  .footer-verticals {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px 26px;
+  }
 }
 
 @media (max-width: 820px) {

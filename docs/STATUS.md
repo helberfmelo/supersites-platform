@@ -1605,6 +1605,16 @@ Ainda em 2026-06-29, o `Public Watchdog` agendado run `28372846327` falhou no sm
   - Validacao publica final: `pnpm deploy:smoke-supersite-public` passou para Hub, dez apps e APIs MailHealth/SitePulse; `pnpm validate:adsense-safe-public` passou em 13 paginas; `pnpm benchmark:crawl:quick` passou no report `2026-06-30T03-19-01-758Z` com 95 rotas, 190 checks desktop/mobile e 0 gaps.
   - Escopo negativo: a correcao nao ativou anuncio real, `ads.txt`, pagamento, doacao real, afiliado, checkout, billing, analytics externo, provider externo, worker/cron, DNS/root mapping, root redirect ou acao irreversivel.
 
+- Sprint 18.2c - Correcao do rodape benchmark do Hub:
+  - Motivo: a revisao visual do rodape pos-18.2b mostrou que a navegacao ainda parecia catalogo interno, com chips/botoes e links apenas para paginas principais de sites. O benchmark de referencia usa rodape como menu textual profundo para ferramentas/subpaginas.
+  - Escopo tecnico: `LegalFooter.vue` passou a renderizar menus textuais por grupo com 38 deep links localizados para ferramentas reais dos 10 sites; os links legais ficaram como texto simples; `copy.ts` passou a armazenar grupos de links profundos por idioma; `app.vue` removeu o estilo de chip/botao do rodape, adicionou hover por sublinhado/deslocamento leve e usa 6 colunas no desktop largo, 3 no breakpoint intermediario e 1 no mobile.
+  - Gate permanente registrado: rodape publico benchmark-grade nao deve usar chips/botoes para navegacao estrutural. Deve usar listas textuais em colunas, hover discreto, links profundos para ferramentas/subpaginas e screenshot desktop/mobile revisado antes de fechamento.
+  - Validacao local pre-commit passou: `pnpm --filter @supersites/supersite test` com 14 testes, `pnpm --filter @supersites/supersite build`, `pnpm test:e2e:supersite` com 7 testes, `pnpm validate:supersite-preview` com asset `/_nuxt/SLMjSLmn.js`, `pnpm validate:public-copy` em 951 HTMLs, `pnpm validate:adsense-safe-public` em 13 paginas, `pnpm validate:structure`, `pnpm validate:secrets`, `pnpm deploy:dry-run`, `pnpm ci:changes`, `pnpm deploy:build-supersite-hostgator` e `git diff --check`.
+  - Evidencia visual local: screenshots limpos revisados em `artifacts/footer-qa/hub-footer-desktop-wide.png` e `artifacts/footer-qa/hub-footer-mobile-pt-br.png`.
+  - Artefato local: HostGator Hub validado com 211 arquivos, 3280219 bytes e base path `/supersites`.
+  - Status: pronto para commit/push, Quality Gate remoto, Deploy Dry Run remoto e deploy reversivel do Hub.
+  - Escopo negativo: a correcao nao ativou anuncio real, `ads.txt`, pagamento, doacao real, afiliado, checkout, billing, analytics externo, provider externo, worker/cron, DNS/root mapping, root redirect ou acao irreversivel.
+
 ## Bloqueios humanos registrados
 
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.

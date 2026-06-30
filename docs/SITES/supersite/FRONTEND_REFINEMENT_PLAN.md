@@ -14,6 +14,7 @@ Refine the Hub and control-plane surfaces so operators can scan portfolio qualit
 - Add a visual Hub discovery block with top public tools, preview frames and workflow clusters before catalog filters. Done in production in Sprint 9.15.
 - Add direct localized shortcuts to high-intent free tools above the catalog, aligned to benchmark utility directories. Done in production in Phase 18 Sprint 18.2.
 - Replace the public Hub first fold with a real tool finder: search, category filters, direct free tool cards and no operational status/preview/upgrade badges in the main experience. Corrective Phase 18 benchmark-grade sprint in progress on 2026-06-30.
+- Replace footer chips/buttons with benchmark-style text menus in columns, using deep links to public tools/subpages instead of only linking product home pages. Implemented locally in Phase 18 Sprint 18.2c.
 - Reduce consent-banner intrusion on the first fold while preserving local/fail-closed consent behavior. Done in production in Sprint 9.15.
 - Keep the Blade admin dense, utilitarian and consistent with the current control-plane style.
 
@@ -55,6 +56,7 @@ Low if the dashboard stays internal and Hub public placeholders remain inert.
 - Hub home exposes a task/discovery path before catalog controls on desktop and mobile.
 - Hub home exposes direct links for at least 10 high-intent free tools without requiring signup, checkout or payment-provider activation.
 - Hub home first viewport reads as a public tool finder, not an operating catalog: no visible `Available`/`Preview`, launch/status counters, `upgrade path`, billing, ads or rollout wording.
+- Hub footer reads as navigation, not controls: text lists in columns, hover state, legal links as text, no chip/button styling for structural navigation, and direct links to tool/subpage URLs across the portfolio.
 - Desktop/mobile screenshots are inspected before closure and linked from the sprint artifacts or status notes.
 
 ## Dashboard backlog

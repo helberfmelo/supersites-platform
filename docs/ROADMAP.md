@@ -750,6 +750,15 @@ Sprint 18.2b - Correcao do aceite visual do Hub
 - Incidente fechado: deploy `28416990131` falhou apenas por smoke obsoleto que ainda exigia o headline anterior `A curated operating network` apos a remocao intencional desse texto. A release ja havia sido apontada, o smoke foi atualizado para o novo finder benchmark-grade e o workflow seguinte ficou verde.
 - Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
 
+Sprint 18.2c - Correcao do rodape benchmark do Hub
+- Simbolico: `PHASE18-HUB-FOOTER-CORRECTION`.
+- Motivo: a revisao visual apontou que o rodape ainda parecia operacional e carregado de chips/botoes; o padrao benchmark esperado e menu textual em colunas com links profundos para ferramentas/subpaginas.
+- Escopo entregue: `LegalFooter.vue` agora renderiza listas textuais com 38 deep links localizados para ferramentas dos 10 sites; `copy.ts` guarda grupos de links profundos por idioma; `app.vue` separa chips de conteudo do footer, aplica hover discreto e usa 6 colunas desktop, 3 em viewport intermediario e 1 no mobile.
+- Gate permanente: rodapes publicos benchmark-grade nao devem voltar a usar botoes/chips para navegacao estrutural nem linkar apenas para paginas principais quando houver ferramentas publicas. Antes de fechar sprint, revisar screenshots desktop/mobile e garantir links profundos reais.
+- Validacao local: Vitest Hub 14 testes, build Hub, Playwright Hub 7 testes, preview smoke Hub asset `/_nuxt/SLMjSLmn.js`, public-copy 951 HTMLs, AdSense-safe 13 paginas, structure, secrets, deploy dry-run, ci:changes, HostGator artifact Hub 211 arquivos/3280219 bytes, `git diff --check` e screenshots em `artifacts/footer-qa/` passaram.
+- Status: pronto para commit/push, Quality Gate remoto, Deploy Dry Run remoto e deploy reversivel do Hub.
+- Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.

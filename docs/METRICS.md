@@ -1328,6 +1328,17 @@ Data-base: 2026-06-29
 | Sprint 18.2b post-deploy public smoke | Passed: Hub/apps/APIs with benchmark finder marker |
 | Sprint 18.2b post-deploy AdSense-safe validation | Passed: 13 public pages |
 | Sprint 18.2b post-deploy quick crawler | `2026-06-30T03-19-01-758Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.2c corrective reason | Hub footer still looked like operational chip/button navigation instead of benchmark-style text menu columns |
+| Sprint 18.2c footer deep links | 38 localized tool/subpage links per locale across 10 public sites |
+| Sprint 18.2c footer layout | 6 text columns on wide desktop, 3 columns on intermediate viewport, 1 column on mobile |
+| Sprint 18.2c footer visual artifacts | `artifacts/footer-qa/hub-footer-desktop-wide.png` and `artifacts/footer-qa/hub-footer-mobile-pt-br.png` reviewed |
+| Sprint 18.2c Hub unit suite | Passed: 14 tests |
+| Sprint 18.2c Hub Playwright suite | Passed: 7 tests |
+| Sprint 18.2c Hub preview smoke | Passed: asset `/_nuxt/SLMjSLmn.js` |
+| Sprint 18.2c public copy validation | Passed: 951 HTML files |
+| Sprint 18.2c AdSense-safe validation | Passed: 13 public pages |
+| Sprint 18.2c structure/secrets/dry-run/diff | Passed |
+| Sprint 18.2c Hub HostGator artifact | Passed: 211 files, 3280219 bytes, base path `/supersites` |
 | Real deploy/provider activation | 3 reversible HostGator deploys in Phase 18 so far for Hub/NetProbe/Hub; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
