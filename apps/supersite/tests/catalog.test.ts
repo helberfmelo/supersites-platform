@@ -8,6 +8,7 @@ import {
   getMailHealthCatalogCopy,
   getNetProbeCatalogCopy,
   getQrRouteCatalogCopy,
+  getSitePulseCatalogCopy,
   getTimeNexusCatalogCopy,
 } from '../app/data/copy'
 import { legalPageCatalog, legalPageSlugs } from '../app/data/legal'
@@ -344,6 +345,39 @@ describe('site catalog', () => {
       ])
       expect(copy.reportSignals).toHaveLength(4)
       expect(copy.shortcutGroups).toHaveLength(3)
+      expect(copy.footerGroups.map((group) => group.title)).toHaveLength(5)
+      expect(copy.footerGroups.flatMap((group) => group.links).length).toBeGreaterThanOrEqual(12)
+      expect(JSON.stringify(copy)).not.toMatch(forbiddenPublicTerms)
+    }
+  })
+
+  it('keeps the SitePulse catalog page benchmark-grade and linked to real website checks', () => {
+    const expectedToolPaths = [
+      '/tools/status-checker',
+      '/tools/redirect-chain',
+      '/tools/security-headers',
+      '/tools/robots-checker',
+      '/tools/sitemap-validator',
+      '/tools/ttfb-check',
+      '/tools/performance-snapshot',
+    ]
+    const forbiddenPublicTerms =
+      /temporary public url|launch order|quality check|review notes|public api live|ads planned|billing disabled|external analytics inactive|release checks|rollback|human_action_required|worker planned|deploy smoke|production checks|workflow checks ready|checkout inactive|commercial redirects planned|roadmap|mvp|monitoring gated|monitoring planned|billing|worker/i
+
+    for (const locale of localeCodes) {
+      const copy = getSitePulseCatalogCopy(locale)
+
+      expect(copy.tools.map((tool) => tool.path)).toEqual(expectedToolPaths)
+      expect(copy.tools.filter((tool) => tool.featured).map((tool) => tool.path)).toEqual(expectedToolPaths)
+      expect(copy.categories.map((category) => category.key)).toEqual([
+        'availability',
+        'routing',
+        'security',
+        'crawlability',
+        'performance',
+      ])
+      expect(copy.reportSignals).toHaveLength(4)
+      expect(copy.shortcutGroups).toHaveLength(4)
       expect(copy.footerGroups.map((group) => group.title)).toHaveLength(5)
       expect(copy.footerGroups.flatMap((group) => group.links).length).toBeGreaterThanOrEqual(12)
       expect(JSON.stringify(copy)).not.toMatch(forbiddenPublicTerms)

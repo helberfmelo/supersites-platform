@@ -2823,6 +2823,65 @@ h3 {
   transform: translateX(2px) scale(1.025);
 }
 
+.sitepulse-report-panel {
+  background:
+    linear-gradient(145deg, rgb(37 76 106 / 10%), transparent 46%),
+    #ffffff;
+}
+
+.sitepulse-report-panel__header span {
+  color: #24523f;
+  border-color: #cfe3d8;
+  background: #effaf3;
+}
+
+.sitepulse-report-score strong,
+.sitepulse-tool-card b {
+  color: #254c6a;
+}
+
+.sitepulse-tool-card--featured {
+  border-top-color: #254c6a;
+}
+
+.sitepulse-tool-card:hover,
+.sitepulse-tool-card:focus-visible {
+  border-color: #254c6a;
+  box-shadow: 0 10px 28px rgb(37 76 106 / 11%);
+}
+
+.sitepulse-tool-card__glyph,
+.sitepulse-shortcut-list span {
+  color: #24523f;
+  border-color: #cde0d4;
+  background: #effaf3;
+}
+
+.sitepulse-category-tabs button[aria-pressed="true"] {
+  border-color: #254c6a;
+  background: #254c6a;
+}
+
+.sitepulse-shortcut-grid article {
+  border-top-color: #254c6a;
+}
+
+.sitepulse-shortcut-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.sitepulse-shortcut-grid article:nth-child(2) {
+  border-color: #2e8a57;
+}
+
+.sitepulse-shortcut-grid article:nth-child(3) {
+  border-color: #bd7424;
+}
+
+.sitepulse-shortcut-grid article:nth-child(4) {
+  border-color: #1f7a8c;
+}
+
 .signal {
   width: 12px;
   height: 12px;

@@ -807,4 +807,89 @@ test.describe('SuperSites public hub', () => {
 
     expect(errors).toEqual([])
   })
+
+  test('renders the SitePulse catalog page as a benchmark-grade website diagnostic landing', async ({
+    page,
+  }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.goto('/en/sites/sitepulse-lab')
+    await dismissConsentBanner(page)
+
+    await expect(page.getByRole('heading', { name: 'Check if a website is reachable before you debug deeper.' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Website status report' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Choose a website check' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Start with the signals teams check first' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Point-in-time diagnostics' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'All published SitePulse checks' })).toBeVisible()
+    await expect(page.getByRole('searchbox', { name: 'Search SitePulse checks' })).toBeVisible()
+    await expect(page.locator('.sitepulse-report-panel')).toBeVisible()
+
+    for (const path of [
+      'status-checker',
+      'redirect-chain',
+      'security-headers',
+      'robots-checker',
+      'sitemap-validator',
+      'ttfb-check',
+      'performance-snapshot',
+    ]) {
+      await expect(
+        page.locator(`.sitepulse-tool-grid a[href="https://opentshost.com/supersites/sitepulse-lab/en/tools/${path}"]`),
+      ).toBeVisible()
+    }
+
+    await page.getByRole('searchbox', { name: 'Search SitePulse checks' }).fill('robots')
+    await expect(page.locator('#sitepulse-lab-all .sitepulse-tool-card').filter({ hasText: 'Robots.txt Checker' })).toBeVisible()
+    await expect(page.locator('#sitepulse-lab-all .sitepulse-tool-card').filter({ hasText: 'Security Headers' })).toHaveCount(0)
+
+    await expect(page.locator('main')).not.toContainText('Website status and performance checks for first response.')
+    await expect(page.locator('main')).not.toContainText('Monitoring planned')
+    await expect(page.locator('main')).not.toContainText('worker')
+    await expect(page.locator('main')).not.toContainText('billing')
+    await expect(page.locator('main')).not.toContainText('Temporary public URL')
+    await expect(page.locator('main')).not.toContainText('Launch order')
+    await expect(page.locator('main')).not.toContainText('roadmap')
+    await expect(page.locator('main')).not.toContainText('MVP')
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(2)
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('sitepulse-catalog-desktop', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('renders the localized SitePulse catalog page on mobile', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/pt-br/sites/sitepulse-lab')
+    await dismissConsentBanner(page)
+
+    await expect(page.getByRole('heading', { name: 'Verifique se um site responde antes de investigar mais.' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Relatório de status do site' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Escolha um check de site' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Todos os checks SitePulse publicados' })).toBeVisible()
+    await expect(page.getByRole('searchbox', { name: 'Buscar checks SitePulse' })).toBeVisible()
+    await expect(
+      page.locator('.sitepulse-tool-grid a[href="https://opentshost.com/supersites/sitepulse-lab/pt-br/tools/status-checker"]'),
+    ).toBeVisible()
+    await expect(
+      page.locator('.sitepulse-tool-grid a[href="https://opentshost.com/supersites/sitepulse-lab/pt-br/tools/performance-snapshot"]'),
+    ).toBeVisible()
+    await expect(page.locator('main')).not.toContainText('Check if a website is reachable before you debug deeper.')
+    await expect(page.locator('main')).not.toContainText('Monitoring planned')
+    await expect(page.locator('main')).not.toContainText('worker')
+    await expect(page.locator('main')).not.toContainText('billing')
+    await expect(page.locator('main')).not.toContainText('Temporary public URL')
+    await expect(page.locator('main')).not.toContainText('Launch order')
+    await expect(page.locator('main')).not.toContainText('roadmap')
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('sitepulse-catalog-pt-mobile', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
 })

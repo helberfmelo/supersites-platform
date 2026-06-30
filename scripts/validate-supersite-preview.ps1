@@ -172,6 +172,11 @@ try {
         throw 'MailHealth detail page smoke failed.'
     }
 
+    $sitePulseDetail = Invoke-PreviewRequest -Uri "$baseUrl/en/sites/sitepulse-lab" -RequiredContent 'Website status report'
+    if ($sitePulseDetail.StatusCode -ne 200 -or $sitePulseDetail.Content -notmatch 'Website status report') {
+        throw 'SitePulse Lab detail page smoke failed.'
+    }
+
     $legal = Invoke-PreviewRequest -Uri "$baseUrl/en/privacy" -RequiredContent 'Data minimization'
     if ($legal.StatusCode -ne 200 -or $legal.Content -notmatch 'Privacy Policy') {
         throw 'Privacy page smoke failed.'

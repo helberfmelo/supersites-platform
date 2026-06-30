@@ -414,6 +414,70 @@ export interface MailHealthCatalogCopy {
   footerGroups: MailHealthCatalogFooterGroup[]
 }
 
+export type SitePulseCatalogCategoryKey = 'availability' | 'routing' | 'security' | 'crawlability' | 'performance'
+
+export interface SitePulseCatalogToolLink {
+  label: string
+  body: string
+  path: string
+  glyph: string
+  category: SitePulseCatalogCategoryKey
+  featured: boolean
+}
+
+export interface SitePulseCatalogShortcutGroup {
+  title: string
+  body: string
+  paths: string[]
+}
+
+export interface SitePulseCatalogFooterGroup {
+  title: string
+  links: Array<{ label: string; path: string }>
+}
+
+export interface SitePulseCatalogSignal {
+  label: string
+  status: string
+  detail: string
+}
+
+export interface SitePulseCatalogCopy {
+  eyebrow: string
+  title: string
+  lead: string
+  primaryCta: string
+  secondaryCta: string
+  reportTitle: string
+  reportUrlLabel: string
+  reportUrlValue: string
+  reportScoreLabel: string
+  reportScoreValue: string
+  reportGrade: string
+  reportBody: string
+  reportSignals: SitePulseCatalogSignal[]
+  browseTitle: string
+  browseBody: string
+  featuredTitle: string
+  featuredBody: string
+  limitsTitle: string
+  limitsBody: string
+  privacyTitle: string
+  privacyBody: string
+  searchLabel: string
+  searchPlaceholder: string
+  allCategories: string
+  noResultsTitle: string
+  noResultsBody: string
+  allTitle: string
+  allBody: string
+  toolCta: string
+  categories: Array<{ key: SitePulseCatalogCategoryKey; label: string }>
+  tools: SitePulseCatalogToolLink[]
+  shortcutGroups: SitePulseCatalogShortcutGroup[]
+  footerGroups: SitePulseCatalogFooterGroup[]
+}
+
 export interface FooterCopy {
   brandBody: string
   productNavLabel: string
@@ -3171,6 +3235,334 @@ export const mailHealthCatalogCopy: Record<LocaleCode, MailHealthCatalogCopy> = 
   },
 }
 
+export const sitePulseCatalogCopy: Record<LocaleCode, SitePulseCatalogCopy> = {
+  en: {
+    eyebrow: 'Website status and page health',
+    title: 'Check if a website is reachable before you debug deeper.',
+    lead: 'Start with HTTP status, redirects, security headers, robots.txt, sitemap, TTFB and a bounded performance snapshot from one practical public page.',
+    primaryCta: 'Check website status',
+    secondaryCta: 'Browse website checks',
+    reportTitle: 'Website status report',
+    reportUrlLabel: 'URL',
+    reportUrlValue: 'https://example.com',
+    reportScoreLabel: 'Sample score',
+    reportScoreValue: '92',
+    reportGrade: 'Online',
+    reportBody: 'A useful web check answers the first question quickly, then separates routing, headers, crawl files and timing so the next fix is obvious.',
+    reportSignals: [
+      { label: 'Status', status: 'Online', detail: 'Final response is reachable with a healthy status class.' },
+      { label: 'Redirects', status: 'Clean', detail: 'The path reaches the final URL without a long chain.' },
+      { label: 'Headers', status: 'Review', detail: 'Security headers are visible for quick baseline checks.' },
+      { label: 'Timing', status: 'Fast', detail: 'TTFB sample stays inside the first troubleshooting band.' },
+    ],
+    browseTitle: 'Choose a website check',
+    browseBody: 'Use SitePulse like a compact operations toolbox: enter one public URL, choose the exact check, read the status and move to the responsible layer.',
+    featuredTitle: 'Start with the signals teams check first',
+    featuredBody: 'Open status, redirect chain, security headers, robots.txt, sitemap, TTFB or performance snapshot directly. Each page keeps the free answer before deeper methodology.',
+    limitsTitle: 'Point-in-time diagnostics',
+    limitsBody: 'Public checks inspect one URL, selected response headers and same-origin crawl files with bounded requests. Recurring checks, history, incidents and reports stay separate from the free answer.',
+    privacyTitle: 'Targets stay out of analytics',
+    privacyBody: 'Submitted URLs, redirect targets, headers, timing and result details are not sent to product analytics events.',
+    searchLabel: 'Search SitePulse checks',
+    searchPlaceholder: 'Try status, redirects, headers, sitemap...',
+    allCategories: 'All website checks',
+    noResultsTitle: 'No matching website check',
+    noResultsBody: 'Try another keyword or category. Only public SitePulse pages that already exist are linked here.',
+    allTitle: 'All published SitePulse checks',
+    allBody: 'Move between availability, routing, security headers, crawlability and performance snapshots without leaving the public toolbox.',
+    toolCta: 'Open check',
+    categories: [
+      { key: 'availability', label: 'Availability' },
+      { key: 'routing', label: 'Redirects' },
+      { key: 'security', label: 'Headers' },
+      { key: 'crawlability', label: 'Crawlability' },
+      { key: 'performance', label: 'Performance' },
+    ],
+    tools: [
+      { label: 'Website Status', body: 'Check whether a public URL answers and see final status, response class and first timing notes.', path: '/tools/status-checker', glyph: '200', category: 'availability', featured: true },
+      { label: 'Redirect Chain', body: 'Follow bounded redirects and spot loops, cross-host hops or slow handoffs before changing canonicals.', path: '/tools/redirect-chain', glyph: '301', category: 'routing', featured: true },
+      { label: 'Security Headers', body: 'Inspect HSTS, CSP, frame, referrer and content headers from the public response.', path: '/tools/security-headers', glyph: 'HDR', category: 'security', featured: true },
+      { label: 'Robots.txt Checker', body: 'Fetch the same-origin robots.txt file and review crawl directives and sitemap hints.', path: '/tools/robots-checker', glyph: 'BOT', category: 'crawlability', featured: true },
+      { label: 'Sitemap Validator', body: 'Check the same-origin sitemap.xml shape, status and URL count summary.', path: '/tools/sitemap-validator', glyph: 'XML', category: 'crawlability', featured: true },
+      { label: 'TTFB Checker', body: 'Measure a single first-byte timing sample from the bounded SitePulse probe runtime.', path: '/tools/ttfb-check', glyph: 'MS', category: 'performance', featured: true },
+      { label: 'Performance Snapshot', body: 'Combine status, redirects, headers, crawl files and timing into a quick triage view.', path: '/tools/performance-snapshot', glyph: 'PERF', category: 'performance', featured: true },
+    ],
+    shortcutGroups: [
+      { title: 'Is the site up?', body: 'Start with reachability and timing before digging through application logs.', paths: ['/tools/status-checker', '/tools/ttfb-check'] },
+      { title: 'Did routing change?', body: 'Trace redirects and final status when a domain, CDN or canonical rule changed.', paths: ['/tools/redirect-chain', '/tools/status-checker', '/tools/performance-snapshot'] },
+      { title: 'Can crawlers read it?', body: 'Review robots.txt, sitemap.xml and headers that influence discovery and rendering.', paths: ['/tools/robots-checker', '/tools/sitemap-validator', '/tools/security-headers'] },
+      { title: 'Is the page slow?', body: 'Use a bounded snapshot to separate redirect, header, byte and timing symptoms.', paths: ['/tools/performance-snapshot', '/tools/ttfb-check'] },
+    ],
+    footerGroups: [
+      { title: 'Availability', links: [{ label: 'Website status', path: '/tools/status-checker' }, { label: 'TTFB check', path: '/tools/ttfb-check' }, { label: 'Performance snapshot', path: '/tools/performance-snapshot' }] },
+      { title: 'Redirects', links: [{ label: 'Redirect chain', path: '/tools/redirect-chain' }, { label: 'Final status', path: '/tools/status-checker' }] },
+      { title: 'Headers', links: [{ label: 'Security headers', path: '/tools/security-headers' }, { label: 'Response headers', path: '/tools/security-headers' }] },
+      { title: 'Crawl files', links: [{ label: 'Robots.txt', path: '/tools/robots-checker' }, { label: 'Sitemap.xml', path: '/tools/sitemap-validator' }] },
+      { title: 'Triage sequence', links: [{ label: 'Check status', path: '/tools/status-checker' }, { label: 'Trace redirects', path: '/tools/redirect-chain' }, { label: 'Review performance', path: '/tools/performance-snapshot' }] },
+    ],
+  },
+  'pt-br': {
+    eyebrow: 'Status de site e saúde da página',
+    title: 'Verifique se um site responde antes de investigar mais.',
+    lead: 'Comece por status HTTP, redirecionamentos, cabeçalhos de segurança, robots.txt, sitemap, TTFB e um resumo de desempenho limitado em uma página pública prática.',
+    primaryCta: 'Verificar status do site',
+    secondaryCta: 'Ver checks de site',
+    reportTitle: 'Relatório de status do site',
+    reportUrlLabel: 'URL',
+    reportUrlValue: 'https://example.com',
+    reportScoreLabel: 'Score exemplo',
+    reportScoreValue: '92',
+    reportGrade: 'Online',
+    reportBody: 'Um check web útil responde a primeira pergunta rápido e separa rota, headers, arquivos de crawl e tempo para deixar claro onde agir.',
+    reportSignals: [
+      { label: 'Status', status: 'Online', detail: 'A resposta final está acessível com uma classe saudável.' },
+      { label: 'Redirects', status: 'Limpo', detail: 'A rota chega à URL final sem cadeia longa.' },
+      { label: 'Headers', status: 'Revisar', detail: 'Headers de segurança ficam visíveis para checagem de base.' },
+      { label: 'Tempo', status: 'Rápido', detail: 'A amostra de TTFB fica na primeira faixa de triagem.' },
+    ],
+    browseTitle: 'Escolha um check de site',
+    browseBody: 'Use o SitePulse como uma toolbox operacional compacta: informe uma URL pública, escolha o check exato, leia o status e vá para a camada responsável.',
+    featuredTitle: 'Comece pelos sinais que equipes checam primeiro',
+    featuredBody: 'Abra status, cadeia de redirecionamentos, cabeçalhos de segurança, robots.txt, sitemap, TTFB ou resumo de desempenho diretamente. Cada página deixa a resposta gratuita antes da metodologia.',
+    limitsTitle: 'Diagnóstico pontual',
+    limitsBody: 'Os checks públicos inspecionam uma URL, headers selecionados e arquivos de crawl same-origin com requisições limitadas. Checks recorrentes, histórico, incidentes e relatórios ficam separados da resposta gratuita.',
+    privacyTitle: 'Alvos fora do analytics',
+    privacyBody: 'URLs enviadas, destinos de redirect, headers, tempos e detalhes de resultado não entram em eventos de analytics do produto.',
+    searchLabel: 'Buscar checks SitePulse',
+    searchPlaceholder: 'Tente status, redirects, headers, sitemap...',
+    allCategories: 'Todos os checks de site',
+    noResultsTitle: 'Nenhum check encontrado',
+    noResultsBody: 'Tente outra palavra ou categoria. Só entram links para páginas SitePulse públicas existentes.',
+    allTitle: 'Todos os checks SitePulse publicados',
+    allBody: 'Alterne entre disponibilidade, rota, cabeçalhos de segurança, rastreamento e resumo de desempenho sem sair da toolbox pública.',
+    toolCta: 'Abrir check',
+    categories: [
+      { key: 'availability', label: 'Disponibilidade' },
+      { key: 'routing', label: 'Redirecionamentos' },
+      { key: 'security', label: 'Headers' },
+      { key: 'crawlability', label: 'Rastreamento' },
+      { key: 'performance', label: 'Desempenho' },
+    ],
+    tools: [
+      { label: 'Status de site', body: 'Confira se uma URL pública responde e veja status final, classe da resposta e primeiros tempos.', path: '/tools/status-checker', glyph: '200', category: 'availability', featured: true },
+      { label: 'Cadeia de redirecionamento', body: 'Siga redirects limitados e encontre loops, troca de host ou handoffs lentos antes de mexer em canonicals.', path: '/tools/redirect-chain', glyph: '301', category: 'routing', featured: true },
+      { label: 'Headers de segurança', body: 'Inspecione HSTS, CSP, frame, referrer e content headers na resposta pública.', path: '/tools/security-headers', glyph: 'HDR', category: 'security', featured: true },
+      { label: 'Verificador robots.txt', body: 'Busque o robots.txt same-origin e revise diretivas de crawl e pistas de sitemap.', path: '/tools/robots-checker', glyph: 'BOT', category: 'crawlability', featured: true },
+      { label: 'Validador de sitemap', body: 'Confira formato, status e resumo de URLs do sitemap.xml same-origin.', path: '/tools/sitemap-validator', glyph: 'XML', category: 'crawlability', featured: true },
+      { label: 'Verificador TTFB', body: 'Meça uma amostra pontual de first byte no runtime limitado do SitePulse.', path: '/tools/ttfb-check', glyph: 'MS', category: 'performance', featured: true },
+      { label: 'Resumo de desempenho', body: 'Combine status, redirecionamentos, cabeçalhos, arquivos de rastreamento e tempo em uma visão de triagem.', path: '/tools/performance-snapshot', glyph: 'PERF', category: 'performance', featured: true },
+    ],
+    shortcutGroups: [
+      { title: 'O site está no ar?', body: 'Comece por alcance e tempo antes de vasculhar logs da aplicação.', paths: ['/tools/status-checker', '/tools/ttfb-check'] },
+      { title: 'A rota mudou?', body: 'Trace redirects e status final quando domínio, CDN ou regra canonical mudar.', paths: ['/tools/redirect-chain', '/tools/status-checker', '/tools/performance-snapshot'] },
+      { title: 'Crawlers conseguem ler?', body: 'Revise robots.txt, sitemap.xml e headers que afetam descoberta e renderização.', paths: ['/tools/robots-checker', '/tools/sitemap-validator', '/tools/security-headers'] },
+      { title: 'A página está lenta?', body: 'Use um resumo limitado para separar sintomas de redirecionamento, cabeçalho, bytes e tempo.', paths: ['/tools/performance-snapshot', '/tools/ttfb-check'] },
+    ],
+    footerGroups: [
+      { title: 'Disponibilidade', links: [{ label: 'Status de site', path: '/tools/status-checker' }, { label: 'Check TTFB', path: '/tools/ttfb-check' }, { label: 'Resumo de desempenho', path: '/tools/performance-snapshot' }] },
+      { title: 'Redirects', links: [{ label: 'Cadeia de redirect', path: '/tools/redirect-chain' }, { label: 'Status final', path: '/tools/status-checker' }] },
+      { title: 'Headers', links: [{ label: 'Headers de segurança', path: '/tools/security-headers' }, { label: 'Headers da resposta', path: '/tools/security-headers' }] },
+      { title: 'Arquivos de crawl', links: [{ label: 'Robots.txt', path: '/tools/robots-checker' }, { label: 'Sitemap.xml', path: '/tools/sitemap-validator' }] },
+      { title: 'Sequência de triagem', links: [{ label: 'Verificar status', path: '/tools/status-checker' }, { label: 'Traçar redirecionamentos', path: '/tools/redirect-chain' }, { label: 'Revisar desempenho', path: '/tools/performance-snapshot' }] },
+    ],
+  },
+  es: {
+    eyebrow: 'Estado del sitio y salud de pagina',
+    title: 'Comprueba si un sitio responde antes de investigar mas.',
+    lead: 'Empieza con estado HTTP, redirecciones, headers de seguridad, robots.txt, sitemap, TTFB y un snapshot de rendimiento acotado desde una pagina publica practica.',
+    primaryCta: 'Comprobar estado',
+    secondaryCta: 'Ver controles web',
+    reportTitle: 'Reporte de estado del sitio',
+    reportUrlLabel: 'URL',
+    reportUrlValue: 'https://example.com',
+    reportScoreLabel: 'Score ejemplo',
+    reportScoreValue: '92',
+    reportGrade: 'Online',
+    reportBody: 'Un control web util responde rapido la primera pregunta y separa ruta, headers, archivos de rastreo y tiempo para indicar donde actuar.',
+    reportSignals: [
+      { label: 'Estado', status: 'Online', detail: 'La respuesta final es accesible con una clase saludable.' },
+      { label: 'Redirects', status: 'Limpio', detail: 'La ruta llega a la URL final sin cadena larga.' },
+      { label: 'Headers', status: 'Revisar', detail: 'Los headers de seguridad quedan visibles para base rapida.' },
+      { label: 'Tiempo', status: 'Rapido', detail: 'La muestra TTFB queda en la primera franja de triage.' },
+    ],
+    browseTitle: 'Elige un control de sitio',
+    browseBody: 'Usa SitePulse como una toolbox operativa compacta: ingresa una URL publica, elige el control exacto, lee el estado y pasa a la capa responsable.',
+    featuredTitle: 'Empieza por las senales que los equipos revisan primero',
+    featuredBody: 'Abre estado, cadena de redirects, headers de seguridad, robots.txt, sitemap, TTFB o snapshot de rendimiento directamente.',
+    limitsTitle: 'Diagnostico puntual',
+    limitsBody: 'Los controles publicos inspeccionan una URL, headers seleccionados y archivos same-origin con solicitudes acotadas. Controles recurrentes, historial, incidentes e informes quedan separados de la respuesta gratis.',
+    privacyTitle: 'Objetivos fuera de analytics',
+    privacyBody: 'URLs enviadas, destinos de redirect, headers, tiempos y detalles de resultado no entran en eventos de analytics del producto.',
+    searchLabel: 'Buscar controles SitePulse',
+    searchPlaceholder: 'Prueba estado, redirects, headers, sitemap...',
+    allCategories: 'Todos los controles web',
+    noResultsTitle: 'No hay control coincidente',
+    noResultsBody: 'Prueba otra palabra o categoria. Solo enlazamos paginas publicas SitePulse existentes.',
+    allTitle: 'Todos los controles SitePulse publicados',
+    allBody: 'Alterna entre disponibilidad, ruta, headers de seguridad, rastreo y snapshot de rendimiento sin salir de la toolbox publica.',
+    toolCta: 'Abrir control',
+    categories: [
+      { key: 'availability', label: 'Disponibilidad' },
+      { key: 'routing', label: 'Redirecciones' },
+      { key: 'security', label: 'Headers' },
+      { key: 'crawlability', label: 'Rastreo' },
+      { key: 'performance', label: 'Rendimiento' },
+    ],
+    tools: [
+      { label: 'Estado del sitio', body: 'Comprueba si una URL publica responde y ve estado final, clase de respuesta y primeros tiempos.', path: '/tools/status-checker', glyph: '200', category: 'availability', featured: true },
+      { label: 'Cadena de redireccion', body: 'Sigue redirects acotados y detecta loops, cambios de host o saltos lentos.', path: '/tools/redirect-chain', glyph: '301', category: 'routing', featured: true },
+      { label: 'Headers de seguridad', body: 'Inspecciona HSTS, CSP, frame, referrer y content headers en la respuesta publica.', path: '/tools/security-headers', glyph: 'HDR', category: 'security', featured: true },
+      { label: 'Verificador robots.txt', body: 'Obtiene robots.txt same-origin y revisa directivas de rastreo y pistas de sitemap.', path: '/tools/robots-checker', glyph: 'BOT', category: 'crawlability', featured: true },
+      { label: 'Validador sitemap', body: 'Comprueba forma, estado y resumen de URLs del sitemap.xml same-origin.', path: '/tools/sitemap-validator', glyph: 'XML', category: 'crawlability', featured: true },
+      { label: 'Verificador TTFB', body: 'Mide una muestra puntual de first byte desde el runtime acotado de SitePulse.', path: '/tools/ttfb-check', glyph: 'MS', category: 'performance', featured: true },
+      { label: 'Snapshot de rendimiento', body: 'Combina estado, redirects, headers, archivos de rastreo y tiempo en una vista de triage.', path: '/tools/performance-snapshot', glyph: 'PERF', category: 'performance', featured: true },
+    ],
+    shortcutGroups: [
+      { title: 'Esta arriba el sitio?', body: 'Empieza por alcance y tiempo antes de revisar logs de aplicacion.', paths: ['/tools/status-checker', '/tools/ttfb-check'] },
+      { title: 'Cambio la ruta?', body: 'Traza redirects y estado final cuando cambie dominio, CDN o canonical.', paths: ['/tools/redirect-chain', '/tools/status-checker', '/tools/performance-snapshot'] },
+      { title: 'Pueden leer los crawlers?', body: 'Revisa robots.txt, sitemap.xml y headers que influyen en descubrimiento.', paths: ['/tools/robots-checker', '/tools/sitemap-validator', '/tools/security-headers'] },
+      { title: 'La pagina esta lenta?', body: 'Usa un snapshot acotado para separar sintomas de redirect, header, bytes y tiempo.', paths: ['/tools/performance-snapshot', '/tools/ttfb-check'] },
+    ],
+    footerGroups: [
+      { title: 'Disponibilidad', links: [{ label: 'Estado del sitio', path: '/tools/status-checker' }, { label: 'Check TTFB', path: '/tools/ttfb-check' }, { label: 'Snapshot rendimiento', path: '/tools/performance-snapshot' }] },
+      { title: 'Redirects', links: [{ label: 'Cadena redirect', path: '/tools/redirect-chain' }, { label: 'Estado final', path: '/tools/status-checker' }] },
+      { title: 'Headers', links: [{ label: 'Headers seguridad', path: '/tools/security-headers' }, { label: 'Headers respuesta', path: '/tools/security-headers' }] },
+      { title: 'Archivos crawl', links: [{ label: 'Robots.txt', path: '/tools/robots-checker' }, { label: 'Sitemap.xml', path: '/tools/sitemap-validator' }] },
+      { title: 'Secuencia triage', links: [{ label: 'Comprobar estado', path: '/tools/status-checker' }, { label: 'Trazar redirects', path: '/tools/redirect-chain' }, { label: 'Revisar rendimiento', path: '/tools/performance-snapshot' }] },
+    ],
+  },
+  fr: {
+    eyebrow: 'Statut site et sante page',
+    title: 'Verifiez si un site repond avant de creuser.',
+    lead: 'Commencez par statut HTTP, redirections, en-tetes securite, robots.txt, sitemap, TTFB et snapshot performance borne depuis une page publique pratique.',
+    primaryCta: 'Verifier le statut',
+    secondaryCta: 'Voir controles site',
+    reportTitle: 'Rapport statut site',
+    reportUrlLabel: 'URL',
+    reportUrlValue: 'https://example.com',
+    reportScoreLabel: 'Score exemple',
+    reportScoreValue: '92',
+    reportGrade: 'Online',
+    reportBody: 'Un controle web utile repond vite puis separe route, en-tetes, fichiers crawl et timing pour montrer la prochaine action.',
+    reportSignals: [
+      { label: 'Statut', status: 'Online', detail: 'La reponse finale est joignable avec une classe saine.' },
+      { label: 'Redirects', status: 'Propre', detail: 'La route atteint URL finale sans longue chaine.' },
+      { label: 'Headers', status: 'Revoir', detail: 'Les en-tetes securite sont visibles pour controle de base.' },
+      { label: 'Timing', status: 'Rapide', detail: 'L echantillon TTFB reste dans la premiere bande de triage.' },
+    ],
+    browseTitle: 'Choisir un controle site',
+    browseBody: 'Utilisez SitePulse comme toolbox operations compacte: entrez une URL publique, choisissez le controle exact, lisez le statut et passez a la couche responsable.',
+    featuredTitle: 'Commencer par les signaux verifies en premier',
+    featuredBody: 'Ouvrez statut, chaine redirects, en-tetes securite, robots.txt, sitemap, TTFB ou snapshot performance directement.',
+    limitsTitle: 'Diagnostic ponctuel',
+    limitsBody: 'Les controles publics inspectent une URL, des en-tetes selectionnes et fichiers same-origin avec requetes bornees. Controles recurrents, historique, incidents et rapports restent separes de la reponse gratuite.',
+    privacyTitle: 'Cibles hors analytics',
+    privacyBody: 'URLs soumises, destinations redirect, en-tetes, timings et details resultat ne partent pas dans les evenements analytics produit.',
+    searchLabel: 'Chercher controles SitePulse',
+    searchPlaceholder: 'Essayez statut, redirects, headers, sitemap...',
+    allCategories: 'Tous les controles site',
+    noResultsTitle: 'Aucun controle correspondant',
+    noResultsBody: 'Essayez un autre mot ou une categorie. Seules les pages publiques SitePulse existantes sont liees.',
+    allTitle: 'Tous les controles SitePulse publies',
+    allBody: 'Passez entre disponibilite, route, en-tetes securite, crawl et snapshot performance sans quitter la toolbox publique.',
+    toolCta: 'Ouvrir',
+    categories: [
+      { key: 'availability', label: 'Disponibilite' },
+      { key: 'routing', label: 'Redirections' },
+      { key: 'security', label: 'Headers' },
+      { key: 'crawlability', label: 'Crawl' },
+      { key: 'performance', label: 'Vitesse' },
+    ],
+    tools: [
+      { label: 'Statut du site', body: 'Verifiez si une URL publique repond et voyez statut final, classe reponse et premiers timings.', path: '/tools/status-checker', glyph: '200', category: 'availability', featured: true },
+      { label: 'Chaine de redirection', body: 'Suivez redirects bornes et reperez boucles, changements host ou relais lents.', path: '/tools/redirect-chain', glyph: '301', category: 'routing', featured: true },
+      { label: 'En-tetes securite', body: 'Inspectez HSTS, CSP, frame, referrer et content headers dans la reponse publique.', path: '/tools/security-headers', glyph: 'HDR', category: 'security', featured: true },
+      { label: 'Controle robots.txt', body: 'Recuperez robots.txt same-origin et revoyez directives crawl et pistes sitemap.', path: '/tools/robots-checker', glyph: 'BOT', category: 'crawlability', featured: true },
+      { label: 'Validateur sitemap', body: 'Controlez forme, statut et resume URL du sitemap.xml same-origin.', path: '/tools/sitemap-validator', glyph: 'XML', category: 'crawlability', featured: true },
+      { label: 'Controle TTFB', body: 'Mesurez un echantillon first byte ponctuel depuis le runtime borne SitePulse.', path: '/tools/ttfb-check', glyph: 'MS', category: 'performance', featured: true },
+      { label: 'Resume performance', body: 'Combinez statut, redirections, en-tetes, fichiers crawl et timing dans une vue triage.', path: '/tools/performance-snapshot', glyph: 'PERF', category: 'performance', featured: true },
+    ],
+    shortcutGroups: [
+      { title: 'Le site repond?', body: 'Commencez par disponibilite et timing avant les logs application.', paths: ['/tools/status-checker', '/tools/ttfb-check'] },
+      { title: 'La route a change?', body: 'Tracez redirects et statut final lors de changement domaine, CDN ou canonical.', paths: ['/tools/redirect-chain', '/tools/status-checker', '/tools/performance-snapshot'] },
+      { title: 'Les crawlers peuvent lire?', body: 'Revoyez robots.txt, sitemap.xml et headers qui influencent decouverte.', paths: ['/tools/robots-checker', '/tools/sitemap-validator', '/tools/security-headers'] },
+      { title: 'La page est lente?', body: 'Utilisez un snapshot borne pour separer redirect, header, octets et timing.', paths: ['/tools/performance-snapshot', '/tools/ttfb-check'] },
+    ],
+    footerGroups: [
+      { title: 'Disponibilite', links: [{ label: 'Statut site', path: '/tools/status-checker' }, { label: 'Controle TTFB', path: '/tools/ttfb-check' }, { label: 'Resume performance', path: '/tools/performance-snapshot' }] },
+      { title: 'Redirects', links: [{ label: 'Chaine redirect', path: '/tools/redirect-chain' }, { label: 'Statut final', path: '/tools/status-checker' }] },
+      { title: 'Headers', links: [{ label: 'En-tetes securite', path: '/tools/security-headers' }, { label: 'En-tetes reponse', path: '/tools/security-headers' }] },
+      { title: 'Fichiers crawl', links: [{ label: 'Robots.txt', path: '/tools/robots-checker' }, { label: 'Sitemap.xml', path: '/tools/sitemap-validator' }] },
+      { title: 'Sequence triage', links: [{ label: 'Verifier statut', path: '/tools/status-checker' }, { label: 'Tracer redirects', path: '/tools/redirect-chain' }, { label: 'Revoir performance', path: '/tools/performance-snapshot' }] },
+    ],
+  },
+  de: {
+    eyebrow: 'Website-Status und Seitengesundheit',
+    title: 'Pruefen Sie, ob eine Website antwortet, bevor Sie tiefer suchen.',
+    lead: 'Starten Sie mit HTTP-Status, Weiterleitungen, Sicherheits-Headern, robots.txt, Sitemap, TTFB und begrenztem Performance-Snapshot auf einer praktischen oeffentlichen Seite.',
+    primaryCta: 'Website-Status pruefen',
+    secondaryCta: 'Website-Checks ansehen',
+    reportTitle: 'Website-Statusbericht',
+    reportUrlLabel: 'URL',
+    reportUrlValue: 'https://example.com',
+    reportScoreLabel: 'Beispielscore',
+    reportScoreValue: '92',
+    reportGrade: 'Online',
+    reportBody: 'Ein nuetzlicher Webcheck beantwortet die erste Frage schnell und trennt Route, Header, Crawldateien und Timing fuer den naechsten Schritt.',
+    reportSignals: [
+      { label: 'Status', status: 'Online', detail: 'Die finale Antwort ist mit gesunder Statusklasse erreichbar.' },
+      { label: 'Redirects', status: 'Sauber', detail: 'Der Pfad erreicht die finale URL ohne lange Kette.' },
+      { label: 'Header', status: 'Pruefen', detail: 'Sicherheits-Header sind fuer Basischecks sichtbar.' },
+      { label: 'Timing', status: 'Schnell', detail: 'Die TTFB-Probe bleibt im ersten Triage-Bereich.' },
+    ],
+    browseTitle: 'Website-Check waehlen',
+    browseBody: 'Nutzen Sie SitePulse als kompakte Operations-Toolbox: oeffentliche URL eingeben, exakten Check waehlen, Status lesen und zur verantwortlichen Schicht wechseln.',
+    featuredTitle: 'Mit den zuerst geprueften Signalen starten',
+    featuredBody: 'Oeffnen Sie Status, Redirect-Kette, Sicherheits-Header, robots.txt, Sitemap, TTFB oder Performance-Snapshot direkt.',
+    limitsTitle: 'Punktuelle Diagnose',
+    limitsBody: 'Oeffentliche Checks pruefen eine URL, ausgewaehlte Header und Same-Origin-Crawldateien mit begrenzten Requests. Wiederkehrende Checks, Historie, Incidents und Reports bleiben von der kostenlosen Antwort getrennt.',
+    privacyTitle: 'Ziele bleiben aus Analytics',
+    privacyBody: 'Gesendete URLs, Redirect-Ziele, Header, Timings und Ergebnisdetails gehen nicht in Produkt-Analytics.',
+    searchLabel: 'SitePulse-Checks suchen',
+    searchPlaceholder: 'Status, Redirects, Header, Sitemap...',
+    allCategories: 'Alle Website-Checks',
+    noResultsTitle: 'Kein passender Website-Check',
+    noResultsBody: 'Versuchen Sie ein anderes Wort oder eine Kategorie. Nur bestehende oeffentliche SitePulse-Seiten werden verlinkt.',
+    allTitle: 'Alle veroeffentlichten SitePulse-Checks',
+    allBody: 'Wechseln Sie zwischen Verfuegbarkeit, Routing, Sicherheits-Headern, Crawlbarkeit und Performance-Snapshots in der oeffentlichen Toolbox.',
+    toolCta: 'Oeffnen',
+    categories: [
+      { key: 'availability', label: 'Verfuegbarkeit' },
+      { key: 'routing', label: 'Weiterleitungen' },
+      { key: 'security', label: 'Header' },
+      { key: 'crawlability', label: 'Crawlbarkeit' },
+      { key: 'performance', label: 'Performance' },
+    ],
+    tools: [
+      { label: 'Website-Status', body: 'Prueft, ob eine oeffentliche URL antwortet, mit finalem Status, Antwortklasse und ersten Timings.', path: '/tools/status-checker', glyph: '200', category: 'availability', featured: true },
+      { label: 'Redirect-Kette', body: 'Folgt begrenzten Redirects und findet Schleifen, Hostwechsel oder langsame Uebergaben.', path: '/tools/redirect-chain', glyph: '301', category: 'routing', featured: true },
+      { label: 'Sicherheits-Header', body: 'Prueft HSTS, CSP, Frame, Referrer und Content Header in der oeffentlichen Antwort.', path: '/tools/security-headers', glyph: 'HDR', category: 'security', featured: true },
+      { label: 'Robots.txt-Pruefung', body: 'Ruft same-origin robots.txt ab und prueft Crawl-Regeln und Sitemap-Hinweise.', path: '/tools/robots-checker', glyph: 'BOT', category: 'crawlability', featured: true },
+      { label: 'Sitemap-Validator', body: 'Prueft Form, Status und URL-Zusammenfassung der same-origin sitemap.xml.', path: '/tools/sitemap-validator', glyph: 'XML', category: 'crawlability', featured: true },
+      { label: 'TTFB-Pruefung', body: 'Misst eine punktuelle First-Byte-Probe aus der begrenzten SitePulse-Laufzeit.', path: '/tools/ttfb-check', glyph: 'MS', category: 'performance', featured: true },
+      { label: 'Performance-Snapshot', body: 'Kombiniert Status, Redirects, Header, Crawldateien und Timing in einer Triage-Ansicht.', path: '/tools/performance-snapshot', glyph: 'PERF', category: 'performance', featured: true },
+    ],
+    shortcutGroups: [
+      { title: 'Ist die Site erreichbar?', body: 'Starten Sie mit Erreichbarkeit und Timing vor Applikationslogs.', paths: ['/tools/status-checker', '/tools/ttfb-check'] },
+      { title: 'Hat sich die Route geaendert?', body: 'Pruefen Sie Redirects und finalen Status bei Domain-, CDN- oder Canonical-Aenderungen.', paths: ['/tools/redirect-chain', '/tools/status-checker', '/tools/performance-snapshot'] },
+      { title: 'Koennen Crawler lesen?', body: 'Pruefen Sie robots.txt, sitemap.xml und Header fuer Discovery.', paths: ['/tools/robots-checker', '/tools/sitemap-validator', '/tools/security-headers'] },
+      { title: 'Ist die Seite langsam?', body: 'Nutzen Sie einen begrenzten Snapshot fuer Redirect-, Header-, Byte- und Timing-Symptome.', paths: ['/tools/performance-snapshot', '/tools/ttfb-check'] },
+    ],
+    footerGroups: [
+      { title: 'Verfuegbarkeit', links: [{ label: 'Website-Status', path: '/tools/status-checker' }, { label: 'TTFB-Check', path: '/tools/ttfb-check' }, { label: 'Performance-Snapshot', path: '/tools/performance-snapshot' }] },
+      { title: 'Redirects', links: [{ label: 'Redirect-Kette', path: '/tools/redirect-chain' }, { label: 'Finaler Status', path: '/tools/status-checker' }] },
+      { title: 'Header', links: [{ label: 'Sicherheits-Header', path: '/tools/security-headers' }, { label: 'Antwort-Header', path: '/tools/security-headers' }] },
+      { title: 'Crawldateien', links: [{ label: 'Robots.txt', path: '/tools/robots-checker' }, { label: 'Sitemap.xml', path: '/tools/sitemap-validator' }] },
+      { title: 'Triagefolge', links: [{ label: 'Status pruefen', path: '/tools/status-checker' }, { label: 'Redirects verfolgen', path: '/tools/redirect-chain' }, { label: 'Performance pruefen', path: '/tools/performance-snapshot' }] },
+    ],
+  },
+}
+
 export const footerCopy: Record<LocaleCode, FooterCopy> = {
   en: {
     brandBody: 'A portfolio of practical web tools with localized public pages, useful free workflows and clearly separated account features.',
@@ -3583,6 +3975,10 @@ export function getInvoiceCraftCatalogCopy(locale: LocaleCode): InvoiceCraftCata
 
 export function getMailHealthCatalogCopy(locale: LocaleCode): MailHealthCatalogCopy {
   return sanitizePublicCopy(locale, mailHealthCatalogCopy[locale])
+}
+
+export function getSitePulseCatalogCopy(locale: LocaleCode): SitePulseCatalogCopy {
+  return sanitizePublicCopy(locale, sitePulseCatalogCopy[locale])
 }
 
 export function getFooterCopy(locale: LocaleCode): FooterCopy {

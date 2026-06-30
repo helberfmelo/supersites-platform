@@ -9,6 +9,7 @@ import {
   getMailHealthCatalogCopy,
   getNetProbeCatalogCopy,
   getQrRouteCatalogCopy,
+  getSitePulseCatalogCopy,
   getTimeNexusCatalogCopy,
   type CalcHarborCatalogCategoryKey,
   type DevUtilityCatalogCategoryKey,
@@ -19,6 +20,8 @@ import {
   type MailHealthCatalogToolLink,
   type QrRouteCatalogCategoryKey,
   type QrRouteCatalogToolLink,
+  type SitePulseCatalogCategoryKey,
+  type SitePulseCatalogToolLink,
   type TimeNexusCatalogCategoryKey,
   type TimeNexusCatalogLink,
 } from '../../../data/copy'
@@ -47,6 +50,7 @@ const timeNexusCopy = getTimeNexusCatalogCopy(locale)
 const qrRouteCopy = getQrRouteCatalogCopy(locale)
 const invoiceCraftCopy = getInvoiceCraftCatalogCopy(locale)
 const mailHealthCopy = getMailHealthCatalogCopy(locale)
+const sitePulseCopy = getSitePulseCatalogCopy(locale)
 const siteText = site.localized[locale]
 const seoDescription = limitSeoText(siteText.summary, SEO_DESCRIPTION_MAX_LENGTH)
 const canonicalPath = localizedSitePath(locale, site.slug)
@@ -58,6 +62,7 @@ const isTimeNexusCatalog = site.slug === 'timenexus'
 const isQrRouteCatalog = site.slug === 'qrroute'
 const isInvoiceCraftCatalog = site.slug === 'invoicecraft'
 const isMailHealthCatalog = site.slug === 'mailhealth'
+const isSitePulseCatalog = site.slug === 'sitepulse-lab'
 const primaryNetProbePath = netProbeCopy.toolLinks[0]?.path ?? '/tools/what-is-my-ip'
 const secondaryNetProbePath = netProbeCopy.toolLinks[1]?.path ?? '/tools/dns-propagation'
 const primaryCalcHarborPath = calcHarborCopy.calculators.find((tool) => tool.path === '/calculators/loan-payment')?.path ?? '/calculators/loan-payment'
@@ -184,6 +189,28 @@ const mailHealthShortcutGroups = computed(() => (
     tools: group.paths
       .map((path) => mailHealthCopy.tools.find((tool) => tool.path === path))
       .filter((tool): tool is MailHealthCatalogToolLink => Boolean(tool)),
+  }))
+))
+const primarySitePulsePath = sitePulseCopy.tools.find((tool) => tool.path === '/tools/status-checker')?.path ?? '/tools/status-checker'
+const sitePulseFeaturedTools = sitePulseCopy.tools.filter((tool) => tool.featured)
+const sitePulseSearchQuery = ref('')
+const sitePulseSelectedCategory = ref<SitePulseCatalogCategoryKey | 'all'>('all')
+const filteredSitePulseTools = computed(() => {
+  const query = sitePulseSearchQuery.value.trim().toLowerCase()
+
+  return sitePulseCopy.tools.filter((tool) => {
+    const matchesCategory = sitePulseSelectedCategory.value === 'all' || tool.category === sitePulseSelectedCategory.value
+    const searchable = [tool.label, tool.body, tool.path, tool.glyph].join(' ').toLowerCase()
+
+    return matchesCategory && (!query || searchable.includes(query))
+  })
+})
+const sitePulseShortcutGroups = computed(() => (
+  sitePulseCopy.shortcutGroups.map((group) => ({
+    ...group,
+    tools: group.paths
+      .map((path) => sitePulseCopy.tools.find((tool) => tool.path === path))
+      .filter((tool): tool is SitePulseCatalogToolLink => Boolean(tool)),
   }))
 ))
 const isLocalBrowser = ref(false)
@@ -355,6 +382,24 @@ function trackMailHealthToolClick(path: string): void {
   trackOutboundSiteClick({
     siteSlug: site.slug,
     targetUrl: getMailHealthToolUrl(path),
+    locale,
+    routePath: canonicalPath,
+    surface: 'site_detail',
+  })
+}
+
+function getSitePulseToolUrl(path: string): string {
+  return `${site.temporaryUrl}${locale}${path}`
+}
+
+function getSitePulseCategoryLabel(key: SitePulseCatalogCategoryKey): string {
+  return sitePulseCopy.categories.find((category) => category.key === key)?.label ?? key
+}
+
+function trackSitePulseToolClick(path: string): void {
+  trackOutboundSiteClick({
+    siteSlug: site.slug,
+    targetUrl: getSitePulseToolUrl(path),
     locale,
     routePath: canonicalPath,
     surface: 'site_detail',
@@ -1508,6 +1553,189 @@ useHead({
                 <a
                   :href="getMailHealthToolUrl(link.path)"
                   @click="trackMailHealthToolClick(link.path)"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
+    </template>
+
+    <template v-else-if="isSitePulseCatalog">
+      <section class="mailhealth-hero sitepulse-hero" :aria-labelledby="`${site.slug}-title`">
+        <div class="mailhealth-hero__copy sitepulse-hero__copy">
+          <p class="eyebrow">{{ sitePulseCopy.eyebrow }}</p>
+          <h1 :id="`${site.slug}-title`">{{ sitePulseCopy.title }}</h1>
+          <p class="lead">{{ sitePulseCopy.lead }}</p>
+          <div class="mailhealth-hero__actions sitepulse-hero__actions">
+            <a
+              class="button-link"
+              :href="getSitePulseToolUrl(primarySitePulsePath)"
+              @click="trackSitePulseToolClick(primarySitePulsePath)"
+            >
+              {{ sitePulseCopy.primaryCta }}
+            </a>
+            <a class="button-link button-link--secondary" :href="`#${site.slug}-all`">
+              {{ sitePulseCopy.secondaryCta }}
+            </a>
+          </div>
+        </div>
+
+        <aside class="mailhealth-report-panel sitepulse-report-panel" :aria-labelledby="`${site.slug}-report`">
+          <div class="mailhealth-report-panel__header sitepulse-report-panel__header">
+            <h2 :id="`${site.slug}-report`">{{ sitePulseCopy.reportTitle }}</h2>
+            <span>{{ sitePulseCopy.reportGrade }}</span>
+          </div>
+          <div class="mailhealth-report-score sitepulse-report-score">
+            <div>
+              <span>{{ sitePulseCopy.reportScoreLabel }}</span>
+              <strong>{{ sitePulseCopy.reportScoreValue }}</strong>
+            </div>
+            <dl>
+              <div>
+                <dt>{{ sitePulseCopy.reportUrlLabel }}</dt>
+                <dd>{{ sitePulseCopy.reportUrlValue }}</dd>
+              </div>
+            </dl>
+          </div>
+          <p>{{ sitePulseCopy.reportBody }}</p>
+          <div class="mailhealth-signal-list sitepulse-signal-list">
+            <article v-for="signal in sitePulseCopy.reportSignals" :key="signal.label">
+              <span>{{ signal.label }}</span>
+              <strong>{{ signal.status }}</strong>
+              <p>{{ signal.detail }}</p>
+            </article>
+          </div>
+        </aside>
+      </section>
+
+      <section class="mailhealth-section sitepulse-section" :aria-labelledby="`${site.slug}-browse`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-browse`">{{ sitePulseCopy.browseTitle }}</h2>
+          <p>{{ sitePulseCopy.browseBody }}</p>
+        </div>
+        <div class="mailhealth-shortcut-grid sitepulse-shortcut-grid">
+          <article v-for="group in sitePulseShortcutGroups" :key="group.title">
+            <h3>{{ group.title }}</h3>
+            <p>{{ group.body }}</p>
+            <div class="mailhealth-shortcut-list sitepulse-shortcut-list">
+              <a
+                v-for="tool in group.tools"
+                :key="`${group.title}-${tool.path}`"
+                :href="getSitePulseToolUrl(tool.path)"
+                @click="trackSitePulseToolClick(tool.path)"
+              >
+                <span aria-hidden="true">{{ tool.glyph }}</span>
+                <strong>{{ tool.label }}</strong>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="mailhealth-section sitepulse-section" :aria-labelledby="`${site.slug}-featured`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-featured`">{{ sitePulseCopy.featuredTitle }}</h2>
+          <p>{{ sitePulseCopy.featuredBody }}</p>
+        </div>
+        <div class="mailhealth-featured-grid sitepulse-featured-grid">
+          <a
+            v-for="tool in sitePulseFeaturedTools"
+            :key="`featured-${tool.path}`"
+            class="mailhealth-tool-card sitepulse-tool-card mailhealth-tool-card--featured sitepulse-tool-card--featured"
+            :href="getSitePulseToolUrl(tool.path)"
+            @click="trackSitePulseToolClick(tool.path)"
+          >
+            <span class="mailhealth-tool-card__glyph sitepulse-tool-card__glyph" aria-hidden="true">{{ tool.glyph }}</span>
+            <span class="mailhealth-tool-card__body sitepulse-tool-card__body">
+              <span>{{ getSitePulseCategoryLabel(tool.category) }}</span>
+              <strong>{{ tool.label }}</strong>
+              <em>{{ tool.body }}</em>
+            </span>
+            <b>{{ sitePulseCopy.toolCta }}</b>
+          </a>
+        </div>
+      </section>
+
+      <section class="mailhealth-limit-note sitepulse-limit-note" :aria-labelledby="`${site.slug}-limits`">
+        <div>
+          <h2 :id="`${site.slug}-limits`">{{ sitePulseCopy.limitsTitle }}</h2>
+          <p>{{ sitePulseCopy.limitsBody }}</p>
+        </div>
+        <div>
+          <h3>{{ sitePulseCopy.privacyTitle }}</h3>
+          <p>{{ sitePulseCopy.privacyBody }}</p>
+        </div>
+      </section>
+
+      <section :id="`${site.slug}-all`" class="mailhealth-section sitepulse-section" :aria-labelledby="`${site.slug}-all-title`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-all-title`">{{ sitePulseCopy.allTitle }}</h2>
+          <p>{{ sitePulseCopy.allBody }}</p>
+        </div>
+        <div class="mailhealth-finder sitepulse-finder" role="search" :aria-label="sitePulseCopy.searchLabel">
+          <div class="field">
+            <label for="sitepulse-search">{{ sitePulseCopy.searchLabel }}</label>
+            <input
+              id="sitepulse-search"
+              v-model="sitePulseSearchQuery"
+              type="search"
+              :placeholder="sitePulseCopy.searchPlaceholder"
+            >
+          </div>
+          <div class="mailhealth-category-tabs sitepulse-category-tabs" :aria-label="sitePulseCopy.searchLabel">
+            <button
+              type="button"
+              :aria-pressed="sitePulseSelectedCategory === 'all'"
+              @click="sitePulseSelectedCategory = 'all'"
+            >
+              {{ sitePulseCopy.allCategories }}
+            </button>
+            <button
+              v-for="category in sitePulseCopy.categories"
+              :key="category.key"
+              type="button"
+              :aria-pressed="sitePulseSelectedCategory === category.key"
+              @click="sitePulseSelectedCategory = category.key"
+            >
+              {{ category.label }}
+            </button>
+          </div>
+        </div>
+        <div v-if="filteredSitePulseTools.length > 0" class="mailhealth-tool-grid sitepulse-tool-grid">
+          <a
+            v-for="tool in filteredSitePulseTools"
+            :key="tool.path"
+            class="mailhealth-tool-card sitepulse-tool-card"
+            :href="getSitePulseToolUrl(tool.path)"
+            @click="trackSitePulseToolClick(tool.path)"
+          >
+            <span class="mailhealth-tool-card__glyph sitepulse-tool-card__glyph" aria-hidden="true">{{ tool.glyph }}</span>
+            <span class="mailhealth-tool-card__body sitepulse-tool-card__body">
+              <span>{{ getSitePulseCategoryLabel(tool.category) }}</span>
+              <strong>{{ tool.label }}</strong>
+              <em>{{ tool.body }}</em>
+            </span>
+            <b>{{ sitePulseCopy.toolCta }}</b>
+          </a>
+        </div>
+        <div v-else class="mailhealth-empty sitepulse-empty" aria-live="polite">
+          <h3>{{ sitePulseCopy.noResultsTitle }}</h3>
+          <p>{{ sitePulseCopy.noResultsBody }}</p>
+        </div>
+      </section>
+
+      <section class="mailhealth-footer-cluster sitepulse-footer-cluster" :aria-labelledby="`${site.slug}-deep-links`">
+        <div class="mailhealth-footer-grid sitepulse-footer-grid">
+          <section v-for="group in sitePulseCopy.footerGroups" :key="group.title">
+            <h2>{{ group.title }}</h2>
+            <ul>
+              <li v-for="link in group.links" :key="`${group.title}-${link.label}`">
+                <a
+                  :href="getSitePulseToolUrl(link.path)"
+                  @click="trackSitePulseToolClick(link.path)"
                 >
                   {{ link.label }}
                 </a>
