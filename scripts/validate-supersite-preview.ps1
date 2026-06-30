@@ -152,6 +152,11 @@ try {
         throw 'DevUtility Lab detail page smoke failed.'
     }
 
+    $timeNexusDetail = Invoke-PreviewRequest -Uri "$baseUrl/en/sites/timenexus" -RequiredContent 'Plan time across cities, dates and calendars.'
+    if ($timeNexusDetail.StatusCode -ne 200 -or $timeNexusDetail.Content -notmatch 'Plan time across cities, dates and calendars.') {
+        throw 'TimeNexus detail page smoke failed.'
+    }
+
     $legal = Invoke-PreviewRequest -Uri "$baseUrl/en/privacy" -RequiredContent 'Data minimization'
     if ($legal.StatusCode -ne 200 -or $legal.Content -notmatch 'Privacy Policy') {
         throw 'Privacy page smoke failed.'

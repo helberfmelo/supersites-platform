@@ -6,11 +6,14 @@ import {
   getDetailCopy,
   getDevUtilityCatalogCopy,
   getNetProbeCatalogCopy,
+  getTimeNexusCatalogCopy,
   type CalcHarborCatalogCategoryKey,
   type DevUtilityCatalogCategoryKey,
   type DevUtilityCatalogToolLink,
+  type TimeNexusCatalogCategoryKey,
+  type TimeNexusCatalogLink,
 } from '../../../data/copy'
-import { localizedHomePath, localizedSitePath, normalizeLocale } from '../../../data/locales'
+import { localizedHomePath, localizedSitePath, normalizeLocale, toIntlLocale } from '../../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
 import { createSiteDetailStructuredData } from '../../../data/schema'
 import { getCategoryLabel, getSiteBySlug, statusLabels } from '../../../data/sites'
@@ -31,6 +34,7 @@ const copy = getDetailCopy(locale)
 const netProbeCopy = getNetProbeCatalogCopy(locale)
 const calcHarborCopy = getCalcHarborCatalogCopy(locale)
 const devUtilityCopy = getDevUtilityCatalogCopy(locale)
+const timeNexusCopy = getTimeNexusCatalogCopy(locale)
 const siteText = site.localized[locale]
 const seoDescription = limitSeoText(siteText.summary, SEO_DESCRIPTION_MAX_LENGTH)
 const canonicalPath = localizedSitePath(locale, site.slug)
@@ -38,6 +42,7 @@ const structuredData = createSiteDetailStructuredData(locale, site)
 const isNetProbeCatalog = site.slug === 'netprobe-atlas'
 const isCalcHarborCatalog = site.slug === 'calcharbor'
 const isDevUtilityCatalog = site.slug === 'devutility-lab'
+const isTimeNexusCatalog = site.slug === 'timenexus'
 const primaryNetProbePath = netProbeCopy.toolLinks[0]?.path ?? '/tools/what-is-my-ip'
 const secondaryNetProbePath = netProbeCopy.toolLinks[1]?.path ?? '/tools/dns-propagation'
 const primaryCalcHarborPath = calcHarborCopy.calculators.find((tool) => tool.path === '/calculators/loan-payment')?.path ?? '/calculators/loan-payment'
@@ -75,6 +80,31 @@ const devUtilityShortcutGroups = computed(() => (
       .filter((tool): tool is DevUtilityCatalogToolLink => Boolean(tool)),
   }))
 ))
+const primaryTimeNexusPath = timeNexusCopy.links.find((tool) => tool.path === '/tools/timezone-converter')?.path ?? '/tools/timezone-converter'
+const timeNexusFeaturedLinks = timeNexusCopy.links.filter((tool) => tool.featured)
+const timeNexusSearchQuery = ref('')
+const timeNexusSelectedCategory = ref<TimeNexusCatalogCategoryKey | 'all'>('all')
+const timeNexusCurrentTime = ref('')
+const timeNexusCurrentDate = ref('')
+let timeNexusClockTimer: ReturnType<typeof setInterval> | null = null
+const filteredTimeNexusLinks = computed(() => {
+  const query = timeNexusSearchQuery.value.trim().toLowerCase()
+
+  return timeNexusCopy.links.filter((tool) => {
+    const matchesCategory = timeNexusSelectedCategory.value === 'all' || tool.category === timeNexusSelectedCategory.value
+    const searchable = [tool.label, tool.body, tool.path, tool.glyph].join(' ').toLowerCase()
+
+    return matchesCategory && (!query || searchable.includes(query))
+  })
+})
+const timeNexusShortcutGroups = computed(() => (
+  timeNexusCopy.shortcutGroups.map((group) => ({
+    ...group,
+    links: group.paths
+      .map((path) => timeNexusCopy.links.find((tool) => tool.path === path))
+      .filter((tool): tool is TimeNexusCatalogLink => Boolean(tool)),
+  }))
+))
 const isLocalBrowser = ref(false)
 const localNetProbeToolsUrl = computed(() => {
   if (!isLocalBrowser.value || site.slug !== 'netprobe-atlas') {
@@ -88,6 +118,17 @@ const localNetProbeToolsUrl = computed(() => {
 
 onMounted(() => {
   isLocalBrowser.value = ['127.0.0.1', 'localhost'].includes(window.location.hostname)
+
+  if (isTimeNexusCatalog) {
+    updateTimeNexusClock()
+    timeNexusClockTimer = setInterval(updateTimeNexusClock, 1000)
+  }
+})
+
+onBeforeUnmount(() => {
+  if (timeNexusClockTimer) {
+    clearInterval(timeNexusClockTimer)
+  }
 })
 
 function trackPublicSiteClick(): void {
@@ -144,6 +185,41 @@ function trackDevUtilityToolClick(path: string): void {
   trackOutboundSiteClick({
     siteSlug: site.slug,
     targetUrl: getDevUtilityToolUrl(path),
+    locale,
+    routePath: canonicalPath,
+    surface: 'site_detail',
+  })
+}
+
+function getTimeNexusToolUrl(path: string): string {
+  return `${site.temporaryUrl}${locale}${path}`
+}
+
+function getTimeNexusCategoryLabel(key: TimeNexusCatalogCategoryKey): string {
+  return timeNexusCopy.categories.find((category) => category.key === key)?.label ?? key
+}
+
+function updateTimeNexusClock(): void {
+  const now = new Date()
+  const intlLocale = toIntlLocale(locale)
+
+  timeNexusCurrentTime.value = new Intl.DateTimeFormat(intlLocale, {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    timeZoneName: 'short',
+  }).format(now)
+  timeNexusCurrentDate.value = new Intl.DateTimeFormat(intlLocale, {
+    weekday: 'long',
+    month: 'short',
+    day: '2-digit',
+  }).format(now)
+}
+
+function trackTimeNexusToolClick(path: string): void {
+  trackOutboundSiteClick({
+    siteSlug: site.slug,
+    targetUrl: getTimeNexusToolUrl(path),
     locale,
     routePath: canonicalPath,
     surface: 'site_detail',
@@ -576,6 +652,177 @@ useHead({
                 <a
                   :href="getDevUtilityToolUrl(link.path)"
                   @click="trackDevUtilityToolClick(link.path)"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
+    </template>
+
+    <template v-else-if="isTimeNexusCatalog">
+      <section class="timenexus-hero" :aria-labelledby="`${site.slug}-title`">
+        <div class="timenexus-hero__copy">
+          <p class="eyebrow">{{ timeNexusCopy.eyebrow }}</p>
+          <h1 :id="`${site.slug}-title`">{{ timeNexusCopy.title }}</h1>
+          <p class="lead">{{ timeNexusCopy.lead }}</p>
+          <div class="timenexus-hero__actions">
+            <a
+              class="button-link"
+              :href="getTimeNexusToolUrl(primaryTimeNexusPath)"
+              @click="trackTimeNexusToolClick(primaryTimeNexusPath)"
+            >
+              {{ timeNexusCopy.primaryCta }}
+            </a>
+            <a class="button-link button-link--secondary" :href="`#${site.slug}-all`">
+              {{ timeNexusCopy.secondaryCta }}
+            </a>
+          </div>
+        </div>
+
+        <aside class="timenexus-clock-panel" :aria-labelledby="`${site.slug}-clock`">
+          <h2 :id="`${site.slug}-clock`">{{ timeNexusCopy.clockTitle }}</h2>
+          <time class="timenexus-clock-panel__time">
+            {{ timeNexusCurrentTime || timeNexusCopy.clockFallback }}
+          </time>
+          <span class="timenexus-clock-panel__date">
+            {{ timeNexusCurrentDate || timeNexusCopy.clockDateFallback }}
+          </span>
+          <p>{{ timeNexusCopy.clockBody }}</p>
+          <div class="timenexus-clock-links">
+            <a
+              v-for="tool in timeNexusFeaturedLinks.slice(0, 4)"
+              :key="`clock-${tool.path}`"
+              :href="getTimeNexusToolUrl(tool.path)"
+              @click="trackTimeNexusToolClick(tool.path)"
+            >
+              <span aria-hidden="true">{{ tool.glyph }}</span>
+              <strong>{{ tool.label }}</strong>
+            </a>
+          </div>
+        </aside>
+      </section>
+
+      <section class="timenexus-section" :aria-labelledby="`${site.slug}-browse`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-browse`">{{ timeNexusCopy.browseTitle }}</h2>
+          <p>{{ timeNexusCopy.browseBody }}</p>
+        </div>
+        <div class="timenexus-shortcut-grid">
+          <article v-for="group in timeNexusShortcutGroups" :key="group.title">
+            <h3>{{ group.title }}</h3>
+            <p>{{ group.body }}</p>
+            <div class="timenexus-shortcut-list">
+              <a
+                v-for="tool in group.links"
+                :key="`${group.title}-${tool.path}`"
+                :href="getTimeNexusToolUrl(tool.path)"
+                @click="trackTimeNexusToolClick(tool.path)"
+              >
+                <span aria-hidden="true">{{ tool.glyph }}</span>
+                <strong>{{ tool.label }}</strong>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="timenexus-section" :aria-labelledby="`${site.slug}-featured`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-featured`">{{ timeNexusCopy.featuredTitle }}</h2>
+          <p>{{ timeNexusCopy.featuredBody }}</p>
+        </div>
+        <div class="timenexus-featured-grid">
+          <a
+            v-for="tool in timeNexusFeaturedLinks"
+            :key="`featured-${tool.path}`"
+            class="timenexus-tool-card timenexus-tool-card--featured"
+            :href="getTimeNexusToolUrl(tool.path)"
+            @click="trackTimeNexusToolClick(tool.path)"
+          >
+            <span class="timenexus-tool-card__glyph" aria-hidden="true">{{ tool.glyph }}</span>
+            <span class="timenexus-tool-card__body">
+              <span>{{ getTimeNexusCategoryLabel(tool.category) }}</span>
+              <strong>{{ tool.label }}</strong>
+              <em>{{ tool.body }}</em>
+            </span>
+            <b>{{ timeNexusCopy.toolCta }}</b>
+          </a>
+        </div>
+      </section>
+
+      <section :id="`${site.slug}-all`" class="timenexus-section" :aria-labelledby="`${site.slug}-all-title`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-all-title`">{{ timeNexusCopy.allTitle }}</h2>
+          <p>{{ timeNexusCopy.allBody }}</p>
+        </div>
+        <div class="timenexus-finder" role="search" :aria-label="timeNexusCopy.searchLabel">
+          <div class="field">
+            <label for="timenexus-search">{{ timeNexusCopy.searchLabel }}</label>
+            <input
+              id="timenexus-search"
+              v-model="timeNexusSearchQuery"
+              type="search"
+              :placeholder="timeNexusCopy.searchPlaceholder"
+            >
+          </div>
+          <div class="timenexus-category-tabs" :aria-label="timeNexusCopy.searchLabel">
+            <button
+              type="button"
+              :aria-pressed="timeNexusSelectedCategory === 'all'"
+              @click="timeNexusSelectedCategory = 'all'"
+            >
+              {{ timeNexusCopy.allCategories }}
+            </button>
+            <button
+              v-for="category in timeNexusCopy.categories"
+              :key="category.key"
+              type="button"
+              :aria-pressed="timeNexusSelectedCategory === category.key"
+              @click="timeNexusSelectedCategory = category.key"
+            >
+              {{ category.label }}
+            </button>
+          </div>
+          <div class="timenexus-privacy-note">
+            <strong>{{ timeNexusCopy.privacyTitle }}</strong>
+            <span>{{ timeNexusCopy.privacyBody }}</span>
+          </div>
+        </div>
+        <div v-if="filteredTimeNexusLinks.length > 0" class="timenexus-tool-grid">
+          <a
+            v-for="tool in filteredTimeNexusLinks"
+            :key="tool.path"
+            class="timenexus-tool-card"
+            :href="getTimeNexusToolUrl(tool.path)"
+            @click="trackTimeNexusToolClick(tool.path)"
+          >
+            <span class="timenexus-tool-card__glyph" aria-hidden="true">{{ tool.glyph }}</span>
+            <span class="timenexus-tool-card__body">
+              <span>{{ getTimeNexusCategoryLabel(tool.category) }}</span>
+              <strong>{{ tool.label }}</strong>
+              <em>{{ tool.body }}</em>
+            </span>
+            <b>{{ timeNexusCopy.toolCta }}</b>
+          </a>
+        </div>
+        <div v-else class="timenexus-empty" aria-live="polite">
+          <h3>{{ timeNexusCopy.noResultsTitle }}</h3>
+          <p>{{ timeNexusCopy.noResultsBody }}</p>
+        </div>
+      </section>
+
+      <section class="timenexus-footer-cluster" :aria-labelledby="`${site.slug}-deep-links`">
+        <div class="timenexus-footer-grid">
+          <section v-for="group in timeNexusCopy.footerGroups" :key="group.title">
+            <h2>{{ group.title }}</h2>
+            <ul>
+              <li v-for="link in group.links" :key="`${group.title}-${link.label}`">
+                <a
+                  :href="getTimeNexusToolUrl(link.path)"
+                  @click="trackTimeNexusToolClick(link.path)"
                 >
                   {{ link.label }}
                 </a>

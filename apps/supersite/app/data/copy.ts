@@ -180,6 +180,60 @@ export interface DevUtilityCatalogCopy {
   footerGroups: DevUtilityCatalogFooterGroup[]
 }
 
+export type TimeNexusCatalogCategoryKey = 'world' | 'zones' | 'calendar' | 'calculators'
+
+export interface TimeNexusCatalogLink {
+  label: string
+  body: string
+  path: string
+  glyph: string
+  category: TimeNexusCatalogCategoryKey
+  featured: boolean
+}
+
+export interface TimeNexusCatalogShortcutGroup {
+  title: string
+  body: string
+  paths: string[]
+}
+
+export interface TimeNexusCatalogFooterGroup {
+  title: string
+  links: Array<{ label: string; path: string }>
+}
+
+export interface TimeNexusCatalogCopy {
+  eyebrow: string
+  title: string
+  lead: string
+  primaryCta: string
+  secondaryCta: string
+  clockTitle: string
+  clockFallback: string
+  clockDateFallback: string
+  clockBody: string
+  finderTitle: string
+  finderBody: string
+  searchLabel: string
+  searchPlaceholder: string
+  allCategories: string
+  noResultsTitle: string
+  noResultsBody: string
+  browseTitle: string
+  browseBody: string
+  featuredTitle: string
+  featuredBody: string
+  allTitle: string
+  allBody: string
+  privacyTitle: string
+  privacyBody: string
+  toolCta: string
+  categories: Array<{ key: TimeNexusCatalogCategoryKey; label: string }>
+  links: TimeNexusCatalogLink[]
+  shortcutGroups: TimeNexusCatalogShortcutGroup[]
+  footerGroups: TimeNexusCatalogFooterGroup[]
+}
+
 export interface FooterCopy {
   brandBody: string
   productNavLabel: string
@@ -1720,6 +1774,299 @@ export const devUtilityCatalogCopy: Record<LocaleCode, DevUtilityCatalogCopy> = 
   },
 }
 
+export const timeNexusCatalogCopy: Record<LocaleCode, TimeNexusCatalogCopy> = {
+  en: {
+    eyebrow: 'World clock, time zones and date tools',
+    title: 'Plan time across cities, dates and calendars.',
+    lead: 'See the current time automatically, jump to world clocks, convert zones, count dates and open practical calculators without an account.',
+    primaryCta: 'Open time zone converter',
+    secondaryCta: 'Browse all time tools',
+    clockTitle: 'Current time now',
+    clockFallback: 'Loading current time',
+    clockDateFallback: 'Browser time',
+    clockBody: 'Updates in your browser. Use the links below for curated city groups and meeting windows.',
+    finderTitle: 'Time tool finder',
+    finderBody: 'Search by task or choose a category. World clocks, time zones, calendars and calculators stay close together.',
+    searchLabel: 'Search time tools',
+    searchPlaceholder: 'Try world clock, timestamp, business days...',
+    allCategories: 'All time tools',
+    noResultsTitle: 'No matching time tool',
+    noResultsBody: 'Try another keyword or category. Only public TimeNexus pages that already exist are linked here.',
+    browseTitle: 'Browse by time task',
+    browseBody: 'The directory follows the familiar world clock, time zone, calendar and calculator mental model.',
+    featuredTitle: 'Start with time planning',
+    featuredBody: 'High-intent pages open directly from here: current clocks, zone conversion, timestamps and date spans.',
+    allTitle: 'All published TimeNexus tools',
+    allBody: 'Move between current time, meeting planning, calendar math, timestamps, percentages and units.',
+    privacyTitle: 'Local time inputs',
+    privacyBody: 'Dates, zones, age inputs and numeric values stay in the browser. The catalog links to free pages without storing entries.',
+    toolCta: 'Open tool',
+    categories: [
+      { key: 'world', label: 'World Clock' },
+      { key: 'zones', label: 'Time Zones' },
+      { key: 'calendar', label: 'Calendar' },
+      { key: 'calculators', label: 'Calculators' },
+    ],
+    links: [
+      { label: 'World Clock Americas + Europe', body: 'Compare New York, Sao Paulo, London and Berlin.', path: '/world-clock/americas-europe', glyph: 'WC', category: 'world', featured: true },
+      { label: 'Global Product Team Clock', body: 'Check San Francisco, New York, London and Tokyo together.', path: '/world-clock/global-product', glyph: 'TEAM', category: 'world', featured: true },
+      { label: 'Time Zone Converter', body: 'Convert one instant across IANA time zones.', path: '/tools/timezone-converter', glyph: 'TZ', category: 'zones', featured: true },
+      { label: 'Timestamp Converter', body: 'Inspect Unix seconds, milliseconds, ISO, UTC and local time.', path: '/tools/timestamp-converter', glyph: 'TS', category: 'zones', featured: true },
+      { label: 'Date Difference Calculator', body: 'Measure days, weeks and approximate months between dates.', path: '/tools/date-difference', glyph: 'DAYS', category: 'calendar', featured: true },
+      { label: 'Business Days Calculator', body: 'Count Monday-Friday days and disclose weekend days.', path: '/tools/business-days', glyph: 'BIZ', category: 'calendar', featured: true },
+      { label: 'Age Calculator', body: 'Calculate years, months, days and total days on a reference date.', path: '/tools/age-calculator', glyph: 'AGE', category: 'calendar', featured: false },
+      { label: 'Percentage Calculator', body: 'Calculate percent-of, change and add-percent cases.', path: '/tools/percentage-calculator', glyph: 'PCT', category: 'calculators', featured: false },
+      { label: 'Unit Converter', body: 'Convert common length, weight and temperature units locally.', path: '/tools/unit-converter', glyph: 'UNIT', category: 'calculators', featured: false },
+      { label: 'Tokyo City Clock', body: 'Open a maintained city page with overlap context.', path: '/world-clock/cities/tokyo', glyph: 'TYO', category: 'world', featured: false },
+    ],
+    shortcutGroups: [
+      { title: 'World Clock', body: 'Curated city groups for meetings across regions.', paths: ['/world-clock/americas-europe', '/world-clock/global-product', '/world-clock/apac-europe', '/world-clock/cities/tokyo'] },
+      { title: 'Time Zones', body: 'Current time, UTC, timestamps and named zones.', paths: ['/tools/timezone-converter', '/tools/timestamp-converter'] },
+      { title: 'Calendar', body: 'Date spans, business days and age references.', paths: ['/tools/date-difference', '/tools/business-days', '/tools/age-calculator'] },
+      { title: 'Calculators', body: 'Percent and unit helpers for everyday planning.', paths: ['/tools/percentage-calculator', '/tools/unit-converter'] },
+    ],
+    footerGroups: [
+      { title: 'World Clock', links: [{ label: 'Americas + Europe', path: '/world-clock/americas-europe' }, { label: 'Global Product Team', path: '/world-clock/global-product' }, { label: 'APAC + Europe', path: '/world-clock/apac-europe' }, { label: 'Tokyo time', path: '/world-clock/cities/tokyo' }] },
+      { title: 'Time Zones', links: [{ label: 'Time Zone Converter', path: '/tools/timezone-converter' }, { label: 'Timestamp Converter', path: '/tools/timestamp-converter' }, { label: 'New York time', path: '/world-clock/cities/new-york' }, { label: 'Sao Paulo time', path: '/world-clock/cities/sao-paulo' }] },
+      { title: 'Calendar', links: [{ label: 'Date Difference', path: '/tools/date-difference' }, { label: 'Business Days', path: '/tools/business-days' }, { label: 'Age Calculator', path: '/tools/age-calculator' }] },
+      { title: 'Calculators', links: [{ label: 'Percentage Calculator', path: '/tools/percentage-calculator' }, { label: 'Unit Converter', path: '/tools/unit-converter' }] },
+      { title: 'Meeting Planning', links: [{ label: 'London time', path: '/world-clock/cities/london' }, { label: 'Berlin time', path: '/world-clock/cities/berlin' }, { label: 'San Francisco time', path: '/world-clock/cities/san-francisco' }, { label: 'Tokyo time', path: '/world-clock/cities/tokyo' }] },
+    ],
+  },
+  'pt-br': {
+    eyebrow: 'Relogio mundial, fusos e datas',
+    title: 'Planeje horarios entre cidades, datas e calendarios.',
+    lead: 'Veja a hora atual automaticamente, abra relogios mundiais, converta fusos, conte datas e use calculadoras praticas sem cadastro.',
+    primaryCta: 'Abrir conversor de fuso',
+    secondaryCta: 'Ver ferramentas de tempo',
+    clockTitle: 'Hora atual agora',
+    clockFallback: 'Carregando hora atual',
+    clockDateFallback: 'Hora do navegador',
+    clockBody: 'Atualiza no navegador. Use os links abaixo para grupos de cidades e janelas de reuniao.',
+    finderTitle: 'Buscador de tempo',
+    finderBody: 'Busque por tarefa ou escolha uma categoria. Relogios, fusos, calendarios e calculadoras ficam juntos.',
+    searchLabel: 'Buscar ferramentas de tempo',
+    searchPlaceholder: 'Tente relogio mundial, timestamp, dias uteis...',
+    allCategories: 'Todas as ferramentas de tempo',
+    noResultsTitle: 'Nenhuma ferramenta encontrada',
+    noResultsBody: 'Tente outra palavra ou categoria. So entram links para paginas TimeNexus publicas existentes.',
+    browseTitle: 'Escolha por tarefa de tempo',
+    browseBody: 'O diretorio segue o modelo conhecido de relogio mundial, fusos, calendario e calculadoras.',
+    featuredTitle: 'Comece pelo planejamento',
+    featuredBody: 'Paginas de alta intencao abrem direto: relogios atuais, conversao de fuso, timestamps e intervalos de datas.',
+    allTitle: 'Todas as ferramentas TimeNexus publicadas',
+    allBody: 'Alterne entre hora atual, planejamento de reuniao, contas de calendario, timestamps, porcentagens e unidades.',
+    privacyTitle: 'Entradas locais de tempo',
+    privacyBody: 'Datas, fusos, idade e valores numericos ficam no navegador. O catalogo abre paginas gratuitas sem armazenar entradas.',
+    toolCta: 'Abrir ferramenta',
+    categories: [
+      { key: 'world', label: 'Relogio mundial' },
+      { key: 'zones', label: 'Fusos horarios' },
+      { key: 'calendar', label: 'Calendario' },
+      { key: 'calculators', label: 'Calculadoras' },
+    ],
+    links: [
+      { label: 'Relogio Americas + Europa', body: 'Compare Nova York, Sao Paulo, Londres e Berlim.', path: '/world-clock/americas-europe', glyph: 'REL', category: 'world', featured: true },
+      { label: 'Relogio do time global', body: 'Veja San Francisco, Nova York, Londres e Toquio juntos.', path: '/world-clock/global-product', glyph: 'TIME', category: 'world', featured: true },
+      { label: 'Conversor de fuso horario', body: 'Converta um instante entre fusos IANA.', path: '/tools/timezone-converter', glyph: 'FUSO', category: 'zones', featured: true },
+      { label: 'Conversor de timestamp', body: 'Inspecione Unix seconds, milliseconds, ISO, UTC e hora local.', path: '/tools/timestamp-converter', glyph: 'TS', category: 'zones', featured: true },
+      { label: 'Diferenca entre datas', body: 'Meça dias, semanas e meses aproximados entre datas.', path: '/tools/date-difference', glyph: 'DIAS', category: 'calendar', featured: true },
+      { label: 'Calculadora de dias uteis', body: 'Conte dias de segunda a sexta e mostre fins de semana.', path: '/tools/business-days', glyph: 'UTEIS', category: 'calendar', featured: true },
+      { label: 'Calculadora de idade', body: 'Calcule anos, meses, dias e dias totais em uma data.', path: '/tools/age-calculator', glyph: 'IDADE', category: 'calendar', featured: false },
+      { label: 'Calculadora de porcentagem', body: 'Calcule porcentagem de, variacao e acrescimo percentual.', path: '/tools/percentage-calculator', glyph: 'PCT', category: 'calculators', featured: false },
+      { label: 'Conversor de unidades', body: 'Converta unidades comuns de comprimento, peso e temperatura.', path: '/tools/unit-converter', glyph: 'UNID', category: 'calculators', featured: false },
+      { label: 'Horario em Toquio', body: 'Abra uma pagina de cidade mantida com contexto de sobreposicao.', path: '/world-clock/cities/tokyo', glyph: 'TYO', category: 'world', featured: false },
+    ],
+    shortcutGroups: [
+      { title: 'Relogio mundial', body: 'Grupos de cidades para reunioes entre regioes.', paths: ['/world-clock/americas-europe', '/world-clock/global-product', '/world-clock/apac-europe', '/world-clock/cities/tokyo'] },
+      { title: 'Fusos horarios', body: 'Hora atual, UTC, timestamps e fusos nomeados.', paths: ['/tools/timezone-converter', '/tools/timestamp-converter'] },
+      { title: 'Calendario', body: 'Intervalos, dias uteis e referencias de idade.', paths: ['/tools/date-difference', '/tools/business-days', '/tools/age-calculator'] },
+      { title: 'Calculadoras', body: 'Porcentagem e unidades para planejamento diario.', paths: ['/tools/percentage-calculator', '/tools/unit-converter'] },
+    ],
+    footerGroups: [
+      { title: 'Relogio mundial', links: [{ label: 'Americas + Europa', path: '/world-clock/americas-europe' }, { label: 'Time global', path: '/world-clock/global-product' }, { label: 'APAC + Europa', path: '/world-clock/apac-europe' }, { label: 'Horario em Toquio', path: '/world-clock/cities/tokyo' }] },
+      { title: 'Fusos horarios', links: [{ label: 'Conversor de fuso', path: '/tools/timezone-converter' }, { label: 'Conversor de timestamp', path: '/tools/timestamp-converter' }, { label: 'Horario em Nova York', path: '/world-clock/cities/new-york' }, { label: 'Horario em Sao Paulo', path: '/world-clock/cities/sao-paulo' }] },
+      { title: 'Calendario', links: [{ label: 'Diferenca entre datas', path: '/tools/date-difference' }, { label: 'Dias uteis', path: '/tools/business-days' }, { label: 'Calculadora de idade', path: '/tools/age-calculator' }] },
+      { title: 'Calculadoras', links: [{ label: 'Porcentagem', path: '/tools/percentage-calculator' }, { label: 'Unidades', path: '/tools/unit-converter' }] },
+      { title: 'Reunioes', links: [{ label: 'Horario em Londres', path: '/world-clock/cities/london' }, { label: 'Horario em Berlim', path: '/world-clock/cities/berlin' }, { label: 'Horario em San Francisco', path: '/world-clock/cities/san-francisco' }, { label: 'Horario em Toquio', path: '/world-clock/cities/tokyo' }] },
+    ],
+  },
+  es: {
+    eyebrow: 'Reloj mundial, zonas y fechas',
+    title: 'Planifica horarios entre ciudades, fechas y calendarios.',
+    lead: 'Ve la hora actual automaticamente, abre relojes mundiales, convierte zonas, cuenta fechas y usa calculadoras practicas sin registro.',
+    primaryCta: 'Abrir conversor de zona',
+    secondaryCta: 'Ver herramientas de tiempo',
+    clockTitle: 'Hora actual ahora',
+    clockFallback: 'Cargando hora actual',
+    clockDateFallback: 'Hora del navegador',
+    clockBody: 'Se actualiza en tu navegador. Usa los enlaces para grupos de ciudades y ventanas de reunion.',
+    finderTitle: 'Buscador de tiempo',
+    finderBody: 'Busca por tarea o elige una categoria. Relojes, zonas, calendarios y calculadoras quedan juntos.',
+    searchLabel: 'Buscar herramientas de tiempo',
+    searchPlaceholder: 'Prueba reloj mundial, timestamp, dias laborables...',
+    allCategories: 'Todas las herramientas',
+    noResultsTitle: 'No hay herramienta coincidente',
+    noResultsBody: 'Prueba otra palabra o categoria. Solo enlazamos paginas publicas TimeNexus existentes.',
+    browseTitle: 'Elige por tarea de tiempo',
+    browseBody: 'El directorio sigue el modelo conocido de reloj mundial, zonas horarias, calendario y calculadoras.',
+    featuredTitle: 'Empieza por planificar',
+    featuredBody: 'Paginas de alta intencion abren directo: relojes actuales, conversion de zona, timestamps e intervalos.',
+    allTitle: 'Todas las herramientas TimeNexus publicadas',
+    allBody: 'Alterna entre hora actual, planificacion de reuniones, calculos de calendario, timestamps, porcentajes y unidades.',
+    privacyTitle: 'Entradas locales de tiempo',
+    privacyBody: 'Fechas, zonas, edad y valores numericos permanecen en el navegador. El catalogo abre paginas gratis sin almacenar entradas.',
+    toolCta: 'Abrir herramienta',
+    categories: [
+      { key: 'world', label: 'Reloj mundial' },
+      { key: 'zones', label: 'Zonas horarias' },
+      { key: 'calendar', label: 'Calendario' },
+      { key: 'calculators', label: 'Calculadoras' },
+    ],
+    links: [
+      { label: 'Reloj Americas + Europa', body: 'Compara Nueva York, Sao Paulo, Londres y Berlin.', path: '/world-clock/americas-europe', glyph: 'REL', category: 'world', featured: true },
+      { label: 'Reloj de equipo global', body: 'Consulta San Francisco, Nueva York, Londres y Tokio juntos.', path: '/world-clock/global-product', glyph: 'EQU', category: 'world', featured: true },
+      { label: 'Conversor de zona horaria', body: 'Convierte un instante entre zonas IANA.', path: '/tools/timezone-converter', glyph: 'ZONA', category: 'zones', featured: true },
+      { label: 'Conversor de timestamp', body: 'Inspecciona Unix seconds, milliseconds, ISO, UTC y hora local.', path: '/tools/timestamp-converter', glyph: 'TS', category: 'zones', featured: true },
+      { label: 'Diferencia entre fechas', body: 'Mide dias, semanas y meses aproximados entre fechas.', path: '/tools/date-difference', glyph: 'DIAS', category: 'calendar', featured: true },
+      { label: 'Calculadora de dias laborables', body: 'Cuenta lunes a viernes y muestra dias de fin de semana.', path: '/tools/business-days', glyph: 'LAB', category: 'calendar', featured: true },
+      { label: 'Calculadora de edad', body: 'Calcula anos, meses, dias y dias totales en una fecha.', path: '/tools/age-calculator', glyph: 'EDAD', category: 'calendar', featured: false },
+      { label: 'Calculadora de porcentaje', body: 'Calcula porcentaje de, cambio y suma porcentual.', path: '/tools/percentage-calculator', glyph: 'PCT', category: 'calculators', featured: false },
+      { label: 'Conversor de unidades', body: 'Convierte unidades comunes de longitud, peso y temperatura.', path: '/tools/unit-converter', glyph: 'UNID', category: 'calculators', featured: false },
+      { label: 'Hora en Tokio', body: 'Abre una pagina de ciudad mantenida con contexto de solape.', path: '/world-clock/cities/tokyo', glyph: 'TYO', category: 'world', featured: false },
+    ],
+    shortcutGroups: [
+      { title: 'Reloj mundial', body: 'Grupos de ciudades para reuniones entre regiones.', paths: ['/world-clock/americas-europe', '/world-clock/global-product', '/world-clock/apac-europe', '/world-clock/cities/tokyo'] },
+      { title: 'Zonas horarias', body: 'Hora actual, UTC, timestamps y zonas nombradas.', paths: ['/tools/timezone-converter', '/tools/timestamp-converter'] },
+      { title: 'Calendario', body: 'Intervalos, dias laborables y referencias de edad.', paths: ['/tools/date-difference', '/tools/business-days', '/tools/age-calculator'] },
+      { title: 'Calculadoras', body: 'Porcentajes y unidades para planificacion diaria.', paths: ['/tools/percentage-calculator', '/tools/unit-converter'] },
+    ],
+    footerGroups: [
+      { title: 'Reloj mundial', links: [{ label: 'Americas + Europa', path: '/world-clock/americas-europe' }, { label: 'Equipo global', path: '/world-clock/global-product' }, { label: 'APAC + Europa', path: '/world-clock/apac-europe' }, { label: 'Hora en Tokio', path: '/world-clock/cities/tokyo' }] },
+      { title: 'Zonas horarias', links: [{ label: 'Conversor de zona', path: '/tools/timezone-converter' }, { label: 'Conversor de timestamp', path: '/tools/timestamp-converter' }, { label: 'Hora en Nueva York', path: '/world-clock/cities/new-york' }, { label: 'Hora en Sao Paulo', path: '/world-clock/cities/sao-paulo' }] },
+      { title: 'Calendario', links: [{ label: 'Diferencia entre fechas', path: '/tools/date-difference' }, { label: 'Dias laborables', path: '/tools/business-days' }, { label: 'Calculadora de edad', path: '/tools/age-calculator' }] },
+      { title: 'Calculadoras', links: [{ label: 'Porcentaje', path: '/tools/percentage-calculator' }, { label: 'Unidades', path: '/tools/unit-converter' }] },
+      { title: 'Reuniones', links: [{ label: 'Hora en Londres', path: '/world-clock/cities/london' }, { label: 'Hora en Berlin', path: '/world-clock/cities/berlin' }, { label: 'Hora en San Francisco', path: '/world-clock/cities/san-francisco' }, { label: 'Hora en Tokio', path: '/world-clock/cities/tokyo' }] },
+    ],
+  },
+  fr: {
+    eyebrow: 'Horloge mondiale, fuseaux et dates',
+    title: 'Planifiez horaires, villes, dates et calendriers.',
+    lead: 'Voyez l heure actuelle automatiquement, ouvrez des horloges mondiales, convertissez les fuseaux, comptez les dates et utilisez des calculateurs sans compte.',
+    primaryCta: 'Ouvrir le convertisseur de fuseau',
+    secondaryCta: 'Voir les outils de temps',
+    clockTitle: 'Heure actuelle',
+    clockFallback: 'Chargement de l heure',
+    clockDateFallback: 'Heure du navigateur',
+    clockBody: 'Mise a jour dans le navigateur. Utilisez les liens pour groupes de villes et creneaux de reunion.',
+    finderTitle: 'Recherche d outils temps',
+    finderBody: 'Cherchez par tache ou categorie. Horloges, fuseaux, calendriers et calculateurs restent ensemble.',
+    searchLabel: 'Chercher des outils de temps',
+    searchPlaceholder: 'Essayez horloge mondiale, timestamp, jours ouvrables...',
+    allCategories: 'Tous les outils de temps',
+    noResultsTitle: 'Aucun outil trouve',
+    noResultsBody: 'Essayez un autre mot ou une categorie. Seules les pages TimeNexus publiques existantes sont liees.',
+    browseTitle: 'Choisir par tache de temps',
+    browseBody: 'Le repertoire suit le modele horloge mondiale, fuseaux, calendrier et calculateurs.',
+    featuredTitle: 'Commencer par planifier',
+    featuredBody: 'Les pages a forte intention ouvrent directement: horloges, conversion de fuseau, timestamps et ecarts de dates.',
+    allTitle: 'Tous les outils TimeNexus publies',
+    allBody: 'Passez entre heure actuelle, planification de reunion, calculs calendrier, timestamps, pourcentages et unites.',
+    privacyTitle: 'Entrees locales de temps',
+    privacyBody: 'Dates, fuseaux, age et valeurs numeriques restent dans le navigateur. Le catalogue ouvre des pages gratuites sans stocker les entrees.',
+    toolCta: 'Ouvrir l outil',
+    categories: [
+      { key: 'world', label: 'Horloge mondiale' },
+      { key: 'zones', label: 'Fuseaux horaires' },
+      { key: 'calendar', label: 'Calendrier' },
+      { key: 'calculators', label: 'Calculateurs' },
+    ],
+    links: [
+      { label: 'Horloge Ameriques + Europe', body: 'Compare New York, Sao Paulo, Londres et Berlin.', path: '/world-clock/americas-europe', glyph: 'HOR', category: 'world', featured: true },
+      { label: 'Horloge equipe globale', body: 'Consulte San Francisco, New York, Londres et Tokyo ensemble.', path: '/world-clock/global-product', glyph: 'EQ', category: 'world', featured: true },
+      { label: 'Convertisseur de fuseau', body: 'Convertit un instant entre fuseaux IANA.', path: '/tools/timezone-converter', glyph: 'FUS', category: 'zones', featured: true },
+      { label: 'Convertisseur timestamp', body: 'Inspecte secondes Unix, millisecondes, ISO, UTC et heure locale.', path: '/tools/timestamp-converter', glyph: 'TS', category: 'zones', featured: true },
+      { label: 'Difference entre dates', body: 'Mesure jours, semaines et mois approximatifs entre dates.', path: '/tools/date-difference', glyph: 'JRS', category: 'calendar', featured: true },
+      { label: 'Calculateur de jours ouvrables', body: 'Compte lundi a vendredi et indique les week-ends.', path: '/tools/business-days', glyph: 'OUV', category: 'calendar', featured: true },
+      { label: 'Calculateur d age', body: 'Calcule annees, mois, jours et jours totaux a une date.', path: '/tools/age-calculator', glyph: 'AGE', category: 'calendar', featured: false },
+      { label: 'Calculateur de pourcentage', body: 'Calcule pourcentage de, variation et ajout en pourcentage.', path: '/tools/percentage-calculator', glyph: 'PCT', category: 'calculators', featured: false },
+      { label: 'Convertisseur d unites', body: 'Convertit longueur, poids et temperature courants.', path: '/tools/unit-converter', glyph: 'UNIT', category: 'calculators', featured: false },
+      { label: 'Heure a Tokyo', body: 'Ouvre une page ville maintenue avec contexte de chevauchement.', path: '/world-clock/cities/tokyo', glyph: 'TYO', category: 'world', featured: false },
+    ],
+    shortcutGroups: [
+      { title: 'Horloge mondiale', body: 'Groupes de villes pour reunions interregionales.', paths: ['/world-clock/americas-europe', '/world-clock/global-product', '/world-clock/apac-europe', '/world-clock/cities/tokyo'] },
+      { title: 'Fuseaux horaires', body: 'Heure actuelle, UTC, timestamps et fuseaux nommes.', paths: ['/tools/timezone-converter', '/tools/timestamp-converter'] },
+      { title: 'Calendrier', body: 'Ecarts, jours ouvrables et references d age.', paths: ['/tools/date-difference', '/tools/business-days', '/tools/age-calculator'] },
+      { title: 'Calculateurs', body: 'Pourcentages et unites pour planification quotidienne.', paths: ['/tools/percentage-calculator', '/tools/unit-converter'] },
+    ],
+    footerGroups: [
+      { title: 'Horloge mondiale', links: [{ label: 'Ameriques + Europe', path: '/world-clock/americas-europe' }, { label: 'Equipe globale', path: '/world-clock/global-product' }, { label: 'APAC + Europe', path: '/world-clock/apac-europe' }, { label: 'Heure a Tokyo', path: '/world-clock/cities/tokyo' }] },
+      { title: 'Fuseaux horaires', links: [{ label: 'Convertisseur de fuseau', path: '/tools/timezone-converter' }, { label: 'Convertisseur timestamp', path: '/tools/timestamp-converter' }, { label: 'Heure a New York', path: '/world-clock/cities/new-york' }, { label: 'Heure a Sao Paulo', path: '/world-clock/cities/sao-paulo' }] },
+      { title: 'Calendrier', links: [{ label: 'Difference entre dates', path: '/tools/date-difference' }, { label: 'Jours ouvrables', path: '/tools/business-days' }, { label: 'Calculateur d age', path: '/tools/age-calculator' }] },
+      { title: 'Calculateurs', links: [{ label: 'Pourcentage', path: '/tools/percentage-calculator' }, { label: 'Unites', path: '/tools/unit-converter' }] },
+      { title: 'Reunions', links: [{ label: 'Heure a Londres', path: '/world-clock/cities/london' }, { label: 'Heure a Berlin', path: '/world-clock/cities/berlin' }, { label: 'Heure a San Francisco', path: '/world-clock/cities/san-francisco' }, { label: 'Heure a Tokyo', path: '/world-clock/cities/tokyo' }] },
+    ],
+  },
+  de: {
+    eyebrow: 'Weltuhr, Zeitzonen und Datum',
+    title: 'Planen Sie Zeiten, Staedte, Daten und Kalender.',
+    lead: 'Sehen Sie die aktuelle Uhrzeit automatisch, oeffnen Sie Weltuhren, konvertieren Sie Zeitzonen, zaehlen Sie Daten und nutzen Sie Rechner ohne Konto.',
+    primaryCta: 'Zeitzonen-Konverter oeffnen',
+    secondaryCta: 'Alle Zeittools ansehen',
+    clockTitle: 'Aktuelle Uhrzeit',
+    clockFallback: 'Uhrzeit wird geladen',
+    clockDateFallback: 'Browserzeit',
+    clockBody: 'Aktualisiert im Browser. Nutzen Sie die Links fuer Stadtgruppen und Meeting-Zeitfenster.',
+    finderTitle: 'Zeittool-Finder',
+    finderBody: 'Suchen Sie nach Aufgabe oder Kategorie. Weltuhren, Zeitzonen, Kalender und Rechner bleiben zusammen.',
+    searchLabel: 'Zeittools suchen',
+    searchPlaceholder: 'Versuchen Sie Weltuhr, Timestamp, Arbeitstage...',
+    allCategories: 'Alle Zeittools',
+    noResultsTitle: 'Kein passendes Zeittool',
+    noResultsBody: 'Versuchen Sie ein anderes Wort oder eine Kategorie. Nur vorhandene oeffentliche TimeNexus-Seiten sind verlinkt.',
+    browseTitle: 'Nach Zeitaufgabe waehlen',
+    browseBody: 'Das Verzeichnis folgt dem bekannten Modell Weltuhr, Zeitzonen, Kalender und Rechner.',
+    featuredTitle: 'Mit Zeitplanung starten',
+    featuredBody: 'Seiten mit hoher Absicht oeffnen direkt: aktuelle Uhren, Zeitzonen, Timestamps und Datumsabstaende.',
+    allTitle: 'Alle veroeffentlichten TimeNexus-Tools',
+    allBody: 'Wechseln Sie zwischen aktueller Zeit, Meetingplanung, Kalenderlogik, Timestamps, Prozenten und Einheiten.',
+    privacyTitle: 'Lokale Zeiteingaben',
+    privacyBody: 'Daten, Zeitzonen, Alter und Zahlenwerte bleiben im Browser. Der Katalog oeffnet kostenlose Seiten ohne Eingaben zu speichern.',
+    toolCta: 'Tool oeffnen',
+    categories: [
+      { key: 'world', label: 'Weltuhr' },
+      { key: 'zones', label: 'Zeitzonen' },
+      { key: 'calendar', label: 'Kalender' },
+      { key: 'calculators', label: 'Rechner' },
+    ],
+    links: [
+      { label: 'Weltuhr Amerika + Europa', body: 'Vergleichen Sie New York, Sao Paulo, London und Berlin.', path: '/world-clock/americas-europe', glyph: 'WELT', category: 'world', featured: true },
+      { label: 'Uhr fuer globales Produktteam', body: 'Sehen Sie San Francisco, New York, London und Tokio zusammen.', path: '/world-clock/global-product', glyph: 'TEAM', category: 'world', featured: true },
+      { label: 'Zeitzonen-Konverter', body: 'Konvertiert einen Zeitpunkt zwischen IANA-Zeitzonen.', path: '/tools/timezone-converter', glyph: 'TZ', category: 'zones', featured: true },
+      { label: 'Timestamp-Konverter', body: 'Prueft Unix-Sekunden, Millisekunden, ISO, UTC und lokale Zeit.', path: '/tools/timestamp-converter', glyph: 'TS', category: 'zones', featured: true },
+      { label: 'Datumsdifferenz-Rechner', body: 'Misst Tage, Wochen und ungefaehre Monate zwischen Daten.', path: '/tools/date-difference', glyph: 'TAG', category: 'calendar', featured: true },
+      { label: 'Arbeitstage-Rechner', body: 'Zaehlt Montag bis Freitag und zeigt Wochenendtage.', path: '/tools/business-days', glyph: 'ARB', category: 'calendar', featured: true },
+      { label: 'Altersrechner', body: 'Berechnet Jahre, Monate, Tage und Gesamttage zu einem Datum.', path: '/tools/age-calculator', glyph: 'ALT', category: 'calendar', featured: false },
+      { label: 'Prozentrechner', body: 'Berechnet Prozent von, Veraenderung und Prozentaufschlag.', path: '/tools/percentage-calculator', glyph: 'PCT', category: 'calculators', featured: false },
+      { label: 'Einheiten-Konverter', body: 'Konvertiert haeufige Laengen, Gewichte und Temperaturen.', path: '/tools/unit-converter', glyph: 'EINH', category: 'calculators', featured: false },
+      { label: 'Tokio-Uhrzeit', body: 'Oeffnet eine gepflegte Stadtseite mit Ueberschneidungs-Kontext.', path: '/world-clock/cities/tokyo', glyph: 'TYO', category: 'world', featured: false },
+    ],
+    shortcutGroups: [
+      { title: 'Weltuhr', body: 'Stadtgruppen fuer Meetings ueber Regionen hinweg.', paths: ['/world-clock/americas-europe', '/world-clock/global-product', '/world-clock/apac-europe', '/world-clock/cities/tokyo'] },
+      { title: 'Zeitzonen', body: 'Aktuelle Zeit, UTC, Timestamps und benannte Zonen.', paths: ['/tools/timezone-converter', '/tools/timestamp-converter'] },
+      { title: 'Kalender', body: 'Abstaende, Arbeitstage und Altersreferenzen.', paths: ['/tools/date-difference', '/tools/business-days', '/tools/age-calculator'] },
+      { title: 'Rechner', body: 'Prozente und Einheiten fuer Alltagsplanung.', paths: ['/tools/percentage-calculator', '/tools/unit-converter'] },
+    ],
+    footerGroups: [
+      { title: 'Weltuhr', links: [{ label: 'Amerika + Europa', path: '/world-clock/americas-europe' }, { label: 'Globales Team', path: '/world-clock/global-product' }, { label: 'APAC + Europa', path: '/world-clock/apac-europe' }, { label: 'Tokio-Uhrzeit', path: '/world-clock/cities/tokyo' }] },
+      { title: 'Zeitzonen', links: [{ label: 'Zeitzonen-Konverter', path: '/tools/timezone-converter' }, { label: 'Timestamp-Konverter', path: '/tools/timestamp-converter' }, { label: 'New-York-Uhrzeit', path: '/world-clock/cities/new-york' }, { label: 'Sao-Paulo-Uhrzeit', path: '/world-clock/cities/sao-paulo' }] },
+      { title: 'Kalender', links: [{ label: 'Datumsdifferenz', path: '/tools/date-difference' }, { label: 'Arbeitstage', path: '/tools/business-days' }, { label: 'Altersrechner', path: '/tools/age-calculator' }] },
+      { title: 'Rechner', links: [{ label: 'Prozentrechner', path: '/tools/percentage-calculator' }, { label: 'Einheiten', path: '/tools/unit-converter' }] },
+      { title: 'Meetings', links: [{ label: 'London-Uhrzeit', path: '/world-clock/cities/london' }, { label: 'Berlin-Uhrzeit', path: '/world-clock/cities/berlin' }, { label: 'San-Francisco-Uhrzeit', path: '/world-clock/cities/san-francisco' }, { label: 'Tokio-Uhrzeit', path: '/world-clock/cities/tokyo' }] },
+    ],
+  },
+}
+
 export const footerCopy: Record<LocaleCode, FooterCopy> = {
   en: {
     brandBody: 'A portfolio of practical web tools with localized public pages, useful free workflows and clearly separated account features.',
@@ -2116,6 +2463,10 @@ export function getCalcHarborCatalogCopy(locale: LocaleCode): CalcHarborCatalogC
 
 export function getDevUtilityCatalogCopy(locale: LocaleCode): DevUtilityCatalogCopy {
   return sanitizePublicCopy(locale, devUtilityCatalogCopy[locale])
+}
+
+export function getTimeNexusCatalogCopy(locale: LocaleCode): TimeNexusCatalogCopy {
+  return sanitizePublicCopy(locale, timeNexusCatalogCopy[locale])
 }
 
 export function getFooterCopy(locale: LocaleCode): FooterCopy {

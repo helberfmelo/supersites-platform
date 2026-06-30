@@ -1137,6 +1137,352 @@ h3 {
   transform: translateX(2px) scale(1.025);
 }
 
+.timenexus-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 440px);
+  gap: 28px;
+  align-items: stretch;
+  padding: 42px 0 34px;
+  border-bottom: 1px solid #d8ded8;
+}
+
+.timenexus-hero__copy {
+  display: grid;
+  max-width: 760px;
+  align-content: center;
+  gap: 14px;
+}
+
+.timenexus-hero__copy h1 {
+  max-width: 760px;
+}
+
+.timenexus-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.timenexus-clock-panel {
+  display: grid;
+  min-width: 0;
+  gap: 14px;
+  align-content: start;
+  padding: 22px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 18px 42px rgb(37 76 106 / 10%);
+}
+
+.timenexus-clock-panel h2 {
+  margin: 0;
+  color: #17231e;
+  font-size: 1rem;
+}
+
+.timenexus-clock-panel__time {
+  display: block;
+  color: #17231e;
+  font-size: 2.45rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 820;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.timenexus-clock-panel__date {
+  color: #3d5047;
+  font-size: 0.94rem;
+  font-weight: 650;
+}
+
+.timenexus-clock-panel p {
+  margin: 0;
+  color: #46554e;
+  line-height: 1.45;
+}
+
+.timenexus-clock-links,
+.timenexus-shortcut-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.timenexus-clock-links a,
+.timenexus-shortcut-list a {
+  display: grid;
+  min-width: 0;
+  min-height: 62px;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 9px;
+  align-items: center;
+  padding: 9px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  color: #17231e;
+  background: #f9fbf8;
+  text-decoration: none;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.timenexus-clock-links a:hover,
+.timenexus-clock-links a:focus-visible,
+.timenexus-shortcut-list a:hover,
+.timenexus-shortcut-list a:focus-visible {
+  transform: translateY(-1px);
+  border-color: #254c6a;
+  background: #ffffff;
+}
+
+.timenexus-clock-links span,
+.timenexus-shortcut-list span,
+.timenexus-tool-card__glyph {
+  display: grid;
+  width: 40px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid #c7d6d2;
+  border-radius: 8px;
+  color: #1c5b62;
+  background: #edf7f6;
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+.timenexus-clock-links strong,
+.timenexus-shortcut-list strong {
+  min-width: 0;
+  color: #17231e;
+  font-size: 0.86rem;
+  line-height: 1.22;
+}
+
+.timenexus-section,
+.timenexus-footer-cluster {
+  padding: 26px 0;
+  border-bottom: 1px solid #d8ded8;
+}
+
+.timenexus-shortcut-grid,
+.timenexus-featured-grid,
+.timenexus-tool-grid,
+.timenexus-footer-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.timenexus-shortcut-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.timenexus-shortcut-grid article {
+  min-width: 0;
+  padding-top: 15px;
+  border-top: 3px solid #254c6a;
+}
+
+.timenexus-shortcut-grid article:nth-child(2) {
+  border-color: #2e8a57;
+}
+
+.timenexus-shortcut-grid article:nth-child(3) {
+  border-color: #bd7424;
+}
+
+.timenexus-shortcut-grid article:nth-child(4) {
+  border-color: #65746c;
+}
+
+.timenexus-shortcut-grid h3 {
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
+.timenexus-shortcut-grid p {
+  margin-bottom: 12px;
+  color: #3f5048;
+  font-size: 0.9rem;
+}
+
+.timenexus-featured-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.timenexus-tool-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.timenexus-finder {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr);
+  gap: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 10px 28px rgb(23 35 30 / 5%);
+}
+
+.timenexus-category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.timenexus-category-tabs button {
+  padding: 9px 11px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  color: #31453b;
+  background: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 760;
+  cursor: pointer;
+}
+
+.timenexus-category-tabs button[aria-pressed="true"] {
+  color: #ffffff;
+  border-color: #254c6a;
+  background: #254c6a;
+}
+
+.timenexus-privacy-note {
+  display: grid;
+  gap: 4px;
+  padding: 11px;
+  border-left: 3px solid #2e8a57;
+  color: #34443d;
+  background: #f6faf7;
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+.timenexus-privacy-note strong {
+  color: #17231e;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.timenexus-tool-card {
+  display: grid;
+  min-width: 0;
+  min-height: 178px;
+  grid-template-rows: auto 1fr auto;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  color: #17231e;
+  background: #ffffff;
+  text-decoration: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.timenexus-tool-card--featured {
+  min-height: 190px;
+}
+
+.timenexus-tool-card:hover,
+.timenexus-tool-card:focus-visible {
+  transform: translateY(-1px);
+  border-color: #254c6a;
+  box-shadow: 0 10px 28px rgb(37 76 106 / 10%);
+}
+
+.timenexus-tool-card__body {
+  display: grid;
+  gap: 7px;
+  align-content: start;
+}
+
+.timenexus-tool-card__body span {
+  color: #65746c;
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.timenexus-tool-card__body strong {
+  color: #17231e;
+  font-size: 1.02rem;
+  line-height: 1.25;
+}
+
+.timenexus-tool-card__body em {
+  color: #3f5048;
+  font-size: 0.88rem;
+  font-style: normal;
+  line-height: 1.42;
+}
+
+.timenexus-tool-card b {
+  color: #254c6a;
+  font-size: 0.84rem;
+  font-weight: 850;
+}
+
+.timenexus-empty {
+  padding: 16px;
+  border: 1px solid #d4dcd6;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.timenexus-empty h3 {
+  margin-bottom: 6px;
+  font-size: 1.05rem;
+}
+
+.timenexus-empty p {
+  margin-bottom: 0;
+  color: #3f5048;
+}
+
+.timenexus-footer-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.timenexus-footer-grid h2 {
+  margin-bottom: 8px;
+  color: #17231e;
+  font-size: 0.76rem;
+  font-weight: 760;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.timenexus-footer-grid ul {
+  display: grid;
+  gap: 6px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.timenexus-footer-grid a {
+  display: inline-block;
+  color: #3f4f47;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.35;
+  text-decoration: none;
+  transform-origin: left center;
+  transition: color 160ms ease, transform 160ms ease, font-weight 160ms ease;
+}
+
+.timenexus-footer-grid a:hover,
+.timenexus-footer-grid a:focus-visible {
+  color: #0f4d70;
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateX(2px) scale(1.025);
+}
+
 .signal {
   width: 12px;
   height: 12px;
@@ -1986,6 +2332,9 @@ h3 {
   .calcharbor-tool-grid,
   .calcharbor-topic-grid,
   .calcharbor-footer-grid,
+  .timenexus-featured-grid,
+  .timenexus-tool-grid,
+  .timenexus-footer-grid,
   .devutility-tool-grid,
   .devutility-footer-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2004,6 +2353,7 @@ h3 {
   .netprobe-hero,
   .calcharbor-hero,
   .devutility-hero,
+  .timenexus-hero,
   .tool-finder,
   .trust-row,
   .controls,
@@ -2055,6 +2405,10 @@ h3 {
   .devutility-shortcut-grid,
   .devutility-tool-grid,
   .devutility-footer-grid,
+  .timenexus-shortcut-grid,
+  .timenexus-featured-grid,
+  .timenexus-tool-grid,
+  .timenexus-footer-grid,
   .support-block,
   .footer-verticals,
   .evidence-strip {
@@ -2062,7 +2416,9 @@ h3 {
   }
 
   .calcharbor-finder__shortcuts,
-  .devutility-shortcut-list {
+  .devutility-shortcut-list,
+  .timenexus-clock-links,
+  .timenexus-shortcut-list {
     grid-template-columns: 1fr;
   }
 

@@ -476,4 +476,90 @@ test.describe('SuperSites public hub', () => {
 
     expect(errors).toEqual([])
   })
+
+  test('renders the TimeNexus catalog page as a benchmark-grade time landing', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.goto('/en/sites/timenexus')
+    await dismissConsentBanner(page)
+
+    await expect(page.getByRole('heading', { name: 'Plan time across cities, dates and calendars.' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Current time now' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Browse by time task' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Start with time planning' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'All published TimeNexus tools' })).toBeVisible()
+    await expect(page.locator('.timenexus-shortcut-grid').getByRole('heading', { name: 'World Clock' })).toBeVisible()
+    await expect(page.locator('.timenexus-shortcut-grid').getByRole('heading', { name: 'Time Zones' })).toBeVisible()
+    await expect(page.locator('.timenexus-shortcut-grid').getByRole('heading', { name: 'Calendar' })).toBeVisible()
+    await expect(page.locator('.timenexus-shortcut-grid').getByRole('heading', { name: 'Calculators' })).toBeVisible()
+    await expect(page.getByRole('searchbox', { name: 'Search time tools' })).toBeVisible()
+
+    for (const path of [
+      'tools/timezone-converter',
+      'tools/timestamp-converter',
+      'tools/date-difference',
+      'tools/business-days',
+      'tools/age-calculator',
+      'tools/percentage-calculator',
+      'tools/unit-converter',
+      'world-clock/americas-europe',
+      'world-clock/global-product',
+      'world-clock/cities/tokyo',
+    ]) {
+      await expect(
+        page.locator(`.timenexus-tool-grid a[href="https://opentshost.com/supersites/timenexus/en/${path}"]`),
+      ).toBeVisible()
+    }
+
+    await page.getByRole('searchbox', { name: 'Search time tools' }).fill('timestamp')
+    await expect(page.locator('#timenexus-all .timenexus-tool-card').filter({ hasText: 'Timestamp Converter' })).toBeVisible()
+    await expect(page.locator('#timenexus-all .timenexus-tool-card').filter({ hasText: 'Date Difference' })).toHaveCount(0)
+
+    await expect(page.locator('main')).not.toContainText('No accounts or storage')
+    await expect(page.locator('main')).not.toContainText('billing')
+    await expect(page.locator('main')).not.toContainText('ads inactive')
+    await expect(page.locator('main')).not.toContainText('Temporary public URL')
+    await expect(page.locator('main')).not.toContainText('Launch order')
+    await expect(page.locator('main')).not.toContainText('Quality check')
+    await expect(page.locator('main')).not.toContainText('Workflow checks ready')
+    await expect(page.locator('main')).not.toContainText('roadmap')
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(2)
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('timenexus-catalog-desktop', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('renders the localized TimeNexus catalog page on mobile', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/pt-br/sites/timenexus')
+    await dismissConsentBanner(page)
+
+    await expect(page.getByRole('heading', { name: 'Planeje horarios entre cidades, datas e calendarios.' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Hora atual agora' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Escolha por tarefa de tempo' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Todas as ferramentas TimeNexus publicadas' })).toBeVisible()
+    await expect(page.getByRole('searchbox', { name: 'Buscar ferramentas de tempo' })).toBeVisible()
+    await expect(
+      page.locator('.timenexus-tool-grid a[href="https://opentshost.com/supersites/timenexus/pt-br/tools/timezone-converter"]'),
+    ).toBeVisible()
+    await expect(
+      page.locator('.timenexus-tool-grid a[href="https://opentshost.com/supersites/timenexus/pt-br/world-clock/americas-europe"]'),
+    ).toBeVisible()
+    await expect(page.locator('main')).not.toContainText('Plan time across cities, dates and calendars.')
+    await expect(page.locator('main')).not.toContainText('No accounts or storage')
+    await expect(page.locator('main')).not.toContainText('Temporary public URL')
+    await expect(page.locator('main')).not.toContainText('Launch order')
+    await expect(page.locator('main')).not.toContainText('roadmap')
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('timenexus-catalog-pt-mobile', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
 })

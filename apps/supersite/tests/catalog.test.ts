@@ -5,6 +5,7 @@ import {
   getFooterCopy,
   getHomeCopy,
   getNetProbeCatalogCopy,
+  getTimeNexusCatalogCopy,
 } from '../app/data/copy'
 import { legalPageCatalog, legalPageSlugs } from '../app/data/legal'
 import { localeCodes } from '../app/data/locales'
@@ -212,6 +213,42 @@ describe('site catalog', () => {
       expect(copy.shortcutGroups).toHaveLength(3)
       expect(copy.footerGroups.map((group) => group.title)).toHaveLength(5)
       expect(copy.footerGroups.flatMap((group) => group.links).length).toBeGreaterThanOrEqual(10)
+      expect(JSON.stringify(copy)).not.toMatch(forbiddenPublicTerms)
+    }
+  })
+
+  it('keeps the TimeNexus catalog page benchmark-grade and linked to real time tools', () => {
+    const expectedToolPaths = [
+      '/world-clock/americas-europe',
+      '/world-clock/global-product',
+      '/tools/timezone-converter',
+      '/tools/timestamp-converter',
+      '/tools/date-difference',
+      '/tools/business-days',
+      '/tools/age-calculator',
+      '/tools/percentage-calculator',
+      '/tools/unit-converter',
+      '/world-clock/cities/tokyo',
+    ]
+    const forbiddenPublicTerms =
+      /temporary public url|launch order|quality check|review notes|public api live|ads planned|billing disabled|external analytics inactive|release checks|rollback|human_action_required|worker planned|deploy smoke|production checks|workflow checks ready|checkout inactive|commercial redirects planned|roadmap|mvp|no accounts or storage/i
+
+    for (const locale of localeCodes) {
+      const copy = getTimeNexusCatalogCopy(locale)
+
+      expect(copy.links.map((tool) => tool.path)).toEqual(expectedToolPaths)
+      expect(copy.links.filter((tool) => tool.featured).map((tool) => tool.path)).toEqual([
+        '/world-clock/americas-europe',
+        '/world-clock/global-product',
+        '/tools/timezone-converter',
+        '/tools/timestamp-converter',
+        '/tools/date-difference',
+        '/tools/business-days',
+      ])
+      expect(copy.categories.map((category) => category.key)).toEqual(['world', 'zones', 'calendar', 'calculators'])
+      expect(copy.shortcutGroups).toHaveLength(4)
+      expect(copy.footerGroups.map((group) => group.title)).toHaveLength(5)
+      expect(copy.footerGroups.flatMap((group) => group.links).length).toBeGreaterThanOrEqual(17)
       expect(JSON.stringify(copy)).not.toMatch(forbiddenPublicTerms)
     }
   })
