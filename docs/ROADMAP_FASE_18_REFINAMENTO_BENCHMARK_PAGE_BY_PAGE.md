@@ -470,6 +470,10 @@ Regra operacional:
 3. Remover `commercial redirects planned` e similares.
 4. Explicar QR estático vs dinâmico abaixo, como upsell discreto.
 
+**Status:** concluída em produção em 2026-06-30. A rota de catálogo QRRoute virou landing pública task-first com prévia estática visível acima da dobra, CTAs para gerador QR, navegação por tipo de ativo, busca/filtros, cards para QR estático, barcode, UTM, vCard, Wi-Fi e preview lab, nota estático/dinâmico abaixo do valor e rodapé contextual com deep links reais. Commit `ffe1ecf`; Quality Gate `28432484601`; Deploy Dry Run `28432484446`; Hub deploy `28432708930`; release `/supersites/` `ffe1ecf9f0c2cf092f62a068af14f6802401c75a-28432708930-1`; smoke público, AdSense-safe, QRRoute static app smoke, 12 deep links EN/PT-BR, crawler quick e visual live desktop/mobile passaram.
+
+**Regra aprendida reforçada:** a entrega de catálogo deve usar link profundo real e validar produção live antes do fechamento. Se os links já estão 200 e o app está coerente, não publicar app estático desnecessariamente; se estiver stale/404/500, publicar no mesmo ciclo.
+
 ---
 
 ## Sprint 18.8 — Página de catálogo InvoiceCraft

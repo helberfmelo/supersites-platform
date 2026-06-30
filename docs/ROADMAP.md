@@ -801,6 +801,14 @@ Sprint 18.6 - Pagina de catalogo TimeNexus
 - Status: concluida em producao. Commit de implementacao `0e29572`, commit corretivo `485fb27`, Quality Gate `28430398894`, Deploy Dry Run `28430398812`, deploy Hub inicial `28428962922`, deploy TimeNexus app `28429491292` e deploy Hub corretivo `28430723674` passaram; release final do Hub `485fb276726e720197373de4f0e002bc06c16532-28430723674-1`, asset `_VMopQQ_.js`, release TimeNexus `0e29572a6a608f27a473a1f1886593f72b2dc58b-28429491292-1`, asset `CDXTrBfv.js`, smokes publicos, AdSense-safe, 32 deep links EN/PT-BR e crawler quick `2026-06-30T08-32-51-790Z` passaram.
 - Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
 
+Sprint 18.7 - Pagina de catalogo QRRoute
+- Simbolico: `PHASE18-QRROUTE-CATALOG-LANDING`.
+- Escopo entregue: `/supersites/en/sites/qrroute` passa a ser uma landing publica de QR/barcode/campaign links, com preview QR estatico acima da dobra, CTA para Static QR Code, navegacao por tipo de ativo, busca/filtros, cards para 6 ferramentas reais e rodape contextual com deep links.
+- Gate permanente reforcado: o ciclo operacional page-by-page deve ser direto e completo por sprint: implementar, validar, commit/push, monitorar CI/deploy, smoke publico, crawler/visual live e proxima sprint. Commits devem ser objetivos; detalhes ficam no fechamento documental.
+- Validacao local pre-commit: Vitest Hub 19 testes, build Hub, Playwright Hub 16 testes, preview smoke Hub, public-copy 951 HTMLs, AdSense-safe 13 paginas, structure, secrets, package tests/typechecks, deploy dry-run, ci:changes, HostGator artifact Hub 211 arquivos/6261700 bytes, `git diff --check` e screenshots em `artifacts/qrroute-catalog-qa/` passaram.
+- Status: concluida em producao. Commit `ffe1ecf`, Quality Gate `28432484601`, Deploy Dry Run `28432484446` e deploy reversivel do Hub `28432708930` passaram; release `ffe1ecf9f0c2cf092f62a068af14f6802401c75a-28432708930-1`, asset `WVsZKAFz.js`, QRRoute asset `DnCJVBcv.js`, smokes publicos, AdSense-safe, QRRoute static app smoke, 12 deep links EN/PT-BR e crawler quick `2026-06-30T09-08-26-242Z` passaram.
+- Escopo negativo: nenhum provider externo, anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, worker/cron, DNS/root mapping, root redirect, app QRRoute novo ou acao irreversivel foi ativado.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.

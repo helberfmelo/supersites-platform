@@ -1458,7 +1458,24 @@ Data-base: 2026-06-29
 | Sprint 18.6 post-deploy quick crawler | `2026-06-30T08-32-51-790Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.6 live TimeNexus catalog screenshots | `artifacts/timenexus-catalog-qa/timenexus-catalog-live-desktop-final.png` and `artifacts/timenexus-catalog-qa/timenexus-catalog-live-mobile-pt-br-final.png` reviewed |
 | Sprint 18.6 live TimeNexus catalog smoke | Passed: desktop/mobile markers, no overflow, no clock wrapping, route CTA visible |
-| Real deploy/provider activation | 13 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.6 Hub correction and TimeNexus app deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.7 QRRoute catalog route | `/supersites/en/sites/qrroute` converted from generic site detail to task-first QR/barcode/UTM/vCard/Wi-Fi landing |
+| Sprint 18.7 direct public links | 12 EN/PT-BR checks passed across 6 QRRoute tool routes |
+| Sprint 18.7 Hub unit suite | Passed: 19 tests |
+| Sprint 18.7 Hub build | Passed |
+| Sprint 18.7 Hub Playwright suite | Passed: 16 tests, including QRRoute desktop EN and mobile PT-BR screenshots |
+| Sprint 18.7 public copy validation | Passed: 951 HTML files |
+| Sprint 18.7 AdSense-safe validation | Passed locally and post-deploy: 13 public pages |
+| Sprint 18.7 package/structure/secrets/dry-run/diff | Passed, including package tests/typechecks, `ci:changes` and deploy dry-run |
+| Sprint 18.7 Hub HostGator artifact | Local passed: 211 files, 6261700 bytes; deploy passed: 211 files, 6252701 bytes |
+| Sprint 18.7 implementation commit | `ffe1ecf` |
+| Sprint 18.7 remote Quality Gate | `28432484601` passed |
+| Sprint 18.7 remote Deploy Dry Run | `28432484446` passed |
+| Sprint 18.7 Hub production deploy | `28432708930` passed; release `ffe1ecf9f0c2cf092f62a068af14f6802401c75a-28432708930-1`; asset `WVsZKAFz.js`; QRRoute asset `DnCJVBcv.js` |
+| Sprint 18.7 post-deploy public smoke | Passed: Hub/apps/APIs, QRRoute static app smoke and 12 EN/PT-BR deep links |
+| Sprint 18.7 post-deploy quick crawler | `2026-06-30T09-08-26-242Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.7 live QRRoute catalog screenshots | `artifacts/qrroute-catalog-qa/qrroute-catalog-live-desktop.png` and `artifacts/qrroute-catalog-qa/qrroute-catalog-live-mobile-pt-br.png` reviewed |
+| Sprint 18.7 live QRRoute catalog smoke | Passed: desktop/mobile markers, blocked phrase scan 0, overflow 0 |
+| Real deploy/provider activation | 14 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.7 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 
