@@ -510,7 +510,7 @@ describe('site catalog', () => {
 
         expect(localized.title.length).toBeGreaterThan(5)
         expect(localized.description.length).toBeGreaterThan(60)
-        expect(localized.sections).toHaveLength(page.slug === 'about' ? 6 : 3)
+        expect(localized.sections).toHaveLength(['about', 'contact'].includes(page.slug) ? 6 : 3)
         expect(localized.sections.every((section) => section.paragraphs.length > 0)).toBe(true)
       }
     }
@@ -536,6 +536,31 @@ describe('site catalog', () => {
 
       expect(copy.sections.map((section) => section.heading)).toEqual(requiredHeadings[locale])
       expect(JSON.stringify({ copy, shell })).not.toMatch(blockedPublicReviewLanguage)
+    }
+  })
+
+  it('keeps the public Contact page channel-based and free of launch mailbox language', () => {
+    const contact = legalPageCatalog.find((page) => page.slug === 'contact')
+    expect(contact).toBeDefined()
+
+    const requiredHeadings = {
+      en: ['Choose a channel', 'Security and abuse', 'Editorial corrections', 'Privacy requests', 'Support', 'Partnership and legal'],
+      'pt-br': ['Escolha um canal', 'Segurança e abuso', 'Correções editoriais', 'Pedidos de privacidade', 'Suporte', 'Parcerias e legal'],
+      es: ['Elige un canal', 'Seguridad y abuso', 'Correcciones editoriales', 'Solicitudes de privacidad', 'Soporte', 'Alianzas y legal'],
+      fr: ['Choisir un canal', 'Sécurité et abus', 'Corrections éditoriales', 'Demandes de confidentialité', 'Support', 'Partenariats et juridique'],
+      de: ['Kanal auswählen', 'Sicherheit und Missbrauch', 'Redaktionelle Korrekturen', 'Datenschutzanfragen', 'Support', 'Partnerschaften und Rechtliches'],
+    }
+    const blockedLaunchLanguage =
+      /launch phase|first public launch|public mailbox status|public mailbox will|unfinished forms|fase de lançamento|primeiro lançamento|status do e-mail público|caixa pública monitorada|formulários inacabados|fase de lanzamiento|primer lanzamiento|buzón público|formularios sin finalizar|phase de lancement|premier lancement|boîte publique|formulaires inachevés|Launch-Phase|ersten Launch|öffentlichen Mailbox|unfertige Formulare/iu
+
+    for (const locale of localeCodes) {
+      const copy = getLegalPageCopy(contact!, locale)
+      const links = copy.sections.flatMap((section) => section.links ?? [])
+
+      expect(copy.sections.map((section) => section.heading)).toEqual(requiredHeadings[locale])
+      expect(links).toHaveLength(5)
+      expect(links.every((link) => link.href.startsWith('mailto:contact@opentshost.com?subject='))).toBe(true)
+      expect(JSON.stringify(copy)).not.toMatch(blockedLaunchLanguage)
     }
   })
 

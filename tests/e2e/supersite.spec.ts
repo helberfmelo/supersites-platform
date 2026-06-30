@@ -183,6 +183,76 @@ test.describe('SuperSites public hub', () => {
     expect(errors).toEqual([])
   })
 
+  test('renders the Contact page as channel-based public contact on desktop', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.goto('/en/contact')
+    await dismissConsentBanner(page)
+
+    await expect(page).toHaveTitle(/Contact SuperSites/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Contact SuperSites')
+    await expect(page.getByRole('heading', { name: 'Choose a channel' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Security and abuse' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Editorial corrections' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Privacy requests' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Partnership and legal' })).toBeVisible()
+    await expect(page.locator('.content-link-list a[href^="mailto:contact@opentshost.com"]')).toHaveCount(5)
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/en/contact',
+    )
+    await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
+    await expect(page.locator('main')).not.toContainText(
+      /launch phase|first public launch|public mailbox|unfinished forms/i,
+    )
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1)
+
+    const schemaType = await page.locator('script[type="application/ld+json"]').evaluate((script) => {
+      const schema = JSON.parse(script.textContent || '{}')
+
+      return schema['@type']
+    })
+
+    expect(schemaType).toBe('ContactPage')
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('contact-desktop', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('renders the localized Contact page on mobile', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/pt-br/contact')
+    await dismissConsentBanner(page)
+
+    await expect(page).toHaveTitle(/Contato SuperSites/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Contato SuperSites')
+    await expect(page.getByRole('heading', { name: 'Escolha um canal' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Segurança e abuso' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Correções editoriais' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Pedidos de privacidade' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Parcerias e legal' })).toBeVisible()
+    await expect(page.locator('.content-link-list a[href^="mailto:contact@opentshost.com"]')).toHaveCount(5)
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      'https://opentshost.com/supersites/pt-br/contact',
+    )
+    await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
+    await expect(page.locator('main')).not.toContainText(
+      /fase de lançamento|primeiro lançamento|e-mail público|caixa pública|formulários inacabados/i,
+    )
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('contact-pt-mobile', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
   test('renders the benchmark-grade tool finder and records sanitized outbound site clicks', async ({
     page,
   }, testInfo) => {

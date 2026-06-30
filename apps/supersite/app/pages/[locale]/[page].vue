@@ -104,6 +104,12 @@ useHead({
         <article v-for="section in copy.sections" :key="section.heading" class="content-section">
           <h3>{{ section.heading }}</h3>
           <p v-for="paragraph in section.paragraphs" :key="paragraph">{{ paragraph }}</p>
+          <div v-if="section.links?.length" class="content-link-list">
+            <a v-for="link in section.links" :key="link.href" :href="link.href">
+              <strong>{{ link.label }}</strong>
+              <span>{{ link.note }}</span>
+            </a>
+          </div>
         </article>
       </div>
 

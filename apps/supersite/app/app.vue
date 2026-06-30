@@ -3947,6 +3947,44 @@ h3 {
   color: #3f5048;
 }
 
+.content-link-list {
+  display: grid;
+  gap: 10px;
+  max-width: 820px;
+  margin-top: 14px;
+}
+
+.content-link-list a {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border-left: 3px solid #2f6f52;
+  border-radius: 0 8px 8px 0;
+  color: #17231e;
+  background: #f6fbf7;
+  text-decoration: none;
+  transition:
+    color 140ms ease,
+    background-color 140ms ease,
+    transform 140ms ease;
+}
+
+.content-link-list a:hover {
+  color: #0f4e38;
+  background: #eef8f1;
+  transform: translateX(2px);
+}
+
+.content-link-list strong {
+  font-size: 0.98rem;
+}
+
+.content-link-list span {
+  color: #51635b;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
 .content-side {
   margin-top: 0;
 }

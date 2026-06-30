@@ -13,9 +13,16 @@ export const legalPageSlugs = [
 
 export type LegalPageSlug = (typeof legalPageSlugs)[number]
 
+export interface LegalSectionLink {
+  label: string
+  href: string
+  note: string
+}
+
 export interface LegalSection {
   heading: string
   paragraphs: string[]
+  links?: LegalSectionLink[]
 }
 
 export interface LocalizedLegalPage {
@@ -314,25 +321,70 @@ export const legalPageCatalog: LegalPage[] = [
       en: {
         navLabel: 'Contact',
         title: 'Contact SuperSites',
-        description: 'How to reach the SuperSites operator about product feedback, privacy requests, security reports and editorial corrections during the launch phase.',
+        description: 'Use the right SuperSites contact channel for product support, privacy requests, security or abuse reports, editorial corrections, partnerships and legal notices.',
         updatedLabel: 'Reviewed June 26, 2026',
         sections: [
           {
-            heading: 'What to send',
+            heading: 'Choose a channel',
             paragraphs: [
-              'Send the site name, page URL, language, what happened and the expected result. Do not include passwords, API keys, payment data, private documents or sensitive personal data.',
+              'Use the subject-specific links below so the message reaches the right queue. Include the site name, page URL, language, what happened and the result you expected.',
+            ],
+            links: [
+              {
+                label: 'Product support',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Product%20support',
+                note: 'Questions, bugs, accessibility issues and general feedback.',
+              },
+              {
+                label: 'Security or abuse',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Security%20or%20abuse',
+                note: 'Vulnerabilities, phishing, malware reports, unsafe redirects or abuse concerns.',
+              },
+              {
+                label: 'Editorial correction',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Editorial%20correction',
+                note: 'Broken links, outdated facts, translation issues and page corrections.',
+              },
+              {
+                label: 'Privacy request',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Privacy%20request',
+                note: 'Access, correction, deletion, consent or data-handling questions.',
+              },
+              {
+                label: 'Partnership or legal',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Partnership%20or%20legal',
+                note: 'Responsible business, media, partnership or legal notices.',
+              },
             ],
           },
           {
-            heading: 'Supported topics',
+            heading: 'Security and abuse',
             paragraphs: [
-              'The contact workflow covers product feedback, accessibility issues, privacy requests, security reports, broken links, translation problems and editorial corrections.',
+              'For urgent security or abuse reports, include the affected URL, timestamps, reproduction steps, observed impact and whether any sensitive data may be involved. Do not send passwords, API keys or private documents; describe them safely first.',
             ],
           },
           {
-            heading: 'Public mailbox status',
+            heading: 'Editorial corrections',
             paragraphs: [
-              'A monitored public mailbox will be published before the first public launch. Until then, operational requests remain inside the project owner workflow and no sensitive data should be submitted through unfinished forms.',
+              'Corrections should cite the affected page, current text or behavior, preferred correction and source when one is available. Translation fixes should mention the language route.',
+            ],
+          },
+          {
+            heading: 'Privacy requests',
+            paragraphs: [
+              'Privacy requests should identify the product, page and request type. Ask for a secure intake path before sending identity documents or sensitive personal data.',
+            ],
+          },
+          {
+            heading: 'Support',
+            paragraphs: [
+              'Free tools are designed to work without an account. Support messages are most useful when they include browser, device, language, steps to reproduce and whether the issue happens after refresh.',
+            ],
+          },
+          {
+            heading: 'Partnership and legal',
+            paragraphs: [
+              'Business, media and legal messages should explain the organization, request, jurisdiction if relevant and the best reply channel.',
             ],
           },
         ],
@@ -340,25 +392,70 @@ export const legalPageCatalog: LegalPage[] = [
       'pt-br': {
         navLabel: 'Contato',
         title: 'Contato SuperSites',
-        description: 'Como falar com a operação do SuperSites sobre produto, privacidade, segurança e correções editoriais durante a fase de lançamento.',
+        description: 'Use o canal certo do SuperSites para suporte, privacidade, segurança ou abuso, correções editoriais, parcerias e avisos legais.',
         updatedLabel: 'Revisado em 26 de junho de 2026',
         sections: [
           {
-            heading: 'O que enviar',
+            heading: 'Escolha um canal',
             paragraphs: [
-              'Informe nome do site, URL da página, idioma, o que aconteceu e o resultado esperado. Não envie senhas, chaves de API, dados de pagamento, documentos privados ou dados pessoais sensíveis.',
+              'Use os links por assunto para que a mensagem chegue à fila correta. Inclua nome do site, URL da página, idioma, o que aconteceu e o resultado esperado.',
+            ],
+            links: [
+              {
+                label: 'Suporte de produto',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Product%20support',
+                note: 'Dúvidas, bugs, acessibilidade e feedback geral.',
+              },
+              {
+                label: 'Segurança ou abuso',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Security%20or%20abuse',
+                note: 'Vulnerabilidades, phishing, malware, redirecionamentos inseguros ou abuso.',
+              },
+              {
+                label: 'Correção editorial',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Editorial%20correction',
+                note: 'Links quebrados, fatos desatualizados, tradução e correções de página.',
+              },
+              {
+                label: 'Pedido de privacidade',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Privacy%20request',
+                note: 'Acesso, correção, exclusão, consentimento ou dúvidas sobre dados.',
+              },
+              {
+                label: 'Parceria ou legal',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Partnership%20or%20legal',
+                note: 'Mensagens comerciais responsáveis, imprensa, parcerias ou avisos legais.',
+              },
             ],
           },
           {
-            heading: 'Temas aceitos',
+            heading: 'Segurança e abuso',
             paragraphs: [
-              'O fluxo de contato cobre feedback de produto, acessibilidade, privacidade, segurança, links quebrados, tradução e correções editoriais.',
+              'Para relatos urgentes de segurança ou abuso, inclua URL afetada, horários, passos para reproduzir, impacto observado e se algum dado sensível pode estar envolvido. Não envie senhas, chaves de API ou documentos privados; descreva com segurança primeiro.',
             ],
           },
           {
-            heading: 'Status do e-mail público',
+            heading: 'Correções editoriais',
             paragraphs: [
-              'Uma caixa pública monitorada será publicada antes do primeiro lançamento. Até lá, solicitações operacionais ficam no fluxo do proprietário do projeto e dados sensíveis não devem ser enviados por formulários inacabados.',
+              'Correções devem citar a página afetada, texto ou comportamento atual, correção sugerida e fonte quando houver. Ajustes de tradução devem informar a rota de idioma.',
+            ],
+          },
+          {
+            heading: 'Pedidos de privacidade',
+            paragraphs: [
+              'Pedidos de privacidade devem identificar produto, página e tipo de solicitação. Peça um caminho seguro antes de enviar documentos de identidade ou dados pessoais sensíveis.',
+            ],
+          },
+          {
+            heading: 'Suporte',
+            paragraphs: [
+              'As ferramentas gratuitas são feitas para funcionar sem conta. Mensagens de suporte ajudam mais quando trazem navegador, dispositivo, idioma, passos para reproduzir e se o problema continua após atualizar a página.',
+            ],
+          },
+          {
+            heading: 'Parcerias e legal',
+            paragraphs: [
+              'Mensagens comerciais, imprensa e avisos legais devem explicar organização, solicitação, jurisdição quando relevante e melhor canal de resposta.',
             ],
           },
         ],
@@ -366,25 +463,70 @@ export const legalPageCatalog: LegalPage[] = [
       es: {
         navLabel: 'Contacto',
         title: 'Contacto de SuperSites',
-        description: 'Cómo contactar al operador de SuperSites sobre producto, privacidad, seguridad y correcciones editoriales durante la fase de lanzamiento.',
+        description: 'Usa el canal correcto de SuperSites para soporte, privacidad, seguridad o abuso, correcciones editoriales, alianzas y avisos legales.',
         updatedLabel: 'Revisado el 26 de junio de 2026',
         sections: [
           {
-            heading: 'Qué enviar',
+            heading: 'Elige un canal',
             paragraphs: [
-              'Incluye el sitio, URL, idioma, qué ocurrió y el resultado esperado. No envíes contraseñas, claves API, datos de pago, documentos privados ni datos personales sensibles.',
+              'Usa los enlaces por tema para que el mensaje llegue a la fila correcta. Incluye sitio, URL, idioma, qué ocurrió y el resultado esperado.',
+            ],
+            links: [
+              {
+                label: 'Soporte de producto',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Product%20support',
+                note: 'Preguntas, errores, accesibilidad y comentarios generales.',
+              },
+              {
+                label: 'Seguridad o abuso',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Security%20or%20abuse',
+                note: 'Vulnerabilidades, phishing, malware, redirecciones inseguras o abuso.',
+              },
+              {
+                label: 'Corrección editorial',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Editorial%20correction',
+                note: 'Enlaces rotos, datos desactualizados, traducción y correcciones de página.',
+              },
+              {
+                label: 'Solicitud de privacidad',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Privacy%20request',
+                note: 'Acceso, corrección, eliminación, consentimiento o preguntas sobre datos.',
+              },
+              {
+                label: 'Alianza o legal',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Partnership%20or%20legal',
+                note: 'Negocios responsables, prensa, alianzas o avisos legales.',
+              },
             ],
           },
           {
-            heading: 'Temas cubiertos',
+            heading: 'Seguridad y abuso',
             paragraphs: [
-              'El flujo de contacto cubre producto, accesibilidad, privacidad, seguridad, enlaces rotos, traducción y correcciones editoriales.',
+              'Para reportes urgentes de seguridad o abuso, incluye URL afectada, horarios, pasos para reproducir, impacto observado y si puede haber datos sensibles involucrados. No envíes contraseñas, claves API ni documentos privados; descríbelos de forma segura primero.',
             ],
           },
           {
-            heading: 'Estado del buzón público',
+            heading: 'Correcciones editoriales',
             paragraphs: [
-              'Se publicará un buzón monitoreado antes del primer lanzamiento público. Hasta entonces, las solicitudes operativas permanecen en el flujo del propietario y no deben enviarse datos sensibles por formularios sin finalizar.',
+              'Las correcciones deben citar la página afectada, texto o comportamiento actual, corrección sugerida y fuente cuando exista. Los ajustes de traducción deben mencionar la ruta de idioma.',
+            ],
+          },
+          {
+            heading: 'Solicitudes de privacidad',
+            paragraphs: [
+              'Las solicitudes de privacidad deben identificar producto, página y tipo de solicitud. Pide un canal seguro antes de enviar documentos de identidad o datos personales sensibles.',
+            ],
+          },
+          {
+            heading: 'Soporte',
+            paragraphs: [
+              'Las herramientas gratuitas están diseñadas para funcionar sin cuenta. Los mensajes de soporte son más útiles cuando incluyen navegador, dispositivo, idioma, pasos para reproducir y si el problema continúa tras actualizar.',
+            ],
+          },
+          {
+            heading: 'Alianzas y legal',
+            paragraphs: [
+              'Los mensajes comerciales, de prensa y legales deben explicar organización, solicitud, jurisdicción si aplica y mejor canal de respuesta.',
             ],
           },
         ],
@@ -392,25 +534,70 @@ export const legalPageCatalog: LegalPage[] = [
       fr: {
         navLabel: 'Contact',
         title: 'Contacter SuperSites',
-        description: 'Comment joindre l’opérateur SuperSites pour produit, confidentialité, sécurité et corrections éditoriales pendant la phase de lancement.',
+        description: 'Utilisez le bon canal SuperSites pour support produit, confidentialité, sécurité ou abus, corrections éditoriales, partenariats et avis juridiques.',
         updatedLabel: 'Révisé le 26 juin 2026',
         sections: [
           {
-            heading: 'Quoi envoyer',
+            heading: 'Choisir un canal',
             paragraphs: [
-              'Indiquez le site, l’URL, la langue, ce qui s’est passé et le résultat attendu. N’envoyez pas de mots de passe, clés API, données de paiement, documents privés ou données sensibles.',
+              'Utilisez les liens par sujet pour que le message arrive dans la bonne file. Indiquez le site, l’URL, la langue, ce qui s’est passé et le résultat attendu.',
+            ],
+            links: [
+              {
+                label: 'Support produit',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Product%20support',
+                note: 'Questions, bugs, accessibilité et retours généraux.',
+              },
+              {
+                label: 'Sécurité ou abus',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Security%20or%20abuse',
+                note: 'Vulnérabilités, phishing, malware, redirections non sûres ou abus.',
+              },
+              {
+                label: 'Correction éditoriale',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Editorial%20correction',
+                note: 'Liens cassés, informations obsolètes, traduction et corrections de page.',
+              },
+              {
+                label: 'Demande de confidentialité',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Privacy%20request',
+                note: 'Accès, correction, suppression, consentement ou questions sur les données.',
+              },
+              {
+                label: 'Partenariat ou juridique',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Partnership%20or%20legal',
+                note: 'Messages business responsables, presse, partenariats ou avis juridiques.',
+              },
             ],
           },
           {
-            heading: 'Sujets pris en charge',
+            heading: 'Sécurité et abus',
             paragraphs: [
-              'Le flux de contact couvre produit, accessibilité, confidentialité, sécurité, liens cassés, traduction et corrections éditoriales.',
+              'Pour les signalements urgents de sécurité ou d’abus, indiquez URL concernée, horaires, étapes de reproduction, impact observé et si des données sensibles peuvent être impliquées. N’envoyez pas mots de passe, clés API ou documents privés; décrivez-les d’abord de manière sûre.',
             ],
           },
           {
-            heading: 'Statut de la boîte publique',
+            heading: 'Corrections éditoriales',
             paragraphs: [
-              'Une boîte publique surveillée sera publiée avant le premier lancement. D’ici là, les demandes opérationnelles restent dans le flux du propriétaire et aucune donnée sensible ne doit passer par des formulaires inachevés.',
+              'Les corrections doivent citer la page concernée, le texte ou comportement actuel, la correction proposée et une source si disponible. Les corrections de traduction doivent mentionner la route de langue.',
+            ],
+          },
+          {
+            heading: 'Demandes de confidentialité',
+            paragraphs: [
+              'Les demandes de confidentialité doivent identifier le produit, la page et le type de demande. Demandez un canal sécurisé avant d’envoyer des documents d’identité ou des données personnelles sensibles.',
+            ],
+          },
+          {
+            heading: 'Support',
+            paragraphs: [
+              'Les outils gratuits sont conçus pour fonctionner sans compte. Les messages de support sont plus utiles avec navigateur, appareil, langue, étapes de reproduction et état après actualisation.',
+            ],
+          },
+          {
+            heading: 'Partenariats et juridique',
+            paragraphs: [
+              'Les messages commerciaux, presse et juridiques doivent expliquer organisation, demande, juridiction si pertinente et meilleur canal de réponse.',
             ],
           },
         ],
@@ -418,25 +605,70 @@ export const legalPageCatalog: LegalPage[] = [
       de: {
         navLabel: 'Kontakt',
         title: 'SuperSites kontaktieren',
-        description: 'Kontaktwege für Produktfeedback, Datenschutzanfragen, Sicherheitsberichte und redaktionelle Korrekturen während der Launch-Phase.',
+        description: 'Nutzen Sie den passenden SuperSites-Kanal für Produktsupport, Datenschutz, Sicherheit oder Missbrauch, redaktionelle Korrekturen, Partnerschaften und rechtliche Hinweise.',
         updatedLabel: 'Geprüft am 26. Juni 2026',
         sections: [
           {
-            heading: 'Was gesendet werden sollte',
+            heading: 'Kanal auswählen',
             paragraphs: [
-              'Nennen Sie Site, URL, Sprache, beobachtetes Verhalten und erwartetes Ergebnis. Senden Sie keine Passwörter, API-Schlüssel, Zahlungsdaten, privaten Dokumente oder sensiblen Personendaten.',
+              'Nutzen Sie die thematischen Links, damit die Nachricht in der richtigen Warteschlange landet. Nennen Sie Site, URL, Sprache, beobachtetes Verhalten und erwartetes Ergebnis.',
+            ],
+            links: [
+              {
+                label: 'Produktsupport',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Product%20support',
+                note: 'Fragen, Fehler, Barrierefreiheit und allgemeines Feedback.',
+              },
+              {
+                label: 'Sicherheit oder Missbrauch',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Security%20or%20abuse',
+                note: 'Schwachstellen, Phishing, Malware, unsichere Weiterleitungen oder Missbrauch.',
+              },
+              {
+                label: 'Redaktionelle Korrektur',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Editorial%20correction',
+                note: 'Defekte Links, veraltete Fakten, Übersetzung und Seitenkorrekturen.',
+              },
+              {
+                label: 'Datenschutzanfrage',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Privacy%20request',
+                note: 'Auskunft, Korrektur, Löschung, Einwilligung oder Fragen zu Daten.',
+              },
+              {
+                label: 'Partnerschaft oder Rechtliches',
+                href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Partnership%20or%20legal',
+                note: 'Verantwortliche Geschäfts-, Medien-, Partnerschafts- oder Rechtshinweise.',
+              },
             ],
           },
           {
-            heading: 'Unterstützte Themen',
+            heading: 'Sicherheit und Missbrauch',
             paragraphs: [
-              'Der Kontaktprozess deckt Produktfeedback, Barrierefreiheit, Datenschutz, Sicherheit, defekte Links, Übersetzung und redaktionelle Korrekturen ab.',
+              'Für dringende Sicherheits- oder Missbrauchsmeldungen nennen Sie betroffene URL, Zeitpunkte, Reproduktionsschritte, beobachtete Auswirkungen und ob sensible Daten betroffen sein könnten. Senden Sie keine Passwörter, API-Schlüssel oder privaten Dokumente; beschreiben Sie diese zuerst sicher.',
             ],
           },
           {
-            heading: 'Status der öffentlichen Mailbox',
+            heading: 'Redaktionelle Korrekturen',
             paragraphs: [
-              'Eine überwachte öffentliche Mailbox wird vor dem ersten Launch veröffentlicht. Bis dahin bleiben operative Anfragen im Workflow des Projektinhabers und sensible Daten gehören nicht in unfertige Formulare.',
+              'Korrekturen sollten die betroffene Seite, aktuellen Text oder aktuelles Verhalten, vorgeschlagene Korrektur und Quelle nennen, sofern vorhanden. Übersetzungskorrekturen sollten die Sprachroute enthalten.',
+            ],
+          },
+          {
+            heading: 'Datenschutzanfragen',
+            paragraphs: [
+              'Datenschutzanfragen sollten Produkt, Seite und Art der Anfrage nennen. Fordern Sie zuerst einen sicheren Eingang an, bevor Ausweisdokumente oder sensible personenbezogene Daten gesendet werden.',
+            ],
+          },
+          {
+            heading: 'Support',
+            paragraphs: [
+              'Die kostenlosen Tools sind so konzipiert, dass sie ohne Konto funktionieren. Supportmeldungen helfen am meisten mit Browser, Gerät, Sprache, Reproduktionsschritten und ob das Problem nach Aktualisierung bestehen bleibt.',
+            ],
+          },
+          {
+            heading: 'Partnerschaften und Rechtliches',
+            paragraphs: [
+              'Geschäftliche, Medien- und Rechtsnachrichten sollten Organisation, Anliegen, relevante Gerichtsbarkeit und besten Antwortkanal erklären.',
             ],
           },
         ],
@@ -1272,7 +1504,7 @@ export function getLegalShellCopy(locale: LocaleCode): LegalShellCopy {
 }
 
 export function getLegalPageCopy(page: LegalPage, locale: LocaleCode): LocalizedLegalPage {
-  if (page.slug === 'about') {
+  if (page.slug === 'about' || page.slug === 'contact') {
     return sanitizePublicCopy(locale, page.localized[locale])
   }
 
