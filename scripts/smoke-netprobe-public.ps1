@@ -82,6 +82,7 @@ Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)SuperSites bo
 Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context "NetProbe home"
 Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick" -Context "NetProbe home"
 Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)127\.0\.0\.1|localhost" -Context "NetProbe home"
+Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)launch status|advertising not active|api live|release checks|upgrade path|free results first" -Context "NetProbe home"
 
 if ($homeResponse.Content -notmatch [regex]::Escape("href=`"$publicBase/en`"")) {
     throw "NetProbe home canonical does not point at $publicBase/en."
@@ -97,7 +98,7 @@ $assetUrl = "$origin$($assetMatch.Groups["path"].Value)"
 Invoke-SmokeRequest -Url $assetUrl | Out-Null
 
 $requiredPages = @(
-    @{ Url = Join-Url $publicBase "en"; Marker = "Network facts" },
+    @{ Url = Join-Url $publicBase "en"; Marker = "Check IP, DNS and domain signals" },
     @{ Url = Join-Url $publicBase "en/tools/dns-lookup"; Marker = "Run DNS lookup" },
     @{ Url = Join-Url $publicBase "pt-br/tools/dns-lookup"; Marker = "Consulta DNS" },
     @{ Url = Join-Url $publicBase "en/status"; Marker = "Public Status" },
@@ -109,6 +110,9 @@ foreach ($page in $requiredPages) {
     Assert-DoesNotContain -Content $response.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context $page.Url
     Assert-DoesNotContain -Content $response.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context $page.Url
     Assert-DoesNotContain -Content $response.Content -Pattern "(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick" -Context $page.Url
+    if ($page.Url -match "/(en|pt-br|es|fr|de)$") {
+        Assert-DoesNotContain -Content $response.Content -Pattern "(?i)launch status|advertising not active|api live|release checks|upgrade path|free results first" -Context $page.Url
+    }
 }
 
 if (-not $SkipApiSmoke) {
