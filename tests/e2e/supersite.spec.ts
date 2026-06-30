@@ -892,4 +892,88 @@ test.describe('SuperSites public hub', () => {
 
     expect(errors).toEqual([])
   })
+
+  test('renders the PixelBatch catalog page as a benchmark-grade image workflow landing', async ({
+    page,
+  }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.goto('/en/sites/pixelbatch')
+    await dismissConsentBanner(page)
+
+    await expect(page.getByRole('heading', { name: 'Drop an image and make it web-ready in this browser.' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Drop or choose one image' })).toBeVisible()
+    await expect(page.getByText('Your image stays in this browser')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Choose an image workflow' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Start with visible image tasks' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'One local image at a time' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'All published PixelBatch tools' })).toBeVisible()
+    await expect(page.getByRole('searchbox', { name: 'Search PixelBatch tools' })).toBeVisible()
+    await expect(page.locator('.pixelbatch-drop-panel')).toBeVisible()
+
+    for (const path of [
+      'image-compressor',
+      'image-resizer',
+      'image-cropper',
+      'image-converter',
+      'metadata-remover',
+      'social-preset-generator',
+    ]) {
+      await expect(
+        page.locator(`.pixelbatch-tool-grid a[href="https://opentshost.com/supersites/pixelbatch/en/tools/${path}"]`),
+      ).toBeVisible()
+    }
+
+    await page.getByRole('searchbox', { name: 'Search PixelBatch tools' }).fill('metadata')
+    await expect(page.locator('#pixelbatch-all .pixelbatch-tool-card').filter({ hasText: 'Metadata Remover' })).toBeVisible()
+    await expect(page.locator('#pixelbatch-all .pixelbatch-tool-card').filter({ hasText: 'Image Resizer' })).toHaveCount(0)
+
+    await expect(page.locator('main')).not.toContainText('Image optimization tools for web and commerce workflows.')
+    await expect(page.locator('main')).not.toContainText('No server upload backend active')
+    await expect(page.locator('main')).not.toContainText('Temporary public URL')
+    await expect(page.locator('main')).not.toContainText('Launch order')
+    await expect(page.locator('main')).not.toContainText('Quality check')
+    await expect(page.locator('main')).not.toContainText('billing')
+    await expect(page.locator('main')).not.toContainText('roadmap')
+    await expect(page.locator('main')).not.toContainText('MVP')
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(2)
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('pixelbatch-catalog-desktop', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('renders the localized PixelBatch catalog page on mobile', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/pt-br/sites/pixelbatch')
+    await dismissConsentBanner(page)
+
+    await expect(page.getByRole('heading', { name: 'Solte uma imagem e deixe-a pronta para web neste navegador.' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Solte ou escolha uma imagem' })).toBeVisible()
+    await expect(page.getByText('Sua imagem fica neste navegador')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Escolha um fluxo de imagem' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Todas as ferramentas PixelBatch publicadas' })).toBeVisible()
+    await expect(page.getByRole('searchbox', { name: 'Buscar ferramentas PixelBatch' })).toBeVisible()
+    await expect(
+      page.locator('.pixelbatch-tool-grid a[href="https://opentshost.com/supersites/pixelbatch/pt-br/tools/image-compressor"]'),
+    ).toBeVisible()
+    await expect(
+      page.locator('.pixelbatch-tool-grid a[href="https://opentshost.com/supersites/pixelbatch/pt-br/tools/social-preset-generator"]'),
+    ).toBeVisible()
+    await expect(page.locator('main')).not.toContainText('Drop an image and make it web-ready in this browser.')
+    await expect(page.locator('main')).not.toContainText('No server upload backend active')
+    await expect(page.locator('main')).not.toContainText('Temporary public URL')
+    await expect(page.locator('main')).not.toContainText('Launch order')
+    await expect(page.locator('main')).not.toContainText('roadmap')
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('pixelbatch-catalog-pt-mobile', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
 })

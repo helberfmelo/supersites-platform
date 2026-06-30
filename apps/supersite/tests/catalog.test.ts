@@ -7,6 +7,7 @@ import {
   getInvoiceCraftCatalogCopy,
   getMailHealthCatalogCopy,
   getNetProbeCatalogCopy,
+  getPixelBatchCatalogCopy,
   getQrRouteCatalogCopy,
   getSitePulseCatalogCopy,
   getTimeNexusCatalogCopy,
@@ -380,6 +381,41 @@ describe('site catalog', () => {
       expect(copy.shortcutGroups).toHaveLength(4)
       expect(copy.footerGroups.map((group) => group.title)).toHaveLength(5)
       expect(copy.footerGroups.flatMap((group) => group.links).length).toBeGreaterThanOrEqual(12)
+      expect(JSON.stringify(copy)).not.toMatch(forbiddenPublicTerms)
+    }
+  })
+
+  it('keeps the PixelBatch catalog page benchmark-grade and linked to real image tools', () => {
+    const expectedToolPaths = [
+      '/tools/image-compressor',
+      '/tools/image-resizer',
+      '/tools/image-cropper',
+      '/tools/image-converter',
+      '/tools/metadata-remover',
+      '/tools/social-preset-generator',
+    ]
+    const forbiddenPublicTerms =
+      /temporary public url|launch order|quality check|review notes|public api live|ads planned|billing disabled|external analytics inactive|release checks|rollback|human_action_required|worker planned|deploy smoke|production checks|workflow checks ready|checkout inactive|commercial redirects planned|roadmap|mvp|no server upload backend active|billing|worker/i
+
+    for (const locale of localeCodes) {
+      const copy = getPixelBatchCatalogCopy(locale)
+
+      expect(copy.tools.map((tool) => tool.path)).toEqual(expectedToolPaths)
+      expect(copy.tools.filter((tool) => tool.featured).map((tool) => tool.path)).toEqual(expectedToolPaths)
+      expect(copy.categories.map((category) => category.key)).toEqual([
+        'optimize',
+        'resize',
+        'crop',
+        'convert',
+        'privacy',
+        'presets',
+      ])
+      expect(copy.dropTitle.length).toBeGreaterThan(12)
+      expect(copy.dropPrivacy.length).toBeGreaterThan(12)
+      expect(copy.previewRows).toHaveLength(3)
+      expect(copy.shortcutGroups).toHaveLength(3)
+      expect(copy.footerGroups.map((group) => group.title)).toHaveLength(5)
+      expect(copy.footerGroups.flatMap((group) => group.links).length).toBeGreaterThanOrEqual(11)
       expect(JSON.stringify(copy)).not.toMatch(forbiddenPublicTerms)
     }
   })

@@ -2882,6 +2882,176 @@ h3 {
   border-color: #1f7a8c;
 }
 
+.pixelbatch-drop-panel {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #d8d6c8;
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgb(189 116 36 / 10%), transparent 48%),
+    #ffffff;
+  box-shadow: 0 18px 42px rgb(23 35 30 / 7%);
+}
+
+.pixelbatch-drop-target {
+  display: grid;
+  min-height: 220px;
+  place-items: center;
+  gap: 10px;
+  padding: 22px;
+  border: 2px dashed #bd7424;
+  border-radius: 8px;
+  background: #fffaf2;
+  text-align: center;
+}
+
+.pixelbatch-drop-target span {
+  display: grid;
+  width: 58px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid #d9c6aa;
+  border-radius: 8px;
+  color: #7b4611;
+  background: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.pixelbatch-drop-target h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.pixelbatch-drop-target p {
+  max-width: 38ch;
+  margin: 0;
+  color: #4a5a52;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.pixelbatch-drop-target a {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 14px;
+  border: 1px solid #8d4f17;
+  border-radius: 8px;
+  color: #ffffff;
+  background: #8d4f17;
+  font-size: 0.86rem;
+  font-weight: 780;
+  text-decoration: none;
+}
+
+.pixelbatch-drop-meta {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #d7ded8;
+  border-radius: 8px;
+  background: #f8fbf9;
+}
+
+.pixelbatch-drop-meta strong,
+.pixelbatch-drop-meta span {
+  display: block;
+}
+
+.pixelbatch-drop-meta strong {
+  color: #24523f;
+  font-size: 0.94rem;
+}
+
+.pixelbatch-drop-meta span {
+  margin-top: 3px;
+  color: #5a6a62;
+  font-size: 0.82rem;
+}
+
+.pixelbatch-preview-table {
+  display: grid;
+  gap: 9px;
+}
+
+.pixelbatch-preview-table h3 {
+  margin: 0;
+  color: #17231e;
+  font-size: 0.95rem;
+}
+
+.pixelbatch-preview-table dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.pixelbatch-preview-table div {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.pixelbatch-preview-table dt {
+  color: #65746c;
+  font-size: 0.68rem;
+  font-weight: 820;
+  text-transform: uppercase;
+}
+
+.pixelbatch-preview-table dd {
+  margin: 4px 0 0;
+  color: #17231e;
+  font-size: 0.86rem;
+  font-weight: 760;
+  line-height: 1.25;
+}
+
+.pixelbatch-tool-card b {
+  color: #8d4f17;
+}
+
+.pixelbatch-tool-card--featured {
+  border-top-color: #bd7424;
+}
+
+.pixelbatch-tool-card:hover,
+.pixelbatch-tool-card:focus-visible {
+  border-color: #bd7424;
+  box-shadow: 0 10px 28px rgb(189 116 36 / 11%);
+}
+
+.pixelbatch-tool-card__glyph,
+.pixelbatch-shortcut-list span {
+  color: #7b4611;
+  border-color: #ddc6a8;
+  background: #fff5e4;
+}
+
+.pixelbatch-category-tabs button[aria-pressed="true"] {
+  border-color: #8d4f17;
+  background: #8d4f17;
+}
+
+.pixelbatch-shortcut-grid article {
+  border-top-color: #bd7424;
+}
+
+.pixelbatch-shortcut-grid article:nth-child(2) {
+  border-color: #2e8a57;
+}
+
+.pixelbatch-shortcut-grid article:nth-child(3) {
+  border-color: #254c6a;
+}
+
 .signal {
   width: 12px;
   height: 12px;
@@ -3743,6 +3913,9 @@ h3 {
   .mailhealth-featured-grid,
   .mailhealth-tool-grid,
   .mailhealth-footer-grid,
+  .pixelbatch-featured-grid,
+  .pixelbatch-tool-grid,
+  .pixelbatch-footer-grid,
   .devutility-tool-grid,
   .devutility-footer-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3768,6 +3941,8 @@ h3 {
   .invoicecraft-review-note,
   .mailhealth-hero,
   .mailhealth-limit-note,
+  .pixelbatch-hero,
+  .pixelbatch-limit-note,
   .tool-finder,
   .trust-row,
   .controls,
@@ -3835,6 +4010,10 @@ h3 {
   .mailhealth-featured-grid,
   .mailhealth-tool-grid,
   .mailhealth-footer-grid,
+  .pixelbatch-shortcut-grid,
+  .pixelbatch-featured-grid,
+  .pixelbatch-tool-grid,
+  .pixelbatch-footer-grid,
   .support-block,
   .footer-verticals,
   .evidence-strip {
@@ -3852,7 +4031,9 @@ h3 {
   .invoicecraft-document-preview__top,
   .mailhealth-shortcut-list,
   .mailhealth-report-score,
-  .mailhealth-signal-list {
+  .mailhealth-signal-list,
+  .pixelbatch-shortcut-list,
+  .pixelbatch-preview-table dl {
     grid-template-columns: 1fr;
   }
 

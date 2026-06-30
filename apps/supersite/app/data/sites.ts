@@ -479,31 +479,31 @@ export const siteCatalog: SiteSummary[] = [
     localized: {
       en: {
         headline: 'Image optimization tools for web and commerce workflows.',
-        summary: 'PixelBatch will keep common image work in the browser where possible, with server-side processing reserved for scale, storage and advanced automation.',
+        summary: 'PixelBatch handles common image work in the browser first, with batch, storage and automation kept separate from the free local workflow.',
         freeValue: 'Resize, crop, compress, convert and strip metadata',
         upgrade: 'Batch processing, presets, larger files and API',
       },
       'pt-br': {
         headline: 'Otimização de imagens para fluxos web e e-commerce.',
-        summary: 'PixelBatch manterá tarefas comuns no navegador quando possível, reservando processamento servidor para escala, armazenamento e automação.',
+        summary: 'PixelBatch resolve tarefas comuns de imagem no navegador primeiro, com lote, armazenamento e automação separados do fluxo local gratuito.',
         freeValue: 'Redimensionar, cortar, comprimir, converter e remover metadados',
         upgrade: 'Processamento em lote, presets, arquivos maiores e API',
       },
       es: {
         headline: 'Optimización de imágenes para flujos web y comercio.',
-        summary: 'PixelBatch mantendrá tareas comunes en el navegador cuando sea posible, reservando servidor para escala, almacenamiento y automatización.',
+        summary: 'PixelBatch resuelve tareas comunes de imagen en el navegador primero, con lotes, almacenamiento y automatización separados del flujo local gratis.',
         freeValue: 'Redimensionar, recortar, comprimir, convertir y quitar metadatos',
         upgrade: 'Procesamiento por lotes, presets, archivos mayores y API',
       },
       fr: {
         headline: 'Optimisation d’images pour le web et le commerce.',
-        summary: 'PixelBatch gardera les tâches courantes dans le navigateur quand possible, avec serveur pour l’échelle, le stockage et l’automatisation.',
+        summary: 'PixelBatch traite d’abord les tâches image courantes dans le navigateur, avec lots, stockage et automatisation séparés du flux local gratuit.',
         freeValue: 'Redimensionner, recadrer, compresser, convertir et retirer les métadonnées',
         upgrade: 'Traitement par lots, préréglages, fichiers plus grands et API',
       },
       de: {
         headline: 'Bildoptimierung für Web- und Commerce-Workflows.',
-        summary: 'PixelBatch hält gängige Bildaufgaben möglichst im Browser; Server-Verarbeitung bleibt für Skalierung, Speicher und Automatisierung.',
+        summary: 'PixelBatch erledigt gängige Bildaufgaben zuerst im Browser; Batch, Speicher und Automatisierung bleiben getrennt vom kostenlosen lokalen Ablauf.',
         freeValue: 'Größe ändern, zuschneiden, komprimieren, konvertieren und Metadaten entfernen',
         upgrade: 'Stapelverarbeitung, Presets, größere Dateien und API',
       },

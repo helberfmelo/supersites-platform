@@ -8,6 +8,7 @@ import {
   getInvoiceCraftCatalogCopy,
   getMailHealthCatalogCopy,
   getNetProbeCatalogCopy,
+  getPixelBatchCatalogCopy,
   getQrRouteCatalogCopy,
   getSitePulseCatalogCopy,
   getTimeNexusCatalogCopy,
@@ -18,6 +19,8 @@ import {
   type InvoiceCraftCatalogToolLink,
   type MailHealthCatalogCategoryKey,
   type MailHealthCatalogToolLink,
+  type PixelBatchCatalogCategoryKey,
+  type PixelBatchCatalogToolLink,
   type QrRouteCatalogCategoryKey,
   type QrRouteCatalogToolLink,
   type SitePulseCatalogCategoryKey,
@@ -51,6 +54,7 @@ const qrRouteCopy = getQrRouteCatalogCopy(locale)
 const invoiceCraftCopy = getInvoiceCraftCatalogCopy(locale)
 const mailHealthCopy = getMailHealthCatalogCopy(locale)
 const sitePulseCopy = getSitePulseCatalogCopy(locale)
+const pixelBatchCopy = getPixelBatchCatalogCopy(locale)
 const siteText = site.localized[locale]
 const seoDescription = limitSeoText(siteText.summary, SEO_DESCRIPTION_MAX_LENGTH)
 const canonicalPath = localizedSitePath(locale, site.slug)
@@ -63,6 +67,7 @@ const isQrRouteCatalog = site.slug === 'qrroute'
 const isInvoiceCraftCatalog = site.slug === 'invoicecraft'
 const isMailHealthCatalog = site.slug === 'mailhealth'
 const isSitePulseCatalog = site.slug === 'sitepulse-lab'
+const isPixelBatchCatalog = site.slug === 'pixelbatch'
 const primaryNetProbePath = netProbeCopy.toolLinks[0]?.path ?? '/tools/what-is-my-ip'
 const secondaryNetProbePath = netProbeCopy.toolLinks[1]?.path ?? '/tools/dns-propagation'
 const primaryCalcHarborPath = calcHarborCopy.calculators.find((tool) => tool.path === '/calculators/loan-payment')?.path ?? '/calculators/loan-payment'
@@ -211,6 +216,28 @@ const sitePulseShortcutGroups = computed(() => (
     tools: group.paths
       .map((path) => sitePulseCopy.tools.find((tool) => tool.path === path))
       .filter((tool): tool is SitePulseCatalogToolLink => Boolean(tool)),
+  }))
+))
+const primaryPixelBatchPath = pixelBatchCopy.tools.find((tool) => tool.path === '/tools/image-compressor')?.path ?? '/tools/image-compressor'
+const pixelBatchFeaturedTools = pixelBatchCopy.tools.filter((tool) => tool.featured)
+const pixelBatchSearchQuery = ref('')
+const pixelBatchSelectedCategory = ref<PixelBatchCatalogCategoryKey | 'all'>('all')
+const filteredPixelBatchTools = computed(() => {
+  const query = pixelBatchSearchQuery.value.trim().toLowerCase()
+
+  return pixelBatchCopy.tools.filter((tool) => {
+    const matchesCategory = pixelBatchSelectedCategory.value === 'all' || tool.category === pixelBatchSelectedCategory.value
+    const searchable = [tool.label, tool.body, tool.path, tool.glyph].join(' ').toLowerCase()
+
+    return matchesCategory && (!query || searchable.includes(query))
+  })
+})
+const pixelBatchShortcutGroups = computed(() => (
+  pixelBatchCopy.shortcutGroups.map((group) => ({
+    ...group,
+    tools: group.paths
+      .map((path) => pixelBatchCopy.tools.find((tool) => tool.path === path))
+      .filter((tool): tool is PixelBatchCatalogToolLink => Boolean(tool)),
   }))
 ))
 const isLocalBrowser = ref(false)
@@ -400,6 +427,24 @@ function trackSitePulseToolClick(path: string): void {
   trackOutboundSiteClick({
     siteSlug: site.slug,
     targetUrl: getSitePulseToolUrl(path),
+    locale,
+    routePath: canonicalPath,
+    surface: 'site_detail',
+  })
+}
+
+function getPixelBatchToolUrl(path: string): string {
+  return `${site.temporaryUrl}${locale}${path}`
+}
+
+function getPixelBatchCategoryLabel(key: PixelBatchCatalogCategoryKey): string {
+  return pixelBatchCopy.categories.find((category) => category.key === key)?.label ?? key
+}
+
+function trackPixelBatchToolClick(path: string): void {
+  trackOutboundSiteClick({
+    siteSlug: site.slug,
+    targetUrl: getPixelBatchToolUrl(path),
     locale,
     routePath: canonicalPath,
     surface: 'site_detail',
@@ -1736,6 +1781,191 @@ useHead({
                 <a
                   :href="getSitePulseToolUrl(link.path)"
                   @click="trackSitePulseToolClick(link.path)"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
+    </template>
+
+    <template v-else-if="isPixelBatchCatalog">
+      <section class="mailhealth-hero pixelbatch-hero" :aria-labelledby="`${site.slug}-title`">
+        <div class="mailhealth-hero__copy pixelbatch-hero__copy">
+          <p class="eyebrow">{{ pixelBatchCopy.eyebrow }}</p>
+          <h1 :id="`${site.slug}-title`">{{ pixelBatchCopy.title }}</h1>
+          <p class="lead">{{ pixelBatchCopy.lead }}</p>
+          <div class="mailhealth-hero__actions pixelbatch-hero__actions">
+            <a
+              class="button-link"
+              :href="getPixelBatchToolUrl(primaryPixelBatchPath)"
+              @click="trackPixelBatchToolClick(primaryPixelBatchPath)"
+            >
+              {{ pixelBatchCopy.primaryCta }}
+            </a>
+            <a class="button-link button-link--secondary" :href="`#${site.slug}-all`">
+              {{ pixelBatchCopy.secondaryCta }}
+            </a>
+          </div>
+        </div>
+
+        <aside class="pixelbatch-drop-panel" :aria-labelledby="`${site.slug}-drop`">
+          <div class="pixelbatch-drop-target">
+            <span aria-hidden="true">IMG</span>
+            <h2 :id="`${site.slug}-drop`">{{ pixelBatchCopy.dropTitle }}</h2>
+            <p>{{ pixelBatchCopy.dropBody }}</p>
+            <a
+              :href="getPixelBatchToolUrl(primaryPixelBatchPath)"
+              @click="trackPixelBatchToolClick(primaryPixelBatchPath)"
+            >
+              {{ pixelBatchCopy.dropAction }}
+            </a>
+          </div>
+          <div class="pixelbatch-drop-meta">
+            <div>
+              <strong>{{ pixelBatchCopy.dropPrivacy }}</strong>
+              <span>{{ pixelBatchCopy.dropFormatsLabel }}: {{ pixelBatchCopy.dropFormats }}</span>
+            </div>
+          </div>
+          <div class="pixelbatch-preview-table" :aria-label="pixelBatchCopy.previewTitle">
+            <h3>{{ pixelBatchCopy.previewTitle }}</h3>
+            <dl>
+              <div v-for="row in pixelBatchCopy.previewRows" :key="row.label">
+                <dt>{{ row.label }}</dt>
+                <dd>{{ row.value }}</dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
+      </section>
+
+      <section class="mailhealth-section pixelbatch-section" :aria-labelledby="`${site.slug}-browse`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-browse`">{{ pixelBatchCopy.browseTitle }}</h2>
+          <p>{{ pixelBatchCopy.browseBody }}</p>
+        </div>
+        <div class="mailhealth-shortcut-grid pixelbatch-shortcut-grid">
+          <article v-for="group in pixelBatchShortcutGroups" :key="group.title">
+            <h3>{{ group.title }}</h3>
+            <p>{{ group.body }}</p>
+            <div class="mailhealth-shortcut-list pixelbatch-shortcut-list">
+              <a
+                v-for="tool in group.tools"
+                :key="`${group.title}-${tool.path}`"
+                :href="getPixelBatchToolUrl(tool.path)"
+                @click="trackPixelBatchToolClick(tool.path)"
+              >
+                <span aria-hidden="true">{{ tool.glyph }}</span>
+                <strong>{{ tool.label }}</strong>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="mailhealth-section pixelbatch-section" :aria-labelledby="`${site.slug}-featured`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-featured`">{{ pixelBatchCopy.featuredTitle }}</h2>
+          <p>{{ pixelBatchCopy.featuredBody }}</p>
+        </div>
+        <div class="mailhealth-featured-grid pixelbatch-featured-grid">
+          <a
+            v-for="tool in pixelBatchFeaturedTools"
+            :key="`featured-${tool.path}`"
+            class="mailhealth-tool-card pixelbatch-tool-card mailhealth-tool-card--featured pixelbatch-tool-card--featured"
+            :href="getPixelBatchToolUrl(tool.path)"
+            @click="trackPixelBatchToolClick(tool.path)"
+          >
+            <span class="mailhealth-tool-card__glyph pixelbatch-tool-card__glyph" aria-hidden="true">{{ tool.glyph }}</span>
+            <span class="mailhealth-tool-card__body pixelbatch-tool-card__body">
+              <span>{{ getPixelBatchCategoryLabel(tool.category) }}</span>
+              <strong>{{ tool.label }}</strong>
+              <em>{{ tool.body }}</em>
+            </span>
+            <b>{{ pixelBatchCopy.toolCta }}</b>
+          </a>
+        </div>
+      </section>
+
+      <section class="mailhealth-limit-note pixelbatch-limit-note" :aria-labelledby="`${site.slug}-limits`">
+        <div>
+          <h2 :id="`${site.slug}-limits`">{{ pixelBatchCopy.limitsTitle }}</h2>
+          <p>{{ pixelBatchCopy.limitsBody }}</p>
+        </div>
+        <div>
+          <h3>{{ pixelBatchCopy.privacyTitle }}</h3>
+          <p>{{ pixelBatchCopy.privacyBody }}</p>
+        </div>
+      </section>
+
+      <section :id="`${site.slug}-all`" class="mailhealth-section pixelbatch-section" :aria-labelledby="`${site.slug}-all-title`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-all-title`">{{ pixelBatchCopy.allTitle }}</h2>
+          <p>{{ pixelBatchCopy.allBody }}</p>
+        </div>
+        <div class="mailhealth-finder pixelbatch-finder" role="search" :aria-label="pixelBatchCopy.searchLabel">
+          <div class="field">
+            <label for="pixelbatch-search">{{ pixelBatchCopy.searchLabel }}</label>
+            <input
+              id="pixelbatch-search"
+              v-model="pixelBatchSearchQuery"
+              type="search"
+              :placeholder="pixelBatchCopy.searchPlaceholder"
+            >
+          </div>
+          <div class="mailhealth-category-tabs pixelbatch-category-tabs" :aria-label="pixelBatchCopy.searchLabel">
+            <button
+              type="button"
+              :aria-pressed="pixelBatchSelectedCategory === 'all'"
+              @click="pixelBatchSelectedCategory = 'all'"
+            >
+              {{ pixelBatchCopy.allCategories }}
+            </button>
+            <button
+              v-for="category in pixelBatchCopy.categories"
+              :key="category.key"
+              type="button"
+              :aria-pressed="pixelBatchSelectedCategory === category.key"
+              @click="pixelBatchSelectedCategory = category.key"
+            >
+              {{ category.label }}
+            </button>
+          </div>
+        </div>
+        <div v-if="filteredPixelBatchTools.length > 0" class="mailhealth-tool-grid pixelbatch-tool-grid">
+          <a
+            v-for="tool in filteredPixelBatchTools"
+            :key="tool.path"
+            class="mailhealth-tool-card pixelbatch-tool-card"
+            :href="getPixelBatchToolUrl(tool.path)"
+            @click="trackPixelBatchToolClick(tool.path)"
+          >
+            <span class="mailhealth-tool-card__glyph pixelbatch-tool-card__glyph" aria-hidden="true">{{ tool.glyph }}</span>
+            <span class="mailhealth-tool-card__body pixelbatch-tool-card__body">
+              <span>{{ getPixelBatchCategoryLabel(tool.category) }}</span>
+              <strong>{{ tool.label }}</strong>
+              <em>{{ tool.body }}</em>
+            </span>
+            <b>{{ pixelBatchCopy.toolCta }}</b>
+          </a>
+        </div>
+        <div v-else class="mailhealth-empty pixelbatch-empty" aria-live="polite">
+          <h3>{{ pixelBatchCopy.noResultsTitle }}</h3>
+          <p>{{ pixelBatchCopy.noResultsBody }}</p>
+        </div>
+      </section>
+
+      <section class="mailhealth-footer-cluster pixelbatch-footer-cluster" :aria-labelledby="`${site.slug}-deep-links`">
+        <div class="mailhealth-footer-grid pixelbatch-footer-grid">
+          <section v-for="group in pixelBatchCopy.footerGroups" :key="group.title">
+            <h2>{{ group.title }}</h2>
+            <ul>
+              <li v-for="link in group.links" :key="`${group.title}-${link.label}`">
+                <a
+                  :href="getPixelBatchToolUrl(link.path)"
+                  @click="trackPixelBatchToolClick(link.path)"
                 >
                   {{ link.label }}
                 </a>
