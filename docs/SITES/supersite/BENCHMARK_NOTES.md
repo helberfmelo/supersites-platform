@@ -135,3 +135,12 @@ Data-base: 2026-06-27
 - Public copy checks should inspect blocked terms in rendered `<main>` for legal pages; global footer/workflow text can contain legitimate product vocabulary such as launch workflows without making the policy itself internal.
 - Local evidence: `artifacts/cookies-page-qa/cookies-en-desktop.png` and `artifacts/cookies-page-qa/cookies-pt-br-mobile.png`; live evidence: `artifacts/cookies-page-qa/cookies-en-live-desktop.png` and `artifacts/cookies-page-qa/cookies-pt-br-live-mobile.png`.
 - Production deploy `28462709911` published release `d032777ff1fe25949bef5071f294c8c08a481705-28462709911-1`, asset `https://opentshost.com/supersites/_nuxt/BR8uvxHm.js`; public smoke, AdSense-safe validation, five Cookie locale route checks and crawler quick `2026-06-30T17-24-32-421Z` passed.
+
+## Phase 18 Sprint 18.17 Terms of Use notes
+
+- The Hub Terms of Use route now follows the public legal/trust benchmark pattern: clear current-state terms, localized in EN/PT-BR/ES/FR/DE, with permitted use, abuse/prohibited activity, tool limits, information/results, future paid services and responsibility/contact.
+- Terms pages must not expose launch status, roadmap, `should`, `must`, `plans to`, human review, legal review or equivalent internal/legal-gate language. Jurisdictional contract validation stays in `docs/HUMAN_ACTION_REQUIRED.md`.
+- Future paid services are described as possible product categories and checkout requirements only; no real checkout, provider, payment, refund processing, billing entitlement, donation, affiliate or ad request was activated.
+- Public copy checks should inspect blocked terms in rendered `<main>` for legal pages and should keep smoke markers aligned to the public headings that users actually see.
+- Local evidence: Playwright added Terms desktop/mobile coverage and generated HTML checks passed across 5 locales. Live evidence: `artifacts/terms-page-qa/terms-en-live-desktop-clean.png` and `artifacts/terms-page-qa/terms-pt-br-live-mobile-clean.png`.
+- Production deploy `28464837909` published release `2543c6cc49dccb328016f180e5c08286b803dc90-28464837909-1`, asset `https://opentshost.com/supersites/_nuxt/CuqcMwZ9.js`; public smoke, AdSense-safe validation, five Terms locale route checks and crawler quick `2026-06-30T18-03-26-594Z` passed.

@@ -1640,7 +1640,25 @@ Data-base: 2026-06-29
 | Sprint 18.16 post-deploy quick crawler | `2026-06-30T17-24-32-421Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.16 live Cookie Policy screenshots | `artifacts/cookies-page-qa/cookies-en-live-desktop.png` and `artifacts/cookies-page-qa/cookies-pt-br-live-mobile.png` reviewed |
 | Sprint 18.16 live Cookie Policy smoke | Passed: localized markers, canonical checks, consent-preferences link opened CMP preferences, blocked phrase scan 0 in rendered main content, overflow covered by browser/crawler |
-| Real deploy/provider activation | 25 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.16 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.17 Terms of Use route | `/supersites/en/terms` converted to complete localized public terms with permitted use, abuse, limits, informational results, future paid services and responsibility/contact |
+| Sprint 18.17 localized Terms checks | 5 routes passed: `/supersites/en/terms`, `/supersites/pt-br/terms`, `/supersites/es/terms`, `/supersites/fr/terms`, `/supersites/de/terms` |
+| Sprint 18.17 Hub unit suite | Passed: 29 tests |
+| Sprint 18.17 i18n/consent unit suites | Passed: 12 i18n tests and 8 consent tests |
+| Sprint 18.17 Hub build | Passed |
+| Sprint 18.17 Hub Playwright suite | Passed: 35 tests, including Terms desktop EN and mobile PT-BR screenshots |
+| Sprint 18.17 Terms generated HTML check | Passed: 5 locales, required sections present, 0 blocked internal/legal-gate phrases |
+| Sprint 18.17 AdSense-safe validation | Passed locally and post-deploy: 13 public pages |
+| Sprint 18.17 package/structure/secrets/dry-run/diff | Passed, including package tests/typechecks, `ci:changes`, deploy dry-run and `git diff --check` |
+| Sprint 18.17 Hub HostGator artifact | Local passed: 211 files, 8828608 bytes; production deploy passed: 211 files, 8819609 bytes |
+| Sprint 18.17 implementation commit | `2543c6c` |
+| Sprint 18.17 remote Quality Gate | `28464595639` passed |
+| Sprint 18.17 remote Deploy Dry Run | `28464595563` passed |
+| Sprint 18.17 Hub production deploy | `28464837909` passed; release `2543c6cc49dccb328016f180e5c08286b803dc90-28464837909-1`; asset `CuqcMwZ9.js` |
+| Sprint 18.17 post-deploy public smoke | Passed: Hub/apps/APIs and 5 Terms locale routes via browser validation |
+| Sprint 18.17 post-deploy quick crawler | `2026-06-30T18-03-26-594Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.17 live Terms screenshots | `artifacts/terms-page-qa/terms-en-live-desktop-clean.png` and `artifacts/terms-page-qa/terms-pt-br-live-mobile-clean.png` reviewed |
+| Sprint 18.17 live Terms smoke | Passed: localized markers, canonical/hreflang checks, blocked phrase scan 0 in rendered main content, overflow covered by browser/crawler |
+| Real deploy/provider activation | 26 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.17 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 

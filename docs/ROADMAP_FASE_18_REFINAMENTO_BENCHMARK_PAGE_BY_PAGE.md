@@ -639,6 +639,10 @@ Regra operacional:
 2. Tornar termos públicos completos: uso permitido, abuso, limites, informações, pagamentos futuros, reembolsos quando aplicável, responsabilidade.
 3. Registrar qualquer lacuna jurídica em `HUMAN_ACTION_REQUIRED.md`.
 
+- A Terms of Use do Hub agora e uma pagina publica completa e localizada em EN/PT-BR/ES/FR/DE, com seis secoes por idioma: uso permitido, abuso/atividade proibida, limites das ferramentas, informacoes/resultados, servicos pagos futuros e responsabilidade/contato.
+- A pagina removeu linguagem interna/condicional como `catalog phase`, `launched`, `plans to`, `should`, `must`, human/legal review, rollout/release e equivalentes localizados. A lacuna juridica fica registrada em `docs/HUMAN_ACTION_REQUIRED.md`, nao na superficie publica.
+- Ciclo executado: validacao local completa, commit objetivo `2543c6c`, push, Quality Gate `28464595639`, Deploy Dry Run `28464595563`, deploy HostGator `28464837909`, release `2543c6cc49dccb328016f180e5c08286b803dc90-28464837909-1`, asset Hub `CuqcMwZ9.js`, smoke publico, AdSense-safe, validacao live das 5 rotas Terms, screenshots live desktop/mobile limpos e crawler quick live `2026-06-30T18-03-26-594Z` com 95 rotas/190 checks/0 gaps.
+
 ---
 
 ## Sprint 18.18 — Methodology
