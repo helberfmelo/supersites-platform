@@ -562,4 +562,86 @@ test.describe('SuperSites public hub', () => {
 
     expect(errors).toEqual([])
   })
+
+  test('renders the QRRoute catalog page as a benchmark-grade generator landing', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.goto('/en/sites/qrroute')
+    await dismissConsentBanner(page)
+
+    await expect(page.getByRole('heading', { name: 'Generate a QR code or campaign asset with a live preview.' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Live static preview' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Choose by asset type' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Start with the common QRRoute jobs' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Static first, dynamic later' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'All published QRRoute tools' })).toBeVisible()
+    await expect(page.getByRole('searchbox', { name: 'Search QRRoute tools' })).toBeVisible()
+    await expect(page.locator('.qrroute-preview-art')).toBeVisible()
+
+    for (const path of [
+      'static-qr-code',
+      'barcode-generator',
+      'utm-builder',
+      'vcard-qr',
+      'wifi-qr',
+      'preview-lab',
+    ]) {
+      await expect(
+        page.locator(`.qrroute-tool-grid a[href="https://opentshost.com/supersites/qrroute/en/tools/${path}"]`),
+      ).toBeVisible()
+    }
+
+    await page.getByRole('searchbox', { name: 'Search QRRoute tools' }).fill('wifi')
+    await expect(page.locator('#qrroute-all .qrroute-tool-card').filter({ hasText: 'Wi-Fi QR Builder' })).toBeVisible()
+    await expect(page.locator('#qrroute-all .qrroute-tool-card').filter({ hasText: 'UTM Builder' })).toHaveCount(0)
+
+    await expect(page.locator('main')).not.toContainText('QR, barcode e links de campanha com preview local')
+    await expect(page.locator('main')).not.toContainText('commercial redirects planned')
+    await expect(page.locator('main')).not.toContainText('Temporary public URL')
+    await expect(page.locator('main')).not.toContainText('Launch order')
+    await expect(page.locator('main')).not.toContainText('Quality check')
+    await expect(page.locator('main')).not.toContainText('Workflow checks ready')
+    await expect(page.locator('main')).not.toContainText('billing')
+    await expect(page.locator('main')).not.toContainText('ads planned')
+    await expect(page.locator('main')).not.toContainText('roadmap')
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(2)
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('qrroute-catalog-desktop', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
+
+  test('renders the localized QRRoute catalog page on mobile', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/pt-br/sites/qrroute')
+    await dismissConsentBanner(page)
+
+    await expect(page.getByRole('heading', { name: 'Gere um QR ou ativo de campanha com prévia ao vivo.' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Prévia estática ao vivo' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Escolha por tipo de ativo' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Todas as ferramentas QRRoute publicadas' })).toBeVisible()
+    await expect(page.getByRole('searchbox', { name: 'Buscar ferramentas QRRoute' })).toBeVisible()
+    await expect(
+      page.locator('.qrroute-tool-grid a[href="https://opentshost.com/supersites/qrroute/pt-br/tools/static-qr-code"]'),
+    ).toBeVisible()
+    await expect(
+      page.locator('.qrroute-tool-grid a[href="https://opentshost.com/supersites/qrroute/pt-br/tools/wifi-qr"]'),
+    ).toBeVisible()
+    await expect(page.locator('main')).not.toContainText('Generate a QR code or campaign asset with a live preview.')
+    await expect(page.locator('main')).not.toContainText('preview local')
+    await expect(page.locator('main')).not.toContainText('commercial redirects planned')
+    await expect(page.locator('main')).not.toContainText('Temporary public URL')
+    await expect(page.locator('main')).not.toContainText('Launch order')
+    await expect(page.locator('main')).not.toContainText('roadmap')
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('qrroute-catalog-pt-mobile', { body: screenshot, contentType: 'image/png' })
+
+    expect(errors).toEqual([])
+  })
 })

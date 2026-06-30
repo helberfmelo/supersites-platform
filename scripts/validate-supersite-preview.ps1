@@ -157,6 +157,11 @@ try {
         throw 'TimeNexus detail page smoke failed.'
     }
 
+    $qrRouteDetail = Invoke-PreviewRequest -Uri "$baseUrl/en/sites/qrroute" -RequiredContent 'Generate a QR code or campaign asset with a live preview.'
+    if ($qrRouteDetail.StatusCode -ne 200 -or $qrRouteDetail.Content -notmatch 'Generate a QR code or campaign asset with a live preview.') {
+        throw 'QRRoute detail page smoke failed.'
+    }
+
     $legal = Invoke-PreviewRequest -Uri "$baseUrl/en/privacy" -RequiredContent 'Data minimization'
     if ($legal.StatusCode -ne 200 -or $legal.Content -notmatch 'Privacy Policy') {
         throw 'Privacy page smoke failed.'

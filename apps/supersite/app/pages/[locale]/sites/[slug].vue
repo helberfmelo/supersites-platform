@@ -6,10 +6,13 @@ import {
   getDetailCopy,
   getDevUtilityCatalogCopy,
   getNetProbeCatalogCopy,
+  getQrRouteCatalogCopy,
   getTimeNexusCatalogCopy,
   type CalcHarborCatalogCategoryKey,
   type DevUtilityCatalogCategoryKey,
   type DevUtilityCatalogToolLink,
+  type QrRouteCatalogCategoryKey,
+  type QrRouteCatalogToolLink,
   type TimeNexusCatalogCategoryKey,
   type TimeNexusCatalogLink,
 } from '../../../data/copy'
@@ -35,6 +38,7 @@ const netProbeCopy = getNetProbeCatalogCopy(locale)
 const calcHarborCopy = getCalcHarborCatalogCopy(locale)
 const devUtilityCopy = getDevUtilityCatalogCopy(locale)
 const timeNexusCopy = getTimeNexusCatalogCopy(locale)
+const qrRouteCopy = getQrRouteCatalogCopy(locale)
 const siteText = site.localized[locale]
 const seoDescription = limitSeoText(siteText.summary, SEO_DESCRIPTION_MAX_LENGTH)
 const canonicalPath = localizedSitePath(locale, site.slug)
@@ -43,6 +47,7 @@ const isNetProbeCatalog = site.slug === 'netprobe-atlas'
 const isCalcHarborCatalog = site.slug === 'calcharbor'
 const isDevUtilityCatalog = site.slug === 'devutility-lab'
 const isTimeNexusCatalog = site.slug === 'timenexus'
+const isQrRouteCatalog = site.slug === 'qrroute'
 const primaryNetProbePath = netProbeCopy.toolLinks[0]?.path ?? '/tools/what-is-my-ip'
 const secondaryNetProbePath = netProbeCopy.toolLinks[1]?.path ?? '/tools/dns-propagation'
 const primaryCalcHarborPath = calcHarborCopy.calculators.find((tool) => tool.path === '/calculators/loan-payment')?.path ?? '/calculators/loan-payment'
@@ -103,6 +108,28 @@ const timeNexusShortcutGroups = computed(() => (
     links: group.paths
       .map((path) => timeNexusCopy.links.find((tool) => tool.path === path))
       .filter((tool): tool is TimeNexusCatalogLink => Boolean(tool)),
+  }))
+))
+const primaryQrRoutePath = qrRouteCopy.tools.find((tool) => tool.path === '/tools/static-qr-code')?.path ?? '/tools/static-qr-code'
+const qrRouteFeaturedTools = qrRouteCopy.tools.filter((tool) => tool.featured)
+const qrRouteSearchQuery = ref('')
+const qrRouteSelectedCategory = ref<QrRouteCatalogCategoryKey | 'all'>('all')
+const filteredQrRouteTools = computed(() => {
+  const query = qrRouteSearchQuery.value.trim().toLowerCase()
+
+  return qrRouteCopy.tools.filter((tool) => {
+    const matchesCategory = qrRouteSelectedCategory.value === 'all' || tool.category === qrRouteSelectedCategory.value
+    const searchable = [tool.label, tool.body, tool.path, tool.glyph].join(' ').toLowerCase()
+
+    return matchesCategory && (!query || searchable.includes(query))
+  })
+})
+const qrRouteShortcutGroups = computed(() => (
+  qrRouteCopy.shortcutGroups.map((group) => ({
+    ...group,
+    tools: group.paths
+      .map((path) => qrRouteCopy.tools.find((tool) => tool.path === path))
+      .filter((tool): tool is QrRouteCatalogToolLink => Boolean(tool)),
   }))
 ))
 const isLocalBrowser = ref(false)
@@ -220,6 +247,24 @@ function trackTimeNexusToolClick(path: string): void {
   trackOutboundSiteClick({
     siteSlug: site.slug,
     targetUrl: getTimeNexusToolUrl(path),
+    locale,
+    routePath: canonicalPath,
+    surface: 'site_detail',
+  })
+}
+
+function getQrRouteToolUrl(path: string): string {
+  return `${site.temporaryUrl}${locale}${path}`
+}
+
+function getQrRouteCategoryLabel(key: QrRouteCatalogCategoryKey): string {
+  return qrRouteCopy.categories.find((category) => category.key === key)?.label ?? key
+}
+
+function trackQrRouteToolClick(path: string): void {
+  trackOutboundSiteClick({
+    siteSlug: site.slug,
+    targetUrl: getQrRouteToolUrl(path),
     locale,
     routePath: canonicalPath,
     surface: 'site_detail',
@@ -823,6 +868,188 @@ useHead({
                 <a
                   :href="getTimeNexusToolUrl(link.path)"
                   @click="trackTimeNexusToolClick(link.path)"
+                >
+                  {{ link.label }}
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
+    </template>
+
+    <template v-else-if="isQrRouteCatalog">
+      <section class="qrroute-hero" :aria-labelledby="`${site.slug}-title`">
+        <div class="qrroute-hero__copy">
+          <p class="eyebrow">{{ qrRouteCopy.eyebrow }}</p>
+          <h1 :id="`${site.slug}-title`">{{ qrRouteCopy.title }}</h1>
+          <p class="lead">{{ qrRouteCopy.lead }}</p>
+          <div class="qrroute-hero__actions">
+            <a
+              class="button-link"
+              :href="getQrRouteToolUrl(primaryQrRoutePath)"
+              @click="trackQrRouteToolClick(primaryQrRoutePath)"
+            >
+              {{ qrRouteCopy.primaryCta }}
+            </a>
+            <a class="button-link button-link--secondary" :href="`#${site.slug}-all`">
+              {{ qrRouteCopy.secondaryCta }}
+            </a>
+          </div>
+        </div>
+
+        <aside class="qrroute-preview-panel" :aria-labelledby="`${site.slug}-preview`">
+          <div class="qrroute-preview-panel__header">
+            <h2 :id="`${site.slug}-preview`">{{ qrRouteCopy.previewTitle }}</h2>
+            <span>{{ qrRouteCopy.previewPayloadLabel }}</span>
+          </div>
+          <div class="qrroute-preview-panel__body">
+            <div class="qrroute-preview-art" aria-hidden="true">
+              <span v-for="index in 49" :key="`qr-preview-${index}`"></span>
+            </div>
+            <div class="qrroute-preview-payload">
+              <strong>{{ qrRouteCopy.previewPayload }}</strong>
+              <p>{{ qrRouteCopy.previewBody }}</p>
+            </div>
+          </div>
+          <dl class="qrroute-preview-meta">
+            <div v-for="item in qrRouteCopy.previewMeta" :key="item.label">
+              <dt>{{ item.label }}</dt>
+              <dd>{{ item.value }}</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+
+      <section class="qrroute-section" :aria-labelledby="`${site.slug}-browse`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-browse`">{{ qrRouteCopy.browseTitle }}</h2>
+          <p>{{ qrRouteCopy.browseBody }}</p>
+        </div>
+        <div class="qrroute-shortcut-grid">
+          <article v-for="group in qrRouteShortcutGroups" :key="group.title">
+            <h3>{{ group.title }}</h3>
+            <p>{{ group.body }}</p>
+            <div class="qrroute-shortcut-list">
+              <a
+                v-for="tool in group.tools"
+                :key="`${group.title}-${tool.path}`"
+                :href="getQrRouteToolUrl(tool.path)"
+                @click="trackQrRouteToolClick(tool.path)"
+              >
+                <span aria-hidden="true">{{ tool.glyph }}</span>
+                <strong>{{ tool.label }}</strong>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="qrroute-section" :aria-labelledby="`${site.slug}-featured`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-featured`">{{ qrRouteCopy.featuredTitle }}</h2>
+          <p>{{ qrRouteCopy.featuredBody }}</p>
+        </div>
+        <div class="qrroute-featured-grid">
+          <a
+            v-for="tool in qrRouteFeaturedTools"
+            :key="`featured-${tool.path}`"
+            class="qrroute-tool-card qrroute-tool-card--featured"
+            :href="getQrRouteToolUrl(tool.path)"
+            @click="trackQrRouteToolClick(tool.path)"
+          >
+            <span class="qrroute-tool-card__glyph" aria-hidden="true">{{ tool.glyph }}</span>
+            <span class="qrroute-tool-card__body">
+              <span>{{ getQrRouteCategoryLabel(tool.category) }}</span>
+              <strong>{{ tool.label }}</strong>
+              <em>{{ tool.body }}</em>
+            </span>
+            <b>{{ qrRouteCopy.toolCta }}</b>
+          </a>
+        </div>
+      </section>
+
+      <section class="qrroute-static-note" :aria-labelledby="`${site.slug}-static-dynamic`">
+        <div>
+          <h2 :id="`${site.slug}-static-dynamic`">{{ qrRouteCopy.staticDynamicTitle }}</h2>
+          <p>{{ qrRouteCopy.staticDynamicBody }}</p>
+        </div>
+        <div>
+          <h3>{{ qrRouteCopy.dynamicNoteTitle }}</h3>
+          <p>{{ qrRouteCopy.dynamicNoteBody }}</p>
+        </div>
+      </section>
+
+      <section :id="`${site.slug}-all`" class="qrroute-section" :aria-labelledby="`${site.slug}-all-title`">
+        <div class="section-heading">
+          <h2 :id="`${site.slug}-all-title`">{{ qrRouteCopy.allTitle }}</h2>
+          <p>{{ qrRouteCopy.allBody }}</p>
+        </div>
+        <div class="qrroute-finder" role="search" :aria-label="qrRouteCopy.searchLabel">
+          <div class="field">
+            <label for="qrroute-search">{{ qrRouteCopy.searchLabel }}</label>
+            <input
+              id="qrroute-search"
+              v-model="qrRouteSearchQuery"
+              type="search"
+              :placeholder="qrRouteCopy.searchPlaceholder"
+            >
+          </div>
+          <div class="qrroute-category-tabs" :aria-label="qrRouteCopy.searchLabel">
+            <button
+              type="button"
+              :aria-pressed="qrRouteSelectedCategory === 'all'"
+              @click="qrRouteSelectedCategory = 'all'"
+            >
+              {{ qrRouteCopy.allCategories }}
+            </button>
+            <button
+              v-for="category in qrRouteCopy.categories"
+              :key="category.key"
+              type="button"
+              :aria-pressed="qrRouteSelectedCategory === category.key"
+              @click="qrRouteSelectedCategory = category.key"
+            >
+              {{ category.label }}
+            </button>
+          </div>
+          <div class="qrroute-privacy-note">
+            <strong>{{ qrRouteCopy.privacyTitle }}</strong>
+            <span>{{ qrRouteCopy.privacyBody }}</span>
+          </div>
+        </div>
+        <div v-if="filteredQrRouteTools.length > 0" class="qrroute-tool-grid">
+          <a
+            v-for="tool in filteredQrRouteTools"
+            :key="tool.path"
+            class="qrroute-tool-card"
+            :href="getQrRouteToolUrl(tool.path)"
+            @click="trackQrRouteToolClick(tool.path)"
+          >
+            <span class="qrroute-tool-card__glyph" aria-hidden="true">{{ tool.glyph }}</span>
+            <span class="qrroute-tool-card__body">
+              <span>{{ getQrRouteCategoryLabel(tool.category) }}</span>
+              <strong>{{ tool.label }}</strong>
+              <em>{{ tool.body }}</em>
+            </span>
+            <b>{{ qrRouteCopy.toolCta }}</b>
+          </a>
+        </div>
+        <div v-else class="qrroute-empty" aria-live="polite">
+          <h3>{{ qrRouteCopy.noResultsTitle }}</h3>
+          <p>{{ qrRouteCopy.noResultsBody }}</p>
+        </div>
+      </section>
+
+      <section class="qrroute-footer-cluster" :aria-labelledby="`${site.slug}-deep-links`">
+        <div class="qrroute-footer-grid">
+          <section v-for="group in qrRouteCopy.footerGroups" :key="group.title">
+            <h2>{{ group.title }}</h2>
+            <ul>
+              <li v-for="link in group.links" :key="`${group.title}-${link.label}`">
+                <a
+                  :href="getQrRouteToolUrl(link.path)"
+                  @click="trackQrRouteToolClick(link.path)"
                 >
                   {{ link.label }}
                 </a>

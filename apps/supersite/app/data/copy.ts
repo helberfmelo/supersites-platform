@@ -234,6 +234,63 @@ export interface TimeNexusCatalogCopy {
   footerGroups: TimeNexusCatalogFooterGroup[]
 }
 
+export type QrRouteCatalogCategoryKey = 'qr' | 'barcode' | 'campaign' | 'contact' | 'network' | 'preview'
+
+export interface QrRouteCatalogToolLink {
+  label: string
+  body: string
+  path: string
+  glyph: string
+  category: QrRouteCatalogCategoryKey
+  featured: boolean
+}
+
+export interface QrRouteCatalogShortcutGroup {
+  title: string
+  body: string
+  paths: string[]
+}
+
+export interface QrRouteCatalogFooterGroup {
+  title: string
+  links: Array<{ label: string; path: string }>
+}
+
+export interface QrRouteCatalogCopy {
+  eyebrow: string
+  title: string
+  lead: string
+  primaryCta: string
+  secondaryCta: string
+  previewTitle: string
+  previewPayloadLabel: string
+  previewPayload: string
+  previewBody: string
+  previewMeta: Array<{ label: string; value: string }>
+  browseTitle: string
+  browseBody: string
+  featuredTitle: string
+  featuredBody: string
+  staticDynamicTitle: string
+  staticDynamicBody: string
+  dynamicNoteTitle: string
+  dynamicNoteBody: string
+  searchLabel: string
+  searchPlaceholder: string
+  allCategories: string
+  noResultsTitle: string
+  noResultsBody: string
+  allTitle: string
+  allBody: string
+  privacyTitle: string
+  privacyBody: string
+  toolCta: string
+  categories: Array<{ key: QrRouteCatalogCategoryKey; label: string }>
+  tools: QrRouteCatalogToolLink[]
+  shortcutGroups: QrRouteCatalogShortcutGroup[]
+  footerGroups: QrRouteCatalogFooterGroup[]
+}
+
 export interface FooterCopy {
   brandBody: string
   productNavLabel: string
@@ -2067,6 +2124,319 @@ export const timeNexusCatalogCopy: Record<LocaleCode, TimeNexusCatalogCopy> = {
   },
 }
 
+export const qrRouteCatalogCopy: Record<LocaleCode, QrRouteCatalogCopy> = {
+  en: {
+    eyebrow: 'QR codes, barcodes and campaign links',
+    title: 'Generate a QR code or campaign asset with a live preview.',
+    lead: 'Start with static QR, Wi-Fi, vCard, UTM, barcode and payload preview tools. The free workflow runs in the browser before any account path.',
+    primaryCta: 'Open static QR generator',
+    secondaryCta: 'Browse QRRoute tools',
+    previewTitle: 'Live static preview',
+    previewPayloadLabel: 'Sample payload',
+    previewPayload: 'https://example.com/product-launch',
+    previewBody: 'A fixed payload is enough for flyers, labels, event tables and simple campaign links when the destination is final.',
+    previewMeta: [
+      { label: 'Code type', value: 'Static QR' },
+      { label: 'Generated in', value: 'Browser' },
+      { label: 'Output', value: 'SVG preview' },
+    ],
+    browseTitle: 'Choose by asset type',
+    browseBody: 'QRRoute follows the common generator mental model: QR first, then campaign URL, contact, Wi-Fi, barcode and inspection flows.',
+    featuredTitle: 'Start with the common QRRoute jobs',
+    featuredBody: 'Open the exact public tool for one-off QR creation, Wi-Fi sharing, vCard contact codes, tagged URLs or short barcode values.',
+    staticDynamicTitle: 'Static first, dynamic later',
+    staticDynamicBody: 'Static codes keep the encoded payload fixed. Managed dynamic redirects need account, abuse and privacy controls before they can be offered.',
+    dynamicNoteTitle: 'No scan tracking in the free builder',
+    dynamicNoteBody: 'The public tools create and inspect local payloads. Scan analytics, editable destinations, custom domains and bulk jobs stay outside the free static flow.',
+    searchLabel: 'Search QRRoute tools',
+    searchPlaceholder: 'Try QR, UTM, Wi-Fi, vCard, barcode...',
+    allCategories: 'All QRRoute tools',
+    noResultsTitle: 'No matching QRRoute tool',
+    noResultsBody: 'Try another keyword or category. Only public QRRoute pages that already exist are linked here.',
+    allTitle: 'All published QRRoute tools',
+    allBody: 'Move between static QR, barcode, campaign URL, contact card, Wi-Fi and payload inspection pages.',
+    privacyTitle: 'Local payloads',
+    privacyBody: 'URLs, contact details, Wi-Fi values and barcode text stay in this browser session. The catalog links to free pages without storing entries.',
+    toolCta: 'Open tool',
+    categories: [
+      { key: 'qr', label: 'QR Codes' },
+      { key: 'barcode', label: 'Barcodes' },
+      { key: 'campaign', label: 'Campaign Links' },
+      { key: 'contact', label: 'Contact Cards' },
+      { key: 'network', label: 'Wi-Fi' },
+      { key: 'preview', label: 'Preview' },
+    ],
+    tools: [
+      { label: 'Static QR Code', body: 'Create a scannable static QR for a safe URL, text, email or phone payload.', path: '/tools/static-qr-code', glyph: 'QR', category: 'qr', featured: true },
+      { label: 'Barcode Generator', body: 'Render a Code 128 preview for inventory, ticket or reference values.', path: '/tools/barcode-generator', glyph: 'BAR', category: 'barcode', featured: true },
+      { label: 'UTM Builder', body: 'Build a tagged campaign URL and QR preview without sending the URL to a server.', path: '/tools/utm-builder', glyph: 'UTM', category: 'campaign', featured: true },
+      { label: 'vCard QR Builder', body: 'Turn a compact contact profile into a QR-ready vCard payload.', path: '/tools/vcard-qr', glyph: 'VCF', category: 'contact', featured: true },
+      { label: 'Wi-Fi QR Builder', body: 'Create a local Wi-Fi payload for WPA, WEP or open networks.', path: '/tools/wifi-qr', glyph: 'WIFI', category: 'network', featured: true },
+      { label: 'QR Preview Lab', body: 'Inspect a static payload before printing and check basic URL safety notes.', path: '/tools/preview-lab', glyph: 'VIEW', category: 'preview', featured: false },
+    ],
+    shortcutGroups: [
+      { title: 'Make a scannable code', body: 'Start with QR payloads people can use from a phone camera.', paths: ['/tools/static-qr-code', '/tools/wifi-qr', '/tools/vcard-qr'] },
+      { title: 'Prepare campaign assets', body: 'Tag a destination, create a barcode or inspect a payload before launch.', paths: ['/tools/utm-builder', '/tools/barcode-generator', '/tools/preview-lab'] },
+      { title: 'Check before printing', body: 'Review what will be encoded before flyers, labels or cards are produced.', paths: ['/tools/preview-lab', '/tools/static-qr-code', '/tools/barcode-generator'] },
+    ],
+    footerGroups: [
+      { title: 'QR Codes', links: [{ label: 'Static QR Code', path: '/tools/static-qr-code' }, { label: 'QR Preview Lab', path: '/tools/preview-lab' }] },
+      { title: 'Campaign Links', links: [{ label: 'UTM Builder', path: '/tools/utm-builder' }, { label: 'Static QR for URLs', path: '/tools/static-qr-code' }] },
+      { title: 'Cards and Wi-Fi', links: [{ label: 'vCard QR Builder', path: '/tools/vcard-qr' }, { label: 'Wi-Fi QR Builder', path: '/tools/wifi-qr' }] },
+      { title: 'Barcodes', links: [{ label: 'Barcode Generator', path: '/tools/barcode-generator' }, { label: 'Preview a payload', path: '/tools/preview-lab' }] },
+      { title: 'Before printing', links: [{ label: 'Inspect QR payload', path: '/tools/preview-lab' }, { label: 'Create flyer QR', path: '/tools/static-qr-code' }, { label: 'Campaign URL', path: '/tools/utm-builder' }] },
+    ],
+  },
+  'pt-br': {
+    eyebrow: 'QR, códigos de barras e links de campanha',
+    title: 'Gere um QR ou ativo de campanha com prévia ao vivo.',
+    lead: 'Comece por QR estático, Wi-Fi, vCard, UTM, código de barras e inspeção de payload. O fluxo gratuito roda no navegador antes de qualquer caminho de conta.',
+    primaryCta: 'Abrir gerador de QR estático',
+    secondaryCta: 'Ver ferramentas QRRoute',
+    previewTitle: 'Prévia estática ao vivo',
+    previewPayloadLabel: 'Payload de exemplo',
+    previewPayload: 'https://example.com/lancamento-produto',
+    previewBody: 'Um payload fixo resolve folhetos, etiquetas, mesas de evento e links simples quando o destino já está definido.',
+    previewMeta: [
+      { label: 'Tipo de código', value: 'QR estático' },
+      { label: 'Gerado no', value: 'Navegador' },
+      { label: 'Saída', value: 'Prévia SVG' },
+    ],
+    browseTitle: 'Escolha por tipo de ativo',
+    browseBody: 'O QRRoute segue o modelo comum de geradores: QR primeiro, depois URL de campanha, contato, Wi-Fi, código de barras e inspeção.',
+    featuredTitle: 'Comece pelos trabalhos comuns do QRRoute',
+    featuredBody: 'Abra a ferramenta pública exata para QR pontual, Wi-Fi, contato vCard, URL com tags ou valores curtos de código de barras.',
+    staticDynamicTitle: 'Estático primeiro, dinâmico depois',
+    staticDynamicBody: 'Códigos estáticos mantêm o payload fixo. Redirecionamentos dinâmicos gerenciados exigem conta, antiabuso e privacidade antes de serem oferecidos.',
+    dynamicNoteTitle: 'Sem rastreamento de scans no gerador gratuito',
+    dynamicNoteBody: 'As ferramentas públicas criam e inspecionam payloads locais. Analytics de scan, destinos editáveis, domínios próprios e lote ficam fora do fluxo estático gratuito.',
+    searchLabel: 'Buscar ferramentas QRRoute',
+    searchPlaceholder: 'Tente QR, UTM, Wi-Fi, vCard, código de barras...',
+    allCategories: 'Todas as ferramentas QRRoute',
+    noResultsTitle: 'Nenhuma ferramenta QRRoute encontrada',
+    noResultsBody: 'Tente outra palavra ou categoria. Só entram links para páginas QRRoute públicas existentes.',
+    allTitle: 'Todas as ferramentas QRRoute publicadas',
+    allBody: 'Alterne entre QR estático, código de barras, URL de campanha, cartão de contato, Wi-Fi e inspeção de payload.',
+    privacyTitle: 'Payloads locais',
+    privacyBody: 'URLs, contatos, valores Wi-Fi e texto de código de barras ficam nesta sessão do navegador. O catálogo abre páginas gratuitas sem armazenar entradas.',
+    toolCta: 'Abrir ferramenta',
+    categories: [
+      { key: 'qr', label: 'QR codes' },
+      { key: 'barcode', label: 'Códigos de barras' },
+      { key: 'campaign', label: 'Links de campanha' },
+      { key: 'contact', label: 'Cartões de contato' },
+      { key: 'network', label: 'Wi-Fi' },
+      { key: 'preview', label: 'Prévia' },
+    ],
+    tools: [
+      { label: 'QR estático', body: 'Crie um QR escaneável para URL segura, texto, e-mail ou telefone.', path: '/tools/static-qr-code', glyph: 'QR', category: 'qr', featured: true },
+      { label: 'Gerador de código de barras', body: 'Renderize uma prévia Code 128 para estoque, ingresso ou referência.', path: '/tools/barcode-generator', glyph: 'BAR', category: 'barcode', featured: true },
+      { label: 'Gerador UTM', body: 'Monte uma URL de campanha com tags e prévia QR sem enviar a URL ao servidor.', path: '/tools/utm-builder', glyph: 'UTM', category: 'campaign', featured: true },
+      { label: 'Gerador de vCard QR', body: 'Transforme um contato compacto em payload vCard pronto para QR.', path: '/tools/vcard-qr', glyph: 'VCF', category: 'contact', featured: true },
+      { label: 'Gerador de QR Wi-Fi', body: 'Crie um payload Wi-Fi local para WPA, WEP ou redes abertas.', path: '/tools/wifi-qr', glyph: 'WIFI', category: 'network', featured: true },
+      { label: 'Laboratório de prévia QR', body: 'Inspecione um payload estático antes de imprimir e veja notas básicas de segurança.', path: '/tools/preview-lab', glyph: 'VER', category: 'preview', featured: false },
+    ],
+    shortcutGroups: [
+      { title: 'Criar um código escaneável', body: 'Comece por payloads QR que podem ser usados pela câmera do celular.', paths: ['/tools/static-qr-code', '/tools/wifi-qr', '/tools/vcard-qr'] },
+      { title: 'Preparar ativos de campanha', body: 'Marque um destino, gere código de barras ou inspecione payload antes do lançamento.', paths: ['/tools/utm-builder', '/tools/barcode-generator', '/tools/preview-lab'] },
+      { title: 'Conferir antes de imprimir', body: 'Revise o que será codificado antes de produzir folhetos, etiquetas ou cartões.', paths: ['/tools/preview-lab', '/tools/static-qr-code', '/tools/barcode-generator'] },
+    ],
+    footerGroups: [
+      { title: 'QR codes', links: [{ label: 'QR estático', path: '/tools/static-qr-code' }, { label: 'Prévia QR', path: '/tools/preview-lab' }] },
+      { title: 'Links de campanha', links: [{ label: 'Gerador UTM', path: '/tools/utm-builder' }, { label: 'QR para URLs', path: '/tools/static-qr-code' }] },
+      { title: 'Contato e Wi-Fi', links: [{ label: 'vCard QR', path: '/tools/vcard-qr' }, { label: 'QR Wi-Fi', path: '/tools/wifi-qr' }] },
+      { title: 'Códigos de barras', links: [{ label: 'Gerador de código de barras', path: '/tools/barcode-generator' }, { label: 'Inspecionar payload', path: '/tools/preview-lab' }] },
+      { title: 'Antes de imprimir', links: [{ label: 'Inspecionar QR', path: '/tools/preview-lab' }, { label: 'QR para folheto', path: '/tools/static-qr-code' }, { label: 'URL de campanha', path: '/tools/utm-builder' }] },
+    ],
+  },
+  es: {
+    eyebrow: 'QR, códigos de barras y enlaces de campaña',
+    title: 'Genera un QR o activo de campaña con vista previa.',
+    lead: 'Empieza con QR estático, Wi-Fi, vCard, UTM, código de barras e inspección de payload. El flujo gratis corre en el navegador antes de cualquier cuenta.',
+    primaryCta: 'Abrir generador QR estático',
+    secondaryCta: 'Ver herramientas QRRoute',
+    previewTitle: 'Vista previa estática',
+    previewPayloadLabel: 'Payload de ejemplo',
+    previewPayload: 'https://example.com/lanzamiento-producto',
+    previewBody: 'Un payload fijo sirve para folletos, etiquetas, mesas de evento y enlaces simples cuando el destino ya está definido.',
+    previewMeta: [
+      { label: 'Tipo de código', value: 'QR estático' },
+      { label: 'Generado en', value: 'Navegador' },
+      { label: 'Salida', value: 'Vista SVG' },
+    ],
+    browseTitle: 'Elige por tipo de activo',
+    browseBody: 'QRRoute sigue el modelo común de generadores: QR primero, luego URL de campaña, contacto, Wi-Fi, código de barras e inspección.',
+    featuredTitle: 'Empieza por trabajos comunes de QRRoute',
+    featuredBody: 'Abre la herramienta pública exacta para QR puntual, Wi-Fi, contacto vCard, URL etiquetada o códigos de barras cortos.',
+    staticDynamicTitle: 'Estático primero, dinámico después',
+    staticDynamicBody: 'Los códigos estáticos mantienen el payload fijo. Redirecciones dinámicas gestionadas necesitan cuenta, antiabuso y privacidad antes de ofrecerse.',
+    dynamicNoteTitle: 'Sin seguimiento de escaneos en el generador gratis',
+    dynamicNoteBody: 'Las herramientas públicas crean e inspeccionan payloads locales. Analytics de escaneo, destinos editables, dominios propios y lotes quedan fuera del flujo estático gratis.',
+    searchLabel: 'Buscar herramientas QRRoute',
+    searchPlaceholder: 'Prueba QR, UTM, Wi-Fi, vCard, código de barras...',
+    allCategories: 'Todas las herramientas QRRoute',
+    noResultsTitle: 'No hay herramienta QRRoute coincidente',
+    noResultsBody: 'Prueba otra palabra o categoría. Solo enlazamos páginas públicas QRRoute existentes.',
+    allTitle: 'Todas las herramientas QRRoute publicadas',
+    allBody: 'Alterna entre QR estático, código de barras, URL de campaña, tarjeta de contacto, Wi-Fi e inspección de payload.',
+    privacyTitle: 'Payloads locales',
+    privacyBody: 'URLs, contactos, valores Wi-Fi y texto de código de barras quedan en esta sesión del navegador. El catálogo abre páginas gratis sin almacenar entradas.',
+    toolCta: 'Abrir herramienta',
+    categories: [
+      { key: 'qr', label: 'QR codes' },
+      { key: 'barcode', label: 'Códigos de barras' },
+      { key: 'campaign', label: 'Enlaces de campaña' },
+      { key: 'contact', label: 'Tarjetas de contacto' },
+      { key: 'network', label: 'Wi-Fi' },
+      { key: 'preview', label: 'Vista previa' },
+    ],
+    tools: [
+      { label: 'QR estático', body: 'Crea un QR escaneable para URL segura, texto, email o teléfono.', path: '/tools/static-qr-code', glyph: 'QR', category: 'qr', featured: true },
+      { label: 'Generador de código de barras', body: 'Renderiza una vista Code 128 para inventario, ticket o referencia.', path: '/tools/barcode-generator', glyph: 'BAR', category: 'barcode', featured: true },
+      { label: 'Generador UTM', body: 'Crea una URL de campaña con etiquetas y vista QR sin enviar la URL al servidor.', path: '/tools/utm-builder', glyph: 'UTM', category: 'campaign', featured: true },
+      { label: 'Generador vCard QR', body: 'Convierte un contacto compacto en payload vCard listo para QR.', path: '/tools/vcard-qr', glyph: 'VCF', category: 'contact', featured: true },
+      { label: 'Generador QR Wi-Fi', body: 'Crea un payload Wi-Fi local para WPA, WEP o redes abiertas.', path: '/tools/wifi-qr', glyph: 'WIFI', category: 'network', featured: true },
+      { label: 'Laboratorio de vista QR', body: 'Inspecciona un payload estático antes de imprimir y revisa notas básicas de seguridad.', path: '/tools/preview-lab', glyph: 'VER', category: 'preview', featured: false },
+    ],
+    shortcutGroups: [
+      { title: 'Crear un código escaneable', body: 'Empieza por payloads QR que se usan desde la cámara del móvil.', paths: ['/tools/static-qr-code', '/tools/wifi-qr', '/tools/vcard-qr'] },
+      { title: 'Preparar activos de campaña', body: 'Etiqueta un destino, genera código de barras o inspecciona payload antes del lanzamiento.', paths: ['/tools/utm-builder', '/tools/barcode-generator', '/tools/preview-lab'] },
+      { title: 'Revisar antes de imprimir', body: 'Comprueba lo codificado antes de producir folletos, etiquetas o tarjetas.', paths: ['/tools/preview-lab', '/tools/static-qr-code', '/tools/barcode-generator'] },
+    ],
+    footerGroups: [
+      { title: 'QR codes', links: [{ label: 'QR estático', path: '/tools/static-qr-code' }, { label: 'Vista QR', path: '/tools/preview-lab' }] },
+      { title: 'Campañas', links: [{ label: 'Generador UTM', path: '/tools/utm-builder' }, { label: 'QR para URLs', path: '/tools/static-qr-code' }] },
+      { title: 'Contacto y Wi-Fi', links: [{ label: 'vCard QR', path: '/tools/vcard-qr' }, { label: 'QR Wi-Fi', path: '/tools/wifi-qr' }] },
+      { title: 'Códigos de barras', links: [{ label: 'Generador de código de barras', path: '/tools/barcode-generator' }, { label: 'Inspeccionar payload', path: '/tools/preview-lab' }] },
+      { title: 'Antes de imprimir', links: [{ label: 'Inspeccionar QR', path: '/tools/preview-lab' }, { label: 'QR para folleto', path: '/tools/static-qr-code' }, { label: 'URL de campaña', path: '/tools/utm-builder' }] },
+    ],
+  },
+  fr: {
+    eyebrow: 'QR, codes-barres et liens de campagne',
+    title: 'Générez un QR ou contenu de campagne avec aperçu.',
+    lead: 'Commencez par QR statique, Wi-Fi, vCard, UTM, code-barres et inspection de payload. Le parcours gratuit reste dans le navigateur avant tout compte.',
+    primaryCta: 'Ouvrir le générateur QR statique',
+    secondaryCta: 'Voir les outils QRRoute',
+    previewTitle: 'Aperçu statique',
+    previewPayloadLabel: 'Payload exemple',
+    previewPayload: 'https://example.com/lancement-produit',
+    previewBody: 'Un payload fixe suffit pour flyers, étiquettes, tables événement et liens simples quand la destination est définitive.',
+    previewMeta: [
+      { label: 'Type de code', value: 'QR statique' },
+      { label: 'Généré dans', value: 'Navigateur' },
+      { label: 'Sortie', value: 'Aperçu SVG' },
+    ],
+    browseTitle: 'Choisir par type de contenu',
+    browseBody: 'QRRoute suit le modèle courant des générateurs: QR, puis URL de campagne, contact, Wi-Fi, code-barres et inspection.',
+    featuredTitle: 'Commencer par les usages QRRoute courants',
+    featuredBody: 'Ouvrez l outil public exact pour QR ponctuel, Wi-Fi, contact vCard, URL taguée ou valeur courte de code-barres.',
+    staticDynamicTitle: 'Statique d abord, dynamique ensuite',
+    staticDynamicBody: 'Les codes statiques gardent le payload fixe. Les redirections dynamiques gérées exigent compte, anti-abus et confidentialité avant publication.',
+    dynamicNoteTitle: 'Aucun suivi de scans dans le générateur gratuit',
+    dynamicNoteBody: 'Les outils publics créent et inspectent des payloads locaux. Analytics de scan, destinations éditables, domaines propres et lots restent hors du flux statique gratuit.',
+    searchLabel: 'Chercher des outils QRRoute',
+    searchPlaceholder: 'Essayez QR, UTM, Wi-Fi, vCard, code-barres...',
+    allCategories: 'Tous les outils QRRoute',
+    noResultsTitle: 'Aucun outil QRRoute trouvé',
+    noResultsBody: 'Essayez un autre mot ou une catégorie. Seules les pages QRRoute publiques existantes sont liées.',
+    allTitle: 'Tous les outils QRRoute publiés',
+    allBody: 'Passez entre QR statique, code-barres, URL de campagne, fiche contact, Wi-Fi et inspection de payload.',
+    privacyTitle: 'Payloads locaux',
+    privacyBody: 'URLs, contacts, valeurs Wi-Fi et texte de code-barres restent dans cette session navigateur. Le catalogue ouvre des pages gratuites sans stocker les entrées.',
+    toolCta: 'Ouvrir l outil',
+    categories: [
+      { key: 'qr', label: 'QR codes' },
+      { key: 'barcode', label: 'Codes-barres' },
+      { key: 'campaign', label: 'Liens campagne' },
+      { key: 'contact', label: 'Fiches contact' },
+      { key: 'network', label: 'Wi-Fi' },
+      { key: 'preview', label: 'Aperçu' },
+    ],
+    tools: [
+      { label: 'QR statique', body: 'Créez un QR scannable pour URL sûre, texte, e-mail ou téléphone.', path: '/tools/static-qr-code', glyph: 'QR', category: 'qr', featured: true },
+      { label: 'Générateur de code-barres', body: 'Rendez un aperçu Code 128 pour inventaire, billet ou référence.', path: '/tools/barcode-generator', glyph: 'BAR', category: 'barcode', featured: true },
+      { label: 'Générateur UTM', body: 'Créez une URL de campagne taguée et un aperçu QR sans envoyer l URL au serveur.', path: '/tools/utm-builder', glyph: 'UTM', category: 'campaign', featured: true },
+      { label: 'Générateur vCard QR', body: 'Transformez un contact compact en payload vCard prêt pour QR.', path: '/tools/vcard-qr', glyph: 'VCF', category: 'contact', featured: true },
+      { label: 'Générateur QR Wi-Fi', body: 'Créez un payload Wi-Fi local pour WPA, WEP ou réseau ouvert.', path: '/tools/wifi-qr', glyph: 'WIFI', category: 'network', featured: true },
+      { label: 'Laboratoire aperçu QR', body: 'Inspectez un payload statique avant impression et vérifiez des notes de sécurité.', path: '/tools/preview-lab', glyph: 'VOIR', category: 'preview', featured: false },
+    ],
+    shortcutGroups: [
+      { title: 'Créer un code scannable', body: 'Commencez par des payloads QR utilisables depuis la caméra mobile.', paths: ['/tools/static-qr-code', '/tools/wifi-qr', '/tools/vcard-qr'] },
+      { title: 'Préparer des contenus campagne', body: 'Taguez une destination, générez un code-barres ou inspectez le payload avant lancement.', paths: ['/tools/utm-builder', '/tools/barcode-generator', '/tools/preview-lab'] },
+      { title: 'Vérifier avant impression', body: 'Revoyez ce qui sera encodé avant flyers, étiquettes ou cartes.', paths: ['/tools/preview-lab', '/tools/static-qr-code', '/tools/barcode-generator'] },
+    ],
+    footerGroups: [
+      { title: 'QR codes', links: [{ label: 'QR statique', path: '/tools/static-qr-code' }, { label: 'Aperçu QR', path: '/tools/preview-lab' }] },
+      { title: 'Campagnes', links: [{ label: 'Générateur UTM', path: '/tools/utm-builder' }, { label: 'QR pour URLs', path: '/tools/static-qr-code' }] },
+      { title: 'Contact et Wi-Fi', links: [{ label: 'vCard QR', path: '/tools/vcard-qr' }, { label: 'QR Wi-Fi', path: '/tools/wifi-qr' }] },
+      { title: 'Codes-barres', links: [{ label: 'Générateur code-barres', path: '/tools/barcode-generator' }, { label: 'Inspecter payload', path: '/tools/preview-lab' }] },
+      { title: 'Avant impression', links: [{ label: 'Inspecter QR', path: '/tools/preview-lab' }, { label: 'QR flyer', path: '/tools/static-qr-code' }, { label: 'URL campagne', path: '/tools/utm-builder' }] },
+    ],
+  },
+  de: {
+    eyebrow: 'QR-Codes, Barcodes und Kampagnenlinks',
+    title: 'Erstellen Sie QR- oder Kampagnenmaterial mit Vorschau.',
+    lead: 'Starten Sie mit statischem QR, Wi-Fi, vCard, UTM, Barcode und Payload-Prüfung. Der kostenlose Ablauf läuft im Browser vor jedem Konto-Pfad.',
+    primaryCta: 'Statischen QR-Generator öffnen',
+    secondaryCta: 'QRRoute-Tools ansehen',
+    previewTitle: 'Statische Live-Vorschau',
+    previewPayloadLabel: 'Beispiel-Payload',
+    previewPayload: 'https://example.com/produktstart',
+    previewBody: 'Ein fester Payload reicht für Flyer, Etiketten, Event-Tische und einfache Links, wenn das Ziel final ist.',
+    previewMeta: [
+      { label: 'Code-Typ', value: 'Statischer QR' },
+      { label: 'Erzeugt im', value: 'Browser' },
+      { label: 'Ausgabe', value: 'SVG-Vorschau' },
+    ],
+    browseTitle: 'Nach Asset-Typ wählen',
+    browseBody: 'QRRoute folgt dem bekannten Generator-Modell: QR zuerst, dann Kampagnen-URL, Kontakt, Wi-Fi, Barcode und Prüfung.',
+    featuredTitle: 'Mit häufigen QRRoute-Aufgaben starten',
+    featuredBody: 'Öffnen Sie das passende öffentliche Tool für QR, Wi-Fi, vCard-Kontakt, getaggte URL oder kurze Barcode-Werte.',
+    staticDynamicTitle: 'Erst statisch, später dynamisch',
+    staticDynamicBody: 'Statische Codes behalten den Payload fest. Verwaltete dynamische Redirects brauchen Konto-, Missbrauchs- und Datenschutzkontrollen vor dem Angebot.',
+    dynamicNoteTitle: 'Kein Scan-Tracking im kostenlosen Generator',
+    dynamicNoteBody: 'Die öffentlichen Tools erstellen und prüfen lokale Payloads. Scan-Analytics, editierbare Ziele, eigene Domains und Batch-Jobs bleiben außerhalb des kostenlosen statischen Ablaufs.',
+    searchLabel: 'QRRoute-Tools suchen',
+    searchPlaceholder: 'Versuchen Sie QR, UTM, Wi-Fi, vCard, Barcode...',
+    allCategories: 'Alle QRRoute-Tools',
+    noResultsTitle: 'Kein passendes QRRoute-Tool',
+    noResultsBody: 'Versuchen Sie ein anderes Wort oder eine Kategorie. Nur vorhandene öffentliche QRRoute-Seiten sind verlinkt.',
+    allTitle: 'Alle veröffentlichten QRRoute-Tools',
+    allBody: 'Wechseln Sie zwischen statischem QR, Barcode, Kampagnen-URL, Kontaktkarte, Wi-Fi und Payload-Prüfung.',
+    privacyTitle: 'Lokale Payloads',
+    privacyBody: 'URLs, Kontakte, Wi-Fi-Werte und Barcode-Text bleiben in dieser Browser-Sitzung. Der Katalog öffnet kostenlose Seiten ohne Eingaben zu speichern.',
+    toolCta: 'Tool öffnen',
+    categories: [
+      { key: 'qr', label: 'QR-Codes' },
+      { key: 'barcode', label: 'Barcodes' },
+      { key: 'campaign', label: 'Kampagnenlinks' },
+      { key: 'contact', label: 'Kontaktkarten' },
+      { key: 'network', label: 'Wi-Fi' },
+      { key: 'preview', label: 'Vorschau' },
+    ],
+    tools: [
+      { label: 'Statischer QR-Code', body: 'Erstellen Sie einen scannbaren QR für sichere URL, Text, E-Mail oder Telefon.', path: '/tools/static-qr-code', glyph: 'QR', category: 'qr', featured: true },
+      { label: 'Barcode-Generator', body: 'Rendern Sie eine Code-128-Vorschau für Inventar, Ticket oder Referenz.', path: '/tools/barcode-generator', glyph: 'BAR', category: 'barcode', featured: true },
+      { label: 'UTM-Builder', body: 'Erstellen Sie eine getaggte Kampagnen-URL und QR-Vorschau ohne Server-Upload.', path: '/tools/utm-builder', glyph: 'UTM', category: 'campaign', featured: true },
+      { label: 'vCard-QR-Generator', body: 'Wandeln Sie ein kompaktes Kontaktprofil in einen QR-fähigen vCard-Payload um.', path: '/tools/vcard-qr', glyph: 'VCF', category: 'contact', featured: true },
+      { label: 'Wi-Fi-QR-Generator', body: 'Erstellen Sie einen lokalen Wi-Fi-Payload für WPA, WEP oder offene Netzwerke.', path: '/tools/wifi-qr', glyph: 'WIFI', category: 'network', featured: true },
+      { label: 'QR-Vorschau-Labor', body: 'Prüfen Sie einen statischen Payload vor dem Druck und sehen Sie Sicherheitsnotizen.', path: '/tools/preview-lab', glyph: 'VIEW', category: 'preview', featured: false },
+    ],
+    shortcutGroups: [
+      { title: 'Scannbaren Code erstellen', body: 'Starten Sie mit QR-Payloads für Smartphone-Kameras.', paths: ['/tools/static-qr-code', '/tools/wifi-qr', '/tools/vcard-qr'] },
+      { title: 'Kampagnenmaterial vorbereiten', body: 'Taggen Sie ein Ziel, erzeugen Sie Barcode oder prüfen Sie Payload vor dem Start.', paths: ['/tools/utm-builder', '/tools/barcode-generator', '/tools/preview-lab'] },
+      { title: 'Vor dem Druck prüfen', body: 'Kontrollieren Sie, was in Flyern, Etiketten oder Karten codiert wird.', paths: ['/tools/preview-lab', '/tools/static-qr-code', '/tools/barcode-generator'] },
+    ],
+    footerGroups: [
+      { title: 'QR-Codes', links: [{ label: 'Statischer QR-Code', path: '/tools/static-qr-code' }, { label: 'QR-Vorschau', path: '/tools/preview-lab' }] },
+      { title: 'Kampagnenlinks', links: [{ label: 'UTM-Builder', path: '/tools/utm-builder' }, { label: 'QR für URLs', path: '/tools/static-qr-code' }] },
+      { title: 'Kontakt und Wi-Fi', links: [{ label: 'vCard QR', path: '/tools/vcard-qr' }, { label: 'Wi-Fi QR', path: '/tools/wifi-qr' }] },
+      { title: 'Barcodes', links: [{ label: 'Barcode-Generator', path: '/tools/barcode-generator' }, { label: 'Payload prüfen', path: '/tools/preview-lab' }] },
+      { title: 'Vor dem Druck', links: [{ label: 'QR prüfen', path: '/tools/preview-lab' }, { label: 'Flyer-QR', path: '/tools/static-qr-code' }, { label: 'Kampagnen-URL', path: '/tools/utm-builder' }] },
+    ],
+  },
+}
+
 export const footerCopy: Record<LocaleCode, FooterCopy> = {
   en: {
     brandBody: 'A portfolio of practical web tools with localized public pages, useful free workflows and clearly separated account features.',
@@ -2467,6 +2837,10 @@ export function getDevUtilityCatalogCopy(locale: LocaleCode): DevUtilityCatalogC
 
 export function getTimeNexusCatalogCopy(locale: LocaleCode): TimeNexusCatalogCopy {
   return sanitizePublicCopy(locale, timeNexusCatalogCopy[locale])
+}
+
+export function getQrRouteCatalogCopy(locale: LocaleCode): QrRouteCatalogCopy {
+  return sanitizePublicCopy(locale, qrRouteCatalogCopy[locale])
 }
 
 export function getFooterCopy(locale: LocaleCode): FooterCopy {

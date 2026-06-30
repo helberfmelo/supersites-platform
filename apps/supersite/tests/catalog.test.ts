@@ -5,6 +5,7 @@ import {
   getFooterCopy,
   getHomeCopy,
   getNetProbeCatalogCopy,
+  getQrRouteCatalogCopy,
   getTimeNexusCatalogCopy,
 } from '../app/data/copy'
 import { legalPageCatalog, legalPageSlugs } from '../app/data/legal'
@@ -249,6 +250,44 @@ describe('site catalog', () => {
       expect(copy.shortcutGroups).toHaveLength(4)
       expect(copy.footerGroups.map((group) => group.title)).toHaveLength(5)
       expect(copy.footerGroups.flatMap((group) => group.links).length).toBeGreaterThanOrEqual(17)
+      expect(JSON.stringify(copy)).not.toMatch(forbiddenPublicTerms)
+    }
+  })
+
+  it('keeps the QRRoute catalog page benchmark-grade and linked to real QR tools', () => {
+    const expectedToolPaths = [
+      '/tools/static-qr-code',
+      '/tools/barcode-generator',
+      '/tools/utm-builder',
+      '/tools/vcard-qr',
+      '/tools/wifi-qr',
+      '/tools/preview-lab',
+    ]
+    const forbiddenPublicTerms =
+      /temporary public url|launch order|quality check|review notes|public api live|ads planned|billing disabled|external analytics inactive|release checks|rollback|human_action_required|worker planned|deploy smoke|production checks|workflow checks ready|checkout inactive|commercial redirects planned|roadmap|mvp|short links require|preview local/i
+
+    for (const locale of localeCodes) {
+      const copy = getQrRouteCatalogCopy(locale)
+
+      expect(copy.tools.map((tool) => tool.path)).toEqual(expectedToolPaths)
+      expect(copy.tools.filter((tool) => tool.featured).map((tool) => tool.path)).toEqual([
+        '/tools/static-qr-code',
+        '/tools/barcode-generator',
+        '/tools/utm-builder',
+        '/tools/vcard-qr',
+        '/tools/wifi-qr',
+      ])
+      expect(copy.categories.map((category) => category.key)).toEqual([
+        'qr',
+        'barcode',
+        'campaign',
+        'contact',
+        'network',
+        'preview',
+      ])
+      expect(copy.shortcutGroups).toHaveLength(3)
+      expect(copy.footerGroups.map((group) => group.title)).toHaveLength(5)
+      expect(copy.footerGroups.flatMap((group) => group.links).length).toBeGreaterThanOrEqual(11)
       expect(JSON.stringify(copy)).not.toMatch(forbiddenPublicTerms)
     }
   })
