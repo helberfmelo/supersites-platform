@@ -1319,6 +1319,15 @@ Data-base: 2026-06-29
 | Sprint 18.2b structure/secrets/dry-run/diff | Passed |
 | Sprint 18.2b Hub HostGator artifact | Passed: 211 files, 2808734 bytes, base path `/supersites` |
 | Sprint 18.2b screenshots | Desktop EN and mobile PT-BR reviewed manually from Playwright report artifacts |
+| Sprint 18.2b implementation commit | `44f6eb1` |
+| Sprint 18.2b smoke alignment commit | `aa8f3f8` |
+| Sprint 18.2b remote Quality Gate | `28417419704` passed |
+| Sprint 18.2b remote Deploy Dry Run | `28417419706` passed |
+| Sprint 18.2b initial deploy incident | `28416990131` switched release but failed stale public smoke marker `A curated operating network` |
+| Sprint 18.2b production deploy | `28417561537` passed; release `aa8f3f820f7b76f072ad923c552ca8f9cc345816-28417561537-1`; asset `DffgcYRx.js`; 211 files/2799735 bytes |
+| Sprint 18.2b post-deploy public smoke | Passed: Hub/apps/APIs with benchmark finder marker |
+| Sprint 18.2b post-deploy AdSense-safe validation | Passed: 13 public pages |
+| Sprint 18.2b post-deploy quick crawler | `2026-06-30T03-19-01-758Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Real deploy/provider activation | 3 reversible HostGator deploys in Phase 18 so far for Hub/NetProbe/Hub; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
