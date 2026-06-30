@@ -52,6 +52,20 @@ describe('NetProbe Atlas foundation', () => {
     }
   })
 
+  it('keeps What is my IP auto-first instead of button-gated', () => {
+    const blocked = /Run IP check|Executar consulta de IP|IP-Prüfung starten/i
+    const ipTool = getToolBySlug('what-is-my-ip')
+
+    expect(ipTool).not.toBeNull()
+
+    for (const locale of publicLocaleCodes) {
+      const copy = getToolCopy(ipTool!, locale)
+
+      expect(copy.primaryAction).not.toMatch(blocked)
+      expect(JSON.stringify(copy)).not.toMatch(blocked)
+    }
+  })
+
   it('keeps the home page task-first and free of internal launch language', () => {
     const blocked = /Launch status|Advertising not active|API live|release checks|Upgrade path|Free results first|PayPal|Stripe|PIX/i
 

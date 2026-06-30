@@ -131,6 +131,12 @@ a:focus-visible {
   border-bottom: 1px solid #d7ded8;
 }
 
+.hero--ip {
+  grid-template-columns: minmax(0, 820px);
+  align-items: start;
+  padding-bottom: 22px;
+}
+
 .hero > *,
 .tool-card > *,
 .status-panel > *,
@@ -749,6 +755,20 @@ h3 {
   align-items: stretch;
 }
 
+.tool-layout--ip {
+  grid-template-columns: 1fr;
+}
+
+.tool-layout--ip > .tool-workbench {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 14px;
+}
+
+.tool-layout--ip .result-panel {
+  margin-top: 0;
+}
+
 .tool-layout--diagnostic .input-panel,
 .tool-layout--diagnostic .result-panel {
   margin-top: 0;
@@ -822,6 +842,185 @@ h3 {
   background: #ffffff;
   font-size: 0.78rem;
   font-weight: 850;
+}
+
+.result-panel--ip {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.ip-answer-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 340px);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.ip-answer-main,
+.ip-privacy-card,
+.privacy-option-panel,
+.methodology-accordion,
+.ip-detail-section {
+  border: 1px solid #d1dad4;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.ip-answer-main {
+  min-width: 0;
+  padding: 22px;
+  background:
+    linear-gradient(135deg, rgba(39, 95, 87, 0.13), rgba(189, 116, 36, 0.07)),
+    repeating-linear-gradient(90deg, rgba(39, 95, 87, 0.08) 0 1px, transparent 1px 34px),
+    #ffffff;
+}
+
+.ip-answer-main h2 {
+  margin-bottom: 8px;
+  font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+}
+
+.ip-loading-copy {
+  max-width: 680px;
+  color: #3f504a;
+}
+
+.ip-address-value {
+  display: block;
+  margin: 8px 0 12px;
+  color: #17231e;
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: clamp(2rem, 7vw, 4.6rem);
+  line-height: 1;
+  overflow-wrap: anywhere;
+}
+
+.ip-privacy-card {
+  display: grid;
+  align-content: center;
+  gap: 8px;
+  padding: 18px;
+  background: #f7f8f4;
+}
+
+.ip-privacy-card strong,
+.ip-privacy-card span {
+  display: block;
+}
+
+.ip-privacy-card strong {
+  color: #17231e;
+  font-size: 1rem;
+}
+
+.ip-privacy-card span {
+  color: #3f504a;
+  font-size: 0.9rem;
+}
+
+.result-actions--ip {
+  margin-bottom: 0;
+}
+
+.ip-detail-section,
+.privacy-option-panel,
+.methodology-accordion {
+  padding: 18px;
+}
+
+.ip-detail-section h3 {
+  font-size: 1.18rem;
+}
+
+.ip-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.ip-detail-card {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  background: #f7f8f4;
+}
+
+.ip-detail-card strong,
+.ip-detail-card span {
+  display: block;
+}
+
+.ip-detail-card strong {
+  color: #607069;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.ip-detail-card span {
+  margin-top: 6px;
+  color: #17231e;
+  font-weight: 820;
+  overflow-wrap: anywhere;
+}
+
+.ip-detail-card p,
+.ip-map-panel p {
+  margin: 7px 0 0;
+  color: #52625c;
+  font-size: 0.85rem;
+}
+
+.ip-map-panel {
+  margin-top: 10px;
+  padding: 14px;
+  border: 1px dashed #b8c8c0;
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgba(39, 95, 87, 0.08) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(39, 95, 87, 0.08) 1px, transparent 1px),
+    #f7f8f4;
+  background-size: 28px 28px;
+}
+
+.ip-map-panel strong {
+  color: #17231e;
+}
+
+.privacy-option-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+}
+
+.privacy-option-panel h2 {
+  margin-bottom: 8px;
+  font-size: 1.25rem;
+}
+
+.privacy-option-panel p:last-child {
+  margin-bottom: 0;
+  color: #3f504a;
+}
+
+.methodology-accordion details {
+  display: grid;
+  gap: 12px;
+}
+
+.methodology-accordion summary {
+  color: #17231e;
+  font-size: 1rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.methodology-accordion p {
+  margin: 12px 0;
+  color: #3f504a;
 }
 
 .privacy-strip,
@@ -1234,12 +1433,20 @@ h3 {
   }
 
   .tool-layout--diagnostic > .tool-workbench,
+  .tool-layout--ip > .tool-workbench,
+  .ip-answer-shell,
+  .ip-detail-grid,
   .upgrade-panel,
+  .privacy-option-panel,
   .privacy-strip,
   .related-tool-list--inline {
     display: grid;
     grid-template-columns: 1fr;
     align-items: start;
+  }
+
+  .hero--ip {
+    grid-template-columns: 1fr;
   }
 
   .record-tabs {

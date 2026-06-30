@@ -99,6 +99,7 @@ Invoke-SmokeRequest -Url $assetUrl | Out-Null
 
 $requiredPages = @(
     @{ Url = Join-Url $publicBase "en"; Marker = "Check IP, DNS and domain signals" },
+    @{ Url = Join-Url $publicBase "en/tools/what-is-my-ip"; Marker = "Checking your public IP" },
     @{ Url = Join-Url $publicBase "en/tools/dns-lookup"; Marker = "Run DNS lookup" },
     @{ Url = Join-Url $publicBase "pt-br/tools/dns-lookup"; Marker = "Consulta DNS" },
     @{ Url = Join-Url $publicBase "en/status"; Marker = "Public Status" },
@@ -110,6 +111,9 @@ foreach ($page in $requiredPages) {
     Assert-DoesNotContain -Content $response.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context $page.Url
     Assert-DoesNotContain -Content $response.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context $page.Url
     Assert-DoesNotContain -Content $response.Content -Pattern "(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick" -Context $page.Url
+    if ($page.Url -match "/tools/what-is-my-ip$") {
+        Assert-DoesNotContain -Content $response.Content -Pattern "(?i)Run IP check|Public API live|release checks" -Context $page.Url
+    }
     if ($page.Url -match "/(en|pt-br|es|fr|de)$") {
         Assert-DoesNotContain -Content $response.Content -Pattern "(?i)launch status|advertising not active|api live|release checks|upgrade path|free results first" -Context $page.Url
     }

@@ -123,6 +123,11 @@ try {
         throw 'Localized DNS tool page smoke failed.'
     }
 
+    $ipTool = Invoke-PreviewRequest -Uri "$baseUrl/en/tools/what-is-my-ip" -RequiredContent 'Checking your public IP'
+    if ($ipTool.StatusCode -ne 200 -or $ipTool.Content -match 'Run IP check') {
+        throw 'What is my IP preview smoke failed.'
+    }
+
     $legal = Invoke-PreviewRequest -Uri "$baseUrl/en/privacy" -RequiredContent 'Data minimization'
     if ($legal.StatusCode -ne 200 -or $legal.Content -notmatch 'Privacy Policy') {
         throw 'Privacy page smoke failed.'

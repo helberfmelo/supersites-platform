@@ -360,7 +360,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Analytics and ads',
-          paragraphs: ['Analytics and advertising storage require consent mode and regional rules. No AdSense placement is active now.'],
+          paragraphs: ['Analytics and advertising storage follow consent mode, regional rules and page-level consent choices.'],
         },
         {
           heading: 'Changing choices',
@@ -380,7 +380,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Analytics e anúncios',
-          paragraphs: ['Analytics e publicidade exigem consent mode e regras regionais. Nenhum posicionamento AdSense está ativo agora.'],
+          paragraphs: ['Analytics e armazenamento publicitario seguem consent mode, regras regionais e escolhas de consentimento por pagina.'],
         },
         {
           heading: 'Alterar escolhas',
@@ -400,7 +400,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Analytics y anuncios',
-          paragraphs: ['Analytics y publicidad requieren consent mode y reglas regionales. No hay AdSense activo ahora.'],
+          paragraphs: ['Analytics y almacenamiento publicitario siguen consent mode, reglas regionales y elecciones de consentimiento por pagina.'],
         },
         {
           heading: 'Cambiar elecciones',
@@ -420,7 +420,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Analytics et publicités',
-          paragraphs: ['Analytics et stockage publicitaire exigent consent mode et regles regionales. Aucun AdSense n est actif.'],
+          paragraphs: ['Analytics et stockage publicitaire suivent consent mode, regles regionales et choix de consentement par page.'],
         },
         {
           heading: 'Modifier les choix',
@@ -440,7 +440,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Analytics und Anzeigen',
-          paragraphs: ['Analytics- und Werbespeicher erfordern Consent Mode und regionale Regeln. AdSense ist derzeit nicht aktiv.'],
+          paragraphs: ['Analytics- und Werbespeicher folgen Consent Mode, regionalen Regeln und den Zustimmungseinstellungen der Seite.'],
         },
         {
           heading: 'Auswahl ändern',

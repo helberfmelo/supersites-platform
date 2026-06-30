@@ -592,7 +592,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Upgrade path',
     toolGuideTitle: 'Guide and interpretation',
     faqTitle: 'FAQ',
-    contentQualityBody: 'This page combines the live tool, interpretation, examples, limits and FAQ required before AdSense review.',
+    contentQualityBody: 'This page combines the live tool, interpretation, examples, limits and FAQ for a clearer public diagnostic.',
   },
   'pt-br': {
     breadcrumbHome: 'NetProbe Atlas',
@@ -612,7 +612,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Caminho de upgrade',
     toolGuideTitle: 'Guia e interpretação',
     faqTitle: 'Perguntas frequentes',
-    contentQualityBody: 'Esta página combina ferramenta live, interpretação, exemplos, limites e FAQ exigidos antes da revisão AdSense.',
+    contentQualityBody: 'Esta página combina ferramenta ativa, interpretação, exemplos, limites e perguntas frequentes para um diagnóstico público mais claro.',
   },
   es: {
     breadcrumbHome: 'NetProbe Atlas',
@@ -632,7 +632,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Ruta de upgrade',
     toolGuideTitle: 'Guía e interpretación',
     faqTitle: 'Preguntas frecuentes',
-    contentQualityBody: 'Esta página combina herramienta live, interpretación, ejemplos, límites y FAQ requeridos antes de AdSense.',
+    contentQualityBody: 'Esta página combina herramienta activa, interpretación, ejemplos, límites y preguntas frecuentes para un diagnóstico público más claro.',
   },
   fr: {
     breadcrumbHome: 'NetProbe Atlas',
@@ -652,7 +652,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Offre payante',
     toolGuideTitle: 'Guide et interprétation',
     faqTitle: 'FAQ',
-    contentQualityBody: 'Cette page réunit outil live, interprétation, exemples, limites et FAQ nécessaires avant AdSense.',
+    contentQualityBody: 'Cette page réunit outil actif, interpretation, exemples, limites et questions frequentes pour un diagnostic public plus clair.',
   },
   de: {
     breadcrumbHome: 'NetProbe Atlas',
@@ -672,7 +672,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Upgrade-Pfad',
     toolGuideTitle: 'Leitfaden und Interpretation',
     faqTitle: 'FAQ',
-    contentQualityBody: 'Diese Seite kombiniert Live-Tool, Interpretation, Beispiele, Grenzen und FAQ für die AdSense-Prüfung.',
+    contentQualityBody: 'Diese Seite kombiniert aktives Tool, Interpretation, Beispiele, Grenzen und haeufige Fragen fuer eine klarere oeffentliche Diagnose.',
   },
 }
 

@@ -83,15 +83,15 @@ const benchmarkCopyByLocale = {
   },
   'pt-br': {
     recordTabsLabel: 'Atalhos de tipo DNS',
-    ipPanelTitle: 'IP visivel agora',
-    ipPanelBody: 'Use esta resposta para investigar VPN, proxy, NAT de operadora ou preferencia IPv6. Ela nao prova identidade nem localizacao exata.',
+    ipPanelTitle: 'IP visível agora',
+    ipPanelBody: 'Use esta resposta para investigar VPN, proxy, NAT de operadora ou preferência IPv6. Ela não prova identidade nem localização exata.',
     ipMeaningTitle: 'Como usar este IP',
     privacyTitle: 'Privacidade por desenho',
-    privacyBody: 'Entradas e valores retornados ficam fora de analytics. O IP aparece apenas nesta sessao do navegador e o evento registra so o slug da ferramenta.',
+    privacyBody: 'Entradas e valores retornados ficam fora de analytics. O IP aparece apenas nesta sessão do navegador e o evento registra só o slug da ferramenta.',
     privacyLink: 'Ler detalhes de privacidade',
     coverageTitle: 'Cobertura declarada',
-    coverageBody: 'A propagacao atual usa snapshots de resolvedores controlados disponiveis neste runtime. Nao e uma promessa mundial ate probes regionais serem publicados e documentados.',
-    relatedTitle: 'Proximas checagens',
+    coverageBody: 'A propagação atual usa snapshots de resolvedores controlados disponíveis neste runtime. Não é uma promessa mundial até probes regionais serem publicados e documentados.',
+    relatedTitle: 'Próximas checagens',
     mapTitle: 'Mapa de cobertura dos resolvedores',
     resolverDetailsTitle: 'Tabela de resolvedor e localidade',
     distinctValuesTitle: 'Valores vistos pelos resolvedores',
@@ -100,13 +100,13 @@ const benchmarkCopyByLocale = {
   es: {
     recordTabsLabel: 'Atajos de tipo DNS',
     ipPanelTitle: 'IP visible ahora',
-    ipPanelBody: 'Usa esta respuesta para investigar VPN, proxy, NAT del operador o preferencia IPv6. No prueba identidad ni ubicacion exacta.',
-    ipMeaningTitle: 'Como usar esta IP',
-    privacyTitle: 'Privacidad por diseno',
-    privacyBody: 'Entradas y valores devueltos quedan fuera de analytics. La IP se muestra solo en esta sesion y el evento registra solo el slug de herramienta.',
+    ipPanelBody: 'Usa esta respuesta para investigar VPN, proxy, NAT del operador o preferencia IPv6. No prueba identidad ni ubicación exacta.',
+    ipMeaningTitle: 'Cómo usar esta IP',
+    privacyTitle: 'Privacidad por diseño',
+    privacyBody: 'Entradas y valores devueltos quedan fuera de analytics. La IP se muestra solo en esta sesión y el evento registra solo el slug de herramienta.',
     privacyLink: 'Leer privacidad',
     coverageTitle: 'Cobertura declarada',
-    coverageBody: 'La propagacion actual usa snapshots de resolvers controlados disponibles en este runtime. No es una promesa mundial hasta publicar probes regionales documentados.',
+    coverageBody: 'La propagación actual usa snapshots de resolvers controlados disponibles en este runtime. No es una promesa mundial hasta publicar probes regionales documentados.',
     relatedTitle: 'Siguientes chequeos',
     mapTitle: 'Mapa de cobertura de resolvers',
     resolverDetailsTitle: 'Tabla de resolver y localidad',
@@ -116,30 +116,30 @@ const benchmarkCopyByLocale = {
   fr: {
     recordTabsLabel: 'Raccourcis de type DNS',
     ipPanelTitle: 'IP visible maintenant',
-    ipPanelBody: 'Utilisez cette reponse pour analyser VPN, proxy, NAT operateur ou preference IPv6. Ce resultat ne prouve ni identite ni localisation exacte.',
+    ipPanelBody: 'Utilisez cette réponse pour analyser VPN, proxy, NAT opérateur ou préférence IPv6. Ce résultat ne prouve ni identité ni localisation exacte.',
     ipMeaningTitle: 'Comment utiliser cette IP',
-    privacyTitle: 'Confidentialite par conception',
-    privacyBody: 'Les entrees et valeurs retournees restent hors analytics. L IP est affichee dans cette session et l evenement ne garde que le slug outil.',
-    privacyLink: 'Lire la confidentialite',
-    coverageTitle: 'Couverture declaree',
-    coverageBody: 'La propagation actuelle utilise les snapshots de resolveurs controles disponibles dans ce runtime. Ce resultat ne promet pas une couverture mondiale avant des probes regionaux documentes.',
-    relatedTitle: 'Controles suivants',
-    mapTitle: 'Carte de couverture des resolveurs',
-    resolverDetailsTitle: 'Table resolveur et localite',
-    distinctValuesTitle: 'Valeurs vues par les resolveurs',
-    copySummary: 'Copier le resume securise',
+    privacyTitle: 'Confidentialité par conception',
+    privacyBody: 'Les entrées et valeurs retournées restent hors analytics. L’IP est affichée dans cette session et l’événement ne garde que le slug outil.',
+    privacyLink: 'Lire la confidentialité',
+    coverageTitle: 'Couverture déclarée',
+    coverageBody: 'La propagation actuelle utilise les snapshots de résolveurs contrôlés disponibles dans ce runtime. Ce résultat ne promet pas une couverture mondiale avant des probes régionaux documentés.',
+    relatedTitle: 'Contrôles suivants',
+    mapTitle: 'Carte de couverture des résolveurs',
+    resolverDetailsTitle: 'Table résolveur et localité',
+    distinctValuesTitle: 'Valeurs vues par les résolveurs',
+    copySummary: 'Copier le résumé sécurisé',
   },
   de: {
     recordTabsLabel: 'DNS-Typ Kurzwege',
     ipPanelTitle: 'Jetzt sichtbare IP',
-    ipPanelBody: 'Nutzen Sie diese Antwort fuer VPN-, Proxy-, Carrier-NAT- oder IPv6-Analyse. Sie ist kein Identitaets- oder exakter Standortnachweis.',
+    ipPanelBody: 'Nutzen Sie diese Antwort für VPN-, Proxy-, Carrier-NAT- oder IPv6-Analyse. Sie ist kein Identitäts- oder exakter Standortnachweis.',
     ipMeaningTitle: 'So nutzen Sie diese IP',
     privacyTitle: 'Datenschutz im Design',
-    privacyBody: 'Eingaben und Rueckgabewerte bleiben aus Analytics heraus. Die IP wird nur in dieser Browsersitzung gezeigt; das Event speichert nur den Tool-Slug.',
+    privacyBody: 'Eingaben und Rückgabewerte bleiben aus Analytics heraus. Die IP wird nur in dieser Browsersitzung gezeigt; das Event speichert nur den Tool-Slug.',
     privacyLink: 'Datenschutz lesen',
     coverageTitle: 'Abgedeckter Umfang',
     coverageBody: 'Die aktuelle Propagation nutzt kontrollierte Resolver-Snapshots dieses Runtimes. Sie ist keine weltweite Aussage, bis regionale Probes dokumentiert bereitstehen.',
-    relatedTitle: 'Naechste Pruefungen',
+    relatedTitle: 'Nächste Prüfungen',
     mapTitle: 'Resolver-Abdeckung',
     resolverDetailsTitle: 'Resolver- und Standorttabelle',
     distinctValuesTitle: 'Von Resolvern gesehene Werte',
@@ -162,6 +162,194 @@ const benchmarkCopyByLocale = {
   copySummary: string
 }>
 const benchmarkCopy = sanitizePublicCopy(locale, benchmarkCopyByLocale[locale])
+const ipLookupCopyByLocale = {
+  en: {
+    automaticEyebrow: 'Automatic public IP check',
+    publicIpTitle: 'Your public IP is',
+    checkingTitle: 'Checking your public IP...',
+    loadingBody: 'The page asks the NetProbe API as soon as it loads. No button is required.',
+    refreshAction: 'Refresh',
+    copyIpAction: 'Copy IP',
+    showDetailsAction: 'Show details',
+    hideDetailsAction: 'Hide details',
+    visibleAddressLabel: 'Visible address',
+    protocolLabel: 'Protocol',
+    observedByLabel: 'Observed by',
+    lastCheckedLabel: 'Last checked',
+    publicRangeLabel: 'Public range',
+    reviewRangeLabel: 'Review range',
+    privacyStatusLabel: 'Privacy status',
+    privacyStatusBody: 'Shown only in this browser response; analytics records only the tool slug.',
+    ipCopied: 'IP copied locally.',
+    copyUnavailable: 'Copy is unavailable in this browser session.',
+    unavailable: 'Not available from the current trusted source',
+    ispAsnLabel: 'ISP / ASN',
+    reverseDnsLabel: 'Reverse DNS',
+    locationLabel: 'Approximate location',
+    proxyLabel: 'Proxy / VPN / Tor / data center',
+    browserLabel: 'Browser',
+    platformLabel: 'Platform',
+    userAgentLabel: 'User agent summary',
+    mapTitle: 'Approximate map',
+    mapUnavailable: 'No approximate location was returned by the trusted source, so no map is shown.',
+    locationLimit: 'Network location is approximate when available and is not proof of a person, device or exact address.',
+    privacyCtaTitle: 'Review privacy options',
+    privacyCtaBody: 'If you use VPNs, proxies or privacy tools, compare this visible address with your local connection before troubleshooting.',
+    privacyCtaLink: 'Open privacy notes',
+    methodologyAccordionTitle: 'Methodology, privacy and limits',
+    methodologyAccordionBody: 'The check reports the address observed by the API edge for this browser request. Enrichment appears only when a trusted source provides it.',
+    noTrustedDetection: 'No trusted detection source is connected for this signal.',
+  },
+  'pt-br': {
+    automaticEyebrow: 'Consulta automática de IP público',
+    publicIpTitle: 'Seu IP público é',
+    checkingTitle: 'Verificando seu IP público...',
+    loadingBody: 'A página consulta a API do NetProbe assim que carrega. Nenhum botão obrigatório.',
+    refreshAction: 'Atualizar',
+    copyIpAction: 'Copiar IP',
+    showDetailsAction: 'Ver detalhes',
+    hideDetailsAction: 'Ocultar detalhes',
+    visibleAddressLabel: 'Endereço visível',
+    protocolLabel: 'Protocolo',
+    observedByLabel: 'Observado por',
+    lastCheckedLabel: 'Última checagem',
+    publicRangeLabel: 'Faixa pública',
+    reviewRangeLabel: 'Revisar faixa',
+    privacyStatusLabel: 'Status de privacidade',
+    privacyStatusBody: 'Exibido somente nesta resposta do navegador; analytics registra apenas o slug da ferramenta.',
+    ipCopied: 'IP copiado localmente.',
+    copyUnavailable: 'Cópia indisponível nesta sessão do navegador.',
+    unavailable: 'Indisponível na fonte confiável atual',
+    ispAsnLabel: 'ISP / ASN',
+    reverseDnsLabel: 'DNS reverso',
+    locationLabel: 'Localização aproximada',
+    proxyLabel: 'Proxy / VPN / Tor / data center',
+    browserLabel: 'Navegador',
+    platformLabel: 'Plataforma',
+    userAgentLabel: 'Resumo do user agent',
+    mapTitle: 'Mapa aproximado',
+    mapUnavailable: 'Nenhuma localização aproximada foi retornada pela fonte confiável, então o mapa não é exibido.',
+    locationLimit: 'Localização de rede é aproximada quando disponível e não prova pessoa, dispositivo ou endereço exato.',
+    privacyCtaTitle: 'Revise opções de privacidade',
+    privacyCtaBody: 'Se você usa VPNs, proxies ou ferramentas de privacidade, compare este endereço visível com sua conexão local antes de investigar.',
+    privacyCtaLink: 'Abrir notas de privacidade',
+    methodologyAccordionTitle: 'Metodologia, privacidade e limites',
+    methodologyAccordionBody: 'A consulta mostra o endereço observado pela borda da API nesta requisição do navegador. Enriquecimento aparece apenas quando uma fonte confiável fornece o dado.',
+    noTrustedDetection: 'Nenhuma fonte confiável de detecção está conectada para este sinal.',
+  },
+  es: {
+    automaticEyebrow: 'Consulta automática de IP pública',
+    publicIpTitle: 'Tu IP pública es',
+    checkingTitle: 'Comprobando tu IP pública...',
+    loadingBody: 'La página consulta la API de NetProbe al cargar. No se requiere botón.',
+    refreshAction: 'Actualizar',
+    copyIpAction: 'Copiar IP',
+    showDetailsAction: 'Ver detalles',
+    hideDetailsAction: 'Ocultar detalles',
+    visibleAddressLabel: 'Dirección visible',
+    protocolLabel: 'Protocolo',
+    observedByLabel: 'Observado por',
+    lastCheckedLabel: 'Última comprobación',
+    publicRangeLabel: 'Rango público',
+    reviewRangeLabel: 'Revisar rango',
+    privacyStatusLabel: 'Estado de privacidad',
+    privacyStatusBody: 'Se muestra solo en esta respuesta del navegador; analytics registra solo el slug de herramienta.',
+    ipCopied: 'IP copiada localmente.',
+    copyUnavailable: 'La copia no está disponible en esta sesión.',
+    unavailable: 'No disponible desde la fuente confiable actual',
+    ispAsnLabel: 'ISP / ASN',
+    reverseDnsLabel: 'DNS inverso',
+    locationLabel: 'Ubicación aproximada',
+    proxyLabel: 'Proxy / VPN / Tor / data center',
+    browserLabel: 'Navegador',
+    platformLabel: 'Plataforma',
+    userAgentLabel: 'Resumen de user agent',
+    mapTitle: 'Mapa aproximado',
+    mapUnavailable: 'La fuente confiable no devolvió ubicación aproximada, por eso no se muestra mapa.',
+    locationLimit: 'La ubicación de red es aproximada cuando existe y no prueba persona, dispositivo ni dirección exacta.',
+    privacyCtaTitle: 'Revisa opciones de privacidad',
+    privacyCtaBody: 'Si usas VPN, proxy o herramientas de privacidad, compara esta dirección visible con tu conexión local antes de investigar.',
+    privacyCtaLink: 'Abrir notas de privacidad',
+    methodologyAccordionTitle: 'Metodología, privacidad y límites',
+    methodologyAccordionBody: 'La consulta muestra la dirección observada por el borde de la API para esta solicitud del navegador. El enriquecimiento aparece solo cuando una fuente confiable lo provee.',
+    noTrustedDetection: 'No hay una fuente confiable de detección conectada para esta señal.',
+  },
+  fr: {
+    automaticEyebrow: 'Contrôle IP public automatique',
+    publicIpTitle: 'Votre IP publique est',
+    checkingTitle: 'Vérification de votre IP publique...',
+    loadingBody: 'La page interroge l’API NetProbe dès le chargement. Aucun bouton obligatoire.',
+    refreshAction: 'Actualiser',
+    copyIpAction: 'Copier l’IP',
+    showDetailsAction: 'Voir les détails',
+    hideDetailsAction: 'Masquer les détails',
+    visibleAddressLabel: 'Adresse visible',
+    protocolLabel: 'Protocole',
+    observedByLabel: 'Observé par',
+    lastCheckedLabel: 'Dernier contrôle',
+    publicRangeLabel: 'Plage publique',
+    reviewRangeLabel: 'Plage à vérifier',
+    privacyStatusLabel: 'Statut confidentialité',
+    privacyStatusBody: 'Affiché uniquement dans cette réponse navigateur; analytics garde seulement le slug outil.',
+    ipCopied: 'IP copiée localement.',
+    copyUnavailable: 'Copie indisponible dans cette session.',
+    unavailable: 'Indisponible depuis la source fiable actuelle',
+    ispAsnLabel: 'FAI / ASN',
+    reverseDnsLabel: 'DNS inverse',
+    locationLabel: 'Localisation approximative',
+    proxyLabel: 'Proxy / VPN / Tor / data center',
+    browserLabel: 'Navigateur',
+    platformLabel: 'Plateforme',
+    userAgentLabel: 'Résumé user agent',
+    mapTitle: 'Carte approximative',
+    mapUnavailable: 'Aucune localisation approximative n’a été retournée par la source fiable, donc aucune carte n’est affichée.',
+    locationLimit: 'La localisation réseau est approximative lorsqu’elle existe et ne prouve ni personne, ni appareil, ni adresse exacte.',
+    privacyCtaTitle: 'Vérifier les options de confidentialité',
+    privacyCtaBody: 'Si vous utilisez VPN, proxy ou outils de confidentialité, comparez cette adresse visible avec votre connexion locale avant diagnostic.',
+    privacyCtaLink: 'Ouvrir les notes de confidentialité',
+    methodologyAccordionTitle: 'Méthodologie, confidentialité et limites',
+    methodologyAccordionBody: 'Le contrôle indique l’adresse observée par l’API pour cette requête navigateur. L’enrichissement apparaît seulement lorsqu’une source fiable le fournit.',
+    noTrustedDetection: 'Aucune source fiable de détection n’est connectée pour ce signal.',
+  },
+  de: {
+    automaticEyebrow: 'Automatische öffentliche IP-Prüfung',
+    publicIpTitle: 'Ihre öffentliche IP ist',
+    checkingTitle: 'Öffentliche IP wird geprüft...',
+    loadingBody: 'Die Seite fragt die NetProbe API direkt beim Laden ab. Kein Pflichtbutton.',
+    refreshAction: 'Aktualisieren',
+    copyIpAction: 'IP kopieren',
+    showDetailsAction: 'Details anzeigen',
+    hideDetailsAction: 'Details ausblenden',
+    visibleAddressLabel: 'Sichtbare Adresse',
+    protocolLabel: 'Protokoll',
+    observedByLabel: 'Beobachtet von',
+    lastCheckedLabel: 'Zuletzt geprüft',
+    publicRangeLabel: 'Öffentlicher Bereich',
+    reviewRangeLabel: 'Bereich prüfen',
+    privacyStatusLabel: 'Datenschutzstatus',
+    privacyStatusBody: 'Nur in dieser Browserantwort sichtbar; Analytics speichert nur den Tool-Slug.',
+    ipCopied: 'IP lokal kopiert.',
+    copyUnavailable: 'Kopieren ist in dieser Sitzung nicht verfügbar.',
+    unavailable: 'Aus der aktuellen vertrauenswürdigen Quelle nicht verfügbar',
+    ispAsnLabel: 'ISP / ASN',
+    reverseDnsLabel: 'Reverse DNS',
+    locationLabel: 'Ungefährer Standort',
+    proxyLabel: 'Proxy / VPN / Tor / Rechenzentrum',
+    browserLabel: 'Browser',
+    platformLabel: 'Plattform',
+    userAgentLabel: 'User-Agent-Zusammenfassung',
+    mapTitle: 'Ungefähre Karte',
+    mapUnavailable: 'Die vertrauenswürdige Quelle lieferte keinen ungefähren Standort, daher wird keine Karte angezeigt.',
+    locationLimit: 'Netzwerkstandort ist nur ungefähr, falls verfügbar, und kein Beweis für Person, Gerät oder exakte Adresse.',
+    privacyCtaTitle: 'Datenschutzoptionen prüfen',
+    privacyCtaBody: 'Wenn Sie VPNs, Proxys oder Datenschutztools nutzen, vergleichen Sie diese sichtbare Adresse mit Ihrer lokalen Verbindung.',
+    privacyCtaLink: 'Datenschutzhinweise öffnen',
+    methodologyAccordionTitle: 'Methodik, Datenschutz und Grenzen',
+    methodologyAccordionBody: 'Die Prüfung meldet die Adresse, die die API-Kante für diese Browseranfrage sieht. Anreicherung erscheint nur, wenn eine vertrauenswürdige Quelle sie liefert.',
+    noTrustedDetection: 'Für dieses Signal ist keine vertrauenswürdige Erkennungsquelle verbunden.',
+  },
+} satisfies Record<LocaleCode, Record<string, string>>
+const ipLookupCopy = sanitizePublicCopy(locale, ipLookupCopyByLocale[locale])
 const propagationRecordTypes = ['A', 'AAAA', 'CNAME', 'MX', 'TXT', 'NS'] as const
 const runtimeConfig = useRuntimeConfig()
 const previewSubmitted = ref(false)
@@ -177,6 +365,12 @@ const dnsResult = ref<DnsLookupData | null>(null)
 const dnsMeta = ref<Record<string, unknown>>({})
 const ipResult = ref<ClientIpData | null>(null)
 const ipMeta = ref<Record<string, unknown>>({})
+const showIpDetails = ref(false)
+const browserDetails = ref({
+  browser: ipLookupCopy.unavailable,
+  platform: ipLookupCopy.unavailable,
+  userAgent: ipLookupCopy.unavailable,
+})
 const rdapResult = ref<RdapLookupData | null>(null)
 const rdapMeta = ref<Record<string, unknown>>({})
 const sslResult = ref<SslCertificateData | null>(null)
@@ -323,6 +517,12 @@ interface SummaryCard {
   tone?: 'good' | 'warning' | 'neutral'
 }
 
+interface DetailCard {
+  label: string
+  value: string
+  note?: string
+}
+
 function netprobeEndpoint(path: string): string {
   return `${String(runtimeConfig.public.netprobeApiBaseUrl).replace(/\/+$/g, '')}/${path}`
 }
@@ -348,6 +548,46 @@ function normalizeCompareValue(value: string): string {
   return value.trim().toLowerCase().replace(/\.$/, '')
 }
 
+function summarizeUserAgent(userAgent: string): string {
+  if (!userAgent) {
+    return ipLookupCopy.unavailable
+  }
+
+  return userAgent.length > 118 ? `${userAgent.slice(0, 115)}...` : userAgent
+}
+
+function detectBrowserName(userAgent: string): string {
+  if (/Edg\//.test(userAgent)) {
+    return 'Microsoft Edge'
+  }
+
+  if (/Firefox\//.test(userAgent)) {
+    return 'Firefox'
+  }
+
+  if (/Chrome\//.test(userAgent) && !/Chromium\//.test(userAgent)) {
+    return 'Chrome'
+  }
+
+  if (/Safari\//.test(userAgent) && !/Chrome\//.test(userAgent)) {
+    return 'Safari'
+  }
+
+  return ipLookupCopy.unavailable
+}
+
+function updateBrowserDetails(): void {
+  if (typeof navigator === 'undefined') {
+    return
+  }
+
+  browserDetails.value = {
+    browser: detectBrowserName(navigator.userAgent),
+    platform: navigator.platform || ipLookupCopy.unavailable,
+    userAgent: summarizeUserAgent(navigator.userAgent),
+  }
+}
+
 const ipSummaryCards = computed<SummaryCard[]>(() => {
   if (!ipResult.value) {
     return []
@@ -355,27 +595,62 @@ const ipSummaryCards = computed<SummaryCard[]>(() => {
 
   return [
     {
-      label: 'Visible address',
+      label: ipLookupCopy.visibleAddressLabel,
       value: ipResult.value.address,
       tone: ipResult.value.is_public ? 'good' : 'warning',
     },
     {
-      label: 'Protocol',
+      label: ipLookupCopy.protocolLabel,
       value: ipResult.value.version,
       tone: 'neutral',
     },
     {
-      label: 'Observed by',
+      label: ipLookupCopy.observedByLabel,
       value: ipResult.value.source,
       tone: 'neutral',
     },
     {
-      label: 'Last checked',
+      label: ipLookupCopy.lastCheckedLabel,
       value: formatMetaDate(ipMeta.value),
       tone: 'neutral',
     },
   ]
 })
+
+const ipDetailCards = computed<DetailCard[]>(() => [
+  {
+    label: ipLookupCopy.ispAsnLabel,
+    value: ipLookupCopy.unavailable,
+    note: ipLookupCopy.noTrustedDetection,
+  },
+  {
+    label: ipLookupCopy.reverseDnsLabel,
+    value: ipLookupCopy.unavailable,
+    note: ipLookupCopy.noTrustedDetection,
+  },
+  {
+    label: ipLookupCopy.locationLabel,
+    value: ipLookupCopy.unavailable,
+    note: ipLookupCopy.locationLimit,
+  },
+  {
+    label: ipLookupCopy.proxyLabel,
+    value: ipLookupCopy.unavailable,
+    note: ipLookupCopy.noTrustedDetection,
+  },
+  {
+    label: ipLookupCopy.browserLabel,
+    value: browserDetails.value.browser,
+  },
+  {
+    label: ipLookupCopy.platformLabel,
+    value: browserDetails.value.platform,
+  },
+  {
+    label: ipLookupCopy.userAgentLabel,
+    value: browserDetails.value.userAgent,
+  },
+])
 
 const propagationSummaryCards = computed<SummaryCard[]>(() => {
   if (!propagationResult.value) {
@@ -458,6 +733,21 @@ async function copySafeSummary(): Promise<void> {
     copyNotice.value = 'Safe summary copied locally.'
   } catch {
     copyNotice.value = 'Copy is unavailable in this browser session.'
+  }
+}
+
+async function copyIpAddress(): Promise<void> {
+  copyNotice.value = ''
+
+  if (!ipResult.value) {
+    return
+  }
+
+  try {
+    await navigator.clipboard.writeText(ipResult.value.address)
+    copyNotice.value = ipLookupCopy.ipCopied
+  } catch {
+    copyNotice.value = ipLookupCopy.copyUnavailable
   }
 }
 
@@ -662,6 +952,8 @@ async function previewResult(): Promise<void> {
 }
 
 onMounted(() => {
+  updateBrowserDetails()
+
   if (isIpLookup.value && !previewSubmitted.value && !isLoading.value) {
     void previewResult()
   }
@@ -714,17 +1006,17 @@ useHead({
       <span>{{ copy.navLabel }}</span>
     </nav>
 
-    <section class="hero" :aria-labelledby="`${tool.slug}-title`">
+    <section :class="['hero', isIpLookup ? 'hero--ip' : '']" :aria-labelledby="`${tool.slug}-title`">
       <div>
         <div class="detail-topline">
           <p class="eyebrow">{{ getCategoryLabel(tool.category, locale) }}</p>
-          <span class="status">{{ copy.statusLabel }}</span>
+          <span v-if="!isIpLookup" class="status">{{ copy.statusLabel }}</span>
         </div>
         <h1 :id="`${tool.slug}-title`">{{ copy.title }}</h1>
         <p class="lead">{{ copy.headline }}</p>
       </div>
 
-      <aside class="status-panel" :aria-label="shellCopy.pageStatusLabel">
+      <aside v-if="!isIpLookup" class="status-panel" :aria-label="shellCopy.pageStatusLabel">
         <div class="status-panel__row">
           <div>
             <strong>{{ shellCopy.exampleLabel }}</strong>
@@ -742,9 +1034,9 @@ useHead({
       </aside>
     </section>
 
-    <section :class="['tool-layout', (isIpLookup || isPropagationLookup) ? 'tool-layout--diagnostic' : '']">
+    <section :class="['tool-layout', isIpLookup ? 'tool-layout--ip' : (isPropagationLookup ? 'tool-layout--diagnostic' : '')]">
       <div class="tool-workbench">
-        <section class="input-panel" :aria-labelledby="`${tool.slug}-input`">
+        <section v-if="!isIpLookup" class="input-panel" :aria-labelledby="`${tool.slug}-input`">
           <h2 :id="`${tool.slug}-input`">{{ copy.navLabel }}</h2>
           <p>{{ copy.description }}</p>
           <form class="field" @submit.prevent="previewResult">
@@ -833,12 +1125,79 @@ useHead({
           </form>
         </section>
 
-        <section class="result-panel" aria-live="polite" :aria-labelledby="`${tool.slug}-result`">
-          <h2 :id="`${tool.slug}-result`">{{ shellCopy.resultTitle }}</h2>
-          <p v-if="isLoading">{{ shellCopy.runningLabel }}</p>
-          <p v-else-if="errorMessage" class="result-error">{{ errorMessage }}</p>
+        <section :class="['result-panel', isIpLookup ? 'result-panel--ip' : '']" aria-live="polite" :aria-labelledby="`${tool.slug}-result`">
+          <template v-if="isIpLookup">
+            <div class="ip-answer-shell">
+              <div class="ip-answer-main">
+                <p class="eyebrow">{{ ipLookupCopy.automaticEyebrow }}</p>
+                <h2 :id="`${tool.slug}-result`">
+                  <span v-if="ipResult">{{ ipLookupCopy.publicIpTitle }}</span>
+                  <span v-else>{{ ipLookupCopy.checkingTitle }}</span>
+                </h2>
 
-          <div v-else-if="ipResult">
+                <p v-if="isLoading" class="ip-loading-copy">{{ ipLookupCopy.loadingBody }}</p>
+                <p v-else-if="errorMessage" class="result-error">{{ errorMessage }}</p>
+
+                <template v-if="ipResult">
+                  <strong class="ip-address-value">{{ ipResult.address }}</strong>
+                  <div class="ip-visual-panel__meta">
+                    <span>{{ ipResult.version }}</span>
+                    <span>{{ ipResult.is_public ? ipLookupCopy.publicRangeLabel : ipLookupCopy.reviewRangeLabel }}</span>
+                    <span>{{ ipLookupCopy.lastCheckedLabel }}: {{ formatMetaDate(ipMeta) }}</span>
+                  </div>
+                  <p>{{ benchmarkCopy.ipPanelBody }}</p>
+                </template>
+
+                <div class="result-actions result-actions--ip">
+                  <button class="button-link" type="button" :disabled="isLoading" @click="previewResult">
+                    {{ ipLookupCopy.refreshAction }}
+                  </button>
+                  <button class="button-link button-link--secondary" type="button" :disabled="!ipResult" @click="copyIpAddress">
+                    {{ ipLookupCopy.copyIpAction }}
+                  </button>
+                  <button class="button-link button-link--secondary" type="button" :aria-expanded="showIpDetails" @click="showIpDetails = !showIpDetails">
+                    {{ showIpDetails ? ipLookupCopy.hideDetailsAction : ipLookupCopy.showDetailsAction }}
+                  </button>
+                  <span v-if="copyNotice" role="status">{{ copyNotice }}</span>
+                </div>
+              </div>
+
+              <aside class="ip-privacy-card" :aria-label="ipLookupCopy.privacyStatusLabel">
+                <strong>{{ ipLookupCopy.privacyStatusLabel }}</strong>
+                <span>{{ ipLookupCopy.privacyStatusBody }}</span>
+              </aside>
+            </div>
+
+            <div v-if="ipResult" class="answer-strip" aria-label="IP answer summary">
+              <div v-for="card in ipSummaryCards" :key="card.label" :class="['answer-card', card.tone ? `answer-card--${card.tone}` : '']">
+                <strong>{{ card.label }}</strong>
+                <span>{{ card.value }}</span>
+              </div>
+            </div>
+
+            <section v-if="showIpDetails" class="ip-detail-section" :aria-labelledby="`${tool.slug}-details`">
+              <h3 :id="`${tool.slug}-details`">{{ ipLookupCopy.showDetailsAction }}</h3>
+              <div class="ip-detail-grid">
+                <article v-for="detail in ipDetailCards" :key="detail.label" class="ip-detail-card">
+                  <strong>{{ detail.label }}</strong>
+                  <span>{{ detail.value }}</span>
+                  <p v-if="detail.note">{{ detail.note }}</p>
+                </article>
+              </div>
+              <div class="ip-map-panel" :aria-label="ipLookupCopy.mapTitle">
+                <strong>{{ ipLookupCopy.mapTitle }}</strong>
+                <p>{{ ipLookupCopy.mapUnavailable }}</p>
+                <p>{{ ipLookupCopy.locationLimit }}</p>
+              </div>
+            </section>
+          </template>
+
+          <template v-else>
+            <h2 :id="`${tool.slug}-result`">{{ shellCopy.resultTitle }}</h2>
+            <p v-if="isLoading">{{ shellCopy.runningLabel }}</p>
+            <p v-else-if="errorMessage" class="result-error">{{ errorMessage }}</p>
+
+            <div v-else-if="ipResult">
             <section class="ip-visual-panel" :aria-label="benchmarkCopy.ipPanelTitle">
               <p class="eyebrow">{{ benchmarkCopy.ipPanelTitle }}</p>
               <strong>{{ ipResult.address }}</strong>
@@ -869,7 +1228,7 @@ useHead({
             </section>
           </div>
 
-          <div v-else-if="dnsResult">
+            <div v-else-if="dnsResult">
             <div class="result-meta">
               <div>
                 <strong>Domain</strong>
@@ -1167,10 +1526,11 @@ useHead({
             </p>
           </div>
 
-          <p v-else>{{ previewSubmitted ? copy.previewResult : shellCopy.plannedBody }}</p>
+            <p v-else>{{ previewSubmitted ? copy.previewResult : shellCopy.plannedBody }}</p>
+          </template>
         </section>
 
-        <section class="upgrade-panel" :aria-label="upgradePanelCopy.ariaLabel">
+        <section v-if="!isIpLookup" class="upgrade-panel" :aria-label="upgradePanelCopy.ariaLabel">
           <div>
             <p class="eyebrow">{{ upgradePanelCopy.eyebrow }}</p>
             <h2>{{ upgradePanelCopy.title }}</h2>
@@ -1181,7 +1541,18 @@ useHead({
           </NuxtLink>
         </section>
 
-        <section v-if="isIpLookup || isPropagationLookup" class="privacy-strip" :aria-labelledby="`${tool.slug}-privacy-cta`">
+        <section v-else class="privacy-option-panel" :aria-labelledby="`${tool.slug}-privacy-options`">
+          <div>
+            <p class="eyebrow">{{ benchmarkCopy.privacyTitle }}</p>
+            <h2 :id="`${tool.slug}-privacy-options`">{{ ipLookupCopy.privacyCtaTitle }}</h2>
+            <p>{{ ipLookupCopy.privacyCtaBody }}</p>
+          </div>
+          <NuxtLink class="button-link button-link--secondary" :to="localizedContentPath(locale, 'privacy')">
+            {{ ipLookupCopy.privacyCtaLink }}
+          </NuxtLink>
+        </section>
+
+        <section v-if="!isIpLookup && isPropagationLookup" class="privacy-strip" :aria-labelledby="`${tool.slug}-privacy-cta`">
           <div>
             <h2 :id="`${tool.slug}-privacy-cta`">{{ benchmarkCopy.privacyTitle }}</h2>
             <p>{{ benchmarkCopy.privacyBody }}</p>
@@ -1199,9 +1570,29 @@ useHead({
             </NuxtLink>
           </div>
         </section>
+
+        <section v-if="isIpLookup" class="methodology-accordion" :aria-labelledby="`${tool.slug}-methodology`">
+          <details>
+            <summary :id="`${tool.slug}-methodology`">{{ ipLookupCopy.methodologyAccordionTitle }}</summary>
+            <p>{{ ipLookupCopy.methodologyAccordionBody }}</p>
+            <ul class="method-list">
+              <li v-for="item in copy.methodology" :key="item">{{ item }}</li>
+            </ul>
+            <dl class="fact-list">
+              <div>
+                <dt>{{ shellCopy.freeCheckLabel }}</dt>
+                <dd>{{ copy.freeScope }}</dd>
+              </div>
+              <div>
+                <dt>{{ shellCopy.methodologyLabel }}</dt>
+                <dd>{{ copy.limitation }}</dd>
+              </div>
+            </dl>
+          </details>
+        </section>
       </div>
 
-      <aside class="band" :aria-labelledby="`${tool.slug}-methodology`">
+      <aside v-if="!isIpLookup" class="band" :aria-labelledby="`${tool.slug}-methodology`">
         <h2 :id="`${tool.slug}-methodology`">{{ shellCopy.methodologyLabel }}</h2>
         <ul class="method-list">
           <li v-for="item in copy.methodology" :key="item">{{ item }}</li>
