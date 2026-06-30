@@ -1604,7 +1604,25 @@ Data-base: 2026-06-29
 | Sprint 18.14 post-deploy quick crawler | `2026-06-30T15-17-02-999Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.14 live Contact screenshots | `artifacts/contact-page-qa/contact-en-live-desktop.png` and `artifacts/contact-page-qa/contact-pt-br-live-mobile.png` reviewed |
 | Sprint 18.14 live Contact smoke | Passed: browser-decoded mailto links, blocked phrase scan 0, overflow covered by Playwright/crawler |
-| Real deploy/provider activation | 23 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.14 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.15 Privacy route | `/supersites/en/privacy` converted to complete public privacy policy with localized six-section copy |
+| Sprint 18.15 localized Privacy checks | 5 routes passed: `/supersites/en/privacy`, `/supersites/pt-br/privacy`, `/supersites/es/privacy`, `/supersites/fr/privacy`, `/supersites/de/privacy` |
+| Sprint 18.15 Hub unit suite | Passed: 27 tests |
+| Sprint 18.15 i18n unit suite | Passed: 12 tests |
+| Sprint 18.15 Hub build | Passed |
+| Sprint 18.15 Hub Playwright suite | Passed: 31 tests, including Privacy desktop EN and mobile PT-BR screenshots |
+| Sprint 18.15 Privacy generated HTML check | Passed: 5 locales, required sections present, 0 blocked conditional/internal phrases in rendered main content |
+| Sprint 18.15 AdSense-safe validation | Passed locally and post-deploy: 13 public pages |
+| Sprint 18.15 package/structure/secrets/dry-run/diff | Passed, including typechecks, `ci:changes`, deploy dry-run and `git diff --check` |
+| Sprint 18.15 Hub HostGator artifact | Local passed: 211 files, 8791209 bytes; production deploy passed with public asset `CBkswxPe.js` |
+| Sprint 18.15 implementation commit | `7f3c8fc` |
+| Sprint 18.15 remote Quality Gate | `28459132391` passed |
+| Sprint 18.15 remote Deploy Dry Run | `28459132411` passed |
+| Sprint 18.15 Hub production deploy | `28459409612` passed; release `7f3c8fc6e8061bec9a6a1ce8f0cb8f559e39601a-28459409612-1`; asset `CBkswxPe.js` |
+| Sprint 18.15 post-deploy public smoke | Passed: Hub/apps/APIs and 5 Privacy locale routes |
+| Sprint 18.15 post-deploy quick crawler | `2026-06-30T16-31-39-885Z`; 95 routes; 190 viewport checks; 0 gaps |
+| Sprint 18.15 live Privacy screenshots | `artifacts/privacy-page-qa/privacy-en-live-desktop.png` and `artifacts/privacy-page-qa/privacy-pt-br-live-mobile.png` reviewed |
+| Sprint 18.15 live Privacy smoke | Passed: localized markers, canonical checks, blocked phrase scan 0 in rendered main content, overflow covered by Playwright/crawler |
+| Real deploy/provider activation | 24 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.15 Hub deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 

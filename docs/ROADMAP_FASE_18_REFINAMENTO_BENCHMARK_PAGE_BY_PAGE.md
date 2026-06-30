@@ -602,6 +602,14 @@ Regra operacional:
 3. Se revisão jurídica ainda não estiver aprovada, registrar pendência em docs e manter a página pública como política clara de estado atual.
 4. Citar categorias de dados, finalidades, retenção, direitos, contato e cookies.
 
+**Status em 2026-06-30:** concluida em producao.
+
+- A Privacy Policy do Hub agora e uma pagina publica completa e localizada em EN/PT-BR/ES/FR/DE, com categorias de dados, entradas de ferramentas, analytics/publicidade, cookies/preferencias, retencao/seguranca e direitos/contato.
+- A pagina removeu linguagem condicional/interna (`should`, `plans to`, `human review`, linguagem de launch/release e equivalentes localizados). A pendencia juridica fica registrada em `docs/HUMAN_ACTION_REQUIRED.md`, nao na superficie publica.
+- O helper legal preserva a copy curada de Privacy, evitando que texto generico de trust volte a publicar linguagem interna ou condicional.
+- Ciclo executado: validacao local completa, commit objetivo `7f3c8fc`, push, Quality Gate `28459132391`, Deploy Dry Run `28459132411`, deploy HostGator `28459409612`, smoke publico, validacao live das 5 rotas Privacy, AdSense-safe, crawler quick live `2026-06-30T16-31-39-885Z` com 95 rotas/190 checks/0 gaps e visual live desktop/mobile revisado.
+- Correcao de processo registrada: quando a copy publica muda de forma intencional, marcadores de smoke/preview precisam ser atualizados no mesmo ciclo antes de deploy/fechamento; nesta sprint o marcador antigo `Data minimization` foi trocado por `Data categories`.
+
 ---
 
 ## Sprint 18.16 — Cookie Policy

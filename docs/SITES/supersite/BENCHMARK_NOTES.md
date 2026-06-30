@@ -117,3 +117,12 @@ Data-base: 2026-06-27
 - The current architecture uses browser-visible `mailto:` links with subject prefixes because no public form backend exists. Cloudflare may obfuscate the raw HTML, so production validation must use a browser check to confirm links decode to `mailto:contact@opentshost.com`.
 - Local evidence: `artifacts/contact-page-qa/contact-en-desktop-clean.png` and `artifacts/contact-page-qa/contact-pt-br-mobile-clean.png`; live evidence: `artifacts/contact-page-qa/contact-en-live-desktop.png` and `artifacts/contact-page-qa/contact-pt-br-live-mobile.png`.
 - Production deploy `28454599720` published release `8cef11c0907188662b486121ca66941a5784f0e9-28454599720-1`, asset `https://opentshost.com/supersites/_nuxt/BpxgSDhZ.js`; public smoke, AdSense-safe validation, five Contact browser route checks and crawler quick `2026-06-30T15-17-02-999Z` passed.
+
+## Phase 18 Sprint 18.15 Privacy Policy notes
+
+- The Hub Privacy Policy route now follows the public legal/trust benchmark pattern: clear current-state policy, localized in EN/PT-BR/ES/FR/DE, with data categories, tool inputs, analytics/advertising, cookies/preferences, retention/security and rights/contact.
+- Privacy pages must not expose human legal review, launch status, roadmap, `should`, `plans to` or equivalent conditional/internal language. Legal review by jurisdiction stays in `docs/HUMAN_ACTION_REQUIRED.md`.
+- Curated legal pages can bypass generic trust-page builders when a helper would reintroduce vague or conditional launch language. Public policy text must explain the current user-facing state; internal gaps stay in docs.
+- Smoke/preview markers are part of the product surface contract. When intended public copy changes, update the marker in the same sprint before deploy; Sprint 18.15 replaced `Data minimization` with `Data categories`.
+- Local evidence: `artifacts/privacy-page-qa/privacy-en-desktop.png` and `artifacts/privacy-page-qa/privacy-pt-br-mobile.png`; live evidence: `artifacts/privacy-page-qa/privacy-en-live-desktop.png` and `artifacts/privacy-page-qa/privacy-pt-br-live-mobile.png`.
+- Production deploy `28459409612` published release `7f3c8fc6e8061bec9a6a1ce8f0cb8f559e39601a-28459409612-1`, asset `https://opentshost.com/supersites/_nuxt/CBkswxPe.js`; public smoke, AdSense-safe validation, five Privacy locale route checks and crawler quick `2026-06-30T16-31-39-885Z` passed.
