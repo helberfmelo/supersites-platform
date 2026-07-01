@@ -71,4 +71,4 @@ Low to medium; keep placements away from controls and results.
 - The app home now mirrors a dry timeanddate-style directory with World Clock, Time Zones, Calendar, Calculators and Timers sections before the tool catalog footer.
 - Time Zone Converter, Timestamp Converter, Date Difference, Business Days, Age Calculator, Percentage Calculator and Unit Converter now have specialized controls and result summaries instead of the old generic textarea form.
 - Immediate answer behavior is enabled on load, with typing-driven recalculation for timestamp, percentage and unit workflows.
-- Validation passed locally with TimeNexus unit tests, Nuxt build and preview smoke; visual QA remains for owner review under the current stage cadence.
+- Validation passed locally with TimeNexus unit tests, Nuxt build, preview smoke and focused Playwright after the remote gate exposed stale selectors; product visual review remains for the owner under the current stage cadence.

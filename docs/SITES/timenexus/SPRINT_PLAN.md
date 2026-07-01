@@ -63,5 +63,5 @@ Data-base: 2026-06-28
 - Date Difference gained exclusive/inclusive modes and compact timeline facts; Business Days gained include/exclude endpoint modes plus the holiday-calendar notice; Age Calculator shows total days, next birthday and days until.
 - Unit Converter groups modes by Length, Weight and Temperature.
 - Public copy removed top-level `No accounts or storage`, billing and ads-inactive language; paid depth remains framed as future widgets/API/presets/collaboration.
-- Local validation passed: `pnpm test:timenexus`, `pnpm build:timenexus` and `pnpm validate:timenexus-preview`.
+- Local validation passed: `pnpm test:timenexus`, `pnpm build:timenexus`, `pnpm validate:timenexus-preview` and `pnpm test:e2e:timenexus` after the remote Quality Gate exposed stale selectors.
 - No external calendar provider, persistent history, widget/API, checkout, billing, ad serving, donation, affiliate, external analytics, worker/cron or deploy was activated.

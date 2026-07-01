@@ -60,7 +60,7 @@ test.describe('TimeNexus MVP', () => {
     await expect(page.getByRole('heading', { name: 'Plan one meeting across cities before opening the catalog.' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Current time panel' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Meeting planner' })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'World clock' })).toBeVisible()
+    await expect(page.locator('#world-clock-title')).toHaveText('World clock')
     await expect(page.getByRole('heading', { name: 'Nearby slots' })).toBeVisible()
     await expect(page.getByLabel('Local meeting time')).toHaveValue('2026-06-26T09:30')
     await expect(page.getByText('2026-06-26T13:30:00.000Z')).toBeVisible()
@@ -80,7 +80,7 @@ test.describe('TimeNexus MVP', () => {
     await expect(page.getByRole('heading', { name: 'World Clock, Time Zones, Calendar, Calculators and Timers' })).toBeVisible()
     await expect(page.getByText('Browser-side').first()).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Curated city clocks' })).toBeVisible()
-    await expect(page.getByRole('link', { name: /Tokyo/ })).toHaveAttribute(
+    await expect(page.locator('a.city-card[href="/en/world-clock/cities/tokyo"]')).toHaveAttribute(
       'href',
       '/en/world-clock/cities/tokyo',
     )

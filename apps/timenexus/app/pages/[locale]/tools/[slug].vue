@@ -100,6 +100,10 @@ const resultRows = computed(() => {
 })
 
 const keyResultRows = computed(() => {
+  if (isTimezoneTool.value) {
+    return resultRows.value.filter((row) => ['UTC', sourceZoneInput.value, targetZoneInput.value].includes(row.label))
+  }
+
   if (isTimestampTool.value) {
     return resultRows.value.filter((row) => ['Unix seconds', 'Unix milliseconds', 'ISO', 'UTC', 'Local'].includes(row.label) || row.label === secondaryInput.value)
   }
