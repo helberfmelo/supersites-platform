@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getButtonClass } from '@supersites/ui'
-import { computed, onMounted, reactive, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
 import { getShellCopy } from '../data/copy'
 import { localizedHomePath, localizedToolPath, type LocaleCode } from '../data/locales'
 import {
@@ -35,6 +35,17 @@ interface WorkbenchCopy {
   noStorageLabel: string
   taxReviewLabel: string
   taxReviewBody: string
+  documentLabel: string
+  itemsCountLabel: string
+  logoLabel: string
+  logoHelp: string
+  logoClearLabel: string
+  logoErrorLabel: string
+  paidStatusLabel: string
+  quoteCtaTitle: string
+  quoteCtaBody: string
+  receiptNoteTitle: string
+  receiptNoteBody: string
   localeLabel: string
   currencyLabel: string
   issuerNameLabel: string
@@ -85,9 +96,20 @@ const workbenchCopy: Record<LocaleCode, WorkbenchCopy> = {
     body: 'Use editable rows, currency, dates, discount, freight and manual tax/adjustment fields before downloading a local PDF.',
     tabsLabel: 'Document workflow',
     localPdfLabel: 'Local PDF export',
-    noStorageLabel: 'No account or storage',
-    taxReviewLabel: 'Tax/legal review',
-    taxReviewBody: 'Official taxes, fiscal numbering and payment collection require human legal and billing review before activation.',
+    noStorageLabel: 'Browser-only session',
+    taxReviewLabel: 'Tax/legal note',
+    taxReviewBody: 'Review official taxes, fiscal numbering and payment obligations outside this free document builder.',
+    documentLabel: 'Document',
+    itemsCountLabel: 'Items',
+    logoLabel: 'Logo (PNG/JPEG)',
+    logoHelp: 'Optional local logo preview. Files stay in this browser session and are not uploaded.',
+    logoClearLabel: 'Clear logo',
+    logoErrorLabel: 'Use a PNG or JPEG image up to 1 MB.',
+    paidStatusLabel: 'Paid',
+    quoteCtaTitle: 'Convert quote to invoice',
+    quoteCtaBody: 'Future account workflow: reuse this quote as an invoice with saved clients, approval history and reminders.',
+    receiptNoteTitle: 'Receipt status',
+    receiptNoteBody: 'This receipt marks an already-paid transaction. InvoiceCraft does not process or verify payments.',
     localeLabel: 'Locale',
     currencyLabel: 'Currency',
     issuerNameLabel: 'Issuer name',
@@ -127,9 +149,20 @@ const workbenchCopy: Record<LocaleCode, WorkbenchCopy> = {
     body: 'Use linhas editaveis, moeda, datas, desconto, frete e imposto/ajuste manual antes de baixar um PDF local.',
     tabsLabel: 'Fluxo de documento',
     localPdfLabel: 'PDF local',
-    noStorageLabel: 'Sem conta ou storage',
-    taxReviewLabel: 'Revisao fiscal/juridica',
-    taxReviewBody: 'Impostos oficiais, numeracao fiscal e cobranca exigem revisao juridica e de billing antes da ativacao.',
+    noStorageLabel: 'Sessao no navegador',
+    taxReviewLabel: 'Nota fiscal/juridica',
+    taxReviewBody: 'Revise impostos oficiais, numeracao fiscal e obrigacoes de cobranca fora deste gerador gratuito.',
+    documentLabel: 'Documento',
+    itemsCountLabel: 'Itens',
+    logoLabel: 'Logo (PNG/JPEG)',
+    logoHelp: 'Logo local opcional. O arquivo fica nesta sessao do navegador e nao e enviado.',
+    logoClearLabel: 'Remover logo',
+    logoErrorLabel: 'Use uma imagem PNG ou JPEG de ate 1 MB.',
+    paidStatusLabel: 'Pago',
+    quoteCtaTitle: 'Converter orcamento em fatura',
+    quoteCtaBody: 'Fluxo futuro de conta: reaproveitar este orcamento como fatura com clientes salvos, historico de aprovacao e lembretes.',
+    receiptNoteTitle: 'Status do recibo',
+    receiptNoteBody: 'Este recibo marca uma transacao ja paga. O InvoiceCraft nao processa nem verifica pagamentos.',
     localeLabel: 'Idioma',
     currencyLabel: 'Moeda',
     issuerNameLabel: 'Nome do emissor',
@@ -169,9 +202,20 @@ const workbenchCopy: Record<LocaleCode, WorkbenchCopy> = {
     body: 'Usa lineas editables, moneda, fechas, descuento, envio e impuesto/ajuste manual antes de descargar un PDF local.',
     tabsLabel: 'Flujo de documento',
     localPdfLabel: 'PDF local',
-    noStorageLabel: 'Sin cuenta ni storage',
-    taxReviewLabel: 'Revision fiscal/legal',
-    taxReviewBody: 'Impuestos oficiales, numeracion fiscal y cobro requieren revision legal y de billing antes de activarse.',
+    noStorageLabel: 'Sesion en navegador',
+    taxReviewLabel: 'Nota fiscal/legal',
+    taxReviewBody: 'Revisa impuestos oficiales, numeracion fiscal y obligaciones de cobro fuera de este generador gratis.',
+    documentLabel: 'Documento',
+    itemsCountLabel: 'Items',
+    logoLabel: 'Logo (PNG/JPEG)',
+    logoHelp: 'Logo local opcional. El archivo queda en esta sesion del navegador y no se sube.',
+    logoClearLabel: 'Quitar logo',
+    logoErrorLabel: 'Usa una imagen PNG o JPEG de hasta 1 MB.',
+    paidStatusLabel: 'Pagado',
+    quoteCtaTitle: 'Convertir presupuesto en factura',
+    quoteCtaBody: 'Flujo futuro de cuenta: reutilizar este presupuesto como factura con clientes guardados, historial de aprobacion y recordatorios.',
+    receiptNoteTitle: 'Estado del recibo',
+    receiptNoteBody: 'Este recibo marca una transaccion ya pagada. InvoiceCraft no procesa ni verifica pagos.',
     localeLabel: 'Idioma',
     currencyLabel: 'Moneda',
     issuerNameLabel: 'Nombre del emisor',
@@ -211,9 +255,20 @@ const workbenchCopy: Record<LocaleCode, WorkbenchCopy> = {
     body: 'Utilisez lignes editables, devise, dates, remise, frais et taxe/ajustement manuel avant de telecharger un PDF local.',
     tabsLabel: 'Flux document',
     localPdfLabel: 'PDF local',
-    noStorageLabel: 'Sans compte ni storage',
-    taxReviewLabel: 'Revue fiscale/juridique',
-    taxReviewBody: 'Taxes officielles, numerotation fiscale et encaissement exigent une revue juridique et billing avant activation.',
+    noStorageLabel: 'Session navigateur',
+    taxReviewLabel: 'Note fiscale/juridique',
+    taxReviewBody: 'Verifiez taxes officielles, numerotation fiscale et obligations d encaissement hors de ce generateur gratuit.',
+    documentLabel: 'Document',
+    itemsCountLabel: 'Lignes',
+    logoLabel: 'Logo (PNG/JPEG)',
+    logoHelp: 'Logo local optionnel. Le fichier reste dans cette session navigateur et n est pas envoye.',
+    logoClearLabel: 'Retirer logo',
+    logoErrorLabel: 'Utilisez une image PNG ou JPEG de 1 Mo maximum.',
+    paidStatusLabel: 'Paye',
+    quoteCtaTitle: 'Convertir le devis en facture',
+    quoteCtaBody: 'Flux futur de compte: reutiliser ce devis comme facture avec clients sauvegardes, historique d approbation et rappels.',
+    receiptNoteTitle: 'Statut du recu',
+    receiptNoteBody: 'Ce recu marque une transaction deja payee. InvoiceCraft ne traite ni ne verifie les paiements.',
     localeLabel: 'Langue',
     currencyLabel: 'Devise',
     issuerNameLabel: 'Nom emetteur',
@@ -253,9 +308,20 @@ const workbenchCopy: Record<LocaleCode, WorkbenchCopy> = {
     body: 'Nutzen Sie editierbare Zeilen, Waehrung, Daten, Rabatt, Versand und manuelle Steuer/Anpassung vor dem lokalen PDF.',
     tabsLabel: 'Dokument-Workflow',
     localPdfLabel: 'Lokales PDF',
-    noStorageLabel: 'Kein Konto oder Storage',
-    taxReviewLabel: 'Steuerliche/rechtliche Pruefung',
-    taxReviewBody: 'Offizielle Steuern, fiskalische Nummerierung und Zahlungseinzug brauchen rechtliche und Billing-Pruefung.',
+    noStorageLabel: 'Browser-Sitzung',
+    taxReviewLabel: 'Steuer-/Rechtshinweis',
+    taxReviewBody: 'Pruefen Sie offizielle Steuern, fiskalische Nummerierung und Zahlungspflichten ausserhalb dieses kostenlosen Generators.',
+    documentLabel: 'Dokument',
+    itemsCountLabel: 'Positionen',
+    logoLabel: 'Logo (PNG/JPEG)',
+    logoHelp: 'Optionales lokales Logo. Die Datei bleibt in dieser Browser-Sitzung und wird nicht hochgeladen.',
+    logoClearLabel: 'Logo entfernen',
+    logoErrorLabel: 'Nutzen Sie ein PNG- oder JPEG-Bild bis 1 MB.',
+    paidStatusLabel: 'Bezahlt',
+    quoteCtaTitle: 'Angebot in Rechnung umwandeln',
+    quoteCtaBody: 'Kuenftiger Konto-Workflow: dieses Angebot als Rechnung mit gespeicherten Kunden, Freigabehistorie und Erinnerungen wiederverwenden.',
+    receiptNoteTitle: 'Belegstatus',
+    receiptNoteBody: 'Dieser Beleg markiert eine bereits bezahlte Transaktion. InvoiceCraft verarbeitet oder prueft keine Zahlungen.',
     localeLabel: 'Sprache',
     currencyLabel: 'Waehrung',
     issuerNameLabel: 'Ausstellername',
@@ -306,6 +372,11 @@ const isDownloading = ref(false)
 const copyState = ref<'idle' | 'copied'>('idle')
 const result = ref<InvoiceCraftToolResult | null>(null)
 const runSequence = ref(0)
+const autoPreviewReady = ref(false)
+const autoPreviewTimer = ref<ReturnType<typeof window.setTimeout> | null>(null)
+const logoDataUrl = ref('')
+const logoFormat = ref<'PNG' | 'JPEG' | null>(null)
+const logoError = ref('')
 
 const canonicalPath = computed(() => (
   props.trackView ? localizedToolPath(props.locale, activeSlug.value) : localizedHomePath(props.locale)
@@ -320,15 +391,17 @@ const dueDateLabel = computed(() => (
 ))
 const document = computed<InvoiceCraftDocumentSummary | null>(() => result.value?.ok ? result.value.document ?? null : null)
 const relatedTools = computed(() => getRelatedInvoiceCraftTools(activeSlug.value, props.locale))
+const showQuoteUpgrade = computed(() => activeTool.value.kind === 'quote')
+const showReceiptNote = computed(() => activeTool.value.kind === 'receipt')
 const snapshotMeta = computed(() => {
   if (!document.value) {
     return []
   }
 
   return [
-    { label: 'Document', value: `${document.value.title} ${document.value.documentNumber}` },
+    { label: labels.value.documentLabel, value: `${document.value.title} ${document.value.documentNumber}` },
     { label: document.value.dueDateLabel, value: document.value.dueDate },
-    { label: 'Items', value: String(document.value.items.length) },
+    { label: labels.value.itemsCountLabel, value: String(document.value.items.length) },
     { label: labels.value.totalLabel, value: formatMoney(document.value.total, document.value.currency, props.locale) },
   ]
 })
@@ -373,6 +446,59 @@ function currentInput(): InvoiceCraftDocumentInput {
     ...cloneInput(form),
     itemsRaw: serializeRows(),
   }
+}
+
+function clearScheduledPreview(): void {
+  if (autoPreviewTimer.value) {
+    window.clearTimeout(autoPreviewTimer.value)
+    autoPreviewTimer.value = null
+  }
+}
+
+function schedulePreview(): void {
+  if (!import.meta.client || !autoPreviewReady.value) {
+    return
+  }
+
+  clearScheduledPreview()
+  autoPreviewTimer.value = window.setTimeout(() => {
+    void generatePreview(false)
+  }, 260)
+}
+
+function clearLogo(): void {
+  logoDataUrl.value = ''
+  logoFormat.value = null
+  logoError.value = ''
+}
+
+function updateLogo(event: Event): void {
+  const input = event.target as HTMLInputElement
+  const file = input.files?.[0]
+
+  if (!file) {
+    clearLogo()
+    return
+  }
+
+  if (!['image/png', 'image/jpeg'].includes(file.type) || file.size > 1_000_000) {
+    clearLogo()
+    logoError.value = labels.value.logoErrorLabel
+    input.value = ''
+    return
+  }
+
+  const reader = new FileReader()
+  reader.onload = () => {
+    logoDataUrl.value = typeof reader.result === 'string' ? reader.result : ''
+    logoFormat.value = file.type === 'image/png' ? 'PNG' : 'JPEG'
+    logoError.value = ''
+  }
+  reader.onerror = () => {
+    clearLogo()
+    logoError.value = labels.value.logoErrorLabel
+  }
+  reader.readAsDataURL(file)
 }
 
 async function generatePreview(trackEvents = true): Promise<void> {
@@ -541,9 +667,18 @@ async function downloadPdf(): Promise<void> {
     const right = 553
     let y = 48
 
+    if (logoDataUrl.value && logoFormat.value) {
+      try {
+        pdf.addImage(logoDataUrl.value, logoFormat.value, left, y - 18, 72, 36, undefined, 'FAST')
+      } catch {
+        // Keep PDF export usable if the local image cannot be decoded by jsPDF.
+      }
+    }
+
+    const titleX = logoDataUrl.value ? left + 88 : left
     pdf.setFont('helvetica', 'bold')
     pdf.setFontSize(22)
-    pdf.text(doc.title, left, y)
+    pdf.text(doc.title, titleX, y)
     pdf.setFontSize(10)
     pdf.text(doc.documentNumber, right, y, { align: 'right' })
 
@@ -624,6 +759,10 @@ watch(activeSlug, () => {
   loadSample(true)
 })
 
+watch([form, lineItems, selectedMode], () => {
+  schedulePreview()
+}, { deep: true })
+
 onMounted(() => {
   if (props.trackView) {
     trackInvoiceCraftEvent({
@@ -633,7 +772,12 @@ onMounted(() => {
     }, 'tool_viewed')
   }
 
+  autoPreviewReady.value = true
   void generatePreview(false)
+})
+
+onBeforeUnmount(() => {
+  clearScheduledPreview()
 })
 </script>
 
@@ -642,13 +786,12 @@ onMounted(() => {
     <div class="workbench-heading">
       <div>
         <p class="eyebrow">{{ labels.eyebrow }}</p>
-        <h2 :id="`invoicecraft-workbench-${activeSlug}`">{{ labels.title }}</h2>
-        <p>{{ labels.body }}</p>
+        <h2 :id="`invoicecraft-workbench-${activeSlug}`">{{ copy.title }}</h2>
+        <p>{{ copy.headline }}</p>
       </div>
       <div class="workbench-pills" aria-label="InvoiceCraft safeguards">
         <span>{{ labels.localPdfLabel }}</span>
         <span>{{ labels.noStorageLabel }}</span>
-        <span>{{ labels.taxReviewLabel }}</span>
       </div>
     </div>
 
@@ -687,11 +830,6 @@ onMounted(() => {
           {{ copyState === 'copied' ? shellCopy.copiedSummaryLabel : shellCopy.copySummaryLabel }}
         </button>
       </div>
-
-      <div class="snapshot-gate">
-        <strong>{{ labels.taxReviewLabel }}</strong>
-        <span>{{ labels.taxReviewBody }}</span>
-      </div>
     </section>
 
     <section class="tool-layout">
@@ -729,6 +867,31 @@ onMounted(() => {
                   </select>
                 </div>
               </div>
+            </div>
+
+            <div class="logo-control">
+              <div class="field">
+                <label :for="`${activeSlug}-logo`">{{ labels.logoLabel }}</label>
+                <input
+                  :id="`${activeSlug}-logo`"
+                  type="file"
+                  accept="image/png,image/jpeg"
+                  @change="updateLogo"
+                >
+              </div>
+              <div class="logo-control__preview">
+                <img v-if="logoDataUrl" :src="logoDataUrl" alt="">
+                <span v-else>{{ labels.logoHelp }}</span>
+                <button
+                  v-if="logoDataUrl"
+                  class="button-link button-link--secondary"
+                  type="button"
+                  @click="clearLogo"
+                >
+                  {{ labels.logoClearLabel }}
+                </button>
+              </div>
+              <p v-if="logoError" class="result-error">{{ logoError }}</p>
             </div>
 
             <div class="form-grid">
@@ -865,11 +1028,15 @@ onMounted(() => {
 
             <article class="document-preview" :class="`document-preview--${document.mode}`">
               <header class="document-preview__header">
-                <div>
-                  <p class="eyebrow">{{ document.title }}</p>
-                  <h3>{{ document.documentNumber }}</h3>
+                <div class="document-preview__brand">
+                  <img v-if="logoDataUrl" :src="logoDataUrl" alt="">
+                  <div>
+                    <p class="eyebrow">{{ document.title }}</p>
+                    <h3>{{ document.documentNumber }}</h3>
+                  </div>
                 </div>
-                <div>
+                <div class="document-preview__dates">
+                  <span v-if="activeTool.kind === 'receipt'" class="document-status">{{ labels.paidStatusLabel }}</span>
                   <strong>{{ document.issueDate }}</strong>
                   <span>{{ dueDateLabel }}: {{ document.dueDate }}</span>
                 </div>
@@ -961,10 +1128,20 @@ onMounted(() => {
           </dl>
         </section>
 
+        <section v-if="showQuoteUpgrade" class="band band--soft">
+          <h2>{{ labels.quoteCtaTitle }}</h2>
+          <p>{{ labels.quoteCtaBody }}</p>
+        </section>
+
+        <section v-if="showReceiptNote" class="band band--soft">
+          <h2>{{ labels.receiptNoteTitle }}</h2>
+          <p>{{ labels.receiptNoteBody }}</p>
+        </section>
+
         <section class="band">
-          <h2>{{ shellCopy.gatedListTitle }}</h2>
-          <ul class="gated-list">
-            <li v-for="item in shellCopy.gatedItems" :key="item">{{ item }}</li>
+          <h2>{{ shellCopy.futureListTitle }}</h2>
+          <ul class="future-list">
+            <li v-for="item in shellCopy.futureItems" :key="item">{{ item }}</li>
           </ul>
         </section>
 

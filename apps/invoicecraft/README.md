@@ -13,16 +13,16 @@ Browser-side invoice, quote and receipt workflows with local PDF export.
 - Tool analytics are limited to `tool_slug`, event name, locale and safe route path.
 - Issuer, client, item, amount, tax/adjustment and note fields are not stored or sent to a product API.
 
-## Sprint 7.8 benchmark refinement
+## Document studio refinement
 
-- Adds template-style tabs, a document snapshot panel, clearer PDF/download guidance, text-summary copy, related document flows and gated workflow prompts.
+- Adds editor/preview layout, template-style tabs, a document snapshot panel, local logo upload, clearer PDF/download guidance, text-summary copy and related document flows.
 - Keeps issuer, client, item, amount, notes and PDF contents local to the browser session.
-- Does not activate saved clients/products, official tax templates, fiscal numbering, payment collection, checkout, billing, ads or external analytics.
+- Does not activate saved clients/products, official tax templates, fiscal numbering, payment collection, checkout, advertising or external analytics.
 
-## Gated scope
+## Future account scope
 
-Saved clients, product catalogs, recurring invoices, branding, teams, payment collection, fiscal tax templates, billing, ads and external analytics are not active.
+Saved clients, product catalogs, recurring invoices, branding, teams, payment collection, fiscal tax templates, advertising and external analytics require separate review before activation.
 
-Official tax handling, fiscal numbering and jurisdiction-specific invoice requirements must be treated as `HUMAN_ACTION_REQUIRED` before activation.
+Official tax handling, fiscal numbering and jurisdiction-specific invoice requirements require explicit owner/legal review before activation.
 
-Public traffic remains on the HostGator placeholder until InvoiceCraft receives app-specific artifact validation, public smoke and rollback/traffic-switch workflows.
+Public traffic uses the versioned HostGator static app flow after app-specific artifact validation, public smoke and rollback/traffic-switch workflows.

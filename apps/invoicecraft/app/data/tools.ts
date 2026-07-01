@@ -167,9 +167,9 @@ const localizedBasics: Record<LocaleCode, {
     pdfBody: 'The free builder renders a browser preview and downloads a PDF locally, which solves the basic need without mandatory signup.',
     bestPracticeSection: 'Document best practices',
     gateSection: 'Tax and payment limits',
-    gateBody: 'Tax labels, fiscal numbering, payment collection, recurring invoices, saved clients and team workspaces remain gated until human legal and billing review.',
-    faqStorage: { question: 'Are clients, products or invoices stored?', answer: 'No. InvoiceCraft does not create accounts, call a product API, use browser storage or save document fields.' },
-    faqTax: { question: 'Can this create official tax invoices?', answer: 'No. Manual tax or adjustment lines are formatting helpers only; jurisdiction-specific taxes require HUMAN_ACTION_REQUIRED before activation.' },
+    gateBody: 'Manual tax labels are formatting helpers. Official fiscal numbering, payment collection, recurring invoices, saved clients and team workspaces require separate review before they become account features.',
+    faqStorage: { question: 'Are clients, products or invoices stored?', answer: 'No. InvoiceCraft does not create accounts, call a product API or save document fields.' },
+    faqTax: { question: 'Can this create official tax invoices?', answer: 'No. Manual tax or adjustment lines are formatting helpers only; review jurisdiction-specific tax rules outside this free builder.' },
   },
   'pt-br': {
     resultLabel: 'Preview do documento',
@@ -179,9 +179,9 @@ const localizedBasics: Record<LocaleCode, {
     pdfBody: 'O builder gratuito mostra preview no navegador e baixa um PDF local, resolvendo a necessidade basica sem cadastro obrigatorio.',
     bestPracticeSection: 'Boas praticas do documento',
     gateSection: 'Limites fiscais e pagamentos',
-    gateBody: 'Impostos, numeracao fiscal, cobranca, recorrencia, clientes salvos e equipe seguem bloqueados ate revisao humana juridica e de billing.',
-    faqStorage: { question: 'Clientes, produtos ou faturas sao armazenados?', answer: 'Nao. O InvoiceCraft nao cria conta, nao chama API de produto, nao usa storage do navegador e nao salva campos.' },
-    faqTax: { question: 'Isto cria nota fiscal oficial?', answer: 'Nao. Linhas manuais de imposto ou ajuste sao apenas formatacao; impostos por jurisdicao exigem HUMAN_ACTION_REQUIRED antes de ativar.' },
+    gateBody: 'Linhas manuais de imposto sao apenas formatacao. Numeracao fiscal oficial, cobranca, recorrencia, clientes salvos e equipe exigem revisao separada antes de virarem recursos de conta.',
+    faqStorage: { question: 'Clientes, produtos ou faturas sao armazenados?', answer: 'Nao. O InvoiceCraft nao cria conta, nao chama API de produto e nao salva campos do documento.' },
+    faqTax: { question: 'Isto cria nota fiscal oficial?', answer: 'Nao. Linhas manuais de imposto ou ajuste sao apenas formatacao; revise regras fiscais por jurisdicao fora deste gerador gratuito.' },
   },
   es: {
     resultLabel: 'Vista previa',
@@ -191,9 +191,9 @@ const localizedBasics: Record<LocaleCode, {
     pdfBody: 'El builder gratis muestra una vista previa y descarga un PDF local para resolver la necesidad basica sin registro obligatorio.',
     bestPracticeSection: 'Buenas practicas del documento',
     gateSection: 'Limites fiscales y pagos',
-    gateBody: 'Impuestos, numeracion fiscal, cobros, recurrencia, clientes guardados y equipos quedan bloqueados hasta revision legal y de billing.',
-    faqStorage: { question: 'Se guardan clientes, productos o facturas?', answer: 'No. InvoiceCraft no crea cuentas, no llama APIs de producto, no usa storage del navegador y no guarda campos.' },
-    faqTax: { question: 'Sirve como factura fiscal oficial?', answer: 'No. Lineas manuales de impuesto o ajuste son solo ayuda de formato; impuestos por jurisdiccion requieren HUMAN_ACTION_REQUIRED.' },
+    gateBody: 'Las lineas manuales de impuesto son ayuda de formato. Numeracion fiscal oficial, cobros, recurrencia, clientes guardados y equipos requieren revision separada antes de ser funciones de cuenta.',
+    faqStorage: { question: 'Se guardan clientes, productos o facturas?', answer: 'No. InvoiceCraft no crea cuentas, no llama APIs de producto y no guarda campos del documento.' },
+    faqTax: { question: 'Sirve como factura fiscal oficial?', answer: 'No. Lineas manuales de impuesto o ajuste son solo ayuda de formato; revisa reglas fiscales por jurisdiccion fuera de este generador gratis.' },
   },
   fr: {
     resultLabel: 'Apercu document',
@@ -203,9 +203,9 @@ const localizedBasics: Record<LocaleCode, {
     pdfBody: 'Le builder gratuit affiche un apercu et telecharge un PDF local pour couvrir le besoin de base sans compte obligatoire.',
     bestPracticeSection: 'Bonnes pratiques document',
     gateSection: 'Limites fiscales et paiement',
-    gateBody: 'Taxes, numerotation fiscale, paiement, recurrence, clients sauvegardes et equipes restent gates avant revue humaine juridique et billing.',
-    faqStorage: { question: 'Les clients, produits ou factures sont-ils stockes?', answer: 'Non. InvoiceCraft ne cree pas de compte, n appelle pas d API produit, n utilise pas de storage et ne sauvegarde pas les champs.' },
-    faqTax: { question: 'Est-ce une facture fiscale officielle?', answer: 'Non. Les lignes manuelles de taxe ou ajustement sont seulement un format; les taxes par juridiction exigent HUMAN_ACTION_REQUIRED.' },
+    gateBody: 'Les lignes manuelles de taxe sont une aide de format. Numerotation fiscale, paiement, recurrence, clients sauvegardes et equipes exigent une revue separee avant de devenir des fonctions de compte.',
+    faqStorage: { question: 'Les clients, produits ou factures sont-ils stockes?', answer: 'Non. InvoiceCraft ne cree pas de compte, n appelle pas d API produit et ne sauvegarde pas les champs du document.' },
+    faqTax: { question: 'Est-ce une facture fiscale officielle?', answer: 'Non. Les lignes manuelles de taxe ou ajustement sont seulement un format; verifiez les regles fiscales par juridiction hors de ce generateur gratuit.' },
   },
   de: {
     resultLabel: 'Dokumentvorschau',
@@ -217,13 +217,13 @@ const localizedBasics: Record<LocaleCode, {
     gateSection: 'Steuer- und Zahlungslimits',
     gateBody: 'Steuern, fiskalische Nummerierung, Zahlungen, Wiederholung, gespeicherte Kunden und Teams bleiben bis menschlicher Legal- und Billing-Pruefung gesperrt.',
     faqStorage: { question: 'Werden Kunden, Produkte oder Rechnungen gespeichert?', answer: 'Nein. InvoiceCraft erstellt kein Konto, ruft keine Produkt-API auf, nutzt kein Browser-Storage und speichert keine Felder.' },
-    faqTax: { question: 'Ist das eine offizielle Steuerrechnung?', answer: 'Nein. Manuelle Steuer- oder Anpassungszeilen sind nur Formatierung; Steuerregeln pro Jurisdiktion brauchen HUMAN_ACTION_REQUIRED.' },
+    faqTax: { question: 'Ist das eine offizielle Steuerrechnung?', answer: 'Nein. Manuelle Steuer- oder Anpassungszeilen sind nur Formatierung; pruefen Sie Steuerregeln pro Jurisdiktion ausserhalb dieses kostenlosen Generators.' },
   },
 }
 
 const sampleBase: InvoiceCraftDocumentInput = {
   issuerName: 'Northstar Studio',
-  issuerDetails: '245 Market Street\nSan Francisco, CA\nbilling@example.com',
+  issuerDetails: '245 Market Street\nSan Francisco, CA\nhello@example.com',
   clientName: 'Acme Operations',
   clientDetails: '18 Harbor Road\nAustin, TX\nfinance@example.com',
   documentNumber: 'IC-2026-0042',
@@ -281,7 +281,7 @@ const specs: InvoiceCraftToolSpec[] = [
     title: 'Receipt Builder',
     shortName: 'Receipt',
     headline: 'Draft a simple receipt with paid date, itemized total and local PDF download.',
-    description: 'Generate a receipt after a payment has already happened. The MVP does not collect payment or store history.',
+    description: 'Generate a receipt after a payment has already happened. The free builder does not collect payment or store history.',
     freeScope: 'One receipt at a time with local preview, local PDF export and explicit paid-date labeling.',
     upgradeScope: 'Saved customers, payment reconciliation, branding, team access, exports, history and payment integrations.',
     useCase: 'Use a receipt after payment is complete, when the payer needs a record of what was paid and when.',
@@ -444,7 +444,7 @@ function ensureInputLimit(input: InvoiceCraftDocumentInput): void {
   const totalLength = Object.values(input).reduce((sum, value) => sum + String(value ?? '').length, 0)
 
   if (totalLength > 20_000) {
-    throw new Error('Free InvoiceCraft documents accept short one-off inputs. Bulk imports are gated upgrades.')
+    throw new Error('Free InvoiceCraft documents accept short one-off inputs. Bulk imports belong to future account workflows.')
   }
 }
 
@@ -524,7 +524,7 @@ function parseItems(itemsRaw: string): InvoiceCraftDocumentLineItem[] {
   }
 
   if (lines.length > 30) {
-    throw new Error('Free InvoiceCraft documents support up to 30 line items. Batch workflows are gated upgrades.')
+    throw new Error('Free InvoiceCraft documents support up to 30 line items. Batch workflows belong to future account workflows.')
   }
 
   return lines.map((line, index) => {
@@ -558,6 +558,7 @@ export function formatMoney(value: number, currency: string, locale: LocaleCode 
 function buildOutput(document: InvoiceCraftDocumentSummary, locale: LocaleCode = 'en'): string {
   const lines = [
     `${document.title}: ${document.documentNumber}`,
+    ...(document.kind === 'receipt' ? ['Status: Paid'] : []),
     `Issuer: ${document.issuerName}`,
     `Client: ${document.clientName}`,
     `Issue date: ${document.issueDate}`,
@@ -606,7 +607,7 @@ function buildDocument(
   const adjustmentAmount = parseAmount(input.adjustmentAmount, 'Manual adjustment')
   const total = Math.round(Math.max(0, subtotal - discountAmount + shippingAmount + adjustmentAmount) * 100) / 100
   const title = tool.kind === 'quote'
-    ? 'Quote'
+    ? 'Quote / Estimate'
     : tool.kind === 'receipt'
       ? 'Receipt'
       : 'Invoice'
@@ -633,8 +634,8 @@ function buildDocument(
     adjustmentAmount,
     total,
     notes,
-    localOnlyNote: 'Storage: local browser session only; no account, localStorage, sessionStorage or product API.',
-    taxGateNote: 'Tax/legal note: manual tax or adjustment lines are not jurisdictional tax advice and require HUMAN_ACTION_REQUIRED before fiscal activation.',
+    localOnlyNote: 'Data note: current browser session only; no account or product API.',
+    taxGateNote: 'Tax/legal note: manual tax or adjustment lines are formatting helpers, not jurisdictional tax advice.',
   }
 }
 
@@ -653,11 +654,14 @@ export async function executeInvoiceCraftTool(
     const normalizedMode = modes.some((candidate) => candidate.value === mode) ? mode : 'clean'
     const document = buildDocument(tool, input, normalizedMode)
 
-    return ok(buildOutput(document, locale), [
+    const meta: ResultMeta[] = [
       { label: 'Document type', value: document.title },
+      ...(document.kind === 'receipt' ? [{ label: 'Status', value: 'Paid' }] : []),
       { label: 'Line items', value: String(document.items.length) },
       { label: 'Total', value: formatMoney(document.total, document.currency, locale) },
-    ], document)
+    ]
+
+    return ok(buildOutput(document, locale), meta, document)
   } catch (error) {
     return fail(error instanceof Error ? error.message : 'Document generation failed.')
   }

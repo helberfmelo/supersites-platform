@@ -92,10 +92,10 @@ useHead({
         </div>
         <div class="status-panel__row">
           <div>
-            <strong>{{ shellCopy.gatedTitle }}</strong>
-            <span>{{ shellCopy.gatedBody }}</span>
+            <strong>{{ shellCopy.downloadLabel }}</strong>
+            <span>{{ shellCopy.downloadHint }}</span>
           </div>
-          <span class="signal signal--amber" aria-hidden="true"></span>
+          <span class="signal" aria-hidden="true"></span>
         </div>
       </aside>
     </section>

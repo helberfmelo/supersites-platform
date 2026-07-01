@@ -129,13 +129,19 @@ a:focus-visible {
   background: #246a73;
 }
 
-.hero {
+.hero,
+.studio-entry {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(280px, 390px);
   gap: 28px;
   align-items: end;
   padding: 26px 0 34px;
   border-bottom: 1px solid #d8e2e3;
+}
+
+.studio-entry {
+  grid-template-columns: minmax(0, 820px);
+  padding-bottom: 18px;
 }
 
 .hero--compact {
@@ -502,7 +508,6 @@ h3 {
   text-decoration: none;
 }
 
-.tool-layout,
 .content-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
@@ -511,9 +516,24 @@ h3 {
   margin-top: 24px;
 }
 
+.tool-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  align-items: start;
+  margin-top: 24px;
+}
+
+.tool-layout > div:first-child {
+  display: grid;
+  grid-template-columns: minmax(340px, 0.92fr) minmax(360px, 1.08fr);
+  gap: 18px;
+  align-items: start;
+}
+
 .document-snapshot {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(220px, 320px);
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 16px;
   align-items: center;
   margin-top: 22px;
@@ -593,6 +613,7 @@ h3 {
 
 .tool-sidebar {
   display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
 }
 
@@ -600,19 +621,19 @@ h3 {
   margin-top: 0;
 }
 
-.gated-list,
+.future-list,
 .related-list {
   display: grid;
   gap: 8px;
 }
 
-.gated-list {
+.future-list {
   margin: 0;
   padding-left: 18px;
   color: #405455;
 }
 
-.gated-list li::marker {
+.future-list li::marker {
   color: #b35a2b;
 }
 
@@ -646,6 +667,12 @@ h3 {
 .result-panel,
 .preview-panel {
   margin-top: 14px;
+}
+
+.tool-layout .result-panel {
+  position: sticky;
+  top: 14px;
+  margin-top: 0;
 }
 
 .utility-form {
@@ -732,6 +759,36 @@ h3 {
 
 .document-form textarea {
   min-height: 92px;
+}
+
+.logo-control {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
+  gap: 12px;
+  align-items: end;
+  padding: 12px;
+  border: 1px solid #d8e0e1;
+  border-radius: 8px;
+  background: #f8fafb;
+}
+
+.logo-control__preview {
+  display: flex;
+  min-width: 0;
+  min-height: 48px;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  color: #536668;
+  font-size: 0.86rem;
+}
+
+.logo-control__preview img,
+.document-preview__brand img {
+  display: block;
+  width: 72px;
+  height: 36px;
+  object-fit: contain;
 }
 
 .line-editor {
@@ -827,6 +884,30 @@ h3 {
 
 .document-preview__header div:last-child {
   text-align: right;
+}
+
+.document-preview__brand {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+}
+
+.document-preview__dates {
+  display: grid;
+  align-content: start;
+  justify-items: end;
+}
+
+.document-status {
+  width: max-content;
+  margin-bottom: 8px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  color: #17543f;
+  background: #dceee8;
+  font-size: 0.76rem;
+  font-weight: 850;
+  text-transform: uppercase;
 }
 
 .document-preview__header span,
@@ -946,8 +1027,17 @@ h3 {
 }
 
 @media (max-width: 960px) {
-  .tool-grid {
+  .tool-grid,
+  .tool-sidebar {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tool-layout > div:first-child {
+    grid-template-columns: 1fr;
+  }
+
+  .tool-layout .result-panel {
+    position: static;
   }
 }
 
@@ -957,21 +1047,25 @@ h3 {
     padding-top: 16px;
   }
 
-  .site-header,
-  .page-footer,
-  .hero,
-  .workbench-heading,
-  .controls,
-  .tool-grid,
-  .band-grid,
-  .tool-layout,
-  .content-layout,
-  .form-grid,
-  .form-grid--three,
-  .form-grid--compact,
-  .line-editor__heading,
-  .line-row,
-  .document-preview__header,
+    .site-header,
+    .page-footer,
+    .hero,
+    .studio-entry,
+    .workbench-heading,
+    .controls,
+    .tool-grid,
+    .band-grid,
+    .tool-layout,
+    .tool-layout > div:first-child,
+    .tool-sidebar,
+    .content-layout,
+    .form-grid,
+    .form-grid--three,
+    .form-grid--compact,
+    .logo-control,
+    .line-editor__heading,
+    .line-row,
+    .document-preview__header,
   .document-preview__parties {
     display: grid;
     grid-template-columns: 1fr;
@@ -1017,8 +1111,10 @@ h3 {
   }
 
   .document-preview__header div:last-child,
+  .document-preview__dates,
   .document-preview__row span:not(:first-child) {
     text-align: left;
+    justify-items: start;
   }
 
   .document-preview__row {

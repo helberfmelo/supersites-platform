@@ -27,43 +27,73 @@ Concluido ate:
 - Etapa DevUtility Lab Tools: home, Structured Data Formatter, Base64 Converter, JWT Inspector, Regex Tester, Text Diff, Cron Helper, UUID Generator, Timestamp Converter e Hash Generator.
 - Etapa TimeNexus Tools: home, World Clock Americas + Europe, Time Zone Converter, Timestamp Converter, Date Difference, Business Days, Age Calculator, Percentage Calculator e Unit Converter.
 - Etapa QRRoute Tools: home, Static QR Code Generator, Barcode Generator, UTM Builder, vCard QR Builder, Wi-Fi QR Builder e QR Preview Lab.
+- Etapa InvoiceCraft Tools: home, Invoice Builder, Quote Builder e Receipt Builder.
 
 Proxima etapa ativa:
 
-- **Etapa InvoiceCraft Tools**
-- Sprints: **18.60 a 18.63**
-- Escopo: InvoiceCraft home, Invoice Builder, Quote Builder e Receipt Builder.
+- **Etapa MailHealth Tools**
+- Sprints: **18.64 a 18.71**
+- Escopo: MailHealth home, SPF Checker, DKIM Checker, DMARC Checker, MX Checker, Blacklist Check, SMTP Check e Header Analyzer.
 
 ## Sprints da proxima etapa
 
-### Sprint 18.60 - InvoiceCraft home
+### Sprint 18.64 - MailHealth home
 
-- Home deve ser editor/document studio imediatamente, nao catalogo textual.
-- Inspirar-se em Invoice Generator: editor acima da dobra, download claro.
-- Remover `Payments and taxes planned` do topo.
-- Nota fiscal/imposto apenas como disclaimer no fim e docs humanos.
+- Input de dominio unico acima da dobra.
+- Score geral de email health.
+- Cards SPF, DKIM, DMARC, MX, blacklist, SMTP e headers.
+- Inspirar-se em MxToolbox e Mail-Tester: score simples, detalhes tecnicos abaixo.
+- Remover `Monitoring planned`, `billing`, `API planned` do topo.
 
-### Sprint 18.61 - Invoice Builder
+### Sprint 18.65 - SPF Checker
 
-- Layout documento real: editor a esquerda, preview do documento a direita.
-- Botao `Download PDF` sempre visivel apos calculo.
-- Campos: issuer, client, number, issue date, due date, currency, items, tax/discount/shipping, notes e terms.
-- Adicionar logo upload local opcional se ja seguro; se nao, backlog.
-- Remover alertas tecnicos do topo.
+- Resultado visual: found/missing/multiple/risky.
+- Mostrar record bruto, mecanismos, lookup count e all mechanism.
+- Fix guidance com texto copiavel.
+- Mover record builder planned para bloco futuro discreto ou remover.
 
-### Sprint 18.62 - Quote Builder
+### Sprint 18.66 - DKIM Checker
 
-- Mesmo editor, mas linguagem de orcamento/proposta.
-- Campo `Valid until` destacado.
-- Preview com titulo Quote/Estimate.
-- CTA para converter em invoice como upgrade futuro.
+- Campos domain + selector claros.
+- Resultado: record found, key type, version, key present e warnings.
+- Explicar onde encontrar selector.
+- Nao expor raw key em analytics/logs.
 
-### Sprint 18.63 - Receipt Builder
+### Sprint 18.67 - DMARC Checker
 
-- Mesmo editor, mas com `Paid date` e status paid.
-- Preview de recibo limpo.
-- Nota: nao processa pagamento; apenas gera recibo.
-- Mover limites para baixo.
+- Resultado: policy, pct, rua, ruf, alignment e enforcement level.
+- Visual progress: none -> quarantine -> reject.
+- Fix guidance e exemplo de record.
+- Deixar claro que report ingestion e upgrade futuro, abaixo.
+
+### Sprint 18.68 - MX Checker
+
+- Tabela MX por prioridade.
+- Validar A/AAAA publico dos hosts.
+- Status visual de inbound readiness.
+- Proximos checks: SMTP e SPF.
+
+### Sprint 18.69 - Blacklist Check
+
+- Mostrar quais IPs foram checados e quais listas.
+- Separar listed/unlisted/error/rate-limited.
+- Nao prometer deliverability total.
+- Proximo passo claro se listado.
+
+### Sprint 18.70 - SMTP Check
+
+- Resultado: reachable/refused/timeout por MX e porta.
+- Sem enviar email.
+- Mostrar latencia e porta.
+- Limites abaixo.
+
+### Sprint 18.71 - Header Analyzer
+
+- Area de paste grande.
+- Parse local imediato.
+- Cards SPF/DKIM/DMARC/alignment.
+- Highlight de Authentication-Results.
+- Nao enviar header para API.
 
 ## Regras de produto
 

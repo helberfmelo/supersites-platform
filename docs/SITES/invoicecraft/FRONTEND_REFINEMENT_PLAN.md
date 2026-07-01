@@ -1,6 +1,6 @@
 # InvoiceCraft Frontend Refinement Plan
 
-Data-base: 2026-06-27
+Data-base: 2026-06-30
 
 ## Objective
 
@@ -69,3 +69,12 @@ Medium. Ads/support cannot sit near document fields, preview or download button.
 - Search, category filters, workflow shortcuts and contextual footer links point to the three real public builders.
 - Fiscal numbering, jurisdiction-specific tax rules and payment collection stay below the tool value as review guidance, not as top-page development language.
 - Local and live desktop/mobile QA passed with no overflow and no blocked public/internal terms.
+
+## Sprint 18.60-18.63 tool update
+
+- Completed locally with home opening directly into the InvoiceCraft document studio after a compact intro.
+- Desktop workbench now separates editor and live document preview into left/right columns, with snapshot actions and `Download PDF` visible after calculation.
+- Added optional local logo control using PNG/JPEG in browser memory only; no upload, storage, provider or analytics payload is introduced.
+- Quote flow now emphasizes `Valid until`, renders `Quote / Estimate`, and keeps convert-to-invoice as a future account workflow below the result.
+- Receipt flow now labels `Paid date`, displays `Paid` status and states that no payment is processed or verified.
+- Local validation passed with focused unit/build/preview/public-copy/secrets/diff checks; no screenshots or Playwright were run by default.

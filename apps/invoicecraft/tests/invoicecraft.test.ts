@@ -18,7 +18,7 @@ import { createInvoiceCraftToolEvent } from '../app/utils/analytics'
 
 const sample: InvoiceCraftDocumentInput = {
   issuerName: 'Northstar Studio',
-  issuerDetails: '245 Market Street\nSan Francisco, CA\nbilling@example.com',
+  issuerDetails: '245 Market Street\nSan Francisco, CA\nhello@example.com',
   clientName: 'Acme Operations',
   clientDetails: '18 Harbor Road\nAustin, TX\nfinance@example.com',
   documentNumber: 'IC-2026-0042',
@@ -34,7 +34,7 @@ const sample: InvoiceCraftDocumentInput = {
   notes: 'Generated locally.',
 }
 
-describe('InvoiceCraft MVP', () => {
+describe('InvoiceCraft document studio', () => {
   it('lists local document tools in roadmap order', () => {
     expect(invoiceCraftToolCatalog.map((tool) => tool.slug)).toEqual([...invoiceCraftToolSlugs])
     expect(invoiceCraftToolCatalog).toHaveLength(3)
@@ -74,18 +74,20 @@ describe('InvoiceCraft MVP', () => {
     expect(invoice.document?.adjustmentAmount).toBe(25)
     expect(invoice.document?.total).toBe(1480)
     expect(invoice.output).toContain('Shipping/freight')
-    expect(invoice.output).toContain('Storage: local browser session only')
+    expect(invoice.output).toContain('Data note: current browser session only')
     expect(invoice.output).toContain('Tax/legal note')
 
     const quote = await executeInvoiceCraftTool('quote-builder', { ...sample, documentNumber: 'QT-1' }, 'service')
     expect(quote.ok).toBe(true)
     expect(quote.document?.kind).toBe('quote')
+    expect(quote.document?.title).toBe('Quote / Estimate')
     expect(quote.document?.dueDateLabel).toBe('Valid until')
 
     const receipt = await executeInvoiceCraftTool('receipt-builder', { ...sample, documentNumber: 'RC-1' }, 'compact')
     expect(receipt.ok).toBe(true)
     expect(receipt.document?.kind).toBe('receipt')
     expect(receipt.document?.dueDateLabel).toBe('Paid date')
+    expect(receipt.output).toContain('Status: Paid')
   })
 
   it('rejects malformed local document inputs', async () => {

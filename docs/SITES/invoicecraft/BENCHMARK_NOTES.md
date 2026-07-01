@@ -1,6 +1,6 @@
 # InvoiceCraft Benchmark Notes
 
-Data-base: 2026-06-27
+Data-base: 2026-06-30
 
 ## References
 
@@ -48,3 +48,11 @@ Data-base: 2026-06-27
 - Invoice, quote and receipt are exposed as real deep links instead of a generic site page.
 - Legal/tax/payment constraints moved below the main value in a short review note; the top no longer reads like an internal tax/legal gate.
 - Production evidence: Hub deploy `28434690625`, release `de22452861a113981ebb373da06764c017df020d-28434690625-1`, Hub asset `B_-TzziU.js`, InvoiceCraft asset `D2cnhdLE.js`, public smokes, 6 deep links, crawler quick and live desktop/mobile visual QA passed.
+
+## Sprint 18.60-18.63 tool response
+
+- The app home now behaves more like invoice-generator benchmarks: the document editor and preview are the primary experience, and the catalog sits below.
+- Invoice, quote and receipt share the same editor/preview model while using flow-specific cues: due date, valid-until quote, paid-date receipt and paid status.
+- PDF export remains a free local action, with optional local PNG/JPEG logo support and no account requirement.
+- Tax, fiscal numbering, payment processing and future workflow limits were moved below the useful document result instead of appearing as top-page technical status.
+- Local evidence: `pnpm test:invoicecraft`, `pnpm build:invoicecraft`, `pnpm validate:invoicecraft-preview` asset `/_nuxt/DzUEzIxj.js`, `pnpm validate:public-copy`, `pnpm validate:secrets` and `git diff --check`.

@@ -1,6 +1,6 @@
 # InvoiceCraft Sprint Plan
 
-Data-base: 2026-06-27
+Data-base: 2026-06-30
 
 ## Real sprint
 
@@ -10,8 +10,9 @@ Data-base: 2026-06-27
 
 ## Current state
 
-- Nuxt SSG app exists with invoice, quote and receipt builders and local PDF output.
-- Public URL remains placeholder-only until app-specific deploy/smoke/rollback exists.
+- Nuxt SSG app exists with invoice, quote and receipt document studios and local PDF output.
+- Public URL is a versioned HostGator static app under internal development production.
+- Fase 18.60-18.63 refined the home, invoice, quote and receipt flows around editor/preview/PDF first.
 
 ## Scope
 
@@ -24,14 +25,17 @@ Data-base: 2026-06-27
 - `pnpm test:invoicecraft`
 - `pnpm build:invoicecraft`
 - `pnpm validate:invoicecraft-preview`
-- `pnpm test:e2e:invoicecraft`
-- Standard structure/secrets/dry-run/ci/diff gates.
+- `pnpm validate:public-copy`
+- `pnpm validate:secrets`
+- `git diff --check`
+- `pnpm test:e2e:invoicecraft` only when requested or when Quality Gate exposes a frontend failure.
 
 ## Gates
 
 - No official tax templates or fiscal numbering.
 - No payment collection, checkout, webhooks or saved customer data.
 - No analytics values from document fields or PDFs.
+- Optional logo upload remains local PNG/JPEG in browser memory only.
 
 ## Sprint 7.8 local implementation note
 
@@ -52,3 +56,14 @@ Data-base: 2026-06-27
 - Local validation passed: `pnpm test:invoicecraft`, `pnpm build:invoicecraft`, `pnpm validate:invoicecraft-preview` and `pnpm test:e2e:invoicecraft`; Playwright screenshots were inspected for home desktop, editor mobile and privacy mobile.
 - Production closure passed: commit `a57083b`, Quality Gate `28319167672`, Deploy Dry Run `28319167671`, Fase 9/Sprint 9.9 deploy `28319247622`, release `a57083b70a60a34b3fc66394a86d27a0c810db52-28319247622-1`, public asset `https://opentshost.com/supersites/invoicecraft/_nuxt/CAuTAoAj.js` and live UX smoke.
 - No account, saved client/product, storage, recurrence, branding checkout, payment link, webhook, fiscal numbering, jurisdictional tax automation, billing, ad serving, external analytics or production worker was activated.
+
+## Sprint 18.60-18.63 implementation note
+
+- Home now opens with a compact InvoiceCraft intro followed immediately by the document studio instead of a status/catalog-first surface.
+- The shared workbench now lays out editor left and document preview right on desktop, keeps `Download PDF` visible after calculation, recalculates previews locally and supports optional in-memory PNG/JPEG logo preview/PDF embedding.
+- Invoice Builder keeps issuer, client, number, issue date, due date, currency, line items, discount, shipping, manual adjustment, notes and terms visible.
+- Quote Builder highlights `Valid until`, renders the preview title as `Quote / Estimate` and includes a future convert-to-invoice account workflow note below the result.
+- Receipt Builder uses `Paid date`, adds `Paid` status and states below the result that InvoiceCraft does not process or verify payments.
+- Top-page technical language such as `Payments and taxes planned`, `MVP`, `gated`, `billing` and `HUMAN_ACTION_REQUIRED` was removed from app surfaces/checks.
+- Local validation passed: `pnpm test:invoicecraft`, `pnpm build:invoicecraft`, `pnpm validate:invoicecraft-preview` with asset `/_nuxt/DzUEzIxj.js`, `pnpm validate:public-copy`, `pnpm validate:secrets` and `git diff --check`.
+- Playwright, screenshots, crawler, Lighthouse, deploy dry-run and public smokes were intentionally skipped under the current stage-based default unless the remote Quality Gate requires them.

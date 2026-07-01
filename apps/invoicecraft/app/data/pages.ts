@@ -116,7 +116,7 @@ const pageSpecs: Record<ContentPageSlug, {
     sections: [
       ['Purpose', 'The site helps users draft a single business document, calculate itemized totals and download a PDF without mandatory signup.'],
       ['What is live now', 'Invoice, quote and receipt builders keep fields in the browser session and generate local PDFs.'],
-      ['Upgrade boundary', 'Paid value is planned around saved clients, product catalogs, recurrence, branding, team workflows, payments and history.'],
+      ['Upgrade boundary', 'Paid value is planned around saved clients, product catalogs, recurrence, branding, team workflows, payment integrations and history.'],
     ],
   },
   contact: {
@@ -139,10 +139,10 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   cookies: {
     title: 'Cookie Policy',
-    description: 'How InvoiceCraft plans essential storage, consent-aware analytics and advertising controls after gates.',
+    description: 'How InvoiceCraft plans essential preferences, consent-aware analytics and advertising controls.',
     sections: [
-      ['Essential storage', 'Language, consent and session security may use essential storage when those features are enabled.'],
-      ['Analytics and ads', 'External analytics and advertising storage remain blocked until consent mode, regional rules and placement gates are implemented.'],
+      ['Essential preferences', 'Language, consent and session security may use essential browser preferences when those features are enabled.'],
+      ['Analytics and ads', 'External analytics and advertising preferences are not used until consent mode, regional rules and placement review are implemented.'],
       ['Choices', 'A consent interface must exist before non-essential storage is used. Browser settings can clear local data.'],
     ],
   },
@@ -160,8 +160,8 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'How InvoiceCraft keeps document builders useful, local and honest about fiscal and payment limits.',
     sections: [
       ['Working builder first', 'Each page must include a functioning free document builder and preview before it can be treated as launch-ready content.'],
-      ['Client-side rendering', 'Totals, item rows and PDF downloads are generated in the browser from visible fields so the MVP does not need account storage to solve the basic task.'],
-      ['Abuse guard', 'The free MVP limits document size, line count and numeric ranges, and avoids payment collection or official tax claims.'],
+      ['Client-side rendering', 'Totals, item rows and PDF downloads are generated in the browser from visible fields so the free builder does not need an account to solve the basic task.'],
+      ['Abuse guard', 'The free builder limits document size, line count and numeric ranges, and avoids payment collection or official tax claims.'],
     ],
   },
   'editorial-policy': {
@@ -175,11 +175,11 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   status: {
     title: 'Launch Status',
-    description: 'InvoiceCraft status for public web readiness, ads, billing, PDF rendering and gates.',
+    description: 'InvoiceCraft status for public web readiness, PDF rendering and future account workflows.',
     sections: [
-      ['MVP surface', 'The local/CI MVP contains three document builders, five language route sets, sitemap, canonical, hreflang, structured data and browser-side PDF rendering.'],
+      ['Current surface', 'The app contains three document builders, five language route sets, sitemap, canonical, hreflang, structured data and browser-side PDF rendering.'],
       ['Production', 'InvoiceCraft is live at `/supersites/invoicecraft/` as a versioned HostGator static app with public smoke and rollback workflow validated.'],
-      ['Gates', 'Saved clients, products, recurrence, branding, team access, payments, billing, ads and external analytics remain blocked until documented gates pass.'],
+      ['Future workflows', 'Saved clients, products, recurrence, branding, team access, payment integrations, advertising and external analytics require separate documented review before activation.'],
     ],
   },
 }

@@ -81,22 +81,12 @@ useHead(() => ({
   <main class="page-shell">
     <SiteHeader :locale="locale" :path-for-locale="localizedHomePath" />
 
-    <section class="hero" aria-labelledby="invoicecraft-title">
+    <section class="studio-entry" aria-labelledby="invoicecraft-title">
       <div>
         <p class="eyebrow">{{ copy.eyebrow }}</p>
         <h1 id="invoicecraft-title">{{ copy.title }}</h1>
         <p class="lead">{{ copy.lead }}</p>
       </div>
-
-      <aside class="status-panel" aria-label="InvoiceCraft status">
-        <div v-for="row in copy.statusRows" :key="row.title" class="status-panel__row">
-          <div>
-            <strong>{{ row.title }}</strong>
-            <span>{{ row.body }}</span>
-          </div>
-          <span :class="['signal', row.tone === 'amber' ? 'signal--amber' : '']" aria-hidden="true"></span>
-        </div>
-      </aside>
     </section>
 
     <InvoiceCraftWorkbench :locale="locale" initial-slug="invoice-builder" />

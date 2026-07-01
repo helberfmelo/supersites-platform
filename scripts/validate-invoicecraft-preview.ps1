@@ -91,8 +91,8 @@ try {
         'hreflang="en"',
         'hreflang="pt-BR"',
         'Invoice Builder',
-        '3 local builders',
-        'Payments and taxes planned'
+        'Browser-only session',
+        'Download PDF'
     )
 
     foreach ($needle in $requiredHtml) {
