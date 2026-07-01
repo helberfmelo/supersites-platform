@@ -296,7 +296,7 @@ function localizedTrustDescription(locale: LocaleCode, slug: TrustPageSlug, site
       terms: `${siteName} sets baseline terms for responsible use, service limits and future paid features.`,
       methodology: `${siteName} explains how free tools, guidance, limits and corrections are reviewed.`,
       'editorial-policy': `${siteName} documents useful-content standards, localization review and correction handling.`,
-      status: `${siteName} records public launch status, release recovery, monetization state and review checkpoints.`,
+      status: `${siteName} records public availability, privacy, support boundaries and review notes.`,
     },
     'pt-br': {
       about: `${siteName} explica propósito, superfície pública atual, limite gratuito e status de revisão.`,
@@ -306,7 +306,7 @@ function localizedTrustDescription(locale: LocaleCode, slug: TrustPageSlug, site
       terms: `${siteName} define termos base de uso responsável, limites do serviço e recursos pagos futuros.`,
       methodology: `${siteName} explica como ferramentas gratuitas, orientação, limites e correções são revisados.`,
       'editorial-policy': `${siteName} documenta padrões de conteúdo útil, revisão localizada e correções.`,
-      status: `${siteName} registra status público, recuperação por release, monetização e pontos de revisão.`,
+      status: `${siteName} registra disponibilidade pública, privacidade, suporte e pontos de revisão.`,
     },
     es: {
       about: `${siteName} explica propósito, superficie pública actual, límite gratis y estado de revisión.`,
@@ -316,7 +316,7 @@ function localizedTrustDescription(locale: LocaleCode, slug: TrustPageSlug, site
       terms: `${siteName} define términos base de uso responsable, límites del servicio y funciones pagas futuras.`,
       methodology: `${siteName} explica cómo se revisan herramientas gratis, guía, límites y correcciones.`,
       'editorial-policy': `${siteName} documenta estándares de contenido útil, revisión localizada y correcciones.`,
-      status: `${siteName} registra estado público, recuperación por release, monetización y puntos de revisión.`,
+      status: `${siteName} registra disponibilidad pública, privacidad, soporte y puntos de revisión.`,
     },
     fr: {
       about: `${siteName} explique objectif, surface publique actuelle, limite gratuite et statut de revue.`,

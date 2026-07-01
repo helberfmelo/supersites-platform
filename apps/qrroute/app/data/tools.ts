@@ -140,7 +140,7 @@ const localizedBasics: Record<LocaleCode, {
     limitsSection: 'Limits',
     limitsBody: 'Static codes do not provide editable destinations, scans, analytics, branded domains, bulk jobs or redirect monitoring.',
     faqStorage: { question: 'Are destinations or contact details stored?', answer: 'No. QRRoute does not save inputs, create accounts, write browser storage or send payload contents to analytics.' },
-    faqDynamic: { question: 'Can I edit a QR code after printing it?', answer: 'Not in the free static builder. Editable QR codes, short links, analytics and custom domains are advanced account features for a later release.' },
+    faqDynamic: { question: 'Can I edit a QR code after printing it?', answer: 'Not in the free static builder. Editable QR codes, short links, analytics and custom domains are advanced account features for a future account workflow.' },
   },
   'pt-br': {
     modeLabel: 'Modo',

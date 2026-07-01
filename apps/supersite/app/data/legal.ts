@@ -1470,7 +1470,7 @@ export const legalPageCatalog: LegalPage[] = [
             heading: 'Website checks',
             paragraphs: [
               'Website tools inspect the public response available to the browser or service at check time: status code, redirects, headers, robots.txt, sitemap hints, timing and security-related signals.',
-              'A single check can be affected by cache, hosting region, rate limits, firewall rules, CDN behavior and temporary network conditions. Repeating a check and comparing with authoritative dashboards gives a clearer picture.',
+              'A single check can be affected by cache, hosting region, rate limits, firewall rules, CDN behavior and short-lived network conditions. Repeating a check and comparing with authoritative dashboards gives a clearer picture.',
             ],
           },
         ],

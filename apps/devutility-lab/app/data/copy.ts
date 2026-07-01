@@ -83,7 +83,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     workbenchBody: 'Pick a tool, load the safe example, inspect output, tree view and errors, then continue to the full page when you need guidance.',
     quickToolsTitle: 'Dense tool navigation',
     recentToolsTitle: 'Recent in this session',
-    emptyRecentBody: 'Run a tool to build a temporary in-memory recent list. Nothing is saved.',
+    emptyRecentBody: 'Run a tool to build an in-session recent list. Nothing is saved.',
     outputViewLabel: 'Output view',
     treeViewLabel: 'Tree view',
     errorViewLabel: 'Error view',
