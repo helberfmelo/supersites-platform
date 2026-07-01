@@ -72,7 +72,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     principles: [
       { title: 'Basic need solved', body: 'The free flow creates a useful document and PDF without requiring an account.' },
       { title: 'Data stays local', body: 'Issuer, client, item and amount fields stay in this browser session and are not sent to product analytics.' },
-      { title: 'Workflow is paid value', body: 'Saved clients, recurrence, branding, teams, payments and history stay behind later gates.' },
+      { title: 'Advanced workflow', body: 'Saved clients, recurrence, branding, teams, payments and history are separate from the free document builder.' },
     ],
     statusRows: [
       { title: '3 document studios', body: 'Invoice, quote and receipt pages open with an editor, preview and PDF download.', tone: 'green' },
@@ -98,7 +98,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     principles: [
       { title: 'Necessidade basica', body: 'O fluxo gratuito cria um documento util e PDF sem exigir conta.' },
       { title: 'Dados locais', body: 'Emissor, cliente, itens e valores ficam nesta sessao do navegador e nao sao enviados a analytics.' },
-      { title: 'Workflow e valor pago', body: 'Clientes salvos, recorrencia, branding, equipe, pagamentos e historico ficam em gates futuros.' },
+      { title: 'Fluxo avancado', body: 'Clientes salvos, recorrencia, branding, equipe, pagamentos e historico ficam separados do gerador gratuito.' },
     ],
     statusRows: [
       { title: '3 estudios de documento', body: 'Fatura, orcamento e recibo abrem com editor, preview e PDF.', tone: 'green' },

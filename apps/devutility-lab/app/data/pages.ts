@@ -69,27 +69,27 @@ export const contentPageCatalog: ContentPage[] = [
     en: copy('About', 'About DevUtility Lab', 'DevUtility Lab is the SuperSites product for browser-side developer utilities.', reviewed.en, [
       ['Purpose', 'The site helps developers format, encode, inspect and compare common snippets while reducing unnecessary transfer of sensitive content.'],
       ['What is live now', 'The current MVP includes nine local tools covering structured data, Base64, JWT, regex, diff, cron, UUID, timestamp and hashes.'],
-      ['Upgrade boundary', 'Paid value is planned around private history, workspaces, batch processing, larger files, API access and no ads.'],
+      ['Advanced workflows', 'Private history, workspaces, batch processing, larger files, API access and ad-free use are separate from the free tools.'],
     ]),
     'pt-br': copy('Sobre', 'Sobre o DevUtility Lab', 'DevUtility Lab e o produto SuperSites de utilitarios dev no navegador.', reviewed['pt-br'], [
       ['Proposito', 'O site ajuda devs a formatar, codificar, inspecionar e comparar snippets reduzindo envio desnecessario de conteudo sensivel.'],
       ['O que esta ativo', 'O MVP atual entrega nove ferramentas locais para dados estruturados, Base64, JWT, regex, diff, cron, UUID, timestamp e hashes.'],
-      ['Fronteira do upgrade', 'O valor pago planejado esta em historico privado, workspaces, lotes, arquivos maiores, API e ausencia de anuncios.'],
+      ['Fluxos avancados', 'Historico privado, workspaces, lotes, arquivos maiores, API e uso sem anuncios ficam separados das ferramentas gratuitas.'],
     ]),
     es: copy('Acerca de', 'Acerca de DevUtility Lab', 'DevUtility Lab es el producto SuperSites de utilidades dev en el navegador.', reviewed.es, [
       ['Proposito', 'El sitio ayuda a formatear, codificar, inspeccionar y comparar fragmentos reduciendo transferencias innecesarias.'],
       ['Que esta activo', 'El MVP actual entrega nueve herramientas locales para datos, Base64, JWT, regex, diff, cron, UUID, timestamp y hashes.'],
-      ['Limite de upgrade', 'El valor pago se planea para historial privado, workspaces, lotes, archivos mayores, API y sin anuncios.'],
+      ['Flujos avanzados', 'Historial privado, workspaces, lotes, archivos mayores, API y uso sin anuncios quedan separados de las herramientas gratuitas.'],
     ]),
     fr: copy('A propos', 'A propos de DevUtility Lab', 'DevUtility Lab est le produit SuperSites pour utilitaires dev cote navigateur.', reviewed.fr, [
       ['Objectif', 'Le site aide a formater, encoder, inspecter et comparer des extraits en limitant les transferts inutiles.'],
       ['Actif maintenant', 'Le MVP actuel propose neuf outils locaux pour donnees, Base64, JWT, regex, diff, cron, UUID, timestamp et hashes.'],
-      ['Limite upgrade', 'La valeur payante vise historique prive, workspaces, lots, gros fichiers, API et absence de publicite.'],
+      ['Flux avances', 'Historique prive, workspaces, lots, gros fichiers, API et usage sans publicite restent separes des outils gratuits.'],
     ]),
     de: copy('Ueber', 'Ueber DevUtility Lab', 'DevUtility Lab ist das SuperSites-Produkt fuer Browser-Developer-Tools.', reviewed.de, [
       ['Zweck', 'Die Seite hilft beim Formatieren, Codieren, Pruefen und Vergleichen von Ausschnitten mit weniger unnoetiger Uebertragung.'],
       ['Jetzt live', 'Das aktuelle MVP liefert neun lokale Tools fuer Daten, Base64, JWT, Regex, Diff, Cron, UUID, Timestamp und Hashes.'],
-      ['Upgrade-Grenze', 'Bezahlwert ist fuer privaten Verlauf, Workspaces, Stapel, groessere Dateien, API und keine Anzeigen geplant.'],
+      ['Erweiterte Workflows', 'Privater Verlauf, Workspaces, Stapel, groessere Dateien, API und werbefreie Nutzung sind von den kostenlosen Tools getrennt.'],
     ]),
   }),
   page('contact', {
@@ -147,7 +147,7 @@ export const contentPageCatalog: ContentPage[] = [
     ]),
   }),
   page('cookies', {
-    en: copy('Cookies', 'Cookie Policy', 'How DevUtility Lab plans essential storage, consent-aware analytics and advertising controls after gates.', reviewed.en, [
+    en: copy('Cookies', 'Cookie Policy', 'How DevUtility Lab uses essential preferences and explains consent-aware analytics or advertising controls.', reviewed.en, [
       ['Essential storage', 'Language, consent and session security may use essential storage when those features are enabled.'],
       ['Analytics and ads', 'External analytics and advertising storage remain blocked until consent mode and regional rules are implemented.'],
       ['Choices', 'A consent interface must exist before non-essential storage is used. Browser settings can clear local data.'],
@@ -255,30 +255,30 @@ export const contentPageCatalog: ContentPage[] = [
     ]),
   }),
   page('status', {
-    en: copy('Status', 'Launch Status', 'DevUtility Lab status for public web readiness, ads, billing, deploy and gates.', reviewed.en, [
-      ['MVP surface', 'The local/CI MVP contains nine tools, five language route sets, sitemap, canonical, hreflang and structured data.'],
-      ['Production', 'DevUtility Lab is live at `/supersites/devutility-lab/` as a versioned HostGator static app with public smoke and rollback workflow validated.'],
-      ['Gates', 'AdSense, billing, external analytics, accounts, private history, workspaces, batch processing and API remain blocked until documented gates pass.'],
+    en: copy('Status', 'Public Status', 'DevUtility Lab status for free browser-side developer utilities.', reviewed.en, [
+      ['Free tools', 'DevUtility Lab offers nine browser-side tools for formatting, encoding, inspecting and comparing common developer snippets.'],
+      ['Snippet privacy', 'Free tool inputs stay in the browser session and are not sent to a product API for the basic result.'],
+      ['Advanced workflows', 'Accounts, private history, workspaces, batch processing, larger files, API, external analytics and ad-free workflows require separate controls before activation.'],
     ]),
-    'pt-br': copy('Status', 'Status de Lancamento', 'Status do DevUtility Lab para web publica, ads, billing, deploy e gates.', reviewed['pt-br'], [
-      ['Superficie MVP', 'O MVP local/CI contem nove ferramentas, cinco idiomas, sitemap, canonical, hreflang e dados estruturados.'],
-      ['Producao', 'O DevUtility Lab esta no ar em `/supersites/devutility-lab/` como app estatico versionado no HostGator, com smoke publico e rollback validados.'],
-      ['Gates', 'AdSense, billing, analytics externo, contas, historico privado, workspaces, lotes e API seguem bloqueados.'],
+    'pt-br': copy('Status', 'Status Publico', 'Status do DevUtility Lab para utilitarios dev gratuitos no navegador.', reviewed['pt-br'], [
+      ['Ferramentas gratuitas', 'O DevUtility Lab oferece nove ferramentas no navegador para formatar, codificar, inspecionar e comparar snippets comuns.'],
+      ['Privacidade dos snippets', 'Entradas das ferramentas gratuitas ficam na sessao do navegador e nao sao enviadas a uma API de produto no resultado basico.'],
+      ['Fluxos avancados', 'Contas, historico privado, workspaces, lotes, arquivos maiores, API, analytics externo e uso sem anuncios exigem controles separados antes da ativacao.'],
     ]),
-    es: copy('Estado', 'Estado de lanzamiento', 'Estado de DevUtility Lab para web publica, ads, billing, deploy y gates.', reviewed.es, [
-      ['Superficie MVP', 'El MVP local/CI contiene nueve herramientas, cinco idiomas, sitemap, canonical, hreflang y datos estructurados.'],
-      ['Produccion', 'DevUtility Lab esta activo en `/supersites/devutility-lab/` como app estatico versionado en HostGator, con smoke publico y rollback validados.'],
-      ['Gates', 'AdSense, billing, analytics externo, cuentas, historial privado, workspaces, lotes y API siguen bloqueados.'],
+    es: copy('Estado', 'Estado publico', 'Estado de DevUtility Lab para utilidades dev gratuitas en el navegador.', reviewed.es, [
+      ['Herramientas gratis', 'DevUtility Lab ofrece nueve herramientas en el navegador para formatear, codificar, inspeccionar y comparar snippets comunes.'],
+      ['Privacidad de snippets', 'Las entradas quedan en la sesion del navegador y no se envian a una API de producto para el resultado basico.'],
+      ['Flujos avanzados', 'Cuentas, historial privado, workspaces, lotes, archivos mayores, API, analytics externo y uso sin anuncios requieren controles separados antes de activarse.'],
     ]),
-    fr: copy('Statut', 'Statut de lancement', 'Statut DevUtility Lab pour web public, ads, billing, deploy et gates.', reviewed.fr, [
-      ['Surface MVP', 'Le MVP local/CI contient neuf outils, cinq langues, sitemap, canonical, hreflang et donnees structurees.'],
-      ['Production', 'DevUtility Lab est en ligne sur `/supersites/devutility-lab/` comme app statique HostGator versionnee, avec smoke public et rollback valides.'],
-      ['Gates', 'AdSense, billing, analytics externe, comptes, historique prive, workspaces, lots et API restent bloques.'],
+    fr: copy('Statut', 'Statut public', 'Statut DevUtility Lab pour utilitaires dev gratuits dans le navigateur.', reviewed.fr, [
+      ['Outils gratuits', 'DevUtility Lab propose neuf outils navigateur pour formater, encoder, inspecter et comparer des snippets courants.'],
+      ['Confidentialite snippets', 'Les entrees restent dans la session navigateur et ne sont pas envoyees a une API produit pour le resultat de base.'],
+      ['Flux avances', 'Comptes, historique prive, workspaces, lots, gros fichiers, API, analytics externe et usage sans publicite exigent des controles separes avant activation.'],
     ]),
-    de: copy('Status', 'Launch-Status', 'DevUtility Lab Status fuer Public Web, Ads, Billing, Deploy und Gates.', reviewed.de, [
-      ['MVP-Oberflaeche', 'Das lokale/CI-MVP enthaelt neun Tools, fuenf Sprachen, Sitemap, Canonical, Hreflang und strukturierte Daten.'],
-      ['Produktion', 'DevUtility Lab ist unter `/supersites/devutility-lab/` als versionierte statische HostGator-App live; Public Smoke und Rollback sind validiert.'],
-      ['Gates', 'AdSense, Billing, externe Analytics, Konten, privater Verlauf, Workspaces, Stapel und API bleiben gesperrt.'],
+    de: copy('Status', 'Oeffentlicher Status', 'DevUtility-Lab-Status fuer kostenlose Browser-Developer-Tools.', reviewed.de, [
+      ['Kostenlose Tools', 'DevUtility Lab bietet neun Browser-Tools zum Formatieren, Codieren, Pruefen und Vergleichen haeufiger Developer-Snippets.'],
+      ['Snippet-Datenschutz', 'Eingaben bleiben in der Browsersitzung und werden fuer das Basisergebnis nicht an eine Produkt-API gesendet.'],
+      ['Erweiterte Workflows', 'Konten, privater Verlauf, Workspaces, Stapel, groessere Dateien, API, externe Analytics und werbefreie Nutzung brauchen vor Aktivierung eigene Kontrollen.'],
     ]),
   }),
 ]

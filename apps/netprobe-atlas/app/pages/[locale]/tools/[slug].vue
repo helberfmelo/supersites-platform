@@ -76,7 +76,7 @@ const benchmarkCopyByLocale = {
     privacyBody: 'Inputs and returned values stay out of analytics. The IP result is shown to this browser session and the event only records the tool slug.',
     privacyLink: 'Read privacy details',
     coverageTitle: 'Coverage disclosure',
-    coverageBody: 'Current propagation uses controlled resolver snapshots available to this check. It is not a worldwide propagation claim until regional checks are available and documented.',
+    coverageBody: 'This matrix shows the resolver locality available to the public check. Current coverage is a controlled snapshot, so use it with authoritative DNS and TTL timing.',
     relatedTitle: 'Next checks',
     mapTitle: 'Resolver coverage map',
     resolverDetailsTitle: 'Resolver and locality table',
@@ -92,7 +92,7 @@ const benchmarkCopyByLocale = {
     privacyBody: 'Entradas e valores retornados ficam fora de analytics. O IP aparece apenas nesta sessão do navegador e o evento registra só o slug da ferramenta.',
     privacyLink: 'Ler detalhes de privacidade',
     coverageTitle: 'Cobertura declarada',
-    coverageBody: 'A propagação atual usa snapshots de resolvedores controlados disponíveis nesta consulta. Não é uma promessa mundial até checagens regionais reais estarem disponíveis e documentadas.',
+    coverageBody: 'Esta matriz mostra a localidade de resolvedor disponível na consulta pública. A cobertura atual é um snapshot controlado, então compare com o DNS autoritativo e o tempo de TTL.',
     relatedTitle: 'Próximas checagens',
     mapTitle: 'Mapa de cobertura dos resolvedores',
     resolverDetailsTitle: 'Tabela de resolvedor e localidade',
@@ -108,7 +108,7 @@ const benchmarkCopyByLocale = {
     privacyBody: 'Entradas y valores devueltos quedan fuera de analytics. La IP se muestra solo en esta sesión y el evento registra solo el slug de herramienta.',
     privacyLink: 'Leer privacidad',
     coverageTitle: 'Cobertura declarada',
-    coverageBody: 'La propagación actual usa snapshots de resolvers controlados disponibles en esta consulta. No es una promesa mundial hasta que existan chequeos regionales documentados.',
+    coverageBody: 'Esta matriz muestra la localidad de resolver disponible en la consulta pública. La cobertura actual es un snapshot controlado; compárala con DNS autoritativo y TTL.',
     relatedTitle: 'Siguientes chequeos',
     mapTitle: 'Mapa de cobertura de resolvers',
     resolverDetailsTitle: 'Tabla de resolver y localidad',
@@ -124,7 +124,7 @@ const benchmarkCopyByLocale = {
     privacyBody: 'Les entrées et valeurs retournées restent hors analytics. L’IP est affichée dans cette session et l’événement ne garde que le slug outil.',
     privacyLink: 'Lire la confidentialité',
     coverageTitle: 'Couverture déclarée',
-    coverageBody: 'La propagation actuelle utilise les snapshots de résolveurs contrôlés disponibles pour ce contrôle. Ce résultat ne promet pas une couverture mondiale avant des contrôles régionaux documentés.',
+    coverageBody: 'Cette matrice montre la localité du résolveur disponible pour le contrôle public. La couverture actuelle est un snapshot contrôlé; comparez avec le DNS autoritatif et les TTL.',
     relatedTitle: 'Contrôles suivants',
     mapTitle: 'Carte de couverture des résolveurs',
     resolverDetailsTitle: 'Table résolveur et localité',
@@ -140,7 +140,7 @@ const benchmarkCopyByLocale = {
     privacyBody: 'Eingaben und Rückgabewerte bleiben aus Analytics heraus. Die IP wird nur in dieser Browsersitzung gezeigt; das Event speichert nur den Tool-Slug.',
     privacyLink: 'Datenschutz lesen',
     coverageTitle: 'Abgedeckter Umfang',
-    coverageBody: 'Die aktuelle Propagation nutzt kontrollierte Resolver-Snapshots dieser Prüfung. Sie ist keine weltweite Aussage, bis dokumentierte regionale Prüfungen verfügbar sind.',
+    coverageBody: 'Diese Matrix zeigt die Resolver-Standortdaten der öffentlichen Prüfung. Die aktuelle Abdeckung ist ein kontrollierter Snapshot; vergleichen Sie mit autoritativem DNS und TTL.',
     relatedTitle: 'Nächste Prüfungen',
     mapTitle: 'Resolver-Abdeckung',
     resolverDetailsTitle: 'Resolver- und Standorttabelle',
@@ -375,6 +375,11 @@ const toolUiCopyByLocale = {
     resolverSnapshots: 'resolver snapshots',
     resolver: 'Resolver',
     region: 'Region',
+    locality: 'Locality',
+    scope: 'Scope',
+    propagated: 'Propagated',
+    different: 'Different',
+    noAnswer: 'No answer',
     ttlMin: 'TTL min',
     values: 'Values',
     noValuesReturned: 'No values returned',
@@ -470,6 +475,11 @@ const toolUiCopyByLocale = {
     resolverSnapshots: 'snapshots de resolvedores',
     resolver: 'Resolvedor',
     region: 'Região',
+    locality: 'Localidade',
+    scope: 'Escopo',
+    propagated: 'Propagou',
+    different: 'Diferente',
+    noAnswer: 'Sem resposta',
     ttlMin: 'TTL min',
     values: 'Valores',
     noValuesReturned: 'Nenhum valor retornado',
@@ -565,6 +575,11 @@ const toolUiCopyByLocale = {
     resolverSnapshots: 'snapshots de resolvers',
     resolver: 'Resolver',
     region: 'Región',
+    locality: 'Localidad',
+    scope: 'Alcance',
+    propagated: 'Propagado',
+    different: 'Diferente',
+    noAnswer: 'Sin respuesta',
     ttlMin: 'TTL min',
     values: 'Valores',
     noValuesReturned: 'No se devolvieron valores',
@@ -660,6 +675,11 @@ const toolUiCopyByLocale = {
     resolverSnapshots: 'snapshots de résolveurs',
     resolver: 'Résolveur',
     region: 'Région',
+    locality: 'Localité',
+    scope: 'Portée',
+    propagated: 'Propagé',
+    different: 'Différent',
+    noAnswer: 'Sans réponse',
     ttlMin: 'TTL min',
     values: 'Valeurs',
     noValuesReturned: 'Aucune valeur retournée',
@@ -755,6 +775,11 @@ const toolUiCopyByLocale = {
     resolverSnapshots: 'Resolver-Snapshots',
     resolver: 'Resolver',
     region: 'Region',
+    locality: 'Standort',
+    scope: 'Umfang',
+    propagated: 'Propagiert',
+    different: 'Abweichend',
+    noAnswer: 'Keine Antwort',
     ttlMin: 'TTL min',
     values: 'Werte',
     noValuesReturned: 'Keine Werte zurückgegeben',
@@ -831,7 +856,7 @@ const toolUiCopyByLocale = {
 } satisfies Record<LocaleCode, Record<string, string>>
 const toolUiCopy = sanitizePublicCopy(locale, toolUiCopyByLocale[locale])
 const dnsLookupRecordTypes = ['A', 'AAAA', 'CNAME', 'MX', 'TXT', 'NS', 'SOA', 'CAA'] as const
-const propagationRecordTypes = ['A', 'AAAA', 'CNAME', 'MX', 'TXT', 'NS'] as const
+const propagationRecordTypes = ['A', 'AAAA', 'CNAME', 'MX', 'NS', 'PTR', 'SOA', 'SRV', 'TXT', 'CAA'] as const
 const dnsVisualRecordTypes = ['A', 'AAAA', 'CNAME', 'MX', 'NS', 'PTR', 'SOA', 'SRV', 'TXT', 'CAA'] as const
 const quickPorts = [80, 443, 587, 993] as const
 const runtimeConfig = useRuntimeConfig()
@@ -947,7 +972,15 @@ interface SslCertificateData {
 
 interface DnsPropagationSnapshot {
   resolver_id: string
+  resolver_name?: string
   region: string
+  city?: string
+  country?: string
+  country_code?: string
+  flag?: string
+  latitude?: number | null
+  longitude?: number | null
+  scope?: string
   status: string
   ttl_min: number | null
   values: string[]
@@ -1470,6 +1503,63 @@ const propagationDistinctValues = computed(() => {
   return Array.from(new Set(propagationResult.value.snapshots.flatMap((snapshot) => snapshot.values))).slice(0, 6)
 })
 
+function snapshotDisplayName(snapshot: DnsPropagationSnapshot): string {
+  return snapshot.resolver_name || snapshot.resolver_id
+}
+
+function snapshotLocality(snapshot: DnsPropagationSnapshot): string {
+  const locality = [snapshot.city, snapshot.country].filter(Boolean).join(', ')
+
+  return locality || snapshot.region
+}
+
+function snapshotValuesText(snapshot: DnsPropagationSnapshot): string {
+  return snapshot.values.length > 0 ? snapshot.values.join(', ') : toolUiCopy.noValuesReturned
+}
+
+function snapshotMatchesExpected(snapshot: DnsPropagationSnapshot): boolean {
+  const expectedValue = normalizeCompareValue(expectedPropagationValue.value)
+
+  return expectedValue !== '' && snapshot.values.some((value) => normalizeCompareValue(value) === expectedValue)
+}
+
+function snapshotStatusLabel(snapshot: DnsPropagationSnapshot): string {
+  if (snapshot.status !== 'answered' || snapshot.values.length === 0) {
+    return toolUiCopy.noAnswer
+  }
+
+  if (normalizeCompareValue(expectedPropagationValue.value) !== '') {
+    return snapshotMatchesExpected(snapshot) ? toolUiCopy.propagated : toolUiCopy.different
+  }
+
+  return toolUiCopy.propagated
+}
+
+function snapshotTone(snapshot: DnsPropagationSnapshot): 'good' | 'warning' {
+  return snapshotStatusLabel(snapshot) === toolUiCopy.propagated ? 'good' : 'warning'
+}
+
+function resolverPinStyle(snapshot: DnsPropagationSnapshot, index: number): Record<string, string> {
+  if (typeof snapshot.latitude === 'number' && typeof snapshot.longitude === 'number') {
+    const left = Math.max(4, Math.min(96, ((snapshot.longitude + 180) / 360) * 100))
+    const top = Math.max(8, Math.min(92, ((90 - snapshot.latitude) / 180) * 100))
+
+    return {
+      left: `${left}%`,
+      top: `${top}%`,
+    }
+  }
+
+  const fallbackPositions = [
+    { left: '52%', top: '46%' },
+    { left: '28%', top: '38%' },
+    { left: '72%', top: '40%' },
+    { left: '43%', top: '62%' },
+  ]
+
+  return fallbackPositions[index % fallbackPositions.length]
+}
+
 function buildSafeSummary(): string {
   if (ipResult.value) {
     return [
@@ -1910,8 +2000,8 @@ useHead({
         </div>
         <div class="status-panel__row">
           <div>
-            <strong>{{ shellCopy.plannedTitle }}</strong>
-            <span>{{ shellCopy.plannedBody }}</span>
+            <strong>{{ shellCopy.infoTitle }}</strong>
+            <span>{{ shellCopy.infoBody }}</span>
           </div>
           <span class="signal signal--amber" aria-hidden="true"></span>
         </div>
@@ -2377,10 +2467,15 @@ useHead({
 
             <section class="resolver-map" :aria-label="benchmarkCopy.mapTitle">
               <h3>{{ benchmarkCopy.mapTitle }}</h3>
-              <div class="resolver-grid">
-                <div v-for="snapshot in propagationResult.snapshots" :key="`${snapshot.resolver_id}-pin`" :class="['resolver-pin', snapshot.status === 'answered' ? 'resolver-pin--good' : 'resolver-pin--warning']">
-                  <strong>{{ snapshot.region }}</strong>
-                  <span>{{ snapshot.status }}</span>
+              <div class="resolver-map__canvas">
+                <div
+                  v-for="(snapshot, index) in propagationResult.snapshots"
+                  :key="`${snapshot.resolver_id}-pin`"
+                  :class="['resolver-pin', snapshotTone(snapshot) === 'good' ? 'resolver-pin--good' : 'resolver-pin--warning']"
+                  :style="resolverPinStyle(snapshot, index)"
+                >
+                  <strong>{{ snapshotLocality(snapshot) }}</strong>
+                  <span>{{ snapshotStatusLabel(snapshot) }}</span>
                 </div>
               </div>
             </section>
@@ -2392,24 +2487,29 @@ useHead({
                   <thead>
                     <tr>
                       <th>{{ toolUiCopy.resolver }}</th>
-                      <th>{{ toolUiCopy.region }}</th>
+                      <th>{{ toolUiCopy.locality }}</th>
                       <th>{{ toolUiCopy.status }}</th>
                       <th>{{ toolUiCopy.ttlMin }}</th>
-                      <th>{{ toolUiCopy.latency }}</th>
                       <th>{{ toolUiCopy.values }}</th>
+                      <th>{{ toolUiCopy.scope }}</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr v-for="snapshot in propagationResult.snapshots" :key="snapshot.resolver_id">
-                      <td>{{ snapshot.resolver_id }}</td>
-                      <td>{{ snapshot.region }}</td>
-                      <td>{{ snapshot.status }}</td>
-                      <td>{{ snapshot.ttl_min ?? toolUiCopy.none }}</td>
-                      <td>{{ toolUiCopy.notProvided }}</td>
                       <td>
-                        <span v-if="snapshot.values.length > 0">{{ snapshot.values.join(', ') }}</span>
-                        <span v-else>{{ toolUiCopy.noValuesReturned }}</span>
+                        <strong>{{ snapshotDisplayName(snapshot) }}</strong>
+                        <span class="table-subtext">{{ snapshot.resolver_id }}</span>
                       </td>
+                      <td>
+                        <span>{{ snapshot.flag ? `${snapshot.flag} ` : '' }}{{ snapshotLocality(snapshot) }}</span>
+                        <span class="table-subtext">{{ snapshot.country_code || snapshot.region }}</span>
+                      </td>
+                      <td>
+                        <span :class="['status-badge', `status-badge--${snapshotTone(snapshot)}`]">{{ snapshotStatusLabel(snapshot) }}</span>
+                      </td>
+                      <td>{{ snapshot.ttl_min ?? toolUiCopy.none }}</td>
+                      <td>{{ snapshotValuesText(snapshot) }}</td>
+                      <td>{{ snapshot.scope || snapshot.region }}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -2529,7 +2629,7 @@ useHead({
             </section>
           </div>
 
-            <p v-else>{{ previewSubmitted ? copy.previewResult : shellCopy.plannedBody }}</p>
+            <p v-else>{{ previewSubmitted ? copy.previewResult : shellCopy.infoBody }}</p>
           </template>
         </section>
 

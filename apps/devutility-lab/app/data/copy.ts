@@ -105,7 +105,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     principles: [
       { title: 'Local by default', body: 'The MVP runs transformations in the browser and uses a Web Worker when the browser supports it.' },
       { title: 'No content logging', body: 'Analytics events may include the tool slug and page path, never pasted snippets or generated results.' },
-      { title: 'Workflow depth', body: 'Upgrade value belongs in saved runs, workspaces, batch jobs, larger files and API automation.' },
+      { title: 'Workflow depth', body: 'Advanced workflows belong in saved runs, workspaces, batch jobs, larger files and API automation.' },
     ],
     statusRows: [
       { title: '9 browser tools', body: 'JSON/XML/YAML/CSV, Base64, JWT, regex, diff, cron, UUID, timestamp and hashes.', tone: 'green' },

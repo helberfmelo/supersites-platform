@@ -484,7 +484,7 @@ export const toolCatalog: ToolDefinition[] = [
     upgradeScope: 'Header drift monitoring, policy regression alerts, history and client-facing reports.',
     exampleTarget: 'https://example.com',
     measure: 'SitePulse reads only HTTP response headers from the bounded request; it does not execute page scripts.',
-    interpret: 'Missing CSP or HSTS can be a risk, but final policy depends on the application and deployment model.',
+    interpret: 'Missing CSP or HSTS can be a risk, but final policy depends on the application and hosting context.',
     example: 'A healthy public app may include strict-transport-security, content-security-policy and referrer-policy headers.',
     commonIssue: 'Headers are often configured in CDN, reverse proxy and application layers, which can overwrite each other.',
     fix: 'Audit the final response at the public URL, then update the layer that actually controls the header.',
@@ -509,7 +509,7 @@ export const toolCatalog: ToolDefinition[] = [
     interpret: 'A missing robots.txt is not always an error, but accidental Disallow rules can block important pages.',
     example: 'A robots file with Sitemap: https://example.com/sitemap.xml helps crawlers discover submitted URLs.',
     commonIssue: 'Staging Disallow rules can accidentally ship to production.',
-    fix: 'Review robots.txt after deploys and confirm important sections are crawlable before requesting indexing.',
+    fix: 'Review robots.txt after site changes and confirm important sections are crawlable before requesting indexing.',
     limitation: 'The free check does not emulate every crawler or evaluate every path rule.',
     faq: [
       { question: 'Will this crawl my site?', answer: 'No. It fetches only robots.txt for the normalized origin.' },
@@ -575,7 +575,7 @@ export const toolCatalog: ToolDefinition[] = [
     interpret: 'Use the snapshot to triage obvious issues; use dedicated checks for deeper interpretation.',
     example: 'A healthy snapshot has 2xx final status, short redirect chain, core security headers and valid crawl files.',
     commonIssue: 'Teams may fix performance while missing crawlability or security header regressions.',
-    fix: 'Track the snapshot after deploys, then add recurring monitoring when alerting and retention rules are configured.',
+    fix: 'Track the snapshot after site changes, then add recurring monitoring when alerting and retention rules are configured.',
     limitation: 'The free snapshot is not a full synthetic browser test, Lighthouse audit or PageSpeed/GTmetrix measurement.',
     faq: [
       { question: 'Does this replace uptime monitoring?', answer: 'No. It is a one-shot diagnostic. Recurring probes belong in account workflows.' },

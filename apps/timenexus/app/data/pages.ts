@@ -116,7 +116,7 @@ const pageSpecs: Record<ContentPageSlug, {
     sections: [
       ['Purpose', 'The site helps users answer everyday time, calendar and conversion questions without mandatory signup or server-side product storage.'],
       ['What is live now', 'The browser MVP includes seven local tools covering time zones, date difference, business days, timestamp, age, percentage and units.'],
-      ['Upgrade boundary', 'Paid value is planned around widgets, API access, presets, private history, collaboration and no ads.'],
+      ['Advanced workflows', 'Widgets, API access, presets, private history, collaboration and ad-free use are separate from the free time tools.'],
     ],
   },
   contact: {
@@ -139,7 +139,7 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   cookies: {
     title: 'Cookie Policy',
-    description: 'How TimeNexus plans essential storage, consent-aware analytics and advertising controls after gates.',
+    description: 'How TimeNexus uses essential preferences and explains consent-aware analytics or advertising controls.',
     sections: [
       ['Essential storage', 'Language, consent and session security may use essential storage when those features are enabled.'],
       ['Analytics and ads', 'External analytics and advertising storage remain blocked until consent mode and regional rules are implemented.'],
@@ -174,12 +174,12 @@ const pageSpecs: Record<ContentPageSlug, {
     ],
   },
   status: {
-    title: 'Launch Status',
-    description: 'TimeNexus status for public web readiness, ads, billing, deploy and gates.',
+    title: 'Public Status',
+    description: 'TimeNexus status for free time, date and conversion tools.',
     sections: [
-      ['MVP surface', 'The local/CI MVP contains seven tools, five language route sets, sitemap, canonical, hreflang and structured data.'],
-      ['Production', 'TimeNexus is live at `/supersites/timenexus/` as a versioned HostGator static app with public smoke and rollback workflow validated.'],
-      ['Gates', 'AdSense, billing, external analytics, accounts, widgets, presets, history and API remain blocked until documented gates pass.'],
+      ['Free tools', 'TimeNexus offers browser-side time, date, percentage and unit helpers without mandatory signup for the basic result.'],
+      ['Visitor privacy', 'Free tool inputs stay in the browser session and are not sent to a product API for the basic result.'],
+      ['Advanced workflows', 'Accounts, widgets, presets, private history, collaboration, API, external analytics and ad-free workflows require separate controls before activation.'],
     ],
   },
 }

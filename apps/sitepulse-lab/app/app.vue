@@ -926,6 +926,8 @@ h3 {
 
 .tool-sidebar {
   display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
 
@@ -1156,6 +1158,7 @@ h3 {
   .redirect-timeline dl,
   .detail-card-grid,
   .band-grid,
+  .tool-sidebar,
   .tool-layout,
   .content-layout,
   .result-meta,

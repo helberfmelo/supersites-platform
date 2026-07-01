@@ -783,6 +783,8 @@ h3 {
 
 .tool-sidebar {
   display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
 
@@ -954,6 +956,7 @@ h3 {
   .controls,
   .tool-grid,
   .band-grid,
+  .tool-sidebar,
   .field-group--two,
   .tool-layout,
   .tool-workbench__header,

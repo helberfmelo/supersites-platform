@@ -112,7 +112,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     principles: [
       { title: 'Immediate answer', body: 'Each page starts with a working calculator or converter that solves the basic task for free.' },
       { title: 'Locale aware', body: 'Outputs name UTC, local and selected zones clearly so date math stays readable across languages.' },
-      { title: 'Workflow depth', body: 'Upgrade value belongs in widgets, API automation, presets and collaboration.' },
+      { title: 'Workflow depth', body: 'Advanced workflows belong in widgets, API automation, presets and collaboration.' },
     ],
     statusRows: [
       { title: '7 browser tools', body: 'Time zones, date difference, business days, timestamp, age, percentage and units.', tone: 'green' },

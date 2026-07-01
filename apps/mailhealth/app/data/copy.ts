@@ -24,8 +24,8 @@ export interface ShellCopy {
   pageStatusLabel: string
   relatedTitle: string
   relatedBody: string
-  plannedTitle: string
-  plannedBody: string
+  infoTitle: string
+  infoBody: string
   healthScoreTitle: string
   checklistTitle: string
   fixGuidanceTitle: string
@@ -186,8 +186,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     pageStatusLabel: 'Check status',
     relatedTitle: 'Related checks',
     relatedBody: 'Chain SPF, DKIM, DMARC, MX, SMTP, reputation and header checks without storing the target.',
-    plannedTitle: 'Privacy and limits',
-    plannedBody: 'Headers stay local; DNS, DNSBL and SMTP checks are rate-limited, point-in-time diagnostics.',
+    infoTitle: 'Privacy and limits',
+    infoBody: 'Headers stay local; DNS, DNSBL and SMTP checks are rate-limited, point-in-time diagnostics.',
     healthScoreTitle: 'Health score',
     checklistTitle: 'Signal checklist',
     fixGuidanceTitle: 'Fix guidance',
@@ -213,8 +213,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     pageStatusLabel: 'Status do check',
     relatedTitle: 'Checks relacionados',
     relatedBody: 'Encadeie SPF, DKIM, DMARC, MX, SMTP, reputacao e headers sem armazenar o alvo.',
-    plannedTitle: 'Privacidade e limites',
-    plannedBody: 'Headers ficam locais; DNS, DNSBL e SMTP sao diagnosticos pontuais com rate limit.',
+    infoTitle: 'Privacidade e limites',
+    infoBody: 'Headers ficam locais; DNS, DNSBL e SMTP sao diagnosticos pontuais com rate limit.',
     healthScoreTitle: 'Score de saude',
     checklistTitle: 'Checklist de sinais',
     fixGuidanceTitle: 'Guia de correcao',
@@ -240,8 +240,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     pageStatusLabel: 'Estado del check',
     relatedTitle: 'Checks relacionados',
     relatedBody: 'Encadena SPF, DKIM, DMARC, MX, SMTP, reputacion y headers sin guardar el objetivo.',
-    plannedTitle: 'Privacidad y limites',
-    plannedBody: 'Los headers quedan locales; DNS, DNSBL y SMTP son diagnosticos puntuales con rate limit.',
+    infoTitle: 'Privacidad y limites',
+    infoBody: 'Los headers quedan locales; DNS, DNSBL y SMTP son diagnosticos puntuales con rate limit.',
     healthScoreTitle: 'Score de salud',
     checklistTitle: 'Checklist de senales',
     fixGuidanceTitle: 'Guia de correccion',
@@ -267,8 +267,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     pageStatusLabel: 'Statut',
     relatedTitle: 'Controles lies',
     relatedBody: 'Enchainez SPF, DKIM, DMARC, MX, SMTP, reputation et headers sans stocker la cible.',
-    plannedTitle: 'Confidentialite et limites',
-    plannedBody: 'Les headers restent locaux; DNS, DNSBL et SMTP sont des diagnostics ponctuels avec rate limit.',
+    infoTitle: 'Confidentialite et limites',
+    infoBody: 'Les headers restent locaux; DNS, DNSBL et SMTP sont des diagnostics ponctuels avec rate limit.',
     healthScoreTitle: 'Score de sante',
     checklistTitle: 'Checklist signaux',
     fixGuidanceTitle: 'Guide correction',
@@ -294,8 +294,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     pageStatusLabel: 'Checkstatus',
     relatedTitle: 'Verwandte Checks',
     relatedBody: 'SPF, DKIM, DMARC, MX, SMTP, Reputation und Header verbinden, ohne Ziele zu speichern.',
-    plannedTitle: 'Datenschutz und Grenzen',
-    plannedBody: 'Header bleiben lokal; DNS, DNSBL und SMTP sind rate-limitierte Zeitpunkt-Diagnosen.',
+    infoTitle: 'Datenschutz und Grenzen',
+    infoBody: 'Header bleiben lokal; DNS, DNSBL und SMTP sind rate-limitierte Zeitpunkt-Diagnosen.',
     healthScoreTitle: 'Health Score',
     checklistTitle: 'Signal-Checklist',
     fixGuidanceTitle: 'Korrekturhinweise',

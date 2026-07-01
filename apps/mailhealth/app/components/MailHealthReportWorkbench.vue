@@ -573,6 +573,6 @@ onMounted(() => {
       </div>
     </section>
 
-    <p class="report-note">{{ shellCopy.plannedBody }}</p>
+    <p class="report-note">{{ shellCopy.infoBody }}</p>
   </section>
 </template>

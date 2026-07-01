@@ -226,7 +226,10 @@ class NetProbeApiTest extends TestCase
             ->assertOk()
             ->assertJsonPath('data.domain', 'example.com')
             ->assertJsonPath('data.record_type', 'NS')
-            ->assertJsonPath('data.snapshots.0.resolver_id', 'system-resolver')
+            ->assertJsonPath('data.snapshots.0.resolver_id', 'runtime-resolver')
+            ->assertJsonPath('data.snapshots.0.resolver_name', 'NetProbe controlled resolver')
+            ->assertJsonPath('data.snapshots.0.city', 'Controlled edge')
+            ->assertJsonPath('data.snapshots.0.country', 'Controlled infrastructure')
             ->assertJsonPath('data.snapshots.0.values.0', 'a.iana-servers.net')
             ->assertJsonPath('meta.cache_ttl_seconds', 120)
             ->assertJsonPath('meta.cached', false);
@@ -234,6 +237,44 @@ class NetProbeApiTest extends TestCase
         $this->postJson('/api/v1/netprobe/propagation', $payload)
             ->assertOk()
             ->assertJsonPath('meta.cached', true);
+    }
+
+    public function test_dns_propagation_accepts_srv_and_public_ptr_targets(): void
+    {
+        Cache::flush();
+
+        $this->app->instance(NetProbeDnsResolver::class, new FakeNetProbeDnsResolver([
+            'A' => [],
+            'AAAA' => [],
+            'SRV' => [
+                ['type' => 'SRV', 'ttl' => 300, 'pri' => 10, 'weight' => 20, 'port' => 5060, 'target' => 'sip.example.com'],
+            ],
+            'PTR' => [
+                ['type' => 'PTR', 'ttl' => 180, 'target' => 'dns.google'],
+            ],
+        ]));
+
+        $this->postJson('/api/v1/netprobe/propagation', [
+            'domain' => '_sip._tcp.example.com',
+            'type' => 'SRV',
+        ])->assertOk()
+            ->assertJsonPath('data.domain', '_sip._tcp.example.com')
+            ->assertJsonPath('data.record_type', 'SRV')
+            ->assertJsonPath('data.snapshots.0.values.0', '10 20 5060 sip.example.com');
+
+        $this->postJson('/api/v1/netprobe/propagation', [
+            'domain' => '8.8.8.8',
+            'type' => 'PTR',
+        ])->assertOk()
+            ->assertJsonPath('data.domain', '8.8.8.8.in-addr.arpa')
+            ->assertJsonPath('data.record_type', 'PTR')
+            ->assertJsonPath('data.snapshots.0.values.0', 'dns.google');
+
+        $this->postJson('/api/v1/netprobe/propagation', [
+            'domain' => '10.0.0.5',
+            'type' => 'PTR',
+        ])->assertUnprocessable()
+            ->assertJsonValidationErrors('domain');
     }
 
     public function test_port_check_uses_allowlist_and_blocks_private_resolution(): void

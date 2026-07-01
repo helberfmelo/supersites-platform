@@ -174,12 +174,12 @@ const pageSpecs: Record<ContentPageSlug, {
     ],
   },
   status: {
-    title: 'Launch Status',
-    description: 'SitePulse Lab status for web readiness, API probes, advertising, payments and monitoring workflows.',
+    title: 'Public Status',
+    description: 'SitePulse Lab status for free website checks and advanced monitoring workflows.',
     sections: [
-      ['Free surface', 'The app contains seven checks, five language route sets, sitemap, canonical, hreflang, structured data and one bounded probe endpoint.'],
-      ['Production', 'SitePulse Lab is live at `/supersites/sitepulse-lab/` as a versioned HostGator static app with bounded public API probes and rollback workflow validated.'],
-      ['Account roadmap', 'Recurring uptime, alert delivery, incident workflows, public status pages, history, multi-region probes, payments, advertising and external analytics require dedicated controls.'],
+      ['Free checks', 'SitePulse Lab offers seven point-in-time website checks with bounded probes and readable results without mandatory signup.'],
+      ['Probe limits', 'The free pages focus on public status, redirects, headers, robots, sitemap, TTFB and lightweight performance signals.'],
+      ['Advanced workflows', 'Recurring uptime, alert delivery, incident workflows, public status pages, history, multi-region probes, payments, advertising and external analytics require separate controls before activation.'],
     ],
   },
 }

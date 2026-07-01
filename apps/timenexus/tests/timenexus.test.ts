@@ -165,9 +165,10 @@ describe('TimeNexus MVP', () => {
     expect(tokyo?.primaryGroup).toBe('global-product')
 
     const timeline = buildCityBusinessTimeline(tokyo!, 'en')
+    const currentUtcDate = new Date().toISOString().slice(0, 10)
     expect(timeline).toHaveLength(4)
     expect(timeline[1].localTime).toContain('09:00')
-    expect(timeline[1].utcTime).toBe('2026-06-26T00:00:00.000Z')
+    expect(timeline[1].utcTime).toBe(`${currentUtcDate}T00:00:00.000Z`)
 
     const overlap = buildCityOverlapSnapshot(tokyo!, 'en')
     expect(overlap.map((zone) => zone.label)).toEqual(['Tokyo', 'San Francisco', 'London', 'Sydney'])

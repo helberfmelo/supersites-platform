@@ -116,7 +116,7 @@ const pageSpecs: Record<ContentPageSlug, {
     sections: [
       ['Purpose', 'The site helps users draft a single business document, calculate itemized totals and download a PDF without mandatory signup.'],
       ['What is live now', 'Invoice, quote and receipt builders keep fields in the browser session and generate local PDFs.'],
-      ['Upgrade boundary', 'Paid value is planned around saved clients, product catalogs, recurrence, branding, team workflows, payment integrations and history.'],
+      ['Advanced workflows', 'Saved clients, product catalogs, recurrence, branding, team workflows, payment integrations and history are separate from the free one-off document builder.'],
     ],
   },
   contact: {
@@ -174,12 +174,12 @@ const pageSpecs: Record<ContentPageSlug, {
     ],
   },
   status: {
-    title: 'Launch Status',
-    description: 'InvoiceCraft status for public web readiness, PDF rendering and future account workflows.',
+    title: 'Public Status',
+    description: 'InvoiceCraft status for free invoice, quote and receipt builders.',
     sections: [
-      ['Current surface', 'The app contains three document builders, five language route sets, sitemap, canonical, hreflang, structured data and browser-side PDF rendering.'],
-      ['Production', 'InvoiceCraft is live at `/supersites/invoicecraft/` as a versioned HostGator static app with public smoke and rollback workflow validated.'],
-      ['Future workflows', 'Saved clients, products, recurrence, branding, team access, payment integrations, advertising and external analytics require separate documented review before activation.'],
+      ['Free builders', 'InvoiceCraft offers invoice, quote and receipt builders with browser-side preview and PDF download without mandatory signup.'],
+      ['Document privacy', 'Free document fields stay in the browser session for the basic result and are not used for payment collection here.'],
+      ['Advanced workflows', 'Saved clients, products, recurrence, branding, team access, payment integrations, advertising and external analytics require separate controls before activation.'],
     ],
   },
 }

@@ -174,12 +174,12 @@ const pageSpecs: Record<ContentPageSlug, {
     ],
   },
   status: {
-    title: 'Launch Status',
-    description: 'PixelBatch status for public web readiness, advertising, payments and file-processing workflows.',
+    title: 'Public Status',
+    description: 'PixelBatch status for the free browser image tools, privacy boundary and advanced workflows.',
     sections: [
-      ['Free surface', 'The app contains six image tools, five language route sets, sitemap, canonical, hreflang, structured data, worker planning and browser-side Canvas output.'],
-      ['Production', 'PixelBatch is live at `/supersites/pixelbatch/` as a versioned HostGator static app with public smoke and rollback workflow validated. Image processing remains browser-side; no upload or storage path is active.'],
-      ['Account roadmap', 'Batch folders, larger files, API, integrations, high-resolution queues, AI features, payments, advertising and external analytics require dedicated controls.'],
+      ['Free browser tools', 'PixelBatch offers six image tools with browser-side Canvas output, local previews and downloads without mandatory signup.'],
+      ['File privacy', 'Image processing stays in the browser session on free pages; no product upload, account history or server-side storage path is used for the basic result.'],
+      ['Advanced workflows', 'Batch folders, larger files, API, integrations, high-resolution queues, AI features, payments, advertising and external analytics require separate controls before activation.'],
     ],
   },
 }

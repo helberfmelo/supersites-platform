@@ -69,27 +69,27 @@ export const contentPageCatalog: ContentPage[] = [
     en: copy('About', 'About CalcHarbor', 'CalcHarbor is the SuperSites product for finance and business calculators with transparent formulas.', reviewed.en, [
       ['Purpose', 'The site helps people answer common planning questions quickly while keeping formulas visible and assumptions clear.'],
       ['What is live now', 'CalcHarbor provides four browser-side calculators: loan payment, break-even point, gross margin and ROI.'],
-      ['Upgrade boundary', 'Paid value is planned around saved scenarios, exports, widgets, team workflows, API access and no ads.'],
+      ['Advanced workflows', 'Saved scenarios, exports, widgets, team workflows, API access and ad-free use are separate from the free calculators.'],
     ]),
     'pt-br': copy('Sobre', 'Sobre o CalcHarbor', 'CalcHarbor e o produto SuperSites de calculadoras financeiras e empresariais com formulas transparentes.', reviewed['pt-br'], [
       ['Proposito', 'O site ajuda a responder perguntas comuns de planejamento mantendo formulas e premissas visiveis.'],
       ['O que esta ativo', 'O CalcHarbor oferece quatro calculadoras no navegador: parcela, ponto de equilibrio, margem bruta e ROI.'],
-      ['Fronteira do upgrade', 'O valor pago planejado esta em cenarios salvos, exportacoes, widgets, equipes, API e ausencia de anuncios.'],
+      ['Fluxos avancados', 'Cenarios salvos, exportacoes, widgets, equipes, API e uso sem anuncios ficam separados das calculadoras gratuitas.'],
     ]),
     es: copy('Acerca de', 'Acerca de CalcHarbor', 'CalcHarbor es el producto SuperSites de calculadoras financieras y de negocio con formulas transparentes.', reviewed.es, [
       ['Proposito', 'El sitio responde preguntas comunes de planificacion con formulas y supuestos visibles.'],
       ['Que esta activo', 'CalcHarbor ofrece cuatro calculadoras en el navegador: prestamo, equilibrio, margen bruto y ROI.'],
-      ['Limite de upgrade', 'El valor pago se planea para escenarios, exportes, widgets, equipos, API y sin anuncios.'],
+      ['Flujos avanzados', 'Escenarios guardados, exportes, widgets, equipos, API y uso sin anuncios quedan separados de las calculadoras gratuitas.'],
     ]),
     fr: copy('A propos', 'A propos de CalcHarbor', 'CalcHarbor est le produit SuperSites de calculatrices finance et business avec formules transparentes.', reviewed.fr, [
       ['Objectif', 'Le site repond aux questions de planification courantes avec formules et hypotheses visibles.'],
       ['Actif maintenant', 'CalcHarbor propose quatre calculatrices navigateur: pret, seuil de rentabilite, marge brute et ROI.'],
-      ['Limite upgrade', 'La valeur payante vise scenarios, exports, widgets, equipes, API et absence de publicite.'],
+      ['Flux avances', 'Scenarios enregistres, exports, widgets, equipes, API et usage sans publicite restent separes des calculatrices gratuites.'],
     ]),
     de: copy('Ueber', 'Ueber CalcHarbor', 'CalcHarbor ist das SuperSites-Produkt fuer Finanz- und Business-Rechner mit transparenten Formeln.', reviewed.de, [
       ['Zweck', 'Die Seite beantwortet Planungsfragen schnell und zeigt Formeln sowie Annahmen sichtbar an.'],
       ['Jetzt live', 'CalcHarbor bietet vier Browser-Rechner: Kreditrate, Break-even, Bruttomarge und ROI.'],
-      ['Upgrade-Grenze', 'Bezahlwert ist fuer Szenarien, Exporte, Widgets, Teams, API und keine Anzeigen geplant.'],
+      ['Erweiterte Workflows', 'Gespeicherte Szenarien, Exporte, Widgets, Teams, API und werbefreie Nutzung sind von den kostenlosen Rechnern getrennt.'],
     ]),
   }),
   page('contact', {
@@ -147,7 +147,7 @@ export const contentPageCatalog: ContentPage[] = [
     ]),
   }),
   page('cookies', {
-    en: copy('Cookies', 'Cookie Policy', 'How CalcHarbor plans essential storage, consent-aware analytics and advertising controls after gates.', reviewed.en, [
+    en: copy('Cookies', 'Cookie Policy', 'How CalcHarbor uses essential preferences and explains consent-aware analytics or advertising controls.', reviewed.en, [
       ['Essential storage', 'Language, consent and session security may use essential storage when those features are enabled.'],
       ['Analytics and ads', 'External analytics and advertising storage remain blocked until consent mode and regional rules are implemented.'],
       ['Choices', 'A consent interface must exist before non-essential storage is used. Browser settings can clear local data.'],
@@ -255,30 +255,30 @@ export const contentPageCatalog: ContentPage[] = [
     ]),
   }),
   page('status', {
-    en: copy('Status', 'Launch Status', 'CalcHarbor launch status for public web readiness, ads, billing, deploy and gates.', reviewed.en, [
-      ['MVP surface', 'The local/CI MVP contains four calculators, five language route sets, sitemap, canonical, hreflang and structured data.'],
-      ['Production', 'CalcHarbor is live at `/supersites/calcharbor/` as a versioned HostGator static app with public smoke and rollback workflow validated.'],
-      ['Gates', 'AdSense, billing, external analytics, saved scenarios, widgets and API remain blocked until documented gates pass.'],
+    en: copy('Status', 'Public Status', 'CalcHarbor status for free finance and business calculators.', reviewed.en, [
+      ['Free calculators', 'CalcHarbor offers browser-side calculators with visible formulas, examples and no mandatory signup for the basic result.'],
+      ['Visitor privacy', 'Calculator inputs stay in the browser session and are not sent to a product API for the free calculation.'],
+      ['Advanced workflows', 'Saved scenarios, exports, widgets, API, external analytics and ad-free account workflows require separate controls before activation.'],
     ]),
-    'pt-br': copy('Status', 'Status de Lancamento', 'Status de lancamento do CalcHarbor para web publica, ads, billing, deploy e gates.', reviewed['pt-br'], [
-      ['Superficie MVP', 'O MVP local/CI contem quatro calculadoras, cinco idiomas, sitemap, canonical, hreflang e dados estruturados.'],
-      ['Producao', 'O CalcHarbor esta no ar em `/supersites/calcharbor/` como app estatico versionado no HostGator, com smoke publico e rollback validados.'],
-      ['Gates', 'AdSense, billing, analytics externo, cenarios salvos, widgets e API seguem bloqueados ate os gates passarem.'],
+    'pt-br': copy('Status', 'Status Publico', 'Status do CalcHarbor para calculadoras financeiras e empresariais gratuitas.', reviewed['pt-br'], [
+      ['Calculadoras gratuitas', 'O CalcHarbor oferece calculadoras no navegador com formulas visiveis, exemplos e sem cadastro obrigatorio para o resultado basico.'],
+      ['Privacidade do visitante', 'Entradas de calculadora ficam na sessao do navegador e nao sao enviadas a uma API de produto no calculo gratuito.'],
+      ['Fluxos avancados', 'Cenarios salvos, exportacoes, widgets, API, analytics externo e conta sem anuncios exigem controles separados antes da ativacao.'],
     ]),
-    es: copy('Estado', 'Estado de lanzamiento', 'Estado de lanzamiento de CalcHarbor para web publica, ads, billing, deploy y gates.', reviewed.es, [
-      ['Superficie MVP', 'El MVP local/CI contiene cuatro calculadoras, cinco idiomas, sitemap, canonical, hreflang y datos estructurados.'],
-      ['Produccion', 'CalcHarbor esta activo en `/supersites/calcharbor/` como app estatico versionado en HostGator, con smoke publico y rollback validados.'],
-      ['Gates', 'AdSense, billing, analytics externo, escenarios, widgets y API siguen bloqueados hasta pasar gates.'],
+    es: copy('Estado', 'Estado publico', 'Estado de CalcHarbor para calculadoras financieras y de negocio gratuitas.', reviewed.es, [
+      ['Calculadoras gratis', 'CalcHarbor ofrece calculadoras en el navegador con formulas visibles, ejemplos y sin registro obligatorio para el resultado basico.'],
+      ['Privacidad del visitante', 'Las entradas quedan en la sesion del navegador y no se envian a una API de producto para el calculo gratuito.'],
+      ['Flujos avanzados', 'Escenarios guardados, exportes, widgets, API, analytics externo y cuenta sin anuncios requieren controles separados antes de activarse.'],
     ]),
-    fr: copy('Statut', 'Statut de lancement', 'Statut de lancement CalcHarbor pour web public, ads, billing, deploy et gates.', reviewed.fr, [
-      ['Surface MVP', 'Le MVP local/CI contient quatre calculatrices, cinq langues, sitemap, canonical, hreflang et donnees structurees.'],
-      ['Production', 'CalcHarbor est en ligne sur `/supersites/calcharbor/` comme app statique HostGator versionnee, avec smoke public et rollback valides.'],
-      ['Gates', 'AdSense, billing, analytics externe, scenarios, widgets et API restent bloques jusqu aux gates.'],
+    fr: copy('Statut', 'Statut public', 'Statut CalcHarbor pour calculatrices finance et business gratuites.', reviewed.fr, [
+      ['Calculatrices gratuites', 'CalcHarbor propose des calculatrices navigateur avec formules visibles, exemples et sans compte obligatoire pour le resultat de base.'],
+      ['Confidentialite visiteur', 'Les entrees restent dans la session navigateur et ne sont pas envoyees a une API produit pour le calcul gratuit.'],
+      ['Flux avances', 'Scenarios enregistres, exports, widgets, API, analytics externe et compte sans publicite exigent des controles separes avant activation.'],
     ]),
-    de: copy('Status', 'Launch-Status', 'CalcHarbor Sprint-3.1-Status fuer Public Web, Ads, Billing, Deploy und Gates.', reviewed.de, [
-      ['MVP-Oberflaeche', 'Das lokale/CI-MVP enthaelt vier Rechner, fuenf Sprachen, Sitemap, Canonical, Hreflang und strukturierte Daten.'],
-      ['Produktion', 'CalcHarbor ist unter `/supersites/calcharbor/` als versionierte statische HostGator-App live; Public Smoke und Rollback sind validiert.'],
-      ['Gates', 'AdSense, Billing, externe Analytics, Szenarien, Widgets und API bleiben bis zu Gates gesperrt.'],
+    de: copy('Status', 'Oeffentlicher Status', 'CalcHarbor-Status fuer kostenlose Finanz- und Business-Rechner.', reviewed.de, [
+      ['Kostenlose Rechner', 'CalcHarbor bietet Browser-Rechner mit sichtbaren Formeln, Beispielen und ohne Pflichtkonto fuer das Basisergebnis.'],
+      ['Besucherdatenschutz', 'Rechnereingaben bleiben in der Browsersitzung und werden fuer die kostenlose Berechnung nicht an eine Produkt-API gesendet.'],
+      ['Erweiterte Workflows', 'Gespeicherte Szenarien, Exporte, Widgets, API, externe Analytics und werbefreie Konten brauchen vor Aktivierung eigene Kontrollen.'],
     ]),
   }),
 ]

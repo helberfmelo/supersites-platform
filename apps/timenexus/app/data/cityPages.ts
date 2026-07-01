@@ -349,8 +349,13 @@ function localDateTime(referenceDate: string, hour: number, minute = 0): string 
   return `${referenceDate}T${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`
 }
 
+function currentReferenceDate(): string {
+  return new Date().toISOString().slice(0, 10)
+}
+
 export function buildCityBusinessTimeline(page: CityTimePageDefinition, locale: LocaleCode): CityTimelineItem[] {
   const text = localizedCityText[locale]
+  const referenceDate = currentReferenceDate()
   const steps = [
     { hour: 8, minute: 30 },
     { hour: 9, minute: 0 },
@@ -359,7 +364,7 @@ export function buildCityBusinessTimeline(page: CityTimePageDefinition, locale: 
   ]
 
   return steps.map((step, index) => {
-    const instant = zonedLocalDateTimeToUtc(localDateTime(page.referenceDate, step.hour, step.minute), page.timeZone)
+    const instant = zonedLocalDateTimeToUtc(localDateTime(referenceDate, step.hour, step.minute), page.timeZone)
 
     return {
       label: text.timelineLabels[index],
@@ -371,7 +376,7 @@ export function buildCityBusinessTimeline(page: CityTimePageDefinition, locale: 
 }
 
 export function buildCityOverlapSnapshot(page: CityTimePageDefinition, locale: LocaleCode): PlannerZoneResult[] {
-  const instant = zonedLocalDateTimeToUtc(localDateTime(page.referenceDate, 9), page.timeZone)
+  const instant = zonedLocalDateTimeToUtc(localDateTime(currentReferenceDate(), 9), page.timeZone)
 
   return [
     formatPlannerZone(instant, { label: page.city, zone: page.timeZone }, locale),

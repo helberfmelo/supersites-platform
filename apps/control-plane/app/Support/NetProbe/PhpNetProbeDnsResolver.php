@@ -36,7 +36,9 @@ class PhpNetProbeDnsResolver implements NetProbeDnsResolver
             'MX' => DNS_MX,
             'TXT' => DNS_TXT,
             'NS' => DNS_NS,
+            'PTR' => defined('DNS_PTR') ? constant('DNS_PTR') : null,
             'SOA' => DNS_SOA,
+            'SRV' => defined('DNS_SRV') ? constant('DNS_SRV') : null,
             'CAA' => defined('DNS_CAA') ? constant('DNS_CAA') : null,
             default => null,
         };

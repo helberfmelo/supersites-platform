@@ -792,6 +792,10 @@ h3 {
   grid-column: 1 / -1;
 }
 
+.tool-layout > aside.band {
+  grid-column: 1 / -1;
+}
+
 .record-tabs {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -1303,6 +1307,43 @@ h3 {
   text-transform: uppercase;
 }
 
+.result-table strong,
+.table-subtext {
+  display: block;
+}
+
+.table-subtext {
+  margin-top: 3px;
+  color: #607069;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.status-badge {
+  display: inline-flex;
+  max-width: 100%;
+  padding: 5px 8px;
+  border: 1px solid #d8ded8;
+  border-radius: 999px;
+  background: #f7f8f4;
+  color: #26342f;
+  font-size: 0.76rem;
+  font-weight: 850;
+  line-height: 1.2;
+}
+
+.status-badge--good {
+  border-color: #b7d7c4;
+  background: #e7f5ec;
+  color: #1f6b45;
+}
+
+.status-badge--warning {
+  border-color: #e4cba7;
+  background: #fff4df;
+  color: #895214;
+}
+
 .result-list,
 .pill-list {
   padding: 0;
@@ -1347,18 +1388,30 @@ h3 {
     repeating-linear-gradient(90deg, rgba(39, 95, 87, 0.08) 0 1px, transparent 1px 32px);
 }
 
-.resolver-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+.resolver-map__canvas {
+  position: relative;
+  min-height: 260px;
+  margin-top: 10px;
+  border: 1px solid rgba(39, 95, 87, 0.18);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 26% 42%, rgba(47, 133, 90, 0.16) 0 12%, transparent 13%),
+    radial-gradient(circle at 72% 38%, rgba(47, 133, 90, 0.14) 0 10%, transparent 11%),
+    radial-gradient(circle at 50% 68%, rgba(47, 133, 90, 0.12) 0 13%, transparent 14%),
+    linear-gradient(135deg, #eef5f0, #f9fbf7);
+  overflow: hidden;
 }
 
 .resolver-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: min(210px, calc(100% - 24px));
   min-width: 0;
   padding: 10px;
   border: 1px solid #d8ded8;
   border-radius: 8px;
   background: #ffffff;
+  box-shadow: 0 12px 30px rgba(20, 34, 29, 0.12);
 }
 
 .resolver-pin::before {
@@ -1544,7 +1597,6 @@ h3 {
   .tool-layout,
   .content-layout,
   .answer-strip,
-  .resolver-grid,
   .result-meta {
     display: grid;
     grid-template-columns: 1fr;
@@ -1587,6 +1639,14 @@ h3 {
     display: grid;
     grid-template-columns: 1fr;
     align-items: start;
+  }
+
+  .resolver-map__canvas {
+    min-height: 320px;
+  }
+
+  .resolver-pin {
+    width: min(240px, calc(100% - 20px));
   }
 
   .hero--ip {

@@ -54,7 +54,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'What is live now',
-          paragraphs: ['The public application now runs the first production-backed checks for IP and DNS through the SuperSites control-plane API. RDAP, SSL, propagation, port and reachability remain gated by their own rollout checks.'],
+          paragraphs: ['The public application runs point-in-time IP, DNS, RDAP, SSL, propagation, port and reachability checks through bounded SuperSites control-plane APIs. Monitoring, history and API workflows are separate from the free result.'],
         },
         {
           heading: 'Safety boundary',
@@ -74,7 +74,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'O que já funciona',
-          paragraphs: ['A aplicação pública agora executa as primeiras consultas apoiadas por produção para IP e DNS via API do control-plane SuperSites. RDAP, SSL, propagação, porta e alcance seguem bloqueados pelos próprios gates de rollout.'],
+          paragraphs: ['A aplicação pública executa consultas pontuais de IP, DNS, RDAP, SSL, propagação, porta e alcance por APIs limitadas do control-plane SuperSites. Monitoramento, histórico e API ficam separados do resultado gratuito.'],
         },
         {
           heading: 'Fronteira de segurança',
@@ -94,7 +94,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Qué está activo',
-          paragraphs: ['La aplicación pública ya ejecuta las primeras consultas con backend de producción para IP y DNS mediante la API del control-plane SuperSites. RDAP, SSL, propagación, puerto y alcance siguen bloqueados por sus propios gates de rollout.'],
+          paragraphs: ['La aplicación pública ejecuta consultas puntuales de IP, DNS, RDAP, SSL, propagación, puerto y alcance mediante APIs acotadas del control-plane SuperSites. Monitoreo, historial y API quedan separados del resultado gratuito.'],
         },
         {
           heading: 'Límite de seguridad',
@@ -114,7 +114,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Ce qui est actif',
-          paragraphs: ['L’application publique exécute maintenant les premiers contrôles adossés à la production pour IP et DNS via l’API control-plane SuperSites. RDAP, SSL, propagation, port et accessibilité restent bloqués par leurs propres gates de rollout.'],
+          paragraphs: ['L’application publique exécute des contrôles ponctuels IP, DNS, RDAP, SSL, propagation, port et accessibilité via des API bornées du control-plane SuperSites. Surveillance, historique et API restent séparés du résultat gratuit.'],
         },
         {
           heading: 'Cadre de sécurité',
@@ -134,7 +134,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Was bereits aktiv ist',
-          paragraphs: ['Die oeffentliche Anwendung fuehrt jetzt die ersten produktionsgestuetzten IP- und DNS-Pruefungen ueber die SuperSites Control-Plane API aus. RDAP, SSL, Propagation, Port und Erreichbarkeit bleiben durch eigene Rollout-Gates gesperrt.'],
+          paragraphs: ['Die oeffentliche Anwendung fuehrt punktuelle IP-, DNS-, RDAP-, SSL-, Propagation-, Port- und Erreichbarkeitspruefungen ueber begrenzte SuperSites-Control-Plane-APIs aus. Monitoring, Verlauf und API-Workflows sind vom kostenlosen Ergebnis getrennt.'],
         },
         {
           heading: 'Sicherheitsgrenze',
@@ -466,7 +466,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Paid features',
-          paragraphs: ['Paid monitoring and API features are not active publicly yet. Pricing, quotas and provider terms must be visible before checkout launches.'],
+          paragraphs: ['Monitoring and API workflows require visible pricing, quotas, cancellation rules and provider terms before checkout or account activation.'],
         },
       ],
     },
@@ -486,7 +486,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Recursos pagos',
-          paragraphs: ['Monitoramento pago e API ainda não estão públicos. Preços, quotas e termos de provedor devem aparecer antes do checkout.'],
+          paragraphs: ['Monitoramento e API exigem preços, quotas, regras de cancelamento e termos de provedor visíveis antes de checkout ou ativação de conta.'],
         },
       ],
     },
@@ -506,7 +506,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Funciones pagas',
-          paragraphs: ['Monitoreo pago y API aún no están públicos. Precios, cuotas y términos deben estar visibles antes de checkout.'],
+          paragraphs: ['Monitoreo y API requieren precios, cuotas, reglas de cancelación y términos de proveedor visibles antes de checkout o activación de cuenta.'],
         },
       ],
     },
@@ -526,7 +526,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Fonctions payantes',
-          paragraphs: ['Surveillance payante et API ne sont pas encore publiques. Prix, quotas et conditions doivent être visibles avant checkout.'],
+          paragraphs: ['Surveillance et API exigent prix, quotas, règles d’annulation et conditions fournisseur visibles avant checkout ou activation de compte.'],
         },
       ],
     },
@@ -546,7 +546,7 @@ export const contentPageCatalog: ContentPage[] = [
         },
         {
           heading: 'Bezahlfunktionen',
-          paragraphs: ['Bezahltes Monitoring und API sind noch nicht öffentlich aktiv. Preise, Quoten und Anbieterbedingungen müssen vor Checkout sichtbar sein.'],
+          paragraphs: ['Monitoring und API brauchen sichtbare Preise, Quoten, Kündigungsregeln und Anbieterbedingungen vor Checkout oder Kontoaktivierung.'],
         },
       ],
     },

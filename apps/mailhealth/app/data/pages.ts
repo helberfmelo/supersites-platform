@@ -175,11 +175,11 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   status: {
     title: 'Product Status',
-    description: 'MailHealth status for current diagnostics, hosting and inactive account features.',
+    description: 'MailHealth status for free email diagnostics and advanced monitoring workflows.',
     sections: [
-      ['Live diagnostics', 'MailHealth contains seven checks, five language route sets, sitemap, canonical, hreflang, structured data and bounded diagnostic endpoints.'],
-      ['Current hosting', 'MailHealth is available at `/supersites/mailhealth/` as a versioned HostGator static app with artifact validation and recovery workflow.'],
-      ['Inactive account features', 'Recurring monitoring, alert delivery, DMARC report ingestion, batches, white-label exports, payment flows and external analytics are not enabled on free pages.'],
+      ['Free diagnostics', 'MailHealth offers seven point-in-time email checks with bounded DNS, DNSBL, SMTP and header analysis workflows.'],
+      ['Visitor privacy', 'Free pages focus on the submitted domain or pasted headers and keep advanced account history separate from the basic result.'],
+      ['Advanced workflows', 'Recurring monitoring, alert delivery, DMARC report ingestion, batches, white-label exports, payment flows and external analytics require separate controls before activation.'],
     ],
   },
 }

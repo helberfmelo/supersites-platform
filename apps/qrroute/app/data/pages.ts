@@ -174,12 +174,12 @@ const pageSpecs: Record<ContentPageSlug, {
     ],
   },
   status: {
-    title: 'Launch Status',
-    description: 'QRRoute status for public web readiness, monetization review, redirect service and release checks.',
+    title: 'Public Status',
+    description: 'QRRoute status for free static QR, barcode and campaign helper tools.',
     sections: [
-      ['Current surface', 'The local/CI builder contains six tools, five language route sets, sitemap, canonical, hreflang, structured data and browser-side preview rendering.'],
-      ['Production', 'QRRoute is live at `/supersites/qrroute/` as a versioned HostGator static app with public smoke and rollback workflow validated.'],
-      ['Release checks', 'Editable QR, short links, redirect analytics, custom domains, batches, checkout, advertising and external analytics require documented review before use.'],
+      ['Free builders', 'QRRoute offers six browser-side builders with static QR, barcode, UTM, vCard, Wi-Fi and payload preview workflows.'],
+      ['Static output', 'The free pages generate visible payloads and local previews without requiring an account or redirect service for the basic result.'],
+      ['Advanced workflows', 'Editable QR, short links, redirect analytics, custom domains, batches, checkout, advertising and external analytics require separate controls before activation.'],
     ],
   },
 }

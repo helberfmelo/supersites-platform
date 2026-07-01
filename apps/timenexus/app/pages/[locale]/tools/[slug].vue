@@ -43,6 +43,7 @@ const isRunning = ref(false)
 const result = ref<TimeToolResult | null>(null)
 const copyState = ref('')
 const autoRunStarted = ref(false)
+const currentDatetimePlaceholder = ref('')
 let autoRunTimer: ReturnType<typeof setTimeout> | null = null
 const resultTitle = computed(() => result.value?.ok === false ? shellCopy.invalidResultTitle : copy.resultLabel)
 const answerSummary = computed(() => createTimeToolAnswerSummary(tool.slug, result.value))
@@ -132,6 +133,17 @@ const keyResultRows = computed(() => {
 })
 
 const formulaLine = computed(() => resultRows.value.find((row) => row.label === 'Formula')?.value ?? '')
+const samplePrimaryDisplay = computed(() => {
+  if (isTimezoneTool.value) {
+    return currentDatetimePlaceholder.value || tool.samplePrimary
+  }
+
+  if (isTimestampTool.value) {
+    return Math.floor(Date.now() / 1000).toString()
+  }
+
+  return tool.samplePrimary
+})
 const calendarRows = computed(() => resultRows.value.filter((row) => [
   'Start',
   'End',
@@ -145,6 +157,24 @@ const calendarRows = computed(() => resultRows.value.filter((row) => [
 function syncTimezoneSecondary(): void {
   if (isTimezoneTool.value) {
     secondaryInput.value = `${sourceZoneInput.value} -> ${targetZoneInput.value}`
+  }
+}
+
+function formatDatetimeInput(date: Date): string {
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  const hour = String(date.getHours()).padStart(2, '0')
+  const minute = String(date.getMinutes()).padStart(2, '0')
+
+  return `${year}-${month}-${day}T${hour}:${minute}`
+}
+
+function setCurrentTimezoneExample(): void {
+  currentDatetimePlaceholder.value = formatDatetimeInput(new Date())
+
+  if (isTimezoneTool.value) {
+    primaryInput.value = currentDatetimePlaceholder.value
   }
 }
 
@@ -242,6 +272,9 @@ function resetExample(): void {
   if (isTimestampTool.value) {
     primaryInput.value = Math.floor(Date.now() / 1000).toString()
   }
+  if (isTimezoneTool.value) {
+    setCurrentTimezoneExample()
+  }
   hasRun.value = false
   result.value = null
   scheduleAutoRun()
@@ -274,6 +307,9 @@ onMounted(() => {
 
   if (isTimestampTool.value) {
     primaryInput.value = Math.floor(Date.now() / 1000).toString()
+  }
+  if (isTimezoneTool.value) {
+    setCurrentTimezoneExample()
   }
 
   syncTimezoneSecondary()
@@ -426,7 +462,7 @@ useHead({
                     type="text"
                     inputmode="numeric"
                     spellcheck="false"
-                    placeholder="2026-06-26T09:30"
+                    :placeholder="currentDatetimePlaceholder"
                   >
                 </div>
                 <div class="field">
@@ -607,7 +643,7 @@ useHead({
           <dl class="fact-list">
             <div>
               <dt>{{ copy.inputLabel }}</dt>
-              <dd>{{ tool.samplePrimary }}</dd>
+              <dd>{{ samplePrimaryDisplay }}</dd>
             </div>
             <div v-if="tool.acceptsSecondaryInput">
               <dt>{{ copy.secondaryInputLabel }}</dt>

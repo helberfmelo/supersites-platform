@@ -139,10 +139,10 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   cookies: {
     title: 'Cookie Policy',
-    description: 'How DocShift plans essential storage, consent-aware analytics and advertising controls after gates.',
+    description: 'How DocShift uses essential preferences and explains consent-aware analytics or advertising controls.',
     sections: [
       ['Essential storage', 'Language, consent and session security may use essential storage when those platform features are enabled. The document tools themselves do not need browser storage.'],
-      ['Analytics and ads', 'External analytics and advertising storage remain blocked until consent mode, regional rules and placement gates are implemented.'],
+      ['Analytics and ads', 'External analytics and advertising storage require consent mode, regional rules and placement review before use.'],
       ['Choices', 'A consent interface must exist before non-essential storage is used. Browser settings can clear local site data.'],
     ],
   },
@@ -174,12 +174,12 @@ const pageSpecs: Record<ContentPageSlug, {
     ],
   },
   status: {
-    title: 'Launch Status',
-    description: 'DocShift status for public web readiness, ads, commercial file processing and review gates.',
+    title: 'Public Status',
+    description: 'DocShift status for the free browser document tools, file privacy and advanced workflows.',
     sections: [
-      ['Browser surface', 'DocShift contains eight document tools, five language route sets, sitemap, canonical, hreflang, structured data, worker validation and browser-side pdf-lib output.'],
-      ['Production', 'DocShift is live at `/supersites/docshift/` as a versioned HostGator static app with public smoke and rollback workflow validated. Document processing remains browser-side; no upload, OCR server path or storage path is active.'],
-      ['Review gates', 'Batch folders, larger files, OCR, table extraction, API, history, teams, ads and external analytics remain inactive until documented gates pass.'],
+      ['Free browser tools', 'DocShift offers eight document tools with browser-side PDF output, local previews and downloads without mandatory signup.'],
+      ['File privacy', 'Document processing stays in the browser session on free pages; no product upload, OCR server path, account history or server-side storage path is used for the basic result.'],
+      ['Advanced workflows', 'Batch folders, larger files, OCR, table extraction, API, history, teams, advertising and external analytics require separate controls before activation.'],
     ],
   },
 }

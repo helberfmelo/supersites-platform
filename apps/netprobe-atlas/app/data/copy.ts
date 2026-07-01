@@ -43,8 +43,8 @@ export interface ShellCopy {
   breadcrumbHome: string
   pageStatusLabel: string
   relatedTitle: string
-  plannedTitle: string
-  plannedBody: string
+  infoTitle: string
+  infoBody: string
   exampleLabel: string
   methodologyLabel: string
   editorialLabel: string
@@ -578,8 +578,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'NetProbe Atlas',
     pageStatusLabel: 'Page status',
     relatedTitle: 'Related pages',
-    plannedTitle: 'Instant public check',
-    plannedBody: 'Run a point-in-time diagnostic from this page. Results appear above the guide, and methodology, privacy notes and limits stay below the tool.',
+    infoTitle: 'Instant public check',
+    infoBody: 'Run a point-in-time diagnostic from this page. Results appear above the guide, and methodology, privacy notes and limits stay below the tool.',
     exampleLabel: 'Example',
     methodologyLabel: 'Methodology',
     editorialLabel: 'Editorial policy',
@@ -598,8 +598,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'NetProbe Atlas',
     pageStatusLabel: 'Status da página',
     relatedTitle: 'Páginas relacionadas',
-    plannedTitle: 'Consulta pública instantânea',
-    plannedBody: 'Execute um diagnóstico pontual nesta página. Os resultados aparecem acima do guia, e metodologia, privacidade e limites ficam abaixo da ferramenta.',
+    infoTitle: 'Consulta pública instantânea',
+    infoBody: 'Execute um diagnóstico pontual nesta página. Os resultados aparecem acima do guia, e metodologia, privacidade e limites ficam abaixo da ferramenta.',
     exampleLabel: 'Exemplo',
     methodologyLabel: 'Metodologia',
     editorialLabel: 'Política editorial',
@@ -618,8 +618,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'NetProbe Atlas',
     pageStatusLabel: 'Estado de página',
     relatedTitle: 'Páginas relacionadas',
-    plannedTitle: 'Consulta pública instantánea',
-    plannedBody: 'Ejecuta un diagnóstico puntual desde esta página. Los resultados aparecen sobre la guía, y metodología, privacidad y límites quedan debajo de la herramienta.',
+    infoTitle: 'Consulta pública instantánea',
+    infoBody: 'Ejecuta un diagnóstico puntual desde esta página. Los resultados aparecen sobre la guía, y metodología, privacidad y límites quedan debajo de la herramienta.',
     exampleLabel: 'Ejemplo',
     methodologyLabel: 'Metodología',
     editorialLabel: 'Política editorial',
@@ -638,8 +638,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'NetProbe Atlas',
     pageStatusLabel: 'Statut de page',
     relatedTitle: 'Pages liées',
-    plannedTitle: 'Controle public instantane',
-    plannedBody: 'Lancez un diagnostic ponctuel depuis cette page. Les resultats apparaissent au-dessus du guide; methodologie, confidentialite et limites restent sous l outil.',
+    infoTitle: 'Controle public instantane',
+    infoBody: 'Lancez un diagnostic ponctuel depuis cette page. Les resultats apparaissent au-dessus du guide; methodologie, confidentialite et limites restent sous l outil.',
     exampleLabel: 'Exemple',
     methodologyLabel: 'Méthodologie',
     editorialLabel: 'Politique éditoriale',
@@ -658,8 +658,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'NetProbe Atlas',
     pageStatusLabel: 'Seitenstatus',
     relatedTitle: 'Verwandte Seiten',
-    plannedTitle: 'Sofortige oeffentliche Pruefung',
-    plannedBody: 'Starten Sie eine punktuelle Diagnose auf dieser Seite. Ergebnisse erscheinen ueber dem Leitfaden; Methodik, Datenschutz und Grenzen stehen darunter.',
+    infoTitle: 'Sofortige oeffentliche Pruefung',
+    infoBody: 'Starten Sie eine punktuelle Diagnose auf dieser Seite. Ergebnisse erscheinen ueber dem Leitfaden; Methodik, Datenschutz und Grenzen stehen darunter.',
     exampleLabel: 'Beispiel',
     methodologyLabel: 'Methodik',
     editorialLabel: 'Redaktionelle Richtlinie',

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { limitSeoText, SEO_DESCRIPTION_MAX_LENGTH } from '@supersites/seo'
-import { getStatusBadgeClass } from '@supersites/ui'
 import {
   getCalcHarborCatalogCopy,
   getDetailCopy,
@@ -34,7 +33,7 @@ import {
 import { localizedHomePath, localizedSitePath, normalizeLocale, toIntlLocale } from '../../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
 import { createSiteDetailStructuredData } from '../../../data/schema'
-import { getCategoryLabel, getSiteBySlug, statusLabels } from '../../../data/sites'
+import { getCategoryLabel, getSiteBySlug } from '../../../data/sites'
 import { trackOutboundSiteClick } from '../../../utils/analytics'
 
 const route = useRoute()
@@ -2211,9 +2210,6 @@ useHead({
         <div>
           <div class="detail-topline">
             <p class="eyebrow">{{ getCategoryLabel(site.category, locale) }}</p>
-            <span :class="getStatusBadgeClass(site.status)">
-              {{ statusLabels[site.status][locale] }}
-            </span>
           </div>
           <h1 :id="`${site.slug}-title`">{{ site.name }}</h1>
           <p class="lead">{{ siteText.headline }}</p>
@@ -2236,8 +2232,8 @@ useHead({
           </div>
           <div class="network-panel__row">
             <div>
-              <strong>{{ copy.publicCta }}</strong>
-              <span>{{ site.temporaryUrl }}</span>
+              <strong>{{ copy.detailsTitle }}</strong>
+              <span>{{ siteText.summary }}</span>
             </div>
             <span class="signal" aria-hidden="true"></span>
           </div>

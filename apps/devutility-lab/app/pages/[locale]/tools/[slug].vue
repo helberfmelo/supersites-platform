@@ -960,7 +960,7 @@ useHead({
             </div>
 
             <div v-if="isCronHelper" class="cron-panel">
-              <p>Preview is calculated in UTC. Compare it with your deployment timezone before saving a schedule.</p>
+              <p>Preview is calculated in UTC. Compare it with your server timezone before saving a schedule.</p>
               <ol>
                 <li v-for="run in cronRuns" :key="run">{{ run }}</li>
               </ol>
