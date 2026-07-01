@@ -246,6 +246,12 @@ function toolLabel(slug: string): string {
       <span class="button-link button-link--secondary" aria-disabled="true">{{ copy.supportCta }}</span>
     </section>
 
+    <MonetizationSafeBlock
+      :locale="locale"
+      site-slug="qrroute"
+      slot-id="qrroute-home-footer-leaderboard"
+    />
+
     <section class="context-footer" aria-label="QRRoute workflow links">
       <div>
         <h2>{{ footerCopy.qrTools }}</h2>

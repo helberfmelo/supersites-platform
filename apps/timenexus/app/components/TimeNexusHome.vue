@@ -390,6 +390,12 @@ useHead(() => ({
       </div>
     </section>
 
+    <MonetizationSafeBlock
+      :locale="locale"
+      site-slug="timenexus"
+      slot-id="timenexus-home-footer-leaderboard"
+    />
+
     <LegalFooter :locale="locale" />
   </main>
 </template>

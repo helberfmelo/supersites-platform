@@ -998,6 +998,13 @@ useHead({
       </aside>
     </section>
 
+    <MonetizationSafeBlock
+      :locale="locale"
+      site-slug="mailhealth"
+      :slot-id="`mailhealth-${tool.slug}-after-result`"
+      variant="tool"
+    />
+
     <section class="content-layout" :aria-labelledby="`${tool.slug}-guide`">
       <div>
         <h2 :id="`${tool.slug}-guide`">{{ shellCopy.toolGuideTitle }}</h2>

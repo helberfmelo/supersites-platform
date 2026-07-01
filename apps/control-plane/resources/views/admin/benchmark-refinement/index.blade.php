@@ -4,7 +4,7 @@
     <section class="page-title" aria-labelledby="page-title">
         <div>
             <h1 id="page-title">Benchmark refinement</h1>
-            <p class="muted">Local readiness and backlog for Sprint 7 benchmark-driven growth.</p>
+            <p class="muted">Local readiness, Phase 18 closure KPIs and gated monetization backlog.</p>
         </div>
         <a class="button" href="{{ route('admin.dashboard') }}">Dashboard</a>
     </section>
@@ -38,7 +38,7 @@
 
     <section class="panel">
         <h2>Site readiness</h2>
-        <p class="muted">Scores are estimated from local docs, screenshots and CI evidence. Provider imports remain disabled.</p>
+        <p class="muted">Scores are estimated from local docs, generated HTML, Lighthouse/public-copy evidence and CI. Provider imports remain disabled.</p>
         <table>
             <thead>
                 <tr>

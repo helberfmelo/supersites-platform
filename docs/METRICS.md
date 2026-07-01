@@ -1260,7 +1260,7 @@ Data-base: 2026-06-30
 
 | Metric | Value |
 |---|---:|
-| Phase 18 status | In progress |
+| Phase 18 status | Complete technically as of 2026-07-01 |
 | Initial sprint slice | Sprint 18.0 baseline + Sprint 18.1 public UX/copy foundations |
 | Full crawler attempts | 2 attempts; timed out locally before completion |
 | Baseline quick crawler | `2026-06-29T19-44-36-078Z`; 95 routes; 190 viewport checks; 0 gaps |
@@ -1747,7 +1747,25 @@ Data-base: 2026-06-30
 | Sprint 18.22 post-deploy quick crawler | `2026-06-30T22-12-55-566Z`; 95 routes; 190 viewport checks; 0 gaps |
 | Sprint 18.22 live NetProbe IP screenshots | `artifacts/netprobe-ip-live-qa/netprobe-ip-live-en-desktop.png` and `artifacts/netprobe-ip-live-qa/netprobe-ip-live-pt-br-mobile-details.png` reviewed |
 | Sprint 18.22 live NetProbe IP smoke | Passed: auto IP result, refresh/copy/details actions, canonical/hreflang checks, schema, blocked phrase scan 0, console errors 0 and overflow 0 |
-| Real deploy/provider activation | 31 reversible HostGator deploys in Phase 18 so far, including the Sprint 18.22 NetProbe deploy; 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, providers, DNS/root mapping or irreversible actions |
+| Sprint 18.29-18.33 CalcHarbor app refinement | Commit `f825fdd`; Quality Gate `28490646975` passed; local app tests/build/preview/public-copy passed |
+| Sprint 18.34-18.43 DevUtility refinement | Commit `d19b251`; Quality Gate `28491283561` passed; local app tests/build/preview/public-copy passed |
+| Sprint 18.44-18.52 TimeNexus refinement | Commit `649ce74`; Quality Gate `28492163325` passed; focused E2E selector correction validated |
+| Sprint 18.53-18.59 QRRoute refinement | Commit `81800c6`; Quality Gate `28493296005` passed |
+| Sprint 18.60-18.63 InvoiceCraft refinement | Commit `fe4c68a`; Quality Gate `28494040735` passed; focused InvoiceCraft E2E passed after selector correction |
+| Sprint 18.64-18.71 MailHealth refinement | Commit `65f0979`; Quality Gate `28494479354` passed |
+| Sprint 18.72-18.79 SitePulse refinement | Commit `7708337`; Quality Gate `28495117026` passed |
+| Sprint 18.80-18.86 PixelBatch refinement | Commit `e103ed2`; Quality Gate `28495746702` passed |
+| Sprint 18.87-18.95 DocShift refinement | Commits `c099348` and `0f51058`; Quality Gate `28496681340` passed |
+| Sprint 18.96-18.99 static app build | Passed for 10 apps in one filtered workspace build |
+| Sprint 18.96 public copy validation | Passed: 951 generated HTML files |
+| Sprint 18.97 inert monetization placeholders | 10 homes plus 9 tool templates now include localized inert support/ad blocks; NetProbe tools already had equivalent inert slots |
+| Sprint 18.97 generated inert ad markers | 401 `data-ad-status="delivery-disabled"` and 401 `data-ad-slot-id` occurrences in generated HTML |
+| Sprint 18.97 AdSense-safe validation | Passed: `pnpm validate:adsense-safe-public` |
+| Sprint 18.98 Lighthouse public full audit | `artifacts/lighthouse-public/2026-07-01T06-30-55-559Z/summary.md`; 12 pages; 12 passed; min perf 87; min a11y 94; min best practices 96; min SEO 100; max LCP 2251 ms; max CLS 0.08 |
+| Sprint 18.98 crawler full attempt | `artifacts/benchmark-crawl/2026-07-01T05-55-57-679Z`; timed out after 15 minutes with partial artifacts; treated as audit timeout, not product incident |
+| Sprint 18.98 accessibility correction | Language nav accessible labels aligned with visible short labels in Hub, NetProbe, MailHealth and SitePulse |
+| Sprint 18.99 final report | `docs/PHASE_18_BENCHMARK_REFINEMENT_REPORT.md` |
+| Real deploy/provider activation | 31 reversible HostGator deploys in Phase 18 through Sprint 18.22; later app-tool and closure stages did not require deploy. 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, external providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics
 

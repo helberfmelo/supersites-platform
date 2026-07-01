@@ -215,6 +215,12 @@ useHead(() => ({
       </div>
     </section>
 
+    <MonetizationSafeBlock
+      :locale="locale"
+      site-slug="docshift"
+      slot-id="docshift-home-footer-leaderboard"
+    />
+
     <LegalFooter :locale="locale" />
   </main>
 </template>

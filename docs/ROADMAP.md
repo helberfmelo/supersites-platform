@@ -725,7 +725,7 @@ Operacao pos-Fase 17 - Public Watchdog transient 500 hardening
 
 ## Fase 18 - Refinamento benchmark-driven pagina por pagina
 
-Status geral: em andamento. A fase agora segue `docs/ROADMAP_FASE_18_REFINAMENTO_BENCHMARK_PAGE_BY_PAGE.md` e a cadencia por etapa de `docs/RUNBOOKS/SPRINT_EXECUTION.md`: implementar todas as sprints da etapa, validacao minima, commit/push objetivo, Quality Gate e deploy/QA profundo somente quando o owner pedir ou quando a etapa for de pre-divulgacao/fechamento.
+Status geral: concluida tecnicamente em 2026-07-01. A fase seguiu `docs/ROADMAP_FASE_18_REFINAMENTO_BENCHMARK_PAGE_BY_PAGE.md` e a cadencia por etapa de `docs/RUNBOOKS/SPRINT_EXECUTION.md`: implementar todas as sprints da etapa, validacao minima, commit/push objetivo, Quality Gate e deploy/QA profundo somente quando o owner pedir ou quando a etapa for de pre-divulgacao/fechamento. Nenhuma etapa pendente segue mapeada na Fase 18; o proximo trabalho exige novo bloco de roadmap aprovado pelo owner.
 
 Sprint 18.0/18.1 - Baseline e fundamentos publicos
 - Simbolico: `PHASE18-BENCHMARK-FOUNDATION`.
@@ -841,6 +841,19 @@ Sprints 18.21 e 18.22 - NetProbe app home e What is my IP
 - Status: concluidas em producao. Home: commits `8f7b4f3`/`8441814`, deploy `28475475506`, release `8441814e224be60ef9baa7b81dc8e32be2c35311-28475475506-1`. IP: commit `ae30bda`, Quality Gate `28478093718`, Deploy Dry Run `28478101304`, deploy NetProbe `28478351303`, release `ae30bda4f77c00f95ae8393b3911b1e409097071-28478351303-1`, asset `CIQKG5SX.js`.
 - Validacao: smokes publicos NetProbe/API, AdSense-safe, screenshots live desktop/mobile, browser checks de canonical/hreflang/schema/overflow/termos bloqueados e crawler quick live `2026-06-30T22-12-55-566Z` com 95 rotas/190 checks/0 gaps passaram.
 - Escopo negativo: nenhum anuncio real, `ads.txt`, checkout, billing, doacao real, afiliado, provider externo, worker/cron, probe multirregional novo, DNS/root mapping, root redirect, analytics externo, persistencia de IP em analytics ou acao irreversivel foi ativado.
+
+Sprints 18.23 a 18.95 - Apps estaticos page-by-page
+- Simbolico: `PHASE18-APP-TOOLS-REFINEMENT`.
+- Escopo entregue: NetProbe tools, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch e DocShift foram refinados por etapa completa, com homes e paginas de ferramenta orientadas a resposta/acao antes de metodologia, limites, suporte e monetizacao futura.
+- Status: concluidas. Commits de etapa publicados: NetProbe tools `0f34ecc`/`b350b1c`, CalcHarbor `bb3203a`/`f825fdd`, DevUtility `d19b251`, TimeNexus `406072f`/`649ce74`, QRRoute `ff75a80`/`81800c6`, InvoiceCraft `df3e952`/`fe4c68a`, MailHealth `65f0979`, SitePulse `7708337`, PixelBatch `e103ed2` e DocShift `c099348`/`0f51058`; Quality Gates finais passaram ate `28496681340`.
+- Validacao: builds/testes focados por app, preview validators, `validate:public-copy`, `validate:secrets`, `git diff --check` e ajustes de seletores E2E quando expostos pelo Quality Gate. Screenshots, crawler, Lighthouse, deploy dry-run e smokes publicos ficaram fora das etapas nao-QA conforme fluxo aprovado.
+- Escopo negativo: nenhum anuncio real, `ads.txt`, checkout, billing, pagamento, doacao real, afiliado, upload server-side, IA/OCR/provider externo, worker/cron, analytics externo, DNS/root mapping, root redirect, deploy obrigatorio ou acao irreversivel foi ativado.
+
+Sprints 18.96 a 18.99 - Fechamento transversal da Fase 18
+- Simbolico: `PHASE18-CLOSURE`.
+- Escopo entregue: QA multilingue com validacao de copy publica, placeholders AdSense-safe e blocos de apoio inertes, Lighthouse publico full, ajuste de acessibilidade em navegacao de idiomas, dashboard/admin com KPIs estimados pos-Fase 18 e relatorio final `docs/PHASE_18_BENCHMARK_REFINEMENT_REPORT.md`.
+- Validacao: build local dos 10 apps estaticos, `pnpm validate:public-copy` em 951 HTMLs, `pnpm validate:adsense-safe-public`, `pnpm validate:secrets`, Lighthouse publico full com 12/12 paginas aprovadas, min performance 87, min accessibility 94, min best practices 96, min SEO 100, max LCP 2251 ms e max CLS 0.08. O crawler full de fechamento foi tentado, mas excedeu 15 minutos e gerou artefato parcial, tratado como timeout operacional de auditoria.
+- Escopo negativo: nenhum provider PageSpeed/GTmetrix/API, anuncio real, snippet AdSense, publisher id real, `ads.txt`, checkout, billing, pagamento, doacao real, afiliado, provider externo, worker/cron, DNS/root mapping, root redirect, deploy automatico ou acao irreversivel foi ativado.
 
 ## Definition of done do programa
 

@@ -282,6 +282,12 @@ useHead(() => ({
       </nav>
     </section>
 
+    <MonetizationSafeBlock
+      :locale="locale"
+      site-slug="netprobe-atlas"
+      slot-id="netprobe-home-footer-leaderboard"
+    />
+
     <LegalFooter :locale="locale" />
   </main>
 </template>

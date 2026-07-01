@@ -8,6 +8,10 @@ const props = defineProps<{
 }>()
 
 const languageOptions = computed(() => buildLanguageOptions(props.currentLocale, props.pathForLocale).filter((option) => publicLocaleCodes.includes(option.code)))
+
+function languageAriaLabel(locale: { label: string; shortLabel: string }): string {
+  return `${locale.label} (${locale.shortLabel})`
+}
 </script>
 
 <template>
@@ -16,7 +20,7 @@ const languageOptions = computed(() => buildLanguageOptions(props.currentLocale,
       v-for="locale in languageOptions"
       :key="locale.code"
       :to="locale.href"
-      :aria-label="locale.label"
+      :aria-label="languageAriaLabel(locale)"
       :aria-current="locale.current ? 'page' : undefined"
     >
       {{ locale.shortLabel }}

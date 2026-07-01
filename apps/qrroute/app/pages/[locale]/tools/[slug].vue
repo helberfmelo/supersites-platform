@@ -114,6 +114,13 @@ useHead({
 
     <QRRouteWorkbench :locale="locale" :initial-slug="tool.slug" />
 
+    <MonetizationSafeBlock
+      :locale="locale"
+      site-slug="qrroute"
+      :slot-id="`qrroute-${tool.slug}-after-result`"
+      variant="tool"
+    />
+
     <section class="related-panel" :aria-labelledby="`${tool.slug}-related`">
       <div>
         <h2 :id="`${tool.slug}-related`">{{ shellCopy.relatedTitle }}</h2>

@@ -158,6 +158,7 @@ AdSense e a monetizacao primaria, mas nenhum site deve ser submetido antes de cu
 - `benchmark_site_readiness.adsense_score` nao e aprovacao AdSense, nao e site submission e nao indica serving ativo.
 - `benchmark_opportunities` deve manter conta AdSense, `publisher_id`, `ads.txt`, site review, Auto Ads, snippets, Management API, receita e requests reais como `human_required` ou `unavailable` ate os gates completos.
 - O Hub publico nao deve exibir claims de receita, RPM, CTR, viewability ou aprovacao AdSense.
+- A etapa 18.97 adicionou placeholders inertes e blocos de apoio localizados nos apps publicos. Eles devem permanecer com `data-ad-status="delivery-disabled"`, sem snippet AdSense, sem iframe/script externo, sem publisher id real e sem link/botao/QR de pagamento ate aprovacao humana, conta/provider e politicas finais.
 
 ## HUMAN_ACTION_REQUIRED
 

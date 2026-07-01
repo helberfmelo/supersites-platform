@@ -239,6 +239,12 @@ function toolsBySlug(slugs: ToolSlug[]): ToolDefinition[] {
       </div>
     </section>
 
+    <MonetizationSafeBlock
+      :locale="locale"
+      site-slug="devutility-lab"
+      slot-id="devutility-home-footer-leaderboard"
+    />
+
     <LegalFooter :locale="locale" />
   </main>
 </template>

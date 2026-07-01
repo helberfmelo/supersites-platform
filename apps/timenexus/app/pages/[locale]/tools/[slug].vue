@@ -627,6 +627,13 @@ useHead({
       </aside>
     </section>
 
+    <MonetizationSafeBlock
+      :locale="locale"
+      site-slug="timenexus"
+      :slot-id="`timenexus-${tool.slug}-after-result`"
+      variant="tool"
+    />
+
     <section class="related-panel" :aria-labelledby="`${tool.slug}-related`">
       <div>
         <h2 :id="`${tool.slug}-related`">{{ shellCopy.relatedTitle }}</h2>

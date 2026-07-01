@@ -165,6 +165,12 @@ useHead(() => ({
       </div>
     </section>
 
+    <MonetizationSafeBlock
+      :locale="locale"
+      site-slug="invoicecraft"
+      slot-id="invoicecraft-home-footer-leaderboard"
+    />
+
     <LegalFooter :locale="locale" />
   </main>
 </template>

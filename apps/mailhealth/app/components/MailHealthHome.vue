@@ -171,6 +171,12 @@ useHead(() => ({
       </div>
     </section>
 
+    <MonetizationSafeBlock
+      :locale="locale"
+      site-slug="mailhealth"
+      slot-id="mailhealth-home-footer-leaderboard"
+    />
+
     <LegalFooter :locale="locale" />
   </main>
 </template>

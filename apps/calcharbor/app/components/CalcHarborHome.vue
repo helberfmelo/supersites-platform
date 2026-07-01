@@ -312,6 +312,12 @@ useHead(() => ({
       </div>
     </section>
 
+    <MonetizationSafeBlock
+      :locale="locale"
+      site-slug="calcharbor"
+      slot-id="calcharbor-home-footer-leaderboard"
+    />
+
     <LegalFooter :locale="locale" />
   </main>
 </template>

@@ -1039,6 +1039,13 @@ useHead({
       </aside>
     </section>
 
+    <MonetizationSafeBlock
+      :locale="locale"
+      site-slug="devutility-lab"
+      :slot-id="`devutility-${tool.slug}-after-result`"
+      variant="tool"
+    />
+
     <section class="content-layout" :aria-labelledby="`${tool.slug}-guide`">
       <div>
         <h2 :id="`${tool.slug}-guide`">{{ shellCopy.guideTitle }}</h2>

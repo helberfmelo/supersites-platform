@@ -221,7 +221,9 @@ async function runLighthouse({ page, baseUrl, outputDir, chromePath }) {
   const jsonPath = `${reportBase}.report.json`
   const htmlPath = `${reportBase}.report.html`
 
-  if (result.code !== 0) {
+  const reportWasWritten = await fileExists(jsonPath)
+
+  if (result.code !== 0 && !reportWasWritten) {
     return {
       id: page.id,
       label: page.label,
@@ -244,9 +246,11 @@ async function runLighthouse({ page, baseUrl, outputDir, chromePath }) {
     id: page.id,
     label: page.label,
     url,
-    status: 'passed',
+    status: result.code === 0 ? 'passed' : 'passed_with_warnings',
     startedAt,
     endedAt,
+    exitCode: result.code,
+    warning: result.code === 0 ? '' : `Lighthouse wrote the report but exited ${result.code}: ${result.stderr.slice(-500)}`,
     lighthouseVersion: lhr.lighthouseVersion,
     fetchTime: lhr.fetchTime,
     requestedUrl: lhr.requestedUrl,
@@ -267,11 +271,15 @@ async function runLighthouse({ page, baseUrl, outputDir, chromePath }) {
   }
 }
 
+function hasLighthouseReport(result) {
+  return result.status === 'passed' || result.status === 'passed_with_warnings'
+}
+
 function thresholdFailures(results) {
   const failures = []
 
   for (const result of results) {
-    if (result.status !== 'passed') {
+    if (!hasLighthouseReport(result)) {
       failures.push(`${result.id}: Lighthouse command failed`)
       continue
     }
@@ -289,11 +297,11 @@ function thresholdFailures(results) {
 
 function markdownReport({ args, outputDir, chromePath, lighthouseVersion, lhciVersion, results, failures }) {
   const rows = results.map((result) => {
-    if (result.status !== 'passed') {
+    if (!hasLighthouseReport(result)) {
       return `| ${result.label} | failed | - | - | - | - | - | - | ${result.exitCode ?? 'n/a'} |`
     }
 
-    return `| ${result.label} | passed | ${result.categories.performance ?? 'n/a'} | ${result.categories.accessibility ?? 'n/a'} | ${result.categories['best-practices'] ?? 'n/a'} | ${result.categories.seo ?? 'n/a'} | ${result.audits.largestContentfulPaintMs ?? 'n/a'} | ${result.audits.cumulativeLayoutShift ?? 'n/a'} | 0 |`
+    return `| ${result.label} | ${result.status} | ${result.categories.performance ?? 'n/a'} | ${result.categories.accessibility ?? 'n/a'} | ${result.categories['best-practices'] ?? 'n/a'} | ${result.categories.seo ?? 'n/a'} | ${result.audits.largestContentfulPaintMs ?? 'n/a'} | ${result.audits.cumulativeLayoutShift ?? 'n/a'} | ${result.exitCode ?? 0} |`
   })
 
   const runStatus = failures.length === 0 ? 'passed' : 'needs-review'
@@ -321,8 +329,11 @@ function markdownReport({ args, outputDir, chromePath, lighthouseVersion, lhciVe
     '## Findings',
     '',
     failures.length === 0
-      ? '- No Lighthouse command or configured threshold failures were recorded.'
+      ? '- No Lighthouse report or configured threshold failures were recorded.'
       : failures.map((failure) => `- ${failure}`).join('\n'),
+    ...results
+      .filter((result) => result.status === 'passed_with_warnings')
+      .map((result) => `- Warning for ${result.id}: report was generated, but the CLI exited during cleanup. ${result.warning ?? ''}`),
     '',
     '## Governance',
     '',
@@ -390,7 +401,7 @@ async function main() {
   console.log(`Markdown: ${path.join(outputDir, 'summary.md')}`)
   console.log(`JSON: ${path.join(outputDir, 'summary.json')}`)
 
-  const commandFailures = results.filter((result) => result.status !== 'passed')
+  const commandFailures = results.filter((result) => !hasLighthouseReport(result))
   if (commandFailures.length > 0) process.exitCode = 1
   else if (args.failOnThresholds && failures.length > 0) process.exitCode = 1
 }

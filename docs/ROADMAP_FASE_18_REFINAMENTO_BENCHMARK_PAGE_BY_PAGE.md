@@ -16,7 +16,7 @@ Transformar paginas MVP em superficies benchmark-grade: ferramenta/acao principa
 
 ## Estado da Fase 18
 
-Concluido ate:
+Concluido:
 
 - Hub principal e catalogos dos 10 sites.
 - Paginas institucionais do Hub: About, Contact, Privacy, Cookies, Terms, Methodology, Editorial Policy e Public Status.
@@ -32,15 +32,14 @@ Concluido ate:
 - Etapa SitePulse Lab Tools: home, HTTP Status Checker, Redirect Chain Checker, Security Headers Checker, Robots.txt Checker, Sitemap Validator, TTFB Checker e Performance Snapshot.
 - Etapa PixelBatch Tools: home, Image Compressor, Image Resizer, Image Cropper, Image Converter, Metadata Remover e Social Preset Generator.
 - Etapa DocShift Tools: home, PDF Merge, PDF Split, PDF Rotate, PDF Compressor, PDF Watermark, PDF Page Numbers, PDF Metadata Cleaner e Text to PDF.
+- Etapa Fechamento transversal da Fase 18: QA multilingue, placeholders AdSense-safe/doacao inertes, Lighthouse publico, dashboard/admin, relatorio e fechamento documental.
 
 Proxima etapa ativa:
 
-- **Etapa Fechamento transversal da Fase 18**
-- Sprints: **18.96 a 18.99**
-- Escopo: QA multilingue completa, AdSense-safe placeholders/doacao sem ativar pagamento real, performance/acessibilidade/visual QA e relatorio final da Fase 18.
-- Observacao: esta etapa e QA/pre-divulgacao/fechamento; validacoes profundas entram quando a etapa for executada.
+- Nenhuma etapa pendente mapeada na Fase 18 apos o fechamento 18.96-18.99.
+- Proximo trabalho exige novo bloco de roadmap aprovado pelo owner.
 
-## Sprints da proxima etapa
+## Sprints da etapa de fechamento concluida
 
 ### Sprint 18.96 - QA multilingue completa
 
@@ -71,6 +70,8 @@ Proxima etapa ativa:
 - Atualizar dashboard/admin do Supersite com KPIs de refinamento.
 - Criar `docs/PHASE_18_BENCHMARK_REFINEMENT_REPORT.md`.
 - Atualizar `docs/STATUS.md`, `docs/ROADMAP.md`, `docs/METRICS.md` e `docs/HUMAN_ACTION_REQUIRED.md`.
+
+Resultado: concluida em 2026-07-01. Relatorio final: `docs/PHASE_18_BENCHMARK_REFINEMENT_REPORT.md`.
 
 ## Regras de produto
 

@@ -102,6 +102,13 @@ useHead({
 
     <InvoiceCraftWorkbench :locale="locale" :initial-slug="tool.slug" track-view />
 
+    <MonetizationSafeBlock
+      :locale="locale"
+      site-slug="invoicecraft"
+      :slot-id="`invoicecraft-${tool.slug}-after-result`"
+      variant="tool"
+    />
+
     <section class="content-layout" :aria-labelledby="`${tool.slug}-guide`">
       <div>
         <h2 :id="`${tool.slug}-guide`">{{ shellCopy.guideTitle }}</h2>

@@ -573,6 +573,13 @@ useHead({
       </aside>
     </section>
 
+    <MonetizationSafeBlock
+      :locale="locale"
+      site-slug="sitepulse-lab"
+      :slot-id="`sitepulse-${tool.slug}-after-result`"
+      variant="tool"
+    />
+
     <section class="content-layout" :aria-labelledby="`${tool.slug}-guide`">
       <div>
         <h2 :id="`${tool.slug}-guide`">{{ shellCopy.toolGuideTitle }}</h2>

@@ -111,7 +111,7 @@
     <section class="panel">
         <h2>Benchmark refinement</h2>
         <p class="muted">
-            Local benchmark, SEO/AIO, AdSense and monetization readiness. External provider activation:
+            Local benchmark, SEO/AIO, AdSense-safe layout and monetization readiness after Phase 18. External provider activation:
             {{ $summary['benchmark_external_provider_active'] }}.
         </p>
         <table>

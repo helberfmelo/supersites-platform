@@ -645,6 +645,13 @@ useHead({
       </aside>
     </section>
 
+    <MonetizationSafeBlock
+      :locale="locale"
+      site-slug="calcharbor"
+      :slot-id="`calcharbor-${calculator.slug}-after-result`"
+      variant="tool"
+    />
+
     <section class="related-calculators" :aria-labelledby="`${calculator.slug}-related`">
       <div>
         <p class="eyebrow">{{ getCategoryLabel(calculator.category, locale) }}</p>

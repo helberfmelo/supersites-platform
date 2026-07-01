@@ -1855,6 +1855,32 @@ Ainda em 2026-06-29, o `Public Watchdog` agendado run `28372846327` falhou no sm
   - Validacao local pre-commit passou: `pnpm test:invoicecraft` com 8 testes, `pnpm build:invoicecraft` com 123 rotas prerenderizadas, `pnpm validate:invoicecraft-preview` com asset `/_nuxt/DzUEzIxj.js`, `pnpm validate:public-copy` em 951 HTMLs, `pnpm validate:secrets` e `git diff --check`. Apos o Quality Gate remoto expor uma ambiguidade de seletor no Playwright do InvoiceCraft, tambem passou `pnpm test:e2e:invoicecraft` com 3 testes. Nao foram executados screenshots, crawler, Lighthouse, deploy dry-run, smokes publicos ou deploy porque a etapa nao era QA/pre-divulgacao/fechamento visual e nao exigia publicacao.
   - Escopo negativo: nenhum template fiscal oficial, numeracao fiscal automatica, processamento de pagamento, checkout, provider externo, dados salvos de cliente/produto, upload server-side de logo, anuncio real, `ads.txt`, billing real, doacao real, afiliado, analytics externo com campos do documento/PDF, worker/cron, deploy, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
 
+- Sprints 18.64 a 18.71 - MailHealth Tools:
+  - Escopo tecnico: home e paginas SPF, DKIM, DMARC, MX, blacklist, SMTP e Header Analyzer foram refinadas como diagnosticos de email task-first, com entrada/resultado acima da dobra, score, checklist, severidades e orientacao sem expor status interno.
+  - Validacao local pre-commit passou com testes/build/preview de MailHealth, `validate:public-copy`, `validate:secrets` e `git diff --check`; commit `65f0979` foi publicado e o Quality Gate `28494479354` passou.
+  - Escopo negativo: nenhum monitor recorrente, DMARC ingestion, DNSBL volume, API paga, checkout, billing, anuncio real, `ads.txt`, doacao real, afiliado, provider externo, worker/cron, deploy obrigatorio ou acao irreversivel foi ativado.
+
+- Sprints 18.72 a 18.79 - SitePulse Lab Tools:
+  - Escopo tecnico: home e paginas HTTP Status, Redirect Chain, Security Headers, Robots.txt, Sitemap, TTFB e Performance Snapshot foram refinadas como checagens one-shot com resposta clara antes de detalhes tecnicos.
+  - Validacao local pre-commit passou com testes/build/preview de SitePulse, `validate:public-copy`, `validate:secrets` e `git diff --check`; commit `7708337` foi publicado e o Quality Gate `28495117026` passou.
+  - Escopo negativo: nenhum monitor uptime recorrente, alerta, status page, multi-regiao, API paga, checkout, billing, anuncio real, `ads.txt`, doacao real, afiliado, provider externo, worker/cron, deploy obrigatorio ou acao irreversivel foi ativado.
+
+- Sprints 18.80 a 18.86 - PixelBatch Tools:
+  - Escopo tecnico: home e paginas Image Compressor, Resizer, Cropper, Converter, Metadata Remover e Social Preset Generator foram refinadas como fluxos browser-side com preview antes/depois, controles especificos, privacidade e caminhos futuros abaixo da entrega gratuita.
+  - Validacao local pre-commit passou com `pnpm test:pixelbatch`, `pnpm build:pixelbatch`, `pnpm validate:pixelbatch-preview`, `pnpm validate:public-copy`, `pnpm validate:secrets` e `git diff --check`; commit `e103ed2` foi publicado e o Quality Gate `28495746702` passou.
+  - Escopo negativo: nenhum upload server-side, armazenamento persistente, IA/background removal provider, API paga, checkout, billing, anuncio real, `ads.txt`, doacao real, afiliado, analytics externo, worker/cron, deploy ou acao irreversivel foi ativado.
+
+- Sprints 18.87 a 18.95 - DocShift Tools:
+  - Escopo tecnico: home e paginas PDF Merge, Split, Rotate, Compressor, Watermark, Page Numbers, Metadata Cleaner e Text to PDF foram refinadas como fluxos PDF browser-side com dropzone, resultado, acoes locais, limites e caminhos futuros abaixo da entrega gratuita.
+  - Validacao local pre-commit passou com testes/build/preview de DocShift, `validate:public-copy`, `validate:secrets`, `git diff --check` e, apos o Quality Gate expor seletor E2E ambiguo, `pnpm test:e2e:docshift` com 4 testes; commits `c099348` e `0f51058` foram publicados e o Quality Gate `28496681340` passou.
+  - Escopo negativo: nenhum upload server-side, OCR, Office conversion, batch worker, armazenamento persistente, API paga, checkout, billing, anuncio real, `ads.txt`, doacao real, afiliado, analytics externo, deploy ou acao irreversivel foi ativado.
+
+- Sprints 18.96 a 18.99 - Fechamento transversal da Fase 18:
+  - Escopo tecnico: QA multilingue, placeholders AdSense-safe e blocos de apoio inertes, Lighthouse publico, ajuste de acessibilidade em navegacao de idiomas, dashboard/admin com KPIs estimados pos-Fase 18 e relatorio `docs/PHASE_18_BENCHMARK_REFINEMENT_REPORT.md`.
+  - Validacao local passou com build dos 10 apps estaticos, `pnpm validate:public-copy` em 951 HTMLs, `pnpm validate:adsense-safe-public`, `pnpm validate:secrets`, `git diff --check` e Lighthouse publico full com 12/12 paginas aprovadas, min performance 87, min accessibility 94, min best practices 96, min SEO 100, max LCP 2251 ms e max CLS 0.08. O crawler full de fechamento foi tentado em `2026-07-01T05-55-57-679Z`, mas excedeu 15 minutos e gerou artefato parcial, tratado como timeout operacional de auditoria.
+  - Fechamento: a Fase 18 fica concluida tecnicamente; `docs/ROADMAP_FASE_18_REFINAMENTO_BENCHMARK_PAGE_BY_PAGE.md` nao lista etapa pendente e novo trabalho depende de novo bloco de roadmap aprovado pelo owner.
+  - Escopo negativo: nenhum provider PageSpeed/GTmetrix/API, anuncio real, snippet AdSense, publisher id real, `ads.txt`, checkout, billing, pagamento, doacao real, afiliado, provider externo, worker/cron, DNS/root mapping, root redirect, deploy automatico ou acao irreversivel foi ativado.
+
 ## Bloqueios humanos registrados
 
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.

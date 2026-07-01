@@ -201,6 +201,7 @@
             }
 
             .status.success,
+            .status.completed,
             .status.active {
                 background: #dff6ed;
                 color: #126241;
