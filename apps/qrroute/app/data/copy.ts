@@ -134,8 +134,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
       { title: 'Advanced link workflows', body: 'Editable destinations, scan insights, custom domains, batch and API belong to account workflows.', tone: 'amber' },
     ],
     supportTitle: 'Support QRRoute',
-    supportBody: 'The static builder stays free. Owner-approved support options can appear here after the provider and tax details are reviewed.',
-    supportCta: 'Support link under review',
+    supportBody: 'The static builder stays free. Bookmark QRRoute, share it when useful or send corrections from the contact page.',
+    supportCta: 'Free builder available',
   },
   'pt-br': {
     eyebrow: 'QRRoute',
@@ -162,8 +162,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
       { title: 'Workflows avancados de link', body: 'Destino editavel, metricas de scan, dominio proprio, lote e API pertencem a workflows de conta.', tone: 'amber' },
     ],
     supportTitle: 'Apoie o QRRoute',
-    supportBody: 'O construtor estatico fica gratuito. Opcoes de apoio aprovadas pelo dono podem aparecer aqui depois da revisao de provedor e impostos.',
-    supportCta: 'Link de apoio em revisao',
+    supportBody: 'O construtor estatico fica gratuito. Salve o QRRoute, compartilhe quando for util ou envie correcoes pela pagina de contato.',
+    supportCta: 'Construtor gratuito disponivel',
   },
   es: {
     eyebrow: 'QRRoute',
@@ -190,8 +190,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
       { title: 'Workflows avanzados de enlace', body: 'Destino editable, metricas de escaneo, dominio propio, lote y API pertenecen a workflows de cuenta.', tone: 'amber' },
     ],
     supportTitle: 'Apoya QRRoute',
-    supportBody: 'El builder estatico sigue gratis. Opciones de apoyo aprobadas por el dueno pueden aparecer aqui despues de revisar proveedor e impuestos.',
-    supportCta: 'Enlace de apoyo en revision',
+    supportBody: 'El builder estatico sigue gratis. Guarda QRRoute, compartelo cuando sea util o envia correcciones desde la pagina de contacto.',
+    supportCta: 'Builder gratis disponible',
   },
   fr: {
     eyebrow: 'QRRoute',
@@ -218,8 +218,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
       { title: 'Workflows lien avances', body: 'Destination editable, mesures de scan, domaine propre, lot et API appartiennent aux workflows de compte.', tone: 'amber' },
     ],
     supportTitle: 'Soutenir QRRoute',
-    supportBody: 'Le builder statique reste gratuit. Des options de soutien approuvees par le proprietaire peuvent apparaitre ici apres revue fournisseur et taxes.',
-    supportCta: 'Lien de soutien en revue',
+    supportBody: 'Le builder statique reste gratuit. Enregistrez QRRoute, partagez-le s il aide ou envoyez des corrections via la page de contact.',
+    supportCta: 'Builder gratuit disponible',
   },
   de: {
     eyebrow: 'QRRoute',
@@ -246,8 +246,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
       { title: 'Erweiterte Link-Workflows', body: 'Editierbare Ziele, Scan-Metriken, eigene Domain, Batch und API gehoeren zu Kontoworkflows.', tone: 'amber' },
     ],
     supportTitle: 'QRRoute unterstuetzen',
-    supportBody: 'Der statische Builder bleibt kostenlos. Vom Betreiber freigegebene Supportoptionen koennen hier nach Provider- und Steuerpruefung erscheinen.',
-    supportCta: 'Supportlink in Pruefung',
+    supportBody: 'Der statische Builder bleibt kostenlos. Speichern Sie QRRoute, teilen Sie es bei Bedarf oder senden Sie Korrekturen ueber die Kontaktseite.',
+    supportCta: 'Kostenloser Builder verfuegbar',
   },
 }
 

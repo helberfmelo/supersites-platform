@@ -29,29 +29,29 @@ const props = withDefaults(defineProps<{
 
 const copyByLocale: Record<LocaleCode, { label: string; title: string; body: string }> = {
   en: {
-    label: 'Advertising space',
-    title: 'Advertising space',
-    body: 'Reserved placement. No ad is loaded from this page area.',
+    label: 'Advertisement',
+    title: 'Advertisement',
+    body: 'Sponsored messages stay separate from the free tool catalog.',
   },
   'pt-br': {
-    label: 'Espaço publicitário',
-    title: 'Espaço publicitário',
-    body: 'Área reservada. Nenhum anúncio é carregado a partir deste espaço.',
+    label: 'Publicidade',
+    title: 'Publicidade',
+    body: 'Mensagens patrocinadas ficam separadas do catálogo gratuito de ferramentas.',
   },
   es: {
-    label: 'Espacio publicitario',
-    title: 'Espacio publicitario',
-    body: 'Área reservada. No se carga ningún anuncio desde este espacio.',
+    label: 'Publicidad',
+    title: 'Publicidad',
+    body: 'Los mensajes patrocinados quedan separados del catálogo gratuito de herramientas.',
   },
   fr: {
-    label: 'Espace publicitaire',
-    title: 'Espace publicitaire',
-    body: 'Emplacement réservé. Aucune annonce n’est chargée depuis cet espace.',
+    label: 'Publicité',
+    title: 'Publicité',
+    body: 'Les messages sponsorisés restent séparés du catalogue gratuit d’outils.',
   },
   de: {
-    label: 'Werbefläche',
-    title: 'Werbefläche',
-    body: 'Reservierter Bereich. Aus diesem Bereich wird keine Anzeige geladen.',
+    label: 'Anzeige',
+    title: 'Anzeige',
+    body: 'Gesponserte Hinweise bleiben vom kostenlosen Werkzeugkatalog getrennt.',
   },
 }
 

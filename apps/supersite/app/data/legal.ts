@@ -2045,7 +2045,7 @@ export const legalPageCatalog: LegalPage[] = [
           {
             heading: 'What this page covers',
             paragraphs: [
-              'This page is a public summary for visitor-facing availability, incidents, maintenance notes and contact paths. Detailed operational logs stay in protected internal records.',
+              'This page summarizes visitor-facing availability, incidents, maintenance notes and contact paths. Use the contact links here when a public issue repeats.',
             ],
           },
         ],
@@ -2130,7 +2130,7 @@ export const legalPageCatalog: LegalPage[] = [
           {
             heading: 'Escopo da página',
             paragraphs: [
-              'Resumo público de disponibilidade, incidentes, notas de manutenção e caminhos de contato para visitantes. Registros operacionais detalhados ficam em áreas internas protegidas.',
+              'Resumo público de disponibilidade, incidentes, notas de manutenção e caminhos de contato para visitantes. Use os links de contato daqui quando um problema público se repetir.',
             ],
           },
         ],
@@ -2215,7 +2215,7 @@ export const legalPageCatalog: LegalPage[] = [
           {
             heading: 'Qué cubre esta página',
             paragraphs: [
-              'Esta página es un resumen público de disponibilidad, incidentes, notas de mantenimiento y vías de contacto para visitantes. Los registros operativos detallados quedan en áreas internas protegidas.',
+              'Esta página resume disponibilidad, incidentes, notas de mantenimiento y vías de contacto para visitantes. Usa los enlaces de contacto cuando un problema público se repita.',
             ],
           },
         ],
@@ -2300,7 +2300,7 @@ export const legalPageCatalog: LegalPage[] = [
           {
             heading: 'Ce que couvre cette page',
             paragraphs: [
-              'Cette page est un résumé public de disponibilité, incidents, notes de maintenance et chemins de contact pour les visiteurs. Les journaux opérationnels détaillés restent dans des espaces internes protégés.',
+              'Cette page résume disponibilité, incidents, notes de maintenance et chemins de contact pour les visiteurs. Utilise les liens de contact lorsqu un problème public se répète.',
             ],
           },
         ],
@@ -2385,7 +2385,7 @@ export const legalPageCatalog: LegalPage[] = [
           {
             heading: 'Was diese Seite abdeckt',
             paragraphs: [
-              'Diese Seite ist eine öffentliche Zusammenfassung zu Verfügbarkeit, Vorfällen, Wartungshinweisen und Kontaktwegen für Besucher. Detaillierte Betriebsprotokolle bleiben in geschützten internen Bereichen.',
+              'Diese Seite fasst Verfügbarkeit, Vorfälle, Wartungshinweise und Kontaktwege für Besucher zusammen. Nutze die Kontaktlinks, wenn ein öffentliches Problem wiederholt auftritt.',
             ],
           },
         ],

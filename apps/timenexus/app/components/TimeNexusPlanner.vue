@@ -37,6 +37,8 @@ const selectedGroup = ref(
 )
 const durationMinutes = ref(60)
 const now = ref(initialPlannerNow)
+const isClockLive = ref(false)
+let clockStartTimer: ReturnType<typeof setTimeout> | null = null
 let timer: ReturnType<typeof setInterval> | null = null
 
 const activeGroup = computed(() => plannerZoneGroups.find((group) => group.value === selectedGroup.value) ?? plannerZoneGroups[0])
@@ -69,14 +71,21 @@ function statusClass(status: PlannerZoneResult['businessStatus']): string {
 }
 
 onMounted(() => {
-  now.value = new Date()
-  localDateTime.value = formatLocalDateTimeInput(now.value)
-  timer = setInterval(() => {
+  clockStartTimer = setTimeout(() => {
+    isClockLive.value = true
     now.value = new Date()
-  }, 60_000)
+    localDateTime.value = formatLocalDateTimeInput(now.value)
+    timer = setInterval(() => {
+      now.value = new Date()
+    }, 60_000)
+  }, 0)
 })
 
 onBeforeUnmount(() => {
+  if (clockStartTimer) {
+    clearTimeout(clockStartTimer)
+  }
+
   if (timer) {
     clearInterval(timer)
   }
@@ -101,14 +110,14 @@ onBeforeUnmount(() => {
           <p>{{ copy.currentBody }}</p>
         </div>
         <dl class="clock-list">
-          <div v-for="card in currentCards" :key="`${card.zone}-${card.localTime}`" class="clock-row">
+          <div v-for="card in currentCards" :key="card.zone" class="clock-row">
             <dt>
               <strong>{{ card.label }}</strong>
               <span>{{ card.zone }}</span>
             </dt>
             <dd>
-              <strong>{{ card.localTime }}</strong>
-              <span>{{ card.localDate }}</span>
+              <strong>{{ isClockLive ? card.localTime : '--:--' }}</strong>
+              <span>{{ isClockLive ? card.localDate : card.zone }}</span>
             </dd>
           </div>
         </dl>
