@@ -100,6 +100,9 @@ const headingId = computed(() => `${props.slotId}-support`)
 <style scoped>
 .monetization-safe {
   display: grid;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
   gap: 1rem;
   align-items: stretch;
@@ -108,6 +111,7 @@ const headingId = computed(() => `${props.slotId}-support`)
 
 .monetization-safe__support,
 .monetization-safe__ad {
+  min-width: 0;
   border: 1px solid rgba(15, 23, 42, 0.14);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.9);
@@ -116,6 +120,7 @@ const headingId = computed(() => `${props.slotId}-support`)
 
 .monetization-safe__support {
   padding: 1.25rem;
+  overflow-wrap: anywhere;
 }
 
 .monetization-safe__support h2 {
@@ -156,6 +161,7 @@ const headingId = computed(() => `${props.slotId}-support`)
 
 .monetization-safe__ad {
   display: flex;
+  width: 100%;
   min-height: 100px;
   max-width: 728px;
   aspect-ratio: 728 / 100;
@@ -181,6 +187,11 @@ const headingId = computed(() => `${props.slotId}-support`)
 @media (max-width: 760px) {
   .monetization-safe {
     grid-template-columns: 1fr;
+  }
+
+  .monetization-safe__ad {
+    max-width: 100%;
+    aspect-ratio: auto;
   }
 }
 </style>
