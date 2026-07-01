@@ -87,6 +87,7 @@ a:focus-visible {
 .inline-link-list,
 .tool-actions,
 .category-tabs,
+.mode-tabs,
 .result-meta {
   display: flex;
   flex-wrap: wrap;
@@ -101,7 +102,8 @@ a:focus-visible {
 .language-nav a,
 .page-footer__links a,
 .inline-link-list a,
-.category-tabs button {
+.category-tabs button,
+.mode-tabs button {
   min-height: 34px;
   padding: 7px 10px;
   border: 1px solid #cbd7d8;
@@ -115,7 +117,8 @@ a:focus-visible {
 
 .language-nav a[aria-current="page"],
 .page-footer__links a[aria-current="page"],
-.category-tabs button[aria-pressed="true"] {
+.category-tabs button[aria-pressed="true"],
+.mode-tabs button[aria-pressed="true"] {
   color: #ffffff;
   border-color: #246a73;
   background: #246a73;
@@ -596,6 +599,40 @@ h3 {
   gap: 16px;
 }
 
+.directory-band {
+  display: grid;
+  gap: 16px;
+  padding: 24px 0 0;
+}
+
+.directory-grid,
+.directory-footer {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.directory-card {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  min-height: 178px;
+  padding: 14px;
+  border: 1px solid #d1dcdd;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.directory-card h3,
+.directory-card p {
+  margin-bottom: 0;
+}
+
+.directory-card p {
+  color: #405455;
+  font-size: 0.9rem;
+}
+
 .city-link-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -941,9 +978,117 @@ h3 {
   gap: 14px;
 }
 
+.form-grid {
+  display: grid;
+  gap: 12px;
+  align-items: end;
+}
+
+.form-grid--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.form-grid--three {
+  grid-template-columns: minmax(0, 1fr) minmax(190px, 0.7fr) minmax(190px, 0.7fr);
+}
+
+.mode-tabs {
+  align-items: center;
+}
+
+.mode-tabs button {
+  cursor: pointer;
+}
+
+.unit-mode-groups {
+  display: grid;
+  gap: 12px;
+}
+
+.unit-mode-group {
+  display: grid;
+  gap: 8px;
+}
+
+.unit-mode-group h3 {
+  margin-bottom: 0;
+  color: #607174;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.copy-status {
+  margin: 0;
+  color: #246a73;
+  font-size: 0.84rem;
+  font-weight: 850;
+}
+
 .result-error {
   color: #783316;
   font-weight: 800;
+}
+
+.result-card-grid,
+.mini-timeline {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.copy-card,
+.mini-timeline div {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid #d8e0e1;
+  border-radius: 8px;
+  background: #f8fafb;
+  text-align: left;
+}
+
+.copy-card {
+  cursor: pointer;
+}
+
+.copy-card:hover {
+  border-color: #246a73;
+}
+
+.copy-card span,
+.mini-timeline dt {
+  display: block;
+  color: #607174;
+  font-size: 0.76rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.copy-card strong,
+.mini-timeline dd {
+  display: block;
+  margin: 4px 0 0;
+  color: #18201f;
+  font-size: 0.96rem;
+  line-height: 1.25;
+}
+
+.mini-timeline {
+  margin-top: 4px;
+}
+
+.mini-timeline dt,
+.mini-timeline dd {
+  margin-left: 0;
+}
+
+.notice-panel,
+.formula-line {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-left: 4px solid #b35a2b;
+  color: #405455;
+  background: #fff7f2;
 }
 
 .result-output {
@@ -1020,12 +1165,41 @@ h3 {
   border-top: 1px solid #d8e0e1;
 }
 
+.directory-footer {
+  margin-top: 24px;
+  padding: 18px 0;
+  border-top: 1px solid #d8e0e1;
+  border-bottom: 1px solid #d8e0e1;
+}
+
+.directory-footer div {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+
+.directory-footer h2 {
+  margin-bottom: 0;
+  color: #607174;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.directory-footer a {
+  color: #253637;
+  font-size: 0.9rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
 @media (max-width: 960px) {
   .tool-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .city-link-grid {
+  .city-link-grid,
+  .directory-grid,
+  .directory-footer {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -1054,10 +1228,16 @@ h3 {
   .related-panel,
   .related-grid,
   .city-link-grid,
+  .directory-grid,
+  .directory-footer,
   .city-timeline__item,
   .city-overlap-card,
   .answer-details,
-  .timeline-list li {
+  .timeline-list li,
+  .form-grid--two,
+  .form-grid--three,
+  .result-card-grid,
+  .mini-timeline {
     display: grid;
     grid-template-columns: 1fr;
   }

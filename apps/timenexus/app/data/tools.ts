@@ -155,7 +155,7 @@ const localizedBasics: Record<LocaleCode, {
     assumptionSection: 'Assumptions',
     assumptionBody: 'Results use the entered dates, standard Gregorian calendar math, UTC-safe parsing, the browser Intl time-zone database and visible conversion labels.',
     limitsSection: 'Limits',
-    limitsBody: 'DST changes, local holidays, payroll rules, legal deadlines, billing cutoffs and domain-specific calendars need human review before operational use.',
+    limitsBody: 'DST changes, local holidays, payroll rules, legal deadlines and domain-specific calendars need human review before operational use.',
     faqStorage: { question: 'Are entries stored?', answer: 'No. TimeNexus does not use account storage, localStorage, sessionStorage or a product API for these free browser tools.' },
     faqAccuracy: { question: 'Can I use this for compliance deadlines?', answer: 'Use it as a planning helper only. Critical legal, tax, payroll or compliance deadlines require review against the official rule set.' },
   },
@@ -167,7 +167,7 @@ const localizedBasics: Record<LocaleCode, {
     assumptionSection: 'Premissas',
     assumptionBody: 'Resultados usam as datas informadas, calendario gregoriano, parsing seguro em UTC, base de fusos Intl do navegador e rotulos visiveis.',
     limitsSection: 'Limites',
-    limitsBody: 'Mudancas de horario de verao, feriados locais, regras trabalhistas, prazos legais, cortes de billing e calendarios de dominio precisam revisao humana antes de uso operacional.',
+    limitsBody: 'Mudancas de horario de verao, feriados locais, regras trabalhistas, prazos legais e calendarios de dominio precisam revisao humana antes de uso operacional.',
     faqStorage: { question: 'As entradas sao armazenadas?', answer: 'Nao. O TimeNexus nao usa conta, localStorage, sessionStorage nem API de produto nestas ferramentas gratuitas do navegador.' },
     faqAccuracy: { question: 'Posso usar para prazos de compliance?', answer: 'Use apenas como apoio de planejamento. Prazos legais, fiscais, trabalhistas ou de compliance exigem revisao da regra oficial.' },
   },
@@ -179,7 +179,7 @@ const localizedBasics: Record<LocaleCode, {
     assumptionSection: 'Supuestos',
     assumptionBody: 'Los resultados usan las fechas ingresadas, calendario gregoriano, parsing seguro en UTC, base Intl de zonas horarias del navegador y etiquetas visibles.',
     limitsSection: 'Limites',
-    limitsBody: 'Cambios DST, festivos locales, reglas laborales, plazos legales, cortes de billing y calendarios del dominio requieren revision humana.',
+    limitsBody: 'Cambios DST, festivos locales, reglas laborales, plazos legales y calendarios del dominio requieren revision humana.',
     faqStorage: { question: 'Se almacenan entradas?', answer: 'No. TimeNexus no usa cuentas, localStorage, sessionStorage ni API de producto para estas herramientas gratis del navegador.' },
     faqAccuracy: { question: 'Sirve para plazos de cumplimiento?', answer: 'Usalo solo como apoyo de planificacion. Plazos legales, fiscales, laborales o de compliance requieren revisar la regla oficial.' },
   },
@@ -191,7 +191,7 @@ const localizedBasics: Record<LocaleCode, {
     assumptionSection: 'Hypotheses',
     assumptionBody: 'Les resultats utilisent les dates saisies, le calendrier gregorien, un parsing UTC, la base Intl des fuseaux du navigateur et des libelles visibles.',
     limitsSection: 'Limites',
-    limitsBody: 'Changements DST, jours feries locaux, regles paie, delais juridiques, coupures billing et calendriers metier demandent une revue humaine.',
+    limitsBody: 'Changements DST, jours feries locaux, regles paie, delais juridiques et calendriers metier demandent une revue humaine.',
     faqStorage: { question: 'Les entrees sont-elles stockees?', answer: 'Non. TimeNexus n utilise ni compte, ni localStorage, ni sessionStorage, ni API produit pour ces outils gratuits du navigateur.' },
     faqAccuracy: { question: 'Puis-je l utiliser pour des delais de conformite?', answer: 'Utilisez-le comme aide de planification. Les delais juridiques, fiscaux, paie ou conformite exigent la regle officielle.' },
   },
@@ -203,7 +203,7 @@ const localizedBasics: Record<LocaleCode, {
     assumptionSection: 'Annahmen',
     assumptionBody: 'Ergebnisse nutzen eingegebene Daten, gregorianische Kalenderlogik, UTC-sicheres Parsing, die Intl-Zeitzonendatenbank des Browsers und sichtbare Labels.',
     limitsSection: 'Grenzen',
-    limitsBody: 'DST-Wechsel, lokale Feiertage, Payroll-Regeln, juristische Fristen, Billing-Stichtage und Fachkalender brauchen menschliche Pruefung.',
+    limitsBody: 'DST-Wechsel, lokale Feiertage, Payroll-Regeln, juristische Fristen und Fachkalender brauchen menschliche Pruefung.',
     faqStorage: { question: 'Werden Eingaben gespeichert?', answer: 'Nein. TimeNexus nutzt fuer diese kostenlosen Browser-Tools weder Konto, localStorage, sessionStorage noch Produkt-API.' },
     faqAccuracy: { question: 'Kann ich das fuer Compliance-Fristen nutzen?', answer: 'Nur als Planungshilfe. Rechtliche, steuerliche, Payroll- oder Compliance-Fristen brauchen die offizielle Regel.' },
   },
@@ -215,14 +215,14 @@ const specs: TimeToolSpec[] = [
     category: 'timezone',
     title: 'Time Zone Converter',
     shortName: 'Zones',
-    headline: 'Convert an ISO or UTC date-time instant across two named IANA time zones.',
-    description: 'Enter an ISO date-time and a source-to-target zone pair. The free result names UTC and both selected zones.',
-    inputLabel: 'ISO date-time or UTC instant',
-    secondaryInputLabel: 'Zones, for example America/New_York -> Europe/London',
+    headline: 'Convert a local meeting time or UTC instant across two named IANA time zones.',
+    description: 'Enter a local time, source zone and target zone. The free result names UTC and both selected zones.',
+    inputLabel: 'Local time or UTC instant',
+    secondaryInputLabel: 'From zone -> to zone',
     freeScope: 'Format one instant across two IANA time zones with UTC included.',
-    upgradeScope: 'Embeddable widgets, saved zone presets, shared calendars, alerts, history and API conversion.',
+    upgradeScope: 'Embeddable widgets, saved zone presets, shared calendars, alerts and API conversion.',
     modes: [{ value: 'instant', label: 'Instant across zones' }],
-    samplePrimary: '2026-06-26T15:30:00Z',
+    samplePrimary: '2026-06-26T09:30',
     sampleSecondary: 'America/New_York -> Europe/London',
   },
   {
@@ -235,8 +235,11 @@ const specs: TimeToolSpec[] = [
     inputLabel: 'Start date',
     secondaryInputLabel: 'End date',
     freeScope: 'Calendar-day difference, weeks and approximate months for one date pair.',
-    upgradeScope: 'Saved presets, recurring spans, workspace history, export and API access.',
-    modes: [{ value: 'calendar-days', label: 'Calendar days' }],
+    upgradeScope: 'Saved presets, recurring spans, workspace export and API access.',
+    modes: [
+      { value: 'calendar-days', label: 'Exclusive' },
+      { value: 'calendar-days-inclusive', label: 'Inclusive' },
+    ],
     samplePrimary: '2026-01-01',
     sampleSecondary: '2026-02-15',
   },
@@ -251,7 +254,10 @@ const specs: TimeToolSpec[] = [
     secondaryInputLabel: 'End date',
     freeScope: 'Inclusive Monday-Friday count for one date range, with weekend count disclosed.',
     upgradeScope: 'Regional holiday calendars, SLA rules, saved calendars, monitoring and API.',
-    modes: [{ value: 'mon-fri-inclusive', label: 'Mon-Fri inclusive' }],
+    modes: [
+      { value: 'mon-fri-inclusive', label: 'Include start/end' },
+      { value: 'mon-fri-exclusive', label: 'Exclude start/end' },
+    ],
     samplePrimary: '2026-06-01',
     sampleSecondary: '2026-06-05',
   },
@@ -265,7 +271,7 @@ const specs: TimeToolSpec[] = [
     inputLabel: 'Timestamp or date string',
     secondaryInputLabel: 'Optional IANA time zone',
     freeScope: 'Unix seconds, milliseconds, ISO, UTC, local display and optional named zone display.',
-    upgradeScope: 'Preset widgets, private history, batch conversion, monitoring and API.',
+    upgradeScope: 'Preset widgets, batch conversion, monitoring and API.',
     modes: [{ value: 'auto', label: 'Auto-detect' }],
     samplePrimary: '1767225600',
     sampleSecondary: 'America/Sao_Paulo',
@@ -295,7 +301,7 @@ const specs: TimeToolSpec[] = [
     inputLabel: 'Base value',
     secondaryInputLabel: 'Percent or comparison value',
     freeScope: 'One percent-of, percent-change or add-percent calculation with formula display.',
-    upgradeScope: 'Bulk sheets, saved formulas, audit history, collaboration and API.',
+    upgradeScope: 'Bulk sheets, saved formulas, collaboration and API.',
     modes: [
       { value: 'percent-of', label: 'Percent of value' },
       { value: 'percent-change', label: 'Percent change' },
@@ -314,7 +320,7 @@ const specs: TimeToolSpec[] = [
     inputLabel: 'Value',
     secondaryInputLabel: 'Not used',
     freeScope: 'Common km, mi, kg, lb, Celsius and Fahrenheit conversions for one value.',
-    upgradeScope: 'Custom unit sets, engineering presets, widgets, history and API.',
+    upgradeScope: 'Custom unit sets, engineering presets, widgets and API.',
     modes: [
       { value: 'km-mi', label: 'Kilometers to miles' },
       { value: 'mi-km', label: 'Miles to kilometers' },
@@ -622,7 +628,7 @@ function ensureInputLimit(...values: string[]): void {
   const totalLength = values.reduce((sum, value) => sum + value.length, 0)
 
   if (totalLength > 20_000) {
-    throw new Error('Free browser tools accept short time and unit inputs. Bulk jobs are reserved for gated workflows.')
+    throw new Error('Free browser tools accept short time and unit inputs. Larger batches belong in batch workflows.')
   }
 }
 
@@ -867,10 +873,15 @@ function splitZonePair(input: string): [string, string] {
 }
 
 function convertTimeZones(primaryInput: string, secondaryInput: string): TimeToolResult {
-  const date = parseRequiredDate(primaryInput, 'Date-time')
   const [sourceZone, targetZone] = splitZonePair(secondaryInput)
+  const trimmed = primaryInput.trim()
+  const hasExplicitUtcOrOffset = /(?:z|[+-]\d{2}:?\d{2})$/iu.test(trimmed)
+  const date = hasExplicitUtcOrOffset
+    ? parseRequiredDate(primaryInput, 'Date-time')
+    : zonedLocalDateTimeToUtc(trimmed, sourceZone)
 
   return ok([
+    `Input time: ${trimmed}`,
     `Input instant: ${date.toISOString()}`,
     `UTC: ${formatInZone(date, 'UTC')}`,
     `${sourceZone}: ${formatInZone(date, sourceZone)}`,
@@ -881,12 +892,14 @@ function convertTimeZones(primaryInput: string, secondaryInput: string): TimeToo
   ])
 }
 
-function calculateDateDifference(primaryInput: string, secondaryInput: string): TimeToolResult {
+function calculateDateDifference(primaryInput: string, secondaryInput: string, mode: TimeToolMode): TimeToolResult {
   const start = parseRequiredDate(primaryInput, 'Start date')
   const end = parseRequiredDate(secondaryInput, 'End date')
   const deltaMs = end.getTime() - start.getTime()
   const sign = deltaMs < 0 ? -1 : 1
-  const days = Math.abs(Math.round(deltaMs / 86_400_000))
+  const exclusiveDays = Math.abs(Math.round(deltaMs / 86_400_000))
+  const inclusive = mode === 'calendar-days-inclusive'
+  const days = inclusive ? exclusiveDays + 1 : exclusiveDays
   const weeks = days / 7
   const approximateMonths = days / 30.4375
 
@@ -894,16 +907,17 @@ function calculateDateDifference(primaryInput: string, secondaryInput: string): 
     `Start: ${formatDateOnly(start)}`,
     `End: ${formatDateOnly(end)}`,
     `Direction: ${sign < 0 ? 'end before start' : 'end after start'}`,
+    `Counting mode: ${inclusive ? 'inclusive' : 'exclusive'}`,
     `Calendar days: ${days}`,
     `Weeks: ${formatNumber(weeks)}`,
     `Approximate months: ${formatNumber(approximateMonths)}`,
   ].join('\n'), [
     { label: 'Calendar days', value: String(days) },
-    { label: 'Inclusive?', value: 'No, difference between midnights' },
+    { label: 'Counting mode', value: inclusive ? 'inclusive' : 'exclusive' },
   ])
 }
 
-function calculateBusinessDays(primaryInput: string, secondaryInput: string): TimeToolResult {
+function calculateBusinessDays(primaryInput: string, secondaryInput: string, mode: TimeToolMode): TimeToolResult {
   let start = parseRequiredDate(primaryInput, 'Start date')
   let end = parseRequiredDate(secondaryInput, 'End date')
   const reversed = start.getTime() > end.getTime()
@@ -916,6 +930,11 @@ function calculateBusinessDays(primaryInput: string, secondaryInput: string): Ti
 
   const cursor = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth(), start.getUTCDate()))
   const last = new Date(Date.UTC(end.getUTCFullYear(), end.getUTCMonth(), end.getUTCDate()))
+  const exclusive = mode === 'mon-fri-exclusive'
+  if (exclusive) {
+    cursor.setUTCDate(cursor.getUTCDate() + 1)
+    last.setUTCDate(last.getUTCDate() - 1)
+  }
   let businessDays = 0
   let weekendDays = 0
   let totalDays = 0
@@ -936,12 +955,14 @@ function calculateBusinessDays(primaryInput: string, secondaryInput: string): Ti
     `Start: ${formatDateOnly(start)}`,
     `End: ${formatDateOnly(end)}`,
     `Range order: ${reversed ? 'reversed input, counted ascending' : 'ascending input'}`,
+    `Endpoints: ${exclusive ? 'excluded' : 'included'}`,
     `Business days: ${businessDays}`,
     `Weekend days: ${weekendDays}`,
     `Calendar days included: ${totalDays}`,
     'Holiday calendars: not applied',
   ].join('\n'), [
     { label: 'Business days', value: String(businessDays) },
+    { label: 'Endpoints', value: exclusive ? 'excluded' : 'included' },
     { label: 'Holiday calendars', value: 'not applied' },
   ])
 }
@@ -1006,15 +1027,23 @@ function calculateAge(primaryInput: string, secondaryInput: string): TimeToolRes
   }
 
   const totalDays = Math.floor((reference.getTime() - birth.getTime()) / 86_400_000)
+  const nextBirthday = new Date(Date.UTC(reference.getUTCFullYear(), birth.getUTCMonth(), birth.getUTCDate()))
+  if (nextBirthday.getTime() < reference.getTime()) {
+    nextBirthday.setUTCFullYear(nextBirthday.getUTCFullYear() + 1)
+  }
+  const daysUntilBirthday = Math.ceil((nextBirthday.getTime() - reference.getTime()) / 86_400_000)
 
   return ok([
     `Birth date: ${formatDateOnly(birth)}`,
     `Reference date: ${formatDateOnly(reference)}`,
     `Age: ${years} years, ${months} months, ${days} days`,
     `Total days: ${totalDays}`,
+    `Next birthday: ${formatDateOnly(nextBirthday)}`,
+    `Days until next birthday: ${daysUntilBirthday}`,
   ].join('\n'), [
     { label: 'Years', value: String(years) },
     { label: 'Total days', value: String(totalDays) },
+    { label: 'Next birthday', value: formatDateOnly(nextBirthday) },
   ])
 }
 
@@ -1056,6 +1085,7 @@ function calculatePercentage(primaryInput: string, secondaryInput: string, mode:
       `New value: ${formatNumber(secondary)}`,
       `Difference: ${formatNumber(delta)}`,
       `Percent change: ${formatNumber(percent)}%`,
+      `Formula: (${formatNumber(secondary)} - ${formatNumber(primary)}) / ${formatNumber(primary)} x 100`,
     ].join('\n'), [{ label: 'Percent change', value: `${formatNumber(percent)}%` }])
   }
 
@@ -1067,6 +1097,7 @@ function calculatePercentage(primaryInput: string, secondaryInput: string, mode:
       `Percent added: ${formatNumber(secondary)}%`,
       `Added amount: ${formatNumber(added)}`,
       `Result: ${formatNumber(result)}`,
+      `Formula: ${formatNumber(primary)} + (${formatNumber(primary)} x ${formatNumber(secondary)} / 100)`,
     ].join('\n'), [{ label: 'Result', value: formatNumber(result) }])
   }
 
@@ -1116,11 +1147,11 @@ export async function executeTimeTool(
     }
 
     if (slug === 'date-difference') {
-      return calculateDateDifference(primaryInput, secondaryInput)
+      return calculateDateDifference(primaryInput, secondaryInput, mode)
     }
 
     if (slug === 'business-days') {
-      return calculateBusinessDays(primaryInput, secondaryInput)
+      return calculateBusinessDays(primaryInput, secondaryInput, mode)
     }
 
     if (slug === 'timestamp-converter') {

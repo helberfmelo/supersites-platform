@@ -65,3 +65,10 @@ Low to medium; keep placements away from controls and results.
 - Converted the Hub catalog route `/supersites/en/sites/timenexus` into a task-first public landing for current time, world clocks, time zones, date math and lightweight calculators.
 - The first fold now includes an auto-updating current-time panel, direct CTA to the timezone converter, search/filterable tool grid, workflow sections and contextual text footer links.
 - Production closeout passed with Hub deploy `28430723674`, TimeNexus static app deploy `28429491292`, 32 EN/PT-BR deep links returning 200, quick crawler `2026-06-30T08-32-51-790Z`, and final live screenshots under `artifacts/timenexus-catalog-qa/`.
+
+## Sprints 18.44-18.52 tool execution
+
+- The app home now mirrors a dry timeanddate-style directory with World Clock, Time Zones, Calendar, Calculators and Timers sections before the tool catalog footer.
+- Time Zone Converter, Timestamp Converter, Date Difference, Business Days, Age Calculator, Percentage Calculator and Unit Converter now have specialized controls and result summaries instead of the old generic textarea form.
+- Immediate answer behavior is enabled on load, with typing-driven recalculation for timestamp, percentage and unit workflows.
+- Validation passed locally with TimeNexus unit tests, Nuxt build and preview smoke; visual QA remains for owner review under the current stage cadence.

@@ -3,7 +3,7 @@ import { getStatusBadgeClass } from '@supersites/ui'
 import { computed, ref } from 'vue'
 import { cityTimePageCatalog, getCityTimePageCopy } from '../data/cityPages'
 import { getHomeCopy } from '../data/copy'
-import { localizedCityTimePath, localizedHomePath, localizedToolPath, toHtmlLang, type LocaleCode } from '../data/locales'
+import { localizedCityTimePath, localizedHomePath, localizedToolPath, localizedWorldClockPath, toHtmlLang, type LocaleCode } from '../data/locales'
 import { absoluteUrl, localeAlternates } from '../data/routes'
 import {
   filterTimeTools,
@@ -18,7 +18,90 @@ const props = defineProps<{
   xDefault?: boolean
 }>()
 
+const directoryText: Record<LocaleCode, {
+  title: string
+  body: string
+  sections: {
+    worldClock: { title: string; body: string; americasEurope: string; globalProduct: string; tokyo: string }
+    timeZones: { title: string; body: string }
+    calendar: { title: string; body: string }
+    calculators: { title: string; body: string }
+    timers: { title: string; body: string; currentTime: string; meetingPlanner: string }
+  }
+  footer: {
+    cities: string
+    timeZones: string
+    dates: string
+    calendars: string
+    converters: string
+    businessFit: string
+    holidayCalendars: string
+  }
+}> = {
+  en: {
+    title: 'World Clock, Time Zones, Calendar, Calculators and Timers',
+    body: 'Jump directly into the time, date and converter workspace that matches the task.',
+    sections: {
+      worldClock: { title: 'World Clock', body: 'Live city clocks, business-hour badges and city group comparisons.', americasEurope: 'Americas + Europe', globalProduct: 'Global product team', tokyo: 'Tokyo city clock' },
+      timeZones: { title: 'Time Zones', body: 'Meeting conversion, UTC views and timestamp formats.' },
+      calendar: { title: 'Calendar', body: 'Date spans, weekday counts and birthday calculations.' },
+      calculators: { title: 'Calculators', body: 'Percentage and unit helpers for quick browser-side math.' },
+      timers: { title: 'Timers', body: 'Timer and countdown workflows are reserved for future product depth.', currentTime: 'Current time panel', meetingPlanner: 'Meeting planner' },
+    },
+    footer: { cities: 'Cities', timeZones: 'Time zones', dates: 'Dates', calendars: 'Calendars', converters: 'Converters', businessFit: 'Business-hour fit', holidayCalendars: 'Holiday calendars planned' },
+  },
+  'pt-br': {
+    title: 'Relogio mundial, fusos horarios, calendario, calculadoras e temporizadores',
+    body: 'Entre direto no espaco de tempo, datas ou conversores que combina com a tarefa.',
+    sections: {
+      worldClock: { title: 'Relogio mundial', body: 'Horarios por cidade, badges de expediente e comparacoes por grupo.', americasEurope: 'Americas + Europa', globalProduct: 'Time global de produto', tokyo: 'Relogio de Toquio' },
+      timeZones: { title: 'Fusos horarios', body: 'Conversao de reunioes, visualizacao UTC e formatos de timestamp.' },
+      calendar: { title: 'Calendario', body: 'Intervalos de datas, dias uteis e calculos de aniversario.' },
+      calculators: { title: 'Calculadoras', body: 'Porcentagem e unidades para matematica rapida no navegador.' },
+      timers: { title: 'Temporizadores', body: 'Fluxos de timer e contagem regressiva ficam para profundidade futura.', currentTime: 'Painel de hora atual', meetingPlanner: 'Planejador de reuniao' },
+    },
+    footer: { cities: 'Cidades', timeZones: 'Fusos horarios', dates: 'Datas', calendars: 'Calendarios', converters: 'Conversores', businessFit: 'Ajuste de expediente', holidayCalendars: 'Calendarios de feriados planejados' },
+  },
+  es: {
+    title: 'Reloj mundial, zonas horarias, calendario, calculadoras y temporizadores',
+    body: 'Entra directo al espacio de tiempo, fechas o conversiones que coincide con la tarea.',
+    sections: {
+      worldClock: { title: 'Reloj mundial', body: 'Horas por ciudad, badges de horario laboral y comparaciones por grupo.', americasEurope: 'Americas + Europa', globalProduct: 'Equipo global de producto', tokyo: 'Reloj de Tokio' },
+      timeZones: { title: 'Zonas horarias', body: 'Conversion de reuniones, vistas UTC y formatos de timestamp.' },
+      calendar: { title: 'Calendario', body: 'Rangos de fechas, dias laborables y calculos de edad.' },
+      calculators: { title: 'Calculadoras', body: 'Porcentajes y unidades para matematica rapida en el navegador.' },
+      timers: { title: 'Temporizadores', body: 'Flujos de timer y cuenta regresiva quedan para profundidad futura.', currentTime: 'Panel de hora actual', meetingPlanner: 'Planificador de reunion' },
+    },
+    footer: { cities: 'Ciudades', timeZones: 'Zonas horarias', dates: 'Fechas', calendars: 'Calendarios', converters: 'Conversores', businessFit: 'Ajuste de horario laboral', holidayCalendars: 'Calendarios de festivos planificados' },
+  },
+  fr: {
+    title: 'Horloge mondiale, fuseaux horaires, calendrier, calculateurs et minuteurs',
+    body: 'Accedez directement a l espace de temps, dates ou conversion qui correspond a la tache.',
+    sections: {
+      worldClock: { title: 'Horloge mondiale', body: 'Heures par ville, badges horaires ouvrables et comparaisons par groupe.', americasEurope: 'Ameriques + Europe', globalProduct: 'Equipe produit globale', tokyo: 'Horloge de Tokyo' },
+      timeZones: { title: 'Fuseaux horaires', body: 'Conversion de reunion, vues UTC et formats timestamp.' },
+      calendar: { title: 'Calendrier', body: 'Ecarts de dates, jours ouvrables et calculs d age.' },
+      calculators: { title: 'Calculateurs', body: 'Pourcentages et unites pour calcul rapide dans le navigateur.' },
+      timers: { title: 'Minuteurs', body: 'Minuteurs et comptes a rebours restent une profondeur produit future.', currentTime: 'Panneau heure actuelle', meetingPlanner: 'Planificateur de reunion' },
+    },
+    footer: { cities: 'Villes', timeZones: 'Fuseaux horaires', dates: 'Dates', calendars: 'Calendriers', converters: 'Convertisseurs', businessFit: 'Ajustement heures ouvrables', holidayCalendars: 'Calendriers feries prevus' },
+  },
+  de: {
+    title: 'Weltuhr, Zeitzonen, Kalender, Rechner und Timer',
+    body: 'Springen Sie direkt in den Zeit-, Datums- oder Konverterbereich fuer die Aufgabe.',
+    sections: {
+      worldClock: { title: 'Weltuhr', body: 'Stadtzeiten, Arbeitszeit-Badges und Gruppenvergleiche.', americasEurope: 'Amerika + Europa', globalProduct: 'Globales Produktteam', tokyo: 'Tokio-Uhr' },
+      timeZones: { title: 'Zeitzonen', body: 'Meeting-Konvertierung, UTC-Ansichten und Timestamp-Formate.' },
+      calendar: { title: 'Kalender', body: 'Datumsabstaende, Arbeitstage und Altersberechnungen.' },
+      calculators: { title: 'Rechner', body: 'Prozent- und Einheitenhilfen fuer schnelle Browser-Rechnung.' },
+      timers: { title: 'Timer', body: 'Timer- und Countdown-Workflows bleiben spaeterer Produkttiefe vorbehalten.', currentTime: 'Aktuelle-Zeit-Panel', meetingPlanner: 'Meeting-Planer' },
+    },
+    footer: { cities: 'Staedte', timeZones: 'Zeitzonen', dates: 'Daten', calendars: 'Kalender', converters: 'Konverter', businessFit: 'Arbeitszeit-Passung', holidayCalendars: 'Feiertagskalender geplant' },
+  },
+}
+
 const copy = computed(() => getHomeCopy(props.locale))
+const directoryCopy = computed(() => directoryText[props.locale])
 const searchQuery = ref('')
 const selectedCategory = ref<TimeToolCategory | 'all'>('all')
 const filteredTools = computed(() => filterTimeTools(searchQuery.value, selectedCategory.value, props.locale))
@@ -28,6 +111,87 @@ const cityLinks = computed(() => cityTimePageCatalog.map((page) => ({
   page,
   copy: getCityTimePageCopy(page, props.locale),
 })))
+const catalogSections = computed(() => [
+  {
+    title: directoryCopy.value.sections.worldClock.title,
+    body: directoryCopy.value.sections.worldClock.body,
+    links: [
+      { label: directoryCopy.value.sections.worldClock.americasEurope, to: localizedWorldClockPath(props.locale, 'americas-europe') },
+      { label: directoryCopy.value.sections.worldClock.globalProduct, to: localizedWorldClockPath(props.locale, 'global-product') },
+      { label: directoryCopy.value.sections.worldClock.tokyo, to: localizedCityTimePath(props.locale, 'tokyo') },
+    ],
+  },
+  {
+    title: directoryCopy.value.sections.timeZones.title,
+    body: directoryCopy.value.sections.timeZones.body,
+    links: [
+      { label: getTimeToolCopy(timeToolCatalog.find((tool) => tool.slug === 'timezone-converter')!, props.locale).title, to: localizedToolPath(props.locale, 'timezone-converter') },
+      { label: getTimeToolCopy(timeToolCatalog.find((tool) => tool.slug === 'timestamp-converter')!, props.locale).title, to: localizedToolPath(props.locale, 'timestamp-converter') },
+    ],
+  },
+  {
+    title: directoryCopy.value.sections.calendar.title,
+    body: directoryCopy.value.sections.calendar.body,
+    links: [
+      { label: getTimeToolCopy(timeToolCatalog.find((tool) => tool.slug === 'date-difference')!, props.locale).title, to: localizedToolPath(props.locale, 'date-difference') },
+      { label: getTimeToolCopy(timeToolCatalog.find((tool) => tool.slug === 'business-days')!, props.locale).title, to: localizedToolPath(props.locale, 'business-days') },
+      { label: getTimeToolCopy(timeToolCatalog.find((tool) => tool.slug === 'age-calculator')!, props.locale).title, to: localizedToolPath(props.locale, 'age-calculator') },
+    ],
+  },
+  {
+    title: directoryCopy.value.sections.calculators.title,
+    body: directoryCopy.value.sections.calculators.body,
+    links: [
+      { label: getTimeToolCopy(timeToolCatalog.find((tool) => tool.slug === 'percentage-calculator')!, props.locale).title, to: localizedToolPath(props.locale, 'percentage-calculator') },
+      { label: getTimeToolCopy(timeToolCatalog.find((tool) => tool.slug === 'unit-converter')!, props.locale).title, to: localizedToolPath(props.locale, 'unit-converter') },
+    ],
+  },
+  {
+    title: directoryCopy.value.sections.timers.title,
+    body: directoryCopy.value.sections.timers.body,
+    links: [
+      { label: directoryCopy.value.sections.timers.currentTime, to: localizedHomePath(props.locale) },
+      { label: directoryCopy.value.sections.timers.meetingPlanner, to: localizedToolPath(props.locale, 'timezone-converter') },
+    ],
+  },
+])
+const footerGroups = computed(() => [
+  {
+    title: directoryCopy.value.footer.cities,
+    links: cityLinks.value.slice(0, 4).map((item) => ({ label: item.page.city, to: localizedCityTimePath(props.locale, item.page.slug) })),
+  },
+  {
+    title: directoryCopy.value.footer.timeZones,
+    links: [
+      { label: 'America/New_York', to: localizedWorldClockPath(props.locale, 'americas-europe') },
+      { label: 'Europe/London', to: localizedWorldClockPath(props.locale, 'americas-europe') },
+      { label: 'Asia/Tokyo', to: localizedWorldClockPath(props.locale, 'global-product') },
+    ],
+  },
+  {
+    title: directoryCopy.value.footer.dates,
+    links: [
+      { label: getTimeToolCopy(timeToolCatalog.find((tool) => tool.slug === 'date-difference')!, props.locale).title, to: localizedToolPath(props.locale, 'date-difference') },
+      { label: getTimeToolCopy(timeToolCatalog.find((tool) => tool.slug === 'business-days')!, props.locale).title, to: localizedToolPath(props.locale, 'business-days') },
+      { label: getTimeToolCopy(timeToolCatalog.find((tool) => tool.slug === 'age-calculator')!, props.locale).title, to: localizedToolPath(props.locale, 'age-calculator') },
+    ],
+  },
+  {
+    title: directoryCopy.value.footer.calendars,
+    links: [
+      { label: directoryCopy.value.footer.businessFit, to: localizedWorldClockPath(props.locale, 'global-product') },
+      { label: directoryCopy.value.footer.holidayCalendars, to: localizedToolPath(props.locale, 'business-days') },
+    ],
+  },
+  {
+    title: directoryCopy.value.footer.converters,
+    links: [
+      { label: getTimeToolCopy(timeToolCatalog.find((tool) => tool.slug === 'timezone-converter')!, props.locale).title, to: localizedToolPath(props.locale, 'timezone-converter') },
+      { label: getTimeToolCopy(timeToolCatalog.find((tool) => tool.slug === 'timestamp-converter')!, props.locale).title, to: localizedToolPath(props.locale, 'timestamp-converter') },
+      { label: getTimeToolCopy(timeToolCatalog.find((tool) => tool.slug === 'unit-converter')!, props.locale).title, to: localizedToolPath(props.locale, 'unit-converter') },
+    ],
+  },
+])
 const homeJsonLd = computed(() => ({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
@@ -100,6 +264,26 @@ useHead(() => ({
     </section>
 
     <TimeNexusPlanner :locale="locale" />
+
+    <section class="directory-band" aria-labelledby="time-directory-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="time-directory-title">{{ directoryCopy.title }}</h2>
+          <p>{{ directoryCopy.body }}</p>
+        </div>
+      </div>
+      <div class="directory-grid">
+        <article v-for="section in catalogSections" :key="section.title" class="directory-card">
+          <h3>{{ section.title }}</h3>
+          <p>{{ section.body }}</p>
+          <div class="inline-link-list">
+            <NuxtLink v-for="link in section.links" :key="link.label" :to="link.to">
+              {{ link.label }}
+            </NuxtLink>
+          </div>
+        </article>
+      </div>
+    </section>
 
     <section class="band city-link-band" aria-labelledby="city-clocks-title">
       <div class="section-heading">
@@ -194,6 +378,15 @@ useHead(() => ({
           <h3>{{ principle.title }}</h3>
           <p>{{ principle.body }}</p>
         </div>
+      </div>
+    </section>
+
+    <section class="directory-footer" aria-label="TimeNexus directory">
+      <div v-for="group in footerGroups" :key="group.title">
+        <h2>{{ group.title }}</h2>
+        <NuxtLink v-for="link in group.links" :key="link.label" :to="link.to">
+          {{ link.label }}
+        </NuxtLink>
       </div>
     </section>
 

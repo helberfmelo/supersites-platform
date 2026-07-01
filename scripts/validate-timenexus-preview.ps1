@@ -95,7 +95,12 @@ try {
         'Nearby slots',
         'Time Zone Converter',
         '7 browser tools',
-        'No accounts or storage'
+        'Current time now',
+        'World Clock',
+        'Time Zones',
+        'Calendar',
+        'Calculators',
+        'Timers'
     )
 
     foreach ($needle in $requiredHtml) {
@@ -121,7 +126,7 @@ try {
     }
 
     $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/tools/timestamp-converter" -RequiredContent 'Conversor de timestamp'
-    if ($localizedTool.StatusCode -ne 200 -or $localizedTool.Content -notmatch 'histórico') {
+    if ($localizedTool.StatusCode -ne 200 -or $localizedTool.Content -notmatch 'Opcoes de workflow') {
         throw 'Localized timestamp converter smoke failed.'
     }
 

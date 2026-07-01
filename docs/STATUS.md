@@ -1837,6 +1837,12 @@ Ainda em 2026-06-29, o `Public Watchdog` agendado run `28372846327` falhou no sm
   - Validacao local pre-commit passou: `pnpm test:devutility` com 8 testes, `pnpm build:devutility` com 183 rotas prerenderizadas, `pnpm validate:devutility-preview`, `pnpm validate:public-copy` em 951 HTMLs e `git diff --check`. Nao foram executados Playwright, screenshots, crawler, Lighthouse, deploy dry-run, smokes publicos ou deploy porque a etapa nao era QA/pre-divulgacao/fechamento visual e nao exigia publicacao.
   - Escopo negativo: nenhum armazenamento server-side de snippet/token, historico persistente, workspace, checkout, billing, pagamento, conta paga, anuncio real, `ads.txt`, doacao real, afiliado, analytics externo, API paga, worker/cron, deploy, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
 
+- Sprints 18.44 a 18.52 - TimeNexus Tools:
+  - Escopo tecnico: a home do TimeNexus foi refinada como diretorio denso de World Clock, Time Zones, Calendar, Calculators e Timers, com rodape de cidades, fusos, datas, calendarios e conversores. As paginas Time Zone Converter, Timestamp Converter, Date Difference, Business Days, Age Calculator, Percentage Calculator e Unit Converter ganharam controles/resultados especificos.
+  - Contrato publico: a primeira dobra remove `No accounts or storage`, billing e ads inactive do topo; upgrade fica como profundidade futura de widgets/API/presets/colaboracao. Time Zone Converter autoexecuta exemplo com source/target zones, timeline e copy/link; Timestamp, Percentage e Unit convertem enquanto digita; Date Difference tem modo inclusivo/exclusivo; Business Days inclui/exclui endpoints; Age mostra total days, next birthday e days until.
+  - Validacao local pre-commit passou: `pnpm test:timenexus` com 11 testes, `pnpm build:timenexus` com 137 rotas prerenderizadas / 273 artefatos gerados, `pnpm validate:timenexus-preview`, `pnpm validate:public-copy` em 951 HTMLs e `git diff --check`. Nao foram executados Playwright, screenshots, crawler, Lighthouse, deploy dry-run, smokes publicos ou deploy porque a etapa nao era QA/pre-divulgacao/fechamento visual e nao exigia publicacao.
+  - Escopo negativo: nenhum calendario externo, widget/API publico, historico ou preset persistente, checkout, billing, pagamento, conta paga, anuncio real, `ads.txt`, doacao real, afiliado, analytics externo, worker/cron, deploy, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
+
 ## Bloqueios humanos registrados
 
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.

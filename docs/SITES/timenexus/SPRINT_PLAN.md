@@ -53,3 +53,15 @@ Data-base: 2026-06-28
 - Validation passed locally: `pnpm test:timenexus` (11 tests), `pnpm build:timenexus` (137 configured prerender routes / 273 generated artifacts including payloads), `pnpm validate:timenexus-preview` (asset `/_nuxt/AoDGD3Ez.js`), `pnpm test:e2e:timenexus`, `pnpm validate:public-copy` (951 HTML files), `pnpm validate:adsense-safe-public`, structure/secrets/deploy-dry-run/ci/diff gates.
 - Remote closure passed: feature commit `6abcda5`, Quality Gate `28354017920`, Deploy Dry Run `28354017921`, aggregate/TimeNexus/NetProbe/control-plane public smokes against the current production baseline, current TimeNexus public asset `https://opentshost.com/supersites/timenexus/_nuxt/BAXbawo1.js`.
 - No all-IANA timezone generation, external calendar provider, public widget/API, saved history, persistent storage, worker, cron, checkout, billing, ads, donation, affiliate or external analytics was activated.
+
+## Sprints 18.44-18.52 page-by-page refinement
+
+- Status: implemented locally as the TimeNexus Tools stage.
+- Home now includes a task directory for World Clock, Time Zones, Calendar, Calculators and Timers plus footer groups for cities, time zones, dates, calendars and converters.
+- Tool pages now auto-run their examples into a direct answer panel; timezone conversion has source/target zone selects, timeline and copy/link actions.
+- Timestamp, percentage and unit converters update while typing; timestamp results expose Unix seconds, Unix milliseconds, ISO, UTC, local and selected-zone cards with copy actions.
+- Date Difference gained exclusive/inclusive modes and compact timeline facts; Business Days gained include/exclude endpoint modes plus the holiday-calendar notice; Age Calculator shows total days, next birthday and days until.
+- Unit Converter groups modes by Length, Weight and Temperature.
+- Public copy removed top-level `No accounts or storage`, billing and ads-inactive language; paid depth remains framed as future widgets/API/presets/collaboration.
+- Local validation passed: `pnpm test:timenexus`, `pnpm build:timenexus` and `pnpm validate:timenexus-preview`.
+- No external calendar provider, persistent history, widget/API, checkout, billing, ad serving, donation, affiliate, external analytics, worker/cron or deploy was activated.

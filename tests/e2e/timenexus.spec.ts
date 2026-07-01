@@ -76,6 +76,8 @@ test.describe('TimeNexus MVP', () => {
     await expect(page.getByLabel('Duration')).toHaveValue('90')
     await expect(page.getByRole('heading', { name: 'Time Zone Converter' })).toBeVisible()
     await expect(page.getByText('7 browser tools')).toBeVisible()
+    await expect(page.getByText('Current time now')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'World Clock, Time Zones, Calendar, Calculators and Timers' })).toBeVisible()
     await expect(page.getByText('Browser-side').first()).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Curated city clocks' })).toBeVisible()
     await expect(page.getByRole('link', { name: /Tokyo/ })).toHaveAttribute(
@@ -107,9 +109,10 @@ test.describe('TimeNexus MVP', () => {
     await page.setViewportSize({ width: 390, height: 1000 })
     await page.goto('/en/tools/timezone-converter?date=secret')
 
-    await page.getByLabel('ISO date-time or UTC instant').fill('2026-06-26T15:30:00Z')
-    await page.getByLabel(/Zones/).fill('America/New_York -> Europe/London')
-    await page.getByRole('button', { name: 'Run tool' }).click()
+    await page.getByLabel('Local time or UTC instant').fill('2026-06-26T15:30:00Z')
+    await page.getByLabel('Source zone').selectOption('America/New_York')
+    await page.getByLabel('Target zone').selectOption('Europe/London')
+    await page.getByRole('button', { name: 'Convert time' }).click()
 
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Time Zone Converter')
     await expect(page.getByRole('heading', { name: 'Direct answer' })).toBeVisible()
@@ -117,6 +120,8 @@ test.describe('TimeNexus MVP', () => {
     await expect(page.getByRole('heading', { name: 'Meeting timeline' })).toBeVisible()
     await expect(page.locator('.timeline-list')).toContainText('America/New_York')
     await expect(page.locator('.result-output')).toContainText('Europe/London')
+    await expect(page.locator('.copy-card').filter({ hasText: 'Europe/London' })).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Copy link' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Related tools' })).toBeVisible()
     await expect(page.getByRole('link', { name: /Date Difference Calculator/ })).toBeVisible()
     await expect(page.getByRole('listitem').filter({ hasText: 'Embeddable widgets' })).toBeVisible()

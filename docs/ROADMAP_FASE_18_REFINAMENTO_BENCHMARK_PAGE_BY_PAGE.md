@@ -25,75 +25,66 @@ Concluido ate:
 - Etapa NetProbe Tools: DNS Propagation, DNS Lookup, RDAP, SSL Certificate, Port Checker e Ping/Traceroute.
 - Etapa CalcHarbor Tools: home, Loan Payment, Break-even Point, Gross Margin e ROI.
 - Etapa DevUtility Lab Tools: home, Structured Data Formatter, Base64 Converter, JWT Inspector, Regex Tester, Text Diff, Cron Helper, UUID Generator, Timestamp Converter e Hash Generator.
+- Etapa TimeNexus Tools: home, World Clock Americas + Europe, Time Zone Converter, Timestamp Converter, Date Difference, Business Days, Age Calculator, Percentage Calculator e Unit Converter.
 
 Proxima etapa ativa:
 
-- **Etapa TimeNexus Tools**
-- Sprints: **18.44 a 18.52**
-- Escopo: TimeNexus home, World Clock Americas + Europe, Time Zone Converter, Timestamp Converter, Date Difference, Business Days, Age Calculator, Percentage Calculator e Unit Converter.
+- **Etapa QRRoute Tools**
+- Sprints: **18.53 a 18.59**
+- Escopo: QRRoute home, Static QR Code Generator, Barcode Generator, UTM Builder, vCard QR Builder, Wi-Fi QR Builder e QR Preview Lab.
 
 ## Sprints da proxima etapa
 
-### Sprint 18.44 - TimeNexus home
+### Sprint 18.53 - QRRoute home
 
-- Mostrar hora atual imediatamente.
-- Inspiracao em timeanddate: secoes World Clock, Time Zones, Calendar, Calculators e Timers.
-- Remover `No accounts or storage`, `billing` e `ads inactive`.
-- Criar footer com cidades, fusos, datas, calendarios e conversores.
+- QR preview ao vivo acima da dobra.
+- Remover `Commercial redirects planned`, `billing` e `ads inactive` do topo.
+- Abas de tipos de QR claras.
+- Footer com QR Tools, Barcode Tools, UTM Tools e Guides.
+- Bloco de doacao.
 
-### Sprint 18.45 - World Clock Americas + Europe
+### Sprint 18.54 - Static QR Code Generator
 
-- Melhorar visual com cards de cidades e timeline horizontal.
-- Mostrar business hours com cor/badge.
-- Mobile: lista vertical de cidades com horario grande.
-- Adicionar city group switcher.
+- Preview em tempo real sem exigir botao quando possivel.
+- Botoes: Download SVG, Download PNG, Copy payload e Print.
+- Tipos: URL, text, email e phone.
+- Validacao de URL segura.
+- Explicar estatico vs dinamico abaixo.
+- Corrigir PT-BR: `Safe URL`, `Plain text`, `Optional label` etc.
 
-### Sprint 18.46 - Time Zone Converter
+### Sprint 18.55 - Barcode Generator
 
-- Resultado direto acima do formulario quando exemplo carregado.
-- Inputs mais simples: from city/time e to city.
-- Timeline visual.
-- Adicionar copy/share link.
-- Mover metodologia abaixo.
+- Preview real de barcode.
+- Download SVG/PNG.
+- Labels e tamanho.
+- Validar caracteres.
 
-### Sprint 18.47 - Timestamp Converter
+### Sprint 18.56 - UTM Builder
 
-- Mostrar timestamp atual automaticamente.
-- Converter enquanto digita.
-- Cards: Unix seconds, Unix ms, ISO, UTC, local e selected zone.
-- Botoes copiar.
+- Campos individuais para source, medium, campaign, term e content.
+- URL final copyable.
+- QR preview do link final.
+- Presets de campanha.
 
-### Sprint 18.48 - Date Difference
+### Sprint 18.57 - vCard QR Builder
 
-- Resultado principal: days/weeks/months.
-- Mostrar inclusivo vs exclusivo.
-- Adicionar calendario visual pequeno ou timeline.
+- Campos estruturados: name, org, phone, email e website.
+- Preview vCard e QR.
+- Download QR e copy vCard.
+- Privacidade abaixo, nao dominante.
 
-### Sprint 18.49 - Business Days
+### Sprint 18.58 - Wi-Fi QR Builder
 
-- Resultado principal: business days e weekend days.
-- Adicionar opcao de incluir/excluir start/end.
-- Adicionar aviso sobre feriados regionais abaixo.
-- Futuro upgrade: holiday calendars.
+- Campos SSID, password, encryption e hidden.
+- Botao show/hide password.
+- QR preview e download.
+- Aviso de privacidade discreto.
 
-### Sprint 18.50 - Age Calculator
+### Sprint 18.59 - QR Preview Lab
 
-- Resultado principal: years, months, days.
-- Mostrar total days e next birthday/days until.
-- Corrigir localizacao.
-
-### Sprint 18.51 - Percentage Calculator
-
-- Modos: percent of, percent change, add/subtract percent.
-- Resultado instantaneo.
-- Formula abaixo.
-
-### Sprint 18.52 - Unit Converter
-
-- Converter enquanto digita.
-- Categorias: length, weight, temperature.
-- Cards de resultados comuns.
-- Footer de conversores.
+- Ferramenta para colar payload e validar estrutura.
+- Mostrar QR, scheme, tamanho, risco e destino.
+- Explicar limites de QR impresso.
 
 ## Regras de produto
 
