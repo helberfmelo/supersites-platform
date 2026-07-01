@@ -1350,7 +1350,7 @@ const portSummaryCards = computed<SummaryCard[]>(() => {
     },
     {
       label: toolUiCopy.latency,
-      value: typeof firstCheck?.latency_ms === 'number' ? `${firstCheck.latency_ms} ms` : toolUiCopy.unknown,
+      value: typeof firstCheck?.latency_ms === 'number' ? `${firstCheck.latency_ms}ms` : toolUiCopy.unknown,
       tone: 'neutral',
     },
   ]
@@ -1390,7 +1390,7 @@ const reachabilitySummaryCards = computed<SummaryCard[]>(() => {
   return [
     reachabilityStatus.value,
     {
-      label: toolUiCopy.tcpReachability,
+      label: 'TCP 443',
       value: reachabilityResult.value.tcp_443.status,
       tone: reachabilityResult.value.tcp_443.status === 'open' ? 'good' : 'warning',
     },
