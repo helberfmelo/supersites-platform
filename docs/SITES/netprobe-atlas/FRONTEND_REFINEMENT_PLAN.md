@@ -18,6 +18,7 @@ Make DNS propagation and What is my IP feel like premium, fast, layered diagnost
 - Transform the Hub catalog route for NetProbe into a public network/DNS/IP landing with direct tool cards, three-level explanation and DNS/IP/domain/SSL/guide deep links. Done in production in Phase 18 Sprint 18.3 with deploy `28422499578`, release `36b11f54ef984e6c6098da971cd5df3248cc1b0e-28422499578-1` and live desktop/mobile route smoke.
 - Transform the NetProbe app home into a benchmark-grade diagnostic hub with universal target input, seven direct tool cards, support block below the free value path, no public status/upgrade/internal language and DNS/IP/domain/SSL footer columns. Done in production in Phase 18 Sprint 18.21 with deploy `28475475506`, release `8441814e224be60ef9baa7b81dc8e32be2c35311-28475475506-1` and live desktop/mobile home smoke.
 - Convert What is my IP into an automatic answer page: auto-run on load, no mandatory run button, visible IP above the fold, refresh/copy/details actions, enriched-but-honest detail cards, methodology below the result and no raw IP analytics. Done in production in Phase 18 Sprint 18.22 with deploy `28478351303`, release `ae30bda4f77c00f95ae8393b3911b1e409097071-28478351303-1` and live desktop/mobile IP smoke.
+- Convert the remaining NetProbe tools into answer-first public utilities: DNS Propagation, DNS Lookup, RDAP, SSL Certificate Checker, Port Checker and Ping/Traceroute now have summary cards, safe copy/export paths, related checks, richer DNS/footer navigation, an inert sponsor reserve and a support block after useful results. Done in Phase 18 Sprints 18.23 to 18.28 without API contract changes, worldwide-probe simulation, arbitrary port scanning, ICMP/traceroute invention, real ads, checkout or provider activation.
 
 ## P1
 
@@ -43,11 +44,10 @@ Medium if ad/support blocks get too close to inputs or results. Keep placements 
 
 ## Tests needed
 
-- NetProbe unit tests/build.
-- Preview smoke and Playwright desktop/mobile.
+- NetProbe unit tests/build for scoped UI changes.
+- Public-copy and diff checks when public copy, disclaimers or generated HTML change.
 - Backend tests if API shape changes.
-- Public NetProbe smoke after push because NetProbe is live.
-- Public NetProbe/API smoke and live DNS/IP UX smoke after the Sprint 9.5 deploy because the app is live in production.
+- Preview smoke, Playwright desktop/mobile, crawler, Lighthouse and public NetProbe smoke only when explicitly requested, when the stage is QA/pre-disclosure/closure, or when the stage requires publication.
 
 ## Acceptance metrics
 
@@ -59,6 +59,8 @@ Medium if ad/support blocks get too close to inputs or results. Keep placements 
 - Hub catalog route `/supersites/<locale>/sites/netprobe-atlas` opens as a practical landing, not a status/product sheet, and includes direct paths for IP, DNS propagation, DNS lookup, RDAP, SSL, port and ping/traceroute.
 - NetProbe app home `/supersites/netprobe-atlas/<locale>/` opens with practical diagnostic input/results navigation above the fold, not launch status, methodology or upgrade/status language.
 - NetProbe What is my IP `/supersites/netprobe-atlas/<locale>/tools/what-is-my-ip` opens with a live IP result above the fold, not a mandatory run button or public API/status language.
+- The remaining NetProbe tool routes keep the first task/result path practical: DNS Propagation, DNS Lookup, RDAP, SSL, Port Checker and Ping/Traceroute show the answer before methodology and never claim unavailable global DNS, ICMP, traceroute or arbitrary-port coverage.
+- DNS type controls stay aligned to endpoint allowlists: DNS Lookup supports A/AAAA/CNAME/MX/TXT/NS/SOA/CAA, DNS Propagation supports A/AAAA/CNAME/MX/TXT/NS, and unavailable PTR/SRV or propagation SOA/CAA choices are visibly disabled.
 - Smoke/preview markers must follow intentional public copy changes in the same sprint; stale markers such as `Network facts` cannot block a benchmark-grade copy update after deploy.
 - Footer navigation should remain text-column topical menus with hover emphasis, not button grids or product-status chips.
 

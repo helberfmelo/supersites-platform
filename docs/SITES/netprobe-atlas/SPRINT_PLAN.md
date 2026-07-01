@@ -1,6 +1,6 @@
 # NetProbe Atlas Sprint Plan
 
-Data-base: 2026-06-28
+Data-base: 2026-06-30
 
 ## Real sprint
 
@@ -16,24 +16,24 @@ Data-base: 2026-06-28
 - Upgrade monitor MVP exists in control-plane but production workers/billing remain gated.
 - Sprint 7.3 benchmark UX is implemented and closed.
 - Sprint 9.5 benchmark-grade DNS/IP UX is implemented, deployed and publicly smoke-tested: Quality Gate `28316321439`, Deploy Dry Run `28316321508` and NetProbe deploy `28316402512` passed.
+- Phase 18 sprints 18.23 to 18.28 are implemented in the current branch for DNS Propagation, DNS Lookup, RDAP Domain Lookup, SSL Certificate Checker, Port Checker and Ping/Traceroute.
 
 ## Scope
 
-- DNS propagation UX refinement.
-- What is my IP UX refinement.
-- Related tools, educational content, safe support/ads placeholders and upgrade CTAs.
-- Sprint 9.5 adds visual DNS record tabs, task-first workbench layout, visual IP panel, inline privacy CTA, related checks, resolver coverage grid and honest bounded-coverage copy.
+- DNS propagation, DNS lookup, RDAP, SSL, port and reachability UX refinement.
+- Answer-first result cards, safe copy/export actions, related checks, methodology below the answer and richer topical footer links.
+- DNS record controls mirror the current endpoint allowlists. Unsupported PTR/SRV and propagation-only SOA/CAA gaps are shown as unavailable rather than simulated.
+- Safe support block and inert sponsor reserve after the useful result path; no real donation, checkout, ad request or provider widget is active.
 
 ## Validation
 
-- NetProbe frontend tests/build/preview/Playwright.
+- For the scoped Phase 18 NetProbe Tools stage: `pnpm test:netprobe`, `pnpm build:netprobe`, `pnpm validate:public-copy` and `git diff --check`.
 - Backend tests if endpoint contracts change.
-- `pnpm validate:netprobe-preview`
-- `pnpm test:e2e:netprobe`
-- `pnpm deploy:smoke-netprobe-public` after push.
-- Standard structure/secrets/dry-run/ci/diff gates.
+- Preview, Playwright, crawler, Lighthouse and public smoke stay opt-in unless the stage is QA/pre-disclosure/closure, changes high-risk surfaces or requires publication.
+- Standard structure/secrets/dry-run/ci gates apply when the stage includes release/deploy, cross-package risk or explicit owner request.
 
 ## Gates
 
 - Do not activate new probes, workers, paid API, external DNS networks, AdSense serving, donation payment or checkout.
 - Do not store raw targets in analytics or dashboard opportunity records.
+- Do not simulate worldwide DNS propagation, ICMP ping/traceroute hops or arbitrary port scanning beyond the bounded public endpoint behavior.

@@ -80,3 +80,14 @@ Data-base: 2026-06-30
 - Methodology, privacy and limits moved below the useful result as a disclosure, keeping the benchmark-grade mental model: answer first, technical context after.
 - No affiliate VPN CTA, payment link, ad request, provider script, analytics payload with IP, geolocation provider or external monetization was activated.
 - Evidence: implementation commit `ae30bda`; deploy `28478351303`; release `ae30bda4f77c00f95ae8393b3911b1e409097071-28478351303-1`; asset `CIQKG5SX.js`; live screenshots `artifacts/netprobe-ip-live-qa/netprobe-ip-live-en-desktop.png` and `artifacts/netprobe-ip-live-qa/netprobe-ip-live-pt-br-mobile-details.png`; crawler quick live `2026-06-30T22-12-55-566Z` with 95 routes, 190 viewport checks and 0 gaps.
+
+## Phase 18 Sprints 18.23-18.28 NetProbe Tools notes
+
+- DNS Propagation now keeps the checker task-first with domain, record type, optional expected value, match status, distinct values, different/no-answer/error counts, checked scope and checked-at metadata before methodology.
+- DNS Lookup now uses answer-first cards and a table for type, name, value, TTL and resolver/source, plus safe copy/export actions and direct links to propagation and email-record checks.
+- RDAP now leads with domain, registrar, expiration and status cards, then dates, nameservers, DNSSEC and a redaction notice instead of a dominant raw technical block.
+- SSL now separates simple certificate status, issuer, expiration window, SANs, chain count and public warnings without presenting itself as an SSL Labs equivalent.
+- Port Checker now provides common-port chips, a direct open/closed/filtered style summary and the antiabuse boundary that the public endpoint only allows 80, 443, 587 and 993.
+- Ping/Traceroute now reflects the bounded TCP 443 reachability endpoint honestly. ICMP and traceroute remain unavailable, and no hop list or worldwide path is fabricated.
+- DNS/footer navigation, related checks, support links and the sponsor reserve are richer but inert. No ad request, payment provider, checkout, affiliate, external probe worker, multi-region network or raw target analytics was activated.
+- Local evidence for this stage: `pnpm test:netprobe`, `pnpm build:netprobe`, `pnpm validate:public-copy` and `git diff --check`.

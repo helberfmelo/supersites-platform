@@ -22,55 +22,56 @@ Concluido ate:
 - Paginas institucionais do Hub: About, Contact, Privacy, Cookies, Terms, Methodology, Editorial Policy e Public Status.
 - NetProbe home.
 - NetProbe What is my IP.
+- Etapa NetProbe Tools: DNS Propagation, DNS Lookup, RDAP, SSL Certificate, Port Checker e Ping/Traceroute.
 
 Proxima etapa ativa:
 
-- **Etapa NetProbe Tools**
-- Sprints: **18.23 a 18.28**
-- Escopo: DNS Propagation, DNS Lookup, RDAP, SSL Certificate, Port Checker, Ping/Traceroute.
+- **Etapa CalcHarbor Tools**
+- Sprints: **18.29 a 18.33**
+- Escopo: CalcHarbor home, Loan Payment Calculator, Break-even Point Calculator, Gross Margin Calculator e ROI Calculator.
 
 ## Sprints da proxima etapa
 
-### Sprint 18.23 - NetProbe DNS Propagation
+### Sprint 18.29 - CalcHarbor home
 
-- Redesenhar como checker task-first.
-- Input, record type, expected value e resultado acima da dobra.
-- Suportar visualmente `A`, `AAAA`, `CNAME`, `MX`, `NS`, `PTR`, `SOA`, `SRV`, `TXT`, `CAA`.
-- Lista/mapa preparados para probes reais.
-- Nao simular probes globais falsos.
-- Se multi-regiao real nao existir, deixar cobertura clara e metodologia abaixo.
-- Rodape DNS rico, donation block inerte e slot AdSense reservado sem anuncio real.
+- Criar hub denso de calculadoras, inspirado em Calculator.net, mas visual premium.
+- Topo com busca de calculadora.
+- Categorias: Finance, Business, Marketing, Commerce, Time/Date, Units.
+- Remover `Workflow checks ready`, `ads/checkout inactive`.
+- Adicionar popular calculators e all calculators.
+- Preparar footer com calculadoras por categoria.
 
-### Sprint 18.24 - NetProbe DNS Lookup
+### Sprint 18.30 - Loan Payment Calculator
 
-- Input e tabs de record type acima da dobra.
-- Resultado em tabela clara com type, name, value, TTL e source/resolver.
-- Acoes: copiar, exportar JSON, checar propagacao, checar registros de e-mail.
-- Metodologia abaixo e rodape DNS rico.
+- Melhorar visual de calculadora com input a esquerda e resultado a direita em desktop.
+- Resultado principal grande: monthly payment.
+- Tabela de amortizacao resumida opcional.
+- Grafico simples de principal vs interest.
+- Formula abaixo, nao como destaque excessivo no topo.
+- Remover `commercial features planned`.
+- Adicionar Copy result, Download summary e Compare scenarios.
 
-### Sprint 18.25 - NetProbe RDAP Domain Lookup
+### Sprint 18.31 - Break-even Point Calculator
 
-- Resultado em cards para dominio, registrar, datas, status, nameservers, DNSSEC e redaction notice.
-- Evitar bloco tecnico dominante no topo.
-- Privacidade/limites abaixo do resultado.
+- Resultado principal: break-even units e revenue.
+- Grafico de linha ou area mostrando prejuizo/lucro por volume.
+- Tabela de cenarios.
+- Explicacao leiga antes da formula tecnica.
+- CTA para salvar/exportar como upgrade futuro abaixo.
 
-### Sprint 18.26 - NetProbe SSL Certificate Checker
+### Sprint 18.32 - Gross Margin Calculator
 
-- Mostrar emissor, validade, SANs, chain summary e alertas claros.
-- Separar interpretacao simples de detalhes tecnicos.
-- Nao prometer auditoria equivalente a SSL Labs se nao existir.
+- Resultado principal: gross margin % e gross profit.
+- Mostrar diferenca entre margin e markup visualmente.
+- Adicionar cenario com aumento/reducao de custo.
+- Corrigir copy e localizacao.
 
-### Sprint 18.27 - NetProbe Port Checker
+### Sprint 18.33 - ROI Calculator
 
-- Input host/porta e resultado direto acima da dobra.
-- Explicar porta aberta/fechada/filtrada de forma simples.
-- Manter limites antiabuso e portas permitidas.
-
-### Sprint 18.28 - NetProbe Ping and Traceroute
-
-- UI preparada para reachability real disponivel.
-- Declarar recursos indisponiveis sem vender traceroute/ping mundial falso.
-- Priorizar resultado util e alternativa segura quando ICMP/traceroute nao estiverem ativos.
+- Resultado principal: ROI % e net return.
+- Adicionar tempo/periodo opcional ou nota clara se nao anualiza.
+- Cenario conservador/base/agressivo.
+- Export summary e related calculators.
 
 ## Regras de produto
 

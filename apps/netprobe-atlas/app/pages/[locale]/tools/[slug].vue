@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { getButtonClass } from '@supersites/ui'
 import { computed, onMounted, ref } from 'vue'
-import { getShellCopy } from '../../../data/copy'
+import { getHomeCopy, getShellCopy } from '../../../data/copy'
 import { localizedContentPath, localizedHomePath, localizedToolPath, normalizePublicLocale, sanitizePublicCopy, toHtmlLang, type LocaleCode } from '../../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
 import { createToolStructuredData, getCategoryLabel, getToolBySlug, getToolCopy, toolCatalog } from '../../../data/tools'
@@ -20,8 +20,10 @@ if (!locale || !tool) {
 
 const copy = getToolCopy(tool, locale)
 const shellCopy = getShellCopy(locale)
+const homeFooterCopy = getHomeCopy(locale)
 const canonicalPath = localizedToolPath(locale, tool.slug)
 const structuredData = createToolStructuredData(tool, locale, absoluteUrl(canonicalPath))
+type FooterLink = ReturnType<typeof getHomeCopy>['footerGroups'][number]['links'][number]
 const upgradePanelCopyByLocale = {
   en: {
     ariaLabel: 'Advanced workflow',
@@ -74,7 +76,7 @@ const benchmarkCopyByLocale = {
     privacyBody: 'Inputs and returned values stay out of analytics. The IP result is shown to this browser session and the event only records the tool slug.',
     privacyLink: 'Read privacy details',
     coverageTitle: 'Coverage disclosure',
-    coverageBody: 'Current propagation uses controlled resolver snapshots available to this runtime. It is not a worldwide propagation claim until regional probes are deployed and documented.',
+    coverageBody: 'Current propagation uses controlled resolver snapshots available to this check. It is not a worldwide propagation claim until regional checks are available and documented.',
     relatedTitle: 'Next checks',
     mapTitle: 'Resolver coverage map',
     resolverDetailsTitle: 'Resolver and locality table',
@@ -90,7 +92,7 @@ const benchmarkCopyByLocale = {
     privacyBody: 'Entradas e valores retornados ficam fora de analytics. O IP aparece apenas nesta sessão do navegador e o evento registra só o slug da ferramenta.',
     privacyLink: 'Ler detalhes de privacidade',
     coverageTitle: 'Cobertura declarada',
-    coverageBody: 'A propagação atual usa snapshots de resolvedores controlados disponíveis neste runtime. Não é uma promessa mundial até probes regionais serem publicados e documentados.',
+    coverageBody: 'A propagação atual usa snapshots de resolvedores controlados disponíveis nesta consulta. Não é uma promessa mundial até checagens regionais reais estarem disponíveis e documentadas.',
     relatedTitle: 'Próximas checagens',
     mapTitle: 'Mapa de cobertura dos resolvedores',
     resolverDetailsTitle: 'Tabela de resolvedor e localidade',
@@ -106,7 +108,7 @@ const benchmarkCopyByLocale = {
     privacyBody: 'Entradas y valores devueltos quedan fuera de analytics. La IP se muestra solo en esta sesión y el evento registra solo el slug de herramienta.',
     privacyLink: 'Leer privacidad',
     coverageTitle: 'Cobertura declarada',
-    coverageBody: 'La propagación actual usa snapshots de resolvers controlados disponibles en este runtime. No es una promesa mundial hasta publicar probes regionales documentados.',
+    coverageBody: 'La propagación actual usa snapshots de resolvers controlados disponibles en esta consulta. No es una promesa mundial hasta que existan chequeos regionales documentados.',
     relatedTitle: 'Siguientes chequeos',
     mapTitle: 'Mapa de cobertura de resolvers',
     resolverDetailsTitle: 'Tabla de resolver y localidad',
@@ -122,7 +124,7 @@ const benchmarkCopyByLocale = {
     privacyBody: 'Les entrées et valeurs retournées restent hors analytics. L’IP est affichée dans cette session et l’événement ne garde que le slug outil.',
     privacyLink: 'Lire la confidentialité',
     coverageTitle: 'Couverture déclarée',
-    coverageBody: 'La propagation actuelle utilise les snapshots de résolveurs contrôlés disponibles dans ce runtime. Ce résultat ne promet pas une couverture mondiale avant des probes régionaux documentés.',
+    coverageBody: 'La propagation actuelle utilise les snapshots de résolveurs contrôlés disponibles pour ce contrôle. Ce résultat ne promet pas une couverture mondiale avant des contrôles régionaux documentés.',
     relatedTitle: 'Contrôles suivants',
     mapTitle: 'Carte de couverture des résolveurs',
     resolverDetailsTitle: 'Table résolveur et localité',
@@ -138,7 +140,7 @@ const benchmarkCopyByLocale = {
     privacyBody: 'Eingaben und Rückgabewerte bleiben aus Analytics heraus. Die IP wird nur in dieser Browsersitzung gezeigt; das Event speichert nur den Tool-Slug.',
     privacyLink: 'Datenschutz lesen',
     coverageTitle: 'Abgedeckter Umfang',
-    coverageBody: 'Die aktuelle Propagation nutzt kontrollierte Resolver-Snapshots dieses Runtimes. Sie ist keine weltweite Aussage, bis regionale Probes dokumentiert bereitstehen.',
+    coverageBody: 'Die aktuelle Propagation nutzt kontrollierte Resolver-Snapshots dieser Prüfung. Sie ist keine weltweite Aussage, bis dokumentierte regionale Prüfungen verfügbar sind.',
     relatedTitle: 'Nächste Prüfungen',
     mapTitle: 'Resolver-Abdeckung',
     resolverDetailsTitle: 'Resolver- und Standorttabelle',
@@ -350,7 +352,488 @@ const ipLookupCopyByLocale = {
   },
 } satisfies Record<LocaleCode, Record<string, string>>
 const ipLookupCopy = sanitizePublicCopy(locale, ipLookupCopyByLocale[locale])
+const toolUiCopyByLocale = {
+  en: {
+    domain: 'Domain',
+    hostname: 'Hostname',
+    cache: 'Cache',
+    cached: 'Cached',
+    fresh: 'Fresh',
+    checked: 'Checked',
+    addressGuard: 'Public address guard',
+    recordsReturned: 'Records returned',
+    lowestTtl: 'Lowest TTL',
+    resolverSource: 'Resolver / source',
+    noRecords: 'No records returned.',
+    answeredResolvers: 'Answered resolvers',
+    expectedValueMatch: 'Expected-value match',
+    distinctValues: 'Distinct values',
+    differentAnswers: 'Different',
+    noAnswerErrors: 'No answer / errors',
+    checkedScope: 'Checked scope',
+    resolverSnapshot: 'resolver snapshot',
+    resolverSnapshots: 'resolver snapshots',
+    resolver: 'Resolver',
+    region: 'Region',
+    ttlMin: 'TTL min',
+    values: 'Values',
+    noValuesReturned: 'No values returned',
+    none: 'None',
+    recordType: 'Record type',
+    summary: 'Summary',
+    type: 'Type',
+    name: 'Name',
+    value: 'Value',
+    ttl: 'TTL',
+    source: 'Source',
+    fields: 'Fields',
+    copyAll: 'Copy all',
+    exportJson: 'Export JSON',
+    checkPropagation: 'Check propagation',
+    checkEmailRecords: 'Check email records',
+    copySummary: 'Copy summary',
+    shareReport: 'Share report summary',
+    checkAnotherRecord: 'Check another record',
+    copied: 'Summary copied locally.',
+    copyUnavailable: 'Copy is unavailable in this browser session.',
+    unavailableType: 'Not available in this public check',
+    registrar: 'Registrar',
+    registrationDate: 'Registration date',
+    updatedDate: 'Updated date',
+    expirationDate: 'Expiration date',
+    status: 'Status',
+    nameservers: 'Nameservers',
+    dnssec: 'DNSSEC',
+    redactionNotice: 'Redaction notice',
+    redactionBody: 'Personal contact data is omitted when registries redact or restrict it.',
+    monitorExpiration: 'Monitor expiration',
+    checkDns: 'Check DNS',
+    checkSsl: 'Check SSL',
+    notProvided: 'Not provided',
+    unknown: 'Unknown',
+    issuer: 'Issuer',
+    subject: 'Subject',
+    validFrom: 'Valid from',
+    validTo: 'Valid to',
+    daysLeft: 'Days left',
+    chain: 'Chain',
+    protocolHints: 'Protocol hints',
+    sans: 'Subject alternative names',
+    certificateWindow: 'Certificate window',
+    valid: 'Valid',
+    expiring: 'Expiring soon',
+    expired: 'Expired',
+    mismatch: 'Hostname mismatch',
+    monitorCertificate: 'Monitor certificate expiry',
+    sitePulseHeaders: 'Check SitePulse security headers',
+    portQuickChoices: 'Common ports',
+    portStatus: 'Port status',
+    latency: 'Latency',
+    resolvedIp: 'Resolved IP',
+    notScannerTitle: 'This is not a scanner',
+    notScannerBody: 'The public check uses a small allowlist and does not scan ranges or arbitrary ports.',
+    reachabilityStatus: 'Reachability status',
+    reachable: 'Reachable',
+    unreachable: 'Unreachable',
+    partial: 'Partial',
+    tcpReachability: 'TCP reachability',
+    icmpLimit: 'ICMP ping',
+    tracerouteLimit: 'Traceroute',
+    hops: 'Hops',
+    noRealHops: 'No real hops are returned until controlled traceroute probes are available.',
+    nextChecks: 'Next checks',
+    publicWarningTitle: 'Public-check limits',
+    supportTitle: 'Support the free diagnostics',
+    supportBody: 'Keep the free checks useful by sharing corrections and using the practical pages first. No payment provider is connected here.',
+    supportCta: 'Send a correction',
+    sponsorLabel: 'Reserved non-interactive sponsor space',
+  },
+  'pt-br': {
+    domain: 'Domínio',
+    hostname: 'Hostname',
+    cache: 'Cache',
+    cached: 'Em cache',
+    fresh: 'Recente',
+    checked: 'Checado',
+    addressGuard: 'Guarda de endereço público',
+    recordsReturned: 'Registros retornados',
+    lowestTtl: 'Menor TTL',
+    resolverSource: 'Resolvedor / fonte',
+    noRecords: 'Nenhum registro retornado.',
+    answeredResolvers: 'Resolvedores com resposta',
+    expectedValueMatch: 'Match do valor esperado',
+    distinctValues: 'Valores distintos',
+    differentAnswers: 'Diferentes',
+    noAnswerErrors: 'Sem resposta / erros',
+    checkedScope: 'Escopo checado',
+    resolverSnapshot: 'snapshot de resolvedor',
+    resolverSnapshots: 'snapshots de resolvedores',
+    resolver: 'Resolvedor',
+    region: 'Região',
+    ttlMin: 'TTL min',
+    values: 'Valores',
+    noValuesReturned: 'Nenhum valor retornado',
+    none: 'Nenhum',
+    recordType: 'Tipo de registro',
+    summary: 'Resumo',
+    type: 'Tipo',
+    name: 'Nome',
+    value: 'Valor',
+    ttl: 'TTL',
+    source: 'Fonte',
+    fields: 'Campos',
+    copyAll: 'Copiar tudo',
+    exportJson: 'Exportar JSON',
+    checkPropagation: 'Checar propagação',
+    checkEmailRecords: 'Checar e-mail',
+    copySummary: 'Copiar resumo',
+    shareReport: 'Compartilhar resumo',
+    checkAnotherRecord: 'Checar outro registro',
+    copied: 'Resumo copiado localmente.',
+    copyUnavailable: 'Cópia indisponível nesta sessão do navegador.',
+    unavailableType: 'Indisponível nesta consulta pública',
+    registrar: 'Registrar',
+    registrationDate: 'Data de registro',
+    updatedDate: 'Data de atualização',
+    expirationDate: 'Data de expiração',
+    status: 'Status',
+    nameservers: 'Nameservers',
+    dnssec: 'DNSSEC',
+    redactionNotice: 'Aviso de redação',
+    redactionBody: 'Dados pessoais de contato são omitidos quando registries redigem ou restringem essas informações.',
+    monitorExpiration: 'Monitorar expiração',
+    checkDns: 'Checar DNS',
+    checkSsl: 'Checar SSL',
+    notProvided: 'Não informado',
+    unknown: 'Desconhecido',
+    issuer: 'Emissor',
+    subject: 'Assunto',
+    validFrom: 'Válido desde',
+    validTo: 'Válido até',
+    daysLeft: 'Dias restantes',
+    chain: 'Cadeia',
+    protocolHints: 'Pistas de protocolo',
+    sans: 'Nomes alternativos',
+    certificateWindow: 'Janela do certificado',
+    valid: 'Válido',
+    expiring: 'Expira em breve',
+    expired: 'Expirado',
+    mismatch: 'Hostname divergente',
+    monitorCertificate: 'Monitorar expiração do certificado',
+    sitePulseHeaders: 'Checar headers de segurança no SitePulse',
+    portQuickChoices: 'Portas comuns',
+    portStatus: 'Status da porta',
+    latency: 'Latência',
+    resolvedIp: 'IP resolvido',
+    notScannerTitle: 'Isto não é scanner',
+    notScannerBody: 'A consulta pública usa uma allowlist pequena e não varre faixas nem portas arbitrárias.',
+    reachabilityStatus: 'Status de alcance',
+    reachable: 'Alcançável',
+    unreachable: 'Inalcançável',
+    partial: 'Parcial',
+    tcpReachability: 'Alcance TCP',
+    icmpLimit: 'Ping ICMP',
+    tracerouteLimit: 'Traceroute',
+    hops: 'Saltos',
+    noRealHops: 'Nenhum salto real é retornado até existirem probes controlados de traceroute.',
+    nextChecks: 'Próximas checagens',
+    publicWarningTitle: 'Limites da consulta pública',
+    supportTitle: 'Apoie os diagnósticos gratuitos',
+    supportBody: 'Mantenha as consultas gratuitas úteis compartilhando correções e usando primeiro as páginas práticas. Nenhum provedor de pagamento está conectado aqui.',
+    supportCta: 'Enviar correção',
+    sponsorLabel: 'Espaço reservado não interativo para patrocínio',
+  },
+  es: {
+    domain: 'Dominio',
+    hostname: 'Hostname',
+    cache: 'Cache',
+    cached: 'En cache',
+    fresh: 'Reciente',
+    checked: 'Comprobado',
+    addressGuard: 'Guarda de dirección pública',
+    recordsReturned: 'Registros devueltos',
+    lowestTtl: 'TTL menor',
+    resolverSource: 'Resolver / fuente',
+    noRecords: 'No se devolvieron registros.',
+    answeredResolvers: 'Resolvers con respuesta',
+    expectedValueMatch: 'Coincidencia con valor esperado',
+    distinctValues: 'Valores distintos',
+    differentAnswers: 'Diferentes',
+    noAnswerErrors: 'Sin respuesta / errores',
+    checkedScope: 'Alcance comprobado',
+    resolverSnapshot: 'snapshot de resolver',
+    resolverSnapshots: 'snapshots de resolvers',
+    resolver: 'Resolver',
+    region: 'Región',
+    ttlMin: 'TTL min',
+    values: 'Valores',
+    noValuesReturned: 'No se devolvieron valores',
+    none: 'Ninguno',
+    recordType: 'Tipo de registro',
+    summary: 'Resumen',
+    type: 'Tipo',
+    name: 'Nombre',
+    value: 'Valor',
+    ttl: 'TTL',
+    source: 'Fuente',
+    fields: 'Campos',
+    copyAll: 'Copiar todo',
+    exportJson: 'Exportar JSON',
+    checkPropagation: 'Comprobar propagación',
+    checkEmailRecords: 'Comprobar e-mail',
+    copySummary: 'Copiar resumen',
+    shareReport: 'Compartir resumen',
+    checkAnotherRecord: 'Comprobar otro registro',
+    copied: 'Resumen copiado localmente.',
+    copyUnavailable: 'La copia no está disponible en esta sesión.',
+    unavailableType: 'No disponible en esta consulta pública',
+    registrar: 'Registrar',
+    registrationDate: 'Fecha de registro',
+    updatedDate: 'Fecha de actualización',
+    expirationDate: 'Fecha de expiración',
+    status: 'Estado',
+    nameservers: 'Nameservers',
+    dnssec: 'DNSSEC',
+    redactionNotice: 'Aviso de redacción',
+    redactionBody: 'Los datos personales de contacto se omiten cuando los registries los redactan o restringen.',
+    monitorExpiration: 'Monitorear expiración',
+    checkDns: 'Comprobar DNS',
+    checkSsl: 'Comprobar SSL',
+    notProvided: 'No informado',
+    unknown: 'Desconocido',
+    issuer: 'Emisor',
+    subject: 'Sujeto',
+    validFrom: 'Válido desde',
+    validTo: 'Válido hasta',
+    daysLeft: 'Días restantes',
+    chain: 'Cadena',
+    protocolHints: 'Pistas de protocolo',
+    sans: 'Nombres alternativos',
+    certificateWindow: 'Ventana del certificado',
+    valid: 'Válido',
+    expiring: 'Expira pronto',
+    expired: 'Expirado',
+    mismatch: 'Hostname no coincide',
+    monitorCertificate: 'Monitorear expiración del certificado',
+    sitePulseHeaders: 'Comprobar headers de seguridad en SitePulse',
+    portQuickChoices: 'Puertos comunes',
+    portStatus: 'Estado del puerto',
+    latency: 'Latencia',
+    resolvedIp: 'IP resuelta',
+    notScannerTitle: 'Esto no es un escáner',
+    notScannerBody: 'La consulta pública usa una allowlist pequeña y no escanea rangos ni puertos arbitrarios.',
+    reachabilityStatus: 'Estado de alcance',
+    reachable: 'Alcanzable',
+    unreachable: 'Inalcanzable',
+    partial: 'Parcial',
+    tcpReachability: 'Alcance TCP',
+    icmpLimit: 'Ping ICMP',
+    tracerouteLimit: 'Traceroute',
+    hops: 'Saltos',
+    noRealHops: 'No se devuelven saltos reales hasta tener probes controlados de traceroute.',
+    nextChecks: 'Siguientes chequeos',
+    publicWarningTitle: 'Límites de la consulta pública',
+    supportTitle: 'Apoya los diagnósticos gratuitos',
+    supportBody: 'Mantén útiles las consultas gratuitas compartiendo correcciones y usando primero las páginas prácticas. Ningún proveedor de pago está conectado aquí.',
+    supportCta: 'Enviar corrección',
+    sponsorLabel: 'Espacio reservado no interactivo para patrocinio',
+  },
+  fr: {
+    domain: 'Domaine',
+    hostname: 'Hostname',
+    cache: 'Cache',
+    cached: 'En cache',
+    fresh: 'Récent',
+    checked: 'Contrôlé',
+    addressGuard: 'Garde adresse publique',
+    recordsReturned: 'Enregistrements retournés',
+    lowestTtl: 'TTL le plus bas',
+    resolverSource: 'Résolveur / source',
+    noRecords: 'Aucun enregistrement retourné.',
+    answeredResolvers: 'Résolveurs avec réponse',
+    expectedValueMatch: 'Correspondance valeur attendue',
+    distinctValues: 'Valeurs distinctes',
+    differentAnswers: 'Différentes',
+    noAnswerErrors: 'Sans réponse / erreurs',
+    checkedScope: 'Périmètre contrôlé',
+    resolverSnapshot: 'snapshot de résolveur',
+    resolverSnapshots: 'snapshots de résolveurs',
+    resolver: 'Résolveur',
+    region: 'Région',
+    ttlMin: 'TTL min',
+    values: 'Valeurs',
+    noValuesReturned: 'Aucune valeur retournée',
+    none: 'Aucun',
+    recordType: 'Type d’enregistrement',
+    summary: 'Résumé',
+    type: 'Type',
+    name: 'Nom',
+    value: 'Valeur',
+    ttl: 'TTL',
+    source: 'Source',
+    fields: 'Champs',
+    copyAll: 'Tout copier',
+    exportJson: 'Exporter JSON',
+    checkPropagation: 'Contrôler la propagation',
+    checkEmailRecords: 'Contrôler l’e-mail',
+    copySummary: 'Copier le résumé',
+    shareReport: 'Partager le résumé',
+    checkAnotherRecord: 'Contrôler un autre enregistrement',
+    copied: 'Résumé copié localement.',
+    copyUnavailable: 'Copie indisponible dans cette session.',
+    unavailableType: 'Indisponible dans ce contrôle public',
+    registrar: 'Registrar',
+    registrationDate: 'Date d’enregistrement',
+    updatedDate: 'Date de mise à jour',
+    expirationDate: 'Date d’expiration',
+    status: 'Statut',
+    nameservers: 'Nameservers',
+    dnssec: 'DNSSEC',
+    redactionNotice: 'Avis de rédaction',
+    redactionBody: 'Les données personnelles de contact sont omises lorsque les registres les rédigent ou les restreignent.',
+    monitorExpiration: 'Surveiller l’expiration',
+    checkDns: 'Contrôler DNS',
+    checkSsl: 'Contrôler SSL',
+    notProvided: 'Non fourni',
+    unknown: 'Inconnu',
+    issuer: 'Émetteur',
+    subject: 'Sujet',
+    validFrom: 'Valide depuis',
+    validTo: 'Valide jusqu’au',
+    daysLeft: 'Jours restants',
+    chain: 'Chaîne',
+    protocolHints: 'Indices protocole',
+    sans: 'Noms alternatifs',
+    certificateWindow: 'Fenêtre du certificat',
+    valid: 'Valide',
+    expiring: 'Expire bientôt',
+    expired: 'Expiré',
+    mismatch: 'Hostname différent',
+    monitorCertificate: 'Surveiller l’expiration du certificat',
+    sitePulseHeaders: 'Contrôler les headers sécurité dans SitePulse',
+    portQuickChoices: 'Ports courants',
+    portStatus: 'Statut du port',
+    latency: 'Latence',
+    resolvedIp: 'IP résolue',
+    notScannerTitle: 'Ce n’est pas un scanner',
+    notScannerBody: 'Le contrôle public utilise une petite allowlist et ne scanne ni plages ni ports arbitraires.',
+    reachabilityStatus: 'Statut d’accessibilité',
+    reachable: 'Accessible',
+    unreachable: 'Inaccessible',
+    partial: 'Partiel',
+    tcpReachability: 'Accessibilité TCP',
+    icmpLimit: 'Ping ICMP',
+    tracerouteLimit: 'Traceroute',
+    hops: 'Hops',
+    noRealHops: 'Aucun hop réel n’est retourné avant disponibilité de probes traceroute contrôlés.',
+    nextChecks: 'Contrôles suivants',
+    publicWarningTitle: 'Limites du contrôle public',
+    supportTitle: 'Soutenir les diagnostics gratuits',
+    supportBody: 'Gardez les contrôles gratuits utiles en partageant des corrections et en utilisant d’abord les pages pratiques. Aucun fournisseur de paiement n’est connecté ici.',
+    supportCta: 'Envoyer une correction',
+    sponsorLabel: 'Espace réservé non interactif pour sponsoring',
+  },
+  de: {
+    domain: 'Domain',
+    hostname: 'Hostname',
+    cache: 'Cache',
+    cached: 'Aus Cache',
+    fresh: 'Frisch',
+    checked: 'Geprüft',
+    addressGuard: 'Öffentliche Adressprüfung',
+    recordsReturned: 'Einträge zurückgegeben',
+    lowestTtl: 'Niedrigste TTL',
+    resolverSource: 'Resolver / Quelle',
+    noRecords: 'Keine Einträge zurückgegeben.',
+    answeredResolvers: 'Resolver mit Antwort',
+    expectedValueMatch: 'Abgleich mit erwartetem Wert',
+    distinctValues: 'Unterschiedliche Werte',
+    differentAnswers: 'Abweichend',
+    noAnswerErrors: 'Keine Antwort / Fehler',
+    checkedScope: 'Geprüfter Umfang',
+    resolverSnapshot: 'Resolver-Snapshot',
+    resolverSnapshots: 'Resolver-Snapshots',
+    resolver: 'Resolver',
+    region: 'Region',
+    ttlMin: 'TTL min',
+    values: 'Werte',
+    noValuesReturned: 'Keine Werte zurückgegeben',
+    none: 'Keine',
+    recordType: 'Eintragstyp',
+    summary: 'Zusammenfassung',
+    type: 'Typ',
+    name: 'Name',
+    value: 'Wert',
+    ttl: 'TTL',
+    source: 'Quelle',
+    fields: 'Felder',
+    copyAll: 'Alles kopieren',
+    exportJson: 'JSON exportieren',
+    checkPropagation: 'Propagation prüfen',
+    checkEmailRecords: 'E-Mail prüfen',
+    copySummary: 'Zusammenfassung kopieren',
+    shareReport: 'Zusammenfassung teilen',
+    checkAnotherRecord: 'Anderen Eintrag prüfen',
+    copied: 'Zusammenfassung lokal kopiert.',
+    copyUnavailable: 'Kopieren ist in dieser Sitzung nicht verfügbar.',
+    unavailableType: 'In dieser öffentlichen Prüfung nicht verfügbar',
+    registrar: 'Registrar',
+    registrationDate: 'Registrierungsdatum',
+    updatedDate: 'Aktualisiert am',
+    expirationDate: 'Ablaufdatum',
+    status: 'Status',
+    nameservers: 'Nameserver',
+    dnssec: 'DNSSEC',
+    redactionNotice: 'Redaktionshinweis',
+    redactionBody: 'Persönliche Kontaktdaten werden ausgelassen, wenn Registries sie redigieren oder beschränken.',
+    monitorExpiration: 'Ablauf überwachen',
+    checkDns: 'DNS prüfen',
+    checkSsl: 'SSL prüfen',
+    notProvided: 'Nicht angegeben',
+    unknown: 'Unbekannt',
+    issuer: 'Aussteller',
+    subject: 'Subject',
+    validFrom: 'Gültig ab',
+    validTo: 'Gültig bis',
+    daysLeft: 'Tage übrig',
+    chain: 'Kette',
+    protocolHints: 'Protokollhinweise',
+    sans: 'Alternative Namen',
+    certificateWindow: 'Zertifikatsfenster',
+    valid: 'Gültig',
+    expiring: 'Läuft bald ab',
+    expired: 'Abgelaufen',
+    mismatch: 'Hostname passt nicht',
+    monitorCertificate: 'Zertifikatsablauf überwachen',
+    sitePulseHeaders: 'SitePulse Security Headers prüfen',
+    portQuickChoices: 'Häufige Ports',
+    portStatus: 'Portstatus',
+    latency: 'Latenz',
+    resolvedIp: 'Aufgelöste IP',
+    notScannerTitle: 'Dies ist kein Scanner',
+    notScannerBody: 'Die öffentliche Prüfung nutzt eine kleine Allowlist und scannt keine Bereiche oder beliebigen Ports.',
+    reachabilityStatus: 'Erreichbarkeitsstatus',
+    reachable: 'Erreichbar',
+    unreachable: 'Nicht erreichbar',
+    partial: 'Teilweise',
+    tcpReachability: 'TCP-Erreichbarkeit',
+    icmpLimit: 'ICMP-Ping',
+    tracerouteLimit: 'Traceroute',
+    hops: 'Hops',
+    noRealHops: 'Reale Hops werden erst mit kontrollierten Traceroute-Probes zurückgegeben.',
+    nextChecks: 'Nächste Prüfungen',
+    publicWarningTitle: 'Grenzen der öffentlichen Prüfung',
+    supportTitle: 'Kostenlose Diagnosen unterstützen',
+    supportBody: 'Halten Sie die kostenlosen Prüfungen nützlich, indem Sie Korrekturen teilen und zuerst die praktischen Seiten nutzen. Hier ist kein Zahlungsanbieter verbunden.',
+    supportCta: 'Korrektur senden',
+    sponsorLabel: 'Reservierter nicht interaktiver Sponsoringbereich',
+  },
+} satisfies Record<LocaleCode, Record<string, string>>
+const toolUiCopy = sanitizePublicCopy(locale, toolUiCopyByLocale[locale])
+const dnsLookupRecordTypes = ['A', 'AAAA', 'CNAME', 'MX', 'TXT', 'NS', 'SOA', 'CAA'] as const
 const propagationRecordTypes = ['A', 'AAAA', 'CNAME', 'MX', 'TXT', 'NS'] as const
+const dnsVisualRecordTypes = ['A', 'AAAA', 'CNAME', 'MX', 'NS', 'PTR', 'SOA', 'SRV', 'TXT', 'CAA'] as const
+const quickPorts = [80, 443, 587, 993] as const
 const runtimeConfig = useRuntimeConfig()
 const previewSubmitted = ref(false)
 const targetValue = ref(tool.slug === 'what-is-my-ip' ? '' : tool.exampleTarget)
@@ -652,6 +1135,278 @@ const ipDetailCards = computed<DetailCard[]>(() => [
   },
 ])
 
+function isDnsLookupRecordTypeAvailable(recordType: string): boolean {
+  return dnsLookupRecordTypes.includes(recordType as (typeof dnsLookupRecordTypes)[number])
+}
+
+function isPropagationRecordTypeAvailable(recordType: string): boolean {
+  return propagationRecordTypes.includes(recordType as (typeof propagationRecordTypes)[number])
+}
+
+function metaNumber(meta: Record<string, unknown>, key: string): number | null {
+  return typeof meta[key] === 'number' ? meta[key] : null
+}
+
+function metaBoolean(meta: Record<string, unknown>, key: string): boolean {
+  return meta[key] === true
+}
+
+function metaMessages(meta: Record<string, unknown>): string[] {
+  return ['warnings', 'limitations']
+    .flatMap((key) => Array.isArray(meta[key]) ? meta[key] : [])
+    .filter((item): item is string => typeof item === 'string')
+    .filter((item) => !/Sprint|planned|worker|production|deploy|rollback|placeholder/i.test(item))
+}
+
+function formatCache(meta: Record<string, unknown>): string {
+  const cacheTtl = metaNumber(meta, 'cache_ttl_seconds')
+  const cacheState = metaBoolean(meta, 'cached') ? toolUiCopy.cached : toolUiCopy.fresh
+
+  return cacheTtl ? `${cacheState} / ${cacheTtl}s` : cacheState
+}
+
+function formatNullable(value: string | number | null | undefined): string {
+  if (value === null || value === undefined || value === '') {
+    return toolUiCopy.notProvided
+  }
+
+  return String(value)
+}
+
+const selectedDnsTypesForRequest = computed(() => selectedRecordTypes.value.filter(isDnsLookupRecordTypeAvailable))
+
+const dnsRecordRows = computed(() => {
+  if (!dnsResult.value) {
+    return []
+  }
+
+  return dnsResult.value.queried_types.flatMap((recordType) => (dnsResult.value?.records[recordType] ?? []).map((record) => ({
+    ...record,
+    name: dnsResult.value?.domain ?? '',
+    source: 'NetProbe resolver',
+  })))
+})
+
+const dnsSummaryCards = computed<SummaryCard[]>(() => {
+  if (!dnsResult.value) {
+    return []
+  }
+
+  const ttlValues = dnsRecordRows.value.map((record) => record.ttl).filter((ttl) => ttl > 0)
+
+  return [
+    {
+      label: toolUiCopy.domain,
+      value: dnsResult.value.domain,
+      tone: 'neutral',
+    },
+    {
+      label: toolUiCopy.recordsReturned,
+      value: String(dnsRecordRows.value.length),
+      tone: dnsRecordRows.value.length > 0 ? 'good' : 'warning',
+    },
+    {
+      label: toolUiCopy.lowestTtl,
+      value: ttlValues.length ? `${Math.min(...ttlValues)}s` : toolUiCopy.unknown,
+      tone: 'neutral',
+    },
+    {
+      label: toolUiCopy.resolverSource,
+      value: 'NetProbe resolver',
+      tone: 'neutral',
+    },
+  ]
+})
+
+const rdapSummaryCards = computed<SummaryCard[]>(() => {
+  if (!rdapResult.value) {
+    return []
+  }
+
+  return [
+    {
+      label: toolUiCopy.domain,
+      value: rdapResult.value.domain,
+      tone: 'neutral',
+    },
+    {
+      label: toolUiCopy.registrar,
+      value: rdapResult.value.registrar.name || toolUiCopy.notProvided,
+      tone: rdapResult.value.registrar.name ? 'good' : 'warning',
+    },
+    {
+      label: toolUiCopy.expirationDate,
+      value: rdapResult.value.expires_at || toolUiCopy.notProvided,
+      tone: typeof rdapResult.value.days_until_expiration === 'number' && rdapResult.value.days_until_expiration < 30 ? 'warning' : 'neutral',
+    },
+    {
+      label: toolUiCopy.status,
+      value: rdapResult.value.statuses[0] ?? toolUiCopy.notProvided,
+      tone: 'neutral',
+    },
+  ]
+})
+
+const sslStatus = computed<SummaryCard>(() => {
+  if (!sslResult.value) {
+    return {
+      label: toolUiCopy.status,
+      value: toolUiCopy.unknown,
+      tone: 'neutral',
+    }
+  }
+
+  if (sslResult.value.is_expired) {
+    return {
+      label: toolUiCopy.status,
+      value: toolUiCopy.expired,
+      tone: 'warning',
+    }
+  }
+
+  if (!sslResult.value.matches_hostname) {
+    return {
+      label: toolUiCopy.status,
+      value: toolUiCopy.mismatch,
+      tone: 'warning',
+    }
+  }
+
+  if (typeof sslResult.value.days_until_expiration === 'number' && sslResult.value.days_until_expiration <= 14) {
+    return {
+      label: toolUiCopy.status,
+      value: toolUiCopy.expiring,
+      tone: 'warning',
+    }
+  }
+
+  return {
+    label: toolUiCopy.status,
+    value: toolUiCopy.valid,
+    tone: 'good',
+  }
+})
+
+const sslSummaryCards = computed<SummaryCard[]>(() => {
+  if (!sslResult.value) {
+    return []
+  }
+
+  return [
+    sslStatus.value,
+    {
+      label: toolUiCopy.issuer,
+      value: sslResult.value.issuer.common_name || sslResult.value.issuer.organization || toolUiCopy.notProvided,
+      tone: 'neutral',
+    },
+    {
+      label: toolUiCopy.daysLeft,
+      value: formatNullable(sslResult.value.days_until_expiration),
+      tone: typeof sslResult.value.days_until_expiration === 'number' && sslResult.value.days_until_expiration <= 14 ? 'warning' : 'neutral',
+    },
+    {
+      label: toolUiCopy.chain,
+      value: String(sslResult.value.chain_count),
+      tone: 'neutral',
+    },
+  ]
+})
+
+const sslExpiryPercent = computed(() => {
+  if (!sslResult.value || typeof sslResult.value.days_until_expiration !== 'number') {
+    return 0
+  }
+
+  if (sslResult.value.days_until_expiration <= 0) {
+    return 100
+  }
+
+  return Math.max(0, Math.min(100, 100 - Math.round((sslResult.value.days_until_expiration / 90) * 100)))
+})
+
+const portSummaryCards = computed<SummaryCard[]>(() => {
+  if (!portResult.value) {
+    return []
+  }
+
+  const firstCheck = portResult.value.checks[0]
+  const open = portResult.value.overall_status === 'open'
+
+  return [
+    {
+      label: toolUiCopy.portStatus,
+      value: portResult.value.overall_status,
+      tone: open ? 'good' : 'warning',
+    },
+    {
+      label: toolUiCopy.hostname,
+      value: portResult.value.hostname,
+      tone: 'neutral',
+    },
+    {
+      label: toolUiCopy.resolvedIp,
+      value: firstCheck?.address ?? toolUiCopy.notProvided,
+      tone: 'neutral',
+    },
+    {
+      label: toolUiCopy.latency,
+      value: typeof firstCheck?.latency_ms === 'number' ? `${firstCheck.latency_ms} ms` : toolUiCopy.unknown,
+      tone: 'neutral',
+    },
+  ]
+})
+
+const reachabilityStatus = computed<SummaryCard>(() => {
+  const tcpStatus = reachabilityResult.value?.tcp_443.status
+
+  if (tcpStatus === 'open') {
+    return {
+      label: toolUiCopy.reachabilityStatus,
+      value: toolUiCopy.reachable,
+      tone: 'good',
+    }
+  }
+
+  if (tcpStatus) {
+    return {
+      label: toolUiCopy.reachabilityStatus,
+      value: toolUiCopy.partial,
+      tone: 'warning',
+    }
+  }
+
+  return {
+    label: toolUiCopy.reachabilityStatus,
+    value: toolUiCopy.unreachable,
+    tone: 'warning',
+  }
+})
+
+const reachabilitySummaryCards = computed<SummaryCard[]>(() => {
+  if (!reachabilityResult.value) {
+    return []
+  }
+
+  return [
+    reachabilityStatus.value,
+    {
+      label: toolUiCopy.tcpReachability,
+      value: reachabilityResult.value.tcp_443.status,
+      tone: reachabilityResult.value.tcp_443.status === 'open' ? 'good' : 'warning',
+    },
+    {
+      label: toolUiCopy.latency,
+      value: typeof reachabilityResult.value.tcp_443.latency_ms === 'number' ? `${reachabilityResult.value.tcp_443.latency_ms} ms` : toolUiCopy.unknown,
+      tone: 'neutral',
+    },
+    {
+      label: toolUiCopy.resolvedIp,
+      value: reachabilityResult.value.tcp_443.address,
+      tone: 'neutral',
+    },
+  ]
+})
+
 const propagationSummaryCards = computed<SummaryCard[]>(() => {
   if (!propagationResult.value) {
     return []
@@ -664,29 +1419,44 @@ const propagationSummaryCards = computed<SummaryCard[]>(() => {
   const matched = expectedValue
     ? snapshots.filter((snapshot) => snapshot.values.some((value) => normalizeCompareValue(value) === expectedValue)).length
     : answered
+  const different = expectedValue
+    ? snapshots.filter((snapshot) => snapshot.values.length > 0 && !snapshot.values.some((value) => normalizeCompareValue(value) === expectedValue)).length
+    : 0
+  const noAnswer = snapshots.filter((snapshot) => snapshot.values.length === 0 || snapshot.status === 'empty').length
+  const errors = snapshots.filter((snapshot) => !['answered', 'empty'].includes(snapshot.status)).length
   const distinctValues = new Set(snapshots.flatMap((snapshot) => snapshot.values.map((value) => normalizeCompareValue(value))).filter(Boolean))
   const ttlValues = snapshots.map((snapshot) => snapshot.ttl_min).filter((value): value is number => typeof value === 'number')
   const percent = total > 0 ? Math.round((matched / total) * 100) : 0
 
   return [
     {
-      label: expectedValue ? 'Expected-value match' : 'Answered resolvers',
+      label: expectedValue ? toolUiCopy.expectedValueMatch : toolUiCopy.answeredResolvers,
       value: total > 0 ? `${matched}/${total} (${percent}%)` : '0/0',
       tone: percent >= 80 ? 'good' : percent > 0 ? 'warning' : 'neutral',
     },
     {
-      label: 'Distinct values',
+      label: toolUiCopy.distinctValues,
       value: String(distinctValues.size),
       tone: distinctValues.size <= 1 ? 'good' : 'warning',
     },
     {
-      label: 'Checked scope',
-      value: `${total} resolver snapshot${total === 1 ? '' : 's'}`,
+      label: toolUiCopy.differentAnswers,
+      value: String(different),
+      tone: different === 0 ? 'good' : 'warning',
+    },
+    {
+      label: toolUiCopy.noAnswerErrors,
+      value: `${noAnswer} / ${errors}`,
+      tone: noAnswer === 0 && errors === 0 ? 'good' : 'warning',
+    },
+    {
+      label: toolUiCopy.checkedScope,
+      value: `${total} ${total === 1 ? toolUiCopy.resolverSnapshot : toolUiCopy.resolverSnapshots}`,
       tone: 'neutral',
     },
     {
-      label: 'Lowest TTL',
-      value: ttlValues.length > 0 ? `${Math.min(...ttlValues)}s` : 'Not returned',
+      label: toolUiCopy.checked,
+      value: formatMetaDate(propagationMeta.value),
       tone: 'neutral',
     },
   ]
@@ -711,13 +1481,71 @@ function buildSafeSummary(): string {
     ].join('\n')
   }
 
+  if (dnsResult.value) {
+    return [
+      'NetProbe Atlas DNS lookup',
+      `${toolUiCopy.domain}: ${dnsResult.value.domain}`,
+      `${toolUiCopy.recordsReturned}: ${dnsRecordRows.value.length}`,
+      `${toolUiCopy.type}: ${dnsResult.value.queried_types.join(', ')}`,
+      `${toolUiCopy.checked}: ${formatMetaDate(dnsMeta.value)}`,
+      ...dnsRecordRows.value.map((record) => `${record.type} ${record.name} ${record.value} TTL ${record.ttl}`),
+    ].join('\n')
+  }
+
+  if (rdapResult.value) {
+    return [
+      'NetProbe Atlas RDAP lookup',
+      `${toolUiCopy.domain}: ${rdapResult.value.domain}`,
+      `${toolUiCopy.registrar}: ${rdapResult.value.registrar.name || toolUiCopy.notProvided}`,
+      `${toolUiCopy.registrationDate}: ${formatNullable(rdapResult.value.registered_at)}`,
+      `${toolUiCopy.updatedDate}: ${formatNullable(rdapResult.value.updated_at)}`,
+      `${toolUiCopy.expirationDate}: ${formatNullable(rdapResult.value.expires_at)}`,
+      `${toolUiCopy.status}: ${rdapResult.value.statuses.join(', ') || toolUiCopy.notProvided}`,
+      `${toolUiCopy.nameservers}: ${rdapResult.value.nameservers.join(', ') || toolUiCopy.notProvided}`,
+    ].join('\n')
+  }
+
+  if (sslResult.value) {
+    return [
+      'NetProbe Atlas SSL certificate check',
+      `${toolUiCopy.hostname}: ${sslResult.value.hostname}`,
+      `${toolUiCopy.status}: ${sslStatus.value.value}`,
+      `${toolUiCopy.issuer}: ${sslResult.value.issuer.common_name || sslResult.value.issuer.organization || toolUiCopy.notProvided}`,
+      `${toolUiCopy.subject}: ${sslResult.value.subject.common_name || sslResult.value.subject.organization || toolUiCopy.notProvided}`,
+      `${toolUiCopy.validTo}: ${formatNullable(sslResult.value.valid_to)}`,
+      `${toolUiCopy.daysLeft}: ${formatNullable(sslResult.value.days_until_expiration)}`,
+      `${toolUiCopy.chain}: ${sslResult.value.chain_count}`,
+    ].join('\n')
+  }
+
   if (propagationResult.value) {
     return [
       'NetProbe Atlas DNS propagation snapshot',
-      `Record type: ${propagationResult.value.record_type}`,
-      `Summary: ${propagationSummaryCards.value.map((card) => `${card.label} ${card.value}`).join('; ')}`,
-      `Distinct values: ${propagationDistinctValues.value.join(', ') || 'none'}`,
-      `Checked: ${formatMetaDate(propagationMeta.value)}`,
+      `${toolUiCopy.recordType}: ${propagationResult.value.record_type}`,
+      `${toolUiCopy.summary}: ${propagationSummaryCards.value.map((card) => `${card.label} ${card.value}`).join('; ')}`,
+      `${toolUiCopy.distinctValues}: ${propagationDistinctValues.value.join(', ') || toolUiCopy.none}`,
+      `${toolUiCopy.checked}: ${formatMetaDate(propagationMeta.value)}`,
+    ].join('\n')
+  }
+
+  if (portResult.value) {
+    return [
+      'NetProbe Atlas port check',
+      `${toolUiCopy.hostname}: ${portResult.value.hostname}`,
+      `${shellCopy.portLabel}: ${portResult.value.port}`,
+      `${toolUiCopy.portStatus}: ${portResult.value.overall_status}`,
+      ...portResult.value.checks.map((check) => `${check.address} ${check.status} ${check.latency_ms ?? 'n/a'} ms`),
+    ].join('\n')
+  }
+
+  if (reachabilityResult.value) {
+    return [
+      'NetProbe Atlas reachability check',
+      `${toolUiCopy.hostname}: ${reachabilityResult.value.hostname}`,
+      `${toolUiCopy.reachabilityStatus}: ${reachabilityStatus.value.value}`,
+      `${toolUiCopy.tcpReachability}: ${reachabilityResult.value.tcp_443.status} ${reachabilityResult.value.tcp_443.latency_ms ?? 'n/a'} ms`,
+      `${toolUiCopy.icmpLimit}: ${reachabilityResult.value.icmp.status}`,
+      `${toolUiCopy.tracerouteLimit}: ${reachabilityResult.value.traceroute.status}`,
     ].join('\n')
   }
 
@@ -730,10 +1558,66 @@ async function copySafeSummary(): Promise<void> {
 
   try {
     await navigator.clipboard.writeText(summary)
-    copyNotice.value = 'Safe summary copied locally.'
+    copyNotice.value = toolUiCopy.copied
   } catch {
-    copyNotice.value = 'Copy is unavailable in this browser session.'
+    copyNotice.value = toolUiCopy.copyUnavailable
   }
+}
+
+function currentResultPayload(): Record<string, unknown> | null {
+  if (dnsResult.value) return { data: dnsResult.value, meta: dnsMeta.value }
+  if (rdapResult.value) return { data: rdapResult.value, meta: rdapMeta.value }
+  if (sslResult.value) return { data: sslResult.value, meta: sslMeta.value }
+  if (propagationResult.value) return { data: propagationResult.value, meta: propagationMeta.value }
+  if (portResult.value) return { data: portResult.value, meta: portMeta.value }
+  if (reachabilityResult.value) return { data: reachabilityResult.value, meta: reachabilityMeta.value }
+
+  return null
+}
+
+function exportResultJson(): void {
+  if (typeof window === 'undefined') {
+    return
+  }
+
+  const payload = currentResultPayload()
+
+  if (!payload) {
+    return
+  }
+
+  const blob = new Blob([`${JSON.stringify(payload, null, 2)}\n`], { type: 'application/json' })
+  const url = URL.createObjectURL(blob)
+  const anchor = document.createElement('a')
+  anchor.href = url
+  anchor.download = `netprobe-${tool.slug}-result.json`
+  anchor.rel = 'noopener'
+  anchor.click()
+  URL.revokeObjectURL(url)
+}
+
+function resetCurrentTool(): void {
+  previewSubmitted.value = false
+  errorMessage.value = ''
+  copyNotice.value = ''
+  dnsResult.value = null
+  rdapResult.value = null
+  sslResult.value = null
+  propagationResult.value = null
+  portResult.value = null
+  reachabilityResult.value = null
+}
+
+function useEmailRecordTypes(): void {
+  selectedRecordTypes.value = ['MX', 'TXT']
+}
+
+function footerLinkPath(link: FooterLink): string {
+  const path = link.kind === 'content'
+    ? localizedContentPath(locale, link.slug)
+    : localizedToolPath(locale, link.slug)
+
+  return link.query ? `${path}?${link.query}` : path
 }
 
 async function copyIpAddress(): Promise<void> {
@@ -814,7 +1698,7 @@ async function previewResult(): Promise<void> {
         },
         body: JSON.stringify({
           domain: targetValue.value,
-          types: selectedRecordTypes.value,
+          types: selectedDnsTypesForRequest.value,
         }),
       })
 
@@ -1051,9 +1935,20 @@ useHead({
               >
               <fieldset class="checkbox-grid">
                 <legend>{{ shellCopy.recordTypesLabel }}</legend>
-                <label v-for="recordType in ['A', 'AAAA', 'CNAME', 'MX', 'TXT', 'NS', 'SOA', 'CAA']" :key="recordType">
-                  <input v-model="selectedRecordTypes" type="checkbox" :value="recordType">
+                <label
+                  v-for="recordType in dnsVisualRecordTypes"
+                  :key="recordType"
+                  :class="{ 'record-choice--disabled': !isDnsLookupRecordTypeAvailable(recordType) }"
+                >
+                  <input
+                    v-model="selectedRecordTypes"
+                    type="checkbox"
+                    :value="recordType"
+                    :disabled="!isDnsLookupRecordTypeAvailable(recordType)"
+                    :aria-label="recordType"
+                  >
                   <span>{{ recordType }}</span>
+                  <small v-if="!isDnsLookupRecordTypeAvailable(recordType)" aria-hidden="true">{{ toolUiCopy.unavailableType }}</small>
                 </label>
               </fieldset>
             </template>
@@ -1069,14 +1964,16 @@ useHead({
               <p :id="`${tool.slug}-record-type-label`" class="field-label">{{ benchmarkCopy.recordTabsLabel }}</p>
               <div class="record-tabs" role="tablist" :aria-labelledby="`${tool.slug}-record-type-label`">
                 <button
-                  v-for="recordType in propagationRecordTypes"
+                  v-for="recordType in dnsVisualRecordTypes"
                   :key="recordType"
                   type="button"
                   role="tab"
                   :aria-selected="propagationRecordType === recordType"
-                  @click="propagationRecordType = recordType"
+                  :disabled="!isPropagationRecordTypeAvailable(recordType)"
+                  @click="isPropagationRecordTypeAvailable(recordType) ? propagationRecordType = recordType : undefined"
                 >
                   {{ recordType }}
+                  <small v-if="!isPropagationRecordTypeAvailable(recordType)" aria-hidden="true">{{ toolUiCopy.unavailableType }}</small>
                 </button>
               </div>
               <label :for="`${tool.slug}-expected`">{{ formCopy.expectedValueLabel }}</label>
@@ -1099,10 +1996,22 @@ useHead({
               >
               <label :for="`${tool.slug}-port`">{{ shellCopy.portLabel }}</label>
               <select :id="`${tool.slug}-port`" v-model.number="selectedPort">
-                <option v-for="port in [80, 443, 587, 993]" :key="port" :value="port">
+                <option v-for="port in quickPorts" :key="port" :value="port">
                   {{ port }}
                 </option>
               </select>
+              <p class="field-label">{{ toolUiCopy.portQuickChoices }}</p>
+              <div class="quick-port-grid" role="group" :aria-label="toolUiCopy.portQuickChoices">
+                <button
+                  v-for="port in quickPorts"
+                  :key="port"
+                  type="button"
+                  :aria-pressed="selectedPort === port"
+                  @click="selectedPort = port"
+                >
+                  {{ port }}
+                </button>
+              </div>
             </template>
             <template v-else-if="!isIpLookup">
               <label :for="`${tool.slug}-target`">{{ copy.inputLabel }}</label>
@@ -1115,7 +2024,7 @@ useHead({
               >
             </template>
             <div class="tool-actions">
-              <button :class="getButtonClass()" type="submit" :disabled="isLoading || (isDnsLookup && selectedRecordTypes.length === 0)">
+              <button :class="getButtonClass()" type="submit" :disabled="isLoading || (isDnsLookup && selectedDnsTypesForRequest.length === 0)">
                 {{ copy.primaryAction }}
               </button>
               <NuxtLink class="button-link button-link--secondary" :to="localizedContentPath(locale, 'methodology')">
@@ -1217,7 +2126,13 @@ useHead({
             </div>
             <div class="result-actions">
               <button class="button-link button-link--secondary" type="button" @click="copySafeSummary">
-                {{ benchmarkCopy.copySummary }}
+                {{ toolUiCopy.copySummary }}
+              </button>
+              <button class="button-link button-link--secondary" type="button" @click="copySafeSummary">
+                {{ toolUiCopy.shareReport }}
+              </button>
+              <button class="button-link button-link--secondary" type="button" @click="resetCurrentTool">
+                {{ toolUiCopy.checkAnotherRecord }}
               </button>
               <span v-if="copyNotice" role="status">{{ copyNotice }}</span>
             </div>
@@ -1228,157 +2143,212 @@ useHead({
             </section>
           </div>
 
-            <div v-else-if="dnsResult">
-            <div class="result-meta">
-              <div>
-                <strong>Domain</strong>
-                <span>{{ dnsResult.domain }}</span>
-              </div>
-              <div>
-                <strong>Cache</strong>
-                <span>{{ dnsMeta.cached ? 'Cached' : 'Fresh' }} / {{ dnsMeta.cache_ttl_seconds }}s</span>
-              </div>
-              <div>
-                <strong>Address guard</strong>
-                <span>{{ dnsResult.checked_addresses.length }} checked</span>
+          <div v-else-if="dnsResult">
+            <div class="answer-strip" aria-label="DNS lookup summary">
+              <div v-for="card in dnsSummaryCards" :key="card.label" :class="['answer-card', card.tone ? `answer-card--${card.tone}` : '']">
+                <strong>{{ card.label }}</strong>
+                <span>{{ card.value }}</span>
               </div>
             </div>
 
-            <section v-for="recordType in dnsResult.queried_types" :key="recordType" class="content-section">
-              <h3>{{ recordType }}</h3>
-              <p v-if="(dnsResult.records[recordType] ?? []).length === 0">No records returned.</p>
-              <div v-else class="result-table-wrap">
-                <table class="result-table">
-                  <thead>
-                    <tr>
-                      <th>Value</th>
-                      <th>TTL</th>
-                      <th>Fields</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="record in dnsResult.records[recordType]" :key="`${record.type}-${record.value}-${record.ttl}`">
-                      <td>{{ record.value }}</td>
-                      <td>{{ record.ttl }}</td>
-                      <td>{{ JSON.stringify(record.fields) }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            <div class="result-actions">
+              <button class="button-link button-link--secondary" type="button" @click="copySafeSummary">
+                {{ toolUiCopy.copyAll }}
+              </button>
+              <button class="button-link button-link--secondary" type="button" @click="exportResultJson">
+                {{ toolUiCopy.exportJson }}
+              </button>
+              <NuxtLink class="button-link button-link--secondary" :to="localizedToolPath(locale, 'dns-propagation')">
+                {{ toolUiCopy.checkPropagation }}
+              </NuxtLink>
+              <button class="button-link button-link--secondary" type="button" @click="useEmailRecordTypes">
+                {{ toolUiCopy.checkEmailRecords }}
+              </button>
+              <span v-if="copyNotice" role="status">{{ copyNotice }}</span>
+            </div>
+
+            <div class="result-table-wrap">
+              <table class="result-table">
+                <thead>
+                  <tr>
+                    <th>{{ toolUiCopy.type }}</th>
+                    <th>{{ toolUiCopy.name }}</th>
+                    <th>{{ toolUiCopy.value }}</th>
+                    <th>{{ toolUiCopy.ttl }}</th>
+                    <th>{{ toolUiCopy.source }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="record in dnsRecordRows" :key="`${record.type}-${record.value}-${record.ttl}`">
+                    <td>{{ record.type }}</td>
+                    <td>{{ record.name }}</td>
+                    <td>{{ record.value || JSON.stringify(record.fields) }}</td>
+                    <td>{{ record.ttl }}</td>
+                    <td>{{ record.source }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p v-if="dnsRecordRows.length === 0" class="result-empty">{{ toolUiCopy.noRecords }}</p>
+
+            <section class="result-callout">
+              <h3>{{ toolUiCopy.addressGuard }}</h3>
+              <p>{{ dnsResult.checked_addresses.length }} {{ toolUiCopy.checked.toLowerCase() }}. {{ toolUiCopy.cache }}: {{ formatCache(dnsMeta) }}.</p>
             </section>
 
-            <p v-if="Array.isArray(dnsMeta.warnings) && dnsMeta.warnings.length > 0">
-              {{ dnsMeta.warnings.join(' ') }}
-            </p>
+            <section v-if="metaMessages(dnsMeta).length > 0" class="content-section">
+              <h3>{{ toolUiCopy.publicWarningTitle }}</h3>
+              <ul class="result-list">
+                <li v-for="message in metaMessages(dnsMeta)" :key="message">{{ message }}</li>
+              </ul>
+            </section>
           </div>
 
           <div v-else-if="rdapResult">
-            <div class="result-meta">
-              <div>
-                <strong>Domain</strong>
-                <span>{{ rdapResult.domain }}</span>
-              </div>
-              <div>
-                <strong>Registrar</strong>
-                <span>{{ rdapResult.registrar.name || 'Not provided' }}</span>
-              </div>
-              <div>
-                <strong>Cache</strong>
-                <span>{{ rdapMeta.cached ? 'Cached' : 'Fresh' }} / {{ rdapMeta.cache_ttl_seconds }}s</span>
-              </div>
-              <div>
-                <strong>Registered</strong>
-                <span>{{ rdapResult.registered_at || 'Not provided' }}</span>
-              </div>
-              <div>
-                <strong>Expires</strong>
-                <span>{{ rdapResult.expires_at || 'Not provided' }}</span>
-              </div>
-              <div>
-                <strong>Days left</strong>
-                <span>{{ rdapResult.days_until_expiration ?? 'Unknown' }}</span>
+            <div class="answer-strip" aria-label="RDAP summary">
+              <div v-for="card in rdapSummaryCards" :key="card.label" :class="['answer-card', card.tone ? `answer-card--${card.tone}` : '']">
+                <strong>{{ card.label }}</strong>
+                <span>{{ card.value }}</span>
               </div>
             </div>
 
+            <div class="result-actions">
+              <button class="button-link button-link--secondary" type="button" @click="copySafeSummary">
+                {{ toolUiCopy.copySummary }}
+              </button>
+              <button class="button-link button-link--secondary" type="button" disabled>
+                {{ toolUiCopy.monitorExpiration }}
+              </button>
+              <NuxtLink class="button-link button-link--secondary" :to="localizedToolPath(locale, 'dns-lookup')">
+                {{ toolUiCopy.checkDns }}
+              </NuxtLink>
+              <NuxtLink class="button-link button-link--secondary" :to="localizedToolPath(locale, 'ssl-certificate-checker')">
+                {{ toolUiCopy.checkSsl }}
+              </NuxtLink>
+              <span v-if="copyNotice" role="status">{{ copyNotice }}</span>
+            </div>
+
+            <div class="result-card-grid">
+              <article>
+                <strong>{{ toolUiCopy.registrationDate }}</strong>
+                <span>{{ formatNullable(rdapResult.registered_at) }}</span>
+              </article>
+              <article>
+                <strong>{{ toolUiCopy.updatedDate }}</strong>
+                <span>{{ formatNullable(rdapResult.updated_at) }}</span>
+              </article>
+              <article>
+                <strong>{{ toolUiCopy.daysLeft }}</strong>
+                <span>{{ formatNullable(rdapResult.days_until_expiration) }}</span>
+              </article>
+              <article>
+                <strong>{{ toolUiCopy.dnssec }}</strong>
+                <span>{{ toolUiCopy.notProvided }}</span>
+              </article>
+            </div>
+
             <section class="content-section">
-              <h3>Status</h3>
+              <h3>{{ toolUiCopy.status }}</h3>
               <ul class="pill-list">
                 <li v-for="status in rdapResult.statuses" :key="status">{{ status }}</li>
               </ul>
-              <p v-if="rdapResult.statuses.length === 0">No status values returned.</p>
+              <p v-if="rdapResult.statuses.length === 0">{{ toolUiCopy.notProvided }}</p>
             </section>
 
             <section class="content-section">
-              <h3>Nameservers</h3>
+              <h3>{{ toolUiCopy.nameservers }}</h3>
               <ul class="result-list">
                 <li v-for="nameserver in rdapResult.nameservers" :key="nameserver">{{ nameserver }}</li>
               </ul>
-              <p v-if="rdapResult.nameservers.length === 0">No nameservers returned.</p>
+              <p v-if="rdapResult.nameservers.length === 0">{{ toolUiCopy.notProvided }}</p>
             </section>
 
-            <section v-if="rdapResult.limitations.length > 0" class="content-section">
-              <h3>Limitations</h3>
+            <section class="result-callout">
+              <h3>{{ toolUiCopy.redactionNotice }}</h3>
+              <p>{{ toolUiCopy.redactionBody }}</p>
+              <p>{{ toolUiCopy.cache }}: {{ formatCache(rdapMeta) }}.</p>
+            </section>
+
+            <section v-if="rdapResult.limitations.length > 0 || metaMessages(rdapMeta).length > 0" class="content-section">
+              <h3>{{ toolUiCopy.publicWarningTitle }}</h3>
               <ul class="result-list">
                 <li v-for="limitation in rdapResult.limitations" :key="limitation">{{ limitation }}</li>
+                <li v-for="message in metaMessages(rdapMeta)" :key="message">{{ message }}</li>
               </ul>
             </section>
-
-            <p v-if="Array.isArray(rdapMeta.warnings) && rdapMeta.warnings.length > 0">
-              {{ rdapMeta.warnings.join(' ') }}
-            </p>
           </div>
 
           <div v-else-if="sslResult">
-            <div class="result-meta">
-              <div>
-                <strong>Hostname</strong>
-                <span>{{ sslResult.hostname }}</span>
-              </div>
-              <div>
-                <strong>Issuer</strong>
-                <span>{{ sslResult.issuer.common_name || sslResult.issuer.organization || 'Not provided' }}</span>
-              </div>
-              <div>
-                <strong>Cache</strong>
-                <span>{{ sslMeta.cached ? 'Cached' : 'Fresh' }} / {{ sslMeta.cache_ttl_seconds }}s</span>
-              </div>
-              <div>
-                <strong>Subject</strong>
-                <span>{{ sslResult.subject.common_name || 'Not provided' }}</span>
-              </div>
-              <div>
-                <strong>Expires</strong>
-                <span>{{ sslResult.valid_to || 'Not provided' }}</span>
-              </div>
-              <div>
-                <strong>Hostname match</strong>
-                <span>{{ sslResult.matches_hostname ? 'Yes' : 'No' }}</span>
+            <div class="answer-strip" aria-label="SSL certificate summary">
+              <div v-for="card in sslSummaryCards" :key="card.label" :class="['answer-card', card.tone ? `answer-card--${card.tone}` : '']">
+                <strong>{{ card.label }}</strong>
+                <span>{{ card.value }}</span>
               </div>
             </div>
 
+            <div class="expiry-meter" :style="{ '--expiry-fill': `${sslExpiryPercent}%` }">
+              <div>
+                <strong>{{ toolUiCopy.certificateWindow }}</strong>
+                <span>{{ formatNullable(sslResult.valid_from) }} - {{ formatNullable(sslResult.valid_to) }}</span>
+              </div>
+              <i aria-hidden="true"></i>
+            </div>
+
+            <div class="result-actions">
+              <button class="button-link button-link--secondary" type="button" @click="copySafeSummary">
+                {{ toolUiCopy.copySummary }}
+              </button>
+              <button class="button-link button-link--secondary" type="button" disabled>
+                {{ toolUiCopy.monitorCertificate }}
+              </button>
+              <a class="button-link button-link--secondary" :href="`/supersites/sitepulse-lab/${locale}/tools/security-headers-checker`">
+                {{ toolUiCopy.sitePulseHeaders }}
+              </a>
+              <span v-if="copyNotice" role="status">{{ copyNotice }}</span>
+            </div>
+
+            <div class="result-card-grid">
+              <article>
+                <strong>{{ toolUiCopy.hostname }}</strong>
+                <span>{{ sslResult.hostname }}</span>
+              </article>
+              <article>
+                <strong>{{ toolUiCopy.subject }}</strong>
+                <span>{{ sslResult.subject.common_name || sslResult.subject.organization || toolUiCopy.notProvided }}</span>
+              </article>
+              <article>
+                <strong>{{ toolUiCopy.validFrom }}</strong>
+                <span>{{ formatNullable(sslResult.valid_from) }}</span>
+              </article>
+              <article>
+                <strong>{{ toolUiCopy.validTo }}</strong>
+                <span>{{ formatNullable(sslResult.valid_to) }}</span>
+              </article>
+            </div>
+
             <section class="content-section">
-              <h3>Subject alternative names</h3>
+              <h3>{{ toolUiCopy.sans }}</h3>
               <ul class="result-list">
                 <li v-for="name in sslResult.subject_alt_names" :key="name">{{ name }}</li>
               </ul>
-              <p v-if="sslResult.subject_alt_names.length === 0">No SAN values returned.</p>
+              <p v-if="sslResult.subject_alt_names.length === 0">{{ toolUiCopy.notProvided }}</p>
             </section>
 
             <section class="content-section">
-              <h3>Probe facts</h3>
+              <h3>{{ toolUiCopy.protocolHints }}</h3>
               <ul class="result-list">
                 <li>{{ sslResult.checked_addresses.length }} public address checks before TLS.</li>
                 <li>{{ sslResult.chain_count }} certificate chain entries returned.</li>
-                <li>{{ sslResult.days_until_expiration ?? 'Unknown' }} days until expiration.</li>
+                <li>{{ toolUiCopy.cache }}: {{ formatCache(sslMeta) }}.</li>
               </ul>
             </section>
 
-            <p v-if="Array.isArray(sslMeta.warnings) && sslMeta.warnings.length > 0">
-              {{ sslMeta.warnings.join(' ') }}
-            </p>
-            <p v-if="Array.isArray(sslMeta.limitations) && sslMeta.limitations.length > 0">
-              {{ sslMeta.limitations.join(' ') }}
-            </p>
+            <section v-if="metaMessages(sslMeta).length > 0" class="content-section">
+              <h3>{{ toolUiCopy.publicWarningTitle }}</h3>
+              <ul class="result-list">
+                <li v-for="message in metaMessages(sslMeta)" :key="message">{{ message }}</li>
+              </ul>
+            </section>
           </div>
 
           <div v-else-if="propagationResult">
@@ -1400,7 +2370,7 @@ useHead({
               <h3>{{ benchmarkCopy.coverageTitle }}</h3>
               <p>{{ benchmarkCopy.coverageBody }}</p>
               <p>
-                Cache: {{ propagationMeta.cached ? 'cached' : 'fresh' }} / {{ propagationMeta.cache_ttl_seconds }}s.
+                {{ toolUiCopy.cache }}: {{ formatCache(propagationMeta) }}.
                 Checked: {{ formatMetaDate(propagationMeta) }}.
               </p>
             </section>
@@ -1421,11 +2391,12 @@ useHead({
                 <table class="result-table">
                   <thead>
                     <tr>
-                      <th>Resolver</th>
-                      <th>Region</th>
-                      <th>Status</th>
-                      <th>TTL min</th>
-                      <th>Values</th>
+                      <th>{{ toolUiCopy.resolver }}</th>
+                      <th>{{ toolUiCopy.region }}</th>
+                      <th>{{ toolUiCopy.status }}</th>
+                      <th>{{ toolUiCopy.ttlMin }}</th>
+                      <th>{{ toolUiCopy.latency }}</th>
+                      <th>{{ toolUiCopy.values }}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -1433,10 +2404,11 @@ useHead({
                       <td>{{ snapshot.resolver_id }}</td>
                       <td>{{ snapshot.region }}</td>
                       <td>{{ snapshot.status }}</td>
-                      <td>{{ snapshot.ttl_min ?? 'None' }}</td>
+                      <td>{{ snapshot.ttl_min ?? toolUiCopy.none }}</td>
+                      <td>{{ toolUiCopy.notProvided }}</td>
                       <td>
                         <span v-if="snapshot.values.length > 0">{{ snapshot.values.join(', ') }}</span>
-                        <span v-else>No values returned</span>
+                        <span v-else>{{ toolUiCopy.noValuesReturned }}</span>
                       </td>
                     </tr>
                   </tbody>
@@ -1452,33 +2424,38 @@ useHead({
             </section>
 
             <p v-if="Array.isArray(propagationMeta.warnings) && propagationMeta.warnings.length > 0">
-              {{ propagationMeta.warnings.join(' ') }}
+              {{ benchmarkCopy.coverageBody }}
             </p>
           </div>
 
           <div v-else-if="portResult">
-            <div class="result-meta">
-              <div>
-                <strong>Hostname</strong>
-                <span>{{ portResult.hostname }}</span>
+            <div class="answer-strip" aria-label="Port check summary">
+              <div v-for="card in portSummaryCards" :key="card.label" :class="['answer-card', card.tone ? `answer-card--${card.tone}` : '']">
+                <strong>{{ card.label }}</strong>
+                <span>{{ card.value }}</span>
               </div>
-              <div>
-                <strong>Port</strong>
-                <span>{{ portResult.port }}</span>
-              </div>
-              <div>
-                <strong>Status</strong>
-                <span>{{ portResult.overall_status }}</span>
-              </div>
+            </div>
+
+            <div class="result-actions">
+              <button class="button-link button-link--secondary" type="button" @click="copySafeSummary">
+                {{ toolUiCopy.copySummary }}
+              </button>
+              <button class="button-link button-link--secondary" type="button" @click="exportResultJson">
+                {{ toolUiCopy.exportJson }}
+              </button>
+              <NuxtLink class="button-link button-link--secondary" :to="localizedToolPath(locale, 'ping-traceroute')">
+                {{ toolUiCopy.tcpReachability }}
+              </NuxtLink>
+              <span v-if="copyNotice" role="status">{{ copyNotice }}</span>
             </div>
 
             <div class="result-table-wrap">
               <table class="result-table">
                 <thead>
                   <tr>
-                    <th>Address</th>
-                    <th>Status</th>
-                    <th>Latency</th>
+                    <th>{{ toolUiCopy.resolvedIp }}</th>
+                    <th>{{ toolUiCopy.status }}</th>
+                    <th>{{ toolUiCopy.latency }}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1491,44 +2468,80 @@ useHead({
               </table>
             </div>
 
-            <p v-if="Array.isArray(portMeta.warnings) && portMeta.warnings.length > 0">
-              {{ portMeta.warnings.join(' ') }}
-            </p>
+            <section class="result-callout">
+              <h3>{{ toolUiCopy.notScannerTitle }}</h3>
+              <p>{{ toolUiCopy.notScannerBody }}</p>
+              <p>{{ toolUiCopy.cache }}: {{ formatCache(portMeta) }}.</p>
+            </section>
+
+            <section v-if="metaMessages(portMeta).length > 0" class="content-section">
+              <h3>{{ toolUiCopy.publicWarningTitle }}</h3>
+              <ul class="result-list">
+                <li v-for="message in metaMessages(portMeta)" :key="message">{{ message }}</li>
+              </ul>
+            </section>
           </div>
 
           <div v-else-if="reachabilityResult">
-            <div class="result-meta">
-              <div>
-                <strong>Hostname</strong>
-                <span>{{ reachabilityResult.hostname }}</span>
-              </div>
-              <div>
-                <strong>TCP 443</strong>
-                <span>{{ reachabilityResult.tcp_443.status }}</span>
-              </div>
-              <div>
-                <strong>Latency</strong>
-                <span>{{ reachabilityResult.tcp_443.latency_ms ?? 'n/a' }} ms</span>
+            <div class="answer-strip" aria-label="Reachability summary">
+              <div v-for="card in reachabilitySummaryCards" :key="card.label" :class="['answer-card', card.tone ? `answer-card--${card.tone}` : '']">
+                <strong>{{ card.label }}</strong>
+                <span>{{ card.value }}</span>
               </div>
             </div>
 
+            <div class="result-actions">
+              <button class="button-link button-link--secondary" type="button" @click="copySafeSummary">
+                {{ toolUiCopy.copySummary }}
+              </button>
+              <button class="button-link button-link--secondary" type="button" @click="exportResultJson">
+                {{ toolUiCopy.exportJson }}
+              </button>
+              <NuxtLink class="button-link button-link--secondary" :to="localizedToolPath(locale, 'port-checker')">
+                {{ toolUiCopy.portStatus }}
+              </NuxtLink>
+              <NuxtLink class="button-link button-link--secondary" :to="localizedToolPath(locale, 'dns-lookup')">
+                {{ toolUiCopy.checkDns }}
+              </NuxtLink>
+              <span v-if="copyNotice" role="status">{{ copyNotice }}</span>
+            </div>
+
             <section class="content-section">
-              <h3>Bounded probes</h3>
+              <h3>{{ toolUiCopy.tcpReachability }}</h3>
               <ul class="result-list">
                 <li>{{ reachabilityResult.tcp_443.address }} checked for TCP 443.</li>
-                <li>ICMP: {{ reachabilityResult.icmp.status }} - {{ reachabilityResult.icmp.reason }}</li>
-                <li>Traceroute: {{ reachabilityResult.traceroute.status }} - {{ reachabilityResult.traceroute.reason }}</li>
+                <li>{{ toolUiCopy.icmpLimit }}: {{ reachabilityResult.icmp.status }} - {{ reachabilityResult.icmp.reason }}</li>
+                <li>{{ toolUiCopy.tracerouteLimit }}: {{ reachabilityResult.traceroute.status }} - {{ reachabilityResult.traceroute.reason }}</li>
               </ul>
             </section>
 
-            <p v-if="Array.isArray(reachabilityMeta.warnings) && reachabilityMeta.warnings.length > 0">
-              {{ reachabilityMeta.warnings.join(' ') }}
-            </p>
+            <section class="result-callout">
+              <h3>{{ toolUiCopy.hops }}</h3>
+              <p>{{ toolUiCopy.noRealHops }}</p>
+              <p>{{ toolUiCopy.cache }}: {{ formatCache(reachabilityMeta) }}.</p>
+            </section>
+
+            <section v-if="metaMessages(reachabilityMeta).length > 0" class="content-section">
+              <h3>{{ toolUiCopy.publicWarningTitle }}</h3>
+              <ul class="result-list">
+                <li v-for="message in metaMessages(reachabilityMeta)" :key="message">{{ message }}</li>
+              </ul>
+            </section>
           </div>
 
             <p v-else>{{ previewSubmitted ? copy.previewResult : shellCopy.plannedBody }}</p>
           </template>
         </section>
+
+        <section
+          v-if="!isIpLookup"
+          class="sponsor-reserve"
+          :aria-label="toolUiCopy.sponsorLabel"
+          aria-hidden="true"
+          data-ad-status="delivery-disabled"
+          data-ad-policy-version="2026-06-27.1"
+          :data-ad-slot-id="`netprobe-${tool.slug}-after-result`"
+        ></section>
 
         <section v-if="!isIpLookup" class="upgrade-panel" :aria-label="upgradePanelCopy.ariaLabel">
           <div>
@@ -1562,8 +2575,8 @@ useHead({
           </NuxtLink>
         </section>
 
-        <section v-if="isIpLookup || isPropagationLookup" class="quick-related" :aria-labelledby="`${tool.slug}-next-checks`">
-          <h2 :id="`${tool.slug}-next-checks`">{{ benchmarkCopy.relatedTitle }}</h2>
+        <section v-if="isLiveTool" class="quick-related" :aria-labelledby="`${tool.slug}-next-checks`">
+          <h2 :id="`${tool.slug}-next-checks`">{{ isIpLookup || isPropagationLookup ? benchmarkCopy.relatedTitle : toolUiCopy.nextChecks }}</h2>
           <div class="related-tool-list related-tool-list--inline">
             <NuxtLink v-for="relatedTool in relatedTools" :key="relatedTool.slug" :to="localizedToolPath(locale, relatedTool.slug)">
               {{ getToolCopy(relatedTool, locale).navLabel }}
@@ -1649,6 +2662,36 @@ useHead({
           </div>
         </section>
       </aside>
+    </section>
+
+    <section class="support-band" aria-labelledby="tool-support-title">
+      <div>
+        <h2 id="tool-support-title">{{ toolUiCopy.supportTitle }}</h2>
+        <p>{{ toolUiCopy.supportBody }}</p>
+      </div>
+      <div class="support-band__actions">
+        <NuxtLink :to="localizedContentPath(locale, 'contact')">
+          {{ toolUiCopy.supportCta }}
+        </NuxtLink>
+        <NuxtLink :to="localizedContentPath(locale, 'editorial-policy')">
+          {{ shellCopy.editorialLabel }}
+        </NuxtLink>
+      </div>
+    </section>
+
+    <section class="diagnostic-footer" aria-labelledby="diagnostic-footer-title">
+      <div class="diagnostic-footer__intro">
+        <h2 id="diagnostic-footer-title">{{ homeFooterCopy.footerTitle }}</h2>
+        <p>{{ homeFooterCopy.footerLead }}</p>
+      </div>
+      <nav class="diagnostic-footer__grid" :aria-label="homeFooterCopy.footerNavLabel">
+        <div v-for="group in homeFooterCopy.footerGroups" :key="group.title" class="diagnostic-footer__group">
+          <h3>{{ group.title }}</h3>
+          <NuxtLink v-for="link in group.links" :key="`${group.title}-${link.label}`" :to="footerLinkPath(link)">
+            {{ link.label }}
+          </NuxtLink>
+        </div>
+      </nav>
     </section>
 
     <LegalFooter :locale="locale" />
