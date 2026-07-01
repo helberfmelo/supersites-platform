@@ -48,9 +48,9 @@ const vcardPhone = ref('')
 const vcardEmail = ref('')
 const vcardWebsite = ref('')
 const wifiSsid = ref('')
-const wifiPassword = ref('')
+const wifiKey = ref('')
 const wifiHidden = ref(false)
-const wifiShowPassword = ref(false)
+const wifiRevealKey = ref(false)
 const previewContext = ref('')
 const hasRun = ref(false)
 const isRunning = ref(false)
@@ -68,7 +68,7 @@ const payloadSummary = computed(() => createQrRoutePayloadSummary(selectedTool.v
 const fileBaseName = computed(() => `qrroute-${selectedTool.value.slug}-${selectedMode.value || 'preview'}`)
 const previewDownloadName = computed(() => `${fileBaseName.value}.svg`)
 const previewPngDownloadName = computed(() => `${fileBaseName.value}.png`)
-const isWifiPasswordRequired = computed(() => selectedTool.value.slug === 'wifi-qr' && selectedMode.value !== 'nopass')
+const isWifiKeyRequired = computed(() => selectedTool.value.slug === 'wifi-qr' && selectedMode.value !== 'nopass')
 const payloadStateTitle = computed(() => {
   if (isRunning.value) {
     return shellCopy.value.payloadRunningTitle
@@ -114,7 +114,7 @@ const autoRunSignature = computed(() => JSON.stringify({
   vcardEmail: vcardEmail.value,
   vcardWebsite: vcardWebsite.value,
   wifiSsid: wifiSsid.value,
-  wifiPassword: wifiPassword.value,
+  wifiKey: wifiKey.value,
   wifiHidden: wifiHidden.value,
   previewContext: previewContext.value,
 }))
@@ -177,9 +177,9 @@ function applyToolSample(tool: QrRouteToolDefinition): void {
 
   const wifiOptions = tool.slug === 'wifi-qr' ? parseKeyValueLines(tool.sampleSecondary) : {}
   wifiSsid.value = tool.slug === 'wifi-qr' ? tool.samplePrimary : ''
-  wifiPassword.value = wifiOptions.key ?? wifiOptions.passphrase ?? ''
+  wifiKey.value = wifiOptions.key ?? wifiOptions.passphrase ?? ''
   wifiHidden.value = ['true', '1', 'yes'].includes((wifiOptions.hidden ?? 'false').toLowerCase())
-  wifiShowPassword.value = false
+  wifiRevealKey.value = false
 
   clearOutput()
 }
@@ -301,7 +301,7 @@ function buildExecutionInput(): { primaryInput: string; secondaryInput: string; 
     return {
       primaryInput: wifiSsid.value,
       secondaryInput: [
-        `key=${wifiPassword.value}`,
+        `key=${wifiKey.value}`,
         `hidden=${wifiHidden.value ? 'true' : 'false'}`,
       ].join('\n'),
       mode: selectedMode.value,
@@ -713,17 +713,17 @@ function printPreview(): void {
               <label :for="`${selectedTool.slug}-ssid`">{{ shellCopy.wifiSsidLabel }}</label>
               <input :id="`${selectedTool.slug}-ssid`" v-model="wifiSsid" type="text" autocomplete="off">
             </div>
-            <div v-if="isWifiPasswordRequired" class="field password-field">
-              <label :for="`${selectedTool.slug}-password`">{{ shellCopy.wifiPasswordLabel }}</label>
+            <div v-if="isWifiKeyRequired" class="field network-key-field">
+              <label :for="`${selectedTool.slug}-network-key`">{{ shellCopy.wifiPasswordLabel }}</label>
               <div class="inline-input-action">
                 <input
-                  :id="`${selectedTool.slug}-password`"
-                  v-model="wifiPassword"
-                  :type="wifiShowPassword ? 'text' : 'password'"
+                  :id="`${selectedTool.slug}-network-key`"
+                  v-model="wifiKey"
+                  :type="wifiRevealKey ? 'text' : 'password'"
                   autocomplete="off"
                 >
-                <button :class="getButtonClass('secondary')" type="button" @click="wifiShowPassword = !wifiShowPassword">
-                  {{ wifiShowPassword ? shellCopy.wifiHidePasswordLabel : shellCopy.wifiShowPasswordLabel }}
+                <button :class="getButtonClass('secondary')" type="button" @click="wifiRevealKey = !wifiRevealKey">
+                  {{ wifiRevealKey ? shellCopy.wifiHidePasswordLabel : shellCopy.wifiShowPasswordLabel }}
                 </button>
               </div>
             </div>
