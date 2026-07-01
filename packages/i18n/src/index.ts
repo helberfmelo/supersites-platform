@@ -326,7 +326,7 @@ function localizedTrustDescription(locale: LocaleCode, slug: TrustPageSlug, site
       terms: `${siteName} fixe les conditions de base pour usage responsable, limites du service et futures offres payantes.`,
       methodology: `${siteName} explique la revue des outils gratuits, guides, limites et corrections.`,
       'editorial-policy': `${siteName} documente standards de contenu utile, revue localisée et corrections.`,
-      status: `${siteName} consigne statut public, récupération par release, monétisation et points de revue.`,
+      status: `${siteName} consigne disponibilité publique, confidentialité, support et points de revue.`,
     },
     de: {
       about: `${siteName} erklärt Zweck, aktuelle öffentliche Oberfläche, kostenlosen Umfang und Prüfstatus.`,
@@ -336,7 +336,7 @@ function localizedTrustDescription(locale: LocaleCode, slug: TrustPageSlug, site
       terms: `${siteName} legt Basisbedingungen für verantwortliche Nutzung, Servicegrenzen und künftige Bezahlfunktionen fest.`,
       methodology: `${siteName} erklärt, wie kostenlose Tools, Hinweise, Grenzen und Korrekturen geprüft werden.`,
       'editorial-policy': `${siteName} dokumentiert Standards für nützliche Inhalte, Lokalisierung und Korrekturen.`,
-      status: `${siteName} dokumentiert öffentlichen Status, Release-Wiederherstellung, Monetarisierung und Prüfpunkte.`,
+      status: `${siteName} dokumentiert öffentliche Verfügbarkeit, Datenschutz, Support und Prüfpunkte.`,
     },
   }
 
@@ -352,7 +352,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
     ]
     const sections: Record<TrustPageSlug, TrustContentSection[]> = {
       about: [
-        trustSection('Superfície pública', `${siteName} faz parte do portfólio SuperSites e fica publicado temporariamente em ${publicPath} com HTTPS, sitemap, páginas localizadas e rollback por release.`),
+        trustSection('Superfície pública', `${siteName} faz parte do portfólio SuperSites e oferece ferramentas gratuitas em ${publicPath}, com HTTPS, sitemap público e páginas localizadas.`),
         trustSection('Gratuito primeiro', 'A necessidade básica deve funcionar sem cadastro obrigatório. Conta, histórico, colaboração, automação, API, branding ou experiência sem anúncios pertencem a ofertas futuras.'),
         ...common,
       ],
@@ -378,7 +378,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
       ],
       methodology: [
         trustSection('Ferramenta antes de conteúdo', 'Cada página deve resolver uma tarefa real com ferramenta gratuita, exemplo, limite, interpretação e links relacionados antes de ser tratada como madura.'),
-        trustSection('Correções e evidência', 'Afirmações sobre dados, privacidade, billing, anúncios, limites técnicos ou leis devem ser corrigidas quando evidência melhor estiver disponível.'),
+        trustSection('Correções e evidência', 'Afirmações sobre dados, privacidade, preços, anúncios, limites técnicos ou leis devem ser corrigidas quando evidência melhor estiver disponível.'),
         ...common,
       ],
       'editorial-policy': [
@@ -387,7 +387,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
         ...common,
       ],
       status: [
-        trustSection('Produção atual', `${siteName} está publicado em ${publicPath} por release versionado, com smoke público e recuperação por release ou placeholder controlado.`),
+        trustSection('Disponibilidade atual', `${siteName} está disponível em ${publicPath}, com páginas localizadas, URLs canônicas e sitemap público para visitantes.`),
         trustSection('Monetização e suporte', 'Anúncios reais, checkout, doações, afiliados, analytics externo, workers recorrentes e API paga não estão habilitados nesta superfície pública.'),
         ...common,
       ],
@@ -402,7 +402,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
     ]
     const sections: Record<TrustPageSlug, TrustContentSection[]> = {
       about: [
-        trustSection('Superficie pública', `${siteName} forma parte del portafolio SuperSites y se publica temporalmente en ${publicPath} con HTTPS, sitemap, páginas localizadas y recuperación por release.`),
+        trustSection('Superficie pública', `${siteName} forma parte del portafolio SuperSites y ofrece herramientas gratis en ${publicPath}, con HTTPS, sitemap público y páginas localizadas.`),
         trustSection('Gratis primero', 'La necesidad básica debe funcionar sin registro obligatorio. Cuenta, historial, colaboración, automatización, API, branding o experiencia sin anuncios pertenecen a ofertas futuras.'),
         ...common,
       ],
@@ -428,7 +428,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
       ],
       methodology: [
         trustSection('Herramienta antes que contenido', 'Cada página debe resolver una tarea real con herramienta gratis, ejemplo, límite, interpretación y enlaces relacionados antes de considerarse madura.'),
-        trustSection('Correcciones y evidencia', 'Claims sobre datos, privacidad, billing, anuncios, límites técnicos o leyes deben corregirse cuando haya mejor evidencia.'),
+        trustSection('Correcciones y evidencia', 'Claims sobre datos, privacidad, precios, anuncios, límites técnicos o leyes deben corregirse cuando haya mejor evidencia.'),
         ...common,
       ],
       'editorial-policy': [
@@ -437,7 +437,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
         ...common,
       ],
       status: [
-        trustSection('Producción actual', `${siteName} está publicado en ${publicPath} por release versionado, con smoke público y recuperación por release o placeholder controlado.`),
+        trustSection('Disponibilidad actual', `${siteName} está disponible en ${publicPath}, con páginas localizadas, URLs canónicas y sitemap público para visitantes.`),
         trustSection('Monetización y soporte', 'Anuncios reales, checkout, donaciones, afiliados, analytics externo, workers recurrentes y API paga no están habilitados en esta superficie pública.'),
         ...common,
       ],
@@ -452,7 +452,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
     ]
     const sections: Record<TrustPageSlug, TrustContentSection[]> = {
       about: [
-        trustSection('Surface publique', `${siteName} fait partie du portefeuille SuperSites et est publié temporairement sur ${publicPath} avec HTTPS, sitemap, pages localisées et récupération par release.`),
+        trustSection('Surface publique', `${siteName} fait partie du portefeuille SuperSites et propose des outils gratuits sur ${publicPath}, avec HTTPS, sitemap public et pages localisées.`),
         trustSection('Gratuit d’abord', 'Le besoin de base doit fonctionner sans inscription obligatoire. Compte, historique, collaboration, automatisation, API, branding ou expérience sans publicité relèvent d’offres futures.'),
         ...common,
       ],
@@ -478,7 +478,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
       ],
       methodology: [
         trustSection('Outil avant contenu', 'Chaque page doit résoudre une tâche réelle avec outil gratuit, exemple, limite, interprétation et liens connexes avant d’être considérée mature.'),
-        trustSection('Corrections et preuves', 'Les affirmations sur données, confidentialité, billing, publicités, limites techniques ou lois doivent être corrigées si de meilleures preuves existent.'),
+        trustSection('Corrections et preuves', 'Les affirmations sur données, confidentialité, prix, publicités, limites techniques ou lois doivent être corrigées si de meilleures preuves existent.'),
         ...common,
       ],
       'editorial-policy': [
@@ -487,7 +487,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
         ...common,
       ],
       status: [
-        trustSection('Production actuelle', `${siteName} est publié sur ${publicPath} par release versionné, avec smoke public et récupération par release ou placeholder contrôlé.`),
+        trustSection('Disponibilité actuelle', `${siteName} est disponible sur ${publicPath}, avec pages localisées, URLs canoniques et sitemap public pour les visiteurs.`),
         trustSection('Monétisation et support', 'Publicités réelles, checkout, dons, affiliation, analytics externe, workers récurrents et API payante ne sont pas activés sur cette surface publique.'),
         ...common,
       ],
@@ -502,7 +502,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
     ]
     const sections: Record<TrustPageSlug, TrustContentSection[]> = {
       about: [
-        trustSection('Öffentliche Oberfläche', `${siteName} gehört zum SuperSites-Portfolio und ist vorübergehend unter ${publicPath} mit HTTPS, Sitemap, lokalisierten Seiten und Release-Wiederherstellung veröffentlicht.`),
+        trustSection('Öffentliche Oberfläche', `${siteName} gehört zum SuperSites-Portfolio und bietet kostenlose Tools unter ${publicPath}, mit HTTPS, öffentlicher Sitemap und lokalisierten Seiten.`),
         trustSection('Kostenlos zuerst', 'Die Grundaufgabe muss ohne Pflichtkonto funktionieren. Konto, Verlauf, Zusammenarbeit, Automatisierung, API, Branding oder werbefreie Nutzung gehören zu künftigen Angeboten.'),
         ...common,
       ],
@@ -528,7 +528,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
       ],
       methodology: [
         trustSection('Tool vor Inhalt', 'Jede Seite muss eine echte Aufgabe mit kostenlosem Tool, Beispiel, Grenze, Interpretation und verwandten Links lösen, bevor sie als reif gilt.'),
-        trustSection('Korrekturen und Nachweise', 'Aussagen zu Daten, Datenschutz, Billing, Anzeigen, technischen Grenzen oder Gesetzen werden korrigiert, wenn bessere Nachweise vorliegen.'),
+        trustSection('Korrekturen und Nachweise', 'Aussagen zu Daten, Datenschutz, Preisen, Anzeigen, technischen Grenzen oder Gesetzen werden korrigiert, wenn bessere Nachweise vorliegen.'),
         ...common,
       ],
       'editorial-policy': [
@@ -537,7 +537,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
         ...common,
       ],
       status: [
-        trustSection('Aktuelle Produktion', `${siteName} ist unter ${publicPath} als versioniertes Release veröffentlicht, mit öffentlichem Smoke und Wiederherstellung per Release oder kontrolliertem Placeholder.`),
+        trustSection('Aktuelle Verfügbarkeit', `${siteName} ist unter ${publicPath} verfügbar, mit lokalisierten Seiten, kanonischen URLs und öffentlicher Sitemap für Besucher.`),
         trustSection('Monetarisierung und Support', 'Reale Anzeigen, Checkout, Spenden, Affiliate-Links, externe Analytics, wiederkehrende Worker und bezahlte API sind auf dieser öffentlichen Oberfläche nicht aktiviert.'),
         ...common,
       ],
@@ -551,7 +551,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
   ]
   const sections: Record<TrustPageSlug, TrustContentSection[]> = {
     about: [
-      trustSection('Public surface', `${siteName} is part of the SuperSites portfolio and is temporarily published at ${publicPath} with HTTPS, localized pages, public sitemap and release recovery.`),
+      trustSection('Public surface', `${siteName} is part of the SuperSites portfolio and offers free tools at ${publicPath}, with HTTPS, localized pages and a public sitemap.`),
       trustSection('Free first', 'The basic task must work without mandatory signup. Accounts, history, collaboration, automation, API, branding and ad-free use belong to future offers.'),
       ...common,
     ],
@@ -577,7 +577,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
     ],
     methodology: [
       trustSection('Tool before content', 'Each page should solve a real task with a free tool, example, limitation, interpretation and related links before it is treated as mature.'),
-      trustSection('Corrections and evidence', 'Claims about data, privacy, billing, advertising, technical limits or law should be corrected when better evidence is available.'),
+      trustSection('Corrections and evidence', 'Claims about data, privacy, pricing, advertising, technical limits or law should be corrected when better evidence is available.'),
       ...common,
     ],
     'editorial-policy': [
@@ -586,7 +586,7 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
       ...common,
     ],
     status: [
-      trustSection('Current production', `${siteName} is published at ${publicPath} as a versioned release, with public smoke checks and recovery by release or controlled placeholder.`),
+      trustSection('Current availability', `${siteName} is available at ${publicPath}, with localized pages, canonical URLs and a public sitemap for visitors.`),
       trustSection('Monetization and support', 'Real ads, checkout, donations, affiliates, external analytics, recurring workers and paid API are not enabled on this public surface.'),
       ...common,
     ],
@@ -626,8 +626,10 @@ const internalTermReplacements: Record<LocaleCode, Array<[RegExp, string]>> = {
     [/\bgated\b/giu, 'planned'],
     [/\bgates?\b/giu, 'checks'],
     [/\bQuality gate\b/gu, 'Quality check'],
-    [/deploy smoke/giu, 'public release check'],
-    [/rollback validation/giu, 'release recovery check'],
+    [/deploy smoke/giu, 'public availability check'],
+    [/rollback validation/giu, 'restore check'],
+    [/\brelease recovery\b/giu, 'restore path'],
+    [/\brollback\b/giu, 'restore'],
     [/placeholder/giu, 'preview'],
     [/HUMAN_ACTION_REQUIRED/gu, 'manual follow-up'],
     [/No ads active/gu, 'Advertising not active'],
@@ -646,8 +648,10 @@ const internalTermReplacements: Record<LocaleCode, Array<[RegExp, string]>> = {
     [/\bbloqueadas\b/giu, 'planejadas'],
     [/\bbloqueada\b/giu, 'planejada'],
     [/\bGate de qualidade\b/gu, 'Revisão de qualidade'],
-    [/deploy smoke/giu, 'verificação pública de lançamento'],
-    [/rollback validation/giu, 'verificação de recuperação do lançamento'],
+    [/deploy smoke/giu, 'verificação pública de disponibilidade'],
+    [/rollback validation/giu, 'verificação de restauração'],
+    [/\brelease recovery\b/giu, 'caminho de restauração'],
+    [/\brollback\b/giu, 'restauração'],
     [/placeholder/giu, 'prévia'],
     [/HUMAN_ACTION_REQUIRED/gu, 'acompanhamento manual'],
     [/No ads active/gu, 'Anúncios não ativos'],
@@ -666,8 +670,10 @@ const internalTermReplacements: Record<LocaleCode, Array<[RegExp, string]>> = {
     [/\bbloqueadas\b/giu, 'planificadas'],
     [/\bbloqueada\b/giu, 'planificada'],
     [/\bGate de calidad\b/gu, 'Revisión de calidad'],
-    [/deploy smoke/giu, 'verificación pública de lanzamiento'],
-    [/rollback validation/giu, 'verificación de recuperación del lanzamiento'],
+    [/deploy smoke/giu, 'verificación pública de disponibilidad'],
+    [/rollback validation/giu, 'verificación de restauración'],
+    [/\brelease recovery\b/giu, 'ruta de restauración'],
+    [/\brollback\b/giu, 'restauración'],
     [/placeholder/giu, 'vista previa'],
     [/HUMAN_ACTION_REQUIRED/gu, 'seguimiento manual'],
     [/No ads active/gu, 'Anuncios no activos'],
@@ -688,8 +694,10 @@ const internalTermReplacements: Record<LocaleCode, Array<[RegExp, string]>> = {
     [/\bbloques\b/giu, 'prévus'],
     [/\bbloque\b/giu, 'prévu'],
     [/\bGate qualité\b/gu, 'Revue qualité'],
-    [/deploy smoke/giu, 'vérification publique de lancement'],
-    [/rollback validation/giu, 'vérification de reprise du lancement'],
+    [/deploy smoke/giu, 'vérification publique de disponibilité'],
+    [/rollback validation/giu, 'vérification de restauration'],
+    [/\brelease recovery\b/giu, 'chemin de restauration'],
+    [/\brollback\b/giu, 'restauration'],
     [/placeholder/giu, 'aperçu'],
     [/HUMAN_ACTION_REQUIRED/gu, 'suivi manuel'],
     [/No ads active/gu, 'Publicités non actives'],
@@ -706,8 +714,10 @@ const internalTermReplacements: Record<LocaleCode, Array<[RegExp, string]>> = {
     [/\bGates?\b/giu, 'Prüfungen'],
     [/\bgesperrt\b/giu, 'geplant'],
     [/\bQuality Gate\b/gu, 'Qualitätsprüfung'],
-    [/deploy smoke/giu, 'öffentliche Release-Prüfung'],
-    [/rollback validation/giu, 'Release-Wiederherstellungsprüfung'],
+    [/deploy smoke/giu, 'öffentliche Verfügbarkeitsprüfung'],
+    [/rollback validation/giu, 'Wiederherstellungsprüfung'],
+    [/\brelease recovery\b/giu, 'Wiederherstellungspfad'],
+    [/\brollback\b/giu, 'Wiederherstellung'],
     [/placeholder/giu, 'Vorschau'],
     [/HUMAN_ACTION_REQUIRED/gu, 'manuelle Nachverfolgung'],
     [/No ads active/gu, 'Anzeigen nicht aktiv'],

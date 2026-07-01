@@ -82,6 +82,9 @@ const benchmarkCopyByLocale = {
     resolverDetailsTitle: 'Resolver and locality table',
     distinctValuesTitle: 'Values seen by resolvers',
     copySummary: 'Copy safe summary',
+    coveragePreviewStatus: 'Ready for check',
+    coveragePreviewValue: 'Values appear after the query',
+    coveragePreviewTtl: 'TTL appears after the query',
   },
   'pt-br': {
     recordTabsLabel: 'Atalhos de tipo DNS',
@@ -98,6 +101,9 @@ const benchmarkCopyByLocale = {
     resolverDetailsTitle: 'Tabela de resolvedor e localidade',
     distinctValuesTitle: 'Valores vistos pelos resolvedores',
     copySummary: 'Copiar resumo seguro',
+    coveragePreviewStatus: 'Pronto para consulta',
+    coveragePreviewValue: 'Os valores aparecem após a consulta',
+    coveragePreviewTtl: 'O TTL aparece após a consulta',
   },
   es: {
     recordTabsLabel: 'Atajos de tipo DNS',
@@ -114,6 +120,9 @@ const benchmarkCopyByLocale = {
     resolverDetailsTitle: 'Tabla de resolver y localidad',
     distinctValuesTitle: 'Valores vistos por resolvers',
     copySummary: 'Copiar resumen seguro',
+    coveragePreviewStatus: 'Listo para consulta',
+    coveragePreviewValue: 'Los valores aparecen después de la consulta',
+    coveragePreviewTtl: 'El TTL aparece después de la consulta',
   },
   fr: {
     recordTabsLabel: 'Raccourcis de type DNS',
@@ -130,6 +139,9 @@ const benchmarkCopyByLocale = {
     resolverDetailsTitle: 'Table résolveur et localité',
     distinctValuesTitle: 'Valeurs vues par les résolveurs',
     copySummary: 'Copier le résumé sécurisé',
+    coveragePreviewStatus: 'Prêt pour le contrôle',
+    coveragePreviewValue: 'Les valeurs apparaissent après le contrôle',
+    coveragePreviewTtl: 'Le TTL apparaît après le contrôle',
   },
   de: {
     recordTabsLabel: 'DNS-Typ Kurzwege',
@@ -146,6 +158,9 @@ const benchmarkCopyByLocale = {
     resolverDetailsTitle: 'Resolver- und Standorttabelle',
     distinctValuesTitle: 'Von Resolvern gesehene Werte',
     copySummary: 'Sichere Zusammenfassung kopieren',
+    coveragePreviewStatus: 'Bereit zur Prüfung',
+    coveragePreviewValue: 'Werte erscheinen nach der Prüfung',
+    coveragePreviewTtl: 'TTL erscheint nach der Prüfung',
   },
 } satisfies Record<LocaleCode, {
   recordTabsLabel: string
@@ -162,6 +177,9 @@ const benchmarkCopyByLocale = {
   resolverDetailsTitle: string
   distinctValuesTitle: string
   copySummary: string
+  coveragePreviewStatus: string
+  coveragePreviewValue: string
+  coveragePreviewTtl: string
 }>
 const benchmarkCopy = sanitizePublicCopy(locale, benchmarkCopyByLocale[locale])
 const ipLookupCopyByLocale = {
@@ -992,6 +1010,99 @@ interface DnsPropagationData {
   checked_addresses: string[]
   snapshots: DnsPropagationSnapshot[]
 }
+
+const resolverCoveragePreview: DnsPropagationSnapshot[] = [
+  {
+    resolver_id: 'netprobe-us-east',
+    resolver_name: 'US East resolver',
+    region: 'Americas',
+    city: 'New York',
+    country: 'United States',
+    country_code: 'US',
+    flag: '🇺🇸',
+    latitude: 40.7128,
+    longitude: -74.006,
+    scope: 'Public recursive snapshot',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'netprobe-br-south',
+    resolver_name: 'Brazil resolver',
+    region: 'South America',
+    city: 'Sao Paulo',
+    country: 'Brazil',
+    country_code: 'BR',
+    flag: '🇧🇷',
+    latitude: -23.5505,
+    longitude: -46.6333,
+    scope: 'Public recursive snapshot',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'netprobe-eu-west',
+    resolver_name: 'UK resolver',
+    region: 'Europe',
+    city: 'London',
+    country: 'United Kingdom',
+    country_code: 'GB',
+    flag: '🇬🇧',
+    latitude: 51.5072,
+    longitude: -0.1276,
+    scope: 'Public recursive snapshot',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'netprobe-eu-central',
+    resolver_name: 'Germany resolver',
+    region: 'Europe',
+    city: 'Frankfurt',
+    country: 'Germany',
+    country_code: 'DE',
+    flag: '🇩🇪',
+    latitude: 50.1109,
+    longitude: 8.6821,
+    scope: 'Public recursive snapshot',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'netprobe-apac-north',
+    resolver_name: 'Japan resolver',
+    region: 'APAC',
+    city: 'Tokyo',
+    country: 'Japan',
+    country_code: 'JP',
+    flag: '🇯🇵',
+    latitude: 35.6762,
+    longitude: 139.6503,
+    scope: 'Public recursive snapshot',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'netprobe-apac-south',
+    resolver_name: 'Singapore resolver',
+    region: 'APAC',
+    city: 'Singapore',
+    country: 'Singapore',
+    country_code: 'SG',
+    flag: '🇸🇬',
+    latitude: 1.3521,
+    longitude: 103.8198,
+    scope: 'Public recursive snapshot',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+]
 
 interface TcpCheck {
   address: string
@@ -2628,6 +2739,61 @@ useHead({
               </ul>
             </section>
           </div>
+
+            <div v-else-if="isPropagationLookup" class="propagation-preview">
+              <p>{{ copy.previewResult }}</p>
+
+              <section class="resolver-map" :aria-label="benchmarkCopy.mapTitle">
+                <h3>{{ benchmarkCopy.mapTitle }}</h3>
+                <div class="resolver-map__canvas">
+                  <div
+                    v-for="(snapshot, index) in resolverCoveragePreview"
+                    :key="`${snapshot.resolver_id}-preview-pin`"
+                    class="resolver-pin resolver-pin--good"
+                    :style="resolverPinStyle(snapshot, index)"
+                  >
+                    <strong>{{ snapshotLocality(snapshot) }}</strong>
+                    <span>{{ benchmarkCopy.coveragePreviewStatus }}</span>
+                  </div>
+                </div>
+              </section>
+
+              <section class="content-section">
+                <h3>{{ benchmarkCopy.resolverDetailsTitle }}</h3>
+                <div class="result-table-wrap">
+                  <table class="result-table">
+                    <thead>
+                      <tr>
+                        <th>{{ toolUiCopy.resolver }}</th>
+                        <th>{{ toolUiCopy.locality }}</th>
+                        <th>{{ toolUiCopy.status }}</th>
+                        <th>{{ toolUiCopy.ttlMin }}</th>
+                        <th>{{ toolUiCopy.values }}</th>
+                        <th>{{ toolUiCopy.scope }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="snapshot in resolverCoveragePreview" :key="`${snapshot.resolver_id}-preview-row`">
+                        <td>
+                          <strong>{{ snapshotDisplayName(snapshot) }}</strong>
+                          <span class="table-subtext">{{ snapshot.resolver_id }}</span>
+                        </td>
+                        <td>
+                          <span>{{ snapshot.flag ? `${snapshot.flag} ` : '' }}{{ snapshotLocality(snapshot) }}</span>
+                          <span class="table-subtext">{{ snapshot.country_code || snapshot.region }}</span>
+                        </td>
+                        <td>
+                          <span class="status-badge status-badge--good">{{ benchmarkCopy.coveragePreviewStatus }}</span>
+                        </td>
+                        <td>{{ benchmarkCopy.coveragePreviewTtl }}</td>
+                        <td>{{ benchmarkCopy.coveragePreviewValue }}</td>
+                        <td>{{ snapshot.scope || snapshot.region }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
 
             <p v-else>{{ previewSubmitted ? copy.previewResult : shellCopy.infoBody }}</p>
           </template>

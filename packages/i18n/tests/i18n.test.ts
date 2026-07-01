@@ -56,7 +56,7 @@ describe('@supersites/i18n', () => {
     })
 
     expect(sanitized.title).toBe('Client-side free version')
-    expect(sanitized.body).toBe('Commercial redirects planned after public release check and release recovery check.')
+    expect(sanitized.body).toBe('Commercial redirects planned after public availability check and restore check.')
     expect(sanitized.items).toEqual(['Ad preview', 'manual follow-up'])
   })
 
@@ -164,6 +164,6 @@ describe('@supersites/i18n', () => {
 
     expect(status.sections[0]).toEqual(baseCopy.sections[0])
     expect(status.sections.length).toBeGreaterThan(baseCopy.sections.length)
-    expect(status.sections.map((section) => section.heading)).toContain('Current production')
+    expect(status.sections.map((section) => section.heading)).toContain('Current availability')
   })
 })
