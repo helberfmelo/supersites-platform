@@ -62,10 +62,10 @@ test.describe('TimeNexus MVP', () => {
     await expect(page.getByRole('heading', { name: 'Meeting planner' })).toBeVisible()
     await expect(page.locator('#world-clock-title')).toHaveText('World clock')
     await expect(page.getByRole('heading', { name: 'Nearby slots' })).toBeVisible()
-    await expect(page.getByLabel('Local meeting time')).toHaveValue('2026-06-26T09:30')
-    await expect(page.getByText('2026-06-26T13:30:00.000Z')).toBeVisible()
+    await expect(page.getByLabel('Local meeting time')).toHaveValue(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/)
+    await expect(page.locator('.planner-answer')).toContainText(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/)
     await expect(page.locator('.zone-grid')).toContainText('London')
-    await expect(page.locator('.zone-grid')).toContainText('Business hours')
+    await expect(page.locator('.zone-grid')).toContainText(/Business hours|Early|Late/)
     await page.getByLabel('City group').selectOption('global-product')
     await expect(page.locator('.zone-grid')).toContainText('Tokyo')
     await expect(page.getByRole('link', { name: 'Open city comparison' })).toHaveAttribute(

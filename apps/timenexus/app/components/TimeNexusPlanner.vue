@@ -25,7 +25,8 @@ function formatLocalDateTimeInput(date: Date): string {
   return `${year}-${month}-${day}T${hour}:${minute}`
 }
 
-const initialPlannerNow = new Date()
+const initialPlannerNowIso = useState('timenexus-planner-initial-now', () => new Date().toISOString())
+const initialPlannerNow = new Date(initialPlannerNowIso.value)
 const copy = computed(() => getPlannerCopy(props.locale))
 const localDateTime = ref(formatLocalDateTimeInput(initialPlannerNow))
 const sourceZone = ref('America/New_York')
