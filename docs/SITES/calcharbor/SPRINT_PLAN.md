@@ -71,5 +71,5 @@ Data-base: 2026-06-29
 - Break-even Point now adds units/revenue emphasis, a profit/loss by volume area chart, scenario table and plain-language formula intro.
 - Gross Margin now highlights gross margin %, keeps gross profit visible, distinguishes margin vs markup and shows reduced/current/increased cost scenarios.
 - ROI now highlights ROI %, keeps net return visible, includes a clear non-annualization period note, conservative/base/aggressive scenarios and export-related actions.
-- Local validation passed before docs closure: `pnpm test:calcharbor`, `pnpm build:calcharbor`, `pnpm validate:public-copy` and `git diff --check`.
+- Local validation passed before docs closure: `pnpm test:calcharbor`, `pnpm build:calcharbor`, `pnpm validate:calcharbor-preview`, `pnpm validate:public-copy` and `git diff --check`.
 - No checkout, billing, ads, donation, affiliate, external analytics, provider integration, persistent storage, paid API, worker, tax/legal automation or deploy was activated.
