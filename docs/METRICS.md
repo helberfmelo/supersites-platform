@@ -1765,6 +1765,9 @@ Data-base: 2026-06-30
 | Sprint 18.98 crawler full attempt | `artifacts/benchmark-crawl/2026-07-01T05-55-57-679Z`; timed out after 15 minutes with partial artifacts; treated as audit timeout, not product incident |
 | Sprint 18.98 accessibility correction | Language nav accessible labels aligned with visible short labels in Hub, NetProbe, MailHealth and SitePulse |
 | Sprint 18.99 final report | `docs/PHASE_18_BENCHMARK_REFINEMENT_REPORT.md` |
+| Sprint 18.96-18.99 closure implementation commit | `84c5f91` |
+| Sprint 18.96-18.99 placeholder overflow correction | `f0e4e48`; added responsive constraints to the 10 inert monetization blocks |
+| Sprint 18.96-18.99 remote Quality Gates | `28498946513` failed only on mobile overflow in new inert placeholders; final `28499516574` passed |
 | Real deploy/provider activation | 31 reversible HostGator deploys in Phase 18 through Sprint 18.22; later app-tool and closure stages did not require deploy. 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, external providers, DNS/root mapping or irreversible actions |
 
 ## Product metrics

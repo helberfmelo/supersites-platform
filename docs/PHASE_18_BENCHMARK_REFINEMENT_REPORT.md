@@ -6,7 +6,7 @@ Data-base: 2026-07-01
 
 A Fase 18 refinou o Hub, catalogos, paginas institucionais e os 10 apps estaticos para superficies benchmark-grade: resposta ou acao principal acima da dobra, linguagem publica natural, valor gratuito sem cadastro e metodologia/limites abaixo da entrega util.
 
-Status: concluida tecnicamente ate a etapa transversal 18.96-18.99. Nenhum anuncio real, `ads.txt`, checkout, billing, pagamento, doacao real, afiliado, provider externo, worker/cron, DNS/root mapping, root redirect, upload server-side, IA/OCR externa ou acao irreversivel foi ativado.
+Status: concluida tecnicamente ate a etapa transversal 18.96-18.99. Fechamento publicado em `main` pelos commits `84c5f91` e `f0e4e48`, com Quality Gate final `28499516574` aprovado em 2026-07-01. Nenhum anuncio real, `ads.txt`, checkout, billing, pagamento, doacao real, afiliado, provider externo, worker/cron, DNS/root mapping, root redirect, upload server-side, IA/OCR externa ou acao irreversivel foi ativado.
 
 ## Cobertura entregue
 
@@ -38,6 +38,7 @@ Status: concluida tecnicamente ate a etapa transversal 18.96-18.99. Nenhum anunc
 - Inserido bloco inerte nas 10 homes e em 9 templates de paginas de ferramenta; NetProbe tools ja tinham reserva inerte equivalente.
 - HTML gerado atual contem 401 ocorrencias de `data-ad-status="delivery-disabled"` e 401 `data-ad-slot-id`.
 - Os placeholders usam `pointer-events: none`, nao possuem iframe, script, snippet AdSense, publisher id, link de pagamento, QR/PIX, checkout ou widget externo.
+- O primeiro Quality Gate remoto (`28498946513`) detectou overflow mobile nos placeholders 728x100. O commit corretivo `f0e4e48` adicionou constraints responsivas (`max-width: 100%`, `min-width: 0`, `overflow-wrap` e `aspect-ratio` removido no mobile) nos 10 blocos, e os Playwright smokes focados dos apps passaram antes do push.
 - `pnpm validate:adsense-safe-public` passou.
 
 ## Etapa 18.98 - Performance, acessibilidade e visual QA
@@ -66,6 +67,7 @@ Observacoes:
 - `BenchmarkRefinementSeeder` foi atualizado para refletir KPIs estimados pos-Fase 18 com status `completed`, evidencias locais e providers externos desligados.
 - O dashboard/admin passou a apresentar o contexto como fechamento de Fase 18, nao apenas baseline de Sprint 7.
 - `docs/ROADMAP_FASE_18_REFINAMENTO_BENCHMARK_PAGE_BY_PAGE.md`, `docs/ROADMAP.md`, `docs/STATUS.md`, `docs/METRICS.md`, `docs/ADSENSE_PLAYBOOK.md` e `docs/HUMAN_ACTION_REQUIRED.md` foram atualizados para registrar o fechamento e os gates humanos restantes.
+- Quality Gate final `28499516574` passou apos a correcao responsiva. Nenhuma etapa pendente segue mapeada na Fase 18; proximo trabalho exige novo bloco de roadmap aprovado pelo owner.
 
 ## Gates humanos remanescentes
 

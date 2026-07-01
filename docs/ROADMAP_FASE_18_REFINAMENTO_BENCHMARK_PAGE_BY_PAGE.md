@@ -71,7 +71,7 @@ Proxima etapa ativa:
 - Criar `docs/PHASE_18_BENCHMARK_REFINEMENT_REPORT.md`.
 - Atualizar `docs/STATUS.md`, `docs/ROADMAP.md`, `docs/METRICS.md` e `docs/HUMAN_ACTION_REQUIRED.md`.
 
-Resultado: concluida em 2026-07-01. Relatorio final: `docs/PHASE_18_BENCHMARK_REFINEMENT_REPORT.md`.
+Resultado: concluida em 2026-07-01. Relatorio final: `docs/PHASE_18_BENCHMARK_REFINEMENT_REPORT.md`. Fechamento publicado em `84c5f91`, correcao responsiva final em `f0e4e48` e Quality Gate final `28499516574` aprovado.
 
 ## Regras de produto
 
