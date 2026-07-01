@@ -202,6 +202,23 @@ useHead(() => ({
       </div>
     </section>
 
+    <section class="band image-footer-tools" aria-labelledby="pixelbatch-footer-tools-title">
+      <div>
+        <h2 id="pixelbatch-footer-tools-title">{{ copy.footerToolsTitle }}</h2>
+        <p>{{ copy.footerToolsBody }}</p>
+      </div>
+      <div class="footer-tool-links">
+        <NuxtLink
+          v-for="tool in pixelBatchToolCatalog"
+          :key="`footer-${tool.slug}`"
+          :to="localizedToolPath(locale, tool.slug)"
+        >
+          <strong>{{ getPixelBatchToolCopy(tool, locale).title }}</strong>
+          <span>{{ getCategoryLabel(tool.category, locale) }}</span>
+        </NuxtLink>
+      </div>
+    </section>
+
     <LegalFooter :locale="locale" />
   </main>
 </template>

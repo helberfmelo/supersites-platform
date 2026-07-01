@@ -20,10 +20,10 @@ export interface PixelBatchAdvancedWorkflowCopy {
 const advancedWorkflowCopy: Record<LocaleCode, PixelBatchAdvancedWorkflowCopy> = {
   en: {
     title: 'Advanced workflow review',
-    body: 'Background cleanup, large conversion queues and API integrations stay behind explicit data, safety and billing gates. The free tool remains a local one-image workflow.',
+    body: 'Background cleanup, large conversion queues and API integrations require explicit data and safety controls. The free tool remains a local one-image workflow.',
     currentLabel: 'Free path today',
     dataLabel: 'Data touched if enabled',
-    gateLabel: 'Required gate',
+    gateLabel: 'Required control',
     items: [
       {
         title: 'Background cleanup',
@@ -44,16 +44,16 @@ const advancedWorkflowCopy: Record<LocaleCode, PixelBatchAdvancedWorkflowCopy> =
         body: 'Automation is useful for teams, but it changes the data boundary from browser-only to account-backed jobs.',
         current: 'No public upload API, webhook, connector or saved preset storage is active.',
         data: 'API identity, file payloads, job ids, callback URLs and audit events.',
-        gate: 'Signed requests, rate limits, abuse review, webhook security, billing entitlement and privacy terms.',
+        gate: 'Signed requests, rate limits, abuse review, webhook security, account entitlement and privacy terms.',
       },
     ],
   },
   'pt-br': {
     title: 'Revisao de workflows avancados',
-    body: 'Remocao de fundo, filas grandes de conversao e integracoes API ficam atras de gates de dados, seguranca e billing. A ferramenta gratuita segue local para uma imagem.',
+    body: 'Remocao de fundo, filas grandes de conversao e integracoes API exigem controles explicitos de dados e seguranca. A ferramenta gratuita segue local para uma imagem.',
     currentLabel: 'Caminho gratuito hoje',
     dataLabel: 'Dados tocados se ativar',
-    gateLabel: 'Gate exigido',
+    gateLabel: 'Controle exigido',
     items: [
       {
         title: 'Remocao de fundo',
@@ -74,16 +74,16 @@ const advancedWorkflowCopy: Record<LocaleCode, PixelBatchAdvancedWorkflowCopy> =
         body: 'Automacao ajuda equipes, mas muda a fronteira de dados de somente navegador para jobs de conta.',
         current: 'Nenhuma upload API publica, webhook, conector ou storage de preset esta ativo.',
         data: 'Identidade API, payloads de arquivo, ids de job, URLs de callback e auditoria.',
-        gate: 'Requests assinados, rate limits, revisao antiabuso, seguranca de webhook, entitlement e termos de privacidade.',
+        gate: 'Requests assinados, rate limits, revisao antiabuso, seguranca de webhook, entitlement de conta e termos de privacidade.',
       },
     ],
   },
   es: {
     title: 'Revision de workflows avanzados',
-    body: 'Limpieza de fondo, colas grandes de conversion e integraciones API quedan tras gates de datos, seguridad y billing. La herramienta gratis sigue local para una imagen.',
+    body: 'Limpieza de fondo, colas grandes de conversion e integraciones API requieren controles explicitos de datos y seguridad. La herramienta gratis sigue local para una imagen.',
     currentLabel: 'Ruta gratis hoy',
     dataLabel: 'Datos tocados si se activa',
-    gateLabel: 'Gate requerido',
+    gateLabel: 'Control requerido',
     items: [
       {
         title: 'Limpieza de fondo',
@@ -104,16 +104,16 @@ const advancedWorkflowCopy: Record<LocaleCode, PixelBatchAdvancedWorkflowCopy> =
         body: 'La automatizacion sirve a equipos, pero cambia la frontera de datos de navegador a jobs con cuenta.',
         current: 'No hay upload API publica, webhook, conector ni storage de presets activo.',
         data: 'Identidad API, payloads de archivo, ids de job, callbacks y eventos de auditoria.',
-        gate: 'Requests firmados, rate limits, revision antiabuso, seguridad webhook, entitlement y terminos de privacidad.',
+        gate: 'Requests firmados, rate limits, revision antiabuso, seguridad webhook, entitlement de cuenta y terminos de privacidad.',
       },
     ],
   },
   fr: {
     title: 'Revue des workflows avances',
-    body: 'Suppression de fond, grandes files de conversion et integrations API restent derriere des gates donnees, securite et billing. L outil gratuit reste local pour une image.',
+    body: 'Suppression de fond, grandes files de conversion et integrations API exigent des controles explicites de donnees et securite. L outil gratuit reste local pour une image.',
     currentLabel: 'Parcours gratuit actuel',
     dataLabel: 'Donnees touchees si active',
-    gateLabel: 'Gate requis',
+    gateLabel: 'Controle requis',
     items: [
       {
         title: 'Suppression de fond',
@@ -140,10 +140,10 @@ const advancedWorkflowCopy: Record<LocaleCode, PixelBatchAdvancedWorkflowCopy> =
   },
   de: {
     title: 'Review fuer erweiterte Workflows',
-    body: 'Background Cleanup, grosse Conversion-Queues und API-Integrationen bleiben hinter Daten-, Sicherheits- und Billing-Gates. Das freie Tool bleibt lokal fuer ein Bild.',
+    body: 'Background Cleanup, grosse Conversion-Queues und API-Integrationen brauchen ausdrueckliche Daten- und Sicherheitskontrollen. Das freie Tool bleibt lokal fuer ein Bild.',
     currentLabel: 'Kostenloser Pfad heute',
     dataLabel: 'Daten bei Aktivierung',
-    gateLabel: 'Erforderliches Gate',
+    gateLabel: 'Erforderliche Kontrolle',
     items: [
       {
         title: 'Background Cleanup',

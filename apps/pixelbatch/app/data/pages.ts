@@ -116,7 +116,7 @@ const pageSpecs: Record<ContentPageSlug, {
     sections: [
       ['Purpose', 'The site helps users process one image at a time without mandatory signup, upload storage or a product backend.'],
       ['What is live now', 'PixelBatch offers six local image tools with worker planning, Canvas rendering, sitemap, canonical, hreflang and structured data.'],
-      ['Upgrade boundary', 'Paid value is planned around batch folders, larger files, saved presets, integrations, API, high-resolution queues and AI credits.'],
+      ['Account features', 'Account value centers on batch folders, larger files, saved presets, integrations, API, high-resolution queues and AI credits.'],
     ],
   },
   contact: {
@@ -125,7 +125,7 @@ const pageSpecs: Record<ContentPageSlug, {
     sections: [
       ['Useful reports', 'Include the page URL, language, tool name, browser, file type and observed behavior without attaching private images.'],
       ['No sensitive files', 'Do not send confidential photos, IDs, medical images, contracts, unreleased creative assets or credentials through feedback.'],
-      ['Public channel gate', 'A monitored public mailbox is required before independent launch; until then feedback remains in the owner workflow.'],
+      ['Feedback channel', 'A monitored public mailbox is required before independent launch; until then feedback remains in the owner workflow.'],
     ],
   },
   privacy: {
@@ -139,10 +139,10 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   cookies: {
     title: 'Cookie Policy',
-    description: 'How PixelBatch plans essential storage, consent-aware analytics and advertising controls after gates.',
+    description: 'How PixelBatch handles essential storage, consent-aware analytics and advertising controls.',
     sections: [
-      ['Essential storage', 'Language, consent and session security may use essential storage when those platform features are enabled. The image MVP itself does not need browser storage.'],
-      ['Analytics and ads', 'External analytics and advertising storage remain blocked until consent mode, regional rules and placement gates are implemented.'],
+      ['Essential storage', 'Language, consent and session security may use essential storage when those platform features are enabled. The image tool itself does not need browser storage.'],
+      ['Analytics and advertising', 'External analytics and advertising storage require consent mode, regional rules and clear placement controls before use.'],
       ['Choices', 'A consent interface must exist before non-essential storage is used. Browser settings can clear local site data.'],
     ],
   },
@@ -151,8 +151,8 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'Baseline terms for responsible use of PixelBatch image tools and future commercial features.',
     sections: [
       ['Responsible images', 'Do not process illegal, abusive, infringing, deceptive or unauthorized image content through PixelBatch workflows.'],
-      ['MVP limits', 'PixelBatch is a local formatting helper, not a secure archival, forensic metadata or legal redaction system.'],
-      ['Paid features', 'Commercial features require visible pricing, quotas, cancellation rules, provider terms, abuse controls and legal review before checkout or file API access.'],
+      ['Free-flow limits', 'PixelBatch is a local formatting helper, not a secure archival, forensic metadata or legal redaction system.'],
+      ['Paid features', 'Commercial features require visible pricing, quotas, cancellation rules, provider terms, abuse controls and legal review before payment flow or file API access.'],
     ],
   },
   methodology: {
@@ -160,8 +160,8 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'How PixelBatch keeps image tools useful, local and honest about browser and file-processing limits.',
     sections: [
       ['Working tool first', 'Each tool page must include a functioning free image workflow before it can be treated as launch-ready content.'],
-      ['Browser-side processing', 'The MVP validates MIME type, file size, dimensions and output settings, then uses Canvas to re-encode the selected image.'],
-      ['Abuse guard', 'The free MVP caps input size, pixel count and output dimensions, avoids mass generation and keeps server-side batch processing gated.'],
+      ['Browser-side processing', 'The tool validates MIME type, file size, dimensions and output settings, then uses Canvas to re-encode the selected image.'],
+      ['Abuse guard', 'The free browser flow caps input size, pixel count and output dimensions, avoids mass generation and keeps server-side batch processing separate from the local tool.'],
     ],
   },
   'editorial-policy': {
@@ -170,16 +170,16 @@ const pageSpecs: Record<ContentPageSlug, {
     sections: [
       ['Useful pages', 'Each tool page must include the working image control, file limits, privacy boundary, FAQ and review date.'],
       ['Corrections', 'Corrections are prioritized when output format support, metadata-removal claims, file limits or privacy promises could mislead users.'],
-      ['Localization gate', 'Localized pages must preserve tool behavior, assumptions and commercial boundaries before launch readiness.'],
+      ['Localization quality', 'Localized pages must preserve tool behavior, assumptions and commercial boundaries before launch readiness.'],
     ],
   },
   status: {
     title: 'Launch Status',
-    description: 'PixelBatch status for public web readiness, ads, billing, file processing and gates.',
+    description: 'PixelBatch status for public web readiness, advertising, payments and file-processing workflows.',
     sections: [
-      ['MVP surface', 'The local/CI MVP contains six image tools, five language route sets, sitemap, canonical, hreflang, structured data, worker planning and browser-side Canvas output.'],
+      ['Free surface', 'The app contains six image tools, five language route sets, sitemap, canonical, hreflang, structured data, worker planning and browser-side Canvas output.'],
       ['Production', 'PixelBatch is live at `/supersites/pixelbatch/` as a versioned HostGator static app with public smoke and rollback workflow validated. Image processing remains browser-side; no upload or storage path is active.'],
-      ['Gates', 'Batch folders, larger files, API, integrations, high-resolution queues, AI features, billing, ads and external analytics remain blocked until documented gates pass.'],
+      ['Account roadmap', 'Batch folders, larger files, API, integrations, high-resolution queues, AI features, payments, advertising and external analytics require dedicated controls.'],
     ],
   },
 }

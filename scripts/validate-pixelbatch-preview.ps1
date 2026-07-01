@@ -92,7 +92,7 @@ try {
         'hreflang="pt-BR"',
         'Image Compressor',
         '6 browser tools',
-        'No server upload backend active'
+        'Your image stays in this browser'
     )
 
     foreach ($needle in $requiredHtml) {

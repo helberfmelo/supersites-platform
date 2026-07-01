@@ -58,7 +58,7 @@ async function uploadFixture(page: Page, label = 'Image file') {
   })
 }
 
-test.describe('PixelBatch MVP', () => {
+test.describe('PixelBatch browser image tools', () => {
   test('renders the home page on desktop', async ({ page }, testInfo) => {
     const errors = collectBrowserErrors(page)
 
@@ -72,7 +72,7 @@ test.describe('PixelBatch MVP', () => {
     )
     await expect(page.getByRole('heading', { name: 'Image Compressor' })).toBeVisible()
     await expect(page.getByText('6 browser tools')).toBeVisible()
-    await expect(page.getByText('Local free version')).toHaveCount(6)
+    await expect(page.getByText('Browser local')).toHaveCount(6)
     await expect(page.getByRole('heading', { name: 'Advanced workflow review' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Background cleanup' })).toBeVisible()
     await expectNoHorizontalOverflow(page)
@@ -99,7 +99,7 @@ test.describe('PixelBatch MVP', () => {
     await expect(page.getByRole('heading', { name: 'Before and after' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Workflow snapshot' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Privacy checklist' })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Batch queue planned' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Batch workflows' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Related image tools' })).toBeVisible()
     await expect(page.getByAltText('Processed image preview')).toBeVisible()
     await expect(page.getByText('Actual output')).toBeVisible()

@@ -71,3 +71,11 @@ Medium; ads/support must stay away from upload, preview, progress and download c
 - The SuperSites catalog route `/supersites/<locale>/sites/pixelbatch` now opens as a benchmark-grade image landing instead of a generic site card: practical H1, dominant dropzone, local-preview plan, workflow shortcuts, searchable tool cards and contextual footer links.
 - The public copy highlights browser-side privacy with `Your image stays in this browser` / `Sua imagem fica neste navegador` and removes `No server upload backend active` from the public top surface.
 - Validation closed with 23 Hub unit tests, 24 Hub Playwright tests, generated HTML route checks, 12 live EN/PT-BR deep links, public smoke, AdSense-safe smoke, benchmark crawler `2026-06-30T12-54-57-039Z` with 0 gaps, and live desktop/mobile screenshots reviewed.
+
+## Phase 18.80-18.86 execution notes
+
+- The app-level workbench now keeps the dominant dropzone and result preview as the primary experience while the home adds a richer footer of image tools.
+- Result cards now expose original size, actual output size, reduction percentage, output format, quality, worker state and metadata handling where relevant.
+- Image Resizer has a maintain-proportion checkbox, Image Cropper exposes the required centered presets, Image Converter warns about AVIF browser support, and Social Preset Generator can render all preset outputs locally with individual downloads.
+- Public top copy was cleaned from local MVP/backend status language while preserving the browser-only privacy promise and account-workflow boundaries.
+- Validation stayed scoped to the affected app: PixelBatch unit test, build, preview smoke, public-copy, secrets and diff check.

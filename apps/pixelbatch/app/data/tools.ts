@@ -12,7 +12,7 @@ export const pixelBatchToolSlugs = [
 export type PixelBatchToolSlug = (typeof pixelBatchToolSlugs)[number]
 export type PixelBatchToolCategory = 'optimize' | 'resize' | 'crop' | 'convert' | 'privacy' | 'presets'
 export type PixelBatchOutputFormat = 'image/jpeg' | 'image/png' | 'image/webp' | 'image/avif'
-export type PixelBatchCropPreset = 'free' | 'square' | 'portrait' | 'landscape'
+export type PixelBatchCropPreset = 'free' | 'square' | 'portrait' | 'landscape' | 'open-graph' | 'marketplace'
 export type PixelBatchSocialPreset = 'instagram-square' | 'story' | 'open-graph' | 'marketplace'
 
 export interface ContentSection {
@@ -154,57 +154,57 @@ const localizedBasics: Record<LocaleCode, {
   en: {
     resultLabel: 'Image preview',
     localSection: 'Local image data',
-    localBody: 'The free MVP processes one selected image in the browser. File names, pixels and generated output are not sent to a product API or analytics.',
+    localBody: 'The free browser tool processes one selected image in the browser. File names, pixels and generated output are not sent to a product API or analytics.',
     workerSection: 'Worker and canvas flow',
     workerBody: 'A browser worker validates limits and creates a transform plan; Canvas re-encodes the image to resize, crop, convert or strip metadata when supported.',
     gateSection: 'Free limits and upgrade boundary',
-    gateBody: 'Batch folders, larger files, saved presets, integrations, API, high-resolution automation and AI credits remain gated paid workflow features.',
+    gateBody: 'Batch folders, larger files, saved presets, integrations, API, high-resolution automation and AI credits remain account workflow features.',
     faqStorage: { question: 'Are my images uploaded or stored?', answer: 'No. PixelBatch uses browser memory and object URLs only; it does not use localStorage, sessionStorage or a product upload endpoint.' },
-    faqBatch: { question: 'Can I process a whole folder?', answer: 'Not in the free MVP. Batch processing, folders and larger files are upgrade value after worker, quota and retention gates.' },
+    faqBatch: { question: 'Can I process a whole folder?', answer: 'Not in the free browser flow. Batch processing, folders and larger files need account controls for worker quota and retention.' },
   },
   'pt-br': {
     resultLabel: 'Preview da imagem',
     localSection: 'Dados locais da imagem',
-    localBody: 'O MVP gratuito processa uma imagem selecionada no navegador. Nome, pixels e resultado nao sao enviados a API de produto ou analytics.',
+    localBody: 'A ferramenta gratuita processa uma imagem selecionada no navegador. Nome, pixels e resultado nao sao enviados a API de produto ou analytics.',
     workerSection: 'Fluxo worker e canvas',
     workerBody: 'Um worker valida limites e monta o plano; o Canvas reencodeia a imagem para redimensionar, cortar, converter ou remover metadados quando suportado.',
     gateSection: 'Limites gratuitos e upgrade',
     gateBody: 'Lotes, pastas, arquivos maiores, presets salvos, integracoes, API, alta resolucao e creditos de IA seguem como workflow pago.',
     faqStorage: { question: 'Minhas imagens sao enviadas ou armazenadas?', answer: 'Nao. O PixelBatch usa memoria do navegador e object URLs; nao usa localStorage, sessionStorage ou endpoint de upload.' },
-    faqBatch: { question: 'Posso processar uma pasta inteira?', answer: 'Nao no MVP gratuito. Lotes, pastas e arquivos maiores dependem de gates de worker, quota e retencao.' },
+    faqBatch: { question: 'Posso processar uma pasta inteira?', answer: 'Nao no fluxo gratuito do navegador. Lotes, pastas e arquivos maiores precisam de controles de conta para worker, quota e retencao.' },
   },
   es: {
     resultLabel: 'Vista de imagen',
     localSection: 'Datos locales',
-    localBody: 'El MVP gratis procesa una imagen seleccionada en el navegador. Nombre, pixeles y salida no se envian a API de producto ni analytics.',
+    localBody: 'La herramienta gratis procesa una imagen seleccionada en el navegador. Nombre, pixeles y salida no se envian a API de producto ni analytics.',
     workerSection: 'Worker y canvas',
     workerBody: 'Un worker valida limites y crea el plan; Canvas re-codifica para redimensionar, recortar, convertir o quitar metadatos cuando el navegador lo soporta.',
     gateSection: 'Limites gratis y upgrade',
     gateBody: 'Lotes, carpetas, archivos grandes, presets guardados, integraciones, API, alta resolucion e IA quedan como workflow pago.',
     faqStorage: { question: 'Se suben o guardan mis imagenes?', answer: 'No. PixelBatch usa memoria del navegador y object URLs; no usa localStorage, sessionStorage ni endpoint de subida.' },
-    faqBatch: { question: 'Puedo procesar una carpeta?', answer: 'No en el MVP gratis. Lotes, carpetas y archivos mayores requieren gates de worker, cuota y retencion.' },
+    faqBatch: { question: 'Puedo procesar una carpeta?', answer: 'No en el flujo gratis del navegador. Lotes, carpetas y archivos mayores necesitan controles de cuenta para worker, cuota y retencion.' },
   },
   fr: {
     resultLabel: 'Apercu image',
     localSection: 'Donnees locales',
-    localBody: 'Le MVP gratuit traite une image choisie dans le navigateur. Noms, pixels et sortie ne partent pas vers une API produit ou analytics.',
+    localBody: 'L outil gratuit traite une image choisie dans le navigateur. Noms, pixels et sortie ne partent pas vers une API produit ou analytics.',
     workerSection: 'Worker et canvas',
     workerBody: 'Un worker valide les limites et cree le plan; Canvas reencode pour redimensionner, rogner, convertir ou supprimer les metadonnees si supporte.',
     gateSection: 'Limites gratuites et offre payante',
     gateBody: 'Lots, dossiers, gros fichiers, presets sauvegardes, integrations, API, haute resolution et credits IA restent payants.',
     faqStorage: { question: 'Mes images sont-elles envoyees ou stockees?', answer: 'Non. PixelBatch utilise la memoire navigateur et des object URLs, sans localStorage, sessionStorage ni upload produit.' },
-    faqBatch: { question: 'Puis-je traiter un dossier?', answer: 'Pas dans le MVP gratuit. Lots, dossiers et gros fichiers exigent des gates worker, quota et retention.' },
+    faqBatch: { question: 'Puis-je traiter un dossier?', answer: 'Pas dans le flux navigateur gratuit. Lots, dossiers et gros fichiers exigent des controles compte pour worker, quota et retention.' },
   },
   de: {
     resultLabel: 'Bildvorschau',
     localSection: 'Lokale Bilddaten',
-    localBody: 'Das kostenlose MVP verarbeitet ein ausgewaehltes Bild im Browser. Name, Pixel und Ergebnis werden nicht an Produkt-API oder Analytics gesendet.',
+    localBody: 'Das kostenlose Browser-Tool verarbeitet ein ausgewaehltes Bild im Browser. Name, Pixel und Ergebnis werden nicht an Produkt-API oder Analytics gesendet.',
     workerSection: 'Worker und Canvas',
     workerBody: 'Ein Worker validiert Limits und erstellt den Plan; Canvas encodiert neu fuer Groesse, Zuschnitt, Formatwechsel oder Metadatenentfernung.',
     gateSection: 'Kostenlose Limits und Upgrade',
     gateBody: 'Batch, Ordner, groessere Dateien, gespeicherte Presets, Integrationen, API, hohe Aufloesung und KI-Credits bleiben bezahlt.',
     faqStorage: { question: 'Werden Bilder hochgeladen oder gespeichert?', answer: 'Nein. PixelBatch nutzt Browser-Speicher und Object URLs, kein localStorage, sessionStorage oder Upload-Endpunkt.' },
-    faqBatch: { question: 'Kann ich einen Ordner verarbeiten?', answer: 'Nicht im kostenlosen MVP. Batch, Ordner und groessere Dateien brauchen Worker-, Quota- und Retention-Gates.' },
+    faqBatch: { question: 'Kann ich einen Ordner verarbeiten?', answer: 'Nicht im kostenlosen Browserablauf. Batch, Ordner und groessere Dateien brauchen Konto-Kontrollen fuer Worker, Quota und Retention.' },
   },
 }
 
@@ -352,27 +352,27 @@ const workflowStepsBySlug: Record<PixelBatchToolSlug, PixelBatchWorkflowStep[]> 
   'image-resizer': [
     { title: 'Set dimensions', body: 'Enter width, height or one side to preserve the original aspect ratio.' },
     { title: 'Preview scale', body: 'Check the before/after dimensions before downloading the generated file.' },
-    { title: 'Batch later', body: 'Multiple sizes, saved presets and brand kits remain gated workflow value.' },
+    { title: 'Batch later', body: 'Multiple sizes, saved presets and brand kits belong to account workflow value.' },
   ],
   'image-cropper': [
     { title: 'Pick a crop profile', body: 'Square, portrait and landscape crops use a centered browser-side crop.' },
     { title: 'Inspect subject fit', body: 'The before/after preview helps catch crops that need manual adjustment.' },
-    { title: 'Smart crop gated', body: 'Manual crop UI, subject detection and review flows remain upgrade scope.' },
+    { title: 'Manual crop later', body: 'Manual crop UI, subject detection and review flows remain account workflow scope.' },
   ],
   'image-converter': [
     { title: 'Select output format', body: 'Convert to PNG, JPEG, WebP or AVIF when the browser encoder supports it.' },
     { title: 'Re-encode cleanly', body: 'A matching input/output format can still create a fresh local copy.' },
-    { title: 'Automate later', body: 'Bulk conversion, API workflows and integrations remain gated.' },
+    { title: 'Automate later', body: 'Bulk conversion, API workflows and integrations remain account workflow scope.' },
   ],
   'metadata-remover': [
     { title: 'Re-encode pixels', body: 'PixelBatch draws visible pixels to Canvas and downloads a clean copy.' },
     { title: 'Avoid claims beyond Canvas', body: 'This is not forensic redaction of every possible hidden field.' },
-    { title: 'Policy reports gated', body: 'Audit reports, policy presets and retention controls remain paid workflow scope.' },
+    { title: 'Policy reports later', body: 'Audit reports, policy presets and retention controls remain account workflow scope.' },
   ],
   'social-preset-generator': [
     { title: 'Choose a channel preset', body: 'Generate square, story, Open Graph or marketplace dimensions.' },
     { title: 'Review centered crop', body: 'The preview shows whether the original subject fits the preset.' },
-    { title: 'Brand presets gated', body: 'Bulk channels, naming rules and team approval remain upgrade scope.' },
+    { title: 'Brand presets later', body: 'Bulk channels, naming rules and team approval remain account workflow scope.' },
   ],
 }
 
@@ -509,7 +509,7 @@ function normalizeFormat(value: unknown, fallback: PixelBatchOutputFormat): Pixe
 
 function normalizeCropPreset(value: unknown): PixelBatchCropPreset {
   const preset = String(value ?? 'free')
-  return ['free', 'square', 'portrait', 'landscape'].includes(preset)
+  return ['free', 'square', 'portrait', 'landscape', 'open-graph', 'marketplace'].includes(preset)
     ? preset as PixelBatchCropPreset
     : 'free'
 }
@@ -597,7 +597,7 @@ function validateInput(input: PixelBatchToolInput): void {
   }
 
   if (!allowedMimeTypes.has(input.mimeType as PixelBatchOutputFormat)) {
-    throw new Error('PixelBatch accepts PNG, JPEG, WebP and browser-supported AVIF images in the free MVP.')
+    throw new Error('PixelBatch accepts PNG, JPEG, WebP and browser-supported AVIF images in the free browser tool.')
   }
 
   if (!Number.isFinite(input.sizeBytes) || input.sizeBytes <= 0 || input.sizeBytes > maxFreeBytes) {
@@ -609,7 +609,7 @@ function validateInput(input: PixelBatchToolInput): void {
   }
 
   if (input.width > maxFreeDimension || input.height > maxFreeDimension || input.width * input.height > maxFreePixels) {
-    throw new Error('This image is beyond the free browser-side dimension limit. Larger files are gated upgrade value.')
+    throw new Error('This image is beyond the free browser-side dimension limit. Larger files belong to account workflows.')
   }
 }
 
@@ -642,7 +642,9 @@ export function planPixelBatchTransform(slug: PixelBatchToolSlug, input: PixelBa
         ? 4 / 5
         : preset === 'landscape'
           ? 16 / 9
-          : 1
+          : preset === 'open-graph'
+            ? 1200 / 630
+            : 1
       crop = preset === 'free'
         ? centeredCropForAspect(input.width, input.height, 1)
         : centeredCropForAspect(input.width, input.height, aspect)
@@ -656,7 +658,7 @@ export function planPixelBatchTransform(slug: PixelBatchToolSlug, input: PixelBa
       crop = centeredCropForAspect(input.width, input.height, size.width / size.height)
       outputWidth = size.width
       outputHeight = size.height
-      warnings.push(`${size.label} uses a centered crop. Manual subject-aware cropping is a gated upgrade.`)
+      warnings.push(`${size.label} uses a centered crop. Manual subject-aware cropping belongs to account workflows.`)
     }
 
     if (slug === 'image-compressor' && outputFormat === 'image/png') {
@@ -684,7 +686,7 @@ export function planPixelBatchTransform(slug: PixelBatchToolSlug, input: PixelBa
       workerUsed,
       warnings,
       privacyNote: 'Processed locally in this browser session; no upload endpoint, localStorage or sessionStorage is used.',
-      upgradeGateNote: 'Batch jobs, folders, larger files, API, integrations, saved presets, high-res queues and AI features remain gated.',
+      upgradeGateNote: 'Batch jobs, folders, larger files, API, integrations, saved presets, high-res queues and AI features remain account workflows.',
     }
 
     const outputName = `${baseName(input.fileName)}-${slug}.${plan.outputExtension}`
@@ -696,6 +698,8 @@ export function planPixelBatchTransform(slug: PixelBatchToolSlug, input: PixelBa
         { label: 'Input size', value: formatBytes(input.sizeBytes) },
         { label: 'Input dimensions', value: `${input.width} x ${input.height}` },
         { label: 'Output dimensions', value: `${plan.outputWidth} x ${plan.outputHeight}` },
+        { label: 'Output format', value: plan.outputExtension.toUpperCase() },
+        { label: 'Quality', value: `${Math.round(plan.quality * 100)}%` },
         { label: 'Estimated output', value: formatBytes(estimateOutputBytes(plan)) },
       ],
       plan,

@@ -29,6 +29,15 @@ interface LoadedImage {
 }
 
 type UseCasePreset = 'web' | 'storefront' | 'social'
+type SocialPresetSelection = PixelBatchSocialPreset | 'all'
+
+interface SocialOutput {
+  preset: PixelBatchSocialPreset
+  label: string
+  previewUrl: string
+  fileName: string
+  size: number
+}
 
 const props = withDefaults(defineProps<{
   locale: LocaleCode
@@ -45,8 +54,9 @@ const outputFormat = ref<PixelBatchOutputFormat>(initialTool.defaultFormat)
 const quality = ref(Math.round(initialTool.defaultQuality * 100))
 const targetWidth = ref(initialTool.slug === 'image-resizer' ? '1200' : '')
 const targetHeight = ref('')
+const maintainAspectRatio = ref(true)
 const cropPreset = ref<PixelBatchCropPreset>('square')
-const socialPreset = ref<PixelBatchSocialPreset>('instagram-square')
+const socialPreset = ref<SocialPresetSelection>('instagram-square')
 const hasRun = ref(false)
 const isRunning = ref(false)
 const isDownloading = ref(false)
@@ -54,6 +64,7 @@ const isDragging = ref(false)
 const result = ref<PixelBatchToolResult | null>(null)
 const sourcePreviewUrl = ref('')
 const previewUrl = ref('')
+const socialOutputs = ref<SocialOutput[]>([])
 const outputFileName = ref('')
 const outputSize = ref(0)
 
@@ -76,15 +87,32 @@ const outputSavingsLabel = computed(() => {
     ? `${formatBytes(delta)} saved (${ratio}%)`
     : `${formatBytes(Math.abs(delta))} larger (${Math.abs(ratio)}%)`
 })
+const outputReductionLabel = computed(() => {
+  if (!selectedFile.value || !outputSize.value) {
+    return '-'
+  }
+
+  const ratio = Math.round(((selectedFile.value.size - outputSize.value) / selectedFile.value.size) * 100)
+
+  return `${ratio}%`
+})
+const localizedResultMeta = computed(() => (result.value?.meta ?? []).map((item) => ({
+  ...item,
+  label: localizeMetaLabel(item.label),
+})))
 const displayedMeta = computed(() => {
   if (!result.value?.ok) {
     return []
   }
 
   return [
-    ...result.value.meta,
+    ...localizedResultMeta.value,
     { label: shellCopy.value.actualOutputLabel, value: outputSize.value ? formatBytes(outputSize.value) : '-' },
     { label: shellCopy.value.savingsLabel, value: outputSavingsLabel.value },
+    { label: shellCopy.value.reductionLabel, value: outputReductionLabel.value },
+    ...(tool.value.slug === 'metadata-remover'
+      ? [{ label: shellCopy.value.metadataHandlingLabel, value: shellCopy.value.metadataHandlingBody }]
+      : []),
     { label: shellCopy.value.workerLabel, value: result.value.plan?.workerUsed ? shellCopy.value.browserWorkerLabel : shellCopy.value.localFallbackLabel },
   ]
 })
@@ -120,14 +148,33 @@ const cropOptions: Array<{ value: PixelBatchCropPreset; label: string }> = [
   { value: 'square', label: 'Square 1:1' },
   { value: 'portrait', label: 'Portrait 4:5' },
   { value: 'landscape', label: 'Landscape 16:9' },
+  { value: 'open-graph', label: 'Open Graph 1200 x 630' },
+  { value: 'marketplace', label: 'Marketplace 1600 x 1600' },
 ]
 
-const socialOptions: Array<{ value: PixelBatchSocialPreset; label: string }> = [
+const socialOutputOptions: Array<{ value: PixelBatchSocialPreset; label: string }> = [
   { value: 'instagram-square', label: 'Instagram square 1080 x 1080' },
   { value: 'story', label: 'Story 1080 x 1920' },
   { value: 'open-graph', label: 'Open Graph 1200 x 630' },
   { value: 'marketplace', label: 'Marketplace 1600 x 1600' },
 ]
+const socialOptions: Array<{ value: SocialPresetSelection; label: string }> = [
+  { value: 'all', label: shellCopy.value.allSocialPresetsLabel },
+  ...socialOutputOptions,
+]
+
+function localizeMetaLabel(label: string): string {
+  const labels: Record<string, string> = {
+    'Input size': shellCopy.value.originalSizeLabel,
+    'Input dimensions': shellCopy.value.inputDimensionsLabel,
+    'Output dimensions': shellCopy.value.outputDimensionsLabel,
+    'Output format': shellCopy.value.outputFormatMetaLabel,
+    Quality: shellCopy.value.qualityMetaLabel,
+    'Estimated output': shellCopy.value.estimatedOutputLabel,
+  }
+
+  return labels[label] ?? label
+}
 
 function revokePreviewUrl(): void {
   if (previewUrl.value) {
@@ -143,8 +190,16 @@ function revokeSourcePreviewUrl(): void {
   }
 }
 
+function revokeSocialOutputUrls(): void {
+  for (const output of socialOutputs.value) {
+    URL.revokeObjectURL(output.previewUrl)
+  }
+  socialOutputs.value = []
+}
+
 function clearResult(): void {
   revokePreviewUrl()
+  revokeSocialOutputUrls()
   result.value = null
   outputFileName.value = ''
   outputSize.value = 0
@@ -155,6 +210,7 @@ function resetSettings(clearFile = false): void {
   quality.value = Math.round(tool.value.defaultQuality * 100)
   targetWidth.value = tool.value.slug === 'image-resizer' ? '1200' : ''
   targetHeight.value = ''
+  maintainAspectRatio.value = true
   cropPreset.value = 'square'
   socialPreset.value = 'instagram-square'
   hasRun.value = false
@@ -198,6 +254,7 @@ function applyUseCasePreset(preset: UseCasePreset): void {
     outputFormat.value = 'image/webp'
     quality.value = 72
     targetWidth.value = tool.value.slug === 'image-resizer' ? '1600' : targetWidth.value
+    maintainAspectRatio.value = true
     return
   }
 
@@ -205,6 +262,7 @@ function applyUseCasePreset(preset: UseCasePreset): void {
     outputFormat.value = 'image/jpeg'
     quality.value = 84
     targetWidth.value = tool.value.slug === 'image-resizer' ? '1600' : targetWidth.value
+    maintainAspectRatio.value = true
     socialPreset.value = 'marketplace'
     cropPreset.value = 'square'
     return
@@ -212,7 +270,7 @@ function applyUseCasePreset(preset: UseCasePreset): void {
 
   outputFormat.value = 'image/webp'
   quality.value = 82
-  socialPreset.value = 'instagram-square'
+  socialPreset.value = tool.value.slug === 'social-preset-generator' ? 'all' : 'instagram-square'
   cropPreset.value = 'portrait'
 }
 
@@ -284,6 +342,10 @@ async function renderImage(image: HTMLImageElement, plan: PixelBatchTransformPla
   return canvasToBlob(canvas, plan)
 }
 
+function outputNameForPreset(fileName: string, preset: PixelBatchSocialPreset): string {
+  return fileName.replace(/(\.[^.]+)$/i, `-${preset}$1`)
+}
+
 async function runTool(): Promise<void> {
   hasRun.value = true
   clearResult()
@@ -309,6 +371,14 @@ async function runTool(): Promise<void> {
 
   try {
     loaded = await loadImage(selectedFile.value)
+    const resizeTargetWidth = targetWidth.value ? Number(targetWidth.value) : undefined
+    const resizeTargetHeight = maintainAspectRatio.value && resizeTargetWidth
+      ? undefined
+      : targetHeight.value ? Number(targetHeight.value) : undefined
+    const selectedSocialOutputs = tool.value.slug === 'social-preset-generator' && socialPreset.value === 'all'
+      ? socialOutputOptions
+      : socialOutputOptions.filter((option) => option.value === socialPreset.value)
+    const firstSocialOutput = selectedSocialOutputs[0]
     const workerResult = await runPixelBatchToolInWorker({
       slug: tool.value.slug,
       input: {
@@ -319,10 +389,10 @@ async function runTool(): Promise<void> {
         height: loaded.height,
         outputFormat: outputFormat.value,
         quality: quality.value / 100,
-        targetWidth: targetWidth.value ? Number(targetWidth.value) : undefined,
-        targetHeight: targetHeight.value ? Number(targetHeight.value) : undefined,
+        targetWidth: resizeTargetWidth,
+        targetHeight: resizeTargetHeight,
         cropPreset: cropPreset.value,
-        socialPreset: socialPreset.value,
+        socialPreset: firstSocialOutput?.value ?? 'instagram-square',
         removeMetadata: tool.value.slug === 'metadata-remover',
       },
     })
@@ -342,6 +412,54 @@ async function runTool(): Promise<void> {
     outputSize.value = blob.size
     outputFileName.value = workerResult.output
     result.value = workerResult
+
+    if (tool.value.slug === 'social-preset-generator' && selectedSocialOutputs.length > 1) {
+      const outputs: SocialOutput[] = [{
+        preset: firstSocialOutput.value,
+        label: firstSocialOutput.label,
+        previewUrl: previewUrl.value,
+        fileName: outputNameForPreset(workerResult.output, firstSocialOutput.value),
+        size: blob.size,
+      }]
+      outputFileName.value = outputs[0].fileName
+
+      for (const option of selectedSocialOutputs.slice(1)) {
+        const presetResult = await runPixelBatchToolInWorker({
+          slug: tool.value.slug,
+          input: {
+            fileName: selectedFile.value.name,
+            mimeType: selectedFile.value.type,
+            sizeBytes: selectedFile.value.size,
+            width: loaded.width,
+            height: loaded.height,
+            outputFormat: outputFormat.value,
+            quality: quality.value / 100,
+            socialPreset: option.value,
+          },
+        })
+
+        if (!presetResult.ok || !presetResult.plan) {
+          result.value = presetResult
+          trackPixelBatchEvent({
+            toolSlug: tool.value.slug,
+            locale: props.locale,
+            routePath: canonicalPath.value,
+          }, 'tool_failed')
+          return
+        }
+
+        const presetBlob = await renderImage(loaded.element, presetResult.plan)
+        outputs.push({
+          preset: option.value,
+          label: option.label,
+          previewUrl: URL.createObjectURL(presetBlob),
+          fileName: outputNameForPreset(presetResult.output, option.value),
+          size: presetBlob.size,
+        })
+      }
+
+      socialOutputs.value = outputs
+    }
 
     trackPixelBatchEvent({
       toolSlug: tool.value.slug,
@@ -386,6 +504,21 @@ function downloadImage(): void {
   link.click()
   link.remove()
   isDownloading.value = false
+
+  trackPixelBatchEvent({
+    toolSlug: tool.value.slug,
+    locale: props.locale,
+    routePath: canonicalPath.value,
+  }, 'file_downloaded')
+}
+
+function downloadSocialOutput(output: SocialOutput): void {
+  const link = document.createElement('a')
+  link.href = output.previewUrl
+  link.download = output.fileName
+  document.body.appendChild(link)
+  link.click()
+  link.remove()
 
   trackPixelBatchEvent({
     toolSlug: tool.value.slug,
@@ -494,6 +627,7 @@ onBeforeUnmount(() => {
                   {{ option.label }}
                 </option>
               </select>
+              <p v-if="outputFormat === 'image/avif'" class="field-help">{{ shellCopy.avifSupportBody }}</p>
             </div>
             <div class="field">
               <label :for="`${tool.slug}-quality`">{{ shellCopy.qualityLabel }}: {{ quality }}%</label>
@@ -508,8 +642,12 @@ onBeforeUnmount(() => {
             </div>
             <div class="field">
               <label :for="`${tool.slug}-height`">{{ shellCopy.heightLabel }}</label>
-              <input :id="`${tool.slug}-height`" v-model="targetHeight" inputmode="numeric" placeholder="auto">
+              <input :id="`${tool.slug}-height`" v-model="targetHeight" inputmode="numeric" placeholder="auto" :disabled="maintainAspectRatio && Boolean(targetWidth)">
             </div>
+            <label class="inline-check">
+              <input v-model="maintainAspectRatio" type="checkbox">
+              <span>{{ shellCopy.maintainAspectRatioLabel }}</span>
+            </label>
           </div>
 
           <div v-if="tool.slug === 'image-cropper'" class="field">
@@ -519,6 +657,7 @@ onBeforeUnmount(() => {
                 {{ option.label }}
               </option>
             </select>
+            <p class="field-help">{{ shellCopy.centeredCropNotice }}</p>
           </div>
 
           <div v-if="tool.slug === 'social-preset-generator'" class="field">
@@ -601,6 +740,32 @@ onBeforeUnmount(() => {
               </figure>
             </div>
             <p>{{ result.plan?.privacyNote }}</p>
+          </section>
+
+          <section v-if="socialOutputs.length > 1" class="social-output-panel" :aria-labelledby="`${tool.slug}-social-outputs`">
+            <div>
+              <h3 :id="`${tool.slug}-social-outputs`">{{ shellCopy.socialOutputsTitle }}</h3>
+              <p>{{ shellCopy.socialOutputsBody }}</p>
+            </div>
+            <div class="social-output-grid">
+              <article v-for="output in socialOutputs" :key="output.preset" class="social-output-card">
+                <figure class="image-preview">
+                  <figcaption>{{ output.label }}</figcaption>
+                  <div class="image-preview__frame">
+                    <img :src="output.previewUrl" :alt="`${output.label} preview`">
+                  </div>
+                </figure>
+                <dl class="fact-list">
+                  <div>
+                    <dt>{{ shellCopy.actualOutputLabel }}</dt>
+                    <dd>{{ formatBytes(output.size) }}</dd>
+                  </div>
+                </dl>
+                <button class="button-link button-link--secondary" type="button" @click="downloadSocialOutput(output)">
+                  {{ shellCopy.downloadPresetLabel }}
+                </button>
+              </article>
+            </div>
           </section>
 
           <ul v-if="result.plan?.warnings.length" class="warning-list">

@@ -30,61 +30,79 @@ Concluido ate:
 - Etapa InvoiceCraft Tools: home, Invoice Builder, Quote Builder e Receipt Builder.
 - Etapa MailHealth Tools: home, SPF Checker, DKIM Checker, DMARC Checker, MX Checker, Blacklist Check, SMTP Check e Header Analyzer.
 - Etapa SitePulse Lab Tools: home, HTTP Status Checker, Redirect Chain Checker, Security Headers Checker, Robots.txt Checker, Sitemap Validator, TTFB Checker e Performance Snapshot.
+- Etapa PixelBatch Tools: home, Image Compressor, Image Resizer, Image Cropper, Image Converter, Metadata Remover e Social Preset Generator.
 
 Proxima etapa ativa:
 
-- **Etapa PixelBatch Tools**
-- Sprints: **18.80 a 18.86**
-- Escopo: PixelBatch home, Image Compressor, Image Resizer, Image Cropper, Image Converter, Metadata Remover e Social Preset Generator.
+- **Etapa DocShift Tools**
+- Sprints: **18.87 a 18.95**
+- Escopo: DocShift home, PDF Merge, PDF Split, PDF Rotate, PDF Compressor, PDF Watermark, PDF Page Numbers, PDF Metadata Cleaner e Text to PDF.
 
 ## Sprints da proxima etapa
 
-### Sprint 18.80 - PixelBatch home
+### Sprint 18.87 - DocShift home
 
-- Dropzone grande acima da dobra.
-- Inspirar-se em TinyPNG/iLoveIMG/Squoosh sem copiar UI/texto/assets.
+- Inspirar-se em iLovePDF sem copiar UI/texto/assets: grid de ferramentas PDF grande e direto.
+- Dropzone para tarefa principal.
 - Remover `No server upload backend active` do topo.
-- Mostrar `Your image stays in this browser` como badge curto.
-- Footer image tools rico.
+- Mostrar `Files stay in this browser for supported free tasks`.
+- Footer PDF tools rico.
 
-### Sprint 18.81 - Image Compressor
+### Sprint 18.88 - PDF Merge
 
 - Dropzone dominante.
-- Preview antes/depois.
-- Resultado: original size, output size, reduction %, format e quality.
-- Download claro.
-- Corrigir PT-BR e ingles residual.
+- Lista de PDFs em ordem com drag/reorder se viavel.
+- Botao merge/download claro.
+- Progress state.
+- Corrigir textos PT-BR ainda em ingles.
 
-### Sprint 18.82 - Image Resizer
+### Sprint 18.89 - PDF Split
 
-- Campos width/height e manter proporcao.
-- Presets web/store/social.
-- Preview e download.
+- Upload/dropzone.
+- Campo de page ranges.
+- Preview de paginas se viavel.
+- Download output.
 
-### Sprint 18.83 - Image Cropper
+### Sprint 18.90 - PDF Rotate
 
-- UI de crop real se viavel.
-- Presets square, portrait, landscape, OG e marketplace.
-- Preview e download.
-- Se crop manual nao for viavel nesta etapa, implementar centered crop com UI honesta e backlog para crop manual.
+- Upload/dropzone.
+- Escolher all pages ou range.
+- Botoes 90/180/270.
+- Download output.
 
-### Sprint 18.84 - Image Converter
+### Sprint 18.91 - PDF Compressor
 
-- Input file, output format e quality quando aplicavel.
-- Preview e download.
-- Aviso quando AVIF nao suportado pelo navegador.
+- Upload/dropzone.
+- Mostrar size before/after.
+- Explicar limites de compressao local.
+- Download output.
 
-### Sprint 18.85 - Metadata Remover
+### Sprint 18.92 - PDF Watermark
 
-- Explicar claramente que re-encode via Canvas remove metadados comuns.
-- Mostrar antes/depois quando possivel.
-- Download da copia limpa.
+- Upload/dropzone.
+- Campo texto, posicao, opacidade e tamanho.
+- Preview se viavel.
+- Download output.
 
-### Sprint 18.86 - Social Preset Generator
+### Sprint 18.93 - PDF Page Numbers
 
-- Presets: square, story, OG e marketplace.
-- Gerar multiplos outputs se localmente viavel.
-- Download individual ou zip se seguro.
+- Upload/dropzone.
+- Opcoes: position, start number e format.
+- Download output.
+
+### Sprint 18.94 - PDF Metadata Cleaner
+
+- Upload/dropzone.
+- Mostrar title/author quando acessivel.
+- Permitir limpar/substituir metadados basicos.
+- Download output.
+
+### Sprint 18.95 - Text to PDF
+
+- Editor de texto grande.
+- Opcoes simples: title, page size e font size.
+- Preview/download.
+- Limites claros abaixo.
 
 ## Regras de produto
 

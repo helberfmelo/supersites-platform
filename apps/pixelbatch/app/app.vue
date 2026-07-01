@@ -433,6 +433,40 @@ h3 {
   max-width: 820px;
 }
 
+.image-footer-tools {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.image-footer-tools p {
+  margin-bottom: 0;
+}
+
+.footer-tool-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.footer-tool-links a {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
+  padding: 11px;
+  border: 1px solid #d8e0e1;
+  border-radius: 8px;
+  color: inherit;
+  background: #f8fafb;
+  text-decoration: none;
+}
+
+.footer-tool-links span {
+  color: #607174;
+  font-size: 0.85rem;
+}
+
 .readiness-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -626,6 +660,25 @@ h3 {
 .preset-chips button:hover,
 .preset-chips button:focus-visible {
   border-color: #246a73;
+}
+
+.inline-check {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 10px;
+  border: 1px solid #d8e0e1;
+  border-radius: 8px;
+  color: #263b3d;
+  background: #fbfcfc;
+  font-size: 0.88rem;
+  font-weight: 850;
+}
+
+.inline-check input {
+  width: auto;
+  min-height: auto;
 }
 
 .preview-heading {
@@ -900,6 +953,42 @@ h3 {
   gap: 12px;
 }
 
+.social-output-panel {
+  display: grid;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid #d8e0e1;
+}
+
+.social-output-panel h3,
+.social-output-panel p {
+  margin-bottom: 0;
+}
+
+.social-output-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.social-output-card {
+  display: grid;
+  min-width: 0;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid #d8e0e1;
+  border-radius: 8px;
+  background: #f8fafb;
+}
+
+.social-output-card .image-preview__frame {
+  min-height: 170px;
+}
+
+.social-output-card .button-link {
+  justify-self: start;
+}
+
 .before-after-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1004,6 +1093,7 @@ h3 {
 @media (max-width: 960px) {
   .tool-grid,
   .readiness-grid,
+  .image-footer-tools,
   .image-tool-tabs,
   .workbench-support-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1033,11 +1123,14 @@ h3 {
   .tool-grid,
   .band-grid,
   .readiness-grid,
+  .image-footer-tools,
+  .footer-tool-links,
   .image-tool-tabs,
   .workbench-support-grid,
   .tool-layout,
   .content-layout,
   .before-after-grid,
+  .social-output-grid,
   .form-grid,
   .form-grid--three,
   .workflow-steps,

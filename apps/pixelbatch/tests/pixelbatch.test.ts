@@ -29,7 +29,7 @@ const sample: PixelBatchToolInput = {
   quality: 0.72,
 }
 
-describe('PixelBatch MVP', () => {
+describe('PixelBatch browser image tools', () => {
   it('lists browser image tools in roadmap order', () => {
     expect(pixelBatchToolCatalog.map((tool) => tool.slug)).toEqual([...pixelBatchToolSlugs])
     expect(pixelBatchToolCatalog).toHaveLength(6)
@@ -63,7 +63,7 @@ describe('PixelBatch MVP', () => {
     }
   })
 
-  it('documents advanced image workflow data gates in every locale', () => {
+  it('documents advanced image workflow data controls in every locale', () => {
     for (const locale of publicLocaleCodes) {
       const copy = getPixelBatchAdvancedWorkflowCopy(locale)
 
@@ -107,7 +107,7 @@ describe('PixelBatch MVP', () => {
     expect(cleaned.plan?.removeMetadata).toBe(true)
   })
 
-  it('plans social presets and warns about browser-gated AVIF support', () => {
+  it('plans social presets and warns about browser-dependent AVIF support', () => {
     const social = planPixelBatchTransform('social-preset-generator', {
       ...sample,
       socialPreset: 'open-graph',

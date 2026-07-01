@@ -63,3 +63,12 @@ Data-base: 2026-06-27
 - Local validation passed: `pnpm test:pixelbatch` with 10 tests, `pnpm build:pixelbatch`, `pnpm validate:pixelbatch-preview`, `pnpm test:e2e:pixelbatch`, public-copy, AdSense-safe, structure, secrets, deploy dry-run, ci changes and diff check.
 - Remote validation passed: feature commit `e3ed365`, Quality Gate `28356961011`, Deploy Dry Run `28356961015` and public PixelBatch smoke with asset `https://opentshost.com/supersites/pixelbatch/_nuxt/B912Jsw8.js`.
 - No upload API, server-side processing, provider SDK, AI/background removal, batch queue, persistent storage, paid API, checkout, billing, ad serving, donation link, affiliate link, external analytics, worker or cron was activated.
+
+## Phase 18.80-18.86 local execution
+
+- Completed the PixelBatch benchmark refinement stage across the home and six browser-side image tools: compressor, resizer, cropper, converter, metadata remover and social preset generator.
+- Home copy now uses the public privacy badge `Your image stays in this browser`, removes top-level backend/internal status language and adds a richer image-tools footer linking the full local workflow.
+- Compressor results now show original size, output size, reduction, format and quality; result labels are localized instead of English-only on public localized routes.
+- Resizer gained a maintain-aspect-ratio control; cropper gained centered presets for square, portrait, landscape, Open Graph and marketplace; converter shows an AVIF browser-support warning; metadata remover states the Canvas re-encode boundary; social presets can generate multiple local outputs with individual downloads.
+- Public copy now frames batch/API/high-resolution/AI as account workflows below the free browser result without activating uploads, providers, storage, checkout, ads, external analytics, worker or cron.
+- Minimal validation passed: `pnpm test:pixelbatch`, `pnpm build:pixelbatch`, `pnpm validate:pixelbatch-preview`, `pnpm validate:public-copy`, `pnpm validate:secrets` and `git diff --check`.

@@ -58,3 +58,10 @@ Data-base: 2026-06-27
 - Applied the TinyPNG/iLoveIMG/Squoosh mental model to the SuperSites catalog page: file/dropzone first, preview plan next, then concrete image tasks and tool links.
 - Kept all claims original and bounded: no copied assets, no compression guarantee from benchmarks, no server upload promise, and no fake batch/provider capability.
 - Required next PixelBatch-facing work to keep public value above the fold, keep methodology/limits below the tool, validate real deep links after deploy, and review live desktop/mobile screenshots before closing the sprint.
+
+## Phase 18.80-18.86 implementation notes
+
+- Applied the same benchmark pattern to the actual PixelBatch app: dominant dropzone, before/after preview, measurable output summary, visible privacy boundary and download-first workflow.
+- Borrowed only product expectations from TinyPNG/iLoveIMG/Squoosh: simple file entry, clear output metrics, channel presets and trustworthy local-processing language.
+- Kept implementation original and bounded: no benchmark assets, mascots, compression claims, pricing/API copy, provider behavior, fake upload queue or fake ZIP export.
+- Social preset generation now renders multiple browser-side outputs when the user chooses all presets; individual downloads are used instead of adding a ZIP dependency.
