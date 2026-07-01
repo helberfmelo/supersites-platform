@@ -28,72 +28,65 @@ Concluido ate:
 - Etapa TimeNexus Tools: home, World Clock Americas + Europe, Time Zone Converter, Timestamp Converter, Date Difference, Business Days, Age Calculator, Percentage Calculator e Unit Converter.
 - Etapa QRRoute Tools: home, Static QR Code Generator, Barcode Generator, UTM Builder, vCard QR Builder, Wi-Fi QR Builder e QR Preview Lab.
 - Etapa InvoiceCraft Tools: home, Invoice Builder, Quote Builder e Receipt Builder.
+- Etapa MailHealth Tools: home, SPF Checker, DKIM Checker, DMARC Checker, MX Checker, Blacklist Check, SMTP Check e Header Analyzer.
 
 Proxima etapa ativa:
 
-- **Etapa MailHealth Tools**
-- Sprints: **18.64 a 18.71**
-- Escopo: MailHealth home, SPF Checker, DKIM Checker, DMARC Checker, MX Checker, Blacklist Check, SMTP Check e Header Analyzer.
+- **Etapa SitePulse Lab Tools**
+- Sprints: **18.72 a 18.79**
+- Escopo: SitePulse home, HTTP Status Checker, Redirect Chain Checker, Security Headers Checker, Robots.txt Checker, Sitemap Validator, TTFB Checker e Performance Snapshot.
 
 ## Sprints da proxima etapa
 
-### Sprint 18.64 - MailHealth home
+### Sprint 18.72 - SitePulse home
 
-- Input de dominio unico acima da dobra.
-- Score geral de email health.
-- Cards SPF, DKIM, DMARC, MX, blacklist, SMTP e headers.
-- Inspirar-se em MxToolbox e Mail-Tester: score simples, detalhes tecnicos abaixo.
-- Remover `Monitoring planned`, `billing`, `API planned` do topo.
+- Input `Check if a website is up` acima da dobra.
+- Resultado simples: online/down/redirecting/slow.
+- Detalhes GTmetrix-like abaixo.
+- Remover `Monitoring planned` do topo.
 
-### Sprint 18.65 - SPF Checker
+### Sprint 18.73 - HTTP Status Checker
 
-- Resultado visual: found/missing/multiple/risky.
-- Mostrar record bruto, mecanismos, lookup count e all mechanism.
-- Fix guidance com texto copiavel.
-- Mover record builder planned para bloco futuro discreto ou remover.
+- Resultado principal: HTTP code, online/down, final URL e TTFB.
+- Botoes copy report e check again.
+- Explicacao leiga do codigo.
 
-### Sprint 18.66 - DKIM Checker
+### Sprint 18.74 - Redirect Chain Checker
 
-- Campos domain + selector claros.
-- Resultado: record found, key type, version, key present e warnings.
-- Explicar onde encontrar selector.
-- Nao expor raw key em analytics/logs.
+- Timeline de hops.
+- Mostrar code, URL, latency, cross-domain e loop warning.
+- SEO guidance abaixo.
 
-### Sprint 18.67 - DMARC Checker
+### Sprint 18.75 - Security Headers Checker
 
-- Resultado: policy, pct, rua, ruf, alignment e enforcement level.
-- Visual progress: none -> quarantine -> reject.
-- Fix guidance e exemplo de record.
-- Deixar claro que report ingestion e upgrade futuro, abaixo.
+- Score visual.
+- Cards para HSTS, CSP, X-Frame-Options, Referrer-Policy, Permissions-Policy e X-Content-Type-Options.
+- Mostrar header presente/ausente e recomendacao.
 
-### Sprint 18.68 - MX Checker
+### Sprint 18.76 - Robots.txt Checker
 
-- Tabela MX por prioridade.
-- Validar A/AAAA publico dos hosts.
-- Status visual de inbound readiness.
-- Proximos checks: SMTP e SPF.
+- Mostrar fetch status e conteudo resumido.
+- Destacar sitemap hints e disallow gerais.
+- Nao fazer crawl amplo.
 
-### Sprint 18.69 - Blacklist Check
+### Sprint 18.77 - Sitemap Validator
 
-- Mostrar quais IPs foram checados e quais listas.
-- Separar listed/unlisted/error/rate-limited.
-- Nao prometer deliverability total.
-- Proximo passo claro se listado.
+- Mostrar status XML, URL count, size e errors.
+- Amostra de URLs.
+- Proximo passo para SEO.
 
-### Sprint 18.70 - SMTP Check
+### Sprint 18.78 - TTFB Checker
 
-- Resultado: reachable/refused/timeout por MX e porta.
-- Sem enviar email.
-- Mostrar latencia e porta.
-- Limites abaixo.
+- Resultado principal: TTFB ms com badge good/needs work/slow.
+- Explicar que e amostra unica.
+- CTA para monitoramento futuro abaixo.
 
-### Sprint 18.71 - Header Analyzer
+### Sprint 18.79 - Performance Snapshot
 
-- Area de paste grande.
-- Parse local imediato.
-- Cards SPF/DKIM/DMARC/alignment.
-- Highlight de Authentication-Results.
-- Nao enviar header para API.
+- Relatorio visual com status, redirects, headers, byte size e TTFB.
+- Score geral.
+- Nao prometer Lighthouse se nao executar Lighthouse real.
+- Relacionar com PageSpeed/GTmetrix como benchmarks, nao como dados proprios.
 
 ## Regras de produto
 

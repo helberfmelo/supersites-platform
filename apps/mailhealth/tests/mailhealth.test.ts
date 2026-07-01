@@ -17,7 +17,7 @@ import {
 } from '../app/data/tools'
 import { createMailHealthToolEvent } from '../app/utils/analytics'
 
-describe('MailHealth MVP', () => {
+describe('MailHealth diagnostics', () => {
   it('lists email checks in roadmap order', () => {
     expect(toolCatalog.map((tool) => tool.slug)).toEqual([...toolSlugs])
     expect(toolCatalog).toHaveLength(7)

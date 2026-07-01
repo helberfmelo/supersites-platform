@@ -93,7 +93,7 @@ try {
         'hreflang="pt-BR"',
         'SPF Checker',
         '7 focused checks',
-        'Monitoring planned'
+        'Point-in-time results'
     )
 
     foreach ($needle in $requiredHtml) {

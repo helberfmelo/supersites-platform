@@ -84,7 +84,16 @@ class MailHealthDnsService
         ];
 
         return $this->payload('spf', $domain, null, $findings, [
-            'records' => array_map(fn (string $value): array => ['type' => 'TXT', 'value' => $value], $spfRecords),
+            'records' => array_map(fn (string $value): array => [
+                'type' => 'TXT',
+                'value' => $value,
+                'mechanisms' => $value === '' ? [] : array_values(array_filter(
+                    preg_split('/\s+/', $value) ?: [],
+                    fn (string $part): bool => strtolower($part) !== 'v=spf1',
+                )),
+                'lookup_count' => $lookupCount,
+                'all_mechanism' => $allMechanism,
+            ], $spfRecords),
             'summary' => count($spfRecords) === 1 ? 'SPF record found and parsed.' : 'SPF record shape needs review.',
         ]);
     }
@@ -137,6 +146,7 @@ class MailHealthDnsService
         $policy = strtolower((string) ($tags['p'] ?? ''));
         $pct = isset($tags['pct']) ? (int) $tags['pct'] : 100;
         $ruaPresent = isset($tags['rua']) && trim((string) $tags['rua']) !== '';
+        $rufPresent = isset($tags['ruf']) && trim((string) $tags['ruf']) !== '';
         $findings = [
             $this->finding('DMARC record count', $this->recordCountStatus(count($dmarcRecords)), count($dmarcRecords) === 1 ? 'Exactly one DMARC record was found.' : 'DMARC should publish exactly one v=DMARC1 TXT record.', count($dmarcRecords)),
             $this->finding('Policy', in_array($policy, ['quarantine', 'reject'], true) ? 'pass' : ($policy === 'none' ? 'warn' : 'fail'), $policy ? "Policy is p={$policy}." : 'No DMARC policy tag was found.'),
@@ -148,8 +158,13 @@ class MailHealthDnsService
             'records' => [[
                 'type' => 'TXT',
                 'host' => $queryName,
+                'raw_record' => $dmarcRecords[0] ?? null,
                 'policy' => $policy ?: null,
                 'subdomain_policy' => $tags['sp'] ?? null,
+                'rua' => $ruaPresent ? $tags['rua'] : null,
+                'ruf' => $rufPresent ? $tags['ruf'] : null,
+                'alignment_dkim' => $tags['adkim'] ?? 'r',
+                'alignment_spf' => $tags['aspf'] ?? 'r',
                 'aggregate_reports_present' => $ruaPresent,
                 'pct' => $pct,
             ]],

@@ -126,7 +126,7 @@ async function mockUnifiedMailHealthReport(page: Page) {
   })
 }
 
-test.describe('MailHealth MVP', () => {
+test.describe('MailHealth diagnostics', () => {
   test('renders the home page on desktop', async ({ page }, testInfo) => {
     const errors = collectBrowserErrors(page)
 
@@ -141,7 +141,7 @@ test.describe('MailHealth MVP', () => {
     await expect(page.getByRole('heading', { name: 'SPF Checker' })).toBeVisible()
     await expect(page.getByText('Domain health report')).toBeVisible()
     await expect(page.getByRole('button', { name: 'Run domain report' })).toBeVisible()
-    await expect(page.getByText('Local free version')).toHaveCount(7)
+    await expect(page.getByText('Live check')).toHaveCount(7)
     await expect(page.getByText('7 focused checks')).toBeVisible()
     await expectNoHorizontalOverflow(page)
 

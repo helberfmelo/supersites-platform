@@ -65,6 +65,14 @@ Medium; placements must avoid domain fields, headers, results and copy/fix contr
 - Screenshots: `artifacts/mailhealth-catalog-qa/mailhealth-catalog-live-desktop.png` and `artifacts/mailhealth-catalog-qa/mailhealth-catalog-live-mobile-pt-br.png`.
 - Monitoring, DMARC ingestion, API, billing, ads, donation and provider activation remain gated and inactive.
 
+## Sprint 18.64-18.71 tool refinement
+
+- The app home keeps the unified email health report as the first practical workflow and replaces top roadmap language with point-in-time diagnostic copy.
+- Tool pages now show typed detail blocks instead of raw JSON dumps: SPF record shape/mechanisms/lookup/all, DKIM selector/key metadata without raw key exposure, DMARC policy/pct/rua/ruf/alignment/progress, MX readiness, DNSBL probe rows and SMTP host/port/latency.
+- Header Analyzer parses locally as headers are pasted and highlights Authentication-Results lines without API calls.
+- Fix guidance is copyable, while SPF/DMARC record builders remain local-only and provider-dependent builders stay guide-only.
+- Local evidence: `pnpm test:mailhealth`, `php artisan test --filter=MailHealthApiTest`, `pnpm build:mailhealth`, `pnpm validate:mailhealth-preview`, `pnpm validate:public-copy`, `pnpm validate:secrets` and `git diff --check` passed.
+
 ## Dashboard backlog
 
 - Domain health score readiness.

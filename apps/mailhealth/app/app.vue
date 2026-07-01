@@ -894,6 +894,45 @@ h3 {
   background: #f7f8f4;
 }
 
+.result-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+}
+
+.result-detail-grid div {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  background: #f7f8f4;
+}
+
+.result-detail-grid dt {
+  color: #607069;
+  font-size: 0.74rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.result-detail-grid dd {
+  margin: 4px 0 0;
+  color: #25332d;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.guidance-copy {
+  width: 100%;
+  margin-top: 14px;
+}
+
+.result-list code {
+  white-space: normal;
+  word-break: break-word;
+}
+
 .result-meta strong,
 .result-meta span {
   display: block;
@@ -1041,6 +1080,7 @@ h3 {
     .tool-layout,
     .content-layout,
     .result-meta,
+    .result-detail-grid,
     .health-summary,
     .report-workbench__intro,
     .report-form,

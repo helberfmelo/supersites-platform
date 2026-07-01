@@ -48,3 +48,11 @@ Data-base: 2026-06-27
 - Technical limits and privacy remain below the practical value; top copy avoids monitoring/API/billing/roadmap claims.
 - PT-BR/ES/FR/DE localization was corrected after live visual QA, including real accents in PT-BR.
 - Final evidence: commit `681734b`, Hub deploy `28438325239`, release `681734b85cabc8defa91c54cef4b0c14f0ea3584-28438325239-1`, public smoke, AdSense-safe, 14 deep links and crawler quick `2026-06-30T10-47-16-555Z` passed.
+
+## Sprint 18.64-18.71 tool response
+
+- The MailHealth tool set now follows the MxToolbox/Mail-Tester pattern more closely: one score first, signal cards, and technical details below the useful answer.
+- SPF, DKIM, DMARC, MX, blacklist and SMTP results are rendered as typed details/tables rather than opaque JSON.
+- DKIM keeps public key presence/length visible while raw keys stay out of page details and analytics.
+- Header analysis is immediate and local, with Authentication-Results highlighted for message-level troubleshooting.
+- The copy avoids top-level monitoring/API/billing roadmap claims and keeps account-oriented value below the free diagnostic result.

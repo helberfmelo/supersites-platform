@@ -16,6 +16,7 @@ Data-base: 2026-06-27
 - Sprint 7.9 local refinement adds health score, signal checklist, severity labels, fix guidance, planned record-builder boundaries and related checks.
 - Sprint 9.10 production refinement adds a home-level unified domain report across SPF, DKIM, DMARC, MX, blacklist, SMTP and local headers.
 - Sprint 13.3 local refinement turns SPF/DMARC record-builder boundaries into active local TXT builders with review warnings, DNS steps and guide-only limits for provider-dependent checks.
+- Sprint 18.64-18.71 refinement removes roadmap copy from top surfaces, keeps the unified domain report first, adds typed result details for SPF/DKIM/DMARC/MX/blacklist/SMTP, highlights Authentication-Results locally and keeps DKIM raw keys out of page details.
 
 ## Scope
 
@@ -35,6 +36,7 @@ Data-base: 2026-06-27
 - Sprint 7.9 validation passed for unit, build, preview smoke, Playwright, final local gates, Quality Gate `28289435994`, Deploy Dry Run `28289435995` and public Hub/control-plane/NetProbe smokes.
 - Sprint 9.10 validation passed: `pnpm test:mailhealth`, `pnpm build:mailhealth`, `pnpm validate:mailhealth-preview`, `pnpm test:e2e:mailhealth`, package gates, public-copy, structure, secrets, deploy dry-run, ci:changes and diff check; feature commit `55721b1`, Quality Gate `28319796608`, Deploy Dry Run `28319796624`, deploy `28319881701`, release `55721b1aa2d0e020f73c3823d580427a48708ab4-28319881701-1`, asset `https://opentshost.com/supersites/mailhealth/_nuxt/fseKxIDq.js` and live UX smoke passed.
 - Sprint 13.3 validation passed: `pnpm test:mailhealth` with 10 tests, `pnpm build:mailhealth`, `pnpm validate:mailhealth-preview` with asset `/_nuxt/NxyQf1L0.js`, `pnpm test:e2e:mailhealth` with 6 tests, public-copy in 951 HTML files, AdSense-safe in 13 pages, structure, secrets, deploy dry-run, ci:changes and diff check; feature commit `9259dd9`, Quality Gate `28354998649`, Deploy Dry Run `28354998680` and public Hub/MailHealth/NetProbe/control-plane smokes passed.
+- Sprint 18.64-18.71 validation passed locally: `pnpm test:mailhealth` with 10 tests, `php artisan test --filter=MailHealthApiTest` with 5 tests/66 assertions, `pnpm build:mailhealth`, `pnpm validate:mailhealth-preview` with asset `/_nuxt/CcDBePbV.js`, `pnpm validate:public-copy` in 951 HTML files, `pnpm validate:secrets` and `git diff --check`.
 
 ## Gates
 
@@ -43,3 +45,4 @@ Data-base: 2026-06-27
 - No analytics values from domains, selectors, headers or records.
 - Sprint 9.10 kept the unified report point-in-time only; no recurring monitor, alert delivery, DMARC ingestion, paid API, white-label, account, storage, checkout, ad serving or external analytics was activated.
 - Sprint 13.3 keeps builders local-only; DNSBL/provider policy, DKIM rotation automation, MX migration automation and DMARC report processing remain gated.
+- Sprint 18.64-18.71 keeps checks point-in-time; no recurring monitor, alert delivery, DMARC ingestion, DNS publishing, checkout, ad serving, external analytics or paid API was activated.

@@ -61,7 +61,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Free check',
     upgradeLabel: 'Upgrade path',
     detailCta: 'Open check',
-    localBadgeLabel: 'Local MVP',
+    localBadgeLabel: 'Live check',
     principlesTitle: 'Operating principles',
     principles: [
       { title: 'Useful free diagnostics', body: 'A domain owner can inspect core email records and headers before creating an account.' },
@@ -71,7 +71,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     statusRows: [
       { title: '7 focused checks', body: 'SPF, DKIM, DMARC, MX, blacklist, SMTP and header analysis are represented.', tone: 'green' },
       { title: '5 language route sets', body: 'English, Portuguese, Spanish, French and German pages are prerendered.', tone: 'green' },
-      { title: 'Monitoring gated', body: 'Recurring checks, alerts, DMARC report processing, API, white-label and billing are not active.', tone: 'amber' },
+      { title: 'Point-in-time results', body: 'Results are snapshots for diagnosis; provider changes and DNS propagation can change what receivers see.', tone: 'amber' },
     ],
   },
   'pt-br': {
@@ -87,7 +87,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Check gratuito',
     upgradeLabel: 'Caminho de upgrade',
     detailCta: 'Abrir check',
-    localBadgeLabel: 'MVP local',
+    localBadgeLabel: 'Check ativo',
     principlesTitle: 'Principios operacionais',
     principles: [
       { title: 'Diagnostico gratuito util', body: 'O dono de dominio pode revisar registros e headers essenciais antes de criar conta.' },
@@ -97,7 +97,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     statusRows: [
       { title: '7 checks focados', body: 'SPF, DKIM, DMARC, MX, blacklist, SMTP e headers estao representados.', tone: 'green' },
       { title: '5 conjuntos de idioma', body: 'Paginas em ingles, portugues, espanhol, frances e alemao sao prerenderizadas.', tone: 'green' },
-      { title: 'Monitoramento bloqueado', body: 'Recorrencia, alertas, relatorios DMARC, API, white-label e billing nao estao ativos.', tone: 'amber' },
+      { title: 'Resultados pontuais', body: 'Os resultados sao snapshots de diagnostico; provedor e propagacao DNS podem mudar o que receptores veem.', tone: 'amber' },
     ],
   },
   es: {
@@ -113,7 +113,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Check gratis',
     upgradeLabel: 'Ruta de upgrade',
     detailCta: 'Abrir check',
-    localBadgeLabel: 'MVP local',
+    localBadgeLabel: 'Check activo',
     principlesTitle: 'Principios operativos',
     principles: [
       { title: 'Diagnostico gratis util', body: 'Un propietario puede revisar registros y headers esenciales antes de crear cuenta.' },
@@ -123,7 +123,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     statusRows: [
       { title: '7 checks enfocados', body: 'SPF, DKIM, DMARC, MX, blacklist, SMTP y headers estan representados.', tone: 'green' },
       { title: '5 rutas de idioma', body: 'Paginas en ingles, portugues, espanol, frances y aleman se prerenderizan.', tone: 'green' },
-      { title: 'Monitoreo bloqueado', body: 'Recurrencia, alertas, reportes DMARC, API, white-label y billing no estan activos.', tone: 'amber' },
+      { title: 'Resultados puntuales', body: 'Los resultados son snapshots de diagnostico; proveedor y propagacion DNS pueden cambiar lo que ven los receptores.', tone: 'amber' },
     ],
   },
   fr: {
@@ -139,7 +139,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Controle gratuit',
     upgradeLabel: 'Offre payante',
     detailCta: 'Ouvrir',
-    localBadgeLabel: 'MVP local',
+    localBadgeLabel: 'Controle actif',
     principlesTitle: 'Principes operationnels',
     principles: [
       { title: 'Diagnostic gratuit utile', body: 'Le proprietaire de domaine peut verifier les enregistrements et headers avant compte.' },
@@ -149,7 +149,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     statusRows: [
       { title: '7 controles cibles', body: 'SPF, DKIM, DMARC, MX, blacklist, SMTP et headers sont representes.', tone: 'green' },
       { title: '5 routes langue', body: 'Pages anglaises, portugaises, espagnoles, francaises et allemandes prerenderisees.', tone: 'green' },
-      { title: 'Surveillance bloquee', body: 'Recurrence, alertes, rapports DMARC, API, white-label et billing inactifs.', tone: 'amber' },
+      { title: 'Resultats ponctuels', body: 'Les resultats sont des snapshots de diagnostic; fournisseur et propagation DNS peuvent changer la vue recepteur.', tone: 'amber' },
     ],
   },
   de: {
@@ -165,7 +165,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     freeLabel: 'Kostenloser Check',
     upgradeLabel: 'Upgrade-Pfad',
     detailCta: 'Check oeffnen',
-    localBadgeLabel: 'Lokales MVP',
+    localBadgeLabel: 'Live Check',
     principlesTitle: 'Betriebsprinzipien',
     principles: [
       { title: 'Nuetzliche kostenlose Diagnose', body: 'Domaininhaber pruefen zentrale Records und Header vor einem Konto.' },
@@ -175,7 +175,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     statusRows: [
       { title: '7 fokussierte Checks', body: 'SPF, DKIM, DMARC, MX, Blacklist, SMTP und Header sind vertreten.', tone: 'green' },
       { title: '5 Sprachrouten', body: 'Englische, portugiesische, spanische, franzoesische und deutsche Seiten werden prerendered.', tone: 'green' },
-      { title: 'Monitoring gesperrt', body: 'Wiederholung, Alarme, DMARC-Reports, API, White-Label und Billing sind inaktiv.', tone: 'amber' },
+      { title: 'Zeitpunkt-Ergebnisse', body: 'Ergebnisse sind Diagnose-Snapshots; Provider und DNS-Propagation koennen Empfaengeransichten aendern.', tone: 'amber' },
     ],
   },
 }
@@ -186,8 +186,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     pageStatusLabel: 'Check status',
     relatedTitle: 'Related checks',
     relatedBody: 'Chain SPF, DKIM, DMARC, MX, SMTP, reputation and header checks without storing the target.',
-    plannedTitle: 'Bounded public API',
-    plannedBody: 'DNS, DNSBL and SMTP checks use a dedicated rate limit and do not store query targets in product analytics.',
+    plannedTitle: 'Privacy and limits',
+    plannedBody: 'Headers stay local; DNS, DNSBL and SMTP checks are rate-limited, point-in-time diagnostics.',
     healthScoreTitle: 'Health score',
     checklistTitle: 'Signal checklist',
     fixGuidanceTitle: 'Fix guidance',
@@ -213,8 +213,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     pageStatusLabel: 'Status do check',
     relatedTitle: 'Checks relacionados',
     relatedBody: 'Encadeie SPF, DKIM, DMARC, MX, SMTP, reputacao e headers sem armazenar o alvo.',
-    plannedTitle: 'API publica limitada',
-    plannedBody: 'DNS, DNSBL e SMTP usam rate limit dedicado e nao armazenam alvos em analytics.',
+    plannedTitle: 'Privacidade e limites',
+    plannedBody: 'Headers ficam locais; DNS, DNSBL e SMTP sao diagnosticos pontuais com rate limit.',
     healthScoreTitle: 'Score de saude',
     checklistTitle: 'Checklist de sinais',
     fixGuidanceTitle: 'Guia de correcao',
@@ -240,8 +240,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     pageStatusLabel: 'Estado del check',
     relatedTitle: 'Checks relacionados',
     relatedBody: 'Encadena SPF, DKIM, DMARC, MX, SMTP, reputacion y headers sin guardar el objetivo.',
-    plannedTitle: 'API publica limitada',
-    plannedBody: 'DNS, DNSBL y SMTP usan rate limit dedicado y no guardan objetivos en analytics.',
+    plannedTitle: 'Privacidad y limites',
+    plannedBody: 'Los headers quedan locales; DNS, DNSBL y SMTP son diagnosticos puntuales con rate limit.',
     healthScoreTitle: 'Score de salud',
     checklistTitle: 'Checklist de senales',
     fixGuidanceTitle: 'Guia de correccion',
@@ -267,8 +267,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     pageStatusLabel: 'Statut',
     relatedTitle: 'Controles lies',
     relatedBody: 'Enchainez SPF, DKIM, DMARC, MX, SMTP, reputation et headers sans stocker la cible.',
-    plannedTitle: 'API publique bornee',
-    plannedBody: 'DNS, DNSBL et SMTP utilisent rate limit dedie et ne stockent pas les cibles en analytics.',
+    plannedTitle: 'Confidentialite et limites',
+    plannedBody: 'Les headers restent locaux; DNS, DNSBL et SMTP sont des diagnostics ponctuels avec rate limit.',
     healthScoreTitle: 'Score de sante',
     checklistTitle: 'Checklist signaux',
     fixGuidanceTitle: 'Guide correction',
@@ -294,8 +294,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     pageStatusLabel: 'Checkstatus',
     relatedTitle: 'Verwandte Checks',
     relatedBody: 'SPF, DKIM, DMARC, MX, SMTP, Reputation und Header verbinden, ohne Ziele zu speichern.',
-    plannedTitle: 'Begrenzte Public API',
-    plannedBody: 'DNS, DNSBL und SMTP nutzen eigenes Rate Limit und speichern Ziele nicht in Analytics.',
+    plannedTitle: 'Datenschutz und Grenzen',
+    plannedBody: 'Header bleiben lokal; DNS, DNSBL und SMTP sind rate-limitierte Zeitpunkt-Diagnosen.',
     healthScoreTitle: 'Health Score',
     checklistTitle: 'Signal-Checklist',
     fixGuidanceTitle: 'Korrekturhinweise',

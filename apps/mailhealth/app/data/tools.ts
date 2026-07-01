@@ -483,7 +483,7 @@ export const toolCatalog: ToolDefinition[] = [
     limitation: 'This check evaluates published DNS shape; it does not verify every sender IP or mailbox-provider policy.',
     faq: [
       { question: 'Does MailHealth send email during the SPF check?', answer: 'No. SPF checks use DNS TXT lookup only and do not send messages.' },
-      { question: 'Can I monitor changes over time?', answer: 'Not in the free MVP. Monitoring, alerts and history are gated upgrade value.' },
+      { question: 'Can I monitor changes over time?', answer: 'Not in the free check. Monitoring, alerts and history are account features.' },
     ],
   }),
   makeTool('dkim-checker', 'authentication', 'DKIM', 'dkim', {
@@ -528,9 +528,9 @@ export const toolCatalog: ToolDefinition[] = [
     example: '_dmarc.example.com with v=DMARC1; p=reject; rua=mailto:dmarc@example.com tells receivers to reject unauthenticated aligned failures and send aggregate reports.',
     commonIssue: 'A domain may publish DMARC with p=none forever, which gives visibility but little protection.',
     fix: 'Use reports to fix legitimate senders, then move gradually toward quarantine or reject with a pct rollout.',
-    limitation: 'The MVP does not collect, parse or store DMARC XML reports; that is a gated paid workflow.',
+    limitation: 'The free check does not collect, parse or store DMARC XML reports; report ingestion belongs in an account workflow.',
     faq: [
-      { question: 'Will MailHealth receive my DMARC reports?', answer: 'No. Report ingestion is a gated paid workflow and is not active in the free MVP.' },
+      { question: 'Will MailHealth receive my DMARC reports?', answer: 'No. Report ingestion is an account workflow and is not active in the free check.' },
       { question: 'Is p=reject always safe?', answer: 'No. Move to enforcement only after legitimate senders pass SPF or DKIM alignment.' },
     ],
   }),
@@ -555,7 +555,7 @@ export const toolCatalog: ToolDefinition[] = [
     limitation: 'The free check is a point-in-time DNS view and does not verify mailbox acceptance.',
     faq: [
       { question: 'Does MX prove outgoing mail is configured?', answer: 'No. MX controls inbound delivery; SPF, DKIM and DMARC are usually more relevant for outbound authentication.' },
-      { question: 'Why are only some hosts probed?', answer: 'The MVP limits host and address checks to reduce abuse and latency.' },
+      { question: 'Why are only some hosts probed?', answer: 'The free check limits host and address checks to reduce abuse and latency.' },
     ],
   }),
   makeTool('blacklist-check', 'reputation', 'Blacklist', 'blacklist', {
@@ -576,7 +576,7 @@ export const toolCatalog: ToolDefinition[] = [
     example: 'If one mail IP appears listed in a DNSBL, review recent sending patterns, compromised accounts and delisting steps.',
     commonIssue: 'DNSBL providers can rate limit public resolvers or require direct policy review for commercial use.',
     fix: 'Treat the free result as a pointer, then confirm directly with the listed provider before making operational claims.',
-    limitation: 'This is not a universal blocklist audit; broad reputation feeds and historical monitoring are gated.',
+    limitation: 'This is not a universal blocklist audit; broad reputation feeds and historical monitoring belong in account workflows.',
     faq: [
       { question: 'Why only a DNSBL sample?', answer: 'A small allowlist keeps the free tool useful while controlling abuse, provider policy and latency.' },
       { question: 'Does unlisted mean my mail will land in inbox?', answer: 'No. Inbox placement depends on many sender, content, engagement and provider-specific signals.' },
@@ -600,7 +600,7 @@ export const toolCatalog: ToolDefinition[] = [
     example: 'A provider may allow port 25 from the internet but block 587 unless authenticated submission is configured.',
     commonIssue: 'Testing arbitrary SMTP hosts can become abusive, so MailHealth only checks MX-derived public hosts.',
     fix: 'Verify MX records first, then compare the SMTP result with provider status and firewall rules.',
-    limitation: 'The MVP does not send EHLO, STARTTLS, AUTH, RCPT, DATA or any message content.',
+    limitation: 'The free check does not send EHLO, STARTTLS, AUTH, RCPT, DATA or any message content.',
     faq: [
       { question: 'Does this send an email?', answer: 'No. The free SMTP check only attempts a bounded TCP connection.' },
       { question: 'Why not scan every port?', answer: 'MailHealth is not a port scanner; SMTP checks use a narrow allowlist and MX-derived hosts.' },
@@ -891,7 +891,7 @@ export function analyzeMailHeaders(rawHeaders: string): HeaderAnalysisResult {
       summary: '',
       meta: [],
       findings: [],
-      error: 'Free header analysis accepts up to 80 KB. Bulk mailbox analysis is a gated upgrade.',
+      error: 'Free header analysis accepts up to 80 KB. Bulk mailbox analysis belongs in an account workflow.',
     }
   }
 

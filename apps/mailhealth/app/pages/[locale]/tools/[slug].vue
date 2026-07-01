@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getButtonClass } from '@supersites/ui'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { getShellCopy } from '../../../data/copy'
 import { localizedContentPath, localizedHomePath, localizedToolPath, normalizePublicLocale, sanitizePublicCopy, toHtmlLang } from '../../../data/locales'
 import {
@@ -61,6 +61,18 @@ interface ApiResponse<T> {
   meta: Record<string, unknown>
 }
 
+interface ResultDetailItem {
+  label: string
+  value: string
+  status?: string
+}
+
+interface ResultDetailTable {
+  title: string
+  headers: string[]
+  rows: string[][]
+}
+
 const copy = getToolCopy(tool, locale)
 const shellCopy = getShellCopy(locale)
 const recordBuilderCopy = getRecordBuilderCopy(locale)
@@ -71,6 +83,36 @@ const resultMetaCopy = sanitizePublicCopy(locale, {
   cached: 'cached',
   fresh: 'fresh',
   ttl: 'TTL',
+})
+const resultDetailCopy = sanitizePublicCopy(locale, {
+  parsedTitle: 'Parsed details',
+  recordsTitle: 'Records',
+  probesTitle: 'Probe details',
+  warningsTitle: 'Warnings',
+  guidanceCopyLabel: 'Copy fix guidance',
+  guidanceCopiedLabel: 'Guidance copied',
+  authenticationResultsTitle: 'Authentication-Results highlights',
+  noAuthenticationResults: 'No Authentication-Results header is visible in the pasted sample yet.',
+  dkimSelectorTitle: 'Selector lookup',
+  dkimSelectorBody: 'DKIM checks read selector._domainkey.domain. Use the selector shown by the sender or mail provider.',
+  dkimKeyHidden: 'Public key present; raw DKIM key is hidden from page details.',
+  missingValue: 'Not found',
+  yes: 'yes',
+  no: 'no',
+  table: {
+    signal: 'Signal',
+    status: 'Status',
+    detail: 'Detail',
+    priority: 'Priority',
+    target: 'Target',
+    addresses: 'Public addresses',
+    address: 'Address',
+    zone: 'List',
+    result: 'Result',
+    host: 'Host',
+    port: 'Port',
+    latency: 'Latency',
+  },
 })
 const canonicalPath = localizedToolPath(locale, tool.slug)
 const structuredData = createToolStructuredData(tool, locale, absoluteUrl(canonicalPath))
@@ -98,6 +140,7 @@ const errorMessage = ref('')
 const apiResult = ref<MailHealthApiData | null>(null)
 const apiMeta = ref<Record<string, unknown>>({})
 const headerResult = ref<HeaderAnalysisResult | null>(null)
+const guidanceCopied = ref(false)
 const isHeaderAnalyzer = computed(() => tool.checkType === 'headers')
 const isDkimCheck = computed(() => tool.checkType === 'dkim')
 const isSmtpCheck = computed(() => tool.checkType === 'smtp')
@@ -141,6 +184,200 @@ const displayedMeta = computed(() => headerResult.value?.meta ?? [
 const summary = computed(() => headerResult.value?.summary || apiResult.value?.summary || copy.previewResult)
 const scoreCard = computed(() => createMailHealthScoreCard(displayedFindings.value, copy.previewResult))
 const relatedTools = computed(() => getRelatedMailHealthTools(tool.slug, locale))
+const fixGuidanceText = computed(() => [
+  copy.title,
+  copy.freeScope,
+  ...copy.methodology,
+  ...copy.contentSections.flatMap((section) => section.paragraphs),
+].join('\n'))
+
+function stringifyValue(value: unknown, fallback = '-'): string {
+  if (value === null || value === undefined || value === '') {
+    return fallback
+  }
+
+  if (Array.isArray(value)) {
+    return value.length > 0 ? value.map((item) => stringifyValue(item)).join(', ') : fallback
+  }
+
+  if (typeof value === 'boolean') {
+    return value ? resultDetailCopy.yes : resultDetailCopy.no
+  }
+
+  return String(value)
+}
+
+function recordText(record: Record<string, unknown> | undefined): string {
+  return stringifyValue(record?.value ?? record?.txt ?? record?.record ?? record?.raw_record, '')
+}
+
+function parseRecordTags(record: string): Record<string, string> {
+  return Object.fromEntries(record
+    .split(';')
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part) => {
+      const [key, ...valueParts] = part.split('=')
+      return [key.trim().toLowerCase(), valueParts.join('=').trim()]
+    })
+    .filter(([key]) => Boolean(key)))
+}
+
+function spfMechanisms(record: string): string[] {
+  return record
+    .split(/\s+/)
+    .map((part) => part.trim())
+    .filter((part) => part && part.toLowerCase() !== 'v=spf1')
+}
+
+function spfLookupCount(record: string): number {
+  return (record.match(/\b(?:include:|a(?=\s|:)|mx(?=\s|:)|ptr(?=\s|:)|exists:|redirect=)/gi) ?? []).length
+}
+
+function spfAllMechanism(record: string): string {
+  return /(?:^|\s)([+?~-]all)(?:\s|$)/i.exec(record)?.[1]?.toLowerCase() ?? resultDetailCopy.missingValue
+}
+
+function statusForCount(count: number): string {
+  if (count === 1) {
+    return 'pass'
+  }
+
+  return count === 0 ? 'fail' : 'warn'
+}
+
+function dmarcEnforcement(policy: string): string {
+  if (policy === 'reject') {
+    return 'reject'
+  }
+
+  if (policy === 'quarantine') {
+    return 'quarantine'
+  }
+
+  return 'none'
+}
+
+const resultDetailItems = computed<ResultDetailItem[]>(() => {
+  if (!apiResult.value) {
+    return []
+  }
+
+  const records = apiResult.value.records ?? []
+  const firstRecord = records[0]
+  const rawRecord = recordText(firstRecord)
+
+  if (tool.checkType === 'spf') {
+    const mechanisms = spfMechanisms(rawRecord)
+
+    return [
+      { label: 'SPF record status', value: records.length === 1 ? 'found' : (records.length === 0 ? 'missing' : 'multiple'), status: statusForCount(records.length) },
+      { label: 'Raw record', value: rawRecord || resultDetailCopy.missingValue },
+      { label: 'Mechanisms', value: mechanisms.length > 0 ? mechanisms.join(', ') : resultDetailCopy.missingValue },
+      { label: 'DNS lookup count', value: String(spfLookupCount(rawRecord)), status: spfLookupCount(rawRecord) > 10 ? 'fail' : (spfLookupCount(rawRecord) > 8 ? 'warn' : 'pass') },
+      { label: 'All mechanism', value: spfAllMechanism(rawRecord), status: spfAllMechanism(rawRecord) === '+all' ? 'fail' : (spfAllMechanism(rawRecord) === '-all' ? 'pass' : 'warn') },
+    ]
+  }
+
+  if (tool.checkType === 'dkim') {
+    return [
+      { label: 'Query name', value: stringifyValue(firstRecord?.host, `${selectorValue.value}._domainkey.${targetValue.value}`) },
+      { label: 'Record status', value: records.length === 1 ? 'found' : (records.length === 0 ? 'missing' : 'multiple'), status: statusForCount(records.length) },
+      { label: 'Version', value: stringifyValue(firstRecord?.version, resultDetailCopy.missingValue) },
+      { label: 'Key type', value: stringifyValue(firstRecord?.key_type, 'rsa') },
+      { label: 'Public key', value: firstRecord?.public_key_present ? resultDetailCopy.dkimKeyHidden : resultDetailCopy.missingValue, status: firstRecord?.public_key_present ? 'pass' : 'fail' },
+      { label: 'Key length', value: stringifyValue(firstRecord?.public_key_length) },
+    ]
+  }
+
+  if (tool.checkType === 'dmarc') {
+    const tags = parseRecordTags(rawRecord)
+    const policy = stringifyValue(firstRecord?.policy ?? tags.p, resultDetailCopy.missingValue).toLowerCase()
+    const pct = stringifyValue(firstRecord?.pct ?? tags.pct ?? '100')
+    const rua = stringifyValue(firstRecord?.rua ?? tags.rua, resultDetailCopy.missingValue)
+    const ruf = stringifyValue(firstRecord?.ruf ?? tags.ruf, resultDetailCopy.missingValue)
+    const adkim = stringifyValue(firstRecord?.alignment_dkim ?? tags.adkim ?? 'r')
+    const aspf = stringifyValue(firstRecord?.alignment_spf ?? tags.aspf ?? 'r')
+
+    return [
+      { label: 'Policy', value: policy, status: policy === 'reject' || policy === 'quarantine' ? 'pass' : (policy === 'none' ? 'warn' : 'fail') },
+      { label: 'Rollout percent', value: pct, status: Number(pct) >= 100 ? 'pass' : 'warn' },
+      { label: 'Aggregate reports', value: rua },
+      { label: 'Failure reports', value: ruf },
+      { label: 'DKIM alignment', value: adkim === 's' ? 'strict' : 'relaxed' },
+      { label: 'SPF alignment', value: aspf === 's' ? 'strict' : 'relaxed' },
+      { label: 'Enforcement progress', value: `none -> quarantine -> reject: ${dmarcEnforcement(policy)}` },
+    ]
+  }
+
+  return []
+})
+
+const resultDetailTables = computed<ResultDetailTable[]>(() => {
+  if (!apiResult.value) {
+    return []
+  }
+
+  const records = apiResult.value.records ?? []
+  const probes = apiResult.value.probes ?? []
+
+  if (tool.checkType === 'mx') {
+    return [{
+      title: resultDetailCopy.recordsTitle,
+      headers: [resultDetailCopy.table.priority, resultDetailCopy.table.target, resultDetailCopy.table.addresses, resultDetailCopy.table.status],
+      rows: records.map((record) => [
+        stringifyValue(record.priority),
+        stringifyValue(record.target),
+        stringifyValue(record.public_addresses ?? record.address_count),
+        Number(record.address_count ?? 0) > 0 ? 'inbound ready' : 'needs public A/AAAA',
+      ]),
+    }]
+  }
+
+  if (tool.checkType === 'blacklist') {
+    return [{
+      title: resultDetailCopy.probesTitle,
+      headers: [resultDetailCopy.table.address, resultDetailCopy.table.zone, resultDetailCopy.table.result, resultDetailCopy.table.detail],
+      rows: probes.map((probe) => [
+        stringifyValue(probe.address),
+        stringifyValue(probe.zone),
+        probe.error ? 'error' : (probe.rate_limited ? 'rate-limited' : (probe.listed ? 'listed' : 'unlisted')),
+        stringifyValue(probe.responses ?? probe.error, 'No DNSBL response'),
+      ]),
+    }]
+  }
+
+  if (tool.checkType === 'smtp') {
+    return [{
+      title: resultDetailCopy.probesTitle,
+      headers: [resultDetailCopy.table.host, resultDetailCopy.table.address, resultDetailCopy.table.port, resultDetailCopy.table.status, resultDetailCopy.table.latency],
+      rows: probes.map((probe) => [
+        stringifyValue(probe.mx_host),
+        stringifyValue(probe.address),
+        stringifyValue(probe.port),
+        stringifyValue(probe.tcp_status),
+        probe.latency_ms === null || probe.latency_ms === undefined ? '-' : `${probe.latency_ms} ms`,
+      ]),
+    }]
+  }
+
+  if (tool.checkType === 'spf' || tool.checkType === 'dmarc') {
+    return []
+  }
+
+  return []
+})
+
+const authenticationResultHighlights = computed(() => {
+  if (!isHeaderAnalyzer.value) {
+    return []
+  }
+
+  return headersValue.value
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => /^Authentication-Results:/iu.test(line))
+})
 
 function statusClass(status: string | undefined): string {
   if (status === 'pass') {
@@ -187,6 +424,37 @@ async function copyRecordValue(): Promise<void> {
   }
 }
 
+async function copyFixGuidance(): Promise<void> {
+  if (typeof navigator === 'undefined' || !navigator.clipboard) {
+    return
+  }
+
+  try {
+    await navigator.clipboard.writeText(fixGuidanceText.value)
+    guidanceCopied.value = true
+    window.setTimeout(() => {
+      guidanceCopied.value = false
+    }, 1600)
+  } catch {
+    // The guidance remains visible when clipboard permissions are unavailable.
+  }
+}
+
+function runLocalHeaderPreview(trackResult: boolean): void {
+  previewSubmitted.value = true
+  errorMessage.value = ''
+  apiResult.value = null
+  apiMeta.value = {}
+  headerResult.value = analyzeMailHeaders(headersValue.value)
+
+  if (trackResult) {
+    trackMailHealthEvent(
+      { toolSlug: tool.slug, locale, routePath: canonicalPath },
+      headerResult.value.ok ? 'tool_completed' : 'tool_failed',
+    )
+  }
+}
+
 async function runApiCheck(path: string, body: Record<string, unknown>): Promise<void> {
   const response = await fetch(mailhealthEndpoint(path), {
     method: 'POST',
@@ -215,11 +483,7 @@ async function previewResult(): Promise<void> {
   trackMailHealthEvent({ toolSlug: tool.slug, locale, routePath: canonicalPath }, 'tool_started')
 
   if (isHeaderAnalyzer.value) {
-    headerResult.value = analyzeMailHeaders(headersValue.value)
-    trackMailHealthEvent(
-      { toolSlug: tool.slug, locale, routePath: canonicalPath },
-      headerResult.value.ok ? 'tool_completed' : 'tool_failed',
-    )
+    runLocalHeaderPreview(true)
     return
   }
 
@@ -259,6 +523,12 @@ async function previewResult(): Promise<void> {
 onMounted(() => {
   trackMailHealthEvent({ toolSlug: tool.slug, locale, routePath: canonicalPath }, 'tool_viewed')
 })
+
+watch(headersValue, () => {
+  if (isHeaderAnalyzer.value) {
+    runLocalHeaderPreview(false)
+  }
+}, { immediate: true })
 
 useHead({
   htmlAttrs: {
@@ -327,10 +597,10 @@ useHead({
         </div>
         <div class="status-panel__row">
           <div>
-            <strong>{{ shellCopy.plannedTitle }}</strong>
-            <span>{{ shellCopy.plannedBody }}</span>
+            <strong>{{ shellCopy.freeCheckLabel }}</strong>
+            <span>{{ copy.freeScope }}</span>
           </div>
-          <span class="signal signal--amber" aria-hidden="true"></span>
+          <span class="signal" aria-hidden="true"></span>
         </div>
       </aside>
     </section>
@@ -433,9 +703,9 @@ useHead({
               <table class="result-table">
                 <thead>
                   <tr>
-                    <th>Signal</th>
-                    <th>Status</th>
-                    <th>Detail</th>
+                    <th>{{ resultDetailCopy.table.signal }}</th>
+                    <th>{{ resultDetailCopy.table.status }}</th>
+                    <th>{{ resultDetailCopy.table.detail }}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -448,33 +718,61 @@ useHead({
               </table>
             </div>
 
-            <section v-if="apiResult?.records?.length" class="content-section">
-              <h3>DNS records</h3>
-              <ul class="result-list">
-                <li v-for="record in apiResult.records" :key="JSON.stringify(record)">
-                  {{ JSON.stringify(record) }}
-                </li>
-              </ul>
+            <section v-if="resultDetailItems.length" class="content-section">
+              <h3>{{ resultDetailCopy.parsedTitle }}</h3>
+              <dl class="result-detail-grid">
+                <div v-for="item in resultDetailItems" :key="`${item.label}-${item.value}`">
+                  <dt>{{ item.label }}</dt>
+                  <dd>
+                    <span v-if="item.status" :class="statusClass(item.status)">{{ item.value }}</span>
+                    <span v-else>{{ item.value }}</span>
+                  </dd>
+                </div>
+              </dl>
             </section>
 
-            <section v-if="apiResult?.probes?.length" class="content-section">
-              <h3>Probe details</h3>
-              <ul class="result-list">
-                <li v-for="probe in apiResult.probes" :key="JSON.stringify(probe)">
-                  {{ JSON.stringify(probe) }}
+            <section v-if="isDkimCheck" class="content-section">
+              <h3>{{ resultDetailCopy.dkimSelectorTitle }}</h3>
+              <p>{{ resultDetailCopy.dkimSelectorBody }}</p>
+            </section>
+
+            <section v-if="isHeaderAnalyzer" class="content-section">
+              <h3>{{ resultDetailCopy.authenticationResultsTitle }}</h3>
+              <ul v-if="authenticationResultHighlights.length" class="result-list">
+                <li v-for="line in authenticationResultHighlights" :key="line">
+                  <code>{{ line }}</code>
                 </li>
               </ul>
+              <p v-else>{{ resultDetailCopy.noAuthenticationResults }}</p>
+            </section>
+
+            <section v-for="table in resultDetailTables" :key="table.title" class="content-section">
+              <h3>{{ table.title }}</h3>
+              <div class="result-table-wrap">
+                <table class="result-table">
+                  <thead>
+                    <tr>
+                      <th v-for="header in table.headers" :key="header">{{ header }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(row, rowIndex) in table.rows" :key="`${table.title}-${rowIndex}`">
+                      <td v-for="(cell, cellIndex) in row" :key="`${table.title}-${rowIndex}-${cellIndex}`">{{ cell }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </section>
 
             <section v-if="apiResult?.warnings?.length" class="content-section">
-              <h3>Warnings</h3>
+              <h3>{{ resultDetailCopy.warningsTitle }}</h3>
               <ul class="result-list">
                 <li v-for="warning in apiResult.warnings" :key="warning">{{ warning }}</li>
               </ul>
             </section>
           </template>
 
-          <p v-else>{{ previewSubmitted ? copy.previewResult : shellCopy.plannedBody }}</p>
+          <p v-else>{{ copy.previewResult }}</p>
         </section>
       </div>
 
@@ -498,6 +796,9 @@ useHead({
               <dd>{{ copy.upgradeScope }}</dd>
             </div>
           </dl>
+          <button class="button-link button-link--secondary guidance-copy" type="button" @click="copyFixGuidance">
+            {{ guidanceCopied ? resultDetailCopy.guidanceCopiedLabel : resultDetailCopy.guidanceCopyLabel }}
+          </button>
         </section>
 
         <section class="band record-builder" :aria-labelledby="`${tool.slug}-record-builder`">

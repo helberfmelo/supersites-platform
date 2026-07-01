@@ -116,7 +116,7 @@ const pageSpecs: Record<ContentPageSlug, {
     sections: [
       ['Purpose', 'The site helps domain owners inspect SPF, DKIM, DMARC, MX, DNSBL reputation, SMTP reachability and message headers without mandatory signup.'],
       ['What is live now', 'MailHealth provides a free diagnostic surface plus bounded control-plane API endpoints for DNS, DNSBL and SMTP checks.'],
-      ['Upgrade boundary', 'Paid value is planned around monitoring, alerts, DMARC reports, batches, API access, white-label exports and team workflows.'],
+      ['Account features', 'Paid value centers on monitoring, alerts, DMARC reports, batches, API access, white-label exports and team workflows.'],
     ],
   },
   contact: {
@@ -139,10 +139,10 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   cookies: {
     title: 'Cookie Policy',
-    description: 'How MailHealth plans essential storage, consent-aware analytics and advertising controls after launch gates.',
+    description: 'How MailHealth handles essential storage, consent-aware analytics and advertising controls.',
     sections: [
       ['Essential storage', 'Language, consent and session security may use essential storage when those features are enabled.'],
-      ['Analytics and ads', 'External analytics and advertising storage remain blocked until consent mode, regional rules and placement gates are implemented.'],
+      ['Analytics and advertising', 'External analytics and advertising storage stay off until consent mode, regional rules and placement controls are implemented.'],
       ['Choices', 'A consent interface must exist before non-essential storage is used. Browser settings can clear local data.'],
     ],
   },
@@ -170,16 +170,16 @@ const pageSpecs: Record<ContentPageSlug, {
     sections: [
       ['Useful pages', 'Each page must include the working check, input assumptions, result interpretation, common failures, remediation hints, FAQ and review date.'],
       ['Corrections', 'Corrections are prioritized when SPF, DKIM, DMARC, MX, SMTP, blacklist or privacy guidance could mislead users.'],
-      ['Localization gate', 'Localized pages must preserve behavior, safety assumptions and commercial boundaries before launch readiness.'],
+      ['Localization review', 'Localized pages must preserve behavior, safety assumptions and commercial boundaries before launch readiness.'],
     ],
   },
   status: {
-    title: 'Launch Status',
-    description: 'MailHealth status for public web readiness, API probes, ads, billing and monitoring gates.',
+    title: 'Product Status',
+    description: 'MailHealth status for current diagnostics, hosting and inactive account features.',
     sections: [
-      ['MVP surface', 'The local/CI MVP contains seven checks, five language route sets, sitemap, canonical, hreflang, structured data and bounded API probes.'],
-      ['Production', 'MailHealth is live at `/supersites/mailhealth/` as a versioned HostGator static app with public smoke, bounded public API probes and rollback workflow validated.'],
-      ['Gates', 'Recurring monitoring, alert delivery, DMARC report ingestion, batches, white-label, billing, ads and external analytics remain blocked until documented gates pass.'],
+      ['Live diagnostics', 'MailHealth contains seven checks, five language route sets, sitemap, canonical, hreflang, structured data and bounded diagnostic endpoints.'],
+      ['Current hosting', 'MailHealth is available at `/supersites/mailhealth/` as a versioned HostGator static app with artifact validation and recovery workflow.'],
+      ['Inactive account features', 'Recurring monitoring, alert delivery, DMARC report ingestion, batches, white-label exports, payment flows and external analytics are not enabled on free pages.'],
     ],
   },
 }
