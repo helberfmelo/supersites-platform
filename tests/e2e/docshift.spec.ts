@@ -37,7 +37,7 @@ test.describe('DocShift browser workflows', () => {
     )
     await expect(page.getByRole('heading', { name: 'PDF Merge' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Text to PDF' })).toBeVisible()
-    await expect(page.getByText('Files stay in this browser')).toBeVisible()
+    await expect(page.getByText('Files stay in this browser', { exact: true })).toBeVisible()
     await expect(page.getByText('Browser local', { exact: true })).toHaveCount(8)
     await expect(page.getByRole('heading', { name: 'Advanced document workflow review' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'OCR and table extraction' })).toBeVisible()
