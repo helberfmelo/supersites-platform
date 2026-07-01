@@ -269,6 +269,19 @@ h3 {
   gap: 7px;
 }
 
+.field-group {
+  display: grid;
+  gap: 12px;
+}
+
+.field-group--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.field--wide {
+  grid-column: 1 / -1;
+}
+
 .field label {
   color: #4a5e5f;
   font-size: 0.82rem;
@@ -289,6 +302,28 @@ h3 {
   border-radius: 8px;
   color: #18201f;
   background: #ffffff;
+}
+
+.inline-input-action {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.check-row {
+  display: inline-flex;
+  gap: 9px;
+  align-items: center;
+  color: #314647;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.check-row input {
+  width: 18px;
+  height: 18px;
+  accent-color: #246a73;
 }
 
 .field input,
@@ -571,7 +606,7 @@ h3 {
   margin-top: 0;
 }
 
-.upgrade-panel {
+.advanced-panel {
   grid-area: upgrade;
   margin-top: 0;
 }
@@ -624,7 +659,7 @@ h3 {
 }
 
 .payload-details,
-.gated-list {
+.advanced-list {
   margin: 0;
   padding: 0;
 }
@@ -755,17 +790,52 @@ h3 {
   margin-top: 0;
 }
 
-.gated-list {
+.advanced-list {
   display: grid;
   gap: 8px;
   list-style: none;
 }
 
-.gated-list li {
+.advanced-list li {
   padding-left: 14px;
   border-left: 3px solid #b35a2b;
   color: #314647;
   font-weight: 750;
+}
+
+.support-band {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+}
+
+.support-band .button-link {
+  pointer-events: none;
+}
+
+.context-footer {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+  padding: 18px;
+  border: 1px solid #d1dcdd;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.context-footer h2,
+.context-footer h3 {
+  margin-bottom: 8px;
+}
+
+.context-footer a {
+  display: block;
+  padding: 5px 0;
+  color: #246a73;
+  font-weight: 800;
+  text-decoration: none;
 }
 
 .related-panel {
@@ -884,12 +954,15 @@ h3 {
   .controls,
   .tool-grid,
   .band-grid,
+  .field-group--two,
   .tool-layout,
   .tool-workbench__header,
   .content-layout,
   .related-panel,
   .related-grid,
-  .payload-details {
+  .payload-details,
+  .support-band,
+  .context-footer {
     display: grid;
     grid-template-columns: 1fr;
   }

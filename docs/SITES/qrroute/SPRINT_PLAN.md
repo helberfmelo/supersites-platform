@@ -1,6 +1,6 @@
 # QRRoute Sprint Plan
 
-Data-base: 2026-06-27
+Data-base: 2026-06-30
 
 ## Real sprint
 
@@ -13,7 +13,7 @@ Data-base: 2026-06-27
 - Nuxt SSG app exists with six browser-side QR/barcode/UTM tools and five locales.
 - Control-plane has gated redirect-service foundation.
 - Public URL is a live Nuxt static app at `https://opentshost.com/supersites/qrroute/` since Fase 8, with app-specific deploy/smoke/rollback available through `Deploy Static App HostGator`.
-- Sprint 9.6 is the current benchmark-grade follow-up for a tool-first generator and production rollout.
+- Sprint 18.53-18.59 is the current benchmark-grade follow-up for live specialized QRRoute tool workflows.
 
 ## Scope
 
@@ -26,7 +26,9 @@ Data-base: 2026-06-27
 - `pnpm test:qrroute`
 - `pnpm build:qrroute`
 - `pnpm validate:qrroute-preview`
-- `pnpm test:e2e:qrroute`
+- `pnpm validate:public-copy`
+- `git diff --check`
+- `pnpm test:e2e:qrroute` only when the owner asks or the remote Quality Gate exposes a frontend regression.
 - Backend tests if redirect module changes.
 - Standard structure/secrets/dry-run/ci/diff gates.
 
@@ -35,6 +37,16 @@ Data-base: 2026-06-27
 - No public short-link creation or analytics.
 - No custom domains, paid API, checkout or ad serving.
 - No analytics values from URLs, Wi-Fi passwords, vCards or payloads.
+
+## Sprint 18.53-18.59 implementation note
+
+- Refined the shared workbench into specialized local workflows for static QR, barcode, UTM, vCard, Wi-Fi and QR preview inspection.
+- Static QR now auto-renders from URL/text/email/phone modes, keeps safe URL validation, exposes optional labels and offers SVG, PNG, copy and print actions.
+- Barcode now renders Code 128 previews with label and size controls plus SVG/PNG output while preserving printable ASCII validation.
+- UTM, vCard and Wi-Fi now use structured fields; UTM includes campaign presets, vCard previews the generated contact payload, and Wi-Fi includes encryption, hidden-network and show/hide password controls.
+- QR Preview Lab now reports payload type, scheme, size, destination and risk notes with a local QR preview.
+- Home copy removed top-level internal/commercial status wording, added contextual QR/barcode/UTM/guide footer links and an inert support block with no payment provider.
+- Local validation passed with `pnpm test:qrroute`, `pnpm build:qrroute`, `pnpm validate:qrroute-preview`, `pnpm validate:public-copy` and `git diff --check`.
 
 ## Sprint 7.7 local implementation note
 

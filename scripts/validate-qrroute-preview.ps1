@@ -92,7 +92,9 @@ try {
         'hreflang="pt-BR"',
         'Static QR Code Generator',
         '6 local workflow tools',
-        'Commercial redirects planned'
+        'Advanced link workflows',
+        'Support QRRoute',
+        'QR Tools'
     )
 
     foreach ($needle in $requiredHtml) {

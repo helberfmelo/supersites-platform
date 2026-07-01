@@ -26,65 +26,44 @@ Concluido ate:
 - Etapa CalcHarbor Tools: home, Loan Payment, Break-even Point, Gross Margin e ROI.
 - Etapa DevUtility Lab Tools: home, Structured Data Formatter, Base64 Converter, JWT Inspector, Regex Tester, Text Diff, Cron Helper, UUID Generator, Timestamp Converter e Hash Generator.
 - Etapa TimeNexus Tools: home, World Clock Americas + Europe, Time Zone Converter, Timestamp Converter, Date Difference, Business Days, Age Calculator, Percentage Calculator e Unit Converter.
+- Etapa QRRoute Tools: home, Static QR Code Generator, Barcode Generator, UTM Builder, vCard QR Builder, Wi-Fi QR Builder e QR Preview Lab.
 
 Proxima etapa ativa:
 
-- **Etapa QRRoute Tools**
-- Sprints: **18.53 a 18.59**
-- Escopo: QRRoute home, Static QR Code Generator, Barcode Generator, UTM Builder, vCard QR Builder, Wi-Fi QR Builder e QR Preview Lab.
+- **Etapa InvoiceCraft Tools**
+- Sprints: **18.60 a 18.63**
+- Escopo: InvoiceCraft home, Invoice Builder, Quote Builder e Receipt Builder.
 
 ## Sprints da proxima etapa
 
-### Sprint 18.53 - QRRoute home
+### Sprint 18.60 - InvoiceCraft home
 
-- QR preview ao vivo acima da dobra.
-- Remover `Commercial redirects planned`, `billing` e `ads inactive` do topo.
-- Abas de tipos de QR claras.
-- Footer com QR Tools, Barcode Tools, UTM Tools e Guides.
-- Bloco de doacao.
+- Home deve ser editor/document studio imediatamente, nao catalogo textual.
+- Inspirar-se em Invoice Generator: editor acima da dobra, download claro.
+- Remover `Payments and taxes planned` do topo.
+- Nota fiscal/imposto apenas como disclaimer no fim e docs humanos.
 
-### Sprint 18.54 - Static QR Code Generator
+### Sprint 18.61 - Invoice Builder
 
-- Preview em tempo real sem exigir botao quando possivel.
-- Botoes: Download SVG, Download PNG, Copy payload e Print.
-- Tipos: URL, text, email e phone.
-- Validacao de URL segura.
-- Explicar estatico vs dinamico abaixo.
-- Corrigir PT-BR: `Safe URL`, `Plain text`, `Optional label` etc.
+- Layout documento real: editor a esquerda, preview do documento a direita.
+- Botao `Download PDF` sempre visivel apos calculo.
+- Campos: issuer, client, number, issue date, due date, currency, items, tax/discount/shipping, notes e terms.
+- Adicionar logo upload local opcional se ja seguro; se nao, backlog.
+- Remover alertas tecnicos do topo.
 
-### Sprint 18.55 - Barcode Generator
+### Sprint 18.62 - Quote Builder
 
-- Preview real de barcode.
-- Download SVG/PNG.
-- Labels e tamanho.
-- Validar caracteres.
+- Mesmo editor, mas linguagem de orcamento/proposta.
+- Campo `Valid until` destacado.
+- Preview com titulo Quote/Estimate.
+- CTA para converter em invoice como upgrade futuro.
 
-### Sprint 18.56 - UTM Builder
+### Sprint 18.63 - Receipt Builder
 
-- Campos individuais para source, medium, campaign, term e content.
-- URL final copyable.
-- QR preview do link final.
-- Presets de campanha.
-
-### Sprint 18.57 - vCard QR Builder
-
-- Campos estruturados: name, org, phone, email e website.
-- Preview vCard e QR.
-- Download QR e copy vCard.
-- Privacidade abaixo, nao dominante.
-
-### Sprint 18.58 - Wi-Fi QR Builder
-
-- Campos SSID, password, encryption e hidden.
-- Botao show/hide password.
-- QR preview e download.
-- Aviso de privacidade discreto.
-
-### Sprint 18.59 - QR Preview Lab
-
-- Ferramenta para colar payload e validar estrutura.
-- Mostrar QR, scheme, tamanho, risco e destino.
-- Explicar limites de QR impresso.
+- Mesmo editor, mas com `Paid date` e status paid.
+- Preview de recibo limpo.
+- Nota: nao processa pagamento; apenas gera recibo.
+- Mover limites para baixo.
 
 ## Regras de produto
 

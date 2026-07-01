@@ -115,8 +115,8 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'QRRoute is the SuperSites product for static QR, barcode, UTM, vCard, Wi-Fi and preview workflows.',
     sections: [
       ['Purpose', 'The site helps users create one-off scannable payloads without mandatory signup, hidden redirects or server-side storage.'],
-      ['What is live now', 'The browser MVP includes six local tools covering static QR, Code 128 barcode, UTM links, vCard, Wi-Fi and QR preview inspection.'],
-      ['Upgrade boundary', 'Paid value is planned around dynamic QR, short links, analytics, custom domains, batches, teams and API access.'],
+      ['What is live now', 'The browser builder includes six local tools covering static QR, Code 128 barcode, UTM links, vCard, Wi-Fi and QR preview inspection.'],
+      ['Account workflows', 'Advanced value is centered on editable QR, short links, analytics, custom domains, batches, teams and API access.'],
     ],
   },
   contact: {
@@ -139,10 +139,10 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   cookies: {
     title: 'Cookie Policy',
-    description: 'How QRRoute plans essential storage, consent-aware analytics and advertising controls after gates.',
+    description: 'How QRRoute handles essential storage, consent-aware analytics and advertising controls after review.',
     sections: [
       ['Essential storage', 'Language, consent and session security may use essential storage when those features are enabled.'],
-      ['Analytics and ads', 'External analytics and advertising storage remain blocked until consent mode, regional rules and placement gates are implemented.'],
+      ['Analytics and advertising', 'External analytics and advertising storage require consent mode, regional rules and placement review before use.'],
       ['Choices', 'A consent interface must exist before non-essential storage is used. Browser settings can clear local data.'],
     ],
   },
@@ -160,7 +160,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'How QRRoute keeps builders useful, local and honest about redirect limits.',
     sections: [
       ['Working builder first', 'Each page must include a functioning free builder or preview before it can be treated as launch-ready content.'],
-      ['Client-side rendering', 'Static QR and barcode previews are rendered in the browser from the visible payload so the MVP does not need a redirect service to solve the basic task.'],
+      ['Client-side rendering', 'Static QR and barcode previews are rendered in the browser from the visible payload so the free builder does not need a redirect service to solve the basic task.'],
       ['Abuse guard', 'URL previews block dangerous schemes, localhost/private destinations, embedded credentials and oversized payloads before rendering.'],
     ],
   },
@@ -175,11 +175,11 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   status: {
     title: 'Launch Status',
-    description: 'QRRoute status for public web readiness, ads, billing, redirect service and gates.',
+    description: 'QRRoute status for public web readiness, monetization review, redirect service and release checks.',
     sections: [
-      ['MVP surface', 'The local/CI MVP contains six tools, five language route sets, sitemap, canonical, hreflang, structured data and browser-side preview rendering.'],
+      ['Current surface', 'The local/CI builder contains six tools, five language route sets, sitemap, canonical, hreflang, structured data and browser-side preview rendering.'],
       ['Production', 'QRRoute is live at `/supersites/qrroute/` as a versioned HostGator static app with public smoke and rollback workflow validated.'],
-      ['Gates', 'Dynamic QR, short links, redirect analytics, custom domains, batches, billing, ads and external analytics remain blocked until documented gates pass.'],
+      ['Release checks', 'Editable QR, short links, redirect analytics, custom domains, batches, checkout, advertising and external analytics require documented review before use.'],
     ],
   },
 }

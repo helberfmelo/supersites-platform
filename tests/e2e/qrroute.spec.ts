@@ -45,7 +45,7 @@ async function expectNoHorizontalOverflow(page: Page) {
   expect(metrics.wideElements, JSON.stringify(metrics)).toHaveLength(0)
 }
 
-test.describe('QRRoute MVP', () => {
+test.describe('QRRoute builder', () => {
   test('renders the home page on desktop', async ({ page }, testInfo) => {
     const errors = collectBrowserErrors(page)
 
@@ -65,6 +65,8 @@ test.describe('QRRoute MVP', () => {
     await expect(page.locator('.preview-panel--dominant .preview-frame img')).toHaveAttribute('src', /^data:image\/svg\+xml/)
     await expect(page.getByRole('heading', { name: 'Static QR Code Generator' }).first()).toBeVisible()
     await expect(page.getByText('6 local workflow tools')).toBeVisible()
+    await expect(page.getByText('Advanced link workflows')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'QR Tools' })).toBeVisible()
     await expect(page.getByText('Free result').first()).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
@@ -81,7 +83,9 @@ test.describe('QRRoute MVP', () => {
     await page.goto('/en/tools/utm-builder?url=https://secret.example/path')
 
     await page.getByLabel('Base campaign URL').fill('https://example.com/pricing')
-    await page.getByLabel(/UTM fields/).fill('source=newsletter\nmedium=email\ncampaign=summer-launch')
+    await page.getByLabel('Source').fill('newsletter')
+    await page.getByLabel('Medium').fill('email')
+    await page.getByLabel('Campaign').fill('summer-launch')
     await page.getByRole('button', { name: 'Generate preview' }).click()
 
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('UTM Builder')
@@ -90,9 +94,10 @@ test.describe('QRRoute MVP', () => {
     await expect(page.locator('.result-output')).toContainText('utm_source=newsletter')
     await expect(page.locator('.preview-frame img')).toHaveAttribute('src', /^data:image\/svg\+xml/)
     await expect(page.getByRole('link', { name: 'Download SVG' })).toBeVisible()
+    await expect(page.getByRole('link', { name: 'Download PNG' })).toBeVisible()
     await expect(page.getByRole('button', { name: 'Copy payload' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Static vs dynamic' })).toBeVisible()
-    await expect(page.getByText('Dynamic QR editing')).toBeVisible()
+    await expect(page.getByText('Editable QR destination')).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Related tools' })).toBeVisible()
     await expect(page.getByRole('link', { name: /Static QR Code Generator/ })).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)
@@ -145,7 +150,7 @@ test.describe('QRRoute MVP', () => {
 
     await expect(page).toHaveTitle(/Construtor de QR Wi-Fi/)
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Construtor de QR Wi-Fi')
-    await expect(page.getByLabel('Network SSID')).toBeVisible()
+    await expect(page.getByLabel('SSID')).toBeVisible()
     await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR')
     await expectNoHorizontalOverflow(page)
 
