@@ -85,7 +85,7 @@ test.describe('QRRoute builder', () => {
     await page.getByLabel('Base campaign URL').fill('https://example.com/pricing')
     await page.getByLabel('Source').fill('newsletter')
     await page.getByLabel('Medium').fill('email')
-    await page.getByLabel('Campaign').fill('summer-launch')
+    await page.getByRole('textbox', { name: 'Campaign', exact: true }).fill('summer-launch')
     await page.getByRole('button', { name: 'Generate preview' }).click()
 
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('UTM Builder')
