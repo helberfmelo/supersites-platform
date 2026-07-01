@@ -65,3 +65,12 @@ Data-base: 2026-06-27
 - Local validation passed: `pnpm test:docshift` with 10 tests, `pnpm build:docshift`, `pnpm validate:docshift-preview`, `pnpm test:e2e:docshift`, public-copy, AdSense-safe, structure, secrets, deploy dry-run, ci changes and diff check.
 - Remote validation passed: feature commit `e3ed365`, Quality Gate `28356961011`, Deploy Dry Run `28356961015` and public DocShift smoke with asset `https://opentshost.com/supersites/docshift/_nuxt/DQ93lUzG.js`.
 - No upload API, OCR, conversion provider, server queue, persistent storage, paid API, checkout, billing, ad serving, donation link, affiliate link, external analytics, worker or cron was activated.
+
+## Phase 18.87-18.95 local execution
+
+- Refined DocShift home and eight PDF tools for the Fase 18 page-by-page benchmark pass.
+- Removed public top-level internal wording such as file-backend/MVP/planned-workflow markers and replaced it with browser-local file handling copy.
+- Added merge ordering controls, explicit all-pages/range scope, rotation buttons, local compression limits, watermark position/opacity/size, page-number position/start/format, metadata-before result metrics and text-to-PDF title/page-size/font-size controls.
+- Added a richer PDF tools footer with real links to the published DocShift tool routes.
+- Local validation passed: `pnpm test:docshift`, `pnpm build:docshift` and `pnpm validate:docshift-preview`.
+- No upload API, OCR, conversion provider, server queue, persistent storage, paid API, checkout, billing, ad serving, donation link, affiliate link, external analytics, worker or cron was activated.

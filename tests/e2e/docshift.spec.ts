@@ -25,7 +25,7 @@ async function createPdfThroughTextTool(page: Page, testInfo: TestInfo): Promise
   return pdfPath
 }
 
-test.describe('DocShift MVP', () => {
+test.describe('DocShift browser workflows', () => {
   test('renders localized home and document tool cards', async ({ page }, testInfo) => {
     await page.goto('/en')
 
@@ -37,8 +37,8 @@ test.describe('DocShift MVP', () => {
     )
     await expect(page.getByRole('heading', { name: 'PDF Merge' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Text to PDF' })).toBeVisible()
-    await expect(page.getByText('No server upload backend active')).toBeVisible()
-    await expect(page.getByText('Local free version', { exact: true })).toHaveCount(8)
+    await expect(page.getByText('Files stay in this browser')).toBeVisible()
+    await expect(page.getByText('Browser local', { exact: true })).toHaveCount(8)
     await expect(page.getByRole('heading', { name: 'Advanced document workflow review' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'OCR and table extraction' })).toBeVisible()
 
@@ -54,7 +54,7 @@ test.describe('DocShift MVP', () => {
     await expect(page.getByText('File state')).toBeVisible()
     await expect(page.getByText('Workflow snapshot')).toBeVisible()
     await expect(page.getByText('Privacy checklist')).toBeVisible()
-    await expect(page.getByText('Server workflow planned')).toBeVisible()
+    await expect(page.getByText('Advanced server workflow')).toBeVisible()
     await expect(page.getByText('Related document tools')).toBeVisible()
 
     await page.getByLabel('Plain text').fill('Private roadmap note\nGenerated locally for the DocShift smoke test.')
@@ -99,8 +99,7 @@ test.describe('DocShift MVP', () => {
 
     await page.goto('/en/tools/pdf-rotate?file=secret-contract.pdf')
     await page.getByLabel('PDF file').setInputFiles(pdfPath)
-    await page.getByRole('textbox', { name: 'Pages' }).fill('all')
-    await page.getByRole('combobox', { name: 'Rotation' }).selectOption('180')
+    await page.getByRole('button', { name: '180 degrees' }).click()
     await page.getByRole('button', { name: 'Process document' }).click()
 
     await expect(page.getByTitle('Processed PDF preview')).toBeVisible()

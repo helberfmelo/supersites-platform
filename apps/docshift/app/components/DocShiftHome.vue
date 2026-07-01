@@ -202,6 +202,19 @@ useHead(() => ({
       </div>
     </section>
 
+    <section class="band pdf-footer-tools" aria-labelledby="docshift-footer-tools">
+      <div>
+        <h2 id="docshift-footer-tools">{{ copy.footerToolsTitle }}</h2>
+        <p>{{ copy.footerToolsBody }}</p>
+      </div>
+      <div class="pdf-footer-tools__links">
+        <NuxtLink v-for="tool in docShiftToolCatalog" :key="tool.slug" :to="localizedToolPath(locale, tool.slug)">
+          <strong>{{ getDocShiftToolCopy(tool, locale).title }}</strong>
+          <span>{{ getDocShiftToolCopy(tool, locale).freeScope }}</span>
+        </NuxtLink>
+      </div>
+    </section>
+
     <LegalFooter :locale="locale" />
   </main>
 </template>

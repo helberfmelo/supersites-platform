@@ -17,6 +17,8 @@ export interface HomeCopy {
   principlesTitle: string
   principles: Array<{ title: string; body: string }>
   statusRows: Array<{ title: string; body: string; tone: 'green' | 'amber' }>
+  footerToolsTitle: string
+  footerToolsBody: string
 }
 
 export interface ShellCopy {
@@ -75,6 +77,39 @@ export interface ShellCopy {
   browserWorkerLabel: string
   localFallbackLabel: string
   processedPreviewTitle: string
+  fileOrderTitle: string
+  moveUpLabel: string
+  moveDownLabel: string
+  pageScopeLabel: string
+  allPagesLabel: string
+  pageRangeLabel: string
+  pageRangeHelp: string
+  rotateByLabel: string
+  watermarkPositionLabel: string
+  watermarkOpacityLabel: string
+  watermarkSizeLabel: string
+  positionDiagonalLabel: string
+  positionCenterLabel: string
+  positionTopLeftLabel: string
+  positionTopRightLabel: string
+  positionBottomLeftLabel: string
+  positionBottomRightLabel: string
+  pageNumberPositionLabel: string
+  pageNumberStartLabel: string
+  pageNumberFormatLabel: string
+  pageNumberFormatNumberLabel: string
+  pageNumberFormatPageLabel: string
+  pageNumberFormatTotalLabel: string
+  textTitleLabel: string
+  pageSizeLabel: string
+  fontSizeLabel: string
+  currentMetadataTitleLabel: string
+  currentMetadataAuthorLabel: string
+  metadataUnknownLabel: string
+  localCompressionBody: string
+  originalSizeLabel: string
+  savingsLabel: string
+  reductionLabel: string
   privacyChecklistTitle: string
   privacyChecklistItems: string[]
   fileSafetyLabel: string
@@ -97,21 +132,23 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     allCategories: 'All document tools',
     noResultsTitle: 'No document tools matched',
     noResultsBody: 'Clear the search or choose another document task.',
-    localBadgeLabel: 'Local MVP',
+    localBadgeLabel: 'Browser local',
     freeLabel: 'Free result',
     upgradeLabel: 'Upgrade path',
     detailCta: 'Open tool',
     principlesTitle: 'Operating principles',
     principles: [
-      { title: 'Basic need solved', body: 'The free MVP can produce a useful PDF output without an account, checkout or upload endpoint.' },
+      { title: 'Basic need solved', body: 'The free browser tools can produce useful PDF output without an account.' },
       { title: 'Documents stay local', body: 'Selected PDFs are handled with browser memory, worker validation and pdf-lib output in the current session.' },
-      { title: 'Heavy workflow gated', body: 'Batch, larger files, OCR, table extraction, history, API and teams stay gated until sandbox, antivirus and retention rules exist.' },
+      { title: 'Advanced workflow boundary', body: 'Batch, larger files, OCR, table extraction, history, API and teams require sandbox, antivirus and retention rules first.' },
     ],
     statusRows: [
       { title: '8 document tools', body: 'Merge, split, rotate, compress, watermark, page numbers, metadata and text conversion are available locally.', tone: 'green' },
       { title: '5 language route sets', body: 'English, Portuguese, Spanish, French and German routes are prerendered.', tone: 'green' },
-      { title: 'No file backend active', body: 'No upload API, server-side worker, account, billing, ads or external analytics is active.', tone: 'amber' },
+      { title: 'Files stay in this browser', body: 'Supported free tasks use local memory, object URLs and pdf-lib output for the current session.', tone: 'amber' },
     ],
+    footerToolsTitle: 'PDF tools for the next step',
+    footerToolsBody: 'Move from one local PDF task to the next: merge files, extract pages, rotate scans, add page numbers, clean metadata or turn plain text into a downloadable PDF.',
   },
   'pt-br': {
     eyebrow: 'DocShift',
@@ -123,21 +160,23 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     allCategories: 'Todas',
     noResultsTitle: 'Nenhuma ferramenta encontrada',
     noResultsBody: 'Limpe a busca ou escolha outra tarefa.',
-    localBadgeLabel: 'MVP local',
+    localBadgeLabel: 'Local no navegador',
     freeLabel: 'Resultado gratuito',
     upgradeLabel: 'Caminho de upgrade',
     detailCta: 'Abrir ferramenta',
     principlesTitle: 'Principios operacionais',
     principles: [
-      { title: 'Necessidade basica', body: 'O MVP gratuito gera uma saida PDF util sem conta, checkout ou endpoint de upload.' },
+      { title: 'Necessidade basica', body: 'As ferramentas gratuitas no navegador geram uma saida PDF util sem conta.' },
       { title: 'Documentos locais', body: 'PDFs selecionados usam memoria do navegador, validacao em worker e saida via pdf-lib na sessao.' },
-      { title: 'Workflow pesado bloqueado', body: 'Lote, arquivos maiores, OCR, tabelas, historico, API e equipes dependem de sandbox, antivirus e retencao.' },
+      { title: 'Limite de workflow avancado', body: 'Lote, arquivos maiores, OCR, tabelas, historico, API e equipes exigem sandbox, antivirus e retencao antes.' },
     ],
     statusRows: [
       { title: '8 ferramentas', body: 'Unir, dividir, girar, comprimir, marca d agua, paginas, metadados e texto rodam localmente.', tone: 'green' },
       { title: '5 rotas de idioma', body: 'Rotas em ingles, portugues, espanhol, frances e alemao sao prerenderizadas.', tone: 'green' },
-      { title: 'Sem backend de arquivos', body: 'Sem upload API, worker server-side, conta, billing, ads ou analytics externo ativo.', tone: 'amber' },
+      { title: 'Arquivos ficam neste navegador', body: 'Tarefas gratuitas suportadas usam memoria local, object URLs e saida pdf-lib nesta sessao.', tone: 'amber' },
     ],
+    footerToolsTitle: 'Ferramentas PDF para o proximo passo',
+    footerToolsBody: 'Passe de uma tarefa local para outra: una arquivos, extraia paginas, gire digitalizacoes, numere paginas, limpe metadados ou transforme texto em PDF.',
   },
   es: {
     eyebrow: 'DocShift',
@@ -149,21 +188,23 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     allCategories: 'Todas',
     noResultsTitle: 'Sin herramientas',
     noResultsBody: 'Borra la busqueda o elige otra tarea.',
-    localBadgeLabel: 'MVP local',
+    localBadgeLabel: 'Local en navegador',
     freeLabel: 'Resultado gratis',
     upgradeLabel: 'Ruta de upgrade',
     detailCta: 'Abrir',
     principlesTitle: 'Principios operativos',
     principles: [
-      { title: 'Necesidad basica', body: 'El MVP gratis genera una salida PDF util sin cuenta, checkout ni endpoint de subida.' },
+      { title: 'Necesidad basica', body: 'Las herramientas gratis en navegador generan una salida PDF util sin cuenta.' },
       { title: 'Documentos locales', body: 'Los PDFs usan memoria del navegador, validacion worker y salida pdf-lib en la sesion.' },
-      { title: 'Workflow pesado gated', body: 'Lote, archivos grandes, OCR, tablas, historial, API y equipos requieren sandbox, antivirus y retencion.' },
+      { title: 'Limite de workflow avanzado', body: 'Lote, archivos grandes, OCR, tablas, historial, API y equipos requieren sandbox, antivirus y retencion primero.' },
     ],
     statusRows: [
       { title: '8 herramientas', body: 'Unir, dividir, rotar, comprimir, marca de agua, paginas, metadata y texto corren localmente.', tone: 'green' },
       { title: '5 idiomas', body: 'Rutas en ingles, portugues, espanol, frances y aleman se prerenderizan.', tone: 'green' },
-      { title: 'Sin backend de archivos', body: 'Sin upload API, worker servidor, cuenta, billing, ads ni analytics externo.', tone: 'amber' },
+      { title: 'Archivos en este navegador', body: 'Las tareas gratis soportadas usan memoria local, object URLs y salida pdf-lib en esta sesion.', tone: 'amber' },
     ],
+    footerToolsTitle: 'Herramientas PDF para el siguiente paso',
+    footerToolsBody: 'Pasa de una tarea local a otra: unir archivos, extraer paginas, rotar escaneos, numerar paginas, limpiar metadata o convertir texto a PDF.',
   },
   fr: {
     eyebrow: 'DocShift',
@@ -175,21 +216,23 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     allCategories: 'Toutes',
     noResultsTitle: 'Aucun outil',
     noResultsBody: 'Effacez la recherche ou choisissez une autre tache.',
-    localBadgeLabel: 'MVP local',
+    localBadgeLabel: 'Local navigateur',
     freeLabel: 'Resultat gratuit',
     upgradeLabel: 'Offre payante',
     detailCta: 'Ouvrir',
     principlesTitle: 'Principes operationnels',
     principles: [
-      { title: 'Besoin de base', body: 'Le MVP gratuit produit un PDF utile sans compte, checkout ni endpoint upload.' },
+      { title: 'Besoin de base', body: 'Les outils gratuits du navigateur produisent un PDF utile sans compte.' },
       { title: 'Documents locaux', body: 'Les PDFs utilisent memoire navigateur, validation worker et sortie pdf-lib dans la session.' },
-      { title: 'Workflow lourd gate', body: 'Lots, gros fichiers, OCR, tableaux, historique, API et equipes exigent sandbox, antivirus et retention.' },
+      { title: 'Limite workflow avance', body: 'Lots, gros fichiers, OCR, tableaux, historique, API et equipes exigent sandbox, antivirus et retention d abord.' },
     ],
     statusRows: [
       { title: '8 outils', body: 'Fusion, separation, rotation, compression, filigrane, pages, metadata et texte sont locaux.', tone: 'green' },
       { title: '5 langues', body: 'Routes anglaises, portugaises, espagnoles, francaises et allemandes prerenderisees.', tone: 'green' },
-      { title: 'Pas de backend fichier', body: 'Pas d upload API, worker serveur, compte, billing, ads ou analytics externe.', tone: 'amber' },
+      { title: 'Fichiers dans ce navigateur', body: 'Les taches gratuites prises en charge utilisent memoire locale, object URLs et sortie pdf-lib dans cette session.', tone: 'amber' },
     ],
+    footerToolsTitle: 'Outils PDF pour l etape suivante',
+    footerToolsBody: 'Passez d une tache locale a l autre: fusionner, extraire des pages, pivoter des scans, numeroter, nettoyer les metadonnees ou convertir du texte en PDF.',
   },
   de: {
     eyebrow: 'DocShift',
@@ -201,21 +244,237 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     allCategories: 'Alle',
     noResultsTitle: 'Keine Tools',
     noResultsBody: 'Suche leeren oder andere Aufgabe waehlen.',
-    localBadgeLabel: 'Lokales MVP',
+    localBadgeLabel: 'Lokal im Browser',
     freeLabel: 'Kostenloses Ergebnis',
     upgradeLabel: 'Upgrade-Pfad',
     detailCta: 'Tool oeffnen',
     principlesTitle: 'Betriebsprinzipien',
     principles: [
-      { title: 'Basisbedarf geloest', body: 'Das kostenlose MVP erzeugt ein brauchbares PDF ohne Konto, Checkout oder Upload-Endpunkt.' },
+      { title: 'Basisbedarf geloest', body: 'Die kostenlosen Browser-Tools erzeugen ein brauchbares PDF ohne Konto.' },
       { title: 'Dokumente bleiben lokal', body: 'PDFs nutzen Browser-Speicher, Worker-Validierung und pdf-lib-Ausgabe in der Sitzung.' },
-      { title: 'Schwere Workflows gesperrt', body: 'Batch, grosse Dateien, OCR, Tabellen, Verlauf, API und Teams brauchen Sandbox, Antivirus und Retention.' },
+      { title: 'Grenze fuer erweiterte Workflows', body: 'Batch, grosse Dateien, OCR, Tabellen, Verlauf, API und Teams brauchen zuerst Sandbox, Antivirus und Retention.' },
     ],
     statusRows: [
       { title: '8 Dokumenttools', body: 'Merge, Split, Rotation, Kompression, Wasserzeichen, Seiten, Metadaten und Text laufen lokal.', tone: 'green' },
       { title: '5 Sprachrouten', body: 'Englische, portugiesische, spanische, franzoesische und deutsche Routen werden prerendered.', tone: 'green' },
-      { title: 'Kein Datei-Backend', body: 'Keine Upload API, Server Worker, Konto, Billing, Ads oder externes Analytics aktiv.', tone: 'amber' },
+      { title: 'Dateien bleiben in diesem Browser', body: 'Unterstuetzte kostenlose Aufgaben nutzen lokalen Speicher, Object URLs und pdf-lib-Ausgabe in dieser Sitzung.', tone: 'amber' },
     ],
+    footerToolsTitle: 'PDF-Tools fuer den naechsten Schritt',
+    footerToolsBody: 'Wechseln Sie zwischen lokalen PDF-Aufgaben: Dateien zusammenfuehren, Seiten extrahieren, Scans drehen, Seiten nummerieren, Metadaten bereinigen oder Text in PDF umwandeln.',
+  },
+}
+
+type ShellControlCopy = Pick<ShellCopy,
+  | 'fileOrderTitle'
+  | 'moveUpLabel'
+  | 'moveDownLabel'
+  | 'pageScopeLabel'
+  | 'allPagesLabel'
+  | 'pageRangeLabel'
+  | 'pageRangeHelp'
+  | 'rotateByLabel'
+  | 'watermarkPositionLabel'
+  | 'watermarkOpacityLabel'
+  | 'watermarkSizeLabel'
+  | 'positionDiagonalLabel'
+  | 'positionCenterLabel'
+  | 'positionTopLeftLabel'
+  | 'positionTopRightLabel'
+  | 'positionBottomLeftLabel'
+  | 'positionBottomRightLabel'
+  | 'pageNumberPositionLabel'
+  | 'pageNumberStartLabel'
+  | 'pageNumberFormatLabel'
+  | 'pageNumberFormatNumberLabel'
+  | 'pageNumberFormatPageLabel'
+  | 'pageNumberFormatTotalLabel'
+  | 'textTitleLabel'
+  | 'pageSizeLabel'
+  | 'fontSizeLabel'
+  | 'currentMetadataTitleLabel'
+  | 'currentMetadataAuthorLabel'
+  | 'metadataUnknownLabel'
+  | 'localCompressionBody'
+  | 'originalSizeLabel'
+  | 'savingsLabel'
+  | 'reductionLabel'
+>
+
+const shellControlCopy: Record<LocaleCode, ShellControlCopy> = {
+  en: {
+    fileOrderTitle: 'Merge order',
+    moveUpLabel: 'Move up',
+    moveDownLabel: 'Move down',
+    pageScopeLabel: 'Page scope',
+    allPagesLabel: 'All pages',
+    pageRangeLabel: 'Page range',
+    pageRangeHelp: 'Use all or ranges like 1-3,5.',
+    rotateByLabel: 'Rotate by',
+    watermarkPositionLabel: 'Watermark position',
+    watermarkOpacityLabel: 'Watermark opacity',
+    watermarkSizeLabel: 'Watermark size',
+    positionDiagonalLabel: 'Diagonal center',
+    positionCenterLabel: 'Center',
+    positionTopLeftLabel: 'Top left',
+    positionTopRightLabel: 'Top right',
+    positionBottomLeftLabel: 'Bottom left',
+    positionBottomRightLabel: 'Bottom right',
+    pageNumberPositionLabel: 'Number position',
+    pageNumberStartLabel: 'Start number',
+    pageNumberFormatLabel: 'Number format',
+    pageNumberFormatNumberLabel: '1',
+    pageNumberFormatPageLabel: 'Page 1',
+    pageNumberFormatTotalLabel: '1 / total',
+    textTitleLabel: 'PDF title',
+    pageSizeLabel: 'Page size',
+    fontSizeLabel: 'Font size',
+    currentMetadataTitleLabel: 'Current title',
+    currentMetadataAuthorLabel: 'Current author',
+    metadataUnknownLabel: 'Not available',
+    localCompressionBody: 'Local compression rewrites PDF structure and metadata. Image downsampling, OCR compression and large-file profiles require a reviewed server workflow first.',
+    originalSizeLabel: 'Original size',
+    savingsLabel: 'Savings',
+    reductionLabel: 'Reduction',
+  },
+  'pt-br': {
+    fileOrderTitle: 'Ordem da uniao',
+    moveUpLabel: 'Subir',
+    moveDownLabel: 'Descer',
+    pageScopeLabel: 'Escopo de paginas',
+    allPagesLabel: 'Todas as paginas',
+    pageRangeLabel: 'Intervalo de paginas',
+    pageRangeHelp: 'Use all ou intervalos como 1-3,5.',
+    rotateByLabel: 'Girar em',
+    watermarkPositionLabel: 'Posicao da marca',
+    watermarkOpacityLabel: 'Opacidade da marca',
+    watermarkSizeLabel: 'Tamanho da marca',
+    positionDiagonalLabel: 'Diagonal central',
+    positionCenterLabel: 'Centro',
+    positionTopLeftLabel: 'Superior esquerda',
+    positionTopRightLabel: 'Superior direita',
+    positionBottomLeftLabel: 'Inferior esquerda',
+    positionBottomRightLabel: 'Inferior direita',
+    pageNumberPositionLabel: 'Posicao do numero',
+    pageNumberStartLabel: 'Numero inicial',
+    pageNumberFormatLabel: 'Formato do numero',
+    pageNumberFormatNumberLabel: '1',
+    pageNumberFormatPageLabel: 'Pagina 1',
+    pageNumberFormatTotalLabel: '1 / total',
+    textTitleLabel: 'Titulo do PDF',
+    pageSizeLabel: 'Tamanho da pagina',
+    fontSizeLabel: 'Tamanho da fonte',
+    currentMetadataTitleLabel: 'Titulo atual',
+    currentMetadataAuthorLabel: 'Autor atual',
+    metadataUnknownLabel: 'Nao disponivel',
+    localCompressionBody: 'A compressao local regrava a estrutura e os metadados do PDF. Reducao de imagens, OCR e perfis para arquivos grandes exigem workflow de servidor revisado primeiro.',
+    originalSizeLabel: 'Tamanho original',
+    savingsLabel: 'Economia',
+    reductionLabel: 'Reducao',
+  },
+  es: {
+    fileOrderTitle: 'Orden de union',
+    moveUpLabel: 'Subir',
+    moveDownLabel: 'Bajar',
+    pageScopeLabel: 'Alcance de paginas',
+    allPagesLabel: 'Todas las paginas',
+    pageRangeLabel: 'Rango de paginas',
+    pageRangeHelp: 'Usa all o rangos como 1-3,5.',
+    rotateByLabel: 'Rotar',
+    watermarkPositionLabel: 'Posicion de marca',
+    watermarkOpacityLabel: 'Opacidad de marca',
+    watermarkSizeLabel: 'Tamano de marca',
+    positionDiagonalLabel: 'Diagonal centro',
+    positionCenterLabel: 'Centro',
+    positionTopLeftLabel: 'Arriba izquierda',
+    positionTopRightLabel: 'Arriba derecha',
+    positionBottomLeftLabel: 'Abajo izquierda',
+    positionBottomRightLabel: 'Abajo derecha',
+    pageNumberPositionLabel: 'Posicion del numero',
+    pageNumberStartLabel: 'Numero inicial',
+    pageNumberFormatLabel: 'Formato del numero',
+    pageNumberFormatNumberLabel: '1',
+    pageNumberFormatPageLabel: 'Pagina 1',
+    pageNumberFormatTotalLabel: '1 / total',
+    textTitleLabel: 'Titulo del PDF',
+    pageSizeLabel: 'Tamano de pagina',
+    fontSizeLabel: 'Tamano de fuente',
+    currentMetadataTitleLabel: 'Titulo actual',
+    currentMetadataAuthorLabel: 'Autor actual',
+    metadataUnknownLabel: 'No disponible',
+    localCompressionBody: 'La compresion local reescribe estructura y metadata del PDF. Reduccion de imagenes, OCR y perfiles para archivos grandes requieren workflow servidor revisado primero.',
+    originalSizeLabel: 'Tamano original',
+    savingsLabel: 'Ahorro',
+    reductionLabel: 'Reduccion',
+  },
+  fr: {
+    fileOrderTitle: 'Ordre de fusion',
+    moveUpLabel: 'Monter',
+    moveDownLabel: 'Descendre',
+    pageScopeLabel: 'Portee des pages',
+    allPagesLabel: 'Toutes les pages',
+    pageRangeLabel: 'Plage de pages',
+    pageRangeHelp: 'Utilisez all ou des plages comme 1-3,5.',
+    rotateByLabel: 'Pivoter de',
+    watermarkPositionLabel: 'Position filigrane',
+    watermarkOpacityLabel: 'Opacite filigrane',
+    watermarkSizeLabel: 'Taille filigrane',
+    positionDiagonalLabel: 'Diagonal centre',
+    positionCenterLabel: 'Centre',
+    positionTopLeftLabel: 'Haut gauche',
+    positionTopRightLabel: 'Haut droite',
+    positionBottomLeftLabel: 'Bas gauche',
+    positionBottomRightLabel: 'Bas droite',
+    pageNumberPositionLabel: 'Position numero',
+    pageNumberStartLabel: 'Numero initial',
+    pageNumberFormatLabel: 'Format numero',
+    pageNumberFormatNumberLabel: '1',
+    pageNumberFormatPageLabel: 'Page 1',
+    pageNumberFormatTotalLabel: '1 / total',
+    textTitleLabel: 'Titre PDF',
+    pageSizeLabel: 'Format page',
+    fontSizeLabel: 'Taille police',
+    currentMetadataTitleLabel: 'Titre actuel',
+    currentMetadataAuthorLabel: 'Auteur actuel',
+    metadataUnknownLabel: 'Non disponible',
+    localCompressionBody: 'La compression locale reecrit la structure et les metadonnees du PDF. Reduction image, OCR et profils gros fichiers exigent d abord un workflow serveur revu.',
+    originalSizeLabel: 'Taille originale',
+    savingsLabel: 'Gain',
+    reductionLabel: 'Reduction',
+  },
+  de: {
+    fileOrderTitle: 'Reihenfolge',
+    moveUpLabel: 'Nach oben',
+    moveDownLabel: 'Nach unten',
+    pageScopeLabel: 'Seitenumfang',
+    allPagesLabel: 'Alle Seiten',
+    pageRangeLabel: 'Seitenbereich',
+    pageRangeHelp: 'Nutzen Sie all oder Bereiche wie 1-3,5.',
+    rotateByLabel: 'Drehen um',
+    watermarkPositionLabel: 'Wasserzeichenposition',
+    watermarkOpacityLabel: 'Wasserzeichen-Deckkraft',
+    watermarkSizeLabel: 'Wasserzeichengroesse',
+    positionDiagonalLabel: 'Diagonal Mitte',
+    positionCenterLabel: 'Mitte',
+    positionTopLeftLabel: 'Oben links',
+    positionTopRightLabel: 'Oben rechts',
+    positionBottomLeftLabel: 'Unten links',
+    positionBottomRightLabel: 'Unten rechts',
+    pageNumberPositionLabel: 'Nummernposition',
+    pageNumberStartLabel: 'Startnummer',
+    pageNumberFormatLabel: 'Nummernformat',
+    pageNumberFormatNumberLabel: '1',
+    pageNumberFormatPageLabel: 'Seite 1',
+    pageNumberFormatTotalLabel: '1 / gesamt',
+    textTitleLabel: 'PDF-Titel',
+    pageSizeLabel: 'Seitengroesse',
+    fontSizeLabel: 'Schriftgroesse',
+    currentMetadataTitleLabel: 'Aktueller Titel',
+    currentMetadataAuthorLabel: 'Aktueller Autor',
+    metadataUnknownLabel: 'Nicht verfuegbar',
+    localCompressionBody: 'Lokale Kompression schreibt PDF-Struktur und Metadaten neu. Bildreduktion, OCR und Profile fuer grosse Dateien erfordern zuerst einen geprueften Server-Workflow.',
+    originalSizeLabel: 'Originalgroesse',
+    savingsLabel: 'Ersparnis',
+    reductionLabel: 'Reduktion',
   },
 }
 
@@ -224,7 +483,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'DocShift',
     workbenchEyebrow: 'PDF workbench',
     workbenchTitle: 'Choose a PDF task and process it locally.',
-    workbenchBody: 'Start with merge, split, rotate, compress, watermark, page numbers, metadata cleanup or text-to-PDF. The free workflow runs in this browser session before any advanced server workflow is introduced.',
+    workbenchBody: 'Start with merge, split, rotate, compress, watermark, page numbers, metadata cleanup or text-to-PDF. Files stay in this browser for supported free tasks.',
     toolTabsLabel: 'PDF tools',
     openGuideLabel: 'Open guide',
     previewEyebrow: 'Preview and download',
@@ -247,10 +506,10 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     privacyNote: 'Choose a small PDF or paste text. DocShift does not upload files, store document content, use localStorage, use sessionStorage or send document values to analytics.',
     invalidResultTitle: 'Check the document settings',
     pageStatusLabel: 'Document tool status',
-    liveTitle: 'Client-side MVP',
+    liveTitle: 'Browser document tools',
     liveBody: 'Worker validation and pdf-lib processing run in the browser without mandatory signup.',
-    gatedTitle: 'Heavy processing gated',
-    gatedBody: 'Batch, larger files, OCR, table extraction, history, API, teams and server queues are not active.',
+    gatedTitle: 'Advanced workflows require review',
+    gatedBody: 'Batch, larger files, OCR, table extraction, history, API, teams and server queues require approval before activation.',
     fileLabel: 'PDF file',
     pagesLabel: 'Pages',
     rotationLabel: 'Rotation',
@@ -276,6 +535,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     browserWorkerLabel: 'browser worker',
     localFallbackLabel: 'local fallback',
     processedPreviewTitle: 'Processed PDF preview',
+    ...shellControlCopy.en,
     privacyChecklistTitle: 'Privacy checklist',
     privacyChecklistItems: [
       'Files and pasted text stay in browser memory.',
@@ -284,8 +544,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     ],
     fileSafetyLabel: 'File safety',
     fileSafetyBody: 'Server-side batch, OCR, API and history require upload validation, sandboxing, antivirus where applicable, retention and deletion checks before activation.',
-    heavyQueueTitle: 'Server workflow gated',
-    heavyQueueBody: 'The paid path is reserved for batch folders, OCR, table extraction, history, teams and API after sandbox, antivirus, retention and billing gates.',
+    heavyQueueTitle: 'Advanced server workflow',
+    heavyQueueBody: 'The upgrade path is reserved for batch folders, OCR, table extraction, history, teams and API after sandbox, antivirus and retention review.',
     heavyQueueItems: ['Batch folders and larger files', 'OCR and table extraction', 'History, teams and API access', 'Server queues with retention/deletion rules'],
     relatedToolsTitle: 'Related document tools',
     relatedToolsBody: 'Continue with another local PDF workflow without uploading the document.',
@@ -294,7 +554,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'DocShift',
     workbenchEyebrow: 'Workbench de PDF',
     workbenchTitle: 'Escolha uma tarefa de PDF e processe localmente.',
-    workbenchBody: 'Comece por unir, dividir, girar, comprimir, marca d agua, numerar paginas, limpar metadados ou converter texto em PDF. O fluxo gratuito roda nesta sessao do navegador antes de qualquer workflow avancado no servidor.',
+    workbenchBody: 'Comece por unir, dividir, girar, comprimir, marca d agua, numerar paginas, limpar metadados ou converter texto em PDF. Arquivos ficam neste navegador nas tarefas gratuitas suportadas.',
     toolTabsLabel: 'Ferramentas de PDF',
     openGuideLabel: 'Abrir guia',
     previewEyebrow: 'Preview e download',
@@ -317,10 +577,10 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     privacyNote: 'Escolha um PDF pequeno ou cole texto. O DocShift nao faz upload, nao armazena conteudo, nao usa storage e nao envia valores a analytics.',
     invalidResultTitle: 'Confira os ajustes',
     pageStatusLabel: 'Status da ferramenta',
-    liveTitle: 'MVP client-side',
+    liveTitle: 'Ferramentas no navegador',
     liveBody: 'Validacao em worker e pdf-lib rodam no navegador sem cadastro obrigatorio.',
-    gatedTitle: 'Processamento pesado bloqueado',
-    gatedBody: 'Lotes, arquivos maiores, OCR, tabelas, historico, API, equipes e filas no servidor nao estao ativos.',
+    gatedTitle: 'Workflows avancados exigem revisao',
+    gatedBody: 'Lotes, arquivos maiores, OCR, tabelas, historico, API, equipes e filas no servidor exigem aprovacao antes da ativacao.',
     fileLabel: 'Arquivo PDF',
     pagesLabel: 'Paginas',
     rotationLabel: 'Rotacao',
@@ -346,6 +606,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     browserWorkerLabel: 'worker do navegador',
     localFallbackLabel: 'fallback local',
     processedPreviewTitle: 'Preview do PDF processado',
+    ...shellControlCopy['pt-br'],
     privacyChecklistTitle: 'Checklist de privacidade',
     privacyChecklistItems: [
       'Arquivos e texto colado ficam na memoria do navegador.',
@@ -354,8 +615,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     ],
     fileSafetyLabel: 'Seguranca de arquivo',
     fileSafetyBody: 'Lote server-side, OCR, API e historico exigem validacao de upload, sandbox, antivirus quando aplicavel, retencao e exclusao antes da ativacao.',
-    heavyQueueTitle: 'Workflow server-side bloqueado',
-    heavyQueueBody: 'O caminho pago fica para lotes, OCR, tabelas, historico, equipes e API apos gates de sandbox, antivirus, retencao e billing.',
+    heavyQueueTitle: 'Workflow avancado no servidor',
+    heavyQueueBody: 'O caminho de upgrade fica para lotes, OCR, tabelas, historico, equipes e API apos revisao de sandbox, antivirus e retencao.',
     heavyQueueItems: ['Pastas em lote e arquivos maiores', 'OCR e extracao de tabelas', 'Historico, equipes e API', 'Filas server-side com retencao/exclusao'],
     relatedToolsTitle: 'Ferramentas relacionadas',
     relatedToolsBody: 'Continue com outro workflow local de PDF sem fazer upload.',
@@ -364,7 +625,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'DocShift',
     workbenchEyebrow: 'Workbench PDF',
     workbenchTitle: 'Elige una tarea PDF y procesa localmente.',
-    workbenchBody: 'Empieza con unir, dividir, rotar, comprimir, marca de agua, numeros de pagina, metadata o texto a PDF. El flujo gratis corre en esta sesion del navegador antes de cualquier workflow avanzado servidor.',
+    workbenchBody: 'Empieza con unir, dividir, rotar, comprimir, marca de agua, numeros de pagina, metadata o texto a PDF. Los archivos quedan en este navegador para tareas gratis soportadas.',
     toolTabsLabel: 'Herramientas PDF',
     openGuideLabel: 'Abrir guia',
     previewEyebrow: 'Vista y descarga',
@@ -387,10 +648,10 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     privacyNote: 'Elige un PDF pequeno o pega texto. DocShift no sube archivos, no almacena contenido, no usa storage ni envia valores a analytics.',
     invalidResultTitle: 'Revisa los ajustes',
     pageStatusLabel: 'Estado',
-    liveTitle: 'MVP client-side',
+    liveTitle: 'Herramientas en navegador',
     liveBody: 'Validacion worker y pdf-lib corren en el navegador sin registro obligatorio.',
-    gatedTitle: 'Procesamiento pesado bloqueado',
-    gatedBody: 'Lotes, archivos grandes, OCR, tablas, historial, API, equipos y colas servidor no estan activos.',
+    gatedTitle: 'Workflows avanzados requieren revision',
+    gatedBody: 'Lotes, archivos grandes, OCR, tablas, historial, API, equipos y colas servidor requieren aprobacion antes de activarse.',
     fileLabel: 'Archivo PDF',
     pagesLabel: 'Paginas',
     rotationLabel: 'Rotacion',
@@ -416,6 +677,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     browserWorkerLabel: 'worker del navegador',
     localFallbackLabel: 'fallback local',
     processedPreviewTitle: 'Vista del PDF procesado',
+    ...shellControlCopy.es,
     privacyChecklistTitle: 'Checklist de privacidad',
     privacyChecklistItems: [
       'Archivos y texto pegado quedan en memoria del navegador.',
@@ -424,8 +686,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     ],
     fileSafetyLabel: 'Seguridad de archivo',
     fileSafetyBody: 'Batch servidor, OCR, API e historial requieren validacion de subida, sandbox, antivirus cuando aplique, retencion y borrado antes de activacion.',
-    heavyQueueTitle: 'Workflow servidor bloqueado',
-    heavyQueueBody: 'El camino pago queda para lotes, OCR, tablas, historial, equipos y API tras gates de sandbox, antivirus, retencion y billing.',
+    heavyQueueTitle: 'Workflow avanzado servidor',
+    heavyQueueBody: 'El camino de upgrade queda para lotes, OCR, tablas, historial, equipos y API tras revision de sandbox, antivirus y retencion.',
     heavyQueueItems: ['Carpetas batch y archivos mayores', 'OCR y extraccion de tablas', 'Historial, equipos y API', 'Colas servidor con retencion/borrado'],
     relatedToolsTitle: 'Herramientas relacionadas',
     relatedToolsBody: 'Continua con otro workflow PDF local sin subir el documento.',
@@ -434,7 +696,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'DocShift',
     workbenchEyebrow: 'Workbench PDF',
     workbenchTitle: 'Choisissez une tache PDF et traitez-la localement.',
-    workbenchBody: 'Commencez par fusionner, separer, pivoter, compresser, filigrane, numeros de page, metadonnees ou texte vers PDF. Le flux gratuit tourne dans cette session navigateur avant tout workflow serveur avance.',
+    workbenchBody: 'Commencez par fusionner, separer, pivoter, compresser, filigrane, numeros de page, metadonnees ou texte vers PDF. Les fichiers restent dans ce navigateur pour les taches gratuites prises en charge.',
     toolTabsLabel: 'Outils PDF',
     openGuideLabel: 'Ouvrir le guide',
     previewEyebrow: 'Apercu et telechargement',
@@ -457,10 +719,10 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     privacyNote: 'Choisissez un petit PDF ou collez du texte. DocShift ne charge pas, ne stocke pas le contenu, n utilise pas storage et n envoie pas les valeurs a analytics.',
     invalidResultTitle: 'Verifiez les reglages',
     pageStatusLabel: 'Statut',
-    liveTitle: 'MVP client-side',
+    liveTitle: 'Outils dans le navigateur',
     liveBody: 'Validation worker et pdf-lib fonctionnent dans le navigateur sans compte obligatoire.',
-    gatedTitle: 'Traitement lourd gate',
-    gatedBody: 'Lots, gros fichiers, OCR, tableaux, historique, API, equipes et queues serveur ne sont pas actifs.',
+    gatedTitle: 'Workflows avances a reviser',
+    gatedBody: 'Lots, gros fichiers, OCR, tableaux, historique, API, equipes et queues serveur exigent approbation avant activation.',
     fileLabel: 'Fichier PDF',
     pagesLabel: 'Pages',
     rotationLabel: 'Rotation',
@@ -486,6 +748,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     browserWorkerLabel: 'worker navigateur',
     localFallbackLabel: 'fallback local',
     processedPreviewTitle: 'Apercu du PDF traite',
+    ...shellControlCopy.fr,
     privacyChecklistTitle: 'Checklist confidentialite',
     privacyChecklistItems: [
       'Fichiers et texte colle restent en memoire navigateur.',
@@ -494,8 +757,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     ],
     fileSafetyLabel: 'Securite fichier',
     fileSafetyBody: 'Lots serveur, OCR, API et historique exigent validation upload, sandbox, antivirus si applicable, retention et suppression avant activation.',
-    heavyQueueTitle: 'Workflow serveur gate',
-    heavyQueueBody: 'Le chemin payant couvre lots, OCR, tableaux, historique, equipes et API apres gates sandbox, antivirus, retention et billing.',
+    heavyQueueTitle: 'Workflow serveur avance',
+    heavyQueueBody: 'Le parcours upgrade couvre lots, OCR, tableaux, historique, equipes et API apres revue sandbox, antivirus et retention.',
     heavyQueueItems: ['Dossiers batch et gros fichiers', 'OCR et extraction de tableaux', 'Historique, equipes et API', 'Queues serveur avec retention/suppression'],
     relatedToolsTitle: 'Outils document lies',
     relatedToolsBody: 'Continuez avec un autre workflow PDF local sans upload.',
@@ -504,7 +767,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     breadcrumbHome: 'DocShift',
     workbenchEyebrow: 'PDF-Workbench',
     workbenchTitle: 'PDF-Aufgabe waehlen und lokal verarbeiten.',
-    workbenchBody: 'Starten Sie mit Zusammenfuehren, Teilen, Drehen, Kompression, Wasserzeichen, Seitennummern, Metadaten oder Text zu PDF. Der kostenlose Ablauf laeuft in dieser Browser-Sitzung, bevor ein erweiterter Server-Workflow eingefuehrt wird.',
+    workbenchBody: 'Starten Sie mit Zusammenfuehren, Teilen, Drehen, Kompression, Wasserzeichen, Seitennummern, Metadaten oder Text zu PDF. Dateien bleiben fuer unterstuetzte kostenlose Aufgaben in diesem Browser.',
     toolTabsLabel: 'PDF-Tools',
     openGuideLabel: 'Leitfaden oeffnen',
     previewEyebrow: 'Vorschau und Download',
@@ -527,10 +790,10 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     privacyNote: 'Waehlen Sie ein kleines PDF oder fuegen Sie Text ein. DocShift laedt nicht hoch, speichert keine Inhalte, nutzt kein Storage und sendet keine Werte an Analytics.',
     invalidResultTitle: 'Einstellungen pruefen',
     pageStatusLabel: 'Toolstatus',
-    liveTitle: 'Client-seitiges MVP',
+    liveTitle: 'Browser-Dokumenttools',
     liveBody: 'Worker-Validierung und pdf-lib laufen im Browser ohne Pflichtkonto.',
-    gatedTitle: 'Schwere Verarbeitung gesperrt',
-    gatedBody: 'Batch, grosse Dateien, OCR, Tabellen, Verlauf, API, Teams und Server-Queues sind nicht aktiv.',
+    gatedTitle: 'Erweiterte Workflows brauchen Review',
+    gatedBody: 'Batch, grosse Dateien, OCR, Tabellen, Verlauf, API, Teams und Server-Queues brauchen Freigabe vor Aktivierung.',
     fileLabel: 'PDF-Datei',
     pagesLabel: 'Seiten',
     rotationLabel: 'Rotation',
@@ -556,6 +819,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     browserWorkerLabel: 'Browser-Worker',
     localFallbackLabel: 'lokaler Fallback',
     processedPreviewTitle: 'Vorschau des verarbeiteten PDFs',
+    ...shellControlCopy.de,
     privacyChecklistTitle: 'Datenschutz-Checkliste',
     privacyChecklistItems: [
       'Dateien und eingefuegter Text bleiben im Browser-Speicher.',
@@ -564,8 +828,8 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     ],
     fileSafetyLabel: 'Dateisicherheit',
     fileSafetyBody: 'Server-Batch, OCR, API und Verlauf erfordern Upload-Validierung, Sandbox, Antivirus falls noetig, Retention und Loeschung vor Aktivierung.',
-    heavyQueueTitle: 'Server-Workflow gesperrt',
-    heavyQueueBody: 'Der Bezahlpfad ist fuer Batch, OCR, Tabellen, Verlauf, Teams und API nach Sandbox-, Antivirus-, Retention- und Billing-Gates reserviert.',
+    heavyQueueTitle: 'Erweiterter Server-Workflow',
+    heavyQueueBody: 'Der Upgrade-Pfad ist fuer Batch, OCR, Tabellen, Verlauf, Teams und API nach Sandbox-, Antivirus- und Retention-Review reserviert.',
     heavyQueueItems: ['Batch-Ordner und groessere Dateien', 'OCR und Tabellenextraktion', 'Verlauf, Teams und API', 'Server-Queues mit Retention/Loeschung'],
     relatedToolsTitle: 'Verwandte Dokumenttools',
     relatedToolsBody: 'Mit einem weiteren lokalen PDF-Workflow ohne Upload fortfahren.',

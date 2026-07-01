@@ -31,78 +31,46 @@ Concluido ate:
 - Etapa MailHealth Tools: home, SPF Checker, DKIM Checker, DMARC Checker, MX Checker, Blacklist Check, SMTP Check e Header Analyzer.
 - Etapa SitePulse Lab Tools: home, HTTP Status Checker, Redirect Chain Checker, Security Headers Checker, Robots.txt Checker, Sitemap Validator, TTFB Checker e Performance Snapshot.
 - Etapa PixelBatch Tools: home, Image Compressor, Image Resizer, Image Cropper, Image Converter, Metadata Remover e Social Preset Generator.
+- Etapa DocShift Tools: home, PDF Merge, PDF Split, PDF Rotate, PDF Compressor, PDF Watermark, PDF Page Numbers, PDF Metadata Cleaner e Text to PDF.
 
 Proxima etapa ativa:
 
-- **Etapa DocShift Tools**
-- Sprints: **18.87 a 18.95**
-- Escopo: DocShift home, PDF Merge, PDF Split, PDF Rotate, PDF Compressor, PDF Watermark, PDF Page Numbers, PDF Metadata Cleaner e Text to PDF.
+- **Etapa Fechamento transversal da Fase 18**
+- Sprints: **18.96 a 18.99**
+- Escopo: QA multilingue completa, AdSense-safe placeholders/doacao sem ativar pagamento real, performance/acessibilidade/visual QA e relatorio final da Fase 18.
+- Observacao: esta etapa e QA/pre-divulgacao/fechamento; validacoes profundas entram quando a etapa for executada.
 
 ## Sprints da proxima etapa
 
-### Sprint 18.87 - DocShift home
+### Sprint 18.96 - QA multilingue completa
 
-- Inspirar-se em iLovePDF sem copiar UI/texto/assets: grid de ferramentas PDF grande e direto.
-- Dropzone para tarefa principal.
-- Remover `No server upload backend active` do topo.
-- Mostrar `Files stay in this browser for supported free tasks`.
-- Footer PDF tools rico.
+- Rodar crawler em todos os idiomas.
+- Detectar ingles residual fora de termos tecnicos aceitos.
+- Corrigir acentos e gramatica.
+- Validar `hreflang`, `canonical`, sitemap, title, description e schema.
+- Registrar paginas que devem ficar `noindex` ate traducao final.
 
-### Sprint 18.88 - PDF Merge
+### Sprint 18.97 - AdSense-safe placeholders e doacao
 
-- Dropzone dominante.
-- Lista de PDFs em ordem com drag/reorder se viavel.
-- Botao merge/download claro.
-- Progress state.
-- Corrigir textos PT-BR ainda em ingles.
+- Inserir slots reservados AdSense-safe apos resultado e conteudo, nunca entre input e botao.
+- Nao ativar anuncio real.
+- Adicionar donation block em todos os sites apos entrega de valor.
+- Nao ativar pagamento real sem gate humano.
+- Atualizar `ADSENSE_PLAYBOOK.md` e `HUMAN_ACTION_REQUIRED.md`.
 
-### Sprint 18.89 - PDF Split
+### Sprint 18.98 - Performance, acessibilidade e visual QA
 
-- Upload/dropzone.
-- Campo de page ranges.
-- Preview de paginas se viavel.
-- Download output.
+- Rodar Lighthouse/PageSpeed quando possivel.
+- Rodar GTmetrix manual ou registrar tarefa humana/API se indisponivel.
+- Metas: PageSpeed mobile 90+, PageSpeed desktop 95+, LCP <= 2.5s, INP <= 200ms, CLS <= 0.1 e GTmetrix A quando testado.
+- Corrigir imagens, JS excessivo, layout shift, hydration, fonts, lazy loading e CSS critico.
+- Validar responsividade 360px, 768px, 1024px e 1440px.
 
-### Sprint 18.90 - PDF Rotate
+### Sprint 18.99 - Dashboard, relatorios e encerramento da Fase 18
 
-- Upload/dropzone.
-- Escolher all pages ou range.
-- Botoes 90/180/270.
-- Download output.
-
-### Sprint 18.91 - PDF Compressor
-
-- Upload/dropzone.
-- Mostrar size before/after.
-- Explicar limites de compressao local.
-- Download output.
-
-### Sprint 18.92 - PDF Watermark
-
-- Upload/dropzone.
-- Campo texto, posicao, opacidade e tamanho.
-- Preview se viavel.
-- Download output.
-
-### Sprint 18.93 - PDF Page Numbers
-
-- Upload/dropzone.
-- Opcoes: position, start number e format.
-- Download output.
-
-### Sprint 18.94 - PDF Metadata Cleaner
-
-- Upload/dropzone.
-- Mostrar title/author quando acessivel.
-- Permitir limpar/substituir metadados basicos.
-- Download output.
-
-### Sprint 18.95 - Text to PDF
-
-- Editor de texto grande.
-- Opcoes simples: title, page size e font size.
-- Preview/download.
-- Limites claros abaixo.
+- Atualizar dashboard/admin do Supersite com KPIs de refinamento.
+- Criar `docs/PHASE_18_BENCHMARK_REFINEMENT_REPORT.md`.
+- Atualizar `docs/STATUS.md`, `docs/ROADMAP.md`, `docs/METRICS.md` e `docs/HUMAN_ACTION_REQUIRED.md`.
 
 ## Regras de produto
 

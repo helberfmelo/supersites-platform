@@ -737,6 +737,10 @@ h3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.field--wide {
+  grid-column: 1 / -1;
+}
+
 .document-tool-form input[type='file'] {
   min-height: auto;
   padding: 11px;
@@ -777,6 +781,99 @@ h3 {
 .file-state span {
   color: #607174;
   font-size: 0.9rem;
+}
+
+.file-order {
+  display: grid;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #d8e0e1;
+}
+
+.file-order-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.file-order-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 10px;
+  border: 1px solid #d8e0e1;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.file-order-list li > div,
+.choice-grid,
+.option-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.file-order-list button,
+.choice-grid button {
+  min-height: 34px;
+  padding: 6px 10px;
+  border: 1px solid #c1d0d2;
+  border-radius: 8px;
+  color: #203232;
+  background: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.file-order-list button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.choice-grid button[aria-pressed="true"] {
+  color: #ffffff;
+  border-color: #246a73;
+  background: #246a73;
+}
+
+.option-group {
+  padding: 12px;
+  border: 1px solid #d8e0e1;
+  border-radius: 8px;
+  background: #f8fafb;
+}
+
+.option-group > span {
+  color: #4a5e5f;
+  font-size: 0.82rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.inline-choice {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+  color: #253637;
+  font-weight: 800;
+}
+
+.inline-choice input {
+  width: auto;
+}
+
+.tool-note {
+  padding: 12px;
+  border: 1px solid #d8e0e1;
+  border-radius: 8px;
+  color: #405455;
+  background: #f8fafb;
 }
 
 .workflow-steps {
@@ -876,6 +973,33 @@ h3 {
   text-decoration: none;
 }
 
+.pdf-footer-tools {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 18px;
+}
+
+.pdf-footer-tools__links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.pdf-footer-tools__links a {
+  display: grid;
+  gap: 5px;
+  padding: 12px;
+  border: 1px solid #d8e0e1;
+  border-radius: 8px;
+  background: #f8fafb;
+  text-decoration: none;
+}
+
+.pdf-footer-tools__links span {
+  color: #506668;
+  font-size: 0.88rem;
+}
+
 .content-hero h1 {
   max-width: 760px;
   font-size: clamp(2rem, 5vw, 3.7rem);
@@ -939,6 +1063,10 @@ h3 {
   .pdf-support-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .pdf-footer-tools {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 820px) {
@@ -959,6 +1087,8 @@ h3 {
   .pdf-tool-tabs,
   .pdf-workbench__grid,
   .pdf-support-grid,
+  .pdf-footer-tools,
+  .pdf-footer-tools__links,
   .form-grid,
   .form-grid--three {
     display: grid;

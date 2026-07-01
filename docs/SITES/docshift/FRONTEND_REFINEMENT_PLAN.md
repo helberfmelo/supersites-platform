@@ -72,6 +72,14 @@ Medium; ads/support must stay away from uploads, progress, previews and download
 - Validated local and live desktop/mobile screenshots, 16 EN/PT-BR deep links, public copy, AdSense-safe layout, Playwright and benchmark crawler with 0 gaps.
 - No server upload, OCR, batch worker, persistent storage, account, ads, billing, donation, affiliate or external analytics was enabled.
 
+## Phase 18.87-18.95 execution notes
+
+- Home now leads with browser-local document trust copy and a richer PDF tools footer after the advanced-workflow review.
+- Shared workbench now supports merge ordering, page-scope selection, rotation buttons, local compression explanation, configurable watermark/page-number controls, metadata-before result rows and text-to-PDF layout options.
+- Result metrics now include original size, actual output, savings/reduction when applicable and worker/fallback status.
+- Public copy no longer surfaces internal MVP, upload-backend or planned-server-workflow markers.
+- Local validation passed: `pnpm test:docshift`, `pnpm build:docshift` and `pnpm validate:docshift-preview`.
+
 ## Dashboard backlog
 
 - PDF privacy readiness.

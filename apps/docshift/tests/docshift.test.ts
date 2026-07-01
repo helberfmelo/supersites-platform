@@ -28,11 +28,20 @@ const sample: DocShiftToolInput = {
   pageSelection: '1-2,4',
   rotationDegrees: 90,
   watermarkText: 'Draft',
+  watermarkPosition: 'bottom-right',
+  watermarkOpacity: 0.22,
+  watermarkSize: 48,
   metadataTitle: 'Clean copy',
   metadataAuthor: 'Local editor',
+  pageNumberPosition: 'top-right',
+  pageNumberStart: 4,
+  pageNumberFormat: 'page-number',
+  textTitle: 'Meeting notes',
+  pageSize: 'a4',
+  fontSize: 12,
 }
 
-describe('DocShift MVP', () => {
+describe('DocShift browser workflows', () => {
   it('lists document tools in roadmap order', () => {
     expect(docShiftToolCatalog.map((tool) => tool.slug)).toEqual([...docShiftToolSlugs])
     expect(docShiftToolCatalog).toHaveLength(8)
@@ -75,7 +84,7 @@ describe('DocShift MVP', () => {
       expect(copy.title.length).toBeGreaterThan(10)
       expect(copy.body).toMatch(/OCR|upload|navegador|Browser|navigateur|Daten|datos/i)
       expect(copy.items).toHaveLength(3)
-      expect(copy.items.map((item) => item.title).join(' ')).not.toContain('active provider')
+      expect(copy.items.map((item) => item.title).join(' ')).not.toContain('active file service')
       expect(copy.items.every((item) => item.current.length > 20 && item.data.length > 20 && item.gate.length > 20)).toBe(true)
     }
   })
@@ -112,9 +121,13 @@ describe('DocShift MVP', () => {
 
     const watermark = planDocShiftTransform('pdf-watermark', sample)
     expect(watermark.plan?.watermarkText).toBe('Draft')
+    expect(watermark.plan?.watermarkPosition).toBe('bottom-right')
+    expect(watermark.plan?.watermarkOpacity).toBe(0.22)
 
     const numbers = planDocShiftTransform('page-numbers', sample)
     expect(numbers.plan?.operation).toBe('page-numbers')
+    expect(numbers.plan?.pageNumberPosition).toBe('top-right')
+    expect(numbers.plan?.pageNumberStart).toBe(4)
 
     const compressed = planDocShiftTransform('pdf-compressor', sample)
     expect(compressed.plan?.warnings.join(' ')).toContain('structure rewrite')
@@ -124,9 +137,15 @@ describe('DocShift MVP', () => {
       mimeTypes: [],
       sizeBytes: [],
       textContent: 'A local browser-side document conversion.',
+      textTitle: 'Meeting notes',
+      pageSize: 'a4',
+      fontSize: 12,
     })
     expect(text.ok).toBe(true)
     expect(text.output).toBe('docshift-text-to-pdf.pdf')
+    expect(text.plan?.textTitle).toBe('Meeting notes')
+    expect(text.plan?.pageSize).toBe('a4')
+    expect(text.plan?.fontSize).toBe(12)
   })
 
   it('rejects unsafe, oversized or invalid free inputs', () => {

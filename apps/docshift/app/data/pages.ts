@@ -116,7 +116,7 @@ const pageSpecs: Record<ContentPageSlug, {
     sections: [
       ['Purpose', 'The site helps users merge, split, rotate, watermark, number, clean metadata and convert small documents without mandatory signup or upload storage.'],
       ['What is live now', 'DocShift contains eight document tools with worker validation, pdf-lib browser output, sitemap, canonical, hreflang and structured data.'],
-      ['Upgrade boundary', 'Paid value is planned around batch folders, larger files, OCR, table extraction, history, API, teams and server-side queues.'],
+      ['Upgrade boundary', 'Advanced value centers on batch folders, larger files, OCR, table extraction, history, API, teams and server-side queues after review.'],
     ],
   },
   contact: {
@@ -141,7 +141,7 @@ const pageSpecs: Record<ContentPageSlug, {
     title: 'Cookie Policy',
     description: 'How DocShift plans essential storage, consent-aware analytics and advertising controls after gates.',
     sections: [
-      ['Essential storage', 'Language, consent and session security may use essential storage when those platform features are enabled. The document MVP itself does not need browser storage.'],
+      ['Essential storage', 'Language, consent and session security may use essential storage when those platform features are enabled. The document tools themselves do not need browser storage.'],
       ['Analytics and ads', 'External analytics and advertising storage remain blocked until consent mode, regional rules and placement gates are implemented.'],
       ['Choices', 'A consent interface must exist before non-essential storage is used. Browser settings can clear local site data.'],
     ],
@@ -151,8 +151,8 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'Baseline terms for responsible use of DocShift document tools and future commercial features.',
     sections: [
       ['Responsible documents', 'Do not process illegal, abusive, infringing, deceptive, confidential-without-permission or unauthorized document content through DocShift workflows.'],
-      ['MVP limits', 'DocShift is a local formatting helper, not a secure archive, legal redaction, compliance or e-discovery system.'],
-      ['Paid features', 'Commercial features require visible pricing, quotas, cancellation rules, provider terms, abuse controls and legal review before checkout or file API access.'],
+      ['Browser-tool limits', 'DocShift is a local formatting helper, not a secure archive, legal redaction, compliance or e-discovery system.'],
+      ['Commercial features', 'Commercial features require visible pricing, quotas, cancellation rules, service terms, abuse controls and legal review before any paid file API access.'],
     ],
   },
   methodology: {
@@ -160,8 +160,8 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'How DocShift keeps document tools useful, local and honest about browser and file-processing limits.',
     sections: [
       ['Working tool first', 'Each tool page must include a functioning free document workflow before it can be treated as launch-ready content.'],
-      ['Browser-side processing', 'The MVP validates MIME type, file size, file count, page ranges and text length, then uses pdf-lib in the browser to create the output PDF.'],
-      ['Abuse guard', 'The free MVP caps total file size and file count, avoids mass generation and keeps server-side OCR, batch and API processing gated.'],
+      ['Browser-side processing', 'The free workflow validates MIME type, file size, file count, page ranges and text length, then uses pdf-lib in the browser to create the output PDF.'],
+      ['Abuse guard', 'The free workflow caps total file size and file count, avoids mass generation and keeps server-side OCR, batch and API processing behind review.'],
     ],
   },
   'editorial-policy': {
@@ -175,11 +175,11 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   status: {
     title: 'Launch Status',
-    description: 'DocShift status for public web readiness, ads, billing, file processing and gates.',
+    description: 'DocShift status for public web readiness, ads, commercial file processing and review gates.',
     sections: [
-      ['MVP surface', 'The local/CI MVP contains eight document tools, five language route sets, sitemap, canonical, hreflang, structured data, worker validation and browser-side pdf-lib output.'],
+      ['Browser surface', 'DocShift contains eight document tools, five language route sets, sitemap, canonical, hreflang, structured data, worker validation and browser-side pdf-lib output.'],
       ['Production', 'DocShift is live at `/supersites/docshift/` as a versioned HostGator static app with public smoke and rollback workflow validated. Document processing remains browser-side; no upload, OCR server path or storage path is active.'],
-      ['Gates', 'Batch folders, larger files, OCR, table extraction, API, history, teams, billing, ads and external analytics remain blocked until documented gates pass.'],
+      ['Review gates', 'Batch folders, larger files, OCR, table extraction, API, history, teams, ads and external analytics remain inactive until documented gates pass.'],
     ],
   },
 }

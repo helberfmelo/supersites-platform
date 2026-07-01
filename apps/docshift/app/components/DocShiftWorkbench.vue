@@ -21,6 +21,14 @@ import { runDocShiftToolInWorker } from '../utils/docshiftWorker'
 
 type PdfLibModule = typeof import('pdf-lib')
 type PdfDocumentInstance = Awaited<ReturnType<PdfLibModule['PDFDocument']['create']>>
+type PageScope = 'all' | 'range'
+type PdfPageSize = [number, number]
+
+const pageScopedOperations = new Set(['split', 'rotate', 'watermark', 'page-numbers'])
+const pageSizes: Record<string, PdfPageSize> = {
+  letter: [612, 792],
+  a4: [595.28, 841.89],
+}
 
 const props = withDefaults(defineProps<{
   locale: LocaleCode
@@ -32,11 +40,22 @@ const props = withDefaults(defineProps<{
 
 const selectedSlug = ref<DocShiftToolSlug>(props.initialSlug)
 const selectedFiles = ref<File[]>([])
+const pageScope = ref<PageScope>('all')
 const pageSelection = ref('all')
 const rotationDegrees = ref(90)
 const watermarkText = ref('Draft')
+const watermarkPosition = ref('diagonal')
+const watermarkOpacity = ref(18)
+const watermarkSize = ref(42)
 const metadataTitle = ref('DocShift output')
 const metadataAuthor = ref('DocShift local tool')
+const sourceMetadata = ref({ title: '', author: '' })
+const pageNumberPosition = ref('bottom-center')
+const pageNumberStart = ref(1)
+const pageNumberFormat = ref('number-total')
+const textTitle = ref('DocShift Text to PDF')
+const pageSize = ref('letter')
+const fontSize = ref(11)
 const textContent = ref('Paste a short note, checklist or draft here. DocShift will create a simple PDF locally in your browser.')
 const hasRun = ref(false)
 const isRunning = ref(false)
@@ -52,6 +71,30 @@ const shellCopy = computed(() => getShellCopy(props.locale))
 const canonicalPath = computed(() => localizedToolPath(props.locale, tool.value.slug))
 const workflowSteps = computed(() => getDocShiftWorkflowSteps(tool.value.slug, props.locale))
 const relatedTools = computed(() => getRelatedDocShiftTools(tool.value.slug, props.locale))
+const showPageControls = computed(() => tool.value.requiresPdf && pageScopedOperations.has(tool.value.operation))
+const selectedFilesTotalBytes = computed(() => selectedFiles.value.reduce((sum, file) => sum + file.size, 0))
+const watermarkPositionOptions = computed(() => [
+  { value: 'diagonal', label: shellCopy.value.positionDiagonalLabel },
+  { value: 'center', label: shellCopy.value.positionCenterLabel },
+  { value: 'top-left', label: shellCopy.value.positionTopLeftLabel },
+  { value: 'top-right', label: shellCopy.value.positionTopRightLabel },
+  { value: 'bottom-left', label: shellCopy.value.positionBottomLeftLabel },
+  { value: 'bottom-right', label: shellCopy.value.positionBottomRightLabel },
+])
+const pageNumberPositionOptions = computed(() => [
+  { value: 'bottom-center', label: shellCopy.value.positionCenterLabel },
+  { value: 'bottom-right', label: shellCopy.value.positionBottomRightLabel },
+  { value: 'top-right', label: shellCopy.value.positionTopRightLabel },
+])
+const pageNumberFormatOptions = computed(() => [
+  { value: 'number', label: shellCopy.value.pageNumberFormatNumberLabel },
+  { value: 'page-number', label: shellCopy.value.pageNumberFormatPageLabel },
+  { value: 'number-total', label: shellCopy.value.pageNumberFormatTotalLabel },
+])
+const pageSizeOptions = [
+  { value: 'letter', label: 'Letter' },
+  { value: 'a4', label: 'A4' },
+]
 const resultTitle = computed(() => result.value?.ok === false ? shellCopy.value.invalidResultTitle : copy.value.resultLabel)
 const selectedFileLabel = computed(() => {
   if (!tool.value.requiresPdf) {
@@ -62,8 +105,7 @@ const selectedFileLabel = computed(() => {
     return shellCopy.value.privacyNote
   }
 
-  const total = selectedFiles.value.reduce((sum, file) => sum + file.size, 0)
-  return `${selectedFiles.value.length} PDF file${selectedFiles.value.length === 1 ? '' : 's'} selected (${formatBytes(total)})`
+  return `${selectedFiles.value.length} PDF file${selectedFiles.value.length === 1 ? '' : 's'} selected (${formatBytes(selectedFilesTotalBytes.value)})`
 })
 const workflowSnapshotRows = computed(() => [
   { label: shellCopy.value.workflowModeLabel, value: copy.value.shortName },
@@ -86,11 +128,36 @@ const displayedMeta = computed(() => {
     return []
   }
 
-  return [
+  const rows = [
     ...result.value.meta,
     { label: shellCopy.value.actualOutputLabel, value: outputSize.value ? formatBytes(outputSize.value) : '-' },
     { label: shellCopy.value.workerLabel, value: result.value.plan?.workerUsed ? shellCopy.value.browserWorkerLabel : shellCopy.value.localFallbackLabel },
   ]
+
+  if (selectedFilesTotalBytes.value > 0) {
+    rows.push({ label: shellCopy.value.originalSizeLabel, value: formatBytes(selectedFilesTotalBytes.value) })
+  }
+
+  if (selectedFilesTotalBytes.value > 0 && outputSize.value > 0) {
+    const savings = selectedFilesTotalBytes.value - outputSize.value
+    const reduction = selectedFilesTotalBytes.value === 0 ? 0 : (savings / selectedFilesTotalBytes.value) * 100
+
+    rows.push({ label: shellCopy.value.savingsLabel, value: savings > 0 ? formatBytes(savings) : '0 B' })
+    rows.push({ label: shellCopy.value.reductionLabel, value: `${Math.max(0, reduction).toFixed(1)}%` })
+  }
+
+  if (tool.value.operation === 'metadata') {
+    rows.push({
+      label: shellCopy.value.currentMetadataTitleLabel,
+      value: sourceMetadata.value.title || shellCopy.value.metadataUnknownLabel,
+    })
+    rows.push({
+      label: shellCopy.value.currentMetadataAuthorLabel,
+      value: sourceMetadata.value.author || shellCopy.value.metadataUnknownLabel,
+    })
+  }
+
+  return rows
 })
 
 const rotationOptions = [
@@ -114,11 +181,22 @@ function clearResult(): void {
 }
 
 function resetSettings(): void {
-  pageSelection.value = tool.value.defaultPages
+  pageScope.value = tool.value.defaultPages === 'all' ? 'all' : 'range'
+  pageSelection.value = tool.value.defaultPages === 'all' ? '1' : tool.value.defaultPages
   rotationDegrees.value = 90
   watermarkText.value = 'Draft'
+  watermarkPosition.value = 'diagonal'
+  watermarkOpacity.value = 18
+  watermarkSize.value = 42
   metadataTitle.value = 'DocShift output'
   metadataAuthor.value = 'DocShift local tool'
+  sourceMetadata.value = { title: '', author: '' }
+  pageNumberPosition.value = 'bottom-center'
+  pageNumberStart.value = 1
+  pageNumberFormat.value = 'number-total'
+  textTitle.value = 'DocShift Text to PDF'
+  pageSize.value = 'letter'
+  fontSize.value = 11
   textContent.value = 'Paste a short note, checklist or draft here. DocShift will create a simple PDF locally in your browser.'
   hasRun.value = false
   selectedFiles.value = []
@@ -140,17 +218,40 @@ function onFileSelected(event: Event): void {
   clearResult()
 }
 
+function moveSelectedFile(index: number, direction: -1 | 1): void {
+  const nextIndex = index + direction
+  if (nextIndex < 0 || nextIndex >= selectedFiles.value.length) {
+    return
+  }
+
+  const files = [...selectedFiles.value]
+  const [file] = files.splice(index, 1)
+  files.splice(nextIndex, 0, file)
+  selectedFiles.value = files
+  hasRun.value = false
+  clearResult()
+}
+
 function pdfInputFrom(pageCount?: number): DocShiftToolInput {
   return {
     fileNames: selectedFiles.value.map((file) => file.name),
     mimeTypes: selectedFiles.value.map((file) => file.type),
     sizeBytes: selectedFiles.value.map((file) => file.size),
     pageCount,
-    pageSelection: pageSelection.value,
+    pageSelection: pageScope.value === 'all' ? 'all' : pageSelection.value,
     rotationDegrees: rotationDegrees.value,
     watermarkText: watermarkText.value,
+    watermarkPosition: watermarkPosition.value,
+    watermarkOpacity: watermarkOpacity.value / 100,
+    watermarkSize: watermarkSize.value,
     metadataTitle: metadataTitle.value,
     metadataAuthor: metadataAuthor.value,
+    pageNumberPosition: pageNumberPosition.value,
+    pageNumberStart: pageNumberStart.value,
+    pageNumberFormat: pageNumberFormat.value,
+    textTitle: textTitle.value,
+    pageSize: pageSize.value,
+    fontSize: fontSize.value,
     textContent: textContent.value,
   }
 }
@@ -202,28 +303,71 @@ function wrapText(value: string, limit: number): string[] {
   return lines
 }
 
+function pageNumberText(plan: DocShiftTransformPlan, pageIndex: number, totalPages: number): string {
+  const number = plan.pageNumberStart + pageIndex
+
+  if (plan.pageNumberFormat === 'page-number') {
+    return `Page ${number}`
+  }
+
+  if (plan.pageNumberFormat === 'number-total') {
+    return `${number} / ${totalPages}`
+  }
+
+  return String(number)
+}
+
+function positionedTextPoint(
+  position: string,
+  pageWidth: number,
+  pageHeight: number,
+  textWidth: number,
+  margin = 32,
+): { x: number; y: number } {
+  if (position === 'top-right') {
+    return { x: pageWidth - textWidth - margin, y: pageHeight - margin - 8 }
+  }
+
+  if (position === 'bottom-right') {
+    return { x: pageWidth - textWidth - margin, y: margin }
+  }
+
+  if (position === 'top-left') {
+    return { x: margin, y: pageHeight - margin - 8 }
+  }
+
+  if (position === 'bottom-left') {
+    return { x: margin, y: margin }
+  }
+
+  return { x: pageWidth / 2 - textWidth / 2, y: margin }
+}
+
 async function makeTextPdf(pdfLib: PdfLibModule, plan: DocShiftTransformPlan): Promise<Uint8Array> {
   const { PDFDocument, StandardFonts, rgb } = pdfLib
   const pdf = await PDFDocument.create()
   const font = await pdf.embedFont(StandardFonts.Helvetica)
   const bold = await pdf.embedFont(StandardFonts.HelveticaBold)
+  const [pageWidth, pageHeight] = pageSizes[plan.pageSize] ?? pageSizes.letter
+  const fontSize = plan.fontSize
+  const lineLimit = Math.max(38, Math.floor((pageWidth - 108) / (fontSize * 0.55)))
   const lines = plan.textContent
     .split(/\r?\n/)
-    .flatMap((line) => wrapText(line, 86))
-  let page = pdf.addPage([612, 792])
-  let y = 738
+    .flatMap((line) => wrapText(line, lineLimit))
+  let page = pdf.addPage([pageWidth, pageHeight])
+  let y = pageHeight - 54
 
-  page.drawText('DocShift Text to PDF', { x: 54, y, size: 16, font: bold, color: rgb(0.08, 0.11, 0.18) })
+  page.drawText(plan.textTitle, { x: 54, y, size: Math.max(14, fontSize + 4), font: bold, color: rgb(0.08, 0.11, 0.18) })
   y -= 34
 
   for (const line of lines) {
     if (y < 60) {
-      page = pdf.addPage([612, 792])
-      y = 738
+      page = pdf.addPage([pageWidth, pageHeight])
+      y = pageHeight - 54
     }
 
-    page.drawText(line || ' ', { x: 54, y, size: 11, font, color: rgb(0.08, 0.11, 0.18) })
-    y -= 16
+    page.drawText(line || ' ', { x: 54, y, size: fontSize, font, color: rgb(0.08, 0.11, 0.18) })
+    y -= fontSize + 5
   }
 
   applyMetadata(pdf, plan)
@@ -257,6 +401,7 @@ async function processPdf(pdfLib: PdfLibModule, buffers: Uint8Array[], plan: Doc
   const bold = await first.embedFont(StandardFonts.HelveticaBold)
   const pages = first.getPages()
   const selected = new Set(selectedPageIndexes(plan, pages.length))
+  const selectedOrder = new Map([...selected].map((pageIndex, order) => [pageIndex, order]))
 
   for (const [index, page] of pages.entries()) {
     if (!selected.has(index)) {
@@ -270,22 +415,32 @@ async function processPdf(pdfLib: PdfLibModule, buffers: Uint8Array[], plan: Doc
 
     if (plan.operation === 'watermark') {
       const { width, height } = page.getSize()
+      const size = plan.watermarkSize
+      const textWidth = bold.widthOfTextAtSize(plan.watermarkText, size)
+      const point = plan.watermarkPosition === 'center' || plan.watermarkPosition === 'diagonal'
+        ? { x: width / 2 - textWidth / 2, y: height / 2 }
+        : positionedTextPoint(plan.watermarkPosition, width, height, textWidth, 42)
+
       page.drawText(plan.watermarkText, {
-        x: width * 0.17,
-        y: height * 0.47,
-        size: Math.max(24, Math.min(width, height) / 10),
+        x: point.x,
+        y: point.y,
+        size,
         font: bold,
         color: rgb(0.17, 0.24, 0.38),
-        opacity: 0.18,
-        rotate: degrees(-32),
+        opacity: plan.watermarkOpacity,
+        rotate: plan.watermarkPosition === 'diagonal' ? degrees(-32) : degrees(0),
       })
     }
 
     if (plan.operation === 'page-numbers') {
-      const { width } = page.getSize()
-      page.drawText(`${index + 1} / ${pages.length}`, {
-        x: width / 2 - 20,
-        y: 24,
+      const { width, height } = page.getSize()
+      const text = pageNumberText(plan, selectedOrder.get(index) ?? index, selected.size || pages.length)
+      const textWidth = font.widthOfTextAtSize(text, 10)
+      const point = positionedTextPoint(plan.pageNumberPosition, width, height, textWidth, 28)
+
+      page.drawText(text, {
+        x: point.x,
+        y: point.y,
         size: 10,
         font,
         color: rgb(0.25, 0.29, 0.36),
@@ -313,6 +468,12 @@ async function runTool(): Promise<void> {
     const firstPdf = tool.value.requiresPdf && buffers[0]
       ? await pdfLib.PDFDocument.load(buffers[0], { ignoreEncryption: true })
       : null
+    sourceMetadata.value = firstPdf
+      ? {
+          title: firstPdf.getTitle() ?? '',
+          author: firstPdf.getAuthor() ?? '',
+        }
+      : { title: '', author: '' }
     const pageCount = firstPdf?.getPageCount()
     const workerResult = await runDocShiftToolInWorker({
       slug: tool.value.slug,
@@ -390,7 +551,8 @@ function downloadPdf(): void {
 watch(selectedSlug, resetSettings)
 
 onMounted(() => {
-  pageSelection.value = tool.value.defaultPages
+  pageScope.value = tool.value.defaultPages === 'all' ? 'all' : 'range'
+  pageSelection.value = tool.value.defaultPages === 'all' ? '1' : tool.value.defaultPages
 
   if (props.trackView) {
     trackDocShiftEvent({
@@ -458,11 +620,45 @@ onBeforeUnmount(() => {
               <strong>{{ shellCopy.fileStateTitle }}</strong>
               <span>{{ selectedFileLabel }}</span>
             </div>
+            <div v-if="tool.operation === 'merge' && selectedFiles.length > 0" class="file-order">
+              <strong>{{ shellCopy.fileOrderTitle }}</strong>
+              <ol class="file-order-list">
+                <li v-for="(file, index) in selectedFiles" :key="`${file.name}-${file.size}-${index}`">
+                  <span>{{ index + 1 }}. {{ file.name }}</span>
+                  <div>
+                    <button type="button" :disabled="index === 0" @click="moveSelectedFile(index, -1)">
+                      {{ shellCopy.moveUpLabel }}
+                    </button>
+                    <button type="button" :disabled="index === selectedFiles.length - 1" @click="moveSelectedFile(index, 1)">
+                      {{ shellCopy.moveDownLabel }}
+                    </button>
+                  </div>
+                </li>
+              </ol>
+            </div>
           </div>
 
           <div v-if="tool.usesTextInput" class="dropzone dropzone--dominant">
             <strong>{{ shellCopy.dropzoneTitle }}</strong>
             <p>{{ shellCopy.dropzoneBody }}</p>
+            <div class="form-grid form-grid--three">
+              <div class="field">
+                <label :for="`${tool.slug}-text-title`">{{ shellCopy.textTitleLabel }}</label>
+                <input :id="`${tool.slug}-text-title`" v-model="textTitle" maxlength="90" autocomplete="off">
+              </div>
+              <div class="field">
+                <label :for="`${tool.slug}-page-size`">{{ shellCopy.pageSizeLabel }}</label>
+                <select :id="`${tool.slug}-page-size`" v-model="pageSize">
+                  <option v-for="option in pageSizeOptions" :key="option.value" :value="option.value">
+                    {{ option.label }}
+                  </option>
+                </select>
+              </div>
+              <div class="field">
+                <label :for="`${tool.slug}-font-size`">{{ shellCopy.fontSizeLabel }}</label>
+                <input :id="`${tool.slug}-font-size`" v-model.number="fontSize" type="number" min="9" max="20" step="1">
+              </div>
+            </div>
             <div class="field">
               <label :for="`${tool.slug}-text`">{{ shellCopy.textLabel }}</label>
               <textarea :id="`${tool.slug}-text`" v-model="textContent" spellcheck="true"></textarea>
@@ -473,23 +669,88 @@ onBeforeUnmount(() => {
             </div>
           </div>
 
-          <div v-if="tool.requiresPdf && tool.operation !== 'merge' && tool.operation !== 'compress' && tool.operation !== 'metadata'" class="field">
+          <div v-if="showPageControls" class="option-group" :aria-label="shellCopy.pageScopeLabel">
+            <span>{{ shellCopy.pageScopeLabel }}</span>
+            <label class="inline-choice">
+              <input v-model="pageScope" type="radio" value="all">
+              {{ shellCopy.allPagesLabel }}
+            </label>
+            <label class="inline-choice">
+              <input v-model="pageScope" type="radio" value="range">
+              {{ shellCopy.pageRangeLabel }}
+            </label>
+          </div>
+
+          <div v-if="showPageControls && pageScope === 'range'" class="field">
             <label :for="`${tool.slug}-pages`">{{ shellCopy.pagesLabel }}</label>
-            <input :id="`${tool.slug}-pages`" v-model="pageSelection" placeholder="all or 1-3,5" autocomplete="off">
+            <input :id="`${tool.slug}-pages`" v-model="pageSelection" placeholder="1-3,5" autocomplete="off">
+            <p class="field-help">{{ shellCopy.pageRangeHelp }}</p>
           </div>
 
           <div v-if="tool.operation === 'rotate'" class="field">
-            <label :for="`${tool.slug}-rotation`">{{ shellCopy.rotationLabel }}</label>
-            <select :id="`${tool.slug}-rotation`" v-model.number="rotationDegrees">
-              <option v-for="option in rotationOptions" :key="option.value" :value="option.value">
+            <label>{{ shellCopy.rotateByLabel }}</label>
+            <div class="choice-grid">
+              <button
+                v-for="option in rotationOptions"
+                :key="option.value"
+                type="button"
+                :aria-pressed="rotationDegrees === option.value"
+                @click="rotationDegrees = option.value"
+              >
                 {{ option.label }}
-              </option>
-            </select>
+              </button>
+            </div>
           </div>
 
-          <div v-if="tool.operation === 'watermark'" class="field">
-            <label :for="`${tool.slug}-watermark`">{{ shellCopy.watermarkLabel }}</label>
-            <input :id="`${tool.slug}-watermark`" v-model="watermarkText" maxlength="64" autocomplete="off">
+          <div v-if="tool.operation === 'compress'" class="tool-note">
+            {{ shellCopy.localCompressionBody }}
+          </div>
+
+          <div v-if="tool.operation === 'watermark'" class="form-grid form-grid--three">
+            <div class="field">
+              <label :for="`${tool.slug}-watermark`">{{ shellCopy.watermarkLabel }}</label>
+              <input :id="`${tool.slug}-watermark`" v-model="watermarkText" maxlength="64" autocomplete="off">
+            </div>
+            <div class="field">
+              <label :for="`${tool.slug}-watermark-position`">{{ shellCopy.watermarkPositionLabel }}</label>
+              <select :id="`${tool.slug}-watermark-position`" v-model="watermarkPosition">
+                <option v-for="option in watermarkPositionOptions" :key="option.value" :value="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+            </div>
+            <div class="field">
+              <label :for="`${tool.slug}-watermark-size`">{{ shellCopy.watermarkSizeLabel }}</label>
+              <input :id="`${tool.slug}-watermark-size`" v-model.number="watermarkSize" type="number" min="18" max="96" step="1">
+            </div>
+            <div class="field field--wide">
+              <label :for="`${tool.slug}-watermark-opacity`">{{ shellCopy.watermarkOpacityLabel }}</label>
+              <input :id="`${tool.slug}-watermark-opacity`" v-model.number="watermarkOpacity" type="range" min="5" max="50" step="1">
+              <p class="field-help">{{ watermarkOpacity }}%</p>
+            </div>
+          </div>
+
+          <div v-if="tool.operation === 'page-numbers'" class="form-grid form-grid--three">
+            <div class="field">
+              <label :for="`${tool.slug}-page-number-position`">{{ shellCopy.pageNumberPositionLabel }}</label>
+              <select :id="`${tool.slug}-page-number-position`" v-model="pageNumberPosition">
+                <option v-for="option in pageNumberPositionOptions" :key="option.value" :value="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+            </div>
+            <div class="field">
+              <label :for="`${tool.slug}-page-number-start`">{{ shellCopy.pageNumberStartLabel }}</label>
+              <input :id="`${tool.slug}-page-number-start`" v-model.number="pageNumberStart" type="number" min="1" max="999" step="1">
+            </div>
+            <div class="field">
+              <label :for="`${tool.slug}-page-number-format`">{{ shellCopy.pageNumberFormatLabel }}</label>
+              <select :id="`${tool.slug}-page-number-format`" v-model="pageNumberFormat">
+                <option v-for="option in pageNumberFormatOptions" :key="option.value" :value="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+            </div>
           </div>
 
           <div v-if="tool.operation === 'metadata'" class="form-grid">

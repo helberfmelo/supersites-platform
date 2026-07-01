@@ -92,7 +92,7 @@ try {
         'hreflang="pt-BR"',
         'PDF Merge',
         '8 document tools',
-        'No server upload backend active'
+        'Files stay in this browser'
     )
 
     foreach ($needle in $requiredHtml) {
