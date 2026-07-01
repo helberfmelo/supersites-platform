@@ -55,4 +55,4 @@ Data-base: 2026-06-30
 - Invoice, quote and receipt share the same editor/preview model while using flow-specific cues: due date, valid-until quote, paid-date receipt and paid status.
 - PDF export remains a free local action, with optional local PNG/JPEG logo support and no account requirement.
 - Tax, fiscal numbering, payment processing and future workflow limits were moved below the useful document result instead of appearing as top-page technical status.
-- Local evidence: `pnpm test:invoicecraft`, `pnpm build:invoicecraft`, `pnpm validate:invoicecraft-preview` asset `/_nuxt/DzUEzIxj.js`, `pnpm validate:public-copy`, `pnpm validate:secrets` and `git diff --check`.
+- Local evidence: `pnpm test:invoicecraft`, `pnpm build:invoicecraft`, `pnpm validate:invoicecraft-preview` asset `/_nuxt/DzUEzIxj.js`, `pnpm validate:public-copy`, `pnpm validate:secrets`, `pnpm test:e2e:invoicecraft` after the remote gate exposed a selector ambiguity, and `git diff --check`.

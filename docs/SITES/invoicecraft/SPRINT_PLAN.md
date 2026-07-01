@@ -66,4 +66,5 @@ Data-base: 2026-06-30
 - Receipt Builder uses `Paid date`, adds `Paid` status and states below the result that InvoiceCraft does not process or verify payments.
 - Top-page technical language such as `Payments and taxes planned`, `MVP`, `gated`, `billing` and `HUMAN_ACTION_REQUIRED` was removed from app surfaces/checks.
 - Local validation passed: `pnpm test:invoicecraft`, `pnpm build:invoicecraft`, `pnpm validate:invoicecraft-preview` with asset `/_nuxt/DzUEzIxj.js`, `pnpm validate:public-copy`, `pnpm validate:secrets` and `git diff --check`.
-- Playwright, screenshots, crawler, Lighthouse, deploy dry-run and public smokes were intentionally skipped under the current stage-based default unless the remote Quality Gate requires them.
+- After the remote Quality Gate exposed an InvoiceCraft Playwright selector ambiguity, the focused `pnpm test:e2e:invoicecraft` suite passed locally with 3 tests.
+- Screenshots, crawler, Lighthouse, deploy dry-run and public smokes were intentionally skipped under the current stage-based default.

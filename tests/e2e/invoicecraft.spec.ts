@@ -57,7 +57,7 @@ test.describe('InvoiceCraft document studio', () => {
       'href',
       'https://opentshost.com/supersites/invoicecraft/en',
     )
-    await expect(page.getByRole('heading', { name: 'Invoice Builder' })).toBeVisible()
+    await expect(page.locator('#invoicecraft-workbench-invoice-builder')).toBeVisible()
     await expect(page.getByText('Browser-only session')).toBeVisible()
     await expect(page.getByText('Free PDF').first()).toBeVisible()
     await expectNoHorizontalOverflow(page)

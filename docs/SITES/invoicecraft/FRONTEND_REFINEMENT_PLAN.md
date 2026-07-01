@@ -77,4 +77,4 @@ Medium. Ads/support cannot sit near document fields, preview or download button.
 - Added optional local logo control using PNG/JPEG in browser memory only; no upload, storage, provider or analytics payload is introduced.
 - Quote flow now emphasizes `Valid until`, renders `Quote / Estimate`, and keeps convert-to-invoice as a future account workflow below the result.
 - Receipt flow now labels `Paid date`, displays `Paid` status and states that no payment is processed or verified.
-- Local validation passed with focused unit/build/preview/public-copy/secrets/diff checks; no screenshots or Playwright were run by default.
+- Local validation passed with focused unit/build/preview/public-copy/secrets/diff checks; after the remote Quality Gate exposed an InvoiceCraft selector ambiguity, `pnpm test:e2e:invoicecraft` also passed locally. No screenshots were run by default.
