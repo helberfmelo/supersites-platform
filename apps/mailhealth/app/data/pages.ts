@@ -174,7 +174,7 @@ const pageSpecs: Record<ContentPageSlug, {
     ],
   },
   status: {
-    title: 'Product Status',
+    title: 'Public Status',
     description: 'MailHealth status for free email diagnostics and advanced monitoring workflows.',
     sections: [
       ['Free diagnostics', 'MailHealth offers seven point-in-time email checks with bounded DNS, DNSBL, SMTP and header analysis workflows.'],

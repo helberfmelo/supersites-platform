@@ -129,7 +129,7 @@ function Assert-DeployedStaticApp {
     $appAssetUrl = "$origin$($appAssetMatch.Groups["path"].Value)"
     Invoke-SmokeRequest -Url $appAssetUrl | Out-Null
 
-    $statusResponse = Invoke-SmokeRequest -Url (Join-Url $publicBase "$appPath/en/status") -RequiredContent "Launch Status"
+    $statusResponse = Invoke-SmokeRequest -Url (Join-Url $publicBase "$appPath/en/status") -RequiredContent "Public Status"
     Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context "$Context status"
     Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context "$Context status"
     Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)No .{0,80}public deploy|HostGator public URL remains|noindex placeholder" -Context "$Context status"
