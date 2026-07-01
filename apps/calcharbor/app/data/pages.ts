@@ -140,7 +140,7 @@ export const contentPageCatalog: ContentPage[] = [
       ['Limite analytics', 'Les evenements peuvent enregistrer slug et chemin, pas montants, taux ou resultats.'],
       ['Comptes futurs', 'Scenarios et exports exigent compte, retention, export et suppression avant lancement.'],
     ]),
-    de: copy('Datenschutz', 'Datenschutzerklaerung', 'CalcHarbor minimiert Erhebung, indem Sprint-3.1-Rechner lokal im Browser laufen.', reviewed.de, [
+    de: copy('Datenschutz', 'Datenschutzerklaerung', 'CalcHarbor minimiert Erhebung, indem die Rechner lokal im Browser laufen.', reviewed.de, [
       ['Datenminimierung', 'Eingaben und Ergebnisse werden in diesem MVP nicht an eine Produkt-API gesendet oder gespeichert.'],
       ['Analytics-Grenze', 'Erlaubte Events duerfen Rechner-Slug und Pfad enthalten, aber keine Betraege, Saetze oder Ergebnisse.'],
       ['Zukuenftige Konten', 'Gespeicherte Szenarien und Exporte brauchen Regeln fuer Konto, Aufbewahrung, Export und Loeschung.'],
@@ -255,7 +255,7 @@ export const contentPageCatalog: ContentPage[] = [
     ]),
   }),
   page('status', {
-    en: copy('Status', 'Public Status', 'CalcHarbor status for free finance and business calculators.', reviewed.en, [
+    en: copy('Status', 'Public Status', 'CalcHarbor status for free finance and business calculators, including public safeguards.', reviewed.en, [
       ['Free calculators', 'CalcHarbor offers browser-side calculators with visible formulas, examples and no mandatory signup for the basic result.'],
       ['Visitor privacy', 'Calculator inputs stay in the browser session and are not sent to a product API for the free calculation.'],
       ['Advanced workflows', 'Saved scenarios, exports, widgets, API, external analytics and ad-free account workflows require separate controls before activation.'],
