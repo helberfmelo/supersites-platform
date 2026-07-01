@@ -10,9 +10,9 @@ Data-base: 2026-06-29
 
 ## Current state
 
-- Nuxt SSG app exists with four calculators and five locales.
-- Sprint 7.4 local implementation adds live browser-side result cards, calculation memory, interpretation states, related calculators and inert workflow-upgrade CTAs.
-- Public URL remains placeholder-only until app-specific deploy/smoke/rollback exists.
+- Nuxt SSG app exists with eight calculators and five locales.
+- Sprint 18.29-18.33 implementation turns the app home into a dense calculator hub and gives the core calculator pages richer result/action panels.
+- Public app is already served under `/supersites/calcharbor/`; this stage did not require a new deploy by default.
 
 ## Scope
 
@@ -62,3 +62,14 @@ Data-base: 2026-06-29
 - Validation passed locally: `pnpm test:calcharbor` (12 tests), `pnpm build:calcharbor` (173 prerendered routes), `pnpm validate:calcharbor-preview`, `pnpm test:e2e:calcharbor`, `pnpm validate:public-copy` (911 HTML files), `pnpm validate:adsense-safe-public`, structure/secrets/deploy-dry-run/ci/diff gates.
 - Remote closure passed: feature commit `dda2647`, Quality Gate `28353160843`, Deploy Dry Run `28353160830`, aggregate/CalcHarbor/NetProbe/control-plane public smokes against the current production baseline, current CalcHarbor public asset `https://opentshost.com/supersites/calcharbor/_nuxt/D2u6NBF-.js`.
 - No checkout, billing, ads, donation, affiliate, external analytics, persistent storage, paid API, worker, provider integration or fiscal/legal automation was activated.
+
+## Phase 18 sprints 18.29-18.33 tool refinement
+
+- Status: implemented locally for commit/push/Quality Gate closure under the stage-based Phase 18 cadence.
+- Home now behaves as a calculator hub: search near the top, popular calculators, a six-group category directory (Finance, Business, Marketing, Commerce, Time/Date, Units), all-calculators grid and footer category links.
+- Loan Payment now emphasizes monthly payment, principal vs interest, amortization summary and browser-local actions: Copy result, Download summary and Compare scenarios.
+- Break-even Point now adds units/revenue emphasis, a profit/loss by volume area chart, scenario table and plain-language formula intro.
+- Gross Margin now highlights gross margin %, keeps gross profit visible, distinguishes margin vs markup and shows reduced/current/increased cost scenarios.
+- ROI now highlights ROI %, keeps net return visible, includes a clear non-annualization period note, conservative/base/aggressive scenarios and export-related actions.
+- Local validation passed before docs closure: `pnpm test:calcharbor`, `pnpm build:calcharbor`, `pnpm validate:public-copy` and `git diff --check`.
+- No checkout, billing, ads, donation, affiliate, external analytics, provider integration, persistent storage, paid API, worker, tax/legal automation or deploy was activated.

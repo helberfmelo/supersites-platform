@@ -23,55 +23,88 @@ Concluido ate:
 - NetProbe home.
 - NetProbe What is my IP.
 - Etapa NetProbe Tools: DNS Propagation, DNS Lookup, RDAP, SSL Certificate, Port Checker e Ping/Traceroute.
+- Etapa CalcHarbor Tools: home, Loan Payment, Break-even Point, Gross Margin e ROI.
 
 Proxima etapa ativa:
 
-- **Etapa CalcHarbor Tools**
-- Sprints: **18.29 a 18.33**
-- Escopo: CalcHarbor home, Loan Payment Calculator, Break-even Point Calculator, Gross Margin Calculator e ROI Calculator.
+- **Etapa DevUtility Lab Tools**
+- Sprints: **18.34 a 18.43**
+- Escopo: DevUtility home, Structured Data Formatter, Base64 Converter, JWT Inspector, Regex Tester, Text Diff, Cron Helper, UUID Generator, Timestamp Converter e Hash Generator.
 
 ## Sprints da proxima etapa
 
-### Sprint 18.29 - CalcHarbor home
+### Sprint 18.34 - DevUtility home
 
-- Criar hub denso de calculadoras, inspirado em Calculator.net, mas visual premium.
-- Topo com busca de calculadora.
-- Categorias: Finance, Business, Marketing, Commerce, Time/Date, Units.
-- Remover `Workflow checks ready`, `ads/checkout inactive`.
-- Adicionar popular calculators e all calculators.
-- Preparar footer com calculadoras por categoria.
+- Refazer como developer workbench.
+- Inspiracao em CodeBeautify: navegacao densa, popular tools, recent tools e search.
+- Remover `No storage or logging`, `planned`, `billing`, `ads` do topo.
+- Manter privacidade com selo curto: `Runs locally when possible`.
+- Footer com Developer Tools, Formatters, Encoders, Validators, Generators e Security.
 
-### Sprint 18.30 - Loan Payment Calculator
+### Sprint 18.35 - Structured Data Formatter
 
-- Melhorar visual de calculadora com input a esquerda e resultado a direita em desktop.
-- Resultado principal grande: monthly payment.
-- Tabela de amortizacao resumida opcional.
-- Grafico simples de principal vs interest.
-- Formula abaixo, nao como destaque excessivo no topo.
-- Remover `commercial features planned`.
-- Adicionar Copy result, Download summary e Compare scenarios.
+- Layout split editor: input a esquerda, output a direita.
+- Abas JSON/XML/YAML/CSV no topo do editor.
+- Botoes: Format, Minify, Validate, Copy, Download e Clear.
+- Mostrar erro inline.
+- Output com tree/table/raw tabs.
+- Remover linguagem comercial do topo.
 
-### Sprint 18.31 - Break-even Point Calculator
+### Sprint 18.36 - Base64 Converter
 
-- Resultado principal: break-even units e revenue.
-- Grafico de linha ou area mostrando prejuizo/lucro por volume.
-- Tabela de cenarios.
-- Explicacao leiga antes da formula tecnica.
-- CTA para salvar/exportar como upgrade futuro abaixo.
+- Layout input/output lado a lado.
+- Botoes Encode, Decode, Swap e Copy.
+- Mostrar byte length e validacao UTF-8.
+- Privacy note discreta abaixo.
 
-### Sprint 18.32 - Gross Margin Calculator
+### Sprint 18.37 - JWT Inspector
 
-- Resultado principal: gross margin % e gross profit.
-- Mostrar diferenca entre margin e markup visualmente.
-- Adicionar cenario com aumento/reducao de custo.
-- Corrigir copy e localizacao.
+- Campo de token grande.
+- Separar header, payload e signature em cards.
+- Destacar que decode nao e verify.
+- Mostrar claims comuns: exp, iat, iss, aud e sub quando houver.
+- Nao armazenar token.
 
-### Sprint 18.33 - ROI Calculator
+### Sprint 18.38 - Regex Tester
 
-- Resultado principal: ROI % e net return.
-- Adicionar tempo/periodo opcional ou nota clara se nao anualiza.
-- Cenario conservador/base/agressivo.
-- Export summary e related calculators.
+- Inspiracao em Regex101 sem copiar: pattern, flags, test string e matches.
+- Destacar grupos, contagem e indices.
+- Worker/timeouts para evitar regex pesada.
+- Adicionar `Copy pattern` e exemplos.
+
+### Sprint 18.39 - Text Diff
+
+- Dois inputs lado a lado.
+- Resultado diff com added/removed/unchanged.
+- Modo unified/split.
+- Copy/download diff.
+
+### Sprint 18.40 - Cron Helper
+
+- Campo cron e traducao humana imediata.
+- Listar proximas execucoes.
+- Explicar timezone/UTC.
+- Exemplos comuns.
+
+### Sprint 18.41 - UUID Generator
+
+- Gerar imediatamente no carregamento.
+- Botoes Generate, Copy all e Download.
+- Quantidade configuravel com limite.
+- Opcoes v4 e futuras versoes apenas se implementadas corretamente.
+
+### Sprint 18.42 - Timestamp Converter
+
+- Detectar timestamp atual automaticamente.
+- Inputs para seconds/ms/ISO.
+- Resultado UTC, local e selected timezone.
+- Copy buttons por formato.
+
+### Sprint 18.43 - Hash Generator
+
+- Input local; algoritmos MD5/SHA-1/SHA-256/SHA-512 conforme suporte.
+- Aviso claro de que MD5/SHA-1 nao sao recomendados para seguranca.
+- Output com copiar individual.
 
 ## Regras de produto
 

@@ -16,7 +16,8 @@ Make each calculator feel immediate, precise and explainable while keeping all i
 - Completed locally in Sprint 9.12: detail pages include a scenario snapshot table and bar comparison next to the result/memory stack.
 - Completed locally in Sprint 9.12: desktop/mobile screenshots confirm no overflow and a more benchmark-like calculator surface.
 - Completed in production in Phase 18 Sprint 18.4: the Hub catalog route for CalcHarbor opens as a calculator finder with search, category filters, featured high-value calculators and links only to existing public calculator routes; Hub deploy `28424159062` and CalcHarbor static app deploy `28424625903` passed.
-- Phase 18 gate for this site: do not close any CalcHarbor catalog or tool page sprint while the first fold reads as launch/status/product-sheet copy; screenshots desktop/mobile, route-specific smoke and negative assertions against internal terms are mandatory before commit/push/deploy.
+- Completed locally in Phase 18 Sprints 18.29-18.33: CalcHarbor app home now has search, popular calculators, category directory, all-calculators grid and footer links; Loan, Break-even, Gross Margin and ROI pages have richer benchmark-grade result/action panels.
+- Phase 18 gate for this site under the current stage cadence: do not close CalcHarbor catalog or tool work while the first fold reads as launch/status/product-sheet copy. Run screenshots, Playwright, crawler, public smokes or deploy only when the owner requests them, the stage is QA/pre-disclosure/closure, or a high-risk condition requires them.
 
 ## P1
 
@@ -25,7 +26,7 @@ Make each calculator feel immediate, precise and explainable while keeping all i
 
 ## P2
 
-- Prepare saved scenarios and exports as gated paid backlog.
+- Prepare saved scenarios and exports as repeat-work paid backlog.
 
 ## Impact expected
 
@@ -42,7 +43,8 @@ Medium where finance/tax/labor interpretation appears. Keep disclaimers and avoi
 ## Tests needed
 
 - Calculator unit tests.
-- CalcHarbor build, preview smoke and Playwright.
+- CalcHarbor build and public-copy validation for tool-page changes.
+- Preview smoke, Playwright and screenshots only when explicitly requested or when the active stage is QA/pre-disclosure/closure.
 - Regression for no analytics values from user inputs/results.
 - Hub catalog route regression for `/supersites/<locale>/sites/calcharbor`, including search/filter behavior, deep links and blocked internal terms.
 

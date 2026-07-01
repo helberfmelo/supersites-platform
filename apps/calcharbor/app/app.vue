@@ -250,6 +250,94 @@ h3 {
   padding: 24px 0;
 }
 
+.section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 420px);
+  gap: 18px;
+  align-items: end;
+  margin-bottom: 14px;
+}
+
+.section-head p:not(.eyebrow) {
+  margin-bottom: 0;
+  color: #3f504a;
+}
+
+.popular-tools,
+.category-directory,
+.tool-catalog {
+  margin-top: 24px;
+}
+
+.popular-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.popular-card {
+  display: grid;
+  min-height: 166px;
+  align-content: start;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid #d1dad4;
+  border-radius: 8px;
+  background: #ffffff;
+  text-decoration: none;
+}
+
+.popular-card span,
+.popular-card small {
+  color: #607069;
+}
+
+.popular-card span {
+  font-size: 0.76rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.popular-card strong {
+  color: #17231e;
+  font-size: 1rem;
+}
+
+.popular-card small {
+  font-size: 0.86rem;
+  line-height: 1.42;
+}
+
+.category-directory {
+  padding: 20px 0;
+  border-top: 1px solid #d8ded8;
+  border-bottom: 1px solid #d8ded8;
+}
+
+.category-directory--footer {
+  margin-top: 24px;
+  border-bottom: 0;
+}
+
+.category-directory__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.category-group {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #d1dad4;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.category-group p {
+  color: #52635d;
+  font-size: 0.88rem;
+}
+
 .calculator-workbench {
   display: grid;
   gap: 18px;
@@ -653,6 +741,150 @@ h3 {
   font-weight: 900;
 }
 
+.result-actions,
+.tool-insight {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.result-actions > strong {
+  color: #17231e;
+}
+
+.action-feedback {
+  margin-bottom: 0;
+  color: #2e5f45;
+  font-weight: 800;
+}
+
+.breakdown-bars,
+.margin-bars {
+  display: grid;
+  gap: 10px;
+}
+
+.breakdown-bar {
+  display: grid;
+  grid-template-columns: minmax(92px, 0.35fr) minmax(120px, 1fr) minmax(92px, auto);
+  gap: 10px;
+  align-items: center;
+}
+
+.breakdown-bar > span {
+  color: #52635d;
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.breakdown-bar > strong {
+  color: #17231e;
+  text-align: right;
+}
+
+.bar-track {
+  height: 14px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e5ece8;
+}
+
+.bar-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #2e8a57;
+}
+
+.bar-track--principal span {
+  background: #254c6a;
+}
+
+.bar-track--interest span {
+  background: #bd7424;
+}
+
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-wrap: anywhere;
+}
+
+.summary-table caption {
+  margin-bottom: 6px;
+  color: #17231e;
+  font-weight: 850;
+  text-align: left;
+}
+
+.summary-table th,
+.summary-table td {
+  padding: 9px 8px;
+  border-top: 1px solid #e0e7e2;
+  text-align: left;
+  vertical-align: top;
+}
+
+.summary-table th {
+  color: #33423d;
+  font-weight: 850;
+}
+
+.summary-table thead th {
+  color: #607069;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.profit-area {
+  height: 180px;
+  overflow: hidden;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  background: linear-gradient(to bottom, #eef8f2 0 50%, #fff6eb 50% 100%);
+}
+
+.profit-area svg {
+  width: 100%;
+  height: 100%;
+}
+
+.profit-area__fill {
+  fill: rgba(46, 138, 87, 0.16);
+}
+
+.profit-area__axis {
+  stroke: #aebdb6;
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+
+.profit-area__line {
+  fill: none;
+  stroke: #254c6a;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.formula-aside__intro {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding: 12px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  background: #fbfcfa;
+}
+
+.formula-aside__intro h3,
+.formula-aside__intro p {
+  margin-bottom: 0;
+}
+
 .interpretation-card {
   display: grid;
   gap: 6px;
@@ -919,6 +1151,9 @@ code {
   .page-footer,
   .hero,
   .controls,
+  .section-head,
+  .popular-grid,
+  .category-directory__grid,
   .workbench-heading,
   .workbench-body,
   .workbench-tabs,
@@ -965,7 +1200,12 @@ code {
     grid-template-columns: 1fr;
   }
 
-  .scenario-bar-row strong {
+  .breakdown-bar {
+    grid-template-columns: 1fr;
+  }
+
+  .scenario-bar-row strong,
+  .breakdown-bar > strong {
     text-align: left;
   }
 

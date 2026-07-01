@@ -54,3 +54,11 @@ Data-base: 2026-06-27
 - Internal language such as `Temporary public URL`, `Launch order`, `Quality check`, rollout status, billing and ads is blocked by unit/e2e assertions for this route.
 - Local evidence before CI/deploy: `artifacts/calcharbor-catalog-qa/calcharbor-catalog-desktop.png` and `artifacts/calcharbor-catalog-qa/calcharbor-catalog-mobile-pt-br.png`; Playwright checked desktop EN/mobile PT-BR, no overflow and localized labels.
 - Production evidence: Hub deploy `28424159062` and CalcHarbor static app deploy `28424625903` passed. The app deploy published the four newer calculators that were still 500 on the old public release, and a post-deploy direct check confirmed all 8 calculator URLs in EN/PT-BR returned 200.
+
+## Phase 18 Sprints 18.29-18.33 app tool refinement notes
+
+- The app home now follows the calculator-directory pattern more closely without copying benchmark layouts: search near the top, popular calculator shortcuts, six user-facing category groups, all-calculators grid and footer calculator groups.
+- The four priority tools now have more page-specific result treatment: Loan shows monthly payment plus principal/interest and amortization summary; Break-even adds a loss/profit by volume area chart; Gross Margin distinguishes margin from markup and cost-change scenarios; ROI states that the result is not annualized and adds conservative/base/aggressive scenarios.
+- Generic internal status panels were replaced with public repeat-work language and browser-local actions. Copy result, download summary and compare scenarios do not create storage, provider calls or analytics values.
+- Formula content stays below the useful result with a plain-language readout first.
+- Local evidence for this stage is intentionally minimal under the current cadence: CalcHarbor unit tests, build, public-copy validation and diff check passed; screenshots/Playwright/crawler/public smokes were not run locally by default.
