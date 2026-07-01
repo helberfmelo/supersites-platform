@@ -243,7 +243,7 @@ const localizedSitePulseCopy = {
     description: (name: string) => `Informe uma URL publica para executar um teste pontual de ${name} sem salvar o alvo.`,
     previewResult: (name: string) => `O resultado resume ${name}, achados principais e detalhes tecnicos limitados.`,
     freeScope: (name: string) => `Um teste pontual de ${name} para uma URL publica.`,
-    upgradeScope: 'Uptime, incidentes, status page, alertas, historico e multi-regiao continuam planejados.',
+    upgradeScope: 'Uptime, incidentes, status page, alertas, historico e multi-regiao continuam como fluxos de conta.',
     methodology: (name: string) => [
       `SitePulse executa uma unica probe de ${name}, com timeout curto, rate limit e validacao SSRF.`,
       'Use o resultado como linha de base antes de abrir incidente, alterar CDN ou mudar regras de servidor.',
@@ -255,7 +255,7 @@ const localizedSitePulseCopy = {
     fix: 'Corrija na origem ou CDN, aguarde propagacao quando houver cache e execute novo teste pontual.',
     faq: [
       { question: 'O SitePulse salva a URL testada?', answer: 'Nao. A rota gratuita evita armazenar URL, headers, redirects, tempos e resultados.' },
-      { question: 'Isto substitui monitoramento de uptime?', answer: 'Nao nesta versao gratuita. Uptime, alertas, historico e multi-regiao seguem planejados como upgrade.' },
+      { question: 'Isto substitui monitoramento de uptime?', answer: 'Nao nesta versao gratuita. Uptime, alertas, historico e multi-regiao pertencem aos fluxos de conta.' },
     ],
   },
   es: {
@@ -265,7 +265,7 @@ const localizedSitePulseCopy = {
     description: (name: string) => `Ingresa una URL publica para ejecutar una prueba puntual de ${name} sin guardar el objetivo.`,
     previewResult: (name: string) => `El resultado resume ${name}, hallazgos principales y detalles tecnicos limitados.`,
     freeScope: (name: string) => `Una prueba puntual de ${name} para una URL publica.`,
-    upgradeScope: 'Uptime, incidentes, status page, alertas, historial y multi-region siguen planificados.',
+    upgradeScope: 'Uptime, incidentes, status page, alertas, historial y multi-region siguen como flujos de cuenta.',
     methodology: (name: string) => [
       `SitePulse ejecuta una sola probe de ${name}, con timeout corto, rate limit y validacion SSRF.`,
       'Usa el resultado como linea base antes de abrir incidente, cambiar CDN o modificar reglas del servidor.',
@@ -277,7 +277,7 @@ const localizedSitePulseCopy = {
     fix: 'Corrige en origen o CDN, espera propagacion cuando haya cache y ejecuta una nueva prueba puntual.',
     faq: [
       { question: 'SitePulse guarda la URL probada?', answer: 'No. La ruta gratuita evita almacenar URL, headers, redirecciones, tiempos y resultados.' },
-      { question: 'Esto reemplaza monitoreo de uptime?', answer: 'No en esta version gratuita. Uptime, alertas, historial y multi-region siguen planificados como upgrade.' },
+      { question: 'Esto reemplaza monitoreo de uptime?', answer: 'No en esta version gratuita. Uptime, alertas, historial y multi-region pertenecen a flujos de cuenta.' },
     ],
   },
   fr: {
@@ -287,7 +287,7 @@ const localizedSitePulseCopy = {
     description: (name: string) => `Saisissez une URL publique pour lancer un controle ponctuel de ${name} sans stocker la cible.`,
     previewResult: (name: string) => `Le resultat resume ${name}, les constats principaux et des details techniques limites.`,
     freeScope: (name: string) => `Un controle ponctuel de ${name} pour une URL publique.`,
-    upgradeScope: 'Uptime, incidents, status page, alertes, historique et multi-region restent planifies.',
+    upgradeScope: 'Uptime, incidents, status page, alertes, historique et multi-region restent des workflows de compte.',
     methodology: (name: string) => [
       `SitePulse lance une seule probe de ${name}, avec timeout court, rate limit et validation SSRF.`,
       'Utilisez le resultat comme ligne de base avant incident, changement CDN ou regles serveur.',
@@ -299,7 +299,7 @@ const localizedSitePulseCopy = {
     fix: 'Corrigez a l origine ou au CDN, attendez la propagation si cache est implique, puis relancez un controle ponctuel.',
     faq: [
       { question: 'SitePulse stocke l URL testee?', answer: 'Non. La route gratuite evite le stockage des URL, headers, redirections, temps et resultats.' },
-      { question: 'Cela remplace une surveillance uptime?', answer: 'Non dans cette version gratuite. Uptime, alertes, historique et multi-region restent planifies comme upgrade.' },
+      { question: 'Cela remplace une surveillance uptime?', answer: 'Non dans cette version gratuite. Uptime, alertes, historique et multi-region relevent des workflows de compte.' },
     ],
   },
   de: {
@@ -309,7 +309,7 @@ const localizedSitePulseCopy = {
     description: (name: string) => `Geben Sie eine oeffentliche URL ein, um eine einmalige ${name}-Pruefung ohne Speicherung des Ziels zu starten.`,
     previewResult: (name: string) => `Das Ergebnis fasst ${name}, wichtigste Befunde und begrenzte technische Details zusammen.`,
     freeScope: (name: string) => `Eine einmalige ${name}-Pruefung fuer eine oeffentliche URL.`,
-    upgradeScope: 'Uptime, Incidents, Status Page, Alarme, Historie und Multi-Region bleiben geplant.',
+    upgradeScope: 'Uptime, Incidents, Status Page, Alarme, Historie und Multi-Region bleiben Konto-Workflows.',
     methodology: (name: string) => [
       `SitePulse fuehrt eine einzelne ${name}-Probe mit kurzem Timeout, Rate Limit und SSRF-Validierung aus.`,
       'Nutzen Sie das Ergebnis als Basis vor Incident, CDN-Aenderung oder Serverregel-Aenderung.',
@@ -321,7 +321,7 @@ const localizedSitePulseCopy = {
     fix: 'Korrigieren Sie Origin oder CDN, warten Sie bei Cache auf Propagation und starten Sie eine neue Pruefung.',
     faq: [
       { question: 'Speichert SitePulse die getestete URL?', answer: 'Nein. Die kostenlose Route speichert keine URL, Header, Weiterleitungen, Zeiten oder Ergebnisse.' },
-      { question: 'Ersetzt das Uptime-Monitoring?', answer: 'Nicht in dieser kostenlosen Version. Uptime, Alarme, Historie und Multi-Region bleiben als Upgrade geplant.' },
+      { question: 'Ersetzt das Uptime-Monitoring?', answer: 'Nicht in dieser kostenlosen Version. Uptime, Alarme, Historie und Multi-Region gehoeren zu Konto-Workflows.' },
     ],
   },
 } satisfies Record<Exclude<LocaleCode, 'en'>, {
@@ -446,7 +446,7 @@ export const toolCatalog: ToolDefinition[] = [
     fix: 'Compare DNS, CDN, WAF and origin logs before changing application code.',
     limitation: 'This is not uptime monitoring. It is a single web request from one runtime with short timeouts.',
     faq: [
-      { question: 'Does the free check monitor my site?', answer: 'No. Monitoring, alerts and history are gated upgrade value.' },
+      { question: 'Does the free check monitor my site?', answer: 'No. Monitoring, alerts and history belong to account workflows.' },
       { question: 'Can I check intranet URLs?', answer: 'No. Private, local, metadata and reserved destinations are blocked.' },
     ],
   }),
@@ -468,7 +468,7 @@ export const toolCatalog: ToolDefinition[] = [
     fix: 'Collapse redirects at the edge or origin so users and crawlers reach the canonical URL quickly.',
     limitation: 'The free checker does not crawl internal links or run a full SEO migration audit.',
     faq: [
-      { question: 'How many redirects are followed?', answer: 'The MVP follows a small capped chain to prevent abuse and loops.' },
+      { question: 'How many redirects are followed?', answer: 'The free check follows a small capped chain to prevent abuse and loops.' },
       { question: 'Are redirect targets saved?', answer: 'No. The target stays in the transient probe response and is not sent to analytics.' },
     ],
   }),
@@ -510,7 +510,7 @@ export const toolCatalog: ToolDefinition[] = [
     example: 'A robots file with Sitemap: https://example.com/sitemap.xml helps crawlers discover submitted URLs.',
     commonIssue: 'Staging Disallow rules can accidentally ship to production.',
     fix: 'Review robots.txt after deploys and confirm important sections are crawlable before requesting indexing.',
-    limitation: 'The MVP does not emulate every crawler or evaluate every path rule.',
+    limitation: 'The free check does not emulate every crawler or evaluate every path rule.',
     faq: [
       { question: 'Will this crawl my site?', answer: 'No. It fetches only robots.txt for the normalized origin.' },
       { question: 'Is Disallow always bad?', answer: 'No. It is useful for areas that should not be crawled, but dangerous when applied broadly by mistake.' },
@@ -532,9 +532,9 @@ export const toolCatalog: ToolDefinition[] = [
     example: 'A sitemap with canonical HTTPS URLs and recent lastmod values gives crawlers cleaner discovery signals.',
     commonIssue: 'Sitemaps often point at staging hosts, blocked URLs or stale HTTP canonicals after migrations.',
     fix: 'Regenerate from canonical production routes and validate before Search Console submission.',
-    limitation: 'The MVP does not crawl every URL inside the sitemap.',
+    limitation: 'The free check does not crawl every URL inside the sitemap.',
     faq: [
-      { question: 'Can I paste a custom sitemap URL?', answer: 'The MVP checks same-origin /sitemap.xml only to keep SSRF controls simple.' },
+      { question: 'Can I paste a custom sitemap URL?', answer: 'The free check uses same-origin /sitemap.xml only to keep SSRF controls simple.' },
       { question: 'Does valid XML mean indexed?', answer: 'No. Indexing also depends on content quality, crawlability, canonical signals and search engine decisions.' },
     ],
   }),
@@ -575,10 +575,10 @@ export const toolCatalog: ToolDefinition[] = [
     interpret: 'Use the snapshot to triage obvious issues; use dedicated checks for deeper interpretation.',
     example: 'A healthy snapshot has 2xx final status, short redirect chain, core security headers and valid crawl files.',
     commonIssue: 'Teams may fix performance while missing crawlability or security header regressions.',
-    fix: 'Track the snapshot after deploys, then promote recurring monitoring only when alerting and retention gates exist.',
-    limitation: 'The free snapshot is not a full synthetic browser test or Lighthouse audit.',
+    fix: 'Track the snapshot after deploys, then add recurring monitoring when alerting and retention rules are configured.',
+    limitation: 'The free snapshot is not a full synthetic browser test, Lighthouse audit or PageSpeed/GTmetrix measurement.',
     faq: [
-      { question: 'Does this replace uptime monitoring?', answer: 'No. It is a one-shot diagnostic. Recurring probes are gated.' },
+      { question: 'Does this replace uptime monitoring?', answer: 'No. It is a one-shot diagnostic. Recurring probes belong in account workflows.' },
       { question: 'Does it call external analytics?', answer: 'No. No GA4, GTM, AdSense or external observability is activated.' },
     ],
   }),

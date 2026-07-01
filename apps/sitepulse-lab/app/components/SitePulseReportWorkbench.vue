@@ -73,7 +73,7 @@ type ReportGroupKey = 'availability' | 'redirects' | 'security' | 'crawlability'
 const reportCopy: Record<LocaleCode, ReportCopy> = {
   en: {
     eyebrow: 'One-shot website report',
-    title: 'See the public status, redirects, headers, crawl files and speed signals in one run.',
+    title: 'Check if a website is up, then review redirects, headers and speed signals.',
     lead: 'Enter a public URL and SitePulse combines bounded checks into a visual report without creating an account or monitoring history.',
     inputLabel: 'Website URL',
     inputPlaceholder: 'https://example.com',
@@ -143,7 +143,7 @@ const reportCopy: Record<LocaleCode, ReportCopy> = {
   },
   'pt-br': {
     eyebrow: 'Relatorio web pontual',
-    title: 'Veja status publico, redirects, headers, arquivos de rastreamento e velocidade em uma execucao.',
+    title: 'Veja se um site esta no ar e revise redirects, headers e velocidade.',
     lead: 'Informe uma URL publica e o SitePulse combina checks limitados em um relatorio visual sem conta ou historico de monitoramento.',
     inputLabel: 'URL do site',
     inputPlaceholder: 'https://example.com',
@@ -213,7 +213,7 @@ const reportCopy: Record<LocaleCode, ReportCopy> = {
   },
   es: {
     eyebrow: 'Informe web puntual',
-    title: 'Ve estado publico, redirecciones, headers, archivos de rastreo y velocidad en una ejecucion.',
+    title: 'Comprueba si un sitio esta online y revisa redirecciones, headers y velocidad.',
     lead: 'Ingresa una URL publica y SitePulse combina pruebas limitadas en un informe visual sin cuenta ni historial de monitoreo.',
     inputLabel: 'URL del sitio',
     inputPlaceholder: 'https://example.com',
@@ -283,7 +283,7 @@ const reportCopy: Record<LocaleCode, ReportCopy> = {
   },
   fr: {
     eyebrow: 'Rapport web ponctuel',
-    title: 'Voyez statut public, redirections, headers, fichiers de crawl et vitesse en une execution.',
+    title: 'Verifiez si un site est en ligne, puis revoyez redirections, headers et vitesse.',
     lead: 'Saisissez une URL publique et SitePulse combine des controles limites en rapport visuel sans compte ni historique de monitoring.',
     inputLabel: 'URL du site',
     inputPlaceholder: 'https://example.com',
@@ -353,7 +353,7 @@ const reportCopy: Record<LocaleCode, ReportCopy> = {
   },
   de: {
     eyebrow: 'Einmaliger Website-Bericht',
-    title: 'Oeffentlichen Status, Weiterleitungen, Header, Crawl-Dateien und Speed-Signale in einem Lauf sehen.',
+    title: 'Pruefen, ob eine Website online ist, dann Redirects, Header und Speed-Signale ansehen.',
     lead: 'Geben Sie eine oeffentliche URL ein und SitePulse kombiniert begrenzte Checks zu einem visuellen Bericht ohne Konto oder Monitoring-Verlauf.',
     inputLabel: 'Website-URL',
     inputPlaceholder: 'https://example.com',

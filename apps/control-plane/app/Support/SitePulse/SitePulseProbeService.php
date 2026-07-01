@@ -102,11 +102,12 @@ class SitePulseProbeService
                 'findings' => $findings,
                 'checks' => $checkData,
                 'redirect_chain' => array_map(fn (array $hop): array => [
-                    'url' => $hop['url'],
-                    'status' => $hop['status'],
-                    'location' => $hop['location'],
-                    'duration_ms' => $hop['duration_ms'],
-                ], $chain),
+                'url' => $hop['url'],
+                'status' => $hop['status'],
+                'location' => $hop['location'],
+                'duration_ms' => $hop['duration_ms'],
+                'error' => $hop['error'] ?? null,
+            ], $chain),
                 'warnings' => $warnings,
             ],
             'meta' => [
@@ -375,6 +376,7 @@ class SitePulseProbeService
             'content-security-policy',
             'x-frame-options',
             'referrer-policy',
+            'permissions-policy',
             'x-content-type-options',
         ];
         $headers = array_keys($final['headers'] ?? []);

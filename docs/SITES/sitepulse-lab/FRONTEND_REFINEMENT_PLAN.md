@@ -72,3 +72,11 @@ Medium; ads/support must stay away from URL input, results and diagnostics.
 - The route links to the 7 real SitePulse checks: status, redirects, security headers, robots.txt, sitemap, TTFB and performance snapshot.
 - Local and live desktop/mobile QA, public copy validation, AdSense-safe validation, SitePulse static app smoke and EN/PT-BR deep-link checks passed before documentation closeout.
 - No recurring uptime, alert, status page, multi-region probe, paid API, provider, billing, ad serving or irreversible action was activated.
+
+## Phase 18.72-18.79 execution notes
+
+- Home and tool pages now answer first with a usable one-shot diagnosis, then progressively reveal metadata, findings and technical evidence.
+- The result detail tab now includes redirect timeline metadata, security header cards, robots/sitemap crawlability signals, sitemap sample URLs, technology clues and TTFB/performance cards.
+- Copy-report and check-again actions were added to the result overview so the free flow is useful without account creation.
+- Public copy now frames monitoring, history, status pages and multi-region probes as account workflows below the free result rather than top-of-page roadmap copy.
+- Local validation focused on the affected surface: SitePulse unit test/build/preview, control-plane API test, public-copy, secrets and diff check.

@@ -29,64 +29,62 @@ Concluido ate:
 - Etapa QRRoute Tools: home, Static QR Code Generator, Barcode Generator, UTM Builder, vCard QR Builder, Wi-Fi QR Builder e QR Preview Lab.
 - Etapa InvoiceCraft Tools: home, Invoice Builder, Quote Builder e Receipt Builder.
 - Etapa MailHealth Tools: home, SPF Checker, DKIM Checker, DMARC Checker, MX Checker, Blacklist Check, SMTP Check e Header Analyzer.
+- Etapa SitePulse Lab Tools: home, HTTP Status Checker, Redirect Chain Checker, Security Headers Checker, Robots.txt Checker, Sitemap Validator, TTFB Checker e Performance Snapshot.
 
 Proxima etapa ativa:
 
-- **Etapa SitePulse Lab Tools**
-- Sprints: **18.72 a 18.79**
-- Escopo: SitePulse home, HTTP Status Checker, Redirect Chain Checker, Security Headers Checker, Robots.txt Checker, Sitemap Validator, TTFB Checker e Performance Snapshot.
+- **Etapa PixelBatch Tools**
+- Sprints: **18.80 a 18.86**
+- Escopo: PixelBatch home, Image Compressor, Image Resizer, Image Cropper, Image Converter, Metadata Remover e Social Preset Generator.
 
 ## Sprints da proxima etapa
 
-### Sprint 18.72 - SitePulse home
+### Sprint 18.80 - PixelBatch home
 
-- Input `Check if a website is up` acima da dobra.
-- Resultado simples: online/down/redirecting/slow.
-- Detalhes GTmetrix-like abaixo.
-- Remover `Monitoring planned` do topo.
+- Dropzone grande acima da dobra.
+- Inspirar-se em TinyPNG/iLoveIMG/Squoosh sem copiar UI/texto/assets.
+- Remover `No server upload backend active` do topo.
+- Mostrar `Your image stays in this browser` como badge curto.
+- Footer image tools rico.
 
-### Sprint 18.73 - HTTP Status Checker
+### Sprint 18.81 - Image Compressor
 
-- Resultado principal: HTTP code, online/down, final URL e TTFB.
-- Botoes copy report e check again.
-- Explicacao leiga do codigo.
+- Dropzone dominante.
+- Preview antes/depois.
+- Resultado: original size, output size, reduction %, format e quality.
+- Download claro.
+- Corrigir PT-BR e ingles residual.
 
-### Sprint 18.74 - Redirect Chain Checker
+### Sprint 18.82 - Image Resizer
 
-- Timeline de hops.
-- Mostrar code, URL, latency, cross-domain e loop warning.
-- SEO guidance abaixo.
+- Campos width/height e manter proporcao.
+- Presets web/store/social.
+- Preview e download.
 
-### Sprint 18.75 - Security Headers Checker
+### Sprint 18.83 - Image Cropper
 
-- Score visual.
-- Cards para HSTS, CSP, X-Frame-Options, Referrer-Policy, Permissions-Policy e X-Content-Type-Options.
-- Mostrar header presente/ausente e recomendacao.
+- UI de crop real se viavel.
+- Presets square, portrait, landscape, OG e marketplace.
+- Preview e download.
+- Se crop manual nao for viavel nesta etapa, implementar centered crop com UI honesta e backlog para crop manual.
 
-### Sprint 18.76 - Robots.txt Checker
+### Sprint 18.84 - Image Converter
 
-- Mostrar fetch status e conteudo resumido.
-- Destacar sitemap hints e disallow gerais.
-- Nao fazer crawl amplo.
+- Input file, output format e quality quando aplicavel.
+- Preview e download.
+- Aviso quando AVIF nao suportado pelo navegador.
 
-### Sprint 18.77 - Sitemap Validator
+### Sprint 18.85 - Metadata Remover
 
-- Mostrar status XML, URL count, size e errors.
-- Amostra de URLs.
-- Proximo passo para SEO.
+- Explicar claramente que re-encode via Canvas remove metadados comuns.
+- Mostrar antes/depois quando possivel.
+- Download da copia limpa.
 
-### Sprint 18.78 - TTFB Checker
+### Sprint 18.86 - Social Preset Generator
 
-- Resultado principal: TTFB ms com badge good/needs work/slow.
-- Explicar que e amostra unica.
-- CTA para monitoramento futuro abaixo.
-
-### Sprint 18.79 - Performance Snapshot
-
-- Relatorio visual com status, redirects, headers, byte size e TTFB.
-- Score geral.
-- Nao prometer Lighthouse se nao executar Lighthouse real.
-- Relacionar com PageSpeed/GTmetrix como benchmarks, nao como dados proprios.
+- Presets: square, story, OG e marketplace.
+- Gerar multiplos outputs se localmente viavel.
+- Download individual ou zip se seguro.
 
 ## Regras de produto
 

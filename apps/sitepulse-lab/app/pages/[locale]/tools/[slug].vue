@@ -54,8 +54,14 @@ const copy = getToolCopy(tool, locale)
 const shellCopy = getShellCopy(locale)
 const detailCopy = getSitePulseDetailCopy(locale)
 const resultMetaCopy = sanitizePublicCopy(locale, {
-  status: 'Status',
+  status: 'Page state',
+  online: 'online',
+  redirecting: 'redirecting',
+  slow: 'slow',
+  down: 'down',
+  httpCode: 'HTTP code',
   finalUrl: 'Final URL',
+  ttfb: 'TTFB',
   cache: 'Cache',
   cached: 'cached',
   fresh: 'fresh',
@@ -71,11 +77,39 @@ const errorMessage = ref('')
 const apiResult = ref<SitePulseProbeData | null>(null)
 const apiMeta = ref<Record<string, unknown>>({})
 const activeResultTab = ref<'overview' | 'findings' | 'details'>('overview')
+const reportCopied = ref(false)
 const displayedFindings = computed(() => apiResult.value?.findings ?? [])
 const hasResult = computed(() => Boolean(apiResult.value))
+const statusCheck = computed(() => asRecord(apiResult.value?.checks.status))
+const ttfbCheck = computed(() => asRecord(apiResult.value?.checks.ttfb))
+const performanceCheck = computed(() => asRecord(apiResult.value?.checks.performance))
+const httpCode = computed(() => numberFrom(statusCheck.value.code))
+const redirectCount = computed(() => numberFrom(performanceCheck.value.redirect_count) ?? Math.max((apiResult.value?.redirect_chain.length ?? 1) - 1, 0))
+const ttfbMs = computed(() => numberFrom(ttfbCheck.value.duration_ms ?? statusCheck.value.duration_ms))
+const pageState = computed(() => {
+  if (!apiResult.value || httpCode.value === null) {
+    return '-'
+  }
+
+  if (apiResult.value.status === 'fail' || httpCode.value >= 400) {
+    return resultMetaCopy.down
+  }
+
+  if (ttfbMs.value !== null && ttfbMs.value >= 1200) {
+    return resultMetaCopy.slow
+  }
+
+  if (redirectCount.value > 0) {
+    return resultMetaCopy.redirecting
+  }
+
+  return resultMetaCopy.online
+})
 const displayedMeta = computed(() => [
-  { label: resultMetaCopy.status, value: apiResult.value?.status ?? '-' },
+  { label: resultMetaCopy.status, value: pageState.value },
+  { label: resultMetaCopy.httpCode, value: httpCode.value === null ? '-' : String(httpCode.value) },
   { label: resultMetaCopy.finalUrl, value: apiResult.value?.final_url ?? '-' },
+  { label: resultMetaCopy.ttfb, value: ttfbMs.value === null ? '-' : `${ttfbMs.value} ms` },
   { label: resultMetaCopy.cache, value: apiMeta.value.cached ? resultMetaCopy.cached : resultMetaCopy.fresh },
   { label: resultMetaCopy.ttl, value: String(apiMeta.value.cache_ttl_seconds ?? '-') },
 ])
@@ -89,6 +123,39 @@ const resultTabs = computed(() => [
   { key: 'findings' as const, label: shellCopy.findingsTabLabel },
   { key: 'details' as const, label: shellCopy.detailsTabLabel },
 ])
+const reportText = computed(() => {
+  if (!apiResult.value) {
+    return ''
+  }
+
+  return [
+    `${copy.title}`,
+    `${resultMetaCopy.status}: ${pageState.value}`,
+    `${resultMetaCopy.httpCode}: ${httpCode.value === null ? '-' : httpCode.value}`,
+    `${resultMetaCopy.finalUrl}: ${apiResult.value.final_url}`,
+    `${resultMetaCopy.ttfb}: ${ttfbMs.value === null ? '-' : `${ttfbMs.value} ms`}`,
+    '',
+    ...displayedFindings.value.map((finding) => `${finding.label}: ${finding.status} - ${finding.detail}${finding.value ? ` (${finding.value})` : ''}`),
+  ].join('\n')
+})
+
+function asRecord(value: unknown): Record<string, unknown> {
+  return value && typeof value === 'object' && !Array.isArray(value) ? value as Record<string, unknown> : {}
+}
+
+function numberFrom(value: unknown): number | null {
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    return value
+  }
+
+  if (typeof value === 'string') {
+    const parsed = Number.parseFloat(value)
+
+    return Number.isFinite(parsed) ? parsed : null
+  }
+
+  return null
+}
 
 function statusClass(status: string | undefined): string {
   if (status === 'pass' || status === 'ok' || status === 'healthy') {
@@ -103,6 +170,22 @@ function statusClass(status: string | undefined): string {
 
 function sitepulseEndpoint(path: string): string {
   return `${String(runtimeConfig.public.sitepulseApiBaseUrl).replace(/\/+$/g, '')}/${path}`
+}
+
+async function copyReport(): Promise<void> {
+  if (!reportText.value || typeof navigator === 'undefined' || !navigator.clipboard) {
+    return
+  }
+
+  try {
+    await navigator.clipboard.writeText(reportText.value)
+    reportCopied.value = true
+    window.setTimeout(() => {
+      reportCopied.value = false
+    }, 1600)
+  } catch {
+    // The report remains visible if clipboard permissions are unavailable.
+  }
 }
 
 async function parseApiError(response: Response): Promise<string> {
@@ -227,8 +310,8 @@ useHead({
         </div>
         <div class="status-panel__row">
           <div>
-            <strong>{{ shellCopy.plannedTitle }}</strong>
-            <span>{{ shellCopy.plannedBody }}</span>
+            <strong>{{ shellCopy.freeCheckLabel }}</strong>
+            <span>{{ copy.freeScope }}</span>
           </div>
           <span class="signal signal--amber" aria-hidden="true"></span>
         </div>
@@ -309,6 +392,15 @@ useHead({
                   <span>{{ item.value }}</span>
                 </div>
               </div>
+
+              <div class="result-actions">
+                <button class="button-link button-link--secondary" type="button" @click="copyReport">
+                  {{ reportCopied ? shellCopy.copiedReportLabel : shellCopy.copyReportLabel }}
+                </button>
+                <button class="button-link button-link--secondary" type="button" :disabled="isLoading" @click="runProbe">
+                  {{ shellCopy.checkAgainLabel }}
+                </button>
+              </div>
             </section>
 
             <section v-if="activeResultTab === 'findings'" class="result-tab-panel">
@@ -354,7 +446,12 @@ useHead({
                         <dt>{{ detailCopy.durationLabel }}</dt>
                         <dd>{{ hop.duration }}</dd>
                       </div>
+                      <div>
+                        <dt>{{ detailCopy.crossDomainLabel }}</dt>
+                        <dd>{{ hop.crossDomain }}</dd>
+                      </div>
                     </dl>
+                    <p v-if="hop.warning" class="technical-warning">{{ hop.warning }}</p>
                   </li>
                 </ol>
                 <p v-else>{{ detailCopy.emptyRedirects }}</p>
@@ -369,6 +466,24 @@ useHead({
                     <p>{{ item.detail }}</p>
                     <code v-if="item.value">{{ item.value }}</code>
                   </article>
+                </div>
+              </section>
+
+              <section v-if="detailView.crawlItems.length" class="technical-section">
+                <h3>{{ detailCopy.crawlabilityTitle }}</h3>
+                <div class="detail-card-grid">
+                  <article v-for="item in detailView.crawlItems" :key="`${item.label}-${item.value}`" class="detail-card">
+                    <span :class="statusClass(item.status)">{{ item.status }}</span>
+                    <strong>{{ item.label }}</strong>
+                    <p>{{ item.detail }}</p>
+                    <code v-if="item.value">{{ item.value }}</code>
+                  </article>
+                </div>
+                <div v-if="detailView.sitemapSampleUrls.length" class="sample-url-list">
+                  <strong>{{ detailCopy.sitemapSampleUrlsLabel }}</strong>
+                  <ul class="method-list">
+                    <li v-for="sampleUrl in detailView.sitemapSampleUrls" :key="sampleUrl">{{ sampleUrl }}</li>
+                  </ul>
                 </div>
               </section>
 
@@ -405,7 +520,7 @@ useHead({
             </section>
           </template>
 
-          <p v-else>{{ previewSubmitted ? copy.previewResult : shellCopy.plannedBody }}</p>
+          <p v-else>{{ copy.previewResult }}</p>
         </section>
       </div>
 

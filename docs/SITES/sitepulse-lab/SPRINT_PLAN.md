@@ -70,3 +70,12 @@ Data-base: 2026-06-27
 - Feature commit `53809f3`, Quality Gate `28355948547` and Deploy Dry Run `28355948542` passed.
 - Public smokes passed for SitePulse app/API, Hub aggregate, NetProbe and control-plane/API, validating the current production baseline with asset `https://opentshost.com/supersites/sitepulse-lab/_nuxt/lkcC6TkC.js`.
 - No real static deploy was triggered in this sprint.
+
+## Phase 18.72-18.79 local execution
+
+- Completed the SitePulse benchmark refinement stage across the home report and all seven tool pages: status, redirects, security headers, robots.txt, sitemap, TTFB and performance snapshot.
+- The home now leads with `Check if a website is up`, point-in-time states (`online`, `down`, `redirecting`, `slow`) and grouped GTmetrix-like evidence cards without activating external Lighthouse/PageSpeed/GTmetrix measurement.
+- Tool results now expose HTTP code, page state, final URL, TTFB, copy-report/check-again actions, redirect cross-domain and loop warnings, a six-header security matrix including `Permissions-Policy`, robots/sitemap crawlability cards, sitemap sample URLs and TTFB rating.
+- The control-plane probe payload now includes redirect hop errors and treats `Permissions-Policy` as part of the baseline header matrix; no new endpoint, broad crawl, storage, recurring worker, alert delivery, checkout, ad serving or provider integration was activated.
+- Public copy was cleaned away from internal roadmap terms while preserving one-shot privacy and account-workflow boundaries.
+- Minimal validation passed: `pnpm test:sitepulse`, `php artisan test --filter=SitePulseProbeApiTest`, `pnpm build:sitepulse`, `pnpm validate:sitepulse-preview`, `pnpm validate:public-copy`, `pnpm validate:secrets` and `git diff --check`.

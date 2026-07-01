@@ -99,8 +99,8 @@ useHead({
         </div>
         <div class="status-panel__row">
           <div>
-            <strong>{{ shellCopy.plannedTitle }}</strong>
-            <span>{{ shellCopy.plannedBody }}</span>
+            <strong>{{ shellCopy.privacyTitle }}</strong>
+            <span>{{ shellCopy.privacyBody }}</span>
           </div>
           <span class="signal signal--amber" aria-hidden="true"></span>
         </div>

@@ -24,8 +24,8 @@ export interface ShellCopy {
   pageStatusLabel: string
   relatedTitle: string
   relatedBody: string
-  plannedTitle: string
-  plannedBody: string
+  privacyTitle: string
+  privacyBody: string
   pulseScoreTitle: string
   checklistTitle: string
   recommendationTitle: string
@@ -41,6 +41,9 @@ export interface ShellCopy {
   editorialLabel: string
   resultTitle: string
   runningLabel: string
+  copyReportLabel: string
+  copiedReportLabel: string
+  checkAgainLabel: string
   freeCheckLabel: string
   upgradePathLabel: string
   toolGuideTitle: string
@@ -98,7 +101,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     statusRows: [
       { title: '7 focused checks', body: 'Status, redirects, headers, robots, sitemap, TTFB and snapshot pages are represented.', tone: 'green' },
       { title: '5 language route sets', body: 'English, Portuguese, Spanish, French and German pages are prerendered.', tone: 'green' },
-      { title: 'Monitoring gated', body: 'Recurring uptime, incidents, status pages, alerts, history, multi-region probes and billing are not active.', tone: 'amber' },
+      { title: 'Point-in-time results', body: 'Each run is a bounded snapshot; use it to triage before changing DNS, CDN or server rules.', tone: 'amber' },
     ],
   },
   'pt-br': {
@@ -120,7 +123,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     statusRows: [
       { title: '7 checks focados', body: 'Status, redirects, headers, robots, sitemap, TTFB e snapshot estao representados.', tone: 'green' },
       { title: '5 conjuntos de idioma', body: 'Paginas em ingles, portugues, espanhol, frances e alemao sao prerenderizadas.', tone: 'green' },
-      { title: 'Monitoramento bloqueado', body: 'Uptime recorrente, incidentes, status page, alertas, historico, multi-regiao e billing nao estao ativos.', tone: 'amber' },
+      { title: 'Resultados pontuais', body: 'Cada execucao e um snapshot limitado; use para triagem antes de mudar DNS, CDN ou servidor.', tone: 'amber' },
     ],
   },
   es: {
@@ -142,7 +145,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     statusRows: [
       { title: '7 checks enfocados', body: 'Status, redirects, headers, robots, sitemap, TTFB y snapshot estan representados.', tone: 'green' },
       { title: '5 rutas de idioma', body: 'Paginas en ingles, portugues, espanol, frances y aleman se prerenderizan.', tone: 'green' },
-      { title: 'Monitoreo bloqueado', body: 'Uptime recurrente, incidentes, status page, alertas, historico, multi-region y billing no estan activos.', tone: 'amber' },
+      { title: 'Resultados puntuales', body: 'Cada ejecucion es un snapshot limitado; usalo para triaje antes de cambiar DNS, CDN o servidor.', tone: 'amber' },
     ],
   },
   fr: {
@@ -164,7 +167,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     statusRows: [
       { title: '7 controles cibles', body: 'Statut, redirects, headers, robots, sitemap, TTFB et snapshot sont representes.', tone: 'green' },
       { title: '5 routes langue', body: 'Pages anglaises, portugaises, espagnoles, francaises et allemandes prerenderisees.', tone: 'green' },
-      { title: 'Surveillance bloquee', body: 'Uptime recurrent, incidents, status page, alertes, historique, multi-region et billing inactifs.', tone: 'amber' },
+      { title: 'Resultats ponctuels', body: 'Chaque execution est un snapshot borne; utilisez-le avant de changer DNS, CDN ou serveur.', tone: 'amber' },
     ],
   },
   de: {
@@ -186,7 +189,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     statusRows: [
       { title: '7 fokussierte Checks', body: 'Status, Redirects, Header, Robots, Sitemap, TTFB und Snapshot sind vertreten.', tone: 'green' },
       { title: '5 Sprachrouten', body: 'Englische, portugiesische, spanische, franzoesische und deutsche Seiten werden prerendered.', tone: 'green' },
-      { title: 'Monitoring gesperrt', body: 'Uptime, Incidents, Status Page, Alerts, History, Multi-Region und Billing sind inaktiv.', tone: 'amber' },
+      { title: 'Zeitpunkt-Ergebnisse', body: 'Jeder Lauf ist ein begrenzter Snapshot; nutzen Sie ihn vor DNS-, CDN- oder Serveraenderungen.', tone: 'amber' },
     ],
   },
 }
@@ -197,14 +200,14 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     pageStatusLabel: 'Check status',
     relatedTitle: 'Related pages',
     relatedBody: 'Chain status, redirects, headers, robots, sitemap, TTFB and snapshot checks without saving the target.',
-    plannedTitle: 'Bounded public API',
-    plannedBody: 'One-shot probes use a dedicated rate limit, short timeouts and no stored history.',
+    privacyTitle: 'Privacy and limits',
+    privacyBody: 'One-shot probes use short timeouts, capped redirects and no saved target history.',
     pulseScoreTitle: 'Pulse score',
     checklistTitle: 'Signal checklist',
     recommendationTitle: 'Recommended actions',
-    recommendationEmpty: 'Keep this one-shot result as a baseline; recurring uptime and incident history remain gated.',
-    monitoringTitle: 'Monitoring workflow gated',
-    monitoringBody: 'Recurring probes, alert routing, status pages, incident history and multi-region checks are planned but inactive.',
+    recommendationEmpty: 'Keep this one-shot result as a baseline for the next check.',
+    monitoringTitle: 'Workflow upgrade path',
+    monitoringBody: 'Recurring probes, alert routing, status pages, incident history and multi-region checks fit account workflows below the free result.',
     monitoringItems: ['Uptime checks and incidents', 'Status page and alert routing', 'Historical trends and reports', 'Multi-region probes'],
     overviewTabLabel: 'Overview',
     findingsTabLabel: 'Findings',
@@ -214,6 +217,9 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     editorialLabel: 'Editorial policy',
     resultTitle: 'Result',
     runningLabel: 'Running check...',
+    copyReportLabel: 'Copy report',
+    copiedReportLabel: 'Report copied',
+    checkAgainLabel: 'Check again',
     freeCheckLabel: 'Free check',
     upgradePathLabel: 'Upgrade path',
     toolGuideTitle: 'Guide and interpretation',
@@ -225,14 +231,14 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     pageStatusLabel: 'Status do check',
     relatedTitle: 'Paginas relacionadas',
     relatedBody: 'Encadeie status, redirects, headers, robots, sitemap, TTFB e snapshot sem salvar o alvo.',
-    plannedTitle: 'API publica limitada',
-    plannedBody: 'Probes pontuais usam rate limit dedicado, timeout curto e sem historico salvo.',
+    privacyTitle: 'Privacidade e limites',
+    privacyBody: 'Probes pontuais usam timeout curto, redirects limitados e sem historico de alvo salvo.',
     pulseScoreTitle: 'Score Pulse',
     checklistTitle: 'Checklist de sinais',
     recommendationTitle: 'Acoes recomendadas',
-    recommendationEmpty: 'Use este resultado pontual como linha de base; uptime recorrente e historico seguem bloqueados.',
-    monitoringTitle: 'Workflow de monitoramento bloqueado',
-    monitoringBody: 'Probes recorrentes, alertas, status page, historico e multi-regiao estao planejados, mas inativos.',
+    recommendationEmpty: 'Use este resultado pontual como linha de base para o proximo check.',
+    monitoringTitle: 'Caminho de upgrade workflow',
+    monitoringBody: 'Probes recorrentes, alertas, status page, historico e multi-regiao combinam com fluxos de conta abaixo do resultado gratuito.',
     monitoringItems: ['Uptime e incidentes', 'Status page e alertas', 'Tendencias e relatorios', 'Probes multi-regiao'],
     overviewTabLabel: 'Resumo',
     findingsTabLabel: 'Sinais',
@@ -242,6 +248,9 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     editorialLabel: 'Politica editorial',
     resultTitle: 'Resultado',
     runningLabel: 'Executando check...',
+    copyReportLabel: 'Copiar relatorio',
+    copiedReportLabel: 'Relatorio copiado',
+    checkAgainLabel: 'Checar de novo',
     freeCheckLabel: 'Check gratuito',
     upgradePathLabel: 'Caminho de upgrade',
     toolGuideTitle: 'Guia e interpretacao',
@@ -253,14 +262,14 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     pageStatusLabel: 'Estado del check',
     relatedTitle: 'Paginas relacionadas',
     relatedBody: 'Encadena status, redirects, headers, robots, sitemap, TTFB y snapshot sin guardar el objetivo.',
-    plannedTitle: 'API publica limitada',
-    plannedBody: 'Probes puntuales usan rate limit dedicado, timeout corto y sin historial guardado.',
+    privacyTitle: 'Privacidad y limites',
+    privacyBody: 'Las pruebas puntuales usan timeout corto, redirecciones limitadas y sin historial de objetivo guardado.',
     pulseScoreTitle: 'Score Pulse',
     checklistTitle: 'Checklist de senales',
     recommendationTitle: 'Acciones recomendadas',
-    recommendationEmpty: 'Usa este resultado puntual como base; uptime recurrente e historico siguen bloqueados.',
-    monitoringTitle: 'Workflow de monitoreo bloqueado',
-    monitoringBody: 'Probes recurrentes, alertas, status page, historico y multi-region estan planeados, pero inactivos.',
+    recommendationEmpty: 'Usa este resultado puntual como base para el proximo check.',
+    monitoringTitle: 'Ruta de upgrade workflow',
+    monitoringBody: 'Pruebas recurrentes, alertas, status page, historial y multi-region encajan en flujos de cuenta debajo del resultado gratis.',
     monitoringItems: ['Uptime e incidentes', 'Status page y alertas', 'Tendencias e informes', 'Probes multi-region'],
     overviewTabLabel: 'Resumen',
     findingsTabLabel: 'Senales',
@@ -270,6 +279,9 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     editorialLabel: 'Politica editorial',
     resultTitle: 'Resultado',
     runningLabel: 'Ejecutando check...',
+    copyReportLabel: 'Copiar informe',
+    copiedReportLabel: 'Informe copiado',
+    checkAgainLabel: 'Revisar de nuevo',
     freeCheckLabel: 'Check gratis',
     upgradePathLabel: 'Ruta de upgrade',
     toolGuideTitle: 'Guia e interpretacion',
@@ -281,14 +293,14 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     pageStatusLabel: 'Statut',
     relatedTitle: 'Pages liees',
     relatedBody: 'Enchainez statut, redirects, headers, robots, sitemap, TTFB et snapshot sans stocker la cible.',
-    plannedTitle: 'API publique bornee',
-    plannedBody: 'Les probes ponctuels utilisent rate limit dedie, timeouts courts et aucun historique.',
+    privacyTitle: 'Confidentialite et limites',
+    privacyBody: 'Les probes ponctuelles utilisent timeouts courts, redirects bornes et aucun historique de cible.',
     pulseScoreTitle: 'Score Pulse',
     checklistTitle: 'Checklist signaux',
     recommendationTitle: 'Actions recommandees',
-    recommendationEmpty: 'Gardez ce resultat ponctuel comme base; uptime recurrent et historique restent bloques.',
-    monitoringTitle: 'Workflow monitoring bloque',
-    monitoringBody: 'Probes recurrents, alertes, status page, historique et multi-region sont prevus mais inactifs.',
+    recommendationEmpty: 'Gardez ce resultat ponctuel comme base pour le prochain controle.',
+    monitoringTitle: 'Chemin workflow payant',
+    monitoringBody: 'Probes recurrents, alertes, status page, historique et multi-region correspondent aux workflows de compte sous le resultat gratuit.',
     monitoringItems: ['Uptime et incidents', 'Status page et alertes', 'Tendances et rapports', 'Probes multi-region'],
     overviewTabLabel: 'Resume',
     findingsTabLabel: 'Signaux',
@@ -298,6 +310,9 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     editorialLabel: 'Politique editoriale',
     resultTitle: 'Resultat',
     runningLabel: 'Controle en cours...',
+    copyReportLabel: 'Copier rapport',
+    copiedReportLabel: 'Rapport copie',
+    checkAgainLabel: 'Verifier encore',
     freeCheckLabel: 'Controle gratuit',
     upgradePathLabel: 'Offre payante',
     toolGuideTitle: 'Guide et interpretation',
@@ -309,14 +324,14 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     pageStatusLabel: 'Checkstatus',
     relatedTitle: 'Verwandte Seiten',
     relatedBody: 'Status, Redirects, Header, Robots, Sitemap, TTFB und Snapshot verbinden, ohne Ziele zu speichern.',
-    plannedTitle: 'Begrenzte Public API',
-    plannedBody: 'Einmalige Probes nutzen eigenes Rate Limit, kurze Timeouts und keinen Verlauf.',
+    privacyTitle: 'Datenschutz und Grenzen',
+    privacyBody: 'Einmalige Probes nutzen kurze Timeouts, begrenzte Redirects und keinen gespeicherten Zielverlauf.',
     pulseScoreTitle: 'Pulse Score',
     checklistTitle: 'Signal-Checklist',
     recommendationTitle: 'Empfohlene Aktionen',
-    recommendationEmpty: 'Dieses Einmal-Ergebnis als Basis nutzen; wiederkehrendes Uptime-Monitoring bleibt gesperrt.',
-    monitoringTitle: 'Monitoring-Workflow gesperrt',
-    monitoringBody: 'Wiederkehrende Probes, Alerts, Status Pages, Verlauf und Multi-Region sind geplant, aber inaktiv.',
+    recommendationEmpty: 'Dieses Einmal-Ergebnis als Basis fuer den naechsten Check nutzen.',
+    monitoringTitle: 'Workflow Upgrade-Pfad',
+    monitoringBody: 'Wiederkehrende Probes, Alerts, Status Pages, Verlauf und Multi-Region passen zu Konto-Workflows unter dem freien Ergebnis.',
     monitoringItems: ['Uptime und Incidents', 'Status Page und Alerts', 'Trends und Reports', 'Multi-Region Probes'],
     overviewTabLabel: 'Uebersicht',
     findingsTabLabel: 'Signale',
@@ -326,6 +341,9 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     editorialLabel: 'Redaktionelle Richtlinie',
     resultTitle: 'Ergebnis',
     runningLabel: 'Check laeuft...',
+    copyReportLabel: 'Bericht kopieren',
+    copiedReportLabel: 'Bericht kopiert',
+    checkAgainLabel: 'Erneut pruefen',
     freeCheckLabel: 'Kostenloser Check',
     upgradePathLabel: 'Upgrade-Pfad',
     toolGuideTitle: 'Leitfaden und Interpretation',

@@ -62,3 +62,10 @@ Data-base: 2026-06-27
 - Borrowed only product patterns from the benchmarks: answer first, score/report panel, grouped diagnostics, technical cards and related checks.
 - Kept methodology, limitations, privacy and monitoring/backlog ideas below the useful public workflow.
 - Verified live desktop/mobile visuals after HostGator switch and confirmed deep links to the current SitePulse static app release were 200.
+
+## Phase 18.72-18.79 implementation notes
+
+- Applied the benchmark pattern at the app/tool level: one dominant URL input, a plain-language state, score/metadata cards and deeper technical evidence after the answer.
+- Redirect, header, robots, sitemap and TTFB details are original SitePulse interpretations of the bounded probe payload; no third-party grading system, chart, asset, screenshot, crawler or Lighthouse/PageSpeed/GTmetrix data was copied or simulated.
+- Performance Snapshot references PageSpeed/GTmetrix only as benchmark-style expectations for how users read reports, while the product reports only its own bounded status, redirect, header, byte-size and timing signals.
+- Preserved antiabuse limits: one-shot bounded probe, same-origin auxiliary files, capped redirects, short timeouts, no stored history, no broad crawl and no recurring monitoring worker.

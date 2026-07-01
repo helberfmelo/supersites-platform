@@ -45,7 +45,7 @@ async function expectNoHorizontalOverflow(page: Page) {
   expect(metrics.wideElements, JSON.stringify(metrics)).toHaveLength(0)
 }
 
-test.describe('SitePulse Lab MVP', () => {
+test.describe('SitePulse Lab diagnostics', () => {
   test('renders the home page on desktop', async ({ page }, testInfo) => {
     const errors = collectBrowserErrors(page)
 
@@ -57,7 +57,7 @@ test.describe('SitePulse Lab MVP', () => {
       'href',
       'https://opentshost.com/supersites/sitepulse-lab/en',
     )
-    await expect(page.getByRole('heading', { name: /See the public status/ })).toBeVisible()
+    await expect(page.getByRole('heading', { name: /Check if a website is up/ })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'HTTP Status Checker' })).toBeVisible()
     await expect(page.getByText('Free one-shot')).toHaveCount(7)
     await expect(page.getByText('7 focused checks')).toBeVisible()
@@ -205,7 +205,7 @@ test.describe('SitePulse Lab MVP', () => {
     await expect(page.getByRole('heading', { name: 'Performance sample' })).toBeVisible()
     await expect(page.getByText('TTFB sample', { exact: true })).toBeVisible()
     await expect(page.getByText('Recommended actions')).toBeVisible()
-    await expect(page.getByText('Monitoring workflow planned')).toBeVisible()
+    await expect(page.getByText('Workflow upgrade path')).toBeVisible()
     await expect(page.getByText('Related pages')).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)
     await expectNoHorizontalOverflow(page)
@@ -302,7 +302,7 @@ test.describe('SitePulse Lab MVP', () => {
     await expect(page.getByRole('heading', { name: 'Header matrix' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Technology clues' })).toBeVisible()
     await expect(page.getByText('Cache/CDN hint')).toBeVisible()
-    await expect(page.getByText('Monitoring workflow planned')).toBeVisible()
+    await expect(page.getByText('Workflow upgrade path')).toBeVisible()
     await expectNoHorizontalOverflow(page)
     expect(JSON.stringify(await page.evaluate(() => window.supersitesAnalyticsEvents))).not.toContain('headers-secret.example')
 

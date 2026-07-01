@@ -868,7 +868,7 @@ h3 {
 }
 
 .redirect-timeline dl {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .redirect-timeline dt {
@@ -882,6 +882,13 @@ h3 {
   margin: 2px 0 0;
   color: #25332d;
   overflow-wrap: anywhere;
+}
+
+.technical-warning {
+  margin: 0;
+  color: #78301f;
+  font-size: 0.88rem;
+  font-weight: 800;
 }
 
 .detail-card-grid {
@@ -979,6 +986,26 @@ h3 {
 .result-meta strong,
 .result-meta span {
   display: block;
+}
+
+.result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.sample-url-list {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #d8ded8;
+  border-radius: 8px;
+  background: #f7f8f4;
+}
+
+.sample-url-list strong {
+  color: #17231e;
 }
 
 .result-table-wrap {

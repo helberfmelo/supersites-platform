@@ -116,7 +116,7 @@ const pageSpecs: Record<ContentPageSlug, {
     sections: [
       ['Purpose', 'The site helps operators inspect one public URL before deciding whether recurring uptime and incident workflows are worth paying for.'],
       ['What is live now', 'SitePulse Lab provides a free diagnostic surface plus a bounded control-plane API endpoint for one-shot web probes.'],
-      ['Upgrade boundary', 'Paid value is planned around uptime, incident timelines, public status pages, alerts, history, multi-region checks and reports.'],
+      ['Account features', 'Account value centers on uptime, incident timelines, public status pages, alerts, history, multi-region checks and reports.'],
     ],
   },
   contact: {
@@ -132,17 +132,17 @@ const pageSpecs: Record<ContentPageSlug, {
     title: 'Privacy Policy',
     description: 'SitePulse Lab minimizes collection and keeps analytics free of target URLs and probe results.',
     sections: [
-      ['Data minimization', 'URL checks are point-in-time diagnostics. The backend returns transient results and does not create monitoring history in the free MVP.'],
+      ['Data minimization', 'URL checks are point-in-time diagnostics. The backend returns transient results and does not create monitoring history for the free check.'],
       ['Analytics boundary', 'Allowed analytics events may record tool slug, locale and sanitized route path, but not URLs, hosts, response headers, redirects or timings.'],
       ['Future accounts', 'Saved monitors, incidents, alert destinations, status pages and reports require retention, export, deletion and consent rules before launch.'],
     ],
   },
   cookies: {
     title: 'Cookie Policy',
-    description: 'How SitePulse Lab plans essential storage, consent-aware analytics and advertising controls after launch gates.',
+    description: 'How SitePulse Lab handles essential storage, consent-aware analytics and advertising controls.',
     sections: [
       ['Essential storage', 'Language, consent and session security may use essential storage when those features are enabled.'],
-      ['Analytics and ads', 'External analytics and advertising storage remain blocked until consent mode, regional rules and placement gates are implemented.'],
+      ['Analytics and advertising', 'External analytics and advertising storage require consent mode, regional rules and clear placement controls before use.'],
       ['Choices', 'A consent interface must exist before non-essential storage is used. Browser settings can clear local data.'],
     ],
   },
@@ -161,7 +161,7 @@ const pageSpecs: Record<ContentPageSlug, {
     sections: [
       ['Working check first', 'Each tool page must include a functioning free check, clear interpretation, example, limits and review date before launch readiness.'],
       ['Bounded network access', 'The probe validates public destinations, blocks private ranges, caps redirects, uses short timeouts and applies a dedicated rate limit.'],
-      ['No uptime overclaim', 'A green one-shot result does not prove uptime. Recurring samples, multi-region checks and incident history are gated paid workflows.'],
+      ['No uptime overclaim', 'A green one-shot result does not prove uptime. Recurring samples, multi-region checks and incident history belong to account workflows.'],
     ],
   },
   'editorial-policy': {
@@ -170,16 +170,16 @@ const pageSpecs: Record<ContentPageSlug, {
     sections: [
       ['Useful pages', 'Each page must include the working check, input assumptions, result interpretation, common failures, remediation hints, FAQ and review date.'],
       ['Corrections', 'Corrections are prioritized when availability, crawlability, performance, header or privacy guidance could mislead users.'],
-      ['Localization gate', 'Localized pages must preserve behavior, safety assumptions and commercial boundaries before launch readiness.'],
+      ['Localization quality', 'Localized pages must preserve behavior, safety assumptions and commercial boundaries before launch readiness.'],
     ],
   },
   status: {
     title: 'Launch Status',
-    description: 'SitePulse Lab status for local web readiness, API probes, ads, billing and monitoring gates.',
+    description: 'SitePulse Lab status for web readiness, API probes, advertising, payments and monitoring workflows.',
     sections: [
-      ['MVP surface', 'The local/CI MVP contains seven checks, five language route sets, sitemap, canonical, hreflang, structured data and one bounded probe endpoint.'],
-      ['Production', 'SitePulse Lab is live at `/supersites/sitepulse-lab/` as a versioned HostGator static app with public smoke, bounded public API probes and rollback workflow validated.'],
-      ['Gates', 'Recurring uptime, alert delivery, incident workflows, public status pages, history, multi-region probes, billing, ads and external analytics remain blocked.'],
+      ['Free surface', 'The app contains seven checks, five language route sets, sitemap, canonical, hreflang, structured data and one bounded probe endpoint.'],
+      ['Production', 'SitePulse Lab is live at `/supersites/sitepulse-lab/` as a versioned HostGator static app with bounded public API probes and rollback workflow validated.'],
+      ['Account roadmap', 'Recurring uptime, alert delivery, incident workflows, public status pages, history, multi-region probes, payments, advertising and external analytics require dedicated controls.'],
     ],
   },
 }

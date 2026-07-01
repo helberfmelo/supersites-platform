@@ -35,6 +35,7 @@ class SitePulseProbeApiTest extends TestCase
                 'Content-Security-Policy' => "default-src 'self'",
                 'X-Frame-Options' => 'DENY',
                 'Referrer-Policy' => 'strict-origin-when-cross-origin',
+                'Permissions-Policy' => 'geolocation=()',
                 'X-Content-Type-Options' => 'nosniff',
             ]),
         ]);

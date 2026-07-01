@@ -16,7 +16,7 @@ import {
 } from '../app/data/tools'
 import { createSitePulseToolEvent } from '../app/utils/analytics'
 
-describe('SitePulse Lab MVP', () => {
+describe('SitePulse Lab diagnostics', () => {
   it('lists website checks in roadmap order', () => {
     expect(toolCatalog.map((tool) => tool.slug)).toEqual([...toolSlugs])
     expect(toolCatalog).toHaveLength(7)
@@ -104,6 +104,16 @@ describe('SitePulse Lab MVP', () => {
           missing: ['content-security-policy'],
           technologies: ['CDN cache hint'],
         },
+        robots: {
+          status: 200,
+          body_sample: 'User-agent: *\nAllow: /\nSitemap: https://example.com/sitemap.xml\n',
+        },
+        sitemap: {
+          status: 200,
+          xml_shape: 'urlset',
+          url_count: 1,
+          body_sample: '<urlset><url><loc>https://example.com/</loc></url></urlset>',
+        },
         ttfb: { duration_ms: 240 },
         performance: { redirect_count: 1, body_bytes_sampled: 4096 },
       },
@@ -116,8 +126,15 @@ describe('SitePulse Lab MVP', () => {
 
     expect(view.redirectHops).toHaveLength(2)
     expect(view.redirectHops[0]).toMatchObject({ code: '301', status: 'pass', duration: '80 ms' })
+    expect(view.redirectHops[1]).toMatchObject({ crossDomain: 'Yes' })
     expect(view.headerItems.map((item) => item.label)).toContain('Content-Security-Policy')
     expect(view.headerItems.find((item) => item.label === 'Content-Security-Policy')?.status).toBe('warn')
+    expect(view.crawlItems.map((item) => item.label)).toEqual(expect.arrayContaining([
+      'Sitemap hints',
+      'URL count',
+      'Next SEO step',
+    ]))
+    expect(view.sitemapSampleUrls).toEqual(['https://example.com/'])
     expect(view.technologyItems.map((item) => item.label)).toEqual(expect.arrayContaining([
       'Content type',
       'Server hint',
@@ -127,6 +144,7 @@ describe('SitePulse Lab MVP', () => {
     ]))
     expect(view.performanceItems.map((item) => item.label)).toEqual(expect.arrayContaining([
       'Final status',
+      'TTFB rating',
       'TTFB sample',
       'Redirect count',
       'Sampled body',
