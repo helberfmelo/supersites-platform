@@ -90,6 +90,10 @@ describe('DevUtility Lab MVP', () => {
     expect(uuid.output.split('\n')).toHaveLength(5)
     expect(uuid.output).toMatch(/[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/u)
 
+    const uuidBatch = await executeTool('uuid-generator', '3', '', 'v4')
+    expect(uuidBatch.ok).toBe(true)
+    expect(uuidBatch.output.split('\n')).toHaveLength(3)
+
     const timestamp = await executeTool('timestamp-converter', '1767225600', '', 'auto')
     expect(timestamp.ok).toBe(true)
     expect(timestamp.output).toContain('2026-01-01T00:00:00.000Z')
@@ -97,6 +101,10 @@ describe('DevUtility Lab MVP', () => {
     const hash = await executeTool('hash-generator', 'DevUtility Lab', '', 'SHA-256')
     expect(hash.ok).toBe(true)
     expect(hash.output).toMatch(/^[0-9a-f]{64}$/u)
+
+    const hash512 = await executeTool('hash-generator', 'DevUtility Lab', '', 'SHA-512')
+    expect(hash512.ok).toBe(true)
+    expect(hash512.output).toMatch(/^[0-9a-f]{128}$/u)
   })
 
   it('prerenders localized tool and policy routes', () => {

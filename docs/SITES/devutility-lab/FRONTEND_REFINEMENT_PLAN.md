@@ -21,7 +21,7 @@ Turn the developer tools into a fast local workbench with clear input/output, ex
 
 ## P2
 
-- Prepare workspaces, snippets, history, teams and API as gated paid backlog.
+- Prepare saved runs, workspaces, teams, larger files and API automation as later product depth.
 
 ## Impact expected
 
@@ -61,6 +61,14 @@ Medium; ad/support blocks must not sit near editors, errors or copy buttons.
 - Recent tools are session-only in memory; no snippet, result, recent list or payload is persisted or sent to analytics/API from the home workbench.
 - Local validation, Quality Gate, Deploy Dry Run, labeled HostGator deploy and public/live smokes passed; screenshots are in `artifacts/playwright-devutility-workbench/`.
 
+## Phase 18 / Sprints 18.34-18.43 status
+
+- Home density was expanded beyond the existing workbench with popular tools, task shortcuts, search/category filters and footer groups for Developer Tools, Formatters, Encoders, Validators, Generators and Security.
+- Tool detail pages now have specialized editor controls instead of one generic run form: structured-data actions and output views, Base64 encode/decode/swap, JWT decoded cards, regex match table, split/unified diff, cron UTC runs, UUID quantity, timestamp timezone cards and hash algorithm tabs.
+- Copy was cleaned on primary surfaces: the visible trust cue is `Runs locally when possible`; top panels no longer use old storage/logging status, planned-feature, billing or ads language.
+- The tool engine now supports UUID quantity limits and SHA-512 hashing; MD5 remains intentionally unavailable because Web Crypto does not support it.
+- Local validation passed with DevUtility unit tests, DevUtility build, DevUtility preview smoke, public-copy and `git diff --check`. Local Playwright/screenshots were not run because this was not a QA/pre-disclosure/visual-closure stage.
+
 ## Sprint 18.5 catalog route status
 
 - Hub catalog route P0 addressed locally: `/supersites/en/sites/devutility-lab` now behaves like a developer workbench directory instead of a product sheet.
@@ -72,4 +80,4 @@ Medium; ad/support blocks must not sit near editors, errors or copy buttons.
 
 - Local-processing coverage.
 - Tool state completeness.
-- Workspaces/API upgrade readiness.
+- Saved runs/workspaces/API readiness.

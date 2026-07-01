@@ -93,8 +93,10 @@ try {
         'Structured Data Formatter',
         'Run a utility before choosing a tool page',
         'Dense tool navigation',
+        'Popular tools',
+        'Developer Tools',
         '9 browser tools',
-        'No storage or logging'
+        'Runs locally when possible'
     )
 
     foreach ($needle in $requiredHtml) {
@@ -120,7 +122,7 @@ try {
     }
 
     $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/tools/timestamp-converter" -RequiredContent 'Conversor de timestamp'
-    if ($localizedTool.StatusCode -ne 200 -or $localizedTool.Content -notmatch 'histórico privado') {
+    if ($localizedTool.StatusCode -ne 200 -or $localizedTool.Content -notmatch 'Execucoes salvas de snippets') {
         throw 'Localized timestamp converter smoke failed.'
     }
 

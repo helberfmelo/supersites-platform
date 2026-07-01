@@ -1831,6 +1831,12 @@ Ainda em 2026-06-29, o `Public Watchdog` agendado run `28372846327` falhou no sm
   - Validacao local pre-commit passou: `pnpm test:calcharbor` com 12 testes, `pnpm build:calcharbor` com 173 rotas prerenderizadas, `pnpm validate:calcharbor-preview`, `pnpm validate:public-copy` em 951 HTMLs e `git diff --check`. Nao foram executados Playwright, screenshots, crawler, Lighthouse, deploy dry-run, smokes publicos ou deploy porque a etapa nao era QA/pre-divulgacao/fechamento visual e nao exigia publicacao.
   - Escopo negativo: nenhum provider financeiro, conselho financeiro/tax/legal automatizado, checkout, billing, pagamento, conta paga, anuncio real, `ads.txt`, doacao real, afiliado, analytics externo, armazenamento persistente de entradas/resultados, API paga, worker/cron, deploy, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
 
+- Sprints 18.34 a 18.43 - DevUtility Lab Tools:
+  - Escopo tecnico: a home do DevUtility Lab foi refinada como workbench dev denso com ferramentas populares, atalhos por tarefa, busca/filtros, recentes apenas em sessao e rodape com Developer Tools, Formatters, Encoders, Validators, Generators e Security. As paginas Structured Data Formatter, Base64, JWT, Regex, Text Diff, Cron, UUID, Timestamp e Hash ganharam controles/resultados especificos para cada ferramenta.
+  - Contrato publico: a primeira dobra substitui a linguagem antiga de status por `Runs locally when possible` e remove `No storage or logging`, planned features, billing e ads do topo. JWT declara decode sem verify; Hash oferece SHA-1/SHA-256/SHA-512 conforme suporte de Web Crypto e nao oferece MD5; UUID limita geracao v4 a 1-50 itens.
+  - Validacao local pre-commit passou: `pnpm test:devutility` com 8 testes, `pnpm build:devutility` com 183 rotas prerenderizadas, `pnpm validate:devutility-preview`, `pnpm validate:public-copy` em 951 HTMLs e `git diff --check`. Nao foram executados Playwright, screenshots, crawler, Lighthouse, deploy dry-run, smokes publicos ou deploy porque a etapa nao era QA/pre-divulgacao/fechamento visual e nao exigia publicacao.
+  - Escopo negativo: nenhum armazenamento server-side de snippet/token, historico persistente, workspace, checkout, billing, pagamento, conta paga, anuncio real, `ads.txt`, doacao real, afiliado, analytics externo, API paga, worker/cron, deploy, DNS/root mapping, root redirect ou acao irreversivel foi ativado.
+
 ## Bloqueios humanos registrados
 
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.

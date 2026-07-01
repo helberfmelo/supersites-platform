@@ -11,6 +11,8 @@ import {
   getToolCopy,
   toolCatalog,
   type ToolCategory,
+  type ToolDefinition,
+  type ToolSlug,
 } from '../data/tools'
 
 const props = defineProps<{
@@ -24,6 +26,22 @@ const selectedCategory = ref<ToolCategory | 'all'>('all')
 const filteredTools = computed(() => filterTools(searchQuery.value, selectedCategory.value, props.locale))
 const canonicalPath = computed(() => (props.xDefault ? '/' : localizedHomePath(props.locale)))
 const categories = computed(() => Array.from(new Set(toolCatalog.map((tool) => tool.category))))
+const popularToolSlugs = [
+  'structured-data-formatter',
+  'base64-converter',
+  'jwt-inspector',
+  'regex-tester',
+  'text-diff',
+] satisfies ToolSlug[]
+const popularTools = computed(() => toolsBySlug(popularToolSlugs))
+const footerGroups = computed(() => [
+  { title: 'Developer Tools', tools: toolsBySlug(['structured-data-formatter', 'jwt-inspector', 'cron-helper', 'timestamp-converter']) },
+  { title: 'Formatters', tools: toolsBySlug(['structured-data-formatter', 'text-diff']) },
+  { title: 'Encoders', tools: toolsBySlug(['base64-converter', 'hash-generator']) },
+  { title: 'Validators', tools: toolsBySlug(['structured-data-formatter', 'jwt-inspector', 'regex-tester', 'cron-helper']) },
+  { title: 'Generators', tools: toolsBySlug(['uuid-generator', 'hash-generator']) },
+  { title: 'Security', tools: toolsBySlug(['jwt-inspector', 'hash-generator', 'base64-converter']) },
+])
 const seoTitle = computed(() =>
   props.xDefault ? 'DevUtility Lab' : limitSeoText(`${copy.value.title} | DevUtility Lab`, SEO_TITLE_MAX_LENGTH),
 )
@@ -75,6 +93,12 @@ useHead(() => ({
     },
   ],
 }))
+
+function toolsBySlug(slugs: ToolSlug[]): ToolDefinition[] {
+  return slugs
+    .map((slug) => toolCatalog.find((tool) => tool.slug === slug))
+    .filter((tool): tool is ToolDefinition => Boolean(tool))
+}
 </script>
 
 <template>
@@ -97,6 +121,33 @@ useHead(() => ({
           <span :class="['signal', row.tone === 'amber' ? 'signal--amber' : '']" aria-hidden="true"></span>
         </div>
       </aside>
+    </section>
+
+    <section class="dense-directory" aria-label="Developer utility navigation">
+      <div>
+        <p class="eyebrow">Popular tools</p>
+        <div class="quick-link-grid">
+          <NuxtLink
+            v-for="tool in popularTools"
+            :key="tool.slug"
+            :to="localizedToolPath(locale, tool.slug)"
+          >
+            <strong>{{ getToolCopy(tool, locale).shortName }}</strong>
+            <span>{{ getCategoryLabel(tool.category, locale) }}</span>
+          </NuxtLink>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">Find by task</p>
+        <div class="quick-link-grid quick-link-grid--compact">
+          <button type="button" @click="selectedCategory = 'data'">JSON/XML/YAML/CSV</button>
+          <button type="button" @click="selectedCategory = 'encoding'">Base64</button>
+          <button type="button" @click="selectedCategory = 'inspection'">JWT</button>
+          <button type="button" @click="selectedCategory = 'text'">Regex and diff</button>
+          <button type="button" @click="selectedCategory = 'time'">Cron and timestamps</button>
+          <button type="button" @click="selectedCategory = 'security'">Hashes</button>
+        </div>
+      </div>
     </section>
 
     <DevUtilityWorkbench :locale="locale" />
@@ -172,6 +223,19 @@ useHead(() => ({
           <h3>{{ principle.title }}</h3>
           <p>{{ principle.body }}</p>
         </div>
+      </div>
+    </section>
+
+    <section class="tool-footer-groups" aria-label="DevUtility Lab footer tool groups">
+      <div v-for="group in footerGroups" :key="group.title">
+        <h2>{{ group.title }}</h2>
+        <NuxtLink
+          v-for="tool in group.tools"
+          :key="tool.slug"
+          :to="localizedToolPath(locale, tool.slug)"
+        >
+          {{ getToolCopy(tool, locale).shortName }}
+        </NuxtLink>
       </div>
     </section>
 

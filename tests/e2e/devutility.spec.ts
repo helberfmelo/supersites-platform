@@ -58,8 +58,7 @@ test.describe('DevUtility Lab MVP', () => {
       'https://opentshost.com/supersites/devutility-lab/en',
     )
     await expect(page.getByLabel('DevUtility Lab tools').getByRole('heading', { name: 'Structured Data Formatter' })).toBeVisible()
-    await expect(page.getByText('No storage or logging')).toBeVisible()
-    await expect(page.getByText('Local tool').first()).toBeVisible()
+    await expect(page.getByText('Runs locally when possible').first()).toBeVisible()
     await expect(page.getByRole('heading', { name: /Run a utility before choosing a tool page/ })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Dense tool navigation' })).toBeVisible()
 
@@ -105,7 +104,7 @@ test.describe('DevUtility Lab MVP', () => {
     await page.goto('/en/tools/structured-data-formatter')
 
     await page.getByLabel('Data input').fill('{"b":2,"a":1}')
-    await page.getByRole('button', { name: 'Run tool' }).click()
+    await page.getByRole('button', { name: 'Format' }).click()
 
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Structured Data Formatter')
     await expect(page.getByRole('heading', { name: 'Result ready' })).toBeVisible()
@@ -114,8 +113,8 @@ test.describe('DevUtility Lab MVP', () => {
     await expect(page.getByRole('button', { name: 'Download .txt' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Related tools' })).toBeVisible()
     await expect(page.getByRole('link', { name: /Base64 Converter/ })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Commercial features planned' })).toBeVisible()
-    await expect(page.getByText('Private snippet history')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Workflow options' })).toBeVisible()
+    await expect(page.getByText('Saved snippet runs')).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)
     await expectNoHorizontalOverflow(page)
 

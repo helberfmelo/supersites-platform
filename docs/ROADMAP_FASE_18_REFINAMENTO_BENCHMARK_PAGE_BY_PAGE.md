@@ -24,87 +24,76 @@ Concluido ate:
 - NetProbe What is my IP.
 - Etapa NetProbe Tools: DNS Propagation, DNS Lookup, RDAP, SSL Certificate, Port Checker e Ping/Traceroute.
 - Etapa CalcHarbor Tools: home, Loan Payment, Break-even Point, Gross Margin e ROI.
+- Etapa DevUtility Lab Tools: home, Structured Data Formatter, Base64 Converter, JWT Inspector, Regex Tester, Text Diff, Cron Helper, UUID Generator, Timestamp Converter e Hash Generator.
 
 Proxima etapa ativa:
 
-- **Etapa DevUtility Lab Tools**
-- Sprints: **18.34 a 18.43**
-- Escopo: DevUtility home, Structured Data Formatter, Base64 Converter, JWT Inspector, Regex Tester, Text Diff, Cron Helper, UUID Generator, Timestamp Converter e Hash Generator.
+- **Etapa TimeNexus Tools**
+- Sprints: **18.44 a 18.52**
+- Escopo: TimeNexus home, World Clock Americas + Europe, Time Zone Converter, Timestamp Converter, Date Difference, Business Days, Age Calculator, Percentage Calculator e Unit Converter.
 
 ## Sprints da proxima etapa
 
-### Sprint 18.34 - DevUtility home
+### Sprint 18.44 - TimeNexus home
 
-- Refazer como developer workbench.
-- Inspiracao em CodeBeautify: navegacao densa, popular tools, recent tools e search.
-- Remover `No storage or logging`, `planned`, `billing`, `ads` do topo.
-- Manter privacidade com selo curto: `Runs locally when possible`.
-- Footer com Developer Tools, Formatters, Encoders, Validators, Generators e Security.
+- Mostrar hora atual imediatamente.
+- Inspiracao em timeanddate: secoes World Clock, Time Zones, Calendar, Calculators e Timers.
+- Remover `No accounts or storage`, `billing` e `ads inactive`.
+- Criar footer com cidades, fusos, datas, calendarios e conversores.
 
-### Sprint 18.35 - Structured Data Formatter
+### Sprint 18.45 - World Clock Americas + Europe
 
-- Layout split editor: input a esquerda, output a direita.
-- Abas JSON/XML/YAML/CSV no topo do editor.
-- Botoes: Format, Minify, Validate, Copy, Download e Clear.
-- Mostrar erro inline.
-- Output com tree/table/raw tabs.
-- Remover linguagem comercial do topo.
+- Melhorar visual com cards de cidades e timeline horizontal.
+- Mostrar business hours com cor/badge.
+- Mobile: lista vertical de cidades com horario grande.
+- Adicionar city group switcher.
 
-### Sprint 18.36 - Base64 Converter
+### Sprint 18.46 - Time Zone Converter
 
-- Layout input/output lado a lado.
-- Botoes Encode, Decode, Swap e Copy.
-- Mostrar byte length e validacao UTF-8.
-- Privacy note discreta abaixo.
+- Resultado direto acima do formulario quando exemplo carregado.
+- Inputs mais simples: from city/time e to city.
+- Timeline visual.
+- Adicionar copy/share link.
+- Mover metodologia abaixo.
 
-### Sprint 18.37 - JWT Inspector
+### Sprint 18.47 - Timestamp Converter
 
-- Campo de token grande.
-- Separar header, payload e signature em cards.
-- Destacar que decode nao e verify.
-- Mostrar claims comuns: exp, iat, iss, aud e sub quando houver.
-- Nao armazenar token.
+- Mostrar timestamp atual automaticamente.
+- Converter enquanto digita.
+- Cards: Unix seconds, Unix ms, ISO, UTC, local e selected zone.
+- Botoes copiar.
 
-### Sprint 18.38 - Regex Tester
+### Sprint 18.48 - Date Difference
 
-- Inspiracao em Regex101 sem copiar: pattern, flags, test string e matches.
-- Destacar grupos, contagem e indices.
-- Worker/timeouts para evitar regex pesada.
-- Adicionar `Copy pattern` e exemplos.
+- Resultado principal: days/weeks/months.
+- Mostrar inclusivo vs exclusivo.
+- Adicionar calendario visual pequeno ou timeline.
 
-### Sprint 18.39 - Text Diff
+### Sprint 18.49 - Business Days
 
-- Dois inputs lado a lado.
-- Resultado diff com added/removed/unchanged.
-- Modo unified/split.
-- Copy/download diff.
+- Resultado principal: business days e weekend days.
+- Adicionar opcao de incluir/excluir start/end.
+- Adicionar aviso sobre feriados regionais abaixo.
+- Futuro upgrade: holiday calendars.
 
-### Sprint 18.40 - Cron Helper
+### Sprint 18.50 - Age Calculator
 
-- Campo cron e traducao humana imediata.
-- Listar proximas execucoes.
-- Explicar timezone/UTC.
-- Exemplos comuns.
+- Resultado principal: years, months, days.
+- Mostrar total days e next birthday/days until.
+- Corrigir localizacao.
 
-### Sprint 18.41 - UUID Generator
+### Sprint 18.51 - Percentage Calculator
 
-- Gerar imediatamente no carregamento.
-- Botoes Generate, Copy all e Download.
-- Quantidade configuravel com limite.
-- Opcoes v4 e futuras versoes apenas se implementadas corretamente.
+- Modos: percent of, percent change, add/subtract percent.
+- Resultado instantaneo.
+- Formula abaixo.
 
-### Sprint 18.42 - Timestamp Converter
+### Sprint 18.52 - Unit Converter
 
-- Detectar timestamp atual automaticamente.
-- Inputs para seconds/ms/ISO.
-- Resultado UTC, local e selected timezone.
-- Copy buttons por formato.
-
-### Sprint 18.43 - Hash Generator
-
-- Input local; algoritmos MD5/SHA-1/SHA-256/SHA-512 conforme suporte.
-- Aviso claro de que MD5/SHA-1 nao sao recomendados para seguranca.
-- Output com copiar individual.
+- Converter enquanto digita.
+- Categorias: length, weight, temperature.
+- Cards de resultados comuns.
+- Footer de conversores.
 
 ## Regras de produto
 

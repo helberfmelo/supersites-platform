@@ -170,7 +170,7 @@ const localizedBasics: Record<LocaleCode, {
     qualitySection: 'Review method',
     qualityBody: 'Each utility exposes a focused transformation, visible limits and a short result that can be copied or inspected before any paid workflow exists.',
     limitsSection: 'Limits',
-    limitsBody: 'The free browser surface is designed for snippets and small files. Private history, workspaces, batch jobs, larger files and API access remain paid-roadmap features.',
+    limitsBody: 'The free browser surface is designed for snippets and small files. Saved workspaces, batch jobs, larger files and API automation are follow-on workflow options.',
     faqStorage: { question: 'Are snippets stored?', answer: 'No. DevUtility Lab does not use account storage, localStorage, sessionStorage or a product API in the free workbench.' },
     faqAccuracy: { question: 'Can I paste production secrets?', answer: 'Avoid pasting secrets. The MVP processes locally, but safe handling still means redacting keys, tokens and confidential data.' },
   },
@@ -183,7 +183,7 @@ const localizedBasics: Record<LocaleCode, {
     qualitySection: 'Metodo de revisao',
     qualityBody: 'Cada utilitario entrega uma transformacao focada, limites visiveis e resultado curto para copiar ou inspecionar antes de qualquer fluxo pago.',
     limitsSection: 'Limites',
-    limitsBody: 'A superficie gratuita foi feita para trechos e arquivos pequenos. Historico privado, workspaces, lotes, arquivos maiores e API seguem no roadmap pago.',
+    limitsBody: 'A superficie gratuita foi feita para trechos e arquivos pequenos. Workspaces salvos, lotes, arquivos maiores e automacao por API ficam como opcoes futuras de workflow.',
     faqStorage: { question: 'Os trechos sao armazenados?', answer: 'Nao. O DevUtility Lab nao usa conta, localStorage, sessionStorage nem API de produto no workbench gratuito.' },
     faqAccuracy: { question: 'Posso colar segredos de producao?', answer: 'Evite colar segredos. O MVP processa localmente, mas o manuseio seguro ainda pede redacao de chaves, tokens e dados confidenciais.' },
   },
@@ -196,7 +196,7 @@ const localizedBasics: Record<LocaleCode, {
     qualitySection: 'Metodo de revision',
     qualityBody: 'Cada utilidad ofrece una transformacion enfocada, limites visibles y un resultado breve para copiar o inspeccionar.',
     limitsSection: 'Limites',
-    limitsBody: 'La superficie gratis es para fragmentos y archivos pequenos. Historial privado, workspaces, lotes, archivos mayores y API quedan en la ruta paga.',
+    limitsBody: 'La superficie gratis es para fragmentos y archivos pequenos. Workspaces guardados, lotes, archivos mayores y automatizacion por API quedan como opciones futuras de workflow.',
     faqStorage: { question: 'Se almacenan fragmentos?', answer: 'No. DevUtility Lab no usa cuentas, localStorage, sessionStorage ni API de producto en el workbench gratuito.' },
     faqAccuracy: { question: 'Puedo pegar secretos de produccion?', answer: 'Evita pegar secretos. El MVP procesa localmente, pero conviene redactar claves, tokens y datos confidenciales.' },
   },
@@ -209,7 +209,7 @@ const localizedBasics: Record<LocaleCode, {
     qualitySection: 'Methode de revue',
     qualityBody: 'Chaque utilitaire propose une transformation ciblee, des limites visibles et un resultat court a inspecter ou copier.',
     limitsSection: 'Limites',
-    limitsBody: 'La surface gratuite vise extraits et petits fichiers. Historique prive, workspaces, lots, gros fichiers et API restent dans la feuille de route payante.',
+    limitsBody: 'La surface gratuite vise extraits et petits fichiers. Workspaces sauvegardes, lots, gros fichiers et automatisation API restent des options workflow futures.',
     faqStorage: { question: 'Les extraits sont-ils stockes?', answer: 'Non. DevUtility Lab n utilise ni compte, ni localStorage, ni sessionStorage, ni API produit dans le workbench gratuit.' },
     faqAccuracy: { question: 'Puis-je coller des secrets de production?', answer: 'Evitez les secrets. Le MVP traite localement, mais il faut masquer cles, tokens et donnees confidentielles.' },
   },
@@ -222,7 +222,7 @@ const localizedBasics: Record<LocaleCode, {
     qualitySection: 'Pruefmethode',
     qualityBody: 'Jedes Tool liefert eine fokussierte Umwandlung, sichtbare Grenzen und ein kurzes Ergebnis zum Kopieren oder Pruefen.',
     limitsSection: 'Grenzen',
-    limitsBody: 'Die kostenlose Browser-Oberflaeche ist fuer Ausschnitte und kleine Dateien. Privater Verlauf, Workspaces, Stapel, groessere Dateien und API bleiben kostenpflichtige Roadmap.',
+    limitsBody: 'Die kostenlose Browser-Oberflaeche ist fuer Ausschnitte und kleine Dateien. Gespeicherte Workspaces, Stapel, groessere Dateien und API-Automation bleiben kuenftige Workflow-Optionen.',
     faqStorage: { question: 'Werden Ausschnitte gespeichert?', answer: 'Nein. DevUtility Lab nutzt im kostenlosen Workbench weder Konto, localStorage, sessionStorage noch Produkt-API.' },
     faqAccuracy: { question: 'Kann ich Produktionsgeheimnisse einfuegen?', answer: 'Vermeiden Sie Geheimnisse. Das MVP verarbeitet lokal, trotzdem sollten Keys, Tokens und vertrauliche Daten geschwaerzt werden.' },
   },
@@ -238,7 +238,7 @@ const specs: ToolSpec[] = [
     description: 'Paste a small structured snippet and choose the mode. The free result is immediate and local.',
     inputLabel: 'Data input',
     freeScope: 'JSON pretty print, XML indentation, YAML cleanup and CSV table alignment.',
-    upgradeScope: 'Private history, team workspaces, larger files, batch jobs and API formatting.',
+    upgradeScope: 'Saved workspaces, larger files, batch jobs and API formatting.',
     exampleBody: 'Try the JSON sample to see indentation, stable spacing and quick copy/download output before pasting your own snippet.',
     commonErrorBody: 'Malformed JSON, missing XML tags or uneven CSV quotes return a focused input error instead of sending the snippet anywhere.',
     modes: [
@@ -258,7 +258,7 @@ const specs: ToolSpec[] = [
     description: 'Use the mode switch for quick Base64 encoding or decoding of text snippets.',
     inputLabel: 'Text input',
     freeScope: 'Encode and decode UTF-8 text snippets.',
-    upgradeScope: 'Batch conversion, larger files, private history and API.',
+    upgradeScope: 'Batch conversion, larger files, saved runs and API.',
     exampleBody: 'The default text encodes to Base64; switch to decode and paste Base64 text to recover the UTF-8 value.',
     commonErrorBody: 'Decode mode expects valid Base64. Whitespace is ignored, but malformed padding or non-Base64 characters will fail locally.',
     modes: [
@@ -276,7 +276,7 @@ const specs: ToolSpec[] = [
     description: 'Inspect a token structure and claims. Signature validation is intentionally not claimed by the free inspector.',
     inputLabel: 'JWT input',
     freeScope: 'Header decode, payload decode and signature-present signal.',
-    upgradeScope: 'Team-safe vaulting, private history, issuer presets and API checks.',
+    upgradeScope: 'Team-safe vaulting, saved runs, issuer presets and API checks.',
     exampleBody: 'The bundled token has a readable header and payload so you can verify how claims are displayed without using a real token.',
     commonErrorBody: 'A JWT needs at least header and payload segments. This inspector decodes structure only and never claims signature verification.',
     modes: [{ value: 'inspect', label: 'Inspect' }],
@@ -313,7 +313,7 @@ const specs: ToolSpec[] = [
     inputLabel: 'Original text',
     secondaryInputLabel: 'Changed text',
     freeScope: 'Line-by-line diff for short snippets.',
-    upgradeScope: 'Private workspaces, file diffing, batch comparisons and API.',
+    upgradeScope: 'Shared workspaces, file diffing, batch comparisons and API.',
     exampleBody: 'The example compares two short blocks and marks changed, added and unchanged lines in a compact unified view.',
     commonErrorBody: 'Very large files are intentionally blocked in the free workbench; use short snippets and redact confidential text.',
     modes: [{ value: 'unified', label: 'Unified line diff' }],
@@ -343,14 +343,13 @@ const specs: ToolSpec[] = [
     shortName: 'UUID',
     headline: 'Generate version 4 UUIDs locally for development fixtures.',
     description: 'Generate a fresh set of random UUIDs in the browser.',
-    inputLabel: 'No input required',
-    freeScope: 'Five UUID v4 values per run.',
-    upgradeScope: 'Bulk generation, namespaces, private history and API.',
-    exampleBody: 'Run the generator to create five fresh UUID v4 values in the browser for fixtures, mocks or local tests.',
+    inputLabel: 'Quantity (1-50)',
+    freeScope: 'Up to 50 UUID v4 values per run.',
+    upgradeScope: 'Bulk generation, namespaces, saved runs and API.',
+    exampleBody: 'The page creates fresh UUID v4 values on load. Change the quantity, generate again, copy all or download the list.',
     commonErrorBody: 'UUID generation requires browser crypto support. If unavailable, the tool reports the missing capability.',
     modes: [{ value: 'v4', label: 'UUID v4' }],
-    acceptsPrimaryInput: false,
-    samplePrimary: '',
+    samplePrimary: '5',
   },
   {
     slug: 'timestamp-converter',
@@ -361,7 +360,7 @@ const specs: ToolSpec[] = [
     description: 'Paste a timestamp or date string. Leave it empty to inspect the current time.',
     inputLabel: 'Timestamp or date',
     freeScope: 'Unix seconds, Unix milliseconds, ISO, UTC and local display.',
-    upgradeScope: 'Saved presets, widgets, history, batch conversion and API.',
+    upgradeScope: 'Saved presets, widgets, batch conversion and API.',
     exampleBody: 'The default Unix timestamp resolves to a known UTC instant; empty input inspects the current local browser time.',
     commonErrorBody: 'Unparseable date strings show a local validation error. Ambiguous local formats should be replaced with ISO dates.',
     modes: [{ value: 'auto', label: 'Auto-detect' }],
@@ -375,13 +374,14 @@ const specs: ToolSpec[] = [
     headline: 'Generate SHA digests for small text snippets with browser crypto.',
     description: 'Choose a digest algorithm and process the text locally with Web Crypto.',
     inputLabel: 'Text input',
-    freeScope: 'SHA-256 and SHA-1 text digests for small snippets.',
-    upgradeScope: 'File hashing, batch jobs, private history and API.',
-    exampleBody: 'Hash the sample text with SHA-256 or SHA-1 to compare digest length and download the result as plain text.',
+    freeScope: 'SHA-1, SHA-256 and SHA-512 text digests for small snippets.',
+    upgradeScope: 'File hashing, batch jobs, saved runs and API.',
+    exampleBody: 'Hash the sample text with SHA-256, SHA-512 or SHA-1 to compare digest length and download the result as plain text.',
     commonErrorBody: 'Hashing depends on Web Crypto. Browsers without crypto support receive a clear local error.',
     modes: [
       { value: 'SHA-256', label: 'SHA-256' },
       { value: 'SHA-1', label: 'SHA-1' },
+      { value: 'SHA-512', label: 'SHA-512' },
     ],
     samplePrimary: 'DevUtility Lab',
   },
@@ -533,7 +533,7 @@ function ensureSnippetLimit(...values: string[]): void {
   const totalLength = values.reduce((sum, value) => sum + value.length, 0)
 
   if (totalLength > 200_000) {
-    throw new Error('Free browser tools accept snippets up to 200 KB. Larger files are reserved for gated batch workflows.')
+    throw new Error('Free browser tools accept snippets up to 200 KB. Larger files belong in batch workflows.')
   }
 }
 
@@ -949,7 +949,15 @@ export async function executeTool(
     }
 
     if (slug === 'uuid-generator') {
-      return ok(Array.from({ length: 5 }, createUuid).join('\n'), [{ label: 'Version', value: '4' }])
+      const quantity = Number.parseInt(primaryInput.trim() || '5', 10)
+      if (!Number.isInteger(quantity) || quantity < 1 || quantity > 50) {
+        throw new Error('Choose a UUID quantity between 1 and 50.')
+      }
+
+      return ok(Array.from({ length: quantity }, createUuid).join('\n'), [
+        { label: 'Version', value: '4' },
+        { label: 'Quantity', value: quantity.toString() },
+      ])
     }
 
     if (slug === 'timestamp-converter') {
