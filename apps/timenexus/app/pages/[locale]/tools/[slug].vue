@@ -590,7 +590,7 @@ useHead({
               </div>
             </dl>
             <p v-if="isBusinessDaysTool" class="notice-panel">
-              Holiday calendars are not applied here; regional holiday calendars are future workflow depth.
+              {{ shellCopy.businessDaysHolidayNotice }}
             </p>
             <p v-if="formulaLine" class="formula-line">
               <strong>Formula:</strong> {{ formulaLine }}

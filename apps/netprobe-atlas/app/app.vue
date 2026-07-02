@@ -1650,7 +1650,16 @@ h3 {
   }
 
   .resolver-pin {
-    width: min(240px, calc(100% - 20px));
+    width: min(154px, calc(100% - 16px));
+    padding: 8px;
+  }
+
+  .resolver-pin strong {
+    font-size: 0.75rem;
+  }
+
+  .resolver-pin span {
+    font-size: 0.7rem;
   }
 
   .hero--ip {

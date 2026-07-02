@@ -77,6 +77,7 @@ export interface ShellCopy {
   upgradePathLabel: string
   contentQualityBody: string
   privacyNote: string
+  businessDaysHolidayNotice: string
   invalidResultTitle: string
   localBadgeLabel: string
   pageStatusLabel: string
@@ -404,6 +405,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Upgrade path',
     contentQualityBody: 'Use the converter, review the time-zone details and confirm important schedules before sharing.',
     privacyNote: 'The tool runs in this browser session. TimeNexus does not store inputs, use localStorage or send values to a product API.',
+    businessDaysHolidayNotice: 'Holiday calendars are not applied here. Check regional holidays before using the count for deadlines or staffing.',
     invalidResultTitle: 'Check the input',
     localBadgeLabel: 'Browser-side',
     pageStatusLabel: 'Tool status',
@@ -443,6 +445,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Caminho de upgrade',
     contentQualityBody: 'Use o conversor, confira os detalhes de fuso e confirme horários importantes antes de compartilhar.',
     privacyNote: 'A ferramenta roda nesta sessao do navegador. O TimeNexus nao armazena entradas, nao usa localStorage e nao envia valores para API.',
+    businessDaysHolidayNotice: 'Calendarios de feriados nao sao aplicados aqui. Confira feriados regionais antes de usar a contagem em prazos ou escala.',
     invalidResultTitle: 'Confira a entrada',
     localBadgeLabel: 'No navegador',
     pageStatusLabel: 'Status da ferramenta',
@@ -482,6 +485,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Ruta de upgrade',
     contentQualityBody: 'Usa el conversor, revisa los detalles de huso y confirma horarios importantes antes de compartir.',
     privacyNote: 'La herramienta corre en esta sesion del navegador. TimeNexus no almacena entradas, no usa localStorage y no envia valores a una API.',
+    businessDaysHolidayNotice: 'No se aplican calendarios festivos. Revisa feriados regionales antes de usar el conteo para plazos o turnos.',
     invalidResultTitle: 'Revisa la entrada',
     localBadgeLabel: 'En navegador',
     pageStatusLabel: 'Estado de herramienta',
@@ -521,6 +525,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Offre payante',
     contentQualityBody: 'Utilisez le convertisseur, vérifiez les détails de fuseau et confirmez les horaires importants avant partage.',
     privacyNote: 'L outil s execute dans cette session du navigateur. TimeNexus ne stocke pas les entrees, n utilise pas localStorage et n envoie pas de valeurs a une API.',
+    businessDaysHolidayNotice: 'Les calendriers de jours fériés ne sont pas appliqués ici. Vérifiez les jours fériés régionaux avant un délai ou planning.',
     invalidResultTitle: 'Verifiez l entree',
     localBadgeLabel: 'Dans le navigateur',
     pageStatusLabel: 'Statut outil',
@@ -560,6 +565,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Upgrade-Pfad',
     contentQualityBody: 'Nutzen Sie den Konverter, prüfen Sie Zeitzonendetails und bestätigen Sie wichtige Zeiten vor dem Teilen.',
     privacyNote: 'Das Tool laeuft in dieser Browser-Sitzung. TimeNexus speichert keine Eingaben, nutzt kein localStorage und sendet keine Werte an eine API.',
+    businessDaysHolidayNotice: 'Feiertagskalender werden hier nicht angewendet. Prüfen Sie regionale Feiertage vor Fristen oder Einsatzplänen.',
     invalidResultTitle: 'Eingabe pruefen',
     localBadgeLabel: 'Im Browser',
     pageStatusLabel: 'Toolstatus',
