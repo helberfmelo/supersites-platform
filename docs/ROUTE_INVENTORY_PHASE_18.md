@@ -98,7 +98,7 @@ Robots and sitemap checks returned HTTP 200 for the Hub and all 10 product sites
 - NetProbe tool pages exposed implementation/status copy such as public API, deploy validation, billing, workers and upgrade planning language.
 - What is my IP required a manual button click before showing the answer.
 - NetProbe diagnostic pages kept methodology too high in the first tool row; the benchmark pattern puts result and action first, then methodology and limits below.
-- DNS Propagation remains honest about limited resolver scope and must not claim worldwide propagation until real regional probes exist.
+- DNS Propagation remains honest about regional DNS-over-HTTPS scope and must not claim physical NetProbe servers in every listed city.
 - Existing quick crawler validated metadata/link/overflow health, but does not replace the full Phase 18 crawl, Lighthouse or page-by-page visual QA.
 
 ## Release Smoke Follow-up

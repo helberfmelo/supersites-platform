@@ -4,6 +4,7 @@ namespace App\Support\NetProbe;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Validation\ValidationException;
+use Throwable;
 
 class DnsPropagationService
 {
@@ -33,6 +34,7 @@ class DnsPropagationService
 
     public function __construct(
         private readonly NetProbeDnsResolver $resolver,
+        private readonly NetProbePropagationResolver $propagationResolver,
         private readonly NetProbeHostGuard $guard,
     ) {
     }
@@ -44,7 +46,8 @@ class DnsPropagationService
     {
         $recordType = $this->normalizeType($type);
         $hostname = $this->normalizeTarget($domain, $recordType);
-        $cacheKey = 'netprobe:propagation:'.hash('sha256', $hostname.'|'.$recordType);
+        $cacheKey = 'netprobe:propagation:'.hash('sha256', $hostname.'|'.$recordType.'|regional-v1');
+        $cacheTtl = (int) config('netprobe.propagation.cache_ttl_seconds', 120);
 
         if (Cache::has($cacheKey)) {
             /** @var array<string, mixed> $cached */
@@ -60,28 +63,58 @@ class DnsPropagationService
         $checkedAddresses = $this->extractAddresses($addressRecords);
         $this->guard->assertPublicResolvedAddresses($hostname, $checkedAddresses);
 
-        $records = $recordType === 'A'
-            ? $addressRecords
-            : $this->resolver->resolve($hostname, $recordType);
-        $snapshot = $this->snapshot($recordType, $records);
+        try {
+            $regionalLookup = $this->propagationResolver->lookup($hostname, $recordType);
+        } catch (Throwable) {
+            $regionalLookup = [
+                'provider' => 'local_controlled_resolver',
+                'mode' => 'regional_provider_exception_fallback',
+                'snapshots' => [],
+                'warnings' => ['Regional DNS propagation provider was unavailable; this response fell back to the local controlled resolver.'],
+                'locations_requested' => 0,
+            ];
+        }
+        $snapshots = array_values(array_filter(
+            $regionalLookup['snapshots'] ?? [],
+            fn (mixed $snapshot): bool => is_array($snapshot),
+        ));
+        $warnings = $regionalLookup['warnings'] ?? [];
+        if (! is_array($warnings)) {
+            $warnings = [];
+        }
+
+        if ($snapshots === []) {
+            $records = $recordType === 'A'
+                ? $addressRecords
+                : $this->resolver->resolve($hostname, $recordType);
+            $snapshots = [$this->snapshot($recordType, $records)];
+            $warnings[] = 'Regional DNS propagation provider returned no snapshots; this response fell back to the local controlled resolver.';
+        }
+
         $payload = [
             'data' => [
                 'domain' => $hostname,
                 'record_type' => $recordType,
                 'checked_addresses' => $checkedAddresses,
-                'snapshots' => [$snapshot],
+                'snapshots' => $snapshots,
             ],
             'meta' => [
                 'generated_at' => now()->toISOString(),
-                'cache_ttl_seconds' => 120,
+                'cache_ttl_seconds' => $cacheTtl,
                 'cached' => false,
+                'coverage' => [
+                    'provider' => $regionalLookup['provider'] ?? 'local_controlled_resolver',
+                    'mode' => $regionalLookup['mode'] ?? 'fallback',
+                    'locations_requested' => $regionalLookup['locations_requested'] ?? count($snapshots),
+                    'locations_returned' => count($snapshots),
+                ],
                 'warnings' => [
-                    'This result is a controlled single-resolver snapshot, not a worldwide propagation guarantee.',
+                    ...$warnings,
                     'Compare with authoritative DNS and allow at least one TTL window before treating differences as failures.',
                 ],
             ],
         ];
-        Cache::put($cacheKey, $payload, 120);
+        Cache::put($cacheKey, $payload, $cacheTtl);
 
         return $this->withCachedFlag($payload, false);
     }

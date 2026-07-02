@@ -60,7 +60,7 @@ Medium if ad/support blocks get too close to inputs or results. Keep placements 
 - NetProbe app home `/supersites/netprobe-atlas/<locale>/` opens with practical diagnostic input/results navigation above the fold, not launch status, methodology or upgrade/status language.
 - NetProbe What is my IP `/supersites/netprobe-atlas/<locale>/tools/what-is-my-ip` opens with a live IP result above the fold, not a mandatory run button or public API/status language.
 - The remaining NetProbe tool routes keep the first task/result path practical: DNS Propagation, DNS Lookup, RDAP, SSL, Port Checker and Ping/Traceroute show the answer before methodology and never claim unavailable global DNS, ICMP, traceroute or arbitrary-port coverage.
-- DNS type controls stay aligned to endpoint allowlists: DNS Lookup supports A/AAAA/CNAME/MX/TXT/NS/SOA/CAA, and DNS Propagation supports A/AAAA/CNAME/MX/NS/PTR/SOA/SRV/TXT/CAA while disclosing controlled resolver coverage below the useful result.
+- DNS type controls stay aligned to endpoint allowlists: DNS Lookup supports A/AAAA/CNAME/MX/TXT/NS/SOA/CAA, and DNS Propagation supports A/AAAA/CNAME/MX/NS/PTR/SOA/SRV/TXT/CAA while disclosing regional DNS-over-HTTPS coverage and its physical-server limits below the useful result.
 - NetProbe home priority is DNS Propagation first, What is my IP second, DNS Lookup third, then domain/TLS/reachability checks.
 - Smoke/preview markers must follow intentional public copy changes in the same sprint; stale markers such as `Network facts` cannot block a benchmark-grade copy update after deploy.
 - Footer navigation should remain text-column topical menus with hover emphasis, not button grids or product-status chips.

@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Support\NetProbe\NetProbeCertificateProbe;
 use App\Support\NetProbe\NetProbeDnsResolver;
+use App\Support\NetProbe\NetProbePropagationResolver;
 use App\Support\NetProbe\NetProbeRdapClient;
 use App\Support\NetProbe\NetProbeTcpProbe;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -201,7 +202,7 @@ class NetProbeApiTest extends TestCase
         $this->travelBack();
     }
 
-    public function test_dns_propagation_returns_bounded_resolver_snapshot(): void
+    public function test_dns_propagation_returns_regional_resolver_snapshots(): void
     {
         Cache::flush();
 
@@ -215,7 +216,38 @@ class NetProbeApiTest extends TestCase
                 ['type' => 'NS', 'ttl' => 300, 'target' => 'b.iana-servers.net'],
             ],
         ]);
+        $propagationResolver = new FakeNetProbePropagationResolver([
+            [
+                'resolver_id' => 'matrix-us-san-jose',
+                'resolver_name' => 'Google Public DNS ECS',
+                'region' => 'Americas',
+                'city' => 'San Jose, CA',
+                'country' => 'United States',
+                'country_code' => 'US',
+                'latitude' => 37.3382,
+                'longitude' => -121.8863,
+                'scope' => 'real DoH query with ECS hint 64.6.64.0/24',
+                'status' => 'answered',
+                'ttl_min' => 300,
+                'values' => ['a.iana-servers.net', 'b.iana-servers.net'],
+            ],
+            [
+                'resolver_id' => 'matrix-br-sao-paulo',
+                'resolver_name' => 'Google Public DNS ECS',
+                'region' => 'South America',
+                'city' => 'Sao Paulo',
+                'country' => 'Brazil',
+                'country_code' => 'BR',
+                'latitude' => -23.5505,
+                'longitude' => -46.6333,
+                'scope' => 'real DoH query with ECS hint 200.160.0.0/24',
+                'status' => 'answered',
+                'ttl_min' => 280,
+                'values' => ['a.iana-servers.net', 'b.iana-servers.net'],
+            ],
+        ]);
         $this->app->instance(NetProbeDnsResolver::class, $resolver);
+        $this->app->instance(NetProbePropagationResolver::class, $propagationResolver);
 
         $payload = [
             'domain' => 'Example.COM',
@@ -226,17 +258,23 @@ class NetProbeApiTest extends TestCase
             ->assertOk()
             ->assertJsonPath('data.domain', 'example.com')
             ->assertJsonPath('data.record_type', 'NS')
-            ->assertJsonPath('data.snapshots.0.resolver_id', 'runtime-resolver')
-            ->assertJsonPath('data.snapshots.0.resolver_name', 'NetProbe controlled resolver')
-            ->assertJsonPath('data.snapshots.0.city', 'Controlled edge')
-            ->assertJsonPath('data.snapshots.0.country', 'Controlled infrastructure')
+            ->assertJsonPath('data.snapshots.0.resolver_id', 'matrix-us-san-jose')
+            ->assertJsonPath('data.snapshots.0.resolver_name', 'Google Public DNS ECS')
+            ->assertJsonPath('data.snapshots.0.city', 'San Jose, CA')
+            ->assertJsonPath('data.snapshots.0.country', 'United States')
             ->assertJsonPath('data.snapshots.0.values.0', 'a.iana-servers.net')
+            ->assertJsonPath('data.snapshots.1.resolver_id', 'matrix-br-sao-paulo')
+            ->assertJsonPath('meta.coverage.provider', 'fake_regional_dns')
+            ->assertJsonPath('meta.coverage.locations_requested', 2)
+            ->assertJsonPath('meta.coverage.locations_returned', 2)
             ->assertJsonPath('meta.cache_ttl_seconds', 120)
             ->assertJsonPath('meta.cached', false);
 
         $this->postJson('/api/v1/netprobe/propagation', $payload)
             ->assertOk()
             ->assertJsonPath('meta.cached', true);
+
+        $this->assertSame(1, $propagationResolver->calls);
     }
 
     public function test_dns_propagation_accepts_srv_and_public_ptr_targets(): void
@@ -253,6 +291,7 @@ class NetProbeApiTest extends TestCase
                 ['type' => 'PTR', 'ttl' => 180, 'target' => 'dns.google'],
             ],
         ]));
+        $this->app->instance(NetProbePropagationResolver::class, new FakeNetProbePropagationResolver([]));
 
         $this->postJson('/api/v1/netprobe/propagation', [
             'domain' => '_sip._tcp.example.com',
@@ -384,6 +423,31 @@ class FakeNetProbeDnsResolver implements NetProbeDnsResolver
         $this->calls++;
 
         return $this->records[strtoupper($type)] ?? [];
+    }
+}
+
+class FakeNetProbePropagationResolver implements NetProbePropagationResolver
+{
+    public int $calls = 0;
+
+    /**
+     * @param array<int, array<string, mixed>> $snapshots
+     */
+    public function __construct(private readonly array $snapshots)
+    {
+    }
+
+    public function lookup(string $hostname, string $type): array
+    {
+        $this->calls++;
+
+        return [
+            'provider' => 'fake_regional_dns',
+            'mode' => 'test',
+            'snapshots' => $this->snapshots,
+            'warnings' => ['Fake regional DNS provider used in tests.'],
+            'locations_requested' => count($this->snapshots),
+        ];
     }
 }
 

@@ -258,7 +258,7 @@ Alterar:
 - Resultado: status consolidado, porcentagem de match, valores distintos, erros, sem resposta e timestamp.
 - Desktop: lista de resolvers/localidades com cidade, pais, bandeira, resolver, valor retornado, TTL e badge propagou/nao propagou; mapa global maior ao lado ou acima conforme melhor leitura.
 - Mobile: resumo, filtros, lista compacta por localidade e mapa abaixo/colapsavel.
-- Manter honestidade: se a cobertura for matriz controlada, chamar de "controlled resolver snapshot" abaixo do resultado, nao como desculpa no topo.
+- Manter honestidade: chamar a cobertura atual de consultas DNS-over-HTTPS regionais com dicas ECS abaixo do resultado, sem prometer servidor fisico proprio em cada cidade.
 - Mover "Methodology" e limites para accordion abaixo de resultado, nao coluna lateral dominante.
 - Adicionar links internos: DNS Lookup, MX/SPF/DMARC, Reverse DNS, What is my IP, SSL.
 

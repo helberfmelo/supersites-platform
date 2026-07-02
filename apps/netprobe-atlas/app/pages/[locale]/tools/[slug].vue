@@ -95,7 +95,7 @@ const benchmarkCopyByLocale = {
     privacyBody: 'Inputs and returned values stay out of analytics. The IP result is shown to this browser session and the event only records the tool slug.',
     privacyLink: 'Read privacy details',
     coverageTitle: 'Coverage disclosure',
-    coverageBody: 'This matrix shows the resolver locality available to the public check. Current coverage is a controlled snapshot, so use it with authoritative DNS and TTL timing.',
+    coverageBody: 'This matrix shows real DNS-over-HTTPS resolver queries with regional ECS hints. Use it with authoritative DNS and TTL timing; exact city-server coverage requires a dedicated probe network.',
     relatedTitle: 'Next checks',
     mapTitle: 'Resolver coverage map',
     resolverDetailsTitle: 'Resolver and locality list',
@@ -114,7 +114,7 @@ const benchmarkCopyByLocale = {
     privacyBody: 'Entradas e valores retornados ficam fora de analytics. O IP aparece apenas nesta sessão do navegador e o evento registra só o slug da ferramenta.',
     privacyLink: 'Ler detalhes de privacidade',
     coverageTitle: 'Cobertura declarada',
-    coverageBody: 'Esta matriz mostra a localidade de resolvedor disponível na consulta pública. A cobertura atual é um snapshot controlado, então compare com o DNS autoritativo e o tempo de TTL.',
+    coverageBody: 'Esta matriz mostra consultas reais de DNS-over-HTTPS com sinais regionais ECS. Compare com o DNS autoritativo e o tempo de TTL; cobertura exata por servidor em cada cidade exige uma rede dedicada de probes.',
     relatedTitle: 'Próximas checagens',
     mapTitle: 'Mapa de cobertura dos resolvedores',
     resolverDetailsTitle: 'Lista de resolvedores e localidades',
@@ -133,7 +133,7 @@ const benchmarkCopyByLocale = {
     privacyBody: 'Entradas y valores devueltos quedan fuera de analytics. La IP se muestra solo en esta sesión y el evento registra solo el slug de herramienta.',
     privacyLink: 'Leer privacidad',
     coverageTitle: 'Cobertura declarada',
-    coverageBody: 'Esta matriz muestra la localidad de resolver disponible en la consulta pública. La cobertura actual es un snapshot controlado; compárala con DNS autoritativo y TTL.',
+    coverageBody: 'Esta matriz muestra consultas DNS-over-HTTPS reales con señales regionales ECS. Compárala con DNS autoritativo y TTL; la cobertura exacta por servidor de ciudad requiere una red dedicada de probes.',
     relatedTitle: 'Siguientes chequeos',
     mapTitle: 'Mapa de cobertura de resolvers',
     resolverDetailsTitle: 'Lista de resolvers y localidades',
@@ -152,7 +152,7 @@ const benchmarkCopyByLocale = {
     privacyBody: 'Les entrées et valeurs retournées restent hors analytics. L’IP est affichée dans cette session et l’événement ne garde que le slug outil.',
     privacyLink: 'Lire la confidentialité',
     coverageTitle: 'Couverture déclarée',
-    coverageBody: 'Cette matrice montre la localité du résolveur disponible pour le contrôle public. La couverture actuelle est un snapshot contrôlé; comparez avec le DNS autoritatif et les TTL.',
+    coverageBody: 'Cette matrice montre des requêtes DNS-over-HTTPS réelles avec indices régionaux ECS. Comparez avec le DNS autoritatif et les TTL; une couverture exacte par serveur urbain exige un réseau de probes dédié.',
     relatedTitle: 'Contrôles suivants',
     mapTitle: 'Carte de couverture des résolveurs',
     resolverDetailsTitle: 'Liste des résolveurs et localités',
@@ -171,7 +171,7 @@ const benchmarkCopyByLocale = {
     privacyBody: 'Eingaben und Rückgabewerte bleiben aus Analytics heraus. Die IP wird nur in dieser Browsersitzung gezeigt; das Event speichert nur den Tool-Slug.',
     privacyLink: 'Datenschutz lesen',
     coverageTitle: 'Abgedeckter Umfang',
-    coverageBody: 'Diese Matrix zeigt die Resolver-Standortdaten der öffentlichen Prüfung. Die aktuelle Abdeckung ist ein kontrollierter Snapshot; vergleichen Sie mit autoritativem DNS und TTL.',
+    coverageBody: 'Diese Matrix zeigt echte DNS-over-HTTPS-Abfragen mit regionalen ECS-Hinweisen. Vergleichen Sie mit autoritativem DNS und TTL; exakte Stadt-Server-Abdeckung benötigt ein eigenes Probe-Netz.',
     relatedTitle: 'Nächste Prüfungen',
     mapTitle: 'Resolver-Abdeckung',
     resolverDetailsTitle: 'Resolver- und Standortliste',
@@ -408,8 +408,8 @@ const toolUiCopyByLocale = {
     differentAnswers: 'Different',
     noAnswerErrors: 'No answer / errors',
     checkedScope: 'Checked scope',
-    resolverSnapshot: 'resolver snapshot',
-    resolverSnapshots: 'resolver snapshots',
+    resolverSnapshot: 'regional query',
+    resolverSnapshots: 'regional queries',
     listedLocalities: 'listed localities',
     resolver: 'Resolver',
     region: 'Region',
@@ -509,8 +509,8 @@ const toolUiCopyByLocale = {
     differentAnswers: 'Diferentes',
     noAnswerErrors: 'Sem resposta / erros',
     checkedScope: 'Escopo checado',
-    resolverSnapshot: 'snapshot de resolvedor',
-    resolverSnapshots: 'snapshots de resolvedores',
+    resolverSnapshot: 'consulta regional',
+    resolverSnapshots: 'consultas regionais',
     listedLocalities: 'localidades listadas',
     resolver: 'Resolvedor',
     region: 'Região',
@@ -610,8 +610,8 @@ const toolUiCopyByLocale = {
     differentAnswers: 'Diferentes',
     noAnswerErrors: 'Sin respuesta / errores',
     checkedScope: 'Alcance comprobado',
-    resolverSnapshot: 'snapshot de resolver',
-    resolverSnapshots: 'snapshots de resolvers',
+    resolverSnapshot: 'consulta regional',
+    resolverSnapshots: 'consultas regionales',
     listedLocalities: 'localidades listadas',
     resolver: 'Resolver',
     region: 'Región',
@@ -711,8 +711,8 @@ const toolUiCopyByLocale = {
     differentAnswers: 'Différentes',
     noAnswerErrors: 'Sans réponse / erreurs',
     checkedScope: 'Périmètre contrôlé',
-    resolverSnapshot: 'snapshot de résolveur',
-    resolverSnapshots: 'snapshots de résolveurs',
+    resolverSnapshot: 'requête régionale',
+    resolverSnapshots: 'requêtes régionales',
     listedLocalities: 'localités listées',
     resolver: 'Résolveur',
     region: 'Région',
@@ -812,8 +812,8 @@ const toolUiCopyByLocale = {
     differentAnswers: 'Abweichend',
     noAnswerErrors: 'Keine Antwort / Fehler',
     checkedScope: 'Geprüfter Umfang',
-    resolverSnapshot: 'Resolver-Snapshot',
-    resolverSnapshots: 'Resolver-Snapshots',
+    resolverSnapshot: 'regionale Abfrage',
+    resolverSnapshots: 'regionale Abfragen',
     listedLocalities: 'gelistete Standorte',
     resolver: 'Resolver',
     region: 'Region',
@@ -3260,9 +3260,12 @@ useHead({
                   <li v-for="value in propagationDistinctValues" :key="value">{{ value }}</li>
                 </ul>
               </section>
-              <p v-if="Array.isArray(propagationMeta.warnings) && propagationMeta.warnings.length > 0">
-                {{ benchmarkCopy.coverageBody }}
-              </p>
+              <section v-if="metaMessages(propagationMeta).length > 0" class="content-section">
+                <h3>{{ toolUiCopy.publicWarningTitle }}</h3>
+                <ul class="result-list">
+                  <li v-for="message in metaMessages(propagationMeta)" :key="message">{{ message }}</li>
+                </ul>
+              </section>
             </div>
           </div>
 

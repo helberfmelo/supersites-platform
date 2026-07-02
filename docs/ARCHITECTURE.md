@@ -225,7 +225,7 @@ Sprints 2.2 a 2.4 adicionam o primeiro modulo publico de lookup do NetProbe dent
 - `POST /api/v1/netprobe/dns`: normaliza hostnames e consulta A/AAAA/CNAME/MX/TXT/NS/SOA/CAA com cache TTL e resposta estruturada.
 - `POST /api/v1/netprobe/rdap`: usa bootstrap RDAP IANA, consulta o registry do TLD, normaliza registrar/status/datas/nameservers/limitacoes e omite contato pessoal.
 - `POST /api/v1/netprobe/ssl`: resolve A/AAAA, bloqueia ranges privados/reservados, conecta apenas a `443` com SNI e normaliza facts do certificado servido.
-- `POST /api/v1/netprobe/propagation`: retorna snapshot limitado do resolver local para A/AAAA/CNAME/MX/TXT/NS, com cache TTL e aviso de que comparacao multirregiao depende de workers futuros.
+- `POST /api/v1/netprobe/propagation`: retorna matriz regional de DNS-over-HTTPS para A/AAAA/CNAME/MX/NS/PTR/SOA/SRV/TXT/CAA usando Google Public DNS JSON API com EDNS Client Subnet por localidade configurada, cache TTL curto e fallback para resolver local controlado se o provider regional estiver indisponivel. As linhas sao consultas reais, mas nao equivalem a servidores NetProbe fisicos em cada cidade.
 - `POST /api/v1/netprobe/port`: aceita apenas portas `80`, `443`, `587` e `993`, resolve A/AAAA publicos antes de conectar e testa no maximo dois enderecos por requisicao.
 - `POST /api/v1/netprobe/reachability`: reporta TCP 443 limitado; ICMP e traceroute ficam declarados como `not_supported` no runtime web inicial.
 - `netprobe-public`: rate limiter dedicado para endpoints publicos de diagnostico.

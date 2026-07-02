@@ -96,5 +96,12 @@ Data-base: 2026-06-30
 
 - DNS Propagation is the primary NetProbe Atlas tool in home ordering, universal CTA routing, quick cards and DNS footer order; What is my IP is second, then DNS Lookup and the remaining diagnostics.
 - The DNS Propagation tool route now follows the whatsmydns mental model with a compact domain/type/expected-value search bar, record-type shortcuts, resolver/locality rows with city, country, flag/status, returned values and TTL, plus a larger map beside the list on desktop and stacked below on mobile.
-- Methodology, controlled-coverage disclosure, support, sponsor reserve and related links stay below the practical checker/result path. No external map asset, external resolver network, real ad request, donation provider, checkout, payment, affiliate or raw-target analytics was activated.
-- Follow-up correction: the public API currently returns one real controlled resolver snapshot (`runtime-resolver`). The UI must not replicate that answer across all listed world localities. Listed map/list localities may remain as orange pending coverage, while green/red states appear only for real snapshots. Shareable DNS propagation URLs use the hash pattern `#A/example.com` and auto-run on load.
+- Methodology, regional-coverage disclosure, support, sponsor reserve and related links stay below the practical checker/result path. No external map asset, paid resolver network, real ad request, donation provider, checkout, payment, affiliate or raw-target analytics was activated.
+- Follow-up correction: the public API now requests the configured 24 regional DNS-over-HTTPS snapshots, so the UI can populate the WhatsMyDNS-style list and map from real per-location responses. Shareable DNS propagation URLs use the hash pattern `#A/example.com` and auto-run on load.
+
+## Regional DNS propagation implementation
+
+- The control-plane propagation endpoint now has a `NetProbePropagationResolver` contract and a `GoogleEcsNetProbePropagationResolver` implementation.
+- The public result matrix requests 24 configured localities with Google Public DNS JSON API and `edns_client_subnet` hints, so list rows and map markers are populated from real DNS-over-HTTPS responses instead of duplicated local results.
+- This is a practical regional propagation check, not a claim that NetProbe operates a physical resolver in each city. Exact WhatsMyDNS-style server ownership remains a future distributed-probe/provider decision.
+- Cloudflare account materials were found in `D:\Projetos\bigshopv4`, but this sprint did not need Cloudflare credentials or mutate Cloudflare. Cloudflare remains useful for DNS hosting/proxy/cache/R2/Workers later; Cloudflare DoH can provide a baseline resolver but does not provide all-city fanout by itself.
