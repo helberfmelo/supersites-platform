@@ -128,8 +128,8 @@ try {
         throw 'What is my IP preview smoke failed.'
     }
 
-    $legal = Invoke-PreviewRequest -Uri "$baseUrl/en/privacy" -RequiredContent 'Data minimization'
-    if ($legal.StatusCode -ne 200 -or $legal.Content -notmatch 'Privacy Policy') {
+    $legal = Invoke-PreviewRequest -Uri "$baseUrl/en/privacy" -RequiredContent 'Data used by the tool'
+    if ($legal.StatusCode -ne 200 -or $legal.Content -notmatch 'NetProbe Atlas privacy') {
         throw 'Privacy page smoke failed.'
     }
 

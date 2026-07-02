@@ -122,8 +122,8 @@ try {
         throw 'Localized quote builder smoke failed.'
     }
 
-    $privacy = Invoke-PreviewRequest -Uri "$baseUrl/en/privacy" -RequiredContent 'Data minimization'
-    if ($privacy.StatusCode -ne 200 -or $privacy.Content -notmatch 'Privacy Policy') {
+    $privacy = Invoke-PreviewRequest -Uri "$baseUrl/en/privacy" -RequiredContent 'Data used by the tool'
+    if ($privacy.StatusCode -ne 200 -or $privacy.Content -notmatch 'InvoiceCraft privacy') {
         throw 'Privacy page smoke failed.'
     }
 

@@ -173,8 +173,9 @@ test.describe('CalcHarbor MVP', () => {
     await expectNoHorizontalOverflow(page)
 
     await page.goto('/en/privacy')
-    await expect(page).toHaveTitle(/Privacy Policy/)
-    await expect(page.getByText('Data minimization')).toBeVisible()
+    await expect(page).toHaveTitle(/CalcHarbor privacy/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('CalcHarbor privacy')
+    await expect(page.getByRole('heading', { name: 'Data used by the tool' })).toBeVisible()
     await expect(page.getByLabel('Legal and editorial pages').getByRole('link', { name: 'Methodology' })).toBeVisible()
     await expectNoHorizontalOverflow(page)
 

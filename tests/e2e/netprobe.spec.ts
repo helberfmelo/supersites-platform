@@ -502,8 +502,9 @@ test.describe('NetProbe Atlas public foundation', () => {
     await page.setViewportSize({ width: 390, height: 1000 })
     await page.goto('/en/privacy')
 
-    await expect(page).toHaveTitle(/Privacy Policy/)
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Privacy Policy')
+    await expect(page).toHaveTitle(/NetProbe Atlas privacy/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('NetProbe Atlas privacy')
+    await expect(page.getByRole('heading', { name: 'Data used by the tool' })).toBeVisible()
     await expect(page.getByLabel('Legal and editorial pages').getByRole('link', { name: 'Methodology' })).toBeVisible()
     await expect(page.getByLabel('Legal and editorial pages').getByRole('link', { name: 'Status' })).toBeVisible()
     await expect(page.locator('.page-footer a')).toHaveCount(9)

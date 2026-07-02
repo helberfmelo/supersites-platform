@@ -137,7 +137,7 @@ test.describe('DocShift browser workflows', () => {
 
     await page.goto('/fr/privacy')
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Confidentialité de DocShift')
-    await expect(page.getByRole('heading', { name: 'Minimisation des données' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Données utilisées par l outil' })).toBeVisible()
 
     const width = await page.evaluate(() => document.documentElement.scrollWidth)
     expect(width).toBeLessThanOrEqual(390)

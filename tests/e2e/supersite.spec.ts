@@ -454,9 +454,7 @@ test.describe('SuperSites public hub', () => {
     await expect(page).toHaveTitle(/Public Status/)
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Public Status')
     const contentHeadings = page.locator('.content-section h3')
-    const statusPanel = page.locator('.network-panel')
-    await expect(statusPanel.getByText('Public availability')).toBeVisible()
-    await expect(statusPanel.getByText('No public Hub incident is listed at this review time.')).toBeVisible()
+    await expect(page.locator('main .network-panel')).toHaveCount(0)
     await expect(contentHeadings.filter({ hasText: 'Current availability' })).toBeVisible()
     await expect(contentHeadings.filter({ hasText: 'Known incidents' })).toBeVisible()
     await expect(contentHeadings.filter({ hasText: 'Maintenance windows' })).toBeVisible()
@@ -515,9 +513,7 @@ test.describe('SuperSites public hub', () => {
     await expect(page).toHaveTitle(/Status Público/)
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Status Público')
     const contentHeadings = page.locator('.content-section h3')
-    const statusPanel = page.locator('.network-panel')
-    await expect(statusPanel.getByText('Disponibilidade pública')).toBeVisible()
-    await expect(statusPanel.getByText('Nenhum incidente público do Hub está listado nesta revisão.')).toBeVisible()
+    await expect(page.locator('main .network-panel')).toHaveCount(0)
     await expect(contentHeadings.filter({ hasText: 'Disponibilidade atual' })).toBeVisible()
     await expect(contentHeadings.filter({ hasText: 'Incidentes conhecidos' })).toBeVisible()
     await expect(contentHeadings.filter({ hasText: 'Janelas de manutenção' })).toBeVisible()
@@ -571,7 +567,9 @@ test.describe('SuperSites public hub', () => {
     await expect(page.getByRole('heading', { name: 'Contact and corrections' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Languages' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Responsible growth' })).toBeVisible()
-    await expect(page.getByText('Page care')).toBeVisible()
+    await expect(page.locator('main .network-panel')).toHaveCount(0)
+    await expect(page.locator('main')).not.toContainText('Page care')
+    await expect(page.getByRole('heading', { name: 'Related pages' })).toBeVisible()
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       'href',
       'https://opentshost.com/supersites/en/about',
@@ -612,7 +610,9 @@ test.describe('SuperSites public hub', () => {
     await expect(page.getByRole('heading', { name: 'Contato e correções' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Idiomas' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Crescimento responsável' })).toBeVisible()
-    await expect(page.getByText('Cuidado da página')).toBeVisible()
+    await expect(page.locator('main .network-panel')).toHaveCount(0)
+    await expect(page.locator('main')).not.toContainText('Cuidado da página')
+    await expect(page.getByRole('heading', { name: 'Páginas relacionadas' })).toBeVisible()
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       'href',
       'https://opentshost.com/supersites/pt-br/about',

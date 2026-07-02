@@ -358,7 +358,9 @@ test.describe('MailHealth diagnostics', () => {
     await page.setViewportSize({ width: 390, height: 1000 })
     await page.goto('/pt-br/privacy')
 
-    await expect(page).toHaveTitle(/Privacy Policy|Privacidade/)
+    await expect(page).toHaveTitle(/Privacidade de MailHealth/)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Privacidade de MailHealth')
+    await expect(page.getByRole('heading', { name: 'Dados usados pela ferramenta' })).toBeVisible()
     await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR')
     await expect(page.getByLabel('Legal and editorial pages').getByRole('link', { name: 'Metodologia' })).toBeVisible()
     await expect(page.getByLabel('Legal and editorial pages').getByRole('link', { name: 'Status' })).toBeVisible()
