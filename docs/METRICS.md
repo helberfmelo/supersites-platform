@@ -1,6 +1,6 @@
 # Metrics
 
-Data-base: 2026-06-30
+Data-base: 2026-07-02
 
 ## Bootstrap metrics
 
@@ -61,8 +61,11 @@ Data-base: 2026-06-30
 | Billing providers seeded | 3 |
 | Billing free-preview plans seeded | 11 |
 | Billing entitlements seeded | 55 |
-| Billing webhook endpoints active | 0 |
-| Billing checkout enabled providers | 0 |
+| Billing webhook endpoints active | 1 |
+| Billing checkout enabled providers | 1 |
+| Stripe donation checkout live surfaces | 11 |
+| Stripe service checkout active | 0 |
+| Stripe paid entitlement mutation active | 0 |
 | Billing paid entitlements active | 0 |
 | Sprint 6.4 local validation | Passed |
 | Sprint 6.4 external billing activation | 0 |
@@ -446,10 +449,10 @@ Data-base: 2026-06-30
 | Sprint 7.12 docs closing commit | `3875095` |
 | Sprint 7.12 docs-only Quality Gate run | `28291007581` passed |
 | Complementary benchmark prompt status | Already executed as Fase 7; no duplicate phase/sprint created |
-| Real ads activated | 0 |
-| Real billing activated | 0 |
-| Real donation payments activated | 0 |
-| Real affiliate links activated | 0 |
+| Real ads activated through Fase 7 | 0 |
+| Real billing activated through Fase 7 | 0 |
+| Real donation payments activated through Fase 7 | 0 |
+| Real affiliate links activated through Fase 7 | 0 |
 | External AI providers activated | 0 |
 | Production workers/crons activated by Fase 7 | 0 |
 
@@ -1777,7 +1780,11 @@ Data-base: 2026-06-30
 | Fase 22 public assets | Hub `S-EArqzC.js`; NetProbe Atlas `lo3ol8P9.js`; TimeNexus `Dj8U90pH.js` |
 | Fase 22 final live benchmark crawler | `artifacts/benchmark-crawl/fase22-final-live/baseline.md`; 876 routes; 1752 viewport checks; 0 gaps |
 | Fase 22 post-deploy smokes | Passed: Hub public smoke, NetProbe public/API smoke, TimeNexus public smoke and AdSense-safe public validation on 13 pages |
+| Fase 24 Stripe donation checkout | Live on 11 public surfaces after owner approval on 2026-07-02 |
+| Fase 24 Stripe checkout API smoke | Passed: production API returned 201 and a `checkout.stripe.com` URL for donation |
+| Fase 24 paid plan/service activation | 0 paid plans, service checkout, subscriptions, invoices, refunds, customer portal, revenue import or entitlement payment mutations active |
+| Fase 24 HostGator deploys | Control-plane `28627391786`, Hub `28627468381`, NetProbe `28627468373`, static app deploys `28627476027`, `28627477400`, `28627478874`, `28627480928`, `28627482312`, `28627483708`, `28627485129`, `28627486473`, `28627487821` passed |
 
 ## Product metrics
 
-No product traffic, revenue, AdSense, billing or tool usage metrics exist yet.
+No verified product traffic, revenue, AdSense revenue or tool usage metrics exist yet. Stripe donation checkout is live; confirmed revenue remains dependent on completed Stripe payments and reconciliation.
