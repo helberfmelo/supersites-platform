@@ -55,3 +55,19 @@ Validacao local concluida:
 - `pnpm validate:adsense-safe-public`
 - `git diff --check`
 - Checagem Playwright local focada em Hub About, NetProbe About, InvoiceCraft About e InvoiceCraft Methodology em PT-BR, confirmando ausencia de `status-panel`/`network-panel` e sidebar superior.
+
+## Fechamento live - 2026-07-02
+
+O feedback visual do owner mostrou que a entrega anterior ainda permitia linguagem de bastidor em paginas publicas. O ciclo foi reaberto e publicado em commits incrementais:
+
+- `b5d9c0e` removeu linguagem restante de revisao/ativacao em PixelBatch, DocShift, InvoiceCraft e Hub, alem de alinhar os E2E de PixelBatch/DocShift aos novos titulos publicos.
+- `f11acfc` removeu os ultimos textos visiveis encontrados no crawl live: `before launch` no catalogo QRRoute do Hub e `advanced workflow review` no Metadata Cleaner do DocShift.
+
+Validacao e publicacao:
+
+- Quality Gate `28567648288` e Deploy Dry Run `28567648295` passaram para `b5d9c0e`.
+- Deploys HostGator Sprint 23.4 passaram para Hub, CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, PixelBatch e DocShift.
+- Quality Gate `28568714517` e Deploy Dry Run `28568714532` passaram para `f11acfc`.
+- Deploys HostGator Sprint 23.5 passaram para Hub e DocShift.
+- Crawl Playwright live final em `https://opentshost.com/supersites/` visitou 986 URLs internas e retornou 0 falhas para termos de bastidor monitorados, HTTP >= 400, corpo vazio, sidebars/painéis indevidos em trust pages e painéis de status no topo de tool pages.
+- Checks direcionados confirmaram: Hub About, NetProbe About, InvoiceCraft About e Methodology sem painel lateral/topo; What is my IP carrega o IP automaticamente sem botao de executar; DNS Propagation preserva mapa/lista de resolvedores; DocShift Metadata Cleaner e catalogo QRRoute sem textos de revisao/lancamento.
