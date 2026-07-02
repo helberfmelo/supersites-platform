@@ -1,11 +1,11 @@
 import { sanitizePublicCopy, type LocaleCode } from './locales'
 
 export const toolSlugs = [
+  'dns-propagation',
   'what-is-my-ip',
   'dns-lookup',
   'rdap-domain-lookup',
   'ssl-certificate-checker',
-  'dns-propagation',
   'port-checker',
   'ping-traceroute',
 ] as const
@@ -1306,7 +1306,7 @@ export const toolCatalog: ToolDefinition[] = [
       ],
     },
   }),
-]
+].sort((a, b) => toolSlugs.indexOf(a.slug) - toolSlugs.indexOf(b.slug))
 
 const toolBySlug = new Map(toolCatalog.map((tool) => [tool.slug, tool]))
 

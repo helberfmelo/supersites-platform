@@ -23,9 +23,9 @@ type SupportAction = HomeCopy['supportActions'][number]
 type FooterLink = HomeCopy['footerGroups'][number]['links'][number]
 
 const quickToolSlugs: ToolSlug[] = [
+  'dns-propagation',
   'what-is-my-ip',
   'dns-lookup',
-  'dns-propagation',
   'rdap-domain-lookup',
   'ssl-certificate-checker',
   'port-checker',
@@ -66,7 +66,7 @@ const homeJsonLd = computed(() => ({
 }))
 
 function openUniversalCheck() {
-  void router.push(localizedToolPath(props.locale, 'dns-lookup'))
+  void router.push(localizedToolPath(props.locale, 'dns-propagation'))
 }
 
 function supportActionPath(action: SupportAction): string {

@@ -91,3 +91,9 @@ Data-base: 2026-06-30
 - Ping/Traceroute now reflects the bounded TCP 443 reachability endpoint honestly. ICMP and traceroute remain unavailable, and no hop list or worldwide path is fabricated.
 - DNS/footer navigation, related checks, support links and the sponsor reserve are richer but inert. No ad request, payment provider, checkout, affiliate, external probe worker, multi-region network or raw target analytics was activated.
 - Local evidence for this stage: `pnpm test:netprobe`, `pnpm build:netprobe`, `pnpm validate:public-copy` and `git diff --check`.
+
+## Phase 19 NetProbe DNS Propagation correction
+
+- DNS Propagation is the primary NetProbe Atlas tool in home ordering, universal CTA routing, quick cards and DNS footer order; What is my IP is second, then DNS Lookup and the remaining diagnostics.
+- The DNS Propagation tool route now follows the whatsmydns mental model with a compact domain/type/expected-value search bar, record-type shortcuts, resolver/locality rows with city, country, flag/status, returned values and TTL, plus a larger map beside the list on desktop and stacked below on mobile.
+- Methodology, controlled-coverage disclosure, support, sponsor reserve and related links stay below the practical checker/result path. No external map asset, external resolver network, real ad request, donation provider, checkout, payment, affiliate or raw-target analytics was activated.

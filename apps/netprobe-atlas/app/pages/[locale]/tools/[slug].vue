@@ -62,10 +62,29 @@ const upgradePanelCopyByLocale = {
   },
 } satisfies Record<LocaleCode, { ariaLabel: string; eyebrow: string; title: string; body: string; cta: string }>
 const upgradePanelCopy = sanitizePublicCopy(locale, upgradePanelCopyByLocale[locale])
-const formCopy = sanitizePublicCopy(locale, {
-  expectedValueLabel: 'Expected value (optional)',
-  expectedValuePlaceholder: '93.184.216.34 or ns1.example.com',
-})
+const formCopyByLocale = {
+  en: {
+    expectedValueLabel: 'Expected value (optional)',
+    expectedValuePlaceholder: '93.184.216.34 or ns1.example.com',
+  },
+  'pt-br': {
+    expectedValueLabel: 'Valor esperado (opcional)',
+    expectedValuePlaceholder: '93.184.216.34 ou ns1.example.com',
+  },
+  es: {
+    expectedValueLabel: 'Valor esperado (opcional)',
+    expectedValuePlaceholder: '93.184.216.34 o ns1.example.com',
+  },
+  fr: {
+    expectedValueLabel: 'Valeur attendue (optionnelle)',
+    expectedValuePlaceholder: '93.184.216.34 ou ns1.example.com',
+  },
+  de: {
+    expectedValueLabel: 'Erwarteter Wert (optional)',
+    expectedValuePlaceholder: '93.184.216.34 oder ns1.example.com',
+  },
+} satisfies Record<LocaleCode, { expectedValueLabel: string; expectedValuePlaceholder: string }>
+const formCopy = sanitizePublicCopy(locale, formCopyByLocale[locale])
 const benchmarkCopyByLocale = {
   en: {
     recordTabsLabel: 'DNS record type shortcuts',
@@ -79,7 +98,7 @@ const benchmarkCopyByLocale = {
     coverageBody: 'This matrix shows the resolver locality available to the public check. Current coverage is a controlled snapshot, so use it with authoritative DNS and TTL timing.',
     relatedTitle: 'Next checks',
     mapTitle: 'Resolver coverage map',
-    resolverDetailsTitle: 'Resolver and locality table',
+    resolverDetailsTitle: 'Resolver and locality list',
     distinctValuesTitle: 'Values seen by resolvers',
     copySummary: 'Copy safe summary',
     coveragePreviewStatus: 'Ready for check',
@@ -98,7 +117,7 @@ const benchmarkCopyByLocale = {
     coverageBody: 'Esta matriz mostra a localidade de resolvedor disponível na consulta pública. A cobertura atual é um snapshot controlado, então compare com o DNS autoritativo e o tempo de TTL.',
     relatedTitle: 'Próximas checagens',
     mapTitle: 'Mapa de cobertura dos resolvedores',
-    resolverDetailsTitle: 'Tabela de resolvedor e localidade',
+    resolverDetailsTitle: 'Lista de resolvedores e localidades',
     distinctValuesTitle: 'Valores vistos pelos resolvedores',
     copySummary: 'Copiar resumo seguro',
     coveragePreviewStatus: 'Pronto para consulta',
@@ -117,7 +136,7 @@ const benchmarkCopyByLocale = {
     coverageBody: 'Esta matriz muestra la localidad de resolver disponible en la consulta pública. La cobertura actual es un snapshot controlado; compárala con DNS autoritativo y TTL.',
     relatedTitle: 'Siguientes chequeos',
     mapTitle: 'Mapa de cobertura de resolvers',
-    resolverDetailsTitle: 'Tabla de resolver y localidad',
+    resolverDetailsTitle: 'Lista de resolvers y localidades',
     distinctValuesTitle: 'Valores vistos por resolvers',
     copySummary: 'Copiar resumen seguro',
     coveragePreviewStatus: 'Listo para consulta',
@@ -136,7 +155,7 @@ const benchmarkCopyByLocale = {
     coverageBody: 'Cette matrice montre la localité du résolveur disponible pour le contrôle public. La couverture actuelle est un snapshot contrôlé; comparez avec le DNS autoritatif et les TTL.',
     relatedTitle: 'Contrôles suivants',
     mapTitle: 'Carte de couverture des résolveurs',
-    resolverDetailsTitle: 'Table résolveur et localité',
+    resolverDetailsTitle: 'Liste des résolveurs et localités',
     distinctValuesTitle: 'Valeurs vues par les résolveurs',
     copySummary: 'Copier le résumé sécurisé',
     coveragePreviewStatus: 'Prêt pour le contrôle',
@@ -155,7 +174,7 @@ const benchmarkCopyByLocale = {
     coverageBody: 'Diese Matrix zeigt die Resolver-Standortdaten der öffentlichen Prüfung. Die aktuelle Abdeckung ist ein kontrollierter Snapshot; vergleichen Sie mit autoritativem DNS und TTL.',
     relatedTitle: 'Nächste Prüfungen',
     mapTitle: 'Resolver-Abdeckung',
-    resolverDetailsTitle: 'Resolver- und Standorttabelle',
+    resolverDetailsTitle: 'Resolver- und Standortliste',
     distinctValuesTitle: 'Von Resolvern gesehene Werte',
     copySummary: 'Sichere Zusammenfassung kopieren',
     coveragePreviewStatus: 'Bereit zur Prüfung',
@@ -1624,6 +1643,22 @@ function snapshotLocality(snapshot: DnsPropagationSnapshot): string {
   return locality || snapshot.region
 }
 
+function snapshotFlagLabel(snapshot: DnsPropagationSnapshot): string {
+  if (snapshot.flag) {
+    return snapshot.flag
+  }
+
+  if (snapshot.country_code && snapshot.country_code !== 'XX') {
+    return snapshot.country_code
+  }
+
+  return 'NA'
+}
+
+function snapshotRegionLabel(snapshot: DnsPropagationSnapshot): string {
+  return snapshot.country_code && snapshot.country_code !== 'XX' ? snapshot.country_code : snapshot.region
+}
+
 function snapshotValuesText(snapshot: DnsPropagationSnapshot): string {
   return snapshot.values.length > 0 ? snapshot.values.join(', ') : toolUiCopy.noValuesReturned
 }
@@ -2091,11 +2126,11 @@ useHead({
       <span>{{ copy.navLabel }}</span>
     </nav>
 
-    <section :class="['hero', 'hero--single', isIpLookup ? 'hero--ip' : '']" :aria-labelledby="`${tool.slug}-title`">
+    <section :class="['hero', 'hero--single', isIpLookup ? 'hero--ip' : '', isPropagationLookup ? 'hero--propagation' : '']" :aria-labelledby="`${tool.slug}-title`">
       <div>
         <div class="detail-topline">
           <p class="eyebrow">{{ getCategoryLabel(tool.category, locale) }}</p>
-          <span v-if="!isIpLookup" class="status">{{ copy.statusLabel }}</span>
+          <span v-if="!isIpLookup && !isPropagationLookup" class="status">{{ copy.statusLabel }}</span>
         </div>
         <h1 :id="`${tool.slug}-title`">{{ copy.title }}</h1>
         <p class="lead">{{ copy.headline }}</p>
@@ -2105,10 +2140,10 @@ useHead({
 
     <section :class="['tool-layout', isIpLookup ? 'tool-layout--ip' : (isPropagationLookup ? 'tool-layout--diagnostic' : '')]">
       <div class="tool-workbench">
-        <section v-if="!isIpLookup" class="input-panel" :aria-labelledby="`${tool.slug}-input`">
+        <section v-if="!isIpLookup" :class="['input-panel', isPropagationLookup ? 'input-panel--propagation' : '']" :aria-labelledby="`${tool.slug}-input`">
           <h2 :id="`${tool.slug}-input`">{{ copy.navLabel }}</h2>
           <p>{{ copy.description }}</p>
-          <form class="field" @submit.prevent="previewResult">
+          <form :class="['field', isPropagationLookup ? 'propagation-search-form' : '']" @submit.prevent="previewResult">
             <template v-if="isDnsLookup">
               <label :for="`${tool.slug}-target`">{{ copy.inputLabel }}</label>
               <input
@@ -2138,14 +2173,44 @@ useHead({
               </fieldset>
             </template>
             <template v-else-if="isPropagationLookup">
-              <label :for="`${tool.slug}-target`">{{ copy.inputLabel }}</label>
-              <input
-                :id="`${tool.slug}-target`"
-                v-model="targetValue"
-                type="text"
-                :placeholder="copy.inputPlaceholder"
-                autocomplete="off"
-              >
+              <div class="propagation-search-bar">
+                <div class="propagation-search-field propagation-search-field--domain">
+                  <label :for="`${tool.slug}-target`">{{ copy.inputLabel }}</label>
+                  <input
+                    :id="`${tool.slug}-target`"
+                    v-model="targetValue"
+                    type="text"
+                    :placeholder="copy.inputPlaceholder"
+                    autocomplete="off"
+                  >
+                </div>
+                <div class="propagation-search-field propagation-search-field--type">
+                  <label :for="`${tool.slug}-record-type`">{{ toolUiCopy.recordType }}</label>
+                  <select :id="`${tool.slug}-record-type`" v-model="propagationRecordType">
+                    <option
+                      v-for="recordType in dnsVisualRecordTypes"
+                      :key="`${recordType}-option`"
+                      :value="recordType"
+                      :disabled="!isPropagationRecordTypeAvailable(recordType)"
+                    >
+                      {{ recordType }}
+                    </option>
+                  </select>
+                </div>
+                <div class="propagation-search-field">
+                  <label :for="`${tool.slug}-expected`">{{ formCopy.expectedValueLabel }}</label>
+                  <input
+                    :id="`${tool.slug}-expected`"
+                    v-model="expectedPropagationValue"
+                    type="text"
+                    :placeholder="formCopy.expectedValuePlaceholder"
+                    autocomplete="off"
+                  >
+                </div>
+                <button :class="getButtonClass()" class="propagation-search-submit" type="submit" :disabled="isLoading">
+                  {{ copy.primaryAction }}
+                </button>
+              </div>
               <p :id="`${tool.slug}-record-type-label`" class="field-label">{{ benchmarkCopy.recordTabsLabel }}</p>
               <div class="record-tabs" role="tablist" :aria-labelledby="`${tool.slug}-record-type-label`">
                 <button
@@ -2161,14 +2226,6 @@ useHead({
                   <small v-if="!isPropagationRecordTypeAvailable(recordType)" aria-hidden="true">{{ toolUiCopy.unavailableType }}</small>
                 </button>
               </div>
-              <label :for="`${tool.slug}-expected`">{{ formCopy.expectedValueLabel }}</label>
-              <input
-                :id="`${tool.slug}-expected`"
-                v-model="expectedPropagationValue"
-                type="text"
-                :placeholder="formCopy.expectedValuePlaceholder"
-                autocomplete="off"
-              >
             </template>
             <template v-else-if="isPortCheck">
               <label :for="`${tool.slug}-target`">{{ copy.inputLabel }}</label>
@@ -2208,7 +2265,7 @@ useHead({
                 autocomplete="off"
               >
             </template>
-            <div class="tool-actions">
+            <div v-if="!isPropagationLookup" class="tool-actions">
               <button :class="getButtonClass()" type="submit" :disabled="isLoading || (isDnsLookup && selectedDnsTypesForRequest.length === 0)">
                 {{ copy.primaryAction }}
               </button>
@@ -2536,91 +2593,108 @@ useHead({
             </section>
           </div>
 
-          <div v-else-if="propagationResult">
-            <div class="answer-strip" aria-label="Propagation summary">
+          <div v-else-if="propagationResult" class="propagation-console">
+            <div class="answer-strip answer-strip--propagation" aria-label="Propagation summary">
               <div v-for="card in propagationSummaryCards" :key="card.label" :class="['answer-card', card.tone ? `answer-card--${card.tone}` : '']">
                 <strong>{{ card.label }}</strong>
                 <span>{{ card.value }}</span>
               </div>
             </div>
 
-            <div class="result-actions">
+            <div class="result-actions propagation-toolbar">
               <button class="button-link button-link--secondary" type="button" @click="copySafeSummary">
                 {{ benchmarkCopy.copySummary }}
+              </button>
+              <button class="button-link button-link--secondary" type="button" @click="resetCurrentTool">
+                {{ toolUiCopy.checkAnotherRecord }}
               </button>
               <span v-if="copyNotice" role="status">{{ copyNotice }}</span>
             </div>
 
-            <section class="result-callout">
-              <h3>{{ benchmarkCopy.coverageTitle }}</h3>
-              <p>{{ benchmarkCopy.coverageBody }}</p>
-              <p>
-                {{ toolUiCopy.cache }}: {{ formatCache(propagationMeta) }}.
-                Checked: {{ formatMetaDate(propagationMeta) }}.
-              </p>
-            </section>
-
-            <section class="resolver-map" :aria-label="benchmarkCopy.mapTitle">
-              <h3>{{ benchmarkCopy.mapTitle }}</h3>
-              <div class="resolver-map__canvas">
-                <div
-                  v-for="(snapshot, index) in propagationResult.snapshots"
-                  :key="`${snapshot.resolver_id}-pin`"
-                  :class="['resolver-pin', snapshotTone(snapshot) === 'good' ? 'resolver-pin--good' : 'resolver-pin--warning']"
-                  :style="resolverPinStyle(snapshot, index)"
-                >
-                  <strong>{{ snapshotLocality(snapshot) }}</strong>
-                  <span>{{ snapshotStatusLabel(snapshot) }}</span>
+            <div class="propagation-results-grid">
+              <section class="resolver-list-panel" :aria-labelledby="`${tool.slug}-resolver-list`">
+                <div class="resolver-list-panel__heading">
+                  <div>
+                    <h3 :id="`${tool.slug}-resolver-list`">{{ benchmarkCopy.resolverDetailsTitle }}</h3>
+                    <p>{{ propagationResult.snapshots.length }} {{ propagationResult.snapshots.length === 1 ? toolUiCopy.resolverSnapshot : toolUiCopy.resolverSnapshots }}</p>
+                  </div>
+                  <span class="status-badge">{{ propagationResult.record_type }}</span>
                 </div>
-              </div>
-            </section>
+                <div class="resolver-list">
+                  <article
+                    v-for="snapshot in propagationResult.snapshots"
+                    :key="snapshot.resolver_id"
+                    :class="['resolver-row', `resolver-row--${snapshotTone(snapshot)}`]"
+                  >
+                    <span class="resolver-row__flag" aria-hidden="true">{{ snapshotFlagLabel(snapshot) }}</span>
+                    <div class="resolver-row__place">
+                      <strong>{{ snapshotLocality(snapshot) }}</strong>
+                      <span>{{ snapshotDisplayName(snapshot) }}</span>
+                      <small>{{ snapshotRegionLabel(snapshot) }}</small>
+                    </div>
+                    <div class="resolver-row__answer">
+                      <strong>{{ snapshotValuesText(snapshot) }}</strong>
+                      <span>TTL {{ snapshot.ttl_min ?? toolUiCopy.none }}</span>
+                      <small>{{ snapshot.scope || snapshot.region }}</small>
+                    </div>
+                    <span :class="['status-badge', `status-badge--${snapshotTone(snapshot)}`]">{{ snapshotStatusLabel(snapshot) }}</span>
+                  </article>
+                </div>
+              </section>
 
-            <section class="content-section">
-              <h3>{{ benchmarkCopy.resolverDetailsTitle }}</h3>
-              <div class="result-table-wrap">
-                <table class="result-table">
-                  <thead>
-                    <tr>
-                      <th>{{ toolUiCopy.resolver }}</th>
-                      <th>{{ toolUiCopy.locality }}</th>
-                      <th>{{ toolUiCopy.status }}</th>
-                      <th>{{ toolUiCopy.ttlMin }}</th>
-                      <th>{{ toolUiCopy.values }}</th>
-                      <th>{{ toolUiCopy.scope }}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="snapshot in propagationResult.snapshots" :key="snapshot.resolver_id">
-                      <td>
-                        <strong>{{ snapshotDisplayName(snapshot) }}</strong>
-                        <span class="table-subtext">{{ snapshot.resolver_id }}</span>
-                      </td>
-                      <td>
-                        <span>{{ snapshot.flag ? `${snapshot.flag} ` : '' }}{{ snapshotLocality(snapshot) }}</span>
-                        <span class="table-subtext">{{ snapshot.country_code || snapshot.region }}</span>
-                      </td>
-                      <td>
-                        <span :class="['status-badge', `status-badge--${snapshotTone(snapshot)}`]">{{ snapshotStatusLabel(snapshot) }}</span>
-                      </td>
-                      <td>{{ snapshot.ttl_min ?? toolUiCopy.none }}</td>
-                      <td>{{ snapshotValuesText(snapshot) }}</td>
-                      <td>{{ snapshot.scope || snapshot.region }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </section>
+              <section class="resolver-map resolver-map--large propagation-map-panel" :aria-label="benchmarkCopy.mapTitle">
+                <div class="propagation-map-panel__heading">
+                  <h3>{{ benchmarkCopy.mapTitle }}</h3>
+                  <div class="map-legend" aria-hidden="true">
+                    <span><i class="map-legend__dot map-legend__dot--good"></i>{{ toolUiCopy.propagated }}</span>
+                    <span><i class="map-legend__dot map-legend__dot--warning"></i>{{ toolUiCopy.different }}</span>
+                  </div>
+                </div>
+                <div class="resolver-map__canvas">
+                  <svg class="resolver-world-map" viewBox="0 0 1000 520" aria-hidden="true" focusable="false">
+                    <path class="resolver-world-map__grid" d="M0 104H1000M0 208H1000M0 312H1000M0 416H1000M200 0V520M400 0V520M600 0V520M800 0V520" />
+                    <g class="resolver-world-map__land">
+                      <path d="M135 154c34-32 83-48 131-38 27 6 49 22 74 31 22 8 49 7 64 27 13 17 4 42-13 54-24 17-59 6-84 21-30 18-24 65-51 87-21 18-54 11-77-4-33-22-54-58-69-94-12-29 3-61 25-84Z" />
+                      <path d="M293 340c25-16 63-5 77 21 12 22 3 47-4 70-7 22-10 45-22 65-9 16-27 24-43 15-24-13-21-47-30-71-8-20-29-34-31-57-2-21 35-35 53-43Z" />
+                      <path d="M438 134c23-18 59-18 84-4 24 14 32 42 57 54 29 14 65 4 93 21 24 15 28 49 15 72-16 28-51 35-75 55-26 21-31 60-58 80-29 21-71 10-88-20-16-29 3-64-7-95-10-33-47-51-51-85-4-31 8-62 30-78Z" />
+                      <path d="M587 106c49-18 110-12 151 22 18 15 31 35 50 48 25 16 60 13 83 33 20 17 19 51 1 68-27 25-70 15-102 33-31 18-40 58-72 75-27 15-62 6-80-17-19-25-11-58-5-87 6-31-7-57-28-79-22-24-30-77 2-96Z" />
+                      <path d="M740 356c26-16 67-9 82 19 15 29-2 67-27 85-22 16-57 13-72-10-18-27-12-75 17-94Z" />
+                      <path d="M848 132c21-13 55-7 69 14 12 19 4 46-16 55-25 12-62-4-68-32-3-15 2-29 15-37Z" />
+                    </g>
+                  </svg>
+                  <div
+                    v-for="(snapshot, index) in propagationResult.snapshots"
+                    :key="`${snapshot.resolver_id}-pin`"
+                    :class="['resolver-pin', snapshotTone(snapshot) === 'good' ? 'resolver-pin--good' : 'resolver-pin--warning']"
+                    :style="resolverPinStyle(snapshot, index)"
+                  >
+                    <strong>{{ snapshot.flag ? `${snapshot.flag} ` : '' }}{{ snapshotLocality(snapshot) }}</strong>
+                    <span>{{ snapshotStatusLabel(snapshot) }}</span>
+                  </div>
+                </div>
+              </section>
+            </div>
 
-            <section v-if="propagationDistinctValues.length > 0" class="content-section">
-              <h3>{{ benchmarkCopy.distinctValuesTitle }}</h3>
-              <ul class="pill-list">
-                <li v-for="value in propagationDistinctValues" :key="value">{{ value }}</li>
-              </ul>
-            </section>
+            <div class="propagation-after-results">
+              <section class="result-callout">
+                <h3>{{ benchmarkCopy.coverageTitle }}</h3>
+                <p>{{ benchmarkCopy.coverageBody }}</p>
+                <p>
+                  {{ toolUiCopy.cache }}: {{ formatCache(propagationMeta) }}.
+                  {{ toolUiCopy.checked }}: {{ formatMetaDate(propagationMeta) }}.
+                </p>
+              </section>
 
-            <p v-if="Array.isArray(propagationMeta.warnings) && propagationMeta.warnings.length > 0">
-              {{ benchmarkCopy.coverageBody }}
-            </p>
+              <section v-if="propagationDistinctValues.length > 0" class="content-section">
+                <h3>{{ benchmarkCopy.distinctValuesTitle }}</h3>
+                <ul class="pill-list">
+                  <li v-for="value in propagationDistinctValues" :key="value">{{ value }}</li>
+                </ul>
+              </section>
+              <p v-if="Array.isArray(propagationMeta.warnings) && propagationMeta.warnings.length > 0">
+                {{ benchmarkCopy.coverageBody }}
+              </p>
+            </div>
           </div>
 
           <div v-else-if="portResult">
@@ -2724,59 +2798,71 @@ useHead({
             </section>
           </div>
 
-            <div v-else-if="isPropagationLookup" class="propagation-preview">
+            <div v-else-if="isPropagationLookup" class="propagation-console propagation-console--preview">
               <p>{{ copy.previewResult }}</p>
 
-              <section class="resolver-map" :aria-label="benchmarkCopy.mapTitle">
-                <h3>{{ benchmarkCopy.mapTitle }}</h3>
-                <div class="resolver-map__canvas">
-                  <div
-                    v-for="(snapshot, index) in resolverCoveragePreview"
-                    :key="`${snapshot.resolver_id}-preview-pin`"
-                    class="resolver-pin resolver-pin--good"
-                    :style="resolverPinStyle(snapshot, index)"
-                  >
-                    <strong>{{ snapshotLocality(snapshot) }}</strong>
-                    <span>{{ benchmarkCopy.coveragePreviewStatus }}</span>
+              <div class="propagation-results-grid">
+                <section class="resolver-list-panel" :aria-labelledby="`${tool.slug}-preview-resolvers`">
+                  <div class="resolver-list-panel__heading">
+                    <div>
+                      <h3 :id="`${tool.slug}-preview-resolvers`">{{ benchmarkCopy.resolverDetailsTitle }}</h3>
+                      <p>{{ resolverCoveragePreview.length }} {{ toolUiCopy.resolverSnapshots }}</p>
+                    </div>
+                    <span class="status-badge">{{ propagationRecordType }}</span>
                   </div>
-                </div>
-              </section>
+                  <div class="resolver-list">
+                    <article
+                      v-for="snapshot in resolverCoveragePreview"
+                      :key="`${snapshot.resolver_id}-preview-row`"
+                      class="resolver-row resolver-row--good"
+                    >
+                      <span class="resolver-row__flag" aria-hidden="true">{{ snapshotFlagLabel(snapshot) }}</span>
+                      <div class="resolver-row__place">
+                        <strong>{{ snapshotLocality(snapshot) }}</strong>
+                        <span>{{ snapshotDisplayName(snapshot) }}</span>
+                        <small>{{ snapshotRegionLabel(snapshot) }}</small>
+                      </div>
+                      <div class="resolver-row__answer">
+                        <strong>{{ benchmarkCopy.coveragePreviewValue }}</strong>
+                        <span>{{ benchmarkCopy.coveragePreviewTtl }}</span>
+                        <small>{{ snapshot.scope || snapshot.region }}</small>
+                      </div>
+                      <span class="status-badge status-badge--good">{{ benchmarkCopy.coveragePreviewStatus }}</span>
+                    </article>
+                  </div>
+                </section>
 
-              <section class="content-section">
-                <h3>{{ benchmarkCopy.resolverDetailsTitle }}</h3>
-                <div class="result-table-wrap">
-                  <table class="result-table">
-                    <thead>
-                      <tr>
-                        <th>{{ toolUiCopy.resolver }}</th>
-                        <th>{{ toolUiCopy.locality }}</th>
-                        <th>{{ toolUiCopy.status }}</th>
-                        <th>{{ toolUiCopy.ttlMin }}</th>
-                        <th>{{ toolUiCopy.values }}</th>
-                        <th>{{ toolUiCopy.scope }}</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr v-for="snapshot in resolverCoveragePreview" :key="`${snapshot.resolver_id}-preview-row`">
-                        <td>
-                          <strong>{{ snapshotDisplayName(snapshot) }}</strong>
-                          <span class="table-subtext">{{ snapshot.resolver_id }}</span>
-                        </td>
-                        <td>
-                          <span>{{ snapshot.flag ? `${snapshot.flag} ` : '' }}{{ snapshotLocality(snapshot) }}</span>
-                          <span class="table-subtext">{{ snapshot.country_code || snapshot.region }}</span>
-                        </td>
-                        <td>
-                          <span class="status-badge status-badge--good">{{ benchmarkCopy.coveragePreviewStatus }}</span>
-                        </td>
-                        <td>{{ benchmarkCopy.coveragePreviewTtl }}</td>
-                        <td>{{ benchmarkCopy.coveragePreviewValue }}</td>
-                        <td>{{ snapshot.scope || snapshot.region }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </section>
+                <section class="resolver-map resolver-map--large propagation-map-panel" :aria-label="benchmarkCopy.mapTitle">
+                  <div class="propagation-map-panel__heading">
+                    <h3>{{ benchmarkCopy.mapTitle }}</h3>
+                    <div class="map-legend" aria-hidden="true">
+                      <span><i class="map-legend__dot map-legend__dot--good"></i>{{ benchmarkCopy.coveragePreviewStatus }}</span>
+                    </div>
+                  </div>
+                  <div class="resolver-map__canvas">
+                    <svg class="resolver-world-map" viewBox="0 0 1000 520" aria-hidden="true" focusable="false">
+                      <path class="resolver-world-map__grid" d="M0 104H1000M0 208H1000M0 312H1000M0 416H1000M200 0V520M400 0V520M600 0V520M800 0V520" />
+                      <g class="resolver-world-map__land">
+                        <path d="M135 154c34-32 83-48 131-38 27 6 49 22 74 31 22 8 49 7 64 27 13 17 4 42-13 54-24 17-59 6-84 21-30 18-24 65-51 87-21 18-54 11-77-4-33-22-54-58-69-94-12-29 3-61 25-84Z" />
+                        <path d="M293 340c25-16 63-5 77 21 12 22 3 47-4 70-7 22-10 45-22 65-9 16-27 24-43 15-24-13-21-47-30-71-8-20-29-34-31-57-2-21 35-35 53-43Z" />
+                        <path d="M438 134c23-18 59-18 84-4 24 14 32 42 57 54 29 14 65 4 93 21 24 15 28 49 15 72-16 28-51 35-75 55-26 21-31 60-58 80-29 21-71 10-88-20-16-29 3-64-7-95-10-33-47-51-51-85-4-31 8-62 30-78Z" />
+                        <path d="M587 106c49-18 110-12 151 22 18 15 31 35 50 48 25 16 60 13 83 33 20 17 19 51 1 68-27 25-70 15-102 33-31 18-40 58-72 75-27 15-62 6-80-17-19-25-11-58-5-87 6-31-7-57-28-79-22-24-30-77 2-96Z" />
+                        <path d="M740 356c26-16 67-9 82 19 15 29-2 67-27 85-22 16-57 13-72-10-18-27-12-75 17-94Z" />
+                        <path d="M848 132c21-13 55-7 69 14 12 19 4 46-16 55-25 12-62-4-68-32-3-15 2-29 15-37Z" />
+                      </g>
+                    </svg>
+                    <div
+                      v-for="(snapshot, index) in resolverCoveragePreview"
+                      :key="`${snapshot.resolver_id}-preview-pin`"
+                      class="resolver-pin resolver-pin--good"
+                      :style="resolverPinStyle(snapshot, index)"
+                    >
+                      <strong>{{ snapshot.flag ? `${snapshot.flag} ` : '' }}{{ snapshotLocality(snapshot) }}</strong>
+                      <span>{{ benchmarkCopy.coveragePreviewStatus }}</span>
+                    </div>
+                  </div>
+                </section>
+              </div>
             </div>
 
             <p v-else>{{ previewSubmitted ? copy.previewResult : shellCopy.infoBody }}</p>

@@ -68,7 +68,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     universalLabel: 'Diagnostic target',
     universalPlaceholder: 'Enter a domain, hostname or IP',
     universalHint: 'The target stays in your browser on this landing page. Open the matching tool when you are ready to run a check.',
-    universalCta: 'Start DNS check',
+    universalCta: 'Check propagation',
     heroPanelTitle: 'Fast paths for common incidents',
     heroPanelBody: 'Confirm the visible IP, compare DNS answers, inspect domain records and test public reachability without opening an account.',
     quickEyebrow: 'Network checks',
@@ -106,7 +106,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     supportActions: [
       { label: 'Share NetProbe', kind: 'home' },
       { label: 'Send a correction', kind: 'content', slug: 'contact' },
-      { label: 'Use the free checks', kind: 'tool', slug: 'dns-lookup' },
+      { label: 'Use the free checks', kind: 'tool', slug: 'dns-propagation' },
     ],
     footerTitle: 'Network lookup directory',
     footerLead: 'Jump to DNS, IP, domain, SSL and reachability pages from one public index.',
@@ -115,8 +115,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
       {
         title: 'DNS Tools',
         links: [
-          { label: 'DNS Lookup', kind: 'tool', slug: 'dns-lookup' },
           { label: 'DNS Propagation', kind: 'tool', slug: 'dns-propagation' },
+          { label: 'DNS Lookup', kind: 'tool', slug: 'dns-lookup' },
         ],
       },
       {
@@ -170,7 +170,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     universalLabel: 'Alvo do diagnóstico',
     universalPlaceholder: 'Digite um domínio, hostname ou IP',
     universalHint: 'O alvo fica no seu navegador nesta página inicial. Abra a ferramenta adequada quando quiser executar a consulta.',
-    universalCta: 'Iniciar DNS',
+    universalCta: 'Checar propagação',
     heroPanelTitle: 'Caminhos rápidos para incidentes comuns',
     heroPanelBody: 'Confirme o IP visível, compare respostas DNS, inspecione domínio e teste alcance público sem abrir conta.',
     quickEyebrow: 'Consultas de rede',
@@ -208,7 +208,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     supportActions: [
       { label: 'Compartilhar NetProbe', kind: 'home' },
       { label: 'Enviar correção', kind: 'content', slug: 'contact' },
-      { label: 'Usar consultas gratuitas', kind: 'tool', slug: 'dns-lookup' },
+      { label: 'Usar consultas gratuitas', kind: 'tool', slug: 'dns-propagation' },
     ],
     footerTitle: 'Diretório de consultas de rede',
     footerLead: 'Acesse páginas de DNS, IP, domínio, SSL e alcance a partir de um índice público.',
@@ -217,8 +217,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
       {
         title: 'Ferramentas DNS',
         links: [
-          { label: 'Consulta DNS', kind: 'tool', slug: 'dns-lookup' },
           { label: 'Propagação DNS', kind: 'tool', slug: 'dns-propagation' },
+          { label: 'Consulta DNS', kind: 'tool', slug: 'dns-lookup' },
         ],
       },
       {
@@ -272,7 +272,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     universalLabel: 'Objetivo del diagnóstico',
     universalPlaceholder: 'Ingresa un dominio, hostname o IP',
     universalHint: 'El objetivo permanece en tu navegador en esta página inicial. Abre la herramienta adecuada cuando quieras ejecutar la consulta.',
-    universalCta: 'Iniciar DNS',
+    universalCta: 'Revisar propagación',
     heroPanelTitle: 'Rutas rápidas para incidentes comunes',
     heroPanelBody: 'Confirma la IP visible, compara respuestas DNS, inspecciona dominios y prueba alcance público sin crear cuenta.',
     quickEyebrow: 'Checks de red',
@@ -310,7 +310,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     supportActions: [
       { label: 'Compartir NetProbe', kind: 'home' },
       { label: 'Enviar corrección', kind: 'content', slug: 'contact' },
-      { label: 'Usar checks gratuitos', kind: 'tool', slug: 'dns-lookup' },
+      { label: 'Usar checks gratuitos', kind: 'tool', slug: 'dns-propagation' },
     ],
     footerTitle: 'Directorio de consultas de red',
     footerLead: 'Salta a páginas de DNS, IP, dominio, SSL y alcance desde un índice público.',
@@ -319,8 +319,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
       {
         title: 'Herramientas DNS',
         links: [
-          { label: 'Consulta DNS', kind: 'tool', slug: 'dns-lookup' },
           { label: 'Propagación DNS', kind: 'tool', slug: 'dns-propagation' },
+          { label: 'Consulta DNS', kind: 'tool', slug: 'dns-lookup' },
         ],
       },
       {
@@ -374,7 +374,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     universalLabel: 'Cible du diagnostic',
     universalPlaceholder: 'Entrez un domaine, hostname ou IP',
     universalHint: 'La cible reste dans votre navigateur sur cette page. Ouvrez l outil adapte lorsque vous souhaitez lancer le controle.',
-    universalCta: 'Lancer DNS',
+    universalCta: 'Verifier la propagation',
     heroPanelTitle: 'Acces rapides pour incidents courants',
     heroPanelBody: 'Confirmez l IP visible, comparez les reponses DNS, inspectez le domaine et testez l accessibilite publique sans compte.',
     quickEyebrow: 'Controles reseau',
@@ -412,7 +412,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     supportActions: [
       { label: 'Partager NetProbe', kind: 'home' },
       { label: 'Envoyer une correction', kind: 'content', slug: 'contact' },
-      { label: 'Utiliser les controles gratuits', kind: 'tool', slug: 'dns-lookup' },
+      { label: 'Utiliser les controles gratuits', kind: 'tool', slug: 'dns-propagation' },
     ],
     footerTitle: 'Repertoire de recherches reseau',
     footerLead: 'Accedez aux pages DNS, IP, domaine, SSL et accessibilite depuis un index public.',
@@ -421,8 +421,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
       {
         title: 'Outils DNS',
         links: [
-          { label: 'Recherche DNS', kind: 'tool', slug: 'dns-lookup' },
           { label: 'Propagation DNS', kind: 'tool', slug: 'dns-propagation' },
+          { label: 'Recherche DNS', kind: 'tool', slug: 'dns-lookup' },
         ],
       },
       {
@@ -476,7 +476,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     universalLabel: 'Diagnoseziel',
     universalPlaceholder: 'Domain, Hostname oder IP eingeben',
     universalHint: 'Das Ziel bleibt auf dieser Startseite im Browser. Öffnen Sie das passende Tool, wenn Sie die Prüfung starten möchten.',
-    universalCta: 'DNS starten',
+    universalCta: 'Propagation prüfen',
     heroPanelTitle: 'Schnelle Pfade für typische Vorfälle',
     heroPanelBody: 'Bestätigen Sie die sichtbare IP, vergleichen Sie DNS-Antworten, prüfen Sie Domains und testen Sie öffentliche Erreichbarkeit ohne Konto.',
     quickEyebrow: 'Netzwerkprüfungen',
@@ -514,7 +514,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
     supportActions: [
       { label: 'NetProbe teilen', kind: 'home' },
       { label: 'Korrektur senden', kind: 'content', slug: 'contact' },
-      { label: 'Freie Prüfungen nutzen', kind: 'tool', slug: 'dns-lookup' },
+      { label: 'Freie Prüfungen nutzen', kind: 'tool', slug: 'dns-propagation' },
     ],
     footerTitle: 'Verzeichnis für Netzwerk-Lookups',
     footerLead: 'Springen Sie von einem öffentlichen Index zu DNS-, IP-, Domain-, SSL- und Erreichbarkeitsseiten.',
@@ -523,8 +523,8 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
       {
         title: 'DNS-Tools',
         links: [
-          { label: 'DNS-Lookup', kind: 'tool', slug: 'dns-lookup' },
           { label: 'DNS-Propagation', kind: 'tool', slug: 'dns-propagation' },
+          { label: 'DNS-Lookup', kind: 'tool', slug: 'dns-lookup' },
         ],
       },
       {

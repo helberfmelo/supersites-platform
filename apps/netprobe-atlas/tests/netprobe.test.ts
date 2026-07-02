@@ -83,7 +83,7 @@ describe('NetProbe Atlas foundation', () => {
 
   it('filters tools across categories', () => {
     expect(filterTools('ssl', 'all').map((tool) => tool.slug)).toEqual(['ssl-certificate-checker'])
-    expect(filterTools('', 'dns').map((tool) => tool.slug)).toEqual(['dns-lookup', 'dns-propagation'])
+    expect(filterTools('', 'dns').map((tool) => tool.slug)).toEqual(['dns-propagation', 'dns-lookup'])
     expect(filterTools('allowlist', 'reachability', 'pt-br').map((tool) => tool.slug)).toEqual(['port-checker'])
     expect(Object.keys(categoryLabels)).toContain('reachability')
   })

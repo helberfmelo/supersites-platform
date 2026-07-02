@@ -464,7 +464,7 @@ test.describe('NetProbe Atlas public foundation', () => {
     await expect(page.getByRole('tab', { name: 'NS' })).toHaveAttribute('aria-selected', 'true')
     await expect(page.getByText('Coverage disclosure')).toBeVisible()
     await expect(page.getByText('Resolver coverage map')).toBeVisible()
-    await expect(page.getByText('Resolver and locality table')).toBeVisible()
+    await expect(page.getByText('Resolver and locality list')).toBeVisible()
     await expect(page.getByText('system-resolver', { exact: true }).first()).toBeVisible()
     await expect(page.getByText('a.iana-servers.net', { exact: true }).first()).toBeVisible()
     await expect(page.getByRole('button', { name: 'Copy safe summary' })).toBeVisible()

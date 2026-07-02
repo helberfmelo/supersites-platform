@@ -22,7 +22,8 @@ Data-base: 2026-06-30
 
 - DNS propagation, DNS lookup, RDAP, SSL, port and reachability UX refinement.
 - Answer-first result cards, safe copy/export actions, related checks, methodology below the answer and richer topical footer links.
-- DNS record controls mirror the current endpoint allowlists. Unsupported PTR/SRV and propagation-only SOA/CAA gaps are shown as unavailable rather than simulated.
+- DNS Propagation is the primary NetProbe Atlas workflow, followed by What is my IP and then the remaining diagnostics.
+- DNS record controls mirror the current endpoint allowlists. DNS Propagation exposes A/AAAA/CNAME/MX/NS/PTR/SOA/SRV/TXT/CAA and keeps controlled-coverage disclosure below the useful result rather than simulating worldwide coverage.
 - Safe support block and inert sponsor reserve after the useful result path; no real donation, checkout, ad request or provider widget is active.
 
 ## Validation
