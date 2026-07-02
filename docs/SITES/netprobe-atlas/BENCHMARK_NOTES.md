@@ -104,4 +104,5 @@ Data-base: 2026-06-30
 - The control-plane propagation endpoint now has a `NetProbePropagationResolver` contract and a `GoogleEcsNetProbePropagationResolver` implementation.
 - The public result matrix requests 24 configured localities with Google Public DNS JSON API and `edns_client_subnet` hints, so list rows and map markers are populated from real DNS-over-HTTPS responses instead of duplicated local results.
 - This is a practical regional propagation check, not a claim that NetProbe operates a physical resolver in each city. Exact WhatsMyDNS-style server ownership remains a future distributed-probe/provider decision.
+- The result can differ from WhatsMyDNS for the same domain because WhatsMyDNS checks its own server/locality network, while NetProbe checks Google Public DNS with ECS hints for the configured localities.
 - Cloudflare account materials were found in `D:\Projetos\bigshopv4`, but this sprint did not need Cloudflare credentials or mutate Cloudflare. Cloudflare remains useful for DNS hosting/proxy/cache/R2/Workers later; Cloudflare DoH can provide a baseline resolver but does not provide all-city fanout by itself.

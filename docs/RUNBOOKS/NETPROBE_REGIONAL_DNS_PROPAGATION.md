@@ -23,6 +23,7 @@ DNS Propagation deve preencher a lista e o mapa com respostas reais por localida
 
 - As linhas sao consultas reais de DNS-over-HTTPS com hint regional ECS.
 - Isto nao significa que o NetProbe possui um servidor fisico em cada cidade.
+- A leitura pode divergir do WhatsMyDNS para o mesmo dominio, porque o WhatsMyDNS consulta a propria malha/relacao de servidores por localidade, enquanto o NetProbe consulta Google Public DNS com `edns_client_subnet` por localidade configurada.
 - Para paridade operacional total com redes como WhatsMyDNS, seria necessario contratar/operar uma rede distribuida de probes ou um provider de medicoes globais aprovado.
 - Se o provider regional falhar, o endpoint degrada para o resolver local controlado com aviso no `meta.warnings`.
 - Em desenvolvimento Windows, erro `unable to get local issuer certificate` indica CA local do PHP/cURL ausente. Corrija `curl.cainfo`/CA bundle; use `NETPROBE_PROPAGATION_GOOGLE_ECS_VERIFY_TLS=false` somente para diagnostico local temporario.

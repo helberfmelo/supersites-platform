@@ -1361,9 +1361,11 @@ h3 {
   width: 22px;
   height: 16px;
   place-items: center;
+  border: 1px solid rgba(23, 35, 30, 0.1);
   border-radius: 2px;
+  background: #ffffff;
   color: #275f57;
-  font-size: 0.74rem;
+  font-size: 1rem;
   font-weight: 900;
   line-height: 1;
   overflow: hidden;
@@ -1715,7 +1717,7 @@ h3 {
   border-radius: 8px;
   background: #2f7095;
   isolation: isolate;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .resolver-map__viewport {
@@ -1751,6 +1753,108 @@ h3 {
   font-weight: 950;
   line-height: 1;
   box-shadow: 0 2px 7px rgba(20, 34, 29, 0.22);
+  cursor: default;
+}
+
+.resolver-marker:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.resolver-marker:hover,
+.resolver-marker:focus-visible {
+  z-index: 8;
+}
+
+.resolver-marker__symbol {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.resolver-marker__tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 9px);
+  z-index: 9;
+  display: grid;
+  width: max-content;
+  min-width: 180px;
+  max-width: 240px;
+  gap: 5px;
+  padding: 10px 12px;
+  border: 1px solid rgba(23, 35, 30, 0.16);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #17231e;
+  font-size: 0.78rem;
+  font-weight: 760;
+  line-height: 1.25;
+  text-align: left;
+  box-shadow: 0 10px 24px rgba(20, 34, 29, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 4px);
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.resolver-marker__tooltip::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 10px;
+  height: 10px;
+  border-right: 1px solid rgba(23, 35, 30, 0.16);
+  border-bottom: 1px solid rgba(23, 35, 30, 0.16);
+  background: rgba(255, 255, 255, 0.94);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.resolver-marker:hover .resolver-marker__tooltip,
+.resolver-marker:focus-visible .resolver-marker__tooltip {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.resolver-marker__tooltip-heading {
+  display: flex;
+  min-width: 0;
+  gap: 7px;
+  align-items: center;
+}
+
+.resolver-marker__tooltip-heading strong {
+  overflow-wrap: anywhere;
+}
+
+.resolver-marker__tooltip-flag {
+  display: grid;
+  width: 22px;
+  height: 16px;
+  place-items: center;
+  border: 1px solid rgba(23, 35, 30, 0.1);
+  border-radius: 2px;
+  background: #ffffff;
+  font-size: 1rem;
+  line-height: 1;
+  overflow: hidden;
+  flex: 0 0 auto;
+}
+
+.resolver-marker__tooltip-values {
+  color: #2d6da3;
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: 0.75rem;
+  overflow-wrap: anywhere;
+}
+
+.resolver-marker__tooltip small {
+  color: #607069;
+  font-size: 0.68rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
 }
 
 .resolver-marker--good {

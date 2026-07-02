@@ -95,7 +95,7 @@ const benchmarkCopyByLocale = {
     privacyBody: 'Inputs and returned values stay out of analytics. The IP result is shown to this browser session and the event only records the tool slug.',
     privacyLink: 'Read privacy details',
     coverageTitle: 'Coverage disclosure',
-    coverageBody: 'This matrix shows real DNS-over-HTTPS resolver queries with regional ECS hints. Use it with authoritative DNS and TTL timing; exact city-server coverage requires a dedicated probe network.',
+    coverageBody: 'This matrix shows real Google Public DNS-over-HTTPS queries with regional ECS hints. Use it with authoritative DNS and TTL timing; exact city-server coverage like dedicated propagation networks requires a probe network.',
     relatedTitle: 'Next checks',
     mapTitle: 'Resolver coverage map',
     resolverDetailsTitle: 'Resolver and locality list',
@@ -114,7 +114,7 @@ const benchmarkCopyByLocale = {
     privacyBody: 'Entradas e valores retornados ficam fora de analytics. O IP aparece apenas nesta sessão do navegador e o evento registra só o slug da ferramenta.',
     privacyLink: 'Ler detalhes de privacidade',
     coverageTitle: 'Cobertura declarada',
-    coverageBody: 'Esta matriz mostra consultas reais de DNS-over-HTTPS com sinais regionais ECS. Compare com o DNS autoritativo e o tempo de TTL; cobertura exata por servidor em cada cidade exige uma rede dedicada de probes.',
+    coverageBody: 'Esta matriz mostra consultas reais no Google Public DNS-over-HTTPS com sinais regionais ECS. Compare com DNS autoritativo e TTL; cobertura exata por servidor em cada cidade, como redes dedicadas de propagação, exige uma rede de probes.',
     relatedTitle: 'Próximas checagens',
     mapTitle: 'Mapa de cobertura dos resolvedores',
     resolverDetailsTitle: 'Lista de resolvedores e localidades',
@@ -133,7 +133,7 @@ const benchmarkCopyByLocale = {
     privacyBody: 'Entradas y valores devueltos quedan fuera de analytics. La IP se muestra solo en esta sesión y el evento registra solo el slug de herramienta.',
     privacyLink: 'Leer privacidad',
     coverageTitle: 'Cobertura declarada',
-    coverageBody: 'Esta matriz muestra consultas DNS-over-HTTPS reales con señales regionales ECS. Compárala con DNS autoritativo y TTL; la cobertura exacta por servidor de ciudad requiere una red dedicada de probes.',
+    coverageBody: 'Esta matriz muestra consultas reales en Google Public DNS-over-HTTPS con señales regionales ECS. Compárala con DNS autoritativo y TTL; la cobertura exacta por servidor de ciudad, como redes dedicadas de propagación, requiere una red de probes.',
     relatedTitle: 'Siguientes chequeos',
     mapTitle: 'Mapa de cobertura de resolvers',
     resolverDetailsTitle: 'Lista de resolvers y localidades',
@@ -152,7 +152,7 @@ const benchmarkCopyByLocale = {
     privacyBody: 'Les entrées et valeurs retournées restent hors analytics. L’IP est affichée dans cette session et l’événement ne garde que le slug outil.',
     privacyLink: 'Lire la confidentialité',
     coverageTitle: 'Couverture déclarée',
-    coverageBody: 'Cette matrice montre des requêtes DNS-over-HTTPS réelles avec indices régionaux ECS. Comparez avec le DNS autoritatif et les TTL; une couverture exacte par serveur urbain exige un réseau de probes dédié.',
+    coverageBody: 'Cette matrice montre des requêtes réelles Google Public DNS-over-HTTPS avec indices régionaux ECS. Comparez avec le DNS autoritatif et les TTL; une couverture exacte par serveur urbain, comme les réseaux dédiés de propagation, exige un réseau de probes.',
     relatedTitle: 'Contrôles suivants',
     mapTitle: 'Carte de couverture des résolveurs',
     resolverDetailsTitle: 'Liste des résolveurs et localités',
@@ -171,7 +171,7 @@ const benchmarkCopyByLocale = {
     privacyBody: 'Eingaben und Rückgabewerte bleiben aus Analytics heraus. Die IP wird nur in dieser Browsersitzung gezeigt; das Event speichert nur den Tool-Slug.',
     privacyLink: 'Datenschutz lesen',
     coverageTitle: 'Abgedeckter Umfang',
-    coverageBody: 'Diese Matrix zeigt echte DNS-over-HTTPS-Abfragen mit regionalen ECS-Hinweisen. Vergleichen Sie mit autoritativem DNS und TTL; exakte Stadt-Server-Abdeckung benötigt ein eigenes Probe-Netz.',
+    coverageBody: 'Diese Matrix zeigt echte Google Public DNS-over-HTTPS-Abfragen mit regionalen ECS-Hinweisen. Vergleichen Sie mit autoritativem DNS und TTL; exakte Stadt-Server-Abdeckung wie bei dedizierten Propagationsnetzen benötigt ein Probe-Netz.',
     relatedTitle: 'Nächste Prüfungen',
     mapTitle: 'Resolver-Abdeckung',
     resolverDetailsTitle: 'Resolver- und Standortliste',
@@ -402,7 +402,7 @@ const toolUiCopyByLocale = {
     lowestTtl: 'Lowest TTL',
     resolverSource: 'Resolver / source',
     noRecords: 'No records returned.',
-    answeredResolvers: 'Answered resolvers',
+    answeredResolvers: 'Answered regional checks',
     expectedValueMatch: 'Expected-value match',
     distinctValues: 'Distinct values',
     differentAnswers: 'Different',
@@ -503,7 +503,7 @@ const toolUiCopyByLocale = {
     lowestTtl: 'Menor TTL',
     resolverSource: 'Resolvedor / fonte',
     noRecords: 'Nenhum registro retornado.',
-    answeredResolvers: 'Resolvedores com resposta',
+    answeredResolvers: 'Consultas regionais respondidas',
     expectedValueMatch: 'Match do valor esperado',
     distinctValues: 'Valores distintos',
     differentAnswers: 'Diferentes',
@@ -604,7 +604,7 @@ const toolUiCopyByLocale = {
     lowestTtl: 'TTL menor',
     resolverSource: 'Resolver / fuente',
     noRecords: 'No se devolvieron registros.',
-    answeredResolvers: 'Resolvers con respuesta',
+    answeredResolvers: 'Consultas regionales respondidas',
     expectedValueMatch: 'Coincidencia con valor esperado',
     distinctValues: 'Valores distintos',
     differentAnswers: 'Diferentes',
@@ -705,7 +705,7 @@ const toolUiCopyByLocale = {
     lowestTtl: 'TTL le plus bas',
     resolverSource: 'Résolveur / source',
     noRecords: 'Aucun enregistrement retourné.',
-    answeredResolvers: 'Résolveurs avec réponse',
+    answeredResolvers: 'Contrôles régionaux répondus',
     expectedValueMatch: 'Correspondance valeur attendue',
     distinctValues: 'Valeurs distinctes',
     differentAnswers: 'Différentes',
@@ -806,7 +806,7 @@ const toolUiCopyByLocale = {
     lowestTtl: 'Niedrigste TTL',
     resolverSource: 'Resolver / Quelle',
     noRecords: 'Keine Einträge zurückgegeben.',
-    answeredResolvers: 'Resolver mit Antwort',
+    answeredResolvers: 'Beantwortete regionale Prüfungen',
     expectedValueMatch: 'Abgleich mit erwartetem Wert',
     distinctValues: 'Unterschiedliche Werte',
     differentAnswers: 'Abweichend',
@@ -903,7 +903,7 @@ const dnsVisualRecordTypes = ['A', 'AAAA', 'CNAME', 'MX', 'NS', 'PTR', 'SOA', 'S
 const quickPorts = [80, 443, 587, 993] as const
 const runtimeConfig = useRuntimeConfig()
 const netprobeBaseUrl = runtimeConfig.app.baseURL.endsWith('/') ? runtimeConfig.app.baseURL : `${runtimeConfig.app.baseURL}/`
-const dnsPropagationMapAssetUrl = `${netprobeBaseUrl}assets/dns-propagation-map.svg?v=20260702-status-matrix`
+const dnsPropagationMapAssetUrl = `${netprobeBaseUrl}assets/dns-propagation-map.svg?v=20260702-map-tooltips`
 const dnsPropagationMapProjection = {
   width: 482,
   height: 460,
@@ -2149,10 +2149,20 @@ function snapshotFlagLabel(snapshot: DnsPropagationSnapshot): string {
   }
 
   if (snapshot.country_code && snapshot.country_code !== 'XX') {
-    return snapshot.country_code
+    return countryCodeFlag(snapshot.country_code) || snapshot.country_code
   }
 
   return 'NA'
+}
+
+function countryCodeFlag(countryCode: string): string {
+  const normalized = countryCode.trim().toUpperCase()
+
+  if (!/^[A-Z]{2}$/.test(normalized)) {
+    return ''
+  }
+
+  return String.fromCodePoint(...normalized.split('').map((letter) => 127397 + letter.charCodeAt(0)))
 }
 
 function snapshotRegionLabel(snapshot: DnsPropagationSnapshot): string {
@@ -2219,6 +2229,18 @@ function propagationMapMarkerSymbol(row: PropagationDisplayRow): string {
   }
 
   return snapshotTone(row.snapshot) === 'good' ? '✓' : '×'
+}
+
+function propagationMapTooltipTitle(row: PropagationDisplayRow): string {
+  return `${snapshotLocality(row.snapshot)}: ${propagationRowStatusLabel(row)}`
+}
+
+function propagationMapTooltipValues(row: PropagationDisplayRow): string {
+  if (row.state === 'listed') {
+    return benchmarkCopy.coveragePreviewValue
+  }
+
+  return snapshotValuesText(row.snapshot)
 }
 
 function resolverPinStyle(snapshot: DnsPropagationSnapshot, index: number): Record<string, string> {
@@ -3234,10 +3256,19 @@ useHead({
                       :key="`${row.key}-pin`"
                       :class="['resolver-marker', `resolver-marker--${propagationRowTone(row)}`]"
                       :style="resolverPinStyle(row.snapshot, index)"
-                      :aria-label="`${snapshotLocality(row.snapshot)}: ${propagationRowStatusLabel(row)}`"
-                      :title="`${snapshotLocality(row.snapshot)}: ${propagationRowStatusLabel(row)}`"
+                      :aria-label="propagationMapTooltipTitle(row)"
+                      tabindex="0"
                     >
-                      {{ propagationMapMarkerSymbol(row) }}
+                      <span class="resolver-marker__symbol">{{ propagationMapMarkerSymbol(row) }}</span>
+                      <span class="resolver-marker__tooltip" role="tooltip">
+                        <span class="resolver-marker__tooltip-heading">
+                          <span class="resolver-marker__tooltip-flag" aria-hidden="true">{{ snapshotFlagLabel(row.snapshot) }}</span>
+                          <strong>{{ snapshotLocality(row.snapshot) }}</strong>
+                        </span>
+                        <span>{{ snapshotDisplayName(row.snapshot) }}</span>
+                        <span class="resolver-marker__tooltip-values">{{ propagationMapTooltipValues(row) }}</span>
+                        <small>{{ propagationRowTtl(row) }} - {{ propagationRowScope(row) }}</small>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -3420,6 +3451,25 @@ useHead({
                   <div class="resolver-map__canvas">
                     <div class="resolver-map__viewport">
                       <img class="resolver-world-map" :src="dnsPropagationMapAssetUrl" alt="" aria-hidden="true" decoding="async" />
+                      <div
+                        v-for="(row, index) in propagationPreviewRows"
+                        :key="`${row.key}-preview-pin`"
+                        :class="['resolver-marker', `resolver-marker--${propagationRowTone(row)}`]"
+                        :style="resolverPinStyle(row.snapshot, index)"
+                        :aria-label="propagationMapTooltipTitle(row)"
+                        tabindex="0"
+                      >
+                        <span class="resolver-marker__symbol">{{ propagationMapMarkerSymbol(row) }}</span>
+                        <span class="resolver-marker__tooltip" role="tooltip">
+                          <span class="resolver-marker__tooltip-heading">
+                            <span class="resolver-marker__tooltip-flag" aria-hidden="true">{{ snapshotFlagLabel(row.snapshot) }}</span>
+                            <strong>{{ snapshotLocality(row.snapshot) }}</strong>
+                          </span>
+                          <span>{{ snapshotDisplayName(row.snapshot) }}</span>
+                          <span class="resolver-marker__tooltip-values">{{ propagationMapTooltipValues(row) }}</span>
+                          <small>{{ propagationRowTtl(row) }} - {{ propagationRowScope(row) }}</small>
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </section>

@@ -40,6 +40,22 @@ Areas de permissao observadas por introspeccao: Account, Zone/DNS, Cache Purge, 
 - KV/D1/Queues: usar apenas quando houver produto claro, como cache pequeno, filas de tarefas leves ou estado operacional de baixa criticidade.
 - Turnstile: pode ser avaliado para formularios publicos se abuso virar problema.
 
+## Implementacoes de valor para o portfolio
+
+Prioridade recomendada:
+
+1. Purge Cloudflare por deploy HostGator: apos deploy especifico, limpar apenas URLs/prefixos do app alterado quando `opentshost.com` estiver passando por cache Cloudflare.
+2. Auditoria DNS operacional: painel/rotina read-only para confirmar registros esperados de `opentshost.com`, CNAMEs, TXT, MX e status de proxy.
+3. R2 para assets publicos: armazenar mapas, imagens otimizadas, exports publicos e artefatos versionados que nao tenham dados sensiveis.
+4. Turnstile nos formularios de contato/correcao: ativar somente se abuso aparecer, mantendo a tarefa gratuita simples.
+5. Worker de headers/redirects/cache helper: pequenas regras de borda para canonical, seguranca e cache, sem duplicar a aplicacao do HostGator.
+6. Cache/API edge para respostas publicas estaveis: cachear endpoints de catalogo/metadata que nao contem alvo digitado pelo usuario.
+7. Queues/KV para tarefas leves: fila de correcoes, pequenos locks, counters anonimos e caches de configuracao.
+8. D1 apenas para estado pequeno e edge-native aprovado; dados principais seguem no control-plane atual.
+9. Zaraz/Analytics somente com governanca de privacidade; nao registrar dominios/IPs consultados nas ferramentas.
+
+Nao usar Cloudflare Free como promessa de DNS propagation por todos os colos. Workers e DoH ajudam em utilidades de borda, mas nao substituem uma rede distribuida de probes com localidade escolhida por servidor.
+
 ## Cuidado operacional
 
 O token atual e amplo. Para automacao rotineira, criar tokens menores por funcao:
