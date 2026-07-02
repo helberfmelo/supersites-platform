@@ -2489,7 +2489,7 @@ export const qrRouteCatalogCopy: Record<LocaleCode, QrRouteCatalogCopy> = {
     ],
     shortcutGroups: [
       { title: 'Make a scannable code', body: 'Start with QR payloads people can use from a phone camera.', paths: ['/tools/static-qr-code', '/tools/wifi-qr', '/tools/vcard-qr'] },
-      { title: 'Prepare campaign assets', body: 'Tag a destination, create a barcode or inspect a payload before launch.', paths: ['/tools/utm-builder', '/tools/barcode-generator', '/tools/preview-lab'] },
+      { title: 'Prepare campaign assets', body: 'Tag a destination, create a barcode or inspect a payload before sharing.', paths: ['/tools/utm-builder', '/tools/barcode-generator', '/tools/preview-lab'] },
       { title: 'Check before printing', body: 'Review what will be encoded before flyers, labels or cards are produced.', paths: ['/tools/preview-lab', '/tools/static-qr-code', '/tools/barcode-generator'] },
     ],
     footerGroups: [

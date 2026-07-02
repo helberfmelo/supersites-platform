@@ -437,7 +437,7 @@ const workflowStepsBySlug: Record<DocShiftToolSlug, DocShiftWorkflowStep[]> = {
   'metadata-cleaner': [
     { title: 'Set visible fields', body: 'Replace basic PDF title and author metadata in a clean local copy.' },
     { title: 'Know the limit', body: 'This does not remove visible page content or guarantee forensic redaction.' },
-    { title: 'Policy reports later', body: 'Audit reports, retention controls and batch policies require the advanced workflow review.' },
+    { title: 'Policy reports later', body: 'Audit reports, retention controls and batch policies need clear file-handling controls.' },
   ],
   'text-to-pdf': [
     { title: 'Paste plain text', body: 'Generate a simple local PDF from notes, drafts or checklists up to the free character limit.' },
