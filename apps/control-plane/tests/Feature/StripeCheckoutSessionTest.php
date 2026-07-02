@@ -19,6 +19,25 @@ class StripeCheckoutSessionTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function test_stripe_checkout_fails_closed_before_catalog_queries_when_disabled(): void
+    {
+        Http::fake();
+
+        $this->postJson('/api/v1/billing/stripe/checkout-sessions', [
+            'kind' => 'donation',
+            'site_slug' => 'netprobe-atlas',
+            'locale' => 'en',
+            'amount_minor' => 1000,
+            'currency' => 'USD',
+        ])
+            ->assertStatus(503)
+            ->assertJsonPath('data.created', false)
+            ->assertJsonPath('meta.side_effects', 'none')
+            ->assertJsonPath('meta.reasons.0', 'billing_checkout_disabled');
+
+        Http::assertNothingSent();
+    }
+
     public function test_stripe_checkout_session_fails_closed_without_flags(): void
     {
         Http::fake();

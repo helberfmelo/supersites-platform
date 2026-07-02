@@ -25,6 +25,17 @@ class StripeCheckoutSessionCreator
      */
     public function create(array $input, ?User $user = null): array
     {
+        $kind = (string) $input['kind'];
+        $locale = $this->normalizeLocale($input['locale'] ?? null);
+        $baseGateReasons = $this->baseGateReasons();
+
+        if ($baseGateReasons !== []) {
+            return $this->blocked(503, $baseGateReasons, [
+                'kind' => $kind,
+                'site_slug' => (string) $input['site_slug'],
+            ]);
+        }
+
         $site = Site::query()
             ->where('slug', (string) $input['site_slug'])
             ->where('kind', '!=', 'admin')
@@ -33,10 +44,6 @@ class StripeCheckoutSessionCreator
         if (! $site instanceof Site) {
             return $this->blocked(422, ['site_not_supported']);
         }
-
-        $kind = (string) $input['kind'];
-        $locale = $this->normalizeLocale($input['locale'] ?? null);
-        $baseGateReasons = $this->baseGateReasons();
 
         if ($kind === 'donation') {
             return $this->createDonationSession($input, $site, $locale, $baseGateReasons, $user);
