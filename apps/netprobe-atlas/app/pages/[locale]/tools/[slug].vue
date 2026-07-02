@@ -1734,14 +1734,18 @@ function hydratePropagationFromUrl(): boolean {
   return true
 }
 
-function handlePropagationUrlChange(): void {
+function runPropagationFromUrl(force = false): void {
   if (!isPropagationLookup.value) {
     return
   }
 
-  if (hydratePropagationFromUrl()) {
+  if (hydratePropagationFromUrl() && (force || !previewSubmitted.value)) {
     void previewResult({ updateUrl: false })
   }
+}
+
+function handlePropagationUrlChange(): void {
+  runPropagationFromUrl(true)
 }
 
 function toolPathForLocale(targetLocale: LocaleCode): string {
@@ -2622,9 +2626,9 @@ onMounted(() => {
   updateBrowserDetails()
 
   if (isPropagationLookup.value) {
-    if (hydratePropagationFromUrl()) {
-      void previewResult({ updateUrl: false })
-    }
+    runPropagationFromUrl()
+    window.setTimeout(() => runPropagationFromUrl(), 0)
+    window.setTimeout(() => runPropagationFromUrl(), 250)
 
     window.addEventListener('hashchange', handlePropagationUrlChange)
     window.addEventListener('popstate', handlePropagationUrlChange)

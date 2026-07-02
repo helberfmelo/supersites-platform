@@ -454,6 +454,13 @@ test.describe('NetProbe Atlas public foundation', () => {
     })
 
     await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/en/tools/dns-propagation#NS/secret-propagation.example/a.iana-servers.net')
+    await expect(page.getByLabel('Domain name')).toHaveValue('secret-propagation.example')
+    await expect(page.getByRole('tab', { name: 'NS' })).toHaveAttribute('aria-selected', 'true')
+    await expect(page.getByText('1/1 (100%)')).toBeVisible()
+    await expect(page.getByText('1 resolver snapshot; 24 listed localities')).toBeVisible()
+    expect(JSON.stringify(await page.evaluate(() => window.supersitesAnalyticsEvents))).not.toContain('secret-propagation.example')
+
     await page.goto('/en/tools/dns-propagation')
     await page.getByLabel('Domain name').fill('secret-propagation.example')
     await page.getByRole('tab', { name: 'NS' }).click()
@@ -472,13 +479,6 @@ test.describe('NetProbe Atlas public foundation', () => {
     await expect(page.getByRole('button', { name: 'Copy safe summary' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Private by design' })).toBeVisible()
     await expectNoHorizontalOverflow(page)
-    expect(JSON.stringify(await page.evaluate(() => window.supersitesAnalyticsEvents))).not.toContain('secret-propagation.example')
-
-    await page.goto('/en/tools/dns-propagation#NS/secret-propagation.example/a.iana-servers.net')
-    await expect(page.getByLabel('Domain name')).toHaveValue('secret-propagation.example')
-    await expect(page.getByRole('tab', { name: 'NS' })).toHaveAttribute('aria-selected', 'true')
-    await expect(page.getByText('1/1 (100%)')).toBeVisible()
-    await expect(page.getByText('1 resolver snapshot; 24 listed localities')).toBeVisible()
     expect(JSON.stringify(await page.evaluate(() => window.supersitesAnalyticsEvents))).not.toContain('secret-propagation.example')
 
     await page.goto('/en/tools/port-checker')
