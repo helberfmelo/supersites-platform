@@ -36,6 +36,7 @@ Use este indice somente quando a etapa tocar o tema indicado. Nao e leitura obri
 - CI/CD: `docs/RUNBOOKS/CI_CD.md`
 - Desenvolvimento local: `docs/RUNBOOKS/LOCAL_DEVELOPMENT.md`
 - Release: `docs/RUNBOOKS/RELEASE.md`
+- Cloudflare/R2 SuperSites: `docs/RUNBOOKS/CLOUDFLARE_SUPERSITES.md`
 - Contexto operacional completo arquivado: `docs/archive/OPERATING_CONTEXT_FULL_2026-06-30.md`
 
 ## Regra

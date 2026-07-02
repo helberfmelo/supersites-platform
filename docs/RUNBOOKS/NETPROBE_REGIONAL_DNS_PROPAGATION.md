@@ -29,13 +29,15 @@ DNS Propagation deve preencher a lista e o mapa com respostas reais por localida
 
 ## Cloudflare
 
-Consulta local em `D:\Projetos` encontrou credenciais/contratos Cloudflare no BigShopV4, principalmente em:
+Consulta local inicial em `D:\Projetos` encontrou credenciais/contratos Cloudflare no BigShopV4, principalmente em:
 
 - `D:\Projetos\bigshopv4\docs\credenciais.local.md`
 - `D:\Projetos\bigshopv4\backend\config\external_accounts.php`
 - `D:\Projetos\bigshopv4\docs\04_AMBIENTE_LOCAL_E_CREDENCIAIS.md`
 
-Esta entrega nao usou credenciais Cloudflare e nao fez mutacao na conta.
+Em 2026-07-02, o dono forneceu credenciais novas da conta Cloudflare SuperSites. Os valores reais ficam somente em `docs/credentials/credentials.local.md`; o resumo operacional sem segredo esta em `docs/RUNBOOKS/CLOUDFLARE_SUPERSITES.md`.
+
+Esta entrega de DNS Propagation nao usa credenciais Cloudflare e nao fez mutacao na conta Cloudflare.
 
 Uso recomendado para SuperSites, quando aprovado:
 
