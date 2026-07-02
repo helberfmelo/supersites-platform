@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getButtonClass } from '@supersites/ui'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { getHomeCopy, getShellCopy } from '../../../data/copy'
 import { localizedContentPath, localizedHomePath, localizedToolPath, normalizePublicLocale, sanitizePublicCopy, toHtmlLang, type LocaleCode } from '../../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../../data/routes'
@@ -410,6 +410,7 @@ const toolUiCopyByLocale = {
     checkedScope: 'Checked scope',
     resolverSnapshot: 'resolver snapshot',
     resolverSnapshots: 'resolver snapshots',
+    listedLocalities: 'listed localities',
     resolver: 'Resolver',
     region: 'Region',
     locality: 'Locality',
@@ -510,6 +511,7 @@ const toolUiCopyByLocale = {
     checkedScope: 'Escopo checado',
     resolverSnapshot: 'snapshot de resolvedor',
     resolverSnapshots: 'snapshots de resolvedores',
+    listedLocalities: 'localidades listadas',
     resolver: 'Resolvedor',
     region: 'Região',
     locality: 'Localidade',
@@ -610,6 +612,7 @@ const toolUiCopyByLocale = {
     checkedScope: 'Alcance comprobado',
     resolverSnapshot: 'snapshot de resolver',
     resolverSnapshots: 'snapshots de resolvers',
+    listedLocalities: 'localidades listadas',
     resolver: 'Resolver',
     region: 'Región',
     locality: 'Localidad',
@@ -710,6 +713,7 @@ const toolUiCopyByLocale = {
     checkedScope: 'Périmètre contrôlé',
     resolverSnapshot: 'snapshot de résolveur',
     resolverSnapshots: 'snapshots de résolveurs',
+    listedLocalities: 'localités listées',
     resolver: 'Résolveur',
     region: 'Région',
     locality: 'Localité',
@@ -810,6 +814,7 @@ const toolUiCopyByLocale = {
     checkedScope: 'Geprüfter Umfang',
     resolverSnapshot: 'Resolver-Snapshot',
     resolverSnapshots: 'Resolver-Snapshots',
+    listedLocalities: 'gelistete Standorte',
     resolver: 'Resolver',
     region: 'Region',
     locality: 'Standort',
@@ -910,6 +915,7 @@ const targetValue = ref(tool.slug === 'what-is-my-ip' ? '' : tool.exampleTarget)
 const selectedRecordTypes = ref(['A', 'AAAA', 'CNAME', 'MX', 'TXT', 'NS', 'SOA', 'CAA'])
 const propagationRecordType = ref('A')
 const expectedPropagationValue = ref('')
+const currentPropagationHash = ref('')
 const selectedPort = ref(443)
 const isLoading = ref(false)
 const errorMessage = ref('')
@@ -1584,6 +1590,166 @@ function isPropagationRecordTypeAvailable(recordType: string): boolean {
   return propagationRecordTypes.includes(recordType as (typeof propagationRecordTypes)[number])
 }
 
+interface PropagationUrlState {
+  recordType: string
+  target: string
+  expectedValue: string
+}
+
+function decodeUrlPart(value: string): string {
+  try {
+    return decodeURIComponent(value.replace(/\+/g, ' ')).trim()
+  } catch {
+    return value.trim()
+  }
+}
+
+function normalizeDnsTargetInput(value: string): string {
+  const trimmed = value.trim()
+
+  if (!trimmed) {
+    return ''
+  }
+
+  if (/^https?:\/\//i.test(trimmed)) {
+    try {
+      return new URL(trimmed).hostname.toLowerCase()
+    } catch {
+      return trimmed.toLowerCase()
+    }
+  }
+
+  return trimmed
+    .replace(/^\/+/, '')
+    .split(/[/?#]/)[0]
+    .replace(/\.$/, '')
+    .toLowerCase()
+}
+
+function isShareablePropagationRecordType(value: string): boolean {
+  return isPropagationRecordTypeAvailable(value.toUpperCase())
+}
+
+function parsePropagationUrlState(): PropagationUrlState | null {
+  if (typeof window === 'undefined') {
+    return null
+  }
+
+  const hash = window.location.hash.replace(/^#/, '')
+
+  if (hash) {
+    const parts = hash.split('/').map(decodeUrlPart)
+    const recordType = (parts[0] || 'A').toUpperCase()
+    const target = normalizeDnsTargetInput(parts[1] || '')
+    const expectedValue = decodeUrlPart(parts.slice(2).join('/'))
+
+    if (target && isShareablePropagationRecordType(recordType)) {
+      return { recordType, target, expectedValue }
+    }
+  }
+
+  const params = new URLSearchParams(window.location.search)
+  const queryTarget = normalizeDnsTargetInput(params.get('target') || params.get('domain') || '')
+  const queryType = (params.get('type') || params.get('record') || 'A').toUpperCase()
+
+  if (queryTarget && isShareablePropagationRecordType(queryType)) {
+    return {
+      recordType: queryType,
+      target: queryTarget,
+      expectedValue: params.get('expected')?.trim() || '',
+    }
+  }
+
+  return null
+}
+
+function buildPropagationHash(): string {
+  const recordType = isShareablePropagationRecordType(propagationRecordType.value)
+    ? propagationRecordType.value.toUpperCase()
+    : 'A'
+  const target = normalizeDnsTargetInput(targetValue.value)
+  const expectedValue = expectedPropagationValue.value.trim()
+  const parts = [recordType, target]
+
+  if (expectedValue) {
+    parts.push(expectedValue)
+  }
+
+  return `#${parts.map(encodeURIComponent).join('/')}`
+}
+
+function normalizePropagationFormValues(): void {
+  targetValue.value = normalizeDnsTargetInput(targetValue.value)
+  propagationRecordType.value = isShareablePropagationRecordType(propagationRecordType.value)
+    ? propagationRecordType.value.toUpperCase()
+    : 'A'
+}
+
+function syncPropagationHashState(): void {
+  currentPropagationHash.value = typeof window === 'undefined' ? currentPropagationHash.value : window.location.hash
+}
+
+function updatePropagationUrlFromForm(replace = false): void {
+  if (typeof window === 'undefined' || !isPropagationLookup.value) {
+    return
+  }
+
+  const normalizedTarget = normalizeDnsTargetInput(targetValue.value)
+
+  if (!normalizedTarget) {
+    return
+  }
+
+  targetValue.value = normalizedTarget
+  propagationRecordType.value = propagationRecordType.value.toUpperCase()
+  const nextHash = buildPropagationHash()
+  const nextUrl = `${window.location.pathname}${window.location.search}${nextHash}`
+  const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`
+
+  if (nextUrl !== currentUrl) {
+    window.history[replace ? 'replaceState' : 'pushState'](null, '', nextUrl)
+  }
+
+  currentPropagationHash.value = nextHash
+}
+
+function applyPropagationUrlState(state: PropagationUrlState): void {
+  propagationRecordType.value = state.recordType
+  targetValue.value = state.target
+  expectedPropagationValue.value = state.expectedValue
+  currentPropagationHash.value = buildPropagationHash()
+}
+
+function hydratePropagationFromUrl(): boolean {
+  const state = parsePropagationUrlState()
+
+  if (!state) {
+    syncPropagationHashState()
+    return false
+  }
+
+  applyPropagationUrlState(state)
+  updatePropagationUrlFromForm(true)
+
+  return true
+}
+
+function handlePropagationUrlChange(): void {
+  if (!isPropagationLookup.value) {
+    return
+  }
+
+  if (hydratePropagationFromUrl()) {
+    void previewResult({ updateUrl: false })
+  }
+}
+
+function toolPathForLocale(targetLocale: LocaleCode): string {
+  const path = localizedToolPath(targetLocale, tool.slug)
+
+  return isPropagationLookup.value && currentPropagationHash.value ? `${path}${currentPropagationHash.value}` : path
+}
+
 function metaNumber(meta: Record<string, unknown>, key: string): number | null {
   return typeof meta[key] === 'number' ? meta[key] : null
 }
@@ -1853,7 +2019,7 @@ const propagationSummaryCards = computed<SummaryCard[]>(() => {
     return []
   }
 
-  const snapshots = propagationMeasuredRows.value.map((row) => row.snapshot)
+  const snapshots = propagationResult.value.snapshots
   const expectedValue = normalizeCompareValue(expectedPropagationValue.value)
   const total = snapshots.length
   const answered = snapshots.filter((snapshot) => snapshot.status === 'answered' && snapshot.values.length > 0).length
@@ -1908,7 +2074,7 @@ const propagationDistinctValues = computed(() => {
     return []
   }
 
-  return Array.from(new Set(propagationMeasuredRows.value.flatMap((row) => row.snapshot.values))).slice(0, 6)
+  return Array.from(new Set(propagationResult.value.snapshots.flatMap((snapshot) => snapshot.values))).slice(0, 6)
 })
 
 type PropagationDisplayState = 'measured' | 'listed'
@@ -1920,34 +2086,13 @@ interface PropagationDisplayRow {
   state: PropagationDisplayState
 }
 
-const propagationMeasuredRows = computed<PropagationDisplayRow[]>(() => {
-  const measuredSnapshots = propagationResult.value?.snapshots ?? []
-
-  if (measuredSnapshots.length === 0) {
-    return []
-  }
-
-  const snapshotsByResolver = new Map(measuredSnapshots.map((snapshot) => [snapshot.resolver_id, snapshot]))
-  const fallbackSnapshot = measuredSnapshots[0]
-
-  return resolverCoveragePreview.map((localitySnapshot, index) => {
-    const measuredSnapshot = snapshotsByResolver.get(localitySnapshot.resolver_id)
-      ?? measuredSnapshots[index]
-      ?? fallbackSnapshot
-
-    return {
-      key: `measured-${localitySnapshot.resolver_id}`,
-      snapshot: {
-        ...localitySnapshot,
-        scope: measuredSnapshot.scope || localitySnapshot.scope,
-        status: measuredSnapshot.status,
-        ttl_min: measuredSnapshot.ttl_min,
-        values: measuredSnapshot.values,
-      },
-      state: 'measured',
-    }
-  })
-})
+const propagationMeasuredRows = computed<PropagationDisplayRow[]>(() =>
+  (propagationResult.value?.snapshots ?? []).map((snapshot) => ({
+    key: `measured-${snapshot.resolver_id}`,
+    snapshot,
+    state: 'measured',
+  })),
+)
 
 const propagationPreviewRows = computed<PropagationDisplayRow[]>(() =>
   resolverCoveragePreview.map((snapshot) => ({
@@ -1957,9 +2102,32 @@ const propagationPreviewRows = computed<PropagationDisplayRow[]>(() =>
   })),
 )
 
+const propagationListedRows = computed<PropagationDisplayRow[]>(() => {
+  const measuredResolverIds = new Set(propagationMeasuredRows.value.map((row) => row.snapshot.resolver_id))
+
+  return propagationPreviewRows.value.filter((row) => !measuredResolverIds.has(row.snapshot.resolver_id))
+})
+
 const propagationDisplayRows = computed<PropagationDisplayRow[]>(() =>
-  propagationResult.value ? propagationMeasuredRows.value : propagationPreviewRows.value,
+  propagationResult.value ? [...propagationMeasuredRows.value, ...propagationListedRows.value] : propagationPreviewRows.value,
 )
+
+const propagationMapRows = computed<PropagationDisplayRow[]>(() =>
+  propagationMeasuredRows.value.filter((row) =>
+    typeof row.snapshot.latitude === 'number' && typeof row.snapshot.longitude === 'number',
+  ),
+)
+
+const propagationCoverageCountLabel = computed(() => {
+  if (!propagationResult.value) {
+    return `${propagationPreviewRows.value.length} ${toolUiCopy.listedLocalities}`
+  }
+
+  const measuredCount = propagationMeasuredRows.value.length
+  const measuredLabel = measuredCount === 1 ? toolUiCopy.resolverSnapshot : toolUiCopy.resolverSnapshots
+
+  return `${measuredCount} ${measuredLabel}; ${propagationListedRows.value.length} ${toolUiCopy.listedLocalities}`
+})
 
 function snapshotDisplayName(snapshot: DnsPropagationSnapshot): string {
   return snapshot.resolver_name || snapshot.resolver_id
@@ -2253,7 +2421,7 @@ async function parseApiError(response: Response): Promise<string> {
   }
 }
 
-async function previewResult(): Promise<void> {
+async function previewResult(options: { updateUrl?: boolean } = {}): Promise<void> {
   previewSubmitted.value = true
   errorMessage.value = ''
   copyNotice.value = ''
@@ -2264,6 +2432,14 @@ async function previewResult(): Promise<void> {
   propagationResult.value = null
   portResult.value = null
   reachabilityResult.value = null
+
+  if (isPropagationLookup.value) {
+    normalizePropagationFormValues()
+
+    if (options.updateUrl !== false) {
+      updatePropagationUrlFromForm()
+    }
+  }
 
   trackToolStarted({
     toolSlug: tool.slug,
@@ -2445,9 +2621,27 @@ async function previewResult(): Promise<void> {
 onMounted(() => {
   updateBrowserDetails()
 
+  if (isPropagationLookup.value) {
+    if (hydratePropagationFromUrl()) {
+      void previewResult({ updateUrl: false })
+    }
+
+    window.addEventListener('hashchange', handlePropagationUrlChange)
+    window.addEventListener('popstate', handlePropagationUrlChange)
+  }
+
   if (isIpLookup.value && !previewSubmitted.value && !isLoading.value) {
     void previewResult()
   }
+})
+
+onBeforeUnmount(() => {
+  if (typeof window === 'undefined' || !isPropagationLookup.value) {
+    return
+  }
+
+  window.removeEventListener('hashchange', handlePropagationUrlChange)
+  window.removeEventListener('popstate', handlePropagationUrlChange)
 })
 
 useHead({
@@ -2488,7 +2682,7 @@ useHead({
   <main class="page-shell">
     <SiteHeader
       :locale="locale"
-      :path-for-locale="(targetLocale) => localizedToolPath(targetLocale, tool.slug)"
+      :path-for-locale="toolPathForLocale"
     />
 
     <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -2987,7 +3181,7 @@ useHead({
                 <div class="resolver-list-panel__heading">
                   <div>
                     <h3 :id="`${tool.slug}-resolver-list`">{{ benchmarkCopy.resolverDetailsTitle }}</h3>
-                    <p>{{ propagationDisplayRows.length }} {{ toolUiCopy.resolverSnapshots }}</p>
+                    <p>{{ propagationCoverageCountLabel }}</p>
                   </div>
                   <span class="status-badge">{{ propagationResult.record_type }}</span>
                 </div>
@@ -3023,6 +3217,7 @@ useHead({
                 <div class="propagation-map-panel__heading">
                   <h3>{{ benchmarkCopy.mapTitle }}</h3>
                   <div class="map-legend" aria-hidden="true">
+                    <span><i class="map-legend__dot map-legend__dot--neutral"></i>{{ benchmarkCopy.coveragePreviewStatus }}</span>
                     <span><i class="map-legend__dot map-legend__dot--good"></i>{{ toolUiCopy.propagated }}</span>
                     <span><i class="map-legend__dot map-legend__dot--warning"></i>{{ toolUiCopy.different }}</span>
                   </div>
@@ -3031,7 +3226,7 @@ useHead({
                   <div class="resolver-map__viewport">
                     <img class="resolver-world-map" :src="dnsPropagationMapAssetUrl" alt="" aria-hidden="true" decoding="async" />
                     <div
-                      v-for="(row, index) in propagationMeasuredRows"
+                      v-for="(row, index) in propagationMapRows"
                       :key="`${row.key}-pin`"
                       :class="['resolver-marker', `resolver-marker--${propagationRowTone(row)}`]"
                       :style="resolverPinStyle(row.snapshot, index)"
@@ -3176,7 +3371,7 @@ useHead({
                   <div class="resolver-list-panel__heading">
                     <div>
                       <h3 :id="`${tool.slug}-preview-resolvers`">{{ benchmarkCopy.resolverDetailsTitle }}</h3>
-                      <p>{{ resolverCoveragePreview.length }} {{ toolUiCopy.resolverSnapshots }}</p>
+                      <p>{{ resolverCoveragePreview.length }} {{ toolUiCopy.listedLocalities }}</p>
                     </div>
                     <span class="status-badge">{{ propagationRecordType }}</span>
                   </div>
