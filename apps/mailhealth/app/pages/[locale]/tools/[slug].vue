@@ -577,7 +577,7 @@ useHead({
       <span>{{ copy.navLabel }}</span>
     </nav>
 
-    <section class="hero" :aria-labelledby="`${tool.slug}-title`">
+    <section class="hero hero--single" :aria-labelledby="`${tool.slug}-title`">
       <div>
         <div class="detail-topline">
           <p class="eyebrow">{{ getCategoryLabel(tool.category, locale) }}</p>
@@ -587,22 +587,6 @@ useHead({
         <p class="lead">{{ copy.headline }}</p>
       </div>
 
-      <aside class="status-panel" :aria-label="shellCopy.pageStatusLabel">
-        <div class="status-panel__row">
-          <div>
-            <strong>{{ shellCopy.exampleLabel }}</strong>
-            <span>{{ copy.exampleTarget }}</span>
-          </div>
-          <span class="signal" aria-hidden="true"></span>
-        </div>
-        <div class="status-panel__row">
-          <div>
-            <strong>{{ shellCopy.freeCheckLabel }}</strong>
-            <span>{{ copy.freeScope }}</span>
-          </div>
-          <span class="signal" aria-hidden="true"></span>
-        </div>
-      </aside>
     </section>
 
     <section class="health-summary" :aria-labelledby="`${tool.slug}-score`">

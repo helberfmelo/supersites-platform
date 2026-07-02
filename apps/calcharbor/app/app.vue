@@ -128,6 +128,10 @@ a:focus-visible {
   border-bottom: 1px solid #d7ded8;
 }
 
+.hero--single {
+  grid-template-columns: minmax(0, 820px);
+}
+
 .hero > *,
 .tool-card > *,
 .status-panel > *,

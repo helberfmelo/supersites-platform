@@ -148,6 +148,10 @@ a:focus-visible {
   padding-bottom: 24px;
 }
 
+.hero--single {
+  grid-template-columns: minmax(0, 820px);
+}
+
 .hero > *,
 .tool-card > *,
 .status-panel > *,

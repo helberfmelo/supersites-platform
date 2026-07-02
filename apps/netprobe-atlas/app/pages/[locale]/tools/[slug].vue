@@ -2091,7 +2091,7 @@ useHead({
       <span>{{ copy.navLabel }}</span>
     </nav>
 
-    <section :class="['hero', isIpLookup ? 'hero--ip' : '']" :aria-labelledby="`${tool.slug}-title`">
+    <section :class="['hero', 'hero--single', isIpLookup ? 'hero--ip' : '']" :aria-labelledby="`${tool.slug}-title`">
       <div>
         <div class="detail-topline">
           <p class="eyebrow">{{ getCategoryLabel(tool.category, locale) }}</p>
@@ -2101,22 +2101,6 @@ useHead({
         <p class="lead">{{ copy.headline }}</p>
       </div>
 
-      <aside v-if="!isIpLookup" class="status-panel" :aria-label="shellCopy.pageStatusLabel">
-        <div class="status-panel__row">
-          <div>
-            <strong>{{ shellCopy.exampleLabel }}</strong>
-            <span>{{ copy.exampleTarget }}</span>
-          </div>
-          <span class="signal" aria-hidden="true"></span>
-        </div>
-        <div class="status-panel__row">
-          <div>
-            <strong>{{ shellCopy.infoTitle }}</strong>
-            <span>{{ shellCopy.infoBody }}</span>
-          </div>
-          <span class="signal signal--amber" aria-hidden="true"></span>
-        </div>
-      </aside>
     </section>
 
     <section :class="['tool-layout', isIpLookup ? 'tool-layout--ip' : (isPropagationLookup ? 'tool-layout--diagnostic' : '')]">

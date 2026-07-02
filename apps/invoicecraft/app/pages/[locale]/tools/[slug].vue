@@ -72,7 +72,7 @@ useHead({
       <span>{{ copy.shortName }}</span>
     </nav>
 
-    <section class="hero hero--compact" :aria-labelledby="`${tool.slug}-title`">
+    <section class="hero hero--compact hero--single" :aria-labelledby="`${tool.slug}-title`">
       <div>
         <div class="detail-topline">
           <p class="eyebrow">{{ getCategoryLabel(tool.category, locale) }}</p>
@@ -82,22 +82,6 @@ useHead({
         <p class="lead">{{ copy.headline }}</p>
       </div>
 
-      <aside class="status-panel" :aria-label="shellCopy.pageStatusLabel">
-        <div class="status-panel__row">
-          <div>
-            <strong>{{ shellCopy.liveTitle }}</strong>
-            <span>{{ shellCopy.liveBody }}</span>
-          </div>
-          <span class="signal" aria-hidden="true"></span>
-        </div>
-        <div class="status-panel__row">
-          <div>
-            <strong>{{ shellCopy.downloadLabel }}</strong>
-            <span>{{ shellCopy.downloadHint }}</span>
-          </div>
-          <span class="signal" aria-hidden="true"></span>
-        </div>
-      </aside>
     </section>
 
     <InvoiceCraftWorkbench :locale="locale" :initial-slug="tool.slug" track-view />
