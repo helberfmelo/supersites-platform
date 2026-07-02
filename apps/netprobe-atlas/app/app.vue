@@ -1684,42 +1684,33 @@ h3 {
 
 .resolver-map__canvas {
   position: relative;
+  display: grid;
+  place-items: center;
   min-height: 260px;
   margin-top: 10px;
+  padding: 12px;
   border: 1px solid rgba(39, 95, 87, 0.18);
   border-radius: 8px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.28)),
-    linear-gradient(135deg, #eef5f0, #f9fbf7);
+  background: #eeeeee;
   isolation: isolate;
   overflow: hidden;
 }
 
+.resolver-map__viewport {
+  position: relative;
+  z-index: 0;
+  width: min(100%, 560px);
+  aspect-ratio: 482 / 460;
+}
+
 .resolver-world-map {
   position: absolute;
-  inset: 12px;
+  inset: 0;
   z-index: 0;
-  width: calc(100% - 24px);
-  height: calc(100% - 24px);
+  display: block;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
-}
-
-.resolver-world-map__grid {
-  fill: none;
-  stroke: rgba(39, 95, 87, 0.09);
-  stroke-width: 1;
-  vector-effect: non-scaling-stroke;
-}
-
-.resolver-world-map__land {
-  fill: #2f7095;
-  opacity: 0.7;
-  filter: drop-shadow(0 10px 18px rgba(36, 84, 111, 0.12));
-}
-
-.resolver-world-map__dots circle {
-  fill: #2f7095;
-  opacity: 0.76;
 }
 
 .resolver-marker {

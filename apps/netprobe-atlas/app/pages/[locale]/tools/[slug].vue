@@ -897,6 +897,14 @@ const propagationRecordTypes = ['A', 'AAAA', 'CNAME', 'MX', 'NS', 'PTR', 'SOA', 
 const dnsVisualRecordTypes = ['A', 'AAAA', 'CNAME', 'MX', 'NS', 'PTR', 'SOA', 'SRV', 'TXT', 'CAA'] as const
 const quickPorts = [80, 443, 587, 993] as const
 const runtimeConfig = useRuntimeConfig()
+const netprobeBaseUrl = runtimeConfig.app.baseURL.endsWith('/') ? runtimeConfig.app.baseURL : `${runtimeConfig.app.baseURL}/`
+const dnsPropagationMapAssetUrl = `${netprobeBaseUrl}assets/dns-propagation-map.svg`
+const dnsPropagationMapProjection = {
+  width: 482,
+  height: 460,
+  mercatorCenterY: 295.9818594260629,
+  mercatorScale: 77.15961006300978,
+} as const
 const previewSubmitted = ref(false)
 const targetValue = ref(tool.slug === 'what-is-my-ip' ? '' : tool.exampleTarget)
 const selectedRecordTypes = ref(['A', 'AAAA', 'CNAME', 'MX', 'TXT', 'NS', 'SOA', 'CAA'])
@@ -1391,47 +1399,6 @@ const resolverCoveragePreview: DnsPropagationSnapshot[] = [
     ttl_min: null,
     values: [],
   },
-]
-
-interface WorldMapDot {
-  x: number
-  y: number
-}
-
-function mapDotLine(y: number, startX: number, endX: number, count: number): WorldMapDot[] {
-  return Array.from({ length: count }, (_, index) => ({
-    x: count === 1 ? startX : startX + ((endX - startX) / (count - 1)) * index,
-    y,
-  }))
-}
-
-const worldMapDots: WorldMapDot[] = [
-  ...mapDotLine(145, 115, 315, 10),
-  ...mapDotLine(170, 90, 360, 14),
-  ...mapDotLine(195, 105, 345, 13),
-  ...mapDotLine(220, 135, 320, 10),
-  ...mapDotLine(250, 210, 340, 7),
-  ...mapDotLine(295, 315, 380, 4),
-  ...mapDotLine(325, 325, 395, 5),
-  ...mapDotLine(355, 340, 390, 4),
-  ...mapDotLine(385, 350, 385, 3),
-  ...mapDotLine(420, 365, 380, 2),
-  ...mapDotLine(140, 455, 555, 7),
-  ...mapDotLine(165, 425, 595, 10),
-  ...mapDotLine(190, 445, 615, 9),
-  ...mapDotLine(230, 465, 610, 9),
-  ...mapDotLine(260, 455, 620, 10),
-  ...mapDotLine(295, 475, 600, 8),
-  ...mapDotLine(330, 495, 585, 6),
-  ...mapDotLine(365, 520, 565, 4),
-  ...mapDotLine(135, 600, 820, 11),
-  ...mapDotLine(165, 585, 875, 14),
-  ...mapDotLine(195, 615, 905, 14),
-  ...mapDotLine(225, 650, 890, 12),
-  ...mapDotLine(255, 690, 860, 9),
-  ...mapDotLine(285, 735, 830, 6),
-  ...mapDotLine(360, 765, 850, 5),
-  ...mapDotLine(390, 790, 875, 5),
 ]
 
 interface TcpCheck {
@@ -2064,8 +2031,15 @@ function propagationMapMarkerSymbol(row: PropagationDisplayRow): string {
 
 function resolverPinStyle(snapshot: DnsPropagationSnapshot, index: number): Record<string, string> {
   if (typeof snapshot.latitude === 'number' && typeof snapshot.longitude === 'number') {
-    const left = Math.max(4, Math.min(96, ((snapshot.longitude + 180) / 360) * 100))
-    const top = Math.max(8, Math.min(92, ((90 - snapshot.latitude) / 180) * 100))
+    const latitude = Math.max(-85, Math.min(85, snapshot.latitude))
+    const longitude = Math.max(-180, Math.min(180, snapshot.longitude))
+    const latitudeRadians = (latitude * Math.PI) / 180
+    const mercatorY = Math.log(Math.tan(Math.PI / 4 + latitudeRadians / 2))
+    const projectedX = ((longitude + 180) / 360) * dnsPropagationMapProjection.width
+    const projectedY =
+      dnsPropagationMapProjection.mercatorCenterY - dnsPropagationMapProjection.mercatorScale * mercatorY
+    const left = Math.max(2, Math.min(98, (projectedX / dnsPropagationMapProjection.width) * 100))
+    const top = Math.max(2, Math.min(98, (projectedY / dnsPropagationMapProjection.height) * 100))
 
     return {
       left: `${left}%`,
@@ -3034,21 +3008,18 @@ useHead({
                   </div>
                 </div>
                 <div class="resolver-map__canvas">
-                  <svg class="resolver-world-map" viewBox="0 0 1000 520" aria-hidden="true" focusable="false">
-                    <path class="resolver-world-map__grid" d="M0 104H1000M0 208H1000M0 312H1000M0 416H1000M200 0V520M400 0V520M600 0V520M800 0V520" />
-                    <g class="resolver-world-map__dots">
-                      <circle v-for="(dot, index) in worldMapDots" :key="`result-world-dot-${index}`" :cx="dot.x" :cy="dot.y" r="7" />
-                    </g>
-                  </svg>
-                  <div
-                    v-for="(row, index) in propagationDisplayRows"
-                    :key="`${row.key}-pin`"
-                    :class="['resolver-marker', `resolver-marker--${propagationRowTone(row)}`]"
-                    :style="resolverPinStyle(row.snapshot, index)"
-                    :aria-label="`${snapshotLocality(row.snapshot)}: ${propagationRowStatusLabel(row)}`"
-                    :title="`${snapshotLocality(row.snapshot)}: ${propagationRowStatusLabel(row)}`"
-                  >
-                    {{ propagationMapMarkerSymbol(row) }}
+                  <div class="resolver-map__viewport">
+                    <img class="resolver-world-map" :src="dnsPropagationMapAssetUrl" alt="" aria-hidden="true" decoding="async" />
+                    <div
+                      v-for="(row, index) in propagationMeasuredRows"
+                      :key="`${row.key}-pin`"
+                      :class="['resolver-marker', `resolver-marker--${propagationRowTone(row)}`]"
+                      :style="resolverPinStyle(row.snapshot, index)"
+                      :aria-label="`${snapshotLocality(row.snapshot)}: ${propagationRowStatusLabel(row)}`"
+                      :title="`${snapshotLocality(row.snapshot)}: ${propagationRowStatusLabel(row)}`"
+                    >
+                      {{ propagationMapMarkerSymbol(row) }}
+                    </div>
                   </div>
                 </div>
               </section>
@@ -3225,21 +3196,8 @@ useHead({
                     </div>
                   </div>
                   <div class="resolver-map__canvas">
-                    <svg class="resolver-world-map" viewBox="0 0 1000 520" aria-hidden="true" focusable="false">
-                      <path class="resolver-world-map__grid" d="M0 104H1000M0 208H1000M0 312H1000M0 416H1000M200 0V520M400 0V520M600 0V520M800 0V520" />
-                      <g class="resolver-world-map__dots">
-                        <circle v-for="(dot, index) in worldMapDots" :key="`preview-world-dot-${index}`" :cx="dot.x" :cy="dot.y" r="7" />
-                      </g>
-                    </svg>
-                    <div
-                      v-for="(row, index) in propagationPreviewRows"
-                      :key="`${row.key}-pin`"
-                      :class="['resolver-marker', `resolver-marker--${propagationRowTone(row)}`]"
-                      :style="resolverPinStyle(row.snapshot, index)"
-                      :aria-label="`${snapshotLocality(row.snapshot)}: ${propagationRowStatusLabel(row)}`"
-                      :title="`${snapshotLocality(row.snapshot)}: ${propagationRowStatusLabel(row)}`"
-                    >
-                      {{ propagationMapMarkerSymbol(row) }}
+                    <div class="resolver-map__viewport">
+                      <img class="resolver-world-map" :src="dnsPropagationMapAssetUrl" alt="" aria-hidden="true" decoding="async" />
                     </div>
                   </div>
                 </section>
