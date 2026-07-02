@@ -206,7 +206,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Upgrade path',
     toolGuideTitle: 'Guide and interpretation',
     faqTitle: 'FAQ',
-    contentQualityBody: 'This page combines a working check, interpretation, examples, privacy boundaries and upgrade limits.',
+    contentQualityBody: 'Run the check, compare warnings and review suggested DNS records before making changes.',
   },
   'pt-br': {
     breadcrumbHome: 'MailHealth',
@@ -233,7 +233,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Caminho de upgrade',
     toolGuideTitle: 'Guia e interpretacao',
     faqTitle: 'Perguntas frequentes',
-    contentQualityBody: 'Esta pagina combina check funcional, interpretacao, exemplos, privacidade e limites de upgrade.',
+    contentQualityBody: 'Rode o check, compare avisos e revise registros DNS sugeridos antes de mudar algo.',
   },
   es: {
     breadcrumbHome: 'MailHealth',
@@ -260,7 +260,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Ruta de upgrade',
     toolGuideTitle: 'Guia e interpretacion',
     faqTitle: 'Preguntas frecuentes',
-    contentQualityBody: 'Esta pagina combina check funcional, interpretacion, ejemplos, privacidad y limites.',
+    contentQualityBody: 'Ejecuta el check, compara avisos y revisa registros DNS sugeridos antes de cambiar algo.',
   },
   fr: {
     breadcrumbHome: 'MailHealth',
@@ -287,7 +287,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Offre payante',
     toolGuideTitle: 'Guide et interpretation',
     faqTitle: 'FAQ',
-    contentQualityBody: 'Cette page combine controle fonctionnel, interpretation, exemples, confidentialite et limites.',
+    contentQualityBody: 'Lancez le contrôle, comparez les avertissements et vérifiez les DNS suggérés avant changement.',
   },
   de: {
     breadcrumbHome: 'MailHealth',
@@ -314,7 +314,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Upgrade-Pfad',
     toolGuideTitle: 'Leitfaden und Interpretation',
     faqTitle: 'FAQ',
-    contentQualityBody: 'Diese Seite kombiniert Check, Interpretation, Beispiele, Datenschutzgrenzen und Upgrade-Limits.',
+    contentQualityBody: 'Führen Sie die Prüfung aus, vergleichen Sie Hinweise und prüfen Sie DNS-Vorschläge vor Änderungen.',
   },
 }
 

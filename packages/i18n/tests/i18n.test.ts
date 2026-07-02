@@ -139,16 +139,17 @@ describe('@supersites/i18n', () => {
     expect(contact.navLabel).toBe('Contato')
     expect(contact.title).toBe('Contato de TestSite')
     expect(contact.sections[0].heading).toBe('O que enviar')
-    expect(contact.sections.map((section) => section.heading)).toContain('Suporte e doações')
+    expect(contact.sections.map((section) => section.heading)).toContain('Correções prioritárias')
 
     const serialized = JSON.stringify(contact)
 
     expect(serialized).not.toMatch(/https?:\/\//iu)
+    expect(serialized).not.toMatch(/\/supersites\/testsite/iu)
     expect(serialized).not.toMatch(/paypal\.com|stripe\.com|buymeacoffee\.com|mercadopago/iu)
-    expect(serialized).not.toMatch(/human review|legal review|monetization real|monetização real|revisão humana/iu)
+    expect(serialized).not.toMatch(/superfície pública|public surface|review status|status de revisão|human review|legal review|monetization real|monetização real|revisão humana/iu)
   })
 
-  it('preserves English base sections while adding trust status detail', () => {
+  it('uses public product copy instead of preserving internal base sections', () => {
     const baseCopy: TrustPageCopyShape = {
       navLabel: 'Status',
       title: 'Status TestSite',
@@ -162,8 +163,13 @@ describe('@supersites/i18n', () => {
       publicPath: '/supersites/testsite/',
     })
 
-    expect(status.sections[0]).toEqual(baseCopy.sections[0])
-    expect(status.sections.length).toBeGreaterThan(baseCopy.sections.length)
-    expect(status.sections.map((section) => section.heading)).toContain('Current availability')
+    expect(status.title).toBe('TestSite public status')
+    expect(status.description).toBe('Availability information and troubleshooting steps for TestSite.')
+    expect(status.sections).not.toContainEqual(baseCopy.sections[0])
+    expect(status.sections.map((section) => section.heading)).toContain('Availability for visitors')
+
+    const serialized = JSON.stringify(status)
+
+    expect(serialized).not.toMatch(/\/supersites\/testsite|public surface|review status|current public/iu)
   })
 })

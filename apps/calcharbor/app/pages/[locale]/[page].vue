@@ -87,37 +87,27 @@ useHead({
         <h1 :id="`${page.slug}-title`">{{ copy.title }}</h1>
         <p class="lead">{{ copy.description }}</p>
       </div>
-
-      <aside class="status-panel" :aria-label="copy.updatedLabel">
-        <div class="status-panel__row">
-          <div>
-            <strong>{{ copy.updatedLabel }}</strong>
-            <span>{{ shellCopy.contentQualityBody }}</span>
-          </div>
-          <span class="signal" aria-hidden="true"></span>
-        </div>
-      </aside>
     </section>
 
-    <section class="content-layout">
+    <section class="content-main">
       <div>
         <article v-for="section in copy.sections" :key="section.heading" class="content-section">
           <h2>{{ section.heading }}</h2>
           <p v-for="paragraph in section.paragraphs" :key="paragraph">{{ paragraph }}</p>
         </article>
       </div>
+    </section>
 
-      <aside class="band" aria-label="Related policy links">
-        <h2>{{ shellCopy.guideTitle }}</h2>
-        <div class="inline-link-list">
-          <NuxtLink :to="localizedContentPath(locale, 'methodology')">
-            {{ shellCopy.methodologyLabel }}
-          </NuxtLink>
-          <NuxtLink :to="localizedContentPath(locale, 'editorial-policy')">
-            {{ shellCopy.editorialLabel }}
-          </NuxtLink>
-        </div>
-      </aside>
+    <section class="band content-related" aria-label="Related policy links">
+      <h2>{{ shellCopy.relatedTitle }}</h2>
+      <div class="inline-link-list">
+        <NuxtLink v-if="page.slug !== 'methodology'" :to="localizedContentPath(locale, 'methodology')">
+          {{ shellCopy.methodologyLabel }}
+        </NuxtLink>
+        <NuxtLink v-if="page.slug !== 'editorial-policy'" :to="localizedContentPath(locale, 'editorial-policy')">
+          {{ shellCopy.editorialLabel }}
+        </NuxtLink>
+      </div>
     </section>
 
     <LegalFooter :locale="locale" :current-slug="page.slug" />

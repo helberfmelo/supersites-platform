@@ -88,26 +88,9 @@ useHead({
         <h1 :id="`${page.slug}-title`">{{ copy.title }}</h1>
         <p class="lead">{{ copy.description }}</p>
       </div>
-
-      <aside class="status-panel" :aria-label="shellCopy.pageStatusLabel">
-        <div class="status-panel__row">
-          <div>
-            <strong>{{ copy.updatedLabel }}</strong>
-            <span>{{ copy.navLabel }}</span>
-          </div>
-          <span class="signal" aria-hidden="true"></span>
-        </div>
-        <div class="status-panel__row">
-          <div>
-            <strong>{{ shellCopy.privacyTitle }}</strong>
-            <span>{{ shellCopy.privacyBody }}</span>
-          </div>
-          <span class="signal signal--amber" aria-hidden="true"></span>
-        </div>
-      </aside>
     </section>
 
-    <section class="content-layout" :aria-labelledby="`${page.slug}-content`">
+    <section class="content-main" :aria-labelledby="`${page.slug}-content`">
       <div>
         <h2 :id="`${page.slug}-content`">{{ copy.navLabel }}</h2>
         <article v-for="section in copy.sections" :key="section.heading" class="content-section">
@@ -115,19 +98,19 @@ useHead({
           <p v-for="paragraph in section.paragraphs" :key="paragraph">{{ paragraph }}</p>
         </article>
       </div>
+    </section>
 
-      <aside class="band" :aria-label="shellCopy.relatedTitle">
-        <h2>{{ shellCopy.relatedTitle }}</h2>
-        <div class="inline-link-list">
-          <NuxtLink
-            v-for="relatedPage in relatedPages"
-            :key="relatedPage.slug"
-            :to="localizedContentPath(locale, relatedPage.slug)"
-          >
-            {{ getContentPageCopy(relatedPage, locale).navLabel }}
-          </NuxtLink>
-        </div>
-      </aside>
+    <section class="band content-related" :aria-label="shellCopy.relatedTitle">
+      <h2>{{ shellCopy.relatedTitle }}</h2>
+      <div class="inline-link-list">
+        <NuxtLink
+          v-for="relatedPage in relatedPages"
+          :key="relatedPage.slug"
+          :to="localizedContentPath(locale, relatedPage.slug)"
+        >
+          {{ getContentPageCopy(relatedPage, locale).navLabel }}
+        </NuxtLink>
+      </div>
     </section>
 
     <LegalFooter :locale="locale" :current-slug="page.slug" />

@@ -224,7 +224,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Upgrade path',
     toolGuideTitle: 'Guide and interpretation',
     faqTitle: 'FAQ',
-    contentQualityBody: 'This page combines a working check, interpretation, examples, antiabuse limits and upgrade boundaries.',
+    contentQualityBody: 'Run the check, read the status and review recommendations before changing the site.',
   },
   'pt-br': {
     breadcrumbHome: 'SitePulse Lab',
@@ -255,7 +255,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Caminho de upgrade',
     toolGuideTitle: 'Guia e interpretacao',
     faqTitle: 'Perguntas frequentes',
-    contentQualityBody: 'Esta pagina combina check funcional, interpretacao, exemplos, limites antiabuso e limites de upgrade.',
+    contentQualityBody: 'Rode o check, leia o status e revise recomendações antes de mudar o site.',
   },
   es: {
     breadcrumbHome: 'SitePulse Lab',
@@ -286,7 +286,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Ruta de upgrade',
     toolGuideTitle: 'Guia e interpretacion',
     faqTitle: 'Preguntas frecuentes',
-    contentQualityBody: 'Esta pagina combina check funcional, interpretacion, ejemplos, antiabuso y limites.',
+    contentQualityBody: 'Ejecuta el check, lee el estado y revisa recomendaciones antes de cambiar el sitio.',
   },
   fr: {
     breadcrumbHome: 'SitePulse Lab',
@@ -317,7 +317,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Offre payante',
     toolGuideTitle: 'Guide et interpretation',
     faqTitle: 'FAQ',
-    contentQualityBody: 'Cette page combine controle fonctionnel, interpretation, exemples, anti-abus et limites.',
+    contentQualityBody: 'Lancez le contrôle, lisez le statut et vérifiez les recommandations avant modification.',
   },
   de: {
     breadcrumbHome: 'SitePulse Lab',
@@ -348,7 +348,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Upgrade-Pfad',
     toolGuideTitle: 'Leitfaden und Interpretation',
     faqTitle: 'FAQ',
-    contentQualityBody: 'Diese Seite kombiniert Check, Interpretation, Beispiele, Anti-Abuse-Grenzen und Upgrade-Limits.',
+    contentQualityBody: 'Führen Sie die Prüfung aus, lesen Sie den Status und prüfen Sie Empfehlungen vor Änderungen.',
   },
 }
 

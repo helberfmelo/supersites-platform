@@ -5,7 +5,6 @@ import {
   getLegalPageBySlug,
   getLegalPageCopy,
   getLegalShellCopy,
-  type LegalPanelRow,
 } from '../../data/legal'
 import { localizedHomePath, localizedLegalPath, normalizeLocale } from '../../data/locales'
 import { absoluteUrl, localeAlternates } from '../../data/routes'
@@ -28,18 +27,6 @@ const canonicalPath = localizedLegalPath(locale, page.slug)
 const structuredData = createLegalPageStructuredData(locale, page, copy)
 const seoTitle = limitSeoText(`${copy.title} | SuperSites`, SEO_TITLE_MAX_LENGTH)
 const seoDescription = limitSeoText(copy.description, SEO_DESCRIPTION_MAX_LENGTH)
-const panelRows: LegalPanelRow[] = copy.panelRows ?? [
-  {
-    title: copy.updatedLabel,
-    body: copy.navLabel,
-    tone: 'green',
-  },
-  {
-    title: shellCopy.launchGateTitle,
-    body: shellCopy.launchGateBody,
-    tone: 'amber',
-  },
-]
 const relatedPages = legalPageCatalog
   .filter((candidate) => candidate.slug !== page.slug)
   .map((candidate) => ({
@@ -112,19 +99,9 @@ useHead({
         <h1 :id="`${page.slug}-title`">{{ copy.title }}</h1>
         <p class="lead">{{ copy.description }}</p>
       </div>
-
-      <aside class="network-panel" :aria-label="shellCopy.pageStatusLabel">
-        <div v-for="row in panelRows" :key="row.title" class="network-panel__row">
-          <div>
-            <strong>{{ row.title }}</strong>
-            <span>{{ row.body }}</span>
-          </div>
-          <span :class="['signal', { 'signal--amber': row.tone === 'amber' }]" aria-hidden="true"></span>
-        </div>
-      </aside>
     </section>
 
-    <section class="content-layout" :aria-labelledby="`${page.slug}-content`">
+    <section class="content-main" :aria-labelledby="`${page.slug}-content`">
       <div>
         <h2 :id="`${page.slug}-content`">{{ copy.navLabel }}</h2>
         <article v-for="section in copy.sections" :key="section.heading" class="content-section">
@@ -143,19 +120,19 @@ useHead({
           </div>
         </article>
       </div>
+    </section>
 
-      <aside class="band content-side" :aria-label="shellCopy.relatedTitle">
-        <h2>{{ shellCopy.relatedTitle }}</h2>
-        <div class="inline-link-list">
-          <NuxtLink
-            v-for="relatedPage in relatedPages"
-            :key="relatedPage.slug"
-            :to="localizedLegalPath(locale, relatedPage.slug)"
-          >
-            {{ relatedPage.navLabel }}
-          </NuxtLink>
-        </div>
-      </aside>
+    <section class="band content-related" :aria-label="shellCopy.relatedTitle">
+      <h2>{{ shellCopy.relatedTitle }}</h2>
+      <div class="inline-link-list">
+        <NuxtLink
+          v-for="relatedPage in relatedPages"
+          :key="relatedPage.slug"
+          :to="localizedLegalPath(locale, relatedPage.slug)"
+        >
+          {{ relatedPage.navLabel }}
+        </NuxtLink>
+      </div>
     </section>
 
     <LegalFooter :locale="locale" :current-slug="page.slug" />

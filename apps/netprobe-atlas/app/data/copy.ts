@@ -592,7 +592,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Upgrade path',
     toolGuideTitle: 'Guide and interpretation',
     faqTitle: 'FAQ',
-    contentQualityBody: 'This page combines the live tool, interpretation, examples, limits and FAQ for a clearer public diagnostic.',
+    contentQualityBody: 'Run the diagnostic, compare records or locations and review warnings before changing settings.',
   },
   'pt-br': {
     breadcrumbHome: 'NetProbe Atlas',
@@ -612,7 +612,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Caminho de upgrade',
     toolGuideTitle: 'Guia e interpretação',
     faqTitle: 'Perguntas frequentes',
-    contentQualityBody: 'Esta página combina ferramenta ativa, interpretação, exemplos, limites e perguntas frequentes para um diagnóstico público mais claro.',
+    contentQualityBody: 'Execute o diagnóstico, compare registros ou locais e revise avisos antes de mudar configurações.',
   },
   es: {
     breadcrumbHome: 'NetProbe Atlas',
@@ -632,7 +632,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Ruta de upgrade',
     toolGuideTitle: 'Guía e interpretación',
     faqTitle: 'Preguntas frecuentes',
-    contentQualityBody: 'Esta página combina herramienta activa, interpretación, ejemplos, límites y preguntas frecuentes para un diagnóstico público más claro.',
+    contentQualityBody: 'Ejecuta el diagnóstico, compara registros o ubicaciones y revisa avisos antes de cambiar ajustes.',
   },
   fr: {
     breadcrumbHome: 'NetProbe Atlas',
@@ -652,7 +652,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Offre payante',
     toolGuideTitle: 'Guide et interprétation',
     faqTitle: 'FAQ',
-    contentQualityBody: 'Cette page réunit outil actif, interpretation, exemples, limites et questions frequentes pour un diagnostic public plus clair.',
+    contentQualityBody: 'Lancez le diagnostic, comparez enregistrements ou lieux et vérifiez les avertissements avant changement.',
   },
   de: {
     breadcrumbHome: 'NetProbe Atlas',
@@ -672,7 +672,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     upgradePathLabel: 'Upgrade-Pfad',
     toolGuideTitle: 'Leitfaden und Interpretation',
     faqTitle: 'FAQ',
-    contentQualityBody: 'Diese Seite kombiniert aktives Tool, Interpretation, Beispiele, Grenzen und haeufige Fragen fuer eine klarere oeffentliche Diagnose.',
+    contentQualityBody: 'Starten Sie die Diagnose, vergleichen Sie Records oder Orte und prüfen Sie Hinweise vor Änderungen.',
   },
 }
 

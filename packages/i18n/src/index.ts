@@ -286,57 +286,524 @@ function localizedTrustTitle(locale: LocaleCode, slug: TrustPageSlug, siteName: 
   return titles[locale][slug]
 }
 
+type LocalizedTrustText = Record<LocaleCode, string>
+
+interface TrustProductCopy {
+  action: LocalizedTrustText
+  method: LocalizedTrustText
+  review: LocalizedTrustText
+  privacy: LocalizedTrustText
+  limits: LocalizedTrustText
+}
+
+const genericTrustProductCopy: TrustProductCopy = {
+  action: {
+    en: 'complete a focused web task',
+    'pt-br': 'concluir uma tarefa web específica',
+    es: 'resolver una tarea web concreta',
+    fr: 'terminer une tâche web précise',
+    de: 'eine konkrete Webaufgabe zu erledigen',
+  },
+  method: {
+    en: 'The tool uses the values you provide and shows the result directly on the page.',
+    'pt-br': 'A ferramenta usa os valores informados e mostra o resultado diretamente na página.',
+    es: 'La herramienta usa los valores ingresados y muestra el resultado directamente en la página.',
+    fr: 'L outil utilise les valeurs fournies et affiche le résultat directement sur la page.',
+    de: 'Das Tool nutzt die eingegebenen Werte und zeigt das Ergebnis direkt auf der Seite.',
+  },
+  review: {
+    en: 'Check the input, the result and any warning before copying or using it.',
+    'pt-br': 'Confira a entrada, o resultado e qualquer aviso antes de copiar ou usar.',
+    es: 'Revisa la entrada, el resultado y cualquier aviso antes de copiar o usarlo.',
+    fr: 'Vérifiez la saisie, le résultat et les avertissements avant de copier ou utiliser.',
+    de: 'Prüfen Sie Eingabe, Ergebnis und Hinweise, bevor Sie es kopieren oder nutzen.',
+  },
+  privacy: {
+    en: 'The basic workflow asks only for the data needed for the task.',
+    'pt-br': 'O fluxo básico pede apenas os dados necessários para a tarefa.',
+    es: 'El flujo básico solicita solo los datos necesarios para la tarea.',
+    fr: 'Le flux de base demande uniquement les données nécessaires à la tâche.',
+    de: 'Der Basisablauf fragt nur die Daten ab, die für die Aufgabe nötig sind.',
+  },
+  limits: {
+    en: 'Results are informational and should be checked before important decisions.',
+    'pt-br': 'Os resultados são informativos e devem ser conferidos antes de decisões importantes.',
+    es: 'Los resultados son informativos y deben verificarse antes de decisiones importantes.',
+    fr: 'Les résultats sont informatifs et doivent être vérifiés avant les décisions importantes.',
+    de: 'Ergebnisse sind informativ und sollten vor wichtigen Entscheidungen geprüft werden.',
+  },
+}
+
+const trustProductCopies: Record<string, TrustProductCopy> = {
+  'SuperSites Hub': {
+    action: {
+      en: 'find the right free tool in the SuperSites catalog',
+      'pt-br': 'encontrar a ferramenta gratuita certa no catálogo SuperSites',
+      es: 'encontrar la herramienta gratis adecuada en el catálogo SuperSites',
+      fr: 'trouver le bon outil gratuit dans le catalogue SuperSites',
+      de: 'das passende kostenlose Tool im SuperSites-Katalog zu finden',
+    },
+    method: {
+      en: 'The catalog groups tools by task, category and site so you can start from the closest match.',
+      'pt-br': 'O catálogo organiza ferramentas por tarefa, categoria e site para você começar pela opção mais próxima.',
+      es: 'El catálogo organiza herramientas por tarea, categoría y sitio para empezar por la opción más cercana.',
+      fr: 'Le catalogue organise les outils par tâche, catégorie et site pour démarrer par le meilleur choix.',
+      de: 'Der Katalog ordnet Tools nach Aufgabe, Kategorie und Site, damit Sie passend starten können.',
+    },
+    review: {
+      en: 'Compare the task card, language and destination before opening a tool.',
+      'pt-br': 'Compare o card da tarefa, o idioma e o destino antes de abrir uma ferramenta.',
+      es: 'Compara la tarjeta de tarea, el idioma y el destino antes de abrir una herramienta.',
+      fr: 'Comparez la carte de tâche, la langue et la destination avant d ouvrir un outil.',
+      de: 'Vergleichen Sie Aufgabenkarte, Sprache und Ziel, bevor Sie ein Tool öffnen.',
+    },
+    privacy: {
+      en: 'Catalog browsing does not require an account, and tool inputs belong on the individual tool pages.',
+      'pt-br': 'A navegação no catálogo não exige conta, e entradas de ferramenta pertencem às páginas de cada ferramenta.',
+      es: 'La navegación del catálogo no requiere cuenta, y las entradas pertenecen a cada herramienta.',
+      fr: 'La navigation du catalogue ne nécessite pas de compte, et les saisies appartiennent aux pages des outils.',
+      de: 'Die Katalognavigation erfordert kein Konto; Eingaben gehören auf die jeweilige Toolseite.',
+    },
+    limits: {
+      en: 'The hub points to available free workflows and does not replace each tool page.',
+      'pt-br': 'O hub aponta para fluxos gratuitos disponíveis e não substitui a página de cada ferramenta.',
+      es: 'El hub apunta a flujos gratis disponibles y no reemplaza la página de cada herramienta.',
+      fr: 'Le hub pointe vers les flux gratuits disponibles et ne remplace pas chaque page outil.',
+      de: 'Der Hub verweist auf verfügbare kostenlose Abläufe und ersetzt keine Toolseite.',
+    },
+  },
+  'NetProbe Atlas': {
+    action: {
+      en: 'check IP, DNS, domains, certificates, ports and site reachability',
+      'pt-br': 'consultar IP, DNS, domínios, certificados, portas e alcance de sites',
+      es: 'consultar IP, DNS, dominios, certificados, puertos y disponibilidad de sitios',
+      fr: 'vérifier IP, DNS, domaines, certificats, ports et disponibilité de sites',
+      de: 'IP, DNS, Domains, Zertifikate, Ports und Erreichbarkeit von Websites zu prüfen',
+    },
+    method: {
+      en: 'Network checks return point-in-time responses from the available resolvers or public endpoints.',
+      'pt-br': 'As consultas de rede retornam respostas pontuais dos resolvedores ou endpoints públicos disponíveis.',
+      es: 'Las consultas de red devuelven respuestas puntuales de los resolvers o endpoints públicos disponibles.',
+      fr: 'Les contrôles réseau renvoient des réponses ponctuelles depuis les résolveurs ou endpoints publics disponibles.',
+      de: 'Netzwerkprüfungen liefern Momentaufnahmen von verfügbaren Resolvern oder öffentlichen Endpunkten.',
+    },
+    review: {
+      en: 'Compare returned records, resolver rows, timestamps and warnings before changing DNS or certificate settings.',
+      'pt-br': 'Compare registros retornados, linhas de resolvedores, horários e avisos antes de mudar DNS ou certificados.',
+      es: 'Compara registros, resolvers, horarios y avisos antes de cambiar DNS o certificados.',
+      fr: 'Comparez enregistrements, résolveurs, horaires et avertissements avant de modifier DNS ou certificats.',
+      de: 'Vergleichen Sie Records, Resolver, Zeitpunkte und Hinweise, bevor Sie DNS oder Zertifikate ändern.',
+    },
+    privacy: {
+      en: 'Only the target needed for the diagnostic is sent for the check.',
+      'pt-br': 'Somente o alvo necessário para o diagnóstico é enviado para a consulta.',
+      es: 'Solo se envía el objetivo necesario para el diagnóstico.',
+      fr: 'Seule la cible nécessaire au diagnostic est envoyée.',
+      de: 'Nur das für die Diagnose nötige Ziel wird für die Prüfung gesendet.',
+    },
+    limits: {
+      en: 'DNS and reachability results are snapshots and do not prove every resolver in the world has changed.',
+      'pt-br': 'Resultados de DNS e alcance são retratos do momento e não provam que todos os resolvedores do mundo mudaram.',
+      es: 'Los resultados DNS y de disponibilidad son capturas del momento y no prueban que todos los resolvers del mundo cambiaron.',
+      fr: 'Les résultats DNS et de disponibilité sont des instantanés et ne prouvent pas que tous les résolveurs ont changé.',
+      de: 'DNS- und Erreichbarkeitsergebnisse sind Momentaufnahmen und beweisen keine weltweite Änderung aller Resolver.',
+    },
+  },
+  CalcHarbor: {
+    action: {
+      en: 'calculate loans, margins, break-even points, ROI and time value questions',
+      'pt-br': 'calcular empréstimos, margens, ponto de equilíbrio, ROI e valor do dinheiro no tempo',
+      es: 'calcular préstamos, márgenes, punto de equilibrio, ROI y valor del dinero en el tiempo',
+      fr: 'calculer prêts, marges, seuil de rentabilité, ROI et valeur temps de l argent',
+      de: 'Darlehen, Margen, Break-even, ROI und Zeitwertfragen zu berechnen',
+    },
+    method: {
+      en: 'Calculators apply the shown formulas to the numbers you enter.',
+      'pt-br': 'As calculadoras aplicam as fórmulas exibidas aos números informados.',
+      es: 'Las calculadoras aplican las fórmulas mostradas a los números ingresados.',
+      fr: 'Les calculateurs appliquent les formules affichées aux nombres saisis.',
+      de: 'Die Rechner wenden die gezeigten Formeln auf Ihre Zahlen an.',
+    },
+    review: {
+      en: 'Check units, period, currency and rounding before comparing scenarios.',
+      'pt-br': 'Confira unidades, período, moeda e arredondamento antes de comparar cenários.',
+      es: 'Revisa unidades, periodo, moneda y redondeo antes de comparar escenarios.',
+      fr: 'Vérifiez unités, période, devise et arrondi avant de comparer les scénarios.',
+      de: 'Prüfen Sie Einheiten, Zeitraum, Währung und Rundung vor dem Szenarienvergleich.',
+    },
+    privacy: {
+      en: 'Basic calculator inputs stay in the browser workflow.',
+      'pt-br': 'Entradas básicas das calculadoras ficam no fluxo do navegador.',
+      es: 'Las entradas básicas de calculadoras quedan en el flujo del navegador.',
+      fr: 'Les saisies de base des calculateurs restent dans le flux du navigateur.',
+      de: 'Basis-Eingaben der Rechner bleiben im Browserablauf.',
+    },
+    limits: {
+      en: 'Calculator results are estimates and not financial, tax or legal advice.',
+      'pt-br': 'Resultados de calculadora são estimativas e não são aconselhamento financeiro, fiscal ou jurídico.',
+      es: 'Los resultados son estimaciones y no son asesoría financiera, fiscal ni legal.',
+      fr: 'Les résultats sont des estimations et non un conseil financier, fiscal ou juridique.',
+      de: 'Rechenergebnisse sind Schätzungen und keine Finanz-, Steuer- oder Rechtsberatung.',
+    },
+  },
+  'DevUtility Lab': {
+    action: {
+      en: 'format JSON, convert Base64, inspect JWTs, test regex and generate developer helpers',
+      'pt-br': 'formatar JSON, converter Base64, inspecionar JWTs, testar regex e gerar utilidades de desenvolvimento',
+      es: 'formatear JSON, convertir Base64, inspeccionar JWT, probar regex y generar utilidades de desarrollo',
+      fr: 'formater JSON, convertir Base64, inspecter JWT, tester regex et générer des aides développeur',
+      de: 'JSON zu formatieren, Base64 zu konvertieren, JWTs zu prüfen, Regex zu testen und Entwicklerhilfen zu erzeugen',
+    },
+    method: {
+      en: 'Developer tools process the entered text and show formatted, decoded or generated output immediately.',
+      'pt-br': 'As ferramentas processam o texto informado e mostram saída formatada, decodificada ou gerada na hora.',
+      es: 'Las herramientas procesan el texto ingresado y muestran salida formateada, decodificada o generada al momento.',
+      fr: 'Les outils traitent le texte saisi et affichent immédiatement la sortie formatée, décodée ou générée.',
+      de: 'Die Tools verarbeiten eingegebenen Text und zeigen formatierte, dekodierte oder erzeugte Ausgaben sofort.',
+    },
+    review: {
+      en: 'Review decoded values, validation messages and escaping before using output in code.',
+      'pt-br': 'Revise valores decodificados, mensagens de validação e escapes antes de usar a saída em código.',
+      es: 'Revisa valores decodificados, validaciones y escapes antes de usar la salida en código.',
+      fr: 'Vérifiez valeurs décodées, validations et échappements avant d utiliser la sortie dans du code.',
+      de: 'Prüfen Sie dekodierte Werte, Validierungen und Escaping, bevor Sie Ausgaben im Code nutzen.',
+    },
+    privacy: {
+      en: 'Prefer local browser processing for pasted snippets and tokens.',
+      'pt-br': 'O processamento local no navegador é preferido para snippets e tokens colados.',
+      es: 'Se prefiere el procesamiento local en el navegador para snippets y tokens pegados.',
+      fr: 'Le traitement local dans le navigateur est privilégié pour snippets et tokens collés.',
+      de: 'Lokale Browserverarbeitung wird für eingefügte Snippets und Tokens bevorzugt.',
+    },
+    limits: {
+      en: 'Do not paste secrets you would not share with a web page, even when a tool runs locally.',
+      'pt-br': 'Não cole segredos que você não compartilharia com uma página web, mesmo quando a ferramenta roda localmente.',
+      es: 'No pegues secretos que no compartirías con una página web, incluso si la herramienta corre localmente.',
+      fr: 'Ne collez pas de secrets que vous ne partageriez pas avec une page web, même si l outil est local.',
+      de: 'Fügen Sie keine Geheimnisse ein, die Sie keiner Webseite geben würden, auch wenn das Tool lokal läuft.',
+    },
+  },
+  TimeNexus: {
+    action: {
+      en: 'convert times, compare time zones, plan meetings and check world clocks',
+      'pt-br': 'converter horários, comparar fusos, planejar reuniões e consultar relógios mundiais',
+      es: 'convertir horas, comparar husos, planificar reuniones y consultar relojes mundiales',
+      fr: 'convertir les heures, comparer les fuseaux, planifier des réunions et consulter les horloges mondiales',
+      de: 'Zeiten zu konvertieren, Zeitzonen zu vergleichen, Meetings zu planen und Weltuhren zu prüfen',
+    },
+    method: {
+      en: 'Time tools use selected dates, cities and time zones to calculate equivalent times.',
+      'pt-br': 'As ferramentas usam datas, cidades e fusos selecionados para calcular horários equivalentes.',
+      es: 'Las herramientas usan fechas, ciudades y husos seleccionados para calcular horas equivalentes.',
+      fr: 'Les outils utilisent dates, villes et fuseaux choisis pour calculer les heures équivalentes.',
+      de: 'Zeittools nutzen ausgewählte Daten, Städte und Zeitzonen für entsprechende Zeiten.',
+    },
+    review: {
+      en: 'Check date, daylight-saving changes and participant cities before sending a meeting time.',
+      'pt-br': 'Confira data, horário de verão e cidades participantes antes de enviar um horário de reunião.',
+      es: 'Revisa fecha, horario de verano y ciudades antes de enviar una hora de reunión.',
+      fr: 'Vérifiez date, heure d été et villes participantes avant d envoyer un horaire.',
+      de: 'Prüfen Sie Datum, Sommerzeit und Teilnehmerstädte vor dem Versenden einer Meetingzeit.',
+    },
+    privacy: {
+      en: 'Planner inputs stay focused on time, place and schedule context.',
+      'pt-br': 'Entradas do planejador ficam focadas em horário, local e contexto de agenda.',
+      es: 'Las entradas se enfocan en hora, lugar y contexto de agenda.',
+      fr: 'Les saisies restent centrées sur heure, lieu et contexte de planning.',
+      de: 'Planereingaben konzentrieren sich auf Zeit, Ort und Terminkontext.',
+    },
+    limits: {
+      en: 'Time-zone rules can change, so confirm critical travel, legal or broadcast times with official sources.',
+      'pt-br': 'Regras de fuso podem mudar; confirme viagens, prazos legais ou transmissões críticas em fontes oficiais.',
+      es: 'Las reglas de huso pueden cambiar; confirma viajes, plazos legales o emisiones críticas en fuentes oficiales.',
+      fr: 'Les règles de fuseau peuvent changer; confirmez voyages, délais légaux ou diffusions critiques auprès de sources officielles.',
+      de: 'Zeitzonenregeln können sich ändern; prüfen Sie Reisen, Fristen oder Sendetermine mit offiziellen Quellen.',
+    },
+  },
+  QRRoute: {
+    action: {
+      en: 'create static QR codes, UTM links, barcodes and simple sharing assets',
+      'pt-br': 'criar QR codes estáticos, links UTM, códigos de barras e materiais simples de compartilhamento',
+      es: 'crear códigos QR estáticos, enlaces UTM, códigos de barras y piezas simples para compartir',
+      fr: 'créer QR codes statiques, liens UTM, codes-barres et supports simples de partage',
+      de: 'statische QR-Codes, UTM-Links, Barcodes und einfache Sharing-Assets zu erstellen',
+    },
+    method: {
+      en: 'Generators turn the entered destination, text or code into a downloadable asset.',
+      'pt-br': 'Os geradores transformam destino, texto ou código informado em um arquivo para baixar.',
+      es: 'Los generadores convierten destino, texto o código en un archivo descargable.',
+      fr: 'Les générateurs transforment destination, texte ou code en fichier téléchargeable.',
+      de: 'Generatoren wandeln Ziel, Text oder Code in eine herunterladbare Datei um.',
+    },
+    review: {
+      en: 'Test the final code with a scanner and verify the destination before printing or sharing.',
+      'pt-br': 'Teste o código final com um leitor e confira o destino antes de imprimir ou compartilhar.',
+      es: 'Prueba el código final con un lector y verifica el destino antes de imprimir o compartir.',
+      fr: 'Testez le code final avec un lecteur et vérifiez la destination avant impression ou partage.',
+      de: 'Testen Sie den fertigen Code mit einem Scanner und prüfen Sie das Ziel vor Druck oder Teilen.',
+    },
+    privacy: {
+      en: 'Static generation can be completed without an account for the basic asset.',
+      'pt-br': 'A geração estática pode ser concluída sem conta para o arquivo básico.',
+      es: 'La generación estática puede completarse sin cuenta para el archivo básico.',
+      fr: 'La génération statique peut être terminée sans compte pour le fichier de base.',
+      de: 'Statische Erzeugung ist für die Basisdatei ohne Konto möglich.',
+    },
+    limits: {
+      en: 'Static codes cannot be edited after printing unless the destination itself redirects.',
+      'pt-br': 'Códigos estáticos não podem ser editados depois da impressão, salvo se o próprio destino redirecionar.',
+      es: 'Los códigos estáticos no se editan después de imprimir, salvo que el destino redireccione.',
+      fr: 'Les codes statiques ne se modifient pas après impression, sauf si la destination redirige.',
+      de: 'Statische Codes sind nach dem Druck nicht änderbar, außer das Ziel leitet selbst weiter.',
+    },
+  },
+  InvoiceCraft: {
+    action: {
+      en: 'create invoices, quotes and receipts in the browser',
+      'pt-br': 'criar faturas, orçamentos e recibos no navegador',
+      es: 'crear facturas, presupuestos y recibos en el navegador',
+      fr: 'créer factures, devis et reçus dans le navigateur',
+      de: 'Rechnungen, Angebote und Belege im Browser zu erstellen',
+    },
+    method: {
+      en: 'Document totals are calculated from the fields, items, discounts and taxes you enter.',
+      'pt-br': 'Os totais do documento são calculados a partir dos campos, itens, descontos e impostos informados.',
+      es: 'Los totales se calculan con campos, ítems, descuentos e impuestos ingresados.',
+      fr: 'Les totaux sont calculés depuis les champs, lignes, remises et taxes saisis.',
+      de: 'Dokumentsummen werden aus Feldern, Positionen, Rabatten und Steuern berechnet.',
+    },
+    review: {
+      en: 'Review client data, item descriptions, currency, taxes and numbering before downloading the PDF.',
+      'pt-br': 'Revise cliente, descrição dos itens, moeda, impostos e numeração antes de baixar o PDF.',
+      es: 'Revisa cliente, descripciones, moneda, impuestos y numeración antes de descargar el PDF.',
+      fr: 'Vérifiez client, descriptions, devise, taxes et numérotation avant de télécharger le PDF.',
+      de: 'Prüfen Sie Kunde, Positionen, Währung, Steuern und Nummerierung vor dem PDF-Download.',
+    },
+    privacy: {
+      en: 'The basic document flow is designed for browser-side editing and download.',
+      'pt-br': 'O fluxo básico foi pensado para edição e download no navegador.',
+      es: 'El flujo básico está pensado para editar y descargar en el navegador.',
+      fr: 'Le flux de base est prévu pour édition et téléchargement dans le navigateur.',
+      de: 'Der Basisablauf ist für Bearbeitung und Download im Browser gedacht.',
+    },
+    limits: {
+      en: 'InvoiceCraft does not validate tax compliance, payment status or legal numbering rules.',
+      'pt-br': 'InvoiceCraft não valida conformidade fiscal, status de pagamento nem regras legais de numeração.',
+      es: 'InvoiceCraft no valida cumplimiento fiscal, estado de pago ni reglas legales de numeración.',
+      fr: 'InvoiceCraft ne valide pas conformité fiscale, statut de paiement ni règles légales de numérotation.',
+      de: 'InvoiceCraft prüft keine Steuerkonformität, Zahlungsstatus oder rechtliche Nummerierungsregeln.',
+    },
+  },
+  MailHealth: {
+    action: {
+      en: 'check SPF, DKIM, DMARC, MX records, headers and basic email deliverability signals',
+      'pt-br': 'verificar SPF, DKIM, DMARC, MX, cabeçalhos e sinais básicos de entregabilidade',
+      es: 'verificar SPF, DKIM, DMARC, MX, headers y señales básicas de entregabilidad',
+      fr: 'vérifier SPF, DKIM, DMARC, MX, en-têtes et signaux de délivrabilité de base',
+      de: 'SPF, DKIM, DMARC, MX, Header und Basis-Signale der Zustellbarkeit zu prüfen',
+    },
+    method: {
+      en: 'Email checks read the provided domain, record or header and return a point-in-time interpretation.',
+      'pt-br': 'Os checks leem domínio, registro ou cabeçalho informado e retornam uma interpretação pontual.',
+      es: 'Los checks leen dominio, registro o header y devuelven una interpretación puntual.',
+      fr: 'Les contrôles lisent domaine, enregistrement ou en-tête et renvoient une interprétation ponctuelle.',
+      de: 'E-Mail-Prüfungen lesen Domain, Record oder Header und liefern eine Momentinterpretation.',
+    },
+    review: {
+      en: 'Compare status, warnings and suggested records before changing DNS for email.',
+      'pt-br': 'Compare status, avisos e registros sugeridos antes de mudar DNS de e-mail.',
+      es: 'Compara estado, avisos y registros sugeridos antes de cambiar DNS de email.',
+      fr: 'Comparez statut, avertissements et enregistrements suggérés avant de modifier le DNS email.',
+      de: 'Vergleichen Sie Status, Hinweise und vorgeschlagene Records vor DNS-Änderungen für E-Mail.',
+    },
+    privacy: {
+      en: 'Header analysis can stay local, while DNS checks need the domain or record being tested.',
+      'pt-br': 'A análise de cabeçalhos pode ficar local, enquanto consultas DNS precisam do domínio ou registro testado.',
+      es: 'El análisis de headers puede quedar local; las consultas DNS necesitan el dominio o registro probado.',
+      fr: 'L analyse des en-têtes peut rester locale; les contrôles DNS nécessitent domaine ou enregistrement.',
+      de: 'Headeranalyse kann lokal bleiben; DNS-Prüfungen benötigen Domain oder Record.',
+    },
+    limits: {
+      en: 'Deliverability depends on sending behavior, reputation and providers, not only DNS records.',
+      'pt-br': 'Entregabilidade depende de comportamento de envio, reputação e provedores, não só de DNS.',
+      es: 'La entregabilidad depende de envío, reputación y proveedores, no solo de DNS.',
+      fr: 'La délivrabilité dépend des envois, de la réputation et des fournisseurs, pas seulement du DNS.',
+      de: 'Zustellbarkeit hängt von Versandverhalten, Reputation und Anbietern ab, nicht nur von DNS.',
+    },
+  },
+  'SitePulse Lab': {
+    action: {
+      en: 'check whether a site is up, inspect HTTP status, redirects, headers, SSL and basic performance signals',
+      'pt-br': 'verificar se um site está no ar e inspecionar HTTP, redirecionamentos, cabeçalhos, SSL e sinais básicos de performance',
+      es: 'verificar si un sitio está online e inspeccionar HTTP, redirecciones, headers, SSL y señales básicas de rendimiento',
+      fr: 'vérifier si un site répond et inspecter HTTP, redirections, en-têtes, SSL et signaux de performance',
+      de: 'zu prüfen, ob eine Website erreichbar ist, sowie HTTP, Redirects, Header, SSL und Basis-Performance zu untersuchen',
+    },
+    method: {
+      en: 'Site checks make bounded requests and summarize the current response.',
+      'pt-br': 'Os checks fazem requisições controladas e resumem a resposta atual.',
+      es: 'Los checks hacen solicitudes controladas y resumen la respuesta actual.',
+      fr: 'Les contrôles font des requêtes limitées et résument la réponse actuelle.',
+      de: 'Siteprüfungen senden begrenzte Anfragen und fassen die aktuelle Antwort zusammen.',
+    },
+    review: {
+      en: 'Check status code, redirect target, certificate dates and recommendations before acting.',
+      'pt-br': 'Confira código de status, destino do redirecionamento, datas do certificado e recomendações antes de agir.',
+      es: 'Revisa código, destino de redirección, fechas del certificado y recomendaciones antes de actuar.',
+      fr: 'Vérifiez code statut, cible de redirection, dates du certificat et recommandations avant action.',
+      de: 'Prüfen Sie Statuscode, Redirectziel, Zertifikatsdaten und Empfehlungen vor Maßnahmen.',
+    },
+    privacy: {
+      en: 'The check needs the URL you choose to test and does not require an account for the basic answer.',
+      'pt-br': 'O check precisa da URL escolhida e não exige conta para a resposta básica.',
+      es: 'El check necesita la URL elegida y no requiere cuenta para la respuesta básica.',
+      fr: 'Le contrôle nécessite l URL choisie et pas de compte pour la réponse de base.',
+      de: 'Die Prüfung benötigt die gewählte URL und kein Konto für die Basisantwort.',
+    },
+    limits: {
+      en: 'A single check can miss regional outages, intermittent errors or authenticated user paths.',
+      'pt-br': 'Um check pontual pode não detectar quedas regionais, erros intermitentes ou caminhos autenticados.',
+      es: 'Un check puntual puede no detectar caídas regionales, errores intermitentes o rutas autenticadas.',
+      fr: 'Un contrôle ponctuel peut manquer pannes régionales, erreurs intermittentes ou parcours authentifiés.',
+      de: 'Eine Einzelprüfung kann regionale Ausfälle, sporadische Fehler oder Loginpfade übersehen.',
+    },
+  },
+  PixelBatch: {
+    action: {
+      en: 'compress, resize, crop, convert and prepare images for common web and commerce uses',
+      'pt-br': 'comprimir, redimensionar, cortar, converter e preparar imagens para web e comércio',
+      es: 'comprimir, redimensionar, recortar, convertir y preparar imágenes para web y comercio',
+      fr: 'compresser, redimensionner, recadrer, convertir et préparer des images pour le web et le commerce',
+      de: 'Bilder für Web und Handel zu komprimieren, zu skalieren, zuzuschneiden, zu konvertieren und vorzubereiten',
+    },
+    method: {
+      en: 'Image tools process selected files and show size, format or preview changes before download.',
+      'pt-br': 'As ferramentas processam arquivos selecionados e mostram tamanho, formato ou prévia antes do download.',
+      es: 'Las herramientas procesan archivos seleccionados y muestran tamaño, formato o vista previa antes de descargar.',
+      fr: 'Les outils traitent les fichiers choisis et montrent taille, format ou aperçu avant téléchargement.',
+      de: 'Bildtools verarbeiten gewählte Dateien und zeigen Größe, Format oder Vorschau vor dem Download.',
+    },
+    review: {
+      en: 'Compare preview quality, dimensions, format and final file size before replacing original images.',
+      'pt-br': 'Compare qualidade da prévia, dimensões, formato e tamanho final antes de substituir imagens originais.',
+      es: 'Compara calidad de vista previa, dimensiones, formato y tamaño final antes de reemplazar originales.',
+      fr: 'Comparez qualité, dimensions, format et taille finale avant de remplacer les originaux.',
+      de: 'Vergleichen Sie Vorschauqualität, Maße, Format und Endgröße vor dem Ersetzen von Originalen.',
+    },
+    privacy: {
+      en: 'Browser-side processing is preferred for the basic image workflow.',
+      'pt-br': 'O processamento no navegador é preferido para o fluxo básico de imagem.',
+      es: 'Se prefiere procesamiento en el navegador para el flujo básico de imagen.',
+      fr: 'Le traitement dans le navigateur est privilégié pour le flux image de base.',
+      de: 'Browserseitige Verarbeitung wird für den Basis-Bildablauf bevorzugt.',
+    },
+    limits: {
+      en: 'Very large files, batches and advanced AI edits can require more memory or a different workflow.',
+      'pt-br': 'Arquivos muito grandes, lotes e edições avançadas com IA podem exigir mais memória ou outro fluxo.',
+      es: 'Archivos grandes, lotes y ediciones avanzadas con IA pueden requerir más memoria u otro flujo.',
+      fr: 'Gros fichiers, lots et éditions IA avancées peuvent demander plus de mémoire ou un autre flux.',
+      de: 'Sehr große Dateien, Stapel und KI-Bearbeitung können mehr Speicher oder andere Abläufe erfordern.',
+    },
+  },
+  DocShift: {
+    action: {
+      en: 'merge, split, rotate, convert and prepare PDF documents',
+      'pt-br': 'unir, dividir, girar, converter e preparar documentos PDF',
+      es: 'unir, dividir, girar, convertir y preparar documentos PDF',
+      fr: 'fusionner, diviser, pivoter, convertir et préparer des documents PDF',
+      de: 'PDF-Dokumente zusammenzuführen, zu teilen, zu drehen, zu konvertieren und vorzubereiten',
+    },
+    method: {
+      en: 'Document tools use the selected files and show the output action before download.',
+      'pt-br': 'As ferramentas usam os arquivos selecionados e mostram a ação de saída antes do download.',
+      es: 'Las herramientas usan archivos seleccionados y muestran la acción de salida antes de descargar.',
+      fr: 'Les outils utilisent les fichiers choisis et affichent l action de sortie avant téléchargement.',
+      de: 'Dokumenttools nutzen ausgewählte Dateien und zeigen die Ausgabeaktion vor dem Download.',
+    },
+    review: {
+      en: 'Check page order, file names, orientation and document sensitivity before downloading or sharing.',
+      'pt-br': 'Confira ordem das páginas, nomes, orientação e sensibilidade do documento antes de baixar ou compartilhar.',
+      es: 'Revisa orden de páginas, nombres, orientación y sensibilidad antes de descargar o compartir.',
+      fr: 'Vérifiez ordre des pages, noms, orientation et sensibilité avant téléchargement ou partage.',
+      de: 'Prüfen Sie Seitenfolge, Namen, Ausrichtung und Sensibilität vor Download oder Teilen.',
+    },
+    privacy: {
+      en: 'Browser-side handling is preferred when it can complete the basic document task.',
+      'pt-br': 'O tratamento no navegador é preferido quando consegue concluir a tarefa básica do documento.',
+      es: 'Se prefiere manejo en el navegador cuando completa la tarea básica del documento.',
+      fr: 'Le traitement dans le navigateur est privilégié quand il suffit à la tâche de base.',
+      de: 'Browserseitige Verarbeitung wird bevorzugt, wenn sie die Basisaufgabe erledigt.',
+    },
+    limits: {
+      en: 'Encrypted, very large or damaged PDFs can need specialist software or manual review.',
+      'pt-br': 'PDFs criptografados, muito grandes ou danificados podem exigir software especializado ou revisão manual.',
+      es: 'PDF cifrados, muy grandes o dañados pueden requerir software especializado o revisión manual.',
+      fr: 'PDF chiffrés, très volumineux ou endommagés peuvent nécessiter logiciel spécialisé ou revue manuelle.',
+      de: 'Verschlüsselte, sehr große oder beschädigte PDFs können Spezialsoftware oder manuelle Prüfung erfordern.',
+    },
+  },
+}
+
+function trustText(text: LocalizedTrustText, locale: LocaleCode): string {
+  return text[locale]
+}
+
+function getTrustProductCopy(siteName: string): TrustProductCopy {
+  return trustProductCopies[siteName] ?? genericTrustProductCopy
+}
+
 function localizedTrustDescription(locale: LocaleCode, slug: TrustPageSlug, siteName: string): string {
+  const action = trustText(getTrustProductCopy(siteName).action, locale)
   const descriptions: Record<LocaleCode, Record<TrustPageSlug, string>> = {
     en: {
-      about: `${siteName} explains its purpose, current public surface, free access boundary and review status.`,
-      contact: `How to report feedback, privacy requests, security concerns, accessibility issues and corrections for ${siteName}.`,
-      privacy: `${siteName} explains data minimization, tool input boundaries, analytics limits and future account rules.`,
-      cookies: `${siteName} explains essential storage, consent, advertising storage and regional cookie choices.`,
-      terms: `${siteName} sets baseline terms for responsible use, service limits and future paid features.`,
-      methodology: `${siteName} explains how free tools, guidance, limits and corrections are reviewed.`,
-      'editorial-policy': `${siteName} documents useful-content standards, localization review and correction handling.`,
-      status: `${siteName} records public availability, privacy, support boundaries and review notes.`,
+      about: `${siteName} helps you ${action}, with the basic workflow available without mandatory signup.`,
+      contact: `How to send feedback, corrections, privacy requests or accessibility notes for ${siteName}.`,
+      privacy: `How ${siteName} handles inputs, local processing, diagnostics and consent in the free workflow.`,
+      cookies: `How ${siteName} uses essential storage, preferences and consent choices.`,
+      terms: `Rules for using ${siteName} responsibly and understanding the limits of free results.`,
+      methodology: `How ${siteName} produces results, what to verify and where the practical limits are.`,
+      'editorial-policy': `How ${siteName} keeps tool guidance useful, localized and correctable.`,
+      status: `Availability information and troubleshooting steps for ${siteName}.`,
     },
     'pt-br': {
-      about: `${siteName} explica propósito, superfície pública atual, limite gratuito e status de revisão.`,
-      contact: `Como relatar feedback, privacidade, segurança, acessibilidade e correções de ${siteName}.`,
-      privacy: `${siteName} explica minimização de dados, limites de entradas, analytics e regras futuras de conta.`,
-      cookies: `${siteName} explica armazenamento essencial, consentimento, publicidade e escolhas regionais de cookies.`,
-      terms: `${siteName} define termos base de uso responsável, limites do serviço e recursos pagos futuros.`,
-      methodology: `${siteName} explica como ferramentas gratuitas, orientação, limites e correções são revisados.`,
-      'editorial-policy': `${siteName} documenta padrões de conteúdo útil, revisão localizada e correções.`,
-      status: `${siteName} registra disponibilidade pública, privacidade, suporte e pontos de revisão.`,
+      about: `${siteName} ajuda você a ${action}, com fluxo básico disponível sem cadastro obrigatório.`,
+      contact: `Como enviar feedback, correções, pedidos de privacidade ou notas de acessibilidade para ${siteName}.`,
+      privacy: `Como ${siteName} lida com entradas, processamento local, diagnósticos e consentimento no fluxo gratuito.`,
+      cookies: `Como ${siteName} usa armazenamento essencial, preferências e escolhas de consentimento.`,
+      terms: `Regras para usar ${siteName} com responsabilidade e entender limites dos resultados gratuitos.`,
+      methodology: `Como ${siteName} produz resultados, o que conferir e onde ficam os limites práticos.`,
+      'editorial-policy': `Como ${siteName} mantém orientações úteis, localizadas e corrigíveis.`,
+      status: `Informações de disponibilidade e passos de verificação para ${siteName}.`,
     },
     es: {
-      about: `${siteName} explica propósito, superficie pública actual, límite gratis y estado de revisión.`,
-      contact: `Cómo reportar feedback, privacidad, seguridad, accesibilidad y correcciones de ${siteName}.`,
-      privacy: `${siteName} explica minimización de datos, límites de entradas, analytics y reglas futuras de cuenta.`,
-      cookies: `${siteName} explica almacenamiento esencial, consentimiento, publicidad y opciones regionales de cookies.`,
-      terms: `${siteName} define términos base de uso responsable, límites del servicio y funciones pagas futuras.`,
-      methodology: `${siteName} explica cómo se revisan herramientas gratis, guía, límites y correcciones.`,
-      'editorial-policy': `${siteName} documenta estándares de contenido útil, revisión localizada y correcciones.`,
-      status: `${siteName} registra disponibilidad pública, privacidad, soporte y puntos de revisión.`,
+      about: `${siteName} te ayuda a ${action}, con flujo básico disponible sin registro obligatorio.`,
+      contact: `Cómo enviar feedback, correcciones, solicitudes de privacidad o notas de accesibilidad para ${siteName}.`,
+      privacy: `Cómo ${siteName} maneja entradas, procesamiento local, diagnósticos y consentimiento en el flujo gratis.`,
+      cookies: `Cómo ${siteName} usa almacenamiento esencial, preferencias y opciones de consentimiento.`,
+      terms: `Reglas para usar ${siteName} de forma responsable y entender los límites de resultados gratis.`,
+      methodology: `Cómo ${siteName} produce resultados, qué revisar y dónde están los límites prácticos.`,
+      'editorial-policy': `Cómo ${siteName} mantiene guías útiles, localizadas y corregibles.`,
+      status: `Información de disponibilidad y pasos de verificación para ${siteName}.`,
     },
     fr: {
-      about: `${siteName} explique objectif, surface publique actuelle, limite gratuite et statut de revue.`,
-      contact: `Comment signaler retours, confidentialité, sécurité, accessibilité et corrections pour ${siteName}.`,
-      privacy: `${siteName} explique minimisation des données, limites des entrées, analytics et futures règles de compte.`,
-      cookies: `${siteName} explique stockage essentiel, consentement, publicité et choix régionaux de cookies.`,
-      terms: `${siteName} fixe les conditions de base pour usage responsable, limites du service et futures offres payantes.`,
-      methodology: `${siteName} explique la revue des outils gratuits, guides, limites et corrections.`,
-      'editorial-policy': `${siteName} documente standards de contenu utile, revue localisée et corrections.`,
-      status: `${siteName} consigne disponibilité publique, confidentialité, support et points de revue.`,
+      about: `${siteName} vous aide à ${action}, avec un flux de base disponible sans compte obligatoire.`,
+      contact: `Comment envoyer retours, corrections, demandes de confidentialité ou notes accessibilité pour ${siteName}.`,
+      privacy: `Comment ${siteName} gère saisies, traitement local, diagnostics et consentement dans le flux gratuit.`,
+      cookies: `Comment ${siteName} utilise stockage essentiel, préférences et choix de consentement.`,
+      terms: `Règles pour utiliser ${siteName} de façon responsable et comprendre les limites des résultats gratuits.`,
+      methodology: `Comment ${siteName} produit les résultats, quoi vérifier et où se trouvent les limites pratiques.`,
+      'editorial-policy': `Comment ${siteName} garde les guides utiles, localisés et corrigibles.`,
+      status: `Informations de disponibilité et étapes de vérification pour ${siteName}.`,
     },
     de: {
-      about: `${siteName} erklärt Zweck, aktuelle öffentliche Oberfläche, kostenlosen Umfang und Prüfstatus.`,
-      contact: `So melden Sie Feedback, Datenschutzanfragen, Sicherheitsfragen, Barrierefreiheit und Korrekturen zu ${siteName}.`,
-      privacy: `${siteName} erklärt Datenminimierung, Eingabegrenzen, Analytics-Grenzen und künftige Kontoregeln.`,
-      cookies: `${siteName} erklärt essenziellen Speicher, Einwilligung, Werbespeicher und regionale Cookie-Auswahl.`,
-      terms: `${siteName} legt Basisbedingungen für verantwortliche Nutzung, Servicegrenzen und künftige Bezahlfunktionen fest.`,
-      methodology: `${siteName} erklärt, wie kostenlose Tools, Hinweise, Grenzen und Korrekturen geprüft werden.`,
-      'editorial-policy': `${siteName} dokumentiert Standards für nützliche Inhalte, Lokalisierung und Korrekturen.`,
-      status: `${siteName} dokumentiert öffentliche Verfügbarkeit, Datenschutz, Support und Prüfpunkte.`,
+      about: `${siteName} hilft dabei, ${action}. Der Basisablauf ist ohne Pflichtkonto verfügbar.`,
+      contact: `So senden Sie Feedback, Korrekturen, Datenschutzanfragen oder Hinweise zur Barrierefreiheit für ${siteName}.`,
+      privacy: `Wie ${siteName} Eingaben, lokale Verarbeitung, Diagnosen und Einwilligung im kostenlosen Ablauf behandelt.`,
+      cookies: `Wie ${siteName} essenziellen Speicher, Präferenzen und Einwilligungsoptionen nutzt.`,
+      terms: `Regeln für die verantwortliche Nutzung von ${siteName} und die Grenzen kostenloser Ergebnisse.`,
+      methodology: `Wie ${siteName} Ergebnisse erzeugt, was zu prüfen ist und wo praktische Grenzen liegen.`,
+      'editorial-policy': `Wie ${siteName} Tool-Hinweise nützlich, lokalisiert und korrigierbar hält.`,
+      status: `Verfügbarkeitsinformationen und Prüfschritte für ${siteName}.`,
     },
   }
 
@@ -344,52 +811,55 @@ function localizedTrustDescription(locale: LocaleCode, slug: TrustPageSlug, site
 }
 
 function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile: TrustSupportProfile): TrustContentSection[] {
-  const { siteName, publicPath } = profile
+  const { siteName } = profile
+  const product = getTrustProductCopy(siteName)
+  const action = trustText(product.action, locale)
+  const method = trustText(product.method, locale)
+  const review = trustText(product.review, locale)
+  const privacy = trustText(product.privacy, locale)
+  const limits = trustText(product.limits, locale)
 
   if (locale === 'pt-br') {
-    const common = [
-      trustSection('Escopo e correções', `Estas páginas explicam a orientação pública atual de ${siteName}. Correções de conteúdo, privacidade, acessibilidade ou tradução podem ser enviadas pelo canal de contato sem incluir dados sensíveis.`),
-    ]
     const sections: Record<TrustPageSlug, TrustContentSection[]> = {
       about: [
-        trustSection('Superfície pública', `${siteName} faz parte do portfólio SuperSites e oferece ferramentas gratuitas em ${publicPath}, com HTTPS, sitemap público e páginas localizadas.`),
-        trustSection('Gratuito primeiro', 'A necessidade básica deve funcionar sem cadastro obrigatório. Conta, histórico, colaboração, automação, API, branding ou experiência sem anúncios pertencem a ofertas futuras.'),
-        ...common,
+        trustSection('O que você pode fazer', `${siteName} ajuda você a ${action}. Comece pela ferramenta principal ou escolha uma tarefa relacionada; o resultado básico continua disponível sem cadastro obrigatório.`),
+        trustSection('Como funciona', method),
+        trustSection('Privacidade e limites', privacy, limits),
       ],
       contact: [
-        trustSection('O que enviar', 'Envie URL, idioma, ferramenta, comportamento observado, resultado esperado e contexto do navegador. Não envie senhas, documentos confidenciais, dados bancários, chaves de API ou dados pessoais sensíveis.'),
-        trustSection('Suporte e doações', 'O bloco de apoio é informativo e inerte: não há link de pagamento, PIX, PayPal, Stripe, Buy Me a Coffee, carteira, checkout ou webhook ativo nesta página.'),
-        trustSection('Prioridade de correções', 'Privacidade, segurança, acessibilidade, tradução incorreta, link quebrado e resultado enganoso têm prioridade sobre pedidos comerciais.'),
+        trustSection('O que enviar', 'Inclua URL, idioma, ferramenta, comportamento observado, resultado esperado e contexto do navegador. Não envie senhas, documentos confidenciais, dados bancários, chaves de API ou dados pessoais sensíveis.'),
+        trustSection('Correções prioritárias', 'Privacidade, segurança, acessibilidade, tradução incorreta, link quebrado e resultado enganoso têm prioridade sobre pedidos comerciais.'),
+        trustSection('Como descrever o problema', 'Explique o passo a passo, copie mensagens de erro quando existirem e diga se o problema acontece em desktop, celular ou ambos.'),
       ],
       privacy: [
-        trustSection('Minimização de dados', 'Entradas de ferramentas ficam no navegador ou em APIs públicas limitadas ao mínimo necessário. Eventos permitidos devem usar slugs, rota e locale, sem valores digitados ou arquivos.'),
-        trustSection('Direitos e retenção', 'Contas, histórico salvo, exportação, exclusão e retenção precisam de regras visíveis antes de qualquer recurso pago.'),
-        ...common,
+        trustSection('Dados usados pela ferramenta', privacy),
+        trustSection('Entradas e resultados', 'Evite inserir dados sensíveis quando uma tarefa puder ser testada com exemplo ou valor fictício. Resultados devem ser conferidos antes de uso externo.'),
+        trustSection('Consentimento e preferências', 'Preferências de idioma, consentimento e segurança de sessão podem usar armazenamento essencial; escolhas não essenciais devem ficar sob controle do usuário.'),
       ],
       cookies: [
-        trustSection('Armazenamento essencial', 'Idioma, consentimento e segurança de sessão podem usar armazenamento essencial quando existirem.'),
-        trustSection('Analytics e anúncios', 'Tags externas, publicidade personalizada e armazenamento não essencial não são habilitados sem consentimento regional e revisão de posicionamento.'),
-        ...common,
+        trustSection('Armazenamento essencial', 'Idioma, consentimento e segurança de sessão podem usar armazenamento local ou cookies necessários quando isso ajuda a manter a navegação.'),
+        trustSection('Preferências', 'Preferências de interface podem ser lembradas para evitar que você configure a mesma opção a cada visita.'),
+        trustSection('Controle do usuário', 'Quando houver escolhas de consentimento, elas devem ser fáceis de revisar e alterar.'),
       ],
       terms: [
         trustSection('Uso responsável', `Use ${siteName} como ferramenta informativa. Não use para fraude, abuso, phishing, malware, spam, violação de privacidade ou decisões críticas sem validação própria.`),
-        trustSection('Recursos pagos futuros', 'Preço, quotas, cancelamento, reembolso, impostos, termos do provedor e suporte precisam aparecer antes de qualquer checkout.'),
-        ...common,
+        trustSection('Resultado gratuito', 'O fluxo básico deve resolver a tarefa principal sem cadastro obrigatório, mas não substitui revisão profissional quando o tema exigir.'),
+        trustSection('Limites do resultado', limits),
       ],
       methodology: [
-        trustSection('Ferramenta antes de conteúdo', 'Cada página deve resolver uma tarefa real com ferramenta gratuita, exemplo, limite, interpretação e links relacionados antes de ser tratada como madura.'),
-        trustSection('Correções e evidência', 'Afirmações sobre dados, privacidade, preços, anúncios, limites técnicos ou leis devem ser corrigidas quando evidência melhor estiver disponível.'),
-        ...common,
+        trustSection('Como os resultados são gerados', method),
+        trustSection('O que conferir', review),
+        trustSection('Limites importantes', limits),
       ],
       'editorial-policy': [
-        trustSection('Conteúdo útil', 'Não publicar páginas em massa sem valor. Cada página precisa ter utilidade própria, contexto, limites, data de revisão e caminho de correção.'),
+        trustSection('Conteúdo útil', 'Cada página deve ajudar o usuário a concluir uma tarefa real, entender o resultado e encontrar próximos passos sem depender de linguagem interna.'),
+        trustSection('Correções', 'Correções de conteúdo, privacidade, acessibilidade ou tradução podem ser enviadas pelo contato com URL, idioma e resultado esperado.'),
         trustSection('Localização', 'Páginas localizadas devem preservar sentido, limites, exemplos e avisos de segurança no idioma da rota.'),
-        ...common,
       ],
       status: [
-        trustSection('Disponibilidade atual', `${siteName} está disponível em ${publicPath}, com páginas localizadas, URLs canônicas e sitemap público para visitantes.`),
-        trustSection('Monetização e suporte', 'Anúncios reais, checkout, doações, afiliados, analytics externo, workers recorrentes e API paga não estão habilitados nesta superfície pública.'),
-        ...common,
+        trustSection('Disponibilidade para visitantes', `${siteName} deve abrir suas ferramentas gratuitas e páginas de ajuda nos idiomas disponíveis. Se uma rota falhar, tente atualizar e envie a URL pelo contato.`),
+        trustSection('Quando repetir o teste', 'Resultados de rede, site, documento, imagem, tempo ou cálculo podem mudar conforme entrada, horário, cache, navegador ou arquivo usado.'),
+        trustSection('Limites importantes', limits),
       ],
     }
 
@@ -397,49 +867,46 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
   }
 
   if (locale === 'es') {
-    const common = [
-      trustSection('Alcance y correcciones', `Estas páginas explican la orientación pública actual de ${siteName}. Las correcciones de contenido, privacidad, accesibilidad o traducción pueden enviarse por el canal de contacto sin incluir datos sensibles.`),
-    ]
     const sections: Record<TrustPageSlug, TrustContentSection[]> = {
       about: [
-        trustSection('Superficie pública', `${siteName} forma parte del portafolio SuperSites y ofrece herramientas gratis en ${publicPath}, con HTTPS, sitemap público y páginas localizadas.`),
-        trustSection('Gratis primero', 'La necesidad básica debe funcionar sin registro obligatorio. Cuenta, historial, colaboración, automatización, API, branding o experiencia sin anuncios pertenecen a ofertas futuras.'),
-        ...common,
+        trustSection('Qué puedes hacer', `${siteName} te ayuda a ${action}. Empieza por la herramienta principal o elige una tarea relacionada; el resultado básico sigue disponible sin registro obligatorio.`),
+        trustSection('Cómo funciona', method),
+        trustSection('Privacidad y límites', privacy, limits),
       ],
       contact: [
-        trustSection('Qué enviar', 'Envía URL, idioma, herramienta, comportamiento observado, resultado esperado y navegador. No envíes contraseñas, documentos confidenciales, datos bancarios, claves API o datos personales sensibles.'),
-        trustSection('Soporte y donaciones', 'La sección de apoyo es informativa e inerte: no hay enlace de pago, PIX, PayPal, Stripe, Buy Me a Coffee, wallet, checkout o webhook activo en esta página.'),
-        trustSection('Prioridad de correcciones', 'Privacidad, seguridad, accesibilidad, mala traducción, enlace roto y resultado engañoso tienen prioridad sobre pedidos comerciales.'),
+        trustSection('Qué enviar', 'Incluye URL, idioma, herramienta, comportamiento observado, resultado esperado y navegador. No envíes contraseñas, documentos confidenciales, datos bancarios, claves API o datos personales sensibles.'),
+        trustSection('Correcciones prioritarias', 'Privacidad, seguridad, accesibilidad, mala traducción, enlace roto y resultado engañoso tienen prioridad sobre solicitudes comerciales.'),
+        trustSection('Cómo describir el problema', 'Explica los pasos, copia mensajes de error si existen y di si ocurre en escritorio, móvil o ambos.'),
       ],
       privacy: [
-        trustSection('Minimización de datos', 'Las entradas quedan en el navegador o en APIs públicas limitadas al mínimo necesario. Eventos permitidos deben usar slugs, ruta y locale, sin valores ingresados ni archivos.'),
-        trustSection('Derechos y retención', 'Cuentas, historial guardado, exportación, eliminación y retención necesitan reglas visibles antes de cualquier función paga.'),
-        ...common,
+        trustSection('Datos usados por la herramienta', privacy),
+        trustSection('Entradas y resultados', 'Evita ingresar datos sensibles cuando puedas probar con un ejemplo o valor ficticio. Revisa los resultados antes de usarlos fuera del sitio.'),
+        trustSection('Consentimiento y preferencias', 'Idioma, consentimiento y seguridad de sesión pueden usar almacenamiento esencial; las opciones no esenciales deben quedar bajo control del usuario.'),
       ],
       cookies: [
-        trustSection('Almacenamiento esencial', 'Idioma, consentimiento y seguridad de sesión pueden usar almacenamiento esencial cuando existan.'),
-        trustSection('Analytics y anuncios', 'Tags externas, publicidad personalizada y almacenamiento no esencial no se habilitan sin consentimiento regional y revisión de ubicación.'),
-        ...common,
+        trustSection('Almacenamiento esencial', 'Idioma, consentimiento y seguridad de sesión pueden usar almacenamiento local o cookies necesarias cuando ayudan a mantener la navegación.'),
+        trustSection('Preferencias', 'Las preferencias de interfaz pueden recordarse para evitar configurar la misma opción en cada visita.'),
+        trustSection('Control del usuario', 'Cuando haya opciones de consentimiento, deben ser fáciles de revisar y cambiar.'),
       ],
       terms: [
         trustSection('Uso responsable', `Usa ${siteName} como herramienta informativa. No la uses para fraude, abuso, phishing, malware, spam, violación de privacidad o decisiones críticas sin validación propia.`),
-        trustSection('Funciones pagas futuras', 'Precio, cuotas, cancelación, reembolso, impuestos, términos del proveedor y soporte deben mostrarse antes de cualquier checkout.'),
-        ...common,
+        trustSection('Resultado gratis', 'El flujo básico debe resolver la tarea principal sin registro obligatorio, pero no reemplaza revisión profesional cuando el tema lo exige.'),
+        trustSection('Límites del resultado', limits),
       ],
       methodology: [
-        trustSection('Herramienta antes que contenido', 'Cada página debe resolver una tarea real con herramienta gratis, ejemplo, límite, interpretación y enlaces relacionados antes de considerarse madura.'),
-        trustSection('Correcciones y evidencia', 'Claims sobre datos, privacidad, precios, anuncios, límites técnicos o leyes deben corregirse cuando haya mejor evidencia.'),
-        ...common,
+        trustSection('Cómo se generan los resultados', method),
+        trustSection('Qué revisar', review),
+        trustSection('Límites importantes', limits),
       ],
       'editorial-policy': [
-        trustSection('Contenido útil', 'No publicar páginas masivas sin valor. Cada página necesita utilidad propia, contexto, límites, fecha de revisión y vía de corrección.'),
+        trustSection('Contenido útil', 'Cada página debe ayudar a completar una tarea real, entender el resultado y encontrar próximos pasos sin lenguaje interno.'),
+        trustSection('Correcciones', 'Las correcciones de contenido, privacidad, accesibilidad o traducción pueden enviarse por contacto con URL, idioma y resultado esperado.'),
         trustSection('Localización', 'Las páginas localizadas deben preservar sentido, límites, ejemplos y avisos de seguridad en el idioma de la ruta.'),
-        ...common,
       ],
       status: [
-        trustSection('Disponibilidad actual', `${siteName} está disponible en ${publicPath}, con páginas localizadas, URLs canónicas y sitemap público para visitantes.`),
-        trustSection('Monetización y soporte', 'Anuncios reales, checkout, donaciones, afiliados, analytics externo, workers recurrentes y API paga no están habilitados en esta superficie pública.'),
-        ...common,
+        trustSection('Disponibilidad para visitantes', `${siteName} debe abrir sus herramientas gratis y páginas de ayuda en los idiomas disponibles. Si una ruta falla, actualiza y envía la URL por contacto.`),
+        trustSection('Cuándo repetir el test', 'Resultados de red, sitio, documento, imagen, tiempo o cálculo pueden cambiar según entrada, hora, caché, navegador o archivo usado.'),
+        trustSection('Límites importantes', limits),
       ],
     }
 
@@ -447,49 +914,46 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
   }
 
   if (locale === 'fr') {
-    const common = [
-      trustSection('Portée et corrections', `Ces pages expliquent l orientation publique actuelle de ${siteName}. Les corrections de contenu, confidentialité, accessibilité ou traduction peuvent passer par le canal de contact sans données sensibles.`),
-    ]
     const sections: Record<TrustPageSlug, TrustContentSection[]> = {
       about: [
-        trustSection('Surface publique', `${siteName} fait partie du portefeuille SuperSites et propose des outils gratuits sur ${publicPath}, avec HTTPS, sitemap public et pages localisées.`),
-        trustSection('Gratuit d’abord', 'Le besoin de base doit fonctionner sans inscription obligatoire. Compte, historique, collaboration, automatisation, API, branding ou expérience sans publicité relèvent d’offres futures.'),
-        ...common,
+        trustSection('Ce que vous pouvez faire', `${siteName} vous aide à ${action}. Commencez par l outil principal ou choisissez une tâche liée; le résultat de base reste disponible sans compte obligatoire.`),
+        trustSection('Fonctionnement', method),
+        trustSection('Confidentialité et limites', privacy, limits),
       ],
       contact: [
-        trustSection('Quoi envoyer', 'Envoyez URL, langue, outil, comportement observé, résultat attendu et navigateur. N’envoyez pas mots de passe, documents confidentiels, données bancaires, clés API ou données personnelles sensibles.'),
-        trustSection('Support et dons', 'Le bloc de soutien est informatif et inerte : aucun lien de paiement, PIX, PayPal, Stripe, Buy Me a Coffee, wallet, checkout ou webhook n’est actif sur cette page.'),
-        trustSection('Priorité des corrections', 'Confidentialité, sécurité, accessibilité, mauvaise traduction, lien cassé et résultat trompeur priment sur les demandes commerciales.'),
+        trustSection('Quoi envoyer', 'Indiquez URL, langue, outil, comportement observé, résultat attendu et navigateur. N envoyez pas mots de passe, documents confidentiels, données bancaires, clés API ou données personnelles sensibles.'),
+        trustSection('Corrections prioritaires', 'Confidentialité, sécurité, accessibilité, mauvaise traduction, lien cassé et résultat trompeur priment sur les demandes commerciales.'),
+        trustSection('Décrire le problème', 'Expliquez les étapes, copiez les messages d erreur si présents et dites si le problème apparaît sur ordinateur, mobile ou les deux.'),
       ],
       privacy: [
-        trustSection('Minimisation des données', 'Les entrées restent dans le navigateur ou dans des APIs publiques limitées au minimum nécessaire. Les événements autorisés utilisent slugs, route et locale, sans valeurs saisies ni fichiers.'),
-        trustSection('Droits et conservation', 'Comptes, historique sauvegardé, export, suppression et conservation nécessitent des règles visibles avant toute offre payante.'),
-        ...common,
+        trustSection('Données utilisées par l outil', privacy),
+        trustSection('Saisies et résultats', 'Évitez les données sensibles quand un exemple ou une valeur fictive suffit. Vérifiez les résultats avant usage externe.'),
+        trustSection('Consentement et préférences', 'Langue, consentement et sécurité de session peuvent utiliser un stockage essentiel; les choix non essentiels doivent rester sous contrôle utilisateur.'),
       ],
       cookies: [
-        trustSection('Stockage essentiel', 'Langue, consentement et sécurité de session peuvent utiliser un stockage essentiel quand ces fonctions existent.'),
-        trustSection('Analytics et publicités', 'Tags externes, publicité personnalisée et stockage non essentiel ne sont pas activés sans consentement régional et revue du placement.'),
-        ...common,
+        trustSection('Stockage essentiel', 'Langue, consentement et sécurité de session peuvent utiliser stockage local ou cookies nécessaires quand cela aide la navigation.'),
+        trustSection('Préférences', 'Les préférences interface peuvent être mémorisées pour éviter de répéter la même configuration.'),
+        trustSection('Contrôle utilisateur', 'Quand des choix de consentement existent, ils doivent être faciles à revoir et modifier.'),
       ],
       terms: [
-        trustSection('Usage responsable', `Utilisez ${siteName} comme outil informatif. Ne l’utilisez pas pour fraude, abus, phishing, malware, spam, atteinte à la vie privée ou décisions critiques sans validation propre.`),
-        trustSection('Fonctions payantes futures', 'Prix, quotas, annulation, remboursement, taxes, conditions fournisseur et support doivent être visibles avant tout checkout.'),
-        ...common,
+        trustSection('Usage responsable', `Utilisez ${siteName} comme outil informatif. Ne l utilisez pas pour fraude, abus, phishing, malware, spam, atteinte à la vie privée ou décisions critiques sans validation propre.`),
+        trustSection('Résultat gratuit', 'Le flux de base doit résoudre la tâche principale sans compte obligatoire, mais ne remplace pas une revue professionnelle quand le sujet l exige.'),
+        trustSection('Limites du résultat', limits),
       ],
       methodology: [
-        trustSection('Outil avant contenu', 'Chaque page doit résoudre une tâche réelle avec outil gratuit, exemple, limite, interprétation et liens connexes avant d’être considérée mature.'),
-        trustSection('Corrections et preuves', 'Les affirmations sur données, confidentialité, prix, publicités, limites techniques ou lois doivent être corrigées si de meilleures preuves existent.'),
-        ...common,
+        trustSection('Comment les résultats sont générés', method),
+        trustSection('Quoi vérifier', review),
+        trustSection('Limites importantes', limits),
       ],
       'editorial-policy': [
-        trustSection('Contenu utile', 'Ne pas publier de pages massives sans valeur. Chaque page doit avoir utilité propre, contexte, limites, date de revue et voie de correction.'),
+        trustSection('Contenu utile', 'Chaque page doit aider à accomplir une tâche réelle, comprendre le résultat et trouver les prochaines étapes sans langage interne.'),
+        trustSection('Corrections', 'Les corrections de contenu, confidentialité, accessibilité ou traduction peuvent être envoyées par contact avec URL, langue et résultat attendu.'),
         trustSection('Localisation', 'Les pages localisées doivent préserver sens, limites, exemples et avertissements de sécurité dans la langue de la route.'),
-        ...common,
       ],
       status: [
-        trustSection('Disponibilité actuelle', `${siteName} est disponible sur ${publicPath}, avec pages localisées, URLs canoniques et sitemap public pour les visiteurs.`),
-        trustSection('Monétisation et support', 'Publicités réelles, checkout, dons, affiliation, analytics externe, workers récurrents et API payante ne sont pas activés sur cette surface publique.'),
-        ...common,
+        trustSection('Disponibilité pour visiteurs', `${siteName} doit ouvrir ses outils gratuits et pages aide dans les langues disponibles. Si une route échoue, actualisez et envoyez l URL via contact.`),
+        trustSection('Quand refaire le test', 'Les résultats réseau, site, document, image, temps ou calcul peuvent changer selon saisie, heure, cache, navigateur ou fichier utilisé.'),
+        trustSection('Limites importantes', limits),
       ],
     }
 
@@ -497,98 +961,92 @@ function localizedTrustSections(locale: LocaleCode, slug: TrustPageSlug, profile
   }
 
   if (locale === 'de') {
-    const common = [
-      trustSection('Umfang und Korrekturen', `Diese Seiten erklären die aktuelle öffentliche Orientierung von ${siteName}. Korrekturen zu Inhalt, Datenschutz, Barrierefreiheit oder Übersetzung können über den Kontaktkanal ohne sensible Daten gesendet werden.`),
-    ]
     const sections: Record<TrustPageSlug, TrustContentSection[]> = {
       about: [
-        trustSection('Öffentliche Oberfläche', `${siteName} gehört zum SuperSites-Portfolio und bietet kostenlose Tools unter ${publicPath}, mit HTTPS, öffentlicher Sitemap und lokalisierten Seiten.`),
-        trustSection('Kostenlos zuerst', 'Die Grundaufgabe muss ohne Pflichtkonto funktionieren. Konto, Verlauf, Zusammenarbeit, Automatisierung, API, Branding oder werbefreie Nutzung gehören zu künftigen Angeboten.'),
-        ...common,
+        trustSection('Was Sie tun können', `${siteName} hilft dabei, ${action}. Starten Sie mit dem Haupttool oder wählen Sie eine verwandte Aufgabe; das Basisergebnis bleibt ohne Pflichtkonto verfügbar.`),
+        trustSection('So funktioniert es', method),
+        trustSection('Datenschutz und Grenzen', privacy, limits),
       ],
       contact: [
         trustSection('Was senden', 'Senden Sie URL, Sprache, Tool, beobachtetes Verhalten, erwartetes Ergebnis und Browser. Senden Sie keine Passwörter, vertraulichen Dokumente, Bankdaten, API-Schlüssel oder sensiblen personenbezogenen Daten.'),
-        trustSection('Support und Spenden', 'Der Unterstützungsblock ist informativ und inaktiv: Es gibt auf dieser Seite keinen Zahlungslink, kein PIX, PayPal, Stripe, Buy Me a Coffee, Wallet, Checkout oder Webhook.'),
-        trustSection('Priorität von Korrekturen', 'Datenschutz, Sicherheit, Barrierefreiheit, falsche Übersetzung, defekter Link und irreführendes Ergebnis haben Vorrang vor kommerziellen Anfragen.'),
+        trustSection('Priorisierte Korrekturen', 'Datenschutz, Sicherheit, Barrierefreiheit, falsche Übersetzung, defekter Link und irreführendes Ergebnis haben Vorrang vor kommerziellen Anfragen.'),
+        trustSection('Problem beschreiben', 'Beschreiben Sie die Schritte, kopieren Sie Fehlermeldungen und sagen Sie, ob es auf Desktop, Mobilgerät oder beiden passiert.'),
       ],
       privacy: [
-        trustSection('Datenminimierung', 'Eingaben bleiben im Browser oder in öffentlichen APIs mit minimal nötigem Umfang. Erlaubte Events nutzen Slugs, Route und Locale, keine eingegebenen Werte oder Dateien.'),
-        trustSection('Rechte und Aufbewahrung', 'Konten, gespeicherter Verlauf, Export, Löschung und Aufbewahrung brauchen sichtbare Regeln vor jeder Bezahlfunktion.'),
-        ...common,
+        trustSection('Vom Tool genutzte Daten', privacy),
+        trustSection('Eingaben und Ergebnisse', 'Vermeiden Sie sensible Daten, wenn ein Beispiel oder Testwert reicht. Prüfen Sie Ergebnisse vor externer Nutzung.'),
+        trustSection('Einwilligung und Präferenzen', 'Sprache, Einwilligung und Sitzungssicherheit können essenziellen Speicher nutzen; nicht essenzielle Optionen bleiben unter Nutzerkontrolle.'),
       ],
       cookies: [
-        trustSection('Essentieller Speicher', 'Sprache, Einwilligung und Sitzungssicherheit können essenziellen Speicher nutzen, wenn diese Funktionen existieren.'),
-        trustSection('Analytics und Anzeigen', 'Externe Tags, personalisierte Werbung und nicht essenzieller Speicher werden ohne regionale Einwilligung und Platzierungsprüfung nicht aktiviert.'),
-        ...common,
+        trustSection('Essentieller Speicher', 'Sprache, Einwilligung und Sitzungssicherheit können lokalen Speicher oder notwendige Cookies nutzen, wenn dies die Navigation unterstützt.'),
+        trustSection('Präferenzen', 'Oberflächenpräferenzen können gespeichert werden, damit dieselbe Option nicht bei jedem Besuch neu gesetzt werden muss.'),
+        trustSection('Nutzerkontrolle', 'Wenn Einwilligungsoptionen vorhanden sind, müssen sie leicht prüfbar und änderbar sein.'),
       ],
       terms: [
         trustSection('Verantwortliche Nutzung', `Nutzen Sie ${siteName} als informatives Tool. Nicht für Betrug, Missbrauch, Phishing, Malware, Spam, Datenschutzverletzung oder kritische Entscheidungen ohne eigene Prüfung nutzen.`),
-        trustSection('Künftige Bezahlfunktionen', 'Preis, Quoten, Kündigung, Erstattung, Steuern, Anbieterbedingungen und Support müssen vor jedem Checkout sichtbar sein.'),
-        ...common,
+        trustSection('Kostenloses Ergebnis', 'Der Basisablauf soll die Hauptaufgabe ohne Pflichtkonto lösen, ersetzt aber keine fachliche Prüfung, wenn das Thema sie verlangt.'),
+        trustSection('Grenzen des Ergebnisses', limits),
       ],
       methodology: [
-        trustSection('Tool vor Inhalt', 'Jede Seite muss eine echte Aufgabe mit kostenlosem Tool, Beispiel, Grenze, Interpretation und verwandten Links lösen, bevor sie als reif gilt.'),
-        trustSection('Korrekturen und Nachweise', 'Aussagen zu Daten, Datenschutz, Preisen, Anzeigen, technischen Grenzen oder Gesetzen werden korrigiert, wenn bessere Nachweise vorliegen.'),
-        ...common,
+        trustSection('Wie Ergebnisse entstehen', method),
+        trustSection('Was zu prüfen ist', review),
+        trustSection('Wichtige Grenzen', limits),
       ],
       'editorial-policy': [
-        trustSection('Nützliche Inhalte', 'Keine massenhaften Seiten ohne Wert veröffentlichen. Jede Seite braucht eigenen Nutzen, Kontext, Grenzen, Prüfdatum und Korrekturweg.'),
+        trustSection('Nützlicher Inhalt', 'Jede Seite soll bei einer echten Aufgabe helfen, Ergebnisse erklären und nächste Schritte zeigen, ohne interne Sprache zu nutzen.'),
+        trustSection('Korrekturen', 'Korrekturen zu Inhalt, Datenschutz, Barrierefreiheit oder Übersetzung können mit URL, Sprache und erwartetem Ergebnis gesendet werden.'),
         trustSection('Lokalisierung', 'Lokalisierte Seiten müssen Sinn, Grenzen, Beispiele und Sicherheitshinweise in der Routensprache bewahren.'),
-        ...common,
       ],
       status: [
-        trustSection('Aktuelle Verfügbarkeit', `${siteName} ist unter ${publicPath} verfügbar, mit lokalisierten Seiten, kanonischen URLs und öffentlicher Sitemap für Besucher.`),
-        trustSection('Monetarisierung und Support', 'Reale Anzeigen, Checkout, Spenden, Affiliate-Links, externe Analytics, wiederkehrende Worker und bezahlte API sind auf dieser öffentlichen Oberfläche nicht aktiviert.'),
-        ...common,
+        trustSection('Verfügbarkeit für Besucher', `${siteName} soll kostenlose Tools und Hilfeseiten in den verfügbaren Sprachen öffnen. Wenn eine Route fehlschlägt, laden Sie neu und senden Sie die URL über Kontakt.`),
+        trustSection('Wann erneut testen', 'Ergebnisse zu Netzwerk, Site, Dokument, Bild, Zeit oder Berechnung können sich je nach Eingabe, Uhrzeit, Cache, Browser oder Datei ändern.'),
+        trustSection('Wichtige Grenzen', limits),
       ],
     }
 
     return sections[slug]
   }
 
-  const common = [
-    trustSection('Scope and corrections', `These pages explain the current public guidance for ${siteName}. Content, privacy, accessibility or translation corrections can be sent through the contact channel without including sensitive data.`),
-  ]
   const sections: Record<TrustPageSlug, TrustContentSection[]> = {
     about: [
-      trustSection('Public surface', `${siteName} is part of the SuperSites portfolio and offers free tools at ${publicPath}, with HTTPS, localized pages and a public sitemap.`),
-      trustSection('Free first', 'The basic task must work without mandatory signup. Accounts, history, collaboration, automation, API, branding and ad-free use belong to future offers.'),
-      ...common,
+      trustSection('What you can do', `${siteName} helps you ${action}. Start from the main tool or choose a related task; the basic result stays available without mandatory signup.`),
+      trustSection('How it works', method),
+      trustSection('Privacy and limits', privacy, limits),
     ],
     contact: [
       trustSection('What to send', 'Include URL, language, tool name, observed behavior, expected result and browser context. Do not send passwords, confidential documents, bank data, API keys or sensitive personal data.'),
-      trustSection('Support and donations', 'The support block is informational and inert: no payment link, PIX, PayPal, Stripe, Buy Me a Coffee, wallet, checkout or webhook is active on this page.'),
-      trustSection('Correction priority', 'Privacy, security, accessibility, translation errors, broken links and misleading results take priority over commercial requests.'),
+      trustSection('Priority corrections', 'Privacy, security, accessibility, translation errors, broken links and misleading results take priority over commercial requests.'),
+      trustSection('Describe the issue', 'Share the steps, copy any error message and mention whether it happens on desktop, mobile or both.'),
     ],
     privacy: [
-      trustSection('Input and event boundaries', 'Tool inputs stay in the browser or in public APIs limited to what the task requires. Allowed events use slugs, route and locale, not entered values or files.'),
-      trustSection('Rights and retention', 'Accounts, saved history, export, deletion and retention need visible rules before any paid feature launches.'),
-      ...common,
+      trustSection('Data used by the tool', privacy),
+      trustSection('Inputs and results', 'Avoid entering sensitive data when a sample or placeholder value can test the task. Review results before using them elsewhere.'),
+      trustSection('Consent and preferences', 'Language, consent and session security may use essential storage; non-essential choices should stay under user control.'),
     ],
     cookies: [
-      trustSection('Essential storage', 'Language, consent and session security may use essential storage when those features exist.'),
-      trustSection('Analytics and ads', 'External tags, personalized advertising and non-essential storage are not enabled without regional consent and placement review.'),
-      ...common,
+      trustSection('Essential storage', 'Language, consent and session security may use local storage or necessary cookies when they help keep navigation usable.'),
+      trustSection('Preferences', 'Interface preferences can be remembered so you do not need to set the same option on every visit.'),
+      trustSection('User control', 'When consent choices exist, they should be easy to review and change.'),
     ],
     terms: [
       trustSection('Responsible use', `Use ${siteName} as an informational tool. Do not use it for fraud, abuse, phishing, malware, spam, privacy violations or critical decisions without your own validation.`),
-      trustSection('Future paid features', 'Pricing, quotas, cancellation, refunds, taxes, provider terms and support must be visible before any checkout launches.'),
-      ...common,
+      trustSection('Free result', 'The basic workflow should solve the main task without mandatory signup, but it does not replace professional review when the topic requires it.'),
+      trustSection('Result limits', limits),
     ],
     methodology: [
-      trustSection('Tool before content', 'Each page should solve a real task with a free tool, example, limitation, interpretation and related links before it is treated as mature.'),
-      trustSection('Corrections and evidence', 'Claims about data, privacy, pricing, advertising, technical limits or law should be corrected when better evidence is available.'),
-      ...common,
+      trustSection('How results are generated', method),
+      trustSection('What to check', review),
+      trustSection('Important limits', limits),
     ],
     'editorial-policy': [
-      trustSection('Useful content', 'Do not publish low-value mass pages. Each page needs its own utility, context, limits, review date and correction path.'),
-      trustSection('Localization', 'Localized pages must preserve meaning, limits, examples and safety notices in the route language.'),
-      ...common,
+      trustSection('Useful content', 'Each page should help visitors complete a real task, understand the result and find next steps without internal project language.'),
+      trustSection('Corrections', 'Content, privacy, accessibility or translation corrections can be sent through contact with URL, language and expected result.'),
+      trustSection('Localization', 'Localized pages should preserve meaning, limits, examples and safety notes in the route language.'),
     ],
     status: [
-      trustSection('Current availability', `${siteName} is available at ${publicPath}, with localized pages, canonical URLs and a public sitemap for visitors.`),
-      trustSection('Monetization and support', 'Real ads, checkout, donations, affiliates, external analytics, recurring workers and paid API are not enabled on this public surface.'),
-      ...common,
+      trustSection('Availability for visitors', `${siteName} should open its free tools and help pages in the available languages. If a route fails, refresh and send the URL through contact.`),
+      trustSection('When to repeat a check', 'Network, site, document, image, time or calculation results can change with the input, time, cache, browser or file used.'),
+      trustSection('Important limits', limits),
     ],
   }
 
@@ -605,11 +1063,9 @@ export function buildTrustPageCopy<T extends TrustPageCopyShape>(
   const localizedCopy = {
     ...baseCopy,
     navLabel: trustNavLabels[locale][slug],
-    title: locale === 'en' ? baseCopy.title : localizedTrustTitle(locale, slug, profile.siteName),
-    description: locale === 'en'
-      ? baseCopy.description
-      : localizedTrustDescription(locale, slug, profile.siteName),
-    sections: locale === 'en' ? [...baseCopy.sections, ...trustSections] : trustSections,
+    title: localizedTrustTitle(locale, slug, profile.siteName),
+    description: localizedTrustDescription(locale, slug, profile.siteName),
+    sections: trustSections,
   }
 
   return sanitizePublicCopy(locale, localizedCopy) as T
