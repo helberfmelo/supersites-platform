@@ -19,6 +19,10 @@ param(
     [string]$DatabaseUsername = $env:SUPERSITES_CONTROL_PLANE_DB_USERNAME,
     [string]$DatabasePassword = $env:SUPERSITES_CONTROL_PLANE_DB_PASSWORD,
     [string]$PhpHandler = $env:SUPERSITES_CONTROL_PLANE_PHP_HANDLER,
+    [string]$StripeRestrictedKey = $env:SUPERSITES_STRIPE_RESTRICTED_KEY,
+    [string]$StripePublishableKey = $env:SUPERSITES_STRIPE_PUBLISHABLE_KEY,
+    [string]$StripeSecretKey = $env:SUPERSITES_STRIPE_SECRET_KEY,
+    [string]$StripeWebhookSecret = $env:SUPERSITES_STRIPE_WEBHOOK_SECRET,
     [switch]$EnableDiagnostics
 )
 
@@ -406,6 +410,18 @@ function New-ControlPlaneEnvContent {
         MAIL_FROM_NAME = "SuperSites"
         SUPERSITES_HEALTH_CHECK_CONNECTIONS = "false"
         NETPROBE_ALERT_WEBHOOK_ENABLED = "false"
+        STRIPE_RESTRICTED_KEY = $StripeRestrictedKey
+        STRIPE_PUBLISHABLE_KEY = $StripePublishableKey
+        STRIPE_SECRET_KEY = $StripeSecretKey
+        STRIPE_WEBHOOK_SECRET = $StripeWebhookSecret
+        BILLING_PROVIDER_ACTIVATION = "false"
+        BILLING_CHECKOUT_ENABLED = "false"
+        BILLING_STRIPE_CHECKOUT_ENABLED = "false"
+        BILLING_STRIPE_WEBHOOKS_ENABLED = "false"
+        BILLING_STRIPE_REVENUE_IMPORT_ENABLED = "false"
+        BILLING_WEBHOOK_DRY_RUN_ENABLED = "false"
+        BILLING_WEBHOOK_REPLAY_WINDOW_SECONDS = "300"
+        BILLING_WEBHOOK_MAX_PAYLOAD_BYTES = "65536"
     }
 
     $lines = @()

@@ -855,6 +855,14 @@ Sprints 18.96 a 18.99 - Fechamento transversal da Fase 18
 - Validacao: build local dos 10 apps estaticos, `pnpm validate:public-copy` em 951 HTMLs, `pnpm validate:adsense-safe-public`, `pnpm validate:secrets`, Lighthouse publico full com 12/12 paginas aprovadas, min performance 87, min accessibility 94, min best practices 96, min SEO 100, max LCP 2251 ms e max CLS 0.08. O crawler full de fechamento foi tentado, mas excedeu 15 minutos e gerou artefato parcial, tratado como timeout operacional de auditoria.
 - Escopo negativo: nenhum provider PageSpeed/GTmetrix/API, anuncio real, snippet AdSense, publisher id real, `ads.txt`, checkout, billing, pagamento, doacao real, afiliado, provider externo, worker/cron, DNS/root mapping, root redirect, deploy automatico ou acao irreversivel foi ativado.
 
+## Fase 24 - Monetizacao de suporte, doacoes e billing real
+
+Status: proposta/documentada em `docs/ROADMAP_FASE_24_MONETIZACAO_SUPORTE_BILLING.md`.
+
+Objetivo: transformar os blocos de apoio inertes e a fundacao de billing em um caminho governado para doacoes, servicos personalizados e upgrades pagos, sem ativar pagamento real antes de KYC, impostos, termos, secrets em cofre, provider adapter, politicas publicas, smokes especificos e aprovacao humana por canal/plano.
+
+Escopo inicial: avaliar Pagar.me como provider BRL/Brasil, adicionar `pagarme` ao contrato fail-closed, cobrir todas as paginas com CTA de apoio compartilhado, preparar link hospedado de doacao somente por configuracao aprovada, desenhar fluxo de servicos personalizados e decidir provider global para vendas internacionais.
+
 ## Definition of done do programa
 
 - Catalogo SuperSites no ar.

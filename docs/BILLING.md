@@ -4,6 +4,46 @@
 
 Criar camada de billing desacoplada de provedor. Stripe, Mercado Pago e Paddle serao avaliados conforme conta, pais, custos, impostos e KYC.
 
+## Stripe credential inventory - 2026-07-02
+
+O owner forneceu credenciais Stripe live para inventario local em `docs/credentials/credentials.local.md` e para configuracao de secrets de ambiente. Essas credenciais nao foram versionadas e nao ativam checkout, link de pagamento, webhook live, doacao real, cobranca, assinatura, invoice, refund, importacao de receita ou entitlement pago.
+
+Estado tecnico atual:
+
+- O Control Plane reconhece nomes de ambiente Stripe e flags fail-closed em `config/billing.php`.
+- O deploy HostGator do Control Plane pode receber secrets Stripe do ambiente `production-hostgator` e gravar a release `.env`.
+- `BILLING_PROVIDER_ACTIVATION`, `BILLING_CHECKOUT_ENABLED`, `BILLING_STRIPE_CHECKOUT_ENABLED`, `BILLING_STRIPE_WEBHOOKS_ENABLED` e `BILLING_STRIPE_REVENUE_IMPORT_ENABLED` permanecem `false`.
+- O segredo de assinatura de webhook Stripe ainda nao foi fornecido.
+- A imagem enviada pelo owner mostrava area restrita/teste do Stripe enquanto as chaves coladas eram live; confirmar modo/conta antes de qualquer superficie publica.
+
+Gate antes de qualquer ativacao:
+
+- conta Stripe correta e modo live confirmados;
+- KYC, termos, impostos, perfil de recebimento e banco aprovados;
+- produtos/precos oficiais e politica publica de doacao/servico/cancelamento/reembolso definidos;
+- checkout hospedado oficial, webhooks assinados/idempotentes, fixtures oficiais e rollback implementados;
+- aprovacao humana explicita por canal/plano antes de publicar qualquer URL, botao, widget, checkout ou payment link real.
+
+## Pagar.me evaluation - 2026-07-02
+
+O owner forneceu credenciais Pagar.me para inventario local em `docs/credentials/credentials.local.md`. Essas credenciais nao foram versionadas e nao ativam checkout, link de pagamento, webhook, doacao real, cobranca, assinatura, invoice, refund, imposto ou entitlement pago.
+
+Estado tecnico atual:
+
+- `@supersites/billing`, seeders e readiness autenticado ainda suportam somente `stripe`, `mercado_pago` e `paddle`.
+- `pagarme` deve ser adicionado como provider separado antes de qualquer uso operacional.
+- O primeiro uso recomendado e link de pagamento hospedado para doacao pontual ou servico personalizado, sem coletar dados de cartao no SuperSites.
+- Para vendas internacionais amplas, Pagar.me deve ser tratado como canal BRL/Brasil primeiro. Stripe/Paddle continuam candidatos para checkout global/multimoeda, especialmente quando imposto internacional, VAT/GST, MoR ou moedas locais forem relevantes.
+
+Gate antes de qualquer ativacao:
+
+- conta/beneficiario aprovados;
+- KYC, termos, impostos e perfil de recebimento confirmados por humano;
+- secrets em cofre/ambiente, nao no repositorio;
+- politica publica de doacao/servico, reembolso/cancelamento quando aplicavel e suporte revisados;
+- provider adapter, webhooks assinados/idempotentes e rollback implementados;
+- aprovacao humana explicita por canal/plano antes de publicar qualquer URL, botao, widget, QR/PIX, checkout ou payment link real.
+
 ## Recursos obrigatorios
 
 - Produtos, planos e precos.

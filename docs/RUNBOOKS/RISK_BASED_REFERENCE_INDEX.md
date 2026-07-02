@@ -29,6 +29,7 @@ Use este indice somente quando a etapa tocar o tema indicado. Nao e leitura obri
 - AdSense: `docs/ADSENSE_PLAYBOOK.md`
 - Analytics: `docs/ANALYTICS.md`
 - Billing: `docs/BILLING.md`
+- Roadmap suporte/doacao/billing real: `docs/ROADMAP_FASE_24_MONETIZACAO_SUPORTE_BILLING.md`
 - Acoes humanas: `docs/HUMAN_ACTION_REQUIRED.md`
 
 ## Deploy e desenvolvimento local
