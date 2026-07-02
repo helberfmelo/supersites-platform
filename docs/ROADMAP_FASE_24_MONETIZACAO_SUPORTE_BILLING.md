@@ -25,6 +25,8 @@ O SuperSites ainda nao tem:
 As credenciais Pagar.me fornecidas pelo owner foram registradas somente no inventario local ignorado `docs/credentials/credentials.local.md`. Segredos reais nao devem aparecer neste roadmap nem em qualquer doc versionado.
 As credenciais Stripe live fornecidas pelo owner em 2026-07-02 tambem foram registradas no inventario local ignorado e preparadas como secrets de ambiente, mas checkout, webhooks live, revenue import, doacao real e entitlements pagos continuam desligados por flags.
 
+Status em 2026-07-02: a fundacao de Checkout hospedado Stripe foi implementada no Control Plane para doacao, plano pago e servico personalizado, mas permanece fail-closed em producao tecnica. Nenhum botao/link publico real foi ativado.
+
 ## Decisao operacional proposta
 
 Usar dois trilhos:
@@ -86,6 +88,8 @@ Aceite:
 
 Objetivo: publicar doacao pontual com minimo risco, sem conta de usuario e sem armazenar pagamento no SuperSites.
 
+Status tecnico: endpoint Stripe criado e testado para doacao por valores permitidos em catalogo. Publicacao real ainda depende de flags, readiness do canal, politicas e aprovacao humana.
+
 Sprints:
 
 1. Escolher provider/canal aprovado: Pagar.me payment link/checkout hospedado para BRL ou provider global alternativo.
@@ -122,6 +126,8 @@ Aceite:
 ## Etapa 24.5 - Upgrades pagos self-service
 
 Objetivo: ativar planos pagos somente quando o produto tiver valor claro e entitlements prontos.
+
+Status tecnico: endpoint Stripe criado e testado para plano pago quando `billing_plans.provider_price_reference` tiver Stripe Price oficial e todos os gates do provider estiverem prontos. A mutacao de entitlement por pagamento ainda nao esta ativa.
 
 Sprints:
 

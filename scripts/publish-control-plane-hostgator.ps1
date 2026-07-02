@@ -23,6 +23,11 @@ param(
     [string]$StripePublishableKey = $env:SUPERSITES_STRIPE_PUBLISHABLE_KEY,
     [string]$StripeSecretKey = $env:SUPERSITES_STRIPE_SECRET_KEY,
     [string]$StripeWebhookSecret = $env:SUPERSITES_STRIPE_WEBHOOK_SECRET,
+    [string]$StripeDonationsEnabled = $env:SUPERSITES_BILLING_STRIPE_DONATIONS_ENABLED,
+    [string]$StripeServiceCheckoutEnabled = $env:SUPERSITES_BILLING_STRIPE_SERVICE_CHECKOUT_ENABLED,
+    [string]$StripeAllowedDonationAmountsUsd = $env:SUPERSITES_BILLING_STRIPE_ALLOWED_DONATION_AMOUNTS_USD,
+    [string]$StripeAllowedDonationAmountsBrl = $env:SUPERSITES_BILLING_STRIPE_ALLOWED_DONATION_AMOUNTS_BRL,
+    [string]$StripeAllowedDonationAmountsEur = $env:SUPERSITES_BILLING_STRIPE_ALLOWED_DONATION_AMOUNTS_EUR,
     [switch]$EnableDiagnostics
 )
 
@@ -373,6 +378,11 @@ function New-ControlPlaneEnvContent {
     $dbPass = Get-RequiredSetting -Name "SUPERSITES_CONTROL_PLANE_DB_PASSWORD" -Value $DatabasePassword
     $dbHost = if ($DatabaseHost) { $DatabaseHost } else { "localhost" }
     $dbPort = if ($DatabasePort) { $DatabasePort } else { "3306" }
+    $stripeDonationsEnabledValue = if ($StripeDonationsEnabled) { $StripeDonationsEnabled } else { "false" }
+    $stripeServiceCheckoutEnabledValue = if ($StripeServiceCheckoutEnabled) { $StripeServiceCheckoutEnabled } else { "false" }
+    $stripeAllowedDonationAmountsUsdValue = if ($StripeAllowedDonationAmountsUsd) { $StripeAllowedDonationAmountsUsd } else { "500,1000,2500,5000" }
+    $stripeAllowedDonationAmountsBrlValue = if ($StripeAllowedDonationAmountsBrl) { $StripeAllowedDonationAmountsBrl } else { "1000,2500,5000,10000" }
+    $stripeAllowedDonationAmountsEurValue = if ($StripeAllowedDonationAmountsEur) { $StripeAllowedDonationAmountsEur } else { "500,1000,2500,5000" }
 
     $settings = [ordered]@{
         APP_NAME = "SuperSites Control Plane"
@@ -414,11 +424,21 @@ function New-ControlPlaneEnvContent {
         STRIPE_PUBLISHABLE_KEY = $StripePublishableKey
         STRIPE_SECRET_KEY = $StripeSecretKey
         STRIPE_WEBHOOK_SECRET = $StripeWebhookSecret
+        STRIPE_CHECKOUT_SESSIONS_ENDPOINT = "https://api.stripe.com/v1/checkout/sessions"
         BILLING_PROVIDER_ACTIVATION = "false"
         BILLING_CHECKOUT_ENABLED = "false"
+        BILLING_CHECKOUT_RETURN_BASE_URL = "https://opentshost.com"
         BILLING_STRIPE_CHECKOUT_ENABLED = "false"
+        BILLING_STRIPE_DONATIONS_ENABLED = $stripeDonationsEnabledValue
+        BILLING_STRIPE_SERVICE_CHECKOUT_ENABLED = $stripeServiceCheckoutEnabledValue
         BILLING_STRIPE_WEBHOOKS_ENABLED = "false"
         BILLING_STRIPE_REVENUE_IMPORT_ENABLED = "false"
+        BILLING_STRIPE_ALLOWED_DONATION_AMOUNTS_USD = $stripeAllowedDonationAmountsUsdValue
+        BILLING_STRIPE_ALLOWED_DONATION_AMOUNTS_BRL = $stripeAllowedDonationAmountsBrlValue
+        BILLING_STRIPE_ALLOWED_DONATION_AMOUNTS_EUR = $stripeAllowedDonationAmountsEurValue
+        BILLING_STRIPE_CUSTOM_SERVICE_DEPOSIT_ENABLED = "false"
+        BILLING_STRIPE_CUSTOM_SERVICE_DEPOSIT_AMOUNT_MINOR = "10000"
+        BILLING_STRIPE_CUSTOM_SERVICE_DEPOSIT_CURRENCY = "USD"
         BILLING_WEBHOOK_DRY_RUN_ENABLED = "false"
         BILLING_WEBHOOK_REPLAY_WINDOW_SECONDS = "300"
         BILLING_WEBHOOK_MAX_PAYLOAD_BYTES = "65536"

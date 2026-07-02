@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import {
   buildBillingPlan,
+  decideBillingCheckout,
   decideBillingWebhook,
   normalizeBillingProvider,
   normalizeProviderPriceReference,
@@ -260,5 +261,96 @@ describe('billing foundation contracts', () => {
     expect(decision.accepted).toBe(true)
     expect(decision.idempotencyKey).toBe('paddle:evt_abc')
     expect(decision.processingStatus).toBe('accepted')
+  })
+
+  it('keeps hosted checkout disabled when gates are missing', () => {
+    const decision = decideBillingCheckout({
+      provider: 'stripe',
+      kind: 'donation',
+      amountMinor: 1000,
+      allowedAmountsMinor: [500, 1000],
+      checkoutFeatureEnabled: false,
+      providerCheckoutEnabled: false,
+      donationFeatureEnabled: false,
+      supportChannelReady: false,
+    })
+
+    expect(decision.canCreateSession).toBe(false)
+    expect(decision.reasons).toContain('billing_checkout_disabled')
+    expect(decision.reasons).toContain('provider_gate_blocks_checkout')
+    expect(decision.reasons).toContain('donation_channel_not_ready')
+  })
+
+  it('allows a donation checkout decision only when every gate is ready', () => {
+    const gate = resolveBillingProviderGate({
+      provider: 'stripe',
+      accountApproved: true,
+      kycApproved: true,
+      termsAccepted: true,
+      taxProfileApproved: true,
+      paymentProfileApproved: true,
+      providerTermsReviewed: true,
+      countrySupported: true,
+      currencySupported: true,
+      apiKeyConfigured: true,
+      webhookSecretConfigured: true,
+      webhookEndpointApproved: true,
+      checkoutEnabledByHuman: true,
+    })
+
+    const decision = decideBillingCheckout({
+      provider: 'stripe',
+      kind: 'donation',
+      providerGate: gate,
+      amountMinor: 1000,
+      allowedAmountsMinor: [500, 1000],
+      checkoutFeatureEnabled: true,
+      providerCheckoutEnabled: true,
+      donationFeatureEnabled: true,
+      supportChannelReady: true,
+    })
+
+    expect(decision.canCreateSession).toBe(true)
+    expect(decision.reasons).toEqual([])
+  })
+
+  it('requires paid plan provider price references before checkout', () => {
+    const gate = resolveBillingProviderGate({
+      provider: 'stripe',
+      accountApproved: true,
+      kycApproved: true,
+      termsAccepted: true,
+      taxProfileApproved: true,
+      paymentProfileApproved: true,
+      providerTermsReviewed: true,
+      countrySupported: true,
+      currencySupported: true,
+      apiKeyConfigured: true,
+      webhookSecretConfigured: true,
+      webhookEndpointApproved: true,
+      checkoutEnabledByHuman: true,
+    })
+    const plan = buildBillingPlan({
+      slug: 'monitoring-pro',
+      name: 'Monitoring Pro',
+      siteSlug: 'netprobe-atlas',
+      kind: 'subscription',
+      amountMinor: 1900,
+      currency: 'usd',
+      provider: 'stripe',
+      checkoutEnabled: true,
+    }, gate)
+
+    const decision = decideBillingCheckout({
+      provider: 'stripe',
+      kind: 'plan',
+      providerGate: gate,
+      plan,
+      checkoutFeatureEnabled: true,
+      providerCheckoutEnabled: true,
+    })
+
+    expect(decision.canCreateSession).toBe(false)
+    expect(decision.reasons).toContain('provider_price_reference_not_configured')
   })
 })

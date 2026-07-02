@@ -16,6 +16,38 @@ Estado tecnico atual:
 - O segredo de assinatura de webhook Stripe ainda nao foi fornecido.
 - A imagem enviada pelo owner mostrava area restrita/teste do Stripe enquanto as chaves coladas eram live; confirmar modo/conta antes de qualquer superficie publica.
 
+## Stripe hosted checkout foundation - 2026-07-02
+
+A API `POST /api/v1/billing/stripe/checkout-sessions` prepara Checkout hospedado da Stripe para tres usos futuros:
+
+- `donation`: apoio/doacao por valores permitidos em catalogo.
+- `plan`: plano pago com `billing_plans.provider_price_reference` apontando para Stripe Price oficial.
+- `service`: deposito/servico personalizado definido em catalogo operacional.
+
+Regras atuais:
+
+- O endpoint e publico para suportar doacoes, mas tem throttle, aceita somente `site_slug`, `kind`, `locale`, `return_path` interno, valores/catalogo permitidos e slugs seguros.
+- A API nao armazena cartao; cartao fica na superficie hospedada Stripe.
+- URLs de retorno externas sao rejeitadas e substituidas por rota `/supersites/...` segura.
+- Sessoes criadas gravam somente ledger local limitado em `billing_checkout_sessions`: provider, site, tipo, modo, session id, hash da URL, valor/moeda, catalog key e hashes/fingerprints operacionais.
+- O endpoint chama Stripe somente se todos os gates estiverem prontos: flags globais, provider Stripe aprovado, KYC/termos/impostos/perfil de pagamento, API key, webhook secret, endpoint aprovado, plano/canal pronto e aprovacao humana registrada.
+- Em producao tecnica atual, as flags continuam `false`; chamadas retornam `503` com motivos e `side_effects=none`.
+
+Variaveis principais:
+
+- `BILLING_PROVIDER_ACTIVATION`
+- `BILLING_CHECKOUT_ENABLED`
+- `BILLING_CHECKOUT_RETURN_BASE_URL`
+- `BILLING_STRIPE_CHECKOUT_ENABLED`
+- `BILLING_STRIPE_DONATIONS_ENABLED`
+- `BILLING_STRIPE_SERVICE_CHECKOUT_ENABLED`
+- `BILLING_STRIPE_ALLOWED_DONATION_AMOUNTS_USD`
+- `BILLING_STRIPE_ALLOWED_DONATION_AMOUNTS_BRL`
+- `BILLING_STRIPE_ALLOWED_DONATION_AMOUNTS_EUR`
+- `BILLING_STRIPE_CUSTOM_SERVICE_DEPOSIT_ENABLED`
+- `STRIPE_SECRET_KEY`
+- `STRIPE_WEBHOOK_SECRET`
+
 Gate antes de qualquer ativacao:
 
 - conta Stripe correta e modo live confirmados;

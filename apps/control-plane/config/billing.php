@@ -7,13 +7,39 @@ return [
             'publishable_key' => env('STRIPE_PUBLISHABLE_KEY'),
             'secret_key' => env('STRIPE_SECRET_KEY'),
             'webhook_secret' => env('STRIPE_WEBHOOK_SECRET'),
+            'checkout_sessions_endpoint' => env('STRIPE_CHECKOUT_SESSIONS_ENDPOINT', 'https://api.stripe.com/v1/checkout/sessions'),
             'checkout_enabled' => env('BILLING_STRIPE_CHECKOUT_ENABLED', false),
+            'donations_enabled' => env('BILLING_STRIPE_DONATIONS_ENABLED', false),
+            'service_checkout_enabled' => env('BILLING_STRIPE_SERVICE_CHECKOUT_ENABLED', false),
             'webhooks_enabled' => env('BILLING_STRIPE_WEBHOOKS_ENABLED', false),
             'revenue_import_enabled' => env('BILLING_STRIPE_REVENUE_IMPORT_ENABLED', false),
+            'allowed_donation_amounts' => [
+                'USD' => array_values(array_filter(array_map(
+                    'intval',
+                    explode(',', env('BILLING_STRIPE_ALLOWED_DONATION_AMOUNTS_USD', '500,1000,2500,5000')),
+                ), fn (int $amount): bool => $amount > 0)),
+                'BRL' => array_values(array_filter(array_map(
+                    'intval',
+                    explode(',', env('BILLING_STRIPE_ALLOWED_DONATION_AMOUNTS_BRL', '1000,2500,5000,10000')),
+                ), fn (int $amount): bool => $amount > 0)),
+                'EUR' => array_values(array_filter(array_map(
+                    'intval',
+                    explode(',', env('BILLING_STRIPE_ALLOWED_DONATION_AMOUNTS_EUR', '500,1000,2500,5000')),
+                ), fn (int $amount): bool => $amount > 0)),
+            ],
+            'service_catalog' => [
+                'custom-service-deposit' => [
+                    'name' => 'SuperSites custom service deposit',
+                    'amount_minor' => (int) env('BILLING_STRIPE_CUSTOM_SERVICE_DEPOSIT_AMOUNT_MINOR', 10000),
+                    'currency' => env('BILLING_STRIPE_CUSTOM_SERVICE_DEPOSIT_CURRENCY', 'USD'),
+                    'enabled' => env('BILLING_STRIPE_CUSTOM_SERVICE_DEPOSIT_ENABLED', false),
+                ],
+            ],
         ],
     ],
 
     'checkout_enabled' => env('BILLING_CHECKOUT_ENABLED', false),
+    'checkout_return_base_url' => env('BILLING_CHECKOUT_RETURN_BASE_URL', env('APP_URL')),
     'provider_activation_enabled' => env('BILLING_PROVIDER_ACTIVATION', false),
 
     'webhooks' => [

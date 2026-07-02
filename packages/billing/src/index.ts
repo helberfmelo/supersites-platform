@@ -10,6 +10,8 @@ export type BillingPlanInterval = 'month' | 'year' | 'one_time'
 
 export type BillingPlanKind = 'free_preview' | 'subscription' | 'metered' | 'one_time'
 
+export type BillingCheckoutKind = 'donation' | 'plan' | 'service'
+
 export type BillingEntitlementValue = boolean | number | string
 
 export interface BillingProviderGateInput {
@@ -82,6 +84,28 @@ export interface BillingWebhookDecision {
   accepted: boolean
   idempotencyKey: string | null
   processingStatus: 'accepted' | 'rejected'
+  reasons: string[]
+}
+
+export interface BillingCheckoutDecisionInput {
+  provider: string
+  kind: string
+  providerGate?: BillingProviderGate | null
+  plan?: BillingPlan | null
+  supportChannelReady?: boolean
+  checkoutFeatureEnabled?: boolean
+  providerCheckoutEnabled?: boolean
+  donationFeatureEnabled?: boolean
+  serviceCheckoutEnabled?: boolean
+  amountMinor?: number | null
+  allowedAmountsMinor?: number[] | null
+}
+
+export interface BillingCheckoutDecision {
+  contractVersion: string
+  provider: BillingProvider | null
+  kind: BillingCheckoutKind | null
+  canCreateSession: boolean
   reasons: string[]
 }
 
@@ -286,6 +310,79 @@ export function decideBillingWebhook(input: BillingWebhookDecisionInput): Billin
   }
 }
 
+export function decideBillingCheckout(input: BillingCheckoutDecisionInput): BillingCheckoutDecision {
+  const provider = normalizeBillingProvider(input.provider)
+  const kind = normalizeCheckoutKind(input.kind)
+  const reasons: string[] = []
+
+  if (!provider) {
+    reasons.push('unsupported_provider')
+  }
+
+  if (!kind) {
+    reasons.push('unsupported_checkout_kind')
+  }
+
+  if (!input.checkoutFeatureEnabled) {
+    reasons.push('billing_checkout_disabled')
+  }
+
+  if (!input.providerCheckoutEnabled) {
+    reasons.push('provider_checkout_disabled')
+  }
+
+  if (input.providerGate?.canCreateCheckout !== true) {
+    reasons.push('provider_gate_blocks_checkout')
+  }
+
+  if (kind === 'donation') {
+    const amount = normalizeAmount(input.amountMinor)
+    const allowedAmounts = (input.allowedAmountsMinor ?? []).map((value) => normalizeAmount(value))
+
+    if (!input.donationFeatureEnabled) {
+      reasons.push('donation_checkout_disabled')
+    }
+
+    if (!input.supportChannelReady) {
+      reasons.push('donation_channel_not_ready')
+    }
+
+    if (!allowedAmounts.includes(amount)) {
+      reasons.push('donation_amount_not_allowed')
+    }
+  }
+
+  if (kind === 'plan') {
+    if (!input.plan) {
+      reasons.push('billing_plan_not_found')
+    } else {
+      if (input.plan.kind === 'free_preview') {
+        reasons.push('free_preview_plan_has_no_checkout')
+      }
+
+      if (!input.plan.checkoutEnabled) {
+        reasons.push('billing_plan_checkout_disabled')
+      }
+
+      if (!input.plan.providerPriceId) {
+        reasons.push('provider_price_reference_not_configured')
+      }
+    }
+  }
+
+  if (kind === 'service' && !input.serviceCheckoutEnabled) {
+    reasons.push('service_checkout_disabled')
+  }
+
+  return {
+    contractVersion: billingContractVersion,
+    provider,
+    kind,
+    canCreateSession: reasons.length === 0,
+    reasons: Array.from(new Set(reasons)),
+  }
+}
+
 export function resolveBillingQuota(input: BillingQuotaDecisionInput): BillingQuotaDecision {
   const entitlementCode = normalizeSlug(input.entitlementCode, '')
   const fallbackLimit = clampInteger(input.fallbackLimit, 0, 0, 1_000_000)
@@ -322,6 +419,14 @@ export function resolveBillingQuota(input: BillingQuotaDecisionInput): BillingQu
     source,
     reasons: Array.from(new Set(reasons)),
   }
+}
+
+function normalizeCheckoutKind(value: string | null | undefined): BillingCheckoutKind | null {
+  const normalized = String(value ?? '').trim().toLowerCase()
+
+  return normalized === 'donation' || normalized === 'plan' || normalized === 'service'
+    ? normalized
+    : null
 }
 
 function normalizeSlug(value: string, fallback: string): string {

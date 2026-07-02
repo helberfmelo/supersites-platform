@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\V1\Account\AccountExportController;
 use App\Http\Controllers\Api\V1\AdSense\AdSenseGoLiveReadinessController;
 use App\Http\Controllers\Api\V1\Billing\BillingProviderGoLiveReadinessController;
 use App\Http\Controllers\Api\V1\Billing\BillingWebhookDryRunController;
+use App\Http\Controllers\Api\V1\Billing\StripeCheckoutSessionController;
 use App\Http\Controllers\Api\V1\CurrentUserController;
 use App\Http\Controllers\Api\V1\Google\GoogleProviderGoLiveReadinessController;
 use App\Http\Controllers\Api\V1\Growth\GrowthAutomationReadinessController;
@@ -41,6 +42,9 @@ Route::prefix('v1')->group(function (): void {
 
     Route::post('/billing/webhooks/{provider}', BillingWebhookDryRunController::class)
         ->middleware('throttle:20,1');
+
+    Route::post('/billing/stripe/checkout-sessions', StripeCheckoutSessionController::class)
+        ->middleware('throttle:10,1');
 
     Route::prefix('netprobe')
         ->middleware('throttle:netprobe-public')
