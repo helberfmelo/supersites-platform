@@ -149,7 +149,7 @@ useHead({
         <p class="lead">{{ copy.description }}</p>
       </div>
 
-      <aside class="status-panel" :aria-label="copy.updatedLabel">
+      <aside class="status-panel" :aria-label="copy.navLabel">
         <div class="status-panel__row">
           <div>
             <strong>{{ copy.zoneLabel }}</strong>

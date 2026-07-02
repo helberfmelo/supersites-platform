@@ -707,8 +707,8 @@ useHead({
         </section>
       </div>
 
-      <aside class="band" :aria-label="copy.reviewedLabel">
-        <h2>{{ copy.reviewedLabel }}</h2>
+      <aside class="band" :aria-label="shellCopy.methodologyLabel">
+        <h2>{{ shellCopy.methodologyLabel }}</h2>
         <p>{{ shellCopy.contentQualityBody }}</p>
         <h3>{{ shellCopy.supportTitle }}</h3>
         <p>{{ shellCopy.supportBody }}</p>

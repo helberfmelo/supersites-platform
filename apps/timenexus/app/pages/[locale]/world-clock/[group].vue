@@ -68,16 +68,6 @@ useHead({
         <h1 :id="`${plannerPage.slug}-title`">{{ copy.title }}</h1>
         <p class="lead">{{ copy.description }}</p>
       </div>
-
-      <aside class="status-panel" :aria-label="copy.updatedLabel">
-        <div class="status-panel__row">
-          <div>
-            <strong>{{ copy.updatedLabel }}</strong>
-            <span>{{ shellCopy.contentQualityBody }}</span>
-          </div>
-          <span class="signal" aria-hidden="true"></span>
-        </div>
-      </aside>
     </section>
 
     <TimeNexusPlanner :locale="locale" :initial-group="plannerPage.slug" />

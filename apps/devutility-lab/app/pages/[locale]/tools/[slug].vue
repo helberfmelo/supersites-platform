@@ -1088,8 +1088,8 @@ useHead({
         </section>
       </div>
 
-      <aside class="band" :aria-label="copy.reviewedLabel">
-        <h2>{{ copy.reviewedLabel }}</h2>
+      <aside class="band" :aria-label="shellCopy.methodologyLabel">
+        <h2>{{ shellCopy.methodologyLabel }}</h2>
         <p>{{ shellCopy.contentQualityBody }}</p>
         <div class="inline-link-list">
           <NuxtLink :to="localizedContentPath(locale, 'methodology')">
