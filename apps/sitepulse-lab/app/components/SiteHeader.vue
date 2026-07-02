@@ -13,7 +13,7 @@ const languagePathFactory = computed(() => props.pathForLocale ?? localizedHomeP
 <template>
   <header class="site-header">
     <NuxtLink class="brand-link" :to="localizedHomePath(locale)">
-      <span class="brand-mark" aria-hidden="true">MH</span>
+      <span class="brand-mark" aria-hidden="true">SP</span>
       <span>SitePulse Lab</span>
     </NuxtLink>
     <LanguageNav :current-locale="locale" :path-for-locale="languagePathFactory" />

@@ -132,7 +132,7 @@ a:focus-visible {
 .hero,
 .studio-entry {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 390px);
+  grid-template-columns: minmax(0, 920px);
   gap: 28px;
   align-items: end;
   padding: 26px 0 34px;
@@ -514,7 +514,7 @@ h3 {
 
 .content-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+  grid-template-columns: minmax(0, 1fr);
   gap: 24px;
   align-items: start;
   margin-top: 24px;
@@ -1030,7 +1030,7 @@ h3 {
   border-top: 1px solid #d8e0e1;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1180px) {
   .tool-grid,
   .tool-sidebar {
     grid-template-columns: repeat(2, minmax(0, 1fr));

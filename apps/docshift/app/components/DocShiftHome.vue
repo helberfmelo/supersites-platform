@@ -89,16 +89,6 @@ useHead(() => ({
         <h1 id="docshift-title">{{ copy.title }}</h1>
         <p class="lead">{{ copy.lead }}</p>
       </div>
-
-      <aside class="status-panel" aria-label="DocShift status">
-        <div v-for="row in copy.statusRows" :key="row.title" class="status-panel__row">
-          <div>
-            <strong>{{ row.title }}</strong>
-            <span>{{ row.body }}</span>
-          </div>
-          <span :class="['signal', row.tone === 'amber' ? 'signal--amber' : '']" aria-hidden="true"></span>
-        </div>
-      </aside>
     </section>
 
     <DocShiftWorkbench :locale="locale" initial-slug="pdf-merge" />

@@ -6,12 +6,25 @@ defineProps<{
   locale: LocaleCode
   currentSlug?: ContentPageSlug
 }>()
+
+const superSitesHomeLabels: Record<LocaleCode, string> = {
+  en: 'SuperSites home',
+  'pt-br': 'Inicio SuperSites',
+  es: 'Inicio SuperSites',
+  fr: 'Accueil SuperSites',
+  de: 'SuperSites Start',
+}
+
+function superSitesHomePath(locale: LocaleCode): string {
+  return `/supersites/${locale}`
+}
 </script>
 
 <template>
   <footer class="page-footer">
     <NuxtLink class="page-footer__brand" :to="`/${locale}`">CalcHarbor</NuxtLink>
     <nav class="page-footer__links" aria-label="Legal and editorial pages">
+      <a :href="superSitesHomePath(locale)">{{ superSitesHomeLabels[locale] }}</a>
       <NuxtLink
         v-for="page in contentPageCatalog"
         :key="page.slug"

@@ -147,24 +147,17 @@ useHead({
         <p class="eyebrow">{{ copy.eyebrow }}</p>
         <h1 :id="`${cityPage.slug}-title`">{{ copy.title }}</h1>
         <p class="lead">{{ copy.description }}</p>
+        <dl class="hero-facts" :aria-label="copy.navLabel">
+          <div>
+            <dt>{{ copy.zoneLabel }}</dt>
+            <dd>{{ cityPage.timeZone }}</dd>
+          </div>
+          <div>
+            <dt>{{ copy.countryLabel }}</dt>
+            <dd>{{ cityPage.country }}</dd>
+          </div>
+        </dl>
       </div>
-
-      <aside class="status-panel" :aria-label="copy.navLabel">
-        <div class="status-panel__row">
-          <div>
-            <strong>{{ copy.zoneLabel }}</strong>
-            <span>{{ cityPage.timeZone }}</span>
-          </div>
-          <span class="signal" aria-hidden="true"></span>
-        </div>
-        <div class="status-panel__row">
-          <div>
-            <strong>{{ copy.countryLabel }}</strong>
-            <span>{{ cityPage.country }}</span>
-          </div>
-          <span class="signal signal--amber" aria-hidden="true"></span>
-        </div>
-      </aside>
     </section>
 
     <TimeNexusPlanner :locale="locale" :initial-group="cityPage.primaryGroup" />

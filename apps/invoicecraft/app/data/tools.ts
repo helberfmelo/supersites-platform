@@ -296,6 +296,41 @@ const specs: InvoiceCraftToolSpec[] = [
   },
 ]
 
+const localizedSpecOverrides: Partial<Record<LocaleCode, Partial<Record<InvoiceCraftToolSlug, Partial<InvoiceCraftToolSpec>>>>> = {
+  'pt-br': {
+    'invoice-builder': {
+      title: 'Construtor de faturas',
+      shortName: 'Fatura',
+      headline: 'Crie uma previa de fatura e baixe o PDF no navegador sem cadastro obrigatorio.',
+      description: 'Preencha emissor, cliente, itens, datas, desconto e uma linha manual de imposto ou ajuste. O InvoiceCraft calcula tudo localmente.',
+      freeScope: 'Uma fatura por vez, preview local, download de PDF local e nenhum cadastro de cliente ou produto salvo.',
+      upgradeScope: 'Clientes salvos, catalogo de produtos, recorrencia, branding, revisao em equipe, links de pagamento e automacao.',
+      useCase: 'Use a fatura depois que o trabalho foi entregue ou esta pronto para cobranca, quando o cliente precisa de itens, vencimento e termos de pagamento.',
+      bestPractice: 'Confira numero do documento, datas, cliente, itens e rotulo de imposto ou ajuste antes de baixar o PDF.',
+    },
+    'quote-builder': {
+      title: 'Construtor de orcamentos',
+      shortName: 'Orcamento',
+      headline: 'Prepare um orcamento com itens, totais e exportacao local em PDF.',
+      description: 'Use o construtor para estimativas pontuais quando o cliente precisa de escopo, itens e total antes da aprovacao.',
+      freeScope: 'Um orcamento por vez, com calculo local, preview e download de PDF.',
+      upgradeScope: 'Produtos reutilizaveis, aprovacao, lembretes de validade, templates com marca, exportacao para CRM e colaboracao.',
+      useCase: 'Use um orcamento antes do trabalho comecar, quando o comprador precisa aprovar escopo, preco e validade.',
+      bestPractice: 'Deixe validade e premissas explicitas; aceite, impostos e pagamentos devem ser tratados fora do gerador gratuito.',
+    },
+    'receipt-builder': {
+      title: 'Construtor de recibos',
+      shortName: 'Recibo',
+      headline: 'Crie um recibo simples com data de pagamento, itens e PDF local.',
+      description: 'Gere um recibo depois que o pagamento ja aconteceu. O gerador gratuito nao cobra nem salva historico.',
+      freeScope: 'Um recibo por vez, com preview local, exportacao PDF local e rotulo claro de pagamento.',
+      upgradeScope: 'Clientes salvos, conciliacao de pagamentos, branding, equipe, exportacoes, historico e integracoes de pagamento.',
+      useCase: 'Use um recibo depois que o pagamento foi concluido, quando a pessoa pagadora precisa de registro do que foi pago e quando.',
+      bestPractice: 'Compare a data de pagamento e o total com seus registros reais; o InvoiceCraft nao verifica liquidacao.',
+    },
+  },
+}
+
 function sections(spec: InvoiceCraftToolSpec, locale: LocaleCode): ContentSection[] {
   const base = localizedBasics[locale]
 
@@ -310,17 +345,21 @@ function sections(spec: InvoiceCraftToolSpec, locale: LocaleCode): ContentSectio
 
 function copyFor(spec: InvoiceCraftToolSpec, locale: LocaleCode): InvoiceCraftToolCopy {
   const base = localizedBasics[locale]
+  const localizedSpec = {
+    ...spec,
+    ...(localizedSpecOverrides[locale]?.[spec.slug] ?? {}),
+  }
 
   return {
-    title: spec.title,
-    shortName: spec.shortName,
-    headline: spec.headline,
-    description: spec.description,
+    title: localizedSpec.title,
+    shortName: localizedSpec.shortName,
+    headline: localizedSpec.headline,
+    description: localizedSpec.description,
     resultLabel: base.resultLabel,
-    freeScope: spec.freeScope,
-    upgradeScope: spec.upgradeScope,
+    freeScope: localizedSpec.freeScope,
+    upgradeScope: localizedSpec.upgradeScope,
     reviewedLabel: reviewed[locale],
-    contentSections: sections(spec, locale),
+    contentSections: sections(localizedSpec, locale),
     faq: [base.faqStorage, base.faqTax],
   }
 }

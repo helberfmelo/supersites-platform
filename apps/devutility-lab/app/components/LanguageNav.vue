@@ -7,6 +7,12 @@ const props = defineProps<{
 }>()
 
 const options = computed(() => buildLanguageOptions(props.currentLocale, props.pathForLocale))
+
+function rememberLocale(locale: LocaleCode): void {
+  if (import.meta.client) {
+    window.localStorage.setItem('supersites.preferredLocale', locale)
+  }
+}
 </script>
 
 <template>
@@ -16,6 +22,7 @@ const options = computed(() => buildLanguageOptions(props.currentLocale, props.p
       :key="option.code"
       :to="option.href"
       :aria-current="option.current ? 'page' : undefined"
+      @click="rememberLocale(option.code)"
     >
       {{ option.shortLabel }}
     </NuxtLink>

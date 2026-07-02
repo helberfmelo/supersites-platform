@@ -147,16 +147,6 @@ useHead(() => ({
         <h1 id="calcharbor-title">{{ copy.title }}</h1>
         <p class="lead">{{ copy.lead }}</p>
       </div>
-
-      <aside class="status-panel" aria-label="CalcHarbor status">
-        <div v-for="row in copy.statusRows" :key="row.title" class="status-panel__row">
-          <div>
-            <strong>{{ row.title }}</strong>
-            <span>{{ row.body }}</span>
-          </div>
-          <span :class="['signal', row.tone === 'amber' ? 'signal--amber' : '']" aria-hidden="true"></span>
-        </div>
-      </aside>
     </section>
 
     <section class="controls" aria-label="Calculator controls">

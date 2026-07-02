@@ -126,7 +126,7 @@ a:focus-visible {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 390px);
+  grid-template-columns: minmax(0, 920px);
   gap: 28px;
   align-items: end;
   padding: 26px 0 34px;
@@ -202,6 +202,34 @@ h3 {
   margin-bottom: 0;
   color: #475c5d;
   font-size: 1.04rem;
+}
+
+.hero-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 0;
+}
+
+.hero-facts div {
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid #cbd8d2;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.hero-facts dt {
+  color: #607069;
+  font-size: 0.74rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.hero-facts dd {
+  margin: 2px 0 0;
+  color: #25332d;
+  font-weight: 850;
 }
 
 .status-panel,
@@ -793,7 +821,7 @@ h3 {
 .tool-layout,
 .content-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+  grid-template-columns: minmax(0, 1fr);
   gap: 24px;
   align-items: start;
   margin-top: 24px;

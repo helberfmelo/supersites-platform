@@ -3768,7 +3768,7 @@ h3 {
 
 .detail-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+  grid-template-columns: minmax(0, 1fr);
   gap: 24px;
   align-items: start;
   margin-top: 24px;

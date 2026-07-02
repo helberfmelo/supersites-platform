@@ -108,9 +108,9 @@ const localizedCategoryLabels: Record<LocaleCode, Record<ToolCategory, string>> 
   'pt-br': {
     availability: 'Disponibilidade',
     routing: 'Redirecionamentos',
-    security: 'Headers',
+    security: 'Cabecalhos',
     crawlability: 'Rastreamento',
-    performance: 'Performance',
+    performance: 'Desempenho',
   },
   es: {
     availability: 'Disponibilidad',
@@ -200,7 +200,7 @@ const localizedCheckNames: Record<LocaleCode, Record<SitePulseCheck, string>> = 
   'pt-br': {
     status: 'status HTTP',
     redirects: 'redirecionamentos',
-    headers: 'headers',
+    headers: 'cabecalhos de seguranca',
     robots: 'robots.txt',
     sitemap: 'sitemap',
     ttfb: 'TTFB',
@@ -238,23 +238,23 @@ const localizedCheckNames: Record<LocaleCode, Record<SitePulseCheck, string>> = 
 const localizedSitePulseCopy = {
   'pt-br': {
     inputLabel: 'URL do site',
-    statusLabel: 'Probe pontual',
+    statusLabel: 'Verificacao pontual',
     headline: (name: string) => `Teste ${name} de uma pagina publica com limites antiabuso claros.`,
     description: (name: string) => `Informe uma URL publica para executar um teste pontual de ${name} sem salvar o alvo.`,
     previewResult: (name: string) => `O resultado resume ${name}, achados principais e detalhes tecnicos limitados.`,
     freeScope: (name: string) => `Um teste pontual de ${name} para uma URL publica.`,
-    upgradeScope: 'Uptime, incidentes, status page, alertas, historico e multi-regiao continuam como fluxos de conta.',
+    upgradeScope: 'Uptime, incidentes, pagina de status, alertas, historico e multi-regiao continuam como recursos de conta.',
     methodology: (name: string) => [
-      `SitePulse executa uma unica probe de ${name}, com timeout curto, rate limit e validacao SSRF.`,
+      `SitePulse executa uma unica verificacao de ${name}, com timeout curto, limite de taxa e validacao SSRF.`,
       'Use o resultado como linha de base antes de abrir incidente, alterar CDN ou mudar regras de servidor.',
-      'A versao gratuita nao salva URL, headers, redirects, timings ou historico.',
+      'A versao gratuita nao salva URL, cabecalhos, redirecionamentos, tempos ou historico.',
     ],
     interpret: 'Priorize falhas que afetem disponibilidade, rastreabilidade, seguranca ou latencia percebida.',
     example: 'Exemplo: teste https://example.com antes e depois de uma mudanca de DNS, CDN ou configuracao.',
-    commonIssue: 'Problemas comuns incluem redirects em cadeia, robots restritivo, sitemap antigo, headers ausentes e TTFB alto.',
+    commonIssue: 'Problemas comuns incluem redirecionamentos em cadeia, robots restritivo, sitemap antigo, cabecalhos ausentes e TTFB alto.',
     fix: 'Corrija na origem ou CDN, aguarde propagacao quando houver cache e execute novo teste pontual.',
     faq: [
-      { question: 'O SitePulse salva a URL testada?', answer: 'Nao. A rota gratuita evita armazenar URL, headers, redirects, tempos e resultados.' },
+      { question: 'O SitePulse salva a URL testada?', answer: 'Nao. A rota gratuita evita armazenar URL, cabecalhos, redirecionamentos, tempos e resultados.' },
       { question: 'Isto substitui monitoramento de uptime?', answer: 'Nao nesta versao gratuita. Uptime, alertas, historico e multi-regiao pertencem aos fluxos de conta.' },
     ],
   },

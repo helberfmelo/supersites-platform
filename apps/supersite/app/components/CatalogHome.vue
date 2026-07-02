@@ -86,6 +86,10 @@ const intentClusters = computed(() => copy.value.intentClusters.map((cluster) =>
     .filter((site): site is SiteSummary => Boolean(site)),
 })))
 
+function localizedPublicSiteUrl(site: SiteSummary): string {
+  return `${site.temporaryUrl}${props.locale}`
+}
+
 function trackPublicSiteClick(siteSlug: string, targetUrl: string, surface: 'catalog_card' = 'catalog_card'): void {
   trackOutboundSiteClick({
     siteSlug,
@@ -250,8 +254,8 @@ useHead(() => ({
             </NuxtLink>
             <a
               class="button-link button-link--secondary"
-              :href="site.temporaryUrl"
-              @click="trackPublicSiteClick(site.slug, site.temporaryUrl)"
+              :href="localizedPublicSiteUrl(site)"
+              @click="trackPublicSiteClick(site.slug, localizedPublicSiteUrl(site))"
             >
               {{ copy.publicCta }}
             </a>

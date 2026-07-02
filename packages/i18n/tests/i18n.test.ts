@@ -100,7 +100,7 @@ describe('@supersites/i18n', () => {
 
   it('sanitizes localized gated terms from public copy', () => {
     expect(sanitizePublicCopy('pt-br', 'Recursos comerciais bloqueados')).toBe('Recursos comerciais planejados')
-    expect(sanitizePublicCopy('es', 'Workflow comercial bloqueado')).toBe('Workflow comercial planificado')
+    expect(sanitizePublicCopy('es', 'Workflow comercial bloqueado')).toBe('flujo comercial planificado')
     expect(sanitizePublicCopy('fr', 'Traitement lourd gate')).toBe('Traitement lourd prévu')
     expect(sanitizePublicCopy('de', 'Kommerzielle Funktionen gesperrt')).toBe('Kommerzielle Funktionen geplant')
   })

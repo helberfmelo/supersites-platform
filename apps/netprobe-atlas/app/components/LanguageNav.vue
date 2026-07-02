@@ -12,6 +12,12 @@ const languageOptions = computed(() => buildLanguageOptions(props.currentLocale,
 function languageAriaLabel(locale: { label: string; shortLabel: string }): string {
   return `${locale.label} (${locale.shortLabel})`
 }
+
+function rememberLocale(locale: LocaleCode): void {
+  if (import.meta.client) {
+    window.localStorage.setItem('supersites.preferredLocale', locale)
+  }
+}
 </script>
 
 <template>
@@ -22,6 +28,7 @@ function languageAriaLabel(locale: { label: string; shortLabel: string }): strin
       :to="locale.href"
       :aria-label="languageAriaLabel(locale)"
       :aria-current="locale.current ? 'page' : undefined"
+      @click="rememberLocale(locale.code)"
     >
       {{ locale.shortLabel }}
     </NuxtLink>

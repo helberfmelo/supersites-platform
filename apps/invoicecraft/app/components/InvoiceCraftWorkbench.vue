@@ -10,6 +10,7 @@ import {
   getInvoiceCraftToolCopy,
   getRelatedInvoiceCraftTools,
   invoiceCraftToolCatalog,
+  type InvoiceCraftDocumentKind,
   type InvoiceCraftDocumentInput,
   type InvoiceCraftDocumentSummary,
   type InvoiceCraftToolMode,
@@ -359,13 +360,80 @@ const workbenchCopy: Record<LocaleCode, WorkbenchCopy> = {
 
 const labels = computed(() => workbenchCopy[props.locale])
 const shellCopy = computed(() => getShellCopy(props.locale))
+
+const modeLabels: Record<LocaleCode, Record<InvoiceCraftToolMode, string>> = {
+  en: {
+    clean: 'Clean document',
+    compact: 'Compact receipt-style',
+    service: 'Service business',
+  },
+  'pt-br': {
+    clean: 'Documento limpo',
+    compact: 'Recibo compacto',
+    service: 'Servicos',
+  },
+  es: {
+    clean: 'Documento limpio',
+    compact: 'Recibo compacto',
+    service: 'Servicios',
+  },
+  fr: {
+    clean: 'Document clair',
+    compact: 'Recu compact',
+    service: 'Services',
+  },
+  de: {
+    clean: 'Klares Dokument',
+    compact: 'Kompakter Beleg',
+    service: 'Dienstleistung',
+  },
+}
+
+const localizedSampleOverrides: Partial<Record<LocaleCode, Record<InvoiceCraftDocumentKind, Partial<InvoiceCraftDocumentInput>>>> = {
+  'pt-br': {
+    invoice: {
+      issuerName: 'Estudio Norte',
+      issuerDetails: 'Av. Paulista, 1000\nSao Paulo, SP\ncontato@example.com',
+      clientName: 'Operacoes Acme',
+      clientDetails: 'Rua das Flores, 42\nBelo Horizonte, MG\nfinanceiro@example.com',
+      currency: 'BRL',
+      terms: 'Pagamento no vencimento, salvo acordo por escrito.',
+      itemsRaw: 'Configuracao do servico | 1 | 950\nAjuste de template | 3 | 125\nReuniao de revisao | 2 | 90',
+      adjustmentLabel: 'Imposto/ajuste manual',
+      notes: 'Gerado localmente. Revise dados legais, fiscais e de pagamento antes de usar.',
+    },
+    quote: {
+      issuerName: 'Estudio Norte',
+      issuerDetails: 'Av. Paulista, 1000\nSao Paulo, SP\ncontato@example.com',
+      clientName: 'Operacoes Acme',
+      clientDetails: 'Rua das Flores, 42\nBelo Horizonte, MG\nfinanceiro@example.com',
+      currency: 'BRL',
+      terms: 'Orcamento valido por 30 dias. O trabalho comeca apos aprovacao por escrito.',
+      itemsRaw: 'Escopo inicial | 1 | 950\nAjuste de template | 3 | 125\nReuniao de revisao | 2 | 90',
+      adjustmentLabel: 'Imposto/ajuste manual',
+      notes: 'Este orcamento e informativo ate aceite por escrito.',
+    },
+    receipt: {
+      issuerName: 'Estudio Norte',
+      issuerDetails: 'Av. Paulista, 1000\nSao Paulo, SP\ncontato@example.com',
+      clientName: 'Operacoes Acme',
+      clientDetails: 'Rua das Flores, 42\nBelo Horizonte, MG\nfinanceiro@example.com',
+      currency: 'BRL',
+      terms: 'Pago integralmente. O InvoiceCraft nao processa pagamentos.',
+      itemsRaw: 'Servico entregue | 1 | 950\nAjuste de template | 3 | 125\nReuniao de revisao | 2 | 90',
+      adjustmentLabel: 'Imposto/ajuste manual',
+      notes: 'Recibo gerado apos pagamento. Mantenha registros oficiais separadamente.',
+    },
+  },
+}
+
 const activeSlug = ref<InvoiceCraftToolSlug>(props.initialSlug)
 const activeTool = computed(() => getInvoiceCraftToolBySlug(activeSlug.value) ?? invoiceCraftToolCatalog[0]!)
 const copy = computed(() => getInvoiceCraftToolCopy(activeTool.value, props.locale))
 const selectedMode = ref<InvoiceCraftToolMode>(activeTool.value.modes[0]?.value ?? 'clean')
-const form = reactive<InvoiceCraftDocumentInput>(cloneInput(activeTool.value.sample))
+const form = reactive<InvoiceCraftDocumentInput>(cloneInput(localizedSample(activeTool.value.sample, activeTool.value.kind)))
 const lineItemSequence = ref(0)
-const lineItems = ref<EditableLineItem[]>(rowsFromRaw(activeTool.value.sample.itemsRaw))
+const lineItems = ref<EditableLineItem[]>(rowsFromRaw(localizedSample(activeTool.value.sample, activeTool.value.kind).itemsRaw))
 const hasRun = ref(false)
 const isRunning = ref(false)
 const isDownloading = ref(false)
@@ -408,6 +476,17 @@ const snapshotMeta = computed(() => {
 
 function cloneInput(input: InvoiceCraftDocumentInput): InvoiceCraftDocumentInput {
   return { ...input }
+}
+
+function localizedSample(input: InvoiceCraftDocumentInput, kind: InvoiceCraftDocumentKind): InvoiceCraftDocumentInput {
+  return {
+    ...cloneInput(input),
+    ...(localizedSampleOverrides[props.locale]?.[kind] ?? {}),
+  }
+}
+
+function modeLabel(mode: InvoiceCraftToolMode): string {
+  return modeLabels[props.locale]?.[mode] ?? activeTool.value.modes.find((candidate) => candidate.value === mode)?.label ?? mode
 }
 
 function rowsFromRaw(raw: string): EditableLineItem[] {
@@ -560,9 +639,11 @@ async function generatePreview(trackEvents = true): Promise<void> {
 
 function loadSample(preview = true): void {
   const tool = activeTool.value
-  Object.assign(form, cloneInput(tool.sample))
+  const sample = localizedSample(tool.sample, tool.kind)
+
+  Object.assign(form, sample)
   selectedMode.value = tool.modes[0]?.value ?? 'clean'
-  lineItems.value = rowsFromRaw(tool.sample.itemsRaw)
+  lineItems.value = rowsFromRaw(sample.itemsRaw)
   hasRun.value = false
   result.value = null
   copyState.value = 'idle'
@@ -847,7 +928,7 @@ onBeforeUnmount(() => {
                   :aria-pressed="selectedMode === mode.value"
                   @click="setMode(mode.value)"
                 >
-                  {{ mode.label }}
+                  {{ modeLabel(mode.value) }}
                 </button>
               </div>
               <div class="form-grid form-grid--compact">
