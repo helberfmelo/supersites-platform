@@ -10,7 +10,7 @@ Sprint 0.5 created the first CI/CD foundation. The current pipeline validates co
 
 File: `.github/workflows/quality-gate.yml`.
 
-Runs on `main` pushes and pull requests.
+Runs on pull requests and manual `workflow_dispatch`. It does not run on `main` pushes during the current internal-development cadence.
 
 Jobs:
 
@@ -34,9 +34,9 @@ Jobs:
 
 File: `.github/workflows/deploy-dry-run.yml`.
 
-Runs on `main` pushes that affect apps, packages, deployment infra, scripts or deploy workflow files. It can also be started manually.
+Runs only by manual `workflow_dispatch`.
 
-Deploy Dry Run keeps the default workflow naming so the automatic `push` trigger remains compatible. Roadmap phase/sprint labeling is required on the manual real deploy and rollback workflows below.
+Deploy Dry Run is a non-mutating planning tool for deployment-sensitive changes, first deploys, rollback planning, release closing or owner-requested checks. It is intentionally not triggered by routine pushes.
 
 The workflow generates an artifact named `supersites-deploy-dry-run` with:
 
@@ -122,7 +122,7 @@ Actions:
 - `rollback-release`: switches `/supersites/.htaccess` back to a previous release id.
 - `rollback-placeholder`: disables the managed rewrite and returns `/supersites/` to the bootstrap placeholder.
 
-The workflow uses only the `SUPERSITES_CPANEL_USER` and `SUPERSITES_CPANEL_PASSWORD` environment secrets plus non-secret HostGator variables. It must be run only after the pushed commit passes `Quality Gate`.
+The workflow uses only the `SUPERSITES_CPANEL_USER` and `SUPERSITES_CPANEL_PASSWORD` environment secrets plus non-secret HostGator variables. During the current internal-development cadence, run it after focused local validation and push; require manual `Quality Gate` first only for PR/release/closing or when risk justifies it.
 
 Optional `enable_root_redirect` redirects `https://opentshost.com/` to `/supersites/` only if no unmanaged root `.htaccess` exists. If a root `.htaccess` already exists, stop and review before using any forced root change.
 
@@ -270,7 +270,7 @@ VPS runtime environment variable names:
 
 ## Obstacles And Contours
 
-- Branch protection is blocked by the current GitHub plan. Continue with monitored `Quality Gate` runs until GitHub Pro, public repo or another approved ruleset path exists.
+- Branch protection is blocked by the current GitHub plan. Use manual `Quality Gate` runs for PR/release/closing until GitHub Pro, public repo or another approved ruleset path exists.
 - GitHub Actions can fail before any job starts when account billing payments fail or the spending limit is exhausted. Treat those runs as human-gated infrastructure blockers, keep local gates/artifacts current, and record the run id plus annotation in `docs/STATUS.md`.
 - GitHub Actions artifact storage quota can block uploads. Continue by using the job summary as the dry-run audit trail and keep artifact upload best-effort until storage is cleared or quota changes.
 - Nuxt preview must run from `apps/supersite`. Running the built server from the repository root can return 404 for `_nuxt` assets and leave the catalog unhydrated; the preview smoke now catches this.
@@ -282,7 +282,7 @@ VPS runtime environment variable names:
 - Real deploy is implemented for the SuperSites Hub static catalog, the control-plane/API, NetProbe Atlas and supported generic static apps. NetProbe, MailHealth and SitePulse public traffic depends on the control-plane/API smoke staying healthy for their bounded public endpoints.
 - Control-plane/API deploy uses a Laravel ZIP and cPanel remote extraction. The artifact excludes `.env`; the release `.env` is written remotely from GitHub secrets or ignored local inputs, and the managed front controller bootstraps the active Laravel release directly.
 - NetProbe static builds must not contain `localhost:8013`, `127.0.0.1:8013` or a local `/api/v1/netprobe` URL. Local API usage belongs in dev/test env vars, not in production artifacts.
-- CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch and DocShift have generic static HostGator artifact validation, public smoke and rollback implemented. Run real traffic switches only through the Fase 8 batch order after Quality Gate and Deploy Dry Run are green.
+- CalcHarbor, DevUtility Lab, TimeNexus, QRRoute, InvoiceCraft, MailHealth, SitePulse Lab, PixelBatch and DocShift have generic static HostGator artifact validation, public smoke and rollback implemented. During internal development, run real traffic switches through the specific HostGator deploy workflow after focused local validation and push; require manual Quality Gate or Deploy Dry Run only for PR/release/closing, first deploys, rollback planning or risk-sensitive deployment changes.
 - Human-gated actions stay in `docs/HUMAN_ACTION_REQUIRED.md`; technical reversible blockers should be worked around with dry-runs, validation scripts or degraded mode.
 
 ## Pre-Real-Deploy Checklist

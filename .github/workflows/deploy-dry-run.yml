@@ -1,23 +1,6 @@
 name: Deploy Dry Run
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - apps/**
-      - packages/**
-      - package.json
-      - pnpm-lock.yaml
-      - pnpm-workspace.yaml
-      - infra/deployment/**
-      - scripts/**
-      - .github/workflows/deploy-dry-run.yml
-      - .github/workflows/deploy-supersite-hostgator.yml
-      - .github/workflows/deploy-control-plane-hostgator.yml
-      - .github/workflows/deploy-netprobe-hostgator.yml
-      - .github/workflows/deploy-static-app-hostgator.yml
-      - .github/workflows/public-watchdog.yml
   workflow_dispatch:
     inputs:
       target_environment:

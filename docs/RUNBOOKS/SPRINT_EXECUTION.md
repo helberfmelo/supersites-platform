@@ -13,8 +13,9 @@ Este runbook define a cadencia atual do SuperSites enquanto o projeto ainda nao 
 
 ## Conceitos
 
-- `Quality Gate`: workflow de CI apos o push. Ele valida o commit no GitHub de forma path-aware.
+- `Quality Gate`: workflow manual ou de pull request. Ele valida o commit no GitHub de forma path-aware quando o dono pedir, quando houver PR/release/fechamento ou quando o risco justificar.
 - `Deploy Dry Run`: ensaio de empacotamento/deploy sem trocar producao. No fluxo atual, usar apenas quando o dono pedir ou quando a etapa mexer em deploy, manifesto, base path, secrets, primeiro deploy de app ou rollback.
+- `Deploy especifico HostGator`: workflow manual do alvo afetado (`Deploy SuperSite HostGator`, `Deploy NetProbe HostGator`, `Deploy Static App HostGator` ou `Deploy Control Plane HostGator`). Ao fim de implementacao ou correcao de um app/site publicado no HostGator, acionar o deploy especifico e monitorar.
 - `Smoke publico`: checagem curta de URL real depois de deploy. No fluxo atual, usar apenas quando o dono pedir, quando o objetivo for publicar a etapa, ou quando a etapa mexer em rotas/deploy.
 
 ## Cadencia padrao por etapa
@@ -26,8 +27,8 @@ O fluxo padrao nao e mais sprint por sprint. O fluxo padrao e:
 3. Fazer validacao minima local.
 4. Fazer um commit objetivo da etapa.
 5. Push.
-6. Monitorar o `Quality Gate`.
-7. Fazer deploy/monitoramento somente se a etapa precisar aparecer no HostGator ou se o dono pedir.
+6. Se a etapa afetar um app/site publicado no HostGator, acionar o deploy especifico do alvo e monitorar o resultado.
+7. Rodar `Quality Gate`, `Deploy Dry Run` ou smokes publicos somente quando o dono pedir, quando houver PR/release/fechamento ou quando o risco justificar.
 8. Seguir para a proxima etapa.
 
 Nao fazer commit, push, deploy, dry run, crawler, screenshots ou fechamento documental a cada sprint individual. Se uma etapa estiver grande demais para esse fluxo, o dono avisara antes e a etapa sera quebrada em lotes.
@@ -50,6 +51,7 @@ Nao rodar por padrao:
 - validacao visual profunda;
 - todos os package tests;
 - build de todos os apps;
+- Quality Gate;
 - deploy dry run;
 - smokes publicos;
 - relatorios longos de evidencia.

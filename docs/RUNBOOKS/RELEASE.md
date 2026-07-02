@@ -5,18 +5,18 @@ Use this runbook after a sprint passes local validation.
 ## Standard cycle
 
 1. Check `git status --short --branch`.
-2. Run local validations for the sprint.
+2. Run focused local validations for the sprint.
 3. Run `scripts/validate-no-secrets.ps1`.
 4. Commit with a clear title.
 5. Push to the tracked branch.
-6. Watch GitHub Actions until the relevant run reaches a final state.
-7. Run public smoke checks for any deployed target.
+6. For implementation/correction of a HostGator-published app or site, run the specific HostGator deploy workflow for the affected target and watch it to completion.
+7. Run `Quality Gate`, `Deploy Dry Run` or public smoke checks only when requested, when closing a PR/release/phase, or when the risk of the change justifies it.
 8. Update `docs/STATUS.md` with the release result.
 9. Read mandatory docs before starting the next sprint.
 
 ## Current quality gate
 
-The current CI gate runs:
+The current CI gate is manual or pull-request based. It does not run automatically on `main` pushes during the internal-development cadence. When triggered, it runs:
 
 - `scripts/validate-no-secrets.ps1`
 - `scripts/validate-structure.ps1`
@@ -34,13 +34,13 @@ pnpm test:e2e:report
 
 ## Current deploy paths
 
-- `Deploy Dry Run` remains the non-mutating plan workflow for all apps.
+- `Deploy Dry Run` remains the manual non-mutating plan workflow for all apps.
 - `Deploy SuperSite HostGator` publishes the static SuperSites Hub catalog.
 - `Deploy Control Plane HostGator` publishes the Laravel control-plane/API needed by NetProbe public tools.
 - `Deploy NetProbe HostGator` publishes the static NetProbe frontend after the public NetProbe API preflight passes.
 - `Deploy Static App HostGator` publishes supported static apps after their artifact gates pass.
 
-After `Quality Gate` is green for a catalog deploy commit:
+After focused local validation and push for a catalog implementation/correction:
 
 ```powershell
 gh workflow run "Deploy SuperSite HostGator" --ref main -f action=deploy -f enable_root_redirect=false
@@ -76,7 +76,7 @@ NetProbe public smoke after a successful deploy:
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\smoke-netprobe-public.ps1
 ```
 
-NetProbe deploy command, only after `Quality Gate` is green and the public API returns healthy JSON for `/ip` and `/dns`:
+NetProbe deploy command, after focused local validation, push and healthy public API JSON for `/ip` and `/dns`:
 
 ```powershell
 gh workflow run "Deploy NetProbe HostGator" --ref main -f action=deploy -f api_base_url=https://opentshost.com/supersites/control-plane/api/v1/netprobe
@@ -101,7 +101,7 @@ Control-plane/API public smoke after deploy:
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\smoke-control-plane-public.ps1
 ```
 
-Control-plane/API deploy command, only after `Quality Gate` is green and `production-hostgator` has the required control-plane secrets:
+Control-plane/API deploy command, after focused local validation, push and confirming `production-hostgator` has the required control-plane secrets:
 
 ```powershell
 gh workflow run "Deploy Control Plane HostGator" --ref main -f action=deploy
@@ -132,7 +132,7 @@ Generic static app artifact gate:
 pnpm deploy:build-static-app-hostgator -- -AppId calcharbor
 ```
 
-Generic static app deploy command, only after `Quality Gate` and `Deploy Dry Run` are green:
+Generic static app deploy command, after focused local validation and push. Run `Quality Gate` or `Deploy Dry Run` first only for PR/release/closing, first deploys, rollback planning or deployment-sensitive changes:
 
 ```powershell
 gh workflow run "Deploy Static App HostGator" --ref main -f app_id=calcharbor -f action=deploy -f skip_api_smoke=false
