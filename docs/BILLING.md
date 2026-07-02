@@ -48,6 +48,11 @@ Variaveis principais:
 - `STRIPE_SECRET_KEY`
 - `STRIPE_WEBHOOK_SECRET`
 
+Deploy HostGator:
+
+- o workflow `Deploy Control Plane HostGator` aceita as variaveis `SUPERSITES_BILLING_PROVIDER_ACTIVATION`, `SUPERSITES_BILLING_CHECKOUT_ENABLED`, `SUPERSITES_BILLING_STRIPE_CHECKOUT_ENABLED`, `SUPERSITES_BILLING_STRIPE_DONATIONS_ENABLED`, `SUPERSITES_BILLING_STRIPE_SERVICE_CHECKOUT_ENABLED` e `SUPERSITES_BILLING_STRIPE_WEBHOOKS_ENABLED`;
+- todas continuam `false` por padrao quando a variavel nao existe, para evitar ativacao acidental em release.
+
 Gate antes de qualquer ativacao:
 
 - conta Stripe correta e modo live confirmados;
@@ -55,6 +60,24 @@ Gate antes de qualquer ativacao:
 - produtos/precos oficiais e politica publica de doacao/servico/cancelamento/reembolso definidos;
 - checkout hospedado oficial, webhooks assinados/idempotentes, fixtures oficiais e rollback implementados;
 - aprovacao humana explicita por canal/plano antes de publicar qualquer URL, botao, widget, checkout ou payment link real.
+
+## Stripe live webhook receiver foundation - 2026-07-02
+
+A rota `POST /api/v1/billing/webhooks/stripe` agora possui caminho live para Stripe quando `BILLING_STRIPE_WEBHOOKS_ENABLED=true`.
+
+Comportamento tecnico:
+
+- valida o header oficial `Stripe-Signature` com `STRIPE_WEBHOOK_SECRET`, janela de replay e hash HMAC;
+- grava somente ledger limitado em `billing_webhook_events`: provider, event id, tipo, status de assinatura, status de processamento, hash do payload e timestamps;
+- nao armazena payload bruto, dados de cartao, billing address, e-mail, customer id ou invoice payload;
+- trata replay idempotente por `provider + external_event_id` e rejeita mismatch de payload;
+- para eventos `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.async_payment_failed` e `checkout.session.expired`, atualiza apenas o status local de `billing_checkout_sessions` quando a sessao ja existe no ledger;
+- eventos assinados nao mapeados sao aceitos como `ignored_verified`, sem side effects comerciais.
+
+Estado de producao tecnica:
+
+- o codigo esta pronto para receber webhook live, mas continua fail-closed ate existir `STRIPE_WEBHOOK_SECRET`, endpoint Stripe live criado/aprovado, DB migrado/semeado, provider/canal Stripe marcado como pronto e flags globais de checkout/webhook explicitamente ligadas;
+- a ativacao publica de botao/link de doacao real continua dependente dos gates humanos em `docs/HUMAN_ACTION_REQUIRED.md`.
 
 ## Pagar.me evaluation - 2026-07-02
 
