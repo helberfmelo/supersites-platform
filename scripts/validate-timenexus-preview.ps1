@@ -92,7 +92,7 @@ try {
         'hreflang="pt-BR"',
         'World clock planner',
         'Meeting planner',
-        'Nearby slots',
+        'Times are calculated in the browser',
         'Time Zone Converter',
         '7 browser tools',
         'Current time now',

@@ -2,7 +2,7 @@
 import { getStatusBadgeClass } from '@supersites/ui'
 import { computed, ref } from 'vue'
 import { cityTimePageCatalog, getCityTimePageCopy } from '../data/cityPages'
-import { getHomeCopy } from '../data/copy'
+import { getHomeCopy, getPlannerCopy } from '../data/copy'
 import { localizedCityTimePath, localizedHomePath, localizedToolPath, localizedWorldClockPath, toHtmlLang, type LocaleCode } from '../data/locales'
 import { absoluteUrl, localeAlternates } from '../data/routes'
 import {
@@ -101,6 +101,7 @@ const directoryText: Record<LocaleCode, {
 }
 
 const copy = computed(() => getHomeCopy(props.locale))
+const plannerCopy = computed(() => getPlannerCopy(props.locale))
 const directoryCopy = computed(() => directoryText[props.locale])
 const searchQuery = ref('')
 const selectedCategory = ref<TimeToolCategory | 'all'>('all')
@@ -263,7 +264,21 @@ useHead(() => ({
       </aside>
     </section>
 
-    <TimeNexusPlanner :locale="locale" />
+    <ClientOnly>
+      <TimeNexusPlanner :locale="locale" />
+      <template #fallback>
+        <section class="time-workbench" aria-labelledby="time-workbench-fallback-title">
+          <div class="workbench-heading">
+            <div>
+              <p class="eyebrow">{{ plannerCopy.eyebrow }}</p>
+              <h2 id="time-workbench-fallback-title">{{ plannerCopy.title }}</h2>
+              <p>{{ plannerCopy.body }}</p>
+            </div>
+            <p class="privacy-strip">{{ plannerCopy.privacyNote }}</p>
+          </div>
+        </section>
+      </template>
+    </ClientOnly>
 
     <section class="directory-band" aria-labelledby="time-directory-title">
       <div class="section-heading">
