@@ -1441,18 +1441,25 @@ h3 {
   width: 9px;
   height: 9px;
   border-radius: 999px;
-  background: #bd7424;
-  box-shadow: 0 0 0 4px #f5e3ca;
+  background: #d92d20;
+  box-shadow: 0 0 0 4px #f8d8d3;
 }
 
 .map-legend__dot--good {
-  background: #2f855a;
-  box-shadow: 0 0 0 4px #dcefe4;
+  background: #ffffff;
+  box-shadow:
+    0 0 0 2px #2f7095,
+    0 0 0 5px rgba(47, 112, 149, 0.18);
 }
 
 .map-legend__dot--neutral {
-  background: #d2a03a;
-  box-shadow: 0 0 0 4px #f4ead4;
+  background: #f28c28;
+  box-shadow: 0 0 0 4px #f8dfc8;
+}
+
+.map-legend__dot--warning {
+  background: #d92d20;
+  box-shadow: 0 0 0 4px #f8d8d3;
 }
 
 .propagation-after-results {
@@ -1691,7 +1698,7 @@ h3 {
   padding: 12px;
   border: 1px solid rgba(39, 95, 87, 0.18);
   border-radius: 8px;
-  background: #eeeeee;
+  background: #2f7095;
   isolation: isolate;
   overflow: hidden;
 }
@@ -1732,11 +1739,23 @@ h3 {
 }
 
 .resolver-marker--good {
-  background: #2f855a;
+  border-color: #ffffff;
+  background: #ffffff;
+  color: #ffffff;
+  -webkit-text-stroke: 0.8px #2f7095;
+  paint-order: stroke fill;
+  text-shadow:
+    0 1px 1px rgba(20, 34, 29, 0.72),
+    0 0 2px rgba(47, 112, 149, 0.96);
+  box-shadow:
+    0 0 0 2px #2f7095,
+    0 3px 8px rgba(20, 34, 29, 0.28);
 }
 
 .resolver-marker--warning {
-  background: #c94d35;
+  border-color: #ffffff;
+  background: #d92d20;
+  color: #ffffff;
 }
 
 .upgrade-panel {
