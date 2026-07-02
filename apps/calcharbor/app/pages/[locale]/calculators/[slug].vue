@@ -14,6 +14,7 @@ import {
   getFieldDefaultValue,
   getFieldPrefix,
   getRelatedCalculators,
+  type CalculatorField,
   type CalculatorSlug,
   type CalculatorScenarioRow,
   type CalculationMetric,
@@ -38,12 +39,18 @@ const copy = getCalculatorCopy(calculator, locale)
 const shellCopy = getShellCopy(locale)
 const canonicalPath = localizedCalculatorPath(locale, calculator.slug)
 const structuredData = createCalculatorStructuredData(calculator, locale, absoluteUrl(canonicalPath))
-const inputs = reactive(Object.fromEntries(calculator.fields.map((field) => [field.key, getFieldDefaultValue(field, locale)])) as Record<string, number>)
+type CalculatorInputValue = number | ''
+const inputs = reactive(Object.fromEntries(calculator.fields.map((field) => [field.key, ''])) as Record<string, CalculatorInputValue>)
 const hasCalculated = ref(false)
 const actionMessage = ref('')
 const scenarioSection = ref<HTMLElement | null>(null)
-const liveResult = computed<CalculationResult>(() => calculator.calculate(inputs))
-const resultTitle = computed(() => liveResult.value.ok === false ? shellCopy.invalidResultTitle : shellCopy.resultTitle)
+const numericInputs = computed<Record<string, number>>(() => Object.fromEntries(
+  calculator.fields.map((field) => [field.key, Number(inputs[field.key]) || 0]),
+))
+const liveResult = computed<CalculationResult>(() => calculator.calculate(numericInputs.value))
+const resultTitle = computed(() => !hasCalculated.value
+  ? shellCopy.resultTitle
+  : liveResult.value.ok === false ? shellCopy.invalidResultTitle : shellCopy.resultTitle)
 const primaryMetricKeyBySlug: Partial<Record<CalculatorSlug, string>> = {
   'gross-margin': 'gross_margin',
   roi: 'roi',
@@ -64,10 +71,10 @@ const secondaryMetrics = computed(() => {
 
   return liveResult.value.metrics.filter((metric) => metric.key !== primaryMetric.value?.key)
 })
-const calculationMemory = computed(() => buildCalculationMemory(calculator, inputs, liveResult.value, locale))
+const calculationMemory = computed(() => buildCalculationMemory(calculator, numericInputs.value, liveResult.value, locale))
 const interpretationState = computed(() => getCalculatorInterpretationState(calculator.slug, liveResult.value, locale))
 const relatedCalculators = computed(() => getRelatedCalculators(calculator))
-const scenarioRows = computed(() => buildCalculatorScenarioRows(calculator, inputs, locale))
+const scenarioRows = computed(() => buildCalculatorScenarioRows(calculator, numericInputs.value, locale))
 const maxScenarioValue = computed(() => Math.max(...scenarioRows.value.map((row) => Math.abs(row.numericValue ?? 0)), 1))
 const metricByKey = computed<Map<string, CalculationMetric>>(() => {
   if (!liveResult.value.ok) {
@@ -94,7 +101,7 @@ const loanBreakdown = computed(() => {
     return null
   }
 
-  const principal = Math.max(Number(inputs.principal) || 0, 0)
+  const principal = Math.max(Number(numericInputs.value.principal) || 0, 0)
   const interest = Math.max(metricByKey.value.get('total_interest')?.value ?? 0, 0)
   const total = Math.max(principal + interest, 1)
 
@@ -111,9 +118,9 @@ const breakEvenChart = computed(() => {
   }
 
   const breakEvenUnits = metricByKey.value.get('break_even_units')?.value ?? 0
-  const fixedCosts = Number(inputs.fixedCosts) || 0
-  const pricePerUnit = Number(inputs.pricePerUnit) || 0
-  const variableCostPerUnit = Number(inputs.variableCostPerUnit) || 0
+  const fixedCosts = Number(numericInputs.value.fixedCosts) || 0
+  const pricePerUnit = Number(numericInputs.value.pricePerUnit) || 0
+  const variableCostPerUnit = Number(numericInputs.value.variableCostPerUnit) || 0
   const maxVolume = Math.max(breakEvenUnits * 1.5, 1)
   const rows = [
     { label: '0%', units: 0 },
@@ -183,8 +190,8 @@ const marginCostRows = computed(() => {
 
   return scenarios.map((scenario) => {
     const result = calculator.calculate({
-      ...inputs,
-      cost: Number((Number(inputs.cost) * scenario.multiplier).toFixed(2)),
+      ...numericInputs.value,
+      cost: Number((Number(numericInputs.value.cost) * scenario.multiplier).toFixed(2)),
     })
     const marginMetric = result.ok ? result.metrics.find((metric) => metric.key === 'gross_margin') : null
     const profitMetric = result.ok ? result.metrics.find((metric) => metric.key === 'gross_profit') : null
@@ -209,8 +216,8 @@ const roiScenarioRows = computed(() => {
 
   return scenarios.map((scenario) => {
     const result = calculator.calculate({
-      ...inputs,
-      returnValue: Number((Number(inputs.returnValue) * scenario.multiplier).toFixed(2)),
+      ...numericInputs.value,
+      returnValue: Number((Number(numericInputs.value.returnValue) * scenario.multiplier).toFixed(2)),
     })
     const roiMetric = result.ok ? result.metrics.find((metric) => metric.key === 'roi') : null
     const netReturnMetric = result.ok ? result.metrics.find((metric) => metric.key === 'net_return') : null
@@ -272,6 +279,10 @@ function resetExample(): void {
 
   hasCalculated.value = false
   actionMessage.value = ''
+}
+
+function fieldPlaceholder(field: CalculatorField): string {
+  return String(getFieldDefaultValue(field, locale))
 }
 
 async function copyResult(): Promise<void> {
@@ -378,6 +389,7 @@ useHead({
                   :min="field.min"
                   :step="field.step"
                   inputmode="decimal"
+                  :placeholder="fieldPlaceholder(field)"
                 >
                 <span v-if="field.suffix" aria-hidden="true">{{ field.suffix }}</span>
               </div>
@@ -398,9 +410,9 @@ useHead({
           <h2 :id="`${calculator.slug}-result`">{{ resultTitle }}</h2>
 
           <p v-if="!hasCalculated" class="privacy-strip">{{ shellCopy.privacyNote }}</p>
-          <p v-if="!liveResult.ok" class="result-error">{{ liveResult.error[locale] }}</p>
+          <p v-else-if="!liveResult.ok" class="result-error">{{ liveResult.error[locale] }}</p>
 
-          <div v-else>
+          <div v-else-if="hasCalculated">
             <div v-if="primaryMetric" class="primary-result">
               <span>{{ primaryMetric.label[locale] }}</span>
               <strong>{{ formatMetricValue(primaryMetric, locale) }}</strong>
@@ -415,7 +427,7 @@ useHead({
             </div>
           </div>
 
-          <section v-if="liveResult.ok" class="result-actions" :aria-labelledby="`${calculator.slug}-actions`">
+          <section v-if="hasCalculated && liveResult.ok" class="result-actions" :aria-labelledby="`${calculator.slug}-actions`">
             <strong :id="`${calculator.slug}-actions`">{{ shellCopy.summaryActionsTitle }}</strong>
             <div class="tool-actions">
               <button class="button-link button-link--secondary" type="button" @click="copyResult">
@@ -431,7 +443,7 @@ useHead({
             <p v-if="actionMessage" class="action-feedback" aria-live="polite">{{ actionMessage }}</p>
           </section>
 
-          <section v-if="loanBreakdown" class="tool-insight" :aria-labelledby="`${calculator.slug}-loan-breakdown`">
+          <section v-if="hasCalculated && loanBreakdown" class="tool-insight" :aria-labelledby="`${calculator.slug}-loan-breakdown`">
             <h3 :id="`${calculator.slug}-loan-breakdown`">{{ shellCopy.loanBreakdownTitle }}</h3>
             <div class="breakdown-bars" aria-hidden="true">
               <div class="breakdown-bar">
@@ -465,7 +477,7 @@ useHead({
             </table>
           </section>
 
-          <section v-if="breakEvenChart" class="tool-insight" :aria-labelledby="`${calculator.slug}-profit-chart`">
+          <section v-if="hasCalculated && breakEvenChart" class="tool-insight" :aria-labelledby="`${calculator.slug}-profit-chart`">
             <h3 :id="`${calculator.slug}-profit-chart`">{{ shellCopy.breakEvenChartTitle }}</h3>
             <div class="profit-area">
               <svg viewBox="0 0 100 100" preserveAspectRatio="none" role="img" :aria-label="shellCopy.breakEvenChartTitle">
@@ -490,7 +502,7 @@ useHead({
             </table>
           </section>
 
-          <section v-if="marginComparisonRows.length > 0" class="tool-insight" :aria-labelledby="`${calculator.slug}-margin-compare`">
+          <section v-if="hasCalculated && marginComparisonRows.length > 0" class="tool-insight" :aria-labelledby="`${calculator.slug}-margin-compare`">
             <h3 :id="`${calculator.slug}-margin-compare`">{{ shellCopy.marginComparisonTitle }}</h3>
             <div class="margin-bars">
               <div v-for="row in marginComparisonRows" :key="row.key" class="breakdown-bar">
@@ -521,7 +533,7 @@ useHead({
             </table>
           </section>
 
-          <section v-if="calculator.slug === 'roi'" class="tool-insight" :aria-labelledby="`${calculator.slug}-period-note`">
+          <section v-if="hasCalculated && calculator.slug === 'roi'" class="tool-insight" :aria-labelledby="`${calculator.slug}-period-note`">
             <h3 :id="`${calculator.slug}-period-note`">{{ shellCopy.roiPeriodNoteTitle }}</h3>
             <p>{{ shellCopy.roiPeriodNoteBody }}</p>
 
@@ -544,13 +556,13 @@ useHead({
             </table>
           </section>
 
-          <div class="interpretation-card" :class="`interpretation-card--${interpretationState.tone}`">
+          <div v-if="hasCalculated && liveResult.ok" class="interpretation-card" :class="`interpretation-card--${interpretationState.tone}`">
             <span>{{ shellCopy.interpretationTitle }}</span>
             <strong>{{ interpretationState.label }}</strong>
             <p>{{ interpretationState.body }}</p>
           </div>
 
-          <div class="calculation-memory">
+          <div v-if="hasCalculated" class="calculation-memory">
             <h3>{{ shellCopy.calculationMemoryTitle }}</h3>
             <dl>
               <div v-for="line in calculationMemory" :key="`${line.label}-${line.value}`">
@@ -560,7 +572,7 @@ useHead({
             </dl>
           </div>
 
-          <section ref="scenarioSection" class="scenario-snapshot" :aria-labelledby="`${calculator.slug}-scenario`">
+          <section v-if="hasCalculated && liveResult.ok" ref="scenarioSection" class="scenario-snapshot" :aria-labelledby="`${calculator.slug}-scenario`">
             <div class="scenario-snapshot__head">
               <div>
                 <h3 :id="`${calculator.slug}-scenario`">{{ shellCopy.scenarioTitle }}</h3>

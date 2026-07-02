@@ -101,7 +101,7 @@ const recentToolDefinitions = computed(() => recentTools.value
   .map((slug) => getToolBySlug(slug))
   .filter((tool): tool is ToolDefinition => Boolean(tool)))
 
-watch(selectedToolSlug, () => loadExample(), { immediate: true })
+watch(selectedToolSlug, () => resetToEmpty(), { immediate: true })
 
 function selectCategory(category: ToolCategory | 'all'): void {
   selectedCategory.value = category
@@ -119,6 +119,17 @@ function loadExample(): void {
   selectedMode.value = selectedTool.value.modes[0]?.value ?? ''
   primaryInput.value = selectedTool.value.samplePrimary
   secondaryInput.value = selectedTool.value.sampleSecondary
+  hasRun.value = false
+  isRunning.value = false
+  result.value = null
+  copyState.value = 'idle'
+  viewMode.value = 'output'
+}
+
+function resetToEmpty(): void {
+  selectedMode.value = selectedTool.value.modes[0]?.value ?? ''
+  primaryInput.value = ''
+  secondaryInput.value = ''
   hasRun.value = false
   isRunning.value = false
   result.value = null
@@ -347,12 +358,12 @@ function flattenJson(value: unknown, path = '$', rows: string[] = []): string[] 
 
               <div v-if="selectedTool.acceptsPrimaryInput" class="field">
                 <label for="home-workbench-primary">{{ selectedToolCopy.inputLabel }}</label>
-                <textarea id="home-workbench-primary" v-model="primaryInput" spellcheck="false"></textarea>
+                <textarea id="home-workbench-primary" v-model="primaryInput" :placeholder="selectedTool.samplePrimary" spellcheck="false"></textarea>
               </div>
 
               <div v-if="selectedTool.requiresSecondaryInput" class="field">
                 <label for="home-workbench-secondary">{{ selectedToolCopy.secondaryInputLabel }}</label>
-                <textarea id="home-workbench-secondary" v-model="secondaryInput" spellcheck="false"></textarea>
+                <textarea id="home-workbench-secondary" v-model="secondaryInput" :placeholder="selectedTool.sampleSecondary" spellcheck="false"></textarea>
               </div>
 
               <div class="tool-actions">

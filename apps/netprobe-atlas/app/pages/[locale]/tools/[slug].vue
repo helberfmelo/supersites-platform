@@ -911,7 +911,7 @@ const dnsPropagationMapProjection = {
   mercatorScale: 77.15961006300978,
 } as const
 const previewSubmitted = ref(false)
-const targetValue = ref(tool.slug === 'what-is-my-ip' ? '' : tool.exampleTarget)
+const targetValue = ref('')
 const selectedRecordTypes = ref(['A', 'AAAA', 'CNAME', 'MX', 'TXT', 'NS', 'SOA', 'CAA'])
 const propagationRecordType = ref('A')
 const expectedPropagationValue = ref('')

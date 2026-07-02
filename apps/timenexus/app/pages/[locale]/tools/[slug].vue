@@ -34,8 +34,8 @@ const shellCopy = getShellCopy(locale)
 const canonicalPath = localizedToolPath(locale, tool.slug)
 const structuredData = createTimeToolStructuredData(tool, locale, absoluteUrl(canonicalPath))
 const selectedMode = ref(tool.modes[0]?.value ?? '')
-const primaryInput = ref(tool.samplePrimary)
-const secondaryInput = ref(tool.sampleSecondary)
+const primaryInput = ref('')
+const secondaryInput = ref('')
 const sourceZoneInput = ref('America/New_York')
 const targetZoneInput = ref('Europe/London')
 const hasRun = ref(false)
@@ -172,10 +172,6 @@ function formatDatetimeInput(date: Date): string {
 
 function setCurrentTimezoneExample(): void {
   currentDatetimePlaceholder.value = formatDatetimeInput(new Date())
-
-  if (isTimezoneTool.value) {
-    primaryInput.value = currentDatetimePlaceholder.value
-  }
 }
 
 function buildPageUrl(): string {
@@ -274,6 +270,7 @@ function resetExample(): void {
   }
   if (isTimezoneTool.value) {
     setCurrentTimezoneExample()
+    primaryInput.value = currentDatetimePlaceholder.value
   }
   hasRun.value = false
   result.value = null
@@ -281,6 +278,11 @@ function resetExample(): void {
 }
 
 function scheduleAutoRun(): void {
+  if (autoRunTimer) {
+    clearTimeout(autoRunTimer)
+    autoRunTimer = null
+  }
+
   if (!shouldAutoRun.value && !isTimezoneTool.value) {
     return
   }
@@ -289,8 +291,8 @@ function scheduleAutoRun(): void {
     return
   }
 
-  if (autoRunTimer) {
-    clearTimeout(autoRunTimer)
+  if (!primaryInput.value.trim()) {
+    return
   }
 
   autoRunTimer = setTimeout(() => {
@@ -305,16 +307,12 @@ onMounted(() => {
     routePath: canonicalPath,
   }, 'tool_viewed')
 
-  if (isTimestampTool.value) {
-    primaryInput.value = Math.floor(Date.now() / 1000).toString()
-  }
   if (isTimezoneTool.value) {
     setCurrentTimezoneExample()
   }
 
   syncTimezoneSecondary()
   autoRunStarted.value = true
-  void runTool({ track: false })
 })
 
 onBeforeUnmount(() => {
@@ -446,7 +444,7 @@ useHead({
                     type="text"
                     inputmode="numeric"
                     spellcheck="false"
-                    :placeholder="currentDatetimePlaceholder"
+                    :placeholder="currentDatetimePlaceholder || tool.samplePrimary"
                   >
                 </div>
                 <div class="field">
@@ -472,7 +470,7 @@ useHead({
               <div class="form-grid form-grid--two">
                 <div class="field">
                   <label :for="`${tool.slug}-primary`">{{ copy.inputLabel }}</label>
-                  <input :id="`${tool.slug}-primary`" v-model="primaryInput" type="text" inputmode="numeric" spellcheck="false">
+                  <input :id="`${tool.slug}-primary`" v-model="primaryInput" type="text" inputmode="numeric" spellcheck="false" :placeholder="tool.samplePrimary">
                 </div>
                 <div class="field">
                   <label :for="`${tool.slug}-secondary`">{{ copy.secondaryInputLabel }}</label>
@@ -490,11 +488,11 @@ useHead({
               <div class="form-grid form-grid--two">
                 <div class="field">
                   <label :for="`${tool.slug}-primary`">{{ copy.inputLabel }}</label>
-                  <input :id="`${tool.slug}-primary`" v-model="primaryInput" type="date">
+                  <input :id="`${tool.slug}-primary`" v-model="primaryInput" type="date" :placeholder="tool.samplePrimary">
                 </div>
                 <div class="field">
                   <label :for="`${tool.slug}-secondary`">{{ copy.secondaryInputLabel }}</label>
-                  <input :id="`${tool.slug}-secondary`" v-model="secondaryInput" type="date">
+                  <input :id="`${tool.slug}-secondary`" v-model="secondaryInput" type="date" :placeholder="tool.sampleSecondary">
                 </div>
               </div>
             </template>
@@ -503,11 +501,11 @@ useHead({
               <div class="form-grid form-grid--two">
                 <div class="field">
                   <label :for="`${tool.slug}-primary`">{{ copy.inputLabel }}</label>
-                  <input :id="`${tool.slug}-primary`" v-model="primaryInput" type="number" step="any">
+                  <input :id="`${tool.slug}-primary`" v-model="primaryInput" type="number" step="any" :placeholder="tool.samplePrimary">
                 </div>
                 <div class="field">
                   <label :for="`${tool.slug}-secondary`">{{ copy.secondaryInputLabel }}</label>
-                  <input :id="`${tool.slug}-secondary`" v-model="secondaryInput" type="number" step="any">
+                  <input :id="`${tool.slug}-secondary`" v-model="secondaryInput" type="number" step="any" :placeholder="tool.sampleSecondary">
                 </div>
               </div>
             </template>
@@ -531,18 +529,18 @@ useHead({
               </div>
               <div class="field">
                 <label :for="`${tool.slug}-primary`">{{ copy.inputLabel }}</label>
-                <input :id="`${tool.slug}-primary`" v-model="primaryInput" type="number" step="any">
+                <input :id="`${tool.slug}-primary`" v-model="primaryInput" type="number" step="any" :placeholder="tool.samplePrimary">
               </div>
             </template>
 
             <template v-else>
               <div class="field">
                 <label :for="`${tool.slug}-primary`">{{ copy.inputLabel }}</label>
-                <textarea :id="`${tool.slug}-primary`" v-model="primaryInput" spellcheck="false"></textarea>
+                <textarea :id="`${tool.slug}-primary`" v-model="primaryInput" :placeholder="tool.samplePrimary" spellcheck="false"></textarea>
               </div>
               <div v-if="tool.acceptsSecondaryInput" class="field">
                 <label :for="`${tool.slug}-secondary`">{{ copy.secondaryInputLabel }}</label>
-                <textarea :id="`${tool.slug}-secondary`" v-model="secondaryInput" spellcheck="false"></textarea>
+                <textarea :id="`${tool.slug}-secondary`" v-model="secondaryInput" :placeholder="tool.sampleSecondary" spellcheck="false"></textarea>
               </div>
             </template>
 

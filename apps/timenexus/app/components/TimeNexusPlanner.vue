@@ -27,7 +27,7 @@ function formatLocalDateTimeInput(date: Date): string {
 
 const initialPlannerNow = new Date('2026-01-01T12:00:00.000Z')
 const copy = computed(() => getPlannerCopy(props.locale))
-const localDateTime = ref(formatLocalDateTimeInput(initialPlannerNow))
+const localDateTime = ref('')
 const sourceZone = ref('America/New_York')
 const selectedGroup = ref(
   plannerZoneGroups.some((group) => group.value === props.initialGroup)
@@ -73,7 +73,6 @@ onMounted(() => {
   clockStartTimer = setTimeout(() => {
     isClockLive.value = true
     now.value = new Date()
-    localDateTime.value = formatLocalDateTimeInput(now.value)
     timer = setInterval(() => {
       now.value = new Date()
     }, 60_000)
@@ -131,7 +130,7 @@ onBeforeUnmount(() => {
         <div class="planner-controls">
           <div class="field">
             <label for="meeting-local-time">{{ copy.localDateTimeLabel }}</label>
-            <input id="meeting-local-time" v-model="localDateTime" type="datetime-local">
+            <input id="meeting-local-time" v-model="localDateTime" type="datetime-local" :placeholder="formatLocalDateTimeInput(initialPlannerNow)">
           </div>
           <div class="field">
             <label for="meeting-source-zone">{{ copy.sourceZoneLabel }}</label>

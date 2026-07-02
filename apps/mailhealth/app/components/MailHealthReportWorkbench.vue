@@ -289,10 +289,10 @@ const reportCopy: Record<LocaleCode, ReportCopy> = {
 
 const copy = computed(() => reportCopy[props.locale])
 const shellCopy = computed(() => getShellCopy(props.locale))
-const domainValue = ref('example.com')
-const selectorValue = ref('default')
+const domainValue = ref('')
+const selectorValue = ref('')
 const smtpPort = ref(25)
-const headersValue = ref('Authentication-Results: mx.example; spf=pass smtp.mailfrom=example.com; dkim=pass header.d=example.com; dmarc=pass header.from=example.com\nFrom: Example Sender <sender@example.com>\nReturn-Path: <bounce@example.com>\nDKIM-Signature: v=1; a=rsa-sha256; d=example.com; s=default; bh=sample; b=sample')
+const headersValue = ref('')
 const isRunning = ref(false)
 const hasRun = ref(false)
 const sections = ref<ReportSection[]>([])
@@ -508,11 +508,11 @@ onMounted(() => {
     <form class="report-form" @submit.prevent="runReport">
       <div class="field">
         <label for="mailhealth-report-domain">{{ copy.domainLabel }}</label>
-        <input id="mailhealth-report-domain" v-model="domainValue" autocomplete="off" inputmode="url">
+        <input id="mailhealth-report-domain" v-model="domainValue" autocomplete="off" inputmode="url" placeholder="example.com">
       </div>
       <div class="field">
         <label for="mailhealth-report-selector">{{ copy.selectorLabel }}</label>
-        <input id="mailhealth-report-selector" v-model="selectorValue" autocomplete="off">
+        <input id="mailhealth-report-selector" v-model="selectorValue" autocomplete="off" placeholder="default">
       </div>
       <div class="field">
         <label for="mailhealth-report-port">{{ copy.portLabel }}</label>
@@ -522,7 +522,7 @@ onMounted(() => {
       </div>
       <div class="field report-form__headers">
         <label for="mailhealth-report-headers">{{ copy.headersLabel }}</label>
-        <textarea id="mailhealth-report-headers" v-model="headersValue" spellcheck="false" rows="5"></textarea>
+        <textarea id="mailhealth-report-headers" v-model="headersValue" spellcheck="false" rows="5" placeholder="Authentication-Results: mx.example; spf=pass smtp.mailfrom=example.com"></textarea>
         <span>{{ copy.headersHint }}</span>
       </div>
       <div class="report-form__actions">

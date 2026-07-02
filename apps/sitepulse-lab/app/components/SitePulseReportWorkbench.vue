@@ -433,7 +433,7 @@ const groupFindingTerms: Record<ReportGroupKey, string[]> = {
 
 const copy = computed(() => sanitizePublicCopy(props.locale, reportCopy[props.locale] ?? reportCopy.en))
 const runtimeConfig = useRuntimeConfig()
-const targetValue = ref('https://example.com')
+const targetValue = ref('')
 const isLoading = ref(false)
 const errorMessage = ref('')
 const apiResult = ref<SitePulseProbeData | null>(null)

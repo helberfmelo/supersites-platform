@@ -36,6 +36,13 @@ select {
   font: inherit;
 }
 
+input::placeholder,
+textarea::placeholder {
+  color: #7a8780;
+  font-style: italic;
+  opacity: 1;
+}
+
 button:focus-visible,
 input:focus-visible,
 select:focus-visible,

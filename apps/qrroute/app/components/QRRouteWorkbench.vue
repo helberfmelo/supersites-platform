@@ -94,6 +94,8 @@ const utmPresets = computed<Array<{ value: UtmPreset; label: string }>>(() => [
   { value: 'social', label: shellCopy.value.utmPresetSocial },
   { value: 'launch', label: shellCopy.value.utmPresetLaunch },
 ])
+const sampleKeyValueFields = computed(() => parseKeyValueLines(selectedTool.value.sampleSecondary))
+const samplePrimaryLines = computed(() => selectedTool.value.samplePrimary.split('\n').map((line) => line.trim()))
 const autoRunSignature = computed(() => JSON.stringify({
   slug: selectedTool.value.slug,
   mode: selectedMode.value,
@@ -184,7 +186,33 @@ function applyToolSample(tool: QrRouteToolDefinition): void {
   clearOutput()
 }
 
-watch(selectedTool, (tool) => applyToolSample(tool), { immediate: true })
+function resetToolInputs(tool: QrRouteToolDefinition): void {
+  selectedMode.value = tool.modes[0]?.value ?? ''
+  primaryInput.value = ''
+  secondaryInput.value = ''
+  staticLabel.value = ''
+  barcodeLabel.value = ''
+  barcodeSize.value = 'standard'
+  previewContext.value = ''
+  utmBaseUrl.value = ''
+  utmSource.value = ''
+  utmMedium.value = ''
+  utmCampaign.value = ''
+  utmTerm.value = ''
+  utmContent.value = ''
+  vcardName.value = ''
+  vcardOrg.value = ''
+  vcardEmail.value = ''
+  vcardPhone.value = ''
+  vcardWebsite.value = ''
+  wifiSsid.value = ''
+  wifiKey.value = ''
+  wifiHidden.value = false
+  wifiRevealKey.value = false
+  clearOutput()
+}
+
+watch(selectedTool, (tool) => resetToolInputs(tool), { immediate: true })
 
 watch(autoRunSignature, () => {
   scheduleAutoRun()
@@ -494,11 +522,32 @@ function scheduleAutoRun(delay = 320): void {
 
   if (autoRunTimer) {
     clearTimeout(autoRunTimer)
+    autoRunTimer = null
+  }
+
+  if (!hasRunnableInput()) {
+    return
   }
 
   autoRunTimer = setTimeout(() => {
     void runTool({ track: false })
   }, delay)
+}
+
+function hasRunnableInput(): boolean {
+  if (selectedTool.value.slug === 'utm-builder') {
+    return Boolean(utmBaseUrl.value.trim())
+  }
+
+  if (selectedTool.value.slug === 'vcard-qr') {
+    return [vcardName.value, vcardOrg.value, vcardPhone.value, vcardEmail.value, vcardWebsite.value].some((value) => value.trim())
+  }
+
+  if (selectedTool.value.slug === 'wifi-qr') {
+    return Boolean(wifiSsid.value.trim())
+  }
+
+  return Boolean(primaryInput.value.trim())
 }
 
 function resetExample(): void {
@@ -608,22 +657,22 @@ function printPreview(): void {
           <template v-if="selectedTool.slug === 'static-qr-code'">
             <div class="field">
               <label :for="`${selectedTool.slug}-primary`">{{ copy.inputLabel }}</label>
-              <textarea :id="`${selectedTool.slug}-primary`" v-model="primaryInput" spellcheck="false"></textarea>
+              <textarea :id="`${selectedTool.slug}-primary`" v-model="primaryInput" :placeholder="selectedTool.samplePrimary" spellcheck="false"></textarea>
             </div>
             <div class="field">
               <label :for="`${selectedTool.slug}-label`">{{ shellCopy.staticOptionalLabel }}</label>
-              <input :id="`${selectedTool.slug}-label`" v-model="staticLabel" type="text" autocomplete="off">
+              <input :id="`${selectedTool.slug}-label`" v-model="staticLabel" type="text" :placeholder="selectedTool.sampleSecondary" autocomplete="off">
             </div>
           </template>
 
           <template v-else-if="selectedTool.slug === 'barcode-generator'">
             <div class="field">
               <label :for="`${selectedTool.slug}-primary`">{{ shellCopy.barcodeValueLabel }}</label>
-              <input :id="`${selectedTool.slug}-primary`" v-model="primaryInput" type="text" spellcheck="false" autocomplete="off">
+              <input :id="`${selectedTool.slug}-primary`" v-model="primaryInput" type="text" :placeholder="selectedTool.samplePrimary" spellcheck="false" autocomplete="off">
             </div>
             <div class="field">
               <label :for="`${selectedTool.slug}-label`">{{ shellCopy.barcodeLabelLabel }}</label>
-              <input :id="`${selectedTool.slug}-label`" v-model="barcodeLabel" type="text" autocomplete="off">
+              <input :id="`${selectedTool.slug}-label`" v-model="barcodeLabel" type="text" :placeholder="selectedTool.sampleSecondary" autocomplete="off">
             </div>
             <div class="field">
               <span class="field-label">{{ shellCopy.barcodeSizeLabel }}</span>
@@ -644,28 +693,28 @@ function printPreview(): void {
           <template v-else-if="selectedTool.slug === 'utm-builder'">
             <div class="field">
               <label :for="`${selectedTool.slug}-base`">{{ copy.inputLabel }}</label>
-              <input :id="`${selectedTool.slug}-base`" v-model="utmBaseUrl" type="url" spellcheck="false" autocomplete="url">
+              <input :id="`${selectedTool.slug}-base`" v-model="utmBaseUrl" type="url" :placeholder="selectedTool.samplePrimary" spellcheck="false" autocomplete="url">
             </div>
             <div class="field-group field-group--two">
               <div class="field">
                 <label :for="`${selectedTool.slug}-source`">{{ shellCopy.utmSourceLabel }}</label>
-                <input :id="`${selectedTool.slug}-source`" v-model="utmSource" type="text" autocomplete="off">
+                <input :id="`${selectedTool.slug}-source`" v-model="utmSource" type="text" :placeholder="sampleKeyValueFields.source || sampleKeyValueFields.utm_source" autocomplete="off">
               </div>
               <div class="field">
                 <label :for="`${selectedTool.slug}-medium`">{{ shellCopy.utmMediumLabel }}</label>
-                <input :id="`${selectedTool.slug}-medium`" v-model="utmMedium" type="text" autocomplete="off">
+                <input :id="`${selectedTool.slug}-medium`" v-model="utmMedium" type="text" :placeholder="sampleKeyValueFields.medium || sampleKeyValueFields.utm_medium" autocomplete="off">
               </div>
               <div class="field">
                 <label :for="`${selectedTool.slug}-campaign`">{{ shellCopy.utmCampaignLabel }}</label>
-                <input :id="`${selectedTool.slug}-campaign`" v-model="utmCampaign" type="text" autocomplete="off">
+                <input :id="`${selectedTool.slug}-campaign`" v-model="utmCampaign" type="text" :placeholder="sampleKeyValueFields.campaign || sampleKeyValueFields.utm_campaign" autocomplete="off">
               </div>
               <div class="field">
                 <label :for="`${selectedTool.slug}-term`">{{ shellCopy.utmTermLabel }}</label>
-                <input :id="`${selectedTool.slug}-term`" v-model="utmTerm" type="text" autocomplete="off">
+                <input :id="`${selectedTool.slug}-term`" v-model="utmTerm" type="text" :placeholder="sampleKeyValueFields.term || sampleKeyValueFields.utm_term" autocomplete="off">
               </div>
               <div class="field field--wide">
                 <label :for="`${selectedTool.slug}-content`">{{ shellCopy.utmContentLabel }}</label>
-                <input :id="`${selectedTool.slug}-content`" v-model="utmContent" type="text" autocomplete="off">
+                <input :id="`${selectedTool.slug}-content`" v-model="utmContent" type="text" :placeholder="sampleKeyValueFields.content || sampleKeyValueFields.utm_content" autocomplete="off">
               </div>
             </div>
             <div class="field">
@@ -687,23 +736,23 @@ function printPreview(): void {
             <div class="field-group field-group--two">
               <div class="field">
                 <label :for="`${selectedTool.slug}-name`">{{ shellCopy.vcardNameLabel }}</label>
-                <input :id="`${selectedTool.slug}-name`" v-model="vcardName" type="text" autocomplete="name">
+                <input :id="`${selectedTool.slug}-name`" v-model="vcardName" type="text" :placeholder="samplePrimaryLines[0]" autocomplete="name">
               </div>
               <div class="field">
                 <label :for="`${selectedTool.slug}-org`">{{ shellCopy.vcardOrgLabel }}</label>
-                <input :id="`${selectedTool.slug}-org`" v-model="vcardOrg" type="text" autocomplete="organization">
+                <input :id="`${selectedTool.slug}-org`" v-model="vcardOrg" type="text" :placeholder="samplePrimaryLines[1]" autocomplete="organization">
               </div>
               <div class="field">
                 <label :for="`${selectedTool.slug}-phone`">{{ shellCopy.vcardPhoneLabel }}</label>
-                <input :id="`${selectedTool.slug}-phone`" v-model="vcardPhone" type="tel" autocomplete="tel">
+                <input :id="`${selectedTool.slug}-phone`" v-model="vcardPhone" type="tel" :placeholder="samplePrimaryLines[3]" autocomplete="tel">
               </div>
               <div class="field">
                 <label :for="`${selectedTool.slug}-email`">{{ shellCopy.vcardEmailLabel }}</label>
-                <input :id="`${selectedTool.slug}-email`" v-model="vcardEmail" type="email" autocomplete="email">
+                <input :id="`${selectedTool.slug}-email`" v-model="vcardEmail" type="email" :placeholder="samplePrimaryLines[2]" autocomplete="email">
               </div>
               <div class="field field--wide">
                 <label :for="`${selectedTool.slug}-website`">{{ shellCopy.vcardWebsiteLabel }}</label>
-                <input :id="`${selectedTool.slug}-website`" v-model="vcardWebsite" type="url" autocomplete="url">
+                <input :id="`${selectedTool.slug}-website`" v-model="vcardWebsite" type="url" :placeholder="samplePrimaryLines[4]" autocomplete="url">
               </div>
             </div>
           </template>
@@ -711,7 +760,7 @@ function printPreview(): void {
           <template v-else-if="selectedTool.slug === 'wifi-qr'">
             <div class="field">
               <label :for="`${selectedTool.slug}-ssid`">{{ shellCopy.wifiSsidLabel }}</label>
-              <input :id="`${selectedTool.slug}-ssid`" v-model="wifiSsid" type="text" autocomplete="off">
+              <input :id="`${selectedTool.slug}-ssid`" v-model="wifiSsid" type="text" :placeholder="selectedTool.samplePrimary" autocomplete="off">
             </div>
             <div v-if="isWifiKeyRequired" class="field network-key-field">
               <label :for="`${selectedTool.slug}-network-key`">{{ shellCopy.wifiPasswordLabel }}</label>
@@ -720,6 +769,7 @@ function printPreview(): void {
                   :id="`${selectedTool.slug}-network-key`"
                   v-model="wifiKey"
                   :type="wifiRevealKey ? 'text' : 'password'"
+                  :placeholder="sampleKeyValueFields.key || sampleKeyValueFields.passphrase"
                   autocomplete="off"
                 >
                 <button :class="getButtonClass('secondary')" type="button" @click="wifiRevealKey = !wifiRevealKey">
@@ -736,11 +786,11 @@ function printPreview(): void {
           <template v-else>
             <div class="field">
               <label :for="`${selectedTool.slug}-primary`">{{ shellCopy.previewPayloadLabel }}</label>
-              <textarea :id="`${selectedTool.slug}-primary`" v-model="primaryInput" spellcheck="false"></textarea>
+              <textarea :id="`${selectedTool.slug}-primary`" v-model="primaryInput" :placeholder="selectedTool.samplePrimary" spellcheck="false"></textarea>
             </div>
             <div class="field">
               <label :for="`${selectedTool.slug}-context`">{{ shellCopy.previewContextLabel }}</label>
-              <input :id="`${selectedTool.slug}-context`" v-model="previewContext" type="text" autocomplete="off">
+              <input :id="`${selectedTool.slug}-context`" v-model="previewContext" type="text" :placeholder="selectedTool.sampleSecondary" autocomplete="off">
             </div>
           </template>
 

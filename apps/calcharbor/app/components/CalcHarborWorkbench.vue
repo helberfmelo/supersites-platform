@@ -9,6 +9,7 @@ import {
   getCalculatorCopy,
   getFieldDefaultValue,
   getFieldPrefix,
+  type CalculatorField,
   type CalculatorSlug,
   type CalculationResult,
   type CalculatorScenarioRow,
@@ -22,14 +23,18 @@ const props = defineProps<{
 
 const copy = computed(() => getWorkbenchCopy(props.locale))
 const activeSlug = ref<CalculatorSlug>(calculatorCatalog[0].slug)
-const inputs = reactive<Record<string, number>>({})
+type CalculatorInputValue = number | ''
+const inputs = reactive<Record<string, CalculatorInputValue>>({})
 const hasCompared = ref(false)
 const activeCalculator = computed(() => calculatorCatalog.find((calculator) => calculator.slug === activeSlug.value) ?? calculatorCatalog[0])
 const activeCopy = computed(() => getCalculatorCopy(activeCalculator.value, props.locale))
-const liveResult = computed<CalculationResult>(() => activeCalculator.value.calculate(inputs))
+const numericInputs = computed<Record<string, number>>(() => Object.fromEntries(
+  activeCalculator.value.fields.map((field) => [field.key, Number(inputs[field.key]) || 0]),
+))
+const liveResult = computed<CalculationResult>(() => activeCalculator.value.calculate(numericInputs.value))
 const primaryMetric = computed(() => liveResult.value.ok ? liveResult.value.metrics[0] : null)
 const secondaryMetrics = computed(() => liveResult.value.ok ? liveResult.value.metrics.slice(1) : [])
-const scenarioRows = computed(() => buildCalculatorScenarioRows(activeCalculator.value, inputs, props.locale))
+const scenarioRows = computed(() => buildCalculatorScenarioRows(activeCalculator.value, numericInputs.value, props.locale))
 const maxScenarioValue = computed(() => Math.max(...scenarioRows.value.map((row) => Math.abs(row.numericValue ?? 0)), 1))
 
 function resetInputs(): void {
@@ -38,10 +43,14 @@ function resetInputs(): void {
   }
 
   for (const field of activeCalculator.value.fields) {
-    inputs[field.key] = getFieldDefaultValue(field, props.locale)
+    inputs[field.key] = ''
   }
 
   hasCompared.value = false
+}
+
+function fieldPlaceholder(field: CalculatorField): string {
+  return String(getFieldDefaultValue(field, props.locale))
 }
 
 function scenarioWidth(row: CalculatorScenarioRow): string {
@@ -113,6 +122,7 @@ watch(activeSlug, resetInputs, { immediate: true })
               :min="field.min"
               :step="field.step"
               inputmode="decimal"
+              :placeholder="fieldPlaceholder(field)"
             >
             <span v-if="field.suffix" aria-hidden="true">{{ field.suffix }}</span>
           </div>
@@ -133,22 +143,22 @@ watch(activeSlug, resetInputs, { immediate: true })
         </div>
 
         <p v-if="!hasCompared" class="privacy-strip">{{ copy.privacyNote }}</p>
-        <p v-if="!liveResult.ok" class="result-error">{{ liveResult.error[locale] }}</p>
+        <p v-else-if="!liveResult.ok" class="result-error">{{ liveResult.error[locale] }}</p>
 
-        <div v-else-if="primaryMetric" class="primary-result">
+        <div v-else-if="hasCompared && primaryMetric" class="primary-result">
           <span>{{ primaryMetric.label[locale] }}</span>
           <strong>{{ formatMetricValue(primaryMetric, locale) }}</strong>
           <p>{{ activeCopy.interpretation }}</p>
         </div>
 
-        <div v-if="secondaryMetrics.length > 0" class="metric-strip" :aria-label="copy.secondaryTitle">
+        <div v-if="hasCompared && secondaryMetrics.length > 0" class="metric-strip" :aria-label="copy.secondaryTitle">
           <div v-for="metric in secondaryMetrics" :key="metric.key">
             <span>{{ metric.label[locale] }}</span>
             <strong>{{ formatMetricValue(metric, locale) }}</strong>
           </div>
         </div>
 
-        <section class="scenario-snapshot" :aria-labelledby="`workbench-${activeCalculator.slug}-scenario`">
+        <section v-if="hasCompared" class="scenario-snapshot" :aria-labelledby="`workbench-${activeCalculator.slug}-scenario`">
           <div class="scenario-snapshot__head">
             <div>
               <h3 :id="`workbench-${activeCalculator.slug}-scenario`">{{ copy.scenarioTitle }}</h3>

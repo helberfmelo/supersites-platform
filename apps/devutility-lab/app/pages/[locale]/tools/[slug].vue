@@ -51,8 +51,8 @@ const shellCopy = getShellCopy(locale)
 const canonicalPath = localizedToolPath(locale, tool.slug)
 const structuredData = createToolStructuredData(tool, locale, absoluteUrl(canonicalPath))
 const selectedMode = ref(tool.modes[0]?.value ?? '')
-const primaryInput = ref(tool.samplePrimary)
-const secondaryInput = ref(tool.sampleSecondary)
+const primaryInput = ref('')
+const secondaryInput = ref('')
 const hasRun = ref(false)
 const isRunning = ref(false)
 const copyState = ref<'idle' | 'copied' | 'failed'>('idle')
@@ -230,10 +230,6 @@ const hashWarning = computed(() => {
 })
 
 onMounted(() => {
-  if (isTimestampConverter.value) {
-    primaryInput.value = Math.floor(Date.now() / 1000).toString()
-  }
-
   if (isUuidGenerator.value) {
     void executeRun({ track: false })
   }
@@ -731,14 +727,15 @@ useHead({
 
             <div v-if="isUuidGenerator" class="field field--compact">
               <label :for="`${tool.slug}-quantity`">{{ copy.inputLabel }}</label>
-              <input
-                :id="`${tool.slug}-quantity`"
-                v-model="primaryInput"
-                type="number"
-                min="1"
-                max="50"
-                step="1"
-              >
+                <input
+                  :id="`${tool.slug}-quantity`"
+                  v-model="primaryInput"
+                  type="number"
+                  min="1"
+                  max="50"
+                  step="1"
+                  :placeholder="tool.samplePrimary"
+                >
             </div>
 
             <div v-else-if="tool.acceptsPrimaryInput" class="field">
@@ -746,6 +743,7 @@ useHead({
               <textarea
                 :id="`${tool.slug}-primary`"
                 v-model="primaryInput"
+                :placeholder="tool.samplePrimary"
                 :class="{ 'textarea--large': isJwtInspector }"
                 spellcheck="false"
               ></textarea>
@@ -753,7 +751,7 @@ useHead({
 
             <div v-if="tool.requiresSecondaryInput" class="field">
               <label :for="`${tool.slug}-secondary`">{{ copy.secondaryInputLabel }}</label>
-              <textarea :id="`${tool.slug}-secondary`" v-model="secondaryInput" spellcheck="false"></textarea>
+              <textarea :id="`${tool.slug}-secondary`" v-model="secondaryInput" :placeholder="tool.sampleSecondary" spellcheck="false"></textarea>
             </div>
 
             <div v-if="isTimestampConverter" class="field field--compact">

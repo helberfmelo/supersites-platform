@@ -52,7 +52,7 @@ const selectedSlug = ref<PixelBatchToolSlug>(initialTool.slug)
 const selectedFile = ref<File | null>(null)
 const outputFormat = ref<PixelBatchOutputFormat>(initialTool.defaultFormat)
 const quality = ref(Math.round(initialTool.defaultQuality * 100))
-const targetWidth = ref(initialTool.slug === 'image-resizer' ? '1200' : '')
+const targetWidth = ref('')
 const targetHeight = ref('')
 const maintainAspectRatio = ref(true)
 const cropPreset = ref<PixelBatchCropPreset>('square')
@@ -208,7 +208,7 @@ function clearResult(): void {
 function resetSettings(clearFile = false): void {
   outputFormat.value = tool.value.defaultFormat
   quality.value = Math.round(tool.value.defaultQuality * 100)
-  targetWidth.value = tool.value.slug === 'image-resizer' ? '1200' : ''
+  targetWidth.value = ''
   targetHeight.value = ''
   maintainAspectRatio.value = true
   cropPreset.value = 'square'

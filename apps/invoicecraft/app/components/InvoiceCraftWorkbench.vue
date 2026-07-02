@@ -431,9 +431,9 @@ const activeSlug = ref<InvoiceCraftToolSlug>(props.initialSlug)
 const activeTool = computed(() => getInvoiceCraftToolBySlug(activeSlug.value) ?? invoiceCraftToolCatalog[0]!)
 const copy = computed(() => getInvoiceCraftToolCopy(activeTool.value, props.locale))
 const selectedMode = ref<InvoiceCraftToolMode>(activeTool.value.modes[0]?.value ?? 'clean')
-const form = reactive<InvoiceCraftDocumentInput>(cloneInput(localizedSample(activeTool.value.sample, activeTool.value.kind)))
+const form = reactive<InvoiceCraftDocumentInput>(emptyInput(localizedSample(activeTool.value.sample, activeTool.value.kind)))
 const lineItemSequence = ref(0)
-const lineItems = ref<EditableLineItem[]>(rowsFromRaw(localizedSample(activeTool.value.sample, activeTool.value.kind).itemsRaw))
+const lineItems = ref<EditableLineItem[]>([blankLineItem()])
 const hasRun = ref(false)
 const isRunning = ref(false)
 const isDownloading = ref(false)
@@ -473,9 +473,30 @@ const snapshotMeta = computed(() => {
     { label: labels.value.totalLabel, value: formatMoney(document.value.total, document.value.currency, props.locale) },
   ]
 })
+const samplePlaceholder = computed(() => localizedSample(activeTool.value.sample, activeTool.value.kind))
 
 function cloneInput(input: InvoiceCraftDocumentInput): InvoiceCraftDocumentInput {
   return { ...input }
+}
+
+function emptyInput(sample: InvoiceCraftDocumentInput): InvoiceCraftDocumentInput {
+  return {
+    ...sample,
+    issuerName: '',
+    issuerDetails: '',
+    clientName: '',
+    clientDetails: '',
+    documentNumber: '',
+    issueDate: '',
+    dueDate: '',
+    terms: '',
+    itemsRaw: '',
+    discountAmount: '',
+    shippingAmount: '',
+    adjustmentLabel: '',
+    adjustmentAmount: '',
+    notes: '',
+  }
 }
 
 function localizedSample(input: InvoiceCraftDocumentInput, kind: InvoiceCraftDocumentKind): InvoiceCraftDocumentInput {
@@ -483,6 +504,17 @@ function localizedSample(input: InvoiceCraftDocumentInput, kind: InvoiceCraftDoc
     ...cloneInput(input),
     ...(localizedSampleOverrides[props.locale]?.[kind] ?? {}),
   }
+}
+
+function blankLineItem(): EditableLineItem {
+  lineItemSequence.value += 1
+  return { id: lineItemSequence.value, description: '', quantity: '', unitPrice: '' }
+}
+
+function sampleLineItemPlaceholder(index: number, field: keyof Omit<EditableLineItem, 'id'>): string {
+  const line = samplePlaceholder.value.itemsRaw.split('\n')[index] ?? samplePlaceholder.value.itemsRaw.split('\n')[0] ?? ''
+  const [description = '', quantity = '', unitPrice = ''] = line.split('|').map((part) => part.trim())
+  return { description, quantity, unitPrice }[field]
 }
 
 function modeLabel(mode: InvoiceCraftToolMode): string {
@@ -510,8 +542,7 @@ function rowsFromRaw(raw: string): EditableLineItem[] {
     return rows
   }
 
-  lineItemSequence.value += 1
-  return [{ id: lineItemSequence.value, description: '', quantity: '1', unitPrice: '0' }]
+  return [blankLineItem()]
 }
 
 function serializeRows(): string {
@@ -535,7 +566,7 @@ function clearScheduledPreview(): void {
 }
 
 function schedulePreview(): void {
-  if (!import.meta.client || !autoPreviewReady.value) {
+  if (!import.meta.client || !autoPreviewReady.value || !hasRun.value) {
     return
   }
 
@@ -653,6 +684,15 @@ function loadSample(preview = true): void {
   }
 }
 
+function clearDocumentForm(): void {
+  Object.assign(form, emptyInput(localizedSample(activeTool.value.sample, activeTool.value.kind)))
+  selectedMode.value = activeTool.value.modes[0]?.value ?? 'clean'
+  lineItems.value = [blankLineItem()]
+  hasRun.value = false
+  result.value = null
+  copyState.value = 'idle'
+}
+
 function setActiveTool(slug: InvoiceCraftToolSlug): void {
   if (activeSlug.value === slug) {
     return
@@ -675,8 +715,8 @@ function addLineItem(): void {
   lineItems.value.push({
     id: lineItemSequence.value,
     description: '',
-    quantity: '1',
-    unitPrice: '0',
+    quantity: '',
+    unitPrice: '',
   })
 }
 
@@ -837,7 +877,7 @@ async function downloadPdf(): Promise<void> {
 }
 
 watch(activeSlug, () => {
-  loadSample(true)
+  clearDocumentForm()
 })
 
 watch([form, lineItems, selectedMode], () => {
@@ -854,7 +894,6 @@ onMounted(() => {
   }
 
   autoPreviewReady.value = true
-  void generatePreview(false)
 })
 
 onBeforeUnmount(() => {
@@ -933,10 +972,6 @@ onBeforeUnmount(() => {
               </div>
               <div class="form-grid form-grid--compact">
                 <div class="field">
-                  <label :for="`${activeSlug}-locale`">{{ labels.localeLabel }}</label>
-                  <input :id="`${activeSlug}-locale`" :value="locale" readonly>
-                </div>
-                <div class="field">
                   <label :for="`${activeSlug}-currency`">{{ labels.currencyLabel }}</label>
                   <select :id="`${activeSlug}-currency`" v-model="form.currency">
                     <option value="USD">USD</option>
@@ -978,37 +1013,37 @@ onBeforeUnmount(() => {
             <div class="form-grid">
               <div class="field">
                 <label :for="`${activeSlug}-issuer-name`">{{ labels.issuerNameLabel }}</label>
-                <input :id="`${activeSlug}-issuer-name`" v-model="form.issuerName" autocomplete="off">
+                <input :id="`${activeSlug}-issuer-name`" v-model="form.issuerName" :placeholder="samplePlaceholder.issuerName" autocomplete="off">
               </div>
               <div class="field">
                 <label :for="`${activeSlug}-client-name`">{{ labels.clientNameLabel }}</label>
-                <input :id="`${activeSlug}-client-name`" v-model="form.clientName" autocomplete="off">
+                <input :id="`${activeSlug}-client-name`" v-model="form.clientName" :placeholder="samplePlaceholder.clientName" autocomplete="off">
               </div>
             </div>
 
             <div class="form-grid">
               <div class="field">
                 <label :for="`${activeSlug}-issuer-details`">{{ labels.issuerDetailsLabel }}</label>
-                <textarea :id="`${activeSlug}-issuer-details`" v-model="form.issuerDetails" spellcheck="false"></textarea>
+                <textarea :id="`${activeSlug}-issuer-details`" v-model="form.issuerDetails" :placeholder="samplePlaceholder.issuerDetails" spellcheck="false"></textarea>
               </div>
               <div class="field">
                 <label :for="`${activeSlug}-client-details`">{{ labels.clientDetailsLabel }}</label>
-                <textarea :id="`${activeSlug}-client-details`" v-model="form.clientDetails" spellcheck="false"></textarea>
+                <textarea :id="`${activeSlug}-client-details`" v-model="form.clientDetails" :placeholder="samplePlaceholder.clientDetails" spellcheck="false"></textarea>
               </div>
             </div>
 
             <div class="form-grid form-grid--three">
               <div class="field">
                 <label :for="`${activeSlug}-number`">{{ labels.documentNumberLabel }}</label>
-                <input :id="`${activeSlug}-number`" v-model="form.documentNumber" autocomplete="off">
+                <input :id="`${activeSlug}-number`" v-model="form.documentNumber" :placeholder="samplePlaceholder.documentNumber" autocomplete="off">
               </div>
               <div class="field">
                 <label :for="`${activeSlug}-issue-date`">{{ labels.issueDateLabel }}</label>
-                <input :id="`${activeSlug}-issue-date`" v-model="form.issueDate" type="date">
+                <input :id="`${activeSlug}-issue-date`" v-model="form.issueDate" type="date" :placeholder="samplePlaceholder.issueDate">
               </div>
               <div class="field">
                 <label :for="`${activeSlug}-due-date`">{{ dueDateLabel }}</label>
-                <input :id="`${activeSlug}-due-date`" v-model="form.dueDate" type="date">
+                <input :id="`${activeSlug}-due-date`" v-model="form.dueDate" type="date" :placeholder="samplePlaceholder.dueDate">
               </div>
             </div>
 
@@ -1025,19 +1060,19 @@ onBeforeUnmount(() => {
                   <label :for="`${activeSlug}-line-${item.id}-description`">
                     {{ labels.itemDescriptionLabel }} {{ index + 1 }}
                   </label>
-                  <input :id="`${activeSlug}-line-${item.id}-description`" v-model="item.description" autocomplete="off">
+                  <input :id="`${activeSlug}-line-${item.id}-description`" v-model="item.description" :placeholder="sampleLineItemPlaceholder(index, 'description')" autocomplete="off">
                 </div>
                 <div class="field">
                   <label :for="`${activeSlug}-line-${item.id}-quantity`">
                     {{ labels.quantityLabel }} {{ index + 1 }}
                   </label>
-                  <input :id="`${activeSlug}-line-${item.id}-quantity`" v-model="item.quantity" inputmode="decimal">
+                  <input :id="`${activeSlug}-line-${item.id}-quantity`" v-model="item.quantity" :placeholder="sampleLineItemPlaceholder(index, 'quantity')" inputmode="decimal">
                 </div>
                 <div class="field">
                   <label :for="`${activeSlug}-line-${item.id}-unit-price`">
                     {{ labels.unitPriceLabel }} {{ index + 1 }}
                   </label>
-                  <input :id="`${activeSlug}-line-${item.id}-unit-price`" v-model="item.unitPrice" inputmode="decimal">
+                  <input :id="`${activeSlug}-line-${item.id}-unit-price`" v-model="item.unitPrice" :placeholder="sampleLineItemPlaceholder(index, 'unitPrice')" inputmode="decimal">
                 </div>
                 <button
                   class="line-row__remove"
@@ -1054,31 +1089,31 @@ onBeforeUnmount(() => {
             <div class="form-grid form-grid--three">
               <div class="field">
                 <label :for="`${activeSlug}-discount`">{{ labels.discountAmountLabel }}</label>
-                <input :id="`${activeSlug}-discount`" v-model="form.discountAmount" inputmode="decimal">
+                <input :id="`${activeSlug}-discount`" v-model="form.discountAmount" :placeholder="samplePlaceholder.discountAmount" inputmode="decimal">
               </div>
               <div class="field">
                 <label :for="`${activeSlug}-shipping`">{{ labels.shippingAmountLabel }}</label>
-                <input :id="`${activeSlug}-shipping`" v-model="form.shippingAmount" inputmode="decimal">
+                <input :id="`${activeSlug}-shipping`" v-model="form.shippingAmount" :placeholder="samplePlaceholder.shippingAmount" inputmode="decimal">
               </div>
               <div class="field">
                 <label :for="`${activeSlug}-adjustment-amount`">{{ labels.adjustmentAmountLabel }}</label>
-                <input :id="`${activeSlug}-adjustment-amount`" v-model="form.adjustmentAmount" inputmode="decimal">
+                <input :id="`${activeSlug}-adjustment-amount`" v-model="form.adjustmentAmount" :placeholder="samplePlaceholder.adjustmentAmount" inputmode="decimal">
               </div>
             </div>
 
             <div class="field">
               <label :for="`${activeSlug}-adjustment-label`">{{ labels.adjustmentLabelLabel }}</label>
-              <input :id="`${activeSlug}-adjustment-label`" v-model="form.adjustmentLabel" autocomplete="off">
+              <input :id="`${activeSlug}-adjustment-label`" v-model="form.adjustmentLabel" :placeholder="samplePlaceholder.adjustmentLabel" autocomplete="off">
             </div>
 
             <div class="field">
               <label :for="`${activeSlug}-terms`">{{ labels.termsLabel }}</label>
-              <textarea :id="`${activeSlug}-terms`" v-model="form.terms" spellcheck="false"></textarea>
+              <textarea :id="`${activeSlug}-terms`" v-model="form.terms" :placeholder="samplePlaceholder.terms" spellcheck="false"></textarea>
             </div>
 
             <div class="field">
               <label :for="`${activeSlug}-notes`">{{ labels.notesLabel }}</label>
-              <textarea :id="`${activeSlug}-notes`" v-model="form.notes" spellcheck="false"></textarea>
+              <textarea :id="`${activeSlug}-notes`" v-model="form.notes" :placeholder="samplePlaceholder.notes" spellcheck="false"></textarea>
             </div>
 
             <div class="tool-actions">

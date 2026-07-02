@@ -41,22 +41,22 @@ const props = withDefaults(defineProps<{
 const selectedSlug = ref<DocShiftToolSlug>(props.initialSlug)
 const selectedFiles = ref<File[]>([])
 const pageScope = ref<PageScope>('all')
-const pageSelection = ref('all')
+const pageSelection = ref('')
 const rotationDegrees = ref(90)
-const watermarkText = ref('Draft')
+const watermarkText = ref('')
 const watermarkPosition = ref('diagonal')
 const watermarkOpacity = ref(18)
 const watermarkSize = ref(42)
-const metadataTitle = ref('DocShift output')
-const metadataAuthor = ref('DocShift local tool')
+const metadataTitle = ref('')
+const metadataAuthor = ref('')
 const sourceMetadata = ref({ title: '', author: '' })
 const pageNumberPosition = ref('bottom-center')
 const pageNumberStart = ref(1)
 const pageNumberFormat = ref('number-total')
-const textTitle = ref('DocShift Text to PDF')
+const textTitle = ref('')
 const pageSize = ref('letter')
 const fontSize = ref(11)
-const textContent = ref('Paste a short note, checklist or draft here. DocShift will create a simple PDF locally in your browser.')
+const textContent = ref('')
 const hasRun = ref(false)
 const isRunning = ref(false)
 const isDownloading = ref(false)
@@ -182,22 +182,22 @@ function clearResult(): void {
 
 function resetSettings(): void {
   pageScope.value = tool.value.defaultPages === 'all' ? 'all' : 'range'
-  pageSelection.value = tool.value.defaultPages === 'all' ? '1' : tool.value.defaultPages
+  pageSelection.value = ''
   rotationDegrees.value = 90
-  watermarkText.value = 'Draft'
+  watermarkText.value = ''
   watermarkPosition.value = 'diagonal'
   watermarkOpacity.value = 18
   watermarkSize.value = 42
-  metadataTitle.value = 'DocShift output'
-  metadataAuthor.value = 'DocShift local tool'
+  metadataTitle.value = ''
+  metadataAuthor.value = ''
   sourceMetadata.value = { title: '', author: '' }
   pageNumberPosition.value = 'bottom-center'
   pageNumberStart.value = 1
   pageNumberFormat.value = 'number-total'
-  textTitle.value = 'DocShift Text to PDF'
+  textTitle.value = ''
   pageSize.value = 'letter'
   fontSize.value = 11
-  textContent.value = 'Paste a short note, checklist or draft here. DocShift will create a simple PDF locally in your browser.'
+  textContent.value = ''
   hasRun.value = false
   selectedFiles.value = []
   clearResult()
@@ -552,7 +552,7 @@ watch(selectedSlug, resetSettings)
 
 onMounted(() => {
   pageScope.value = tool.value.defaultPages === 'all' ? 'all' : 'range'
-  pageSelection.value = tool.value.defaultPages === 'all' ? '1' : tool.value.defaultPages
+  pageSelection.value = ''
 
   if (props.trackView) {
     trackDocShiftEvent({
@@ -644,7 +644,7 @@ onBeforeUnmount(() => {
             <div class="form-grid form-grid--three">
               <div class="field">
                 <label :for="`${tool.slug}-text-title`">{{ shellCopy.textTitleLabel }}</label>
-                <input :id="`${tool.slug}-text-title`" v-model="textTitle" maxlength="90" autocomplete="off">
+                <input :id="`${tool.slug}-text-title`" v-model="textTitle" maxlength="90" autocomplete="off" placeholder="DocShift Text to PDF">
               </div>
               <div class="field">
                 <label :for="`${tool.slug}-page-size`">{{ shellCopy.pageSizeLabel }}</label>
@@ -661,7 +661,7 @@ onBeforeUnmount(() => {
             </div>
             <div class="field">
               <label :for="`${tool.slug}-text`">{{ shellCopy.textLabel }}</label>
-              <textarea :id="`${tool.slug}-text`" v-model="textContent" spellcheck="true"></textarea>
+              <textarea :id="`${tool.slug}-text`" v-model="textContent" spellcheck="true" placeholder="Paste a short note, checklist or draft here."></textarea>
             </div>
             <div class="file-state" aria-live="polite">
               <strong>{{ shellCopy.fileStateTitle }}</strong>
@@ -709,7 +709,7 @@ onBeforeUnmount(() => {
           <div v-if="tool.operation === 'watermark'" class="form-grid form-grid--three">
             <div class="field">
               <label :for="`${tool.slug}-watermark`">{{ shellCopy.watermarkLabel }}</label>
-              <input :id="`${tool.slug}-watermark`" v-model="watermarkText" maxlength="64" autocomplete="off">
+              <input :id="`${tool.slug}-watermark`" v-model="watermarkText" maxlength="64" autocomplete="off" placeholder="Draft">
             </div>
             <div class="field">
               <label :for="`${tool.slug}-watermark-position`">{{ shellCopy.watermarkPositionLabel }}</label>
@@ -756,11 +756,11 @@ onBeforeUnmount(() => {
           <div v-if="tool.operation === 'metadata'" class="form-grid">
             <div class="field">
               <label :for="`${tool.slug}-title`">{{ shellCopy.metadataTitleLabel }}</label>
-              <input :id="`${tool.slug}-title`" v-model="metadataTitle" maxlength="90" autocomplete="off">
+              <input :id="`${tool.slug}-title`" v-model="metadataTitle" maxlength="90" autocomplete="off" placeholder="DocShift output">
             </div>
             <div class="field">
               <label :for="`${tool.slug}-author`">{{ shellCopy.metadataAuthorLabel }}</label>
-              <input :id="`${tool.slug}-author`" v-model="metadataAuthor" maxlength="90" autocomplete="off">
+              <input :id="`${tool.slug}-author`" v-model="metadataAuthor" maxlength="90" autocomplete="off" placeholder="DocShift local tool">
             </div>
           </div>
 
