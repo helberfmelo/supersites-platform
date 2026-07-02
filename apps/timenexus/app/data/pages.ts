@@ -115,7 +115,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'TimeNexus is the SuperSites product for browser-side time, date, percentage and unit helpers.',
     sections: [
       ['Purpose', 'The site helps users answer everyday time, calendar and conversion questions without mandatory signup or server-side product storage.'],
-      ['What is live now', 'The browser MVP includes seven local tools covering time zones, date difference, business days, timestamp, age, percentage and units.'],
+      ['What is live now', 'The browser version includes seven local tools covering time zones, date difference, business days, timestamp, age, percentage and units.'],
       ['Advanced workflows', 'Widgets, API access, presets, private history, collaboration and ad-free use are separate from the free time tools.'],
     ],
   },
@@ -132,7 +132,7 @@ const pageSpecs: Record<ContentPageSlug, {
     title: 'Privacy Policy',
     description: 'TimeNexus minimizes collection by processing free tool inputs locally in the browser.',
     sections: [
-      ['Data minimization', 'Tool inputs and results are not sent to a product API, not stored in account history and not written to browser storage in this MVP.'],
+      ['Data minimization', 'Tool inputs and results are not sent to a product API, not stored in account history and not written to browser storage in the free browser version.'],
       ['Analytics boundary', 'Allowed analytics events may record tool slugs and page paths, but not dates, zones, ages, percentages, units or generated results.'],
       ['Future accounts', 'Widgets, presets, history and API access require account, retention, export, deletion and consent rules before launch.'],
     ],
@@ -160,7 +160,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'How TimeNexus keeps tools useful, local and honest about limits.',
     sections: [
       ['Working tool first', 'Each page must include a functioning free calculator or converter before it can be treated as launch-ready content.'],
-      ['Client-side processing', 'Date math and conversions run client-side and use a Web Worker when supported so the UI remains responsive.'],
+      ['In-browser processing', 'Date math and conversions run in the browser and use a Web Worker when supported so the UI remains responsive.'],
       ['Limit disclosure', 'Time zones, calendars and unit conversions can depend on business rules, local holidays and domain-specific definitions that must be reviewed.'],
     ],
   },

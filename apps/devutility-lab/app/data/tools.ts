@@ -172,7 +172,7 @@ const localizedBasics: Record<LocaleCode, {
     limitsSection: 'Limits',
     limitsBody: 'The free browser surface is designed for snippets and small files. Saved workspaces, batch jobs, larger files and API automation are follow-on workflow options.',
     faqStorage: { question: 'Are snippets stored?', answer: 'No. DevUtility Lab does not use account storage, localStorage, sessionStorage or a product API in the free workbench.' },
-    faqAccuracy: { question: 'Can I paste production secrets?', answer: 'Avoid pasting secrets. The MVP processes locally, but safe handling still means redacting keys, tokens and confidential data.' },
+    faqAccuracy: { question: 'Can I paste production secrets?', answer: 'Avoid pasting secrets. The tool processes locally, but safe handling still means redacting keys, tokens and confidential data.' },
   },
   'pt-br': {
     modeLabel: 'Modo',
@@ -185,7 +185,7 @@ const localizedBasics: Record<LocaleCode, {
     limitsSection: 'Limites',
     limitsBody: 'A superficie gratuita foi feita para trechos e arquivos pequenos. Workspaces salvos, lotes, arquivos maiores e automacao por API ficam como opcoes futuras de workflow.',
     faqStorage: { question: 'Os trechos sao armazenados?', answer: 'Nao. O DevUtility Lab nao usa conta, localStorage, sessionStorage nem API de produto no workbench gratuito.' },
-    faqAccuracy: { question: 'Posso colar segredos de producao?', answer: 'Evite colar segredos. O MVP processa localmente, mas o manuseio seguro ainda pede redacao de chaves, tokens e dados confidenciais.' },
+    faqAccuracy: { question: 'Posso colar segredos de producao?', answer: 'Evite colar segredos. A ferramenta processa localmente, mas o manuseio seguro ainda pede redacao de chaves, tokens e dados confidenciais.' },
   },
   es: {
     modeLabel: 'Modo',
@@ -198,7 +198,7 @@ const localizedBasics: Record<LocaleCode, {
     limitsSection: 'Limites',
     limitsBody: 'La superficie gratis es para fragmentos y archivos pequenos. Workspaces guardados, lotes, archivos mayores y automatizacion por API quedan como opciones futuras de workflow.',
     faqStorage: { question: 'Se almacenan fragmentos?', answer: 'No. DevUtility Lab no usa cuentas, localStorage, sessionStorage ni API de producto en el workbench gratuito.' },
-    faqAccuracy: { question: 'Puedo pegar secretos de produccion?', answer: 'Evita pegar secretos. El MVP procesa localmente, pero conviene redactar claves, tokens y datos confidenciales.' },
+    faqAccuracy: { question: 'Puedo pegar secretos de produccion?', answer: 'Evita pegar secretos. La herramienta procesa localmente, pero conviene redactar claves, tokens y datos confidenciales.' },
   },
   fr: {
     modeLabel: 'Mode',
@@ -211,7 +211,7 @@ const localizedBasics: Record<LocaleCode, {
     limitsSection: 'Limites',
     limitsBody: 'La surface gratuite vise extraits et petits fichiers. Workspaces sauvegardes, lots, gros fichiers et automatisation API restent des options workflow futures.',
     faqStorage: { question: 'Les extraits sont-ils stockes?', answer: 'Non. DevUtility Lab n utilise ni compte, ni localStorage, ni sessionStorage, ni API produit dans le workbench gratuit.' },
-    faqAccuracy: { question: 'Puis-je coller des secrets de production?', answer: 'Evitez les secrets. Le MVP traite localement, mais il faut masquer cles, tokens et donnees confidentielles.' },
+    faqAccuracy: { question: 'Puis-je coller des secrets de production?', answer: 'Evitez les secrets. L outil traite localement, mais il faut masquer cles, tokens et donnees confidentielles.' },
   },
   de: {
     modeLabel: 'Modus',
@@ -224,7 +224,7 @@ const localizedBasics: Record<LocaleCode, {
     limitsSection: 'Grenzen',
     limitsBody: 'Die kostenlose Browser-Oberflaeche ist fuer Ausschnitte und kleine Dateien. Gespeicherte Workspaces, Stapel, groessere Dateien und API-Automation bleiben kuenftige Workflow-Optionen.',
     faqStorage: { question: 'Werden Ausschnitte gespeichert?', answer: 'Nein. DevUtility Lab nutzt im kostenlosen Workbench weder Konto, localStorage, sessionStorage noch Produkt-API.' },
-    faqAccuracy: { question: 'Kann ich Produktionsgeheimnisse einfuegen?', answer: 'Vermeiden Sie Geheimnisse. Das MVP verarbeitet lokal, trotzdem sollten Keys, Tokens und vertrauliche Daten geschwaerzt werden.' },
+    faqAccuracy: { question: 'Kann ich Produktionsgeheimnisse einfuegen?', answer: 'Vermeiden Sie Geheimnisse. Das Tool verarbeitet lokal, trotzdem sollten Keys, Tokens und vertrauliche Daten geschwaerzt werden.' },
   },
 }
 

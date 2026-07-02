@@ -160,7 +160,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'How InvoiceCraft keeps document builders useful, local and honest about fiscal and payment limits.',
     sections: [
       ['Working builder first', 'Each page must include a functioning free document builder and preview before it can be treated as launch-ready content.'],
-      ['Client-side rendering', 'Totals, item rows and PDF downloads are generated in the browser from visible fields so the free builder does not need an account to solve the basic task.'],
+      ['In-browser rendering', 'Totals, item rows and PDF downloads are generated in the browser from visible fields so the free builder does not need an account to solve the basic task.'],
       ['Abuse guard', 'The free builder limits document size, line count and numeric ranges, and avoids payment collection or official tax claims.'],
     ],
   },

@@ -140,7 +140,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
         body: 'Each calculator exposes the formula and labels assumptions so the answer is auditable.',
       },
       {
-        title: 'Client-side by default',
+        title: 'In-browser by default',
         body: 'Calculations run in the browser and do not store inputs or results.',
       },
       {
@@ -447,7 +447,7 @@ export const shellCopy: Record<LocaleCode, ShellCopy> = {
     invalidResultTitle: 'Check the inputs',
     privacyNote: 'Calculations run in this browser session. CalcHarbor does not store entered values.',
     pageStatusLabel: 'Calculator status',
-    liveTitle: 'Client-side calculator',
+    liveTitle: 'Browser calculator',
     liveBody: 'The free calculator works without signup and without sending values to an API.',
     gatedTitle: 'Repeat-work options',
     gatedBody: 'Use the free answer now; account features can add history, exports, widgets or API access when you need repeated work.',

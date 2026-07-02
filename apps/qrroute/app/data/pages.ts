@@ -160,7 +160,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'How QRRoute keeps builders useful, local and honest about redirect limits.',
     sections: [
       ['Working builder first', 'Each page must include a functioning free builder or preview before it can be treated as launch-ready content.'],
-      ['Client-side rendering', 'Static QR and barcode previews are rendered in the browser from the visible payload so the free builder does not need a redirect service to solve the basic task.'],
+      ['In-browser rendering', 'Static QR and barcode previews are rendered in the browser from the visible payload so the free builder does not need a redirect service to solve the basic task.'],
       ['Abuse guard', 'URL previews block dangerous schemes, localhost/private destinations, embedded credentials and oversized payloads before rendering.'],
     ],
   },

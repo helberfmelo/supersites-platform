@@ -19,22 +19,22 @@ export interface PixelBatchAdvancedWorkflowCopy {
 
 const advancedWorkflowCopy: Record<LocaleCode, PixelBatchAdvancedWorkflowCopy> = {
   en: {
-    title: 'Advanced workflow review',
+    title: 'Advanced image workflows',
     body: 'Background cleanup, large conversion queues and API integrations require explicit data and safety controls. The free tool remains a local one-image workflow.',
     currentLabel: 'Free path today',
     dataLabel: 'Data touched if enabled',
-    gateLabel: 'Required control',
+    gateLabel: 'Controls needed',
     items: [
       {
         title: 'Background cleanup',
         body: 'Subject masking or background removal would require AI or segmentation infrastructure, so the public tool does not send pixels out of the browser.',
         current: 'Resize, crop, compress, convert and metadata cleanup run locally for one image.',
         data: 'Image bytes, derived masks, previews and output files.',
-        gate: 'Human approval of provider terms, data transfer, retention, deletion, disclosure and credit cost.',
+        gate: 'Clear provider terms, data transfer notice, retention limits, deletion controls, disclosure and credit-cost limits.',
       },
       {
         title: 'High-volume conversion',
-        body: 'Bulk folders and high-resolution queues need upload controls before they become a paid workflow.',
+        body: 'Bulk folders and high-resolution queues need account upload controls for a paid workflow.',
         current: 'One selected image, browser memory and object URLs only.',
         data: 'File names, image bytes, job metadata, output format and delivery status.',
         gate: 'Authenticated account, quotas, upload validation, sandboxing, retention and export/delete controls.',
@@ -49,22 +49,22 @@ const advancedWorkflowCopy: Record<LocaleCode, PixelBatchAdvancedWorkflowCopy> =
     ],
   },
   'pt-br': {
-    title: 'Revisao de workflows avancados',
+    title: 'Workflows avancados de imagem',
     body: 'Remocao de fundo, filas grandes de conversao e integracoes API exigem controles explicitos de dados e seguranca. A ferramenta gratuita segue local para uma imagem.',
     currentLabel: 'Caminho gratuito hoje',
     dataLabel: 'Dados tocados se ativar',
-    gateLabel: 'Controle exigido',
+    gateLabel: 'Controles necessarios',
     items: [
       {
         title: 'Remocao de fundo',
         body: 'Mascaras de sujeito ou remocao de fundo exigiriam IA ou infraestrutura de segmentacao, entao a ferramenta publica nao envia pixels para fora do navegador.',
         current: 'Redimensionar, cortar, comprimir, converter e limpar metadados rodam localmente para uma imagem.',
         data: 'Bytes da imagem, mascaras derivadas, previews e arquivos finais.',
-        gate: 'Aprovacao humana de termos do provider, transferencia de dados, retencao, exclusao, divulgacao e custo de creditos.',
+        gate: 'Termos claros do provider, aviso de transferencia, limites de retencao, controles de exclusao, divulgacao e limite de custo de creditos.',
       },
       {
         title: 'Conversao em alto volume',
-        body: 'Pastas em lote e filas de alta resolucao precisam de controles de upload antes de virar workflow pago.',
+        body: 'Pastas em lote e filas de alta resolucao precisam de controles de upload em conta para um workflow pago.',
         current: 'Uma imagem selecionada, memoria do navegador e object URLs apenas.',
         data: 'Nomes de arquivo, bytes de imagem, metadata de job, formato de saida e status de entrega.',
         gate: 'Conta autenticada, quotas, validacao de upload, sandbox, retencao e exportacao/exclusao.',
@@ -79,7 +79,7 @@ const advancedWorkflowCopy: Record<LocaleCode, PixelBatchAdvancedWorkflowCopy> =
     ],
   },
   es: {
-    title: 'Revision de workflows avanzados',
+    title: 'Workflows avanzados de imagen',
     body: 'Limpieza de fondo, colas grandes de conversion e integraciones API requieren controles explicitos de datos y seguridad. La herramienta gratis sigue local para una imagen.',
     currentLabel: 'Ruta gratis hoy',
     dataLabel: 'Datos tocados si se activa',
@@ -90,11 +90,11 @@ const advancedWorkflowCopy: Record<LocaleCode, PixelBatchAdvancedWorkflowCopy> =
         body: 'Mascaras de sujeto o remocion de fondo requeririan IA o segmentacion, por eso la herramienta publica no envia pixeles fuera del navegador.',
         current: 'Resize, crop, compresion, conversion y metadata corren localmente para una imagen.',
         data: 'Bytes de imagen, mascaras derivadas, vistas previas y archivos finales.',
-        gate: 'Aprobacion humana de terminos del provider, transferencia de datos, retencion, borrado, disclosure y costo de creditos.',
+        gate: 'Terminos claros del provider, aviso de transferencia, limites de retencion, borrado, disclosure y limite de costo de creditos.',
       },
       {
         title: 'Conversion de alto volumen',
-        body: 'Carpetas batch y colas de alta resolucion necesitan controles de upload antes de ser workflow pago.',
+        body: 'Carpetas batch y colas de alta resolucion necesitan controles de upload con cuenta para un workflow pago.',
         current: 'Una imagen seleccionada, memoria del navegador y object URLs solamente.',
         data: 'Nombres de archivo, bytes de imagen, metadata de job, formato de salida y estado de entrega.',
         gate: 'Cuenta autenticada, cuotas, validacion de upload, sandbox, retencion y exportacion/borrado.',
@@ -109,22 +109,22 @@ const advancedWorkflowCopy: Record<LocaleCode, PixelBatchAdvancedWorkflowCopy> =
     ],
   },
   fr: {
-    title: 'Revue des workflows avances',
+    title: 'Workflows image avances',
     body: 'Suppression de fond, grandes files de conversion et integrations API exigent des controles explicites de donnees et securite. L outil gratuit reste local pour une image.',
     currentLabel: 'Parcours gratuit actuel',
     dataLabel: 'Donnees touchees si active',
-    gateLabel: 'Controle requis',
+    gateLabel: 'Controles necessaires',
     items: [
       {
         title: 'Suppression de fond',
         body: 'Masques de sujet ou suppression de fond exigeraient IA ou segmentation; l outil public n envoie donc pas les pixels hors navigateur.',
         current: 'Resize, crop, compression, conversion et nettoyage metadata tournent localement pour une image.',
         data: 'Octets image, masques derives, apercus et fichiers de sortie.',
-        gate: 'Approbation humaine des termes provider, transfert de donnees, retention, suppression, disclosure et cout credit.',
+        gate: 'Termes provider clairs, avis de transfert, limites retention, suppression, disclosure et limite de cout credit.',
       },
       {
         title: 'Conversion haut volume',
-        body: 'Dossiers batch et files haute resolution exigent des controles upload avant de devenir workflow payant.',
+        body: 'Dossiers batch et files haute resolution exigent des controles upload avec compte pour un workflow payant.',
         current: 'Une image choisie, memoire navigateur et object URLs seulement.',
         data: 'Noms de fichier, octets image, metadata de job, format sortie et statut livraison.',
         gate: 'Compte authentifie, quotas, validation upload, sandbox, retention et export/suppression.',
@@ -139,22 +139,22 @@ const advancedWorkflowCopy: Record<LocaleCode, PixelBatchAdvancedWorkflowCopy> =
     ],
   },
   de: {
-    title: 'Review fuer erweiterte Workflows',
+    title: 'Erweiterte Bild-Workflows',
     body: 'Background Cleanup, grosse Conversion-Queues und API-Integrationen brauchen ausdrueckliche Daten- und Sicherheitskontrollen. Das freie Tool bleibt lokal fuer ein Bild.',
     currentLabel: 'Kostenloser Pfad heute',
     dataLabel: 'Daten bei Aktivierung',
-    gateLabel: 'Erforderliche Kontrolle',
+    gateLabel: 'Noetige Kontrollen',
     items: [
       {
         title: 'Background Cleanup',
         body: 'Subject Masks oder Hintergrundentfernung wuerden KI oder Segmentierung brauchen; das oeffentliche Tool sendet keine Pixel aus dem Browser.',
         current: 'Groesse, Zuschnitt, Kompression, Konvertierung und Metadaten laufen lokal fuer ein Bild.',
         data: 'Bildbytes, abgeleitete Masken, Vorschauen und Ausgabedateien.',
-        gate: 'Menschliche Freigabe von Provider-Terms, Datentransfer, Retention, Loeschung, Disclosure und Credit-Kosten.',
+        gate: 'Klare Provider-Bedingungen, Transferhinweis, Retention-Limits, Loeschkontrollen, Disclosure und Credit-Kostenlimit.',
       },
       {
         title: 'High-volume Conversion',
-        body: 'Batch-Ordner und High-Res-Queues brauchen Upload-Kontrollen, bevor sie bezahlte Workflows werden.',
+        body: 'Batch-Ordner und High-Res-Queues brauchen Upload-Kontrollen mit Konto fuer bezahlte Workflows.',
         current: 'Ein ausgewaehltes Bild, Browser-Speicher und Object URLs.',
         data: 'Dateinamen, Bildbytes, Job-Metadata, Ausgabeformat und Lieferstatus.',
         gate: 'Authentifiziertes Konto, Quotas, Upload-Validierung, Sandbox, Retention und Export/Loeschung.',

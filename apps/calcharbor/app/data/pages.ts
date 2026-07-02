@@ -121,27 +121,27 @@ export const contentPageCatalog: ContentPage[] = [
   }),
   page('privacy', {
     en: copy('Privacy', 'Privacy Policy', 'CalcHarbor minimizes collection by running calculators locally in the browser.', reviewed.en, [
-      ['Data minimization', 'Calculator inputs and results are not sent to a product API or stored by CalcHarbor in this MVP.'],
+      ['Data minimization', 'Calculator inputs and results are not sent to a product API or stored by CalcHarbor in the free browser version.'],
       ['Analytics boundary', 'Allowed analytics events may record calculator slugs and page paths, but not entered amounts, rates or results.'],
       ['Future accounts', 'Saved scenarios and exports require account, retention, export and deletion rules before launch.'],
     ]),
     'pt-br': copy('Privacidade', 'Politica de Privacidade', 'CalcHarbor minimiza coleta rodando as calculadoras localmente no navegador.', reviewed['pt-br'], [
-      ['Minimizacao', 'Entradas e resultados nao sao enviados a API de produto nem armazenados pelo CalcHarbor neste MVP.'],
+      ['Minimizacao', 'Entradas e resultados nao sao enviados a API de produto nem armazenados pelo CalcHarbor na versao gratuita do navegador.'],
       ['Fronteira de analytics', 'Eventos permitidos podem registrar slug e rota, mas nao valores, taxas ou resultados digitados.'],
       ['Contas futuras', 'Cenarios salvos e exportacoes exigem regras de conta, retencao, exportacao e exclusao antes do lancamento.'],
     ]),
     es: copy('Privacidad', 'Politica de Privacidad', 'CalcHarbor minimiza recoleccion ejecutando calculadoras localmente en el navegador.', reviewed.es, [
-      ['Minimizacion', 'Entradas y resultados no se envian a una API de producto ni se almacenan en este MVP.'],
+      ['Minimizacion', 'Entradas y resultados no se envian a una API de producto ni se almacenan en la version gratuita del navegador.'],
       ['Limite analytics', 'Eventos permitidos pueden registrar slug y ruta, pero no montos, tasas o resultados.'],
       ['Cuentas futuras', 'Escenarios y exportes requieren reglas de cuenta, retencion, exportacion y eliminacion antes del lanzamiento.'],
     ]),
     fr: copy('Confidentialite', 'Politique de confidentialite', 'CalcHarbor minimise la collecte en executant les calculatrices localement.', reviewed.fr, [
-      ['Minimisation', 'Entrees et resultats ne sont pas envoyes a une API produit ni stockes dans ce MVP.'],
+      ['Minimisation', 'Entrees et resultats ne sont pas envoyes a une API produit ni stockes dans la version gratuite.'],
       ['Limite analytics', 'Les evenements peuvent enregistrer slug et chemin, pas montants, taux ou resultats.'],
       ['Comptes futurs', 'Scenarios et exports exigent compte, retention, export et suppression avant lancement.'],
     ]),
     de: copy('Datenschutz', 'Datenschutzerklaerung', 'CalcHarbor minimiert Erhebung, indem die Rechner lokal im Browser laufen.', reviewed.de, [
-      ['Datenminimierung', 'Eingaben und Ergebnisse werden in diesem MVP nicht an eine Produkt-API gesendet oder gespeichert.'],
+      ['Datenminimierung', 'Eingaben und Ergebnisse werden in der kostenlosen Browserversion nicht an eine Produkt-API gesendet oder gespeichert.'],
       ['Analytics-Grenze', 'Erlaubte Events duerfen Rechner-Slug und Pfad enthalten, aber keine Betraege, Saetze oder Ergebnisse.'],
       ['Zukuenftige Konten', 'Gespeicherte Szenarien und Exporte brauchen Regeln fuer Konto, Aufbewahrung, Export und Loeschung.'],
     ]),
@@ -202,22 +202,22 @@ export const contentPageCatalog: ContentPage[] = [
   }),
   page('methodology', {
     en: copy('Methodology', 'Methodology', 'How CalcHarbor keeps formulas visible, examples practical and uncertainty explicit.', reviewed.en, [
-      ['Formula first', 'Each tool states the formula and uses deterministic client-side arithmetic for the displayed result.'],
+      ['Formula first', 'Each tool states the formula and uses deterministic in-browser arithmetic for the displayed result.'],
       ['Assumption labels', 'Inputs name the unit, period or rate basis so users can avoid mixing monthly and annual values.'],
       ['Uncertainty', 'Results exclude taxes, fees, risk, inflation and accounting choices unless those are explicitly entered.'],
     ]),
     'pt-br': copy('Metodologia', 'Metodologia', 'Como o CalcHarbor mantem formulas visiveis, exemplos praticos e incerteza explicita.', reviewed['pt-br'], [
-      ['Formula primeiro', 'Cada ferramenta declara a formula e usa aritmetica client-side deterministica para o resultado.'],
+      ['Formula primeiro', 'Cada ferramenta declara a formula e usa aritmetica deterministica no navegador para o resultado.'],
       ['Premissas', 'Campos indicam unidade, periodo ou base de taxa para evitar mistura de mensal e anual.'],
       ['Incerteza', 'Resultados excluem impostos, tarifas, risco, inflacao e escolhas contabeis se nao forem informados.'],
     ]),
     es: copy('Metodologia', 'Metodologia', 'Como CalcHarbor mantiene formulas visibles, ejemplos practicos e incertidumbre explicita.', reviewed.es, [
-      ['Formula primero', 'Cada herramienta declara formula y usa aritmetica client-side deterministica.'],
+      ['Formula primero', 'Cada herramienta declara formula y usa aritmetica determinista en el navegador.'],
       ['Supuestos', 'Campos nombran unidad, periodo o base de tasa para evitar mezclar mensual y anual.'],
       ['Incertidumbre', 'Resultados excluyen impuestos, cargos, riesgo, inflacion y decisiones contables si no se ingresan.'],
     ]),
     fr: copy('Methodologie', 'Methodologie', 'Comment CalcHarbor garde formules visibles, exemples pratiques et incertitude explicite.', reviewed.fr, [
-      ['Formule d abord', 'Chaque outil affiche la formule et utilise une arithmetique client-side deterministe.'],
+      ['Formule d abord', 'Chaque outil affiche la formule et utilise une arithmetique deterministe dans le navigateur.'],
       ['Hypotheses', 'Les champs nomment unite, periode ou base de taux pour eviter les melanges.'],
       ['Incertitude', 'Resultats excluent taxes, frais, risque, inflation et choix comptables si non saisis.'],
     ]),

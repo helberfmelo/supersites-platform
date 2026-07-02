@@ -185,31 +185,31 @@ export const siteCatalog: SiteSummary[] = [
     localized: {
       en: {
         headline: 'Financial and business calculators with formulas users can inspect.',
-        summary: 'CalcHarbor starts with transparent client-side calculations, examples and interpretation so the free result is useful without hiding the answer behind signup.',
+        summary: 'CalcHarbor starts with transparent in-browser calculations, examples and interpretation so the free result is useful without hiding the answer behind signup.',
         freeValue: 'Complete calculations with formulas',
         upgrade: 'Saved scenarios, exports, widgets and API',
       },
       'pt-br': {
         headline: 'Calculadoras financeiras e empresariais com fórmulas auditáveis.',
-        summary: 'CalcHarbor comeca com calculos client-side transparentes, exemplos e interpretacao para que o resultado gratuito seja util sem esconder a resposta atras de cadastro.',
+        summary: 'CalcHarbor comeca com calculos transparentes no navegador, exemplos e interpretacao para que o resultado gratuito seja util sem esconder a resposta atras de cadastro.',
         freeValue: 'Cálculos completos com fórmulas',
         upgrade: 'Cenários salvos, exportações, widgets e API',
       },
       es: {
         headline: 'Calculadoras financieras y empresariales con fórmulas verificables.',
-        summary: 'CalcHarbor empieza con calculos client-side transparentes, ejemplos e interpretacion para que el resultado gratuito sea util sin ocultar la respuesta detras de un registro.',
+        summary: 'CalcHarbor empieza con calculos transparentes en el navegador, ejemplos e interpretacion para que el resultado gratuito sea util sin ocultar la respuesta detras de un registro.',
         freeValue: 'Cálculos completos con fórmulas',
         upgrade: 'Escenarios guardados, exportaciones, widgets y API',
       },
       fr: {
         headline: 'Calculatrices financières et professionnelles avec formules vérifiables.',
-        summary: 'CalcHarbor commence avec des calculs client-side transparents, des exemples et une interpretation afin que le resultat gratuit reste utile sans compte obligatoire.',
+        summary: 'CalcHarbor commence avec des calculs transparents dans le navigateur, des exemples et une interpretation afin que le resultat gratuit reste utile sans compte obligatoire.',
         freeValue: 'Calculs complets avec formules',
         upgrade: 'Scénarios sauvegardés, exports, widgets et API',
       },
       de: {
         headline: 'Finanz- und Business-Rechner mit nachvollziehbaren Formeln.',
-        summary: 'CalcHarbor startet mit transparenten client-side Berechnungen, Beispielen und Interpretation, damit das kostenlose Ergebnis ohne Registrierung nutzbar bleibt.',
+        summary: 'CalcHarbor startet mit transparenten Berechnungen im Browser, Beispielen und Interpretation, damit das kostenlose Ergebnis ohne Registrierung nutzbar bleibt.',
         freeValue: 'Vollständige Berechnungen mit Formeln',
         upgrade: 'Gespeicherte Szenarien, Exporte, Widgets und API',
       },
