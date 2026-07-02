@@ -69,6 +69,8 @@ Aceite:
 
 Objetivo: ter uma experiencia consistente de apoio em todas as rotas sem ativar pagamento real ainda.
 
+Status em 2026-07-02: implementado como CTA visual fail-closed em Hub e nos 10 sites. O botao dourado com icone aparece no header e no footer legal/shell das paginas; os blocos de apoio existentes tambem exibem o CTA. O estado default nao tem `href` para provider real nem cria checkout, e mostra apenas uma mensagem curta ao clique enquanto doacoes reais seguem bloqueadas por `HUMAN_ACTION_REQUIRED`.
+
 Sprints:
 
 1. Criar componente compartilhado `SupportDonationCta` com estados `inactive`, `ready-disabled`, `live`.

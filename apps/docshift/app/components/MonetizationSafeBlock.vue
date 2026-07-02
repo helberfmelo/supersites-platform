@@ -81,6 +81,7 @@ const headingId = computed(() => `${props.slotId}-support`)
       <ul>
         <li v-for="item in copy.items" :key="item">{{ item }}</li>
       </ul>
+      <SupportDonationCta :locale="locale" :site-slug="siteSlug" variant="support" />
     </div>
     <aside
       class="monetization-safe__ad"

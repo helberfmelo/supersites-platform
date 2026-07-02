@@ -42,6 +42,7 @@ const productGroups = computed(() => copy.value.groups.map((group) => ({
     <section class="page-footer__intro" aria-label="SuperSites">
       <NuxtLink class="page-footer__brand" :to="`/${locale}`">SuperSites</NuxtLink>
       <p>{{ copy.brandBody }}</p>
+      <SupportDonationCta :locale="locale" variant="footer" />
     </section>
 
     <nav class="footer-verticals" :aria-label="copy.productNavLabel">

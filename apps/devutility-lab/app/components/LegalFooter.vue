@@ -23,6 +23,7 @@ function superSitesHomePath(locale: LocaleCode): string {
 <template>
   <footer class="page-footer">
     <NuxtLink class="page-footer__brand" :to="`/${locale}`">DevUtility Lab</NuxtLink>
+    <SupportDonationCta :locale="locale" variant="footer" />
     <nav class="page-footer__links" aria-label="Legal and editorial pages">
       <a :href="superSitesHomePath(locale)">{{ superSitesHomeLabels[locale] }}</a>
       <NuxtLink
