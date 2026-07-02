@@ -1394,7 +1394,7 @@ export const calcHarborCatalogCopy: Record<LocaleCode, CalcHarborCatalogCopy> = 
     ],
     futureTopics: [
       { title: 'Operating ratios', body: 'Profitability, burn and efficiency topics wait for tested formulas and original explanations.' },
-      { title: 'Marketing math', body: 'Campaign calculators need clear attribution limits before they become public pages.' },
+      { title: 'Marketing math', body: 'Campaign calculators need clear attribution limits before they are useful for public comparison.' },
       { title: 'Commerce fees', body: 'Marketplace and payment-fee topics require localized examples before linking.' },
       { title: 'Team workflows', body: 'Saved comparisons and exports remain separate from the free one-off answer.' },
     ],
@@ -1481,7 +1481,7 @@ export const calcHarborCatalogCopy: Record<LocaleCode, CalcHarborCatalogCopy> = 
     ],
     futureTopics: [
       { title: 'Índices operacionais', body: 'Lucratividade, burn e eficiência aguardam fórmulas testadas e explicações originais.' },
-      { title: 'Matemática de marketing', body: 'Calculadoras de campanha precisam declarar limites de atribuição antes de virar página pública.' },
+      { title: 'Matemática de marketing', body: 'Calculadoras de campanha precisam declarar limites de atribuição para comparação pública útil.' },
       { title: 'Taxas de comércio', body: 'Temas de marketplace e taxas de pagamento exigem exemplos localizados antes de links.' },
       { title: 'Fluxos de equipe', body: 'Comparações salvas e exportações ficam separadas da resposta gratuita pontual.' },
     ],

@@ -39,7 +39,7 @@ test.describe('DocShift browser workflows', () => {
     await expect(page.getByRole('heading', { name: 'Text to PDF' })).toBeVisible()
     await expect(page.getByText('Files stay in this browser', { exact: true })).toBeVisible()
     await expect(page.getByText('Browser local', { exact: true })).toHaveCount(8)
-    await expect(page.getByRole('heading', { name: 'Advanced document workflow review' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Advanced document workflows' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'OCR and table extraction' })).toBeVisible()
 
     const screenshot = await page.screenshot({ fullPage: true })
@@ -63,7 +63,7 @@ test.describe('DocShift browser workflows', () => {
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Text to PDF')
     await expect(page.getByTitle('Processed PDF preview')).toBeVisible()
     await expect(page.getByText('Actual output')).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Advanced document workflow review' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Advanced document workflows' })).toBeVisible()
 
     await expectNoBrowserStorage(page)
 

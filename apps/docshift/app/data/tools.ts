@@ -417,7 +417,7 @@ const workflowStepsBySlug: Record<DocShiftToolSlug, DocShiftWorkflowStep[]> = {
   'pdf-rotate': [
     { title: 'Pick page scope', body: 'Rotate all pages or a bounded page range by 90, 180 or 270 degrees.' },
     { title: 'Fix scans locally', body: 'pdf-lib rewrites page rotation in browser memory with no product upload endpoint.' },
-    { title: 'Detection later', body: 'Auto-detection and batch rotation require server-side review before activation.' },
+    { title: 'Advanced detection', body: 'Auto-detection and batch rotation need server-side file controls.' },
   ],
   'pdf-compressor': [
     { title: 'Rewrite safely', body: 'The free tool performs a browser-side structure rewrite and metadata normalization.' },

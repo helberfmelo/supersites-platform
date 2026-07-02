@@ -73,7 +73,7 @@ test.describe('PixelBatch browser image tools', () => {
     await expect(page.getByRole('heading', { name: 'Image Compressor' })).toBeVisible()
     await expect(page.getByText('6 browser tools')).toBeVisible()
     await expect(page.getByText('Browser local')).toHaveCount(6)
-    await expect(page.getByRole('heading', { name: 'Advanced workflow review' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Advanced image workflows' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Background cleanup' })).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
@@ -105,7 +105,7 @@ test.describe('PixelBatch browser image tools', () => {
     await expect(page.getByText('Actual output')).toBeVisible()
     await expect(page.getByText('No image bytes leave the browser session.')).toBeVisible()
     await expect(page.getByRole('link', { name: /Image Resizer/ })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Advanced workflow review' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Advanced image workflows' })).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)
     await expectNoHorizontalOverflow(page)
 
