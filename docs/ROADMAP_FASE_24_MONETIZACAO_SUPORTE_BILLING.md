@@ -23,9 +23,9 @@ O SuperSites ainda nao tem:
 - politica final de servicos personalizados, cancelamento, reembolso, impostos e atendimento.
 
 As credenciais Pagar.me fornecidas pelo owner foram registradas somente no inventario local ignorado `docs/credentials/credentials.local.md`. Segredos reais nao devem aparecer neste roadmap nem em qualquer doc versionado.
-As credenciais Stripe live fornecidas pelo owner em 2026-07-02 tambem foram registradas no inventario local ignorado e preparadas como secrets de ambiente, mas checkout, webhooks live, revenue import, doacao real e entitlements pagos continuam desligados por flags.
+As credenciais Stripe live fornecidas pelo owner em 2026-07-02 tambem foram registradas no inventario local ignorado e preparadas como secrets de ambiente. Apos aprovacao explicita posterior, doacao pontual e webhooks Stripe podem ser ligados; revenue import, servicos personalizados, planos pagos e entitlements pagos continuam desligados por flags.
 
-Status em 2026-07-02: a fundacao de Checkout hospedado Stripe foi implementada no Control Plane para doacao, plano pago e servico personalizado, mas permanece fail-closed em producao tecnica. Nenhum botao/link publico real foi ativado.
+Status em 2026-07-02: a fundacao de Checkout hospedado Stripe foi implementada no Control Plane para doacao, plano pago e servico personalizado. Apos aprovacao explicita do owner, somente doacao pontual via Stripe Checkout passa para go-live controlado; planos pagos, servicos personalizados, assinatura, portal de cliente, invoices, refunds, revenue import e entitlements pagos permanecem fail-closed.
 
 ## Decisao operacional proposta
 
@@ -90,7 +90,7 @@ Aceite:
 
 Objetivo: publicar doacao pontual com minimo risco, sem conta de usuario e sem armazenar pagamento no SuperSites.
 
-Status tecnico: endpoint Stripe criado e testado para doacao por valores permitidos em catalogo. Publicacao real ainda depende de flags, readiness do canal, politicas e aprovacao humana.
+Status em 2026-07-02: aprovado pelo owner e implementado para Stripe hosted Checkout. O CTA publico chama o control-plane, cria uma Checkout Session no servidor e redireciona para `checkout.stripe.com`. Cartao e dados de pagamento ficam na Stripe. O webhook live foi criado e o signing secret foi guardado somente em ambiente/cofre; o ledger local registra sessoes e eventos por ids/hashes. Nenhum plano pago, servico personalizado ou entitlement e ativado.
 
 Sprints:
 
@@ -103,9 +103,9 @@ Sprints:
 
 Aceite:
 
-- Doacao real so aparece apos aprovacao humana explicita.
+- Doacao real aparece somente apos aprovacao humana explicita registrada em 2026-07-02.
 - SuperSites nao recebe dados de cartao.
-- Link pode ser desligado por flag/rollback sem deploy complexo.
+- Link/checkout pode ser desligado por flags, rollback de frontend ou `php artisan billing:activate-stripe-donations --disable`.
 
 ## Etapa 24.4 - Servicos personalizados
 

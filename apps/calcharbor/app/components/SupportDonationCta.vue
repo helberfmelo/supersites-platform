@@ -8,45 +8,123 @@ const props = withDefaults(defineProps<{
   siteSlug?: string
 }>(), {
   variant: 'header',
-  siteSlug: 'supersites',
+  siteSlug: 'calcharbor',
 })
 
-const detailsVisible = ref(false)
+type DonationCopy = {
+  label: string
+  loadingLabel: string
+  note: string
+  error: string
+  title: string
+}
 
-const copyByLocale: Record<LocaleCode, { label: string; note: string; title: string }> = {
+const checkoutEndpoint = '/supersites/control-plane/api/v1/billing/stripe/checkout-sessions'
+const isLoading = ref(false)
+const detailsVisible = ref(false)
+const statusMessage = ref('')
+
+const copyByLocale: Record<LocaleCode, DonationCopy> = {
   en: {
     label: 'Donate',
-    note: 'Donations are not open yet. The free tools remain available first.',
+    loadingLabel: 'Opening...',
+    note: 'Opening Stripe Checkout for an optional donation.',
+    error: 'Could not open checkout right now. Please try again shortly.',
     title: 'Optional support for the free SuperSites tools',
   },
   'pt-br': {
     label: 'Doar',
-    note: 'As doacoes ainda nao estao abertas. As ferramentas gratuitas continuam primeiro.',
+    loadingLabel: 'Abrindo...',
+    note: 'Abrindo o checkout da Stripe para uma doacao opcional.',
+    error: 'Nao foi possivel abrir o checkout agora. Tente novamente em instantes.',
     title: 'Apoio opcional para as ferramentas gratuitas SuperSites',
   },
   es: {
     label: 'Donar',
-    note: 'Las donaciones aun no estan abiertas. Las herramientas gratis siguen primero.',
+    loadingLabel: 'Abriendo...',
+    note: 'Abriendo Stripe Checkout para una donacion opcional.',
+    error: 'No se pudo abrir el checkout ahora. Intentalo de nuevo en unos instantes.',
     title: 'Apoyo opcional para las herramientas gratis de SuperSites',
   },
   fr: {
     label: 'Donner',
-    note: 'Les dons ne sont pas encore ouverts. Les outils gratuits restent prioritaires.',
+    loadingLabel: 'Ouverture...',
+    note: 'Ouverture du checkout Stripe pour un don optionnel.',
+    error: 'Impossible d ouvrir le checkout maintenant. Reessayez dans un instant.',
     title: 'Soutien optionnel pour les outils gratuits SuperSites',
   },
   de: {
     label: 'Spenden',
-    note: 'Spenden sind noch nicht geoeffnet. Die kostenlosen Tools bleiben zuerst verfuegbar.',
+    loadingLabel: 'Oeffnet...',
+    note: 'Stripe Checkout fuer eine optionale Spende wird geoeffnet.',
+    error: 'Checkout konnte gerade nicht geoeffnet werden. Bitte versuchen Sie es gleich erneut.',
     title: 'Optionale Unterstuetzung fuer die kostenlosen SuperSites-Tools',
   },
 }
 
-const copy = computed(() => copyByLocale[props.locale])
-const statusId = computed(() => `donation-cta-${props.siteSlug}-${props.variant}-${props.locale}`)
-const shouldShowNote = computed(() => detailsVisible.value)
+const defaultDonationByLocale: Record<LocaleCode, { amountMinor: number; currency: 'USD' | 'BRL' | 'EUR' }> = {
+  en: { amountMinor: 1000, currency: 'USD' },
+  'pt-br': { amountMinor: 2500, currency: 'BRL' },
+  es: { amountMinor: 1000, currency: 'EUR' },
+  fr: { amountMinor: 1000, currency: 'EUR' },
+  de: { amountMinor: 1000, currency: 'EUR' },
+}
 
-function toggleDetails(): void {
-  detailsVisible.value = !detailsVisible.value
+const copy = computed(() => copyByLocale[props.locale])
+const donation = computed(() => defaultDonationByLocale[props.locale])
+const statusId = computed(() => `donation-cta-${props.siteSlug}-${props.variant}-${props.locale}`)
+const shouldShowNote = computed(() => detailsVisible.value && statusMessage.value !== '')
+const buttonLabel = computed(() => isLoading.value ? copy.value.loadingLabel : copy.value.label)
+const donationStatus = computed(() => isLoading.value ? 'checkout-loading' : 'checkout-live')
+
+function currentReturnPath(): string {
+  if (typeof window === 'undefined') {
+    return props.siteSlug === 'supersite'
+      ? `/supersites/${props.locale}`
+      : `/supersites/${props.siteSlug}/${props.locale}`
+  }
+
+  return `${window.location.pathname}${window.location.search}`
+}
+
+async function startDonation(): Promise<void> {
+  if (isLoading.value) {
+    return
+  }
+
+  isLoading.value = true
+  detailsVisible.value = true
+  statusMessage.value = copy.value.note
+
+  try {
+    const response = await fetch(checkoutEndpoint, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        kind: 'donation',
+        site_slug: props.siteSlug,
+        locale: props.locale,
+        amount_minor: donation.value.amountMinor,
+        currency: donation.value.currency,
+        return_path: currentReturnPath(),
+      }),
+    })
+    const payload = await response.json().catch(() => null)
+    const checkoutUrl = payload?.data?.checkout_url
+
+    if (response.ok && typeof checkoutUrl === 'string' && checkoutUrl.startsWith('https://checkout.stripe.com/')) {
+      window.location.assign(checkoutUrl)
+      return
+    }
+
+    throw new Error('checkout_unavailable')
+  } catch {
+    statusMessage.value = copy.value.error
+    isLoading.value = false
+  }
 }
 </script>
 
@@ -54,22 +132,23 @@ function toggleDetails(): void {
   <div
     class="donation-cta"
     :class="`donation-cta--${variant}`"
-    data-donation-status="checkout-disabled"
+    :data-donation-status="donationStatus"
   >
     <button
       type="button"
       class="donation-cta__button"
       :title="copy.title"
-      :aria-expanded="detailsVisible"
+      :aria-busy="isLoading"
       :aria-controls="statusId"
-      @click="toggleDetails"
+      :disabled="isLoading"
+      @click="startDonation"
     >
       <svg class="donation-cta__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M12 21s-7.1-4.35-9.25-8.4C.72 8.76 2.8 4.5 6.65 4.5c2.05 0 3.43 1.05 4.22 2.08C11.08 6.86 11.9 6.86 12.1 6.58 12.9 5.55 14.3 4.5 16.35 4.5c3.85 0 5.93 4.26 3.9 8.1C19.1 16.65 12 21 12 21Z" />
       </svg>
-      <span>{{ copy.label }}</span>
+      <span>{{ buttonLabel }}</span>
     </button>
-    <p v-if="shouldShowNote" :id="statusId" class="donation-cta__note">{{ copy.note }}</p>
+    <p v-if="shouldShowNote" :id="statusId" class="donation-cta__note">{{ statusMessage }}</p>
     <span v-else :id="statusId" class="donation-cta__sr-only">{{ copy.note }}</span>
   </div>
 </template>
@@ -108,6 +187,11 @@ function toggleDetails(): void {
 .donation-cta__button:focus-visible {
   border-color: #6f4b00;
   background: linear-gradient(180deg, #ffe08a 0%, #eaa409 100%);
+}
+
+.donation-cta__button:disabled {
+  cursor: wait;
+  opacity: 0.82;
 }
 
 .donation-cta__icon {
@@ -171,4 +255,3 @@ function toggleDetails(): void {
   }
 }
 </style>
-

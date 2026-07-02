@@ -6,15 +6,16 @@ Criar camada de billing desacoplada de provedor. Stripe, Mercado Pago e Paddle s
 
 ## Stripe credential inventory - 2026-07-02
 
-O owner forneceu credenciais Stripe live para inventario local em `docs/credentials/credentials.local.md` e para configuracao de secrets de ambiente. Essas credenciais nao foram versionadas e nao ativam checkout, link de pagamento, webhook live, doacao real, cobranca, assinatura, invoice, refund, importacao de receita ou entitlement pago.
+O owner forneceu credenciais Stripe live para inventario local em `docs/credentials/credentials.local.md` e para configuracao de secrets de ambiente. As credenciais nao foram versionadas. A partir da aprovacao explicita de 2026-07-02, elas podem ativar somente doacao pontual hospedada; cobranca de servico, planos pagos, assinatura, invoice, refund, importacao de receita e entitlement pago continuam bloqueados.
 
-Estado tecnico atual:
+Estado tecnico atual apos aprovacao do owner em 2026-07-02:
 
 - O Control Plane reconhece nomes de ambiente Stripe e flags fail-closed em `config/billing.php`.
 - O deploy HostGator do Control Plane pode receber secrets Stripe do ambiente `production-hostgator` e gravar a release `.env`.
-- `BILLING_PROVIDER_ACTIVATION`, `BILLING_CHECKOUT_ENABLED`, `BILLING_STRIPE_CHECKOUT_ENABLED`, `BILLING_STRIPE_WEBHOOKS_ENABLED` e `BILLING_STRIPE_REVENUE_IMPORT_ENABLED` permanecem `false`.
-- O segredo de assinatura de webhook Stripe ainda nao foi fornecido.
-- A imagem enviada pelo owner mostrava area restrita/teste do Stripe enquanto as chaves coladas eram live; confirmar modo/conta antes de qualquer superficie publica.
+- `BILLING_PROVIDER_ACTIVATION`, `BILLING_CHECKOUT_ENABLED`, `BILLING_STRIPE_CHECKOUT_ENABLED`, `BILLING_STRIPE_DONATIONS_ENABLED` e `BILLING_STRIPE_WEBHOOKS_ENABLED` ficam habilitados no ambiente `production-hostgator` somente para doacao pontual hospedada.
+- `BILLING_STRIPE_SERVICE_CHECKOUT_ENABLED`, `BILLING_STRIPE_REVENUE_IMPORT_ENABLED`, planos pagos, assinaturas, customer portal, invoices, refunds, dunning e entitlements pagos permanecem desligados.
+- O webhook live da Stripe foi criado para `https://opentshost.com/supersites/control-plane/api/v1/billing/webhooks/stripe`; o signing secret fica somente em `production-hostgator` e no inventario local ignorado.
+- O endpoint foi criado em `livemode=true`; se a conta Stripe exigir KYC/settlement adicional, a falha operacional esperada e no checkout/Stripe, nao no SuperSites.
 
 ## Stripe hosted checkout foundation - 2026-07-02
 
@@ -74,10 +75,12 @@ Comportamento tecnico:
 - para eventos `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.async_payment_failed` e `checkout.session.expired`, atualiza apenas o status local de `billing_checkout_sessions` quando a sessao ja existe no ledger;
 - eventos assinados nao mapeados sao aceitos como `ignored_verified`, sem side effects comerciais.
 
-Estado de producao tecnica:
+Estado de producao tecnica apos aprovacao de doacao Stripe:
 
-- o codigo esta pronto para receber webhook live, mas continua fail-closed ate existir `STRIPE_WEBHOOK_SECRET`, endpoint Stripe live criado/aprovado, DB migrado/semeado, provider/canal Stripe marcado como pronto e flags globais de checkout/webhook explicitamente ligadas;
-- a ativacao publica de botao/link de doacao real continua dependente dos gates humanos em `docs/HUMAN_ACTION_REQUIRED.md`.
+- o codigo esta pronto para receber webhook live com `STRIPE_WEBHOOK_SECRET`, endpoint Stripe live criado/aprovado e flags globais de checkout/webhook ligadas;
+- o comando operacional `php artisan billing:activate-stripe-donations` marca somente provider Stripe e canais `donation` dos 11 sites como prontos; `--disable` retorna os canais para fail-closed;
+- o webhook apenas atualiza o ledger local de sessoes ja conhecidas; ainda nao cria entitlement pago nem desbloqueia plano;
+- servicos personalizados, planos pagos, assinaturas, invoices, refunds, dunning, portal de cliente e revenue import continuam dependentes de gates humanos separados.
 
 ## Pagar.me evaluation - 2026-07-02
 

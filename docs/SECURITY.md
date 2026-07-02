@@ -67,6 +67,7 @@
 - Cartoes, dados bancarios, documentos fiscais, tokens de provider, webhook secrets e payloads brutos de pagamento nunca devem ser versionados, exibidos no painel ou armazenados no repositorio.
 - Webhooks futuros exigem assinatura verificada, janela anti-replay, idempotencia por provider/event id e persistencia de hash do payload em vez de payload bruto.
 - Ativar checkout, webhooks reais, impostos automaticos, invoices, refunds, chargebacks ou dunning exige `HUMAN_ACTION_REQUIRED`, termos, politica de cancelamento/reembolso, secrets em cofre e smoke/rollback especificos.
+- Excecao aprovada em 2026-07-02: doacao pontual via Stripe hosted Checkout pode ser iniciada por clique voluntario no CTA global. O SuperSites cria a Checkout Session no servidor, redireciona para `checkout.stripe.com`, valida webhook assinado e registra apenas ids/hashes/metadados minimos; nao coleta cartao, nao cria entitlement pago, nao ativa servico personalizado e nao processa refund/invoice/dunning.
 
 ## Account data controls
 

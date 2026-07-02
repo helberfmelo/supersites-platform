@@ -182,7 +182,7 @@ Data-base: 2026-06-28
 
 This validation samples public SuperSites pages and confirms that ad spaces are inert placeholders only. It checks rendered DOM sources, browser requests, placeholder status, reserved dimensions and focusability.
 
-No real ad, analytics, payment, donation, affiliate, checkout or billing provider was activated.
+No real ad, analytics, affiliate, automatic checkout request or billing provider script was loaded on page view. Stripe donation checkout is allowed only as a user-initiated CTA after the owner approval recorded on 2026-07-02.
 
 | Path | HTTP | Placeholders | Result |
 |---|---:|---:|---|

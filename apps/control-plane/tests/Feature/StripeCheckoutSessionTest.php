@@ -12,6 +12,7 @@ use Database\Seeders\PortfolioSiteSeeder;
 use Database\Seeders\SupportMonetizationReadinessSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Client\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
@@ -166,6 +167,48 @@ class StripeCheckoutSessionTest extends TestCase
             ->where('provider_session_id', 'cs_test_plan_123')
             ->where('kind', 'plan')
             ->where('mode', 'subscription')
+            ->count());
+    }
+
+    public function test_operational_command_marks_stripe_donations_ready_only(): void
+    {
+        $this->seed([PortfolioSiteSeeder::class, BillingReadinessSeeder::class, SupportMonetizationReadinessSeeder::class]);
+
+        Artisan::call('billing:activate-stripe-donations');
+
+        $this->assertDatabaseHas('billing_providers', [
+            'provider' => 'stripe',
+            'account_status' => 'approved',
+            'kyc_status' => 'approved',
+            'terms_status' => 'accepted',
+            'tax_status' => 'complete',
+            'payment_profile_status' => 'complete',
+            'provider_terms_status' => 'reviewed',
+            'api_key_status' => 'configured',
+            'webhook_secret_status' => 'configured',
+            'webhook_endpoint_status' => 'approved',
+            'checkout_status' => 'ready',
+            'webhook_status' => 'ready',
+            'account_ready' => true,
+            'checkout_enabled' => true,
+            'webhooks_enabled' => true,
+        ]);
+
+        $this->assertSame(11, SupportMonetizationChannel::query()
+            ->where('channel', 'donation')
+            ->where('provider', 'stripe')
+            ->where('channel_ready', true)
+            ->where('public_enabled', true)
+            ->count());
+
+        $this->assertSame(0, SupportMonetizationChannel::query()
+            ->where('channel', 'affiliate')
+            ->where('public_enabled', true)
+            ->count());
+
+        $this->assertSame(0, BillingPlan::query()
+            ->where('checkout_enabled', true)
+            ->where('kind', '!=', 'free_preview')
             ->count());
     }
 
