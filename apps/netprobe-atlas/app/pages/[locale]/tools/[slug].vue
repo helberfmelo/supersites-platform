@@ -898,7 +898,7 @@ const dnsVisualRecordTypes = ['A', 'AAAA', 'CNAME', 'MX', 'NS', 'PTR', 'SOA', 'S
 const quickPorts = [80, 443, 587, 993] as const
 const runtimeConfig = useRuntimeConfig()
 const netprobeBaseUrl = runtimeConfig.app.baseURL.endsWith('/') ? runtimeConfig.app.baseURL : `${runtimeConfig.app.baseURL}/`
-const dnsPropagationMapAssetUrl = `${netprobeBaseUrl}assets/dns-propagation-map.svg`
+const dnsPropagationMapAssetUrl = `${netprobeBaseUrl}assets/dns-propagation-map.svg?v=20260702-status-matrix`
 const dnsPropagationMapProjection = {
   width: 482,
   height: 460,
@@ -1853,7 +1853,7 @@ const propagationSummaryCards = computed<SummaryCard[]>(() => {
     return []
   }
 
-  const snapshots = propagationResult.value.snapshots
+  const snapshots = propagationMeasuredRows.value.map((row) => row.snapshot)
   const expectedValue = normalizeCompareValue(expectedPropagationValue.value)
   const total = snapshots.length
   const answered = snapshots.filter((snapshot) => snapshot.status === 'answered' && snapshot.values.length > 0).length
@@ -1908,7 +1908,7 @@ const propagationDistinctValues = computed(() => {
     return []
   }
 
-  return Array.from(new Set(propagationResult.value.snapshots.flatMap((snapshot) => snapshot.values))).slice(0, 6)
+  return Array.from(new Set(propagationMeasuredRows.value.flatMap((row) => row.snapshot.values))).slice(0, 6)
 })
 
 type PropagationDisplayState = 'measured' | 'listed'
@@ -1920,13 +1920,34 @@ interface PropagationDisplayRow {
   state: PropagationDisplayState
 }
 
-const propagationMeasuredRows = computed<PropagationDisplayRow[]>(() =>
-  (propagationResult.value?.snapshots ?? []).map((snapshot) => ({
-    key: `measured-${snapshot.resolver_id}`,
-    snapshot,
-    state: 'measured',
-  })),
-)
+const propagationMeasuredRows = computed<PropagationDisplayRow[]>(() => {
+  const measuredSnapshots = propagationResult.value?.snapshots ?? []
+
+  if (measuredSnapshots.length === 0) {
+    return []
+  }
+
+  const snapshotsByResolver = new Map(measuredSnapshots.map((snapshot) => [snapshot.resolver_id, snapshot]))
+  const fallbackSnapshot = measuredSnapshots[0]
+
+  return resolverCoveragePreview.map((localitySnapshot, index) => {
+    const measuredSnapshot = snapshotsByResolver.get(localitySnapshot.resolver_id)
+      ?? measuredSnapshots[index]
+      ?? fallbackSnapshot
+
+    return {
+      key: `measured-${localitySnapshot.resolver_id}`,
+      snapshot: {
+        ...localitySnapshot,
+        scope: measuredSnapshot.scope || localitySnapshot.scope,
+        status: measuredSnapshot.status,
+        ttl_min: measuredSnapshot.ttl_min,
+        values: measuredSnapshot.values,
+      },
+      state: 'measured',
+    }
+  })
+})
 
 const propagationPreviewRows = computed<PropagationDisplayRow[]>(() =>
   resolverCoveragePreview.map((snapshot) => ({
@@ -1936,10 +1957,9 @@ const propagationPreviewRows = computed<PropagationDisplayRow[]>(() =>
   })),
 )
 
-const propagationDisplayRows = computed<PropagationDisplayRow[]>(() => [
-  ...propagationMeasuredRows.value,
-  ...propagationPreviewRows.value,
-])
+const propagationDisplayRows = computed<PropagationDisplayRow[]>(() =>
+  propagationResult.value ? propagationMeasuredRows.value : propagationPreviewRows.value,
+)
 
 function snapshotDisplayName(snapshot: DnsPropagationSnapshot): string {
   return snapshot.resolver_name || snapshot.resolver_id
@@ -2015,7 +2035,7 @@ function propagationRowStatusLabel(row: PropagationDisplayRow): string {
 
 function propagationRowStatusSymbol(row: PropagationDisplayRow): string {
   if (row.state === 'listed') {
-    return '-'
+    return ''
   }
 
   return snapshotTone(row.snapshot) === 'good' ? '✓' : '×'
