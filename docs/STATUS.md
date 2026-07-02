@@ -1882,6 +1882,13 @@ Ainda em 2026-06-29, o `Public Watchdog` agendado run `28372846327` falhou no sm
   - Fechamento: a Fase 18 fica concluida tecnicamente; `docs/ROADMAP_FASE_18_REFINAMENTO_BENCHMARK_PAGE_BY_PAGE.md` nao lista etapa pendente e novo trabalho depende de novo bloco de roadmap aprovado pelo owner.
   - Escopo negativo: nenhum provider PageSpeed/GTmetrix/API, anuncio real, snippet AdSense, publisher id real, `ads.txt`, checkout, billing, pagamento, doacao real, afiliado, provider externo, worker/cron, DNS/root mapping, root redirect, deploy automatico ou acao irreversivel foi ativado.
 
+- Fase 22 - Fechamento Crawl Zero Gaps:
+  - Escopo tecnico: a rodada final da Fase 21 encontrou 28 gaps residuais no crawler live completo: erro de hidratacao no TimeNexus `timestamp-converter`, meta descriptions longas em paginas legais localizadas do Hub e titulo SEO longo na home FR do NetProbe Atlas. A Fase 22 estabilizou o exemplo SSR do timestamp e aplicou limites SEO compartilhados aos metadados afetados, sem alterar contratos de API, provider externo, dados, pagamento, AdSense real ou checkout.
+  - Validacao local pre-commit passou: `pnpm --filter @supersites/supersite test` com 32 testes, `pnpm --filter @supersites/netprobe-atlas test` com 9 testes, `pnpm --filter @supersites/timenexus test` com 11 testes, builds focados de Hub/NetProbe/TimeNexus, previews focados, `pnpm validate:public-copy`, `pnpm validate:secrets` e `git diff --check`.
+  - CI e deploy finais: commit `44dd773`; Quality Gate `28559732399` passou; Deploy Dry Run `28559732376` passou; deploys reais passaram para Hub `28559887381`, NetProbe Atlas `28559889356` e TimeNexus `28559891270`.
+  - Validacao publica final: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-netprobe-public`, smoke publico de TimeNexus, `pnpm validate:adsense-safe-public` em 13 paginas e crawler benchmark live completo `artifacts/benchmark-crawl/fase22-final-live/baseline.md` passaram. O crawler percorreu 876 rotas, 1752 checks desktop/mobile e terminou com 0 gaps.
+  - Escopo negativo: nenhum anuncio real, `ads.txt`, checkout, billing, pagamento, conta paga, doacao real, afiliado, provider externo, worker/cron, DNS/root mapping, root redirect, analytics externo, segredo, dado sensivel ou acao irreversivel foi ativado.
+
 ## Bloqueios humanos registrados
 
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.

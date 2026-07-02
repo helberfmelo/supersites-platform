@@ -1769,6 +1769,14 @@ Data-base: 2026-06-30
 | Sprint 18.96-18.99 placeholder overflow correction | `f0e4e48`; added responsive constraints to the 10 inert monetization blocks |
 | Sprint 18.96-18.99 remote Quality Gates | `28498946513` failed only on mobile overflow in new inert placeholders; final `28499516574` passed |
 | Real deploy/provider activation | 31 reversible HostGator deploys in Phase 18 through Sprint 18.22; later app-tool and closure stages did not require deploy. 0 ads, `ads.txt`, billing, checkout, donations, affiliates, workers, crons, external providers, DNS/root mapping or irreversible actions |
+| Fase 22 residual live crawler gaps | Initial full live crawler after Fase 21: 876 routes; 1752 viewport checks; 28 gaps |
+| Fase 22 implementation commit | `44dd773` |
+| Fase 22 remote Quality Gate | `28559732399` passed |
+| Fase 22 remote Deploy Dry Run | `28559732376` passed |
+| Fase 22 production deploys | Hub `28559887381`, NetProbe Atlas `28559889356`, TimeNexus `28559891270` passed |
+| Fase 22 public assets | Hub `S-EArqzC.js`; NetProbe Atlas `lo3ol8P9.js`; TimeNexus `Dj8U90pH.js` |
+| Fase 22 final live benchmark crawler | `artifacts/benchmark-crawl/fase22-final-live/baseline.md`; 876 routes; 1752 viewport checks; 0 gaps |
+| Fase 22 post-deploy smokes | Passed: Hub public smoke, NetProbe public/API smoke, TimeNexus public smoke and AdSense-safe public validation on 13 pages |
 
 ## Product metrics
 

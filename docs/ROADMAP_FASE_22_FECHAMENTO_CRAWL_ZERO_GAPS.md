@@ -30,3 +30,18 @@ Zerar os gaps restantes do crawler benchmark live sem alterar contratos de API, 
 2. Fazer commit objetivo e publicar apenas Hub, NetProbe Atlas e TimeNexus.
 3. Reexecutar o crawler benchmark live completo com `--fail-on-critical`.
 4. Encerrar somente com zero gaps ou abrir nova fase de correcao se o crawler ainda encontrar divergencia real.
+
+## Fechamento
+
+Concluido em commit `44dd773` com publicacao reversivel de Hub, NetProbe Atlas e TimeNexus.
+
+- Quality Gate `28559732399`: passou.
+- Deploy Dry Run `28559732376`: passou.
+- Deploy Hub `28559887381`: passou; asset publico `https://opentshost.com/supersites/_nuxt/S-EArqzC.js`.
+- Deploy NetProbe Atlas `28559889356`: passou; asset publico `https://opentshost.com/supersites/netprobe-atlas/_nuxt/lo3ol8P9.js`.
+- Deploy TimeNexus `28559891270`: passou; asset publico `https://opentshost.com/supersites/timenexus/_nuxt/Dj8U90pH.js`.
+- Crawler benchmark live final: `artifacts/benchmark-crawl/fase22-final-live/baseline.md`, 876 rotas, 1752 checks desktop/mobile, 0 gaps.
+- Smokes publicos finais passaram para Hub, NetProbe Atlas, TimeNexus, MailHealth API, SitePulse API e NetProbe API.
+- `pnpm validate:adsense-safe-public` passou em 13 paginas publicas.
+
+Nao foi necessario abrir nova fase: a auditoria final ficou satisfatoria e sem divergencias criticas ou gaps do crawler.
