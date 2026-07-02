@@ -1032,23 +1032,98 @@ interface DnsPropagationData {
 
 const resolverCoveragePreview: DnsPropagationSnapshot[] = [
   {
-    resolver_id: 'netprobe-us-east',
-    resolver_name: 'US East resolver',
+    resolver_id: 'matrix-us-san-jose',
+    resolver_name: 'Public resolver locality',
     region: 'Americas',
-    city: 'New York',
+    city: 'San Jose, CA',
     country: 'United States',
     country_code: 'US',
     flag: '🇺🇸',
-    latitude: 40.7128,
-    longitude: -74.006,
-    scope: 'Public recursive snapshot',
+    latitude: 37.3382,
+    longitude: -121.8863,
+    scope: 'Listed locality',
     status: 'preview',
     ttl_min: null,
     values: [],
   },
   {
-    resolver_id: 'netprobe-br-south',
-    resolver_name: 'Brazil resolver',
+    resolver_id: 'matrix-us-los-angeles',
+    resolver_name: 'Public resolver locality',
+    region: 'Americas',
+    city: 'Los Angeles, CA',
+    country: 'United States',
+    country_code: 'US',
+    flag: '🇺🇸',
+    latitude: 34.0522,
+    longitude: -118.2437,
+    scope: 'Listed locality',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'matrix-us-dallas',
+    resolver_name: 'Public resolver locality',
+    region: 'Americas',
+    city: 'Dallas, TX',
+    country: 'United States',
+    country_code: 'US',
+    flag: '🇺🇸',
+    latitude: 32.7767,
+    longitude: -96.797,
+    scope: 'Listed locality',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'matrix-us-providence',
+    resolver_name: 'Public resolver locality',
+    region: 'Americas',
+    city: 'Providence, RI',
+    country: 'United States',
+    country_code: 'US',
+    flag: '🇺🇸',
+    latitude: 41.824,
+    longitude: -71.4128,
+    scope: 'Listed locality',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'matrix-ca-toronto',
+    resolver_name: 'Public resolver locality',
+    region: 'Americas',
+    city: 'Toronto, ON',
+    country: 'Canada',
+    country_code: 'CA',
+    flag: '🇨🇦',
+    latitude: 43.6532,
+    longitude: -79.3832,
+    scope: 'Listed locality',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'matrix-mx-mexico-city',
+    resolver_name: 'Public resolver locality',
+    region: 'Americas',
+    city: 'Mexico City',
+    country: 'Mexico',
+    country_code: 'MX',
+    flag: '🇲🇽',
+    latitude: 19.4326,
+    longitude: -99.1332,
+    scope: 'Listed locality',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'matrix-br-sao-paulo',
+    resolver_name: 'Public resolver locality',
     region: 'South America',
     city: 'Sao Paulo',
     country: 'Brazil',
@@ -1056,29 +1131,74 @@ const resolverCoveragePreview: DnsPropagationSnapshot[] = [
     flag: '🇧🇷',
     latitude: -23.5505,
     longitude: -46.6333,
-    scope: 'Public recursive snapshot',
+    scope: 'Listed locality',
     status: 'preview',
     ttl_min: null,
     values: [],
   },
   {
-    resolver_id: 'netprobe-eu-west',
-    resolver_name: 'UK resolver',
+    resolver_id: 'matrix-br-santa-cruz',
+    resolver_name: 'Public resolver locality',
+    region: 'South America',
+    city: 'Santa Cruz do Sul',
+    country: 'Brazil',
+    country_code: 'BR',
+    flag: '🇧🇷',
+    latitude: -29.7225,
+    longitude: -52.4346,
+    scope: 'Listed locality',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'matrix-es-paterna',
+    resolver_name: 'Public resolver locality',
     region: 'Europe',
-    city: 'London',
-    country: 'United Kingdom',
-    country_code: 'GB',
-    flag: '🇬🇧',
-    latitude: 51.5072,
-    longitude: -0.1276,
-    scope: 'Public recursive snapshot',
+    city: 'Paterna de Rivera',
+    country: 'Spain',
+    country_code: 'ES',
+    flag: '🇪🇸',
+    latitude: 36.522,
+    longitude: -5.866,
+    scope: 'Listed locality',
     status: 'preview',
     ttl_min: null,
     values: [],
   },
   {
-    resolver_id: 'netprobe-eu-central',
-    resolver_name: 'Germany resolver',
+    resolver_id: 'matrix-fr-paris',
+    resolver_name: 'Public resolver locality',
+    region: 'Europe',
+    city: 'Paris',
+    country: 'France',
+    country_code: 'FR',
+    flag: '🇫🇷',
+    latitude: 48.8566,
+    longitude: 2.3522,
+    scope: 'Listed locality',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'matrix-nl-diemen',
+    resolver_name: 'Public resolver locality',
+    region: 'Europe',
+    city: 'Diemen',
+    country: 'Netherlands',
+    country_code: 'NL',
+    flag: '🇳🇱',
+    latitude: 52.338,
+    longitude: 4.96,
+    scope: 'Listed locality',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'matrix-de-frankfurt',
+    resolver_name: 'Public resolver locality',
     region: 'Europe',
     city: 'Frankfurt',
     country: 'Germany',
@@ -1086,14 +1206,149 @@ const resolverCoveragePreview: DnsPropagationSnapshot[] = [
     flag: '🇩🇪',
     latitude: 50.1109,
     longitude: 8.6821,
-    scope: 'Public recursive snapshot',
+    scope: 'Listed locality',
     status: 'preview',
     ttl_min: null,
     values: [],
   },
   {
-    resolver_id: 'netprobe-apac-north',
-    resolver_name: 'Japan resolver',
+    resolver_id: 'matrix-ru-st-petersburg',
+    resolver_name: 'Public resolver locality',
+    region: 'Europe',
+    city: 'St Petersburg',
+    country: 'Russia',
+    country_code: 'RU',
+    flag: '🇷🇺',
+    latitude: 59.9311,
+    longitude: 30.3609,
+    scope: 'Listed locality',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'matrix-za-cullinan',
+    resolver_name: 'Public resolver locality',
+    region: 'Africa',
+    city: 'Cullinan',
+    country: 'South Africa',
+    country_code: 'ZA',
+    flag: '🇿🇦',
+    latitude: -25.6709,
+    longitude: 28.5236,
+    scope: 'Listed locality',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'matrix-tr-antalya',
+    resolver_name: 'Public resolver locality',
+    region: 'Europe / Asia',
+    city: 'Antalya',
+    country: 'Turkey',
+    country_code: 'TR',
+    flag: '🇹🇷',
+    latitude: 36.8969,
+    longitude: 30.7133,
+    scope: 'Listed locality',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'matrix-pk-rawalpindi',
+    resolver_name: 'Public resolver locality',
+    region: 'Asia',
+    city: 'Rawalpindi',
+    country: 'Pakistan',
+    country_code: 'PK',
+    flag: '🇵🇰',
+    latitude: 33.5651,
+    longitude: 73.0169,
+    scope: 'Listed locality',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'matrix-in-coimbatore',
+    resolver_name: 'Public resolver locality',
+    region: 'Asia',
+    city: 'Coimbatore',
+    country: 'India',
+    country_code: 'IN',
+    flag: '🇮🇳',
+    latitude: 11.0168,
+    longitude: 76.9558,
+    scope: 'Listed locality',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'matrix-th-bangkok',
+    resolver_name: 'Public resolver locality',
+    region: 'Asia',
+    city: 'Bangkok',
+    country: 'Thailand',
+    country_code: 'TH',
+    flag: '🇹🇭',
+    latitude: 13.7563,
+    longitude: 100.5018,
+    scope: 'Listed locality',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'matrix-sg-singapore',
+    resolver_name: 'Public resolver locality',
+    region: 'Asia',
+    city: 'Singapore',
+    country: 'Singapore',
+    country_code: 'SG',
+    flag: '🇸🇬',
+    latitude: 1.3521,
+    longitude: 103.8198,
+    scope: 'Listed locality',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'matrix-cn-beijing',
+    resolver_name: 'Public resolver locality',
+    region: 'Asia',
+    city: 'Beijing',
+    country: 'China',
+    country_code: 'CN',
+    flag: '🇨🇳',
+    latitude: 39.9042,
+    longitude: 116.4074,
+    scope: 'Listed locality',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'matrix-kr-seoul',
+    resolver_name: 'Public resolver locality',
+    region: 'Asia',
+    city: 'Seoul',
+    country: 'South Korea',
+    country_code: 'KR',
+    flag: '🇰🇷',
+    latitude: 37.5665,
+    longitude: 126.978,
+    scope: 'Listed locality',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+  {
+    resolver_id: 'matrix-jp-tokyo',
+    resolver_name: 'Public resolver locality',
     region: 'APAC',
     city: 'Tokyo',
     country: 'Japan',
@@ -1101,26 +1356,82 @@ const resolverCoveragePreview: DnsPropagationSnapshot[] = [
     flag: '🇯🇵',
     latitude: 35.6762,
     longitude: 139.6503,
-    scope: 'Public recursive snapshot',
+    scope: 'Listed locality',
     status: 'preview',
     ttl_min: null,
     values: [],
   },
   {
-    resolver_id: 'netprobe-apac-south',
-    resolver_name: 'Singapore resolver',
+    resolver_id: 'matrix-au-adelaide',
+    resolver_name: 'Public resolver locality',
     region: 'APAC',
-    city: 'Singapore',
-    country: 'Singapore',
-    country_code: 'SG',
-    flag: '🇸🇬',
-    latitude: 1.3521,
-    longitude: 103.8198,
-    scope: 'Public recursive snapshot',
+    city: 'Adelaide',
+    country: 'Australia',
+    country_code: 'AU',
+    flag: '🇦🇺',
+    latitude: -34.9285,
+    longitude: 138.6007,
+    scope: 'Listed locality',
     status: 'preview',
     ttl_min: null,
     values: [],
   },
+  {
+    resolver_id: 'matrix-au-melbourne',
+    resolver_name: 'Public resolver locality',
+    region: 'APAC',
+    city: 'Melbourne, VIC',
+    country: 'Australia',
+    country_code: 'AU',
+    flag: '🇦🇺',
+    latitude: -37.8136,
+    longitude: 144.9631,
+    scope: 'Listed locality',
+    status: 'preview',
+    ttl_min: null,
+    values: [],
+  },
+]
+
+interface WorldMapDot {
+  x: number
+  y: number
+}
+
+function mapDotLine(y: number, startX: number, endX: number, count: number): WorldMapDot[] {
+  return Array.from({ length: count }, (_, index) => ({
+    x: count === 1 ? startX : startX + ((endX - startX) / (count - 1)) * index,
+    y,
+  }))
+}
+
+const worldMapDots: WorldMapDot[] = [
+  ...mapDotLine(145, 115, 315, 10),
+  ...mapDotLine(170, 90, 360, 14),
+  ...mapDotLine(195, 105, 345, 13),
+  ...mapDotLine(220, 135, 320, 10),
+  ...mapDotLine(250, 210, 340, 7),
+  ...mapDotLine(295, 315, 380, 4),
+  ...mapDotLine(325, 325, 395, 5),
+  ...mapDotLine(355, 340, 390, 4),
+  ...mapDotLine(385, 350, 385, 3),
+  ...mapDotLine(420, 365, 380, 2),
+  ...mapDotLine(140, 455, 555, 7),
+  ...mapDotLine(165, 425, 595, 10),
+  ...mapDotLine(190, 445, 615, 9),
+  ...mapDotLine(230, 465, 610, 9),
+  ...mapDotLine(260, 455, 620, 10),
+  ...mapDotLine(295, 475, 600, 8),
+  ...mapDotLine(330, 495, 585, 6),
+  ...mapDotLine(365, 520, 565, 4),
+  ...mapDotLine(135, 600, 820, 11),
+  ...mapDotLine(165, 585, 875, 14),
+  ...mapDotLine(195, 615, 905, 14),
+  ...mapDotLine(225, 650, 890, 12),
+  ...mapDotLine(255, 690, 860, 9),
+  ...mapDotLine(285, 735, 830, 6),
+  ...mapDotLine(360, 765, 850, 5),
+  ...mapDotLine(390, 790, 875, 5),
 ]
 
 interface TcpCheck {
@@ -1633,6 +1944,36 @@ const propagationDistinctValues = computed(() => {
   return Array.from(new Set(propagationResult.value.snapshots.flatMap((snapshot) => snapshot.values))).slice(0, 6)
 })
 
+type PropagationDisplayState = 'measured' | 'listed'
+type PropagationDisplayTone = 'good' | 'warning' | 'neutral'
+
+interface PropagationDisplayRow {
+  key: string
+  snapshot: DnsPropagationSnapshot
+  state: PropagationDisplayState
+}
+
+const propagationMeasuredRows = computed<PropagationDisplayRow[]>(() =>
+  (propagationResult.value?.snapshots ?? []).map((snapshot) => ({
+    key: `measured-${snapshot.resolver_id}`,
+    snapshot,
+    state: 'measured',
+  })),
+)
+
+const propagationPreviewRows = computed<PropagationDisplayRow[]>(() =>
+  resolverCoveragePreview.map((snapshot) => ({
+    key: `listed-${snapshot.resolver_id}`,
+    snapshot,
+    state: 'listed',
+  })),
+)
+
+const propagationDisplayRows = computed<PropagationDisplayRow[]>(() => [
+  ...propagationMeasuredRows.value,
+  ...propagationPreviewRows.value,
+])
+
 function snapshotDisplayName(snapshot: DnsPropagationSnapshot): string {
   return snapshot.resolver_name || snapshot.resolver_id
 }
@@ -1683,6 +2024,42 @@ function snapshotStatusLabel(snapshot: DnsPropagationSnapshot): string {
 
 function snapshotTone(snapshot: DnsPropagationSnapshot): 'good' | 'warning' {
   return snapshotStatusLabel(snapshot) === toolUiCopy.propagated ? 'good' : 'warning'
+}
+
+function propagationRowTone(row: PropagationDisplayRow): PropagationDisplayTone {
+  return row.state === 'listed' ? 'neutral' : snapshotTone(row.snapshot)
+}
+
+function propagationRowValues(row: PropagationDisplayRow): string {
+  return row.state === 'listed' ? '-' : snapshotValuesText(row.snapshot)
+}
+
+function propagationRowTtl(row: PropagationDisplayRow): string {
+  return row.state === 'listed' ? 'TTL -' : `TTL ${row.snapshot.ttl_min ?? toolUiCopy.none}`
+}
+
+function propagationRowScope(row: PropagationDisplayRow): string {
+  return row.state === 'listed' ? row.snapshot.scope || row.snapshot.region : row.snapshot.scope || row.snapshot.region
+}
+
+function propagationRowStatusLabel(row: PropagationDisplayRow): string {
+  return row.state === 'listed' ? benchmarkCopy.coveragePreviewStatus : snapshotStatusLabel(row.snapshot)
+}
+
+function propagationRowStatusSymbol(row: PropagationDisplayRow): string {
+  if (row.state === 'listed') {
+    return '-'
+  }
+
+  return snapshotTone(row.snapshot) === 'good' ? '✓' : '×'
+}
+
+function propagationMapMarkerSymbol(row: PropagationDisplayRow): string {
+  if (row.state === 'listed') {
+    return ''
+  }
+
+  return snapshotTone(row.snapshot) === 'good' ? '✓' : '×'
 }
 
 function resolverPinStyle(snapshot: DnsPropagationSnapshot, index: number): Record<string, string> {
@@ -2616,28 +2993,34 @@ useHead({
                 <div class="resolver-list-panel__heading">
                   <div>
                     <h3 :id="`${tool.slug}-resolver-list`">{{ benchmarkCopy.resolverDetailsTitle }}</h3>
-                    <p>{{ propagationResult.snapshots.length }} {{ propagationResult.snapshots.length === 1 ? toolUiCopy.resolverSnapshot : toolUiCopy.resolverSnapshots }}</p>
+                    <p>{{ propagationDisplayRows.length }} {{ toolUiCopy.resolverSnapshots }}</p>
                   </div>
                   <span class="status-badge">{{ propagationResult.record_type }}</span>
                 </div>
                 <div class="resolver-list">
                   <article
-                    v-for="snapshot in propagationResult.snapshots"
-                    :key="snapshot.resolver_id"
-                    :class="['resolver-row', `resolver-row--${snapshotTone(snapshot)}`]"
+                    v-for="row in propagationDisplayRows"
+                    :key="row.key"
+                    :class="['resolver-row', `resolver-row--${propagationRowTone(row)}`, `resolver-row--${row.state}`]"
                   >
-                    <span class="resolver-row__flag" aria-hidden="true">{{ snapshotFlagLabel(snapshot) }}</span>
+                    <span class="resolver-row__flag" aria-hidden="true">{{ snapshotFlagLabel(row.snapshot) }}</span>
                     <div class="resolver-row__place">
-                      <strong>{{ snapshotLocality(snapshot) }}</strong>
-                      <span>{{ snapshotDisplayName(snapshot) }}</span>
-                      <small>{{ snapshotRegionLabel(snapshot) }}</small>
+                      <strong>{{ snapshotLocality(row.snapshot) }}</strong>
+                      <span>{{ snapshotDisplayName(row.snapshot) }}</span>
+                      <small>{{ snapshotRegionLabel(row.snapshot) }}</small>
                     </div>
                     <div class="resolver-row__answer">
-                      <strong>{{ snapshotValuesText(snapshot) }}</strong>
-                      <span>TTL {{ snapshot.ttl_min ?? toolUiCopy.none }}</span>
-                      <small>{{ snapshot.scope || snapshot.region }}</small>
+                      <strong>{{ propagationRowValues(row) }}</strong>
+                      <span>{{ propagationRowTtl(row) }}</span>
+                      <small>{{ propagationRowScope(row) }}</small>
                     </div>
-                    <span :class="['status-badge', `status-badge--${snapshotTone(snapshot)}`]">{{ snapshotStatusLabel(snapshot) }}</span>
+                    <span
+                      :class="['resolver-status-symbol', `resolver-status-symbol--${propagationRowTone(row)}`]"
+                      :aria-label="propagationRowStatusLabel(row)"
+                      :title="propagationRowStatusLabel(row)"
+                    >
+                      {{ propagationRowStatusSymbol(row) }}
+                    </span>
                   </article>
                 </div>
               </section>
@@ -2653,23 +3036,19 @@ useHead({
                 <div class="resolver-map__canvas">
                   <svg class="resolver-world-map" viewBox="0 0 1000 520" aria-hidden="true" focusable="false">
                     <path class="resolver-world-map__grid" d="M0 104H1000M0 208H1000M0 312H1000M0 416H1000M200 0V520M400 0V520M600 0V520M800 0V520" />
-                    <g class="resolver-world-map__land">
-                      <path d="M135 154c34-32 83-48 131-38 27 6 49 22 74 31 22 8 49 7 64 27 13 17 4 42-13 54-24 17-59 6-84 21-30 18-24 65-51 87-21 18-54 11-77-4-33-22-54-58-69-94-12-29 3-61 25-84Z" />
-                      <path d="M293 340c25-16 63-5 77 21 12 22 3 47-4 70-7 22-10 45-22 65-9 16-27 24-43 15-24-13-21-47-30-71-8-20-29-34-31-57-2-21 35-35 53-43Z" />
-                      <path d="M438 134c23-18 59-18 84-4 24 14 32 42 57 54 29 14 65 4 93 21 24 15 28 49 15 72-16 28-51 35-75 55-26 21-31 60-58 80-29 21-71 10-88-20-16-29 3-64-7-95-10-33-47-51-51-85-4-31 8-62 30-78Z" />
-                      <path d="M587 106c49-18 110-12 151 22 18 15 31 35 50 48 25 16 60 13 83 33 20 17 19 51 1 68-27 25-70 15-102 33-31 18-40 58-72 75-27 15-62 6-80-17-19-25-11-58-5-87 6-31-7-57-28-79-22-24-30-77 2-96Z" />
-                      <path d="M740 356c26-16 67-9 82 19 15 29-2 67-27 85-22 16-57 13-72-10-18-27-12-75 17-94Z" />
-                      <path d="M848 132c21-13 55-7 69 14 12 19 4 46-16 55-25 12-62-4-68-32-3-15 2-29 15-37Z" />
+                    <g class="resolver-world-map__dots">
+                      <circle v-for="(dot, index) in worldMapDots" :key="`result-world-dot-${index}`" :cx="dot.x" :cy="dot.y" r="7" />
                     </g>
                   </svg>
                   <div
-                    v-for="(snapshot, index) in propagationResult.snapshots"
-                    :key="`${snapshot.resolver_id}-pin`"
-                    :class="['resolver-pin', snapshotTone(snapshot) === 'good' ? 'resolver-pin--good' : 'resolver-pin--warning']"
-                    :style="resolverPinStyle(snapshot, index)"
+                    v-for="(row, index) in propagationDisplayRows"
+                    :key="`${row.key}-pin`"
+                    :class="['resolver-marker', `resolver-marker--${propagationRowTone(row)}`]"
+                    :style="resolverPinStyle(row.snapshot, index)"
+                    :aria-label="`${snapshotLocality(row.snapshot)}: ${propagationRowStatusLabel(row)}`"
+                    :title="`${snapshotLocality(row.snapshot)}: ${propagationRowStatusLabel(row)}`"
                   >
-                    <strong>{{ snapshot.flag ? `${snapshot.flag} ` : '' }}{{ snapshotLocality(snapshot) }}</strong>
-                    <span>{{ snapshotStatusLabel(snapshot) }}</span>
+                    {{ propagationMapMarkerSymbol(row) }}
                   </div>
                 </div>
               </section>
@@ -2812,22 +3191,28 @@ useHead({
                   </div>
                   <div class="resolver-list">
                     <article
-                      v-for="snapshot in resolverCoveragePreview"
-                      :key="`${snapshot.resolver_id}-preview-row`"
-                      class="resolver-row resolver-row--good"
+                      v-for="row in propagationPreviewRows"
+                      :key="`${row.key}-row`"
+                      :class="['resolver-row', `resolver-row--${propagationRowTone(row)}`, `resolver-row--${row.state}`]"
                     >
-                      <span class="resolver-row__flag" aria-hidden="true">{{ snapshotFlagLabel(snapshot) }}</span>
+                      <span class="resolver-row__flag" aria-hidden="true">{{ snapshotFlagLabel(row.snapshot) }}</span>
                       <div class="resolver-row__place">
-                        <strong>{{ snapshotLocality(snapshot) }}</strong>
-                        <span>{{ snapshotDisplayName(snapshot) }}</span>
-                        <small>{{ snapshotRegionLabel(snapshot) }}</small>
+                        <strong>{{ snapshotLocality(row.snapshot) }}</strong>
+                        <span>{{ snapshotDisplayName(row.snapshot) }}</span>
+                        <small>{{ snapshotRegionLabel(row.snapshot) }}</small>
                       </div>
                       <div class="resolver-row__answer">
-                        <strong>{{ benchmarkCopy.coveragePreviewValue }}</strong>
-                        <span>{{ benchmarkCopy.coveragePreviewTtl }}</span>
-                        <small>{{ snapshot.scope || snapshot.region }}</small>
+                        <strong>{{ propagationRowValues(row) }}</strong>
+                        <span>{{ propagationRowTtl(row) }}</span>
+                        <small>{{ propagationRowScope(row) }}</small>
                       </div>
-                      <span class="status-badge status-badge--good">{{ benchmarkCopy.coveragePreviewStatus }}</span>
+                      <span
+                        :class="['resolver-status-symbol', `resolver-status-symbol--${propagationRowTone(row)}`]"
+                        :aria-label="propagationRowStatusLabel(row)"
+                        :title="propagationRowStatusLabel(row)"
+                      >
+                        {{ propagationRowStatusSymbol(row) }}
+                      </span>
                     </article>
                   </div>
                 </section>
@@ -2836,29 +3221,25 @@ useHead({
                   <div class="propagation-map-panel__heading">
                     <h3>{{ benchmarkCopy.mapTitle }}</h3>
                     <div class="map-legend" aria-hidden="true">
-                      <span><i class="map-legend__dot map-legend__dot--good"></i>{{ benchmarkCopy.coveragePreviewStatus }}</span>
+                      <span><i class="map-legend__dot map-legend__dot--neutral"></i>{{ benchmarkCopy.coveragePreviewStatus }}</span>
                     </div>
                   </div>
                   <div class="resolver-map__canvas">
                     <svg class="resolver-world-map" viewBox="0 0 1000 520" aria-hidden="true" focusable="false">
                       <path class="resolver-world-map__grid" d="M0 104H1000M0 208H1000M0 312H1000M0 416H1000M200 0V520M400 0V520M600 0V520M800 0V520" />
-                      <g class="resolver-world-map__land">
-                        <path d="M135 154c34-32 83-48 131-38 27 6 49 22 74 31 22 8 49 7 64 27 13 17 4 42-13 54-24 17-59 6-84 21-30 18-24 65-51 87-21 18-54 11-77-4-33-22-54-58-69-94-12-29 3-61 25-84Z" />
-                        <path d="M293 340c25-16 63-5 77 21 12 22 3 47-4 70-7 22-10 45-22 65-9 16-27 24-43 15-24-13-21-47-30-71-8-20-29-34-31-57-2-21 35-35 53-43Z" />
-                        <path d="M438 134c23-18 59-18 84-4 24 14 32 42 57 54 29 14 65 4 93 21 24 15 28 49 15 72-16 28-51 35-75 55-26 21-31 60-58 80-29 21-71 10-88-20-16-29 3-64-7-95-10-33-47-51-51-85-4-31 8-62 30-78Z" />
-                        <path d="M587 106c49-18 110-12 151 22 18 15 31 35 50 48 25 16 60 13 83 33 20 17 19 51 1 68-27 25-70 15-102 33-31 18-40 58-72 75-27 15-62 6-80-17-19-25-11-58-5-87 6-31-7-57-28-79-22-24-30-77 2-96Z" />
-                        <path d="M740 356c26-16 67-9 82 19 15 29-2 67-27 85-22 16-57 13-72-10-18-27-12-75 17-94Z" />
-                        <path d="M848 132c21-13 55-7 69 14 12 19 4 46-16 55-25 12-62-4-68-32-3-15 2-29 15-37Z" />
+                      <g class="resolver-world-map__dots">
+                        <circle v-for="(dot, index) in worldMapDots" :key="`preview-world-dot-${index}`" :cx="dot.x" :cy="dot.y" r="7" />
                       </g>
                     </svg>
                     <div
-                      v-for="(snapshot, index) in resolverCoveragePreview"
-                      :key="`${snapshot.resolver_id}-preview-pin`"
-                      class="resolver-pin resolver-pin--good"
-                      :style="resolverPinStyle(snapshot, index)"
+                      v-for="(row, index) in propagationPreviewRows"
+                      :key="`${row.key}-pin`"
+                      :class="['resolver-marker', `resolver-marker--${propagationRowTone(row)}`]"
+                      :style="resolverPinStyle(row.snapshot, index)"
+                      :aria-label="`${snapshotLocality(row.snapshot)}: ${propagationRowStatusLabel(row)}`"
+                      :title="`${snapshotLocality(row.snapshot)}: ${propagationRowStatusLabel(row)}`"
                     >
-                      <strong>{{ snapshot.flag ? `${snapshot.flag} ` : '' }}{{ snapshotLocality(snapshot) }}</strong>
-                      <span>{{ benchmarkCopy.coveragePreviewStatus }}</span>
+                      {{ propagationMapMarkerSymbol(row) }}
                     </div>
                   </div>
                 </section>

@@ -1274,7 +1274,7 @@ h3 {
   display: grid;
   grid-template-columns: minmax(300px, 0.78fr) minmax(0, 1.22fr);
   gap: 14px;
-  align-items: stretch;
+  align-items: start;
 }
 
 .resolver-list-panel,
@@ -1312,39 +1312,53 @@ h3 {
 }
 
 .resolver-list {
-  display: grid;
-  gap: 7px;
+  display: block;
+  border: 1px solid #e1e7e3;
+  border-radius: 6px;
+  background: #ffffff;
+  overflow: hidden;
 }
 
 .resolver-row {
   display: grid;
-  grid-template-columns: 42px minmax(95px, 0.95fr) minmax(130px, 1fr) minmax(92px, auto);
-  gap: 9px;
+  grid-template-columns: 28px minmax(118px, 0.9fr) minmax(118px, 1fr) 26px;
+  gap: 7px;
   align-items: center;
   min-width: 0;
-  min-height: 68px;
-  padding: 9px;
-  border: 1px solid #e0e7e2;
-  border-left: 4px solid #bd7424;
-  border-radius: 8px;
-  background: #f9fbf7;
+  min-height: 38px;
+  padding: 6px 7px;
+  border-bottom: 1px solid #edf1ee;
+  background: #ffffff;
+}
+
+.resolver-row:last-child {
+  border-bottom: 0;
 }
 
 .resolver-row--good {
-  border-left-color: #2f855a;
+  background: #f6fbf7;
+  box-shadow: inset 3px 0 0 #2f855a;
+}
+
+.resolver-row--warning {
+  background: #fff8ef;
+  box-shadow: inset 3px 0 0 #bd7424;
+}
+
+.resolver-row--neutral {
+  background: #ffffff;
 }
 
 .resolver-row__flag {
   display: grid;
-  width: 34px;
-  height: 34px;
+  width: 22px;
+  height: 16px;
   place-items: center;
-  border: 1px solid #d4dfd8;
-  border-radius: 8px;
-  background: #ffffff;
+  border-radius: 2px;
   color: #275f57;
-  font-size: 1.1rem;
+  font-size: 0.74rem;
   font-weight: 900;
+  line-height: 1;
   overflow: hidden;
 }
 
@@ -1358,7 +1372,7 @@ h3 {
 .resolver-row__place strong,
 .resolver-row__answer strong {
   color: #17231e;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   line-height: 1.2;
   overflow-wrap: anywhere;
 }
@@ -1368,14 +1382,32 @@ h3 {
 .resolver-row__place small,
 .resolver-row__answer small {
   color: #607069;
-  font-size: 0.74rem;
+  font-size: 0.64rem;
   font-weight: 760;
   line-height: 1.2;
   overflow-wrap: anywhere;
 }
 
 .resolver-row__answer strong {
+  color: #2d6da3;
+  font-size: 0.72rem;
   font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+}
+
+.resolver-status-symbol {
+  justify-self: end;
+  color: #6c7973;
+  font-size: 0.85rem;
+  font-weight: 950;
+  line-height: 1;
+}
+
+.resolver-status-symbol--good {
+  color: #2f855a;
+}
+
+.resolver-status-symbol--warning {
+  color: #b5471a;
 }
 
 .resolver-map--large {
@@ -1386,10 +1418,6 @@ h3 {
 
 .resolver-map--large .resolver-map__canvas {
   min-height: 430px;
-}
-
-.resolver-map--large .resolver-pin {
-  width: min(190px, calc(100% - 24px));
 }
 
 .map-legend {
@@ -1420,6 +1448,11 @@ h3 {
 .map-legend__dot--good {
   background: #2f855a;
   box-shadow: 0 0 0 4px #dcefe4;
+}
+
+.map-legend__dot--neutral {
+  background: #d2a03a;
+  box-shadow: 0 0 0 4px #f4ead4;
 }
 
 .propagation-after-results {
@@ -1684,49 +1717,35 @@ h3 {
   filter: drop-shadow(0 10px 18px rgba(36, 84, 111, 0.12));
 }
 
-.resolver-pin {
+.resolver-world-map__dots circle {
+  fill: #2f7095;
+  opacity: 0.76;
+}
+
+.resolver-marker {
   position: absolute;
   z-index: 2;
   transform: translate(-50%, -50%);
-  width: min(210px, calc(100% - 24px));
-  min-width: 0;
-  padding: 10px;
-  border: 1px solid #d8ded8;
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 12px 30px rgba(20, 34, 29, 0.12);
-}
-
-.resolver-pin::before {
-  display: block;
-  width: 10px;
-  height: 10px;
-  margin-bottom: 8px;
+  display: grid;
+  width: 16px;
+  height: 16px;
+  place-items: center;
+  border: 2px solid #ffffff;
   border-radius: 999px;
-  background: #bd7424;
-  box-shadow: 0 0 0 5px #f5e3ca;
-  content: "";
+  background: #d2a03a;
+  color: #ffffff;
+  font-size: 0.58rem;
+  font-weight: 950;
+  line-height: 1;
+  box-shadow: 0 2px 7px rgba(20, 34, 29, 0.22);
 }
 
-.resolver-pin--good::before {
+.resolver-marker--good {
   background: #2f855a;
-  box-shadow: 0 0 0 5px #dcefe4;
 }
 
-.resolver-pin strong,
-.resolver-pin span {
-  display: block;
-}
-
-.resolver-pin strong {
-  color: #17231e;
-  font-size: 0.9rem;
-}
-
-.resolver-pin span {
-  color: #607069;
-  font-size: 0.8rem;
-  font-weight: 800;
+.resolver-marker--warning {
+  background: #c94d35;
 }
 
 .upgrade-panel {
@@ -1935,17 +1954,10 @@ h3 {
     min-height: 340px;
   }
 
-  .resolver-pin {
-    width: min(154px, calc(100% - 16px));
-    padding: 8px;
-  }
-
-  .resolver-pin strong {
-    font-size: 0.75rem;
-  }
-
-  .resolver-pin span {
-    font-size: 0.7rem;
+  .resolver-marker {
+    width: 14px;
+    height: 14px;
+    font-size: 0.52rem;
   }
 
   .hero--ip {
@@ -1985,7 +1997,7 @@ h3 {
   }
 
   .resolver-row__answer,
-  .resolver-row > .status-badge {
+  .resolver-status-symbol {
     grid-column: 2;
   }
 
