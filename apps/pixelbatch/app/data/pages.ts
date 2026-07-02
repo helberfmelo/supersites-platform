@@ -115,7 +115,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'PixelBatch is the SuperSites product for browser-side image resizing, compression, conversion and metadata cleaning.',
     sections: [
       ['Purpose', 'The site helps users process one image at a time without mandatory signup, upload storage or a product backend.'],
-      ['What is live now', 'PixelBatch offers six local image tools with worker planning, Canvas rendering, sitemap, canonical, hreflang and structured data.'],
+      ['What is live now', 'PixelBatch offers six local image tools with browser-side processing, Canvas rendering, sitemap, canonical, hreflang and structured data.'],
       ['Account features', 'Account value centers on batch folders, larger files, saved presets, integrations, API, high-resolution queues and AI credits.'],
     ],
   },
@@ -125,7 +125,7 @@ const pageSpecs: Record<ContentPageSlug, {
     sections: [
       ['Useful reports', 'Include the page URL, language, tool name, browser, file type and observed behavior without attaching private images.'],
       ['No sensitive files', 'Do not send confidential photos, IDs, medical images, contracts, unreleased creative assets or credentials through feedback.'],
-      ['Feedback channel', 'A monitored public mailbox is required before independent launch; until then feedback remains in the owner workflow.'],
+      ['Feedback channel', 'A monitored public mailbox is required before independent launch; until then feedback remains in the support queue.'],
     ],
   },
   privacy: {
@@ -150,7 +150,7 @@ const pageSpecs: Record<ContentPageSlug, {
     title: 'Terms of Use',
     description: 'Baseline terms for responsible use of PixelBatch image tools and future commercial features.',
     sections: [
-      ['Responsible images', 'Do not process illegal, abusive, infringing, deceptive or unauthorized image content through PixelBatch workflows.'],
+      ['Responsible images', 'Do not process illegal, abusive, infringing, deceptive or unauthorized image content through PixelBatch tools.'],
       ['Free-flow limits', 'PixelBatch is a local formatting helper, not a secure archival, forensic metadata or legal redaction system.'],
       ['Paid features', 'Commercial features require visible pricing, quotas, cancellation rules, provider terms, abuse controls and legal review before payment flow or file API access.'],
     ],
@@ -159,7 +159,7 @@ const pageSpecs: Record<ContentPageSlug, {
     title: 'Methodology',
     description: 'How PixelBatch keeps image tools useful, local and honest about browser and file-processing limits.',
     sections: [
-      ['Working tool first', 'Each tool page must include a functioning free image workflow before it can be treated as launch-ready content.'],
+      ['Working tool first', 'Each tool page must include a functioning free image tool before it can be treated as ready content.'],
       ['Browser-side processing', 'The tool validates MIME type, file size, dimensions and output settings, then uses Canvas to re-encode the selected image.'],
       ['Abuse guard', 'The free browser flow caps input size, pixel count and output dimensions, avoids mass generation and keeps server-side batch processing separate from the local tool.'],
     ],
@@ -175,11 +175,11 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   status: {
     title: 'Public Status',
-    description: 'PixelBatch status for the free browser image tools, privacy boundary and advanced workflows.',
+    description: 'PixelBatch status for the free browser image tools, privacy boundary and advanced account features.',
     sections: [
       ['Free browser tools', 'PixelBatch offers six image tools with browser-side Canvas output, local previews and downloads without mandatory signup.'],
       ['File privacy', 'Image processing stays in the browser session on free pages; no product upload, account history or server-side storage path is used for the basic result.'],
-      ['Advanced workflows', 'Batch folders, larger files, API, integrations, high-resolution queues, AI features, payments, advertising and external analytics require separate controls before activation.'],
+      ['Advanced account features', 'Batch folders, larger files, API, integrations, high-resolution queues, AI features, payments, advertising and external analytics require separate controls before activation.'],
     ],
   },
 }

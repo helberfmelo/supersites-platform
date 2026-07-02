@@ -528,9 +528,9 @@ export const toolCatalog: ToolDefinition[] = [
     example: '_dmarc.example.com with v=DMARC1; p=reject; rua=mailto:dmarc@example.com tells receivers to reject unauthenticated aligned failures and send aggregate reports.',
     commonIssue: 'A domain may publish DMARC with p=none forever, which gives visibility but little protection.',
     fix: 'Use reports to fix legitimate senders, then move gradually toward quarantine or reject with a pct rollout.',
-    limitation: 'The free check does not collect, parse or store DMARC XML reports; report ingestion belongs in an account workflow.',
+    limitation: 'The free check does not collect, parse or store DMARC XML reports; report ingestion belongs in an account feature.',
     faq: [
-      { question: 'Will MailHealth receive my DMARC reports?', answer: 'No. Report ingestion is an account workflow and is not active in the free check.' },
+      { question: 'Will MailHealth receive my DMARC reports?', answer: 'No. Report ingestion is an account feature and is not active in the free check.' },
       { question: 'Is p=reject always safe?', answer: 'No. Move to enforcement only after legitimate senders pass SPF or DKIM alignment.' },
     ],
   }),
@@ -576,7 +576,7 @@ export const toolCatalog: ToolDefinition[] = [
     example: 'If one mail IP appears listed in a DNSBL, review recent sending patterns, compromised accounts and delisting steps.',
     commonIssue: 'DNSBL providers can rate limit public resolvers or require direct policy review for commercial use.',
     fix: 'Treat the free result as a pointer, then confirm directly with the listed provider before making operational claims.',
-    limitation: 'This is not a universal blocklist audit; broad reputation feeds and historical monitoring belong in account workflows.',
+    limitation: 'This is not a universal blocklist audit; broad reputation feeds and historical monitoring belong in account features.',
     faq: [
       { question: 'Why only a DNSBL sample?', answer: 'A small allowlist keeps the free tool useful while controlling abuse, provider policy and latency.' },
       { question: 'Does unlisted mean my mail will land in inbox?', answer: 'No. Inbox placement depends on many sender, content, engagement and provider-specific signals.' },
@@ -617,7 +617,7 @@ export const toolCatalog: ToolDefinition[] = [
     previewResult: 'The result summarizes authentication signals, detected domains and privacy-safe warnings.',
     statusLabel: 'Browser-side only',
     freeScope: 'Local header parsing for one message with no backend call and no browser storage.',
-    upgradeScope: 'Saved investigations, team comments, report exports, alert workflows and API analysis.',
+    upgradeScope: 'Saved investigations, team comments, report exports, alert delivery and API analysis.',
     exampleTarget: 'Authentication-Results header sample',
     measure: 'The analyzer unfolds header lines in the browser and extracts only authentication status clues for display.',
     interpret: 'Authentication-Results from the receiving system is usually more trustworthy than a sender-provided claim.',
@@ -891,7 +891,7 @@ export function analyzeMailHeaders(rawHeaders: string): HeaderAnalysisResult {
       summary: '',
       meta: [],
       findings: [],
-      error: 'Free header analysis accepts up to 80 KB. Bulk mailbox analysis belongs in an account workflow.',
+      error: 'Free header analysis accepts up to 80 KB. Bulk mailbox analysis belongs in an account feature.',
     }
   }
 

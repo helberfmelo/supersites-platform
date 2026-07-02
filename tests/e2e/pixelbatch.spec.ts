@@ -70,10 +70,10 @@ test.describe('PixelBatch browser image tools', () => {
       'href',
       'https://opentshost.com/supersites/pixelbatch/en',
     )
+    await expect(page.getByRole('heading', { name: 'Drag, tune, preview and download.' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Image Compressor' })).toBeVisible()
-    await expect(page.getByText('6 browser tools')).toBeVisible()
     await expect(page.getByText('Browser local')).toHaveCount(6)
-    await expect(page.getByRole('heading', { name: 'Advanced image workflows' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Optional account features' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Background cleanup' })).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
@@ -97,15 +97,15 @@ test.describe('PixelBatch browser image tools', () => {
 
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Image Compressor')
     await expect(page.getByRole('heading', { name: 'Before and after' })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Workflow snapshot' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Process snapshot' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Privacy checklist' })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Batch workflows' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Batch options' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Related image tools' })).toBeVisible()
     await expect(page.getByAltText('Processed image preview')).toBeVisible()
     await expect(page.getByText('Actual output')).toBeVisible()
     await expect(page.getByText('No image bytes leave the browser session.')).toBeVisible()
     await expect(page.getByRole('link', { name: /Image Resizer/ })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Advanced image workflows' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Optional account features' })).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)
     await expectNoHorizontalOverflow(page)
 

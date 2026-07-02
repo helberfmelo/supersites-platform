@@ -144,13 +144,13 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
         body: 'Calculations run in the browser and do not store inputs or results.',
       },
       {
-        title: 'Paid value adds workflow',
+        title: 'Paid value adds convenience',
         body: 'Upgrades are for saved scenarios, exports, widgets, teams, API and no ads, not for revealing the answer.',
       },
     ],
     statusRows: [
       {
-        title: '8 calculator workspaces',
+        title: '8 calculator tools',
         body: 'Finance, business and commerce calculators include formulas, examples and scenario ranges.',
         tone: 'green',
       },
@@ -161,7 +161,7 @@ export const homeCopy: Record<LocaleCode, HomeCopy> = {
       },
       {
         title: 'No signup for the basic answer',
-        body: 'Each calculator runs in the browser and shows the working result before any account workflow.',
+        body: 'Each calculator runs in the browser and shows the working result before any account feature.',
         tone: 'green',
       },
     ],

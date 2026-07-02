@@ -91,8 +91,8 @@ try {
         'hreflang="en"',
         'hreflang="pt-BR"',
         'Image Compressor',
-        '6 browser tools',
-        'Your image stays in this browser'
+        'Drag, tune, preview and download.',
+        'Pixels stay local'
     )
 
     foreach ($needle in $requiredHtml) {

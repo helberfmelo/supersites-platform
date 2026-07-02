@@ -151,7 +151,7 @@ const localizedBasics: Record<LocaleCode, {
     modeLabel: 'Mode',
     resultLabel: 'Result',
     localSection: 'Local execution',
-    localBody: 'The free TimeNexus tool runs in this browser session and uses a Web Worker when supported.',
+    localBody: 'The free TimeNexus tool runs in this browser session and uses browser-side processing when supported.',
     assumptionSection: 'Assumptions',
     assumptionBody: 'Results use the entered dates, standard Gregorian calendar math, UTC-safe parsing, the browser Intl time-zone database and visible conversion labels.',
     limitsSection: 'Limits',
@@ -163,7 +163,7 @@ const localizedBasics: Record<LocaleCode, {
     modeLabel: 'Modo',
     resultLabel: 'Resultado',
     localSection: 'Execucao local',
-    localBody: 'A ferramenta gratuita do TimeNexus roda nesta sessao do navegador e usa Web Worker quando suportado.',
+    localBody: 'A ferramenta gratuita do TimeNexus roda nesta sessao do navegador e usa processamento local quando suportado.',
     assumptionSection: 'Premissas',
     assumptionBody: 'Resultados usam as datas informadas, calendario gregoriano, parsing seguro em UTC, base de fusos Intl do navegador e rotulos visiveis.',
     limitsSection: 'Limites',
@@ -175,7 +175,7 @@ const localizedBasics: Record<LocaleCode, {
     modeLabel: 'Modo',
     resultLabel: 'Resultado',
     localSection: 'Ejecucion local',
-    localBody: 'La herramienta gratis de TimeNexus corre en esta sesion del navegador y usa Web Worker cuando hay soporte.',
+    localBody: 'La herramienta gratis de TimeNexus corre en esta sesion del navegador y usa procesamiento local cuando hay soporte.',
     assumptionSection: 'Supuestos',
     assumptionBody: 'Los resultados usan las fechas ingresadas, calendario gregoriano, parsing seguro en UTC, base Intl de zonas horarias del navegador y etiquetas visibles.',
     limitsSection: 'Limites',
@@ -187,7 +187,7 @@ const localizedBasics: Record<LocaleCode, {
     modeLabel: 'Mode',
     resultLabel: 'Resultat',
     localSection: 'Execution locale',
-    localBody: 'L outil gratuit TimeNexus s execute dans cette session navigateur et utilise un Web Worker si supporte.',
+    localBody: 'L outil gratuit TimeNexus s execute dans cette session navigateur et utilise un traitement local si supporte.',
     assumptionSection: 'Hypotheses',
     assumptionBody: 'Les resultats utilisent les dates saisies, le calendrier gregorien, un parsing UTC, la base Intl des fuseaux du navigateur et des libelles visibles.',
     limitsSection: 'Limites',
@@ -199,7 +199,7 @@ const localizedBasics: Record<LocaleCode, {
     modeLabel: 'Modus',
     resultLabel: 'Ergebnis',
     localSection: 'Lokale Ausfuehrung',
-    localBody: 'Das kostenlose TimeNexus-Tool laeuft in dieser Browser-Sitzung und nutzt bei Support einen Web Worker.',
+    localBody: 'Das kostenlose TimeNexus-Tool laeuft in dieser Browser-Sitzung und nutzt lokale Verarbeitung, wenn moeglich.',
     assumptionSection: 'Annahmen',
     assumptionBody: 'Ergebnisse nutzen eingegebene Daten, gregorianische Kalenderlogik, UTC-sicheres Parsing, die Intl-Zeitzonendatenbank des Browsers und sichtbare Labels.',
     limitsSection: 'Grenzen',
@@ -235,7 +235,7 @@ const specs: TimeToolSpec[] = [
     inputLabel: 'Start date',
     secondaryInputLabel: 'End date',
     freeScope: 'Calendar-day difference, weeks and approximate months for one date pair.',
-    upgradeScope: 'Saved presets, recurring spans, workspace export and API access.',
+    upgradeScope: 'Saved presets, recurring spans, team export and API access.',
     modes: [
       { value: 'calendar-days', label: 'Exclusive' },
       { value: 'calendar-days-inclusive', label: 'Inclusive' },
@@ -628,7 +628,7 @@ function ensureInputLimit(...values: string[]): void {
   const totalLength = values.reduce((sum, value) => sum + value.length, 0)
 
   if (totalLength > 20_000) {
-    throw new Error('Free browser tools accept short time and unit inputs. Larger batches belong in batch workflows.')
+    throw new Error('Free browser tools accept short time and unit inputs. Larger batches belong in account features.')
   }
 }
 

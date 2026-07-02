@@ -92,8 +92,8 @@ try {
         'hreflang="en"',
         'hreflang="pt-BR"',
         'HTTP Status Checker',
-        '7 focused checks',
-        'Point-in-time results'
+        'One-shot website report',
+        'Run visual report'
     )
 
     foreach ($needle in $requiredHtml) {

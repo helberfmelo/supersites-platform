@@ -507,7 +507,8 @@ test.describe('NetProbe Atlas public foundation', () => {
     await expect(page.getByRole('heading', { name: 'Data used by the tool' })).toBeVisible()
     await expect(page.getByLabel('Legal and editorial pages').getByRole('link', { name: 'Methodology' })).toBeVisible()
     await expect(page.getByLabel('Legal and editorial pages').getByRole('link', { name: 'Status' })).toBeVisible()
-    await expect(page.locator('.page-footer a')).toHaveCount(9)
+    await expect(page.getByLabel('Legal and editorial pages').getByRole('link', { name: 'SuperSites home' })).toBeVisible()
+    await expect(page.locator('.page-footer a')).toHaveCount(10)
     await expectNoHorizontalOverflow(page)
 
     expect(errors).toEqual([])

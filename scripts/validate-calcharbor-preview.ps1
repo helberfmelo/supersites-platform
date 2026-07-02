@@ -91,7 +91,7 @@ try {
         'hreflang="en"',
         'hreflang="pt-BR"',
         'Loan Payment Calculator',
-        '8 calculator workspaces',
+        'Calculators by category',
         'Popular calculators',
         'All calculators',
         'Compare one calculator across three assumptions.',
@@ -121,7 +121,7 @@ try {
     }
 
     $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/calculators/roi" -RequiredContent 'Calculadora de ROI'
-    if ($localizedTool.StatusCode -ne 200 -or $localizedTool.Content -notmatch 'Cenarios salvos') {
+    if ($localizedTool.StatusCode -ne 200 -or $localizedTool.Content -notmatch 'Cen.rios salvos') {
         throw 'Localized ROI calculator smoke failed.'
     }
 

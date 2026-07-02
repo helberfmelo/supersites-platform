@@ -40,7 +40,7 @@ const directoryText: Record<LocaleCode, {
 }> = {
   en: {
     title: 'World Clock, Time Zones, Calendar, Calculators and Timers',
-    body: 'Jump directly into the time, date and converter workspace that matches the task.',
+    body: 'Jump directly into the time, date and converter tool that matches the task.',
     sections: {
       worldClock: { title: 'World Clock', body: 'Live city clocks, business-hour badges and city group comparisons.', americasEurope: 'Americas + Europe', globalProduct: 'Global product team', tokyo: 'Tokyo city clock' },
       timeZones: { title: 'Time Zones', body: 'Meeting conversion, UTC views and timestamp formats.' },

@@ -69,34 +69,34 @@ export const contentPageCatalog: ContentPage[] = [
     en: copy('About', 'About DevUtility Lab', 'DevUtility Lab is the SuperSites product for browser-side developer utilities.', reviewed.en, [
       ['Purpose', 'The site helps developers format, encode, inspect and compare common snippets while reducing unnecessary transfer of sensitive content.'],
       ['What is live now', 'The current version includes nine local tools covering structured data, Base64, JWT, regex, diff, cron, UUID, timestamp and hashes.'],
-      ['Advanced workflows', 'Private history, workspaces, batch processing, larger files, API access and ad-free use are separate from the free tools.'],
+      ['Advanced account features', 'Private history, team areas, batch processing, larger files, API access and ad-free use are separate from the free tools.'],
     ]),
     'pt-br': copy('Sobre', 'Sobre o DevUtility Lab', 'DevUtility Lab e o produto SuperSites de utilitarios dev no navegador.', reviewed['pt-br'], [
       ['Proposito', 'O site ajuda devs a formatar, codificar, inspecionar e comparar snippets reduzindo envio desnecessario de conteudo sensivel.'],
       ['O que esta ativo', 'A versao atual entrega nove ferramentas locais para dados estruturados, Base64, JWT, regex, diff, cron, UUID, timestamp e hashes.'],
-      ['Fluxos avancados', 'Historico privado, workspaces, lotes, arquivos maiores, API e uso sem anuncios ficam separados das ferramentas gratuitas.'],
+      ['Recursos de conta', 'Historico privado, areas de equipe, lotes, arquivos maiores, API e uso sem anuncios ficam separados das ferramentas gratuitas.'],
     ]),
     es: copy('Acerca de', 'Acerca de DevUtility Lab', 'DevUtility Lab es el producto SuperSites de utilidades dev en el navegador.', reviewed.es, [
       ['Proposito', 'El sitio ayuda a formatear, codificar, inspeccionar y comparar fragmentos reduciendo transferencias innecesarias.'],
       ['Que esta activo', 'La version actual entrega nueve herramientas locales para datos, Base64, JWT, regex, diff, cron, UUID, timestamp y hashes.'],
-      ['Flujos avanzados', 'Historial privado, workspaces, lotes, archivos mayores, API y uso sin anuncios quedan separados de las herramientas gratuitas.'],
+      ['Funciones de cuenta', 'Historial privado, espacios de equipo, lotes, archivos mayores, API y uso sin anuncios quedan separados de las herramientas gratuitas.'],
     ]),
     fr: copy('A propos', 'A propos de DevUtility Lab', 'DevUtility Lab est le produit SuperSites pour utilitaires dev cote navigateur.', reviewed.fr, [
       ['Objectif', 'Le site aide a formater, encoder, inspecter et comparer des extraits en limitant les transferts inutiles.'],
       ['Actif maintenant', 'La version actuelle propose neuf outils locaux pour donnees, Base64, JWT, regex, diff, cron, UUID, timestamp et hashes.'],
-      ['Flux avances', 'Historique prive, workspaces, lots, gros fichiers, API et usage sans publicite restent separes des outils gratuits.'],
+      ['Fonctions de compte', 'Historique prive, espaces equipe, lots, gros fichiers, API et usage sans publicite restent separes des outils gratuits.'],
     ]),
     de: copy('Ueber', 'Ueber DevUtility Lab', 'DevUtility Lab ist das SuperSites-Produkt fuer Browser-Developer-Tools.', reviewed.de, [
       ['Zweck', 'Die Seite hilft beim Formatieren, Codieren, Pruefen und Vergleichen von Ausschnitten mit weniger unnoetiger Uebertragung.'],
       ['Jetzt live', 'Die aktuelle Version liefert neun lokale Tools fuer Daten, Base64, JWT, Regex, Diff, Cron, UUID, Timestamp und Hashes.'],
-      ['Erweiterte Workflows', 'Privater Verlauf, Workspaces, Stapel, groessere Dateien, API und werbefreie Nutzung sind von den kostenlosen Tools getrennt.'],
+      ['Erweiterte Kontofunktionen', 'Privater Verlauf, Team-Bereiche, Stapel, groessere Dateien, API und werbefreie Nutzung sind von den kostenlosen Tools getrennt.'],
     ]),
   }),
   page('contact', {
     en: copy('Contact', 'Contact DevUtility Lab', 'How to reach the SuperSites operator about corrections, privacy, security and tool feedback.', reviewed.en, [
       ['Useful reports', 'Include the page URL, language, tool name, observed behavior, expected result and browser context.'],
       ['Do not send secrets', 'Do not send access tokens, API keys, passwords, customer data, private certificates or confidential source files through feedback.'],
-      ['Public channel gate', 'A monitored public mailbox is required before independent launch; until then feedback remains in the owner workflow.'],
+      ['Public channel readiness', 'A monitored public mailbox is required before independent launch; until then feedback remains in the support queue.'],
     ]),
     'pt-br': copy('Contato', 'Contato do DevUtility Lab', 'Como falar com o operador SuperSites sobre correcoes, privacidade, seguranca e feedback.', reviewed['pt-br'], [
       ['Relatos uteis', 'Inclua URL, idioma, ferramenta, comportamento observado, resultado esperado e contexto do navegador.'],
@@ -123,27 +123,27 @@ export const contentPageCatalog: ContentPage[] = [
     en: copy('Privacy', 'Privacy Policy', 'DevUtility Lab minimizes collection by processing snippets locally in the browser.', reviewed.en, [
       ['Data minimization', 'Tool inputs and results are not sent to a product API, not stored in account history and not written to browser storage in the free browser version.'],
       ['Analytics boundary', 'Allowed analytics events may record tool slugs and page paths, but not pasted snippets, tokens, hashes, regex samples or generated results.'],
-      ['Future accounts', 'Private history, workspaces and batch jobs require account, retention, export, deletion and consent rules before launch.'],
+      ['Future accounts', 'Private history, team areas and batch jobs require account, retention, export, deletion and consent rules before launch.'],
     ]),
     'pt-br': copy('Privacidade', 'Politica de Privacidade', 'DevUtility Lab minimiza coleta processando snippets localmente.', reviewed['pt-br'], [
       ['Minimizacao', 'Entradas e resultados nao sao enviados para API, nao entram em historico de conta e nao sao escritos em storage na versao gratuita do navegador.'],
       ['Fronteira de analytics', 'Eventos podem registrar slug e rota, mas nao snippets, tokens, hashes, amostras regex ou resultados.'],
-      ['Contas futuras', 'Historico privado, workspaces e lotes exigem regras de conta, retencao, exportacao, exclusao e consentimento.'],
+      ['Contas futuras', 'Historico privado, areas de equipe e lotes exigem regras de conta, retencao, exportacao, exclusao e consentimento.'],
     ]),
     es: copy('Privacidad', 'Politica de Privacidad', 'DevUtility Lab minimiza recoleccion procesando fragmentos localmente.', reviewed.es, [
       ['Minimizacion', 'Entradas y resultados no se envian a API, no se guardan en historial y no se escriben en storage en la version gratuita del navegador.'],
       ['Limite analytics', 'Eventos pueden registrar slug y ruta, pero no fragmentos, tokens, hashes, muestras regex o resultados.'],
-      ['Cuentas futuras', 'Historial privado, workspaces y lotes requieren reglas de cuenta, retencion, exportacion, eliminacion y consentimiento.'],
+      ['Cuentas futuras', 'Historial privado, espacios de equipo y lotes requieren reglas de cuenta, retencion, exportacion, eliminacion y consentimiento.'],
     ]),
     fr: copy('Confidentialite', 'Politique de confidentialite', 'DevUtility Lab minimise la collecte en traitant les extraits localement.', reviewed.fr, [
       ['Minimisation', 'Entrees et resultats ne sont pas envoyes a une API, pas stockes en compte et pas ecrits en stockage navigateur dans la version gratuite.'],
       ['Limite analytics', 'Les evenements peuvent enregistrer slug et chemin, pas extraits, tokens, hashes, exemples regex ou resultats.'],
-      ['Comptes futurs', 'Historique prive, workspaces et lots exigent regles de compte, retention, export, suppression et consentement.'],
+      ['Comptes futurs', 'Historique prive, espaces equipe et lots exigent regles de compte, retention, export, suppression et consentement.'],
     ]),
     de: copy('Datenschutz', 'Datenschutzerklaerung', 'DevUtility Lab minimiert Erhebung, indem Ausschnitte lokal verarbeitet werden.', reviewed.de, [
       ['Datenminimierung', 'Eingaben und Ergebnisse gehen nicht an eine Produkt-API, keinen Kontoverlauf und keinen Browser-Speicher in der kostenlosen Browserversion.'],
       ['Analytics-Grenze', 'Events duerfen Tool-Slug und Pfad enthalten, aber keine Ausschnitte, Tokens, Hashes, Regex-Beispiele oder Ergebnisse.'],
-      ['Zukuenftige Konten', 'Privater Verlauf, Workspaces und Stapel brauchen Regeln fuer Konto, Aufbewahrung, Export, Loeschung und Consent.'],
+      ['Zukuenftige Konten', 'Privater Verlauf, Team-Bereiche und Stapel brauchen Regeln fuer Konto, Aufbewahrung, Export, Loeschung und Consent.'],
     ]),
   }),
   page('cookies', {
@@ -203,27 +203,27 @@ export const contentPageCatalog: ContentPage[] = [
   page('methodology', {
     en: copy('Methodology', 'Methodology', 'How DevUtility Lab keeps tools useful, privacy-first and honest about limits.', reviewed.en, [
       ['Working tool first', 'Each page must include a functioning free utility before it can be treated as launch-ready content.'],
-      ['Local processing', 'Snippet transformations run in the browser and use a Web Worker when supported so the UI remains responsive.'],
+      ['Local processing', 'Snippet transformations run in the browser and use local processing when supported so the UI remains responsive.'],
       ['Security caveat', 'Local processing reduces transfer, but users should still redact secrets and verify production-critical output independently.'],
     ]),
     'pt-br': copy('Metodologia', 'Metodologia', 'Como o DevUtility Lab mantem ferramentas uteis, privadas e honestas sobre limites.', reviewed['pt-br'], [
       ['Ferramenta primeiro', 'Cada pagina precisa ter utilitario gratuito funcional antes de ser considerada pronta para lancamento.'],
-      ['Processamento local', 'Transformacoes rodam no navegador e usam Web Worker quando suportado para manter a UI responsiva.'],
+      ['Processamento local', 'Transformacoes rodam no navegador e usam processamento local quando suportado para manter a UI responsiva.'],
       ['Cautela de seguranca', 'Processamento local reduz transferencia, mas usuarios devem redigir segredos e verificar resultados criticos.'],
     ]),
     es: copy('Metodologia', 'Metodologia', 'Como DevUtility Lab mantiene herramientas utiles, privadas y claras sobre limites.', reviewed.es, [
       ['Herramienta primero', 'Cada pagina debe incluir una utilidad gratis funcional antes de considerarse lista.'],
-      ['Procesamiento local', 'Las transformaciones corren en el navegador y usan Web Worker cuando existe soporte.'],
+      ['Procesamiento local', 'Las transformaciones corren en el navegador y usan procesamiento local cuando existe soporte.'],
       ['Cautela seguridad', 'Procesar localmente reduce transferencia, pero conviene redactar secretos y verificar salidas criticas.'],
     ]),
     fr: copy('Methodologie', 'Methodologie', 'Comment DevUtility Lab garde les outils utiles, prives et clairs sur leurs limites.', reviewed.fr, [
       ['Outil d abord', 'Chaque page doit inclure un utilitaire gratuit fonctionnel avant d etre prete au lancement.'],
-      ['Traitement local', 'Les transformations s executent dans le navigateur et utilisent un Web Worker si disponible.'],
+      ['Traitement local', 'Les transformations s executent dans le navigateur et utilisent un traitement local si disponible.'],
       ['Prudence securite', 'Le traitement local reduit le transfert, mais les secrets doivent etre masques et les resultats critiques verifies.'],
     ]),
     de: copy('Methodik', 'Methodik', 'Wie DevUtility Lab Tools nuetzlich, privat und ehrlich ueber Grenzen haelt.', reviewed.de, [
       ['Tool zuerst', 'Jede Seite braucht ein funktionierendes kostenloses Tool, bevor sie launchbereit ist.'],
-      ['Lokale Verarbeitung', 'Transformationen laufen client-seitig und nutzen Web Worker, wenn verfuegbar.'],
+      ['Lokale Verarbeitung', 'Transformationen laufen client-seitig und nutzen lokale Verarbeitung, wenn verfuegbar.'],
       ['Sicherheitshinweis', 'Lokale Verarbeitung reduziert Uebertragung, dennoch sollten Geheimnisse geschwaerzt und kritische Ergebnisse geprueft werden.'],
     ]),
   }),
@@ -258,27 +258,27 @@ export const contentPageCatalog: ContentPage[] = [
     en: copy('Status', 'Public Status', 'DevUtility Lab status for free browser-side developer utilities.', reviewed.en, [
       ['Free tools', 'DevUtility Lab offers nine browser-side tools for formatting, encoding, inspecting and comparing common developer snippets.'],
       ['Snippet privacy', 'Free tool inputs stay in the browser session and are not sent to a product API for the basic result.'],
-      ['Advanced workflows', 'Accounts, private history, workspaces, batch processing, larger files, API, external analytics and ad-free workflows require separate controls before activation.'],
+      ['Advanced account features', 'Accounts, private history, team areas, batch processing, larger files, API, external analytics and ad-free use require separate controls before activation.'],
     ]),
     'pt-br': copy('Status', 'Status Publico', 'Status do DevUtility Lab para utilitarios dev gratuitos no navegador.', reviewed['pt-br'], [
       ['Ferramentas gratuitas', 'O DevUtility Lab oferece nove ferramentas no navegador para formatar, codificar, inspecionar e comparar snippets comuns.'],
       ['Privacidade dos snippets', 'Entradas das ferramentas gratuitas ficam na sessao do navegador e nao sao enviadas a uma API de produto no resultado basico.'],
-      ['Fluxos avancados', 'Contas, historico privado, workspaces, lotes, arquivos maiores, API, analytics externo e uso sem anuncios exigem controles separados antes da ativacao.'],
+      ['Recursos de conta', 'Contas, historico privado, areas de equipe, lotes, arquivos maiores, API, analytics externo e uso sem anuncios exigem controles separados antes da ativacao.'],
     ]),
     es: copy('Estado', 'Estado publico', 'Estado de DevUtility Lab para utilidades dev gratuitas en el navegador.', reviewed.es, [
       ['Herramientas gratis', 'DevUtility Lab ofrece nueve herramientas en el navegador para formatear, codificar, inspeccionar y comparar snippets comunes.'],
       ['Privacidad de snippets', 'Las entradas quedan en la sesion del navegador y no se envian a una API de producto para el resultado basico.'],
-      ['Flujos avanzados', 'Cuentas, historial privado, workspaces, lotes, archivos mayores, API, analytics externo y uso sin anuncios requieren controles separados antes de activarse.'],
+      ['Funciones de cuenta', 'Cuentas, historial privado, espacios de equipo, lotes, archivos mayores, API, analytics externo y uso sin anuncios requieren controles separados antes de activarse.'],
     ]),
     fr: copy('Statut', 'Statut public', 'Statut DevUtility Lab pour utilitaires dev gratuits dans le navigateur.', reviewed.fr, [
       ['Outils gratuits', 'DevUtility Lab propose neuf outils navigateur pour formater, encoder, inspecter et comparer des snippets courants.'],
       ['Confidentialite snippets', 'Les entrees restent dans la session navigateur et ne sont pas envoyees a une API produit pour le resultat de base.'],
-      ['Flux avances', 'Comptes, historique prive, workspaces, lots, gros fichiers, API, analytics externe et usage sans publicite exigent des controles separes avant activation.'],
+      ['Fonctions de compte', 'Comptes, historique prive, espaces equipe, lots, gros fichiers, API, analytics externe et usage sans publicite exigent des controles separes avant activation.'],
     ]),
     de: copy('Status', 'Oeffentlicher Status', 'DevUtility-Lab-Status fuer kostenlose Browser-Developer-Tools.', reviewed.de, [
       ['Kostenlose Tools', 'DevUtility Lab bietet neun Browser-Tools zum Formatieren, Codieren, Pruefen und Vergleichen haeufiger Developer-Snippets.'],
       ['Snippet-Datenschutz', 'Eingaben bleiben in der Browsersitzung und werden fuer das Basisergebnis nicht an eine Produkt-API gesendet.'],
-      ['Erweiterte Workflows', 'Konten, privater Verlauf, Workspaces, Stapel, groessere Dateien, API, externe Analytics und werbefreie Nutzung brauchen vor Aktivierung eigene Kontrollen.'],
+      ['Erweiterte Kontofunktionen', 'Konten, privater Verlauf, Team-Bereiche, Stapel, groessere Dateien, API, externe Analytics und werbefreie Nutzung brauchen vor Aktivierung eigene Kontrollen.'],
     ]),
   }),
 ]

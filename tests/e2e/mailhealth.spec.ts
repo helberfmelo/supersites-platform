@@ -142,7 +142,7 @@ test.describe('MailHealth diagnostics', () => {
     await expect(page.getByText('Domain health report')).toBeVisible()
     await expect(page.getByRole('button', { name: 'Run domain report' })).toBeVisible()
     await expect(page.getByText('Live check')).toHaveCount(7)
-    await expect(page.getByText('7 focused checks')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Useful free diagnostics' })).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
     const screenshot = await page.screenshot({ fullPage: true })

@@ -98,7 +98,7 @@ test.describe('InvoiceCraft document studio', () => {
     await expect(page.locator('.document-preview')).toContainText('Tax/legal note')
     await expect(page.getByRole('heading', { name: 'Related documents' })).toBeVisible()
     await expect(page.getByRole('link', { name: /Quote Builder/ })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Future workflow options' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Future account options' })).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)
     await expectNoHorizontalOverflow(page)
 

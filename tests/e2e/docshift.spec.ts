@@ -37,9 +37,9 @@ test.describe('DocShift browser workflows', () => {
     )
     await expect(page.getByRole('heading', { name: 'PDF Merge' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Text to PDF' })).toBeVisible()
-    await expect(page.getByText('Files stay in this browser', { exact: true })).toBeVisible()
+    await expect(page.getByText('Files stay in this browser for supported free tasks')).toBeVisible()
     await expect(page.getByText('Browser local', { exact: true })).toHaveCount(8)
-    await expect(page.getByRole('heading', { name: 'Advanced document workflows' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Optional account features' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'OCR and table extraction' })).toBeVisible()
 
     const screenshot = await page.screenshot({ fullPage: true })
@@ -52,9 +52,9 @@ test.describe('DocShift browser workflows', () => {
 
     await expect(page.getByText('Drop or choose local documents')).toBeVisible()
     await expect(page.getByText('File state')).toBeVisible()
-    await expect(page.getByText('Workflow snapshot')).toBeVisible()
+    await expect(page.getByText('Process snapshot')).toBeVisible()
     await expect(page.getByText('Privacy checklist')).toBeVisible()
-    await expect(page.getByText('Advanced server workflow')).toBeVisible()
+    await expect(page.getByText('Optional server processing')).toBeVisible()
     await expect(page.getByText('Related document tools')).toBeVisible()
 
     await page.getByLabel('Plain text').fill('Private roadmap note\nGenerated locally for the DocShift smoke test.')
@@ -63,7 +63,7 @@ test.describe('DocShift browser workflows', () => {
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Text to PDF')
     await expect(page.getByTitle('Processed PDF preview')).toBeVisible()
     await expect(page.getByText('Actual output')).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Advanced document workflows' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Optional account features' })).toBeVisible()
 
     await expectNoBrowserStorage(page)
 
@@ -105,7 +105,7 @@ test.describe('DocShift browser workflows', () => {
     await expect(page.getByTitle('Processed PDF preview')).toBeVisible()
     await expect(page.getByText('File state')).toBeVisible()
     await expect(page.getByText('Related document tools')).toBeVisible()
-    await expect(page.locator('.result-meta').getByText('browser worker', { exact: true }).or(
+    await expect(page.locator('.result-meta').getByText('browser processing', { exact: true }).or(
       page.locator('.result-meta').getByText('local fallback', { exact: true }),
     )).toBeVisible()
     await expectNoBrowserStorage(page)

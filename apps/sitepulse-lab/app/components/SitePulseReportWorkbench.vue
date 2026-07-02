@@ -138,7 +138,7 @@ const reportCopy: Record<LocaleCode, ReportCopy> = {
       'Private, local, reserved and metadata-network destinations are rejected before requests.',
       'Analytics receives route and tool metadata only, never the target URL or result values.',
     ],
-    upgradeTitle: 'Workflow upgrade path',
+    upgradeTitle: 'Optional account features',
     upgradeBody: 'Recurring uptime, incidents, public status pages, alerts, history, reports and multi-region probes remain future workflow value.',
   },
   'pt-br': {
@@ -278,7 +278,7 @@ const reportCopy: Record<LocaleCode, ReportCopy> = {
       'Destinos privados, locales, reservados y de metadata se rechazan antes de solicitar.',
       'Analytics recibe solo ruta y herramienta, nunca la URL objetivo ni valores de resultado.',
     ],
-    upgradeTitle: 'Ruta de upgrade workflow',
+    upgradeTitle: 'Opciones de cuenta',
     upgradeBody: 'Uptime recurrente, incidentes, status page, alertas, historial, informes y probes multi-region siguen como valor futuro.',
   },
   fr: {

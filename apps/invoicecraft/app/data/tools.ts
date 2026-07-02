@@ -167,7 +167,7 @@ const localizedBasics: Record<LocaleCode, {
     pdfBody: 'The free builder renders a browser preview and downloads a PDF locally, which solves the basic need without mandatory signup.',
     bestPracticeSection: 'Document best practices',
     gateSection: 'Tax and payment limits',
-    gateBody: 'Manual tax labels are formatting helpers. Official fiscal numbering, payment collection, recurring invoices, saved clients and team workspaces need separate account controls.',
+    gateBody: 'Manual tax labels are formatting helpers. Official fiscal numbering, payment collection, recurring invoices, saved clients and team access need separate account controls.',
     faqStorage: { question: 'Are clients, products or invoices stored?', answer: 'No. InvoiceCraft does not create accounts, call a product API or save document fields.' },
     faqTax: { question: 'Can this create official tax invoices?', answer: 'No. Manual tax or adjustment lines are formatting helpers only; review jurisdiction-specific tax rules outside this free builder.' },
   },
@@ -215,7 +215,7 @@ const localizedBasics: Record<LocaleCode, {
     pdfBody: 'Der kostenlose Builder rendert eine Vorschau und laedt lokal ein PDF herunter, ohne Pflichtkonto.',
     bestPracticeSection: 'Dokument-Best-Practices',
     gateSection: 'Steuer- und Zahlungslimits',
-    gateBody: 'Steuern, fiskalische Nummerierung, Zahlungen, Wiederholung, gespeicherte Kunden und Teams bleiben bis menschlicher Legal- und Billing-Pruefung gesperrt.',
+    gateBody: 'Steuern, fiskalische Nummerierung, Zahlungen, Wiederholung, gespeicherte Kunden und Teams bleiben bis zur fachlichen Rechts- und Zahlungspruefung getrennt.',
     faqStorage: { question: 'Werden Kunden, Produkte oder Rechnungen gespeichert?', answer: 'Nein. InvoiceCraft erstellt kein Konto, ruft keine Produkt-API auf, nutzt kein Browser-Storage und speichert keine Felder.' },
     faqTax: { question: 'Ist das eine offizielle Steuerrechnung?', answer: 'Nein. Manuelle Steuer- oder Anpassungszeilen sind nur Formatierung; pruefen Sie Steuerregeln pro Jurisdiktion ausserhalb dieses kostenlosen Generators.' },
   },
@@ -231,7 +231,7 @@ const sampleBase: InvoiceCraftDocumentInput = {
   dueDate: '2026-07-12',
   currency: 'USD',
   terms: 'Due on receipt unless another written agreement applies.',
-  itemsRaw: 'Workflow setup | 1 | 950\nTemplate cleanup | 3 | 125\nReview call | 2 | 90',
+  itemsRaw: 'Setup session | 1 | 950\nTemplate cleanup | 3 | 125\nReview call | 2 | 90',
   discountAmount: '50',
   shippingAmount: '0',
   adjustmentLabel: 'Manual tax/adjustment',
@@ -263,7 +263,7 @@ const specs: InvoiceCraftToolSpec[] = [
     headline: 'Prepare a quote or estimate with itemized totals and local PDF export.',
     description: 'Use the quote builder for one-time estimates where the recipient needs itemized scope and a total before approval.',
     freeScope: 'One quote/estimate at a time with local calculation, preview and PDF download.',
-    upgradeScope: 'Reusable products, approval workflow, expiry reminders, branded templates, CRM export and team collaboration.',
+    upgradeScope: 'Reusable products, approval steps, expiry reminders, branded templates, CRM export and team collaboration.',
     useCase: 'Use a quote before work starts, when the buyer needs scope, pricing and validity details before written approval.',
     bestPractice: 'Make the validity date and assumptions explicit, and keep acceptance, tax and payment obligations outside the free builder until reviewed.',
     sample: {
@@ -301,22 +301,22 @@ const localizedSpecOverrides: Partial<Record<LocaleCode, Partial<Record<InvoiceC
     'invoice-builder': {
       title: 'Construtor de faturas',
       shortName: 'Fatura',
-      headline: 'Crie uma previa de fatura e baixe o PDF no navegador sem cadastro obrigatorio.',
+      headline: 'Crie uma prévia de fatura e baixe o PDF no navegador sem cadastro obrigatório.',
       description: 'Preencha emissor, cliente, itens, datas, desconto e uma linha manual de imposto ou ajuste. O InvoiceCraft calcula tudo localmente.',
       freeScope: 'Uma fatura por vez, preview local, download de PDF local e nenhum cadastro de cliente ou produto salvo.',
-      upgradeScope: 'Clientes salvos, catalogo de produtos, recorrencia, branding, revisao em equipe, links de pagamento e automacao.',
-      useCase: 'Use a fatura depois que o trabalho foi entregue ou esta pronto para cobranca, quando o cliente precisa de itens, vencimento e termos de pagamento.',
-      bestPractice: 'Confira numero do documento, datas, cliente, itens e rotulo de imposto ou ajuste antes de baixar o PDF.',
+      upgradeScope: 'Clientes salvos, catálogo de produtos, recorrência, branding, revisão em equipe, links de pagamento e automação.',
+      useCase: 'Use a fatura depois que o trabalho foi entregue ou está pronto para cobrança, quando o cliente precisa de itens, vencimento e termos de pagamento.',
+      bestPractice: 'Confira número do documento, datas, cliente, itens e rótulo de imposto ou ajuste antes de baixar o PDF.',
     },
     'quote-builder': {
-      title: 'Construtor de orcamentos',
-      shortName: 'Orcamento',
-      headline: 'Prepare um orcamento com itens, totais e exportacao local em PDF.',
-      description: 'Use o construtor para estimativas pontuais quando o cliente precisa de escopo, itens e total antes da aprovacao.',
-      freeScope: 'Um orcamento por vez, com calculo local, preview e download de PDF.',
-      upgradeScope: 'Produtos reutilizaveis, aprovacao, lembretes de validade, templates com marca, exportacao para CRM e colaboracao.',
-      useCase: 'Use um orcamento antes do trabalho comecar, quando o comprador precisa aprovar escopo, preco e validade.',
-      bestPractice: 'Deixe validade e premissas explicitas; aceite, impostos e pagamentos devem ser tratados fora do gerador gratuito.',
+      title: 'Construtor de orçamentos',
+      shortName: 'Orçamento',
+      headline: 'Prepare um orçamento com itens, totais e exportação local em PDF.',
+      description: 'Use o construtor para estimativas pontuais quando o cliente precisa de escopo, itens e total antes da aprovação.',
+      freeScope: 'Um orçamento por vez, com cálculo local, preview e download de PDF.',
+      upgradeScope: 'Produtos reutilizáveis, aprovação, lembretes de validade, templates com marca, exportação para CRM e colaboração.',
+      useCase: 'Use um orçamento antes do trabalho começar, quando o comprador precisa aprovar escopo, preço e validade.',
+      bestPractice: 'Deixe validade e premissas explícitas; aceite, impostos e pagamentos devem ser tratados fora do gerador gratuito.',
     },
     'receipt-builder': {
       title: 'Construtor de recibos',
@@ -483,7 +483,7 @@ function ensureInputLimit(input: InvoiceCraftDocumentInput): void {
   const totalLength = Object.values(input).reduce((sum, value) => sum + String(value ?? '').length, 0)
 
   if (totalLength > 20_000) {
-    throw new Error('Free InvoiceCraft documents accept short one-off inputs. Bulk imports belong to future account workflows.')
+    throw new Error('Free InvoiceCraft documents accept short one-off inputs. Bulk imports belong to future account features.')
   }
 }
 
@@ -563,7 +563,7 @@ function parseItems(itemsRaw: string): InvoiceCraftDocumentLineItem[] {
   }
 
   if (lines.length > 30) {
-    throw new Error('Free InvoiceCraft documents support up to 30 line items. Batch workflows belong to future account workflows.')
+    throw new Error('Free InvoiceCraft documents support up to 30 line items. Batch processing belongs to future account features.')
   }
 
   return lines.map((line, index) => {

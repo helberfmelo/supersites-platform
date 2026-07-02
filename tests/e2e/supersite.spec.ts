@@ -709,7 +709,7 @@ test.describe('SuperSites public hub', () => {
     await expect(page.getByRole('heading', { name: 'Find the right web tool in seconds.' })).toBeVisible()
     await expect(page.getByRole('search', { name: 'Search the catalog' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Free tools ready to use' })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Choose by workflow' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Choose by task' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Explore focused tool suites' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Support the free network' })).toBeVisible()
     await expect(page.locator('.trust-row').getByText('No account required')).toBeVisible()
@@ -729,7 +729,7 @@ test.describe('SuperSites public hub', () => {
       window.addEventListener('click', (event) => event.preventDefault(), { capture: true })
     })
 
-    await page.locator('a[href="https://opentshost.com/supersites/netprobe-atlas/"]').first().click()
+    await page.locator('a[href="https://opentshost.com/supersites/netprobe-atlas/en"]').first().click()
 
     const analytics = await page.evaluate(() => ({
       localEvents: window.supersitesAnalyticsEvents,
@@ -742,7 +742,7 @@ test.describe('SuperSites public hub', () => {
       siteSlug: 'netprobe-atlas',
       routePath: '/en',
       properties: {
-        target_url: '/supersites/netprobe-atlas',
+        target_url: '/supersites/netprobe-atlas/en',
       },
     })
     expect(analytics.dataLayer?.find((entry) => entry.event === 'outbound_site_click')).toMatchObject({
@@ -990,7 +990,7 @@ test.describe('SuperSites public hub', () => {
     await dismissConsentBanner(page)
 
     await expect(page.getByRole('heading', { name: 'Format, inspect and compare code snippets locally.' })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Developer workbench finder' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Developer tool finder' })).toBeVisible()
     await expect(page.getByRole('searchbox', { name: 'Search developer tools' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Pinned local shortcuts' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'All published developer tools' })).toBeVisible()
@@ -1042,7 +1042,7 @@ test.describe('SuperSites public hub', () => {
     await dismissConsentBanner(page)
 
     await expect(page.getByRole('heading', { name: 'Formate, inspecione e compare snippets localmente.' })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Buscador de workbench dev' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Buscador de ferramentas dev' })).toBeVisible()
     await expect(page.getByRole('searchbox', { name: 'Buscar ferramentas dev' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Atalhos locais fixos' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Todas as ferramentas dev publicadas' })).toBeVisible()
@@ -1373,8 +1373,8 @@ test.describe('SuperSites public hub', () => {
     await expect(page.getByRole('heading', { name: 'Verifique a saúde de e-mail antes de alterar DNS.' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Relatório de saúde do domínio' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Escolha um diagnóstico de e-mail' })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Todos os checks MailHealth publicados' })).toBeVisible()
-    await expect(page.getByRole('searchbox', { name: 'Buscar checks MailHealth' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Todas as verificacoes MailHealth publicadas' })).toBeVisible()
+    await expect(page.getByRole('searchbox', { name: 'Buscar verificacoes MailHealth' })).toBeVisible()
     await expect(
       page.locator('.mailhealth-tool-grid a[href="https://opentshost.com/supersites/mailhealth/pt-br/tools/spf-checker"]'),
     ).toBeVisible()
@@ -1457,9 +1457,9 @@ test.describe('SuperSites public hub', () => {
 
     await expect(page.getByRole('heading', { name: 'Verifique se um site responde antes de investigar mais.' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Relatório de status do site' })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Escolha um check de site' })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Todos os checks SitePulse publicados' })).toBeVisible()
-    await expect(page.getByRole('searchbox', { name: 'Buscar checks SitePulse' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Escolha uma verificacao de site' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Todas as verificacoes SitePulse publicadas' })).toBeVisible()
+    await expect(page.getByRole('searchbox', { name: 'Buscar verificacoes SitePulse' })).toBeVisible()
     await expect(
       page.locator('.sitepulse-tool-grid a[href="https://opentshost.com/supersites/sitepulse-lab/pt-br/tools/status-checker"]'),
     ).toBeVisible()
@@ -1492,7 +1492,7 @@ test.describe('SuperSites public hub', () => {
     await expect(page.getByRole('heading', { name: 'Drop an image and make it web-ready in this browser.' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Drop or choose one image' })).toBeVisible()
     await expect(page.getByText('Your image stays in this browser')).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Choose an image workflow' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Choose an image task' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Start with visible image tasks' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'One local image at a time' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'All published PixelBatch tools' })).toBeVisible()
@@ -1543,7 +1543,7 @@ test.describe('SuperSites public hub', () => {
     await expect(page.getByRole('heading', { name: 'Solte uma imagem e deixe-a pronta para web neste navegador.' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Solte ou escolha uma imagem' })).toBeVisible()
     await expect(page.getByText('Sua imagem fica neste navegador')).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Escolha um fluxo de imagem' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Escolha uma tarefa de imagem' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Todas as ferramentas PixelBatch publicadas' })).toBeVisible()
     await expect(page.getByRole('searchbox', { name: 'Buscar ferramentas PixelBatch' })).toBeVisible()
     await expect(
@@ -1576,7 +1576,7 @@ test.describe('SuperSites public hub', () => {
     await expect(page.getByRole('heading', { name: 'Choose a PDF task and handle the file in this browser.' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Drop or choose PDF files' })).toBeVisible()
     await expect(page.getByText('Files stay in this browser for supported free tasks')).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Choose a PDF workflow' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Choose a PDF task', exact: true })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Start with visible PDF tasks' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Small document tasks first' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'All published DocShift tools' })).toBeVisible()
@@ -1629,7 +1629,7 @@ test.describe('SuperSites public hub', () => {
     await expect(page.getByRole('heading', { name: 'Escolha uma tarefa de PDF e trate o arquivo neste navegador.' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Solte ou escolha arquivos PDF' })).toBeVisible()
     await expect(page.getByText('Os arquivos ficam neste navegador nas tarefas gratuitas compatíveis')).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Escolha um fluxo de PDF' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Escolha uma tarefa de PDF', exact: true })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Todas as ferramentas DocShift publicadas' })).toBeVisible()
     await expect(page.getByRole('searchbox', { name: 'Buscar ferramentas DocShift' })).toBeVisible()
     await expect(

@@ -74,7 +74,7 @@ test.describe('DevUtility Lab MVP', () => {
       'href',
       '/en/tools/structured-data-formatter',
     )
-    await expect(page.getByRole('heading', { name: 'Workbench principles' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Tool principles' })).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
     const homePrivacy = await page.evaluate(() => ({
@@ -97,7 +97,7 @@ test.describe('DevUtility Lab MVP', () => {
     expect(errors).toEqual([])
   })
 
-  test('formats JSON in a browser worker and records sanitized analytics', async ({ page }, testInfo) => {
+  test('formats JSON in the browser and records sanitized analytics', async ({ page }, testInfo) => {
     const errors = collectBrowserErrors(page)
 
     await page.setViewportSize({ width: 390, height: 1000 })
@@ -113,7 +113,7 @@ test.describe('DevUtility Lab MVP', () => {
     await expect(page.getByRole('button', { name: 'Download .txt' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Related tools' })).toBeVisible()
     await expect(page.getByRole('link', { name: /Base64 Converter/ })).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'Workflow options' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Optional account features' })).toBeVisible()
     await expect(page.getByText('Saved snippet runs')).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)
     await expectNoHorizontalOverflow(page)

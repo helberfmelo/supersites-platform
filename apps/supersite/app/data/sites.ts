@@ -181,7 +181,7 @@ export const siteCatalog: SiteSummary[] = [
     status: 'foundation',
     temporaryUrl: 'https://opentshost.com/supersites/calcharbor/',
     freeTools: ['Business calculators', 'Finance formulas', 'Scenario comparison', 'Readable explanations'],
-    paidBenefits: ['Saved scenarios', 'Exports', 'Team workspaces', 'Embeddable widgets'],
+    paidBenefits: ['Saved scenarios', 'Exports', 'Team sharing', 'Embeddable widgets'],
     localized: {
       en: {
         headline: 'Financial and business calculators with formulas users can inspect.',
@@ -223,25 +223,25 @@ export const siteCatalog: SiteSummary[] = [
     status: 'foundation',
     temporaryUrl: 'https://opentshost.com/supersites/devutility-lab/',
     freeTools: ['JSON/XML/YAML/CSV formatting', 'Base64', 'JWT inspection', 'Regex, diff, cron, UUID, timestamp and hashes'],
-    paidBenefits: ['Private history', 'Workspaces', 'Batch processing', 'Larger files'],
+    paidBenefits: ['Private history', 'Team areas', 'Batch processing', 'Larger files'],
     localized: {
       en: {
         headline: 'Developer utilities designed to process sensitive snippets locally first.',
         summary: 'DevUtility Lab favors browser-side processing for common developer tasks, reducing cost and avoiding unnecessary logging of user-provided content.',
         freeValue: 'JSON, YAML, CSV, Base64, JWT, regex and diff tools',
-        upgrade: 'Private history, workspaces, batches and API',
+        upgrade: 'Private history, team areas, batches and API',
       },
       'pt-br': {
         headline: 'Ferramentas dev pensadas para processar trechos sensíveis localmente.',
         summary: 'DevUtility Lab vai favorecer processamento no navegador para tarefas comuns, reduzindo custo e evitando logs desnecessários de conteúdo do usuário.',
         freeValue: 'JSON, YAML, CSV, Base64, JWT, regex e diff',
-        upgrade: 'Histórico privado, workspaces, lotes e API',
+        upgrade: 'Historico privado, areas de equipe, lotes e API',
       },
       es: {
         headline: 'Herramientas dev pensadas para procesar fragmentos sensibles localmente.',
         summary: 'DevUtility Lab favorecerá el procesamiento en el navegador para tareas comunes, reduciendo costo y evitando registros innecesarios de contenido del usuario.',
         freeValue: 'JSON, YAML, CSV, Base64, JWT, regex y diff',
-        upgrade: 'Historial privado, workspaces, lotes y API',
+        upgrade: 'Historial privado, espacios de equipo, lotes y API',
       },
       fr: {
         headline: 'Outils dev conçus pour traiter localement les extraits sensibles.',
@@ -253,7 +253,7 @@ export const siteCatalog: SiteSummary[] = [
         headline: 'Entwickler-Tools, die sensible Ausschnitte zuerst lokal verarbeiten.',
         summary: 'DevUtility Lab bevorzugt Browser-Verarbeitung für häufige Aufgaben, senkt Kosten und vermeidet unnötige Logs von Nutzerinhalten.',
         freeValue: 'JSON, YAML, CSV, Base64, JWT, Regex und Diff',
-        upgrade: 'Privater Verlauf, Workspaces, Stapel und API',
+        upgrade: 'Privater Verlauf, Team-Bereiche, Stapel und API',
       },
     },
   },
@@ -349,7 +349,7 @@ export const siteCatalog: SiteSummary[] = [
     status: 'foundation',
     temporaryUrl: 'https://opentshost.com/supersites/invoicecraft/',
     freeTools: ['Invoices', 'Quotes', 'Receipts', 'PDF downloads'],
-    paidBenefits: ['Saved clients', 'Recurring documents', 'Branding', 'Payment workflows'],
+    paidBenefits: ['Saved clients', 'Recurring documents', 'Branding', 'Payment links'],
     localized: {
       en: {
         headline: 'Invoices, quotes and receipts that work before account creation.',
@@ -478,8 +478,8 @@ export const siteCatalog: SiteSummary[] = [
     paidBenefits: ['Batch processing', 'Presets', 'Larger files', 'API access'],
     localized: {
       en: {
-        headline: 'Image optimization tools for web and commerce workflows.',
-        summary: 'PixelBatch handles common image work in the browser first, with batch, storage and automation kept separate from the free local workflow.',
+        headline: 'Image optimization tools for web and commerce images.',
+        summary: 'PixelBatch handles common image work in the browser first, with batch, storage and automation kept separate from the free local result.',
         freeValue: 'Resize, crop, compress, convert and strip metadata',
         upgrade: 'Batch processing, presets, larger files and API',
       },
@@ -502,7 +502,7 @@ export const siteCatalog: SiteSummary[] = [
         upgrade: 'Traitement par lots, préréglages, fichiers plus grands et API',
       },
       de: {
-        headline: 'Bildoptimierung für Web- und Commerce-Workflows.',
+        headline: 'Bildoptimierung für Web- und Commerce-Bilder.',
         summary: 'PixelBatch erledigt gängige Bildaufgaben zuerst im Browser; Batch, Speicher und Automatisierung bleiben getrennt vom kostenlosen lokalen Ablauf.',
         freeValue: 'Größe ändern, zuschneiden, komprimieren, konvertieren und Metadaten entfernen',
         upgrade: 'Stapelverarbeitung, Presets, größere Dateien und API',
@@ -517,7 +517,7 @@ export const siteCatalog: SiteSummary[] = [
     status: 'foundation',
     temporaryUrl: 'https://opentshost.com/supersites/docshift/',
     freeTools: ['Merge PDFs', 'Split PDFs', 'Rotate pages', 'Compress and watermark'],
-    paidBenefits: ['Batch jobs', 'Larger files', 'OCR', 'Team workspaces'],
+    paidBenefits: ['Batch jobs', 'Larger files', 'OCR', 'Team sharing'],
     localized: {
       en: {
         headline: 'PDF and document utilities with privacy-first processing rules.',

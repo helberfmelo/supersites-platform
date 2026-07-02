@@ -222,7 +222,7 @@ describe('CalcHarbor calculator catalog', () => {
     expect(copy.principlesTitle).toBe('Operating principles')
     expect(copy.browserSideLabel).toBe('Browser-side')
     expect(copy.popularTitle).toBe('Popular calculators')
-    expect(copy.statusRows[0].title).toBe('8 calculator workspaces')
+    expect(copy.statusRows[0].title).toBe('8 calculator tools')
     expect(JSON.stringify(copy)).not.toContain('MVP')
     expect(JSON.stringify(copy)).not.toContain('Workflow checks ready')
   })

@@ -95,7 +95,7 @@ try {
         'Dense tool navigation',
         'Popular tools',
         'Developer Tools',
-        '9 browser tools',
+        'Tool principles',
         'Runs locally when possible'
     )
 

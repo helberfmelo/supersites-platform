@@ -94,8 +94,8 @@ try {
         'Meeting planner',
         'Times are calculated in the browser',
         'Time Zone Converter',
-        '7 browser tools',
-        'Current time now',
+        'Operating principles',
+        'Current time panel',
         'World Clock',
         'Time Zones',
         'Calendar',
@@ -126,7 +126,7 @@ try {
     }
 
     $localizedTool = Invoke-PreviewRequest -Uri "$baseUrl/pt-br/tools/timestamp-converter" -RequiredContent 'Conversor de timestamp'
-    if ($localizedTool.StatusCode -ne 200 -or $localizedTool.Content -notmatch 'Opcoes de workflow') {
+    if ($localizedTool.StatusCode -ne 200 -or $localizedTool.Content -notmatch 'Op..es com conta') {
         throw 'Localized timestamp converter smoke failed.'
     }
 

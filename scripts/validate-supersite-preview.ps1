@@ -96,7 +96,7 @@ try {
         'Explore focused tool suites',
         'Support the free network',
         '/supersites/netprobe-atlas/en/tools/what-is-my-ip',
-        'Choose by workflow',
+        'Choose by task',
         'NetProbe Atlas'
     )
 

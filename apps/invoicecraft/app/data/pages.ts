@@ -116,7 +116,7 @@ const pageSpecs: Record<ContentPageSlug, {
     sections: [
       ['Purpose', 'The site helps users draft a single business document, calculate itemized totals and download a PDF without mandatory signup.'],
       ['What is live now', 'Invoice, quote and receipt builders keep fields in the browser session and generate local PDFs.'],
-      ['Advanced workflows', 'Saved clients, product catalogs, recurrence, branding, team workflows, payment integrations and history are separate from the free one-off document builder.'],
+      ['Advanced account features', 'Saved clients, product catalogs, recurrence, branding, team review, payment integrations and history are separate from the free one-off document builder.'],
     ],
   },
   contact: {
@@ -125,7 +125,7 @@ const pageSpecs: Record<ContentPageSlug, {
     sections: [
       ['Useful reports', 'Include the page URL, language, tool name, observed behavior, expected result and browser context.'],
       ['No sensitive data', 'Do not send client records, tax identifiers, bank details, payment card data, credentials or confidential contract terms through feedback.'],
-      ['Public channel gate', 'A monitored public mailbox is required before independent launch; until then feedback remains in the owner workflow.'],
+      ['Public channel readiness', 'A monitored public mailbox is required before independent launch; until then feedback remains in the support queue.'],
     ],
   },
   privacy: {
@@ -150,7 +150,7 @@ const pageSpecs: Record<ContentPageSlug, {
     title: 'Terms of Use',
     description: 'Baseline terms for responsible use of InvoiceCraft tools and future commercial features.',
     sections: [
-      ['Responsible documents', 'Do not create misleading, fraudulent, impersonating, illegal or unauthorized billing documents.'],
+      ['Responsible documents', 'Do not create misleading, fraudulent, impersonating, illegal or unauthorized payment documents.'],
       ['Fiscal limits', 'InvoiceCraft is a formatting and calculation helper, not jurisdiction-specific tax, legal, accounting or payment advice.'],
       ['Paid features', 'Commercial features require visible pricing, quotas, cancellation rules, provider terms, abuse controls and legal review before checkout or payment collection.'],
     ],
@@ -179,7 +179,7 @@ const pageSpecs: Record<ContentPageSlug, {
     sections: [
       ['Free builders', 'InvoiceCraft offers invoice, quote and receipt builders with browser-side preview and PDF download without mandatory signup.'],
       ['Document privacy', 'Free document fields stay in the browser session for the basic result and are not used for payment collection here.'],
-      ['Advanced workflows', 'Saved clients, products, recurrence, branding, team access, payment integrations, advertising and external analytics require separate controls before activation.'],
+      ['Advanced account features', 'Saved clients, products, recurrence, branding, team access, payment integrations, advertising and external analytics require separate controls before activation.'],
     ],
   },
 }

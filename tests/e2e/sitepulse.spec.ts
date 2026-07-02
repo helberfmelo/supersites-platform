@@ -60,7 +60,7 @@ test.describe('SitePulse Lab diagnostics', () => {
     await expect(page.getByRole('heading', { name: /Check if a website is up/ })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'HTTP Status Checker' })).toBeVisible()
     await expect(page.getByText('Free one-shot')).toHaveCount(7)
-    await expect(page.getByText('7 focused checks')).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Useful one-shot checks' })).toBeVisible()
     await expectNoHorizontalOverflow(page)
 
     const screenshot = await page.screenshot({ fullPage: true })
@@ -205,7 +205,7 @@ test.describe('SitePulse Lab diagnostics', () => {
     await expect(page.getByRole('heading', { name: 'Performance sample' })).toBeVisible()
     await expect(page.getByText('TTFB sample', { exact: true })).toBeVisible()
     await expect(page.getByText('Recommended actions')).toBeVisible()
-    await expect(page.getByText('Workflow upgrade path')).toBeVisible()
+    await expect(page.getByText('Optional account features')).toBeVisible()
     await expect(page.getByText('Related pages')).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(6)
     await expectNoHorizontalOverflow(page)
@@ -302,7 +302,7 @@ test.describe('SitePulse Lab diagnostics', () => {
     await expect(page.getByRole('heading', { name: 'Header matrix' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Technology clues' })).toBeVisible()
     await expect(page.getByText('Cache/CDN hint')).toBeVisible()
-    await expect(page.getByText('Workflow upgrade path')).toBeVisible()
+    await expect(page.getByText('Optional account features')).toBeVisible()
     await expectNoHorizontalOverflow(page)
     expect(JSON.stringify(await page.evaluate(() => window.supersitesAnalyticsEvents))).not.toContain('headers-secret.example')
 

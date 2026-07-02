@@ -91,8 +91,8 @@ try {
         'hreflang="en"',
         'hreflang="pt-BR"',
         'Static QR Code Generator',
-        '6 local workflow tools',
-        'Advanced link workflows',
+        'QRRoute task tabs',
+        'Account features',
         'Support QRRoute',
         'QR Tools'
     )

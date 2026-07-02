@@ -116,7 +116,7 @@ const pageSpecs: Record<ContentPageSlug, {
     sections: [
       ['Purpose', 'The site helps users answer everyday time, calendar and conversion questions without mandatory signup or server-side product storage.'],
       ['What is live now', 'The browser version includes seven local tools covering time zones, date difference, business days, timestamp, age, percentage and units.'],
-      ['Advanced workflows', 'Widgets, API access, presets, private history, collaboration and ad-free use are separate from the free time tools.'],
+      ['Advanced account features', 'Widgets, API access, presets, private history, collaboration and ad-free use are separate from the free time tools.'],
     ],
   },
   contact: {
@@ -125,7 +125,7 @@ const pageSpecs: Record<ContentPageSlug, {
     sections: [
       ['Useful reports', 'Include the page URL, language, tool name, observed behavior, expected result and browser context.'],
       ['No sensitive data', 'Do not send private calendars, customer data, identity documents, access tokens or confidential schedules through feedback.'],
-      ['Public channel gate', 'A monitored public mailbox is required before independent launch; until then feedback remains in the owner workflow.'],
+      ['Public channel readiness', 'A monitored public mailbox is required before independent launch; until then feedback remains in the support queue.'],
     ],
   },
   privacy: {
@@ -160,7 +160,7 @@ const pageSpecs: Record<ContentPageSlug, {
     description: 'How TimeNexus keeps tools useful, local and honest about limits.',
     sections: [
       ['Working tool first', 'Each page must include a functioning free calculator or converter before it can be treated as launch-ready content.'],
-      ['In-browser processing', 'Date math and conversions run in the browser and use a Web Worker when supported so the UI remains responsive.'],
+      ['In-browser processing', 'Date math and conversions run in the browser and use local processing when supported so the UI remains responsive.'],
       ['Limit disclosure', 'Time zones, calendars and unit conversions can depend on business rules, local holidays and domain-specific definitions that must be reviewed.'],
     ],
   },
@@ -179,7 +179,7 @@ const pageSpecs: Record<ContentPageSlug, {
     sections: [
       ['Free tools', 'TimeNexus offers browser-side time, date, percentage and unit helpers without mandatory signup for the basic result.'],
       ['Visitor privacy', 'Free tool inputs stay in the browser session and are not sent to a product API for the basic result.'],
-      ['Advanced workflows', 'Accounts, widgets, presets, private history, collaboration, API, external analytics and ad-free workflows require separate controls before activation.'],
+      ['Advanced account features', 'Accounts, widgets, presets, private history, collaboration, API, external analytics and ad-free use require separate controls before activation.'],
     ],
   },
 }

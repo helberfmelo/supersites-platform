@@ -91,7 +91,7 @@ try {
         'hreflang="en"',
         'hreflang="pt-BR"',
         'PDF Merge',
-        '8 document tools',
+        'Choose a PDF task and process it locally.',
         'Files stay in this browser'
     )
 

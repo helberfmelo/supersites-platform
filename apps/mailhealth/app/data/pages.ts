@@ -116,7 +116,7 @@ const pageSpecs: Record<ContentPageSlug, {
     sections: [
       ['Purpose', 'The site helps domain owners inspect SPF, DKIM, DMARC, MX, DNSBL reputation, SMTP reachability and message headers without mandatory signup.'],
       ['What is live now', 'MailHealth provides a free diagnostic surface plus bounded control-plane API endpoints for DNS, DNSBL and SMTP checks.'],
-      ['Account features', 'Paid value centers on monitoring, alerts, DMARC reports, batches, API access, white-label exports and team workflows.'],
+      ['Account features', 'Paid value centers on monitoring, alerts, DMARC reports, batches, API access, white-label exports and team tools.'],
     ],
   },
   contact: {
@@ -175,11 +175,11 @@ const pageSpecs: Record<ContentPageSlug, {
   },
   status: {
     title: 'Public Status',
-    description: 'MailHealth status for free email diagnostics and advanced monitoring workflows.',
+    description: 'MailHealth status for free email diagnostics and advanced monitoring features.',
     sections: [
-      ['Free diagnostics', 'MailHealth offers seven point-in-time email checks with bounded DNS, DNSBL, SMTP and header analysis workflows.'],
+      ['Free diagnostics', 'MailHealth offers seven point-in-time email checks with bounded DNS, DNSBL, SMTP and header analysis steps.'],
       ['Visitor privacy', 'Free pages focus on the submitted domain or pasted headers and keep advanced account history separate from the basic result.'],
-      ['Advanced workflows', 'Recurring monitoring, alert delivery, DMARC report ingestion, batches, white-label exports, payment flows and external analytics require separate controls before activation.'],
+      ['Advanced account features', 'Recurring monitoring, alert delivery, DMARC report ingestion, batches, white-label exports, payment flows and external analytics require separate controls before activation.'],
     ],
   },
 }

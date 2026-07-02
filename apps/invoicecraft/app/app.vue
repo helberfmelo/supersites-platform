@@ -530,7 +530,7 @@ h3 {
 
 .tool-layout > div:first-child {
   display: grid;
-  grid-template-columns: minmax(340px, 0.92fr) minmax(360px, 1.08fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 18px;
   align-items: start;
 }
@@ -617,7 +617,7 @@ h3 {
 
 .tool-sidebar {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 14px;
 }
 

@@ -78,7 +78,7 @@ const reportCopy: Record<LocaleCode, ReportCopy> = {
   en: {
     eyebrow: 'Domain health report',
     title: 'Run one email health report across the signals receivers inspect.',
-    body: 'Check SPF, DKIM, DMARC, MX, blacklist sample, SMTP reachability and optional headers in one point-in-time workflow.',
+    body: 'Check SPF, DKIM, DMARC, MX, blacklist sample, SMTP reachability and optional headers in one point-in-time report.',
     domainLabel: 'Domain name',
     selectorLabel: 'DKIM selector',
     portLabel: 'SMTP port',
