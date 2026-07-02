@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { limitSeoText, SEO_DESCRIPTION_MAX_LENGTH, SEO_TITLE_MAX_LENGTH } from '@supersites/seo'
 import {
   legalPageCatalog,
   getLegalPageBySlug,
@@ -25,6 +26,8 @@ const copy = getLegalPageCopy(page, locale)
 const shellCopy = getLegalShellCopy(locale)
 const canonicalPath = localizedLegalPath(locale, page.slug)
 const structuredData = createLegalPageStructuredData(locale, page, copy)
+const seoTitle = limitSeoText(`${copy.title} | SuperSites`, SEO_TITLE_MAX_LENGTH)
+const seoDescription = limitSeoText(copy.description, SEO_DESCRIPTION_MAX_LENGTH)
 const panelRows: LegalPanelRow[] = copy.panelRows ?? [
   {
     title: copy.updatedLabel,
@@ -60,19 +63,19 @@ useHead({
   htmlAttrs: {
     lang: locale,
   },
-  title: `${copy.title} | SuperSites`,
+  title: seoTitle,
   meta: [
     {
       name: 'description',
-      content: copy.description,
+      content: seoDescription,
     },
     {
       property: 'og:title',
-      content: `${copy.title} | SuperSites`,
+      content: seoTitle,
     },
     {
       property: 'og:description',
-      content: copy.description,
+      content: seoDescription,
     },
     {
       property: 'og:type',

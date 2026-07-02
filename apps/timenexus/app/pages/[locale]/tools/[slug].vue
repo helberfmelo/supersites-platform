@@ -139,7 +139,7 @@ const samplePrimaryDisplay = computed(() => {
   }
 
   if (isTimestampTool.value) {
-    return Math.floor(Date.now() / 1000).toString()
+    return tool.samplePrimary
   }
 
   return tool.samplePrimary

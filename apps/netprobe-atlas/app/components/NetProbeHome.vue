@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { limitSeoText, SEO_TITLE_MAX_LENGTH } from '@supersites/seo'
 import { computed, ref } from 'vue'
 import { getHomeCopy, type HomeCopy } from '../data/copy'
 import { localizedContentPath, localizedHomePath, localizedToolPath, toHtmlLang, type LocaleCode } from '../data/locales'
@@ -47,6 +48,9 @@ const quickTools = computed(() => quickToolSlugs
   })))
 const heroTools = computed(() => quickTools.value.slice(0, 4))
 const canonicalPath = computed(() => (props.xDefault ? '/' : localizedHomePath(props.locale)))
+const seoTitle = computed(() => (
+  props.xDefault ? 'NetProbe Atlas' : limitSeoText(`${copy.value.title} | NetProbe Atlas`, SEO_TITLE_MAX_LENGTH)
+))
 const categories = computed(() => Array.from(new Set(toolCatalog.map((tool) => tool.category))))
 const homeJsonLd = computed(() => ({
   '@context': 'https://schema.org',
@@ -89,7 +93,7 @@ useHead(() => ({
   htmlAttrs: {
     lang: toHtmlLang(props.locale),
   },
-  title: props.xDefault ? 'NetProbe Atlas' : `${copy.value.title} | NetProbe Atlas`,
+  title: seoTitle.value,
   meta: [
     {
       name: 'description',
@@ -97,7 +101,7 @@ useHead(() => ({
     },
     {
       property: 'og:title',
-      content: 'NetProbe Atlas',
+      content: seoTitle.value,
     },
     {
       property: 'og:description',
