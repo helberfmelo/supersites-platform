@@ -3,7 +3,8 @@ param(
     [string]$RootUrl = "",
     [int]$TimeoutSec = 30,
     [int]$MaxAttempts = 3,
-    [int]$RetryDelaySec = 3
+    [int]$RetryDelaySec = 3,
+    [switch]$HubOnly
 )
 
 $ErrorActionPreference = "Stop"
@@ -174,9 +175,12 @@ if ($homeResponse.Content -notmatch [regex]::Escape("href=`"$publicBase`"")) {
     throw "Home page canonical does not point at $publicBase."
 }
 
-$assetMatch = [regex]::Match($homeResponse.Content, '(?i)(?:src|href)=["''](?<path>/supersites/_nuxt/[^"'']+\.js)')
+$publicBasePath = ([Uri]$publicBase).AbsolutePath.TrimEnd("/")
+$assetBasePath = if ($publicBasePath) { $publicBasePath } else { "" }
+$assetMatch = [regex]::Match($homeResponse.Content, "(?i)(?:src|href)=[""'](?<path>$([regex]::Escape($assetBasePath))/_nuxt/[^""']+\.js)")
 if (-not $assetMatch.Success) {
-    throw "Could not find a /supersites/_nuxt JavaScript asset reference on the public home page."
+    $assetLabel = if ($assetBasePath) { "$assetBasePath/_nuxt" } else { "/_nuxt" }
+    throw "Could not find a $assetLabel JavaScript asset reference on the public home page."
 }
 
 $origin = ([Uri]$publicBase).GetLeftPart([UriPartial]::Authority)
@@ -195,6 +199,20 @@ $requiredPages = @(
 
 foreach ($page in $requiredPages) {
     Invoke-SmokeRequest -Url $page.Url -RequiredContent $page.Marker | Out-Null
+}
+
+if ($HubOnly) {
+    if ($RootUrl) {
+        if ($RootUrl -notmatch "^https://") {
+            throw "Root smoke requires HTTPS URL. Received: $RootUrl"
+        }
+
+        Invoke-SmokeRequest -Url $RootUrl -RequiredContent "SuperSites Hub" | Out-Null
+    }
+
+    Write-Host "SuperSites hub-only public smoke passed for $publicBase."
+    Write-Host "Validated public asset: $assetUrl"
+    return
 }
 
 $netprobe = Invoke-SmokeRequest -Url (Join-Url $publicBase "netprobe-atlas/") -RequiredContent "NetProbe Atlas"

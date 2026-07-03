@@ -57,9 +57,13 @@ Nunca enviar email, telefone, documento, nome completo, IP completo, conteudo de
 ## 2026-07-03 setup operacional
 
 - A credencial da conta Google SuperSites foi registrada somente no inventario local ignorado `docs/credentials/credentials.local.md`.
+- O owner confirmou em 2026-07-03 que e pessoa autorizada a aceitar termos Google/Analytics/GTM/Search Console/AdSense pela SuperSites e autorizou o setup assistido desses aceites.
+- O dominio aprovado para o setup de go-live e `https://mywebtools.top/`, com deploy HostGator em `/home1/opents62/mywebtools.top`.
+- O pacote sensivel de apoio ao preenchimento fica somente em `docs/credentials/google-platform-setup.local.md`, ignorado pelo Git.
 - `pnpm ops:google-platform-setup-packet` gera um pacote local em `artifacts/google-platform-setup/` com nomes sugeridos para GA4, GTM, Search Console e AdSense.
-- O pacote nao faz login, nao chama APIs Google, nao aceita termos, nao cria propriedades/containers, nao verifica dominio, nao publica token e nao ativa tag ou anuncio.
-- Enquanto `https://opentshost.com/supersites/` seguir como producao tecnica interna em subpasta, AdSense real continua bloqueado ate haver decisao de dominio definitivo ou root mapping aprovado.
+- O pacote nao faz login, nao chama APIs Google, nao cria propriedades/containers, nao verifica dominio, nao publica token e nao ativa tag ou anuncio por si so.
+- A criacao assistida das plataformas Google pode prosseguir com a conta autorizada e o dominio `mywebtools.top`, desde que Measurement IDs, GTM IDs, tokens de verificacao, publisher IDs, OAuth tokens e qualquer segredo fiquem somente em cofre/ambiente ou inventario local ignorado.
+- Billing, cartao, forma de pagamento, Google Cloud billing, teste pago, banco, impostos, PIN postal e pagamento continuam bloqueados para pausa humana. O fluxo deve tentar pular quando a plataforma permitir.
 
 ## Pendencias humanas
 

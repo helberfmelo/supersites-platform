@@ -11,6 +11,7 @@ param(
     [switch]$RollbackToPlaceholder,
     [switch]$SkipBuild,
     [switch]$SkipSmoke,
+    [switch]$HubOnlySmoke,
     [switch]$EnableRootRedirect,
     [switch]$ForceRootRedirect
 )
@@ -271,11 +272,23 @@ function Upload-RemoteFile {
 function New-HtaccessContent {
     param([string]$ManagedReleaseId)
 
+    $legacyRootRedirectRules = if ($script:RewriteBase -eq "/") {
+        @'
+RewriteRule ^supersites/control-plane/(.*)$ https://opentshost.com/supersites/control-plane/$1 [R=302,L]
+RewriteRule ^supersites/?$ / [R=302,L]
+RewriteRule ^supersites/(.*)$ /$1 [R=302,L]
+'@
+    }
+    else {
+        ""
+    }
+
     $template = @'
 # SuperSites managed release switch.
 # Release: {{RELEASE_ID}}
 RewriteEngine On
-RewriteBase /supersites/
+RewriteBase {{REWRITE_BASE}}
+{{LEGACY_ROOT_REDIRECT_RULES}}
 RewriteRule ^$ _supersites-releases/{{RELEASE_ID}}/index.html [L]
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
@@ -285,7 +298,10 @@ RewriteRule ^(.+?)/?$ _supersites-releases/{{RELEASE_ID}}/$1/index.html [L]
 RewriteRule ^(.+)$ _supersites-releases/{{RELEASE_ID}}/$1 [L]
 '@
 
-    return $template.Replace("{{RELEASE_ID}}", $ManagedReleaseId)
+    return $template.
+        Replace("{{RELEASE_ID}}", $ManagedReleaseId).
+        Replace("{{REWRITE_BASE}}", $script:RewriteBase).
+        Replace("{{LEGACY_ROOT_REDIRECT_RULES}}", $legacyRootRedirectRules)
 }
 
 function New-PlaceholderRollbackHtaccessContent {
@@ -296,11 +312,13 @@ RewriteEngine Off
 }
 
 function New-RootRedirectHtaccessContent {
-    return @'
+    $template = @'
 # SuperSites managed root bridge.
 RewriteEngine On
-RewriteRule ^$ /supersites/ [R=302,L]
+RewriteRule ^$ {{REDIRECT_PATH}} [R=302,L]
 '@
+
+    return $template.Replace("{{REDIRECT_PATH}}", $script:RewriteBase)
 }
 
 function Switch-ManagedRelease {
@@ -313,10 +331,14 @@ function Switch-ManagedRelease {
     }
 
     Save-RemoteTextFile -Directory $script:RemoteBase -FileName ".htaccess" -Content (New-HtaccessContent -ManagedReleaseId $ManagedReleaseId)
-    Write-Host "HostGator release switch points /supersites/ to release $ManagedReleaseId."
+    Write-Host "HostGator release switch points $script:PublicBaseUrl/ to release $ManagedReleaseId."
 }
 
 function Enable-RootBridge {
+    if ($script:RewriteBase -eq "/") {
+        throw "Root bridge is not applicable when the target public base already resolves at '/'."
+    }
+
     $rootPath = $script:RemoteBase.TrimEnd("/")
     $rootPath = $rootPath.Substring(0, $rootPath.LastIndexOf("/"))
     $rootHtaccess = Join-RemotePath $rootPath ".htaccess"
@@ -327,7 +349,7 @@ function Enable-RootBridge {
     }
 
     Save-RemoteTextFile -Directory $rootPath -FileName ".htaccess" -Content (New-RootRedirectHtaccessContent)
-    Write-Host "HostGator root bridge enabled: / redirects to /supersites/."
+    Write-Host "HostGator root bridge enabled: / redirects to $script:RewriteBase."
 }
 
 function Invoke-PublicSmoke {
@@ -340,7 +362,17 @@ function Invoke-PublicSmoke {
 
     $smokeScript = Join-Path $script:RepoRoot "scripts/smoke-supersite-public.ps1"
     if ($RootUrl) {
+        if ($HubOnlySmoke) {
+            & $smokeScript -PublicBaseUrl $script:PublicBaseUrl -RootUrl $RootUrl -HubOnly
+            return
+        }
+
         & $smokeScript -PublicBaseUrl $script:PublicBaseUrl -RootUrl $RootUrl
+        return
+    }
+
+    if ($HubOnlySmoke) {
+        & $smokeScript -PublicBaseUrl $script:PublicBaseUrl -HubOnly
         return
     }
 
@@ -365,6 +397,7 @@ $basePath = ([Uri]$script:PublicBaseUrl).AbsolutePath.TrimEnd("/")
 if (-not $basePath) {
     $basePath = "/"
 }
+$script:RewriteBase = if ($basePath -eq "/") { "/" } else { "$($basePath.TrimEnd("/"))/" }
 
 if (-not $CpanelHost) {
     $CpanelHost = "opentshost.com"
@@ -400,7 +433,7 @@ $script:ReleaseBaseRemotePath = Join-RemotePath $script:RemoteBase "_supersites-
 
 if ($RollbackToPlaceholder) {
     Save-RemoteTextFile -Directory $script:RemoteBase -FileName ".htaccess" -Content (New-PlaceholderRollbackHtaccessContent)
-    Write-Host "HostGator /supersites/ rolled back to bootstrap placeholders."
+    Write-Host "HostGator $script:PublicBaseUrl/ rolled back to bootstrap placeholders."
     Invoke-PublicSmoke
     return
 }
@@ -492,7 +525,7 @@ $metadata = [ordered]@{
     preservation = @(
         "Deploy uploads into a new versioned release directory.",
         "Remote .env files, placeholders and user-managed folders are not deleted or overwritten.",
-        "The active release is switched only by the managed .htaccess file in /supersites/."
+        "The active release is switched only by the managed .htaccess file in $script:RemoteBase for $script:PublicBaseUrl/."
     )
 }
 

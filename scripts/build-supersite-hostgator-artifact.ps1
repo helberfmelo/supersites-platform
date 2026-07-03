@@ -18,6 +18,50 @@ function Normalize-BasePath {
     return "/" + $normalized.Trim("/") + "/"
 }
 
+function Update-ArtifactPublicReferences {
+    param(
+        [string]$Root,
+        [string]$LegacyPublicBaseUrl,
+        [string]$TargetPublicBaseUrl
+    )
+
+    $legacy = $LegacyPublicBaseUrl.TrimEnd("/")
+    $target = $TargetPublicBaseUrl.TrimEnd("/")
+    if ($legacy -eq $target) {
+        return
+    }
+
+    $textExtensions = @(".css", ".html", ".js", ".json", ".mjs", ".svg", ".txt", ".webmanifest", ".xml")
+    $files = Get-ChildItem -LiteralPath $Root -Recurse -File | Where-Object {
+        $textExtensions -contains $_.Extension.ToLowerInvariant()
+    }
+
+    foreach ($file in $files) {
+        $content = Get-Content -Raw -LiteralPath $file.FullName
+        if ($content -notmatch [regex]::Escape($legacy)) {
+            continue
+        }
+
+        $content.Replace($legacy, $target) | Set-Content -LiteralPath $file.FullName -Encoding UTF8
+    }
+}
+
+function Set-ArtifactRobotsFile {
+    param(
+        [string]$Root,
+        [string]$TargetPublicBaseUrl
+    )
+
+    $robots = @"
+User-agent: *
+Allow: /
+
+Sitemap: $($TargetPublicBaseUrl.TrimEnd("/"))/sitemap.xml
+"@
+
+    Set-Content -LiteralPath (Join-Path $Root "robots.txt") -Value $robots -Encoding UTF8
+}
+
 $repoRoot = Resolve-Path (Join-Path $PSScriptRoot "..")
 $artifactPath = Join-Path $repoRoot "apps/supersite/.output/public"
 $normalizedBasePath = Normalize-BasePath $BasePath
@@ -37,6 +81,12 @@ finally {
         $env:NUXT_APP_BASE_URL = $previousBaseUrl
     }
 }
+
+Update-ArtifactPublicReferences `
+    -Root $artifactPath `
+    -LegacyPublicBaseUrl "https://opentshost.com/supersites" `
+    -TargetPublicBaseUrl $PublicBaseUrl
+Set-ArtifactRobotsFile -Root $artifactPath -TargetPublicBaseUrl $PublicBaseUrl
 
 & (Join-Path $repoRoot "scripts/validate-supersite-static-artifact.ps1") `
     -ArtifactPath $artifactPath `

@@ -5,6 +5,7 @@ Deployment configuration starts with a dry-run foundation and now includes contr
 ## Files
 
 - `apps.json`: source of truth for app ids, local paths, transitional HostGator paths and fallback public URLs.
+- `apps.mywebtools.json`: go-live domain manifest for `https://mywebtools.top/`, rooted at `/home1/opents62/mywebtools.top`.
 
 ## Dry Run
 
@@ -60,6 +61,28 @@ pnpm ops:root-mapping-dry-run
 Runbook: `docs/RUNBOOKS/HOSTGATOR_ROOT_MAPPING.md`.
 
 The deploy script creates a root bridge only when no unmanaged root `.htaccess` exists. Use `-ForceRootRedirect` only after reviewing root rules and recording the rollback path.
+
+### mywebtools.top root deploy
+
+The approved go-live domain uses the HostGator folder below as the site root:
+
+```text
+/home1/opents62/mywebtools.top/
+```
+
+Build and validate the root-domain Hub artifact locally:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\build-supersite-hostgator-artifact.ps1 -BasePath / -PublicBaseUrl https://mywebtools.top -OutputDirectory artifacts\supersite-mywebtools
+```
+
+Publish the Hub to the domain root from the ignored local cPanel credential inventory:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\publish-supersite-hostgator.ps1 -ManifestPath infra\deployment\apps.mywebtools.json -HubOnlySmoke
+```
+
+`-HubOnlySmoke` validates the Hub pages/assets on `https://mywebtools.top/` without requiring every linked child app to be deployed first. Before AdSense submission, publish the linked apps on the same manifest and run their deploy smokes.
 
 ## Rollback
 
@@ -155,6 +178,12 @@ Publish from a shell that has cPanel credentials or from the manual GitHub workf
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\publish-static-app-hostgator.ps1 -AppId calcharbor
 ```
 
+For the approved go-live domain, pass the alternate manifest:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\publish-static-app-hostgator.ps1 -AppId calcharbor -ManifestPath infra\deployment\apps.mywebtools.json
+```
+
 The publish script:
 
 - builds Nuxt with `NUXT_APP_BASE_URL=/supersites/<app>/`;
@@ -164,6 +193,8 @@ The publish script:
 - switches only `/supersites/<app>/.htaccess`;
 - preserves the bootstrap placeholder and user-managed remote files;
 - runs public smoke after switching traffic.
+
+`mailhealth` and `sitepulse-lab` can continue using the current `opentshost.com/supersites/control-plane` API base until the control-plane root-domain deploy path is explicitly updated and validated.
 
 Rollback to a previous release:
 

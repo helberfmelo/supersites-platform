@@ -52,6 +52,12 @@ Watch the run to completion, then run public smoke locally:
 pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\smoke-supersite-public.ps1
 ```
 
+For the approved `mywebtools.top` go-live root deploy, use the alternate manifest and a Hub-only smoke while child apps are being rolled out:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\publish-supersite-hostgator.ps1 -ManifestPath infra\deployment\apps.mywebtools.json -HubOnlySmoke
+```
+
 Rollback to a previous release id:
 
 ```powershell
@@ -142,6 +148,12 @@ Static app public smoke after deploy:
 
 ```powershell
 pnpm deploy:smoke-static-app-public -- -AppId calcharbor
+```
+
+For the approved `mywebtools.top` target, publish static apps with:
+
+```powershell
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts\publish-static-app-hostgator.ps1 -AppId calcharbor -ManifestPath infra\deployment\apps.mywebtools.json
 ```
 
 Static app rollback commands:

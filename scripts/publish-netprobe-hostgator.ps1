@@ -275,7 +275,7 @@ function New-HtaccessContent {
 # SuperSites managed NetProbe Atlas release switch.
 # Release: {{RELEASE_ID}}
 RewriteEngine On
-RewriteBase /supersites/netprobe-atlas/
+RewriteBase {{REWRITE_BASE}}
 RewriteRule ^$ _netprobe-releases/{{RELEASE_ID}}/index.html [L]
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
@@ -285,7 +285,9 @@ RewriteRule ^(.+?)/?$ _netprobe-releases/{{RELEASE_ID}}/$1/index.html [L]
 RewriteRule ^(.+)$ _netprobe-releases/{{RELEASE_ID}}/$1 [L]
 '@
 
-    return $template.Replace("{{RELEASE_ID}}", $ManagedReleaseId)
+    return $template.
+        Replace("{{RELEASE_ID}}", $ManagedReleaseId).
+        Replace("{{REWRITE_BASE}}", $script:RewriteBase)
 }
 
 function New-PlaceholderRollbackHtaccessContent {
@@ -360,7 +362,7 @@ function Switch-ManagedRelease {
     }
 
     Save-RemoteTextFile -Directory $script:RemoteBase -FileName ".htaccess" -Content (New-HtaccessContent -ManagedReleaseId $ManagedReleaseId)
-    Write-Host "HostGator release switch points /supersites/netprobe-atlas/ to release $ManagedReleaseId."
+    Write-Host "HostGator release switch points $script:PublicBaseUrl/ to release $ManagedReleaseId."
 }
 
 $script:RepoRoot = Resolve-Path (Join-Path $PSScriptRoot "..")
@@ -382,6 +384,7 @@ $basePath = ([Uri]$script:PublicBaseUrl).AbsolutePath.TrimEnd("/")
 if (-not $basePath) {
     $basePath = "/"
 }
+$script:RewriteBase = if ($basePath -eq "/") { "/" } else { "$($basePath.TrimEnd("/"))/" }
 
 if (-not $CpanelHost) {
     $CpanelHost = "opentshost.com"
@@ -417,7 +420,7 @@ $script:ReleaseBaseRemotePath = Join-RemotePath $script:RemoteBase "_netprobe-re
 
 if ($RollbackToPlaceholder) {
     Save-RemoteTextFile -Directory $script:RemoteBase -FileName ".htaccess" -Content (New-PlaceholderRollbackHtaccessContent)
-    Write-Host "HostGator /supersites/netprobe-atlas/ rolled back to bootstrap placeholder."
+    Write-Host "HostGator $script:PublicBaseUrl/ rolled back to bootstrap placeholder."
     Invoke-PublicSmoke
     return
 }
@@ -513,7 +516,7 @@ $metadata = [ordered]@{
     preservation = @(
         "Deploy uploads into a new versioned NetProbe release directory.",
         "Remote .env files, the bootstrap placeholder and user-managed folders are not deleted or overwritten.",
-        "The active NetProbe release is switched only by the managed .htaccess file in /supersites/netprobe-atlas/.",
+        "The active NetProbe release is switched only by the managed .htaccess file in $script:RemoteBase for $script:PublicBaseUrl/.",
         "Public API smoke is required before deploy starts unless explicitly skipped for rollback-only operations."
     )
 }

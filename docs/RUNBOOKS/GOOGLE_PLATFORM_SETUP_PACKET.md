@@ -4,7 +4,7 @@ Data-base: 2026-07-03
 
 ## Objetivo
 
-Gerar um pacote local para orientar a criacao humana de GA4, GTM, Search Console e AdSense sem executar nenhuma acao em provedor externo.
+Gerar um pacote local para orientar a criacao de GA4, GTM, Search Console e AdSense sem que o comando execute acao em provedor externo.
 
 ## Quando usar
 
@@ -43,8 +43,8 @@ Os artefatos ficam em `artifacts/`, que e ignorado pelo Git.
 ## Uso humano do pacote
 
 1. Entrar na conta Google registrada localmente em `docs/credentials/credentials.local.md`.
-2. Conferir se a pessoa autorizada pode aceitar termos Google/AdSense.
-3. Criar manualmente a estrutura indicada pelo pacote, se aprovada.
+2. Conferir a autorizacao vigente do owner para aceitar termos Google/Analytics/GTM/Search Console/AdSense.
+3. Criar a estrutura indicada pelo pacote, se aprovada.
 4. Verificar dominio ou URL-prefix apenas quando houver dominio/root mapping aprovado.
 5. Guardar IDs/tokens apenas em cofre/ambiente, nunca em docs versionados.
 6. Voltar ao repo e rodar `pnpm measure:google-ready` e `pnpm validate:adsense-safe-public`.
@@ -53,12 +53,17 @@ Os artefatos ficam em `artifacts/`, que e ignorado pelo Git.
 
 Nao usar este pacote para:
 
-- aceitar termos por conta propria;
-- criar AdSense antes de beneficiario legal/fiscal/banco/PIN;
+- aceitar termos sem autorizacao humana registrada;
+- criar conta paga, teste pago, Google Cloud billing, forma de pagamento ou qualquer fluxo de cobranca;
+- cadastrar banco, impostos, PIN postal ou payout AdSense;
 - publicar `ads.txt`;
 - inserir snippet GA4/GTM/AdSense;
 - importar Search Console, GA4, AdSense ou PageSpeed API;
 - enviar PII, input de ferramenta, IP completo, query string ou conteudo de arquivo ao Google.
+
+## Autorizacao vigente
+
+Em 2026-07-03 o owner autorizou o setup assistido e os aceites Google/Analytics/GTM/Search Console/AdSense para a SuperSites, com `mywebtools.top` como dominio de go-live. Qualquer pedido de 2FA, telefone, billing, cartao, teste pago, Google Cloud billing, banco, impostos, PIN postal ou pagamento continua sendo pausa obrigatoria.
 
 ## Referencias oficiais
 

@@ -88,9 +88,12 @@ if ($homeResponse.Content -notmatch [regex]::Escape("href=`"$publicBase/en`"")) 
     throw "NetProbe home canonical does not point at $publicBase/en."
 }
 
-$assetMatch = [regex]::Match($homeResponse.Content, '(?i)(?:src|href)=["''](?<path>/supersites/netprobe-atlas/_nuxt/[^"'']+\.js)')
+$publicBasePath = ([Uri]$publicBase).AbsolutePath.TrimEnd("/")
+$assetBasePath = if ($publicBasePath) { $publicBasePath } else { "" }
+$assetMatch = [regex]::Match($homeResponse.Content, "(?i)(?:src|href)=[""'](?<path>$([regex]::Escape($assetBasePath))/_nuxt/[^""']+\.js)")
 if (-not $assetMatch.Success) {
-    throw "Could not find a /supersites/netprobe-atlas/_nuxt JavaScript asset reference on the public home page."
+    $assetLabel = if ($assetBasePath) { "$assetBasePath/_nuxt" } else { "/_nuxt" }
+    throw "Could not find a $assetLabel JavaScript asset reference on the public home page."
 }
 
 $origin = ([Uri]$publicBase).GetLeftPart([UriPartial]::Authority)

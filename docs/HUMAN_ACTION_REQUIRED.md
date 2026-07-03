@@ -6,18 +6,19 @@ Data-base: 2026-07-03
 
 | Item | Motivo | Quando desbloqueia |
 |---|---|---|
-| Registrar dominios definitivos | Compra/decisao de marca e dominio | Antes do lancamento independente de cada site |
+| Registrar dominios definitivos adicionais | Compra/decisao de marca e dominio por marca/site alem do dominio inicial aprovado | Antes do lancamento independente de cada site fora de `mywebtools.top` |
 | Validar marca dos nomes de trabalho | Risco comercial/juridico | Antes de registrar dominio ou publicar marca definitiva |
-| Escolher beneficiario legal AdSense | Identidade, fiscal e conta publisher | Antes de criar/submeter sites ao AdSense |
-| Criar/reutilizar conta AdSense e aceitar termos | Conta publisher, aceite legal e checagem de conta duplicada. A credencial Google foi registrada somente no inventario local em 2026-07-03, mas isso nao substitui aceite por pessoa autorizada | Antes de configurar publisher id, adicionar sites, ativar Management API ou publicar `ads.txt` |
+| Checagem de conta AdSense existente/duplicada | Politica de uma conta por beneficiario legal/publisher e risco de duplicidade | Durante a criacao/reutilizacao da conta AdSense |
 | Informacoes fiscais/bancarias AdSense | Dados legais e banco | Antes de receber pagamentos |
 | PIN postal AdSense | Verificacao fisica | Quando Google solicitar |
 | CMP certificada/TCF para ads reais | Escolha de fornecedor, termos, configuracao legal e compliance regional | Antes de carregar requests reais de ads em regioes que exijam CMP/TCF |
-| Publicar `ads.txt` e submeter sites ao AdSense | A Sprint 15.1 criou apenas preview autenticado; publicacao de arquivo publico, revisao por site e ad serving sao acoes de provider/monetizacao. A URL atual em subpasta `opentshost.com/supersites` nao deve ser tratada como site AdSense definitivo | Depois de conta aprovada, publisher id real validado, dominios definitivos ou root mapping aprovado, politicas/consentimento/smokes prontos e decisao humana por site |
+| Publicar `ads.txt` real | A Sprint 15.1 criou apenas preview autenticado; publicacao de arquivo publico exige publisher id real validado | Depois de conta aprovada, publisher id real em cofre/ambiente, politicas/consentimento e smokes prontos |
+| Ativar ad serving real | Requests reais de ads, Auto Ads/manual ads e snippets continuam provider-side/monetizacao | Depois de conta e site aprovados, CMP/consentimento aplicavel, `ads.txt` real validado, smokes e decisao humana por site |
 | PageSpeed API ou Google performance provider | API key, termos, quota, billing/conta Google e definicao de retencao/uso de dados | Antes de usar PageSpeed Insights API, CrUX API ou qualquer provider Google externo para medicao automatizada |
 | GTmetrix manual/API performance audit | Conta/API/provider externo, termos, quota/custo e decisao sobre retencao/uso de dados de URLs publicas | Antes de tratar GTmetrix A como evidencia final de pre-divulgacao, automacao recorrente ou relatorio externo |
-| Acessos Google, GA4, GTM e Search Console | Conta Google registrada localmente, criacao de propriedades/containers, verificacao de dominio e aceite de termos continuam provider-side/humanos | Antes de carregar tags GA4/GTM ou importar dados Search Console |
+| Google 2FA, telefone ou codigo temporario | Verificacao de login/identidade pode ser exigida pelo Google | Quando solicitado durante setup |
 | Ativar tags/imports Google por site | A Sprint 15.2 criou apenas readiness autenticado; carregar scripts GA4/GTM ou importar Search Console envia dados a provider externo | Depois de acesso Google, dominio verificado, consentimento/CMP, matriz de dados, secrets em cofre, smokes e decisao humana por site |
+| Billing, cartao, teste pago ou Google Cloud billing | Compra, cobranca ou forma de pagamento nao autorizada para pagar | Se o Google bloquear setup gratuito sem forma de pagamento |
 | Contas Stripe/Mercado Pago/Paddle | KYC, impostos, termos e confirmacao de modo/conta de producao | Antes de billing real |
 | Ativar Stripe para servicos ou planos pagos | O owner aprovou somente doacao pontual via Stripe em 2026-07-02. Servicos personalizados, planos pagos, assinatura, customer portal, invoices, refunds, dunning, revenue import e entitlements pagos ainda exigem produto/preco oficial, politica de cancelamento/reembolso, smokes de provider, decisao de oferta e aprovacao por canal | Antes de publicar checkout de servico, plano pago, assinatura, invoice, refund, customer portal ou entitlement pago via Stripe |
 | Ativar Pagar.me para doacoes, servicos ou planos pagos | O owner forneceu credenciais para inventario local, mas conta, KYC, impostos, termos, perfil de recebimento, politica de reembolso/cancelamento, secrets em cofre, webhooks, testes de sandbox/provider e aprovacao por canal ainda precisam ser concluidos | Antes de publicar qualquer link de pagamento, botao de doacao real, checkout, widget, QR/PIX, cobranca, assinatura, webhook live, invoice, refund ou entitlement pago via Pagar.me |
@@ -67,6 +68,14 @@ Data-base: 2026-07-03
 | Item | Resultado |
 |---|---|
 | Ativar doacao pontual via Stripe hosted Checkout | Aprovado explicitamente pelo owner para o CTA global `Doar/Donate`. Escopo liberado: criar Checkout Session no control-plane, redirecionar para Stripe hosted Checkout, receber webhook assinado e registrar ledger local limitado. Escopo ainda bloqueado: planos pagos, servicos personalizados, assinatura, customer portal, invoices, refunds, dunning, revenue import, entitlements pagos e canais nao Stripe. |
+
+## Resolvido ou autorizado em 2026-07-03
+
+| Item | Resultado |
+|---|---|
+| Dominio inicial de go-live | O owner aprovou `mywebtools.top` e a pasta HostGator `/home1/opents62/mywebtools.top` para o deploy do projeto. |
+| Beneficiario/legal owner para setup Google | O owner confirmou autorizacao para aceitar termos Google/Analytics/GTM/Search Console/AdSense pela SuperSites e informou que o fluxo deve usar conta de pessoa fisica autorizada. Dados pessoais ficam somente em inventario local ignorado. |
+| Criar plataformas Google gratuitas | O owner autorizou setup assistido de GA4, GTM, Search Console e AdSense, incluindo aceites juridicos desses produtos. Continuam bloqueados pagamentos, billing, cartao, teste pago, Google Cloud billing, banco, impostos e PIN postal. |
 
 ## Nao bloqueia agora
 

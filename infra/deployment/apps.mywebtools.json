@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "remoteBase": "/home1/opents62/mywebtools.top",
+  "publicBaseUrl": "https://mywebtools.top",
+  "apps": [
+    {
+      "id": "supersite",
+      "name": "SuperSites Hub",
+      "kind": "nuxt-ssg",
+      "localPath": "apps/supersite",
+      "buildOutput": "apps/supersite/.output/public",
+      "remotePath": "/home1/opents62/mywebtools.top",
+      "publicUrl": "https://mywebtools.top/"
+    },
+    {
+      "id": "control-plane",
+      "name": "Control Plane",
+      "kind": "laravel",
+      "localPath": "apps/control-plane",
+      "buildOutput": "apps/control-plane/public",
+      "remotePath": "/home1/opents62/mywebtools.top/control-plane",
+      "publicUrl": "https://mywebtools.top/control-plane/"
+    },
+    {
+      "id": "netprobe-atlas",
+      "name": "NetProbe Atlas",
+      "kind": "nuxt-ssg",
+      "localPath": "apps/netprobe-atlas",
+      "buildOutput": "apps/netprobe-atlas/.output/public",
+      "remotePath": "/home1/opents62/mywebtools.top/netprobe-atlas",
+      "publicUrl": "https://mywebtools.top/netprobe-atlas/"
+    },
+    {
+      "id": "calcharbor",
+      "name": "CalcHarbor",
+      "kind": "nuxt-ssg",
+      "localPath": "apps/calcharbor",
+      "buildOutput": "apps/calcharbor/.output/public",
+      "remotePath": "/home1/opents62/mywebtools.top/calcharbor",
+      "publicUrl": "https://mywebtools.top/calcharbor/"
+    },
+    {
+      "id": "devutility-lab",
+      "name": "DevUtility Lab",
+      "kind": "nuxt-ssg",
+      "localPath": "apps/devutility-lab",
+      "buildOutput": "apps/devutility-lab/.output/public",
+      "remotePath": "/home1/opents62/mywebtools.top/devutility-lab",
+      "publicUrl": "https://mywebtools.top/devutility-lab/"
+    },
+    {
+      "id": "timenexus",
+      "name": "TimeNexus",
+      "kind": "nuxt-ssg",
+      "localPath": "apps/timenexus",
+      "buildOutput": "apps/timenexus/.output/public",
+      "remotePath": "/home1/opents62/mywebtools.top/timenexus",
+      "publicUrl": "https://mywebtools.top/timenexus/"
+    },
+    {
+      "id": "qrroute",
+      "name": "QRRoute",
+      "kind": "nuxt-ssg",
+      "localPath": "apps/qrroute",
+      "buildOutput": "apps/qrroute/.output/public",
+      "remotePath": "/home1/opents62/mywebtools.top/qrroute",
+      "publicUrl": "https://mywebtools.top/qrroute/"
+    },
+    {
+      "id": "invoicecraft",
+      "name": "InvoiceCraft",
+      "kind": "nuxt-ssg",
+      "localPath": "apps/invoicecraft",
+      "buildOutput": "apps/invoicecraft/.output/public",
+      "remotePath": "/home1/opents62/mywebtools.top/invoicecraft",
+      "publicUrl": "https://mywebtools.top/invoicecraft/"
+    },
+    {
+      "id": "mailhealth",
+      "name": "MailHealth",
+      "kind": "nuxt-ssg",
+      "localPath": "apps/mailhealth",
+      "buildOutput": "apps/mailhealth/.output/public",
+      "remotePath": "/home1/opents62/mywebtools.top/mailhealth",
+      "publicUrl": "https://mywebtools.top/mailhealth/"
+    },
+    {
+      "id": "sitepulse-lab",
+      "name": "SitePulse Lab",
+      "kind": "nuxt-ssg",
+      "localPath": "apps/sitepulse-lab",
+      "buildOutput": "apps/sitepulse-lab/.output/public",
+      "remotePath": "/home1/opents62/mywebtools.top/sitepulse-lab",
+      "publicUrl": "https://mywebtools.top/sitepulse-lab/"
+    },
+    {
+      "id": "pixelbatch",
+      "name": "PixelBatch",
+      "kind": "nuxt-ssg",
+      "localPath": "apps/pixelbatch",
+      "buildOutput": "apps/pixelbatch/.output/public",
+      "remotePath": "/home1/opents62/mywebtools.top/pixelbatch",
+      "publicUrl": "https://mywebtools.top/pixelbatch/"
+    },
+    {
+      "id": "docshift",
+      "name": "DocShift",
+      "kind": "nuxt-ssg",
+      "localPath": "apps/docshift",
+      "buildOutput": "apps/docshift/.output/public",
+      "remotePath": "/home1/opents62/mywebtools.top/docshift",
+      "publicUrl": "https://mywebtools.top/docshift/"
+    }
+  ]
+}
