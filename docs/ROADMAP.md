@@ -861,7 +861,7 @@ Status: proposta/documentada em `docs/ROADMAP_FASE_24_MONETIZACAO_SUPORTE_BILLIN
 
 Objetivo: transformar os blocos de apoio inertes e a fundacao de billing em um caminho governado para doacoes, servicos personalizados e upgrades pagos, sem ativar pagamento real antes de KYC, impostos, termos, secrets em cofre, provider adapter, politicas publicas, smokes especificos e aprovacao humana por canal/plano.
 
-Escopo inicial: avaliar Pagar.me como provider BRL/Brasil, adicionar `pagarme` ao contrato fail-closed, cobrir todas as paginas com CTA de apoio compartilhado, preparar link hospedado de doacao somente por configuracao aprovada, desenhar fluxo de servicos personalizados e decidir provider global para vendas internacionais.
+Escopo inicial atualizado em 2026-07-03: Stripe e o trilho principal para pagamento/doacao e futuros planos/servicos quando cada canal for aprovado; Pagar.me deixa de ser requisito de go-live e fica apenas como backlog opcional/fallback BRL. A etapa tambem cobre CTA de apoio compartilhado, doacao hospedada por configuracao aprovada, fluxo de servicos personalizados, governanca de upgrades pagos e pacote local de setup Google sem side effects.
 
 ## Definition of done do programa
 

@@ -1784,6 +1784,10 @@ Data-base: 2026-07-02
 | Fase 24 Stripe checkout API smoke | Passed: production API returned 201 and a `checkout.stripe.com` URL for donation |
 | Fase 24 paid plan/service activation | 0 paid plans, service checkout, subscriptions, invoices, refunds, customer portal, revenue import or entitlement payment mutations active |
 | Fase 24 HostGator deploys | Control-plane `28627391786`, Hub `28627468381`, NetProbe `28627468373`, static app deploys `28627476027`, `28627477400`, `28627478874`, `28627480928`, `28627482312`, `28627483708`, `28627485129`, `28627486473`, `28627487821` passed |
+| Fase 24 provider decision 2026-07-03 | Stripe-first; Pagar.me is optional backlog/fallback, not a go-live requirement |
+| Google platform setup packet command | `pnpm ops:google-platform-setup-packet` |
+| Google platform setup packet side effects | 0 provider API calls, 0 Google logins, 0 terms accepted, 0 properties/containers created, 0 verification tokens published, 0 tags loaded, 0 AdSense submissions |
+| Google/AdSense real activation | 0 GA4/GTM/Search Console/PageSpeed API/AdSense activations; human gates remain required |
 
 ## Product metrics
 

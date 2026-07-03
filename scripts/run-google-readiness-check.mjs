@@ -408,9 +408,9 @@ async function checkValidatorCoverage() {
       /googletagmanager/i,
       /google-analytics/i,
       /doubleclick/i,
-      /No real ad, analytics, payment, donation, affiliate, checkout or billing provider was activated/i,
+      /No real ad, analytics, affiliate, automatic checkout request or billing provider script was loaded/i,
     ],
-    summary: 'Public AdSense-safe validator blocks current ad, analytics, payment, donation and affiliate markers.',
+    summary: 'Public AdSense-safe validator blocks ad, analytics, affiliate, automatic checkout and billing provider markers.',
   })
 
   await assertFileContains({

@@ -15,7 +15,6 @@ O SuperSites ja tem:
 
 O SuperSites ainda nao tem:
 
-- provider Pagar.me integrado ao contrato de billing;
 - checkout real para planos pagos/servicos personalizados, payment link manual, assinatura, invoice, refund, customer portal ou entitlement pago por pagamento;
 - provedor global/multimoeda definido;
 - politica final de servicos personalizados, cancelamento, reembolso, impostos e atendimento.
@@ -25,6 +24,8 @@ As credenciais Stripe live fornecidas pelo owner em 2026-07-02 tambem foram regi
 
 Status em 2026-07-02: a fundacao de Checkout hospedado Stripe foi implementada no Control Plane para doacao, plano pago e servico personalizado. Apos aprovacao explicita do owner, somente doacao pontual via Stripe Checkout passa para go-live controlado; planos pagos, servicos personalizados, assinatura, portal de cliente, invoices, refunds, revenue import e entitlements pagos permanecem fail-closed.
 
+Decisao em 2026-07-03: o owner autorizou usar Stripe em vez de Pagar.me como trilho principal. Pagar.me deixa de ser prioridade de go-live e fica apenas como candidato futuro/fallback BRL/Brasil caso haja uma decisao especifica posterior.
+
 ## Decisao operacional proposta
 
 Usar dois trilhos:
@@ -32,35 +33,34 @@ Usar dois trilhos:
 1. **Apoio/doacao simples**: botao discreto em todas as paginas, longe de controles/resultados, apontando para uma superficie hospedada de pagamento quando houver aprovacao humana.
 2. **Servicos personalizados e upgrades pagos**: fluxo de contato/orcamento primeiro, depois checkout hospedado oficial por provider aprovado. SuperSites nao coleta cartao.
 
-Pagar.me pode ser o primeiro provider para BRL/Brasil e possivelmente cartao internacional quando a conta/acquirer permitirem. Para vender "de qualquer lugar do mundo" de forma robusta, manter Stripe/Paddle como candidatos globais, especialmente para multimoeda, VAT/GST, tax handling, assinatura internacional e Merchant of Record.
-Stripe passa a ser o candidato tecnico prioritario para checkout global hospedado, desde que conta live, KYC, impostos, produtos/precos, webhook signing secret, politicas publicas e aprovacao humana estejam concluidos.
+Stripe e o candidato tecnico prioritario para checkout global hospedado, desde que conta live, KYC, impostos, produtos/precos, webhook signing secret, politicas publicas e aprovacao humana estejam concluidos. Pagar.me pode ser retomado futuramente apenas como canal BRL/Brasil se a conta/acquirer, termos, antifraude, PIX/cartao, chargebacks, reservas e limites forem validados.
 
 ## HUMAN_ACTION_REQUIRED antes de go-live
 
-- Confirmar beneficiario legal, KYC, impostos, termos Pagar.me e perfil de recebimento.
-- Confirmar se a conta Pagar.me pode vender internacionalmente, moedas aceitas, antifraude, 3DS, chargebacks, reservas e limites.
+- Confirmar beneficiario legal, KYC, impostos, termos Stripe e perfil de recebimento para qualquer canal alem da doacao pontual ja aprovada.
 - Definir politica publica de doacao, servicos personalizados, cancelamento, reembolso, chargeback e suporte.
 - Definir se doacao e sem recompensa, apoio com reconhecimento, servico sob demanda ou plano pago com entitlement.
-- Aprovar provider por canal: Pagar.me, Stripe, Paddle, Mercado Pago ou combinacao.
+- Aprovar provider por canal: Stripe como padrao; Paddle/Mercado Pago/Pagar.me somente se uma decisao posterior exigir.
 - Guardar secrets em cofre/ambiente e configurar rotacao.
 - Aprovar publicacao de qualquer URL real, widget, QR/PIX, checkout, payment link ou webhook live.
 
-## Etapa 24.1 - Inventario e decisao de provider
+## Etapa 24.1 - Decisao de provider
 
-Objetivo: transformar Pagar.me de credencial local em candidato governado sem ativar cobranca.
+Objetivo: decidir o provider principal de go-live sem ativar novas cobrancas.
+
+Status em 2026-07-03: concluida como decisao operacional. Stripe e o provider principal para doacao pontual ja aprovada e para futuros planos/servicos quando cada canal tiver produto/preco oficial, politicas publicas, KYC/impostos/termos, smokes de provider, rollback e aprovacao humana. Pagar.me foi removido do trilho ativo e fica apenas como candidato futuro.
 
 Sprints:
 
-1. Adicionar `pagarme` ao contrato `@supersites/billing` como provider suportado, ainda fail-closed.
-2. Atualizar seeders/readiness do control-plane para mostrar Pagar.me junto de Stripe/Mercado Pago/Paddle.
-3. Adicionar campos de readiness especificos: conta, KYC, termos, impostos, payout, API key, webhook secret, checkout/payment-link status, moeda/pais e sandbox/provider smoke.
-4. Adicionar testes garantindo que `pagarme` aparece como provider suportado, mas `should_create_checkout_session=false` e `should_process_live_webhooks=false`.
-5. Documentar env names/secret names sem valor real.
+1. Registrar decisao Stripe-first.
+2. Manter Pagar.me fora do contrato ativo ate haver aprovacao especifica.
+3. Manter planos pagos, servicos personalizados, assinaturas, invoices, refunds, customer portal, revenue import e entitlements pagos fail-closed.
+4. Documentar que qualquer provider alternativo futuro precisa passar por KYC, termos, impostos, secrets em cofre, webhooks, smokes e aprovacao por canal.
 
 Aceite:
 
-- Pagar.me aparece no dashboard/readiness sem checkout ativo.
-- Nenhum link de pagamento real e publicado.
+- Stripe segue como provider principal ja governado para doacao pontual.
+- Nenhum novo link de pagamento real e publicado.
 - `validate:secrets` passa e nenhum segredo e versionado.
 
 ## Etapa 24.2 - Botao de apoio em todas as paginas
@@ -92,7 +92,7 @@ Status em 2026-07-02: aprovado pelo owner e implementado para Stripe hosted Chec
 
 Sprints:
 
-1. Escolher provider/canal aprovado: Pagar.me payment link/checkout hospedado para BRL ou provider global alternativo.
+1. Usar Stripe hosted Checkout como canal aprovado para doacao pontual.
 2. Definir defaults por moeda, limites aceitos pelo servidor e politica de recibo/reembolso.
 3. Configurar link hospedado fora do repo; armazenar apenas secret/env/config operacional.
 4. Adicionar feature flag por ambiente e por site.
@@ -150,9 +150,9 @@ Objetivo: decidir se Pagar.me basta ou se sera necessario provider global parale
 
 Sprints:
 
-1. Validar oficialmente na conta Pagar.me: paises/cartoes aceitos, moedas, settlement, antifraude, chargeback, 3DS e limites.
-2. Comparar Stripe/Paddle para vendas internacionais, impostos, assinatura, MoR, cartoes, carteiras digitais e moedas locais.
-3. Definir matriz: Brasil/BRL via Pagar.me, global via Stripe/Paddle, ou provider unico se a conta suportar.
+1. Validar oficialmente na conta Stripe: paises/cartoes aceitos, moedas, settlement, antifraude, chargeback, 3DS e limites.
+2. Comparar Paddle apenas se for necessario Merchant of Record, impostos internacionais ou assinaturas globais com complexidade fiscal maior.
+3. Definir matriz: Stripe unico por padrao; Paddle/Mercado Pago/Pagar.me somente se alguma oferta/pais/moeda exigir.
 4. Atualizar termos, privacidade, cookies/analytics, suporte e fiscal conforme o provider escolhido.
 5. Fazer sandbox/provider smokes e rollback antes de qualquer producao real.
 
@@ -180,9 +180,9 @@ Operacao:
 Monetizacao:
 
 - Botao de apoio deve virar componente/shared shell cobrindo todas as paginas.
-- Pagar.me precisa virar provider suportado no contrato interno.
+- Pagar.me nao e mais requisito de go-live; Stripe e o trilho principal e Pagar.me fica backlog opcional.
 - Checkout real, webhooks live, tax/refund/cancelamento e entitlements pagos ainda nao estao ativos.
-- Para venda global, Pagar.me deve ser validado, mas provavelmente precisara coexistir com Stripe/Paddle ou outro provider global.
+- Para venda global, Stripe deve ser validado como trilho padrao; Paddle fica como comparativo futuro se MoR/tax internacional exigir.
 
 Qualidade publica:
 

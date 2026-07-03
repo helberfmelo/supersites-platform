@@ -14,6 +14,7 @@ Preparar GA4, GTM e Search Console sem criar propriedades, inserir tags, publica
 - Servico: `App\Support\Google\GoogleProviderGoLiveReadiness`.
 - Dashboard: painel `Google integrations` mostra sites prontos para ativacao humana, GA4/GTM carregando 0 e Search Console importando 0.
 - Pacote compartilhado: `@supersites/analytics` normaliza GA4 Measurement IDs e GTM Container IDs.
+- Pacote operacional local: `pnpm ops:google-platform-setup-packet`, documentado em `docs/RUNBOOKS/GOOGLE_PLATFORM_SETUP_PACKET.md`.
 
 ## Estados fail-closed
 

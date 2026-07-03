@@ -54,6 +54,13 @@ Nunca enviar email, telefone, documento, nome completo, IP completo, conteudo de
 - O check valida contratos fail-closed, seeders sem IDs reais, ausencia de snippets publicos ativos, ausencia de `ads.txt` placeholder e pendencias humanas.
 - O run `2026-06-29T05-47-31Z` passou com 18 checks, 0 falhas e ativacao 0 para GA4, GTM, Search Console, AdSense e PageSpeed API.
 
+## 2026-07-03 setup operacional
+
+- A credencial da conta Google SuperSites foi registrada somente no inventario local ignorado `docs/credentials/credentials.local.md`.
+- `pnpm ops:google-platform-setup-packet` gera um pacote local em `artifacts/google-platform-setup/` com nomes sugeridos para GA4, GTM, Search Console e AdSense.
+- O pacote nao faz login, nao chama APIs Google, nao aceita termos, nao cria propriedades/containers, nao verifica dominio, nao publica token e nao ativa tag ou anuncio.
+- Enquanto `https://opentshost.com/supersites/` seguir como producao tecnica interna em subpasta, AdSense real continua bloqueado ate haver decisao de dominio definitivo ou root mapping aprovado.
+
 ## Pendencias humanas
 
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.

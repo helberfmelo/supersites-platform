@@ -90,9 +90,9 @@ O owner forneceu credenciais Pagar.me para inventario local em `docs/credentials
 Estado tecnico atual:
 
 - `@supersites/billing`, seeders e readiness autenticado ainda suportam somente `stripe`, `mercado_pago` e `paddle`.
-- `pagarme` deve ser adicionado como provider separado antes de qualquer uso operacional.
-- O primeiro uso recomendado e link de pagamento hospedado para doacao pontual ou servico personalizado, sem coletar dados de cartao no SuperSites.
-- Para vendas internacionais amplas, Pagar.me deve ser tratado como canal BRL/Brasil primeiro. Stripe/Paddle continuam candidatos para checkout global/multimoeda, especialmente quando imposto internacional, VAT/GST, MoR ou moedas locais forem relevantes.
+- Em 2026-07-03, o owner autorizou usar Stripe em vez de Pagar.me como trilho principal. Portanto, `pagarme` nao e requisito de go-live e nao deve ser adicionado ao contrato ativo sem uma decisao posterior.
+- Se Pagar.me for retomado, o primeiro uso recomendado continuara sendo link/checkout hospedado para BRL/Brasil ou servico personalizado, sem coletar dados de cartao no SuperSites.
+- Para vendas internacionais amplas, Stripe permanece o trilho tecnico prioritario; Paddle fica como candidato futuro se Merchant of Record, VAT/GST, assinatura internacional ou moedas locais exigirem outro arranjo.
 
 Gate antes de qualquer ativacao:
 

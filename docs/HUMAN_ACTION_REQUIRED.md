@@ -1,6 +1,6 @@
 # HUMAN_ACTION_REQUIRED
 
-Data-base: 2026-07-01
+Data-base: 2026-07-03
 
 ## Pendencias atuais
 
@@ -9,14 +9,14 @@ Data-base: 2026-07-01
 | Registrar dominios definitivos | Compra/decisao de marca e dominio | Antes do lancamento independente de cada site |
 | Validar marca dos nomes de trabalho | Risco comercial/juridico | Antes de registrar dominio ou publicar marca definitiva |
 | Escolher beneficiario legal AdSense | Identidade, fiscal e conta publisher | Antes de criar/submeter sites ao AdSense |
-| Criar/reutilizar conta AdSense e aceitar termos | Conta publisher, aceite legal e checagem de conta duplicada | Antes de configurar publisher id, adicionar sites, ativar Management API ou publicar `ads.txt` |
+| Criar/reutilizar conta AdSense e aceitar termos | Conta publisher, aceite legal e checagem de conta duplicada. A credencial Google foi registrada somente no inventario local em 2026-07-03, mas isso nao substitui aceite por pessoa autorizada | Antes de configurar publisher id, adicionar sites, ativar Management API ou publicar `ads.txt` |
 | Informacoes fiscais/bancarias AdSense | Dados legais e banco | Antes de receber pagamentos |
 | PIN postal AdSense | Verificacao fisica | Quando Google solicitar |
 | CMP certificada/TCF para ads reais | Escolha de fornecedor, termos, configuracao legal e compliance regional | Antes de carregar requests reais de ads em regioes que exijam CMP/TCF |
-| Publicar `ads.txt` e submeter sites ao AdSense | A Sprint 15.1 criou apenas preview autenticado; publicacao de arquivo publico, revisao por site e ad serving sao acoes de provider/monetizacao | Depois de conta aprovada, publisher id real validado, dominios definitivos, politicas/consentimento/smokes prontos e decisao humana por site |
+| Publicar `ads.txt` e submeter sites ao AdSense | A Sprint 15.1 criou apenas preview autenticado; publicacao de arquivo publico, revisao por site e ad serving sao acoes de provider/monetizacao. A URL atual em subpasta `opentshost.com/supersites` nao deve ser tratada como site AdSense definitivo | Depois de conta aprovada, publisher id real validado, dominios definitivos ou root mapping aprovado, politicas/consentimento/smokes prontos e decisao humana por site |
 | PageSpeed API ou Google performance provider | API key, termos, quota, billing/conta Google e definicao de retencao/uso de dados | Antes de usar PageSpeed Insights API, CrUX API ou qualquer provider Google externo para medicao automatizada |
 | GTmetrix manual/API performance audit | Conta/API/provider externo, termos, quota/custo e decisao sobre retencao/uso de dados de URLs publicas | Antes de tratar GTmetrix A como evidencia final de pre-divulgacao, automacao recorrente ou relatorio externo |
-| Acessos Google, GA4, GTM e Search Console | Conta Google, criacao de propriedades/containers, verificacao de dominio e aceite de termos | Antes de carregar tags GA4/GTM ou importar dados Search Console |
+| Acessos Google, GA4, GTM e Search Console | Conta Google registrada localmente, criacao de propriedades/containers, verificacao de dominio e aceite de termos continuam provider-side/humanos | Antes de carregar tags GA4/GTM ou importar dados Search Console |
 | Ativar tags/imports Google por site | A Sprint 15.2 criou apenas readiness autenticado; carregar scripts GA4/GTM ou importar Search Console envia dados a provider externo | Depois de acesso Google, dominio verificado, consentimento/CMP, matriz de dados, secrets em cofre, smokes e decisao humana por site |
 | Contas Stripe/Mercado Pago/Paddle | KYC, impostos, termos e confirmacao de modo/conta de producao | Antes de billing real |
 | Ativar Stripe para servicos ou planos pagos | O owner aprovou somente doacao pontual via Stripe em 2026-07-02. Servicos personalizados, planos pagos, assinatura, customer portal, invoices, refunds, dunning, revenue import e entitlements pagos ainda exigem produto/preco oficial, politica de cancelamento/reembolso, smokes de provider, decisao de oferta e aprovacao por canal | Antes de publicar checkout de servico, plano pago, assinatura, invoice, refund, customer portal ou entitlement pago via Stripe |
