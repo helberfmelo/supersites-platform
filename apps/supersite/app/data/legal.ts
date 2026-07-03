@@ -1173,8 +1173,8 @@ export const legalPageCatalog: LegalPage[] = [
       en: {
         navLabel: 'Terms',
         title: 'Terms of Use',
-        description: 'Public terms for lawful use, abuse prevention, free tool limits, informational results, future paid services and responsibility across SuperSites.',
-        updatedLabel: 'Reviewed June 30, 2026',
+        description: 'Public terms for lawful use, abuse prevention, free tool limits, informational results, optional donations, future paid services and responsibility across SuperSites.',
+        updatedLabel: 'Reviewed July 2, 2026',
         sections: [
           {
             heading: 'Permitted use',
@@ -1205,10 +1205,11 @@ export const legalPageCatalog: LegalPage[] = [
             ],
           },
           {
-            heading: 'Future paid services',
+            heading: 'Donations and future paid services',
             paragraphs: [
-              'SuperSites currently presents the public tools here without checkout. Future paid services can cover higher limits, saved history, monitoring, batch work, API access, teams, automation, customization or removal of ads.',
-              'When a paid service is offered, the payment surface presents price, renewal, quotas, taxes when applicable, cancellation, refund handling, support scope and provider terms before payment is accepted.',
+              'SuperSites may offer an optional donation checkout hosted by Stripe to support free public tools. Donations are voluntary, do not create an account, do not buy priority, features, SLA, professional advice or a guaranteed result, and payment card data is collected by the payment provider rather than SuperSites.',
+              'If you donate the wrong amount or need help with a donation, contact us with the Stripe receipt identifier. Donations are not described as tax-deductible unless applicable law and your own records independently support that treatment.',
+              'Future paid services, if offered, can cover higher limits, saved history, monitoring, batch work, API access, teams, automation, customization or removal of ads. The payment surface must present price, renewal, quotas, taxes when applicable, cancellation, refund handling, support scope and provider terms before payment is accepted.',
             ],
           },
           {
@@ -1223,8 +1224,8 @@ export const legalPageCatalog: LegalPage[] = [
       'pt-br': {
         navLabel: 'Termos',
         title: 'Termos de Uso',
-        description: 'Termos públicos para uso lícito, prevenção de abuso, limites gratuitos, resultados informativos, serviços pagos futuros e responsabilidade no SuperSites.',
-        updatedLabel: 'Revisado em 30 de junho de 2026',
+        description: 'Termos públicos para uso lícito, prevenção de abuso, limites gratuitos, resultados informativos, doações opcionais, serviços pagos futuros e responsabilidade no SuperSites.',
+        updatedLabel: 'Revisado em 2 de julho de 2026',
         sections: [
           {
             heading: 'Uso permitido',
@@ -1255,10 +1256,11 @@ export const legalPageCatalog: LegalPage[] = [
             ],
           },
           {
-            heading: 'Serviços pagos futuros',
+            heading: 'Doações e serviços pagos futuros',
             paragraphs: [
-              'O SuperSites apresenta aqui as ferramentas públicas sem checkout. Serviços pagos futuros podem cobrir limites maiores, histórico salvo, monitoramento, lote, acesso por API, equipes, automação, personalização ou remoção de anúncios.',
-              'Quando um serviço pago for oferecido, a superfície de pagamento apresenta preço, renovação, cotas, impostos quando aplicável, cancelamento, tratamento de reembolso, escopo de suporte e termos do provedor antes de aceitar pagamento.',
+              'O SuperSites pode oferecer checkout opcional de doação hospedado pela Stripe para apoiar ferramentas públicas gratuitas. Doações são voluntárias, não criam conta, não compram prioridade, recursos, SLA, orientação profissional ou resultado garantido, e os dados de cartão são coletados pelo provedor de pagamento em vez do SuperSites.',
+              'Se você doar um valor errado ou precisar de ajuda com uma doação, fale conosco com o identificador do recibo Stripe. Doações não são apresentadas como dedutíveis de imposto salvo quando a lei aplicável e seus próprios registros sustentarem esse tratamento de forma independente.',
+              'Serviços pagos futuros, se oferecidos, podem cobrir limites maiores, histórico salvo, monitoramento, lote, acesso por API, equipes, automação, personalização ou remoção de anúncios. A superfície de pagamento deve apresentar preço, renovação, cotas, impostos quando aplicável, cancelamento, tratamento de reembolso, escopo de suporte e termos do provedor antes de aceitar pagamento.',
             ],
           },
           {
@@ -1273,8 +1275,8 @@ export const legalPageCatalog: LegalPage[] = [
       es: {
         navLabel: 'Términos',
         title: 'Términos de Uso',
-        description: 'Términos públicos para uso lícito, prevención de abuso, límites gratuitos, resultados informativos, futuros servicios pagos y responsabilidad en SuperSites.',
-        updatedLabel: 'Revisado el 30 de junio de 2026',
+        description: 'Términos públicos para uso lícito, prevención de abuso, límites gratuitos, resultados informativos, donaciones opcionales, futuros servicios pagos y responsabilidad en SuperSites.',
+        updatedLabel: 'Revisado el 2 de julio de 2026',
         sections: [
           {
             heading: 'Uso permitido',
@@ -1305,10 +1307,11 @@ export const legalPageCatalog: LegalPage[] = [
             ],
           },
           {
-            heading: 'Servicios pagos futuros',
+            heading: 'Donaciones y servicios pagos futuros',
             paragraphs: [
-              'SuperSites presenta aquí las herramientas públicas sin checkout. Servicios pagos futuros pueden cubrir límites mayores, historial guardado, monitoreo, lote, acceso por API, equipos, automatización, personalización o eliminación de anuncios.',
-              'Cuando se ofrezca un servicio pago, la superficie de pago presenta precio, renovación, cuotas, impuestos cuando apliquen, cancelación, tratamiento de reembolsos, alcance de soporte y términos del proveedor antes de aceptar el pago.',
+              'SuperSites puede ofrecer un checkout opcional de donación alojado por Stripe para apoyar herramientas públicas gratis. Las donaciones son voluntarias, no crean una cuenta, no compran prioridad, funciones, SLA, asesoría profesional ni resultado garantizado, y los datos de tarjeta los recopila el proveedor de pago en lugar de SuperSites.',
+              'Si donaste un importe incorrecto o necesitas ayuda con una donación, contáctanos con el identificador del recibo de Stripe. Las donaciones no se describen como deducibles de impuestos salvo que la ley aplicable y tus propios registros respalden de forma independiente ese tratamiento.',
+              'Servicios pagos futuros, si se ofrecen, pueden cubrir límites mayores, historial guardado, monitoreo, lote, acceso por API, equipos, automatización, personalización o eliminación de anuncios. La superficie de pago debe presentar precio, renovación, cuotas, impuestos cuando apliquen, cancelación, tratamiento de reembolsos, alcance de soporte y términos del proveedor antes de aceptar el pago.',
             ],
           },
           {
@@ -1323,8 +1326,8 @@ export const legalPageCatalog: LegalPage[] = [
       fr: {
         navLabel: 'Conditions',
         title: 'Conditions d’utilisation',
-        description: 'Conditions publiques pour usage licite, prévention des abus, limites gratuites, résultats informatifs, futurs services payants et responsabilité dans SuperSites.',
-        updatedLabel: 'Révisé le 30 juin 2026',
+        description: 'Conditions publiques pour usage licite, prévention des abus, limites gratuites, résultats informatifs, dons optionnels, futurs services payants et responsabilité dans SuperSites.',
+        updatedLabel: 'Révisé le 2 juillet 2026',
         sections: [
           {
             heading: 'Utilisation autorisée',
@@ -1355,10 +1358,11 @@ export const legalPageCatalog: LegalPage[] = [
             ],
           },
           {
-            heading: 'Services payants futurs',
+            heading: 'Dons et services payants futurs',
             paragraphs: [
-              'SuperSites présente ici les outils publics sans checkout. De futurs services payants peuvent couvrir limites plus élevées, historique enregistré, surveillance, lots, accès API, équipes, automatisation, personnalisation ou suppression des annonces.',
-              'Lorsqu’un service payant est proposé, la surface de paiement présente prix, renouvellement, quotas, taxes le cas échéant, annulation, traitement des remboursements, périmètre de support et termes fournisseur avant acceptation du paiement.',
+              'SuperSites peut proposer un checkout de don optionnel hébergé par Stripe pour soutenir les outils publics gratuits. Les dons sont volontaires, ne créent pas de compte, n’achètent ni priorité, ni fonctions, ni SLA, ni conseil professionnel, ni résultat garanti, et les données de carte sont collectées par le prestataire de paiement plutôt que par SuperSites.',
+              'Si vous donnez un montant incorrect ou avez besoin d’aide pour un don, contactez-nous avec l’identifiant du reçu Stripe. Les dons ne sont pas présentés comme fiscalement déductibles sauf si le droit applicable et vos propres justificatifs soutiennent indépendamment ce traitement.',
+              'De futurs services payants, s’ils sont proposés, peuvent couvrir limites plus élevées, historique enregistré, surveillance, lots, accès API, équipes, automatisation, personnalisation ou suppression des annonces. La surface de paiement doit présenter prix, renouvellement, quotas, taxes le cas échéant, annulation, traitement des remboursements, périmètre de support et termes fournisseur avant acceptation du paiement.',
             ],
           },
           {
@@ -1373,8 +1377,8 @@ export const legalPageCatalog: LegalPage[] = [
       de: {
         navLabel: 'Nutzungsbedingungen',
         title: 'Nutzungsbedingungen',
-        description: 'Öffentliche Bedingungen für rechtmäßige Nutzung, Missbrauchsschutz, kostenlose Tool-Grenzen, informative Ergebnisse, künftige bezahlte Dienste und Verantwortung bei SuperSites.',
-        updatedLabel: 'Geprüft am 30. Juni 2026',
+        description: 'Öffentliche Bedingungen für rechtmäßige Nutzung, Missbrauchsschutz, kostenlose Tool-Grenzen, informative Ergebnisse, optionale Spenden, künftige bezahlte Dienste und Verantwortung bei SuperSites.',
+        updatedLabel: 'Geprüft am 2. Juli 2026',
         sections: [
           {
             heading: 'Erlaubte Nutzung',
@@ -1405,10 +1409,11 @@ export const legalPageCatalog: LegalPage[] = [
             ],
           },
           {
-            heading: 'Künftige kostenpflichtige Dienste',
+            heading: 'Spenden und künftige kostenpflichtige Dienste',
             paragraphs: [
-              'SuperSites zeigt die öffentlichen Tools hier ohne Checkout. Künftige kostenpflichtige Dienste können höhere Limits, gespeicherten Verlauf, Monitoring, Stapelarbeit, API-Zugang, Teams, Automatisierung, Anpassung oder Entfernung von Werbung umfassen.',
-              'Wenn ein kostenpflichtiger Dienst angeboten wird, zeigt die Zahlungsfläche Preis, Verlängerung, Quoten, Steuern falls anwendbar, Kündigung, Erstattungsabwicklung, Supportumfang und Anbieterbedingungen vor Annahme der Zahlung.',
+              'SuperSites kann einen optionalen, von Stripe gehosteten Spenden-Checkout anbieten, um kostenlose öffentliche Tools zu unterstützen. Spenden sind freiwillig, erstellen kein Konto, kaufen keine Priorität, Funktionen, SLA, professionelle Beratung oder garantiertes Ergebnis, und Kartendaten werden vom Zahlungsanbieter statt von SuperSites erfasst.',
+              'Wenn Sie einen falschen Betrag gespendet haben oder Hilfe zu einer Spende benötigen, kontaktieren Sie uns mit der Stripe-Belegkennung. Spenden werden nicht als steuerlich absetzbar beschrieben, sofern geltendes Recht und Ihre eigenen Unterlagen diese Behandlung nicht unabhängig stützen.',
+              'Künftige kostenpflichtige Dienste können, wenn angeboten, höhere Limits, gespeicherten Verlauf, Monitoring, Stapelarbeit, API-Zugang, Teams, Automatisierung, Anpassung oder Entfernung von Werbung umfassen. Die Zahlungsfläche muss Preis, Verlängerung, Quoten, Steuern falls anwendbar, Kündigung, Erstattungsabwicklung, Supportumfang und Anbieterbedingungen vor Annahme der Zahlung zeigen.',
             ],
           },
           {

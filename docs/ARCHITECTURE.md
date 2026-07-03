@@ -448,7 +448,8 @@ Paginas indexaveis devem renderizar titulo, conteudo essencial, links, canonical
 ## Stripe hosted checkout foundation
 
 - O control-plane expoe `POST /api/v1/billing/stripe/checkout-sessions` para preparar Checkout hospedado Stripe de doacao, plano pago ou servico personalizado.
-- A rota e publica por causa de doacoes, mas so aceita sites conhecidos, slugs seguros, valores/catalogos permitidos e `return_path` interno sob `/supersites/`.
+- A rota e publica por causa de doacoes, mas so aceita sites conhecidos, slugs seguros, moedas suportadas, valores dentro dos limites por moeda/catalogos permitidos e `return_path` interno sob `/supersites/`.
+- `return_path` recebido tem query string e fragment descartados antes de montar as URLs da Stripe; `cancel_url` volta para a rota limpa e `success_url` acrescenta apenas `checkout=success&provider=stripe`.
 - `billing_checkout_sessions` guarda somente ledger operacional limitado: session id, tipo, modo, catalog key, valor/moeda, hashes e relacoes locais; cartao e dados de pagamento ficam na Stripe.
 - A rota falha fechada enquanto `BILLING_PROVIDER_ACTIVATION`, `BILLING_CHECKOUT_ENABLED`, `BILLING_STRIPE_CHECKOUT_ENABLED`, provider readiness, plano/canal e aprovacao humana nao estiverem prontos.
 - Webhooks live e mutacao de entitlements por pagamento continuam gates separados ate `STRIPE_WEBHOOK_SECRET`, smokes de provider e politicas de cancelamento/reembolso estarem aprovados.

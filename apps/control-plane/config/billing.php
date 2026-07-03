@@ -13,19 +13,19 @@ return [
             'service_checkout_enabled' => env('BILLING_STRIPE_SERVICE_CHECKOUT_ENABLED', false),
             'webhooks_enabled' => env('BILLING_STRIPE_WEBHOOKS_ENABLED', false),
             'revenue_import_enabled' => env('BILLING_STRIPE_REVENUE_IMPORT_ENABLED', false),
-            'allowed_donation_amounts' => [
-                'USD' => array_values(array_filter(array_map(
-                    'intval',
-                    explode(',', env('BILLING_STRIPE_ALLOWED_DONATION_AMOUNTS_USD', '500,1000,2500,5000')),
-                ), fn (int $amount): bool => $amount > 0)),
-                'BRL' => array_values(array_filter(array_map(
-                    'intval',
-                    explode(',', env('BILLING_STRIPE_ALLOWED_DONATION_AMOUNTS_BRL', '1000,2500,5000,10000')),
-                ), fn (int $amount): bool => $amount > 0)),
-                'EUR' => array_values(array_filter(array_map(
-                    'intval',
-                    explode(',', env('BILLING_STRIPE_ALLOWED_DONATION_AMOUNTS_EUR', '500,1000,2500,5000')),
-                ), fn (int $amount): bool => $amount > 0)),
+            'donation_amount_limits' => [
+                'USD' => [
+                    'min' => (int) env('BILLING_STRIPE_DONATION_AMOUNT_MIN_USD', 100),
+                    'max' => (int) env('BILLING_STRIPE_DONATION_AMOUNT_MAX_USD', 500000),
+                ],
+                'BRL' => [
+                    'min' => (int) env('BILLING_STRIPE_DONATION_AMOUNT_MIN_BRL', 500),
+                    'max' => (int) env('BILLING_STRIPE_DONATION_AMOUNT_MAX_BRL', 500000),
+                ],
+                'EUR' => [
+                    'min' => (int) env('BILLING_STRIPE_DONATION_AMOUNT_MIN_EUR', 100),
+                    'max' => (int) env('BILLING_STRIPE_DONATION_AMOUNT_MAX_EUR', 500000),
+                ],
             ],
             'service_catalog' => [
                 'custom-service-deposit' => [

@@ -21,15 +21,15 @@ Estado tecnico atual apos aprovacao do owner em 2026-07-02:
 
 A API `POST /api/v1/billing/stripe/checkout-sessions` prepara Checkout hospedado da Stripe para tres usos futuros:
 
-- `donation`: apoio/doacao por valores permitidos em catalogo.
+- `donation`: apoio/doacao com valor editavel pelo usuario, limitado por moeda no servidor.
 - `plan`: plano pago com `billing_plans.provider_price_reference` apontando para Stripe Price oficial.
 - `service`: deposito/servico personalizado definido em catalogo operacional.
 
 Regras atuais:
 
-- O endpoint e publico para suportar doacoes, mas tem throttle, aceita somente `site_slug`, `kind`, `locale`, `return_path` interno, valores/catalogo permitidos e slugs seguros.
+- O endpoint e publico para suportar doacoes, mas tem throttle, aceita somente `site_slug`, `kind`, `locale`, `return_path` interno, moedas suportadas, valores dentro dos limites por moeda e slugs seguros.
 - A API nao armazena cartao; cartao fica na superficie hospedada Stripe.
-- URLs de retorno externas sao rejeitadas e substituidas por rota `/supersites/...` segura.
+- URLs de retorno externas sao rejeitadas e substituidas por rota `/supersites/...` segura; query string e fragment recebidos no `return_path` sao descartados antes de enviar `success_url` e `cancel_url` para a Stripe. O `cancel_url` volta para a pagina limpa, sem `session_id`, para evitar bloqueios de ModSecurity e reduzir exposicao desnecessaria em URL.
 - Sessoes criadas gravam somente ledger local limitado em `billing_checkout_sessions`: provider, site, tipo, modo, session id, hash da URL, valor/moeda, catalog key e hashes/fingerprints operacionais.
 - O endpoint chama Stripe somente se todos os gates estiverem prontos: flags globais, provider Stripe aprovado, KYC/termos/impostos/perfil de pagamento, API key, webhook secret, endpoint aprovado, plano/canal pronto e aprovacao humana registrada.
 - Em producao tecnica atual, as flags continuam `false`; chamadas retornam `503` com motivos e `side_effects=none`.
@@ -42,9 +42,9 @@ Variaveis principais:
 - `BILLING_STRIPE_CHECKOUT_ENABLED`
 - `BILLING_STRIPE_DONATIONS_ENABLED`
 - `BILLING_STRIPE_SERVICE_CHECKOUT_ENABLED`
-- `BILLING_STRIPE_ALLOWED_DONATION_AMOUNTS_USD`
-- `BILLING_STRIPE_ALLOWED_DONATION_AMOUNTS_BRL`
-- `BILLING_STRIPE_ALLOWED_DONATION_AMOUNTS_EUR`
+- `BILLING_STRIPE_DONATION_AMOUNT_MIN_USD` / `BILLING_STRIPE_DONATION_AMOUNT_MAX_USD`
+- `BILLING_STRIPE_DONATION_AMOUNT_MIN_BRL` / `BILLING_STRIPE_DONATION_AMOUNT_MAX_BRL`
+- `BILLING_STRIPE_DONATION_AMOUNT_MIN_EUR` / `BILLING_STRIPE_DONATION_AMOUNT_MAX_EUR`
 - `BILLING_STRIPE_CUSTOM_SERVICE_DEPOSIT_ENABLED`
 - `STRIPE_SECRET_KEY`
 - `STRIPE_WEBHOOK_SECRET`
@@ -52,7 +52,8 @@ Variaveis principais:
 Deploy HostGator:
 
 - o workflow `Deploy Control Plane HostGator` aceita as variaveis `SUPERSITES_BILLING_PROVIDER_ACTIVATION`, `SUPERSITES_BILLING_CHECKOUT_ENABLED`, `SUPERSITES_BILLING_STRIPE_CHECKOUT_ENABLED`, `SUPERSITES_BILLING_STRIPE_DONATIONS_ENABLED`, `SUPERSITES_BILLING_STRIPE_SERVICE_CHECKOUT_ENABLED` e `SUPERSITES_BILLING_STRIPE_WEBHOOKS_ENABLED`;
-- todas continuam `false` por padrao quando a variavel nao existe, para evitar ativacao acidental em release.
+- os limites opcionais de doacao por moeda sao `SUPERSITES_BILLING_STRIPE_DONATION_AMOUNT_MIN_USD`, `SUPERSITES_BILLING_STRIPE_DONATION_AMOUNT_MAX_USD`, `SUPERSITES_BILLING_STRIPE_DONATION_AMOUNT_MIN_BRL`, `SUPERSITES_BILLING_STRIPE_DONATION_AMOUNT_MAX_BRL`, `SUPERSITES_BILLING_STRIPE_DONATION_AMOUNT_MIN_EUR` e `SUPERSITES_BILLING_STRIPE_DONATION_AMOUNT_MAX_EUR`;
+- flags booleanas continuam `false` por padrao quando a variavel nao existe, para evitar ativacao acidental em release; limites de doacao usam defaults tecnicos seguros.
 
 Gate antes de qualquer ativacao:
 

@@ -15,10 +15,8 @@ O SuperSites ja tem:
 
 O SuperSites ainda nao tem:
 
-- doacao real publicada;
-- botao de doacao real em todas as paginas;
 - provider Pagar.me integrado ao contrato de billing;
-- checkout real, payment link, assinatura, invoice, refund, customer portal ou entitlement pago por pagamento;
+- checkout real para planos pagos/servicos personalizados, payment link manual, assinatura, invoice, refund, customer portal ou entitlement pago por pagamento;
 - provedor global/multimoeda definido;
 - politica final de servicos personalizados, cancelamento, reembolso, impostos e atendimento.
 
@@ -90,12 +88,12 @@ Aceite:
 
 Objetivo: publicar doacao pontual com minimo risco, sem conta de usuario e sem armazenar pagamento no SuperSites.
 
-Status em 2026-07-02: aprovado pelo owner e implementado para Stripe hosted Checkout. O CTA publico chama o control-plane, cria uma Checkout Session no servidor e redireciona para `checkout.stripe.com`. Cartao e dados de pagamento ficam na Stripe. O webhook live foi criado e o signing secret foi guardado somente em ambiente/cofre; o ledger local registra sessoes e eventos por ids/hashes. Nenhum plano pago, servico personalizado ou entitlement e ativado.
+Status em 2026-07-02: aprovado pelo owner e implementado para Stripe hosted Checkout. O CTA publico chama o control-plane, permite valor editavel com defaults por idioma/moeda (USD 20, BRL 100, EUR 20), cria uma Checkout Session no servidor e redireciona para `checkout.stripe.com`. Cartao e dados de pagamento ficam na Stripe. `success_url` e `cancel_url` usam retorno interno limpo, sem `session_id`, para evitar bloqueio de ModSecurity e reduzir dados em URL. O webhook live foi criado e o signing secret foi guardado somente em ambiente/cofre; o ledger local registra sessoes e eventos por ids/hashes. Nenhum plano pago, servico personalizado ou entitlement e ativado.
 
 Sprints:
 
 1. Escolher provider/canal aprovado: Pagar.me payment link/checkout hospedado para BRL ou provider global alternativo.
-2. Definir valores sugeridos por moeda e politica de recibo/reembolso.
+2. Definir defaults por moeda, limites aceitos pelo servidor e politica de recibo/reembolso.
 3. Configurar link hospedado fora do repo; armazenar apenas secret/env/config operacional.
 4. Adicionar feature flag por ambiente e por site.
 5. Atualizar `SupportMonetizationGoLiveReadiness` para permitir `should_publish_link=true` somente quando todos os gates estiverem prontos.

@@ -80,9 +80,9 @@ class StripeCheckoutSessionTest extends TestCase
             'kind' => 'donation',
             'site_slug' => 'netprobe-atlas',
             'locale' => 'en',
-            'amount_minor' => 1000,
+            'amount_minor' => 2000,
             'currency' => 'USD',
-            'return_path' => 'https://evil.example/steal',
+            'return_path' => '/supersites/netprobe-atlas/en?checkout=cancel&provider=stripe&session_id=cs_live_bad',
         ])
             ->assertCreated()
             ->assertJsonPath('data.provider', 'stripe')
@@ -94,8 +94,11 @@ class StripeCheckoutSessionTest extends TestCase
         Http::assertSent(function (Request $request): bool {
             return $request->url() === 'https://api.stripe.test/v1/checkout/sessions'
                 && $request['mode'] === 'payment'
-                && $request['line_items[0][price_data][unit_amount]'] === '1000'
-                && str_starts_with($request['success_url'], 'https://opentshost.com/supersites/netprobe-atlas/en?checkout=success');
+                && $request['line_items[0][price_data][unit_amount]'] === '2000'
+                && $request['success_url'] === 'https://opentshost.com/supersites/netprobe-atlas/en?checkout=success&provider=stripe'
+                && $request['cancel_url'] === 'https://opentshost.com/supersites/netprobe-atlas/en'
+                && ! str_contains($request['success_url'], 'session_id')
+                && ! str_contains($request['cancel_url'], 'session_id');
         });
 
         $this->assertDatabaseHas('billing_checkout_sessions', [
@@ -104,7 +107,7 @@ class StripeCheckoutSessionTest extends TestCase
             'mode' => 'payment',
             'catalog_key' => 'support-donation',
             'provider_session_id' => 'cs_test_donation_123',
-            'amount_minor' => 1000,
+            'amount_minor' => 2000,
             'currency' => 'USD',
             'status' => 'created',
         ]);
@@ -112,6 +115,40 @@ class StripeCheckoutSessionTest extends TestCase
         $this->assertDatabaseHas('audit_logs', [
             'action' => 'api.billing.checkout.stripe_created',
         ]);
+    }
+
+    public function test_donation_checkout_rejects_unsupported_currency_and_brl_below_minimum(): void
+    {
+        $this->seed([PortfolioSiteSeeder::class, BillingReadinessSeeder::class, SupportMonetizationReadinessSeeder::class]);
+        $this->enableCheckoutConfig();
+        $this->markStripeProviderReady();
+        $this->markDonationChannelReady('supersite');
+
+        Http::fake();
+
+        $this->postJson('/api/v1/billing/stripe/checkout-sessions', [
+            'kind' => 'donation',
+            'site_slug' => 'supersite',
+            'locale' => 'pt-br',
+            'amount_minor' => 1000,
+            'currency' => 'JPY',
+            'return_path' => '/supersites/pt-br',
+        ])
+            ->assertStatus(503)
+            ->assertJsonPath('meta.reasons.0', 'donation_currency_not_supported');
+
+        $this->postJson('/api/v1/billing/stripe/checkout-sessions', [
+            'kind' => 'donation',
+            'site_slug' => 'supersite',
+            'locale' => 'pt-br',
+            'amount_minor' => 100,
+            'currency' => 'BRL',
+            'return_path' => '/supersites/pt-br',
+        ])
+            ->assertStatus(503)
+            ->assertJsonPath('meta.reasons.0', 'donation_amount_out_of_range');
+
+        Http::assertNothingSent();
     }
 
     public function test_ready_paid_plan_checkout_uses_provider_price_reference(): void
@@ -222,7 +259,6 @@ class StripeCheckoutSessionTest extends TestCase
             'billing.providers.stripe.checkout_enabled' => true,
             'billing.providers.stripe.donations_enabled' => true,
             'billing.providers.stripe.checkout_sessions_endpoint' => 'https://api.stripe.test/v1/checkout/sessions',
-            'billing.providers.stripe.allowed_donation_amounts.USD' => [500, 1000, 2500],
         ]);
     }
 

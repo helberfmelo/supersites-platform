@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 
 class StripeCheckoutSessionCreator
 {
-    public const CONTRACT_VERSION = '2026-07-02.24.2';
+    public const CONTRACT_VERSION = '2026-07-02.24.4';
 
     /** @var list<string> */
     private array $locales = ['en', 'pt-br', 'es', 'fr', 'de'];
@@ -69,15 +69,17 @@ class StripeCheckoutSessionCreator
     {
         $currency = $this->normalizeCurrency($input['currency'] ?? 'USD');
         $amountMinor = (int) ($input['amount_minor'] ?? 0);
-        $allowedAmounts = config("billing.providers.stripe.allowed_donation_amounts.$currency", []);
+        $amountLimits = $this->donationAmountLimits($currency);
         $reasons = $baseGateReasons;
 
         if (! (bool) config('billing.providers.stripe.donations_enabled', false)) {
             $reasons[] = 'stripe_donations_disabled';
         }
 
-        if (! in_array($amountMinor, $allowedAmounts, true)) {
-            $reasons[] = 'donation_amount_not_allowed';
+        if ($amountLimits === null) {
+            $reasons[] = 'donation_currency_not_supported';
+        } elseif ($amountMinor < $amountLimits['min'] || $amountMinor > $amountLimits['max']) {
+            $reasons[] = 'donation_amount_out_of_range';
         }
 
         $channel = SupportMonetizationChannel::query()
@@ -113,7 +115,7 @@ class StripeCheckoutSessionCreator
             'line_items[0][price_data][currency]' => strtolower($currency),
             'line_items[0][price_data][unit_amount]' => (string) $amountMinor,
             'line_items[0][price_data][product_data][name]' => "{$site->name} support",
-            'line_items[0][price_data][product_data][description]' => 'Optional support for free SuperSites tools.',
+            'line_items[0][price_data][product_data][description]' => 'Optional donation for maintaining free SuperSites tools. It does not buy features, priority or a service commitment.',
         ];
 
         return $this->sendToStripe(
@@ -273,7 +275,7 @@ class StripeCheckoutSessionCreator
         $returnPath = $this->sanitizeReturnPath($input['return_path'] ?? null, $site, $locale);
         $clientReferenceId = 'supersites:'.Str::uuid()->toString();
         $successUrl = $this->appendCheckoutQuery($this->absoluteReturnUrl($returnPath), 'success');
-        $cancelUrl = $this->appendCheckoutQuery($this->absoluteReturnUrl($returnPath), 'cancel');
+        $cancelUrl = $this->absoluteReturnUrl($returnPath);
         $base = [
             'mode' => $mode,
             'success_url' => $successUrl,
@@ -505,9 +507,31 @@ class StripeCheckoutSessionCreator
         return preg_match('/^[A-Za-z0-9._:-]{3,120}$/', $normalized) === 1 ? $normalized : null;
     }
 
+    /**
+     * @return array{min: int, max: int}|null
+     */
+    private function donationAmountLimits(string $currency): ?array
+    {
+        $limits = config("billing.providers.stripe.donation_amount_limits.$currency");
+
+        if (! is_array($limits)) {
+            return null;
+        }
+
+        $min = (int) ($limits['min'] ?? 0);
+        $max = (int) ($limits['max'] ?? 0);
+
+        if ($min < 1 || $max < $min) {
+            return null;
+        }
+
+        return ['min' => $min, 'max' => $max];
+    }
+
     private function sanitizeReturnPath(mixed $value, Site $site, string $locale): string
     {
         $path = trim((string) $value);
+        $path = (string) (parse_url($path, PHP_URL_PATH) ?: $path);
 
         if (
             $path === ''
@@ -542,7 +566,7 @@ class StripeCheckoutSessionCreator
     {
         $separator = str_contains($url, '?') ? '&' : '?';
 
-        return $url.$separator.'checkout='.$status.'&provider=stripe&session_id={CHECKOUT_SESSION_ID}';
+        return $url.$separator.'checkout='.$status.'&provider=stripe';
     }
 
     /**
