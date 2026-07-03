@@ -9,6 +9,8 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+. (Join-Path $PSScriptRoot "adsense-artifact.ps1")
+
 if ($MaxAttempts -lt 1) {
     throw "MaxAttempts must be at least 1."
 }
@@ -134,7 +136,7 @@ function Assert-DeployedStaticApp {
     Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context "$Context status"
     Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context "$Context status"
     Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)No .{0,80}public deploy|HostGator public URL remains|noindex placeholder" -Context "$Context status"
-    Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick" -Context "$Context status"
+    Assert-NoDisallowedExternalAdsOrAnalyticsMarkers -Content $statusResponse.Content -Context "$Context status"
 
     return $appAssetUrl
 }
@@ -168,7 +170,7 @@ $homeResponse = Invoke-SmokeRequest -Url "$publicBase/" -RequiredContent "SuperS
 
 Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context "Home page"
 Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context "Home page"
-Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick" -Context "Home page"
+Assert-NoDisallowedExternalAdsOrAnalyticsMarkers -Content $homeResponse.Content -Context "Home page"
 Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)Open public placeholder|Abrir placeholder|Ouvrir le placeholder|Platzhalter" -Context "Home page"
 
 if ($homeResponse.Content -notmatch [regex]::Escape("href=`"$publicBase`"")) {

@@ -7,6 +7,8 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+. (Join-Path $PSScriptRoot "adsense-artifact.ps1")
+
 function Join-Url {
     param(
         [string]$BaseUrl,
@@ -80,7 +82,7 @@ $homeResponse = Invoke-SmokeRequest -Url "$publicBase/" -RequiredContent "NetPro
 
 Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context "NetProbe home"
 Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context "NetProbe home"
-Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick" -Context "NetProbe home"
+Assert-NoDisallowedExternalAdsOrAnalyticsMarkers -Content $homeResponse.Content -Context "NetProbe home"
 Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)127\.0\.0\.1|localhost" -Context "NetProbe home"
 Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)launch status|advertising not active|api live|release checks|upgrade path|free results first" -Context "NetProbe home"
 
@@ -113,7 +115,7 @@ foreach ($page in $requiredPages) {
     $response = Invoke-SmokeRequest -Url $page.Url -RequiredContent $page.Marker
     Assert-DoesNotContain -Content $response.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context $page.Url
     Assert-DoesNotContain -Content $response.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context $page.Url
-    Assert-DoesNotContain -Content $response.Content -Pattern "(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick" -Context $page.Url
+    Assert-NoDisallowedExternalAdsOrAnalyticsMarkers -Content $response.Content -Context $page.Url
     if ($page.Url -match "/tools/what-is-my-ip$") {
         Assert-DoesNotContain -Content $response.Content -Pattern "(?i)Run IP check|Public API live|release checks" -Context $page.Url
     }

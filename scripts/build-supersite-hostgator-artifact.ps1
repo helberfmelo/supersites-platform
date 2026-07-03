@@ -7,6 +7,8 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+. (Join-Path $PSScriptRoot "adsense-artifact.ps1")
+
 function Normalize-BasePath {
     param([string]$Value)
 
@@ -87,6 +89,8 @@ Update-ArtifactPublicReferences `
     -LegacyPublicBaseUrl "https://opentshost.com/supersites" `
     -TargetPublicBaseUrl $PublicBaseUrl
 Set-ArtifactRobotsFile -Root $artifactPath -TargetPublicBaseUrl $PublicBaseUrl
+$adsenseClient = Get-AdSenseClientFromEnvironment
+$adsenseUpdatedFiles = Add-AdSenseSnippetToArtifact -Root $artifactPath -Client $adsenseClient
 
 & (Join-Path $repoRoot "scripts/validate-supersite-static-artifact.ps1") `
     -ArtifactPath $artifactPath `
@@ -111,7 +115,7 @@ $manifest = [ordered]@{
     totalBytes = $totalBytes
     notes = @(
         "Build was generated with NUXT_APP_BASE_URL=$normalizedBasePath.",
-        "No ads, GTM or external analytics integrations are enabled in this artifact.",
+        $(if ($adsenseClient) { "AdSense review snippet was injected into $adsenseUpdatedFiles HTML files from SUPERSITES_ADSENSE_CLIENT." } else { "No ads, GTM or external analytics integrations are enabled in this artifact." }),
         "Remote deploy must publish this artifact into a versioned HostGator release directory."
     )
 }

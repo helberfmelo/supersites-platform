@@ -11,6 +11,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 . (Join-Path $PSScriptRoot "static-app-hostgator.config.ps1")
+. (Join-Path $PSScriptRoot "adsense-artifact.ps1")
 
 function Update-ArtifactPublicReferences {
     param(
@@ -131,6 +132,8 @@ Update-ArtifactPublicReferences `
     -LegacyPublicBaseUrl "https://opentshost.com/supersites/$AppId" `
     -TargetPublicBaseUrl $publicBaseUrl
 Set-ArtifactRobotsFile -Root $artifactPath -TargetPublicBaseUrl $publicBaseUrl
+$adsenseClient = Get-AdSenseClientFromEnvironment
+$adsenseUpdatedFiles = Add-AdSenseSnippetToArtifact -Root $artifactPath -Client $adsenseClient
 
 & (Join-Path $repoRoot "scripts/validate-static-app-artifact.ps1") `
     -AppId $AppId `
@@ -159,7 +162,7 @@ $manifestOut = [ordered]@{
     totalBytes = $totalBytes
     launchGates = @(
         "Static artifact built with NUXT_APP_BASE_URL=$basePath.",
-        "No ads, GTM or external analytics integrations are enabled in this artifact.",
+        $(if ($adsenseClient) { "AdSense review snippet was injected into $adsenseUpdatedFiles HTML files from SUPERSITES_ADSENSE_CLIENT." } else { "No ads, GTM or external analytics integrations are enabled in this artifact." }),
         "Real deploy must upload to a versioned app release directory, switch only the managed app .htaccess and pass public smoke.",
         "Rollback may switch to a previous release or return the app folder to the bootstrap placeholder."
     )

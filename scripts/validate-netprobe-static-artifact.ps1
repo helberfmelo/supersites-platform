@@ -7,6 +7,8 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+. (Join-Path $PSScriptRoot "adsense-artifact.ps1")
+
 function Normalize-BasePath {
     param([string]$Value)
 
@@ -99,9 +101,7 @@ foreach ($file in $htmlFiles) {
         throw "NetProbe static artifact contains root-relative Nuxt asset references in $file. Build with NUXT_APP_BASE_URL=$basePath/."
     }
 
-    if ($content -match '(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick') {
-        throw "NetProbe static artifact contains an external ads or analytics integration marker in $file."
-    }
+    Assert-NoDisallowedExternalAdsOrAnalyticsMarkers -Content $content -Context "NetProbe static artifact $file"
 }
 
 Assert-ContentContains -Content $combinedHtml -Needle "NetProbe Atlas" -Context "NetProbe static artifact"
@@ -154,9 +154,7 @@ if ($combinedText -match '(?i)(?:127\.0\.0\.1|localhost):8013|https?://(?:127\.0
     throw "NetProbe static artifact contains local NetProbe API references."
 }
 
-if ($combinedText -match '(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick') {
-    throw "NetProbe static artifact contains an external ads or analytics integration marker."
-}
+Assert-NoDisallowedExternalAdsOrAnalyticsMarkers -Content $combinedText -Context "NetProbe static artifact"
 
 Assert-ContentContains -Content $combinedText -Needle $apiBaseUrl -Context "NetProbe static artifact runtime config"
 

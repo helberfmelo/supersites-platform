@@ -6,6 +6,8 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+. (Join-Path $PSScriptRoot "adsense-artifact.ps1")
+
 function Normalize-BasePath {
     param([string]$Value)
 
@@ -93,9 +95,7 @@ foreach ($file in $htmlFiles) {
         throw "Static artifact contains root-relative Nuxt asset references in $file. Build with NUXT_APP_BASE_URL=$basePath/."
     }
 
-    if ($content -match '(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick') {
-        throw "Static artifact contains an external ads or analytics integration marker in $file."
-    }
+    Assert-NoDisallowedExternalAdsOrAnalyticsMarkers -Content $content -Context "Static artifact $file"
 }
 
 Assert-ContentContains -Content $combinedHtml -Needle "SuperSites Hub" -Context "Static artifact"

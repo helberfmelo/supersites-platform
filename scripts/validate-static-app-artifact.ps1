@@ -14,6 +14,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 . (Join-Path $PSScriptRoot "static-app-hostgator.config.ps1")
+. (Join-Path $PSScriptRoot "adsense-artifact.ps1")
 
 function Get-ArtifactFilePath {
     param(
@@ -92,9 +93,7 @@ foreach ($file in $htmlFiles) {
         throw "$($config.DisplayName) static artifact contains root-relative Nuxt asset references in $($file.FullName). Build with NUXT_APP_BASE_URL=$basePathTrailing."
     }
 
-    if ($content -match '(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick') {
-        throw "$($config.DisplayName) static artifact contains an external ads or analytics integration marker in $($file.FullName)."
-    }
+    Assert-NoDisallowedExternalAdsOrAnalyticsMarkers -Content $content -Context "$($config.DisplayName) static artifact $($file.FullName)"
 }
 
 foreach ($marker in $config.RequiredMarkers) {
@@ -151,9 +150,7 @@ if ($combinedDocumentText -match '(?i)https?://(?:127\.0\.0\.1|localhost)[^"'']*
     throw "$($config.DisplayName) static artifact contains localhost or loopback URL references in public document payloads."
 }
 
-if ($combinedText -match '(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick') {
-    throw "$($config.DisplayName) static artifact contains an external ads or analytics integration marker."
-}
+Assert-NoDisallowedExternalAdsOrAnalyticsMarkers -Content $combinedText -Context "$($config.DisplayName) static artifact"
 
 if ($config.ApiEnvName) {
     Assert-ContentContains -Content $combinedText -Needle $apiBaseUrl -Context "$($config.DisplayName) static artifact runtime config"

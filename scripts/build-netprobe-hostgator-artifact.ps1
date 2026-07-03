@@ -8,6 +8,8 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+. (Join-Path $PSScriptRoot "adsense-artifact.ps1")
+
 function Normalize-BasePath {
     param([string]$Value)
 
@@ -107,6 +109,8 @@ Update-ArtifactPublicReferences `
     -LegacyPublicBaseUrl "https://opentshost.com/supersites/netprobe-atlas" `
     -TargetPublicBaseUrl $publicBaseUrl
 Set-ArtifactRobotsFile -Root $artifactPath -TargetPublicBaseUrl $publicBaseUrl
+$adsenseClient = Get-AdSenseClientFromEnvironment
+$adsenseUpdatedFiles = Add-AdSenseSnippetToArtifact -Root $artifactPath -Client $adsenseClient
 
 & (Join-Path $repoRoot "scripts/validate-netprobe-static-artifact.ps1") `
     -ArtifactPath $artifactPath `
@@ -134,7 +138,7 @@ $manifest = [ordered]@{
     launchGates = @(
         "Static artifact built with NUXT_APP_BASE_URL=$normalizedBasePath.",
         "Runtime public API base is $apiBaseUrl.",
-        "No ads, GTM or external analytics integrations are enabled in this artifact.",
+        $(if ($adsenseClient) { "AdSense review snippet was injected into $adsenseUpdatedFiles HTML files from SUPERSITES_ADSENSE_CLIENT." } else { "No ads, GTM or external analytics integrations are enabled in this artifact." }),
         "Real deploy must preserve the remote placeholder and sensitive files, switch only the managed NetProbe .htaccess, and pass public API smoke before traffic is considered live."
     )
 }

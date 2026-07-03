@@ -12,6 +12,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 . (Join-Path $PSScriptRoot "static-app-hostgator.config.ps1")
+. (Join-Path $PSScriptRoot "adsense-artifact.ps1")
 
 function Join-Url {
     param(
@@ -106,7 +107,7 @@ $homeResponse = Invoke-SmokeRequest -Url "$publicBase/" -RequiredContent $config
 
 Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context "$($config.DisplayName) home"
 Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context "$($config.DisplayName) home"
-Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick" -Context "$($config.DisplayName) home"
+Assert-NoDisallowedExternalAdsOrAnalyticsMarkers -Content $homeResponse.Content -Context "$($config.DisplayName) home"
 Assert-DoesNotContain -Content $homeResponse.Content -Pattern "(?i)127\.0\.0\.1|localhost" -Context "$($config.DisplayName) home"
 
 $escapedBasePath = [regex]::Escape($basePath)
@@ -123,14 +124,14 @@ foreach ($page in $config.SmokePages) {
     $response = Invoke-SmokeRequest -Url (Join-Url $publicBase $page.Path) -RequiredContent $page.Marker
     Assert-DoesNotContain -Content $response.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context "$($config.DisplayName) $($page.Path)"
     Assert-DoesNotContain -Content $response.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context "$($config.DisplayName) $($page.Path)"
-    Assert-DoesNotContain -Content $response.Content -Pattern "(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick" -Context "$($config.DisplayName) $($page.Path)"
+    Assert-NoDisallowedExternalAdsOrAnalyticsMarkers -Content $response.Content -Context "$($config.DisplayName) $($page.Path)"
 }
 
 $statusResponse = Invoke-SmokeRequest -Url (Join-Url $publicBase "en/status") -RequiredContent "Public Status"
 Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context "$($config.DisplayName) status"
 Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context "$($config.DisplayName) status"
 Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)No .{0,80}public deploy|HostGator public URL remains|noindex placeholder" -Context "$($config.DisplayName) status"
-Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)adsbygoogle|googletagmanager|google-analytics|doubleclick" -Context "$($config.DisplayName) status"
+Assert-NoDisallowedExternalAdsOrAnalyticsMarkers -Content $statusResponse.Content -Context "$($config.DisplayName) status"
 
 if ($config.ApiEnvName -and -not $SkipApiSmoke) {
     $apiUrl = Join-Url $apiBase $config.ApiSmokePath
