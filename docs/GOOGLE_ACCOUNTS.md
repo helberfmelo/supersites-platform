@@ -63,7 +63,9 @@ Nunca enviar email, telefone, documento, nome completo, IP completo, conteudo de
 - `pnpm ops:google-platform-setup-packet` gera um pacote local em `artifacts/google-platform-setup/` com nomes sugeridos para GA4, GTM, Search Console e AdSense.
 - O pacote nao faz login, nao chama APIs Google, nao cria propriedades/containers, nao verifica dominio, nao publica token e nao ativa tag ou anuncio por si so.
 - A criacao assistida das plataformas Google pode prosseguir com a conta autorizada e o dominio `mywebtools.top`, desde que Measurement IDs, GTM IDs, tokens de verificacao, publisher IDs, OAuth tokens e qualquer segredo fiquem somente em cofre/ambiente ou inventario local ignorado.
-- Billing, cartao, forma de pagamento, Google Cloud billing, teste pago, banco, impostos, PIN postal e pagamento continuam bloqueados para pausa humana. O fluxo deve tentar pular quando a plataforma permitir.
+- Billing, cartao, forma de pagamento para pagar, Google Cloud billing, teste pago, impostos, PIN postal e pagamento final continuam bloqueados para pausa humana. O fluxo deve tentar pular quando a plataforma permitir.
+- Em 2026-07-03, o owner autorizou configurar dados bancarios AdSense para recebimento usando somente o inventario local ignorado. O limite operacional permanece: nao finalizar pagamento manual, compra, cobranca, billing pago, cartao, teste pago ou Google Cloud billing.
+- Ainda em 2026-07-03, a conta Google usada no setup foi desativada pelo Google durante reautenticacao de pagamentos. O owner enviou contestacao pela propria interface Google; ate restauracao, nao criar conta AdSense duplicada nem tentar mutacoes em GA4/GTM/Search Console/AdSense sem decisao humana especifica.
 
 ## 2026-07-03 plataformas criadas
 
@@ -73,7 +75,9 @@ Nunca enviar email, telefone, documento, nome completo, IP completo, conteudo de
 - O site `mywebtools.top` foi adicionado ao AdSense, teve propriedade verificada, `ads.txt` real publicado e revisao solicitada. O status do site ficou em preparacao/revisao do Google.
 - A CMP do Google foi configurada no AdSense com tres opcoes de consentimento para regioes aplicaveis.
 - O snippet de revisao AdSense esta publicado em `mywebtools.top` e apps filhos. GA4/GTM tags publicas e imports de Search Console/GA4/AdSense seguem desativados ate decisao operacional separada.
-- PageSpeed API, Google Cloud billing, cartao, teste pago, pagamentos, banco, impostos e PIN postal nao foram configurados.
+- Em nova consulta na interface AdSense em 2026-07-03, o site ainda aparecia em `Preparando` com `Revisao solicitada`; aprovacao/ad serving real ainda nao estava liberado.
+- Ao tentar abrir `Pagamentos` para configurar banco, o Google exigiu reautenticacao e apresentou CAPTCHA/confirmacao humana. Depois de validacao humana, a conta Google foi desativada pelo Google; o owner enviou contestacao e a area de pagamentos ficou indisponivel.
+- PageSpeed API, Google Cloud billing, cartao, teste pago, pagamentos finais, impostos, PIN postal, Auto Ads/manual placements e ad serving aprovado nao foram configurados.
 
 ## Pendencias humanas
 

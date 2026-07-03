@@ -39,6 +39,7 @@ Data-base: 2026-07-03
 | Google integration storage tables | 1 |
 | Google integration records seeded | 12 |
 | Google external tags loaded | AdSense review snippet live on `mywebtools.top`; GA4/GTM tags 0 |
+| Google account operational access | Blocked: account disabled by Google on 2026-07-03; appeal submitted by owner |
 | Sprint 6.2 local validation | Passed |
 | Sprint 6.2 external Google activation | 0 |
 | Sprint 6.2 Quality Gate run | `28282544493` passed |
@@ -50,7 +51,9 @@ Data-base: 2026-07-03
 | AdSense site review records seeded | 11 |
 | AdSense Management API enabled | 0 |
 | AdSense site submissions | 1 (`mywebtools.top` review requested) |
+| AdSense approval status | Preparing/review requested; not approved in 2026-07-03 recheck |
 | AdSense ad serving enabled | 0 |
+| AdSense payout bank configuration | Authorized by owner; local inventory present; not configured because Google account was disabled during `Pagamentos` reauthentication |
 | Sprint 6.3 local validation | Passed |
 | Sprint 6.3 external AdSense activation | 0 |
 | Sprint 6.3 Quality Gate run | `28283163228` passed |

@@ -8,13 +8,15 @@ Data-base: 2026-07-03
 |---|---|---|
 | Registrar dominios definitivos adicionais | Compra/decisao de marca e dominio por marca/site alem do dominio inicial aprovado | Antes do lancamento independente de cada site fora de `mywebtools.top` |
 | Validar marca dos nomes de trabalho | Risco comercial/juridico | Antes de registrar dominio ou publicar marca definitiva |
-| Informacoes fiscais/bancarias AdSense | Dados legais e banco | Antes de receber pagamentos |
+| Restauracao da conta Google SuperSites | A conta Google usada no setup foi desativada pelo Google em 2026-07-03 e a contestacao foi enviada. Enquanto a conta estiver indisponivel, GA4/GTM/Search Console/AdSense ficam sem operacao assistida e nao deve ser criada conta AdSense duplicada sem decisao humana especifica | Quando o Google restaurar a conta ou o owner aprovar explicitamente uma estrategia alternativa de conta/propriedade |
+| Informacoes fiscais AdSense | Dados legais/fiscais ainda nao foram configurados | Antes de receber pagamentos |
+| Configuracao bancaria AdSense | A configuracao bancaria foi autorizada pelo owner, mas a area de pagamentos do AdSense ficou inacessivel apos reautenticacao/CAPTCHA e desativacao da conta Google | Depois da restauracao da conta Google, sem finalizar pagamento manual |
 | PIN postal AdSense | Verificacao fisica | Quando Google solicitar |
 | Validar/ajustar CMP por regiao | A CMP do Google foi criada com tres opcoes, mas revisao juridica/local, TCF detalhado e ajustes por regiao continuam decisao humana | Antes de escala publica ampla ou mudanca de consentimento/ads por regiao |
 | Ativar ad serving real | Requests reais de ads, Auto Ads/manual placements e receitas dependem de aprovacao do Google e decisao operacional separada | Depois de site aprovado no AdSense, validacao de politicas/consentimento e decisao humana por site |
 | PageSpeed API ou Google performance provider | API key, termos, quota, billing/conta Google e definicao de retencao/uso de dados | Antes de usar PageSpeed Insights API, CrUX API ou qualquer provider Google externo para medicao automatizada |
 | GTmetrix manual/API performance audit | Conta/API/provider externo, termos, quota/custo e decisao sobre retencao/uso de dados de URLs publicas | Antes de tratar GTmetrix A como evidencia final de pre-divulgacao, automacao recorrente ou relatorio externo |
-| Google 2FA, telefone ou codigo temporario | Verificacao de login/identidade pode ser exigida pelo Google | Quando solicitado durante setup |
+| Google 2FA, telefone, codigo temporario ou CAPTCHA | Verificacao de login/identidade pode ser exigida pelo Google | Quando solicitado durante setup; CAPTCHA deve ser resolvido manualmente pelo owner |
 | Ativar tags/imports Google por site | GA4/GTM/Search Console existem, mas carregar tags GA4/GTM ou importar dados envia dados a provider externo | Depois de consentimento/CMP, matriz de dados, secrets em cofre, smokes e decisao humana por site |
 | Billing, cartao, teste pago ou Google Cloud billing | Compra, cobranca ou forma de pagamento nao autorizada para pagar | Se o Google bloquear setup gratuito sem forma de pagamento |
 | Contas Stripe/Mercado Pago/Paddle | KYC, impostos, termos e confirmacao de modo/conta de producao | Antes de billing real |
@@ -73,8 +75,10 @@ Data-base: 2026-07-03
 |---|---|
 | Dominio inicial de go-live | O owner aprovou `mywebtools.top` e a pasta HostGator `/home1/opents62/mywebtools.top` para o deploy do projeto. |
 | Beneficiario/legal owner para setup Google | O owner confirmou autorizacao para aceitar termos Google/Analytics/GTM/Search Console/AdSense pela SuperSites e informou que o fluxo deve usar conta de pessoa fisica autorizada. Dados pessoais ficam somente em inventario local ignorado. |
-| Criar plataformas Google gratuitas | O owner autorizou setup assistido de GA4, GTM, Search Console e AdSense, incluindo aceites juridicos desses produtos. Continuam bloqueados pagamentos, billing, cartao, teste pago, Google Cloud billing, banco, impostos e PIN postal. |
+| Criar plataformas Google gratuitas | O owner autorizou setup assistido de GA4, GTM, Search Console e AdSense, incluindo aceites juridicos desses produtos. Continuam bloqueados pagamentos finais, billing, cartao, teste pago, Google Cloud billing, impostos e PIN postal. |
 | Plataformas Google iniciais criadas | GA4, GTM, Search Console e AdSense foram criados/configurados para `mywebtools.top`; Search Console foi verificado; AdSense teve propriedade verificada, `ads.txt` real publicado, revisao solicitada e CMP do Google com tres opcoes salva. |
+| Configurar dados bancarios AdSense para recebimento | O owner autorizou em 2026-07-03 o uso dos dados bancarios registrados somente no inventario local ignorado para deixar pagamentos AdSense configurados. Limite operacional: nao finalizar pagamento manual, compra, cobranca, billing pago, cartao, teste pago ou Google Cloud billing. |
+| Contestacao da conta Google SuperSites | Apos bloqueio/desativacao da conta Google, o owner concluiu a contestacao em 2026-07-03. Aguardando analise do Google; nenhuma acao de pagamento, payout, nova conta AdSense duplicada ou provider Google deve ser tentada enquanto a conta estiver indisponivel. |
 
 ## Nao bloqueia agora
 
