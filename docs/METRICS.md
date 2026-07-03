@@ -1,6 +1,6 @@
 # Metrics
 
-Data-base: 2026-07-02
+Data-base: 2026-07-03
 
 ## Bootstrap metrics
 
@@ -38,7 +38,7 @@ Data-base: 2026-07-02
 | Google integration gates implemented | 1 |
 | Google integration storage tables | 1 |
 | Google integration records seeded | 12 |
-| Google external tags loaded | 0 |
+| Google external tags loaded | AdSense review snippet live on `mywebtools.top`; GA4/GTM tags 0 |
 | Sprint 6.2 local validation | Passed |
 | Sprint 6.2 external Google activation | 0 |
 | Sprint 6.2 Quality Gate run | `28282544493` passed |
@@ -49,7 +49,7 @@ Data-base: 2026-07-02
 | AdSense publisher records seeded | 1 |
 | AdSense site review records seeded | 11 |
 | AdSense Management API enabled | 0 |
-| AdSense site submissions | 0 |
+| AdSense site submissions | 1 (`mywebtools.top` review requested) |
 | AdSense ad serving enabled | 0 |
 | Sprint 6.3 local validation | Passed |
 | Sprint 6.3 external AdSense activation | 0 |
@@ -324,7 +324,7 @@ Data-base: 2026-07-02
 | TCF fail-closed gate | Implemented |
 | Ads placement policy package | Implemented |
 | Inert ad placeholders rendered | 1 |
-| Real AdSense/GTM/GA4 scripts loaded | 0 |
+| Real AdSense/GTM/GA4 scripts loaded | AdSense review snippet 1; GA4/GTM tags 0 |
 | Sprint 6.1 Quality Gate run | `28282044449` passed |
 | Sprint 6.1 Deploy Dry Run | `28282044425` passed |
 | Sprint 6.1 public smokes | Hub/control-plane/NetProbe passed |
@@ -1787,7 +1787,13 @@ Data-base: 2026-07-02
 | Fase 24 provider decision 2026-07-03 | Stripe-first; Pagar.me is optional backlog/fallback, not a go-live requirement |
 | Google platform setup packet command | `pnpm ops:google-platform-setup-packet` |
 | Google platform setup packet side effects | 0 provider API calls, 0 Google logins, 0 terms accepted, 0 properties/containers created, 0 verification tokens published, 0 tags loaded, 0 AdSense submissions |
-| Google/AdSense real activation | 0 GA4/GTM/Search Console/PageSpeed API/AdSense activations; human gates remain required |
+| Google platform accounts created | GA4, GTM, Search Console and AdSense for `mywebtools.top` |
+| Search Console verified properties | 1 URL-prefix property for `https://mywebtools.top/` |
+| AdSense ads.txt live domains | 1 (`mywebtools.top`) |
+| AdSense review snippet live surfaces | Hub, NetProbe Atlas and 9 static apps under `mywebtools.top` |
+| AdSense site review requested | 1 (`mywebtools.top`) |
+| Google CMP initial config | Google CMP saved with three consent options for applicable regions |
+| Google/AdSense real activation | GA4/GTM tags 0; PageSpeed API 0; AdSense review requested 1; approved ad serving 0 |
 
 ## Product metrics
 

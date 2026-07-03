@@ -65,6 +65,16 @@ Nunca enviar email, telefone, documento, nome completo, IP completo, conteudo de
 - A criacao assistida das plataformas Google pode prosseguir com a conta autorizada e o dominio `mywebtools.top`, desde que Measurement IDs, GTM IDs, tokens de verificacao, publisher IDs, OAuth tokens e qualquer segredo fiquem somente em cofre/ambiente ou inventario local ignorado.
 - Billing, cartao, forma de pagamento, Google Cloud billing, teste pago, banco, impostos, PIN postal e pagamento continuam bloqueados para pausa humana. O fluxo deve tentar pular quando a plataforma permitir.
 
+## 2026-07-03 plataformas criadas
+
+- GA4, Google Tag Manager, Search Console e AdSense foram criados/configurados assistidamente com a conta Google autorizada para a SuperSites.
+- IDs de GA4, GTM, Search Console e AdSense ficam no inventario local ignorado `docs/credentials/google-platform-setup.local.md` ou em cofre/ambiente, nao em docs versionados.
+- Search Console foi verificado para `https://mywebtools.top/` por arquivo HTML publicado no dominio.
+- O site `mywebtools.top` foi adicionado ao AdSense, teve propriedade verificada, `ads.txt` real publicado e revisao solicitada. O status do site ficou em preparacao/revisao do Google.
+- A CMP do Google foi configurada no AdSense com tres opcoes de consentimento para regioes aplicaveis.
+- O snippet de revisao AdSense esta publicado em `mywebtools.top` e apps filhos. GA4/GTM tags publicas e imports de Search Console/GA4/AdSense seguem desativados ate decisao operacional separada.
+- PageSpeed API, Google Cloud billing, cartao, teste pago, pagamentos, banco, impostos e PIN postal nao foram configurados.
+
 ## Pendencias humanas
 
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.

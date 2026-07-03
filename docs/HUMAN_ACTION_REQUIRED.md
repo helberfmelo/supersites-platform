@@ -8,16 +8,14 @@ Data-base: 2026-07-03
 |---|---|---|
 | Registrar dominios definitivos adicionais | Compra/decisao de marca e dominio por marca/site alem do dominio inicial aprovado | Antes do lancamento independente de cada site fora de `mywebtools.top` |
 | Validar marca dos nomes de trabalho | Risco comercial/juridico | Antes de registrar dominio ou publicar marca definitiva |
-| Checagem de conta AdSense existente/duplicada | Politica de uma conta por beneficiario legal/publisher e risco de duplicidade | Durante a criacao/reutilizacao da conta AdSense |
 | Informacoes fiscais/bancarias AdSense | Dados legais e banco | Antes de receber pagamentos |
 | PIN postal AdSense | Verificacao fisica | Quando Google solicitar |
-| CMP certificada/TCF para ads reais | Escolha de fornecedor, termos, configuracao legal e compliance regional | Antes de carregar requests reais de ads em regioes que exijam CMP/TCF |
-| Publicar `ads.txt` real | A Sprint 15.1 criou apenas preview autenticado; publicacao de arquivo publico exige publisher id real validado | Depois de conta aprovada, publisher id real em cofre/ambiente, politicas/consentimento e smokes prontos |
-| Ativar ad serving real | Requests reais de ads, Auto Ads/manual ads e snippets continuam provider-side/monetizacao | Depois de conta e site aprovados, CMP/consentimento aplicavel, `ads.txt` real validado, smokes e decisao humana por site |
+| Validar/ajustar CMP por regiao | A CMP do Google foi criada com tres opcoes, mas revisao juridica/local, TCF detalhado e ajustes por regiao continuam decisao humana | Antes de escala publica ampla ou mudanca de consentimento/ads por regiao |
+| Ativar ad serving real | Requests reais de ads, Auto Ads/manual placements e receitas dependem de aprovacao do Google e decisao operacional separada | Depois de site aprovado no AdSense, validacao de politicas/consentimento e decisao humana por site |
 | PageSpeed API ou Google performance provider | API key, termos, quota, billing/conta Google e definicao de retencao/uso de dados | Antes de usar PageSpeed Insights API, CrUX API ou qualquer provider Google externo para medicao automatizada |
 | GTmetrix manual/API performance audit | Conta/API/provider externo, termos, quota/custo e decisao sobre retencao/uso de dados de URLs publicas | Antes de tratar GTmetrix A como evidencia final de pre-divulgacao, automacao recorrente ou relatorio externo |
 | Google 2FA, telefone ou codigo temporario | Verificacao de login/identidade pode ser exigida pelo Google | Quando solicitado durante setup |
-| Ativar tags/imports Google por site | A Sprint 15.2 criou apenas readiness autenticado; carregar scripts GA4/GTM ou importar Search Console envia dados a provider externo | Depois de acesso Google, dominio verificado, consentimento/CMP, matriz de dados, secrets em cofre, smokes e decisao humana por site |
+| Ativar tags/imports Google por site | GA4/GTM/Search Console existem, mas carregar tags GA4/GTM ou importar dados envia dados a provider externo | Depois de consentimento/CMP, matriz de dados, secrets em cofre, smokes e decisao humana por site |
 | Billing, cartao, teste pago ou Google Cloud billing | Compra, cobranca ou forma de pagamento nao autorizada para pagar | Se o Google bloquear setup gratuito sem forma de pagamento |
 | Contas Stripe/Mercado Pago/Paddle | KYC, impostos, termos e confirmacao de modo/conta de producao | Antes de billing real |
 | Ativar Stripe para servicos ou planos pagos | O owner aprovou somente doacao pontual via Stripe em 2026-07-02. Servicos personalizados, planos pagos, assinatura, customer portal, invoices, refunds, dunning, revenue import e entitlements pagos ainda exigem produto/preco oficial, politica de cancelamento/reembolso, smokes de provider, decisao de oferta e aprovacao por canal | Antes de publicar checkout de servico, plano pago, assinatura, invoice, refund, customer portal ou entitlement pago via Stripe |
@@ -76,6 +74,7 @@ Data-base: 2026-07-03
 | Dominio inicial de go-live | O owner aprovou `mywebtools.top` e a pasta HostGator `/home1/opents62/mywebtools.top` para o deploy do projeto. |
 | Beneficiario/legal owner para setup Google | O owner confirmou autorizacao para aceitar termos Google/Analytics/GTM/Search Console/AdSense pela SuperSites e informou que o fluxo deve usar conta de pessoa fisica autorizada. Dados pessoais ficam somente em inventario local ignorado. |
 | Criar plataformas Google gratuitas | O owner autorizou setup assistido de GA4, GTM, Search Console e AdSense, incluindo aceites juridicos desses produtos. Continuam bloqueados pagamentos, billing, cartao, teste pago, Google Cloud billing, banco, impostos e PIN postal. |
+| Plataformas Google iniciais criadas | GA4, GTM, Search Console e AdSense foram criados/configurados para `mywebtools.top`; Search Console foi verificado; AdSense teve propriedade verificada, `ads.txt` real publicado, revisao solicitada e CMP do Google com tres opcoes salva. |
 
 ## Nao bloqueia agora
 
