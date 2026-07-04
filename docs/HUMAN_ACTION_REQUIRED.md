@@ -1,6 +1,6 @@
 # HUMAN_ACTION_REQUIRED
 
-Data-base: 2026-07-03
+Data-base: 2026-07-04
 
 ## Pendencias atuais
 
@@ -8,9 +8,7 @@ Data-base: 2026-07-03
 |---|---|---|
 | Registrar dominios definitivos adicionais | Compra/decisao de marca e dominio por marca/site alem do dominio inicial aprovado | Antes do lancamento independente de cada site fora de `mywebtools.top` |
 | Validar marca dos nomes de trabalho | Risco comercial/juridico | Antes de registrar dominio ou publicar marca definitiva |
-| Restauracao da conta Google SuperSites | A conta Google usada no setup foi desativada pelo Google em 2026-07-03 e a contestacao foi enviada. Enquanto a conta estiver indisponivel, GA4/GTM/Search Console/AdSense ficam sem operacao assistida e nao deve ser criada conta AdSense duplicada sem decisao humana especifica | Quando o Google restaurar a conta ou o owner aprovar explicitamente uma estrategia alternativa de conta/propriedade |
-| Informacoes fiscais AdSense | Dados legais/fiscais ainda nao foram configurados | Antes de receber pagamentos |
-| Configuracao bancaria AdSense | A configuracao bancaria foi autorizada pelo owner, mas a area de pagamentos do AdSense ficou inacessivel apos reautenticacao/CAPTCHA e desativacao da conta Google | Depois da restauracao da conta Google, sem finalizar pagamento manual |
+| Informacoes fiscais AdSense adicionais, se solicitadas | A UI do AdSense em 2026-07-04 informou que pagamentos ja tem as informacoes necessarias, mas formularios fiscais adicionais podem ser exigidos pelo Google antes do primeiro pagamento | Quando Google solicitar ou antes de receber pagamentos |
 | PIN postal AdSense | Verificacao fisica | Quando Google solicitar |
 | Validar/ajustar CMP por regiao | A CMP do Google foi criada com tres opcoes, mas revisao juridica/local, TCF detalhado e ajustes por regiao continuam decisao humana | Antes de escala publica ampla ou mudanca de consentimento/ads por regiao |
 | Ativar ad serving real | Requests reais de ads, Auto Ads/manual placements e receitas dependem de aprovacao do Google e decisao operacional separada | Depois de site aprovado no AdSense, validacao de politicas/consentimento e decisao humana por site |
@@ -78,7 +76,15 @@ Data-base: 2026-07-03
 | Criar plataformas Google gratuitas | O owner autorizou setup assistido de GA4, GTM, Search Console e AdSense, incluindo aceites juridicos desses produtos. Continuam bloqueados pagamentos finais, billing, cartao, teste pago, Google Cloud billing, impostos e PIN postal. |
 | Plataformas Google iniciais criadas | GA4, GTM, Search Console e AdSense foram criados/configurados para `mywebtools.top`; Search Console foi verificado; AdSense teve propriedade verificada, `ads.txt` real publicado, revisao solicitada e CMP do Google com tres opcoes salva. |
 | Configurar dados bancarios AdSense para recebimento | O owner autorizou em 2026-07-03 o uso dos dados bancarios registrados somente no inventario local ignorado para deixar pagamentos AdSense configurados. Limite operacional: nao finalizar pagamento manual, compra, cobranca, billing pago, cartao, teste pago ou Google Cloud billing. |
-| Contestacao da conta Google SuperSites | Apos bloqueio/desativacao da conta Google, o owner concluiu a contestacao em 2026-07-03. Aguardando analise do Google; nenhuma acao de pagamento, payout, nova conta AdSense duplicada ou provider Google deve ser tentada enquanto a conta estiver indisponivel. |
+| Contestacao da conta Google SuperSites | Apos bloqueio/desativacao da conta Google, o owner concluiu a contestacao em 2026-07-03; em 2026-07-04 a UI da Conta Google e do AdSense voltou a ficar acessivel. |
+
+## Resolvido ou observado em 2026-07-04
+
+| Item | Resultado |
+|---|---|
+| Acesso da conta Google SuperSites restaurado | A UI da Conta Google voltou a abrir para a conta usada no setup, e a UI do AdSense voltou a ficar acessivel. |
+| Informacoes de pagamento AdSense recebidas | A tela inicial do AdSense exibiu `Pagamentos: Ja temos suas informacoes`. Dados sensiveis continuam somente no inventario local ignorado; nenhum pagamento manual, payout, cartao, compra, billing pago ou Google Cloud billing foi finalizado. |
+| Etapas iniciais AdSense completas | A tela inicial do AdSense exibiu `Muito bem! Voce concluiu todas as etapas` e `Em breve, seu site estara pronto para exibir anuncios`; isso ainda nao significa aprovacao final nem serving ativo. |
 
 ## Nao bloqueia agora
 

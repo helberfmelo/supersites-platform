@@ -79,6 +79,14 @@ Nunca enviar email, telefone, documento, nome completo, IP completo, conteudo de
 - Ao tentar abrir `Pagamentos` para configurar banco, o Google exigiu reautenticacao e apresentou CAPTCHA/confirmacao humana. Depois de validacao humana, a conta Google foi desativada pelo Google; o owner enviou contestacao e a area de pagamentos ficou indisponivel.
 - PageSpeed API, Google Cloud billing, cartao, teste pago, pagamentos finais, impostos, PIN postal, Auto Ads/manual placements e ad serving aprovado nao foram configurados.
 
+## 2026-07-04 restauracao e pagamentos AdSense
+
+- A conta Google usada no setup voltou a abrir na UI da Conta Google e a UI do AdSense ficou acessivel novamente.
+- A tela inicial do AdSense exibiu `Muito bem! Voce concluiu todas as etapas` e `Em breve, seu site estara pronto para exibir anuncios` para `mywebtools.top`.
+- A secao `Pagamentos` na home do AdSense exibiu `Ja temos suas informacoes`, indicando que o Google recebeu as informacoes de pagamento necessarias nesta etapa.
+- Nenhum pagamento manual, payout, compra, cartao, billing pago, teste pago ou Google Cloud billing foi finalizado.
+- Aprovacao final do site, Auto Ads/manual placements e ad serving real continuam desativados ate o Google aprovar o site e haver decisao operacional separada.
+
 ## Pendencias humanas
 
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.
