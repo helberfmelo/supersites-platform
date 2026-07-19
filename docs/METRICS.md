@@ -1801,6 +1801,9 @@ Data-base: 2026-07-04
 | Fase 25 Control Plane | Donation reconciliation view plus audited custom service order workflow; 0 customer contact fields |
 | Fase 25 mailbox readiness | MX passed; SMTP TLS 465 passed; IMAP TLS 993 passed; authentication/delivery/triage remain human-required |
 | Fase 25 local validation | Hub 33 tests and 102-route build; Control Plane 107 tests/1,126 assertions; structure and secrets passed |
+| Fase 25 deploys | Control Plane run `29675971885`; legacy Hub run `29675972767`; primary Hub release `b99a1cdec59b-20260719062149` |
+| Fase 25 primary-domain validation | 5/5 localized `/services` routes returned HTTP 200 with localized content and structured `mailto:` |
+| Fase 25 deploy incident | P2 limited to new routes on `mywebtools.top`; cause was target mismatch between legacy workflow and primary-domain manifest; recovered by approved versioned release; existing routes unaffected |
 
 ## Product metrics
 

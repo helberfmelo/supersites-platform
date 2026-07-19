@@ -1,6 +1,6 @@
 # ROADMAP FASE 25 - Fechamento das pendencias independentes de AdSense
 
-Status: implementacao e validacao local concluidas em 2026-07-19; release governada em andamento.
+Status: concluida e publicada em 2026-07-19.
 
 ## Objetivo
 
@@ -39,3 +39,11 @@ Concluir o backlog tecnico e reversivel que nao depende da analise do Google AdS
 4. A conciliacao de doacoes pode ser consultada no painel.
 5. O diagnostico da caixa publica produz resultado objetivo sem usar credenciais.
 6. Os gates humanos e de AdSense permanecem inalterados.
+
+## Fechamento
+
+- commit tecnico: `b99a1cd`;
+- deploy Control Plane HostGator: run `29675971885`, aprovado com migracao e smoke;
+- deploy Hub legado: run `29675972767`, aprovado;
+- deploy Hub principal `mywebtools.top`: release `b99a1cdec59b-20260719062149`, aprovado com smoke Hub-only;
+- validacao final: cinco rotas localizadas `/services` responderam HTTP 200 com conteudo e `mailto:`.

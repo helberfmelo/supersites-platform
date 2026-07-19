@@ -1903,5 +1903,7 @@ Ainda em 2026-06-29, o `Public Watchdog` agendado run `28372846327` falhou no sm
   - O comando `pnpm ops:mailbox-readiness` confirmou MX de `opentshost.com` e conectividade de `mail.opentshost.com` em SMTP TLS 465 e IMAP TLS 993. Autenticacao, teste real de entrega e dono da triagem permanecem humanos.
   - Validacao local: Hub 33 testes e build com 102 rotas pre-renderizadas; Control Plane 107 testes/1.126 assertions; formatacao dos arquivos afetados, estrutura e segredos aprovados.
   - Escopo negativo: nenhum checkout de servico/plano, subscription, invoice, refund, customer portal, entitlement pago, novo provider, dado de cartao, credencial de mailbox, anuncio ou mudanca de AdSense foi ativado.
+  - Release: commit `b99a1cd`; deploy Control Plane `29675971885` e deploy Hub legado `29675972767` passaram. O primeiro smoke adicional encontrou HTTP 500 somente nas novas rotas `/services` de `mywebtools.top`, pois o workflow do Hub publica no alvo legado e o dominio principal usa manifesto separado. A release versionada `b99a1cdec59b-20260719062149` foi entao publicada pelo caminho aprovado de `infra/deployment/apps.mywebtools.json`; as cinco rotas localizadas passaram com HTTP 200, conteudo correto e `mailto:`. Nenhuma rota existente ficou indisponivel.
+  - Prevencao: entregas do Hub devem validar e, quando afetado, publicar explicitamente tanto o alvo legado quanto `mywebtools.top`; o smoke legado isolado nao comprova o dominio principal.
 
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.
