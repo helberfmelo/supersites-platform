@@ -75,6 +75,7 @@
     "ops:uptime-readiness-smoke": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-uptime-incident-readiness.ps1",
     "ops:provider-growth-readiness-smoke": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-provider-growth-readiness-smoke.ps1",
     "ops:google-platform-setup-packet": "node scripts/prepare-google-platform-setup-packet.mjs",
+    "ops:mailbox-readiness": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/check-public-mailbox-readiness.ps1",
     "measure:lighthouse-public": "node scripts/run-public-lighthouse.mjs",
     "measure:lhci-public": "lhci autorun --config=.lighthouserc.cjs",
     "measure:admin-audit": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/run-control-plane-admin-audit.ps1",

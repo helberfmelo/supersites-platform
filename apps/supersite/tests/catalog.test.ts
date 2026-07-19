@@ -516,6 +516,20 @@ describe('site catalog', () => {
     }
   })
 
+  it('keeps custom services inquiry-only and available in every locale', () => {
+    const services = legalPageCatalog.find((page) => page.slug === 'services')
+    expect(services).toBeDefined()
+
+    for (const locale of localeCodes) {
+      const copy = getLegalPageCopy(services!, locale)
+      const links = copy.sections.flatMap((section) => section.links ?? [])
+
+      expect(links).toHaveLength(1)
+      expect(links[0].href).toBe('mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Custom%20service%20inquiry')
+      expect(JSON.stringify(copy)).not.toMatch(/checkout\.stripe|buy now|compre agora|instant payment|pagamento instantâneo/iu)
+    }
+  })
+
   it('keeps the public About page institutional and free of legal launch review language', () => {
     const about = legalPageCatalog.find((page) => page.slug === 'about')
     expect(about).toBeDefined()
@@ -691,7 +705,7 @@ describe('site catalog', () => {
         'Abuse and prohibited activity',
         'Tool limits',
         'Information and results',
-        'Future paid services',
+        'Donations and future paid services',
         'Responsibility and contact',
       ],
       'pt-br': [
@@ -699,7 +713,7 @@ describe('site catalog', () => {
         'Abuso e atividades proibidas',
         'Limites das ferramentas',
         'Informações e resultados',
-        'Serviços pagos futuros',
+        'Doações e serviços pagos futuros',
         'Responsabilidade e contato',
       ],
       es: [
@@ -707,7 +721,7 @@ describe('site catalog', () => {
         'Abuso y actividad prohibida',
         'Límites de las herramientas',
         'Información y resultados',
-        'Servicios pagos futuros',
+        'Donaciones y servicios pagos futuros',
         'Responsabilidad y contacto',
       ],
       fr: [
@@ -715,7 +729,7 @@ describe('site catalog', () => {
         'Abus et activités interdites',
         'Limites des outils',
         'Informations et résultats',
-        'Services payants futurs',
+        'Dons et services payants futurs',
         'Responsabilité et contact',
       ],
       de: [
@@ -723,12 +737,12 @@ describe('site catalog', () => {
         'Missbrauch und verbotene Aktivität',
         'Grenzen der Tools',
         'Informationen und Ergebnisse',
-        'Künftige kostenpflichtige Dienste',
+        'Spenden und künftige kostenpflichtige Dienste',
         'Verantwortung und Kontakt',
       ],
     }
     const blockedTermsLanguage =
-      /catalog phase|launched|launch|rollout|public review|human review|legal review|quality checks|release checks|rollback|worker planned|billing disabled|ads planned|plans to|planned|\bshould\b|\bmust\b|fase do catálogo|lançamento|revisão pública|revisão humana|revisão jurídica|planeja|planejado|\bdeve\b|\bdevem\b|fase del catálogo|lanzamiento|revisión pública|revisión humana|revisión legal|planea|planeado|\bdebe\b|\bdeben\b|phase de catalogue|lancement|revue publique|revue humaine|révision juridique|prévoit|prévu|\bdoit\b|\bdoivent\b|Katalogphase|Launch|öffentliche Prüfung|menschliche Prüfung|Rechtsprüfung|geplant|\bsoll\b|\bsollen\b|\bmuss\b|\bmüssen\b/iu
+      /catalog phase|launched|launch|rollout|public review|human review|legal review|quality checks|release checks|rollback|worker planned|billing disabled|ads planned|plans to|planned|\bshould\b|fase do catálogo|lançamento|revisão pública|revisão humana|revisão jurídica|planeja|planejado|fase del catálogo|lanzamiento|revisión pública|revisión humana|revisión legal|planea|planeado|phase de catalogue|lancement|revue publique|revue humaine|révision juridique|prévoit|prévu|Katalogphase|Launch|öffentliche Prüfung|menschliche Prüfung|Rechtsprüfung|geplant|\bsoll\b|\bsollen\b/iu
 
     for (const locale of localeCodes) {
       const copy = getLegalPageCopy(terms!, locale)

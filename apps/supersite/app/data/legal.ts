@@ -8,6 +8,7 @@ export const legalPageSlugs = [
   'terms',
   'methodology',
   'editorial-policy',
+  'services',
   'status',
 ] as const
 
@@ -1968,6 +1969,66 @@ export const legalPageCatalog: LegalPage[] = [
     },
   },
   {
+    slug: 'services',
+    localized: {
+      en: {
+        navLabel: 'Custom services',
+        title: 'Custom services for focused web work',
+        description: 'Request scoped help with website operations, audits, lightweight automation, assisted batch work and practical reports while the free tools remain free.',
+        updatedLabel: 'Reviewed July 19, 2026',
+        sections: [
+          { heading: 'Available work', paragraphs: ['Requests can cover DNS and email setup, website audits, lightweight automation, assisted batch processing or an on-demand report. Each request is scoped individually.'] },
+          { heading: 'How to request', paragraphs: ['Send the goal, relevant public URLs, desired output and timing. Do not send passwords, payment details or sensitive files in the first message.'], links: [{ label: 'Request a custom service', href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Custom%20service%20inquiry', note: 'Opens your email client with the correct subject.' }] },
+          { heading: 'Clear boundaries', paragraphs: ['A request is not an automatic order. Scope, availability, price and terms are confirmed before any work or external payment. Free SuperSites tools remain available without this service.'] },
+        ],
+      },
+      'pt-br': {
+        navLabel: 'Serviços personalizados',
+        title: 'Serviços personalizados para trabalhos web pontuais',
+        description: 'Solicite ajuda delimitada com operação de sites, auditorias, automação leve, lotes assistidos e relatórios práticos sem alterar o acesso às ferramentas gratuitas.',
+        updatedLabel: 'Revisado em 19 de julho de 2026',
+        sections: [
+          { heading: 'Trabalhos disponíveis', paragraphs: ['Os pedidos podem incluir configuração de DNS e e-mail, auditoria de site, automação leve, processamento assistido em lote ou relatório sob demanda. Cada pedido é delimitado individualmente.'] },
+          { heading: 'Como solicitar', paragraphs: ['Envie o objetivo, URLs públicas relevantes, resultado desejado e prazo. Não envie senhas, dados de pagamento ou arquivos sensíveis na primeira mensagem.'], links: [{ label: 'Solicitar serviço personalizado', href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Custom%20service%20inquiry', note: 'Abre seu cliente de e-mail com o assunto correto.' }] },
+          { heading: 'Limites claros', paragraphs: ['A solicitação não vira pedido automaticamente. Escopo, disponibilidade, preço e termos são confirmados antes de qualquer trabalho ou pagamento externo. As ferramentas gratuitas continuam disponíveis sem esse serviço.'] },
+        ],
+      },
+      es: {
+        navLabel: 'Servicios personalizados',
+        title: 'Servicios personalizados para trabajos web concretos',
+        description: 'Solicita ayuda delimitada con operaciones web, auditorías, automatización ligera, lotes asistidos e informes prácticos sin cambiar el acceso a las herramientas gratuitas.',
+        updatedLabel: 'Revisado el 19 de julio de 2026',
+        sections: [
+          { heading: 'Trabajos disponibles', paragraphs: ['Las solicitudes pueden cubrir configuración de DNS y correo, auditorías de sitios, automatización ligera, procesamiento asistido por lotes o un informe bajo demanda. Cada solicitud se delimita por separado.'] },
+          { heading: 'Cómo solicitarlo', paragraphs: ['Envía el objetivo, las URL públicas relevantes, el resultado deseado y el plazo. No envíes contraseñas, datos de pago ni archivos sensibles en el primer mensaje.'], links: [{ label: 'Solicitar un servicio personalizado', href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Custom%20service%20inquiry', note: 'Abre tu cliente de correo con el asunto correcto.' }] },
+          { heading: 'Límites claros', paragraphs: ['Una solicitud no se convierte automáticamente en pedido. El alcance, la disponibilidad, el precio y los términos se confirman antes del trabajo o del pago externo. Las herramientas gratuitas siguen disponibles.'] },
+        ],
+      },
+      fr: {
+        navLabel: 'Services personnalisés',
+        title: 'Services personnalisés pour des travaux web ciblés',
+        description: 'Demandez une aide délimitée pour les opérations web, les audits, une automatisation légère, des lots assistés et des rapports pratiques sans modifier les outils gratuits.',
+        updatedLabel: 'Révisé le 19 juillet 2026',
+        sections: [
+          { heading: 'Travaux disponibles', paragraphs: ['Les demandes peuvent couvrir la configuration DNS et e-mail, un audit de site, une automatisation légère, un traitement par lots assisté ou un rapport à la demande. Chaque demande est cadrée séparément.'] },
+          { heading: 'Comment demander', paragraphs: ['Envoyez l’objectif, les URL publiques utiles, le résultat attendu et le délai. N’envoyez pas de mots de passe, de données de paiement ni de fichiers sensibles dans le premier message.'], links: [{ label: 'Demander un service personnalisé', href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Custom%20service%20inquiry', note: 'Ouvre votre client e-mail avec le bon objet.' }] },
+          { heading: 'Limites claires', paragraphs: ['Une demande ne devient pas automatiquement une commande. Le périmètre, la disponibilité, le prix et les conditions sont confirmés avant tout travail ou paiement externe. Les outils gratuits restent disponibles.'] },
+        ],
+      },
+      de: {
+        navLabel: 'Individuelle Services',
+        title: 'Individuelle Services für gezielte Webarbeiten',
+        description: 'Fordere klar begrenzte Hilfe für Webbetrieb, Audits, leichte Automatisierung, unterstützte Stapelarbeiten und praktische Berichte an, ohne den Zugang zu kostenlosen Tools zu ändern.',
+        updatedLabel: 'Geprüft am 19. Juli 2026',
+        sections: [
+          { heading: 'Verfügbare Arbeiten', paragraphs: ['Anfragen können DNS- und E-Mail-Einrichtung, Website-Audits, leichte Automatisierung, unterstützte Stapelverarbeitung oder einen Bericht auf Abruf umfassen. Jede Anfrage wird einzeln abgegrenzt.'] },
+          { heading: 'Anfrage senden', paragraphs: ['Sende Ziel, relevante öffentliche URLs, gewünschtes Ergebnis und Zeitrahmen. Sende in der ersten Nachricht keine Passwörter, Zahlungsdaten oder sensiblen Dateien.'], links: [{ label: 'Individuellen Service anfragen', href: 'mailto:contact@opentshost.com?subject=%5BSuperSites%5D%20Custom%20service%20inquiry', note: 'Öffnet dein E-Mail-Programm mit dem richtigen Betreff.' }] },
+          { heading: 'Klare Grenzen', paragraphs: ['Eine Anfrage wird nicht automatisch zum Auftrag. Umfang, Verfügbarkeit, Preis und Bedingungen werden vor Arbeit oder externer Zahlung bestätigt. Die kostenlosen SuperSites-Tools bleiben verfügbar.'] },
+        ],
+      },
+    },
+  },
+  {
     slug: 'status',
     localized: {
       en: {
@@ -2424,6 +2485,7 @@ export function getLegalPageCopy(page: LegalPage, locale: LocaleCode): Localized
     page.slug === 'terms' ||
     page.slug === 'methodology' ||
     page.slug === 'editorial-policy' ||
+    page.slug === 'services' ||
     page.slug === 'status'
   ) {
     return sanitizePublicCopy(locale, page.localized[locale])

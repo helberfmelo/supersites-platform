@@ -109,6 +109,8 @@ Aceite:
 
 Objetivo: permitir venda consultiva sem prometer automacao que ainda nao existe.
 
+Status em 2026-07-19: concluida a camada tecnica independente de provider. O Hub oferece solicitacao localizada por `mailto:` nos cinco idiomas e o Control Plane registra o ciclo manual da ordem sem armazenar contato do solicitante. O painel tambem exibe conciliacao limitada das Checkout Sessions de doacao. Checkout de servico, payment link, planos, invoices, refunds e entitlements permanecem bloqueados ate decisao comercial/juridica e aprovacao humana.
+
 Sprints:
 
 1. Criar pagina/fluxo "Servicos personalizados" no Hub com formulario ou mailto estruturado primeiro.
@@ -166,10 +168,10 @@ Aceite:
 
 Produto:
 
-- Ainda falta ativar monetizacao real: AdSense, doacoes, afiliados e billing continuam em readiness.
+- AdSense segue em analise; afiliados, planos e billing de servicos continuam em readiness. A doacao pontual Stripe ja esta ativa no escopo aprovado.
 - Falta decidir dominios definitivos e root mapping.
 - Falta revisar juridicamente privacy/cookies/terms por jurisdicao antes de escala internacional.
-- Falta validar mailbox publica e triagem de contato.
+- MX e portas TLS da mailbox publica foram validados tecnicamente; autenticacao, entrega real e triagem continuam como acao humana.
 
 Operacao:
 
@@ -179,9 +181,9 @@ Operacao:
 
 Monetizacao:
 
-- Botao de apoio deve virar componente/shared shell cobrindo todas as paginas.
+- O botao de apoio ja cobre as 11 superficies publicas e a conciliacao limitada esta visivel no Control Plane.
 - Pagar.me nao e mais requisito de go-live; Stripe e o trilho principal e Pagar.me fica backlog opcional.
-- Checkout real, webhooks live, tax/refund/cancelamento e entitlements pagos ainda nao estao ativos.
+- Checkout e webhook de doacao pontual Stripe estao ativos; checkout de servico/plano, tax/refund/cancelamento e entitlements pagos ainda nao estao ativos.
 - Para venda global, Stripe deve ser validado como trilho padrao; Paddle fica como comparativo futuro se MoR/tax internacional exigir.
 
 Qualidade publica:

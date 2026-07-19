@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\Admin\BenchmarkRefinementController;
 use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\BenchmarkRefinementController;
+use App\Http\Controllers\Admin\CustomServiceOrderController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExecutiveReportController;
+use App\Http\Controllers\Admin\MonetizationOperationsController;
 use App\Http\Controllers\Admin\SiteController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\DB;
@@ -40,6 +42,14 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function (): v
         Route::get('/reports/{executiveReport}', [ExecutiveReportController::class, 'show'])->name('reports.show');
         Route::get('/reports/{executiveReport}/print', [ExecutiveReportController::class, 'print'])->name('reports.print');
         Route::get('/reports/{executiveReport}/export.csv', [ExecutiveReportController::class, 'exportCsv'])->name('reports.export');
+        Route::get('/monetization', MonetizationOperationsController::class)->name('monetization.index');
+    });
+
+    Route::middleware('permission:operations.manage')->group(function (): void {
+        Route::get('/monetization/orders/create', [CustomServiceOrderController::class, 'create'])->name('monetization.orders.create');
+        Route::post('/monetization/orders', [CustomServiceOrderController::class, 'store'])->name('monetization.orders.store');
+        Route::get('/monetization/orders/{customServiceOrder}/edit', [CustomServiceOrderController::class, 'edit'])->name('monetization.orders.edit');
+        Route::put('/monetization/orders/{customServiceOrder}', [CustomServiceOrderController::class, 'update'])->name('monetization.orders.update');
     });
 
     Route::get('/sites', [SiteController::class, 'index'])

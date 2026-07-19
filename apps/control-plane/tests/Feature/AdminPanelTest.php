@@ -2,7 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Models\AuditLog;
+use App\Models\BillingCheckoutSession;
+use App\Models\CustomServiceOrder;
 use App\Models\ExecutiveReport;
 use App\Models\Role;
 use App\Models\Site;
@@ -337,6 +338,65 @@ class AdminPanelTest extends TestCase
             'user_id' => $user->id,
             'action' => 'admin.sites.created',
         ]);
+    }
+
+    public function test_operator_can_reconcile_donations_and_manage_custom_service_orders(): void
+    {
+        $this->seed([PortfolioSiteSeeder::class, AccessControlSeeder::class]);
+        $user = $this->userWithRole('operator');
+
+        BillingCheckoutSession::query()->create([
+            'provider' => 'stripe',
+            'kind' => 'donation',
+            'mode' => 'payment',
+            'provider_session_id' => 'cs_test_admin_reconciliation',
+            'amount_minor' => 2500,
+            'currency' => 'brl',
+            'status' => 'paid',
+            'request_fingerprint' => hash('sha256', 'admin-reconciliation'),
+        ]);
+
+        $this->actingAs($user)->get('/admin/monetization')
+            ->assertOk()
+            ->assertSee('Donation reconciliation')
+            ->assertSee('BRL 25.00')
+            ->assertSee('Service checkout')
+            ->assertSee('Off');
+
+        $site = Site::query()->where('slug', 'netprobe-atlas')->firstOrFail();
+        $this->actingAs($user)->post('/admin/monetization/orders', [
+            'site_id' => $site->id,
+            'reference' => 'SVC-20260719-TEST01',
+            'service_slug' => 'dns-email-setup',
+            'status' => 'inquiry',
+            'title' => 'DNS review request',
+            'scope_summary' => 'Review the public DNS records supplied by the requester.',
+            'payment_status' => 'not_applicable',
+            'requested_at' => '2026-07-19 10:00:00',
+        ])->assertRedirect('/admin/monetization');
+
+        $order = CustomServiceOrder::query()->where('reference', 'SVC-20260719-TEST01')->firstOrFail();
+        $this->assertDatabaseHas('audit_logs', [
+            'user_id' => $user->id,
+            'action' => 'admin.custom_service_orders.created',
+            'auditable_id' => (string) $order->id,
+        ]);
+    }
+
+    public function test_analyst_cannot_create_custom_service_order(): void
+    {
+        $this->seed([PortfolioSiteSeeder::class, AccessControlSeeder::class]);
+        $user = $this->userWithRole('analyst');
+
+        $this->actingAs($user)->post('/admin/monetization/orders', [
+            'reference' => 'SVC-20260719-DENIED',
+            'service_slug' => 'website-audit',
+            'status' => 'inquiry',
+            'title' => 'Denied request',
+            'payment_status' => 'not_applicable',
+        ])->assertForbidden();
+
+        $this->assertDatabaseMissing('custom_service_orders', ['reference' => 'SVC-20260719-DENIED']);
     }
 
     private function userWithRole(string $roleSlug): User

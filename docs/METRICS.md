@@ -1797,6 +1797,10 @@ Data-base: 2026-07-04
 | AdSense site review requested | 1 (`mywebtools.top`) |
 | Google CMP initial config | Google CMP saved with three consent options for applicable regions |
 | Google/AdSense real activation | GA4/GTM tags 0; PageSpeed API 0; AdSense review requested 1; approved ad serving 0 |
+| Fase 25 custom service public routes | 5 localized Hub routes; 1 structured `mailto:` channel; 0 backend public forms; 0 service checkouts |
+| Fase 25 Control Plane | Donation reconciliation view plus audited custom service order workflow; 0 customer contact fields |
+| Fase 25 mailbox readiness | MX passed; SMTP TLS 465 passed; IMAP TLS 993 passed; authentication/delivery/triage remain human-required |
+| Fase 25 local validation | Hub 33 tests and 102-route build; Control Plane 107 tests/1,126 assertions; structure and secrets passed |
 
 ## Product metrics
 

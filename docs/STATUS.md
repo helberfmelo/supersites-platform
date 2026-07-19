@@ -1897,4 +1897,11 @@ Ainda em 2026-06-29, o `Public Watchdog` agendado run `28372846327` falhou no sm
 
 ## Bloqueios humanos registrados
 
+- Fase 25 - Fechamento das pendencias independentes de AdSense (2026-07-19):
+  - O Hub ganhou pagina localizada de servicos personalizados em cinco idiomas, com categorias de trabalho e solicitacao somente por `mailto:`. Nao ha formulario backend, preco publico, SLA, checkout ou pagamento automatico.
+  - O Control Plane ganhou operacao de monetizacao com resumo/reconciliacao das Checkout Sessions de doacao e ordens manuais de servico auditadas. O modelo nao possui campo de contato do cliente; owner/operator gerenciam status, escopo nao sensivel, valor opcional e pagamento externo.
+  - O comando `pnpm ops:mailbox-readiness` confirmou MX de `opentshost.com` e conectividade de `mail.opentshost.com` em SMTP TLS 465 e IMAP TLS 993. Autenticacao, teste real de entrega e dono da triagem permanecem humanos.
+  - Validacao local: Hub 33 testes e build com 102 rotas pre-renderizadas; Control Plane 107 testes/1.126 assertions; formatacao dos arquivos afetados, estrutura e segredos aprovados.
+  - Escopo negativo: nenhum checkout de servico/plano, subscription, invoice, refund, customer portal, entitlement pago, novo provider, dado de cartao, credencial de mailbox, anuncio ou mudanca de AdSense foi ativado.
+
 Ver `docs/HUMAN_ACTION_REQUIRED.md`.
