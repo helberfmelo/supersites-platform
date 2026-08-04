@@ -7,9 +7,10 @@ Nuxt 4 public catalog for the SuperSites portfolio.
 - Root and localized catalog routes: `/`, `/en`, `/pt-br`, `/es`, `/fr`, `/de`.
 - Localized site detail routes: `/<locale>/sites/<slug>`.
 - Localized legal/editorial routes: `/<locale>/about`, `/<locale>/contact`, `/<locale>/privacy`, `/<locale>/cookies`, `/<locale>/terms`, `/<locale>/methodology`, `/<locale>/editorial-policy`.
+- Reviewed guide indexes and articles in English and Brazilian Portuguese: `/en/guides`, `/pt-br/guides` and `/<guide-locale>/guides/<slug>`.
 - Search and category filtering on the catalog home.
 - Canonical, viewport and hreflang metadata for the transitional `/supersites` public base.
-- Static prerender route list for catalog, ten site detail pages, legal/editorial pages and `sitemap.xml`.
+- Static prerender route list for catalog, ten site detail pages, legal/editorial pages, reviewed guides, the Hub sitemap and the portfolio sitemap index.
 - Shared contracts from `@supersites/i18n`, `@supersites/seo`, `@supersites/ui` and `@supersites/analytics`.
 - Sanitized `outbound_site_click` events for temporary public site links, stored only in the local data layer until external analytics is approved.
 
@@ -26,6 +27,7 @@ pnpm --filter @supersites/supersite dev
 pnpm --filter @supersites/supersite test
 pnpm test:packages
 pnpm --filter @supersites/supersite build
+pnpm validate:adsense-content
 pwsh -NoProfile -ExecutionPolicy Bypass -File ..\..\scripts\validate-supersite-preview.ps1
 pnpm test:e2e:supersite
 ```

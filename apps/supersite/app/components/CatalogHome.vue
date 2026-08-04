@@ -2,6 +2,7 @@
 import { limitSeoText, SEO_DESCRIPTION_MAX_LENGTH, SEO_TITLE_MAX_LENGTH } from '@supersites/seo'
 import { computed, ref } from 'vue'
 import { getHomeCopy } from '../data/copy'
+import { guideCatalog, isGuideLocale, localizedGuideIndexPath, localizedGuidePath } from '../data/guides'
 import { absoluteUrl, localeAlternates } from '../data/routes'
 import { createHubHomeStructuredData } from '../data/schema'
 import {
@@ -85,6 +86,13 @@ const intentClusters = computed(() => copy.value.intentClusters.map((cluster) =>
     .map((siteSlug) => getSiteBySlug(siteSlug))
     .filter((site): site is SiteSummary => Boolean(site)),
 })))
+const featuredGuides = computed(() => isGuideLocale(props.locale)
+  ? guideCatalog.map((guide) => ({
+      ...guide,
+      copy: guide.localized[props.locale],
+      href: localizedGuidePath(props.locale, guide.slug),
+    }))
+  : [])
 
 function localizedPublicSiteUrl(site: SiteSummary): string {
   return `${site.temporaryUrl}${props.locale}`
@@ -230,6 +238,25 @@ useHead(() => ({
           </div>
         </article>
       </div>
+    </section>
+
+    <section v-if="isGuideLocale(locale)" class="home-guides" aria-labelledby="home-guides-title">
+      <div class="section-heading">
+        <p class="eyebrow">{{ locale === 'pt-br' ? 'Conteúdo original' : 'Original guidance' }}</p>
+        <h2 id="home-guides-title">{{ locale === 'pt-br' ? 'Entenda o resultado e decida o próximo passo' : 'Understand the result and choose the next step' }}</h2>
+        <p>{{ locale === 'pt-br' ? 'Guias revisados conectam diagnóstico, limitações, fontes primárias e ferramentas gratuitas para você verificar o próprio caso.' : 'Reviewed guides connect diagnosis, limitations, primary sources and free tools so you can verify your own case.' }}</p>
+      </div>
+      <div class="guide-card-grid guide-card-grid--home">
+        <article v-for="guide in featuredGuides" :key="guide.slug" class="guide-card">
+          <p class="eyebrow">{{ guide.copy.eyebrow }}</p>
+          <h3>{{ guide.copy.title }}</h3>
+          <p>{{ guide.copy.description }}</p>
+          <NuxtLink :to="guide.href">{{ locale === 'pt-br' ? 'Ler o guia' : 'Read the guide' }}</NuxtLink>
+        </article>
+      </div>
+      <NuxtLink class="button-link button-link--secondary" :to="localizedGuideIndexPath(locale)">
+        {{ locale === 'pt-br' ? 'Ver todos os guias' : 'Browse all guides' }}
+      </NuxtLink>
     </section>
 
     <section class="site-directory" aria-labelledby="site-directory-title">

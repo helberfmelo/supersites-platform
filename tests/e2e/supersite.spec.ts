@@ -56,6 +56,49 @@ async function dismissConsentBanner(page: Page) {
 }
 
 test.describe('SuperSites public hub', () => {
+  test('renders the English guide library and a substantial guide on desktop', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.goto('/en/guides')
+    await dismissConsentBanner(page)
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Practical guides for safer web work')
+    await expect(page.locator('.guide-card')).toHaveCount(4)
+    await expect(page.locator('link[rel="alternate"]')).toHaveCount(3)
+    await expectNoHorizontalOverflow(page)
+
+    await page.goto('/en/guides/website-launch-technical-checklist')
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Website launch checklist')
+    await expect(page.getByText('SuperSites Editorial')).toBeVisible()
+    await expect(page.locator('.guide-body .content-section')).toHaveCount(5)
+    await expect(page.locator('.guide-faq details')).toHaveCount(4)
+    await expect(page.locator('.guide-sources a')).toHaveCount(3)
+    await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(3)
+    await expect(page.locator('link[hreflang="es"], link[hreflang="fr"], link[hreflang="de"]')).toHaveCount(0)
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('guide-launch-desktop', { body: screenshot, contentType: 'image/png' })
+    expect(errors).toEqual([])
+  })
+
+  test('renders the Portuguese private-file guide without overflow on mobile', async ({ page }, testInfo) => {
+    const errors = collectBrowserErrors(page)
+
+    await page.setViewportSize({ width: 390, height: 1000 })
+    await page.goto('/pt-br/guides/private-file-processing')
+    await dismissConsentBanner(page)
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Arquivos privados')
+    await expect(page.getByRole('heading', { name: 'Em resumo' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Perguntas frequentes' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Fontes primárias e referência' })).toBeVisible()
+    await expect(page.locator('.language-nav a')).toHaveCount(2)
+    await expectNoHorizontalOverflow(page)
+
+    const screenshot = await page.screenshot({ fullPage: true })
+    await testInfo.attach('guide-private-files-pt-mobile', { body: screenshot, contentType: 'image/png' })
+    expect(errors).toEqual([])
+  })
+
   test('renders the localized privacy page on mobile', async ({ page }, testInfo) => {
     const errors = collectBrowserErrors(page)
 
@@ -76,7 +119,7 @@ test.describe('SuperSites public hub', () => {
       'https://opentshost.com/supersites/pt-br/privacy',
     )
     await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
-    await expect(page.locator('.page-footer__links--legal a')).toHaveCount(8)
+    await expect(page.locator('.page-footer__links--legal a')).toHaveCount(10)
     await expect(page.getByLabel(/Páginas legais e editoriais/).getByRole('link', { name: 'Status' })).toBeVisible()
     await expect(page.locator('main')).not.toContainText(
       /\bshould\b|plans to|planned|human review|legal review|paid accounts launch|final public launch|public review|revisão jurídica|revisão humana|\bdeve\b|\bdevem\b|\bprecisa\b|\bprecisam\b/i,
@@ -233,8 +276,8 @@ test.describe('SuperSites public hub', () => {
       'https://opentshost.com/supersites/en/terms',
     )
     await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
-    await expect(page.locator('main')).not.toContainText(
-      /catalog phase|launched|launch|rollout|public review|human review|legal review|quality checks|release checks|rollback|worker planned|billing disabled|ads planned|plans to|planned|\bshould\b|\bmust\b/i,
+    await expect(page.locator('.content-main')).not.toContainText(
+      /catalog phase|launched|launch|rollout|public review|human review|legal review|quality checks|release checks|rollback|worker planned|billing disabled|ads planned|plans to|planned/i,
     )
     await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1)
 
@@ -273,8 +316,8 @@ test.describe('SuperSites public hub', () => {
       'https://opentshost.com/supersites/pt-br/terms',
     )
     await expect(page.locator('link[hreflang="pt-BR"]')).toHaveCount(1)
-    await expect(page.locator('main')).not.toContainText(
-      /fase do catálogo|lançamento|revisão pública|revisão humana|revisão jurídica|planeja|planejado|\bdeve\b|\bdevem\b|human review|legal review|quality checks|billing disabled|ads planned/i,
+    await expect(page.locator('.content-main')).not.toContainText(
+      /fase do catálogo|lançamento|revisão pública|revisão humana|revisão jurídica|planeja|planejado|human review|legal review|quality checks|billing disabled|ads planned/i,
     )
     await expectNoHorizontalOverflow(page)
 

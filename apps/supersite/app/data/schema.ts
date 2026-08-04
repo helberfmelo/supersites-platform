@@ -1,4 +1,6 @@
 import type { HomeCopy } from './copy'
+import type { Guide, GuideLocale, LocalizedGuide } from './guides'
+import { localizedGuideIndexPath, localizedGuidePath } from './guides'
 import type { LegalPage, LocalizedLegalPage } from './legal'
 import type { LocaleCode } from './locales'
 import { localizedHomePath, localizedLegalPath, localizedSitePath, toHreflang } from './locales'
@@ -131,6 +133,73 @@ export function createLegalPageStructuredData(
         url: absoluteUrl(localizedHomePath(locale)),
       },
       dateModified: '2026-06-28',
+    },
+  ]
+}
+
+export function createGuideLandingStructuredData(locale: GuideLocale, title: string, description: string) {
+  const url = absoluteUrl(localizedGuideIndexPath(locale))
+
+  return [
+    {
+      ...baseNode('CollectionPage', url, title, description, locale),
+      isPartOf: {
+        '@type': 'WebSite',
+        name: 'SuperSites Hub',
+        url: absoluteUrl(localizedHomePath(locale)),
+      },
+    },
+  ]
+}
+
+export function createGuideStructuredData(
+  locale: GuideLocale,
+  guide: Guide,
+  copy: LocalizedGuide,
+): Record<string, unknown>[] {
+  const url = absoluteUrl(localizedGuidePath(locale, guide.slug))
+  const homeUrl = absoluteUrl(localizedHomePath(locale))
+  const guidesUrl = absoluteUrl(localizedGuideIndexPath(locale))
+
+  return [
+    {
+      ...baseNode('Article', url, copy.title, copy.description, locale),
+      headline: copy.title,
+      datePublished: '2026-08-04',
+      dateModified: guide.reviewedAt,
+      author: {
+        '@type': 'Organization',
+        name: 'SuperSites Editorial',
+        url: homeUrl,
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'SuperSites',
+        url: siteBaseUrl,
+      },
+      mainEntityOfPage: url,
+      citation: copy.sources.map((source) => source.href),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: copy.faq.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.answer,
+        },
+      })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'SuperSites', item: homeUrl },
+        { '@type': 'ListItem', position: 2, name: locale === 'pt-br' ? 'Guias' : 'Guides', item: guidesUrl },
+        { '@type': 'ListItem', position: 3, name: copy.title, item: url },
+      ],
     },
   ]
 }

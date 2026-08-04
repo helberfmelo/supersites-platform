@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { getFooterCopy } from '../data/copy'
+import { isGuideLocale, localizedGuideIndexPath } from '../data/guides'
 import { legalPageCatalog, type LegalPageSlug } from '../data/legal'
 import { localizedLegalPath, type LocaleCode } from '../data/locales'
 import { getSiteBySlug, type SiteSummary } from '../data/sites'
@@ -62,6 +63,9 @@ const productGroups = computed(() => copy.value.groups.map((group) => ({
     </nav>
 
     <nav class="page-footer__links page-footer__links--legal" :aria-label="copy.legalNavLabel">
+      <NuxtLink v-if="isGuideLocale(locale)" :to="localizedGuideIndexPath(locale)">
+        {{ locale === 'pt-br' ? 'Guias' : 'Guides' }}
+      </NuxtLink>
       <NuxtLink
         v-for="page in legalPageCatalog"
         :key="page.slug"

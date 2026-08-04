@@ -5,6 +5,7 @@ import { localizedHomePath, type LocaleCode } from '../data/locales'
 const props = defineProps<{
   locale: LocaleCode
   pathForLocale?: (locale: LocaleCode) => string
+  availableLocales?: readonly LocaleCode[]
 }>()
 
 const languagePathFactory = computed(() => props.pathForLocale ?? localizedHomePath)
@@ -18,7 +19,11 @@ const languagePathFactory = computed(() => props.pathForLocale ?? localizedHomeP
     </NuxtLink>
     <div class="site-header__actions">
       <SupportDonationCta :locale="locale" variant="header" />
-      <LanguageNav :current-locale="locale" :path-for-locale="languagePathFactory" />
+      <LanguageNav
+        :current-locale="locale"
+        :path-for-locale="languagePathFactory"
+        :available-locales="availableLocales"
+      />
     </div>
   </header>
 </template>

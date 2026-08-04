@@ -3996,6 +3996,134 @@ h3 {
   margin-top: 0;
 }
 
+.guide-landing-hero,
+.guide-hero {
+  align-items: center;
+}
+
+.guide-principle-card,
+.guide-summary,
+.guide-resources,
+.guide-faq,
+.guide-sources {
+  padding: 22px;
+  border: 1px solid #cfd8d3;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.guide-principle-card p,
+.guide-summary p,
+.guide-resources p,
+.guide-faq p,
+.guide-sources p {
+  color: #3f5048;
+}
+
+.guide-principle-card p {
+  margin: 8px 0 0;
+}
+
+.guide-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.guide-card {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  padding: 22px;
+  border: 1px solid #cfd8d3;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgb(24 35 31 / 6%);
+}
+
+.guide-card h2,
+.guide-card h3,
+.guide-card p {
+  margin-bottom: 0;
+}
+
+.guide-card > p:not(.eyebrow) {
+  color: #46554e;
+}
+
+.guide-card > a:not(.button-link) {
+  color: #175c43;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.guide-meta,
+.guide-byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  color: #5d6b64;
+  font-size: 0.88rem;
+}
+
+.guide-byline {
+  margin-top: 18px;
+}
+
+.guide-article {
+  display: grid;
+  gap: 24px;
+}
+
+.guide-body {
+  width: min(820px, 100%);
+}
+
+.guide-body .content-section:first-child {
+  border-top: 0;
+}
+
+.guide-checklist {
+  max-width: 760px;
+  margin-top: 18px;
+  padding: 16px;
+  border-radius: 8px;
+  background: #edf5ef;
+}
+
+.guide-faq {
+  display: grid;
+  gap: 10px;
+}
+
+.guide-faq details {
+  padding: 14px 0;
+  border-top: 1px solid #d8ded8;
+}
+
+.guide-faq summary {
+  cursor: pointer;
+  color: #17231e;
+  font-weight: 850;
+}
+
+.guide-faq details p {
+  max-width: 780px;
+  margin: 10px 0 0;
+}
+
+.home-guides {
+  display: grid;
+  gap: 18px;
+  padding: 34px 0;
+  border-top: 1px solid #d8ded8;
+}
+
+.guide-card-grid--home {
+  margin-top: 0;
+}
+
 .consent-banner {
   position: fixed;
   z-index: 30;
@@ -4202,6 +4330,7 @@ h3 {
   }
 
   .feature-grid,
+  .guide-card-grid,
   .intent-grid,
   .tool-shortcut-grid,
   .netprobe-tool-grid,

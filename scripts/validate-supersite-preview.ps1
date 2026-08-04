@@ -207,9 +207,19 @@ try {
         throw 'Public Status page smoke failed.'
     }
 
-    $sitemap = Invoke-PreviewRequest -Uri "$baseUrl/sitemap.xml" -RequiredContent '<urlset'
-    if ($sitemap.Content -notmatch '/en/privacy' -or $sitemap.Content -notmatch '/de/editorial-policy' -or $sitemap.Content -notmatch '/pt-br/status') {
-        throw 'Sitemap smoke failed.'
+    $sitemapIndex = Invoke-PreviewRequest -Uri "$baseUrl/sitemap.xml" -RequiredContent '<sitemapindex'
+    if ($sitemapIndex.Content -notmatch '/sitemap-hub.xml' -or $sitemapIndex.Content -notmatch '/netprobe-atlas/sitemap.xml') {
+        throw 'Sitemap index smoke failed.'
+    }
+
+    $hubSitemap = Invoke-PreviewRequest -Uri "$baseUrl/sitemap-hub.xml" -RequiredContent '<urlset'
+    if ($hubSitemap.Content -notmatch '/en/privacy' -or $hubSitemap.Content -notmatch '/de/editorial-policy' -or $hubSitemap.Content -notmatch '/pt-br/status' -or $hubSitemap.Content -notmatch '/en/guides/website-launch-technical-checklist') {
+        throw 'Hub sitemap smoke failed.'
+    }
+
+    $guide = Invoke-PreviewRequest -Uri "$baseUrl/en/guides/website-launch-technical-checklist" -RequiredContent 'Website launch checklist'
+    if ($guide.Content -notmatch 'SuperSites Editorial' -or $guide.Content -notmatch 'Frequently asked questions' -or $guide.Content -notmatch 'Primary sources and reference') {
+        throw 'Editorial guide smoke failed.'
     }
 
     Write-Host "SuperSites preview smoke passed on $baseUrl."

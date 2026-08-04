@@ -5,9 +5,11 @@ import { buildLanguageOptions, type LocaleCode } from '../data/locales'
 const props = defineProps<{
   currentLocale: LocaleCode
   pathForLocale: (locale: LocaleCode) => string
+  availableLocales?: readonly LocaleCode[]
 }>()
 
-const languageOptions = computed(() => buildLanguageOptions(props.currentLocale, props.pathForLocale))
+const languageOptions = computed(() => buildLanguageOptions(props.currentLocale, props.pathForLocale)
+  .filter((option) => !props.availableLocales || props.availableLocales.includes(option.code)))
 
 function languageAriaLabel(locale: { label: string; shortLabel: string }): string {
   return `${locale.label} (${locale.shortLabel})`

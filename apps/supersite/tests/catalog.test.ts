@@ -14,10 +14,20 @@ import {
   getTimeNexusCatalogCopy,
 } from '../app/data/copy'
 import { getLegalPageCopy, getLegalShellCopy, legalPageCatalog, legalPageSlugs } from '../app/data/legal'
+import {
+  getGuideWordCount,
+  guideCatalog,
+  guideLandingCopy,
+  guideLocales,
+  localizedGuideIndexPath,
+  localizedGuidePath,
+} from '../app/data/guides'
 import { localeCodes } from '../app/data/locales'
 import { contentPrerenderRoutes, prerenderRoutes, siteBaseUrl } from '../app/data/routes'
 import {
   createHubHomeStructuredData,
+  createGuideLandingStructuredData,
+  createGuideStructuredData,
   createLegalPageStructuredData,
   createSiteDetailStructuredData,
 } from '../app/data/schema'
@@ -464,9 +474,65 @@ describe('site catalog', () => {
     expect(contentPrerenderRoutes).toContain('/de/sites/docshift')
     expect(contentPrerenderRoutes).toContain('/fr/privacy')
     expect(contentPrerenderRoutes).toHaveLength(
-      1 + localeCodes.length * (1 + siteCatalog.length + legalPageCatalog.length),
+      1
+        + guideLocales.length * (1 + guideCatalog.length)
+        + localeCodes.length * (1 + siteCatalog.length + legalPageCatalog.length),
     )
     expect(prerenderRoutes).toEqual([...contentPrerenderRoutes, '/sitemap.xml', '/sitemap-hub.xml'])
+  })
+
+  it('publishes a small bilingual guide library with substantial original content', () => {
+    expect(guideCatalog).toHaveLength(4)
+    expect(guideLocales).toEqual(['en', 'pt-br'])
+
+    for (const locale of guideLocales) {
+      expect(guideLandingCopy[locale].description.length).toBeGreaterThan(90)
+      expect(contentPrerenderRoutes).toContain(localizedGuideIndexPath(locale))
+
+      for (const guide of guideCatalog) {
+        const copy = guide.localized[locale]
+
+        expect(contentPrerenderRoutes).toContain(localizedGuidePath(locale, guide.slug))
+        expect(getGuideWordCount(guide, locale)).toBeGreaterThanOrEqual(450)
+        expect(copy.sections).toHaveLength(5)
+        expect(copy.takeaways.length).toBeGreaterThanOrEqual(5)
+        expect(copy.faq).toHaveLength(4)
+        expect(copy.sources.length).toBeGreaterThanOrEqual(2)
+        expect(copy.relatedTools.length).toBeGreaterThanOrEqual(3)
+        expect(copy.sources.every((source) => source.href.startsWith('https://'))).toBe(true)
+        expect(copy.relatedTools.every((tool) => tool.href.startsWith(`${siteBaseUrl}/`))).toBe(true)
+      }
+    }
+  })
+
+  it('emits Article, FAQ and breadcrumb schema for every guide', () => {
+    for (const locale of guideLocales) {
+      const landingSchema = createGuideLandingStructuredData(
+        locale,
+        guideLandingCopy[locale].title,
+        guideLandingCopy[locale].description,
+      )
+      expect(landingSchema[0]['@type']).toBe('CollectionPage')
+
+      for (const guide of guideCatalog) {
+        const schema = createGuideStructuredData(locale, guide, guide.localized[locale])
+        expect(schema.map((item) => item['@type'])).toEqual(['Article', 'FAQPage', 'BreadcrumbList'])
+        expect(schema[0]).toMatchObject({
+          dateModified: guide.reviewedAt,
+          author: { name: 'SuperSites Editorial' },
+        })
+      }
+    }
+  })
+
+  it('links guides only to published portfolio tool routes', () => {
+    const guideToolUrls = guideCatalog.flatMap((guide) => guideLocales.flatMap((locale) =>
+      guide.localized[locale].relatedTools.map((tool) => tool.href)))
+
+    expect(guideToolUrls.some((url) => url.endsWith('/tools/redirect-chain'))).toBe(true)
+    expect(guideToolUrls.some((url) => url.endsWith('/tools/metadata-remover'))).toBe(true)
+    expect(guideToolUrls).not.toContain(`${siteBaseUrl}/sitepulse-lab/en/tools/redirect-checker`)
+    expect(guideToolUrls).not.toContain(`${siteBaseUrl}/pixelbatch/en/tools/metadata-cleaner`)
   })
 
   it('keeps temporary public URLs under the safe HostGator fallback path', () => {

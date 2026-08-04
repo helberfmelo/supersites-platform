@@ -169,3 +169,11 @@ Data-base: 2026-06-27
 - The legal page panel can use page-specific rows; Status should show public availability and known incidents, never the generic `Page care` fallback.
 - Local evidence: Playwright added Status desktop/mobile coverage and generated HTML checks passed across 5 locales. Live evidence: `artifacts/public-status-qa/status-en-live-desktop-clean.png` and `artifacts/public-status-qa/status-pt-br-live-mobile-clean.png`.
 - Production deploy `28472435568` published release `f5457889eec6a901ed0a4ff568f60cd9ea5ab844-28472435568-1`, asset `https://opentshost.com/supersites/_nuxt/B_BSjuR5.js`; public smoke, AdSense-safe validation, five Status locale route checks and crawler quick `2026-06-30T20-15-07-045Z` passed.
+
+## Phase 27 editorial authority notes
+
+- Current benchmark review confirmed a shared content pattern: Calculator.net combines the immediate answer with formulas and interpretation; timeanddate groups deep articles with related services; MxToolbox connects checks to remediation; iLovePDF publishes task-based guides with takeaways and tool links.
+- SuperSites adapts that pattern as a small evergreen Guides center, not a generic high-volume blog. The initial library contains four original topics in EN/PT-BR: DNS propagation, SPF/DKIM/DMARC, website launch verification and private browser-side file processing.
+- Every guide includes an institutional byline, review date, decision summary, checklist, limitations, FAQ, primary sources and links to real free tools. Only real bilingual alternates are emitted; ES/FR/DE are not advertised for untranslated guide routes.
+- The Hub home, footer and sitemap expose the guide library. `Article`, `FAQPage` and `BreadcrumbList` structured data support discovery without inventing ratings, authors or publication volume.
+- The local Phase 27 gate passed 35 unit/content tests, a 226-route static generation, dedicated AdSense content validation for 8 substantial guides, public-copy and AdSense-safe checks, preview smoke, and the complete 42-test Hub Playwright suite with desktop/mobile screenshots and no overflow.
