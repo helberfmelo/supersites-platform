@@ -62,7 +62,9 @@ test.describe('SuperSites public hub', () => {
     await page.goto('/en/guides')
     await dismissConsentBanner(page)
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Practical guides for safer web work')
-    await expect(page.locator('.guide-card')).toHaveCount(4)
+    await expect(page.locator('.guide-card')).toHaveCount(8)
+    await expect(page.getByText('Editorial contract', { exact: true })).toHaveCount(0)
+    await expect(page.getByText('Choose by problem', { exact: true })).toBeVisible()
     await expect(page.locator('link[rel="alternate"]')).toHaveCount(3)
     await expectNoHorizontalOverflow(page)
 

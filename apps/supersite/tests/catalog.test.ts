@@ -482,7 +482,7 @@ describe('site catalog', () => {
   })
 
   it('publishes a small bilingual guide library with substantial original content', () => {
-    expect(guideCatalog).toHaveLength(4)
+    expect(guideCatalog).toHaveLength(8)
     expect(guideLocales).toEqual(['en', 'pt-br'])
 
     for (const locale of guideLocales) {

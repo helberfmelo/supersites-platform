@@ -71,8 +71,8 @@ useHead({
         <p class="lead">{{ copy.intro }}</p>
       </div>
       <aside class="guide-principle-card">
-        <strong>{{ locale === 'pt-br' ? 'Contrato editorial' : 'Editorial contract' }}</strong>
-        <p>{{ locale === 'pt-br' ? 'Poucas páginas, revisão humana, fontes primárias e uma ação útil em cada leitura.' : 'Few pages, human review, primary sources and one useful action in every read.' }}</p>
+        <strong>{{ locale === 'pt-br' ? 'Escolha pelo problema' : 'Choose by problem' }}</strong>
+        <p>{{ locale === 'pt-br' ? 'Encontre orientações para DNS, e-mail, sites, desenvolvimento, QR codes, imagens e PDFs.' : 'Find practical help for DNS, email, websites, development, QR codes, images and PDFs.' }}</p>
       </aside>
     </section>
 

@@ -8,6 +8,10 @@ const slugs = [
   'spf-dkim-dmarc-checklist',
   'website-launch-technical-checklist',
   'private-file-processing',
+  'http-redirects-security-headers',
+  'json-api-jwt-troubleshooting',
+  'qr-code-campaign-checklist',
+  'web-image-pdf-optimization',
 ]
 
 function fail(message) {
@@ -42,6 +46,8 @@ function count(html, pattern) {
 }
 
 const failures = []
+const articleWordCounts = []
+const internalEditorialCopy = /(?:Contrato editorial|Editorial contract|revis[aã]o humana|human review|conte[uú]do de baixo valor|low-value content|aprova[cç][aã]o do AdSense|AdSense approval)/iu
 
 for (const locale of locales) {
   const indexRoute = `/${locale}/guides`
@@ -50,11 +56,13 @@ for (const locale of locales) {
   if (count(indexHtml, /<h1\b/giu) !== 1) failures.push(`${indexRoute}: expected one H1`)
   if (!indexHtml.includes(`/${locale}/guides/`)) failures.push(`${indexRoute}: guide links missing`)
   if (visibleWordCount(indexHtml) < 180) failures.push(`${indexRoute}: index content is too short`)
+  if (internalEditorialCopy.test(indexHtml)) failures.push(`${indexRoute}: internal editorial/process language is public`)
 
   for (const slug of slugs) {
     const route = `/${locale}/guides/${slug}`
     const html = readRoute(route)
     const words = visibleWordCount(html)
+    articleWordCounts.push(words)
     const required = [
       ['one H1', count(html, /<h1\b/giu) === 1],
       ['meta description', /<meta\s+name="description"\s+content="[^"]{80,}"/iu.test(html)],
@@ -63,11 +71,12 @@ for (const locale of locales) {
       ['FAQ schema', html.includes('&quot;@type&quot;:&quot;FAQPage&quot;') || html.includes('"@type":"FAQPage"')],
       ['editorial author', html.includes('SuperSites Editorial')],
       ['review date', html.includes('2026-08-04')],
-      ['primary sources', count(html, /https:\/\/(?:datatracker\.ietf\.org|developers\.google\.com|owasp\.org|www\.w3\.org|developer\.mozilla\.org)/giu) >= 2],
-      ['related public tools', count(html, /https:\/\/opentshost\.com\/supersites\/(?:netprobe-atlas|mailhealth|sitepulse-lab|pixelbatch|docshift)\//giu) >= 3],
+      ['primary sources', count(html, /https:\/\/(?:datatracker\.ietf\.org|developers\.google\.com|support\.google\.com|owasp\.org|www\.w3\.org|developer\.mozilla\.org|www\.rfc-editor\.org|www\.qrcode\.com|pdfa\.org)/giu) >= 2],
+      ['related public tools', count(html, /https:\/\/opentshost\.com\/supersites\/(?:netprobe-atlas|mailhealth|sitepulse-lab|pixelbatch|docshift|devutility-lab|qrroute)\//giu) >= 3],
       ['substantial visible content', words >= 650],
       ['no unsupported guide hreflang', !/hreflang="(?:es|fr|de)"/iu.test(html)],
       ['no active AdSense request', !/(pagead2\.googlesyndication\.com|adsbygoogle|google_ad_client)/iu.test(html)],
+      ['no internal editorial/process language', !internalEditorialCopy.test(html)],
     ]
 
     for (const [label, passed] of required) {
@@ -92,4 +101,4 @@ if (failures.length) {
   process.exit(1)
 }
 
-console.log(`[adsense-content] PASS — ${slugs.length * locales.length} substantial guides, 2 indexes, schemas, sources, internal discovery and sitemap verified.`)
+console.log(`[adsense-content] PASS — ${slugs.length * locales.length} substantial guides (${Math.min(...articleWordCounts)}-${Math.max(...articleWordCounts)} visible words), 2 indexes, schemas, sources, internal discovery and sitemap verified.`)

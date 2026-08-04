@@ -179,3 +179,11 @@ Data-base: 2026-06-27
 - The local Phase 27 gate passed 36 unit/content tests, a 226-route static generation, dedicated AdSense content validation for 8 substantial guides, public-copy and AdSense-safe checks, preview smoke, and the complete 42-test Hub Playwright suite with desktop/mobile screenshots and no overflow.
 - Production release `18a085f4e040-20260804052758` published the guides on `mywebtools.top`. Live validation confirmed 10/10 new routes with HTTP 200, 875-1,086 words per article, canonical/real-language alternates/schemas, 966 unique sitemap URLs, zero confirmed failures, and HTTP 200 for `robots.txt` and `ads.txt`.
 - With the technical and editorial gates green, a new AdSense review was requested on 2026-08-04. The panel confirmed that all onboarding steps were complete; final approval and timing remain Google decisions, and ad serving stays disabled.
+
+## Phase 28 editorial hygiene and expansion notes
+
+- Public guide surfaces must explain the visitor task, not the publishing process. Terms such as `Editorial contract`, `human review`, roadmap, phase, quality gate and AdSense approval stay in repository docs; the guide index now helps visitors choose by problem instead.
+- The curated library expands to eight topics in EN/PT-BR with new guides for HTTP redirects/security headers, JSON/Base64/JWT troubleshooting, QR campaign validation and image/PDF optimization.
+- New guide routes continue to come from the shared catalog, so home cards, the guide index, related links, prerender routes and the Hub sitemap stay aligned without manual URL lists in the UI.
+- The AdSense content validator now covers all 16 localized articles, reports the visible word range and rejects internal editorial/process language in generated guide HTML.
+- `ads.txt` is intentionally unchanged: it is a publisher authorization file, not a content sitemap or editorial inventory.

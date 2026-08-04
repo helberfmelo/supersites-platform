@@ -1,5 +1,6 @@
 import type { LocaleCode } from './locales'
 import { localizedPath } from './locales'
+import { expandedGuideCatalog } from './guide-expansion'
 
 export const guideLocales = ['en', 'pt-br'] as const
 export type GuideLocale = (typeof guideLocales)[number]
@@ -450,6 +451,7 @@ export const guideCatalog: Guide[] = [
       },
     },
   },
+  ...expandedGuideCatalog,
 ]
 
 export function isGuideLocale(locale: LocaleCode | string): locale is GuideLocale {
