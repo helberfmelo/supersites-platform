@@ -1905,6 +1905,14 @@ Ainda em 2026-06-29, o `Public Watchdog` agendado run `28372846327` falhou no sm
   - Release: commit `18a085f`; deploy HostGator `18a085f4e040-20260804052758`, com asset publico `https://mywebtools.top/_nuxt/B2S-0Xkz.js`.
   - AdSense: depois dos gates verdes, `Confirmo que corrigi os problemas` foi marcado e `Pedir revisao` foi enviado. O painel confirmou `Em breve, seu site estara pronto para exibir anuncios` e `Muito bem! Voce concluiu todas as etapas`. A aprovacao final ainda depende do Google; ad serving permanece desativado.
 
+- Fase 28 - Expansao e higiene editorial (2026-08-04):
+  - Auditoria publica removeu `Contrato editorial`/`Editorial contract` do indice de guias e confirmou que nao havia outra linguagem equivalente de processo interno nos artigos. O painel agora orienta o visitante a escolher por DNS, e-mail, sites, desenvolvimento, QR codes, imagens ou PDFs.
+  - Quatro novos temas foram publicados em EN/PT-BR: redirects HTTP e headers de seguranca; JSON/Base64/JWT sem exposicao de segredos; checklist de campanha com QR code; otimizacao de imagens e PDFs. A biblioteca passou a 8 temas, 16 artigos e 2 indices.
+  - O validador AdSense passou a cobrir todos os artigos, reportar a faixa de 875-1.086 palavras visiveis e bloquear termos internos. Fontes e ferramentas relacionadas foram verificadas; um link MDN localizado inexistente e uma referencia bloqueada foram substituidos antes da release.
+  - Validacao local passou com 36 testes, 242 rotas prerenderizadas, 976 HTMLs no scanner de copy, build/preview, estrutura, segredos, gate AdSense e 42 testes Playwright desktop/mobile.
+  - Release: commit `d9b889b`; deploy HostGator `d9b889b539fe-20260804060723`, 261 arquivos/12.169.024 bytes e asset `https://mywebtools.top/_nuxt/DuPPLa7q.js`.
+  - Validacao publica confirmou 8/8 novas rotas HTTP 200 com schemas, indices EN/PT-BR limpos com 8 links, sitemap do Hub com 119 URLs, 974 URLs unicas no portfólio, 0 cross-domain, `robots.txt` 200 e `ads.txt` 200. `ads.txt` e ad serving permaneceram inalterados.
+
 ## Bloqueios humanos registrados
 
 - Fase 25 - Fechamento das pendencias independentes de AdSense (2026-07-19):

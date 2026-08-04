@@ -2,6 +2,8 @@
 
 Data-base: 2026-08-04
 
+Status: concluida e publicada em `mywebtools.top`.
+
 ## Objetivo
 
 Remover linguagem de processo interno das superficies publicas e ampliar o centro de guias com conteudo util, original, rastreavel e conectado a ferramentas reais. A expansao continua curada: novos temas entram por necessidade concreta, nao por volume de paginas.
@@ -41,3 +43,12 @@ Remover linguagem de processo interno das superficies publicas e ampliar o centr
 3. Cada novo artigo possui fontes acessiveis, ferramentas publicadas, schema, canonical e alternates apenas para traducoes reais.
 4. Home, rodape, indice e sitemap descobrem as novas rotas.
 5. QA local e validacao publica passam sem anuncios reais ou alteracao indevida de `ads.txt`.
+
+## Fechamento
+
+- Implementacao publicada no commit `d9b889b` e na release HostGator `d9b889b539fe-20260804060723`.
+- O indice deixou de publicar `Contrato editorial`/`Editorial contract` e passou a orientar a escolha por problema.
+- Biblioteca final: 8 temas, 16 artigos localizados e 2 indices; artigos com 875 a 1.086 palavras visiveis no HTML gerado.
+- Validacao local: 36 testes, 242 rotas prerenderizadas, 976 HTMLs aprovados no scanner de copy, 16 artigos aprovados no gate AdSense, build/preview/estrutura/segredos verdes e 42 testes Playwright aprovados.
+- Validacao publica: 8/8 novas rotas HTTP 200 com `Article` e `FAQPage`; indices EN/PT-BR com 8 links unicos e sem linguagem interna; sitemap raiz com 11 filhos, sitemap do Hub com 119 URLs e portfólio com 974 URLs unicas, sem dominio divergente.
+- `robots.txt` e `ads.txt` retornam HTTP 200. `ads.txt` nao foi alterado e nenhum ad serving foi ativado.

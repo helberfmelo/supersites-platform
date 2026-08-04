@@ -43,9 +43,10 @@ Use o indice para abrir somente as referencias exigidas pelo risco. Nao leia doc
 - Fonte operacional: `docs/ADSENSE_PLAYBOOK.md` e `docs/RUNBOOKS/ADSENSE_GO_LIVE_READINESS.md`.
 - Roadmap corretivo tecnico concluido: `docs/ROADMAP_FASE_26_CORRECAO_ADSENSE_BAIXO_VALOR.md`.
 - Roadmap editorial concluido: `docs/ROADMAP_FASE_27_AUTORIDADE_EDITORIAL_ADSENSE.md`.
+- Expansao e higiene editorial concluidas: `docs/ROADMAP_FASE_28_EXPANSAO_E_HIGIENE_EDITORIAL.md`.
 - Em 2026-07-27, o AdSense devolveu `mywebtools.top` com `Conteudo de baixo valor`.
 - O `ads.txt` publico esta presente e valido; o painel ainda mostrava `Nao encontrado` na ultima atualizacao observada, portanto e necessario aguardar novo rastreamento.
-- As Fases 26 e 27 concluiram as correcoes de descoberta e autoridade editorial. A nova revisao foi solicitada em 2026-08-04 depois dos gates locais e publicos; o estado atual e aguardar a decisao do Google sem ativar ad serving.
+- As Fases 26 a 28 concluiram descoberta, autoridade e higiene editorial. A biblioteca possui 8 temas/16 artigos localizados, sem linguagem interna no indice; a nova revisao foi solicitada em 2026-08-04 e o estado atual e aguardar a decisao do Google sem ativar ad serving.
 
 ## Antes de encerrar
 

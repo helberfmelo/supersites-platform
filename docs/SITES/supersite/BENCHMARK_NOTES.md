@@ -187,3 +187,4 @@ Data-base: 2026-06-27
 - New guide routes continue to come from the shared catalog, so home cards, the guide index, related links, prerender routes and the Hub sitemap stay aligned without manual URL lists in the UI.
 - The AdSense content validator now covers all 16 localized articles, reports the visible word range and rejects internal editorial/process language in generated guide HTML.
 - `ads.txt` is intentionally unchanged: it is a publisher authorization file, not a content sitemap or editorial inventory.
+- Production release `d9b889b539fe-20260804060723` published the expansion on `mywebtools.top`. Live checks passed for all 8 new localized routes, both indexes, 119 Hub sitemap URLs, 974 unique portfolio URLs, `robots.txt` and `ads.txt`; no cross-domain sitemap URL or active ad request was introduced.

@@ -60,6 +60,14 @@ Data-base: 2026-08-04
 | Fase 27 Hub sitemap URLs | 111 |
 | Fase 27 auditoria publica final | 0 falhas confirmadas em 966 URLs; robots.txt e ads.txt HTTP 200 |
 | Fase 27 release HostGator | `18a085f4e040-20260804052758` |
+| Fase 28 temas editoriais | 8 |
+| Fase 28 artigos localizados | 16 (8 EN + 8 PT-BR) |
+| Fase 28 rotas de guias | 18 (2 indices + 16 artigos) |
+| Fase 28 profundidade dos artigos live | 875-1.086 palavras visiveis |
+| Fase 28 Hub sitemap URLs | 119 |
+| Fase 28 URLs descobertas por sitemap | 974 unicas; 0 cross-domain |
+| Fase 28 QA | 36 testes; 242 rotas prerenderizadas; 976 HTMLs; 42 Playwright; 0 falhas publicas nas 8 novas rotas |
+| Fase 28 release HostGator | `d9b889b539fe-20260804060723` |
 | Fase 26 referencias legadas nos sitemaps | 0 |
 | AdSense payout/payment information | UI says payment information is present; no manual payout/payment/card/billing finalized |
 | Sprint 6.3 local validation | Passed |
