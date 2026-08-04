@@ -67,7 +67,8 @@ $requiredFiles = @(
     "en/index.html",
     "pt-br/privacy/index.html",
     "en/sites/netprobe-atlas/index.html",
-    "sitemap.xml"
+    "sitemap.xml",
+    "sitemap-hub.xml"
 )
 
 foreach ($file in $requiredFiles) {
@@ -109,8 +110,31 @@ if ($basePath) {
 
 $sitemapPath = Assert-FileExists -Root $ArtifactPath -RelativePath "sitemap.xml"
 $sitemap = Get-Content -Raw -LiteralPath $sitemapPath
-Assert-ContentContains -Content $sitemap -Needle "$publicBaseUrl/en/privacy" -Context "Sitemap"
-Assert-ContentContains -Content $sitemap -Needle "$publicBaseUrl/de/editorial-policy" -Context "Sitemap"
+Assert-ContentContains -Content $sitemap -Needle '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' -Context "Sitemap index"
+Assert-ContentContains -Content $sitemap -Needle "$publicBaseUrl/sitemap-hub.xml" -Context "Sitemap index"
+
+$siteIds = @(
+    "netprobe-atlas",
+    "calcharbor",
+    "devutility-lab",
+    "timenexus",
+    "qrroute",
+    "invoicecraft",
+    "mailhealth",
+    "sitepulse-lab",
+    "pixelbatch",
+    "docshift"
+)
+
+foreach ($siteId in $siteIds) {
+    Assert-ContentContains -Content $sitemap -Needle "$publicBaseUrl/$siteId/sitemap.xml" -Context "Sitemap index"
+}
+
+$hubSitemapPath = Assert-FileExists -Root $ArtifactPath -RelativePath "sitemap-hub.xml"
+$hubSitemap = Get-Content -Raw -LiteralPath $hubSitemapPath
+Assert-ContentContains -Content $hubSitemap -Needle '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' -Context "Hub sitemap"
+Assert-ContentContains -Content $hubSitemap -Needle "$publicBaseUrl/en/privacy" -Context "Hub sitemap"
+Assert-ContentContains -Content $hubSitemap -Needle "$publicBaseUrl/de/editorial-policy" -Context "Hub sitemap"
 
 $escapedBasePath = [regex]::Escape($basePath)
 $assetReferences = @()

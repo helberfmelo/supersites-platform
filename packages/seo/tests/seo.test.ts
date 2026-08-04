@@ -4,6 +4,7 @@ import {
   createCanonicalLink,
   createLocaleAlternates,
   createPageMetadata,
+  createSitemapIndexXml,
   createSitemapXml,
   limitSeoText,
   SEO_DESCRIPTION_MAX_LENGTH,
@@ -81,5 +82,17 @@ describe('@supersites/seo', () => {
 
     expect(sitemap).toContain('<loc>https://opentshost.com/supersites/en</loc>')
     expect(sitemap).toContain('<lastmod>2026-06-26</lastmod>')
+  })
+
+  it('creates an escaped sitemap index for related applications', () => {
+    const sitemapIndex = createSitemapIndexXml([
+      { url: 'https://mywebtools.top/sitemap-hub.xml' },
+      { url: 'https://mywebtools.top/tools?a=1&b=2', lastmod: '2026-08-04' },
+    ])
+
+    expect(sitemapIndex).toContain('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+    expect(sitemapIndex).toContain('<loc>https://mywebtools.top/sitemap-hub.xml</loc>')
+    expect(sitemapIndex).toContain('<loc>https://mywebtools.top/tools?a=1&amp;b=2</loc>')
+    expect(sitemapIndex).toContain('<lastmod>2026-08-04</lastmod>')
   })
 })

@@ -1,11 +1,12 @@
-import { createSitemapXml } from '@supersites/seo'
-import { contentPrerenderRoutes, siteBaseUrl } from '../../app/data/routes'
+import { createSitemapIndexXml } from '@supersites/seo'
+import { siteBaseUrl } from '../../app/data/routes'
+import { siteCatalog } from '../../app/data/sites'
 
 export default defineEventHandler((event) => {
   setHeader(event, 'content-type', 'application/xml; charset=utf-8')
 
-  return createSitemapXml(
-    siteBaseUrl,
-    contentPrerenderRoutes.map((path) => ({ path })),
-  )
+  return createSitemapIndexXml([
+    { url: `${siteBaseUrl}/sitemap-hub.xml` },
+    ...siteCatalog.map((site) => ({ url: `${siteBaseUrl}/${site.slug}/sitemap.xml` })),
+  ])
 })

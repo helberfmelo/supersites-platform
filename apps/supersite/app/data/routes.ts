@@ -17,6 +17,7 @@ export const contentPrerenderRoutes: string[] = [
 export const prerenderRoutes: string[] = [
   ...contentPrerenderRoutes,
   '/sitemap.xml',
+  '/sitemap-hub.xml',
 ]
 
 export function absoluteUrl(path: string): string {

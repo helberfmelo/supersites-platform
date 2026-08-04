@@ -466,7 +466,7 @@ describe('site catalog', () => {
     expect(contentPrerenderRoutes).toHaveLength(
       1 + localeCodes.length * (1 + siteCatalog.length + legalPageCatalog.length),
     )
-    expect(prerenderRoutes).toEqual([...contentPrerenderRoutes, '/sitemap.xml'])
+    expect(prerenderRoutes).toEqual([...contentPrerenderRoutes, '/sitemap.xml', '/sitemap-hub.xml'])
   })
 
   it('keeps temporary public URLs under the safe HostGator fallback path', () => {

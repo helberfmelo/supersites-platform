@@ -38,6 +38,11 @@ export interface SitemapEntry {
   lastmod?: string
 }
 
+export interface SitemapIndexEntry {
+  url: string
+  lastmod?: string
+}
+
 export const SEO_TITLE_MAX_LENGTH = 70
 export const SEO_DESCRIPTION_MAX_LENGTH = 170
 
@@ -169,4 +174,16 @@ export function createSitemapXml(baseUrl: string, entries: SitemapEntry[]): stri
     .join('\n')
 
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`
+}
+
+export function createSitemapIndexXml(entries: SitemapIndexEntry[]): string {
+  const sitemaps = entries
+    .map((entry) => {
+      const lastmod = entry.lastmod ? `<lastmod>${escapeXml(entry.lastmod)}</lastmod>` : ''
+
+      return `  <sitemap><loc>${escapeXml(entry.url)}</loc>${lastmod}</sitemap>`
+    })
+    .join('\n')
+
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemaps}\n</sitemapindex>`
 }
