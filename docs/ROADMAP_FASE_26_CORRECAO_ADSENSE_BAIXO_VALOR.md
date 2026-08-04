@@ -2,7 +2,7 @@
 
 Data-base: 2026-08-04
 
-Status: em execucao.
+Status: concluida tecnicamente e publicada em 2026-08-04. Nova revisao AdSense permanece `HUMAN_ACTION_REQUIRED`.
 
 ## Retorno confirmado do provider
 
@@ -67,3 +67,13 @@ Status: `HUMAN_ACTION_REQUIRED` apos a publicacao e a validacao tecnica.
 4. O Hub continua com suas 101 URLs indexaveis em sitemap proprio.
 5. O `ads.txt` publico continua valido sem expor o identificador em documentacao ou logs.
 6. Nenhum anuncio real, Auto Ads, novo provider, pagina em massa ou submissao de revisao e ativado pela etapa tecnica.
+
+## Fechamento tecnico
+
+- commit principal: `e6ad0ff` (`fix(adsense): unify public sitemap discovery`);
+- release HostGator: `e6ad0ff0253d-20260804045104`;
+- testes: `@supersites/seo` 6/6 e Hub 33/33;
+- build: 103 rotas configuradas e 204 artefatos prerenderizados;
+- artefato: 223 arquivos, indice com 11 sitemaps e sitemap do Hub com 101 URLs;
+- validacao publica: 11/11 sitemaps HTTP 200, 956 URLs descobertas, zero referencia legada, Hub/asset/robots/`ads.txt` aprovados;
+- correcao de release: o primeiro smoke esperava `<urlset>` no root; o contrato foi atualizado para `<sitemapindex>` no root e `<urlset>` em `/sitemap-hub.xml`, e a repeticao passou.
