@@ -42,10 +42,10 @@ Use o indice para abrir somente as referencias exigidas pelo risco. Nao leia doc
 
 - Fonte operacional: `docs/ADSENSE_PLAYBOOK.md` e `docs/RUNBOOKS/ADSENSE_GO_LIVE_READINESS.md`.
 - Roadmap corretivo tecnico concluido: `docs/ROADMAP_FASE_26_CORRECAO_ADSENSE_BAIXO_VALOR.md`.
-- Roadmap editorial ativo: `docs/ROADMAP_FASE_27_AUTORIDADE_EDITORIAL_ADSENSE.md`.
+- Roadmap editorial concluido: `docs/ROADMAP_FASE_27_AUTORIDADE_EDITORIAL_ADSENSE.md`.
 - Em 2026-07-27, o AdSense devolveu `mywebtools.top` com `Conteudo de baixo valor`.
 - O `ads.txt` publico esta presente e valido; o painel ainda mostrava `Nao encontrado` na ultima atualizacao observada, portanto e necessario aguardar novo rastreamento.
-- A Fase 26 concluiu a correcao de descoberta. Nao marcar o problema como corrigido nem pedir nova revisao antes de concluir, publicar e validar tambem a Fase 27, incluindo conteudo, navegacao, schema, sitemap e QA publico.
+- As Fases 26 e 27 concluiram as correcoes de descoberta e autoridade editorial. A nova revisao foi solicitada em 2026-08-04 depois dos gates locais e publicos; o estado atual e aguardar a decisao do Google sem ativar ad serving.
 
 ## Antes de encerrar
 

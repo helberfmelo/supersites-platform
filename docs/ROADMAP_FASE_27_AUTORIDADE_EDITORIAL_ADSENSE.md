@@ -2,6 +2,8 @@
 
 Data-base: 2026-08-04
 
+Status: concluida e publicada. Nova revisao do AdSense solicitada em 2026-08-04.
+
 ## Objetivo
 
 Corrigir o risco de `conteúdo de baixo valor` com conteúdo original, útil e verificável, integrado às ferramentas públicas. A fase adota um centro de guias perenes em vez de um blog de volume: poucas páginas, profundidade real, fontes primárias, revisão editorial e caminhos claros para executar a tarefa nas ferramentas do portfólio.
@@ -55,3 +57,12 @@ Corrigir o risco de `conteúdo de baixo valor` com conteúdo original, útil e v
 4. Todas as rotas retornam 200, aparecem no sitemap e são alcançáveis por navegação interna.
 5. Testes, build, QA responsivo, validações AdSense/SEO e smoke público passam.
 6. A solicitação de revisão só é enviada depois da comprovação em produção.
+
+## Fechamento
+
+- Implementacao publicada no commit `18a085f` e na release HostGator `18a085f4e040-20260804052758` de `mywebtools.top`.
+- Biblioteca entregue com 2 indices e 8 artigos substanciais em EN/PT-BR, todos ligados a ferramentas gratuitas reais.
+- Validacao local: 36 testes, geracao estatica de 226 rotas, build, validadores de conteudo AdSense/copy/estrutura/segredos, smoke de preview e 42 testes Playwright aprovados.
+- Validacao publica: 10/10 novas rotas HTTP 200; artigos entre 875 e 1.086 palavras; canonical, hreflang real e schemas presentes; 966 URLs unicas nos 11 sitemaps; 0 falhas confirmadas; `robots.txt` e `ads.txt` HTTP 200.
+- Apos os gates verdes, o painel recebeu a confirmacao de correcoes e o pedido de revisao. O estado final observado foi `Em breve, seu site estara pronto para exibir anuncios` e `Muito bem! Voce concluiu todas as etapas`.
+- Ad serving continua desativado. A aprovacao final e o prazo de analise permanecem sob decisao do Google.

@@ -50,11 +50,16 @@ Data-base: 2026-08-04
 | AdSense publisher records seeded | 1 |
 | AdSense site review records seeded | 11 |
 | AdSense Management API enabled | 0 |
-| AdSense site submissions | 1 (`mywebtools.top` review requested) |
-| AdSense approval status | `Requer atencao - Conteudo de baixo valor` na atualizacao de 2026-07-27 observada em 2026-08-04 |
+| AdSense site submissions | 2 (`mywebtools.top`; nova revisao enviada em 2026-08-04 apos as Fases 26-27) |
+| AdSense approval status | Revisao em processamento; painel confirmou todas as etapas concluidas em 2026-08-04 |
 | AdSense ad serving enabled | 0 |
 | Fase 26 sitemap indexes publicos | 1 root index com 11 sitemaps HTTP 200 |
-| Fase 26 URLs descobertas por sitemap | 956 |
+| Fase 27 paginas editoriais publicadas | 10 (2 indices + 8 artigos EN/PT-BR) |
+| Fase 27 profundidade dos artigos live | 875-1.086 palavras |
+| Fase 27 URLs descobertas por sitemap | 966 |
+| Fase 27 Hub sitemap URLs | 111 |
+| Fase 27 auditoria publica final | 0 falhas confirmadas em 966 URLs; robots.txt e ads.txt HTTP 200 |
+| Fase 27 release HostGator | `18a085f4e040-20260804052758` |
 | Fase 26 referencias legadas nos sitemaps | 0 |
 | AdSense payout/payment information | UI says payment information is present; no manual payout/payment/card/billing finalized |
 | Sprint 6.3 local validation | Passed |

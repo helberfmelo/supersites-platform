@@ -1897,6 +1897,14 @@ Ainda em 2026-06-29, o `Public Watchdog` agendado run `28372846327` falhou no sm
   - Validacao publica final: `pnpm deploy:smoke-supersite-public`, `pnpm deploy:smoke-netprobe-public`, smoke publico de TimeNexus, `pnpm validate:adsense-safe-public` em 13 paginas e crawler benchmark live completo `artifacts/benchmark-crawl/fase22-final-live/baseline.md` passaram. O crawler percorreu 876 rotas, 1752 checks desktop/mobile e terminou com 0 gaps.
   - Escopo negativo: nenhum anuncio real, `ads.txt`, checkout, billing, pagamento, conta paga, doacao real, afiliado, provider externo, worker/cron, DNS/root mapping, root redirect, analytics externo, segredo, dado sensivel ou acao irreversivel foi ativado.
 
+- Fase 27 - Autoridade editorial e nova revisao AdSense (2026-08-04):
+  - O Hub recebeu um centro perene de guias em EN/PT-BR com 2 indices e 8 artigos originais sobre DNS, autenticacao de e-mail, verificacao tecnica de lancamento e processamento privado de arquivos. Cada artigo inclui autoria institucional, data de revisao, resumo de decisao, checklist, limitacoes, FAQ, fontes primarias e ferramentas gratuitas relacionadas.
+  - Benchmark aplicado: resposta e explicacao do Calculator.net, organizacao por assunto do timeanddate, diagnostico ligado a remediacao do MxToolbox e guias orientados a tarefa do iLovePDF, sem copiar texto/layout e sem gerar conteudo em massa.
+  - Descoberta: home e rodape ligam os guias; canonical e hreflang existem apenas para traducoes reais; `Article`, `FAQPage` e `BreadcrumbList` foram adicionados; o sitemap do Hub passou a 111 URLs e o indice total a 966 URLs unicas.
+  - Validacao local passou com 36 testes, geracao estatica de 226 rotas, build, validadores AdSense/copy/estrutura/segredos, preview smoke e 42 testes Playwright. Validacao publica confirmou 10/10 novas rotas HTTP 200, artigos de 875 a 1.086 palavras, 11 sitemaps, 0 URLs cross-domain, 0 falhas finais, `robots.txt` 200 e `ads.txt` 200.
+  - Release: commit `18a085f`; deploy HostGator `18a085f4e040-20260804052758`, com asset publico `https://mywebtools.top/_nuxt/B2S-0Xkz.js`.
+  - AdSense: depois dos gates verdes, `Confirmo que corrigi os problemas` foi marcado e `Pedir revisao` foi enviado. O painel confirmou `Em breve, seu site estara pronto para exibir anuncios` e `Muito bem! Voce concluiu todas as etapas`. A aprovacao final ainda depende do Google; ad serving permanece desativado.
+
 ## Bloqueios humanos registrados
 
 - Fase 25 - Fechamento das pendencias independentes de AdSense (2026-07-19):

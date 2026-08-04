@@ -1,6 +1,6 @@
 # HUMAN_ACTION_REQUIRED
 
-Data-base: 2026-07-04
+Data-base: 2026-08-04
 
 ## Pendencias atuais
 
@@ -12,7 +12,6 @@ Data-base: 2026-07-04
 | PIN postal AdSense | Verificacao fisica | Quando Google solicitar |
 | Validar/ajustar CMP por regiao | A CMP do Google foi criada com tres opcoes, mas revisao juridica/local, TCF detalhado e ajustes por regiao continuam decisao humana | Antes de escala publica ampla ou mudanca de consentimento/ads por regiao |
 | Ativar ad serving real | Requests reais de ads, Auto Ads/manual placements e receitas dependem de aprovacao do Google e decisao operacional separada | Depois de site aprovado no AdSense, validacao de politicas/consentimento e decisao humana por site |
-| Pedir nova revisao do AdSense apos retorno de baixo valor | Em 2026-07-27, `mywebtools.top` voltou como `Conteudo de baixo valor`; a Fase 26 corrige descoberta e evidencia tecnica, mas a confirmacao no painel e uma submissao externa | Depois do deploy da Fase 26, validacao publica dos sitemaps/ads.txt e revisao humana final do site |
 | PageSpeed API ou Google performance provider | API key, termos, quota, billing/conta Google e definicao de retencao/uso de dados | Antes de usar PageSpeed Insights API, CrUX API ou qualquer provider Google externo para medicao automatizada |
 | GTmetrix manual/API performance audit | Conta/API/provider externo, termos, quota/custo e decisao sobre retencao/uso de dados de URLs publicas | Antes de tratar GTmetrix A como evidencia final de pre-divulgacao, automacao recorrente ou relatorio externo |
 | Google 2FA, telefone, codigo temporario ou CAPTCHA | Verificacao de login/identidade pode ser exigida pelo Google | Quando solicitado durante setup; CAPTCHA deve ser resolvido manualmente pelo owner |
@@ -86,6 +85,12 @@ Data-base: 2026-07-04
 | Acesso da conta Google SuperSites restaurado | A UI da Conta Google voltou a abrir para a conta usada no setup, e a UI do AdSense voltou a ficar acessivel. |
 | Informacoes de pagamento AdSense recebidas | A tela inicial do AdSense exibiu `Pagamentos: Ja temos suas informacoes`. Dados sensiveis continuam somente no inventario local ignorado; nenhum pagamento manual, payout, cartao, compra, billing pago ou Google Cloud billing foi finalizado. |
 | Etapas iniciais AdSense completas | A tela inicial do AdSense exibiu `Muito bem! Voce concluiu todas as etapas` e `Em breve, seu site estara pronto para exibir anuncios`; isso ainda nao significa aprovacao final nem serving ativo. |
+
+## Resolvido em 2026-08-04
+
+| Item | Resultado |
+|---|---|
+| Pedir nova revisao do AdSense apos retorno de baixo valor | Apos as Fases 26 e 27, deploy HostGator e validacao publica, a confirmacao de correcoes foi marcada e a nova revisao de `mywebtools.top` foi enviada. O painel confirmou todas as etapas concluidas. Aguardar a decisao do Google; ad serving continua desativado. |
 
 ## Nao bloqueia agora
 
