@@ -128,7 +128,7 @@ try {
     }
 
     $sitemap = Invoke-PreviewRequest -Uri "$baseUrl/sitemap.xml" -RequiredContent '<urlset'
-    if ($sitemap.Content -notmatch '/en/privacy' -or $sitemap.Content -notmatch '/pt-br/tools/pdf-merge' -or $sitemap.Content -notmatch '/de/tools/text-to-pdf') {
+    if ($sitemap.Content -match '/en/privacy' -or $sitemap.Content -notmatch '/pt-br/tools/pdf-merge' -or $sitemap.Content -notmatch '/de/tools/text-to-pdf') {
         throw 'Sitemap smoke failed.'
     }
 

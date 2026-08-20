@@ -87,14 +87,28 @@ $htmlFiles = @(
     "en/privacy/index.html"
 )
 
+$sitemapPath = Assert-FileExists -Root $ArtifactPath -RelativePath "sitemap.xml"
+$sitemap = Get-Content -Raw -LiteralPath $sitemapPath
+
 $combinedHtml = ""
 foreach ($file in $htmlFiles) {
     $path = Assert-FileExists -Root $ArtifactPath -RelativePath $file
     $content = Get-Content -Raw -LiteralPath $path
     $combinedHtml += "`n$content"
 
-    if ($content -match '(?i)<meta[^>]+name=["'']robots["''][^>]+content=["''][^"'']*noindex') {
-        throw "NetProbe static artifact contains a noindex robots meta in $file."
+    if ($content -match '(?is)<meta\b[^>]*\bnoindex\b[^>]*>') {
+        if ($content -notmatch '(?is)<meta\b[^>]*name=["'']AdsBot-Google["''][^>]*\bnoindex\b[^>]*>') {
+            throw "NetProbe excluded page is missing AdsBot-Google noindex in $file."
+        }
+        if ($content -match [regex]::Escape($script:AdSenseSnippetMarker)) {
+            throw "NetProbe excluded page contains the AdSense review snippet in $file."
+        }
+
+        $relativeRoute = if ($file -eq 'index.html') { '' } else { $file.Replace('\', '/') -replace '/index\.html$', '' }
+        $excludedUrl = if ($relativeRoute) { "$publicBaseUrl/$relativeRoute" } else { $publicBaseUrl }
+        if ($sitemap -match "(?i)<loc>$([regex]::Escape($excludedUrl))/?</loc>") {
+            throw "NetProbe sitemap contains excluded noindex URL $excludedUrl."
+        }
     }
 
     if ($basePath -and $content -match '(?i)(src|href|data-src)=["'']/_') {
@@ -114,11 +128,11 @@ if ($basePath) {
     Assert-ContentContains -Content $combinedHtml -Needle "src=`"$basePath/_nuxt/" -Context "NetProbe static artifact"
 }
 
-$sitemapPath = Assert-FileExists -Root $ArtifactPath -RelativePath "sitemap.xml"
-$sitemap = Get-Content -Raw -LiteralPath $sitemapPath
 Assert-ContentContains -Content $sitemap -Needle "$publicBaseUrl/en/tools/dns-lookup" -Context "NetProbe sitemap"
-Assert-ContentContains -Content $sitemap -Needle "$publicBaseUrl/en/status" -Context "NetProbe sitemap"
 Assert-ContentContains -Content $sitemap -Needle "$publicBaseUrl/de/tools/ssl-certificate-checker" -Context "NetProbe sitemap"
+if ($sitemap -match [regex]::Escape("$publicBaseUrl/en/status")) {
+    throw "NetProbe sitemap must not contain the excluded status page."
+}
 
 $escapedBasePath = [regex]::Escape($basePath)
 $assetReferences = @()

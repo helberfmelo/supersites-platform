@@ -68,6 +68,7 @@
     "validate:public-copy": "node scripts/validate-public-copy.mjs",
     "validate:adsense-safe-public": "node scripts/validate-adsense-safe-public.mjs",
     "validate:adsense-content": "node scripts/validate-adsense-content-quality.mjs",
+    "validate:indexable-content": "node scripts/validate-indexable-content-quality.mjs",
     "ci:changes": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/ci-detect-changes.ps1",
     "deploy:dry-run": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/prepare-deploy-dry-run.ps1",
     "ops:root-mapping-dry-run": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/plan-hostgator-root-mapping.ps1",

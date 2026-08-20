@@ -129,7 +129,13 @@ foreach ($page in $config.SmokePages) {
 
 $statusResponse = Invoke-SmokeRequest -Url (Join-Url $publicBase "en/status") -RequiredContent "Public Status"
 Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context "$($config.DisplayName) status"
-Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context "$($config.DisplayName) status"
+if ($statusResponse.Content -notmatch "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex") {
+    throw "$($config.DisplayName) status must be noindex."
+}
+if ($statusResponse.Content -notmatch "(?i)<meta[^>]+name=[""']AdsBot-Google[""'][^>]+content=[""']noindex[""']") {
+    throw "$($config.DisplayName) status must opt out of AdsBot-Google."
+}
+Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)pagead2\.googlesyndication\.com/pagead/js/adsbygoogle\.js" -Context "$($config.DisplayName) status"
 Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)No .{0,80}public deploy|HostGator public URL remains|noindex placeholder" -Context "$($config.DisplayName) status"
 Assert-NoDisallowedExternalAdsOrAnalyticsMarkers -Content $statusResponse.Content -Context "$($config.DisplayName) status"
 

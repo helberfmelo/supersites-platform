@@ -21,6 +21,14 @@ export const contentPrerenderRoutes: string[] = [
   ]),
 ]
 
+export const sitemapRoutes: string[] = [
+  '/',
+  ...publicLocaleCodes.flatMap((locale) => [
+    localizedHomePath(locale),
+    ...calculatorCatalog.map((calculator) => localizedCalculatorPath(locale, calculator.slug)),
+  ]),
+]
+
 export const prerenderRoutes: string[] = [
   ...contentPrerenderRoutes,
   '/sitemap.xml',

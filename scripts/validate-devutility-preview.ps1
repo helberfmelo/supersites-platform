@@ -132,7 +132,7 @@ try {
     }
 
     $sitemap = Invoke-PreviewRequest -Uri "$baseUrl/sitemap.xml" -RequiredContent '<urlset'
-    if ($sitemap.Content -notmatch '/en/privacy' -or $sitemap.Content -notmatch '/pt-br/tools/timestamp-converter' -or $sitemap.Content -notmatch '/de/tools/hash-generator') {
+    if ($sitemap.Content -match '/en/privacy' -or $sitemap.Content -notmatch '/pt-br/tools/timestamp-converter' -or $sitemap.Content -notmatch '/de/tools/hash-generator') {
         throw 'Sitemap smoke failed.'
     }
 

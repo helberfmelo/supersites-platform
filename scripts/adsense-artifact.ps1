@@ -30,6 +30,14 @@ function Add-AdSenseSnippetToArtifact {
 
     foreach ($file in $htmlFiles) {
         $content = Get-Content -Raw -LiteralPath $file.FullName
+
+        # Verification code belongs only on pages that are eligible to be
+        # discovered and reviewed. Keep support/legal and other deliberately
+        # excluded screens free of AdSense requests.
+        if ($content -match '(?is)<meta\b[^>]*\bnoindex\b[^>]*>') {
+            continue
+        }
+
         if ($content -match [regex]::Escape($script:AdSenseSnippetMarker)) {
             continue
         }

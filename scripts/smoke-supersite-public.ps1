@@ -134,7 +134,13 @@ function Assert-DeployedStaticApp {
 
     $statusResponse = Invoke-SmokeRequest -Url (Join-Url $publicBase "$appPath/en/status") -RequiredContent "Public Status"
     Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context "$Context status"
-    Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context "$Context status"
+    if ($statusResponse.Content -notmatch "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex") {
+        throw "$Context status must be noindex."
+    }
+    if ($statusResponse.Content -notmatch "(?i)<meta[^>]+name=[""']AdsBot-Google[""'][^>]+content=[""']noindex[""']") {
+        throw "$Context status must opt out of AdsBot-Google."
+    }
+    Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)pagead2\.googlesyndication\.com/pagead/js/adsbygoogle\.js" -Context "$Context status"
     Assert-DoesNotContain -Content $statusResponse.Content -Pattern "(?i)No .{0,80}public deploy|HostGator public URL remains|noindex placeholder" -Context "$Context status"
     Assert-NoDisallowedExternalAdsOrAnalyticsMarkers -Content $statusResponse.Content -Context "$Context status"
 

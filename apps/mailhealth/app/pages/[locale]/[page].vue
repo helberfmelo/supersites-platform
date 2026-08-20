@@ -39,6 +39,8 @@ useHead({
   },
   title: `${copy.title} | MailHealth`,
   meta: [
+    { name: 'robots', content: 'noindex, follow' },
+    { name: 'AdsBot-Google', content: 'noindex' },
     {
       name: 'description',
       content: copy.description,

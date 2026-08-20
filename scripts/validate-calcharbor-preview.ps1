@@ -131,7 +131,7 @@ try {
     }
 
     $sitemap = Invoke-PreviewRequest -Uri "$baseUrl/sitemap.xml" -RequiredContent '<urlset'
-    if ($sitemap.Content -notmatch '/en/privacy' -or $sitemap.Content -notmatch '/pt-br/calculators/roi' -or $sitemap.Content -notmatch '/de/calculators/gross-margin') {
+    if ($sitemap.Content -match '/en/privacy' -or $sitemap.Content -notmatch '/pt-br/calculators/roi' -or $sitemap.Content -notmatch '/de/calculators/gross-margin') {
         throw 'Sitemap smoke failed.'
     }
 

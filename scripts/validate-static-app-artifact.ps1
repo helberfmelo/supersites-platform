@@ -80,13 +80,28 @@ if (-not $htmlFiles) {
     throw "$($config.DisplayName) static artifact contains no HTML files."
 }
 
+$sitemapPath = Assert-FileExists -Root $ArtifactPath -RelativePath "sitemap.xml" -DisplayName $config.DisplayName
+$sitemap = Get-Content -Raw -LiteralPath $sitemapPath
+
 $combinedHtml = ""
 foreach ($file in $htmlFiles) {
     $content = Get-Content -Raw -LiteralPath $file.FullName
     $combinedHtml += "`n$content"
 
-    if ($content -match '(?i)<meta[^>]+name=["'']robots["''][^>]+content=["''][^"'']*noindex') {
-        throw "$($config.DisplayName) static artifact contains a noindex robots meta in $($file.FullName)."
+    if ($content -match '(?is)<meta\b[^>]*\bnoindex\b[^>]*>') {
+        if ($content -notmatch '(?is)<meta\b[^>]*name=["'']AdsBot-Google["''][^>]*\bnoindex\b[^>]*>') {
+            throw "$($config.DisplayName) excluded page is missing AdsBot-Google noindex in $($file.FullName)."
+        }
+        if ($content -match [regex]::Escape($script:AdSenseSnippetMarker)) {
+            throw "$($config.DisplayName) excluded page contains the AdSense review snippet in $($file.FullName)."
+        }
+
+        $relativeFile = $file.FullName.Substring((Resolve-Path $ArtifactPath).Path.Length).TrimStart('\', '/').Replace('\', '/')
+        $relativeRoute = if ($relativeFile -eq 'index.html') { '' } else { $relativeFile -replace '/index\.html$', '' }
+        $excludedUrl = if ($relativeRoute) { "$publicBaseUrl/$relativeRoute" } else { $publicBaseUrl }
+        if ($sitemap -match "(?i)<loc>$([regex]::Escape($excludedUrl))/?</loc>") {
+            throw "$($config.DisplayName) sitemap contains excluded noindex URL $excludedUrl."
+        }
     }
 
     if ($basePathNoTrailing -ne "/" -and $content -match '(?i)(src|href|data-src)=["'']/_') {
@@ -106,8 +121,6 @@ if ($basePathNoTrailing -ne "/") {
     Assert-ContentContains -Content $combinedHtml -Needle "src=`"$basePathNoTrailing/_nuxt/" -Context "$($config.DisplayName) static artifact"
 }
 
-$sitemapPath = Assert-FileExists -Root $ArtifactPath -RelativePath "sitemap.xml" -DisplayName $config.DisplayName
-$sitemap = Get-Content -Raw -LiteralPath $sitemapPath
 Assert-ContentContains -Content $sitemap -Needle "$publicBaseUrl/en" -Context "$($config.DisplayName) sitemap"
 
 $assetReferences = @()

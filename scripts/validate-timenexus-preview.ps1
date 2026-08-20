@@ -141,7 +141,7 @@ try {
     }
 
     $sitemap = Invoke-PreviewRequest -Uri "$baseUrl/sitemap.xml" -RequiredContent '<urlset'
-    if ($sitemap.Content -notmatch '/en/privacy' -or $sitemap.Content -notmatch '/en/world-clock/global-product' -or $sitemap.Content -notmatch '/pt-br/tools/timestamp-converter' -or $sitemap.Content -notmatch '/de/tools/unit-converter') {
+    if ($sitemap.Content -match '/en/privacy' -or $sitemap.Content -match '/en/world-clock/global-product' -or $sitemap.Content -notmatch '/pt-br/tools/timestamp-converter' -or $sitemap.Content -notmatch '/de/tools/unit-converter') {
         throw 'Sitemap smoke failed.'
     }
 

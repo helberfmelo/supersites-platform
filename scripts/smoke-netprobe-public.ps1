@@ -114,7 +114,17 @@ $requiredPages = @(
 foreach ($page in $requiredPages) {
     $response = Invoke-SmokeRequest -Url $page.Url -RequiredContent $page.Marker
     Assert-DoesNotContain -Content $response.Content -Pattern "(?i)SuperSites bootstrap placeholder" -Context $page.Url
-    Assert-DoesNotContain -Content $response.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context $page.Url
+    if ($page.Url -match "/en/status$") {
+        if ($response.Content -notmatch "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex") {
+            throw "$($page.Url) must be noindex."
+        }
+        if ($response.Content -notmatch "(?i)<meta[^>]+name=[""']AdsBot-Google[""'][^>]+content=[""']noindex[""']") {
+            throw "$($page.Url) must opt out of AdsBot-Google."
+        }
+        Assert-DoesNotContain -Content $response.Content -Pattern "(?i)pagead2\.googlesyndication\.com/pagead/js/adsbygoogle\.js" -Context $page.Url
+    } else {
+        Assert-DoesNotContain -Content $response.Content -Pattern "(?i)<meta[^>]+name=[""']robots[""'][^>]+content=[""'][^""']*noindex" -Context $page.Url
+    }
     Assert-NoDisallowedExternalAdsOrAnalyticsMarkers -Content $response.Content -Context $page.Url
     if ($page.Url -match "/tools/what-is-my-ip$") {
         Assert-DoesNotContain -Content $response.Content -Pattern "(?i)Run IP check|Public API live|release checks" -Context $page.Url

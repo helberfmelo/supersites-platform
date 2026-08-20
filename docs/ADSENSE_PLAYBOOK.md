@@ -120,6 +120,15 @@ AdSense e a monetizacao primaria, mas nenhum site deve ser submetido antes de cu
 - Estados permitidos continuam apenas inertes (`blocked-consent` ou `delivery-disabled`), sem foco, sem iframe/script, com reserva visual minima e `pointer-events: none`.
 - O gate nao substitui aprovacao humana, conta AdSense, `ads.txt`, publisher id real, CMP/TCF quando aplicavel, revisao legal, Core Web Vitals e smokes pos-deploy.
 
+## Indexable content gate
+
+- Paginas auxiliares duplicadas por app (`about`, `contact`, `privacy`, `cookies`, `terms`, `methodology`, `editorial-policy` e `status`) continuam acessiveis, mas devem usar `robots=noindex, follow`, `AdsBot-Google=noindex` e ficar fora dos sitemaps filhos.
+- As paginas centrais de confianca do Hub permanecem como referencia indexavel do dominio.
+- Landings programaticas sem valor independente suficiente devem ficar fora do sitemap e com `noindex` ate receberem profundidade e revisao editorial proprias.
+- O snippet de verificacao/revisao AdSense nao deve ser injetado em HTML marcado com `noindex`.
+- `pnpm validate:indexable-content` valida os artefatos dos dez apps antes de uma submissao ou nova revisao.
+- Nao bloquear no `robots.txt` as paginas com `noindex`; Googlebot precisa rastrear o HTML para ler a diretiva.
+
 ## Account readiness foundation
 
 - Sprint 6.3 adiciona somente readiness de conta publisher e revisao por site.

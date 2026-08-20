@@ -650,7 +650,10 @@ jobs:
           pnpm build:docshift
 
       - name: Validate public copy
-        run: pnpm validate:public-copy
+        run: |
+          pnpm validate:public-copy
+          pnpm validate:adsense-content
+          pnpm validate:indexable-content
 
   quality_summary:
     name: Quality summary

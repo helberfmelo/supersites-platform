@@ -25,6 +25,8 @@ useHead({
   },
   title: `${copy.title} | TimeNexus`,
   meta: [
+    { name: 'robots', content: 'noindex, follow' },
+    { name: 'AdsBot-Google', content: 'noindex' },
     {
       name: 'description',
       content: copy.description,

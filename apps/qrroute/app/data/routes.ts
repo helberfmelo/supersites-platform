@@ -21,6 +21,14 @@ export const contentPrerenderRoutes = [
   ]),
 ]
 
+export const sitemapRoutes = [
+  '/',
+  ...publicLocaleCodes.flatMap((locale) => [
+    localizedHomePath(locale),
+    ...qrRouteToolCatalog.map((tool) => localizedToolPath(locale, tool.slug)),
+  ]),
+]
+
 export const prerenderRoutes = [...contentPrerenderRoutes, '/sitemap.xml']
 
 export function absoluteUrl(path: string): string {
@@ -43,5 +51,5 @@ export function localeAlternates(pathBuilder: (locale: LocaleCode) => string) {
 }
 
 export function sitemapXml(): string {
-  return createSitemapXml(siteBaseUrl, contentPrerenderRoutes.map((path) => ({ path })))
+  return createSitemapXml(siteBaseUrl, sitemapRoutes.map((path) => ({ path })))
 }

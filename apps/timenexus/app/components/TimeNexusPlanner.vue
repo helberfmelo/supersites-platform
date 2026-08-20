@@ -27,7 +27,7 @@ function formatLocalDateTimeInput(date: Date): string {
 
 const initialPlannerNow = new Date('2026-01-01T12:00:00.000Z')
 const copy = computed(() => getPlannerCopy(props.locale))
-const localDateTime = ref('')
+const localDateTime = ref(formatLocalDateTimeInput(initialPlannerNow))
 const sourceZone = ref('America/New_York')
 const selectedGroup = ref(
   plannerZoneGroups.some((group) => group.value === props.initialGroup)

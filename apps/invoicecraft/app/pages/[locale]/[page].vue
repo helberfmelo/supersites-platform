@@ -38,6 +38,8 @@ useHead({
   },
   title: `${copy.title} | InvoiceCraft`,
   meta: [
+    { name: 'robots', content: 'noindex, follow' },
+    { name: 'AdsBot-Google', content: 'noindex' },
     {
       name: 'description',
       content: copy.description,
