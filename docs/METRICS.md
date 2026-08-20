@@ -1821,6 +1821,16 @@ Data-base: 2026-08-04
 | Fase 25 primary-domain validation | 5/5 localized `/services` routes returned HTTP 200 with localized content and structured `mailto:` |
 | Fase 25 deploy incident | P2 limited to new routes on `mywebtools.top`; cause was target mismatch between legacy workflow and primary-domain manifest; recovered by approved versioned release; existing routes unaffected |
 
+## Fase 29 - Remediação AdSense por arquitetura indexável (2026-08-20)
+
+- Diagnóstico autenticado: `Conteúdo de baixo valor`, última atualização em 2026-08-17; `ads.txt` exibido como `Autorizado`.
+- Inventário antes/depois: 974 URLs únicas antes; 559 URLs úteis indexáveis depois; redução de 415 URLs rasas do conjunto oferecido ao índice.
+- Exclusões preservadas: 415/415 rotas públicas em HTTP 200, com `robots=noindex`, `AdsBot-Google=noindex`, ausentes dos sitemaps e sem snippet AdSense.
+- Conjunto indexável: 559/559 URLs em HTTP 200, zero duplicação e zero `noindex`; 440 páginas elegíveis dos apps com snippet de verificação e 119 páginas do Hub sem request de anúncio.
+- Qualidade local: 95 testes dos dez apps, dez builds, preview CalcHarbor/TimeNexus, 6 testes E2E representativos desktop/mobile, 16 guias de 875-1.086 palavras e gates de copy/estrutura/segredos aprovados.
+- Release: commit `43aff60`; dez releases HostGator versionadas com smoke individual aprovado.
+- AdSense: correções confirmadas e nova revisão enviada após autorização explícita do owner; status final observado `Preparando` / `Revisão solicitada`; aprovação e ad serving continuam pendentes do Google.
+
 ## Product metrics
 
 No verified product traffic, revenue, AdSense revenue or tool usage metrics exist yet. Stripe donation checkout is live; confirmed revenue remains dependent on completed Stripe payments and reconciliation.

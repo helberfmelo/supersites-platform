@@ -1,8 +1,10 @@
 # Status
 
-Data-base: 2026-08-04
+Data-base: 2026-08-20
 
 ## Resumo executivo
+
+Em 2026-08-20, a Fase 29 corrigiu a arquitetura indexável após o AdSense confirmar novamente `Conteúdo de baixo valor` com última atualização em 2026-08-17. A auditoria mostrou que 400 páginas auxiliares curtas dos dez apps representavam 41% das 974 URLs enviadas ao Google, além de 15 landings programáticas rasas do TimeNexus. O commit `43aff60` separou prerender de sitemap, manteve 415 páginas acessíveis com `robots`/`AdsBot-Google noindex`, removeu o snippet AdSense dessas rotas, adicionou gate preventivo ao CI e corrigiu a inicialização do planejador TimeNexus. Dez releases versionadas foram publicadas em `mywebtools.top`; o recrawl final confirmou 559/559 URLs indexáveis e 415/415 excluídas em HTTP 200, zero URL indexável com `noindex`, zero rota excluída com snippet, `ads.txt` autorizado e 11 sitemaps válidos. Após confirmação explícita do owner, a nova revisão foi enviada e o painel mudou para `Preparando` / `Revisão solicitada`. A aprovação final permanece pendente do Google; ad serving continua desativado.
 
 Diretriz atualizada em 2026-07-02: como o projeto ainda nao foi divulgado publicamente, `opentshost.com/supersites` segue como producao tecnica interna com risco publico relaxado. A cadencia padrao agora e por etapa: executar todas as sprints da etapa, validacao minima local, um commit/push objetivo e deploy HostGator especifico ao fim de implementacao/correcao que afete app ou site publicado. `Quality Gate` e `Deploy Dry Run` nao disparam mais em `push`; ficam manuais ou para PR/release/fechamento quando o owner pedir ou o risco justificar. Validacoes profundas de codigo, telas, screenshots, crawler, Lighthouse, Playwright, dry-run, smoke publico, STATUS/METRICS e fechamento documental amplo ficam sob demanda do owner ou para etapa de QA/pre-divulgacao/fechamento.
 

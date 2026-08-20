@@ -2,7 +2,7 @@
 
 Data-base: 2026-08-20
 
-Status: em execução.
+Status: concluída em produção; nova revisão AdSense solicitada.
 
 ## Objetivo
 
@@ -105,3 +105,12 @@ Solicitar revisão apenas quando produção comprovar:
 ## Resultado esperado
 
 O domínio deixa de parecer uma rede de centenas de páginas auxiliares traduzidas e passa a apresentar ao Google um conjunto menor e coerente: ferramentas funcionais, páginas localizadas principais, guias profundos e confiança centralizada.
+
+## Fechamento
+
+- Commit técnico: `43aff60`.
+- Dez releases HostGator versionadas foram publicadas em `mywebtools.top`, todas com artifact gate e smoke individual aprovados.
+- A varredura pública com retry confirmou 559/559 URLs indexáveis em HTTP 200, zero `noindex` no conjunto indexável, 415/415 rotas excluídas em HTTP 200 com `robots` e `AdsBot-Google` `noindex`, e zero snippet AdSense nessas rotas.
+- O painel autenticado confirmou novamente `Conteúdo de baixo valor`, com última atualização em 17 de agosto de 2026 e `ads.txt` autorizado.
+- Após confirmação explícita do owner em 20 de agosto de 2026, `Confirmo que corrigi os problemas` foi marcado e `Pedir revisão` foi enviado. O detalhe do site mudou para `Preparando` e `Revisão solicitada`.
+- A decisão final permanece externa ao projeto; o Google informa que a análise costuma levar alguns dias e pode demorar de duas a quatro semanas.

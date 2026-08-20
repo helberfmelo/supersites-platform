@@ -92,6 +92,12 @@ Data-base: 2026-08-04
 |---|---|
 | Pedir nova revisao do AdSense apos retorno de baixo valor | Apos as Fases 26 e 27, deploy HostGator e validacao publica, a confirmacao de correcoes foi marcada e a nova revisao de `mywebtools.top` foi enviada. O painel confirmou todas as etapas concluidas. Aguardar a decisao do Google; ad serving continua desativado. |
 
+## Resolvido em 2026-08-20
+
+| Item | Resultado |
+|---|---|
+| Pedir nova revisao do AdSense apos nova devolucao por baixo valor | A Fase 29 reduziu o conjunto indexavel de 974 para 559 URLs, excluiu 415 rotas rasas com `robots`/`AdsBot-Google noindex`, publicou os dez apps e validou toda a arquitetura em producao. Apos confirmacao explicita do owner, `Confirmo que corrigi os problemas` foi marcado e `Pedir revisao` foi enviado. O painel mudou para `Preparando` e `Revisao solicitada`; aguardar decisao do Google, mantendo ad serving desativado. |
+
 ## Nao bloqueia agora
 
 - Criar estrutura local.
